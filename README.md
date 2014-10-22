@@ -1,4 +1,4 @@
-libstorage-ng-eval
-==================
+libstorage-bgl-eval
+===================
 
-Evaluating use of boost graph library in libstorage
+Evaluating use of the boost graph library (BGL) in libstorage.
