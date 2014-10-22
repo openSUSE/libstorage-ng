@@ -1,4 +1,7 @@
 
+configure: all
+	./configure
+
 all:
 	aclocal
 	autoconf
