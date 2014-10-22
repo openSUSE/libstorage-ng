@@ -1,0 +1,16 @@
+*.dot
+*.o
+*.png
+.deps
+big1
+check1
+compare1
+compare2
+compare3
+compare4
+compare5
+copy1
+copy2
+test1
+test2
+valid1

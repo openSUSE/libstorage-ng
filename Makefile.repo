@@ -3,6 +3,7 @@ configure: all
 	./configure
 
 all:
+	libtoolize
 	aclocal
 	autoconf
 	autoheader

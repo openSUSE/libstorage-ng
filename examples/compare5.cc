@@ -1,8 +1,8 @@
 
 
-#include "Device.h"
-#include "DeviceGraph.h"
-#include "Action.h"
+#include "storage/Device.h"
+#include "storage/DeviceGraph.h"
+#include "storage/Action.h"
 
 
 using namespace storage;

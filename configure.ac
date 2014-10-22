@@ -3,10 +3,15 @@ AM_INIT_AUTOMAKE
 
 AC_CONFIG_HEADERS(config.h)
 
+AC_DISABLE_STATIC
+
 AC_PROG_CXX
+LT_INIT
 
 CXXFLAGS="${CXXFLAGS} -std=c++11 -Wall -Wextra -Wnon-virtual-dtor -Wno-unused-parameter"
 
-AC_CONFIG_FILES(Makefile)
-AC_OUTPUT
-
+AC_OUTPUT(
+	Makefile
+	storage/Makefile
+	examples/Makefile
+)

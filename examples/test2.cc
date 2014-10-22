@@ -1,6 +1,7 @@
 
-#include "Device.h"
-#include "DeviceGraph.h"
+
+#include "storage/Device.h"
+#include "storage/DeviceGraph.h"
 
 
 using namespace storage;

@@ -1,0 +1,4 @@
+*.lo
+.deps
+.libs
+libstorage.la
