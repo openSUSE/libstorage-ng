@@ -22,18 +22,18 @@ BOOST_AUTO_TEST_CASE(valid)
     device_graph.add_edge(sda, sda1, new Subdevice());
     device_graph.add_edge(sda, sda2, new Subdevice());
 
-    BOOST_CHECK(num_vertices(device_graph.graph) == 3);
-    BOOST_CHECK(num_edges(device_graph.graph) == 2);
+    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 3);
+    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 2);
 
     device_graph.remove_vertex(sda1);
 
-    BOOST_CHECK(num_vertices(device_graph.graph) == 2);
-    BOOST_CHECK(num_edges(device_graph.graph) == 1);
+    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 2);
+    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 1);
 
-    // sda and sda2 still valid and correct due to using boost::listS for VertexList
+    // sda and sda2 still valid and correct due to using VertexList=boost::listS
 
-    BOOST_CHECK(device_graph.graph[sda]->display_name() == "/dev/sda");
-    BOOST_CHECK(device_graph.graph[sda2]->display_name() == "/dev/sda2");
+    BOOST_CHECK_EQUAL(device_graph.graph[sda]->display_name(), "/dev/sda");
+    BOOST_CHECK_EQUAL(device_graph.graph[sda2]->display_name(), "/dev/sda2");
 
     BOOST_CHECK_THROW(device_graph.find_vertex("/dev/sda1"), runtime_error);
 }

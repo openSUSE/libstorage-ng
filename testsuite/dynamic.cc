@@ -26,17 +26,17 @@ BOOST_AUTO_TEST_CASE(dynamic)
     DeviceGraph::vertex_descriptor root = device_graph.add_vertex(new LvmLv("/dev/system/root"));
     DeviceGraph::edge_descriptor system_root = device_graph.add_edge(system, root, new Subdevice());
 
-    BOOST_CHECK(num_vertices(device_graph.graph) == 4);
-    BOOST_CHECK(num_edges(device_graph.graph) == 3);
+    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 4);
+    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 3);
 
-    BOOST_CHECK(dynamic_cast<const Disk*>(device_graph.graph[sda].get()) != 0);
+    BOOST_CHECK(dynamic_cast<const Disk*>(device_graph.graph[sda].get()));
 
-    BOOST_CHECK(dynamic_cast<const Partition*>(device_graph.graph[sda1].get()) != 0);
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.graph[sda_sda1].get()) != 0);
+    BOOST_CHECK(dynamic_cast<const Partition*>(device_graph.graph[sda1].get()));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.graph[sda_sda1].get()));
 
-    BOOST_CHECK(dynamic_cast<const LvmVg*>(device_graph.graph[system].get()) != 0);
-    BOOST_CHECK(dynamic_cast<const Using*>(device_graph.graph[sda1_system].get()) != 0);
+    BOOST_CHECK(dynamic_cast<const LvmVg*>(device_graph.graph[system].get()));
+    BOOST_CHECK(dynamic_cast<const Using*>(device_graph.graph[sda1_system].get()));
 
-    BOOST_CHECK(dynamic_cast<const LvmLv*>(device_graph.graph[root].get()) != 0);
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.graph[system_root].get()) != 0);
+    BOOST_CHECK(dynamic_cast<const LvmLv*>(device_graph.graph[root].get()));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.graph[system_root].get()));
 }
