@@ -1,3 +1,3 @@
 
-SUBDIRS = storage examples
+SUBDIRS = storage examples testsuite
 

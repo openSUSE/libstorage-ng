@@ -14,4 +14,5 @@ AC_OUTPUT(
 	Makefile
 	storage/Makefile
 	examples/Makefile
+	testsuite/Makefile
 )
