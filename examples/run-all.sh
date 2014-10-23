@@ -17,5 +17,3 @@
 ./test1
 ./test2
 
-./valid1
-
