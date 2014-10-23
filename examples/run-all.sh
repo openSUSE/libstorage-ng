@@ -9,6 +9,7 @@
 ./compare3 ; display compare3-action.png
 ./compare4 ; display compare4-action.png
 ./compare5 ; display compare5-action.png
+./compare6 ; display compare6-action.png
 
 ./copy1
 ./copy2

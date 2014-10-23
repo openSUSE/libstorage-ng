@@ -147,6 +147,8 @@ namespace storage
 
 	virtual void add_create_actions(ActionGraph& action_graph) const override;
 
+	// mount-by for crypttab
+
     };
 
 
@@ -160,8 +162,11 @@ namespace storage
 
 	string label;
 	string uuid;
+	string mount_point;
 
 	virtual void add_delete_actions(ActionGraph& action_graph) const override;
+
+	// mount-by
 
     };
 

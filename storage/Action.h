@@ -129,9 +129,12 @@ namespace storage
 	{
 	public:
 
-	    Mount(sid_t sid) : Modify(sid) {}
+	    Mount(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+
+	    const string mount_point;
 
 	};
 

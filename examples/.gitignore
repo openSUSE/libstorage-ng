@@ -2,6 +2,7 @@
 *.o
 *.png
 .deps
+.libs
 big1
 check1
 compare1
@@ -9,6 +10,7 @@ compare2
 compare3
 compare4
 compare5
+compare6
 copy1
 copy2
 test1

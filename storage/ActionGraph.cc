@@ -167,9 +167,21 @@ namespace storage
     void
     ActionGraph::add_dependencies()
     {
+	vector<vertex_descriptor> mounts;
+
 	for (vertex_descriptor v : vertices())
 	{
 	    graph[v]->add_dependencies(v, *this);
+
+	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[v].get());
+	    if (mount && mount->mount_point != "swap")
+		mounts.push_back(v);
+	}
+
+	if (mounts.size() == 2)
+	{
+	    // TODO
+	    add_edge(mounts[0], mounts[1]);
 	}
     }
 

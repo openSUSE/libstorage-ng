@@ -134,8 +134,16 @@ namespace storage
 	if (!label.empty())
 	    actions.push_back(new Action::SetLabel(sid));
 
-	actions.push_back(new Action::Mount(sid));
-	actions.push_back(new Action::AddFstab(sid));
+	// TODO When we support multiple mount points we have to create one
+	// Mount action per mount point.  Since the Mount actions get
+	// dependencies later they must either be ordered already here or not
+	// depend on each other.
+
+	if (!mount_point.empty())
+	{
+	    actions.push_back(new Action::Mount(sid, mount_point));
+	    actions.push_back(new Action::AddFstab(sid));
+	}
 
 	action_graph.add_chain(actions);
     }
@@ -147,7 +155,7 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Format(sid));
-	actions.push_back(new Action::Mount(sid));
+	actions.push_back(new Action::Mount(sid, "swap"));
 	actions.push_back(new Action::AddFstab(sid));
 
 	action_graph.add_chain(actions);
