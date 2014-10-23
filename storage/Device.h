@@ -162,7 +162,7 @@ namespace storage
 
 	string label;
 	string uuid;
-	string mount_point;
+	vector<string> mount_points;
 
 	virtual void add_delete_actions(ActionGraph& action_graph) const override;
 

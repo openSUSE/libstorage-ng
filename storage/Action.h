@@ -19,6 +19,7 @@ namespace storage
 	public:
 
 	    Base(sid_t sid) : sid(sid), first(true), last(true) {}
+	    Base(sid_t sid, bool first, bool last) : sid(sid), first(first), last(last) {}
 	    virtual ~Base() {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const = 0;
@@ -29,6 +30,18 @@ namespace storage
 
 	    bool first;
 	    bool last;
+
+	};
+
+
+	// Used a synchronization point.
+	class Nop : public Base
+	{
+	public:
+
+	    Nop(sid_t sid, bool first, bool last) : Base(sid, first, last) {}
+
+	    virtual string text(const ActionGraph& action_graph, bool doing) const;
 
 	};
 
@@ -143,9 +156,12 @@ namespace storage
 	{
 	public:
 
-	    Umount(sid_t sid) : Delete(sid) {}
+	    Umount(sid_t sid, const string& mount_point)
+		: Delete(sid), mount_point(mount_point) {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+
+	    const string mount_point;
 
 	};
 
@@ -154,9 +170,12 @@ namespace storage
 	{
 	public:
 
-	    AddFstab(sid_t sid) : Modify(sid) {}
+	    AddFstab(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+
+	    const string mount_point;
 
 	};
 
@@ -165,9 +184,12 @@ namespace storage
 	{
 	public:
 
-	    RemoveFstab(sid_t sid) : Modify(sid) {}
+	    RemoveFstab(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+
+	    const string mount_point;
 
 	};
 

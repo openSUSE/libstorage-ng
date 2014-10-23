@@ -13,6 +13,15 @@ namespace storage
     {
 
 	string
+	Nop::text(const ActionGraph& action_graph, bool doing) const
+	{
+	    ostringstream str;
+	    str << "nop " << sid;
+	    return str.str();
+	}
+
+
+	string
 	Create::text(const ActionGraph& action_graph, bool doing) const
 	{
 	    const Device* device_rhs = action_graph.rhs.find_device(sid);

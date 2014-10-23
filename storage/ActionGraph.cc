@@ -178,10 +178,21 @@ namespace storage
 		mounts.push_back(v);
 	}
 
-	if (mounts.size() == 2)
+	if (mounts.size() >= 2)
 	{
-	    // TODO
-	    add_edge(mounts[0], mounts[1]);
+	    // TODO correct sort
+	    sort(mounts.begin(), mounts.end(), [this, &mounts](vertex_descriptor l, vertex_descriptor r) {
+		const Action::Mount* ml = dynamic_cast<const Action::Mount*>(graph[l].get());
+		const Action::Mount* mr = dynamic_cast<const Action::Mount*>(graph[r].get());
+		return ml->mount_point > mr->mount_point;
+	    });
+
+	    vertex_descriptor v = mounts[0];
+	    for (size_t i = 1; i < mounts.size(); ++i)
+	    {
+		add_edge(v, mounts[i]);
+		v = mounts[i];
+	    }
 	}
     }
 
@@ -305,7 +316,9 @@ namespace storage
 
 	    out << "[ label=\"" << label << "\"";
 
-	    if (dynamic_cast<const Action::Create*>(action))
+	    if (dynamic_cast<const Action::Nop*>(action))
+		out << ", color=\"#000000\", fillcolor=\"#cccccc\"";
+	    else if (dynamic_cast<const Action::Create*>(action))
 		out << ", color=\"#00ff00\", fillcolor=\"#ccffcc\"";
 	    else if (dynamic_cast<const Action::Modify*>(action))
 		out << ", color=\"#0000ff\", fillcolor=\"#ccccff\"";

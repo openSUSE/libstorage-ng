@@ -117,8 +117,11 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::RemoveFstab(sid));
-	actions.push_back(new Action::Umount(sid));
+	for (const string& mount_point : mount_points)
+	{
+	    actions.push_back(new Action::RemoveFstab(sid, mount_point));
+	    actions.push_back(new Action::Umount(sid, mount_point));
+	}
 
 	action_graph.add_chain(actions);
     }
@@ -127,25 +130,32 @@ namespace storage
     void
     Ext4::add_create_actions(ActionGraph& action_graph) const
     {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Format(sid));
+	Action::Format* format = new Action::Format(sid);
+	format->first = true;
+	format->last = false;
+	ActionGraph::vertex_descriptor v1 = action_graph.add_vertex(format);
 
 	if (!label.empty())
-	    actions.push_back(new Action::SetLabel(sid));
-
-	// TODO When we support multiple mount points we have to create one
-	// Mount action per mount point.  Since the Mount actions get
-	// dependencies later they must either be ordered already here or not
-	// depend on each other.
-
-	if (!mount_point.empty())
 	{
-	    actions.push_back(new Action::Mount(sid, mount_point));
-	    actions.push_back(new Action::AddFstab(sid));
+	    ActionGraph::vertex_descriptor tmp = action_graph.add_vertex(new Action::SetLabel(sid));
+	    action_graph.add_edge(v1, tmp);
+	    v1 = tmp;
 	}
 
-	action_graph.add_chain(actions);
+	if (!mount_points.empty())
+	{
+	    ActionGraph::vertex_descriptor v2 = action_graph.add_vertex(new Action::Nop(sid, false, true));
+
+	    for (const string& mount_point : mount_points)
+	    {
+		ActionGraph::vertex_descriptor t1 = action_graph.add_vertex(new Action::Mount(sid, mount_point));
+		ActionGraph::vertex_descriptor t2 = action_graph.add_vertex(new Action::AddFstab(sid, mount_point));
+
+		action_graph.add_edge(v1, t1);
+		action_graph.add_edge(t1, t2);
+		action_graph.add_edge(t2, v2);
+	    }
+	}
     }
 
 
@@ -156,7 +166,7 @@ namespace storage
 
 	actions.push_back(new Action::Format(sid));
 	actions.push_back(new Action::Mount(sid, "swap"));
-	actions.push_back(new Action::AddFstab(sid));
+	actions.push_back(new Action::AddFstab(sid, "swap"));
 
 	action_graph.add_chain(actions);
     }
