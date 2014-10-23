@@ -1,9 +1,7 @@
 *.log
 *.o
+*.test
 *.trs
 .deps
 .libs
-dynamic
-find-vertex
-stable
 test-suite.log

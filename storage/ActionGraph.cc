@@ -348,4 +348,47 @@ namespace storage
 	system(string("dot -Tpng < " + filename + ".dot > " + filename + ".png").c_str());
     }
 
+
+    ActionGraph::simple_t
+    ActionGraph::simple() const
+    {
+	simple_t ret;
+
+	for (vertex_descriptor v : vertices())
+	{
+	    string key = graph[v]->text(*this, false);
+
+	    vector<string> value;
+
+	    for (edge_descriptor e : boost::make_iterator_range(out_edges(v, graph)))
+		value.push_back(graph[target(e, graph)]->text(*this, false));
+
+	    sort(value.begin(), value.end());
+
+	    ret[key] = value;
+	}
+
+	return ret;
+    }
+
+}
+
+
+namespace std
+{
+
+    ostream&
+    operator<<(ostream& s, const storage::ActionGraph::simple_t& simple)
+    {
+	for (const pair<const string, vector<string>>& i : simple)
+	{
+	    s << "{ \"" << i.first << "\", { ";
+	    for (const string& j : i.second)
+		s << "\"" << j << "\", ";
+	    s << "}," << endl;
+	}
+
+	return s;
+    }
+
 }

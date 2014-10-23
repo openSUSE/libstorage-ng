@@ -55,6 +55,10 @@ namespace storage
 
 	void commit() const;
 
+	// TODO simple_t is useful for comparing in testsuite, move there?
+	typedef map<string, vector<string>> simple_t;
+	simple_t simple() const;
+
     private:
 
 	void get_actions();
@@ -69,5 +73,14 @@ namespace storage
     };
 
 }
+
+
+namespace std
+{
+
+    ostream& operator<<(ostream& s, const storage::ActionGraph::simple_t& simple);
+
+}
+
 
 #endif
