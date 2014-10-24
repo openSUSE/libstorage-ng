@@ -179,7 +179,7 @@ namespace storage
 
 	virtual string display_name() const override { return "ext4"; }
 
-	virtual Device* clone() const override { return new Ext4(*this); }
+	virtual Ext4* clone() const override { return new Ext4(*this); }
 
 	virtual void add_create_actions(ActionGraph& action_graph) const override;
 
@@ -194,7 +194,7 @@ namespace storage
 
 	virtual string display_name() const override { return "swap"; }
 
-	virtual Device* clone() const override { return new Swap(*this); }
+	virtual Swap* clone() const override { return new Swap(*this); }
 
 	virtual void add_create_actions(ActionGraph& action_graph) const override;
 
