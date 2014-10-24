@@ -14,6 +14,6 @@
 ./copy1
 ./copy2
 
-./test1
+./test1 ; display test1.png
 ./test2
 
