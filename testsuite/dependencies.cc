@@ -15,11 +15,11 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(dependencies)
 {
     ActionGraph::simple_t expected = {
-	{ "create 43 /dev/sda1", { "set type 43 /dev/sda1" } },
-	{ "set type 43 /dev/sda1", { "create 44 fake /dev/system" } },
-	{ "create 44 fake /dev/system", { "create 45 /dev/system/root", "create 46 /dev/system/swap" } },
-	{ "create 45 /dev/system/root", { } },
-	{ "create 46 /dev/system/swap", { } }
+	{ "43 create /dev/sda1", { "43 set type /dev/sda1" } },
+	{ "43 set type /dev/sda1", { "44 create /dev/system" } },
+	{ "44 create /dev/system", { "45 create /dev/system/root", "46 create /dev/system/swap" } },
+	{ "45 create /dev/system/root", { } },
+	{ "46 create /dev/system/swap", { } }
     };
 
     DeviceGraph lhs;

@@ -69,6 +69,22 @@ namespace storage
     }
 
 
+/*
+    void
+    Disk::add_create_actions(ActionGraph& action_graph) const
+    {
+	throw runtime_error("cannot create disk");
+    }
+
+
+    void
+    Disk::add_delete_actions(ActionGraph& action_graph) const
+    {
+	throw runtime_error("cannot delete disk");
+    }
+*/
+
+
     /*
     vector<Partition*>
     Disk::getPartitions(const DeviceGraph& device_graph)

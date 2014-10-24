@@ -89,6 +89,11 @@ namespace storage
 
 	virtual Disk* clone() const override { return new Disk(*this); }
 
+/*
+	virtual void add_create_actions(ActionGraph& action_graph) const;
+	virtual void add_delete_actions(ActionGraph& action_graph) const;
+*/
+
 	// transport
 
 	// vector<Partition*> getPartitions(const DeviceGraph& device_graph);
@@ -117,7 +122,7 @@ namespace storage
 
 	string name;
 
-	virtual string display_name() const { return "fake " + name; }
+	virtual string display_name() const { return name; }
 
 	virtual LvmVg* clone() const override { return new LvmVg(*this); }
 

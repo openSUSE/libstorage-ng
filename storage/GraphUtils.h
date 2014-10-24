@@ -88,8 +88,8 @@ namespace storage
 
 
     // Can be used as vertex_copy and edge_copy function for copy_graph. The
-    // vertex or edge must be a shared_ptr and the object must provide a clone
-    // function.
+    // vertex or edge must be a shared_ptr (or implement the interface) and
+    // the object must provide a clone function.
 
     template <typename Graph>
     class CloneCopier
