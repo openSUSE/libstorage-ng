@@ -20,5 +20,7 @@ BOOST_AUTO_TEST_CASE(disk)
 
     rhs.add_vertex(new Disk("/dev/sda"));
 
-    BOOST_CHECK_THROW(ActionGraph action_graph(lhs, rhs), runtime_error);
+    BOOST_CHECK_EXCEPTION(ActionGraph action_graph(lhs, rhs), runtime_error,
+	[](const runtime_error& e) { return e.what() == string("cannot create disk"); }
+    );
 }
