@@ -330,6 +330,8 @@ namespace storage
 
 	    if (dynamic_cast<const Disk*>(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
+	    else if (dynamic_cast<const PartitionTable*>(device))
+		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 	    else if (dynamic_cast<const Partition*>(device))
 		out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
 	    else if (dynamic_cast<const LvmVg*>(device))

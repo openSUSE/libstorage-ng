@@ -69,7 +69,6 @@ namespace storage
     }
 
 
-/*
     void
     Disk::add_create_actions(ActionGraph& action_graph) const
     {
@@ -82,12 +81,10 @@ namespace storage
     {
 	throw runtime_error("cannot delete disk");
     }
-*/
 
 
-    /*
     vector<Partition*>
-    Disk::getPartitions(const DeviceGraph& device_graph)
+    PartitionTable::getPartitions(const DeviceGraph& device_graph)
     {
 	vector<Partition*> ret;
 
@@ -101,7 +98,28 @@ namespace storage
 
 	return ret;
     }
-    */
+
+
+    void
+    Gpt::add_create_actions(ActionGraph& action_graph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Create(sid));
+
+	action_graph.add_chain(actions);
+    }
+
+
+    void
+    Gpt::add_delete_actions(ActionGraph& action_graph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Nop(sid));
+
+	action_graph.add_chain(actions);
+    }
 
 
     void

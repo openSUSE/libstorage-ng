@@ -39,6 +39,7 @@ namespace storage
 	{
 	public:
 
+	    Nop(sid_t sid) : Base(sid) {}
 	    Nop(sid_t sid, bool first, bool last) : Base(sid, first, last) {}
 
 	    virtual string text(const ActionGraph& action_graph, bool doing) const;

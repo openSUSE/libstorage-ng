@@ -62,11 +62,11 @@ namespace storage
 
 	BlkDevice(const string& name);
 
-	virtual string display_name() const { return name; }
+	virtual string display_name() const override { return name; }
 
 	virtual BlkDevice* clone() const override { return new BlkDevice(*this); }
 
-	virtual void check() const;
+	virtual void check() const override;
 
 	string name;
 
@@ -89,14 +89,43 @@ namespace storage
 
 	virtual Disk* clone() const override { return new Disk(*this); }
 
-/*
-	virtual void add_create_actions(ActionGraph& action_graph) const;
-	virtual void add_delete_actions(ActionGraph& action_graph) const;
-*/
+	virtual void add_create_actions(ActionGraph& action_graph) const override;
+	virtual void add_delete_actions(ActionGraph& action_graph) const override;
 
+	// geometry
 	// transport
 
-	// vector<Partition*> getPartitions(const DeviceGraph& device_graph);
+    };
+
+
+    class PartitionTable : public Device
+    {
+    public:
+
+	PartitionTable() : Device() {}
+
+	vector<Partition*> getPartitions(const DeviceGraph& device_graph);
+
+	// read-only
+
+    };
+
+
+    class Gpt : public PartitionTable
+    {
+    public:
+
+	Gpt() : PartitionTable() {}
+
+	virtual Gpt* clone() const override { return new Gpt(*this); }
+
+	virtual string display_name() const override { return "gpt"; }
+
+	virtual void add_create_actions(ActionGraph& action_graph) const override;
+	virtual void add_delete_actions(ActionGraph& action_graph) const override;
+
+	// enlarge
+
     };
 
 
@@ -122,7 +151,7 @@ namespace storage
 
 	string name;
 
-	virtual string display_name() const { return name; }
+	virtual string display_name() const override { return name; }
 
 	virtual LvmVg* clone() const override { return new LvmVg(*this); }
 
