@@ -1,6 +1,9 @@
 
 
-#include "storage/Device.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Gpt.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/Ext4.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 
@@ -29,12 +32,12 @@ main()
     rhs.add_edge(gpt, sda2, new Subdevice());
 
     DeviceGraph::vertex_descriptor sda1_fs = rhs.add_vertex(new Ext4());
-    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->mount_points.push_back("/");
-    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->mount_points.push_back("/var/log");
+    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->addMountPoint("/");
+    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->addMountPoint("/var/log");
     rhs.add_edge(sda1, sda1_fs, new Using());
 
     DeviceGraph::vertex_descriptor sda2_fs = rhs.add_vertex(new Ext4());
-    dynamic_cast<Filesystem*>(rhs.graph[sda2_fs].get())->mount_points.push_back("/var");
+    dynamic_cast<Filesystem*>(rhs.graph[sda2_fs].get())->addMountPoint("/var");
     rhs.add_edge(sda2, sda2_fs, new Using());
 
     rhs.write_graphviz("compare6-device-rhs");

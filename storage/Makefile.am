@@ -1,10 +1,16 @@
+#
+# Makefile.am for libstorage/storage
+#
+
+SUBDIRS = Devices Holders
 
 lib_LTLIBRARIES = libstorage.la
 
-libstorage_la_SOURCES =                                 \
-        Device.cc		Device.h		\
-	DeviceGraph.cc		DeviceGraph.h		\
-	Action.cc		Action.h		\
-	ActionGraph.cc		ActionGraph.h		\
+libstorage_la_SOURCES =					\
+	DeviceGraph.h		DeviceGraph.cc		\
+	Action.h		Action.cc		\
+	ActionGraph.h		ActionGraph.cc		\
 	GraphUtils.h
+
+libstorage_la_LIBADD = Devices/libdevices.la
 

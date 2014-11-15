@@ -2,8 +2,9 @@
 
 #include <fstream>
 
-#include "Action.h"
-#include "DeviceGraph.h"
+#include "storage/Action.h"
+#include "storage/DeviceGraph.h"
+#include "storage/Devices/Partition.h"
 
 
 namespace storage
@@ -166,7 +167,7 @@ namespace storage
 	    DeviceGraph::graph_t::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, action_graph.rhs.graph); vi != vi_end; ++vi)
 	    {
-		sid_t parent_sid = action_graph.rhs.graph[*vi]->sid;
+		sid_t parent_sid = action_graph.rhs.graph[*vi]->getSid();
 
 		if (!action_graph.lhs.vertex_exists(parent_sid))
 		{
@@ -184,7 +185,7 @@ namespace storage
 		    DeviceGraph::graph_t::adjacency_iterator vi2, vi2_end;
 		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, action_graph.lhs.graph); vi2 != vi2_end; ++vi2)
 		    {
-			sid_t child_sid = action_graph.lhs.graph[*vi2]->sid;
+			sid_t child_sid = action_graph.lhs.graph[*vi2]->getSid();
 
 			ActionGraph::vertex_descriptor tmp = action_graph.huhu(child_sid, false, true).front();
 			action_graph.add_edge(tmp, v);
@@ -201,7 +202,7 @@ namespace storage
 
 		for (DeviceGraph::vertex_descriptor q : siblings)
 		{
-		    sid_t s_sid = action_graph.rhs.graph[q]->sid;
+		    sid_t s_sid = action_graph.rhs.graph[q]->getSid();
 
 		    for (ActionGraph::vertex_descriptor tmp : action_graph.vertices())
 		    {
@@ -211,7 +212,7 @@ namespace storage
 			    Partition* p_rhs = dynamic_cast<Partition*>(action_graph.rhs.graph[v_in_rhs].get());
 			    Partition* p_lhs = dynamic_cast<Partition*>(action_graph.lhs.graph[q].get());
 
-			    if (p_lhs->name < p_rhs->name) // TODO number compare
+			    if (p_lhs->getNumber() < p_rhs->getNumber())
 				w.push_back(tmp);
 			}
 		    }
@@ -239,7 +240,7 @@ namespace storage
 	    DeviceGraph::graph_t::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, action_graph.lhs.graph); vi != vi_end; ++vi)
 	    {
-		sid_t child_sid = action_graph.rhs.graph[*vi]->sid;
+		sid_t child_sid = action_graph.rhs.graph[*vi]->getSid();
 
 		for (ActionGraph::vertex_descriptor tmp : action_graph.huhu(child_sid, true, false))
 		    action_graph.add_edge(v, tmp);

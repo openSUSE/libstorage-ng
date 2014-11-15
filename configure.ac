@@ -13,6 +13,8 @@ CXXFLAGS="${CXXFLAGS} -std=c++11 -Wall -Wextra -Wnon-virtual-dtor -Wno-unused-pa
 AC_OUTPUT(
 	Makefile
 	storage/Makefile
+	storage/Devices/Makefile
+	storage/Holders/Makefile
 	examples/Makefile
 	testsuite/Makefile
 )

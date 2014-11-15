@@ -1,6 +1,9 @@
 
 
-#include "storage/Device.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmLv.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 
@@ -31,7 +34,7 @@ main()
     lhs.copy(rhs);
 
     LvmLv* d = dynamic_cast<LvmLv*>(rhs.graph[system_oracle].get());
-    d->name = "/dev/system/postgresql";
+    d->setName("/dev/system/postgresql");
 
     ActionGraph action_graph(lhs, rhs);
 

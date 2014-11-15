@@ -1,5 +1,7 @@
 
 
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Partition.h"
 #include "storage/DeviceGraph.h"
 
 
@@ -23,42 +25,40 @@ main()
     device_graph.copy(device_graph_copy);
 
     {
-	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.find_device(partition->sid));
+	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.find_device(partition->getSid()));
 	assert(tmp);
 
-	tmp->name = "/dev/dasda1";
+	tmp->setName("/dev/dasda1");
     }
 
     device_graph.print_graph();
     device_graph_copy.print_graph();
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph.find_device(disk->sid));
+	Disk* tmp = dynamic_cast<Disk*>(device_graph.find_device(disk->getSid()));
 	assert(tmp);
 
-	assert(tmp->name == "/dev/dasda");
+	assert(tmp->getName() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph.find_device(partition->sid));
+	Partition* tmp = dynamic_cast<Partition*>(device_graph.find_device(partition->getSid()));
 	assert(tmp);
 
-	assert(tmp->name == "/dev/dasda2");
-	assert(tmp->is_primary());
+	assert(tmp->getName() == "/dev/dasda2");
     }
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph_copy.find_device(disk->sid));
+	Disk* tmp = dynamic_cast<Disk*>(device_graph_copy.find_device(disk->getSid()));
 	assert(tmp);
 
-	assert(tmp->name == "/dev/dasda");
+	assert(tmp->getName() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph_copy.find_device(partition->sid));
+	Partition* tmp = dynamic_cast<Partition*>(device_graph_copy.find_device(partition->getSid()));
 	assert(partition);
 
-	assert(tmp->name == "/dev/dasda1");
-	assert(tmp->is_primary());
+	assert(tmp->getName() == "/dev/dasda1");
     }
 }

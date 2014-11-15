@@ -5,8 +5,16 @@
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/graph_utility.hpp>
 
-#include "DeviceGraph.h"
-#include "GraphUtils.h"
+#include "storage/DeviceGraph.h"
+#include "storage/GraphUtils.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Encryption.h"
+#include "storage/Devices/Filesystem.h"
 
 
 namespace storage
@@ -25,7 +33,7 @@ namespace storage
 	for (vertex_descriptor v : vertices())
 	{
 	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(graph[v].get());
-	    if (blk_device && blk_device->name == name)
+	    if (blk_device && blk_device->getName() == name)
 		return v;
 	}
 
@@ -40,7 +48,7 @@ namespace storage
     {
 	for (vertex_descriptor v : vertices())
 	{
-	    if (graph[v]->sid == sid)
+	    if (graph[v]->getSid() == sid)
 		return v;
 	}
 
@@ -237,7 +245,7 @@ namespace storage
 	    {
 		const Device* device = graph[v].get();
 
-		sid_t sid = device->sid;
+		sid_t sid = device->getSid();
 		pair<set<sid_t>::iterator, bool> tmp = sids.insert(sid);
 		if (!tmp.second)
 		    cerr << "sid not unique" << endl;
@@ -245,7 +253,7 @@ namespace storage
 		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(device);
 		if (blk_device)
 		{
-		    pair<set<string>::iterator, bool> tmp = names.insert(blk_device->name);
+		    pair<set<string>::iterator, bool> tmp = names.insert(blk_device->getName());
 		    if (!tmp.second)
 			cerr << "name not unique" << endl;
 		}
@@ -255,7 +263,8 @@ namespace storage
 	{
 	    for (vertex_descriptor v : vertices())
 	    {
-		graph[v]->check();
+		const Device* device = graph[v].get();
+		device->check();
 	    }
 	}
 
@@ -289,7 +298,7 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    sid_t sid = graph[v]->sid;
+	    sid_t sid = graph[v]->getSid();
 	    string label = graph[v]->display_name();
 
 	    ostringstream tmp;
@@ -326,7 +335,7 @@ namespace storage
 	{
 	    const Device* device = device_graph.graph[v].get();
 
-	    out << "[ label=\"" << device->sid << " " << device->display_name() << "\"";
+	    out << "[ label=\"" << device->getSid() << " " << device->display_name() << "\"";
 
 	    if (dynamic_cast<const Disk*>(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";

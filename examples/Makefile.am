@@ -1,3 +1,6 @@
+#
+# Makefile.am for libstorage/examples
+#
 
 INCLUDES = -I$(top_srcdir)
 

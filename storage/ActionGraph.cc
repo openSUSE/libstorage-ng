@@ -6,10 +6,12 @@
 #include <boost/graph/graph_utility.hpp>
 #include <boost/graph/graphviz.hpp>
 
-#include "DeviceGraph.h"
-#include "GraphUtils.h"
-#include "Action.h"
-#include "ActionGraph.h"
+#include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/DeviceGraph.h"
+#include "storage/GraphUtils.h"
+#include "storage/Action.h"
+#include "storage/ActionGraph.h"
 
 
 namespace storage
@@ -115,11 +117,11 @@ namespace storage
     {
 	set<sid_t> lhs_sids;
 	for (DeviceGraph::vertex_descriptor v : lhs.vertices())
-	    lhs_sids.insert(lhs.graph[v]->sid);
+	    lhs_sids.insert(lhs.graph[v]->getSid());
 
 	set<sid_t> rhs_sids;
 	for (DeviceGraph::vertex_descriptor v : rhs.vertices())
-	    rhs_sids.insert(rhs.graph[v]->sid);
+	    rhs_sids.insert(rhs.graph[v]->getSid());
 
 	vector<sid_t> created_sids;
 	back_insert_iterator<vector<sid_t>> bii1(created_sids);
@@ -137,7 +139,7 @@ namespace storage
 	{
 	    DeviceGraph::vertex_descriptor v_rhs = rhs.find_vertex(sid);
 	    const Device* d_rhs = rhs.graph[v_rhs].get();
-	    d_rhs->add_create_actions(*this);
+	    d_rhs->getImpl().add_create_actions(*this);
 	}
 
 	for (sid_t sid : common_sids)
@@ -148,7 +150,7 @@ namespace storage
 	    const BlkDevice* d_lhs = dynamic_cast<const BlkDevice*>(lhs.graph[v_lhs].get());
 	    const BlkDevice* d_rhs = dynamic_cast<const BlkDevice*>(rhs.graph[v_rhs].get());
 
-	    if ((d_lhs && d_rhs) && (d_lhs->name != d_rhs->name))
+	    if ((d_lhs && d_rhs) && (d_lhs->getName() != d_rhs->getName()))
 	    {
 		Action::Base* action = new Action::Modify(sid);
 		add_vertex(action);
@@ -159,7 +161,7 @@ namespace storage
 	{
 	    DeviceGraph::vertex_descriptor v_lhs = lhs.find_vertex(sid);
 	    const Device* d_lhs = lhs.graph[v_lhs].get();
-	    d_lhs->add_delete_actions(*this);
+	    d_lhs->getImpl().add_delete_actions(*this);
 	}
     }
 

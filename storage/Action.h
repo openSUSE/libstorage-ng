@@ -2,8 +2,8 @@
 #define ACTION_H
 
 
-#include "Device.h"
-#include "ActionGraph.h"
+#include "storage/Devices/Device.h"
+#include "storage/ActionGraph.h"
 
 
 namespace storage

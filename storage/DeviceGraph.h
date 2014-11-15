@@ -5,7 +5,8 @@
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
-#include "Device.h"
+#include "storage/Devices/Device.h"
+#include "storage/Holders/Holder.h"
 
 
 namespace storage

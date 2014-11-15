@@ -1,3 +1,6 @@
+#
+# Makefile.am for libstorage/testsuite
+#
 
 INCLUDES = -I$(top_srcdir)
 

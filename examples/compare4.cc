@@ -1,6 +1,9 @@
 
 
-#include "storage/Device.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Gpt.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/LvmVg.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 

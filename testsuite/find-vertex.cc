@@ -4,7 +4,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Device.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Partition.h"
 #include "storage/DeviceGraph.h"
 
 
