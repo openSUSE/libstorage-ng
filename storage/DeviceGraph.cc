@@ -27,6 +27,13 @@ namespace storage
     }
 
 
+    boost::iterator_range<DeviceGraph::edge_iterator>
+    DeviceGraph::edges() const
+    {
+	return boost::make_iterator_range(boost::edges(graph));
+    }
+
+
     DeviceGraph::vertex_descriptor
     DeviceGraph::find_vertex(const string& name) const
     {
@@ -118,15 +125,39 @@ namespace storage
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::siblings(vertex_descriptor v, bool itself) const
+    DeviceGraph::children(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
-	for (vertex_descriptor tmp1 : boost::make_iterator_range(inv_adjacent_vertices(v, graph)))
+	for (vertex_descriptor tmp : boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)))
+	    ret.push_back(tmp);
+
+	return ret;
+    }
+
+
+    vector<DeviceGraph::vertex_descriptor>
+    DeviceGraph::parents(vertex_descriptor vertex, bool itself) const
+    {
+	vector<vertex_descriptor> ret;
+
+	for (vertex_descriptor tmp : boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)))
+	    ret.push_back(tmp);
+
+	return ret;
+    }
+
+
+    vector<DeviceGraph::vertex_descriptor>
+    DeviceGraph::siblings(vertex_descriptor vertex, bool itself) const
+    {
+	vector<vertex_descriptor> ret;
+
+	for (vertex_descriptor tmp1 : boost::make_iterator_range(inv_adjacent_vertices(vertex, graph)))
 	{
 	    for (vertex_descriptor tmp2 : boost::make_iterator_range(adjacent_vertices(tmp1, graph)))
 	    {
-		if (itself || v != tmp2)
+		if (itself || vertex != tmp2)
 		    ret.push_back(tmp2);
 	    }
 	}
@@ -139,7 +170,7 @@ namespace storage
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::descendants(vertex_descriptor v, bool itself) const
+    DeviceGraph::descendants(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -147,17 +178,17 @@ namespace storage
 
 	vertex_recorder<vertex_descriptor> vis(false, ret);
 
-	boost::breadth_first_search(graph, v, visitor(vis).vertex_index_map(haha.get()));
+	boost::breadth_first_search(graph, vertex, visitor(vis).vertex_index_map(haha.get()));
 
 	if (!itself)
-	    ret.erase(remove(ret.begin(), ret.end(), v), ret.end());
+	    ret.erase(remove(ret.begin(), ret.end(), vertex), ret.end());
 
 	return ret;
     }
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::ancestors(vertex_descriptor v, bool itself) const
+    DeviceGraph::ancestors(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -169,17 +200,17 @@ namespace storage
 
 	vertex_recorder<vertex_descriptor> vis(false, ret);
 
-	boost::breadth_first_search(reverse_graph, v, visitor(vis).vertex_index_map(haha.get()));
+	boost::breadth_first_search(reverse_graph, vertex, visitor(vis).vertex_index_map(haha.get()));
 
 	if (!itself)
-	    ret.erase(remove(ret.begin(), ret.end(), v), ret.end());
+	    ret.erase(remove(ret.begin(), ret.end(), vertex), ret.end());
 
 	return ret;
     }
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::leafs(vertex_descriptor v, bool itself) const
+    DeviceGraph::leafs(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -187,17 +218,17 @@ namespace storage
 
 	vertex_recorder<vertex_descriptor> vis(true, ret);
 
-	boost::breadth_first_search(graph, v, visitor(vis).vertex_index_map(haha.get()));
+	boost::breadth_first_search(graph, vertex, visitor(vis).vertex_index_map(haha.get()));
 
 	if (!itself)
-	    ret.erase(remove(ret.begin(), ret.end(), v), ret.end());
+	    ret.erase(remove(ret.begin(), ret.end(), vertex), ret.end());
 
 	return ret;
     }
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::roots(vertex_descriptor v, bool itself) const
+    DeviceGraph::roots(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -209,10 +240,10 @@ namespace storage
 
 	vertex_recorder<vertex_descriptor> vis(true, ret);
 
-	boost::breadth_first_search(reverse_graph, v, visitor(vis).vertex_index_map(haha.get()));
+	boost::breadth_first_search(reverse_graph, vertex, visitor(vis).vertex_index_map(haha.get()));
 
 	if (!itself)
-	    ret.erase(remove(ret.begin(), ret.end(), v), ret.end());
+	    ret.erase(remove(ret.begin(), ret.end(), vertex), ret.end());
 
 	return ret;
     }

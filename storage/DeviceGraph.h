@@ -54,6 +54,7 @@ namespace storage
 	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b, Holder* holder);
 
 	boost::iterator_range<vertex_iterator> vertices() const;
+	boost::iterator_range<edge_iterator> edges() const;
 
 	void check() const;
 
@@ -62,13 +63,13 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
 
-	vector<vertex_descriptor> siblings(vertex_descriptor v, bool itself) const;
-
-	vector<vertex_descriptor> descendants(vertex_descriptor v, bool itself) const;
-	vector<vertex_descriptor> ancestors(vertex_descriptor v, bool itself) const;
-
-	vector<vertex_descriptor> leafs(vertex_descriptor v, bool itself) const;
-	vector<vertex_descriptor> roots(vertex_descriptor v, bool itself) const;
+	vector<vertex_descriptor> children(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> parents(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> descendants(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> leafs(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
 
 	graph_t graph;
 
