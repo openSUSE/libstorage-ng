@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm *.{dot,png}
+
 ./big1
 
 ./check1
