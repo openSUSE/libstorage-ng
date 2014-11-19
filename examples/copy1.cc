@@ -13,12 +13,13 @@ main()
 {
     DeviceGraph device_graph;
 
-    DeviceGraph::vertex_descriptor sda = device_graph.add_vertex(new Disk("/dev/sda"));
-    DeviceGraph::vertex_descriptor sda1 = device_graph.add_vertex(new Partition("/dev/sda1"));
-    DeviceGraph::vertex_descriptor sda2 = device_graph.add_vertex(new Partition("/dev/sda2"));
+    Disk* sda = new Disk(device_graph, "/dev/sda");
 
-    device_graph.add_edge(sda, sda1, new Subdevice());
-    device_graph.add_edge(sda, sda2, new Subdevice());
+    Partition* sda1 = new Partition(device_graph, "/dev/sda1");
+    new Subdevice(device_graph, sda, sda1);
+
+    Partition* sda2 = new Partition(device_graph, "/dev/sda2");
+    new Subdevice(device_graph, sda, sda2);
 
     DeviceGraph device_graph_copy;
     device_graph.copy(device_graph_copy);

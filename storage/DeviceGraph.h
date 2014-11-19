@@ -6,6 +6,7 @@
 #include <boost/graph/adjacency_list.hpp>
 
 #include "storage/Devices/Device.h"
+#include "storage/Devices/BlkDevice.h"
 #include "storage/Holders/Holder.h"
 
 
@@ -45,13 +46,16 @@ namespace storage
 	Device* find_device(sid_t sid);
 	const Device* find_device(sid_t sid) const;
 
+	BlkDevice* find_blk_device(const string& name);
+
 	bool vertex_exists(sid_t sid) const;
 
-	vertex_descriptor add_vertex(Device* device);
-
 	void remove_vertex(vertex_descriptor a);
+	void remove_vertex(sid_t sid);
+	void remove_vertex(Device* a);
 
-	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b, Holder* holder);
+	Holder* find_holder(sid_t source_sid, sid_t target_sid);
+	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
@@ -63,13 +67,31 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
 
-	vector<vertex_descriptor> children(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> parents(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> children(vertex_descriptor vertex) const;
+	vector<vertex_descriptor> parents(vertex_descriptor vertex) const;
 	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> descendants(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> leafs(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
+
+	template <typename Type>
+	vector<const Type*>
+	getDevices(const vector<vertex_descriptor>& vertices) const
+	{
+	    vector<const Type*> ret;
+
+	    for (DeviceGraph::vertex_descriptor vertex : vertices)
+	    {
+		const Type* device = dynamic_cast<const Type*>(graph[vertex].get());
+		if (!device)
+		    throw bad_cast();
+
+		ret.push_back(device);
+	    }
+
+	    return ret;
+	}
 
 	graph_t graph;
 

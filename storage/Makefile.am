@@ -12,5 +12,5 @@ libstorage_la_SOURCES =					\
 	ActionGraph.h		ActionGraph.cc		\
 	GraphUtils.h
 
-libstorage_la_LIBADD = Devices/libdevices.la
+libstorage_la_LIBADD = Holders/libholders.la Devices/libdevices.la
 

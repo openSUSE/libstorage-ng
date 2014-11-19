@@ -17,34 +17,26 @@ DeviceGraph rhs;
 void
 add_disk(const string& name)
 {
-    Disk* disk = new Disk(name);
-
-    lhs.add_vertex(disk);
+    new Disk(lhs, name);
 }
 
 
 void
 add_partitions(const string& name)
 {
-    DeviceGraph::vertex_descriptor d = rhs.find_vertex(name);
+    Disk* disk = dynamic_cast<Disk*>(rhs.find_blk_device(name));
 
-    Gpt* gpt = new Gpt();
+    Gpt* gpt = new Gpt(rhs);
+    new Subdevice(rhs, disk, gpt);
 
-    Partition* partition1 = new Partition(name + "p1");
-    Partition* partition2 = new Partition(name + "p2");
-    Partition* partition3 = new Partition(name + "p3");
+    Partition* partition1 = new Partition(rhs, name + "p1");
+    new Subdevice(rhs, gpt, partition1);
 
-    DeviceGraph::vertex_descriptor pt = rhs.add_vertex(gpt);
+    Partition* partition2 = new Partition(rhs, name + "p2");
+    new Subdevice(rhs, gpt, partition2);
 
-    DeviceGraph::vertex_descriptor p1 = rhs.add_vertex(partition1);
-    DeviceGraph::vertex_descriptor p2 = rhs.add_vertex(partition2);
-    DeviceGraph::vertex_descriptor p3 = rhs.add_vertex(partition3);
-
-    rhs.add_edge(d, pt, new Subdevice());
-
-    rhs.add_edge(pt, p1, new Subdevice());
-    rhs.add_edge(pt, p2, new Subdevice());
-    rhs.add_edge(pt, p3, new Subdevice());
+    Partition* partition3 = new Partition(rhs, name + "p3");
+    new Subdevice(rhs, gpt, partition3);
 }
 
 

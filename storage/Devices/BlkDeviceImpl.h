@@ -26,8 +26,12 @@ namespace storage
 
     protected:
 
-	Impl(const string& name) : Device::Impl(), name(name) {}
+	Impl(DeviceGraph& device_graph, const string& name)
+	    : Device::Impl(device_graph), name(name) {}
 
+	// TODO not nice that all members must be initialized individual
+	Impl(DeviceGraph& device_graph, const Impl& impl)
+	    : Device::Impl(device_graph, impl), name(impl.name) {}
 
     };
 

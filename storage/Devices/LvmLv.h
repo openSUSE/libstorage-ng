@@ -15,20 +15,23 @@ namespace storage
     {
     public:
 
-	LvmLv(const string& name);
-
-	virtual LvmLv* clone() const override;
+	LvmLv(DeviceGraph& device_graph, const string& name);
 
 	virtual void check() const override;
 
-    protected:
+    public:
 
 	class Impl;
 
-	LvmLv(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual LvmLv* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	LvmLv(Impl* impl);
+	LvmLv(DeviceGraph& device_graph, Impl* impl);
 
     };
 

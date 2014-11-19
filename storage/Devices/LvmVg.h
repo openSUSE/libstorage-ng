@@ -15,9 +15,7 @@ namespace storage
     {
     public:
 
-	LvmVg(const string& name);
-
-	virtual LvmVg* clone() const override;
+	LvmVg(DeviceGraph& device_graph, const string& name);
 
 	const string& getName() const;
 	void setName(const string& name);
@@ -30,10 +28,15 @@ namespace storage
 
 	class Impl;
 
-	LvmVg(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual LvmVg* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	LvmVg(Impl* impl);
+	// LvmVg(DeviceGraph& device_graph, Impl* impl);
 
     };
 

@@ -22,9 +22,11 @@ namespace storage
     {
 	cout << "lhs graph" << endl;
 	lhs.print_graph();
+	lhs.check();
 
 	cout << "rhs graph" << endl;
 	rhs.print_graph();
+	rhs.check();
 
 	get_actions();
 	add_dependencies();

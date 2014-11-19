@@ -15,20 +15,23 @@ namespace storage
     {
     public:
 
-	Partition(const string& name);
+	Partition(DeviceGraph& device_graph, const string& name);
 
-	virtual Partition* clone() const override;
+	virtual Partition* clone(DeviceGraph& device_graph) const override;
 
 	unsigned int getNumber() const;
 
-    protected:
+    public:
 
 	class Impl;
 
-	Partition(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+    protected:
+
+	Partition(Impl* impl);
+	// Partition(DeviceGraph& device_graph, Impl* impl);
 
     };
 

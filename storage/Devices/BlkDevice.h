@@ -24,14 +24,17 @@ namespace storage
 	const string& getName() const;
 	void setName(const string& name);
 
-    protected:
+    public:
 
 	class Impl;
 
-	BlkDevice(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+    protected:
+
+	BlkDevice(Impl* impl);
+	BlkDevice(DeviceGraph& device_graph, Impl* impl);
 
     };
 

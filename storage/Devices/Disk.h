@@ -15,18 +15,21 @@ namespace storage
     {
     public:
 
-	Disk(const string& name);
+	Disk(DeviceGraph& device_graph, const string& name);
 
-	virtual Disk* clone() const override;
-
-    protected:
+    public:
 
 	class Impl;
 
-	Disk(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual Disk* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	Disk(Impl* impl);
+	// Disk(DeviceGraph& device_graph, Impl* impl);
 
     };
 

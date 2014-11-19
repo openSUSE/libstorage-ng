@@ -15,9 +15,7 @@ namespace storage
     {
     public:
 
-	Swap();
-
-	virtual Swap* clone() const override;
+	Swap(DeviceGraph& device_graph);
 
 	virtual string display_name() const override { return "swap"; }
 
@@ -26,14 +24,19 @@ namespace storage
 
 	bool supportsUuid() const override { return false; }
 
-    protected:
+    public:
 
 	class Impl;
 
-	Swap(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual Swap* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	Swap(Impl* impl);
+	// Swap(DeviceGraph& device_graph, Impl* impl);
 
     };
 

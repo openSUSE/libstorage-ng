@@ -15,20 +15,23 @@ namespace storage
     {
     public:
 
-	Gpt();
-
-	virtual Gpt* clone() const override;
+	Gpt(DeviceGraph& device_graph);
 
 	virtual string display_name() const override { return "gpt"; }
 
-    protected:
+    public:
 
 	class Impl;
 
-	Gpt(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual Gpt* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	Gpt(Impl* impl);
+	Gpt(DeviceGraph& device_graph, Impl* impl);
 
     };
 

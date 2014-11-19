@@ -17,28 +17,28 @@ main()
 {
     DeviceGraph lhs;
 
-    lhs.add_vertex(new Disk("/dev/sda"));
+    Disk* lhs_sda = new Disk(lhs, "/dev/sda");
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    DeviceGraph::vertex_descriptor sda = rhs.find_vertex("/dev/sda");
+    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_device(lhs_sda->getSid()));
 
-    DeviceGraph::vertex_descriptor gpt = rhs.add_vertex(new Gpt());
-    rhs.add_edge(sda, gpt, new Using());
+    Gpt* rhs_gpt = new Gpt(rhs);
+    new Using(rhs, rhs_sda, rhs_gpt);
 
-    DeviceGraph::vertex_descriptor sda1 = rhs.add_vertex(new Partition("/dev/sda1"));
-    rhs.add_edge(gpt, sda1, new Subdevice());
+    Partition* rhs_sda1 = new Partition(rhs, "/dev/sda1");
+    new Subdevice(rhs, rhs_gpt, rhs_sda1);
 
-    DeviceGraph::vertex_descriptor sda2 = rhs.add_vertex(new Partition("/dev/sda2"));
-    rhs.add_edge(gpt, sda2, new Subdevice());
+    Partition* rhs_sda2 = new Partition(rhs, "/dev/sda2");
+    new Subdevice(rhs, rhs_gpt, rhs_sda2);
 
-    DeviceGraph::vertex_descriptor system = rhs.add_vertex(new LvmVg("/dev/system"));
-    rhs.add_edge(sda1, system, new Using());
-    rhs.add_edge(sda2, system, new Using());
+    LvmVg* rhs_system = new LvmVg(rhs, "/dev/system");
+    new Using(rhs, rhs_sda1, rhs_system);
+    new Using(rhs, rhs_sda2, rhs_system);
 
-    DeviceGraph::vertex_descriptor system_swap = rhs.add_vertex(new LvmLv("/dev/system/swap"));
-    rhs.add_edge(system, system_swap, new Subdevice());
+    LvmLv* rhs_system_swap = new LvmLv(rhs, "/dev/system/swap");
+    new Subdevice(rhs, rhs_system, rhs_system_swap);
 
     ActionGraph action_graph(lhs, rhs);
 

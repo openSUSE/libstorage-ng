@@ -17,6 +17,13 @@ namespace storage
     }
 
 
+
+    BlkDevice::BlkDevice(DeviceGraph& device_graph, Impl* impl)
+	: Device(device_graph, impl)
+    {
+    }
+
+
     BlkDevice::Impl&
     BlkDevice::getImpl()
     {

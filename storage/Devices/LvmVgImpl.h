@@ -16,9 +16,13 @@ namespace storage
     {
     public:
 
-	Impl(const string& name) : Device::Impl(), name(name) {}
+	Impl(DeviceGraph& device_graph, const string& name)
+	    : Device::Impl(device_graph), name(name) {}
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	Impl(DeviceGraph& device_graph, const Impl& impl)
+	    : Device::Impl(device_graph, impl), name(impl.name) {}
+
+	virtual Impl* clone(DeviceGraph& device_graph) const override { return new Impl(device_graph, *this); }
 
 	string name;
 

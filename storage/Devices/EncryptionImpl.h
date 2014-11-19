@@ -16,9 +16,13 @@ namespace storage
     {
     public:
 
-	Impl(const string& name) : BlkDevice::Impl(name) {}
+	Impl(DeviceGraph& device_graph, const string& name)
+	    : BlkDevice::Impl(device_graph, name) {}
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	Impl(DeviceGraph& device_graph, const Impl& impl)
+	    : BlkDevice::Impl(device_graph, impl) {}
+
+	virtual Impl* clone(DeviceGraph& device_graph) const override { return new Impl(device_graph, *this); }
 
 	virtual void add_create_actions(ActionGraph& action_graph) const override;
 

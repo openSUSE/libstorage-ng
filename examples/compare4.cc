@@ -15,29 +15,30 @@ int
 main()
 {
     DeviceGraph lhs;
-    lhs.add_vertex(new Disk("/dev/sda"));
+
+    new Disk(lhs, "/dev/sda");
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    DeviceGraph::vertex_descriptor sda = rhs.find_vertex("/dev/sda");
+    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_blk_device("/dev/sda"));
 
-    DeviceGraph::vertex_descriptor gpt = rhs.add_vertex(new Gpt());
-    rhs.add_edge(sda, gpt, new Subdevice());
+    Gpt* rhs_gpt = new Gpt(rhs);
+    new Subdevice(rhs, rhs_sda, rhs_gpt);
 
-    DeviceGraph::vertex_descriptor sda1 = rhs.add_vertex(new Partition("/dev/sda1"));
-    rhs.add_edge(gpt, sda1, new Subdevice());
+    Partition* rhs_sda1 = new Partition(rhs, "/dev/sda1");
+    new Subdevice(rhs, rhs_gpt, rhs_sda1);
 
-    DeviceGraph::vertex_descriptor sda2 = rhs.add_vertex(new Partition("/dev/sda2"));
-    rhs.add_edge(gpt, sda2, new Subdevice());
+    Partition* rhs_sda2 = new Partition(rhs, "/dev/sda2");
+    new Subdevice(rhs, rhs_gpt, rhs_sda2);
 
-    DeviceGraph::vertex_descriptor sda3 = rhs.add_vertex(new Partition("/dev/sda3"));
-    rhs.add_edge(gpt, sda3, new Subdevice());
+    Partition* rhs_sda3 = new Partition(rhs, "/dev/sda3");
+    new Subdevice(rhs, rhs_gpt, rhs_sda3);
 
-    DeviceGraph::vertex_descriptor system = rhs.add_vertex(new LvmVg("/dev/system"));
-    rhs.add_edge(sda1, system, new Subdevice());
-    rhs.add_edge(sda2, system, new Subdevice());
-    rhs.add_edge(sda3, system, new Subdevice());
+    LvmVg* rhs_system = new LvmVg(rhs, "/dev/system");
+    new Subdevice(rhs, rhs_sda1, rhs_system);
+    new Subdevice(rhs, rhs_sda2, rhs_system);
+    new Subdevice(rhs, rhs_sda3, rhs_system);
 
     rhs.write_graphviz("compare4-device-rhs");
 

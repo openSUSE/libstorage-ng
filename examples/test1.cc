@@ -15,113 +15,84 @@ DeviceGraph device_graph;
 
 
 void
-children1(DeviceGraph::vertex_descriptor v)
+children(const Device* device)
 {
-    cout << "children of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "children of " << device->display_name() << ":" << endl;
 
-    for (DeviceGraph::vertex_descriptor tmp : boost::make_iterator_range(adjacent_vertices(v, device_graph.graph)))
-    {
-	cout << "  " << device_graph.graph[tmp]->display_name() << endl;
-    }
+    for (const Device* child : device->getChildren())
+	cout << "  " << child->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-children2(DeviceGraph::vertex_descriptor v)
+parents(const Device* device)
 {
-    cout << "children of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "parents of " << device->display_name() << ":" << endl;
 
-    for (DeviceGraph::edge_descriptor tmp : boost::make_iterator_range(out_edges(v, device_graph.graph)))
-    {
-	cout << "  " << device_graph.graph[source(tmp, device_graph.graph)]->display_name() << " -> "
-	     << device_graph.graph[target(tmp, device_graph.graph)]->display_name() << endl;
-    }
+    for (const Device* parent : device->getParents())
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-parents(DeviceGraph::vertex_descriptor v)
+siblings(const Device* device)
 {
-    cout << "parents of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "siblings of " << device->display_name() << ":" << endl;
 
-    for (DeviceGraph::vertex_descriptor tmp : boost::make_iterator_range(inv_adjacent_vertices(v, device_graph.graph)))
-    {
-	cout << "  " << device_graph.graph[tmp]->display_name() << endl;
-    }
+    for (const Device* parent : device->getSiblings(false))
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-siblings(DeviceGraph::vertex_descriptor v)
+descendants(const Device* device)
 {
-    cout << "siblings of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "descendants of " << device->display_name() << ":" << endl;
 
-    vector<DeviceGraph::vertex_descriptor> l = device_graph.siblings(v, false);
-
-    for (const DeviceGraph::vertex_descriptor& v : l)
-	cout << "  " << device_graph.graph[v]->display_name() << endl;
+    for (const Device* parent : device->getDescendants(false))
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-descendants(DeviceGraph::vertex_descriptor v)
+ancestors(const Device* device)
 {
-    cout << "descendants of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "ancestors of " << device->display_name() << ":" << endl;
 
-    vector<DeviceGraph::vertex_descriptor> l = device_graph.descendants(v, false);
-
-    for (const DeviceGraph::vertex_descriptor& v : l)
-	cout << "  " << device_graph.graph[v]->display_name() << endl;
+    for (const Device* parent : device->getAncestors(false))
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-ancestors(DeviceGraph::vertex_descriptor v)
+leafs(const Device* device)
 {
-    cout << "ancestors of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "leafs of " << device->display_name() << ":" << endl;
 
-    vector<DeviceGraph::vertex_descriptor> l = device_graph.ancestors(v, false);
-
-    for (const DeviceGraph::vertex_descriptor& v : l)
-	cout << "  " << device_graph.graph[v]->display_name() << endl;
+    for (const Device* parent : device->getLeafs(false))
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
 
 
 void
-leafs(DeviceGraph::vertex_descriptor v)
+roots(const Device* device)
 {
-    cout << "leafs of " << device_graph.graph[v]->display_name() << ":" << endl;
+    cout << "roots of " << device->display_name() << ":" << endl;
 
-    vector<DeviceGraph::vertex_descriptor> l = device_graph.leafs(v, false);
-
-    for (const DeviceGraph::vertex_descriptor& v : l)
-	cout << "  " << device_graph.graph[v]->display_name() << endl;
-
-    cout << endl;
-}
-
-
-void
-roots(DeviceGraph::vertex_descriptor v)
-{
-    cout << "roots of " << device_graph.graph[v]->display_name() << ":" << endl;
-
-    vector<DeviceGraph::vertex_descriptor> l = device_graph.roots(v, false);
-
-    for (const DeviceGraph::vertex_descriptor& v : l)
-	cout << "  " << device_graph.graph[v]->display_name() << endl;
+    for (const Device* parent : device->getRoots(false))
+	cout << "  " << parent->display_name() << endl;
 
     cout << endl;
 }
@@ -130,46 +101,43 @@ roots(DeviceGraph::vertex_descriptor v)
 int
 main()
 {
-    DeviceGraph::vertex_descriptor sda = device_graph.add_vertex(new Disk("/dev/sda"));
-    DeviceGraph::vertex_descriptor sda1 = device_graph.add_vertex(new Partition("/dev/sda1"));
-    DeviceGraph::vertex_descriptor sda2 = device_graph.add_vertex(new Partition("/dev/sda2"));
+    Disk* sda = new Disk(device_graph, "/dev/sda");
 
-    device_graph.add_edge(sda, sda1, new Subdevice());
-    device_graph.add_edge(sda, sda2, new Subdevice());
+    Partition* sda1 = new Partition(device_graph, "/dev/sda1");
+    new Subdevice(device_graph, sda, sda1);
 
-    DeviceGraph::vertex_descriptor sdb = device_graph.add_vertex(new Disk("/dev/sdb"));
-    DeviceGraph::vertex_descriptor sdb1 = device_graph.add_vertex(new Partition("/dev/sdb1"));
-    DeviceGraph::vertex_descriptor sdb2 = device_graph.add_vertex(new Partition("/dev/sdb2"));
+    Partition* sda2 = new Partition(device_graph, "/dev/sda2");
+    new Subdevice(device_graph, sda, sda2);
 
-    device_graph.add_edge(sdb, sdb1, new Subdevice());
-    device_graph.add_edge(sdb, sdb2, new Subdevice());
+    Disk* sdb = new Disk(device_graph, "/dev/sdb");
 
-    DeviceGraph::vertex_descriptor system = device_graph.add_vertex(new LvmVg("/dev/system"));
-    DeviceGraph::vertex_descriptor system_root = device_graph.add_vertex(new LvmLv("/dev/system/root"));
-    DeviceGraph::vertex_descriptor system_swap = device_graph.add_vertex(new LvmLv("/dev/system/swap"));
-    DeviceGraph::vertex_descriptor system_home = device_graph.add_vertex(new LvmLv("/dev/system/home"));
+    Partition* sdb1 = new Partition(device_graph, "/dev/sdb1");
+    new Subdevice(device_graph, sdb, sdb1);
 
-    device_graph.add_edge(system, system_root, new Subdevice());
-    device_graph.add_edge(system, system_swap, new Subdevice());
-    device_graph.add_edge(system, system_home, new Subdevice());
+    Partition* sdb2 = new Partition(device_graph, "/dev/sdb2");
+    new Subdevice(device_graph, sdb, sdb2);
 
-    device_graph.add_edge(sda1, system, new Using());
-    device_graph.add_edge(sdb1, system, new Using());
+    LvmVg* system = new LvmVg(device_graph, "/dev/system");
+    new Using(device_graph, sda1, system);
+    new Using(device_graph, sdb1, system);
 
-    DeviceGraph::vertex_descriptor sdc = device_graph.add_vertex(new Disk("/dev/sdc"));
-    DeviceGraph::vertex_descriptor data = device_graph.add_vertex(new LvmVg("/dev/data"));
+    LvmLv* system_root = new LvmLv(device_graph, "/dev/system/root");
+    new Subdevice(device_graph, system, system_root);
 
-    device_graph.add_edge(sdc, data, new Using());
+    LvmLv* system_swap = new LvmLv(device_graph, "/dev/system/swap");
+    new Subdevice(device_graph, system, system_swap);
+
+    LvmLv* system_home = new LvmLv(device_graph, "/dev/system/home");
+    new Subdevice(device_graph, system, system_home);
 
     cout << "num_vertices: " << num_vertices(device_graph.graph) << endl;
     cout << "num_edges: " << num_edges(device_graph.graph) << endl;
 
     cout << endl;
 
-    children1(sda);
+    device_graph.check();
 
-    children2(sdb);
-    children2(sdc);
+    children(sda);
 
     parents(system);
 

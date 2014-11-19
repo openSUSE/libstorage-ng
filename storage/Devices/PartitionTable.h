@@ -2,7 +2,10 @@
 #define PARTITION_TABLE_H
 
 
+#include <vector>
+
 #include "storage/Devices/Device.h"
+#include "storage/Devices/Partition.h"
 
 
 namespace storage
@@ -17,14 +20,21 @@ namespace storage
     {
     public:
 
-    protected:
+	Partition* createPartition(const string& name);
+
+	vector<const Partition*> getPartitions() const;
+
+    public:
 
 	class Impl;
 
-	PartitionTable(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+    protected:
+
+	PartitionTable(Impl* impl);
+	PartitionTable(DeviceGraph& device_graph, Impl* impl);
 
     };
 

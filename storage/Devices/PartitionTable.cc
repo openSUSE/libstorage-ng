@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    PartitionTable::PartitionTable(DeviceGraph& device_graph, Impl* impl)
+	: Device(device_graph, impl)
+    {
+    }
+
+
     PartitionTable::PartitionTable(Impl* impl)
 	: Device(impl)
     {
@@ -28,6 +34,28 @@ namespace storage
     PartitionTable::getImpl() const
     {
 	return dynamic_cast<const Impl&>(Device::getImpl());
+    }
+
+
+    Partition*
+    PartitionTable::createPartition(const string& name)
+    {
+	DeviceGraph& device_graph = getImpl().getDeviceGraph();
+
+	Partition* partition = new Partition(device_graph, name);
+	new Subdevice(device_graph, this, partition);
+
+	return partition;
+    }
+
+
+    vector<const Partition*>
+    PartitionTable::getPartitions() const
+    {
+	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
+	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+
+	return device_graph.getDevices<Partition>(device_graph.children(vertex));
     }
 
 }

@@ -18,11 +18,15 @@ namespace storage
     {
     public:
 
+	// read-only
+
     protected:
 
-	Impl() : Device::Impl() {}
+	Impl(DeviceGraph& device_graph)
+	    : Device::Impl(device_graph) {}
 
-	// read-only
+	Impl(DeviceGraph& device_graph, const Impl& impl)
+	    : Device::Impl(device_graph, impl) {}
 
     };
 

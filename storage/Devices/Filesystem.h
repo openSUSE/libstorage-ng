@@ -32,14 +32,17 @@ namespace storage
 	const vector<string>& getMountPoints() const;
 	void addMountPoint(const string& mount_point);
 
-    protected:
+    public:
 
 	class Impl;
 
-	Filesystem(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+    protected:
+
+	Filesystem(Impl* impl);
+	Filesystem(DeviceGraph& device_graph, Impl* impl);
 
     };
 

@@ -86,33 +86,6 @@ namespace storage
 
     };
 
-
-    // Can be used as vertex_copy and edge_copy function for copy_graph. The
-    // vertex or edge must be a shared_ptr (or implement the interface) and
-    // the object must provide a clone function.
-
-    template <typename Graph>
-    class CloneCopier
-    {
-
-    public:
-
-	CloneCopier(const Graph& g_in, Graph& g_out)
-	    : g_in(g_in), g_out(g_out) {}
-
-	template<class Type>
-	void operator()(const Type& v_in, Type& v_out)
-	{
-	    g_out[v_out].reset(g_in[v_in]->clone());
-	}
-
-    private:
-
-	const Graph& g_in;
-	Graph& g_out;
-
-    };
-
 }
 
 #endif

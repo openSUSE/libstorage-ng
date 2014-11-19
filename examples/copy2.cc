@@ -13,16 +13,16 @@ main()
 {
     DeviceGraph device_graph;
 
-    Disk* disk = new Disk("/dev/dasda");
-    Partition* partition = new Partition("/dev/dasda2");
+    Disk* disk = new Disk(device_graph, "/dev/dasda");
 
-    DeviceGraph::vertex_descriptor v1 = device_graph.add_vertex(disk);
-    DeviceGraph::vertex_descriptor v2 = device_graph.add_vertex(partition);
-
-    device_graph.add_edge(v1, v2, new Subdevice());
+    Partition* partition = new Partition(device_graph, "/dev/dasda2");
+    new Subdevice(device_graph, disk, partition);
 
     DeviceGraph device_graph_copy;
     device_graph.copy(device_graph_copy);
+
+    device_graph.check();
+    device_graph_copy.check();
 
     {
 	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.find_device(partition->getSid()));

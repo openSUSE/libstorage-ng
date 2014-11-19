@@ -1,6 +1,7 @@
 
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/DeviceGraph.h"
 
@@ -13,20 +14,23 @@ partitions()
 {
     DeviceGraph device_graph;
 
-    DeviceGraph::vertex_descriptor v1 = device_graph.add_vertex(new Disk("/dev/sda"));
-    DeviceGraph::vertex_descriptor v2 = device_graph.add_vertex(new Partition("/dev/sda1"));
-    DeviceGraph::vertex_descriptor v3 = device_graph.add_vertex(new Partition("/dev/sda2"));
+    Disk* sda = new Disk(device_graph, "/dev/sda");
 
-    device_graph.add_edge(v1, v2, new Subdevice());
-    device_graph.add_edge(v1, v3, new Subdevice());
+    Gpt* gpt = new Gpt(device_graph);
+    new Subdevice(device_graph, sda, gpt);
 
-    /*
-    Disk* disk = dynamic_cast<Disk*>(device_graph.graph[v1].get());
-    for (Partition* partition : disk->getPartitions(device_graph))
+    Partition* sda1 = new Partition(device_graph, "/dev/sda1");
+    new Subdevice(device_graph, gpt, sda1);
+
+    gpt->createPartition("/dev/sda2");
+
+    device_graph.check();
+    device_graph.print_graph();
+
+    for (const Partition* partition : gpt->getPartitions())
     {
-	cout << partition->name << endl;
+	cout << partition->getName() << endl;
     }
-    */
 }
 
 

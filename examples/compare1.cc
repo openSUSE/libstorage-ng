@@ -16,24 +16,25 @@ main()
 {
     DeviceGraph lhs;
 
-    DeviceGraph::vertex_descriptor sda = lhs.add_vertex(new Disk("/dev/sda"));
-    DeviceGraph::vertex_descriptor sda1 = lhs.add_vertex(new Partition("/dev/sda1"));
-    DeviceGraph::vertex_descriptor sda2 = lhs.add_vertex(new Partition("/dev/sda2"));
+    Disk* sda = new Disk(lhs, "/dev/sda");
 
-    lhs.add_edge(sda, sda1, new Subdevice());
-    lhs.add_edge(sda, sda2, new Subdevice());
+    Partition* sda1 = new Partition(lhs, "/dev/sda1");
+    new Subdevice(lhs, sda, sda1);
 
-    DeviceGraph::vertex_descriptor system = lhs.add_vertex(new LvmVg("/dev/system"));
-    DeviceGraph::vertex_descriptor system_oracle = lhs.add_vertex(new LvmLv("/dev/system/oracle"));
+    Partition* sda2 = new Partition(lhs, "/dev/sda2");
+    new Subdevice(lhs, sda, sda2);
 
-    lhs.add_edge(system, system_oracle, new Subdevice());
+    LvmVg* system = new LvmVg(lhs, "/dev/system");
+    new Using(lhs, sda2, system);
 
-    lhs.add_edge(sda2, system, new Using());
+    LvmLv* system_oracle = new LvmLv(lhs, "/dev/system/oracle");
+    new Subdevice(lhs, system, system_oracle);
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    LvmLv* d = dynamic_cast<LvmLv*>(rhs.graph[system_oracle].get());
+    LvmLv* d = dynamic_cast<LvmLv*>(rhs.find_device(system_oracle->getSid()));
+    assert(d);
     d->setName("/dev/system/postgresql");
 
     ActionGraph action_graph(lhs, rhs);

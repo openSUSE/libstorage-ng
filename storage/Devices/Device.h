@@ -6,12 +6,16 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 
 namespace storage
 {
 
     using namespace std;
+
+
+    class DeviceGraph;
 
 
     // The storage id (sid) is used to identify devices.  The sid is copied
@@ -37,13 +41,9 @@ namespace storage
     class Device
     {
 
-	friend class ActionGraph; // TODO ???
-
     public:
 
 	virtual ~Device();
-
-	virtual Device* clone() const = 0;
 
 	sid_t getSid() const;
 
@@ -51,14 +51,32 @@ namespace storage
 
 	virtual void check() const;
 
-    protected:
+	vector<const Device*> getChildren() const;
+	vector<const Device*> getParents() const;
+	vector<const Device*> getSiblings(bool itself) const;
+	vector<const Device*> getDescendants(bool itself) const;
+	vector<const Device*> getAncestors(bool itself) const;
+	vector<const Device*> getLeafs(bool itself) const;
+	vector<const Device*> getRoots(bool itself) const;
+
+    public:
 
 	class Impl;
 
-	Device(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual Device* clone(DeviceGraph& device_graph) const = 0;
+
+    protected:
+
+	// Does not add Device to any DeviceGraph. Used for clone since there
+	// the boost graph copy function already adds the Device to the new
+	// graph.
+	Device(Impl* impl);
+
+	// Adds Device to DeviceGraph.
+	Device(DeviceGraph& device_graph, Impl* impl);
 
     private:
 

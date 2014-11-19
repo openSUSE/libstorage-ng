@@ -11,8 +11,8 @@ namespace storage
     using namespace std;
 
 
-    Disk::Disk(const string& name)
-	: BlkDevice(new Disk::Impl(name))
+    Disk::Disk(DeviceGraph& device_graph, const string& name)
+	: BlkDevice(device_graph, new Disk::Impl(device_graph, name))
     {
     }
 
@@ -22,11 +22,18 @@ namespace storage
     {
     }
 
+/*
+    Disk::Disk(DeviceGraph& device_graph, Impl* impl)
+	: BlkDevice(device_graph, impl)
+    {
+    }
+*/
+
 
     Disk*
-    Disk::clone() const
+    Disk::clone(DeviceGraph& device_graph) const
     {
-	return new Disk(getImpl().clone());
+	return new Disk(getImpl().clone(device_graph));
     }
 
 

@@ -20,7 +20,6 @@ namespace storage
 
 	virtual void add_delete_actions(ActionGraph& action_graph) const override;
 
-
 	string label;
 	string uuid;
 
@@ -30,8 +29,11 @@ namespace storage
 
     protected:
 
-	Impl() : Device::Impl() {}
+	Impl(DeviceGraph& device_graph)
+	    : Device::Impl(device_graph) {}
 
+	Impl(DeviceGraph& device_graph, const Impl& impl)
+	    : Device::Impl(device_graph, impl) {}
     };
 
 }

@@ -3,6 +3,7 @@
 
 
 #include "storage/Devices/Device.h"
+#include "storage/DeviceGraph.h"
 
 
 namespace storage
@@ -22,20 +23,30 @@ namespace storage
 
 	virtual ~Impl() {}
 
-	virtual Impl* clone() const = 0;
+	virtual Impl* clone(DeviceGraph& device_graph) const = 0;
 
 	const sid_t sid;
+
+	DeviceGraph& getDeviceGraph() { return device_graph; }
+	const DeviceGraph& getDeviceGraph() const { return device_graph; }
+
+	DeviceGraph::vertex_descriptor getVertex() const { return vertex; }
+	void setVertex(DeviceGraph::vertex_descriptor vertex);
 
 	virtual void add_create_actions(ActionGraph& action_graph) const;
 	virtual void add_delete_actions(ActionGraph& action_graph) const;
 
     protected:
-	
-	Impl() : sid(global_sid++) {}
+
+	Impl(DeviceGraph& device_graph);
+	Impl(DeviceGraph& device_graph, const Impl& impl);
 
     private:
 
 	static sid_t global_sid;
+
+	DeviceGraph& device_graph;
+	DeviceGraph::vertex_descriptor vertex;
 
     };
 

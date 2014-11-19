@@ -11,8 +11,8 @@ namespace storage
     using namespace std;
 
 
-    Partition::Partition(const string& name)
-	: BlkDevice(new Partition::Impl(name))
+    Partition::Partition(DeviceGraph& device_graph, const string& name)
+	: BlkDevice(device_graph, new Partition::Impl(device_graph, name))
     {
     }
 
@@ -22,11 +22,17 @@ namespace storage
     {
     }
 
+/*
+    Partition::Partition(DeviceGraph& device_graph, Impl* impl)
+	: BlkDevice(device_graph, impl)
+    {
+    }
+*/
 
     Partition*
-    Partition::clone() const
+    Partition::clone(DeviceGraph& device_graph) const
     {
-	return new Partition(getImpl().clone());
+	return new Partition(getImpl().clone(device_graph));
     }
 
 

@@ -15,30 +15,31 @@ int
 main()
 {
     DeviceGraph lhs;
-    lhs.add_vertex(new Disk("/dev/sda"));
+
+    new Disk(lhs, "/dev/sda");
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    DeviceGraph::vertex_descriptor sda = rhs.find_vertex("/dev/sda");
+    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_blk_device("/dev/sda"));
 
-    DeviceGraph::vertex_descriptor gpt = rhs.add_vertex(new Gpt());
-    rhs.add_edge(sda, gpt, new Using());
+    Gpt* rhs_gpt = new Gpt(rhs);
+    new Using(rhs, rhs_sda, rhs_gpt);
 
-    DeviceGraph::vertex_descriptor sda1 = rhs.add_vertex(new Partition("/dev/sda1"));
-    rhs.add_edge(gpt, sda1, new Subdevice());
+    Partition* rhs_sda1 = new Partition(rhs, "/dev/sda1");
+    new Subdevice(rhs, rhs_gpt, rhs_sda1);
 
-    DeviceGraph::vertex_descriptor sda2 = rhs.add_vertex(new Partition("/dev/sda2"));
-    rhs.add_edge(gpt, sda2, new Subdevice());
+    Partition* rhs_sda2 = new Partition(rhs, "/dev/sda2");
+    new Subdevice(rhs, rhs_gpt, rhs_sda2);
 
-    DeviceGraph::vertex_descriptor sda1_fs = rhs.add_vertex(new Ext4());
-    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->addMountPoint("/");
-    dynamic_cast<Filesystem*>(rhs.graph[sda1_fs].get())->addMountPoint("/var/log");
-    rhs.add_edge(sda1, sda1_fs, new Using());
+    Ext4* rhs_sda1_fs = new Ext4(rhs);
+    rhs_sda1_fs->addMountPoint("/");
+    rhs_sda1_fs->addMountPoint("/var/log");
+    new Using(rhs, rhs_sda1, rhs_sda1_fs);
 
-    DeviceGraph::vertex_descriptor sda2_fs = rhs.add_vertex(new Ext4());
-    dynamic_cast<Filesystem*>(rhs.graph[sda2_fs].get())->addMountPoint("/var");
-    rhs.add_edge(sda2, sda2_fs, new Using());
+    Ext4* rhs_sda2_fs = new Ext4(rhs);
+    rhs_sda2_fs->addMountPoint("/var");
+    new Using(rhs, rhs_sda2, rhs_sda2_fs);
 
     rhs.write_graphviz("compare6-device-rhs");
 

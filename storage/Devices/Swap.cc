@@ -11,8 +11,8 @@ namespace storage
     using namespace std;
 
 
-    Swap::Swap()
-	: Filesystem(new Swap::Impl())
+    Swap::Swap(DeviceGraph& device_graph)
+	: Filesystem(device_graph, new Swap::Impl(device_graph))
     {
     }
 
@@ -23,10 +23,18 @@ namespace storage
     }
 
 
-    Swap*
-    Swap::clone() const
+/*
+    Swap::Swap(DeviceGraph& device_graph, Impl* impl)
+	: Filesystem(device_graph, impl)
     {
-	return new Swap(getImpl().clone());
+    }
+*/
+
+
+    Swap*
+    Swap::clone(DeviceGraph& device_graph) const
+    {
+	return new Swap(getImpl().clone(device_graph));
     }
 
 

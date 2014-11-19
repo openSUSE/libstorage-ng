@@ -13,8 +13,8 @@ namespace storage
     using namespace std;
 
 
-    LvmVg::LvmVg(const string& name)
-	: Device(new LvmVg::Impl(name))
+    LvmVg::LvmVg(DeviceGraph& device_graph, const string& name)
+	: Device(device_graph, new LvmVg::Impl(device_graph, name))
     {
     }
 
@@ -25,10 +25,18 @@ namespace storage
     }
 
 
-    LvmVg*
-    LvmVg::clone() const
+/*
+    LvmVg::LvmVg(DeviceGraph& device_graph, Impl* impl)
+	: Device(device_graph, impl)
     {
-	return new LvmVg(getImpl().clone());
+    }
+*/
+
+
+    LvmVg*
+    LvmVg::clone(DeviceGraph& device_graph) const
+    {
+	return new LvmVg(getImpl().clone(device_graph));
     }
 
 

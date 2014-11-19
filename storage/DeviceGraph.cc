@@ -7,6 +7,7 @@
 
 #include "storage/DeviceGraph.h"
 #include "storage/GraphUtils.h"
+#include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
@@ -19,6 +20,32 @@
 
 namespace storage
 {
+
+
+    class CloneCopier
+    {
+
+    public:
+
+	CloneCopier(const DeviceGraph& g_in, DeviceGraph& g_out)
+	    : g_in(g_in), g_out(g_out) {}
+
+	template<class Type>
+	void operator()(const Type& v_in, Type& v_out)
+	{
+	    g_out.graph[v_out].reset(g_in.graph[v_in]->clone(g_out));
+
+	    Device* d_out = g_out.graph[v_out].get();
+	    d_out->getImpl().setVertex(v_out);
+	}
+
+    private:
+
+	const DeviceGraph& g_in;
+	DeviceGraph& g_out;
+
+    };
+
 
     boost::iterator_range<DeviceGraph::vertex_iterator>
     DeviceGraph::vertices() const
@@ -65,6 +92,22 @@ namespace storage
     }
 
 
+    BlkDevice*
+    DeviceGraph::find_blk_device(const string& name)
+    {
+	for (vertex_descriptor v : vertices())
+	{
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(graph[v].get());
+	    if (blk_device && blk_device->getName() == name)
+		return blk_device;
+	}
+
+	ostringstream str;
+	str << "device not found, name = " << name;
+	throw runtime_error(str.str());
+    }
+
+
     Device*
     DeviceGraph::find_device(sid_t sid)
     {
@@ -98,34 +141,63 @@ namespace storage
     }
 
 
-    DeviceGraph::vertex_descriptor
-    DeviceGraph::add_vertex(Device* device)
+    Holder*
+    DeviceGraph::find_holder(sid_t source_sid, sid_t target_sid)
     {
-	return boost::add_vertex(shared_ptr<Device>(device), graph);
+	for (edge_descriptor edge : edges())
+	{
+	    if (graph[source(edge, graph)]->getSid() == source_sid &&
+		graph[target(edge, graph)]->getSid() == target_sid)
+		return graph[edge].get();
+	}
+
+	ostringstream str;
+	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
+	throw runtime_error(str.str());
     }
 
 
-    DeviceGraph::edge_descriptor
-    DeviceGraph::add_edge(vertex_descriptor a, vertex_descriptor b, Holder* holder)
+    const Holder*
+    DeviceGraph::find_holder(sid_t source_sid, sid_t target_sid) const
     {
-	pair<DeviceGraph::edge_descriptor, bool> tmp = boost::add_edge(a, b, shared_ptr<Holder>(holder), graph);
+	for (edge_descriptor edge : edges())
+	{
+	    if (graph[source(edge, graph)]->getSid() == source_sid &&
+		graph[target(edge, graph)]->getSid() == target_sid)
+		return graph[edge].get();
+	}
 
-	assert(tmp.second);
-
-	return tmp.first;
+	ostringstream str;
+	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
+	throw runtime_error(str.str());
     }
 
 
     void
-    DeviceGraph::remove_vertex(vertex_descriptor a)
+    DeviceGraph::remove_vertex(vertex_descriptor vertex)
     {
-	boost::clear_vertex(a, graph);
-	boost::remove_vertex(a, graph);
+	boost::clear_vertex(vertex, graph);
+	boost::remove_vertex(vertex, graph);
+    }
+
+
+    void
+    DeviceGraph::remove_vertex(sid_t sid)
+    {
+	const Device* device = find_device(sid);
+	remove_vertex(device->getImpl().getVertex());
+    }
+
+
+    void
+    DeviceGraph::remove_vertex(Device* device)
+    {
+	remove_vertex(device->getImpl().getVertex());
     }
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::children(vertex_descriptor vertex, bool itself) const
+    DeviceGraph::children(vertex_descriptor vertex) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -137,7 +209,7 @@ namespace storage
 
 
     vector<DeviceGraph::vertex_descriptor>
-    DeviceGraph::parents(vertex_descriptor vertex, bool itself) const
+    DeviceGraph::parents(vertex_descriptor vertex) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -253,6 +325,31 @@ namespace storage
     DeviceGraph::check() const
     {
 	{
+	    // check uniqueness of device object and sid
+	    // check device back reference
+
+	    set<const Device*> devices;
+	    set<sid_t> sids;
+
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		const Device* device = graph[vertex].get();
+		if (!devices.insert(device).second)
+		    throw logic_error("device object not unique within graph");
+
+		sid_t sid = device->getSid();
+		if (!sids.insert(sid).second)
+		    throw logic_error("sid not unique within graph");
+
+		if (&device->getImpl().getDeviceGraph() != this)
+		    throw logic_error("wrong graph in back references");
+
+		if (device->getImpl().getVertex() != vertex)
+		    throw logic_error("wrong vertex in back references");
+	    }
+	}
+
+	{
 	    // look for cycles
 
 	    Haha<graph_t> haha(graph);
@@ -264,31 +361,6 @@ namespace storage
 
 	    if (has_cycle)
 		cerr << "graph has a cycle" << endl;
-	}
-
-	{
-	    // check uniqueness of sid and name
-
-	    set<sid_t> sids;
-	    set<string> names;
-
-	    for (vertex_descriptor v : vertices())
-	    {
-		const Device* device = graph[v].get();
-
-		sid_t sid = device->getSid();
-		pair<set<sid_t>::iterator, bool> tmp = sids.insert(sid);
-		if (!tmp.second)
-		    cerr << "sid not unique" << endl;
-
-		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(device);
-		if (blk_device)
-		{
-		    pair<set<string>::iterator, bool> tmp = names.insert(blk_device->getName());
-		    if (!tmp.second)
-			cerr << "name not unique" << endl;
-		}
-	    }
 	}
 
 	{
@@ -314,7 +386,7 @@ namespace storage
 
 	Haha<graph_t> haha(graph);
 
-	CloneCopier<graph_t> copier(graph, dest.graph);
+	CloneCopier copier(*this, dest);
 
 	boost::copy_graph(graph, dest.graph, vertex_index_map(haha.get()).vertex_copy(copier));
     }

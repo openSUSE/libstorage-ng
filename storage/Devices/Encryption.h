@@ -15,18 +15,21 @@ namespace storage
     {
     public:
 
-	Encryption(const string& name);
+	Encryption(DeviceGraph& device_graph, const string& name);
 
-	virtual Encryption* clone() const override;
+	virtual Encryption* clone(DeviceGraph& device_graph) const override;
 
-    protected:
+    public:
 
 	class Impl;
 
-	Encryption(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+    protected:
+
+	Encryption(Impl* impl);
+	// Encryption(DeviceGraph& device_graph, Impl* impl);
 
     };
 

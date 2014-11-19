@@ -11,8 +11,8 @@ using namespace std;
 namespace storage
 {
 
-    LvmLv::LvmLv(const string& name)
-	: BlkDevice(new LvmLv::Impl(name))
+    LvmLv::LvmLv(DeviceGraph& device_graph, const string& name)
+	: BlkDevice(device_graph, new LvmLv::Impl(device_graph, name))
     {
     }
 
@@ -23,10 +23,16 @@ namespace storage
     }
 
 
-    LvmLv*
-    LvmLv::clone() const
+    LvmLv::LvmLv(DeviceGraph& device_graph, Impl* impl)
+	: BlkDevice(device_graph, impl)
     {
-	return new LvmLv(getImpl().clone());
+    }
+
+
+    LvmLv*
+    LvmLv::clone(DeviceGraph& device_graph) const
+    {
+	return new LvmLv(getImpl().clone(device_graph));
     }
 
 

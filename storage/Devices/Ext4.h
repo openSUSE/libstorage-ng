@@ -15,9 +15,7 @@ namespace storage
     {
     public:
 
-	Ext4();
-
-	virtual Ext4* clone() const override;
+	Ext4(DeviceGraph& device_graph);
 
 	virtual string display_name() const override { return "ext4"; }
 
@@ -26,14 +24,19 @@ namespace storage
 
 	bool supportsUuid() const override { return true; }
 
-    protected:
+    public:
 
 	class Impl;
 
-	Ext4(Impl* impl);
-
 	Impl& getImpl();
 	const Impl& getImpl() const;
+
+	virtual Ext4* clone(DeviceGraph& device_graph) const override;
+
+    protected:
+
+	Ext4(Impl* impl);
+	// Ext4(DeviceGraph& device_graph, Impl* impl);
 
     };
 
