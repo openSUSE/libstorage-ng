@@ -6,7 +6,7 @@
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/DeviceGraphImpl.h"
 
 
 using namespace storage;
@@ -24,18 +24,18 @@ BOOST_AUTO_TEST_CASE(valid)
     Partition* sda2 = new Partition(device_graph, "/dev/sda2");
     new Subdevice(device_graph, sda, sda2);
 
-    DeviceGraph::vertex_descriptor v_sda = sda->getImpl().getVertex();
-    DeviceGraph::vertex_descriptor v_sda2 = sda2->getImpl().getVertex();
+    DeviceGraph::Impl::vertex_descriptor v_sda = sda->getImpl().getVertex();
+    DeviceGraph::Impl::vertex_descriptor v_sda2 = sda2->getImpl().getVertex();
 
-    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 3);
-    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 2);
+    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 3);
+    BOOST_CHECK_EQUAL(device_graph.num_edges(), 2);
 
     device_graph.check();
 
     device_graph.remove_vertex(sda1);
 
-    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 2);
-    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 1);
+    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 2);
+    BOOST_CHECK_EQUAL(device_graph.num_edges(), 1);
 
     device_graph.check();
 

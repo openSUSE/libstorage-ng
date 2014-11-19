@@ -3,7 +3,7 @@
 #include <fstream>
 
 #include "storage/Action.h"
-#include "storage/DeviceGraph.h"
+#include "storage/DeviceGraphImpl.h"
 #include "storage/Devices/Partition.h"
 
 
@@ -161,13 +161,13 @@ namespace storage
 	{
 	    sid_t sid = action_graph.graph[v]->sid;
 
-	    DeviceGraph::vertex_descriptor v_in_rhs = action_graph.rhs.find_vertex(sid);
+	    DeviceGraph::Impl::vertex_descriptor v_in_rhs = action_graph.rhs.getImpl().find_vertex(sid);
 
 	    // iterate parents
-	    DeviceGraph::graph_t::inv_adjacency_iterator vi, vi_end;
-	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, action_graph.rhs.graph); vi != vi_end; ++vi)
+	    DeviceGraph::Impl::graph_t::inv_adjacency_iterator vi, vi_end;
+	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, action_graph.rhs.getImpl().graph); vi != vi_end; ++vi)
 	    {
-		sid_t parent_sid = action_graph.rhs.graph[*vi]->getSid();
+		sid_t parent_sid = action_graph.rhs.getImpl().graph[*vi]->getSid();
 
 		if (!action_graph.lhs.vertex_exists(parent_sid))
 		{
@@ -180,12 +180,12 @@ namespace storage
 		{
 		    // children of parents must be deleted beforehand
 
-		    DeviceGraph::vertex_descriptor q = action_graph.lhs.find_vertex(parent_sid);
+		    DeviceGraph::Impl::vertex_descriptor q = action_graph.lhs.getImpl().find_vertex(parent_sid);
 
-		    DeviceGraph::graph_t::adjacency_iterator vi2, vi2_end;
-		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, action_graph.lhs.graph); vi2 != vi2_end; ++vi2)
+		    DeviceGraph::Impl::graph_t::adjacency_iterator vi2, vi2_end;
+		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, action_graph.lhs.getImpl().graph); vi2 != vi2_end; ++vi2)
 		    {
-			sid_t child_sid = action_graph.lhs.graph[*vi2]->getSid();
+			sid_t child_sid = action_graph.lhs.getImpl().graph[*vi2]->getSid();
 
 			ActionGraph::vertex_descriptor tmp = action_graph.huhu(child_sid, false, true).front();
 			action_graph.add_edge(tmp, v);
@@ -194,23 +194,23 @@ namespace storage
 	    }
 
 	    // create order of partitions
-	    if (dynamic_cast<const Partition*>(action_graph.rhs.graph[v_in_rhs].get()))
+	    if (dynamic_cast<const Partition*>(action_graph.rhs.getImpl().graph[v_in_rhs].get()))
 	    {
-		vector<DeviceGraph::vertex_descriptor> siblings = action_graph.rhs.siblings(v_in_rhs, false);
+		vector<DeviceGraph::Impl::vertex_descriptor> siblings = action_graph.rhs.getImpl().siblings(v_in_rhs, false);
 
 		vector<ActionGraph::vertex_descriptor> w;
 
-		for (DeviceGraph::vertex_descriptor q : siblings)
+		for (DeviceGraph::Impl::vertex_descriptor q : siblings)
 		{
-		    sid_t s_sid = action_graph.rhs.graph[q]->getSid();
+		    sid_t s_sid = action_graph.rhs.getImpl().graph[q]->getSid();
 
 		    for (ActionGraph::vertex_descriptor tmp : action_graph.vertices())
 		    {
 			sid_t a_sid = action_graph.graph[tmp]->sid;
 			if (s_sid == a_sid && action_graph.graph[tmp]->last)
 			{
-			    Partition* p_rhs = dynamic_cast<Partition*>(action_graph.rhs.graph[v_in_rhs].get());
-			    Partition* p_lhs = dynamic_cast<Partition*>(action_graph.lhs.graph[q].get());
+			    Partition* p_rhs = dynamic_cast<Partition*>(action_graph.rhs.getImpl().graph[v_in_rhs].get());
+			    Partition* p_lhs = dynamic_cast<Partition*>(action_graph.lhs.getImpl().graph[q].get());
 
 			    if (p_lhs->getNumber() < p_rhs->getNumber())
 				w.push_back(tmp);
@@ -234,13 +234,13 @@ namespace storage
 
 	    sid_t sid = action_graph.graph[v]->sid;
 
-	    DeviceGraph::vertex_descriptor v_in_lhs = action_graph.lhs.find_vertex(sid);
+	    DeviceGraph::Impl::vertex_descriptor v_in_lhs = action_graph.lhs.getImpl().find_vertex(sid);
 
 	    // iterate children
-	    DeviceGraph::graph_t::inv_adjacency_iterator vi, vi_end;
-	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, action_graph.lhs.graph); vi != vi_end; ++vi)
+	    DeviceGraph::Impl::graph_t::inv_adjacency_iterator vi, vi_end;
+	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, action_graph.lhs.getImpl().graph); vi != vi_end; ++vi)
 	    {
-		sid_t child_sid = action_graph.rhs.graph[*vi]->getSid();
+		sid_t child_sid = action_graph.rhs.getImpl().graph[*vi]->getSid();
 
 		for (ActionGraph::vertex_descriptor tmp : action_graph.huhu(child_sid, true, false))
 		    action_graph.add_edge(v, tmp);

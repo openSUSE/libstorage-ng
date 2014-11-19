@@ -61,8 +61,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_home = new LvmLv(device_graph, "/dev/system/home");
     new Subdevice(device_graph, system, system_home);
 
-    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 10);
-    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 9);
+    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 10);
+    BOOST_CHECK_EQUAL(device_graph.num_edges(), 9);
 
     device_graph.check();
 

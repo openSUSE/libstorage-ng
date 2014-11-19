@@ -12,15 +12,16 @@ namespace storage
     {
 	if (&source->getImpl().getDeviceGraph() != &device_graph)
 	    throw runtime_error("wrong graph in source");
-	
+
 	if (&target->getImpl().getDeviceGraph() != &device_graph)
 	    throw runtime_error("wrong graph in target");
 
-	DeviceGraph::vertex_descriptor source_vertex = source->getImpl().getVertex();
-	DeviceGraph::vertex_descriptor target_vertex = target->getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor source_vertex = source->getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor target_vertex = target->getImpl().getVertex();
 
-	pair<DeviceGraph::edge_descriptor, bool> tmp =
-	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(this), device_graph.graph);
+	pair<DeviceGraph::Impl::edge_descriptor, bool> tmp =
+	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(this),
+			    device_graph.getImpl().graph);
 
 	if (!tmp.second)
 	    throw runtime_error("holder already exists");

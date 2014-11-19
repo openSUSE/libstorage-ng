@@ -44,8 +44,8 @@ main()
 {
     make_device_graph();
 
-    cout << "num_vertices: " << num_vertices(device_graph.graph) << endl;
-    cout << "num_edges: " << num_edges(device_graph.graph) << endl;
+    cout << "num_vertices: " << device_graph.num_vertices() << endl;
+    cout << "num_edges: " << device_graph.num_edges() << endl;
 
     cout << endl;
 

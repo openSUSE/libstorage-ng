@@ -4,6 +4,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/DeviceGraph.h"
+#include "storage/DeviceGraphImpl.h"
 
 
 namespace storage
@@ -30,8 +31,8 @@ namespace storage
 	DeviceGraph& getDeviceGraph() { return device_graph; }
 	const DeviceGraph& getDeviceGraph() const { return device_graph; }
 
-	DeviceGraph::vertex_descriptor getVertex() const { return vertex; }
-	void setVertex(DeviceGraph::vertex_descriptor vertex);
+	DeviceGraph::Impl::vertex_descriptor getVertex() const { return vertex; }
+	void setVertex(DeviceGraph::Impl::vertex_descriptor vertex);
 
 	virtual void add_create_actions(ActionGraph& action_graph) const;
 	virtual void add_delete_actions(ActionGraph& action_graph) const;
@@ -46,7 +47,7 @@ namespace storage
 	static sid_t global_sid;
 
 	DeviceGraph& device_graph;
-	DeviceGraph::vertex_descriptor vertex;
+	DeviceGraph::Impl::vertex_descriptor vertex;
 
     };
 

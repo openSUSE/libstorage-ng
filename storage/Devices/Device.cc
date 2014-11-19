@@ -22,7 +22,7 @@ namespace storage
     Device::Device(DeviceGraph& device_graph, Impl* impl)
 	: Device(impl)
     {
-	getImpl().setVertex(boost::add_vertex(shared_ptr<Device>(this), device_graph.graph));
+	getImpl().setVertex(boost::add_vertex(shared_ptr<Device>(this), device_graph.getImpl().graph));
     }
 
 
@@ -62,9 +62,9 @@ namespace storage
     Device::getChildren() const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.children(vertex));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().children(vertex));
     }
 
 
@@ -72,20 +72,19 @@ namespace storage
     Device::getParents() const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.parents(vertex));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().parents(vertex));
     }
-
 
 
     vector<const Device*>
     Device::getSiblings(bool itself) const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.siblings(vertex, itself));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().siblings(vertex, itself));
     }
 
 
@@ -93,9 +92,9 @@ namespace storage
     Device::getDescendants(bool itself) const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.descendants(vertex, itself));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().descendants(vertex, itself));
     }
 
 
@@ -103,9 +102,9 @@ namespace storage
     Device::getAncestors(bool itself) const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.ancestors(vertex, itself));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().ancestors(vertex, itself));
     }
 
 
@@ -113,9 +112,9 @@ namespace storage
     Device::getLeafs(bool itself) const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.leafs(vertex, itself));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().leafs(vertex, itself));
     }
 
 
@@ -123,9 +122,9 @@ namespace storage
     Device::getRoots(bool itself) const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Device>(device_graph.roots(vertex, itself));
+	return device_graph.getImpl().getDevices<Device>(device_graph.getImpl().roots(vertex, itself));
     }
 
 }

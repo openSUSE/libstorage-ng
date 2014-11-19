@@ -29,11 +29,11 @@ namespace storage
 
 
     void
-    Device::Impl::setVertex(DeviceGraph::vertex_descriptor vertex)
+    Device::Impl::setVertex(DeviceGraph::Impl::vertex_descriptor vertex)
     {
 	Impl::vertex = vertex;
 
-	const Device* d = device_graph.graph[vertex].get();
+	const Device* d = device_graph.getImpl().graph[vertex].get();
 	const Impl& i = d->getImpl();
 	if (&i != this)
 	    throw runtime_error("wrong vertex for back references");

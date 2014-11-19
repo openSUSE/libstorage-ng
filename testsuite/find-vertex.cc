@@ -21,8 +21,8 @@ BOOST_AUTO_TEST_CASE(find_vertex)
     Partition* sda1 = new Partition(device_graph, "/dev/sda1");
     new Subdevice(device_graph, sda, sda1);
 
-    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 2);
-    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 1);
+    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 2);
+    BOOST_CHECK_EQUAL(device_graph.num_edges(), 1);
 
     BOOST_CHECK_EQUAL(device_graph.find_blk_device("/dev/sda"), sda);
     BOOST_CHECK_EQUAL(device_graph.find_blk_device("/dev/sda1"), sda1);

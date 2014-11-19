@@ -118,12 +118,12 @@ namespace storage
     ActionGraph::get_actions()
     {
 	set<sid_t> lhs_sids;
-	for (DeviceGraph::vertex_descriptor v : lhs.vertices())
-	    lhs_sids.insert(lhs.graph[v]->getSid());
+	for (DeviceGraph::Impl::vertex_descriptor v : lhs.getImpl().vertices())
+	    lhs_sids.insert(lhs.getImpl().graph[v]->getSid());
 
 	set<sid_t> rhs_sids;
-	for (DeviceGraph::vertex_descriptor v : rhs.vertices())
-	    rhs_sids.insert(rhs.graph[v]->getSid());
+	for (DeviceGraph::Impl::vertex_descriptor v : rhs.getImpl().vertices())
+	    rhs_sids.insert(rhs.getImpl().graph[v]->getSid());
 
 	vector<sid_t> created_sids;
 	back_insert_iterator<vector<sid_t>> bii1(created_sids);
@@ -139,18 +139,18 @@ namespace storage
 
 	for (sid_t sid : created_sids)
 	{
-	    DeviceGraph::vertex_descriptor v_rhs = rhs.find_vertex(sid);
-	    const Device* d_rhs = rhs.graph[v_rhs].get();
+	    DeviceGraph::Impl::vertex_descriptor v_rhs = rhs.getImpl().find_vertex(sid);
+	    const Device* d_rhs = rhs.getImpl().graph[v_rhs].get();
 	    d_rhs->getImpl().add_create_actions(*this);
 	}
 
 	for (sid_t sid : common_sids)
 	{
-	    DeviceGraph::vertex_descriptor v_lhs = lhs.find_vertex(sid);
-	    DeviceGraph::vertex_descriptor v_rhs = rhs.find_vertex(sid);
+	    DeviceGraph::Impl::vertex_descriptor v_lhs = lhs.getImpl().find_vertex(sid);
+	    DeviceGraph::Impl::vertex_descriptor v_rhs = rhs.getImpl().find_vertex(sid);
 
-	    const BlkDevice* d_lhs = dynamic_cast<const BlkDevice*>(lhs.graph[v_lhs].get());
-	    const BlkDevice* d_rhs = dynamic_cast<const BlkDevice*>(rhs.graph[v_rhs].get());
+	    const BlkDevice* d_lhs = dynamic_cast<const BlkDevice*>(lhs.getImpl().graph[v_lhs].get());
+	    const BlkDevice* d_rhs = dynamic_cast<const BlkDevice*>(rhs.getImpl().graph[v_rhs].get());
 
 	    if ((d_lhs && d_rhs) && (d_lhs->getName() != d_rhs->getName()))
 	    {
@@ -161,8 +161,8 @@ namespace storage
 
 	for (sid_t sid : deleted_sids)
 	{
-	    DeviceGraph::vertex_descriptor v_lhs = lhs.find_vertex(sid);
-	    const Device* d_lhs = lhs.graph[v_lhs].get();
+	    DeviceGraph::Impl::vertex_descriptor v_lhs = lhs.getImpl().find_vertex(sid);
+	    const Device* d_lhs = lhs.getImpl().graph[v_lhs].get();
 	    d_lhs->getImpl().add_delete_actions(*this);
 	}
     }

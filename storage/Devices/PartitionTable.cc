@@ -53,9 +53,9 @@ namespace storage
     PartitionTable::getPartitions() const
     {
 	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::vertex_descriptor vertex = getImpl().getVertex();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
 
-	return device_graph.getDevices<Partition>(device_graph.children(vertex));
+	return device_graph.getImpl().getDevices<Partition>(device_graph.getImpl().children(vertex));
     }
 
 }

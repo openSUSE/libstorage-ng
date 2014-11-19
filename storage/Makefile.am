@@ -8,6 +8,7 @@ lib_LTLIBRARIES = libstorage.la
 
 libstorage_la_SOURCES =					\
 	DeviceGraph.h		DeviceGraph.cc		\
+	DeviceGraphImpl.h	DeviceGraphImpl.cc	\
 	Action.h		Action.cc		\
 	ActionGraph.h		ActionGraph.cc		\
 	GraphUtils.h

@@ -29,8 +29,8 @@ BOOST_AUTO_TEST_CASE(dynamic)
     LvmLv* root = new LvmLv(device_graph, "/dev/system/root");
     new Subdevice(device_graph, system, root);
 
-    BOOST_CHECK_EQUAL(num_vertices(device_graph.graph), 4);
-    BOOST_CHECK_EQUAL(num_edges(device_graph.graph), 3);
+    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 4);
+    BOOST_CHECK_EQUAL(device_graph.num_edges(), 3);
 
     BOOST_CHECK(dynamic_cast<const Disk*>(device_graph.find_device(sda->getSid())));
 
