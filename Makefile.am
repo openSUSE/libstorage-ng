@@ -2,5 +2,5 @@
 # Makefile.am for libstorage
 #
 
-SUBDIRS = storage examples testsuite
+SUBDIRS = storage examples testsuite bindings
 

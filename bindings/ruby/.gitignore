@@ -1,0 +1,4 @@
+.deps
+.libs
+storage.la
+storage_wrap.*

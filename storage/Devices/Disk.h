@@ -17,6 +17,9 @@ namespace storage
 
 	Disk(DeviceGraph& device_graph, const string& name);
 
+	static Disk* create(DeviceGraph& device_graph, const string& name)
+	    { return new Disk(device_graph, name); }
+
     public:
 
 	class Impl;
