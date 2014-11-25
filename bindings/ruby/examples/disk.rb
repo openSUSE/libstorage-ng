@@ -29,13 +29,6 @@ end
 print "\n"
 
 
-tmp1 = device_graph.find_blk_device("/dev/sda1")
+tmp1 = Storage::BlkDevice::find(device_graph, "/dev/sda1")
 print "#{tmp1.display_name()}\n"
 
-
-begin
-  tmp3 = device_graph.find_blk_device("/dev/sda3")
-  print "#{tmp3.display_name()}\n"
-rescue runtime_error => e       # TODO
-  print "device not found, #{e.what()}\n"
-end

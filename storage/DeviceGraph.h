@@ -29,8 +29,6 @@ namespace storage
 	Device* find_device(sid_t sid);
 	const Device* find_device(sid_t sid) const;
 
-	BlkDevice* find_blk_device(const string& name);
-
 	bool vertex_exists(sid_t sid) const;
 
 	void remove_vertex(sid_t sid);

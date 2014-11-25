@@ -85,22 +85,6 @@ namespace storage
     };
 
 
-    BlkDevice*
-    DeviceGraph::find_blk_device(const string& name)
-    {
-	for (Impl::vertex_descriptor v : getImpl().vertices())
-	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(getImpl().graph[v].get());
-	    if (blk_device && blk_device->getName() == name)
-		return blk_device;
-	}
-
-	ostringstream str;
-	str << "device not found, name = " << name;
-	throw runtime_error(str.str());
-    }
-
-
     Device*
     DeviceGraph::find_device(sid_t sid)
     {

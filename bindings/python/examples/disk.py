@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-import storage
+from storage import DeviceGraph, Disk, BlkDevice
 
 
-device_graph = storage.DeviceGraph()
+device_graph = DeviceGraph()
 
-sda = storage.Disk.create(device_graph, "/dev/sda")
+sda = Disk.create(device_graph, "/dev/sda")
 
 gpt = sda.createPartitionTable("gpt")
 
@@ -27,13 +27,6 @@ for device in sda.getDescendants(False):
 print
 
 
-tmp1 = device_graph.find_blk_device("/dev/sda1")
+tmp1 = BlkDevice.find(device_graph, "/dev/sda1")
 print tmp1.display_name()
-
-
-try:
-  tmp3 = device_graph.find_blk_device("/dev/sda3")
-  print tmp3.display_name()
-except runtime_error:    # TODO
-  print "device not found, %s" % e.what()
 

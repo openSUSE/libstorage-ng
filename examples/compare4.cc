@@ -21,7 +21,7 @@ main()
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_blk_device("/dev/sda"));
+    Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
     Gpt* rhs_gpt = new Gpt(rhs);
     new Subdevice(rhs, rhs_sda, rhs_gpt);

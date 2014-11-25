@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
     BOOST_CHECK_EQUAL(device_graph.num_vertices(), 2);
     BOOST_CHECK_EQUAL(device_graph.num_edges(), 1);
 
-    BOOST_CHECK_EQUAL(device_graph.find_blk_device("/dev/sda"), sda);
-    BOOST_CHECK_EQUAL(device_graph.find_blk_device("/dev/sda1"), sda1);
-    BOOST_CHECK_THROW(device_graph.find_blk_device("/dev/sda2"), runtime_error);
+    BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda"), sda);
+    BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda1"), sda1);
+    BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda2"), runtime_error);
 }

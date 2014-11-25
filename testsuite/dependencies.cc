@@ -32,7 +32,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    Disk* sda = dynamic_cast<Disk*>(rhs.find_blk_device("/dev/sda"));
+    Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
     Partition* sda1 = new Partition(rhs, "/dev/sda1");
     new Subdevice(rhs, sda, sda1);

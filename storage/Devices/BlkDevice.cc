@@ -38,6 +38,22 @@ namespace storage
     }
 
 
+    BlkDevice*
+    BlkDevice::find(DeviceGraph& device_graph, const string& name)
+    {
+	for (DeviceGraph::Impl::vertex_descriptor v : device_graph.getImpl().vertices())
+	{
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(device_graph.getImpl().graph[v].get());
+	    if (blk_device && blk_device->getName() == name)
+		return blk_device;
+	}
+
+	ostringstream str;
+	str << "device not found, name = " << name;
+	throw runtime_error(str.str());
+    }
+
+
     void
     BlkDevice::setName(const string& name)
     {

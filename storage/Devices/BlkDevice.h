@@ -24,6 +24,8 @@ namespace storage
 	const string& getName() const;
 	void setName(const string& name);
 
+	static BlkDevice* find(DeviceGraph& device_graph, const string& name);
+
     public:
 
 	class Impl;

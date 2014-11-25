@@ -48,5 +48,5 @@ BOOST_AUTO_TEST_CASE(valid)
     BOOST_CHECK_EQUAL(sda->display_name(), "/dev/sda");
     BOOST_CHECK_EQUAL(sda2->display_name(), "/dev/sda2");
 
-    BOOST_CHECK_THROW(device_graph.find_blk_device("/dev/sda1"), runtime_error);
+    BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda1"), runtime_error);
 }

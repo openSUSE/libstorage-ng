@@ -19,6 +19,18 @@
 #include <storage/DeviceGraph.h>
 %}
 
+%inline %{
+
+    const storage::Partition* CastToPartition(const storage::Device* device) {
+	return dynamic_cast<const storage::Partition*>(device);
+    }
+
+    const storage::PartitionTable* CastToPartitionTable(const storage::Device* device) {
+	return dynamic_cast<const storage::PartitionTable*>(device);
+    }
+
+%}
+
 using namespace std;
 
 %include "std_string.i"
