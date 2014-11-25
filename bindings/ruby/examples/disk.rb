@@ -12,6 +12,8 @@ gpt = sda.createPartitionTable("gpt")
 sda1 = gpt.createPartition("/dev/sda1")
 sda2 = gpt.createPartition("/dev/sda2")
 
+ext4 = sda1.createFilesystem("ext4")
+
 device_graph.print_graph()
 
 

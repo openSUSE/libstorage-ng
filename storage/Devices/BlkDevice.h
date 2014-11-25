@@ -3,6 +3,7 @@
 
 
 #include "storage/Devices/Device.h"
+#include "storage/Devices/Filesystem.h"
 
 
 namespace storage
@@ -25,6 +26,8 @@ namespace storage
 	void setName(const string& name);
 
 	static BlkDevice* find(DeviceGraph& device_graph, const string& name);
+
+	Filesystem* createFilesystem(const string& type);
 
     public:
 

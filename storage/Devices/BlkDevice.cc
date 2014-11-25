@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/Ext4.h"
 
 
 namespace storage
@@ -73,6 +74,18 @@ namespace storage
     {
 	if (getName().empty())
 	    cerr << "blk device has no name" << endl;
+    }
+
+
+    Filesystem*
+    BlkDevice::createFilesystem(const string& type)
+    {
+	if (numChildren() != 0)
+	    throw runtime_error("has children");
+
+	Filesystem* ret = Ext4::create(getImpl().getDeviceGraph());
+	Using::create(getImpl().getDeviceGraph(), this, ret);
+	return ret;
     }
 
 }

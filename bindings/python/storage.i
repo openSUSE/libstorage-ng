@@ -10,6 +10,7 @@
 
 %{
 #include <storage/Devices/Device.h>
+#include <storage/Devices/Filesystem.h>
 #include <storage/Devices/BlkDevice.h>
 #include <storage/Devices/Partition.h>
 #include <storage/Devices/PartitionTable.h>
@@ -38,6 +39,7 @@ using namespace std;
 %include "std_list.i"
 
 %include "../../storage/Devices/Device.h"
+%include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/BlkDevice.h"
 %include "../../storage/Devices/Partition.h"
 %include "../../storage/Devices/PartitionTable.h"
