@@ -9,8 +9,6 @@ $sda = storage::Disk::create($device_graph, "/dev/sda");
 
 $gpt = $sda->createPartitionTable("gpt");
 
-print $gpt->display_name(), "\n";
-
 $sda1 = $gpt->createPartition("/dev/sda1");
 $sda2 = $gpt->createPartition("/dev/sda2");
 
@@ -18,17 +16,19 @@ $device_graph->print_graph();
 
 
 print "partitions on gpt:\n";
-foreach ($gpt->getPartitions())
+$x1 = $gpt->getPartitions();
+for (my $i = 0; $i < $x1->size(); $i++)
 {
-    # print "  ", $_->display_name(), $_->getNumber(), "\n";
+    print "  ", $x1->get($i)->display_name(), " ", $x1->get($i)->getNumber(), "\n";
 }
 print "\n";
 
 
 print "descendants of sda:\n";
-foreach ($sda->getDescendants(false))
+$x2 = $sda->getDescendants(0);
+for (my $i = 0; $i < $x2->size(); $i++)
 {
-    # print "  ", $_->display_name(), "\n";
+    print "  ", $x2->get($i)->display_name(), "\n";
 }
 print "\n";
 

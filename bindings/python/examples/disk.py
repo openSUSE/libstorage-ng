@@ -9,8 +9,6 @@ sda = storage.Disk.create(device_graph, "/dev/sda")
 
 gpt = sda.createPartitionTable("gpt")
 
-print gpt.display_name()
-
 sda1 = gpt.createPartition("/dev/sda1")
 sda2 = gpt.createPartition("/dev/sda2")
 
