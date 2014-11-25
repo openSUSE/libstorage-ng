@@ -2,7 +2,7 @@
 // Python interface definition for libstorage
 //
 
-%module libstorage
+%module storage
 
 // TODO almost identical to Ruby file
 

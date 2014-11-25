@@ -1,5 +1,5 @@
 .deps
 .libs
-libstorage.py
-libstorage_wrap.*
-_libstorage.la
+storage.py
+storage_wrap.*
+_storage.la

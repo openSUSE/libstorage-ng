@@ -4,7 +4,7 @@
 
 SUBDIRS = examples
 
-EXTRA_DIST = libstorage.i
+EXTRA_DIST = storage.i
 
 AM_CXXFLAGS = -fPIC -DPIC
 
@@ -18,21 +18,21 @@ DEPENDENCIES =						\
 
 LIBS = $(top_builddir)/storage/libstorage.la ${PYTHON_LIBS}
 
-python_PYTHON = libstorage.py
+python_PYTHON = storage.py
 
-pyexec_LTLIBRARIES = _libstorage.la
+pyexec_LTLIBRARIES = _storage.la
 
-_libstorage_la_LDFLAGS = -module -avoid-version
-_libstorage_la_HEADERS: $(top_builddir)/config.h
+_storage_la_LDFLAGS = -module -avoid-version
+_storage_la_HEADERS: $(top_builddir)/config.h
 
-_libstorage_la_DEPENDENCIES =				\
+_storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
 	${top_builddir}/storage/libstorage.la
 
-nodist__libstorage_la_SOURCES = libstorage_wrap.cxx
+nodist__storage_la_SOURCES = storage_wrap.cxx
 
-libstorage.py libstorage_wrap.cxx: libstorage.i $(DEPENDENCIES)
-	swig -o libstorage_wrap.cxx -c++ -python ${INCLUDES} libstorage.i
+storage.py storage_wrap.cxx: storage.i $(DEPENDENCIES)
+	swig -o storage_wrap.cxx -c++ -python ${INCLUDES} storage.i
 
-CLEANFILES = libstorage.py libstorage_wrap.cxx
+CLEANFILES = storage.py storage_wrap.cxx
 

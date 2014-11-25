@@ -1,11 +1,11 @@
 #!/usr/bin/python
 
-import libstorage
+import storage
 
 
-device_graph = libstorage.DeviceGraph()
+device_graph = storage.DeviceGraph()
 
-sda = libstorage.Disk.create(device_graph, "/dev/sda")
+sda = storage.Disk.create(device_graph, "/dev/sda")
 
 gpt = sda.createPartitionTable("gpt")
 

@@ -13,6 +13,6 @@ libstorage_la_SOURCES =					\
 	ActionGraph.h		ActionGraph.cc		\
 	GraphUtils.h
 
-libstorage_la_LDFLAGS = -version-info 5:0:2
+libstorage_la_LDFLAGS = -version-info 7:0:2
 libstorage_la_LIBADD = Holders/libholders.la Devices/libdevices.la
 
