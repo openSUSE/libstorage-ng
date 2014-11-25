@@ -4,7 +4,7 @@
 
 SUBDIRS = examples
 
-EXTRA_DIST = storage.i
+EXTRA_DIST = storage-ruby.i
 
 MAINTAINERCLEANFILES = storage_wrap.cxx
 
@@ -34,8 +34,8 @@ storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
 	${top_builddir}/storage/libstorage.la
 
-storage_wrap.cxx: storage.i $(DEPENDENCIES)
-	swig -o storage_wrap.cxx -c++ -ruby ${INCLUDES} storage.i
+storage_wrap.cxx: ../storage.i storage-ruby.i $(DEPENDENCIES)
+	swig -o storage_wrap.cxx -c++ -ruby ${INCLUDES} storage-ruby.i
 
 CLEANFILES = storage.so storage_wrap.cxx
 

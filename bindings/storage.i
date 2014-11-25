@@ -1,14 +1,20 @@
 //
-// Python interface definition for libstorage
+// Common SWIG interface definition for libstorage
 //
 
 %module storage
 
-// TODO almost identical to Ruby file
+%ignore getImpl;
+%ignore clone;
 
 // order of includes is crucial
 
 %{
+// workaround for bsc #593954
+#ifdef SWIGPERL
+#undef seed
+#endif
+
 #include <storage/Devices/Device.h>
 #include <storage/Devices/Filesystem.h>
 #include <storage/Devices/BlkDevice.h>
@@ -18,18 +24,6 @@
 #include <storage/Devices/Gpt.h>
 #include <storage/Holders/Holder.h>
 #include <storage/DeviceGraph.h>
-%}
-
-%inline %{
-
-    const storage::Partition* CastToPartition(const storage::Device* device) {
-	return dynamic_cast<const storage::Partition*>(device);
-    }
-
-    const storage::PartitionTable* CastToPartitionTable(const storage::Device* device) {
-	return dynamic_cast<const storage::PartitionTable*>(device);
-    }
-
 %}
 
 using namespace std;

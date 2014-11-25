@@ -4,5 +4,5 @@
 
 SUBDIRS = examples
 
-EXTRA_DIST = storage.i
+EXTRA_DIST = storage-perl5.i
 

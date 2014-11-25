@@ -4,7 +4,7 @@
 
 SUBDIRS = examples
 
-EXTRA_DIST = storage.i
+EXTRA_DIST = storage-python.i
 
 AM_CXXFLAGS = -fPIC -DPIC
 
@@ -31,8 +31,8 @@ _storage_la_DEPENDENCIES =				\
 
 nodist__storage_la_SOURCES = storage_wrap.cxx
 
-storage.py storage_wrap.cxx: storage.i $(DEPENDENCIES)
-	swig -o storage_wrap.cxx -c++ -python ${INCLUDES} storage.i
+storage.py storage_wrap.cxx: ../storage.i storage-python.i $(DEPENDENCIES)
+	swig -o storage_wrap.cxx -c++ -python ${INCLUDES} storage-python.i
 
 CLEANFILES = storage.py storage_wrap.cxx
 
