@@ -17,6 +17,9 @@ namespace storage
 
 	Ext4(DeviceGraph& device_graph);
 
+	static Ext4* create(DeviceGraph& device_graph)
+	    { return new Ext4(device_graph); }
+
 	virtual string display_name() const override { return "ext4"; }
 
 	bool supportsLabel() const override { return true; }

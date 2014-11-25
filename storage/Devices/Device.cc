@@ -58,6 +58,26 @@ namespace storage
     }
 
 
+    size_t
+    Device::numChildren() const
+    {
+	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+
+	return device_graph.getImpl().num_children(vertex);
+    }
+
+
+    size_t
+    Device::numParents() const
+    {
+	const DeviceGraph& device_graph = getImpl().getDeviceGraph();
+	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+
+	return device_graph.getImpl().num_parents(vertex);
+    }
+
+
     vector<const Device*>
     Device::getChildren() const
     {

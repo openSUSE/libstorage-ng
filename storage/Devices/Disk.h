@@ -3,6 +3,7 @@
 
 
 #include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/PartitionTable.h"
 
 
 namespace storage
@@ -19,6 +20,8 @@ namespace storage
 
 	static Disk* create(DeviceGraph& device_graph, const string& name)
 	    { return new Disk(device_graph, name); }
+
+	PartitionTable* createPartitionTable(const string& type);
 
     public:
 

@@ -17,7 +17,8 @@ namespace storage
 
 	Gpt(DeviceGraph& device_graph);
 
-	static Gpt* create(DeviceGraph& device_graph) { return new Gpt(device_graph); }
+	static Gpt* create(DeviceGraph& device_graph)
+	    { return new Gpt(device_graph); }
 
 	virtual string display_name() const override { return "gpt"; }
 

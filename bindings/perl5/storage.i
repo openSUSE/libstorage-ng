@@ -1,5 +1,5 @@
 //
-// Ruby interface definition for libstorage
+// Perl interface definition for libstorage
 //
 
 %module storage
@@ -9,6 +9,9 @@
 // order of includes is crucial
 
 %{
+// workaround for bnc #593954
+#undef seed
+
 #include <storage/Devices/Device.h>
 #include <storage/Devices/BlkDevice.h>
 #include <storage/Devices/Partition.h>

@@ -2,5 +2,5 @@
 # Makefile.am for libstorage/bindings
 #
 
-SUBDIRS = python ruby
+SUBDIRS = python ruby perl5
 

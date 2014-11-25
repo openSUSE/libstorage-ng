@@ -74,6 +74,20 @@ namespace storage
     }
 
 
+    size_t
+    DeviceGraph::Impl::num_children(vertex_descriptor vertex) const
+    {
+	return boost::out_degree(vertex, graph);
+    }
+
+
+    size_t
+    DeviceGraph::Impl::num_parents(vertex_descriptor vertex) const
+    {
+	return boost::in_degree(vertex, graph);
+    }
+
+
     vector<DeviceGraph::Impl::vertex_descriptor>
     DeviceGraph::Impl::children(vertex_descriptor vertex) const
     {

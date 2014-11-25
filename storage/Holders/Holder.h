@@ -29,6 +29,9 @@ namespace storage
 	Subdevice(DeviceGraph& device_graph, Device* source, Device* target)
 	    : Holder(device_graph, source, target) {}
 
+	static Subdevice* create(DeviceGraph& device_graph, Device* source, Device* target)
+	    { return new Subdevice(device_graph, source, target); }
+
     };
 
 
@@ -38,6 +41,9 @@ namespace storage
 
 	Using(DeviceGraph& device_graph, Device* source, Device* target)
 	    : Holder(device_graph, source, target) {}
+
+	static Using* create(DeviceGraph& device_graph, Device* source, Device* target)
+	    { return new Using(device_graph, source, target); }
 
     };
 

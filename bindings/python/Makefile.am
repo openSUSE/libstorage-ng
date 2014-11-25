@@ -13,6 +13,7 @@ INCLUDES = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
 DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Device.h		\
 	${top_srcdir}/storage/Devices/Disk.h		\
+	${top_srcdir}/storage/Devices/Gpt.h		\
 	${top_srcdir}/storage/DeviceGraph.h
 
 LIBS = $(top_builddir)/storage/libstorage.la ${PYTHON_LIBS}

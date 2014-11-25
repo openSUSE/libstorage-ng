@@ -17,6 +17,9 @@ namespace storage
 
 	Swap(DeviceGraph& device_graph);
 
+	static Swap* create(DeviceGraph& device_graph)
+	    { return new Swap(device_graph); }
+
 	virtual string display_name() const override { return "swap"; }
 
 	bool supportsLabel() const override { return false; }

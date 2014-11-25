@@ -1,6 +1,7 @@
 
 
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 
@@ -48,6 +49,18 @@ namespace storage
     Disk::getImpl() const
     {
 	return dynamic_cast<const Impl&>(Device::getImpl());
+    }
+
+
+    PartitionTable*
+    Disk::createPartitionTable(const string& type)
+    {
+	if (numChildren() != 0)
+	    throw runtime_error("has children");
+
+	PartitionTable* ret = Gpt::create(getImpl().getDeviceGraph());
+	Using::create(getImpl().getDeviceGraph(), this, ret);
+	return ret;
     }
 
 }

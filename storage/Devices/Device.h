@@ -51,6 +51,9 @@ namespace storage
 
 	virtual void check() const;
 
+	size_t numChildren() const;
+	size_t numParents() const;
+
 	vector<const Device*> getChildren() const;
 	vector<const Device*> getParents() const;
 	vector<const Device*> getSiblings(bool itself) const;

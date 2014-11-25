@@ -1,0 +1,11 @@
+#!/bin/bash -x
+
+swig -c++ -perl storage.i
+
+g++ -c storage_wrap.cxx -fPIC -DPIC -std=c++11 -I../.. -I/usr/lib/perl5/5.20.1/x86_64-linux-thread-multi/CORE/
+
+g++ -shared storage_wrap.o -o storage.so -L../../storage/.libs -lstorage
+
+sudo cp storage.so /usr/lib/perl5/site_perl/
+sudo cp storage.pm /usr/lib/perl5/site_perl/
+

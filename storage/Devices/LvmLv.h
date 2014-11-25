@@ -17,6 +17,9 @@ namespace storage
 
 	LvmLv(DeviceGraph& device_graph, const string& name);
 
+	static LvmLv* create(DeviceGraph& device_graph, const string& name)
+	    { return new LvmLv(device_graph, name); }
+
 	virtual void check() const override;
 
     public:

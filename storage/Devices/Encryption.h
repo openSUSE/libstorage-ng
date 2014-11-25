@@ -17,6 +17,9 @@ namespace storage
 
 	Encryption(DeviceGraph& device_graph, const string& name);
 
+	static Encryption* create(DeviceGraph& device_graph, const string& name)
+	    { return new Encryption(device_graph, name); }
+
 	virtual Encryption* clone(DeviceGraph& device_graph) const override;
 
     public:

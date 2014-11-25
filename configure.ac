@@ -9,6 +9,8 @@ AC_PROG_CXX
 
 AM_PATH_PYTHON
 
+AC_PREFIX_DEFAULT(/usr)
+
 PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
 PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
 PYTHON_LIBS=$($PYTHON_CONFIG --libs)
@@ -61,4 +63,6 @@ AC_OUTPUT(
 	bindings/python/examples/Makefile
 	bindings/ruby/Makefile
 	bindings/ruby/examples/Makefile
+	bindings/perl5/Makefile
+	bindings/perl5/examples/Makefile
 )

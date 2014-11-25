@@ -17,6 +17,9 @@ namespace storage
 
 	Partition(DeviceGraph& device_graph, const string& name);
 
+	static Partition* create(DeviceGraph& device_graph, const string& name)
+	    { return new Partition(device_graph, name); }
+
 	virtual Partition* clone(DeviceGraph& device_graph) const override;
 
 	unsigned int getNumber() const;

@@ -51,6 +51,9 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
 
+	size_t num_children(vertex_descriptor vertex) const;
+	size_t num_parents(vertex_descriptor vertex) const;
+
 	vector<vertex_descriptor> children(vertex_descriptor vertex) const;
 	vector<vertex_descriptor> parents(vertex_descriptor vertex) const;
 	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself) const;
