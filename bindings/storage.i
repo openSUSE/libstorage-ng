@@ -47,3 +47,14 @@ using namespace storage;
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 
+%inline %{
+
+    const storage::Partition* castToPartition(const storage::Device* device) {
+	return dynamic_cast<const storage::Partition*>(device);
+    }
+
+    const storage::PartitionTable* castToPartitionTable(const storage::Device* device) {
+	return dynamic_cast<const storage::PartitionTable*>(device);
+    }
+
+%}

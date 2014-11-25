@@ -12,8 +12,6 @@ $gpt = $sda->createPartitionTable("gpt");
 $sda1 = $gpt->createPartition("/dev/sda1");
 $sda2 = $gpt->createPartition("/dev/sda2");
 
-$ext4 = $sda1->createFilesystem("ext4");
-
 $device_graph->print_graph();
 
 
@@ -34,11 +32,16 @@ for (my $i = 0; $i < $x2->size(); $i++)
 {
     $device = $x2->get($i);
 
-    print "  ", $device->display_name(), "\n";
+    $partition_table = storage::castToPartitionTable($device);
+    if ($partition_table)
+    {
+	print "  ", $partition_table->display_name(), " is partition table", "\n";
+    }
+
+    $partition = storage::castToPartition($device);
+    if ($partition)
+    {
+	print "  ", $partition->display_name(), " ", $partition->getNumber(), " is partition\n";
+    }
 }
 print "\n";
-
-
-$tmp1 = storage::BlkDevice::find($device_graph, "/dev/sda1");
-print $tmp1->display_name(), "\n";
-
