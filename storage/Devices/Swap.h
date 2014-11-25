@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	Swap(DeviceGraph& device_graph);
-
 	static Swap* create(DeviceGraph& device_graph)
 	    { return new Swap(device_graph); }
 
@@ -40,6 +38,10 @@ namespace storage
 
 	Swap(Impl* impl);
 	// Swap(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	Swap(DeviceGraph& device_graph);
 
     };
 

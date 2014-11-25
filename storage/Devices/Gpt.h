@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	Gpt(DeviceGraph& device_graph);
-
 	static Gpt* create(DeviceGraph& device_graph)
 	    { return new Gpt(device_graph); }
 
@@ -35,6 +33,10 @@ namespace storage
 
 	Gpt(Impl* impl);
 	Gpt(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	Gpt(DeviceGraph& device_graph);
 
     };
 

@@ -27,24 +27,24 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     DeviceGraph lhs;
 
-    new Disk(lhs, "/dev/sda");
+    Disk::create(lhs, "/dev/sda");
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
-    Partition* sda1 = new Partition(rhs, "/dev/sda1");
-    new Subdevice(rhs, sda, sda1);
+    Partition* sda1 = Partition::create(rhs, "/dev/sda1");
+    Subdevice::create(rhs, sda, sda1);
 
-    LvmVg* system = new LvmVg(rhs, "/dev/system");
-    new Using(rhs, sda1, system);
+    LvmVg* system = LvmVg::create(rhs, "/dev/system");
+    Using::create(rhs, sda1, system);
 
-    LvmLv* system_root = new LvmLv(rhs, "/dev/system/root");
-    new Subdevice(rhs, system, system_root);
+    LvmLv* system_root = LvmLv::create(rhs, "/dev/system/root");
+    Subdevice::create(rhs, system, system_root);
 
-    LvmLv* system_swap = new LvmLv(rhs, "/dev/system/swap");
-    new Subdevice(rhs, system, system_swap);
+    LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
+    Subdevice::create(rhs, system, system_swap);
 
     ActionGraph action_graph(lhs, rhs);
 

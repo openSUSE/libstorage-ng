@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	Partition(DeviceGraph& device_graph, const string& name);
-
 	static Partition* create(DeviceGraph& device_graph, const string& name)
 	    { return new Partition(device_graph, name); }
 
@@ -35,6 +33,10 @@ namespace storage
 
 	Partition(Impl* impl);
 	// Partition(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	Partition(DeviceGraph& device_graph, const string& name);
 
     };
 

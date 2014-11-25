@@ -16,10 +16,10 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 {
     DeviceGraph device_graph;
 
-    Disk* sda = new Disk(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(device_graph, "/dev/sda");
 
-    Partition* sda1 = new Partition(device_graph, "/dev/sda1");
-    new Subdevice(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
+    Subdevice::create(device_graph, sda, sda1);
 
     BOOST_CHECK_EQUAL(device_graph.num_vertices(), 2);
     BOOST_CHECK_EQUAL(device_graph.num_edges(), 1);

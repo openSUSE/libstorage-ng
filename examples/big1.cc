@@ -17,7 +17,7 @@ DeviceGraph rhs;
 void
 add_disk(const string& name)
 {
-    new Disk(lhs, name);
+    Disk::create(lhs, name);
 }
 
 
@@ -26,17 +26,17 @@ add_partitions(const string& name)
 {
     Disk* disk = dynamic_cast<Disk*>(BlkDevice::find(rhs, name));
 
-    Gpt* gpt = new Gpt(rhs);
-    new Subdevice(rhs, disk, gpt);
+    Gpt* gpt = Gpt::create(rhs);
+    Subdevice::create(rhs, disk, gpt);
 
-    Partition* partition1 = new Partition(rhs, name + "p1");
-    new Subdevice(rhs, gpt, partition1);
+    Partition* partition1 = Partition::create(rhs, name + "p1");
+    Subdevice::create(rhs, gpt, partition1);
 
-    Partition* partition2 = new Partition(rhs, name + "p2");
-    new Subdevice(rhs, gpt, partition2);
+    Partition* partition2 = Partition::create(rhs, name + "p2");
+    Subdevice::create(rhs, gpt, partition2);
 
-    Partition* partition3 = new Partition(rhs, name + "p3");
-    new Subdevice(rhs, gpt, partition3);
+    Partition* partition3 = Partition::create(rhs, name + "p3");
+    Subdevice::create(rhs, gpt, partition3);
 }
 
 

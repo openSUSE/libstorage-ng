@@ -16,8 +16,6 @@ namespace storage
     {
     public:
 
-	Disk(DeviceGraph& device_graph, const string& name);
-
 	static Disk* create(DeviceGraph& device_graph, const string& name)
 	    { return new Disk(device_graph, name); }
 
@@ -36,6 +34,10 @@ namespace storage
 
 	Disk(Impl* impl);
 	// Disk(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	Disk(DeviceGraph& device_graph, const string& name);
 
     };
 

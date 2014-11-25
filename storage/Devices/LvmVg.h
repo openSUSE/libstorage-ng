@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	LvmVg(DeviceGraph& device_graph, const string& name);
-
 	static LvmVg* create(DeviceGraph& device_graph, const string& name)
 	    { return new LvmVg(device_graph, name); }
 
@@ -40,6 +38,10 @@ namespace storage
 
 	LvmVg(Impl* impl);
 	// LvmVg(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	LvmVg(DeviceGraph& device_graph, const string& name);
 
     };
 

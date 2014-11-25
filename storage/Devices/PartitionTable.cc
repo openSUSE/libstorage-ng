@@ -42,8 +42,8 @@ namespace storage
     {
 	DeviceGraph& device_graph = getImpl().getDeviceGraph();
 
-	Partition* partition = new Partition(device_graph, name);
-	new Subdevice(device_graph, this, partition);
+	Partition* partition = Partition::create(device_graph, name);
+	Subdevice::create(device_graph, this, partition);
 
 	return partition;
     }

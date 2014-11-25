@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	LvmLv(DeviceGraph& device_graph, const string& name);
-
 	static LvmLv* create(DeviceGraph& device_graph, const string& name)
 	    { return new LvmLv(device_graph, name); }
 
@@ -35,6 +33,10 @@ namespace storage
 
 	LvmLv(Impl* impl);
 	LvmLv(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	LvmLv(DeviceGraph& device_graph, const string& name);
 
     };
 

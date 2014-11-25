@@ -16,19 +16,19 @@ main()
 {
     DeviceGraph lhs;
 
-    Disk* sda = new Disk(lhs, "/dev/sda");
+    Disk* sda = Disk::create(lhs, "/dev/sda");
 
-    Partition* sda1 = new Partition(lhs, "/dev/sda1");
-    new Subdevice(lhs, sda, sda1);
+    Partition* sda1 = Partition::create(lhs, "/dev/sda1");
+    Subdevice::create(lhs, sda, sda1);
 
-    Partition* sda2 = new Partition(lhs, "/dev/sda2");
-    new Subdevice(lhs, sda, sda2);
+    Partition* sda2 = Partition::create(lhs, "/dev/sda2");
+    Subdevice::create(lhs, sda, sda2);
 
-    LvmVg* system = new LvmVg(lhs, "/dev/system");
-    new Using(lhs, sda2, system);
+    LvmVg* system = LvmVg::create(lhs, "/dev/system");
+    Using::create(lhs, sda2, system);
 
-    LvmLv* system_oracle = new LvmLv(lhs, "/dev/system/oracle");
-    new Subdevice(lhs, system, system_oracle);
+    LvmLv* system_oracle = LvmLv::create(lhs, "/dev/system/oracle");
+    Subdevice::create(lhs, system, system_oracle);
 
     DeviceGraph rhs;
     lhs.copy(rhs);

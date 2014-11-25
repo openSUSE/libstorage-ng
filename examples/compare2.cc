@@ -17,28 +17,28 @@ main()
 {
     DeviceGraph lhs;
 
-    Disk* lhs_sda = new Disk(lhs, "/dev/sda");
+    Disk* lhs_sda = Disk::create(lhs, "/dev/sda");
 
     DeviceGraph rhs;
     lhs.copy(rhs);
 
     Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_device(lhs_sda->getSid()));
 
-    Gpt* rhs_gpt = new Gpt(rhs);
-    new Using(rhs, rhs_sda, rhs_gpt);
+    Gpt* rhs_gpt = Gpt::create(rhs);
+    Using::create(rhs, rhs_sda, rhs_gpt);
 
-    Partition* rhs_sda1 = new Partition(rhs, "/dev/sda1");
-    new Subdevice(rhs, rhs_gpt, rhs_sda1);
+    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1");
+    Subdevice::create(rhs, rhs_gpt, rhs_sda1);
 
-    Partition* rhs_sda2 = new Partition(rhs, "/dev/sda2");
-    new Subdevice(rhs, rhs_gpt, rhs_sda2);
+    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2");
+    Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
-    LvmVg* rhs_system = new LvmVg(rhs, "/dev/system");
-    new Using(rhs, rhs_sda1, rhs_system);
-    new Using(rhs, rhs_sda2, rhs_system);
+    LvmVg* rhs_system = LvmVg::create(rhs, "/dev/system");
+    Using::create(rhs, rhs_sda1, rhs_system);
+    Using::create(rhs, rhs_sda2, rhs_system);
 
-    LvmLv* rhs_system_swap = new LvmLv(rhs, "/dev/system/swap");
-    new Subdevice(rhs, rhs_system, rhs_system_swap);
+    LvmLv* rhs_system_swap = LvmLv::create(rhs, "/dev/system/swap");
+    Subdevice::create(rhs, rhs_system, rhs_system_swap);
 
     ActionGraph action_graph(lhs, rhs);
 

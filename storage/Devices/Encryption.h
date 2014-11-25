@@ -15,8 +15,6 @@ namespace storage
     {
     public:
 
-	Encryption(DeviceGraph& device_graph, const string& name);
-
 	static Encryption* create(DeviceGraph& device_graph, const string& name)
 	    { return new Encryption(device_graph, name); }
 
@@ -33,6 +31,10 @@ namespace storage
 
 	Encryption(Impl* impl);
 	// Encryption(DeviceGraph& device_graph, Impl* impl);
+
+    private:
+
+	Encryption(DeviceGraph& device_graph, const string& name);
 
     };
 

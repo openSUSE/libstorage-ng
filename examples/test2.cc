@@ -14,13 +14,13 @@ partitions()
 {
     DeviceGraph device_graph;
 
-    Disk* sda = new Disk(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(device_graph, "/dev/sda");
 
-    Gpt* gpt = new Gpt(device_graph);
-    new Subdevice(device_graph, sda, gpt);
+    Gpt* gpt = Gpt::create(device_graph);
+    Subdevice::create(device_graph, sda, gpt);
 
-    Partition* sda1 = new Partition(device_graph, "/dev/sda1");
-    new Subdevice(device_graph, gpt, sda1);
+    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
+    Subdevice::create(device_graph, gpt, sda1);
 
     gpt->createPartition("/dev/sda2");
 

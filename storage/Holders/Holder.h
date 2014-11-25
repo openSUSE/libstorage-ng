@@ -26,11 +26,13 @@ namespace storage
     {
     public:
 
-	Subdevice(DeviceGraph& device_graph, Device* source, Device* target)
-	    : Holder(device_graph, source, target) {}
-
 	static Subdevice* create(DeviceGraph& device_graph, Device* source, Device* target)
 	    { return new Subdevice(device_graph, source, target); }
+
+    private:
+
+	Subdevice(DeviceGraph& device_graph, Device* source, Device* target)
+	    : Holder(device_graph, source, target) {}
 
     };
 
@@ -39,11 +41,13 @@ namespace storage
     {
     public:
 
-	Using(DeviceGraph& device_graph, Device* source, Device* target)
-	    : Holder(device_graph, source, target) {}
-
 	static Using* create(DeviceGraph& device_graph, Device* source, Device* target)
 	    { return new Using(device_graph, source, target); }
+
+    private:
+
+	Using(DeviceGraph& device_graph, Device* source, Device* target)
+	    : Holder(device_graph, source, target) {}
 
     };
 
