@@ -15,7 +15,7 @@ namespace storage
 
     // TODO make it copyable?
 
-    class DeviceGraph : boost::noncopyable
+    class DeviceGraph : private boost::noncopyable
     {
 
     public:
