@@ -51,7 +51,7 @@ namespace storage
 
 	ostringstream str;
 	str << "device not found, name = " << name;
-	throw runtime_error(str.str());
+	throw device_not_found(str.str());
     }
 
 

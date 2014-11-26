@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from storage import DeviceGraph, BlkDevice
+from storage import DeviceGraph, BlkDevice, device_not_found
 
 
 device_graph = DeviceGraph()
@@ -9,6 +9,8 @@ device_graph = DeviceGraph()
 try:
   tmp = BlkDevice.find(device_graph, "/dev/sda")
   print tmp.display_name()
-except runtime_error:    # TODO
-  print "device not found, %s" % e.what()
+except device_not_found, e:
+  print "device_not_found"
+
+print "done"
 
