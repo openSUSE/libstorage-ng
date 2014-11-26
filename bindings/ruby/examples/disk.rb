@@ -12,7 +12,8 @@ gpt = sda.createPartitionTable("gpt")
 sda1 = gpt.createPartition("/dev/sda1")
 sda2 = gpt.createPartition("/dev/sda2")
 
-ext4 = sda1.createFilesystem("ext4")
+ext4 = sda1.createFilesystem(Storage::EXT4)
+swap = sda2.createFilesystem(Storage::SWAP)
 
 device_graph.print_graph()
 

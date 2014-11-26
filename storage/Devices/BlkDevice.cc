@@ -4,6 +4,7 @@
 
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Ext4.h"
+#include "storage/Devices/Swap.h"
 
 
 namespace storage
@@ -78,13 +79,29 @@ namespace storage
 
 
     Filesystem*
-    BlkDevice::createFilesystem(const string& type)
+    BlkDevice::createFilesystem(FsType fs_type)
     {
 	if (numChildren() != 0)
-	    throw runtime_error("has children");
+	    throw runtime_error("BlkDevice has children");
 
-	Filesystem* ret = Ext4::create(getImpl().getDeviceGraph());
+	Filesystem* ret = nullptr;
+
+	switch (fs_type)
+	{
+	    case EXT4:
+		ret = Ext4::create(getImpl().getDeviceGraph());
+		break;
+
+	    case SWAP:
+		ret = Swap::create(getImpl().getDeviceGraph());
+		break;
+	}
+
+	if (!ret)
+	    throw runtime_error("unknown filesystem type");
+
 	Using::create(getImpl().getDeviceGraph(), this, ret);
+
 	return ret;
     }
 

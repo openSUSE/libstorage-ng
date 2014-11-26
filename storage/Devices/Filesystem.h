@@ -13,6 +13,10 @@ namespace storage
     using namespace std;
 
 
+    enum FsType { REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS,
+		  NTFS, SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF };
+
+
     // abstract class
 
     class Filesystem : public Device

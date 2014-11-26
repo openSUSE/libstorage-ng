@@ -34,7 +34,7 @@ namespace storage
 
 	static BlkDevice* find(DeviceGraph& device_graph, const string& name);
 
-	Filesystem* createFilesystem(const string& type);
+	Filesystem* createFilesystem(FsType fs_type);
 
     public:
 

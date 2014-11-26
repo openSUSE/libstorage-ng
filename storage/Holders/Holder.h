@@ -9,6 +9,8 @@ namespace storage
     class Device;
 
 
+    // abstract class
+
     class Holder
     {
     public:
