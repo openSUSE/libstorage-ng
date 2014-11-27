@@ -13,7 +13,6 @@
 namespace storage
 {
 
-
     class DeviceGraph : private boost::noncopyable
     {
 
@@ -49,8 +48,8 @@ namespace storage
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& getImpl() { return *impl; }
+	const Impl& getImpl() const { return *impl; }
 
     private:
 

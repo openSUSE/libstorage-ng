@@ -32,20 +32,6 @@ namespace storage
     }
 
 
-    DeviceGraph::Impl&
-    DeviceGraph::getImpl()
-    {
-	return *impl;
-    }
-
-
-    const DeviceGraph::Impl&
-    DeviceGraph::getImpl() const
-    {
-	return *impl;
-    }
-
-
     bool
     DeviceGraph::empty() const
     {

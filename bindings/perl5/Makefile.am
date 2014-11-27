@@ -22,7 +22,8 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Device.h		\
 	${top_srcdir}/storage/Devices/Disk.h		\
 	${top_srcdir}/storage/Devices/Gpt.h		\
-	${top_srcdir}/storage/DeviceGraph.h
+	${top_srcdir}/storage/DeviceGraph.h		\
+	${top_srcdir}/storage/Storage.h
 
 perlextensiondir_LTLIBRARIES = storage.la
 nodist_storage_la_SOURCES = storage_wrap.cxx

@@ -22,7 +22,8 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Disk.h		\
 	${top_srcdir}/storage/Devices/PartitionTable.h	\
 	${top_srcdir}/storage/Devices/Partition.h	\
-	${top_srcdir}/storage/DeviceGraph.h
+	${top_srcdir}/storage/DeviceGraph.h		\
+	${top_srcdir}/storage/Storage.h
 
 # Build Ruby module as shared library
 rubyextensiondir_LTLIBRARIES = storage.la

@@ -29,6 +29,7 @@
 #include <storage/Devices/Gpt.h>
 #include <storage/Holders/Holder.h>
 #include <storage/DeviceGraph.h>
+#include <storage/Storage.h>
 %}
 
 using namespace std;
@@ -46,6 +47,7 @@ using namespace std;
 %include "../../storage/Devices/Gpt.h"
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/DeviceGraph.h"
+%include "../../storage/Storage.h"
 
 using namespace storage;
 
