@@ -13,7 +13,6 @@
 namespace storage
 {
 
-    // TODO make it copyable?
 
     class DeviceGraph : private boost::noncopyable
     {
@@ -23,8 +22,10 @@ namespace storage
 	DeviceGraph();
 	~DeviceGraph();
 
-	size_t num_vertices() const;
-	size_t num_edges() const;
+	bool empty() const;
+
+	size_t numVertices() const;
+	size_t numEdges() const;
 
 	Device* find_device(sid_t sid);
 	const Device* find_device(sid_t sid) const;

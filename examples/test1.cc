@@ -130,8 +130,8 @@ main()
     LvmLv* system_home = LvmLv::create(device_graph, "/dev/system/home");
     Subdevice::create(device_graph, system, system_home);
 
-    cout << "num_vertices: " << device_graph.num_vertices() << endl;
-    cout << "num_edges: " << device_graph.num_edges() << endl;
+    cout << "num_vertices: " << device_graph.numVertices() << endl;
+    cout << "num_edges: " << device_graph.numEdges() << endl;
 
     cout << endl;
 

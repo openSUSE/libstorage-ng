@@ -27,15 +27,15 @@ BOOST_AUTO_TEST_CASE(valid)
     DeviceGraph::Impl::vertex_descriptor v_sda = sda->getImpl().getVertex();
     DeviceGraph::Impl::vertex_descriptor v_sda2 = sda2->getImpl().getVertex();
 
-    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 3);
-    BOOST_CHECK_EQUAL(device_graph.num_edges(), 2);
+    BOOST_CHECK_EQUAL(device_graph.numVertices(), 3);
+    BOOST_CHECK_EQUAL(device_graph.numEdges(), 2);
 
     device_graph.check();
 
     device_graph.remove_vertex(sda1);
 
-    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 2);
-    BOOST_CHECK_EQUAL(device_graph.num_edges(), 1);
+    BOOST_CHECK_EQUAL(device_graph.numVertices(), 2);
+    BOOST_CHECK_EQUAL(device_graph.numEdges(), 1);
 
     device_graph.check();
 

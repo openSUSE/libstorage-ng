@@ -18,7 +18,7 @@ namespace storage
     }
 
 
-    class ActionGraph : boost::noncopyable
+    class ActionGraph : private boost::noncopyable
     {
     public:
 

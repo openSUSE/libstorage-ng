@@ -13,9 +13,7 @@
 namespace storage
 {
 
-    // TODO make it copyable?
-
-    class DeviceGraph::Impl : boost::noncopyable
+    class DeviceGraph::Impl : private boost::noncopyable
     {
 
     public:
@@ -79,6 +77,8 @@ namespace storage
 
 	    return ret;
 	}
+
+	void swap(DeviceGraph::Impl& x);
 
 	graph_t graph;
 

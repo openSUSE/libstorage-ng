@@ -74,6 +74,13 @@ namespace storage
     }
 
 
+    void
+    DeviceGraph::Impl::swap(DeviceGraph::Impl& x)
+    {
+	graph.swap(x.graph);
+    }
+
+
     size_t
     DeviceGraph::Impl::num_children(vertex_descriptor vertex) const
     {

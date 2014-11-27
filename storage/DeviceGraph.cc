@@ -46,15 +46,22 @@ namespace storage
     }
 
 
+    bool
+    DeviceGraph::empty() const
+    {
+	return numVertices() == 0;
+    }
+
+
     size_t
-    DeviceGraph::num_vertices() const
+    DeviceGraph::numVertices() const
     {
 	return boost::num_vertices(getImpl().graph);
     }
 
 
     size_t
-    DeviceGraph::num_edges() const
+    DeviceGraph::numEdges() const
     {
 	return boost::num_edges(getImpl().graph);
     }

@@ -34,16 +34,16 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Ext4::create(device_graph);
     Swap::create(device_graph);
 
-    BOOST_CHECK_EQUAL(device_graph.num_vertices(), 8);
-    BOOST_CHECK_EQUAL(device_graph.num_edges(), 0);
+    BOOST_CHECK_EQUAL(device_graph.numVertices(), 8);
+    BOOST_CHECK_EQUAL(device_graph.numEdges(), 0);
 
     device_graph.check();
 
     DeviceGraph device_graph_copy;
     device_graph.copy(device_graph_copy);
 
-    BOOST_CHECK_EQUAL(device_graph_copy.num_vertices(), 8);
-    BOOST_CHECK_EQUAL(device_graph_copy.num_edges(), 0);
+    BOOST_CHECK_EQUAL(device_graph_copy.numVertices(), 8);
+    BOOST_CHECK_EQUAL(device_graph_copy.numEdges(), 0);
 
     device_graph_copy.check();
 }
