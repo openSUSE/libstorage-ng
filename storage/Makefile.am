@@ -7,6 +7,7 @@ SUBDIRS = Devices Holders
 lib_LTLIBRARIES = libstorage.la
 
 libstorage_la_SOURCES =					\
+	Environment.h		Environment.cc		\
 	Storage.h		Storage.cc		\
 	StorageImpl.h		StorageImpl.cc		\
 	DeviceGraph.h		DeviceGraph.cc		\

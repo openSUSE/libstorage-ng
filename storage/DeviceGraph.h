@@ -39,6 +39,7 @@ namespace storage
 
 	void check() const;
 
+	// TODO move to Impl
 	void copy(DeviceGraph& dest) const;
 
 	void print_graph() const;

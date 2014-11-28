@@ -15,6 +15,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Disk.h		\
 	${top_srcdir}/storage/Devices/Gpt.h		\
 	${top_srcdir}/storage/DeviceGraph.h		\
+	${top_srcdir}/storage/Environment.h		\
 	${top_srcdir}/storage/Storage.h
 
 LIBS = $(top_builddir)/storage/libstorage.la ${PYTHON_LIBS}

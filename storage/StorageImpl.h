@@ -12,12 +12,13 @@ namespace storage
     {
     public:
 
-	Impl(ProbeMode probe_mode, bool read_only);
+	Impl(const Environment& environment);
 	~Impl();
 
     public:
 
-	void copyDeviceGraph(const string& source_name, const string& dest_name);
+	DeviceGraph* createDeviceGraph(const string& name);
+	DeviceGraph* copyDeviceGraph(const string& source_name, const string& dest_name);
 	void removeDeviceGraph(const string& name);
 	void restoreDeviceGraph(const string& name);
 
@@ -38,8 +39,7 @@ namespace storage
 
 	void probe(DeviceGraph& probed);
 
-	const ProbeMode probe_mode;
-	const bool read_only;
+	const Environment environment;
 
 	map<string, DeviceGraph> device_graphs;
 

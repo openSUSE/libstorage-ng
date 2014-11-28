@@ -3,7 +3,9 @@
 require 'storage'
 
 
-storage = Storage::Storage.new(Storage::PROBE_NORMAL, true)
+environment = Storage::Environment.new(true)
+
+storage = Storage::Storage.new(environment)
 
 probed = storage.getProbed()
 

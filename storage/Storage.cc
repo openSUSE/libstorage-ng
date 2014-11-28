@@ -7,8 +7,8 @@
 namespace storage
 {
 
-    Storage::Storage(ProbeMode probe_mode, bool read_only)
-	: impl(new Impl(probe_mode, read_only))
+    Storage::Storage(const Environment& environment)
+	: impl(new Impl(environment))
     {
     }
 
@@ -59,11 +59,17 @@ namespace storage
 	return getImpl().getDeviceGraphNames();
     }
 
+    DeviceGraph*
+    Storage::createDeviceGraph(const string& name)
+    {
+	return getImpl().createDeviceGraph(name);
+    }
 
-    void
+
+    DeviceGraph*
     Storage::copyDeviceGraph(const string& source_name, const string& dest_name)
     {
-	getImpl().copyDeviceGraph(source_name, dest_name);
+	return getImpl().copyDeviceGraph(source_name, dest_name);
     }
 
 

@@ -1,9 +1,11 @@
 #!/usr/bin/python
 
-from storage import Storage, PROBE_NORMAL
+from storage import Environment, Storage
 
 
-storage = Storage(PROBE_NORMAL, True)
+environment = Environment(True)
+
+storage = Storage(environment)
 
 probed = storage.getProbed()
 

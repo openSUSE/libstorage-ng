@@ -8,7 +8,7 @@
 namespace storage
 {
 
-    Holder::Holder(DeviceGraph& device_graph, Device* source, Device* target)
+    Holder::Holder(DeviceGraph& device_graph, const Device* source, const Device* target)
     {
 	if (&source->getImpl().getDeviceGraph() != &device_graph)
 	    throw runtime_error("wrong graph in source");

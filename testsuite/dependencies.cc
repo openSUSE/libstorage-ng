@@ -10,6 +10,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/DeviceGraph.h"
 #include "storage/ActionGraph.h"
+#include "storage/Storage.h"
 
 
 using namespace storage;
@@ -25,12 +26,15 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "46 create /dev/system/swap", { } }
     };
 
-    DeviceGraph lhs;
+    Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+
+    Storage storage(environment);
+
+    DeviceGraph& lhs = *storage.getCurrent();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph rhs;
-    lhs.copy(rhs);
+    DeviceGraph& rhs = *storage.copyDeviceGraph("current", "old");
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 

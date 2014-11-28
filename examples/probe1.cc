@@ -10,7 +10,9 @@ using namespace storage;
 int
 main()
 {
-    Storage storage(ProbeMode::PROBE_NORMAL, true);
+    Environment environment(true);
+
+    Storage storage(environment);
 
     for (const string& name : storage.getDeviceGraphNames())
 	cout << name << endl;

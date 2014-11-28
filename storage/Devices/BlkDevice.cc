@@ -88,12 +88,16 @@ namespace storage
 
 	switch (fs_type)
 	{
-	    case EXT4:
+	    case FsType::EXT4:
 		ret = Ext4::create(getImpl().getDeviceGraph());
 		break;
 
-	    case SWAP:
+	    case FsType::SWAP:
 		ret = Swap::create(getImpl().getDeviceGraph());
+		break;
+
+	    default:
+		// TODO
 		break;
 	}
 

@@ -54,6 +54,9 @@ namespace storage
 	size_t numChildren() const;
 	size_t numParents() const;
 
+	// TODO check if we can somehow return a iterator. getting rid of the
+	// ptr would also allow to use references instead of pointer in the
+	// interface.
 	vector<const Device*> getChildren() const;
 	vector<const Device*> getParents() const;
 	vector<const Device*> getSiblings(bool itself) const;

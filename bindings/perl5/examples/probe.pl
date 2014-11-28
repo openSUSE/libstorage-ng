@@ -3,7 +3,9 @@
 use storage;
 
 
-$storage = new storage::Storage($storage::PROBE_NORMAL, 1);
+$environment = new storage::Environment(1);
+
+$storage = new storage::Storage($environment);
 
 $probed = $storage->getProbed();
 

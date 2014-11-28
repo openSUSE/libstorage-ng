@@ -8,38 +8,40 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(ProbeMode probe_mode, bool read_only)
-	: probe_mode(probe_mode), read_only(read_only)
+    Storage::Impl::Impl(const Environment& environment)
+	: environment(environment)
     {
-	switch (probe_mode)
+	switch (environment.probe_mode)
 	{
-	    case ProbeMode::PROBE_NONE: {
-
-		pair<map<string, DeviceGraph>::iterator, bool> tmp =
-		    device_graphs.emplace(piecewise_construct, forward_as_tuple("current"),
-					  forward_as_tuple());
-		if (!tmp.second)
-		    throw logic_error("current device graph already exists");
-
-	    } break;
-
 	    case ProbeMode::PROBE_NORMAL: {
 
-		pair<map<string, DeviceGraph>::iterator, bool> tmp =
-		    device_graphs.emplace(piecewise_construct, forward_as_tuple("probed"),
-				    forward_as_tuple());
-		if (!tmp.second)
-		    throw logic_error("probed device graph already exists");
+		DeviceGraph* probed = createDeviceGraph("probed");
 
-		probe(tmp.first->second);
+		probe(*probed);
 
 		copyDeviceGraph("probed", "current");
 
 	    } break;
 
-	    case ProbeMode::PROBE_FAKE: {
+	    case ProbeMode::PROBE_NONE: {
 
-		// read();
+		createDeviceGraph("current");
+
+	    } break;
+
+	    case ProbeMode::PROBE_READ_DEVICE_GRAPH: {
+
+		createDeviceGraph("current");
+
+		// TODO
+
+	    } break;
+
+	    case ProbeMode::PROBE_READ_SYSTEM_INFO: {
+
+		createDeviceGraph("current");
+
+		// TODO
 
 	    } break;
 
@@ -119,21 +121,31 @@ namespace storage
     }
 
 
-    void
+    DeviceGraph*
+    Storage::Impl::createDeviceGraph(const string& name)
+    {
+	pair<map<string, DeviceGraph>::iterator, bool> tmp =
+	    device_graphs.emplace(piecewise_construct, forward_as_tuple(name),
+				  forward_as_tuple());
+	if (!tmp.second)
+	    throw logic_error("device graph already exists");
+
+	map<string, DeviceGraph>::iterator it = tmp.first;
+
+	return &it->second;
+    }
+
+
+    DeviceGraph*
     Storage::Impl::copyDeviceGraph(const string& source_name, const string& dest_name)
     {
-	map<string, DeviceGraph>::const_iterator it1 = device_graphs.find(source_name);
-	if (it1 == device_graphs.end())
-	    throw runtime_error("device graph not found");
+	const DeviceGraph* tmp1 = static_cast<const Impl*>(this)->getDeviceGraph(source_name);
 
-	pair<map<string, DeviceGraph>::iterator, bool> tmp =
-	    device_graphs.emplace(piecewise_construct, forward_as_tuple(dest_name),
-			    forward_as_tuple());
-	if (!tmp.second)
-	    throw runtime_error("device graph already exists");
-	map<string, DeviceGraph>::iterator it2 = tmp.first;
+	DeviceGraph* tmp2 = createDeviceGraph(dest_name);
 
-	it1->second.copy(it2->second);
+	tmp1->copy(*tmp2);
+
+	return tmp2;
     }
 
 
