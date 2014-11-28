@@ -117,13 +117,8 @@ namespace storage
     void
     ActionGraph::get_actions()
     {
-	set<sid_t> lhs_sids;
-	for (DeviceGraph::Impl::vertex_descriptor v : lhs.getImpl().vertices())
-	    lhs_sids.insert(lhs.getImpl().graph[v]->getSid());
-
-	set<sid_t> rhs_sids;
-	for (DeviceGraph::Impl::vertex_descriptor v : rhs.getImpl().vertices())
-	    rhs_sids.insert(rhs.getImpl().graph[v]->getSid());
+	const set<sid_t> lhs_sids = lhs.getImpl().getSids();
+	const set<sid_t> rhs_sids = rhs.getImpl().getSids();
 
 	vector<sid_t> created_sids;
 	back_insert_iterator<vector<sid_t>> bii1(created_sids);

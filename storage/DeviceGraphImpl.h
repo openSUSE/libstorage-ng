@@ -38,6 +38,13 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
+	bool empty() const;
+
+	size_t numVertices() const;
+	size_t numEdges() const;
+
+	set<sid_t> getSids() const;
+
 	vertex_descriptor find_vertex(sid_t sid) const;
 	vertex_descriptor find_vertex(const string& name) const;
 

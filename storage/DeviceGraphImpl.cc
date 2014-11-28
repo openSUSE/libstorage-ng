@@ -21,6 +21,27 @@
 namespace storage
 {
 
+    bool
+    DeviceGraph::Impl::empty() const
+    {
+	return boost::num_vertices(graph) == 0;
+    }
+
+
+    size_t
+    DeviceGraph::Impl::numVertices() const
+    {
+	return boost::num_vertices(graph);
+    }
+
+
+    size_t
+    DeviceGraph::Impl::numEdges() const
+    {
+	return boost::num_edges(graph);
+    }
+
+
     boost::iterator_range<DeviceGraph::Impl::vertex_iterator>
     DeviceGraph::Impl::vertices() const
     {
@@ -32,6 +53,16 @@ namespace storage
     DeviceGraph::Impl::edges() const
     {
 	return boost::make_iterator_range(boost::edges(graph));
+    }
+
+
+    set<sid_t>
+    DeviceGraph::Impl::getSids() const
+    {
+	set<sid_t> sids;
+	for (vertex_descriptor vertex : vertices())
+	    sids.insert(graph[vertex]->getSid());
+	return sids;
     }
 
 

@@ -186,15 +186,13 @@ namespace storage
     bool
     Storage::Impl::equalDeviceGraph(const string& lhs, const string& rhs) const
     {
-	map<string, DeviceGraph>::const_iterator it1 = device_graphs.find(lhs);
-	if (it1 == device_graphs.end())
-	    throw runtime_error("device graph not found");
+	const DeviceGraph* tmp1 = static_cast<const Impl*>(this)->getDeviceGraph(lhs);
 
-	map<string, DeviceGraph>::const_iterator it2 = device_graphs.find(rhs);
-	if (it2 == device_graphs.end())
-	    throw runtime_error("device graph not fot found");
+	const DeviceGraph* tmp2 = static_cast<const Impl*>(this)->getDeviceGraph(rhs);
 
-	// TODO
+	// TODO really needed? just calculate ActionGraph instead? not always
+	// same result, e.g. removing a Ext4 object (not mounted, not in
+	// fstab) results in no action - but the graphs differ
     }
 
 }
