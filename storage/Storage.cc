@@ -88,9 +88,9 @@ namespace storage
 
 
     bool
-    Storage::checkDeviceGraph(const string& name) const
+    Storage::existDeviceGraph(const string& name) const
     {
-	return getImpl().checkDeviceGraph(name);
+	return getImpl().existDeviceGraph(name);
     }
 
 

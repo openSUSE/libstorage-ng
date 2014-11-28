@@ -24,7 +24,7 @@ namespace storage
 
 	bool equalDeviceGraph(const string& lhs, const string& rhs) const;
 
-	bool checkDeviceGraph(const string& name) const;
+	bool existDeviceGraph(const string& name) const;
 	vector<string> getDeviceGraphNames() const;
 
 	DeviceGraph* getDeviceGraph(const string& name);

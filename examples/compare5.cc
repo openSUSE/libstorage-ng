@@ -7,7 +7,7 @@
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
 #include "storage/DeviceGraph.h"
-#include "storage/Action.h"
+#include "storage/ActionGraph.h"
 
 
 using namespace storage;

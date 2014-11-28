@@ -177,7 +177,7 @@ namespace storage
 
 
     bool
-    Storage::Impl::checkDeviceGraph(const string& name) const
+    Storage::Impl::existDeviceGraph(const string& name) const
     {
 	return device_graphs.find(name) != device_graphs.end();
     }

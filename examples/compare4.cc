@@ -5,7 +5,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/DeviceGraph.h"
-#include "storage/Action.h"
+#include "storage/ActionGraph.h"
 
 
 using namespace storage;
