@@ -12,6 +12,12 @@ namespace storage
 
 
     void
+    Filesystem::Impl::save(xmlNode* node) const
+    {
+    }
+
+
+    void
     Filesystem::Impl::add_delete_actions(ActionGraph& action_graph) const
     {
 	vector<Action::Base*> actions;

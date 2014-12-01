@@ -12,6 +12,13 @@ namespace storage
 
 
     void
+    Encryption::Impl::save(xmlNode* node) const
+    {
+	BlkDevice::Impl::save(node);
+    }
+
+
+    void
     Encryption::Impl::add_create_actions(ActionGraph& action_graph) const
     {
 	vector<Action::Base*> actions;

@@ -11,4 +11,9 @@ namespace storage
     using namespace std;
 
 
+    void
+    PartitionTable::Impl::save(xmlNode* node) const
+    {
+    }
+
 }

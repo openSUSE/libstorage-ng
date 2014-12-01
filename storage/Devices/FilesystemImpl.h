@@ -18,6 +18,8 @@ namespace storage
     {
     public:
 
+	void save(xmlNode* node) const override;
+
 	virtual void add_delete_actions(ActionGraph& action_graph) const override;
 
 	string label;

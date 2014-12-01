@@ -1,12 +1,16 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
 {
 
-    using namespace std;
-
+    void
+    BlkDevice::Impl::save(xmlNode* node) const
+    {
+	setChildValue(node, "name", name);
+    }
 
 }

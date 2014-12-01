@@ -22,7 +22,11 @@ namespace storage
 	Impl(DeviceGraph& device_graph, const Impl& impl)
 	    : PartitionTable::Impl(device_graph, impl) {}
 
+	virtual const char* getClassName() const override { return "Gpt"; }
+
 	virtual Impl* clone(DeviceGraph& device_graph) const override { return new Impl(device_graph, *this); }
+
+	virtual void save(xmlNode* node) const override;
 
 	virtual void add_create_actions(ActionGraph& action_graph) const override;
 	virtual void add_delete_actions(ActionGraph& action_graph) const override;

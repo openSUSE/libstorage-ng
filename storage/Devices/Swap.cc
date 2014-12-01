@@ -51,4 +51,11 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::getImpl());
     }
 
+
+    void
+    Swap::Impl::save(xmlNode* node) const
+    {
+	Filesystem::Impl::save(node);
+    }
+
 }

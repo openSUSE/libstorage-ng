@@ -22,7 +22,11 @@ namespace storage
 	Impl(DeviceGraph& device_graph, const Impl& impl)
 	    : BlkDevice::Impl(device_graph, impl) {}
 
+	virtual const char* getClassName() const override { return "LvmLv"; }
+
 	virtual Impl* clone(DeviceGraph& device_graph) const override { return new Impl(device_graph, *this); }
+
+	virtual void save(xmlNode* node) const override;
 
     };
 

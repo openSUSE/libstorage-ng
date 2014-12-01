@@ -2,6 +2,8 @@
 #define DEVICE_IMPL_H
 
 
+#include <libxml/tree.h>
+
 #include "storage/Devices/Device.h"
 #include "storage/DeviceGraph.h"
 #include "storage/DeviceGraphImpl.h"
@@ -24,7 +26,13 @@ namespace storage
 
 	virtual ~Impl() {}
 
+	virtual const char* getClassName() const = 0;
+
 	virtual Impl* clone(DeviceGraph& device_graph) const = 0;
+
+	virtual void save(xmlNode* node) const = 0;
+
+	sid_t getSid() const { return sid; }
 
 	const sid_t sid;
 

@@ -16,6 +16,9 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Filesystem.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
@@ -248,6 +251,48 @@ namespace storage
 	    ret.erase(remove(ret.begin(), ret.end(), vertex), ret.end());
 
 	return ret;
+    }
+
+
+    void
+    DeviceGraph::Impl::save() const
+    {
+	string fname("device-graph.info.tmp");
+
+	XmlFile xml;
+
+	xmlNode* node = xmlNewNode("DeviceGraph");
+	xml.setRootElement(node);
+
+	xmlNode* devices = xmlNewChild(node, "Devices");
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Device::Impl& device_impl = graph[vertex]->getImpl();
+
+	    xmlNode* subnode = xmlNewChild(devices, device_impl.getClassName());
+
+	    setProp(subnode, "sid", device_impl.getSid());
+
+	    device_impl.save(subnode);
+	}
+
+	/*
+	xmlNode* holders = xmlNewChild(node, "Holders");
+
+	for (edge_descriptor edge : edges())
+	{
+	    const Holder::Impl& holder_impl = graph[edge]->getImpl();
+	    xmlNode* subnode = xmlNewChild(holders, holder_impl.getClassName());
+
+	    setProp(subnode, "source-sid", holder_impl.getSourceSid());
+	    setProp(subnode, "target-sid", holder_impl.getTargetSid());
+
+	    holder_impl.save(subnode);
+	}
+	*/
+
+	xml.save(fname);
     }
 
 

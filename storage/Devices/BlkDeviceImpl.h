@@ -18,6 +18,8 @@ namespace storage
     {
     public:
 
+	void save(xmlNode* node) const override;
+
 	string name;
 
 	// size

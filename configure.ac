@@ -56,6 +56,7 @@ AC_OUTPUT(
 	storage/Makefile
 	storage/Devices/Makefile
 	storage/Holders/Makefile
+	storage/Utils/Makefile
 	examples/Makefile
 	testsuite/Makefile
 	bindings/Makefile

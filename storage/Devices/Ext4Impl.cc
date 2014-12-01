@@ -12,6 +12,13 @@ namespace storage
 
 
     void
+    Ext4::Impl::save(xmlNode* node) const
+    {
+	Filesystem::Impl::save(node);
+    }
+
+
+    void
     Ext4::Impl::add_create_actions(ActionGraph& action_graph) const
     {
 	Action::Format* format = new Action::Format(sid);

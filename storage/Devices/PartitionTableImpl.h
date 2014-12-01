@@ -18,6 +18,8 @@ namespace storage
     {
     public:
 
+	virtual void save(xmlNode* node) const override;
+
 	// read-only
 
     protected:

@@ -1,8 +1,7 @@
 
 
 #include "storage/Devices/LvmVgImpl.h"
-#include "storage/DeviceGraph.h"
-#include "storage/Action.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
@@ -10,5 +9,11 @@ namespace storage
 
     using namespace std;
 
+
+    void
+    LvmVg::Impl::save(xmlNode* node) const
+    {
+	setChildValue(node, "name", name);
+    }
 
 }

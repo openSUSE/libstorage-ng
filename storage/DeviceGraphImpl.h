@@ -53,6 +53,8 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
 
+	void save() const;
+
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
 

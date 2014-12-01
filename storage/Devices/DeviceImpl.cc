@@ -3,6 +3,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage

@@ -12,6 +12,13 @@ namespace storage
 
 
     void
+    Gpt::Impl::save(xmlNode* node) const
+    {
+	PartitionTable::Impl::save(node);
+    }
+
+
+    void
     Gpt::Impl::add_create_actions(ActionGraph& action_graph) const
     {
 	vector<Action::Base*> actions;
