@@ -45,8 +45,8 @@ siblings(const Device* device)
 {
     cout << "siblings of " << device->display_name() << ":" << endl;
 
-    for (const Device* parent : device->getSiblings(false))
-	cout << "  " << parent->display_name() << endl;
+    for (const Device* sibling : device->getSiblings(false))
+	cout << "  " << sibling->display_name() << endl;
 
     cout << endl;
 }
@@ -57,8 +57,8 @@ descendants(const Device* device)
 {
     cout << "descendants of " << device->display_name() << ":" << endl;
 
-    for (const Device* parent : device->getDescendants(false))
-	cout << "  " << parent->display_name() << endl;
+    for (const Device* descendant : device->getDescendants(false))
+	cout << "  " << descendant->display_name() << endl;
 
     cout << endl;
 }
@@ -69,8 +69,8 @@ ancestors(const Device* device)
 {
     cout << "ancestors of " << device->display_name() << ":" << endl;
 
-    for (const Device* parent : device->getAncestors(false))
-	cout << "  " << parent->display_name() << endl;
+    for (const Device* ancestor : device->getAncestors(false))
+	cout << "  " << ancestor->display_name() << endl;
 
     cout << endl;
 }
@@ -81,8 +81,8 @@ leafs(const Device* device)
 {
     cout << "leafs of " << device->display_name() << ":" << endl;
 
-    for (const Device* parent : device->getLeafs(false))
-	cout << "  " << parent->display_name() << endl;
+    for (const Device* leaf : device->getLeafs(false))
+	cout << "  " << leaf->display_name() << endl;
 
     cout << endl;
 }
@@ -93,8 +93,8 @@ roots(const Device* device)
 {
     cout << "roots of " << device->display_name() << ":" << endl;
 
-    for (const Device* parent : device->getRoots(false))
-	cout << "  " << parent->display_name() << endl;
+    for (const Device* root : device->getRoots(false))
+	cout << "  " << root->display_name() << endl;
 
     cout << endl;
 }
