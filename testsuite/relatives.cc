@@ -12,6 +12,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 
 

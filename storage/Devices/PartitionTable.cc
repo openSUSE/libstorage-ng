@@ -1,6 +1,7 @@
 
 
 #include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 

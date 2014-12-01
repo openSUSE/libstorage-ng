@@ -6,6 +6,7 @@
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraphImpl.h"
 
 

@@ -2,6 +2,7 @@
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Gpt.h"
+#include "storage/Holders/Using.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 

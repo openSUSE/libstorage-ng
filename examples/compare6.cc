@@ -4,6 +4,8 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/Ext4.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 #include "storage/ActionGraph.h"
 

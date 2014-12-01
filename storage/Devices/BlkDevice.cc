@@ -5,6 +5,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Holders/Using.h"
 
 
 namespace storage

@@ -6,6 +6,8 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 #include "storage/ActionGraph.h"
 

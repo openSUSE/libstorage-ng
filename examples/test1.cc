@@ -5,6 +5,8 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Device.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 
 
