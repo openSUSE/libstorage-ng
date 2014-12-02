@@ -7,7 +7,7 @@ $device_graph = new storage::DeviceGraph();
 
 $sda = storage::Disk::create($device_graph, "/dev/sda");
 
-$gpt = $sda->createPartitionTable("gpt");
+$gpt = $sda->createPartitionTable($storage::GPT);
 
 $sda1 = $gpt->createPartition("/dev/sda1");
 $sda2 = $gpt->createPartition("/dev/sda2");

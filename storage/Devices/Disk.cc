@@ -59,7 +59,7 @@ namespace storage
 
 
     PartitionTable*
-    Disk::createPartitionTable(const string& type)
+    Disk::createPartitionTable(PtType pt_type)
     {
 	if (numChildren() != 0)
 	    throw runtime_error("has children");

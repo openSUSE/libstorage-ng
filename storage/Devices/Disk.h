@@ -19,7 +19,7 @@ namespace storage
 	static Disk* create(DeviceGraph* device_graph, const string& name);
 	static Disk* load(DeviceGraph* device_graph, const xmlNode* node);
 
-	PartitionTable* createPartitionTable(const string& type);
+	PartitionTable* createPartitionTable(PtType pt_type);
 
     public:
 

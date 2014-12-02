@@ -14,6 +14,11 @@ namespace storage
     using namespace std;
 
 
+    enum class PtType {
+	MSDOS, GPT, DASD
+    };
+
+
     // abstract class
 
     class PartitionTable : public Device

@@ -19,7 +19,7 @@ main()
 
     Disk* sda = Disk::create(device_graph, "/dev/sda");
 
-    PartitionTable* gpt = sda->createPartitionTable("gpt");
+    PartitionTable* gpt = sda->createPartitionTable(PtType::GPT);
 
     gpt->createPartition("/dev/sda1");
     Partition* sda2 = gpt->createPartition("/dev/sda2");

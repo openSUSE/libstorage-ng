@@ -1,13 +1,13 @@
 #!/usr/bin/python
 
-from storage import DeviceGraph, Disk, BlkDevice, EXT4, SWAP
+from storage import DeviceGraph, Disk, BlkDevice, GPT, EXT4, SWAP
 
 
 device_graph = DeviceGraph()
 
 sda = Disk.create(device_graph, "/dev/sda")
 
-gpt = sda.createPartitionTable("gpt")
+gpt = sda.createPartitionTable(GPT)
 
 sda1 = gpt.createPartition("/dev/sda1")
 sda2 = gpt.createPartition("/dev/sda2")
