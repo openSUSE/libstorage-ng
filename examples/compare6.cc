@@ -16,12 +16,12 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph lhs;
+    DeviceGraph* lhs = new DeviceGraph();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph rhs;
-    lhs.copy(rhs);
+    DeviceGraph* rhs = new DeviceGraph();
+    lhs->copy(*rhs);
 
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
@@ -43,9 +43,12 @@ main()
     rhs_sda2_fs->addMountPoint("/var");
     Using::create(rhs, rhs_sda2, rhs_sda2_fs);
 
-    rhs.write_graphviz("compare6-device-rhs");
+    rhs->write_graphviz("compare6-device-rhs");
 
-    ActionGraph action_graph(lhs, rhs);
+    ActionGraph action_graph(*lhs, *rhs);
 
     action_graph.write_graphviz("compare6-action");
+
+    delete lhs;
+    delete rhs;
 }

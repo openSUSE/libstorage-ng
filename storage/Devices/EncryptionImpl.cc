@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    Encryption::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node)
+    {
+    }
+
+
     void
     Encryption::Impl::save(xmlNode* node) const
     {
@@ -23,8 +29,8 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::FormatEncryption(sid));
-	actions.push_back(new Action::OpenEncryption(sid));
+	actions.push_back(new Action::FormatEncryption(getSid()));
+	actions.push_back(new Action::OpenEncryption(getSid()));
 
 	action_graph.add_chain(actions);
     }

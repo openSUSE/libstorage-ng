@@ -18,7 +18,7 @@ BOOST_AUTO_TEST_CASE(disk)
 
     DeviceGraph rhs;
 
-    Disk::create(rhs, "/dev/sda");
+    Disk::create(&rhs, "/dev/sda");
 
     BOOST_CHECK_EXCEPTION(ActionGraph action_graph(lhs, rhs), runtime_error,
 	[](const runtime_error& e) { return e.what() == string("cannot create disk"); }

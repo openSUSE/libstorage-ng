@@ -34,7 +34,6 @@ namespace storage
     protected:
 
 	PartitionTable(Impl* impl);
-	PartitionTable(DeviceGraph& device_graph, Impl* impl);
 
     };
 

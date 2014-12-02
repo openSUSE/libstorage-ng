@@ -103,34 +103,34 @@ roots(const Device* device)
 int
 main()
 {
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&device_graph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
+    Subdevice::create(&device_graph, sda, sda1);
 
-    Partition* sda2 = Partition::create(device_graph, "/dev/sda2");
-    Subdevice::create(device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(&device_graph, "/dev/sda2");
+    Subdevice::create(&device_graph, sda, sda2);
 
-    Disk* sdb = Disk::create(device_graph, "/dev/sdb");
+    Disk* sdb = Disk::create(&device_graph, "/dev/sdb");
 
-    Partition* sdb1 = Partition::create(device_graph, "/dev/sdb1");
-    Subdevice::create(device_graph, sdb, sdb1);
+    Partition* sdb1 = Partition::create(&device_graph, "/dev/sdb1");
+    Subdevice::create(&device_graph, sdb, sdb1);
 
-    Partition* sdb2 = Partition::create(device_graph, "/dev/sdb2");
-    Subdevice::create(device_graph, sdb, sdb2);
+    Partition* sdb2 = Partition::create(&device_graph, "/dev/sdb2");
+    Subdevice::create(&device_graph, sdb, sdb2);
 
-    LvmVg* system = LvmVg::create(device_graph, "/dev/system");
-    Using::create(device_graph, sda1, system);
-    Using::create(device_graph, sdb1, system);
+    LvmVg* system = LvmVg::create(&device_graph, "/dev/system");
+    Using::create(&device_graph, sda1, system);
+    Using::create(&device_graph, sdb1, system);
 
-    LvmLv* system_root = LvmLv::create(device_graph, "/dev/system/root");
-    Subdevice::create(device_graph, system, system_root);
+    LvmLv* system_root = LvmLv::create(&device_graph, "/dev/system/root");
+    Subdevice::create(&device_graph, system, system_root);
 
-    LvmLv* system_swap = LvmLv::create(device_graph, "/dev/system/swap");
-    Subdevice::create(device_graph, system, system_swap);
+    LvmLv* system_swap = LvmLv::create(&device_graph, "/dev/system/swap");
+    Subdevice::create(&device_graph, system, system_swap);
 
-    LvmLv* system_home = LvmLv::create(device_graph, "/dev/system/home");
-    Subdevice::create(device_graph, system, system_home);
+    LvmLv* system_home = LvmLv::create(&device_graph, "/dev/system/home");
+    Subdevice::create(&device_graph, system, system_home);
 
     cout << "num_vertices: " << device_graph.numVertices() << endl;
     cout << "num_edges: " << device_graph.numEdges() << endl;
@@ -153,6 +153,8 @@ main()
     leafs(sda1);
 
     roots(system_swap);
+
+    device_graph.save("test1.info");
 
     device_graph.print_graph();
 

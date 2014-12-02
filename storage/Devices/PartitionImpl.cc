@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    Partition::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node)
+    {
+    }
+
+
     void
     Partition::Impl::save(xmlNode* node) const
     {
@@ -23,8 +29,8 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Create(sid));
-	actions.push_back(new Action::SetType(sid));
+	actions.push_back(new Action::Create(getSid()));
+	actions.push_back(new Action::SetType(getSid()));
 
 	action_graph.add_chain(actions);
     }

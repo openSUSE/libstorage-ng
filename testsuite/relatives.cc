@@ -32,7 +32,7 @@ compare(vector<const Device*> a,  vector<const Device*> b)
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    DeviceGraph device_graph;
+    DeviceGraph* device_graph = new DeviceGraph();
 
     Disk* sda = Disk::create(device_graph, "/dev/sda");
 
@@ -63,10 +63,10 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_home = LvmLv::create(device_graph, "/dev/system/home");
     Subdevice::create(device_graph, system, system_home);
 
-    BOOST_CHECK_EQUAL(device_graph.numVertices(), 10);
-    BOOST_CHECK_EQUAL(device_graph.numEdges(), 9);
+    BOOST_CHECK_EQUAL(device_graph->numVertices(), 10);
+    BOOST_CHECK_EQUAL(device_graph->numEdges(), 9);
 
-    device_graph.check();
+    device_graph->check();
 
     compare(sda->getChildren(), { sda1, sda2 });
 
@@ -86,4 +86,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     compare(sda1->getRoots(false), { sda });
     compare(system_swap->getRoots(false), { sda, sdb });
+
+    delete device_graph;
 }

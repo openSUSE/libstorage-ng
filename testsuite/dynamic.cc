@@ -20,16 +20,16 @@ BOOST_AUTO_TEST_CASE(dynamic)
 {
     DeviceGraph device_graph;
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&device_graph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
+    Subdevice::create(&device_graph, sda, sda1);
 
-    LvmVg* system = LvmVg::create(device_graph, "/dev/system");
-    Using::create(device_graph, sda1, system);
+    LvmVg* system = LvmVg::create(&device_graph, "/dev/system");
+    Using::create(&device_graph, sda1, system);
 
-    LvmLv* root = LvmLv::create(device_graph, "/dev/system/root");
-    Subdevice::create(device_graph, system, root);
+    LvmLv* root = LvmLv::create(&device_graph, "/dev/system/root");
+    Subdevice::create(&device_graph, system, root);
 
     BOOST_CHECK_EQUAL(device_graph.numVertices(), 4);
     BOOST_CHECK_EQUAL(device_graph.numEdges(), 3);

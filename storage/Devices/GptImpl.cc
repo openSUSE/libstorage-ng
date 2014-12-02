@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    Gpt::Impl::Impl(const xmlNode* node)
+	: PartitionTable::Impl(node)
+    {
+    }
+
+
     void
     Gpt::Impl::save(xmlNode* node) const
     {
@@ -23,7 +29,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Create(sid));
+	actions.push_back(new Action::Create(getSid()));
 
 	action_graph.add_chain(actions);
     }
@@ -34,7 +40,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Nop(sid));
+	actions.push_back(new Action::Nop(getSid()));
 
 	action_graph.add_chain(actions);
     }

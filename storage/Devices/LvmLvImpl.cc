@@ -11,6 +11,12 @@ using namespace std;
 namespace storage
 {
 
+    LvmLv::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node)
+    {
+    }
+
+
     void
     LvmLv::Impl::save(xmlNode* node) const
     {

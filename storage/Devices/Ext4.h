@@ -15,8 +15,8 @@ namespace storage
     {
     public:
 
-	static Ext4* create(DeviceGraph& device_graph)
-	    { return new Ext4(device_graph); }
+	static Ext4* create(DeviceGraph* device_graph);
+	static Ext4* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	virtual string display_name() const override { return "ext4"; }
 
@@ -32,16 +32,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual Ext4* clone(DeviceGraph& device_graph) const override;
+	virtual const char* getClassName() const override { return "Ext4"; }
+
+	virtual Ext4* clone() const override;
 
     protected:
 
 	Ext4(Impl* impl);
-	// Ext4(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	Ext4(DeviceGraph& device_graph);
 
     };
 

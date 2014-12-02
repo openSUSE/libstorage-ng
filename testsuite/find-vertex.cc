@@ -15,17 +15,19 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(find_vertex)
 {
-    DeviceGraph device_graph;
+    DeviceGraph* device_graph = new DeviceGraph();
 
     Disk* sda = Disk::create(device_graph, "/dev/sda");
 
     Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
     Subdevice::create(device_graph, sda, sda1);
 
-    BOOST_CHECK_EQUAL(device_graph.numVertices(), 2);
-    BOOST_CHECK_EQUAL(device_graph.numEdges(), 1);
+    BOOST_CHECK_EQUAL(device_graph->numVertices(), 2);
+    BOOST_CHECK_EQUAL(device_graph->numEdges(), 1);
 
     BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda"), sda);
     BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda1"), sda1);
     BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda2"), runtime_error);
+
+    delete device_graph;
 }

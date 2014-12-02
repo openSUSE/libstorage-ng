@@ -20,13 +20,6 @@ namespace storage
     }
 
 
-
-    BlkDevice::BlkDevice(DeviceGraph& device_graph, Impl* impl)
-	: Device(device_graph, impl)
-    {
-    }
-
-
     BlkDevice::Impl&
     BlkDevice::getImpl()
     {
@@ -42,11 +35,11 @@ namespace storage
 
 
     BlkDevice*
-    BlkDevice::find(DeviceGraph& device_graph, const string& name)
+    BlkDevice::find(const DeviceGraph* device_graph, const string& name)
     {
-	for (DeviceGraph::Impl::vertex_descriptor v : device_graph.getImpl().vertices())
+	for (DeviceGraph::Impl::vertex_descriptor v : device_graph->getImpl().vertices())
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(device_graph.getImpl().graph[v].get());
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(device_graph->getImpl().graph[v].get());
 	    if (blk_device && blk_device->getName() == name)
 		return blk_device;
 	}

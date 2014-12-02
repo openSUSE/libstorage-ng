@@ -3,7 +3,7 @@
 
 
 #include <stdint.h>
-
+#include <libxml/tree.h>
 #include <memory>
 #include <string>
 #include <vector>
@@ -72,17 +72,17 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual Device* clone(DeviceGraph& device_graph) const = 0;
+	virtual const char* getClassName() const = 0;
+
+	virtual Device* clone() const = 0;
+
+	void save(xmlNode* node) const;
+
+	void addToDeviceGraph(DeviceGraph* device_graph);
 
     protected:
 
-	// Does not add Device to any DeviceGraph. Used for clone since there
-	// the boost graph copy function already adds the Device to the new
-	// graph.
 	Device(Impl* impl);
-
-	// Adds Device to DeviceGraph.
-	Device(DeviceGraph& device_graph, Impl* impl);
 
     private:
 

@@ -5,17 +5,19 @@
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/graph_utility.hpp>
 
-#include "storage/DeviceGraph.h"
+#include "storage/DeviceGraphImpl.h"
 #include "storage/GraphUtils.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
-#include "storage/Devices/Filesystem.h"
+#include "storage/Devices/Ext4.h"
+#include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/XmlFile.h"
@@ -254,45 +256,74 @@ namespace storage
     }
 
 
-    void
-    DeviceGraph::Impl::save() const
-    {
-	string fname("device-graph.info.tmp");
+    typedef Device* (*load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
 
+
+    const map<string, load_fnc> device_load_registry = {
+	{ "Disk", (load_fnc)(&Disk::load) },
+	{ "Gpt", (load_fnc)(&Gpt::load) },
+	{ "Partition", (load_fnc)(&Partition::load) },
+	{ "LvmVg", (load_fnc)(&LvmVg::load) },
+	{ "LvmLv", (load_fnc)(&LvmLv::load) },
+	{ "Encryption", (load_fnc)(&Encryption::load) },
+	{ "Ext4", (load_fnc)(&Ext4::load) },
+	{ "Swap", (load_fnc)(&Swap::load) },
+    };
+
+
+    void
+    DeviceGraph::Impl::load(DeviceGraph* device_graph, const string& filename)
+    {
+	XmlFile xml(filename);
+
+	const xmlNode* root_node = xml.getRootElement();
+
+	const xmlNode* device_graph_node = getChildNode(root_node, "DeviceGraph");
+	assert(device_graph_node);
+
+	const xmlNode* devices_node = getChildNode(device_graph_node, "Devices");
+	assert(devices_node);
+
+	for (const xmlNode* device_node : getChildNodes(devices_node))
+	{
+	    const string& class_name = (const char*) device_node->parent->name;
+
+	    map<string, load_fnc>::const_iterator it = device_load_registry.find(class_name);
+	    if (it == device_load_registry.end())
+		throw runtime_error("unknown class_name");
+
+	    it->second(device_graph, device_node);
+	}
+    }
+
+
+    void
+    DeviceGraph::Impl::save(const string& filename) const
+    {
 	XmlFile xml;
 
-	xmlNode* node = xmlNewNode("DeviceGraph");
-	xml.setRootElement(node);
+	xmlNode* device_graph_node = xmlNewNode("DeviceGraph");
+	xml.setRootElement(device_graph_node);
 
-	xmlNode* devices = xmlNewChild(node, "Devices");
+	xmlNode* devices_node = xmlNewChild(device_graph_node, "Devices");
 
 	for (vertex_descriptor vertex : vertices())
 	{
-	    const Device::Impl& device_impl = graph[vertex]->getImpl();
-
-	    xmlNode* subnode = xmlNewChild(devices, device_impl.getClassName());
-
-	    setProp(subnode, "sid", device_impl.getSid());
-
-	    device_impl.save(subnode);
+	    const Device* device = graph[vertex].get();
+	    xmlNode* device_node = xmlNewChild(devices_node, device->getClassName());
+	    device->save(device_node);
 	}
 
-	/*
-	xmlNode* holders = xmlNewChild(node, "Holders");
+	xmlNode* holders_node = xmlNewChild(device_graph_node, "Holders");
 
 	for (edge_descriptor edge : edges())
 	{
-	    const Holder::Impl& holder_impl = graph[edge]->getImpl();
-	    xmlNode* subnode = xmlNewChild(holders, holder_impl.getClassName());
-
-	    setProp(subnode, "source-sid", holder_impl.getSourceSid());
-	    setProp(subnode, "target-sid", holder_impl.getTargetSid());
-
-	    holder_impl.save(subnode);
+	    const Holder* holder = graph[edge].get();
+	    xmlNode* holder_node = xmlNewChild(holders_node, holder->getClassName());
+	    holder->save(holder_node);
 	}
-	*/
 
-	xml.save(fname);
+	xml.save(filename);
     }
 
 

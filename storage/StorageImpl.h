@@ -37,7 +37,7 @@ namespace storage
 
     private:
 
-	void probe(DeviceGraph& probed);
+	void probe(DeviceGraph* probed);
 
 	const Environment environment;
 

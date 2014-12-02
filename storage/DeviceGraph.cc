@@ -32,6 +32,20 @@ namespace storage
     }
 
 
+    void
+    DeviceGraph::load(const string& filename)
+    {
+	getImpl().load(this, filename);
+    }
+
+
+    void
+    DeviceGraph::save(const string& filename) const
+    {
+	getImpl().save(filename);
+    }
+
+
     bool
     DeviceGraph::empty() const
     {
@@ -64,10 +78,10 @@ namespace storage
 	template<class Type>
 	void operator()(const Type& v_in, Type& v_out)
 	{
-	    g_out.getImpl().graph[v_out].reset(g_in.getImpl().graph[v_in]->clone(g_out));
+	    g_out.getImpl().graph[v_out].reset(g_in.getImpl().graph[v_in]->clone());
 
 	    Device* d_out = g_out.getImpl().graph[v_out].get();
-	    d_out->getImpl().setVertex(v_out);
+	    d_out->getImpl().setDeviceGraphAndVertex(&g_out, v_out);
 	}
 
     private:
@@ -178,7 +192,7 @@ namespace storage
 		if (!sids.insert(sid).second)
 		    throw logic_error("sid not unique within graph");
 
-		if (&device->getImpl().getDeviceGraph() != this)
+		if (device->getImpl().getDeviceGraph() != this)
 		    throw logic_error("wrong graph in back references");
 
 		if (device->getImpl().getVertex() != vertex)

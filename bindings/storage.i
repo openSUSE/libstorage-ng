@@ -10,7 +10,7 @@
 // Since dynamic exception specifications are deprecated in C++11 we use the
 // SWIG %catches feature instead.
 
-%catches(storage::device_not_found) storage::BlkDevice::find(DeviceGraph& device_graph, const string& name);
+%catches(storage::device_not_found) storage::BlkDevice::find(const DeviceGraph* device_graph, const string& name);
 
 // order of includes is crucial
 

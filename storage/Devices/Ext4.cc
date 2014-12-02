@@ -11,9 +11,21 @@ namespace storage
     using namespace std;
 
 
-    Ext4::Ext4(DeviceGraph& device_graph)
-	: Filesystem(device_graph, new Ext4::Impl(device_graph))
+    Ext4*
+    Ext4::create(DeviceGraph* device_graph)
     {
+	Ext4* ret = new Ext4(new Ext4::Impl());
+	ret->addToDeviceGraph(device_graph);
+	return ret;
+    }
+
+
+    Ext4*
+    Ext4::load(DeviceGraph* device_graph, const xmlNode* node)
+    {
+	Ext4* ret = new Ext4(new Ext4::Impl(node));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
 
 
@@ -23,18 +35,10 @@ namespace storage
     }
 
 
-/*
-    Ext4::Ext4(DeviceGraph& device_graph, Impl* impl)
-	: Filesystem(device_graph, impl)
-    {
-    }
-*/
-
-
     Ext4*
-    Ext4::clone(DeviceGraph& device_graph) const
+    Ext4::clone() const
     {
-	return new Ext4(getImpl().clone(device_graph));
+	return new Ext4(getImpl().clone());
     }
 
 

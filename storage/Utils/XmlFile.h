@@ -69,6 +69,8 @@ namespace storage
     const xmlNode* getChildNode(const xmlNode* node, const char* name);
     list<const xmlNode*> getChildNodes(const xmlNode* node, const char* name);
 
+    list<const xmlNode*> getChildNodes(const xmlNode* node);
+
 
     bool getChildValue(const xmlNode* node, const char* name, string& value);
     bool getChildValue(const xmlNode* node, const char* name, bool& value);

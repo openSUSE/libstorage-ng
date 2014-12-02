@@ -16,15 +16,12 @@ namespace storage
     {
     public:
 
-	Impl(DeviceGraph& device_graph, const string& name)
-	    : BlkDevice::Impl(device_graph, name) {}
+	Impl(const string& name)
+	    : BlkDevice::Impl(name) {}
 
-	Impl(DeviceGraph& device_graph, const Impl& impl)
-	    : BlkDevice::Impl(device_graph, impl) {}
+	Impl(const xmlNode* node);
 
-	virtual const char* getClassName() const override { return "Partition"; }
-
-	virtual Impl* clone(DeviceGraph& device_graph) const override { return new Impl(device_graph, *this); }
+	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
 

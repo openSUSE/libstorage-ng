@@ -17,12 +17,6 @@ namespace storage
     }
 
 
-    Filesystem::Filesystem(DeviceGraph& device_graph, Impl* impl)
-	: Device(device_graph, impl)
-    {
-    }
-
-
     Filesystem::Impl&
     Filesystem::getImpl()
     {

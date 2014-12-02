@@ -22,17 +22,17 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     DeviceGraph device_graph;
 
-    Disk::create(device_graph, "/dev/sda");
-    Gpt::create(device_graph);
-    Partition::create(device_graph, "/dev/sda1");
+    Disk::create(&device_graph, "/dev/sda");
+    Gpt::create(&device_graph);
+    Partition::create(&device_graph, "/dev/sda1");
 
-    Encryption::create(device_graph, "/dev/mapper/cr_sda1");
+    Encryption::create(&device_graph, "/dev/mapper/cr_sda1");
 
-    LvmVg::create(device_graph, "/dev/system");
-    LvmLv::create(device_graph, "/dev/system/root");
+    LvmVg::create(&device_graph, "/dev/system");
+    LvmLv::create(&device_graph, "/dev/system/root");
 
-    Ext4::create(device_graph);
-    Swap::create(device_graph);
+    Ext4::create(&device_graph);
+    Swap::create(&device_graph);
 
     BOOST_CHECK_EQUAL(device_graph.numVertices(), 8);
     BOOST_CHECK_EQUAL(device_graph.numEdges(), 0);

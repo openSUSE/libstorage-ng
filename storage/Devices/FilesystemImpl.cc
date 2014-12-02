@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    Filesystem::Impl::Impl(const xmlNode* node)
+	: Device::Impl(node)
+    {
+    }
+
+
     void
     Filesystem::Impl::save(xmlNode* node) const
     {
@@ -24,8 +30,8 @@ namespace storage
 
 	for (const string& mount_point : mount_points)
 	{
-	    actions.push_back(new Action::RemoveFstab(sid, mount_point));
-	    actions.push_back(new Action::Umount(sid, mount_point));
+	    actions.push_back(new Action::RemoveFstab(getSid(), mount_point));
+	    actions.push_back(new Action::Umount(getSid(), mount_point));
 	}
 
 	action_graph.add_chain(actions);

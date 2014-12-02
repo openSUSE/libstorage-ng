@@ -12,11 +12,13 @@ namespace storage
     {
     public:
 
-	static Subdevice* create(DeviceGraph& device_graph, const Device* source, const Device* target);
+	static Subdevice* create(DeviceGraph* device_graph, const Device* source, const Device* target);
+
+	virtual const char* getClassName() const override { return "Subdevice"; }
 
     private:
 
-	Subdevice(DeviceGraph& device_graph, const Device* source, const Device* target);
+	Subdevice(DeviceGraph* device_graph, const Device* source, const Device* target);
 
     };
 

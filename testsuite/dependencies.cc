@@ -32,11 +32,11 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Storage storage(environment);
 
-    DeviceGraph& lhs = *storage.getCurrent();
+    DeviceGraph* lhs = storage.getCurrent();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph& rhs = *storage.copyDeviceGraph("current", "old");
+    DeviceGraph* rhs = storage.copyDeviceGraph("current", "old");
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
     Subdevice::create(rhs, system, system_swap);
 
-    ActionGraph action_graph(lhs, rhs);
+    ActionGraph action_graph(*lhs, *rhs);
 
     BOOST_CHECK_EQUAL(action_graph.simple(), expected);
 }

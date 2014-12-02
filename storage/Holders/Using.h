@@ -12,11 +12,13 @@ namespace storage
     {
     public:
 
-	static Using* create(DeviceGraph& device_graph, const Device* source, const Device* target);
+	static Using* create(DeviceGraph* device_graph, const Device* source, const Device* target);
+
+	virtual const char* getClassName() const override { return "Using"; }
 
     private:
 
-	Using(DeviceGraph& device_graph, const Device* source, const Device* target);
+	Using(DeviceGraph* device_graph, const Device* source, const Device* target);
 
     };
 

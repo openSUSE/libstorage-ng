@@ -17,7 +17,7 @@ namespace storage
 
 		DeviceGraph* probed = createDeviceGraph("probed");
 
-		probe(*probed);
+		probe(probed);
 
 		copyDeviceGraph("probed", "current");
 
@@ -55,7 +55,7 @@ namespace storage
 
 
     void
-    Storage::Impl::probe(DeviceGraph& probed)
+    Storage::Impl::probe(DeviceGraph* probed)
     {
 	// TODO
 

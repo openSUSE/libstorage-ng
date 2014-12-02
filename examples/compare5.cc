@@ -18,11 +18,12 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph lhs;
+    DeviceGraph* lhs = new DeviceGraph();
+
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph rhs;
-    lhs.copy(rhs);
+    DeviceGraph* rhs = new DeviceGraph();
+    lhs->copy(*rhs);
 
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
@@ -44,9 +45,12 @@ main()
     Swap* rhs_swap = Swap::create(rhs);
     Using::create(rhs, rhs_sda2, rhs_swap);
 
-    rhs.write_graphviz("compare5-device-rhs");
+    rhs->write_graphviz("compare5-device-rhs");
 
-    ActionGraph action_graph(lhs, rhs);
+    ActionGraph action_graph(*lhs, *rhs);
 
     action_graph.write_graphviz("compare5-action");
+
+    delete lhs;
+    delete rhs;
 }

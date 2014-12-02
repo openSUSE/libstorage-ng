@@ -14,10 +14,10 @@ main()
 {
     DeviceGraph device_graph;
 
-    Disk* disk = Disk::create(device_graph, "/dev/dasda");
+    Disk* disk = Disk::create(&device_graph, "/dev/dasda");
 
-    Partition* partition = Partition::create(device_graph, "/dev/dasda2");
-    Subdevice::create(device_graph, disk, partition);
+    Partition* partition = Partition::create(&device_graph, "/dev/dasda2");
+    Subdevice::create(&device_graph, disk, partition);
 
     DeviceGraph device_graph_copy;
     device_graph.copy(device_graph_copy);

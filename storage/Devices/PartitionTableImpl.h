@@ -18,17 +18,16 @@ namespace storage
     {
     public:
 
-	virtual void save(xmlNode* node) const override;
-
 	// read-only
 
     protected:
 
-	Impl(DeviceGraph& device_graph)
-	    : Device::Impl(device_graph) {}
+	Impl()
+	    : Device::Impl() {}
 
-	Impl(DeviceGraph& device_graph, const Impl& impl)
-	    : Device::Impl(device_graph, impl) {}
+	Impl(const xmlNode* node);
+
+	virtual void save(xmlNode* node) const override;
 
     };
 

@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    PartitionTable::Impl::Impl(const xmlNode* node)
+	: Device::Impl(node)
+    {
+    }
+
+
     void
     PartitionTable::Impl::save(xmlNode* node) const
     {

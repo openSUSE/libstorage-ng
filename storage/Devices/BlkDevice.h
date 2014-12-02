@@ -32,7 +32,7 @@ namespace storage
 	const string& getName() const;
 	void setName(const string& name);
 
-	static BlkDevice* find(DeviceGraph& device_graph, const string& name);
+	static BlkDevice* find(const DeviceGraph* device_graph, const string& name);
 
 	Filesystem* createFilesystem(FsType fs_type);
 
@@ -46,7 +46,6 @@ namespace storage
     protected:
 
 	BlkDevice(Impl* impl);
-	BlkDevice(DeviceGraph& device_graph, Impl* impl);
 
     };
 

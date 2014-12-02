@@ -11,9 +11,21 @@ namespace storage
     using namespace std;
 
 
-    Gpt::Gpt(DeviceGraph& device_graph)
-	: PartitionTable(device_graph, new Gpt::Impl(device_graph))
+    Gpt*
+    Gpt::create(DeviceGraph* device_graph)
     {
+	Gpt* ret = new Gpt(new Gpt::Impl());
+	ret->addToDeviceGraph(device_graph);
+	return ret;
+    }
+
+
+    Gpt*
+    Gpt::load(DeviceGraph* device_graph, const xmlNode* node)
+    {
+	Gpt* ret = new Gpt(new Gpt::Impl(node));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
 
 
@@ -23,16 +35,10 @@ namespace storage
     }
 
 
-    Gpt::Gpt(DeviceGraph& device_graph, Impl* impl)
-	: PartitionTable(device_graph, impl)
-    {
-    }
-
-
     Gpt*
-    Gpt::clone(DeviceGraph& device_graph) const
+    Gpt::clone() const
     {
-	return new Gpt(getImpl().clone(device_graph));
+	return new Gpt(getImpl().clone());
     }
 
 

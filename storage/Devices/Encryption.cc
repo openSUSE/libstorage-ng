@@ -11,18 +11,22 @@ namespace storage
     using namespace std;
 
 
-    Encryption::Encryption(DeviceGraph& device_graph, const string& name)
-	: BlkDevice(device_graph, new Encryption::Impl(device_graph, name))
+    Encryption*
+    Encryption::create(DeviceGraph* device_graph, const string& name)
     {
+	Encryption* ret = new Encryption(new Encryption::Impl(name));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
 
 
-/*
-    Encryption::Encryption(DeviceGraph& device_graph, Impl* impl)
-	: BlkDevice(device_graph, impl)
+    Encryption*
+    Encryption::load(DeviceGraph* device_graph, const xmlNode* node)
     {
+	Encryption* ret = new Encryption(new Encryption::Impl(node));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
-*/
 
 
     Encryption::Encryption(Impl* impl)
@@ -32,9 +36,9 @@ namespace storage
 
 
     Encryption*
-    Encryption::clone(DeviceGraph& device_graph) const
+    Encryption::clone() const
     {
-	return new Encryption(getImpl().clone(device_graph));
+	return new Encryption(getImpl().clone());
     }
 
 

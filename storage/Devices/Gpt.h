@@ -15,8 +15,8 @@ namespace storage
     {
     public:
 
-	static Gpt* create(DeviceGraph& device_graph)
-	    { return new Gpt(device_graph); }
+	static Gpt* create(DeviceGraph* device_graph);
+	static Gpt* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	virtual string display_name() const override { return "gpt"; }
 
@@ -27,16 +27,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual Gpt* clone(DeviceGraph& device_graph) const override;
+	virtual const char* getClassName() const override { return "Gpt"; }
+
+	virtual Gpt* clone() const override;
 
     protected:
 
 	Gpt(Impl* impl);
-	Gpt(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	Gpt(DeviceGraph& device_graph);
 
     };
 

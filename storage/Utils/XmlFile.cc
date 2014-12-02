@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010 Novell, Inc.
+ * Copyright (c) [2010-2014] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -86,6 +86,24 @@ namespace storage
 	{
 	    if (cur_node->type == XML_ELEMENT_NODE &&
 		strcmp(name, (const char*) cur_node->name) == 0)
+	    {
+		if (cur_node->children)
+		    ret.push_back(cur_node->children);
+	    }
+	}
+
+	return ret;
+    }
+
+
+    list<const xmlNode*>
+    getChildNodes(const xmlNode* node)
+    {
+	list<const xmlNode*> ret;
+
+	for (const xmlNode* cur_node = node; cur_node; cur_node = cur_node->next)
+	{
+	    if (cur_node->type == XML_ELEMENT_NODE)
 	    {
 		if (cur_node->children)
 		    ret.push_back(cur_node->children);

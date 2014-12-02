@@ -21,6 +21,9 @@ namespace storage
 	DeviceGraph();
 	~DeviceGraph();
 
+	void load(const string& filename);
+	void save(const string& filename) const;
+
 	bool empty() const;
 
 	size_t numVertices() const;

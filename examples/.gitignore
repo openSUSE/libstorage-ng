@@ -1,4 +1,5 @@
 *.dot
+*.info
 *.o
 *.png
 .deps
@@ -13,6 +14,7 @@ compare5
 compare6
 copy1
 copy2
+load1
 probe1
 test1
 test2

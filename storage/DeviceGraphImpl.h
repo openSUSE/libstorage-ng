@@ -8,6 +8,7 @@
 #include "storage/Devices/Device.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Holders/Holder.h"
+#include "storage/DeviceGraph.h"
 
 
 namespace storage
@@ -53,7 +54,8 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
 
-	void save() const;
+	void load(DeviceGraph* device_graph, const string& filename);
+	void save(const string& filename) const;
 
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;

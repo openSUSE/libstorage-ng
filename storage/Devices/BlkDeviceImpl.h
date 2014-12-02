@@ -18,8 +18,6 @@ namespace storage
     {
     public:
 
-	void save(xmlNode* node) const override;
-
 	string name;
 
 	// size
@@ -28,12 +26,12 @@ namespace storage
 
     protected:
 
-	Impl(DeviceGraph& device_graph, const string& name)
-	    : Device::Impl(device_graph), name(name) {}
+	Impl(const string& name)
+	    : Device::Impl(), name(name) {}
 
-	// TODO not nice that all members must be initialized individual
-	Impl(DeviceGraph& device_graph, const Impl& impl)
-	    : Device::Impl(device_graph, impl), name(impl.name) {}
+	Impl(const xmlNode* node);
+
+	void save(xmlNode* node) const override;
 
     };
 

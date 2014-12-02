@@ -11,9 +11,21 @@ namespace storage
     using namespace std;
 
 
-    Swap::Swap(DeviceGraph& device_graph)
-	: Filesystem(device_graph, new Swap::Impl(device_graph))
+    Swap*
+    Swap::create(DeviceGraph* device_graph)
     {
+	Swap* ret = new Swap(new Swap::Impl());
+	ret->addToDeviceGraph(device_graph);
+	return ret;
+    }
+
+
+    Swap*
+    Swap::load(DeviceGraph* device_graph, const xmlNode* node)
+    {
+	Swap* ret = new Swap(new Swap::Impl(node));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
 
 
@@ -23,18 +35,10 @@ namespace storage
     }
 
 
-/*
-    Swap::Swap(DeviceGraph& device_graph, Impl* impl)
-	: Filesystem(device_graph, impl)
-    {
-    }
-*/
-
-
     Swap*
-    Swap::clone(DeviceGraph& device_graph) const
+    Swap::clone() const
     {
-	return new Swap(getImpl().clone(device_graph));
+	return new Swap(getImpl().clone());
     }
 
 
@@ -49,13 +53,6 @@ namespace storage
     Swap::getImpl() const
     {
 	return dynamic_cast<const Impl&>(Device::getImpl());
-    }
-
-
-    void
-    Swap::Impl::save(xmlNode* node) const
-    {
-	Filesystem::Impl::save(node);
     }
 
 }

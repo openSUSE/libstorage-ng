@@ -18,6 +18,12 @@ namespace storage
     }
 
 
+    Disk::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node)
+    {
+    }
+
+
     void
     Disk::Impl::add_create_actions(ActionGraph& action_graph) const
     {

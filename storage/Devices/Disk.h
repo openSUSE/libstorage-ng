@@ -16,8 +16,8 @@ namespace storage
     {
     public:
 
-	static Disk* create(DeviceGraph& device_graph, const string& name)
-	    { return new Disk(device_graph, name); }
+	static Disk* create(DeviceGraph* device_graph, const string& name);
+	static Disk* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	PartitionTable* createPartitionTable(const string& type);
 
@@ -28,16 +28,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual Disk* clone(DeviceGraph& device_graph) const override;
+	virtual const char* getClassName() const override { return "Disk"; }
+
+	virtual Disk* clone() const override;
 
     protected:
 
 	Disk(Impl* impl);
-	// Disk(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	Disk(DeviceGraph& device_graph, const string& name);
 
     };
 

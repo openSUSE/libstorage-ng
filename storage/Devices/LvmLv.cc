@@ -5,15 +5,27 @@
 #include "storage/Action.h"
 
 
-using namespace std;
-
-
 namespace storage
 {
 
-    LvmLv::LvmLv(DeviceGraph& device_graph, const string& name)
-	: BlkDevice(device_graph, new LvmLv::Impl(device_graph, name))
+    using namespace std;
+
+
+    LvmLv*
+    LvmLv::create(DeviceGraph* device_graph, const string& name)
     {
+	LvmLv* ret = new LvmLv(new LvmLv::Impl(name));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
+    }
+
+
+    LvmLv*
+    LvmLv::load(DeviceGraph* device_graph, const xmlNode* node)
+    {
+	LvmLv* ret = new LvmLv(new LvmLv::Impl(node));
+	ret->addToDeviceGraph(device_graph);
+	return ret;
     }
 
 
@@ -23,16 +35,10 @@ namespace storage
     }
 
 
-    LvmLv::LvmLv(DeviceGraph& device_graph, Impl* impl)
-	: BlkDevice(device_graph, impl)
-    {
-    }
-
-
     LvmLv*
-    LvmLv::clone(DeviceGraph& device_graph) const
+    LvmLv::clone() const
     {
-	return new LvmLv(getImpl().clone(device_graph));
+	return new LvmLv(getImpl().clone());
     }
 
 

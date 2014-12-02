@@ -15,26 +15,35 @@ namespace storage
     sid_t Device::Impl::global_sid = 42;	// just a random number ;)
 
 
-    Device::Impl::Impl(DeviceGraph& device_graph)
-	: sid(global_sid++), device_graph(device_graph)
+    Device::Impl::Impl()
+	: sid(global_sid++), device_graph(nullptr)
     {
     }
 
 
-    // TODO not nice that all members must be initialized individual
-
-    Device::Impl::Impl(DeviceGraph& device_graph, const Impl& impl)
-	: sid(impl.sid), device_graph(device_graph)
+    Device::Impl::Impl(const xmlNode* node)
+	: sid(0)
     {
+	if (!getChildValue(node, "sid", sid))
+	    throw runtime_error("no sid");
     }
 
 
     void
-    Device::Impl::setVertex(DeviceGraph::Impl::vertex_descriptor vertex)
+    Device::Impl::save(xmlNode* node) const
     {
+	setChildValue(node, "sid", sid);
+    }
+
+
+    void
+    Device::Impl::setDeviceGraphAndVertex(DeviceGraph* device_graph,
+					  DeviceGraph::Impl::vertex_descriptor vertex)
+    {
+	Impl::device_graph = device_graph;
 	Impl::vertex = vertex;
 
-	const Device* d = device_graph.getImpl().graph[vertex].get();
+	const Device* d = device_graph->getImpl().graph[vertex].get();
 	const Impl& i = d->getImpl();
 	if (&i != this)
 	    throw runtime_error("wrong vertex for back references");

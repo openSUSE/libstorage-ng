@@ -15,10 +15,8 @@ namespace storage
     {
     public:
 
-	static Partition* create(DeviceGraph& device_graph, const string& name)
-	    { return new Partition(device_graph, name); }
-
-	virtual Partition* clone(DeviceGraph& device_graph) const override;
+	static Partition* create(DeviceGraph* device_graph, const string& name);
+	static Partition* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	unsigned int getNumber() const;
 
@@ -29,14 +27,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
+	virtual const char* getClassName() const override { return "Partition"; }
+
+	virtual Partition* clone() const override;
+
     protected:
 
 	Partition(Impl* impl);
-	// Partition(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	Partition(DeviceGraph& device_graph, const string& name);
 
     };
 

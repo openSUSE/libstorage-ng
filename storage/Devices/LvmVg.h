@@ -15,8 +15,8 @@ namespace storage
     {
     public:
 
-	static LvmVg* create(DeviceGraph& device_graph, const string& name)
-	    { return new LvmVg(device_graph, name); }
+	static LvmVg* create(DeviceGraph* device_graph, const string& name);
+	static LvmVg* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	const string& getName() const;
 	void setName(const string& name);
@@ -32,16 +32,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual LvmVg* clone(DeviceGraph& device_graph) const override;
+	virtual const char* getClassName() const override { return "LvmVg"; }
+
+	virtual LvmVg* clone() const override;
 
     protected:
 
 	LvmVg(Impl* impl);
-	// LvmVg(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	LvmVg(DeviceGraph& device_graph, const string& name);
 
     };
 

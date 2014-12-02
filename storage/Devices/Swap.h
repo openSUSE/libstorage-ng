@@ -15,8 +15,8 @@ namespace storage
     {
     public:
 
-	static Swap* create(DeviceGraph& device_graph)
-	    { return new Swap(device_graph); }
+	static Swap* create(DeviceGraph* device_graph);
+	static Swap* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	virtual string display_name() const override { return "swap"; }
 
@@ -32,16 +32,13 @@ namespace storage
 	Impl& getImpl();
 	const Impl& getImpl() const;
 
-	virtual Swap* clone(DeviceGraph& device_graph) const override;
+	virtual const char* getClassName() const override { return "Swap"; }
+
+	virtual Swap* clone() const override;
 
     protected:
 
 	Swap(Impl* impl);
-	// Swap(DeviceGraph& device_graph, Impl* impl);
-
-    private:
-
-	Swap(DeviceGraph& device_graph);
 
     };
 

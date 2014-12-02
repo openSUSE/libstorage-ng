@@ -48,7 +48,6 @@ namespace storage
     protected:
 
 	Filesystem(Impl* impl);
-	Filesystem(DeviceGraph& device_graph, Impl* impl);
 
     };
 
