@@ -27,6 +27,8 @@
 #include <storage/Devices/PartitionTable.h>
 #include <storage/Devices/Disk.h>
 #include <storage/Devices/Gpt.h>
+#include <storage/Devices/LvmVg.h>
+#include <storage/Devices/LvmLv.h>
 #include <storage/Holders/Holder.h>
 #include <storage/DeviceGraph.h>
 #include <storage/Environment.h>
@@ -46,6 +48,8 @@ using namespace std;
 %include "../../storage/Devices/PartitionTable.h"
 %include "../../storage/Devices/Disk.h"
 %include "../../storage/Devices/Gpt.h"
+%include "../../storage/Devices/LvmVg.h"
+%include "../../storage/Devices/LvmLv.h"
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/DeviceGraph.h"
 %include "../../storage/Environment.h"
@@ -55,6 +59,7 @@ using namespace storage;
 
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
+%template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
 
 %inline %{
 
@@ -64,6 +69,18 @@ using namespace storage;
 
     const storage::PartitionTable* castToPartitionTable(const storage::Device* device) {
 	return dynamic_cast<const storage::PartitionTable*>(device);
+    }
+
+    const storage::LvmVg* castToLvmVg(const storage::Device* device) {
+	return dynamic_cast<const storage::LvmVg*>(device);
+    }
+
+    const storage::LvmLv* castToLvmLv(const storage::Device* device) {
+	return dynamic_cast<const storage::LvmLv*>(device);
+    }
+
+    const storage::Filesystem* castToFilesystem(const storage::Device* device) {
+	return dynamic_cast<const storage::Filesystem*>(device);
     }
 
 %}

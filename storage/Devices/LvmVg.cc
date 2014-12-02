@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
 
@@ -77,6 +78,18 @@ namespace storage
     {
 	if (getName().empty())
 	    cerr << "volume group has no name" << endl;
+    }
+
+
+    LvmLv*
+    LvmVg::createLvmLv(const string& name)
+    {
+	DeviceGraph* device_graph = getImpl().getDeviceGraph();
+
+	LvmLv* lvm_lv = LvmLv::create(device_graph, name);
+	Subdevice::create(device_graph, this, lvm_lv);
+
+	return lvm_lv;
     }
 
 }

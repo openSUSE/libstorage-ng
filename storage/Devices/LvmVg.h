@@ -3,6 +3,7 @@
 
 
 #include "storage/Devices/Device.h"
+#include "storage/Devices/LvmLv.h"
 
 
 namespace storage
@@ -24,6 +25,8 @@ namespace storage
 	virtual string display_name() const override { return getName(); }
 
 	virtual void check() const override;
+
+	LvmLv* createLvmLv(const string& name);
 
     protected:
 

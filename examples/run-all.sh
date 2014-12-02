@@ -16,6 +16,8 @@ rm *.{dot,png}
 ./copy1
 ./copy2
 
+./find1
+
 ./test1 ; display test1.png
 ./test2
 
