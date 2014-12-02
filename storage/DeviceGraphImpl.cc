@@ -6,7 +6,7 @@
 #include <boost/graph/graph_utility.hpp>
 
 #include "storage/DeviceGraphImpl.h"
-#include "storage/GraphUtils.h"
+#include "storage/Utils/GraphUtils.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"

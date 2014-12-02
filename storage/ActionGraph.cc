@@ -9,7 +9,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/DeviceGraph.h"
-#include "storage/GraphUtils.h"
+#include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"
 #include "storage/ActionGraph.h"
 

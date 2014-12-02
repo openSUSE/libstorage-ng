@@ -5,5 +5,6 @@
 noinst_LTLIBRARIES = libutils.la
 
 libutils_la_SOURCES =					\
-	XmlFile.h		XmlFile.cc
+	XmlFile.h		XmlFile.cc		\
+	GraphUtils.h
 
