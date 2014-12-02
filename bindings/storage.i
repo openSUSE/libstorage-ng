@@ -27,8 +27,8 @@
 #include <storage/Devices/PartitionTable.h>
 #include <storage/Devices/Disk.h>
 #include <storage/Devices/Gpt.h>
-#include <storage/Devices/LvmVg.h>
 #include <storage/Devices/LvmLv.h>
+#include <storage/Devices/LvmVg.h>
 #include <storage/Holders/Holder.h>
 #include <storage/DeviceGraph.h>
 #include <storage/Environment.h>
@@ -48,8 +48,8 @@ using namespace std;
 %include "../../storage/Devices/PartitionTable.h"
 %include "../../storage/Devices/Disk.h"
 %include "../../storage/Devices/Gpt.h"
-%include "../../storage/Devices/LvmVg.h"
 %include "../../storage/Devices/LvmLv.h"
+%include "../../storage/Devices/LvmVg.h"
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/DeviceGraph.h"
 %include "../../storage/Environment.h"

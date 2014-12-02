@@ -10,6 +10,7 @@ AM_CXXFLAGS = -fPIC -DPIC
 
 INCLUDES = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
 
+# TODO somehow move to parent Makefile.am
 DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Device.h		\
 	${top_srcdir}/storage/Devices/Disk.h		\
