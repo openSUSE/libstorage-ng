@@ -74,18 +74,24 @@ namespace storage
 
 
     vector<Filesystem*>
+    Filesystem::findByLabel(const DeviceGraph* device_graph, const string& label)
+    {
+	auto pred = [&label](const Filesystem* filesystem) {
+	    return filesystem->getLabel() == label;
+	};
+
+	return device_graph->getImpl().getDevicesIf<Filesystem>(pred);
+    }
+
+
+    vector<Filesystem*>
     Filesystem::findByMountPoint(const DeviceGraph* device_graph, const string& mount_point)
     {
-	vector <Filesystem*> ret;
+	auto pred = [&mount_point](const Filesystem* filesystem) {
+	    return contains(filesystem->getMountPoints(), mount_point);
+	};
 
-	for (DeviceGraph::Impl::vertex_descriptor v : device_graph->getImpl().vertices())
-	{
-	    Filesystem* filesystem = dynamic_cast<Filesystem*>(device_graph->getImpl().graph[v].get());
-	    if (filesystem && contains(filesystem->getMountPoints(), mount_point))
-		ret.push_back(filesystem);
-	}
-
-	return ret;
+	return device_graph->getImpl().getDevicesIf<Filesystem>(pred);
     }
 
 }

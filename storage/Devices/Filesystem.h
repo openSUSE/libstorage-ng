@@ -38,6 +38,9 @@ namespace storage
 	const vector<string>& getMountPoints() const;
 	void addMountPoint(const string& mount_point);
 
+	static vector<Filesystem*> findByLabel(const DeviceGraph* device_graph,
+					       const string& label);
+
 	static vector<Filesystem*> findByMountPoint(const DeviceGraph* device_graph,
 						    const string& mount_point);
 

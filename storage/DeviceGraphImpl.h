@@ -73,7 +73,7 @@ namespace storage
 
 	template <typename Type>
 	vector<const Type*>
-	getDevices(const vector<vertex_descriptor>& vertices) const
+	getDevices(const vector<vertex_descriptor>& vertices) const // TODO rename
 	{
 	    vector<const Type*> ret;
 
@@ -84,6 +84,22 @@ namespace storage
 		    throw bad_cast();
 
 		ret.push_back(device);
+	    }
+
+	    return ret;
+	}
+
+	template <typename Type, typename Predicate>
+	vector<Type*>
+	getDevicesIf(Predicate pred) const // TODO rename
+	{
+	    vector<Type*> ret;
+
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		Type* device = dynamic_cast<Type*>(graph[vertex].get());
+		if (device && pred(device))
+		    ret.push_back(device);
 	    }
 
 	    return ret;
