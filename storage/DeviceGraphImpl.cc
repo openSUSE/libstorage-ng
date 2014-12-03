@@ -256,18 +256,27 @@ namespace storage
     }
 
 
-    typedef Device* (*load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
+    typedef Device* (*device_load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
 
 
-    const map<string, load_fnc> device_load_registry = {
-	{ "Disk", (load_fnc)(&Disk::load) },
-	{ "Gpt", (load_fnc)(&Gpt::load) },
-	{ "Partition", (load_fnc)(&Partition::load) },
-	{ "LvmVg", (load_fnc)(&LvmVg::load) },
-	{ "LvmLv", (load_fnc)(&LvmLv::load) },
-	{ "Encryption", (load_fnc)(&Encryption::load) },
-	{ "Ext4", (load_fnc)(&Ext4::load) },
-	{ "Swap", (load_fnc)(&Swap::load) },
+    const map<string, device_load_fnc> device_load_registry = {
+	{ "Disk", (device_load_fnc)(&Disk::load) },
+	{ "Gpt", (device_load_fnc)(&Gpt::load) },
+	{ "Partition", (device_load_fnc)(&Partition::load) },
+	{ "LvmVg", (device_load_fnc)(&LvmVg::load) },
+	{ "LvmLv", (device_load_fnc)(&LvmLv::load) },
+	{ "Encryption", (device_load_fnc)(&Encryption::load) },
+	{ "Ext4", (device_load_fnc)(&Ext4::load) },
+	{ "Swap", (device_load_fnc)(&Swap::load) },
+    };
+
+
+    typedef Holder* (*holder_load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
+
+
+    const map<string, holder_load_fnc> holder_load_registry = {
+	{ "Using", (holder_load_fnc)(&Using::load) },
+	{ "Subdevice", (holder_load_fnc)(&Subdevice::load) },
     };
 
 
@@ -288,11 +297,25 @@ namespace storage
 	{
 	    const string& class_name = (const char*) device_node->parent->name;
 
-	    map<string, load_fnc>::const_iterator it = device_load_registry.find(class_name);
+	    map<string, device_load_fnc>::const_iterator it = device_load_registry.find(class_name);
 	    if (it == device_load_registry.end())
-		throw runtime_error("unknown class_name");
+		throw runtime_error("unknown device class name");
 
 	    it->second(device_graph, device_node);
+	}
+
+	const xmlNode* holders_node = getChildNode(device_graph_node, "Holders");
+	assert(holders_node);
+
+	for (const xmlNode* holder_node : getChildNodes(holders_node))
+	{
+	    const string& class_name = (const char*) holder_node->parent->name;
+
+	    map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(class_name);
+	    if (it == holder_load_registry.end())
+		throw runtime_error("unknown holder class name");
+
+	    it->second(device_graph, holder_node);
 	}
     }
 

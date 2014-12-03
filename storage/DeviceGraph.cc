@@ -16,6 +16,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Filesystem.h"
+#include "storage/Holders/HolderImpl.h"
 
 
 namespace storage
@@ -75,13 +76,22 @@ namespace storage
 	CloneCopier(const DeviceGraph& g_in, DeviceGraph& g_out)
 	    : g_in(g_in), g_out(g_out) {}
 
-	template<class Type>
-	void operator()(const Type& v_in, Type& v_out)
+	void operator()(const DeviceGraph::Impl::vertex_descriptor& v_in,
+			DeviceGraph::Impl::vertex_descriptor& v_out)
 	{
 	    g_out.getImpl().graph[v_out].reset(g_in.getImpl().graph[v_in]->clone());
 
 	    Device* d_out = g_out.getImpl().graph[v_out].get();
 	    d_out->getImpl().setDeviceGraphAndVertex(&g_out, v_out);
+	}
+
+	void operator()(const DeviceGraph::Impl::edge_descriptor& e_in,
+			DeviceGraph::Impl::edge_descriptor& e_out)
+	{
+	    g_out.getImpl().graph[e_out].reset(g_in.getImpl().graph[e_in]->clone());
+
+	    Holder* h_out = g_out.getImpl().graph[e_out].get();
+	    h_out->getImpl().setDeviceGraphAndEdge(&g_out, e_out);
 	}
 
     private:
@@ -176,27 +186,51 @@ namespace storage
     DeviceGraph::check() const
     {
 	{
-	    // check uniqueness of device object and sid
-	    // check device back reference
+	    // check uniqueness of device and holder object and sid
+	    // check device and holder back reference
 
 	    set<const Device*> devices;
+	    set<const Holder*> holders;
 	    set<sid_t> sids;
 
 	    for (Impl::vertex_descriptor vertex : getImpl().vertices())
 	    {
+		// check uniqueness of device object
+
 		const Device* device = getImpl().graph[vertex].get();
 		if (!devices.insert(device).second)
 		    throw logic_error("device object not unique within graph");
 
+		// check uniqueness of device sid
+
 		sid_t sid = device->getSid();
 		if (!sids.insert(sid).second)
 		    throw logic_error("sid not unique within graph");
+
+		// check device back reference
 
 		if (device->getImpl().getDeviceGraph() != this)
 		    throw logic_error("wrong graph in back references");
 
 		if (device->getImpl().getVertex() != vertex)
 		    throw logic_error("wrong vertex in back references");
+	    }
+
+	    for (Impl::edge_descriptor edge : getImpl().edges())
+	    {
+		// check uniqueness of holder object
+
+		const Holder* holder = getImpl().graph[edge].get();
+		if (!holders.insert(holder).second)
+		    throw logic_error("holder object not unique within graph");
+
+		// check holder back reference
+
+		if (holder->getImpl().getDeviceGraph() != this)
+		    throw logic_error("wrong graph in back references");
+
+		if (holder->getImpl().getEdge() != edge)
+		    throw logic_error("wrong edge in back references");
 	    }
 	}
 
@@ -240,7 +274,7 @@ namespace storage
 	CloneCopier copier(*this, dest);
 
 	boost::copy_graph(getImpl().graph, dest.getImpl().graph,
-			  vertex_index_map(haha.get()).vertex_copy(copier));
+			  vertex_index_map(haha.get()).vertex_copy(copier).edge_copy(copier));
     }
 
 

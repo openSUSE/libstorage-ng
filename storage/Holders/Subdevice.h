@@ -13,12 +13,22 @@ namespace storage
     public:
 
 	static Subdevice* create(DeviceGraph* device_graph, const Device* source, const Device* target);
+	static Subdevice* load(DeviceGraph* device_graph, const xmlNode* node);
 
 	virtual const char* getClassName() const override { return "Subdevice"; }
 
-    private:
+	virtual Subdevice* clone() const override;
 
-	Subdevice(DeviceGraph* device_graph, const Device* source, const Device* target);
+    public:
+
+	class Impl;
+
+	Impl& getImpl();
+	const Impl& getImpl() const;
+
+    protected:
+
+	Subdevice(Impl* impl);
 
     };
 

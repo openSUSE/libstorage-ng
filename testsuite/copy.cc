@@ -12,6 +12,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Holders/Using.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/DeviceGraph.h"
 
 
@@ -20,30 +22,37 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    DeviceGraph device_graph;
+    DeviceGraph* device_graph = new DeviceGraph();
 
-    Disk::create(&device_graph, "/dev/sda");
-    Gpt::create(&device_graph);
-    Partition::create(&device_graph, "/dev/sda1");
+    Disk* sda = Disk::create(device_graph, "/dev/sda");
 
-    Encryption::create(&device_graph, "/dev/mapper/cr_sda1");
+    Gpt* gpt = Gpt::create(device_graph);
+    Using::create(device_graph, sda, gpt);
 
-    LvmVg::create(&device_graph, "/dev/system");
-    LvmLv::create(&device_graph, "/dev/system/root");
+    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
+    Subdevice::create(device_graph, gpt, sda1);
 
-    Ext4::create(&device_graph);
-    Swap::create(&device_graph);
+    Encryption::create(device_graph, "/dev/mapper/cr_sda1");
 
-    BOOST_CHECK_EQUAL(device_graph.numVertices(), 8);
-    BOOST_CHECK_EQUAL(device_graph.numEdges(), 0);
+    LvmVg::create(device_graph, "/dev/system");
+    LvmLv::create(device_graph, "/dev/system/root");
 
-    device_graph.check();
+    Ext4::create(device_graph);
+    Swap::create(device_graph);
 
-    DeviceGraph device_graph_copy;
-    device_graph.copy(device_graph_copy);
+    BOOST_CHECK_EQUAL(device_graph->numVertices(), 8);
+    BOOST_CHECK_EQUAL(device_graph->numEdges(), 2);
 
-    BOOST_CHECK_EQUAL(device_graph_copy.numVertices(), 8);
-    BOOST_CHECK_EQUAL(device_graph_copy.numEdges(), 0);
+    device_graph->check();
 
-    device_graph_copy.check();
+    DeviceGraph* device_graph_copy = new DeviceGraph();
+    device_graph->copy(*device_graph_copy);
+
+    BOOST_CHECK_EQUAL(device_graph_copy->numVertices(), 8);
+    BOOST_CHECK_EQUAL(device_graph_copy->numEdges(), 2);
+
+    device_graph_copy->check();
+
+    delete device_graph;
+    delete device_graph_copy;
 }

@@ -22,7 +22,7 @@ namespace storage
 
 
     Device::Impl::Impl(const xmlNode* node)
-	: sid(0)
+	: sid(0), device_graph(nullptr)
     {
 	if (!getChildValue(node, "sid", sid))
 	    throw runtime_error("no sid");
@@ -43,9 +43,8 @@ namespace storage
 	Impl::device_graph = device_graph;
 	Impl::vertex = vertex;
 
-	const Device* d = device_graph->getImpl().graph[vertex].get();
-	const Impl& i = d->getImpl();
-	if (&i != this)
+	const Device* device = device_graph->getImpl().graph[vertex].get();
+	if (&device->getImpl() != this)
 	    throw runtime_error("wrong vertex for back references");
     }
 

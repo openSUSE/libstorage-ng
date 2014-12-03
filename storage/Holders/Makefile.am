@@ -6,8 +6,11 @@ noinst_LTLIBRARIES = libholders.la
 
 libholders_la_SOURCES =					\
 	Holder.h		Holder.cc		\
+	HolderImpl.h		HolderImpl.cc		\
 	Using.h			Using.cc		\
-	Subdevice.h		Subdevice.cc
+	UsingImpl.h		UsingImpl.cc		\
+	Subdevice.h		Subdevice.cc		\
+	SubdeviceImpl.h		SubdeviceImpl.cc
 
 pkgincludedir = $(includedir)/storage/Holders
 

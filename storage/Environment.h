@@ -14,7 +14,7 @@ namespace storage
 
 
     enum class TargetMode {
-	TARGET_NORMAL,		// normal target 
+	TARGET_NORMAL,		// normal target
 	TARGET_CHROOT,		// the target is chrooted, e.g. inst-sys
 	TARGET_IMAGE		// the target is image based
     };
