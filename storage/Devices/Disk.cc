@@ -17,7 +17,7 @@ namespace storage
     Disk::create(DeviceGraph* device_graph, const string& name)
     {
 	Disk* ret = new Disk(new Disk::Impl(name));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -26,7 +26,7 @@ namespace storage
     Disk::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Disk* ret = new Disk(new Disk::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

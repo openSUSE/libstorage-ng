@@ -78,13 +78,16 @@ namespace storage
 
 	void save(xmlNode* node) const;
 
-	void addToDeviceGraph(DeviceGraph* device_graph);
-
     protected:
 
 	Device(Impl* impl);
 
+	void create(DeviceGraph* device_graph);
+	void load(DeviceGraph* device_graph);
+
     private:
+
+	void addToDeviceGraph(DeviceGraph* device_graph);
 
 	shared_ptr<Impl> impl;
 

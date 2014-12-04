@@ -15,7 +15,7 @@ namespace storage
     Swap::create(DeviceGraph* device_graph)
     {
 	Swap* ret = new Swap(new Swap::Impl());
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     Swap::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Swap* ret = new Swap(new Swap::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

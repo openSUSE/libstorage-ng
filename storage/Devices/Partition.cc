@@ -15,7 +15,7 @@ namespace storage
     Partition::create(DeviceGraph* device_graph, const string& name)
     {
 	Partition* ret = new Partition(new Partition::Impl(name));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     Partition::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Partition* ret = new Partition(new Partition::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

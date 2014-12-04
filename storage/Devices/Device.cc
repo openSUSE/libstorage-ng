@@ -25,6 +25,20 @@ namespace storage
 
 
     void
+    Device::create(DeviceGraph* device_graph)
+    {
+	addToDeviceGraph(device_graph);
+    }
+
+
+    void
+    Device::load(DeviceGraph* device_graph)
+    {
+	addToDeviceGraph(device_graph);
+    }
+
+
+    void
     Device::addToDeviceGraph(DeviceGraph* device_graph)
     {
 	DeviceGraph::Impl::vertex_descriptor vertex =

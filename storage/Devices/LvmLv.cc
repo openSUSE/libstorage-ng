@@ -15,7 +15,7 @@ namespace storage
     LvmLv::create(DeviceGraph* device_graph, const string& name)
     {
 	LvmLv* ret = new LvmLv(new LvmLv::Impl(name));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     LvmLv::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	LvmLv* ret = new LvmLv(new LvmLv::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

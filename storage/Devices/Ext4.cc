@@ -15,7 +15,7 @@ namespace storage
     Ext4::create(DeviceGraph* device_graph)
     {
 	Ext4* ret = new Ext4(new Ext4::Impl());
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     Ext4::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Ext4* ret = new Ext4(new Ext4::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

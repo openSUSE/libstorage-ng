@@ -11,7 +11,7 @@ namespace storage
     Subdevice::create(DeviceGraph* device_graph, const Device* source, const Device* target)
     {
 	Subdevice* ret = new Subdevice(new Subdevice::Impl());
-	ret->addToDeviceGraph(device_graph, source, target);
+	ret->Holder::create(device_graph, source, target);
 	return ret;
     }
 
@@ -20,20 +20,7 @@ namespace storage
     Subdevice::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Subdevice* ret = new Subdevice(new Subdevice::Impl(node));
-
-	// TODO
-
-	sid_t source_sid = 0;
-	getChildValue(node, "source-sid", source_sid);
-
-	sid_t target_sid = 0;
-	getChildValue(node, "target-sid", target_sid);
-
-	const Device* source_device = device_graph->find_device(source_sid);
-	const Device* target_device = device_graph->find_device(target_sid);
-
-	ret->addToDeviceGraph(device_graph, source_device, target_device);
-
+	ret->Holder::load(device_graph, node);
 	return ret;
     }
 

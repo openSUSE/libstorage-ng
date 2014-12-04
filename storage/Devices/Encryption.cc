@@ -15,7 +15,7 @@ namespace storage
     Encryption::create(DeviceGraph* device_graph, const string& name)
     {
 	Encryption* ret = new Encryption(new Encryption::Impl(name));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     Encryption::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Encryption* ret = new Encryption(new Encryption::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 

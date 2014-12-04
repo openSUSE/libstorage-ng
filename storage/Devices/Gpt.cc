@@ -15,7 +15,7 @@ namespace storage
     Gpt::create(DeviceGraph* device_graph)
     {
 	Gpt* ret = new Gpt(new Gpt::Impl());
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::create(device_graph);
 	return ret;
     }
 
@@ -24,7 +24,7 @@ namespace storage
     Gpt::load(DeviceGraph* device_graph, const xmlNode* node)
     {
 	Gpt* ret = new Gpt(new Gpt::Impl(node));
-	ret->addToDeviceGraph(device_graph);
+	ret->Device::load(device_graph);
 	return ret;
     }
 
