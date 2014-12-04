@@ -16,7 +16,7 @@ perlextensiondirdir = /usr/lib/perl5/site_perl
 AM_CXXFLAGS = -fPIC -DPIC
 
 # TODO
-INCLUDES = -I. -I${top_srcdir} -I/usr/lib/perl5/5.20.1/x86_64-linux-thread-multi/CORE/
+AM_CPPFLAGS = -I. -I${top_srcdir} -I/usr/lib/perl5/5.20.1/x86_64-linux-thread-multi/CORE/
 
 DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Device.h		\
@@ -37,7 +37,7 @@ storage_la_DEPENDENCIES =				\
 	${top_builddir}/storage/libstorage.la
 
 storage.pm storage_wrap.cxx: ../storage.i storage-perl5.i $(DEPENDENCIES)
-	swig -o storage_wrap.cxx -c++ -perl5 ${INCLUDES} storage-perl5.i
+	swig -o storage_wrap.cxx -c++ -perl5 ${AM_CPPFLAGS} storage-perl5.i
 
 # TODO
 install-data-hook:

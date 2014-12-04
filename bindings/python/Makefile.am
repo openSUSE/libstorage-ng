@@ -8,7 +8,7 @@ EXTRA_DIST = storage-python.i
 
 AM_CXXFLAGS = -fPIC -DPIC
 
-INCLUDES = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
+AM_CPPFLAGS = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
 
 # TODO somehow move to parent Makefile.am
 DEPENDENCIES =						\
@@ -35,7 +35,7 @@ _storage_la_DEPENDENCIES =				\
 nodist__storage_la_SOURCES = storage_wrap.cxx
 
 storage.py storage_wrap.cxx: ../storage.i storage-python.i $(DEPENDENCIES)
-	swig -o storage_wrap.cxx -c++ -python ${INCLUDES} storage-python.i
+	swig -o storage_wrap.cxx -c++ -python ${AM_CPPFLAGS} storage-python.i
 
 CLEANFILES = storage.py storage_wrap.cxx
 
