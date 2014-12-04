@@ -20,13 +20,26 @@
 using namespace storage;
 
 
-void
-compare(vector<const Device*> a,  vector<const Device*> b)
+vector<const Device*>
+sort(const vector<const Device*>& devices)
 {
-    sort(a.begin(), a.end());
-    sort(b.begin(), b.end());
+    vector<const Device*> ret(devices.begin(), devices.end());
+    sort(ret.begin(), ret.end());
+    return ret;
+}
 
-    BOOST_CHECK(a == b); // TODO, error message useless
+
+namespace std
+{
+    ostream& operator<<(ostream& s, const vector<const Device*>& devices)
+    {
+	s << "{";
+	for (vector<const Device*>::const_iterator it = devices.begin(); it != devices.end(); ++it)
+	    s << (it == devices.begin() ? " " : ", ") << (*it)->display_name() << " (" << *it << ")";
+	s << " }";
+
+	return s;
+    }
 }
 
 
@@ -68,24 +81,24 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     device_graph->check();
 
-    compare(sda->getChildren(), { sda1, sda2 });
+    BOOST_CHECK_EQUAL(sort(sda->getChildren()), sort({ sda1, sda2 }));
 
-    compare(sda1->getParents(), { sda });
+    BOOST_CHECK_EQUAL(sort(sda1->getParents()), sort({ sda }));
 
-    compare(sda1->getSiblings(false), { sda2 });
-    compare(system_swap->getSiblings(true), { system_root, system_home, system_swap });
+    BOOST_CHECK_EQUAL(sort(sda1->getSiblings(false)), sort({ sda2 }));
+    BOOST_CHECK_EQUAL(sort(system_swap->getSiblings(true)), sort({ system_root, system_home, system_swap }));
 
-    compare(sda->getDescendants(false), { sda1, sda2, system, system_root, system_home, system_swap });
-    compare(system->getDescendants(true), { system, system_root, system_home, system_swap });
+    BOOST_CHECK_EQUAL(sort(sda->getDescendants(false)), sort({ sda1, sda2, system, system_root, system_home, system_swap }));
+    BOOST_CHECK_EQUAL(sort(system->getDescendants(true)), sort({ system, system_root, system_home, system_swap }));
 
-    compare(sda1->getAncestors(false), { sda });
-    compare(system->getAncestors(true), { system, sda1, sda, sdb1, sdb });
+    BOOST_CHECK_EQUAL(sort(sda1->getAncestors(false)), sort({ sda }));
+    BOOST_CHECK_EQUAL(sort(system->getAncestors(true)), sort({ system, sda1, sda, sdb1, sdb }));
 
-    compare(sda->getLeafs(false), { sda2, system_root, system_swap, system_home });
-    compare(system->getLeafs(false), { system_root, system_swap, system_home });
+    BOOST_CHECK_EQUAL(sort(sda->getLeafs(false)), sort({ sda2, system_root, system_swap, system_home }));
+    BOOST_CHECK_EQUAL(sort(system->getLeafs(false)), sort({ system_root, system_swap, system_home }));
 
-    compare(sda1->getRoots(false), { sda });
-    compare(system_swap->getRoots(false), { sda, sdb });
+    BOOST_CHECK_EQUAL(sort(sda1->getRoots(false)), sort({ sda }));
+    BOOST_CHECK_EQUAL(sort(system_swap->getRoots(false)), sort({ sda, sdb }));
 
     delete device_graph;
 }
