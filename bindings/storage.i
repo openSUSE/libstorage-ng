@@ -37,6 +37,7 @@
 
 using namespace std;
 
+%include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_list.i"
