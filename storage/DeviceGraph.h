@@ -26,19 +26,19 @@ namespace storage
 
 	bool empty() const;
 
-	size_t numVertices() const;
-	size_t numEdges() const;
+	size_t numDevices() const;
+	size_t numHolders() const;
 
-	Device* find_device(sid_t sid);
-	const Device* find_device(sid_t sid) const;
+	Device* findDevice(sid_t sid);
+	const Device* findDevice(sid_t sid) const;
 
 	bool vertex_exists(sid_t sid) const;
 
 	void remove_vertex(sid_t sid);
 	void remove_vertex(Device* a);
 
-	Holder* find_holder(sid_t source_sid, sid_t target_sid);
-	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
+	Holder* findHolder(sid_t source_sid, sid_t target_sid);
+	const Holder* findHolder(sid_t source_sid, sid_t target_sid) const;
 
 	void check() const;
 

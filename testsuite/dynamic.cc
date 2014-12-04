@@ -31,17 +31,17 @@ BOOST_AUTO_TEST_CASE(dynamic)
     LvmLv* root = LvmLv::create(&device_graph, "/dev/system/root");
     Subdevice::create(&device_graph, system, root);
 
-    BOOST_CHECK_EQUAL(device_graph.numVertices(), 4);
-    BOOST_CHECK_EQUAL(device_graph.numEdges(), 3);
+    BOOST_CHECK_EQUAL(device_graph.numDevices(), 4);
+    BOOST_CHECK_EQUAL(device_graph.numHolders(), 3);
 
-    BOOST_CHECK(dynamic_cast<const Disk*>(device_graph.find_device(sda->getSid())));
+    BOOST_CHECK(dynamic_cast<const Disk*>(device_graph.findDevice(sda->getSid())));
 
-    BOOST_CHECK(dynamic_cast<const Partition*>(device_graph.find_device(sda1->getSid())));
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.find_holder(sda->getSid(), sda1->getSid())));
+    BOOST_CHECK(dynamic_cast<const Partition*>(device_graph.findDevice(sda1->getSid())));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.findHolder(sda->getSid(), sda1->getSid())));
 
-    BOOST_CHECK(dynamic_cast<const LvmVg*>(device_graph.find_device(system->getSid())));
-    BOOST_CHECK(dynamic_cast<const Using*>(device_graph.find_holder(sda1->getSid(), system->getSid())));
+    BOOST_CHECK(dynamic_cast<const LvmVg*>(device_graph.findDevice(system->getSid())));
+    BOOST_CHECK(dynamic_cast<const Using*>(device_graph.findHolder(sda1->getSid(), system->getSid())));
 
-    BOOST_CHECK(dynamic_cast<const LvmLv*>(device_graph.find_device(root->getSid())));
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.find_holder(system->getSid(), root->getSid())));
+    BOOST_CHECK(dynamic_cast<const LvmLv*>(device_graph.findDevice(root->getSid())));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(device_graph.findHolder(system->getSid(), root->getSid())));
 }

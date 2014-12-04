@@ -34,14 +34,14 @@ namespace storage
 
 
     size_t
-    DeviceGraph::Impl::numVertices() const
+    DeviceGraph::Impl::numDevices() const
     {
 	return boost::num_vertices(graph);
     }
 
 
     size_t
-    DeviceGraph::Impl::numEdges() const
+    DeviceGraph::Impl::numHolders() const
     {
 	return boost::num_edges(graph);
     }

@@ -55,16 +55,16 @@ namespace storage
 
 
     size_t
-    DeviceGraph::numVertices() const
+    DeviceGraph::numDevices() const
     {
-	return getImpl().numVertices();
+	return getImpl().numDevices();
     }
 
 
     size_t
-    DeviceGraph::numEdges() const
+    DeviceGraph::numHolders() const
     {
-	return getImpl().numEdges();
+	return getImpl().numHolders();
     }
 
 
@@ -103,7 +103,7 @@ namespace storage
 
 
     Device*
-    DeviceGraph::find_device(sid_t sid)
+    DeviceGraph::findDevice(sid_t sid)
     {
 	Impl::vertex_descriptor v = getImpl().find_vertex(sid);
 
@@ -112,7 +112,7 @@ namespace storage
 
 
     const Device*
-    DeviceGraph::find_device(sid_t sid) const
+    DeviceGraph::findDevice(sid_t sid) const
     {
 	Impl::vertex_descriptor v = getImpl().find_vertex(sid);
 
@@ -136,7 +136,7 @@ namespace storage
 
 
     Holder*
-    DeviceGraph::find_holder(sid_t source_sid, sid_t target_sid)
+    DeviceGraph::findHolder(sid_t source_sid, sid_t target_sid)
     {
 	for (Impl::edge_descriptor edge : getImpl().edges())
 	{
@@ -152,7 +152,7 @@ namespace storage
 
 
     const Holder*
-    DeviceGraph::find_holder(sid_t source_sid, sid_t target_sid) const
+    DeviceGraph::findHolder(sid_t source_sid, sid_t target_sid) const
     {
 	for (Impl::edge_descriptor edge : getImpl().edges())
 	{
@@ -170,7 +170,7 @@ namespace storage
     void
     DeviceGraph::remove_vertex(sid_t sid)
     {
-	const Device* device = find_device(sid);
+	const Device* device = findDevice(sid);
 	getImpl().remove_vertex(device->getImpl().getVertex());
     }
 

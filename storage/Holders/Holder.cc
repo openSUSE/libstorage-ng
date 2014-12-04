@@ -40,8 +40,8 @@ namespace storage
 	if (!getChildValue(node, "target-sid", target_sid))
 	    throw runtime_error("no target-sid");
 
-	const Device* source = device_graph->find_device(source_sid);
-	const Device* target = device_graph->find_device(target_sid);
+	const Device* source = device_graph->findDevice(source_sid);
+	const Device* target = device_graph->findDevice(target_sid);
 
 	addToDeviceGraph(device_graph, source, target);
     }

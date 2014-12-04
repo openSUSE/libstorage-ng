@@ -35,7 +35,7 @@ main()
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    LvmLv* d = dynamic_cast<LvmLv*>(rhs.find_device(system_oracle->getSid()));
+    LvmLv* d = dynamic_cast<LvmLv*>(rhs.findDevice(system_oracle->getSid()));
     assert(d);
     d->setName("/dev/system/postgresql");
 

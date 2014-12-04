@@ -41,8 +41,8 @@ namespace storage
 
 	bool empty() const;
 
-	size_t numVertices() const;
-	size_t numEdges() const;
+	size_t numDevices() const;
+	size_t numHolders() const;
 
 	set<sid_t> getSids() const;
 

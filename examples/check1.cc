@@ -46,9 +46,8 @@ main()
 {
     make_device_graph();
 
-    cout << "num_vertices: " << device_graph.numVertices() << endl;
-    cout << "num_edges: " << device_graph.numEdges() << endl;
-
+    cout << "num_devices: " << device_graph.numDevices() << endl;
+    cout << "num_holders: " << device_graph.numHolders() << endl;
     cout << endl;
 
     device_graph.check();

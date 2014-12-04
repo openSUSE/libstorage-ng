@@ -24,7 +24,7 @@ main()
     DeviceGraph rhs;
     lhs.copy(rhs);
 
-    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_device(lhs_sda->getSid()));
+    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.findDevice(lhs_sda->getSid()));
 
     Gpt* rhs_gpt = Gpt::create(&rhs);
     Using::create(&rhs, rhs_sda, rhs_gpt);

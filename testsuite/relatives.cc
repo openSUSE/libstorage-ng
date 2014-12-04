@@ -76,8 +76,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_home = LvmLv::create(device_graph, "/dev/system/home");
     Subdevice::create(device_graph, system, system_home);
 
-    BOOST_CHECK_EQUAL(device_graph->numVertices(), 10);
-    BOOST_CHECK_EQUAL(device_graph->numEdges(), 9);
+    BOOST_CHECK_EQUAL(device_graph->numDevices(), 10);
+    BOOST_CHECK_EQUAL(device_graph->numHolders(), 9);
 
     device_graph->check();
 

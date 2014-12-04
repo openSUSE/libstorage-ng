@@ -57,7 +57,7 @@ main()
     LvmLv* rhs_system_v2_swap = LvmLv::create(&rhs, "/dev/system-v2/swap");
     Subdevice::create(&rhs, rhs_system_v2, rhs_system_v2_swap);
 
-    Partition* rhs_sda1 = dynamic_cast<Partition*>(rhs.find_device(lhs_sda1->getSid()));
+    Partition* rhs_sda1 = dynamic_cast<Partition*>(rhs.findDevice(lhs_sda1->getSid()));
     Using::create(&rhs, rhs_sda1, rhs_system_v2);
 
     Ext4* rhs_system_v2_root_fs = Ext4::create(&rhs);

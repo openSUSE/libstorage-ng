@@ -25,7 +25,7 @@ namespace storage
 	string
 	Create::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " create " << device_rhs->display_name();
@@ -36,7 +36,7 @@ namespace storage
 	string
 	SetType::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " set type " << device_rhs->display_name();
@@ -47,7 +47,7 @@ namespace storage
 	string
 	Format::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " format " << device_rhs->display_name();
@@ -58,7 +58,7 @@ namespace storage
 	string
 	SetLabel::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " set label " << device_rhs->display_name();
@@ -69,7 +69,7 @@ namespace storage
 	string
 	FormatEncryption::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " format " << device_rhs->display_name();
@@ -80,7 +80,7 @@ namespace storage
 	string
 	OpenEncryption::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " open " << device_rhs->display_name();
@@ -91,7 +91,7 @@ namespace storage
 	string
 	Mount::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " mount " << device_rhs->display_name() << " " << mount_point;
@@ -102,7 +102,7 @@ namespace storage
 	string
 	Umount::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_lhs = action_graph.lhs.find_device(sid);
+	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " umount " << device_lhs->display_name() << " " << mount_point;
@@ -113,7 +113,7 @@ namespace storage
 	string
 	AddFstab::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " add fstab entry " << device_rhs->display_name() << " " << mount_point;
@@ -124,7 +124,7 @@ namespace storage
 	string
 	RemoveFstab::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_lhs = action_graph.lhs.find_device(sid);
+	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " remove fstab entry " << device_lhs->display_name() << " " << mount_point;
@@ -135,8 +135,8 @@ namespace storage
 	string
 	Modify::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_lhs = action_graph.lhs.find_device(sid);
-	    const Device* device_rhs = action_graph.rhs.find_device(sid);
+	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
+	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " rename " << device_lhs->display_name() << " -> "
@@ -148,7 +148,7 @@ namespace storage
 	string
 	Delete::text(const ActionGraph& action_graph, bool doing) const
 	{
-	    const Device* device_lhs = action_graph.lhs.find_device(sid);
+	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
 	    str << sid << " delete " << device_lhs->display_name();

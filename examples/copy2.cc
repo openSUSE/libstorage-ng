@@ -26,7 +26,7 @@ main()
     device_graph_copy.check();
 
     {
-	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.find_device(partition->getSid()));
+	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.findDevice(partition->getSid()));
 	assert(tmp);
 
 	tmp->setName("/dev/dasda1");
@@ -36,28 +36,28 @@ main()
     device_graph_copy.print_graph();
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph.find_device(disk->getSid()));
+	Disk* tmp = dynamic_cast<Disk*>(device_graph.findDevice(disk->getSid()));
 	assert(tmp);
 
 	assert(tmp->getName() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph.find_device(partition->getSid()));
+	Partition* tmp = dynamic_cast<Partition*>(device_graph.findDevice(partition->getSid()));
 	assert(tmp);
 
 	assert(tmp->getName() == "/dev/dasda2");
     }
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph_copy.find_device(disk->getSid()));
+	Disk* tmp = dynamic_cast<Disk*>(device_graph_copy.findDevice(disk->getSid()));
 	assert(tmp);
 
 	assert(tmp->getName() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph_copy.find_device(partition->getSid()));
+	Partition* tmp = dynamic_cast<Partition*>(device_graph_copy.findDevice(partition->getSid()));
 	assert(partition);
 
 	assert(tmp->getName() == "/dev/dasda1");
