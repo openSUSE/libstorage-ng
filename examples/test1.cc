@@ -4,6 +4,8 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Ext4.h"
+#include "storage/Devices/Swap.h"
 #include "storage/Devices/Device.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
@@ -131,6 +133,16 @@ main()
 
     LvmLv* system_home = LvmLv::create(&device_graph, "/dev/system/home");
     Subdevice::create(&device_graph, system, system_home);
+
+    Ext4* system_root_fs = Ext4::create(&device_graph);
+    Subdevice::create(&device_graph, system_root, system_root_fs);
+    system_root_fs->setLabel("ROOT");
+    system_root_fs->addMountPoint("/");
+
+    Swap* system_swap_fs = Swap::create(&device_graph);
+    Subdevice::create(&device_graph, system_swap, system_swap_fs);
+    system_swap_fs->setLabel("SWAP");
+    system_swap_fs->addMountPoint("swap");
 
     cout << "num_vertices: " << device_graph.numVertices() << endl;
     cout << "num_edges: " << device_graph.numEdges() << endl;

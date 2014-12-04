@@ -3,6 +3,7 @@
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/DeviceGraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
@@ -20,6 +21,13 @@ namespace storage
     void
     Filesystem::Impl::save(xmlNode* node) const
     {
+	Device::Impl::save(node);
+
+	setChildValueIf(node, "label", label, !label.empty());
+	setChildValueIf(node, "uuid", uuid, !uuid.empty());
+
+	for (const string& mount_point : mount_points)
+	    setChildValue(node, "mount-point", mount_point);
     }
 
 
