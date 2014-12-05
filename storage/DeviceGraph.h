@@ -13,6 +13,18 @@
 namespace storage
 {
 
+    struct DeviceNotFound : public runtime_error
+    {
+	DeviceNotFound(const string& msg) throw() : runtime_error(msg) {}
+    };
+
+
+    struct HolderNotFound : public runtime_error
+    {
+	HolderNotFound(const string& msg) throw() : runtime_error(msg) {}
+    };
+
+
     class DeviceGraph : private boost::noncopyable
     {
 

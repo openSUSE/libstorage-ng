@@ -83,7 +83,7 @@ namespace storage
 
 	ostringstream str;
 	str << "device not found, name = " << name;
-	throw runtime_error(str.str());
+	throw DeviceNotFound(str.str());
     }
 
 
@@ -98,7 +98,7 @@ namespace storage
 
 	ostringstream str;
 	str << "device not found, sid = " << sid;
-	throw runtime_error(str.str());
+	throw DeviceNotFound(str.str());
     }
 
 

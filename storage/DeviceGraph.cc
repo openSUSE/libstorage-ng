@@ -147,7 +147,7 @@ namespace storage
 
 	ostringstream str;
 	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
-	throw runtime_error(str.str());
+	throw HolderNotFound(str.str());
     }
 
 
@@ -163,7 +163,7 @@ namespace storage
 
 	ostringstream str;
 	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
-	throw runtime_error(str.str());
+	throw HolderNotFound(str.str());
     }
 
 

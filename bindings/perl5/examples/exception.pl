@@ -13,9 +13,9 @@ eval
 };
 if ($@)
 {
-    if ($@->isa("storage::device_not_found"))
+    if ($@->isa("storage::DeviceNotFound"))
     {
-	print "device_not_found\n";
+	print "device not found\n";
     }
 }
 

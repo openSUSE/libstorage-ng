@@ -12,13 +12,6 @@ namespace storage
     using namespace std;
 
 
-    class device_not_found : public runtime_error
-    {
-    public:
-	device_not_found(const string& msg) throw() : runtime_error(msg) {}
-    };
-
-
     // abstract class
 
     class BlkDevice : public Device
