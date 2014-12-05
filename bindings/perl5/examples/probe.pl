@@ -1,13 +1,14 @@
 #!/usr/bin/perl
 
+use strict;
 use storage;
 
 
-$environment = new storage::Environment(1);
+my $environment = new storage::Environment(1);
 
-$storage = new storage::Storage($environment);
+my $storage = new storage::Storage($environment);
 
-$probed = $storage->getProbed();
+my $probed = $storage->getProbed();
 
 $probed->print_graph();
 

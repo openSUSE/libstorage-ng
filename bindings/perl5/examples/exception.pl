@@ -1,14 +1,15 @@
 #!/usr/bin/perl
 
+use strict;
 use storage;
 
 
-$device_graph = new storage::DeviceGraph();
+my $device_graph = new storage::DeviceGraph();
 
 
 eval
 {
-    $tmp = storage::BlkDevice::find($device_graph, "/dev/sda");
+    my $tmp = storage::BlkDevice::find($device_graph, "/dev/sda");
     print $tmp->display_name(), "\n";
 };
 if ($@)
