@@ -15,13 +15,13 @@ class TestPolymorphism < Test::Unit::TestCase
     assert_equal(sda.get_sid(), 42)
     assert_equal(gpt.get_sid(), 43)
 
-    tmp = device_graph.find_device(42)
-    assert(Storage::to_disk(tmp))
-    assert_nil(Storage::to_partition_table(tmp))
+    tmp1 = device_graph.find_device(42)
+    assert(Storage::to_disk(tmp1))
+    assert_nil(Storage::to_partition_table(tmp1))
 
-    tmp = device_graph.find_device(43)
-    assert(Storage::to_partition_table(tmp))
-    assert_nil(Storage::to_disk(tmp))
+    tmp2 = device_graph.find_device(43)
+    assert(Storage::to_partition_table(tmp2))
+    assert_nil(Storage::to_disk(tmp2))
 
   end
 

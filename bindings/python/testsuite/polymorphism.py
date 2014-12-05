@@ -15,13 +15,13 @@ class TestPolymorphism(unittest.TestCase):
       self.assertEqual(sda.getSid(), 42)
       self.assertEqual(gpt.getSid(), 43)
 
-      tmp = device_graph.findDevice(42)
-      self.assertTrue(storage.toDisk(tmp))
-      self.assertFalse(storage.toPartitionTable(tmp))
+      tmp1 = device_graph.findDevice(42)
+      self.assertTrue(storage.toDisk(tmp1))
+      self.assertFalse(storage.toPartitionTable(tmp1))
 
-      tmp = device_graph.findDevice(43)
-      self.assertTrue(storage.toPartitionTable(tmp))
-      self.assertFalse(storage.toDisk(tmp))
+      tmp2 = device_graph.findDevice(43)
+      self.assertTrue(storage.toPartitionTable(tmp2))
+      self.assertFalse(storage.toDisk(tmp2))
 
 
 if __name__ == '__main__':
