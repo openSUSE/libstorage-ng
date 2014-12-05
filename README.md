@@ -6,3 +6,9 @@ Evaluating use of the [boost graph library
 libstorage. More information is in the
 [libstorage-bgl-wiki](https://github.com/aschnell/libstorage-bgl-eval/wiki).
 
+Compiling
+---------
+
+```sh
+make -f Makefile.repo
+```
