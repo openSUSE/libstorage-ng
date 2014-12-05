@@ -7,11 +7,11 @@ device_graph = Storage::DeviceGraph.new()
 
 
 begin
-  tmp = Storage::BlkDevice::find(device_graph, "/dev/sda")
-  print "#{tmp.display_name()}\n"
+  tmp = Storage::BlkDevice.find(device_graph, "/dev/sda")
+  puts "#{tmp.display_name()}"
 rescue Storage::DeviceNotFound => e
-  print "device not found\n"
+  puts "device not found"
 end
 
-print "done\n"
+puts "done"
 

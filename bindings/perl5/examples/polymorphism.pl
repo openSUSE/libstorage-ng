@@ -32,13 +32,13 @@ for (my $i = 0; $i < $x2->size(); $i++)
 {
     $device = $x2->get($i);
 
-    $partition_table = storage::castToPartitionTable($device);
+    $partition_table = storage::toPartitionTable($device);
     if ($partition_table)
     {
 	print "  ", $partition_table->display_name(), " is partition table", "\n";
     }
 
-    $partition = storage::castToPartition($device);
+    $partition = storage::toPartition($device);
     if ($partition)
     {
 	print "  ", $partition->display_name(), " ", $partition->getNumber(), " is partition\n";

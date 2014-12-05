@@ -9,19 +9,19 @@ class TestPolymorphism < Test::Unit::TestCase
   def test_polymorphism
 
     device_graph = Storage::DeviceGraph.new()
-    sda = Storage::Disk::create(device_graph, "/dev/sda")
-    gpt = sda.createPartitionTable(Storage::GPT)
+    sda = Storage::Disk.create(device_graph, "/dev/sda")
+    gpt = sda.create_partition_table(Storage::GPT)
 
-    assert_equal(sda.getSid(), 42)
-    assert_equal(gpt.getSid(), 43)
+    assert_equal(sda.get_sid(), 42)
+    assert_equal(gpt.get_sid(), 43)
 
-    tmp = device_graph.findDevice(42)
-    assert(Storage::castToDisk(tmp))
-    assert_nil(Storage::castToPartitionTable(tmp))
+    tmp = device_graph.find_device(42)
+    assert(Storage::to_disk(tmp))
+    assert_nil(Storage::to_partition_table(tmp))
 
-    tmp = device_graph.findDevice(43)
-    assert(Storage::castToPartitionTable(tmp))
-    assert_nil(Storage::castToDisk(tmp))
+    tmp = device_graph.find_device(43)
+    assert(Storage::to_partition_table(tmp))
+    assert_nil(Storage::to_disk(tmp))
 
   end
 

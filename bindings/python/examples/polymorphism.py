@@ -24,11 +24,11 @@ print
 print "descendants of sda:"
 for device in sda.getDescendants(False):
 
-  partition_table = storage.castToPartitionTable(device)
+  partition_table = storage.toPartitionTable(device)
   if partition_table:
     print "  %s is partition table" % partition_table.display_name()
     
-  partition = storage.castToPartition(device)
+  partition = storage.toPartition(device)
   if partition:
     print "  %s %s is partition" % (partition.display_name(), partition.getNumber())
 

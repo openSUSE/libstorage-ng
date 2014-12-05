@@ -7,33 +7,33 @@ device_graph = Storage::DeviceGraph.new()
 
 sda = Storage::Disk::create(device_graph, "/dev/sda")
 
-gpt = sda.createPartitionTable(Storage::GPT)
+gpt = sda.create_partition_table(Storage::GPT)
 
-sda1 = gpt.createPartition("/dev/sda1")
-sda2 = gpt.createPartition("/dev/sda2")
+sda1 = gpt.create_partition("/dev/sda1")
+sda2 = gpt.create_partition("/dev/sda2")
 
 device_graph.print_graph()
 
 
-print "partitions on gpt:\n"
-gpt.getPartitions().each do |partition|
-  print "  #{partition.display_name()}  #{partition.getNumber()}\n"
+puts "partitions on gpt:"
+gpt.get_partitions().each do |partition|
+  puts "  #{partition.display_name()}  #{partition.get_number()}"
 end
-print "\n"
+puts
 
 
-print "descendants of sda:\n"
-sda.getDescendants(false).each do |device|
+puts "descendants of sda:"
+sda.get_descendants(false).each do |device|
 
-  partition_table = Storage::castToPartitionTable(device)
+  partition_table = Storage::to_partition_table(device)
   if partition_table
-    print "  #{partition_table.display_name()} is partition table\n"
+    puts "  #{partition_table.display_name()} is partition table"
   end
 
-  partition = Storage::castToPartition(device)
+  partition = Storage::to_partition(device)
   if partition
-    print "  #{partition.display_name()} #{partition.getNumber()} is partition\n"
+    puts "  #{partition.display_name()} #{partition.get_number()} is partition"
   end
 
 end
-print
+puts

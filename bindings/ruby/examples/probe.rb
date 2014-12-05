@@ -7,7 +7,7 @@ environment = Storage::Environment.new(true)
 
 storage = Storage::Storage.new(environment)
 
-probed = storage.getProbed()
+probed = storage.get_probed()
 
 probed.print_graph()
 
