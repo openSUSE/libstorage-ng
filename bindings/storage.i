@@ -69,12 +69,16 @@ using namespace storage;
 
 %inline %{
 
-    const storage::Partition* castToPartition(const storage::Device* device) {
-	return dynamic_cast<const storage::Partition*>(device);
+    const storage::Disk* castToDisk(const storage::Device* device) {
+	return dynamic_cast<const storage::Disk*>(device);
     }
 
     const storage::PartitionTable* castToPartitionTable(const storage::Device* device) {
 	return dynamic_cast<const storage::PartitionTable*>(device);
+    }
+
+    const storage::Partition* castToPartition(const storage::Device* device) {
+	return dynamic_cast<const storage::Partition*>(device);
     }
 
     const storage::LvmVg* castToLvmVg(const storage::Device* device) {

@@ -68,4 +68,5 @@ AC_OUTPUT(
 	bindings/ruby/testsuite/Makefile
 	bindings/perl5/Makefile
 	bindings/perl5/examples/Makefile
+	bindings/perl5/testsuite/Makefile
 )

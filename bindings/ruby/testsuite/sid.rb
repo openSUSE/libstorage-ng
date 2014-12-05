@@ -8,9 +8,7 @@ class TestSid < Test::Unit::TestCase
   def test_sid
 
     device_graph = Storage::DeviceGraph.new()
-
     sda = Storage::Disk::create(device_graph, "/dev/sda")
-
     gpt = sda.createPartitionTable(Storage::GPT)
 
     assert_equal(sda.getSid(), 42)
