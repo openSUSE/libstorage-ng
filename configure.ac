@@ -65,6 +65,7 @@ AC_OUTPUT(
 	bindings/python/testsuite/Makefile
 	bindings/ruby/Makefile
 	bindings/ruby/examples/Makefile
+	bindings/ruby/testsuite/Makefile
 	bindings/perl5/Makefile
 	bindings/perl5/examples/Makefile
 )
