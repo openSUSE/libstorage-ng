@@ -8,7 +8,7 @@ namespace storage
 {
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), size_k(0)
+	: Device::Impl(node), size_k(0), name()
     {
 	if (!getChildValue(node, "name", name))
 	    throw runtime_error("no name");
