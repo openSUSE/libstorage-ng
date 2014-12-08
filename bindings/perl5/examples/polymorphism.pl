@@ -22,7 +22,7 @@ for (my $i = 0; $i < $x1->size(); $i++)
 {
     my $partition = $x1->get($i);
 
-    print "  ", $partition->display_name(), " ", $partition->getNumber(), "\n";
+    print "  ", $partition->getDisplayName(), " ", $partition->getNumber(), "\n";
 }
 print "\n";
 
@@ -36,13 +36,13 @@ for (my $i = 0; $i < $x2->size(); $i++)
     my $partition_table = storage::toPartitionTable($device);
     if ($partition_table)
     {
-	print "  ", $partition_table->display_name(), " is partition table", "\n";
+	print "  ", $partition_table->getDisplayName(), " is partition table", "\n";
     }
 
     my $partition = storage::toPartition($device);
     if ($partition)
     {
-	print "  ", $partition->display_name(), " ", $partition->getNumber(), " is partition\n";
+	print "  ", $partition->getDisplayName(), " ", $partition->getNumber(), " is partition\n";
     }
 }
 print "\n";

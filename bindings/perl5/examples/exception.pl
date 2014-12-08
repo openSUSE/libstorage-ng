@@ -10,7 +10,7 @@ my $device_graph = new storage::DeviceGraph();
 eval
 {
     my $tmp = storage::BlkDevice::find($device_graph, "/dev/sda");
-    print $tmp->display_name(), "\n";
+    print $tmp->getDisplayName(), "\n";
 };
 if ($@)
 {

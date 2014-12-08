@@ -53,14 +53,14 @@ namespace storage
     void
     BlkDevice::setName(const string& name)
     {
-	getImpl().name = name;
+	getImpl().setName(name);
     }
 
 
     const string&
     BlkDevice::getName() const
     {
-	return getImpl().name;
+	return getImpl().getName();
     }
 
 

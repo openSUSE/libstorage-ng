@@ -18,7 +18,7 @@ namespace storage
 	static Gpt* create(DeviceGraph* device_graph);
 	static Gpt* load(DeviceGraph* device_graph, const xmlNode* node);
 
-	virtual string display_name() const override { return "gpt"; }
+	virtual string getDisplayName() const override { return "gpt"; }
 
     public:
 

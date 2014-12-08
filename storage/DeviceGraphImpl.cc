@@ -72,22 +72,6 @@ namespace storage
 
 
     DeviceGraph::Impl::vertex_descriptor
-    DeviceGraph::Impl::find_vertex(const string& name) const
-    {
-	for (vertex_descriptor v : vertices())
-	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(graph[v].get());
-	    if (blk_device && blk_device->getName() == name)
-		return v;
-	}
-
-	ostringstream str;
-	str << "device not found, name = " << name;
-	throw DeviceNotFound(str.str());
-    }
-
-
-    DeviceGraph::Impl::vertex_descriptor
     DeviceGraph::Impl::find_vertex(sid_t sid) const
     {
 	for (vertex_descriptor v : vertices())
@@ -360,7 +344,7 @@ namespace storage
 	for (vertex_descriptor v : vertices())
 	{
 	    sid_t sid = graph[v]->getSid();
-	    string label = graph[v]->display_name();
+	    string label = graph[v]->getDisplayName();
 
 	    ostringstream tmp;
 	    tmp << sid << " [ " << label << " ]";
@@ -396,7 +380,7 @@ namespace storage
 	{
 	    const Device* device = device_graph.graph[v].get();
 
-	    out << "[ label=\"" << device->getSid() << " " << device->display_name() << "\"";
+	    out << "[ label=\"" << device->getSid() << " " << device->getDisplayName() << "\"";
 
 	    if (dynamic_cast<const Disk*>(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";

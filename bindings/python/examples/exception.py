@@ -8,7 +8,7 @@ device_graph = DeviceGraph()
 
 try:
   tmp = BlkDevice.find(device_graph, "/dev/sda")
-  print tmp.display_name()
+  print tmp.getDisplayName()
 except DeviceNotFound, e:
   print "device not found"
 

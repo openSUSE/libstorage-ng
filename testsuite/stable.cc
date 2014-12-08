@@ -46,8 +46,8 @@ BOOST_AUTO_TEST_CASE(valid)
     BOOST_CHECK_EQUAL(v_sda, sda->getImpl().getVertex());
     BOOST_CHECK_EQUAL(v_sda2, sda2->getImpl().getVertex());
 
-    BOOST_CHECK_EQUAL(sda->display_name(), "/dev/sda");
-    BOOST_CHECK_EQUAL(sda2->display_name(), "/dev/sda2");
+    BOOST_CHECK_EQUAL(sda->getName(), "/dev/sda");
+    BOOST_CHECK_EQUAL(sda2->getName(), "/dev/sda2");
 
     BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda1"), runtime_error);
 

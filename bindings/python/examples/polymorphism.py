@@ -17,7 +17,7 @@ device_graph.print_graph()
 
 print "partitions on gpt:"
 for partition in gpt.getPartitions():
-  print "  %s %s" % (partition.display_name(), partition.getNumber())
+  print "  %s %s" % (partition.getDisplayName(), partition.getNumber())
 print
 
 
@@ -26,10 +26,10 @@ for device in sda.getDescendants(False):
 
   partition_table = storage.toPartitionTable(device)
   if partition_table:
-    print "  %s is partition table" % partition_table.display_name()
+    print "  %s is partition table" % partition_table.getDisplayName()
     
   partition = storage.toPartition(device)
   if partition:
-    print "  %s %s is partition" % (partition.display_name(), partition.getNumber())
+    print "  %s %s is partition" % (partition.getDisplayName(), partition.getNumber())
 
 print

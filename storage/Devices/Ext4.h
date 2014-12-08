@@ -18,7 +18,7 @@ namespace storage
 	static Ext4* create(DeviceGraph* device_graph);
 	static Ext4* load(DeviceGraph* device_graph, const xmlNode* node);
 
-	virtual string display_name() const override { return "ext4"; }
+	virtual string getDisplayName() const override { return "ext4"; }
 
 	bool supportsLabel() const override { return true; }
 	unsigned int maxLabelSize() const override { return 16; }

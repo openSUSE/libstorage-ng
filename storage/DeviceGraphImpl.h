@@ -47,7 +47,6 @@ namespace storage
 	set<sid_t> getSids() const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
-	vertex_descriptor find_vertex(const string& name) const;
 
 	void remove_vertex(vertex_descriptor a);
 

@@ -22,7 +22,7 @@ namespace storage
 	const string& getName() const;
 	void setName(const string& name);
 
-	virtual string display_name() const override { return getName(); }
+	virtual string getDisplayName() const override { return getName(); }
 
 	virtual void check() const override;
 

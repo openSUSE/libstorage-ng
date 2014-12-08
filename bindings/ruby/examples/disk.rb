@@ -20,18 +20,18 @@ device_graph.print_graph()
 
 puts "partitions on gpt:"
 gpt.get_partitions().each do |partition|
-  puts "  #{partition.display_name()}  #{partition.get_number()}"
+  puts "  #{partition.get_display_name()}  #{partition.get_number()}"
 end
 puts
 
 
 puts "descendants of sda:"
 sda.get_descendants(false).each do |device|
-  puts "  #{device.display_name()}"
+  puts "  #{device.get_display_name()}"
 end
 puts
 
 
 tmp1 = Storage::BlkDevice::find(device_graph, "/dev/sda1")
-puts "#{tmp1.display_name()}"
+puts "#{tmp1.get_display_name()}"
 

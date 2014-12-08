@@ -18,7 +18,7 @@ namespace storage
 	static Swap* create(DeviceGraph* device_graph);
 	static Swap* load(DeviceGraph* device_graph, const xmlNode* node);
 
-	virtual string display_name() const override { return "swap"; }
+	virtual string getDisplayName() const override { return "swap"; }
 
 	bool supportsLabel() const override { return false; }
 	unsigned int maxLabelSize() const override { return 0; }

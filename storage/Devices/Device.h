@@ -47,7 +47,7 @@ namespace storage
 
 	sid_t getSid() const;
 
-	virtual string display_name() const = 0;
+	virtual string getDisplayName() const = 0;
 
 	virtual void check() const;
 

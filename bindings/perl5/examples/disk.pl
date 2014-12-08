@@ -25,7 +25,7 @@ for (my $i = 0; $i < $x1->size(); $i++)
 {
     my $partition = $x1->get($i);
 
-    print "  ", $partition->display_name(), " ", $partition->getNumber(), "\n";
+    print "  ", $partition->getDisplayName(), " ", $partition->getNumber(), "\n";
 }
 print "\n";
 
@@ -36,11 +36,11 @@ for (my $i = 0; $i < $x2->size(); $i++)
 {
     my $device = $x2->get($i);
 
-    print "  ", $device->display_name(), "\n";
+    print "  ", $device->getDisplayName(), "\n";
 }
 print "\n";
 
 
 my $tmp1 = storage::BlkDevice::find($device_graph, "/dev/sda1");
-print $tmp1->display_name(), "\n";
+print $tmp1->getDisplayName(), "\n";
 

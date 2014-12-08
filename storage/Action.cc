@@ -28,7 +28,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " create " << device_rhs->display_name();
+	    str << sid << " create " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -39,7 +39,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " set type " << device_rhs->display_name();
+	    str << sid << " set type " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -50,7 +50,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " format " << device_rhs->display_name();
+	    str << sid << " format " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -61,7 +61,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " set label " << device_rhs->display_name();
+	    str << sid << " set label " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -72,7 +72,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " format " << device_rhs->display_name();
+	    str << sid << " format " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -83,7 +83,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " open " << device_rhs->display_name();
+	    str << sid << " open " << device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -94,7 +94,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " mount " << device_rhs->display_name() << " " << mount_point;
+	    str << sid << " mount " << device_rhs->getDisplayName() << " " << mount_point;
 	    return str.str();
 	}
 
@@ -105,7 +105,7 @@ namespace storage
 	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " umount " << device_lhs->display_name() << " " << mount_point;
+	    str << sid << " umount " << device_lhs->getDisplayName() << " " << mount_point;
 	    return str.str();
 	}
 
@@ -116,7 +116,7 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " add fstab entry " << device_rhs->display_name() << " " << mount_point;
+	    str << sid << " add fstab entry " << device_rhs->getDisplayName() << " " << mount_point;
 	    return str.str();
 	}
 
@@ -127,7 +127,7 @@ namespace storage
 	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " remove fstab entry " << device_lhs->display_name() << " " << mount_point;
+	    str << sid << " remove fstab entry " << device_lhs->getDisplayName() << " " << mount_point;
 	    return str.str();
 	}
 
@@ -139,8 +139,8 @@ namespace storage
 	    const Device* device_rhs = action_graph.rhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " rename " << device_lhs->display_name() << " -> "
-		<< device_rhs->display_name();
+	    str << sid << " rename " << device_lhs->getDisplayName() << " -> "
+		<< device_rhs->getDisplayName();
 	    return str.str();
 	}
 
@@ -151,7 +151,7 @@ namespace storage
 	    const Device* device_lhs = action_graph.lhs.findDevice(sid);
 
 	    ostringstream str;
-	    str << sid << " delete " << device_lhs->display_name();
+	    str << sid << " delete " << device_lhs->getDisplayName();
 	    return str.str();
 	}
 

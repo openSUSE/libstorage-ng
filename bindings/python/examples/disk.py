@@ -20,16 +20,16 @@ device_graph.print_graph()
 
 print "partitions on gpt:"
 for partition in gpt.getPartitions():
-  print "  %s %s" % (partition.display_name(), partition.getNumber())
+  print "  %s %s" % (partition.getDisplayName(), partition.getNumber())
 print
 
 
 print "descendants of sda:"
 for device in sda.getDescendants(False):
-  print "  %s" % device.display_name()
+  print "  %s" % device.getDisplayName()
 print
 
 
 tmp1 = BlkDevice.find(device_graph, "/dev/sda1")
-print tmp1.display_name()
+print tmp1.getDisplayName()
 

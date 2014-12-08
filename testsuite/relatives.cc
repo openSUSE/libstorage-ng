@@ -35,7 +35,7 @@ namespace std
     {
 	s << "{";
 	for (vector<const Device*>::const_iterator it = devices.begin(); it != devices.end(); ++it)
-	    s << (it == devices.begin() ? " " : ", ") << (*it)->display_name() << " (" << *it << ")";
+	    s << (it == devices.begin() ? " " : ", ") << (*it)->getDisplayName() << " (" << *it << ")";
 	s << " }";
 
 	return s;

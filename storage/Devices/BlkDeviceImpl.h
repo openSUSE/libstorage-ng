@@ -18,25 +18,28 @@ namespace storage
     {
     public:
 
-	unsigned long long getSizeK() const;
+	const string& getName() const { return name; }
+	void setName(const string& name);
+
+	unsigned long long getSizeK() const { return size_k; }
 	void setSizeK(unsigned long long size_k);
-
-	unsigned long long size_k;
-
-	string name;
-
-	// size
-	// major and minor
-	// udev_id and udev_path
 
     protected:
 
 	Impl(const string& name)
-	    : Device::Impl(), name(name) {}
+	    : Device::Impl(), name(name), size_k(0) {}
 
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
+
+    private:
+
+	string name;
+	unsigned long long size_k;
+
+	// major and minor
+	// udev_id and udev_path
 
     };
 
