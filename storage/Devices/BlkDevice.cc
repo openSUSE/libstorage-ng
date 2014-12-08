@@ -64,6 +64,20 @@ namespace storage
     }
 
 
+    unsigned long long
+    BlkDevice::getSizeK() const
+    {
+	return getImpl().getSizeK();
+    }
+
+
+    void
+    BlkDevice::setSizeK(unsigned long long size_k)
+    {
+	getImpl().setSizeK(size_k);
+    }
+
+
     void
     BlkDevice::check() const
     {

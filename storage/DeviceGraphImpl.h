@@ -39,7 +39,7 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	bool empty() const;
+	bool isEmpty() const;
 
 	size_t numDevices() const;
 	size_t numHolders() const;

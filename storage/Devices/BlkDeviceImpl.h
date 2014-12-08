@@ -18,6 +18,11 @@ namespace storage
     {
     public:
 
+	unsigned long long getSizeK() const;
+	void setSizeK(unsigned long long size_k);
+
+	unsigned long long size_k;
+
 	string name;
 
 	// size

@@ -36,7 +36,7 @@ namespace storage
 	void load(const string& filename);
 	void save(const string& filename) const;
 
-	bool empty() const;
+	bool isEmpty() const;
 
 	size_t numDevices() const;
 	size_t numHolders() const;

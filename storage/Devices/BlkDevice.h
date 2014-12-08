@@ -25,6 +25,9 @@ namespace storage
 	const string& getName() const;
 	void setName(const string& name);
 
+	unsigned long long getSizeK() const;
+	void setSizeK(unsigned long long size_k);
+
 	static BlkDevice* find(const DeviceGraph* device_graph, const string& name);
 
 	Filesystem* createFilesystem(FsType fs_type);

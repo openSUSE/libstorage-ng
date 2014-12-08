@@ -27,7 +27,7 @@ namespace storage
 {
 
     bool
-    DeviceGraph::Impl::empty() const
+    DeviceGraph::Impl::isEmpty() const
     {
 	return boost::num_vertices(graph) == 0;
     }

@@ -48,9 +48,9 @@ namespace storage
 
 
     bool
-    DeviceGraph::empty() const
+    DeviceGraph::isEmpty() const
     {
-	return getImpl().empty();
+	return getImpl().isEmpty();
     }
 
 
