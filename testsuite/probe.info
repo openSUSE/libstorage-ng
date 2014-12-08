@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DeviceGraph>
+  <Devices>
+    <Disk>
+      <sid>42</sid>
+      <name>/dev/sda</name>
+    </Disk>
+    <Partition>
+      <sid>43</sid>
+      <name>/dev/sda1</name>
+    </Partition>
+  </Devices>
+  <Holders>
+    <Subdevice>
+      <source-sid>42</source-sid>
+      <target-sid>43</target-sid>
+    </Subdevice>
+  </Holders>
+</DeviceGraph>
