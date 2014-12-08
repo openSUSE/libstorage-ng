@@ -2,8 +2,16 @@
 #define ENVIRONMENT_H
 
 
+#include <string>
+#include <memory>
+
+
 namespace storage
 {
+
+    using std::string;
+    using std::shared_ptr;
+
 
     enum class ProbeMode {
 	PROBE_NORMAL,			// probe system during init
@@ -28,9 +36,25 @@ namespace storage
 	Environment(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
 	~Environment();
 
-	bool read_only;
-	ProbeMode probe_mode;
-	TargetMode target_mode;
+	bool getReadOnly() const;
+
+	ProbeMode getProbeMode() const;
+
+	TargetMode getTargetMode() const;
+
+	const string& getDeviceGraphFilename() const;
+	void setDeviceGraphFilename(const string& device_graph_filename);
+
+    public:
+
+        class Impl;
+
+        Impl& getImpl() { return *impl; }
+        const Impl& getImpl() const { return *impl; }
+
+    private:
+
+        shared_ptr<Impl> impl;
 
     };
 

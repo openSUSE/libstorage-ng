@@ -12,6 +12,8 @@ namespace storage
     {
 	if (!getChildValue(node, "name", name))
 	    throw runtime_error("no name");
+
+	getChildValue(node, "size-k", size_k);
     }
 
 
@@ -21,6 +23,8 @@ namespace storage
 	Device::Impl::save(node);
 
 	setChildValue(node, "name", name);
+
+	setChildValueIf(node, "size-k", size_k, size_k > 0);
     }
 
 

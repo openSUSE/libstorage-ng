@@ -11,12 +11,11 @@ namespace storage
     Storage::Impl::Impl(const Environment& environment)
 	: environment(environment)
     {
-	switch (environment.probe_mode)
+	switch (environment.getProbeMode())
 	{
 	    case ProbeMode::PROBE_NORMAL: {
 
 		DeviceGraph* probed = createDeviceGraph("probed");
-
 		probe(probed);
 
 		copyDeviceGraph("probed", "current");
@@ -31,9 +30,10 @@ namespace storage
 
 	    case ProbeMode::PROBE_READ_DEVICE_GRAPH: {
 
-		createDeviceGraph("current");
+		DeviceGraph* probed = createDeviceGraph("probed");
+		probed->load(environment.getDeviceGraphFilename());
 
-		// TODO
+		copyDeviceGraph("probed", "current");
 
 	    } break;
 
