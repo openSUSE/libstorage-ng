@@ -10,7 +10,7 @@
 #include "storage/Holders/Holder.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     struct DeviceNotFound : public runtime_error

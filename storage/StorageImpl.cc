@@ -5,7 +5,7 @@
 #include "storage/Devices/Disk.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     Storage::Impl::Impl(const Environment& environment)

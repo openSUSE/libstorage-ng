@@ -4,7 +4,7 @@
 #include "storage/Utils/XmlFile.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     BlkDevice::Impl::Impl(const xmlNode* node)

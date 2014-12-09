@@ -6,7 +6,7 @@
 #include "storage/Utils/XmlFile.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     Holder::Holder(Impl* impl)

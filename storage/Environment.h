@@ -6,7 +6,7 @@
 #include <memory>
 
 
-namespace storage
+namespace storage_bgl
 {
 
     using std::string;

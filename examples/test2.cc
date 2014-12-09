@@ -8,7 +8,7 @@
 #include "storage/Devicegraph.h"
 
 
-using namespace storage;
+using namespace storage_bgl;
 
 
 void

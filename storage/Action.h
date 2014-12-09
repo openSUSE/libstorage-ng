@@ -6,7 +6,7 @@
 #include "storage/Actiongraph.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     namespace Action

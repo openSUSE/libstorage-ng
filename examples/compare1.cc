@@ -10,7 +10,7 @@
 #include "storage/Actiongraph.h"
 
 
-using namespace storage;
+using namespace storage_bgl;
 
 
 int

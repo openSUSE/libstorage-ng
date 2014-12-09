@@ -6,7 +6,7 @@
 #include "storage/Holders/HolderImpl.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class Using::Impl : public Holder::Impl

@@ -2,7 +2,7 @@
 #define GRAPH_UTILS_H
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class cycle_detector : public boost::default_dfs_visitor

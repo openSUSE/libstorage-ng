@@ -5,7 +5,7 @@
 #include "storage/Storage.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class Storage::Impl

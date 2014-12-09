@@ -14,7 +14,7 @@
 #include "storage/Actiongraph.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     Actiongraph::Actiongraph(const Devicegraph& lhs, const Devicegraph& rhs)
@@ -377,7 +377,7 @@ namespace std
 {
 
     ostream&
-    operator<<(ostream& s, const storage::Actiongraph::simple_t& simple)
+    operator<<(ostream& s, const storage_bgl::Actiongraph::simple_t& simple)
     {
 	for (const pair<const string, vector<string>>& i : simple)
 	{

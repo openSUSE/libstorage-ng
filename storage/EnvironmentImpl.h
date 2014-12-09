@@ -5,7 +5,7 @@
 #include "storage/Environment.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class Environment::Impl

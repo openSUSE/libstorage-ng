@@ -3,7 +3,7 @@
 #include "storage/EnvironmentImpl.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     Environment::Environment(bool read_only)

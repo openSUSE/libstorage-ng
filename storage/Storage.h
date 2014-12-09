@@ -6,7 +6,7 @@
 #include "storage/Devicegraph.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class Storage

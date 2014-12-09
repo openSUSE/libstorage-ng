@@ -5,7 +5,7 @@
 #include "storage/Devices/PartitionTable.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     using namespace std;

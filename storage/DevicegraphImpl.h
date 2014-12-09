@@ -11,7 +11,7 @@
 #include "storage/Devicegraph.h"
 
 
-namespace storage
+namespace storage_bgl
 {
 
     class Devicegraph::Impl : private boost::noncopyable
