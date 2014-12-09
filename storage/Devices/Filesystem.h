@@ -5,18 +5,13 @@
 #include <vector>
 
 #include "storage/Devices/Device.h"
+#include "storage/StorageInterface.h"
 
 
 namespace storage_bgl
 {
 
     using namespace std;
-
-
-    enum class FsType {
-	REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS, SWAP,
-	HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF
-    };
 
 
     // abstract class

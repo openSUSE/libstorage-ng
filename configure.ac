@@ -57,7 +57,9 @@ AC_OUTPUT(
 	storage/Devices/Makefile
 	storage/Holders/Makefile
 	storage/Utils/Makefile
+	storage/SystemInfo/Makefile
 	examples/Makefile
+	examples/SystemInfo/Makefile
 	testsuite/Makefile
 	bindings/Makefile
 	bindings/python/Makefile

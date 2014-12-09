@@ -30,13 +30,15 @@
 #include <sstream>
 #include <boost/noncopyable.hpp>
 
+#include "storage/Utils/AppUtil.h"
+
 
 namespace storage_bgl
 {
     using namespace std;
 
 
-    class XmlFile : boost::noncopyable
+    class XmlFile : private boost::noncopyable
     {
 
     public:
@@ -83,7 +85,7 @@ namespace storage_bgl
 	    return false;
 
 	std::istringstream istr(tmp);
-	// classic(istr);
+	classic(istr);
 	istr >> value;
 	return true;
     }
@@ -99,7 +101,7 @@ namespace storage_bgl
 	static_assert(std::is_integral<Num>::value, "not integral");
 
 	std::ostringstream ostr;
-	// classic(ostr);
+	classic(ostr);
 	ostr << value;
 	setChildValue(node, name, ostr.str());
     }
@@ -116,21 +118,6 @@ namespace storage_bgl
     {
 	if (pred)
 	    setChildValue(node, name, value);
-    }
-
-
-    void setProp(xmlNode* node, const char* name, const char* value);
-    void setProp(xmlNode* node, const char* name, const string& value);
-
-    template<typename Num>
-    void setProp(xmlNode* node, const char* name, const Num& value)
-    {
-	static_assert(std::is_integral<Num>::value, "not integral");
-
-	std::ostringstream ostr;
-	// classic(ostr);
-	ostr << value;
-	setProp(node, name, ostr.str());
     }
 
 }

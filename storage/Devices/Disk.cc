@@ -5,6 +5,7 @@
 #include "storage/Holders/Using.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage_bgl
@@ -68,5 +69,15 @@ namespace storage_bgl
 	Using::create(get_impl().get_devicegraph(), this, ret);
 	return ret;
     }
+
+
+    const vector<string> EnumInfo<DasdType>::names({
+	"NONE", "ECKD", "FBA"
+    });
+
+
+    const vector<string> EnumInfo<DasdFormat>::names({
+	"NONE", "LDL", "CDL"
+    });
 
 }

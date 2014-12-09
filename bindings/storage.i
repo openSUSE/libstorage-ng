@@ -61,6 +61,7 @@ using namespace std;
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Environment.h"
 %include "../../storage/Storage.h"
+%include "../../storage/StorageInterface.h"
 
 using namespace storage_bgl;
 

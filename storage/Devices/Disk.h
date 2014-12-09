@@ -12,6 +12,16 @@ namespace storage_bgl
     using namespace std;
 
 
+    enum DasdFormat {
+	DASDF_NONE, DASDF_LDL, DASDF_CDL
+    };
+
+
+    enum DasdType {
+	DASDTYPE_NONE, DASDTYPE_ECKD, DASDTYPE_FBA
+    };
+
+
     class Disk : public BlkDevice
     {
     public:

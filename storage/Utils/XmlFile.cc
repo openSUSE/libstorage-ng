@@ -163,18 +163,4 @@ namespace storage_bgl
 	xmlNewTextChild(node, NULL, (const xmlChar*) name, (const xmlChar*)(value ? "true" : "false"));
     }
 
-
-    void
-    setProp(xmlNode* node, const char* name, const char* value)
-    {
-	xmlNewProp(node, (const xmlChar*) name, (const xmlChar*) value);
-    }
-
-
-    void
-    setProp(xmlNode* node, const char* name, const string& value)
-    {
-	xmlNewProp(node, (const xmlChar*) name, (const xmlChar*) value.c_str());
-    }
-
 }

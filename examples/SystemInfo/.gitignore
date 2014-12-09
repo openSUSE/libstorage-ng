@@ -1,0 +1,17 @@
+*.o
+test-blkid
+test-cmdbtrfsshow
+test-cmddmsetupinfo
+test-cmdvgdisplay
+test-cmdvgs
+test-dir
+test-lsscsi
+test-majorminor
+test-mdadmdetail
+test-mdadmexamine
+test-mdlinks
+test-parted
+test-procmdstat
+test-procmounts
+test-procparts
+test-udevmap

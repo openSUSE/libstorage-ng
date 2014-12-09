@@ -30,7 +30,7 @@ namespace storage_bgl
 
 	static BlkDevice* find(const Devicegraph* devicegraph, const string& name);
 
-	Filesystem* create_filesystem(FsType fs_type);
+	Filesystem* create_filesystem(storage::FsType fs_type);
 
     public:
 

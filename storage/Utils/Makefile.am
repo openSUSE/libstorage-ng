@@ -5,6 +5,16 @@
 noinst_LTLIBRARIES = libutils.la
 
 libutils_la_SOURCES =					\
-	XmlFile.h		XmlFile.cc		\
-	GraphUtils.h
+	AppUtil.cc		AppUtil.h		\
+	AsciiFile.cc 		AsciiFile.h		\
+	Enum.cc			Enum.h			\
+	GraphUtils.h					\
+	HumanString.h		HumanString.cc		\
+	Lock.cc 		Lock.h			\
+	OutputProcessor.cc	OutputProcessor.h	\
+	Regex.cc 		Regex.h			\
+	Region.cc 		Region.h		\
+	StorageTmpl.h					\
+	SystemCmd.cc		SystemCmd.h		\
+	XmlFile.h		XmlFile.cc
 

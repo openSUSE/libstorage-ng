@@ -87,7 +87,7 @@ namespace storage_bgl
 
 
     Filesystem*
-    BlkDevice::create_filesystem(FsType fs_type)
+    BlkDevice::create_filesystem(storage::FsType fs_type)
     {
 	if (num_children() != 0)
 	    throw runtime_error("BlkDevice has children");
@@ -96,11 +96,11 @@ namespace storage_bgl
 
 	switch (fs_type)
 	{
-	    case FsType::EXT4:
+	    case storage::EXT4:
 		ret = Ext4::create(get_impl().get_devicegraph());
 		break;
 
-	    case FsType::SWAP:
+	    case storage::SWAP:
 		ret = Swap::create(get_impl().get_devicegraph());
 		break;
 

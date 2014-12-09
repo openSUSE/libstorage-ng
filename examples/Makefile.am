@@ -2,6 +2,8 @@
 # Makefile.am for libstorage/examples
 #
 
+SUBDIRS = SystemInfo
+
 AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../storage/libstorage.la
