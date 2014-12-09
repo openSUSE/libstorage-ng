@@ -17,7 +17,11 @@ libstorage_la_SOURCES =					\
 	Actiongraph.h		Actiongraph.cc
 
 libstorage_la_LDFLAGS = -version-info 7:0:2
-libstorage_la_LIBADD = Devices/libdevices.la Holders/libholders.la Utils/libutils.la -lxml2
+libstorage_la_LIBADD =			\
+	Devices/libdevices.la		\
+	Holders/libholders.la		\
+	Utils/libutils.la 		\
+	-lxml2
 
 pkgincludedir = $(includedir)/storage
 
