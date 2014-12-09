@@ -8,13 +8,13 @@
 #include "storage/Devices/Device.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Holders/Holder.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
 {
 
-    class DeviceGraph::Impl : private boost::noncopyable
+    class Devicegraph::Impl : private boost::noncopyable
     {
 
     public:
@@ -39,12 +39,12 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	bool isEmpty() const;
+	bool empty() const;
 
-	size_t numDevices() const;
-	size_t numHolders() const;
+	size_t num_devices() const;
+	size_t num_holders() const;
 
-	set<sid_t> getSids() const;
+	set<sid_t> get_sids() const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
 
@@ -53,7 +53,7 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;
 
-	void load(DeviceGraph* device_graph, const string& filename);
+	void load(Devicegraph* devicegraph, const string& filename);
 	void save(const string& filename) const;
 
 	void print_graph() const;
@@ -104,7 +104,7 @@ namespace storage
 	    return ret;
 	}
 
-	void swap(DeviceGraph::Impl& x);
+	void swap(Devicegraph::Impl& x);
 
 	graph_t graph;
 

@@ -15,17 +15,17 @@ namespace storage
     {
     public:
 
-	static Encryption* create(DeviceGraph* device_graph, const string& name);
-	static Encryption* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Encryption* create(Devicegraph* devicegraph, const string& name);
+	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Encryption"; }
+	virtual const char* get_classname() const override { return "Encryption"; }
 
 	virtual Encryption* clone() const override;
 

@@ -5,7 +5,7 @@
 #include <libxml/tree.h>
 
 #include "storage/Holders/Holder.h"
-#include "storage/DeviceGraphImpl.h"
+#include "storage/DevicegraphImpl.h"
 
 
 namespace storage
@@ -23,16 +23,16 @@ namespace storage
 
 	virtual void save(xmlNode* node) const = 0;
 
-	void setDeviceGraphAndEdge(DeviceGraph* device_graph,
-				   DeviceGraph::Impl::edge_descriptor edge);
+	void set_devicegraph_and_edge(Devicegraph* devicegraph,
+				      Devicegraph::Impl::edge_descriptor edge);
 
-	DeviceGraph* getDeviceGraph() { return device_graph; }
-	const DeviceGraph* getDeviceGraph() const { return device_graph; }
+	Devicegraph* get_devicegraph() { return devicegraph; }
+	const Devicegraph* get_devicegraph() const { return devicegraph; }
 
-	DeviceGraph::Impl::edge_descriptor getEdge() const { return edge; }
+	Devicegraph::Impl::edge_descriptor get_edge() const { return edge; }
 
-	sid_t getSourceSid() const;
-	sid_t getTargetSid() const;
+	sid_t get_source_sid() const;
+	sid_t get_target_sid() const;
 
     protected:
 
@@ -42,8 +42,8 @@ namespace storage
 
     private:
 
-	DeviceGraph* device_graph;
-	DeviceGraph::Impl::edge_descriptor edge;
+	Devicegraph* devicegraph;
+	Devicegraph::Impl::edge_descriptor edge;
 
     };
 

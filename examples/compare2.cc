@@ -7,8 +7,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 using namespace storage;
@@ -17,14 +17,14 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph lhs;
+    Devicegraph lhs;
 
     Disk* lhs_sda = Disk::create(&lhs, "/dev/sda");
 
-    DeviceGraph rhs;
+    Devicegraph rhs;
     lhs.copy(rhs);
 
-    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.findDevice(lhs_sda->getSid()));
+    Disk* rhs_sda = dynamic_cast<Disk*>(rhs.find_device(lhs_sda->get_sid()));
 
     Gpt* rhs_gpt = Gpt::create(&rhs);
     Using::create(&rhs, rhs_sda, rhs_gpt);
@@ -42,7 +42,7 @@ main()
     LvmLv* rhs_system_swap = LvmLv::create(&rhs, "/dev/system/swap");
     Subdevice::create(&rhs, rhs_system, rhs_system_swap);
 
-    ActionGraph action_graph(lhs, rhs);
+    Actiongraph actiongraph(lhs, rhs);
 
-    action_graph.write_graphviz("compare2-action");
+    actiongraph.write_graphviz("compare2-action");
 }

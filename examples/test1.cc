@@ -9,22 +9,22 @@
 #include "storage/Devices/Device.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
 
 
-DeviceGraph device_graph;
+Devicegraph devicegraph;
 
 
 void
 children(const Device* device)
 {
-    cout << "children of " << device->getDisplayName() << ":" << endl;
+    cout << "children of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* child : device->getChildren())
-	cout << "  " << child->getDisplayName() << endl;
+    for (const Device* child : device->get_children())
+	cout << "  " << child->get_displayname() << endl;
 
     cout << endl;
 }
@@ -33,10 +33,10 @@ children(const Device* device)
 void
 parents(const Device* device)
 {
-    cout << "parents of " << device->getDisplayName() << ":" << endl;
+    cout << "parents of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* parent : device->getParents())
-	cout << "  " << parent->getDisplayName() << endl;
+    for (const Device* parent : device->get_parents())
+	cout << "  " << parent->get_displayname() << endl;
 
     cout << endl;
 }
@@ -45,10 +45,10 @@ parents(const Device* device)
 void
 siblings(const Device* device)
 {
-    cout << "siblings of " << device->getDisplayName() << ":" << endl;
+    cout << "siblings of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* sibling : device->getSiblings(false))
-	cout << "  " << sibling->getDisplayName() << endl;
+    for (const Device* sibling : device->get_siblings(false))
+	cout << "  " << sibling->get_displayname() << endl;
 
     cout << endl;
 }
@@ -57,10 +57,10 @@ siblings(const Device* device)
 void
 descendants(const Device* device)
 {
-    cout << "descendants of " << device->getDisplayName() << ":" << endl;
+    cout << "descendants of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* descendant : device->getDescendants(false))
-	cout << "  " << descendant->getDisplayName() << endl;
+    for (const Device* descendant : device->get_descendants(false))
+	cout << "  " << descendant->get_displayname() << endl;
 
     cout << endl;
 }
@@ -69,10 +69,10 @@ descendants(const Device* device)
 void
 ancestors(const Device* device)
 {
-    cout << "ancestors of " << device->getDisplayName() << ":" << endl;
+    cout << "ancestors of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* ancestor : device->getAncestors(false))
-	cout << "  " << ancestor->getDisplayName() << endl;
+    for (const Device* ancestor : device->get_ancestors(false))
+	cout << "  " << ancestor->get_displayname() << endl;
 
     cout << endl;
 }
@@ -81,10 +81,10 @@ ancestors(const Device* device)
 void
 leafs(const Device* device)
 {
-    cout << "leafs of " << device->getDisplayName() << ":" << endl;
+    cout << "leafs of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* leaf : device->getLeafs(false))
-	cout << "  " << leaf->getDisplayName() << endl;
+    for (const Device* leaf : device->get_leafs(false))
+	cout << "  " << leaf->get_displayname() << endl;
 
     cout << endl;
 }
@@ -93,10 +93,10 @@ leafs(const Device* device)
 void
 roots(const Device* device)
 {
-    cout << "roots of " << device->getDisplayName() << ":" << endl;
+    cout << "roots of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* root : device->getRoots(false))
-	cout << "  " << root->getDisplayName() << endl;
+    for (const Device* root : device->get_roots(false))
+	cout << "  " << root->get_displayname() << endl;
 
     cout << endl;
 }
@@ -105,50 +105,50 @@ roots(const Device* device)
 int
 main()
 {
-    Disk* sda = Disk::create(&device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
-    Subdevice::create(&device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Subdevice::create(&devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(&device_graph, "/dev/sda2");
-    Subdevice::create(&device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2");
+    Subdevice::create(&devicegraph, sda, sda2);
 
-    Disk* sdb = Disk::create(&device_graph, "/dev/sdb");
+    Disk* sdb = Disk::create(&devicegraph, "/dev/sdb");
 
-    Partition* sdb1 = Partition::create(&device_graph, "/dev/sdb1");
-    Subdevice::create(&device_graph, sdb, sdb1);
+    Partition* sdb1 = Partition::create(&devicegraph, "/dev/sdb1");
+    Subdevice::create(&devicegraph, sdb, sdb1);
 
-    Partition* sdb2 = Partition::create(&device_graph, "/dev/sdb2");
-    Subdevice::create(&device_graph, sdb, sdb2);
+    Partition* sdb2 = Partition::create(&devicegraph, "/dev/sdb2");
+    Subdevice::create(&devicegraph, sdb, sdb2);
 
-    LvmVg* system = LvmVg::create(&device_graph, "/dev/system");
-    Using::create(&device_graph, sda1, system);
-    Using::create(&device_graph, sdb1, system);
+    LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
+    Using::create(&devicegraph, sda1, system);
+    Using::create(&devicegraph, sdb1, system);
 
-    LvmLv* system_root = LvmLv::create(&device_graph, "/dev/system/root");
-    Subdevice::create(&device_graph, system, system_root);
+    LvmLv* system_root = LvmLv::create(&devicegraph, "/dev/system/root");
+    Subdevice::create(&devicegraph, system, system_root);
 
-    LvmLv* system_swap = LvmLv::create(&device_graph, "/dev/system/swap");
-    Subdevice::create(&device_graph, system, system_swap);
+    LvmLv* system_swap = LvmLv::create(&devicegraph, "/dev/system/swap");
+    Subdevice::create(&devicegraph, system, system_swap);
 
-    LvmLv* system_home = LvmLv::create(&device_graph, "/dev/system/home");
-    Subdevice::create(&device_graph, system, system_home);
+    LvmLv* system_home = LvmLv::create(&devicegraph, "/dev/system/home");
+    Subdevice::create(&devicegraph, system, system_home);
 
-    Ext4* system_root_fs = Ext4::create(&device_graph);
-    Subdevice::create(&device_graph, system_root, system_root_fs);
-    system_root_fs->setLabel("ROOT");
-    system_root_fs->addMountPoint("/");
+    Ext4* system_root_fs = Ext4::create(&devicegraph);
+    Subdevice::create(&devicegraph, system_root, system_root_fs);
+    system_root_fs->set_label("ROOT");
+    system_root_fs->add_mountpoint("/");
 
-    Swap* system_swap_fs = Swap::create(&device_graph);
-    Subdevice::create(&device_graph, system_swap, system_swap_fs);
-    system_swap_fs->setLabel("SWAP");
-    system_swap_fs->addMountPoint("swap");
+    Swap* system_swap_fs = Swap::create(&devicegraph);
+    Subdevice::create(&devicegraph, system_swap, system_swap_fs);
+    system_swap_fs->set_label("SWAP");
+    system_swap_fs->add_mountpoint("swap");
 
-    cout << "num_devices: " << device_graph.numDevices() << endl;
-    cout << "num_holders: " << device_graph.numHolders() << endl;
+    cout << "num_devices: " << devicegraph.num_devices() << endl;
+    cout << "num_holders: " << devicegraph.num_holders() << endl;
     cout << endl;
 
-    device_graph.check();
+    devicegraph.check();
 
     children(sda);
 
@@ -165,9 +165,9 @@ main()
 
     roots(system_swap);
 
-    device_graph.save("test1.info");
+    devicegraph.save("test1.info");
 
-    device_graph.print_graph();
+    devicegraph.print_graph();
 
-    device_graph.write_graphviz("test1");
+    devicegraph.write_graphviz("test1");
 }

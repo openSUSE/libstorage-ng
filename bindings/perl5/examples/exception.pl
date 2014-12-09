@@ -4,13 +4,13 @@ use strict;
 use storage;
 
 
-my $device_graph = new storage::DeviceGraph();
+my $devicegraph = new storage::Devicegraph();
 
 
 eval
 {
-    my $tmp = storage::BlkDevice::find($device_graph, "/dev/sda");
-    print $tmp->getDisplayName(), "\n";
+    my $tmp = storage::BlkDevice::find($devicegraph, "/dev/sda");
+    print $tmp->get_displayname(), "\n";
 };
 if ($@)
 {

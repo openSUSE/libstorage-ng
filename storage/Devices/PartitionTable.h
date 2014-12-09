@@ -25,16 +25,16 @@ namespace storage
     {
     public:
 
-	Partition* createPartition(const string& name);
+	Partition* create_partition(const string& name);
 
-	vector<const Partition*> getPartitions() const;
+	vector<const Partition*> get_partitions() const;
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
     protected:
 

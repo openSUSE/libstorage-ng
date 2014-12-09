@@ -15,21 +15,21 @@ namespace storage
 	Impl(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
 	~Impl();
 
-	bool getReadOnly() const { return read_only; }
+	bool get_read_only() const { return read_only; }
 
-	ProbeMode getProbeMode() const { return probe_mode; }
+	ProbeMode get_probe_mode() const { return probe_mode; }
 
-	TargetMode getTargetMode() const { return target_mode; }
+	TargetMode get_target_mode() const { return target_mode; }
 
-	const string& getDeviceGraphFilename() const { return device_graph_filename; }
-	void setDeviceGraphFilename(const string& device_graph_filename);
+	const string& get_devicegraph_filename() const { return devicegraph_filename; }
+	void set_devicegraph_filename(const string& devicegraph_filename);
 
     private:
 
 	bool read_only;
 	ProbeMode probe_mode;
 	TargetMode target_mode;
-	string device_graph_filename;
+	string devicegraph_filename;
 
     };
 

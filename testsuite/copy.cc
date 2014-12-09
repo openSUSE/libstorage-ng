@@ -14,7 +14,7 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -22,37 +22,37 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    DeviceGraph* device_graph = new DeviceGraph();
+    Devicegraph* devicegraph = new Devicegraph();
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Gpt* gpt = Gpt::create(device_graph);
-    Using::create(device_graph, sda, gpt);
+    Gpt* gpt = Gpt::create(devicegraph);
+    Using::create(devicegraph, sda, gpt);
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, gpt, sda1);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Subdevice::create(devicegraph, gpt, sda1);
 
-    Encryption::create(device_graph, "/dev/mapper/cr_sda1");
+    Encryption::create(devicegraph, "/dev/mapper/cr_sda1");
 
-    LvmVg::create(device_graph, "/dev/system");
-    LvmLv::create(device_graph, "/dev/system/root");
+    LvmVg::create(devicegraph, "/dev/system");
+    LvmLv::create(devicegraph, "/dev/system/root");
 
-    Ext4::create(device_graph);
-    Swap::create(device_graph);
+    Ext4::create(devicegraph);
+    Swap::create(devicegraph);
 
-    BOOST_CHECK_EQUAL(device_graph->numDevices(), 8);
-    BOOST_CHECK_EQUAL(device_graph->numHolders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 8);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
 
-    device_graph->check();
+    devicegraph->check();
 
-    DeviceGraph* device_graph_copy = new DeviceGraph();
-    device_graph->copy(*device_graph_copy);
+    Devicegraph* devicegraph_copy = new Devicegraph();
+    devicegraph->copy(*devicegraph_copy);
 
-    BOOST_CHECK_EQUAL(device_graph_copy->numDevices(), 8);
-    BOOST_CHECK_EQUAL(device_graph_copy->numHolders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph_copy->num_devices(), 8);
+    BOOST_CHECK_EQUAL(devicegraph_copy->num_holders(), 2);
 
-    device_graph_copy->check();
+    devicegraph_copy->check();
 
-    delete device_graph;
-    delete device_graph_copy;
+    delete devicegraph;
+    delete devicegraph_copy;
 }

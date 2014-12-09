@@ -10,8 +10,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 
 
@@ -20,7 +20,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    ActionGraph::simple_t expected = {
+    Actiongraph::simple_t expected = {
 	{ "43 create /dev/sda1", { "43 set type /dev/sda1" } },
 	{ "43 set type /dev/sda1", { "44 create /dev/system" } },
 	{ "44 create /dev/system", { "45 create /dev/system/root", "46 create /dev/system/swap" } },
@@ -32,11 +32,11 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Storage storage(environment);
 
-    DeviceGraph* lhs = storage.getCurrent();
+    Devicegraph* lhs = storage.get_current();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph* rhs = storage.copyDeviceGraph("current", "old");
+    Devicegraph* rhs = storage.copy_devicegraph("current", "old");
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
     Subdevice::create(rhs, system, system_swap);
 
-    ActionGraph action_graph(*lhs, *rhs);
+    Actiongraph actiongraph(*lhs, *rhs);
 
-    BOOST_CHECK_EQUAL(action_graph.simple(), expected);
+    BOOST_CHECK_EQUAL(actiongraph.simple(), expected);
 }

@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/GptImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,24 +25,24 @@ namespace storage
 
 
     void
-    Gpt::Impl::add_create_actions(ActionGraph& action_graph) const
+    Gpt::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Create(getSid()));
+	actions.push_back(new Action::Create(get_sid()));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 
     void
-    Gpt::Impl::add_delete_actions(ActionGraph& action_graph) const
+    Gpt::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Nop(getSid()));
+	actions.push_back(new Action::Nop(get_sid()));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

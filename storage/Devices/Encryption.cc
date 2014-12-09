@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/EncryptionImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -12,19 +12,19 @@ namespace storage
 
 
     Encryption*
-    Encryption::create(DeviceGraph* device_graph, const string& name)
+    Encryption::create(Devicegraph* devicegraph, const string& name)
     {
 	Encryption* ret = new Encryption(new Encryption::Impl(name));
-	ret->Device::create(device_graph);
+	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Encryption*
-    Encryption::load(DeviceGraph* device_graph, const xmlNode* node)
+    Encryption::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Encryption* ret = new Encryption(new Encryption::Impl(node));
-	ret->Device::load(device_graph);
+	ret->Device::load(devicegraph);
 	return ret;
     }
 
@@ -38,21 +38,21 @@ namespace storage
     Encryption*
     Encryption::clone() const
     {
-	return new Encryption(getImpl().clone());
+	return new Encryption(get_impl().clone());
     }
 
 
     Encryption::Impl&
-    Encryption::getImpl()
+    Encryption::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const Encryption::Impl&
-    Encryption::getImpl() const
+    Encryption::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 }

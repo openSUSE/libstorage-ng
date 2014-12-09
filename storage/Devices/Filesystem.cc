@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/FilesystemImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -18,51 +18,51 @@ namespace storage
 
 
     Filesystem::Impl&
-    Filesystem::getImpl()
+    Filesystem::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const Filesystem::Impl&
-    Filesystem::getImpl() const
+    Filesystem::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     const string&
-    Filesystem::getLabel() const
+    Filesystem::get_label() const
     {
-	return getImpl().label;
+	return get_impl().label;
     }
 
 
     void
-    Filesystem::setLabel(const string& label)
+    Filesystem::set_label(const string& label)
     {
-	getImpl().label = label;
+	get_impl().label = label;
     }
 
 
     const string&
-    Filesystem::getUuid() const
+    Filesystem::get_uuid() const
     {
-	return getImpl().uuid;
+	return get_impl().uuid;
     }
 
 
     const vector<string>&
-    Filesystem::getMountPoints() const
+    Filesystem::get_mountpoints() const
     {
-	return getImpl().mount_points;
+	return get_impl().mountpoints;
     }
 
 
     void
-    Filesystem::addMountPoint(const string& mount_point)
+    Filesystem::add_mountpoint(const string& mountpoint)
     {
-	return getImpl().mount_points.push_back(mount_point);
+	return get_impl().mountpoints.push_back(mountpoint);
     }
 
 
@@ -74,24 +74,24 @@ namespace storage
 
 
     vector<Filesystem*>
-    Filesystem::findByLabel(const DeviceGraph* device_graph, const string& label)
+    Filesystem::find_by_label(const Devicegraph* devicegraph, const string& label)
     {
 	auto pred = [&label](const Filesystem* filesystem) {
-	    return filesystem->getLabel() == label;
+	    return filesystem->get_label() == label;
 	};
 
-	return device_graph->getImpl().getDevicesIf<Filesystem>(pred);
+	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
     }
 
 
     vector<Filesystem*>
-    Filesystem::findByMountPoint(const DeviceGraph* device_graph, const string& mount_point)
+    Filesystem::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
     {
-	auto pred = [&mount_point](const Filesystem* filesystem) {
-	    return contains(filesystem->getMountPoints(), mount_point);
+	auto pred = [&mountpoint](const Filesystem* filesystem) {
+	    return contains(filesystem->get_mountpoints(), mountpoint);
 	};
 
-	return device_graph->getImpl().getDevicesIf<Filesystem>(pred);
+	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
     }
 
 }

@@ -18,26 +18,26 @@ namespace storage
     {
     public:
 
-	virtual string getDisplayName() const override { return getName(); }
+	virtual string get_displayname() const override { return get_name(); }
 
 	virtual void check() const override;
 
-	const string& getName() const;
-	void setName(const string& name);
+	const string& get_name() const;
+	void set_name(const string& name);
 
-	unsigned long long getSizeK() const;
-	void setSizeK(unsigned long long size_k);
+	unsigned long long get_size_k() const;
+	void set_size_k(unsigned long long size_k);
 
-	static BlkDevice* find(const DeviceGraph* device_graph, const string& name);
+	static BlkDevice* find(const Devicegraph* devicegraph, const string& name);
 
-	Filesystem* createFilesystem(FsType fs_type);
+	Filesystem* create_filesystem(FsType fs_type);
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
     protected:
 

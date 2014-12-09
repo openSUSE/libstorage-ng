@@ -18,86 +18,86 @@ namespace storage
     }
 
 
-    DeviceGraph*
-    Storage::getDeviceGraph(const string& name)
+    Devicegraph*
+    Storage::get_devicegraph(const string& name)
     {
-	return getImpl().getDeviceGraph(name);
+	return get_impl().get_devicegraph(name);
     }
 
 
-    const DeviceGraph*
-    Storage::getDeviceGraph(const string& name) const
+    const Devicegraph*
+    Storage::get_devicegraph(const string& name) const
     {
-	return getImpl().getDeviceGraph(name);
+	return get_impl().get_devicegraph(name);
     }
 
 
-    DeviceGraph*
-    Storage::getCurrent()
+    Devicegraph*
+    Storage::get_current()
     {
-	return getImpl().getCurrent();
+	return get_impl().get_current();
     }
 
 
-    const DeviceGraph*
-    Storage::getCurrent() const
+    const Devicegraph*
+    Storage::get_current() const
     {
-	return getImpl().getCurrent();
+	return get_impl().get_current();
     }
 
 
-    const DeviceGraph*
-    Storage::getProbed() const
+    const Devicegraph*
+    Storage::get_probed() const
     {
-	return getImpl().getProbed();
+	return get_impl().get_probed();
     }
 
 
     vector<string>
-    Storage::getDeviceGraphNames() const
+    Storage::get_devicegraph_names() const
     {
-	return getImpl().getDeviceGraphNames();
+	return get_impl().get_devicegraph_names();
     }
 
-    DeviceGraph*
-    Storage::createDeviceGraph(const string& name)
+    Devicegraph*
+    Storage::create_devicegraph(const string& name)
     {
-	return getImpl().createDeviceGraph(name);
-    }
-
-
-    DeviceGraph*
-    Storage::copyDeviceGraph(const string& source_name, const string& dest_name)
-    {
-	return getImpl().copyDeviceGraph(source_name, dest_name);
+	return get_impl().create_devicegraph(name);
     }
 
 
-    void
-    Storage::removeDeviceGraph(const string& name)
+    Devicegraph*
+    Storage::copy_devicegraph(const string& source_name, const string& dest_name)
     {
-	getImpl().removeDeviceGraph(name);
+	return get_impl().copy_devicegraph(source_name, dest_name);
     }
 
 
     void
-    Storage::restoreDeviceGraph(const string& name)
+    Storage::remove_devicegraph(const string& name)
     {
-	getImpl().restoreDeviceGraph(name);
+	get_impl().remove_devicegraph(name);
+    }
+
+
+    void
+    Storage::restore_devicegraph(const string& name)
+    {
+	get_impl().restore_devicegraph(name);
     }
 
 
     bool
-    Storage::existDeviceGraph(const string& name) const
+    Storage::exist_devicegraph(const string& name) const
     {
-	return getImpl().existDeviceGraph(name);
+	return get_impl().exist_devicegraph(name);
     }
 
 
     bool
-    Storage::equalDeviceGraph(const string& lhs, const string& rhs) const
+    Storage::equal_devicegraph(const string& lhs, const string& rhs) const
     {
-	return getImpl().equalDeviceGraph(lhs, rhs);
+	return get_impl().equal_devicegraph(lhs, rhs);
     }
 
 }

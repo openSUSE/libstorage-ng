@@ -1,7 +1,7 @@
 
 
 #include "storage/Holders/HolderImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Utils/XmlFile.h"
 
 
@@ -9,51 +9,51 @@ namespace storage
 {
 
     Holder::Impl::Impl()
-	: device_graph(nullptr)
+	: devicegraph(nullptr)
     {
     }
 
 
     Holder::Impl::Impl(const xmlNode* node)
-	: device_graph(nullptr)
+	: devicegraph(nullptr)
     {
     }
 
 
     void
-    Holder::Impl::setDeviceGraphAndEdge(DeviceGraph* device_graph,
-					DeviceGraph::Impl::edge_descriptor edge)
+    Holder::Impl::set_devicegraph_and_edge(Devicegraph* devicegraph,
+					Devicegraph::Impl::edge_descriptor edge)
     {
-	Impl::device_graph = device_graph;
+	Impl::devicegraph = devicegraph;
 	Impl::edge = edge;
 
-	const Holder* holder = device_graph->getImpl().graph[edge].get();
-	if (&holder->getImpl() != this)
+	const Holder* holder = devicegraph->get_impl().graph[edge].get();
+	if (&holder->get_impl() != this)
 	    throw runtime_error("wrong edge for back references");
     }
 
 
     sid_t
-    Holder::Impl::getSourceSid() const
+    Holder::Impl::get_source_sid() const
     {
-	const DeviceGraph::Impl::graph_t& graph = device_graph->getImpl().graph;
-	return graph[source(edge, graph)]->getSid();
+	const Devicegraph::Impl::graph_t& graph = devicegraph->get_impl().graph;
+	return graph[source(edge, graph)]->get_sid();
     }
 
 
     sid_t
-    Holder::Impl::getTargetSid() const
+    Holder::Impl::get_target_sid() const
     {
-	const DeviceGraph::Impl::graph_t& graph = device_graph->getImpl().graph;
-	return graph[target(edge, graph)]->getSid();
+	const Devicegraph::Impl::graph_t& graph = devicegraph->get_impl().graph;
+	return graph[target(edge, graph)]->get_sid();
     }
 
 
     void
     Holder::Impl::save(xmlNode* node) const
     {
-	setChildValue(node, "source-sid", getSourceSid());
-	setChildValue(node, "target-sid", getTargetSid());
+	setChildValue(node, "source-sid", get_source_sid());
+	setChildValue(node, "target-sid", get_target_sid());
     }
 
 }

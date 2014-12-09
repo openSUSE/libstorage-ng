@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
 
@@ -16,13 +16,13 @@ namespace storage
 
 
     Device::Impl::Impl()
-	: sid(global_sid++), device_graph(nullptr)
+	: sid(global_sid++), devicegraph(nullptr)
     {
     }
 
 
     Device::Impl::Impl(const xmlNode* node)
-	: sid(0), device_graph(nullptr)
+	: sid(0), devicegraph(nullptr)
     {
 	if (!getChildValue(node, "sid", sid))
 	    throw runtime_error("no sid");
@@ -37,37 +37,37 @@ namespace storage
 
 
     void
-    Device::Impl::setDeviceGraphAndVertex(DeviceGraph* device_graph,
-					  DeviceGraph::Impl::vertex_descriptor vertex)
+    Device::Impl::set_devicegraph_and_vertex(Devicegraph* devicegraph,
+					  Devicegraph::Impl::vertex_descriptor vertex)
     {
-	Impl::device_graph = device_graph;
+	Impl::devicegraph = devicegraph;
 	Impl::vertex = vertex;
 
-	const Device* device = device_graph->getImpl().graph[vertex].get();
-	if (&device->getImpl() != this)
+	const Device* device = devicegraph->get_impl().graph[vertex].get();
+	if (&device->get_impl() != this)
 	    throw runtime_error("wrong vertex for back references");
     }
 
 
     void
-    Device::Impl::add_create_actions(ActionGraph& action_graph) const
+    Device::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(sid));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 
     void
-    Device::Impl::add_delete_actions(ActionGraph& action_graph) const
+    Device::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Delete(sid));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

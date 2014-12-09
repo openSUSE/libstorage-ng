@@ -24,37 +24,37 @@ namespace storage
 
 
     bool
-    Environment::getReadOnly() const
+    Environment::get_read_only() const
     {
-	return getImpl().getReadOnly();
+	return get_impl().get_read_only();
     }
 
 
     ProbeMode
-    Environment::getProbeMode() const
+    Environment::get_probe_mode() const
     {
-	return getImpl().getProbeMode();
+	return get_impl().get_probe_mode();
     }
 
 
     TargetMode
-    Environment::getTargetMode() const
+    Environment::get_target_mode() const
     {
-	return getImpl().getTargetMode();
+	return get_impl().get_target_mode();
     }
 
 
     const string&
-    Environment::getDeviceGraphFilename() const
+    Environment::get_devicegraph_filename() const
     {
-	return getImpl().getDeviceGraphFilename();
+	return get_impl().get_devicegraph_filename();
     }
 
 
     void
-    Environment::setDeviceGraphFilename(const string& device_graph_filename)
+    Environment::set_devicegraph_filename(const string& devicegraph_filename)
     {
-	getImpl().setDeviceGraphFilename(device_graph_filename);
+	get_impl().set_devicegraph_filename(devicegraph_filename);
     }
 
 }

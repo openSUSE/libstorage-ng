@@ -1,6 +1,6 @@
 
 
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -9,18 +9,18 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph device_graph;
+    Devicegraph devicegraph;
 
-    device_graph.load("test1.info");
+    devicegraph.load("test1.info");
 
-    cout << "num_devices: " << device_graph.numDevices() << endl;
-    cout << "num_holders: " << device_graph.numHolders() << endl;
+    cout << "num_devices: " << devicegraph.num_devices() << endl;
+    cout << "num_holders: " << devicegraph.num_holders() << endl;
 
     cout << endl;
 
-    device_graph.check();
+    devicegraph.check();
 
-    device_graph.print_graph();
+    devicegraph.print_graph();
 
-    device_graph.write_graphviz("load1");
+    devicegraph.write_graphviz("load1");
 }

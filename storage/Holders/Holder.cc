@@ -2,7 +2,7 @@
 
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Utils/XmlFile.h"
 
 
@@ -23,14 +23,14 @@ namespace storage
 
 
     void
-    Holder::create(DeviceGraph* device_graph, const Device* source, const Device* target)
+    Holder::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
-	addToDeviceGraph(device_graph, source, target);
+	add_to_devicegraph(devicegraph, source, target);
     }
 
 
     void
-    Holder::load(DeviceGraph* device_graph, const xmlNode* node)
+    Holder::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	sid_t source_sid = 0;
 	if (!getChildValue(node, "source-sid", source_sid))
@@ -40,69 +40,69 @@ namespace storage
 	if (!getChildValue(node, "target-sid", target_sid))
 	    throw runtime_error("no target-sid");
 
-	const Device* source = device_graph->findDevice(source_sid);
-	const Device* target = device_graph->findDevice(target_sid);
+	const Device* source = devicegraph->find_device(source_sid);
+	const Device* target = devicegraph->find_device(target_sid);
 
-	addToDeviceGraph(device_graph, source, target);
+	add_to_devicegraph(devicegraph, source, target);
     }
 
 
     Holder::Impl&
-    Holder::getImpl()
+    Holder::get_impl()
     {
 	return *impl;
     }
 
 
     const Holder::Impl&
-    Holder::getImpl() const
+    Holder::get_impl() const
     {
 	return *impl;
     }
 
 
     sid_t
-    Holder::getSourceSid() const
+    Holder::get_source_sid() const
     {
-	return getImpl().getSourceSid();
+	return get_impl().get_source_sid();
     }
 
 
     sid_t
-    Holder::getTargetSid() const
+    Holder::get_target_sid() const
     {
-	return getImpl().getTargetSid();
+	return get_impl().get_target_sid();
     }
 
 
     void
-    Holder::addToDeviceGraph(DeviceGraph* device_graph, const Device* source,
+    Holder::add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
 			     const Device* target)
     {
-	if (source->getImpl().getDeviceGraph() != device_graph)
+	if (source->get_impl().get_devicegraph() != devicegraph)
 	    throw runtime_error("wrong graph in source");
 
-	if (target->getImpl().getDeviceGraph() != device_graph)
+	if (target->get_impl().get_devicegraph() != devicegraph)
 	    throw runtime_error("wrong graph in target");
 
-	DeviceGraph::Impl::vertex_descriptor source_vertex = source->getImpl().getVertex();
-	DeviceGraph::Impl::vertex_descriptor target_vertex = target->getImpl().getVertex();
+	Devicegraph::Impl::vertex_descriptor source_vertex = source->get_impl().get_vertex();
+	Devicegraph::Impl::vertex_descriptor target_vertex = target->get_impl().get_vertex();
 
-	pair<DeviceGraph::Impl::edge_descriptor, bool> tmp =
+	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(this),
-			    device_graph->getImpl().graph);
+			    devicegraph->get_impl().graph);
 
 	if (!tmp.second)
 	    throw runtime_error("holder already exists");
 
-	getImpl().setDeviceGraphAndEdge(device_graph, tmp.first);
+	get_impl().set_devicegraph_and_edge(devicegraph, tmp.first);
     }
 
 
     void
     Holder::save(xmlNode* node) const
     {
-	getImpl().save(node);
+	get_impl().save(node);
     }
 
 }

@@ -8,19 +8,19 @@ namespace storage
 {
 
     Subdevice*
-    Subdevice::create(DeviceGraph* device_graph, const Device* source, const Device* target)
+    Subdevice::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
 	Subdevice* ret = new Subdevice(new Subdevice::Impl());
-	ret->Holder::create(device_graph, source, target);
+	ret->Holder::create(devicegraph, source, target);
 	return ret;
     }
 
 
     Subdevice*
-    Subdevice::load(DeviceGraph* device_graph, const xmlNode* node)
+    Subdevice::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Subdevice* ret = new Subdevice(new Subdevice::Impl(node));
-	ret->Holder::load(device_graph, node);
+	ret->Holder::load(devicegraph, node);
 	return ret;
     }
 
@@ -34,21 +34,21 @@ namespace storage
     Subdevice*
     Subdevice::clone() const
     {
-	return new Subdevice(getImpl().clone());
+	return new Subdevice(get_impl().clone());
     }
 
 
     Subdevice::Impl&
-    Subdevice::getImpl()
+    Subdevice::get_impl()
     {
-	return dynamic_cast<Impl&>(Holder::getImpl());
+	return dynamic_cast<Impl&>(Holder::get_impl());
     }
 
 
     const Subdevice::Impl&
-    Subdevice::getImpl() const
+    Subdevice::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Holder::getImpl());
+	return dynamic_cast<const Impl&>(Holder::get_impl());
     }
 
 }

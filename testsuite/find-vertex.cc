@@ -7,7 +7,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -15,19 +15,19 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(find_vertex)
 {
-    DeviceGraph* device_graph = new DeviceGraph();
+    Devicegraph* devicegraph = new Devicegraph();
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Subdevice::create(devicegraph, sda, sda1);
 
-    BOOST_CHECK_EQUAL(device_graph->numDevices(), 2);
-    BOOST_CHECK_EQUAL(device_graph->numHolders(), 1);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 1);
 
-    BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda"), sda);
-    BOOST_CHECK_EQUAL(BlkDevice::find(device_graph, "/dev/sda1"), sda1);
-    BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda2"), runtime_error);
+    BOOST_CHECK_EQUAL(BlkDevice::find(devicegraph, "/dev/sda"), sda);
+    BOOST_CHECK_EQUAL(BlkDevice::find(devicegraph, "/dev/sda1"), sda1);
+    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda2"), runtime_error);
 
-    delete device_graph;
+    delete devicegraph;
 }

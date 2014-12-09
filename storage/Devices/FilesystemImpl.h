@@ -18,12 +18,12 @@ namespace storage
     {
     public:
 
-	virtual void add_delete_actions(ActionGraph& action_graph) const override;
+	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
 	string label;
 	string uuid;
 
-	vector<string> mount_points;
+	vector<string> mountpoints;
 
 	// mount-by
 

@@ -1,14 +1,14 @@
 #!/usr/bin/python
 
-from storage import DeviceGraph, BlkDevice, DeviceNotFound
+from storage import Devicegraph, BlkDevice, DeviceNotFound
 
 
-device_graph = DeviceGraph()
+devicegraph = Devicegraph()
 
 
 try:
-  tmp = BlkDevice.find(device_graph, "/dev/sda")
-  print tmp.getDisplayName()
+  tmp = BlkDevice.find(devicegraph, "/dev/sda")
+  print tmp
 except DeviceNotFound, e:
   print "device not found"
 

@@ -4,45 +4,45 @@ use strict;
 use storage;
 
 
-my $device_graph = new storage::DeviceGraph();
+my $devicegraph = new storage::Devicegraph();
 
-my $sda = storage::Disk::create($device_graph, "/dev/sda");
+my $sda = storage::Disk::create($devicegraph, "/dev/sda");
 
-my $gpt = $sda->createPartitionTable($storage::GPT);
+my $gpt = $sda->create_partition_table($storage::GPT);
 
-my $sda1 = $gpt->createPartition("/dev/sda1");
-my $sda2 = $gpt->createPartition("/dev/sda2");
+my $sda1 = $gpt->create_partition("/dev/sda1");
+my $sda2 = $gpt->create_partition("/dev/sda2");
 
-$device_graph->print_graph();
+$devicegraph->print_graph();
 
 
 print "partitions on gpt:\n";
-my $x1 = $gpt->getPartitions();
+my $x1 = $gpt->get_partitions();
 for (my $i = 0; $i < $x1->size(); $i++)
 {
     my $partition = $x1->get($i);
 
-    print "  ", $partition->getDisplayName(), " ", $partition->getNumber(), "\n";
+    print "  ", $partition->get_displayname(), " ", $partition->get_number(), "\n";
 }
 print "\n";
 
 
 print "descendants of sda:\n";
-my $x2 = $sda->getDescendants(0);
+my $x2 = $sda->get_descendants(0);
 for (my $i = 0; $i < $x2->size(); $i++)
 {
     my $device = $x2->get($i);
 
-    my $partition_table = storage::toPartitionTable($device);
+    my $partition_table = storage::to_partition_table($device);
     if ($partition_table)
     {
-	print "  ", $partition_table->getDisplayName(), " is partition table", "\n";
+	print "  ", $partition_table->get_displayname(), " is partition table", "\n";
     }
 
-    my $partition = storage::toPartition($device);
+    my $partition = storage::to_partition($device);
     if ($partition)
     {
-	print "  ", $partition->getDisplayName(), " ", $partition->getNumber(), " is partition\n";
+	print "  ", $partition->get_displayname(), " ", $partition->get_number(), " is partition\n";
     }
 }
 print "\n";

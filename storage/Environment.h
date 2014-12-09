@@ -36,21 +36,21 @@ namespace storage
 	Environment(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
 	~Environment();
 
-	bool getReadOnly() const;
+	bool get_read_only() const;
 
-	ProbeMode getProbeMode() const;
+	ProbeMode get_probe_mode() const;
 
-	TargetMode getTargetMode() const;
+	TargetMode get_target_mode() const;
 
-	const string& getDeviceGraphFilename() const;
-	void setDeviceGraphFilename(const string& device_graph_filename);
+	const string& get_devicegraph_filename() const;
+	void set_devicegraph_filename(const string& devicegraph_filename);
 
     public:
 
         class Impl;
 
-        Impl& getImpl() { return *impl; }
-        const Impl& getImpl() const { return *impl; }
+        Impl& get_impl() { return *impl; }
+        const Impl& get_impl() const { return *impl; }
 
     private:
 

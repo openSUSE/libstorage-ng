@@ -14,7 +14,7 @@ namespace storage
     using namespace std;
 
 
-    class DeviceGraph;
+    class Devicegraph;
     class Device;
 
 
@@ -26,17 +26,17 @@ namespace storage
 
 	virtual ~Holder();
 
-	sid_t getSourceSid() const;
-	sid_t getTargetSid() const;
+	sid_t get_source_sid() const;
+	sid_t get_target_sid() const;
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const = 0;
+	virtual const char* get_classname() const = 0;
 
 	virtual Holder* clone() const = 0;
 
@@ -46,13 +46,13 @@ namespace storage
 
 	Holder(Impl* impl);
 
-	void create(DeviceGraph* device_graph, const Device* source, const Device* target);
-	void load(DeviceGraph* device_graph, const xmlNode* node);
+	void create(Devicegraph* devicegraph, const Device* source, const Device* target);
+	void load(Devicegraph* devicegraph, const xmlNode* node);
 
     private:
 
-	void addToDeviceGraph(DeviceGraph* device_graph, const Device* source,
-			      const Device* target);
+	void add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
+				const Device* target);
 
 	shared_ptr<Impl> impl;
 

@@ -29,14 +29,14 @@ namespace storage
 
 
     void
-    BlkDevice::Impl::setName(const string& name)
+    BlkDevice::Impl::set_name(const string& name)
     {
 	Impl::name = name;
     }
 
 
     void
-    BlkDevice::Impl::setSizeK(unsigned long long size_k)
+    BlkDevice::Impl::set_size_k(unsigned long long size_k)
     {
 	Impl::size_k = size_k;
     }

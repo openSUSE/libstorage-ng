@@ -3,7 +3,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -12,21 +12,21 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph device_graph;
+    Devicegraph devicegraph;
 
-    Disk* sda = Disk::create(&device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
-    Subdevice::create(&device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Subdevice::create(&devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(&device_graph, "/dev/sda2");
-    Subdevice::create(&device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2");
+    Subdevice::create(&devicegraph, sda, sda2);
 
-    DeviceGraph device_graph_copy;
-    device_graph.copy(device_graph_copy);
+    Devicegraph devicegraph_copy;
+    devicegraph.copy(devicegraph_copy);
 
-    device_graph_copy.remove_vertex(sda2);
+    devicegraph_copy.remove_vertex(sda2);
 
-    device_graph.print_graph();
-    device_graph_copy.print_graph();
+    devicegraph.print_graph();
+    devicegraph_copy.print_graph();
 }

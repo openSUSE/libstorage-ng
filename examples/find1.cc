@@ -6,7 +6,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Holders/Using.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -15,40 +15,40 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph* device_graph = new DeviceGraph();
+    Devicegraph* devicegraph = new Devicegraph();
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    PartitionTable* gpt = sda->createPartitionTable(PtType::GPT);
+    PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    gpt->createPartition("/dev/sda1");
-    Partition* sda2 = gpt->createPartition("/dev/sda2");
+    gpt->create_partition("/dev/sda1");
+    Partition* sda2 = gpt->create_partition("/dev/sda2");
 
-    LvmVg* system = LvmVg::create(device_graph, "/dev/system");
-    Using::create(device_graph, sda2, system);
+    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    Using::create(devicegraph, sda2, system);
 
-    LvmLv* system_root = system->createLvmLv("/dev/system/root");
+    LvmLv* system_root = system->create_lvm_lv("/dev/system/root");
 
-    Filesystem* filesystem = system_root->createFilesystem(FsType::EXT4);
-    filesystem->addMountPoint("/");
+    Filesystem* filesystem = system_root->create_filesystem(FsType::EXT4);
+    filesystem->add_mountpoint("/");
 
-    cout << "num_devices: " << device_graph->numDevices() << endl;
-    cout << "num_holders: " << device_graph->numHolders() << endl;
+    cout << "num_devices: " << devicegraph->num_devices() << endl;
+    cout << "num_holders: " << devicegraph->num_holders() << endl;
     cout << endl;
 
-    device_graph->check();
+    devicegraph->check();
 
-    device_graph->print_graph();
-    device_graph->write_graphviz("test1");
+    devicegraph->print_graph();
+    devicegraph->write_graphviz("test1");
 
-    for (const Filesystem* filesystem : Filesystem::findByMountPoint(device_graph, "/"))
+    for (const Filesystem* filesystem : Filesystem::find_by_mountpoint(devicegraph, "/"))
     {
-	for (const Device* device : filesystem->getAncestors(false))
+	for (const Device* device : filesystem->get_ancestors(false))
 	{
 	    if (dynamic_cast<const LvmLv*>(device))
 		cout << "mount point \"/\" somehow uses a logical volume" << endl;
 	}
     }
 
-    delete device_graph;
+    delete devicegraph;
 }

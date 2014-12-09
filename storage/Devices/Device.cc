@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,54 +25,54 @@ namespace storage
 
 
     void
-    Device::create(DeviceGraph* device_graph)
+    Device::create(Devicegraph* devicegraph)
     {
-	addToDeviceGraph(device_graph);
+	add_to_devicegraph(devicegraph);
     }
 
 
     void
-    Device::load(DeviceGraph* device_graph)
+    Device::load(Devicegraph* devicegraph)
     {
-	addToDeviceGraph(device_graph);
+	add_to_devicegraph(devicegraph);
     }
 
 
     void
-    Device::addToDeviceGraph(DeviceGraph* device_graph)
+    Device::add_to_devicegraph(Devicegraph* devicegraph)
     {
-	DeviceGraph::Impl::vertex_descriptor vertex =
-	    boost::add_vertex(shared_ptr<Device>(this), device_graph->getImpl().graph);
+	Devicegraph::Impl::vertex_descriptor vertex =
+	    boost::add_vertex(shared_ptr<Device>(this), devicegraph->get_impl().graph);
 
-	getImpl().setDeviceGraphAndVertex(device_graph, vertex);
+	get_impl().set_devicegraph_and_vertex(devicegraph, vertex);
     }
 
 
     void
     Device::save(xmlNode* node) const
     {
-	getImpl().save(node);
+	get_impl().save(node);
     }
 
 
     Device::Impl&
-    Device::getImpl()
+    Device::get_impl()
     {
 	return *impl;
     }
 
 
     const Device::Impl&
-    Device::getImpl() const
+    Device::get_impl() const
     {
 	return *impl;
     }
 
 
     sid_t
-    Device::getSid() const
+    Device::get_sid() const
     {
-	return getImpl().getSid();
+	return get_impl().get_sid();
     }
 
 
@@ -83,92 +83,92 @@ namespace storage
 
 
     size_t
-    Device::numChildren() const
+    Device::num_children() const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().num_children(vertex);
+	return devicegraph->get_impl().num_children(vertex);
     }
 
 
     size_t
-    Device::numParents() const
+    Device::num_parents() const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().num_parents(vertex);
+	return devicegraph->get_impl().num_parents(vertex);
     }
 
 
     vector<const Device*>
-    Device::getChildren() const
+    Device::get_children() const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().children(vertex));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().children(vertex));
     }
 
 
     vector<const Device*>
-    Device::getParents() const
+    Device::get_parents() const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().parents(vertex));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().parents(vertex));
     }
 
 
     vector<const Device*>
-    Device::getSiblings(bool itself) const
+    Device::get_siblings(bool itself) const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().siblings(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().siblings(vertex, itself));
     }
 
 
     vector<const Device*>
-    Device::getDescendants(bool itself) const
+    Device::get_descendants(bool itself) const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().descendants(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().descendants(vertex, itself));
     }
 
 
     vector<const Device*>
-    Device::getAncestors(bool itself) const
+    Device::get_ancestors(bool itself) const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().ancestors(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().ancestors(vertex, itself));
     }
 
 
     vector<const Device*>
-    Device::getLeafs(bool itself) const
+    Device::get_leafs(bool itself) const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().leafs(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leafs(vertex, itself));
     }
 
 
     vector<const Device*>
-    Device::getRoots(bool itself) const
+    Device::get_roots(bool itself) const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Device>(device_graph->getImpl().roots(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().roots(vertex, itself));
     }
 
 }

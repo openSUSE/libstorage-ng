@@ -4,15 +4,15 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 using namespace storage;
 
 
-DeviceGraph lhs;
-DeviceGraph rhs;
+Devicegraph lhs;
+Devicegraph rhs;
 
 
 void
@@ -64,7 +64,7 @@ main()
 
     rhs.print_graph();
 
-    ActionGraph action_graph(lhs, rhs);
+    Actiongraph actiongraph(lhs, rhs);
 
-    action_graph.print_graph();
+    actiongraph.print_graph();
 }

@@ -15,19 +15,19 @@ namespace storage
     {
     public:
 
-	static Partition* create(DeviceGraph* device_graph, const string& name);
-	static Partition* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Partition* create(Devicegraph* devicegraph, const string& name);
+	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	unsigned int getNumber() const;
+	unsigned int get_number() const;
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Partition"; }
+	virtual const char* get_classname() const override { return "Partition"; }
 
 	virtual Partition* clone() const override;
 

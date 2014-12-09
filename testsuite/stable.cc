@@ -7,7 +7,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraphImpl.h"
+#include "storage/DevicegraphImpl.h"
 
 
 using namespace storage;
@@ -15,41 +15,41 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(valid)
 {
-    DeviceGraph* device_graph = new DeviceGraph();
+    Devicegraph* devicegraph = new Devicegraph();
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Subdevice::create(devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(device_graph, "/dev/sda2");
-    Subdevice::create(device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2");
+    Subdevice::create(devicegraph, sda, sda2);
 
-    DeviceGraph::Impl::vertex_descriptor v_sda = sda->getImpl().getVertex();
-    DeviceGraph::Impl::vertex_descriptor v_sda2 = sda2->getImpl().getVertex();
+    Devicegraph::Impl::vertex_descriptor v_sda = sda->get_impl().get_vertex();
+    Devicegraph::Impl::vertex_descriptor v_sda2 = sda2->get_impl().get_vertex();
 
-    BOOST_CHECK_EQUAL(device_graph->numDevices(), 3);
-    BOOST_CHECK_EQUAL(device_graph->numHolders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 3);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
 
-    device_graph->check();
+    devicegraph->check();
 
-    device_graph->remove_vertex(sda1);
+    devicegraph->remove_vertex(sda1);
 
-    BOOST_CHECK_EQUAL(device_graph->numDevices(), 2);
-    BOOST_CHECK_EQUAL(device_graph->numHolders(), 1);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 1);
 
-    device_graph->check();
+    devicegraph->check();
 
     // The vertex_descriptors for sda and sda2 are still valid and correct due
-    // to using VertexList=boost::listS in DeviceGraph.
+    // to using VertexList=boost::listS in Devicegraph.
 
-    BOOST_CHECK_EQUAL(v_sda, sda->getImpl().getVertex());
-    BOOST_CHECK_EQUAL(v_sda2, sda2->getImpl().getVertex());
+    BOOST_CHECK_EQUAL(v_sda, sda->get_impl().get_vertex());
+    BOOST_CHECK_EQUAL(v_sda2, sda2->get_impl().get_vertex());
 
-    BOOST_CHECK_EQUAL(sda->getName(), "/dev/sda");
-    BOOST_CHECK_EQUAL(sda2->getName(), "/dev/sda2");
+    BOOST_CHECK_EQUAL(sda->get_name(), "/dev/sda");
+    BOOST_CHECK_EQUAL(sda2->get_name(), "/dev/sda2");
 
-    BOOST_CHECK_THROW(BlkDevice::find(device_graph, "/dev/sda1"), runtime_error);
+    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda1"), runtime_error);
 
-    delete device_graph;
+    delete devicegraph;
 }

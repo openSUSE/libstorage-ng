@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/Ext4Impl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,32 +25,32 @@ namespace storage
 
 
     void
-    Ext4::Impl::add_create_actions(ActionGraph& action_graph) const
+    Ext4::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
-	Action::Format* format = new Action::Format(getSid());
+	Action::Format* format = new Action::Format(get_sid());
 	format->first = true;
 	format->last = false;
-	ActionGraph::vertex_descriptor v1 = action_graph.add_vertex(format);
+	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
 
 	if (!label.empty())
 	{
-	    ActionGraph::vertex_descriptor tmp = action_graph.add_vertex(new Action::SetLabel(getSid()));
-	    action_graph.add_edge(v1, tmp);
+	    Actiongraph::vertex_descriptor tmp = actiongraph.add_vertex(new Action::SetLabel(get_sid()));
+	    actiongraph.add_edge(v1, tmp);
 	    v1 = tmp;
 	}
 
-	if (!mount_points.empty())
+	if (!mountpoints.empty())
 	{
-	    ActionGraph::vertex_descriptor v2 = action_graph.add_vertex(new Action::Nop(getSid(), false, true));
+	    Actiongraph::vertex_descriptor v2 = actiongraph.add_vertex(new Action::Nop(get_sid(), false, true));
 
-	    for (const string& mount_point : mount_points)
+	    for (const string& mountpoint : mountpoints)
 	    {
-		ActionGraph::vertex_descriptor t1 = action_graph.add_vertex(new Action::Mount(getSid(), mount_point));
-		ActionGraph::vertex_descriptor t2 = action_graph.add_vertex(new Action::AddFstab(getSid(), mount_point));
+		Actiongraph::vertex_descriptor t1 = actiongraph.add_vertex(new Action::Mount(get_sid(), mountpoint));
+		Actiongraph::vertex_descriptor t2 = actiongraph.add_vertex(new Action::AddFstab(get_sid(), mountpoint));
 
-		action_graph.add_edge(v1, t1);
-		action_graph.add_edge(t1, t2);
-		action_graph.add_edge(t2, v2);
+		actiongraph.add_edge(v1, t1);
+		actiongraph.add_edge(t1, t2);
+		actiongraph.add_edge(t2, v2);
 	    }
 	}
     }

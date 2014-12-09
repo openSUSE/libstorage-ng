@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/SwapImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -12,19 +12,19 @@ namespace storage
 
 
     Swap*
-    Swap::create(DeviceGraph* device_graph)
+    Swap::create(Devicegraph* devicegraph)
     {
 	Swap* ret = new Swap(new Swap::Impl());
-	ret->Device::create(device_graph);
+	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Swap*
-    Swap::load(DeviceGraph* device_graph, const xmlNode* node)
+    Swap::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Swap* ret = new Swap(new Swap::Impl(node));
-	ret->Device::load(device_graph);
+	ret->Device::load(devicegraph);
 	return ret;
     }
 
@@ -38,21 +38,21 @@ namespace storage
     Swap*
     Swap::clone() const
     {
-	return new Swap(getImpl().clone());
+	return new Swap(get_impl().clone());
     }
 
 
     Swap::Impl&
-    Swap::getImpl()
+    Swap::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const Swap::Impl&
-    Swap::getImpl() const
+    Swap::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 }

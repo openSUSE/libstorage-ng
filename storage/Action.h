@@ -3,7 +3,7 @@
 
 
 #include "storage/Devices/Device.h"
-#include "storage/ActionGraph.h"
+#include "storage/Actiongraph.h"
 
 
 namespace storage
@@ -22,9 +22,9 @@ namespace storage
 	    Base(sid_t sid, bool first, bool last) : sid(sid), first(first), last(last) {}
 	    virtual ~Base() {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const = 0;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const = 0;
 
-	    virtual void add_dependencies(ActionGraph::vertex_descriptor v, ActionGraph& action_graph) const {}
+	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const {}
 
 	    const sid_t sid;
 
@@ -42,7 +42,7 @@ namespace storage
 	    Nop(sid_t sid) : Base(sid) {}
 	    Nop(sid_t sid, bool first, bool last) : Base(sid, first, last) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const;
 
 	};
 
@@ -53,9 +53,9 @@ namespace storage
 
 	    Create(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
-	    virtual void add_dependencies(ActionGraph::vertex_descriptor v, ActionGraph& action_graph) const override;
+	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
 
 	};
 
@@ -66,7 +66,7 @@ namespace storage
 
 	    Modify(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -77,9 +77,9 @@ namespace storage
 
 	    Delete(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
-	    virtual void add_dependencies(ActionGraph::vertex_descriptor v, ActionGraph& action_graph) const override;
+	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
 
 	};
 
@@ -90,7 +90,7 @@ namespace storage
 
 	    SetType(sid_t sid) : Modify(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -101,7 +101,7 @@ namespace storage
 
 	    FormatEncryption(sid_t sid) : Create(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -112,7 +112,7 @@ namespace storage
 
 	    OpenEncryption(sid_t sid) : Modify(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -123,7 +123,7 @@ namespace storage
 
 	    Format(sid_t sid) : Create(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -134,7 +134,7 @@ namespace storage
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -146,7 +146,7 @@ namespace storage
 	    Mount(sid_t sid, const string& mount_point)
 		: Modify(sid), mount_point(mount_point) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    const string mount_point;
 
@@ -160,7 +160,7 @@ namespace storage
 	    Umount(sid_t sid, const string& mount_point)
 		: Delete(sid), mount_point(mount_point) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    const string mount_point;
 
@@ -174,7 +174,7 @@ namespace storage
 	    AddFstab(sid_t sid, const string& mount_point)
 		: Modify(sid), mount_point(mount_point) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    const string mount_point;
 
@@ -188,7 +188,7 @@ namespace storage
 	    RemoveFstab(sid_t sid, const string& mount_point)
 		: Modify(sid), mount_point(mount_point) {}
 
-	    virtual string text(const ActionGraph& action_graph, bool doing) const override;
+	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    const string mount_point;
 

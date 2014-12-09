@@ -16,19 +16,19 @@ namespace storage
     {
     public:
 
-	static Disk* create(DeviceGraph* device_graph, const string& name);
-	static Disk* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Disk* create(Devicegraph* devicegraph, const string& name);
+	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	PartitionTable* createPartitionTable(PtType pt_type);
+	PartitionTable* create_partition_table(PtType pt_type);
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Disk"; }
+	virtual const char* get_classname() const override { return "Disk"; }
 
 	virtual Disk* clone() const override;
 

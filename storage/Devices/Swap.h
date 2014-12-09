@@ -15,24 +15,24 @@ namespace storage
     {
     public:
 
-	static Swap* create(DeviceGraph* device_graph);
-	static Swap* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Swap* create(Devicegraph* devicegraph);
+	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string getDisplayName() const override { return "swap"; }
+	virtual string get_displayname() const override { return "swap"; }
 
-	bool supportsLabel() const override { return false; }
-	unsigned int maxLabelSize() const override { return 0; }
+	bool supports_label() const override { return false; }
+	unsigned int max_labelsize() const override { return 0; }
 
-	bool supportsUuid() const override { return false; }
+	bool supports_uuid() const override { return false; }
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Swap"; }
+	virtual const char* get_classname() const override { return "Swap"; }
 
 	virtual Swap* clone() const override;
 

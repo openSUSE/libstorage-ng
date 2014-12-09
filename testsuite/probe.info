@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<DeviceGraph>
+<Devicegraph>
   <Devices>
     <Disk>
       <sid>42</sid>
@@ -16,4 +16,4 @@
       <target-sid>43</target-sid>
     </Subdevice>
   </Holders>
-</DeviceGraph>
+</Devicegraph>

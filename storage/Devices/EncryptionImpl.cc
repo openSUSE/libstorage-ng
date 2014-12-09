@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/EncryptionImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,14 +25,14 @@ namespace storage
 
 
     void
-    Encryption::Impl::add_create_actions(ActionGraph& action_graph) const
+    Encryption::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::FormatEncryption(getSid()));
-	actions.push_back(new Action::OpenEncryption(getSid()));
+	actions.push_back(new Action::FormatEncryption(get_sid()));
+	actions.push_back(new Action::OpenEncryption(get_sid()));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

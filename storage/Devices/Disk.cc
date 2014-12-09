@@ -3,7 +3,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Holders/Using.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -14,19 +14,19 @@ namespace storage
 
 
     Disk*
-    Disk::create(DeviceGraph* device_graph, const string& name)
+    Disk::create(Devicegraph* devicegraph, const string& name)
     {
 	Disk* ret = new Disk(new Disk::Impl(name));
-	ret->Device::create(device_graph);
+	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Disk*
-    Disk::load(DeviceGraph* device_graph, const xmlNode* node)
+    Disk::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Disk* ret = new Disk(new Disk::Impl(node));
-	ret->Device::load(device_graph);
+	ret->Device::load(devicegraph);
 	return ret;
     }
 
@@ -40,32 +40,32 @@ namespace storage
     Disk*
     Disk::clone() const
     {
-	return new Disk(getImpl().clone());
+	return new Disk(get_impl().clone());
     }
 
 
     Disk::Impl&
-    Disk::getImpl()
+    Disk::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const Disk::Impl&
-    Disk::getImpl() const
+    Disk::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     PartitionTable*
-    Disk::createPartitionTable(PtType pt_type)
+    Disk::create_partition_table(PtType pt_type)
     {
-	if (numChildren() != 0)
+	if (num_children() != 0)
 	    throw runtime_error("has children");
 
-	PartitionTable* ret = Gpt::create(getImpl().getDeviceGraph());
-	Using::create(getImpl().getDeviceGraph(), this, ret);
+	PartitionTable* ret = Gpt::create(get_impl().get_devicegraph());
+	Using::create(get_impl().get_devicegraph(), this, ret);
 	return ret;
     }
 

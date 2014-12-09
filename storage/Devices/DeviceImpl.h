@@ -5,8 +5,8 @@
 #include <libxml/tree.h>
 
 #include "storage/Devices/Device.h"
-#include "storage/DeviceGraph.h"
-#include "storage/DeviceGraphImpl.h"
+#include "storage/Devicegraph.h"
+#include "storage/DevicegraphImpl.h"
 
 
 namespace storage
@@ -15,7 +15,7 @@ namespace storage
     using namespace std;
 
 
-    class ActionGraph;
+    class Actiongraph;
 
 
     // abstract class
@@ -30,18 +30,18 @@ namespace storage
 
 	virtual void save(xmlNode* node) const = 0;
 
-	sid_t getSid() const { return sid; }
+	sid_t get_sid() const { return sid; }
 
-	void setDeviceGraphAndVertex(DeviceGraph* device_graph,
-				     DeviceGraph::Impl::vertex_descriptor vertex);
+	void set_devicegraph_and_vertex(Devicegraph* devicegraph,
+					Devicegraph::Impl::vertex_descriptor vertex);
 
-	DeviceGraph* getDeviceGraph() { return device_graph; }
-	const DeviceGraph* getDeviceGraph() const { return device_graph; }
+	Devicegraph* get_devicegraph() { return devicegraph; }
+	const Devicegraph* get_devicegraph() const { return devicegraph; }
 
-	DeviceGraph::Impl::vertex_descriptor getVertex() const { return vertex; }
+	Devicegraph::Impl::vertex_descriptor get_vertex() const { return vertex; }
 
-	virtual void add_create_actions(ActionGraph& action_graph) const;
-	virtual void add_delete_actions(ActionGraph& action_graph) const;
+	virtual void add_create_actions(Actiongraph& actiongraph) const;
+	virtual void add_delete_actions(Actiongraph& actiongraph) const;
 
     protected:
 
@@ -55,8 +55,8 @@ namespace storage
 
 	sid_t sid;
 
-	DeviceGraph* device_graph;
-	DeviceGraph::Impl::vertex_descriptor vertex;
+	Devicegraph* devicegraph;
+	Devicegraph::Impl::vertex_descriptor vertex;
 
     };
 

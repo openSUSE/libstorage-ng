@@ -8,19 +8,19 @@ namespace storage
 {
 
     Using*
-    Using::create(DeviceGraph* device_graph, const Device* source, const Device* target)
+    Using::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {
 	Using* ret = new Using(new Using::Impl());
-	ret->Holder::create(device_graph, source, target);
+	ret->Holder::create(devicegraph, source, target);
 	return ret;
     }
 
 
     Using*
-    Using::load(DeviceGraph* device_graph, const xmlNode* node)
+    Using::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Using* ret = new Using(new Using::Impl(node));
-	ret->Holder::load(device_graph, node);
+	ret->Holder::load(devicegraph, node);
 	return ret;
     }
 
@@ -34,21 +34,21 @@ namespace storage
     Using*
     Using::clone() const
     {
-	return new Using(getImpl().clone());
+	return new Using(get_impl().clone());
     }
 
 
     Using::Impl&
-    Using::getImpl()
+    Using::get_impl()
     {
-	return dynamic_cast<Impl&>(Holder::getImpl());
+	return dynamic_cast<Impl&>(Holder::get_impl());
     }
 
 
     const Using::Impl&
-    Using::getImpl() const
+    Using::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Holder::getImpl());
+	return dynamic_cast<const Impl&>(Holder::get_impl());
     }
 
 }

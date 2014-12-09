@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/DiskImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,14 +25,14 @@ namespace storage
 
 
     void
-    Disk::Impl::add_create_actions(ActionGraph& action_graph) const
+    Disk::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	throw runtime_error("cannot create disk");
     }
 
 
     void
-    Disk::Impl::add_delete_actions(ActionGraph& action_graph) const
+    Disk::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	throw runtime_error("cannot delete disk");
     }

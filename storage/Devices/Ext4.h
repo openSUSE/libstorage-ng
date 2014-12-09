@@ -15,24 +15,24 @@ namespace storage
     {
     public:
 
-	static Ext4* create(DeviceGraph* device_graph);
-	static Ext4* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Ext4* create(Devicegraph* devicegraph);
+	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string getDisplayName() const override { return "ext4"; }
+	virtual string get_displayname() const override { return "ext4"; }
 
-	bool supportsLabel() const override { return true; }
-	unsigned int maxLabelSize() const override { return 16; }
+	bool supports_label() const override { return true; }
+	unsigned int max_labelsize() const override { return 16; }
 
-	bool supportsUuid() const override { return true; }
+	bool supports_uuid() const override { return true; }
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Ext4"; }
+	virtual const char* get_classname() const override { return "Ext4"; }
 
 	virtual Ext4* clone() const override;
 

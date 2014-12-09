@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/FilesystemImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
 
@@ -26,23 +26,23 @@ namespace storage
 	setChildValueIf(node, "label", label, !label.empty());
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
-	for (const string& mount_point : mount_points)
-	    setChildValue(node, "mount-point", mount_point);
+	for (const string& mountpoint : mountpoints)
+	    setChildValue(node, "mountpoint", mountpoint);
     }
 
 
     void
-    Filesystem::Impl::add_delete_actions(ActionGraph& action_graph) const
+    Filesystem::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	for (const string& mount_point : mount_points)
+	for (const string& mountpoint : mountpoints)
 	{
-	    actions.push_back(new Action::RemoveFstab(getSid(), mount_point));
-	    actions.push_back(new Action::Umount(getSid(), mount_point));
+	    actions.push_back(new Action::RemoveFstab(get_sid(), mountpoint));
+	    actions.push_back(new Action::Umount(get_sid(), mountpoint));
 	}
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

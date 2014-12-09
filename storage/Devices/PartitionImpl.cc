@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/PartitionImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,14 +25,14 @@ namespace storage
 
 
     void
-    Partition::Impl::add_create_actions(ActionGraph& action_graph) const
+    Partition::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Create(getSid()));
-	actions.push_back(new Action::SetType(getSid()));
+	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(new Action::SetType(get_sid()));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

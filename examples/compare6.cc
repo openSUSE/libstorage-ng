@@ -6,8 +6,8 @@
 #include "storage/Devices/Ext4.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 using namespace storage;
@@ -16,11 +16,11 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph* lhs = new DeviceGraph();
+    Devicegraph* lhs = new Devicegraph();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph* rhs = new DeviceGraph();
+    Devicegraph* rhs = new Devicegraph();
     lhs->copy(*rhs);
 
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
@@ -35,19 +35,19 @@ main()
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     Ext4* rhs_sda1_fs = Ext4::create(rhs);
-    rhs_sda1_fs->addMountPoint("/");
-    rhs_sda1_fs->addMountPoint("/var/log");
+    rhs_sda1_fs->add_mountpoint("/");
+    rhs_sda1_fs->add_mountpoint("/var/log");
     Using::create(rhs, rhs_sda1, rhs_sda1_fs);
 
     Ext4* rhs_sda2_fs = Ext4::create(rhs);
-    rhs_sda2_fs->addMountPoint("/var");
+    rhs_sda2_fs->add_mountpoint("/var");
     Using::create(rhs, rhs_sda2, rhs_sda2_fs);
 
     rhs->write_graphviz("compare6-device-rhs");
 
-    ActionGraph action_graph(*lhs, *rhs);
+    Actiongraph actiongraph(*lhs, *rhs);
 
-    action_graph.write_graphviz("compare6-action");
+    actiongraph.write_graphviz("compare6-action");
 
     delete lhs;
     delete rhs;

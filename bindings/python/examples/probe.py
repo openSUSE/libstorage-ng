@@ -7,7 +7,7 @@ environment = Environment(True)
 
 storage = Storage(environment)
 
-probed = storage.getProbed()
+probed = storage.get_probed()
 
 probed.print_graph()
 

@@ -17,31 +17,31 @@ namespace storage
 
     public:
 
-	DeviceGraph* createDeviceGraph(const string& name);
-	DeviceGraph* copyDeviceGraph(const string& source_name, const string& dest_name);
-	void removeDeviceGraph(const string& name);
-	void restoreDeviceGraph(const string& name);
+	Devicegraph* create_devicegraph(const string& name);
+	Devicegraph* copy_devicegraph(const string& source_name, const string& dest_name);
+	void remove_devicegraph(const string& name);
+	void restore_devicegraph(const string& name);
 
-	bool equalDeviceGraph(const string& lhs, const string& rhs) const;
+	bool equal_devicegraph(const string& lhs, const string& rhs) const;
 
-	bool existDeviceGraph(const string& name) const;
-	vector<string> getDeviceGraphNames() const;
+	bool exist_devicegraph(const string& name) const;
+	vector<string> get_devicegraph_names() const;
 
-	DeviceGraph* getDeviceGraph(const string& name);
-	const DeviceGraph* getDeviceGraph(const string& name) const;
+	Devicegraph* get_devicegraph(const string& name);
+	const Devicegraph* get_devicegraph(const string& name) const;
 
-	DeviceGraph* getCurrent();
-	const DeviceGraph* getCurrent() const;
+	Devicegraph* get_current();
+	const Devicegraph* get_current() const;
 
-	const DeviceGraph* getProbed() const;
+	const Devicegraph* get_probed() const;
 
     private:
 
-	void probe(DeviceGraph* probed);
+	void probe(Devicegraph* probed);
 
 	const Environment environment;
 
-	map<string, DeviceGraph> device_graphs;
+	map<string, Devicegraph> devicegraphs;
 
     };
 

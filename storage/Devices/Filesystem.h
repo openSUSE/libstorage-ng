@@ -25,31 +25,31 @@ namespace storage
     {
     public:
 
-	virtual bool supportsLabel() const = 0;
-	virtual unsigned int maxLabelSize() const = 0;
+	virtual bool supports_label() const = 0;
+	virtual unsigned int max_labelsize() const = 0;
 
-	const string& getLabel() const;
-	void setLabel(const string& label);
+	const string& get_label() const;
+	void set_label(const string& label);
 
-	virtual bool supportsUuid() const = 0;
+	virtual bool supports_uuid() const = 0;
 
-	const string& getUuid() const;
+	const string& get_uuid() const;
 
-	const vector<string>& getMountPoints() const;
-	void addMountPoint(const string& mount_point);
+	const vector<string>& get_mountpoints() const;
+	void add_mountpoint(const string& mountpoint);
 
-	static vector<Filesystem*> findByLabel(const DeviceGraph* device_graph,
-					       const string& label);
+	static vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
+						 const string& label);
 
-	static vector<Filesystem*> findByMountPoint(const DeviceGraph* device_graph,
-						    const string& mount_point);
+	static vector<Filesystem*> find_by_mountpoint(const Devicegraph* devicegraph,
+						      const string& mountpoint);
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
     protected:
 

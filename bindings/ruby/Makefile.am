@@ -22,7 +22,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Disk.h		\
 	${top_srcdir}/storage/Devices/PartitionTable.h	\
 	${top_srcdir}/storage/Devices/Partition.h	\
-	${top_srcdir}/storage/DeviceGraph.h		\
+	${top_srcdir}/storage/Devicegraph.h		\
 	${top_srcdir}/storage/Environment.h		\
 	${top_srcdir}/storage/Storage.h
 

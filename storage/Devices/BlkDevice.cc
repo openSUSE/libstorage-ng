@@ -21,26 +21,26 @@ namespace storage
 
 
     BlkDevice::Impl&
-    BlkDevice::getImpl()
+    BlkDevice::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const BlkDevice::Impl&
-    BlkDevice::getImpl() const
+    BlkDevice::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     BlkDevice*
-    BlkDevice::find(const DeviceGraph* device_graph, const string& name)
+    BlkDevice::find(const Devicegraph* devicegraph, const string& name)
     {
-	for (DeviceGraph::Impl::vertex_descriptor v : device_graph->getImpl().vertices())
+	for (Devicegraph::Impl::vertex_descriptor v : devicegraph->get_impl().vertices())
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(device_graph->getImpl().graph[v].get());
-	    if (blk_device && blk_device->getName() == name)
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl().graph[v].get());
+	    if (blk_device && blk_device->get_name() == name)
 		return blk_device;
 	}
 
@@ -51,45 +51,45 @@ namespace storage
 
 
     void
-    BlkDevice::setName(const string& name)
+    BlkDevice::set_name(const string& name)
     {
-	getImpl().setName(name);
+	get_impl().set_name(name);
     }
 
 
     const string&
-    BlkDevice::getName() const
+    BlkDevice::get_name() const
     {
-	return getImpl().getName();
+	return get_impl().get_name();
     }
 
 
     unsigned long long
-    BlkDevice::getSizeK() const
+    BlkDevice::get_size_k() const
     {
-	return getImpl().getSizeK();
+	return get_impl().get_size_k();
     }
 
 
     void
-    BlkDevice::setSizeK(unsigned long long size_k)
+    BlkDevice::set_size_k(unsigned long long size_k)
     {
-	getImpl().setSizeK(size_k);
+	get_impl().set_size_k(size_k);
     }
 
 
     void
     BlkDevice::check() const
     {
-	if (getName().empty())
+	if (get_name().empty())
 	    cerr << "blk device has no name" << endl;
     }
 
 
     Filesystem*
-    BlkDevice::createFilesystem(FsType fs_type)
+    BlkDevice::create_filesystem(FsType fs_type)
     {
-	if (numChildren() != 0)
+	if (num_children() != 0)
 	    throw runtime_error("BlkDevice has children");
 
 	Filesystem* ret = nullptr;
@@ -97,11 +97,11 @@ namespace storage
 	switch (fs_type)
 	{
 	    case FsType::EXT4:
-		ret = Ext4::create(getImpl().getDeviceGraph());
+		ret = Ext4::create(get_impl().get_devicegraph());
 		break;
 
 	    case FsType::SWAP:
-		ret = Swap::create(getImpl().getDeviceGraph());
+		ret = Swap::create(get_impl().get_devicegraph());
 		break;
 
 	    default:
@@ -112,7 +112,7 @@ namespace storage
 	if (!ret)
 	    throw runtime_error("unknown filesystem type");
 
-	Using::create(getImpl().getDeviceGraph(), this, ret);
+	Using::create(get_impl().get_devicegraph(), this, ret);
 
 	return ret;
     }

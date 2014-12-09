@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/LvmLvImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -12,19 +12,19 @@ namespace storage
 
 
     LvmLv*
-    LvmLv::create(DeviceGraph* device_graph, const string& name)
+    LvmLv::create(Devicegraph* devicegraph, const string& name)
     {
 	LvmLv* ret = new LvmLv(new LvmLv::Impl(name));
-	ret->Device::create(device_graph);
+	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     LvmLv*
-    LvmLv::load(DeviceGraph* device_graph, const xmlNode* node)
+    LvmLv::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	LvmLv* ret = new LvmLv(new LvmLv::Impl(node));
-	ret->Device::load(device_graph);
+	ret->Device::load(devicegraph);
 	return ret;
     }
 
@@ -38,28 +38,28 @@ namespace storage
     LvmLv*
     LvmLv::clone() const
     {
-	return new LvmLv(getImpl().clone());
+	return new LvmLv(get_impl().clone());
     }
 
 
     LvmLv::Impl&
-    LvmLv::getImpl()
+    LvmLv::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const LvmLv::Impl&
-    LvmLv::getImpl() const
+    LvmLv::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     void
     LvmLv::check() const
     {
-	if (getName().empty())
+	if (get_name().empty())
 	    cerr << "logical volume has no name" << endl;
     }
 

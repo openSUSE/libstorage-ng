@@ -15,19 +15,19 @@ namespace storage
     {
     public:
 
-	static Gpt* create(DeviceGraph* device_graph);
-	static Gpt* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Gpt* create(Devicegraph* devicegraph);
+	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string getDisplayName() const override { return "gpt"; }
+	virtual string get_displayname() const override { return "gpt"; }
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const override { return "Gpt"; }
+	virtual const char* get_classname() const override { return "Gpt"; }
 
 	virtual Gpt* clone() const override;
 

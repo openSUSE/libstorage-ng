@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/SwapImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -25,15 +25,15 @@ namespace storage
 
 
     void
-    Swap::Impl::add_create_actions(ActionGraph& action_graph) const
+    Swap::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Format(getSid()));
-	actions.push_back(new Action::Mount(getSid(), "swap"));
-	actions.push_back(new Action::AddFstab(getSid(), "swap"));
+	actions.push_back(new Action::Format(get_sid()));
+	actions.push_back(new Action::Mount(get_sid(), "swap"));
+	actions.push_back(new Action::AddFstab(get_sid(), "swap"));
 
-	action_graph.add_chain(actions);
+	actiongraph.add_chain(actions);
     }
 
 }

@@ -6,8 +6,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 using namespace storage;
@@ -16,7 +16,7 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph lhs;
+    Devicegraph lhs;
 
     Disk* sda = Disk::create(&lhs, "/dev/sda");
 
@@ -32,14 +32,14 @@ main()
     LvmLv* system_oracle = LvmLv::create(&lhs, "/dev/system/oracle");
     Subdevice::create(&lhs, system, system_oracle);
 
-    DeviceGraph rhs;
+    Devicegraph rhs;
     lhs.copy(rhs);
 
-    LvmLv* d = dynamic_cast<LvmLv*>(rhs.findDevice(system_oracle->getSid()));
+    LvmLv* d = dynamic_cast<LvmLv*>(rhs.find_device(system_oracle->get_sid()));
     assert(d);
-    d->setName("/dev/system/postgresql");
+    d->set_name("/dev/system/postgresql");
 
-    ActionGraph action_graph(lhs, rhs);
+    Actiongraph actiongraph(lhs, rhs);
 
-    action_graph.write_graphviz("compare1-action");
+    actiongraph.write_graphviz("compare1-action");
 }

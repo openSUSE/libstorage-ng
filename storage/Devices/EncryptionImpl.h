@@ -25,7 +25,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void add_create_actions(ActionGraph& action_graph) const override;
+	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 
 	// password
 	// mount-by for crypttab

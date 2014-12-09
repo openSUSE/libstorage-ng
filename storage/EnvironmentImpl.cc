@@ -18,9 +18,9 @@ namespace storage
 
 
     void
-    Environment::Impl::setDeviceGraphFilename(const string& device_graph_filename)
+    Environment::Impl::set_devicegraph_filename(const string& devicegraph_filename)
     {
-	Impl::device_graph_filename = device_graph_filename;
+	Impl::devicegraph_filename = devicegraph_filename;
     }
 
 }

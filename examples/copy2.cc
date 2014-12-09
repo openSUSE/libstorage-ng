@@ -3,7 +3,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -12,54 +12,54 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph device_graph;
+    Devicegraph devicegraph;
 
-    Disk* disk = Disk::create(&device_graph, "/dev/dasda");
+    Disk* disk = Disk::create(&devicegraph, "/dev/dasda");
 
-    Partition* partition = Partition::create(&device_graph, "/dev/dasda2");
-    Subdevice::create(&device_graph, disk, partition);
+    Partition* partition = Partition::create(&devicegraph, "/dev/dasda2");
+    Subdevice::create(&devicegraph, disk, partition);
 
-    DeviceGraph device_graph_copy;
-    device_graph.copy(device_graph_copy);
+    Devicegraph devicegraph_copy;
+    devicegraph.copy(devicegraph_copy);
 
-    device_graph.check();
-    device_graph_copy.check();
+    devicegraph.check();
+    devicegraph_copy.check();
 
     {
-	BlkDevice* tmp = dynamic_cast<BlkDevice*>(device_graph_copy.findDevice(partition->getSid()));
+	BlkDevice* tmp = dynamic_cast<BlkDevice*>(devicegraph_copy.find_device(partition->get_sid()));
 	assert(tmp);
 
-	tmp->setName("/dev/dasda1");
+	tmp->set_name("/dev/dasda1");
     }
 
-    device_graph.print_graph();
-    device_graph_copy.print_graph();
+    devicegraph.print_graph();
+    devicegraph_copy.print_graph();
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph.findDevice(disk->getSid()));
+	Disk* tmp = dynamic_cast<Disk*>(devicegraph.find_device(disk->get_sid()));
 	assert(tmp);
 
-	assert(tmp->getName() == "/dev/dasda");
-    }
-
-    {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph.findDevice(partition->getSid()));
-	assert(tmp);
-
-	assert(tmp->getName() == "/dev/dasda2");
+	assert(tmp->get_name() == "/dev/dasda");
     }
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(device_graph_copy.findDevice(disk->getSid()));
+	Partition* tmp = dynamic_cast<Partition*>(devicegraph.find_device(partition->get_sid()));
 	assert(tmp);
 
-	assert(tmp->getName() == "/dev/dasda");
+	assert(tmp->get_name() == "/dev/dasda2");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(device_graph_copy.findDevice(partition->getSid()));
+	Disk* tmp = dynamic_cast<Disk*>(devicegraph_copy.find_device(disk->get_sid()));
+	assert(tmp);
+
+	assert(tmp->get_name() == "/dev/dasda");
+    }
+
+    {
+	Partition* tmp = dynamic_cast<Partition*>(devicegraph_copy.find_device(partition->get_sid()));
 	assert(partition);
 
-	assert(tmp->getName() == "/dev/dasda1");
+	assert(tmp->get_name() == "/dev/dasda1");
     }
 }

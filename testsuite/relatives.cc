@@ -14,7 +14,7 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -35,7 +35,7 @@ namespace std
     {
 	s << "{";
 	for (vector<const Device*>::const_iterator it = devices.begin(); it != devices.end(); ++it)
-	    s << (it == devices.begin() ? " " : ", ") << (*it)->getDisplayName() << " (" << *it << ")";
+	    s << (it == devices.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
 	s << " }";
 
 	return s;
@@ -45,60 +45,60 @@ namespace std
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    DeviceGraph* device_graph = new DeviceGraph();
+    Devicegraph* devicegraph = new Devicegraph();
 
-    Disk* sda = Disk::create(device_graph, "/dev/sda");
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(device_graph, "/dev/sda1");
-    Subdevice::create(device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Subdevice::create(devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(device_graph, "/dev/sda2");
-    Subdevice::create(device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2");
+    Subdevice::create(devicegraph, sda, sda2);
 
-    Disk* sdb = Disk::create(device_graph, "/dev/sdb");
+    Disk* sdb = Disk::create(devicegraph, "/dev/sdb");
 
-    Partition* sdb1 = Partition::create(device_graph, "/dev/sdb1");
-    Subdevice::create(device_graph, sdb, sdb1);
+    Partition* sdb1 = Partition::create(devicegraph, "/dev/sdb1");
+    Subdevice::create(devicegraph, sdb, sdb1);
 
-    Partition* sdb2 = Partition::create(device_graph, "/dev/sdb2");
-    Subdevice::create(device_graph, sdb, sdb2);
+    Partition* sdb2 = Partition::create(devicegraph, "/dev/sdb2");
+    Subdevice::create(devicegraph, sdb, sdb2);
 
-    LvmVg* system = LvmVg::create(device_graph, "/dev/system");
-    Using::create(device_graph, sda1, system);
-    Using::create(device_graph, sdb1, system);
+    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    Using::create(devicegraph, sda1, system);
+    Using::create(devicegraph, sdb1, system);
 
-    LvmLv* system_root = LvmLv::create(device_graph, "/dev/system/root");
-    Subdevice::create(device_graph, system, system_root);
+    LvmLv* system_root = LvmLv::create(devicegraph, "/dev/system/root");
+    Subdevice::create(devicegraph, system, system_root);
 
-    LvmLv* system_swap = LvmLv::create(device_graph, "/dev/system/swap");
-    Subdevice::create(device_graph, system, system_swap);
+    LvmLv* system_swap = LvmLv::create(devicegraph, "/dev/system/swap");
+    Subdevice::create(devicegraph, system, system_swap);
 
-    LvmLv* system_home = LvmLv::create(device_graph, "/dev/system/home");
-    Subdevice::create(device_graph, system, system_home);
+    LvmLv* system_home = LvmLv::create(devicegraph, "/dev/system/home");
+    Subdevice::create(devicegraph, system, system_home);
 
-    BOOST_CHECK_EQUAL(device_graph->numDevices(), 10);
-    BOOST_CHECK_EQUAL(device_graph->numHolders(), 9);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 10);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 9);
 
-    device_graph->check();
+    devicegraph->check();
 
-    BOOST_CHECK_EQUAL(sort(sda->getChildren()), sort({ sda1, sda2 }));
+    BOOST_CHECK_EQUAL(sort(sda->get_children()), sort({ sda1, sda2 }));
 
-    BOOST_CHECK_EQUAL(sort(sda1->getParents()), sort({ sda }));
+    BOOST_CHECK_EQUAL(sort(sda1->get_parents()), sort({ sda }));
 
-    BOOST_CHECK_EQUAL(sort(sda1->getSiblings(false)), sort({ sda2 }));
-    BOOST_CHECK_EQUAL(sort(system_swap->getSiblings(true)), sort({ system_root, system_home, system_swap }));
+    BOOST_CHECK_EQUAL(sort(sda1->get_siblings(false)), sort({ sda2 }));
+    BOOST_CHECK_EQUAL(sort(system_swap->get_siblings(true)), sort({ system_root, system_home, system_swap }));
 
-    BOOST_CHECK_EQUAL(sort(sda->getDescendants(false)), sort({ sda1, sda2, system, system_root, system_home, system_swap }));
-    BOOST_CHECK_EQUAL(sort(system->getDescendants(true)), sort({ system, system_root, system_home, system_swap }));
+    BOOST_CHECK_EQUAL(sort(sda->get_descendants(false)), sort({ sda1, sda2, system, system_root, system_home, system_swap }));
+    BOOST_CHECK_EQUAL(sort(system->get_descendants(true)), sort({ system, system_root, system_home, system_swap }));
 
-    BOOST_CHECK_EQUAL(sort(sda1->getAncestors(false)), sort({ sda }));
-    BOOST_CHECK_EQUAL(sort(system->getAncestors(true)), sort({ system, sda1, sda, sdb1, sdb }));
+    BOOST_CHECK_EQUAL(sort(sda1->get_ancestors(false)), sort({ sda }));
+    BOOST_CHECK_EQUAL(sort(system->get_ancestors(true)), sort({ system, sda1, sda, sdb1, sdb }));
 
-    BOOST_CHECK_EQUAL(sort(sda->getLeafs(false)), sort({ sda2, system_root, system_swap, system_home }));
-    BOOST_CHECK_EQUAL(sort(system->getLeafs(false)), sort({ system_root, system_swap, system_home }));
+    BOOST_CHECK_EQUAL(sort(sda->get_leafs(false)), sort({ sda2, system_root, system_swap, system_home }));
+    BOOST_CHECK_EQUAL(sort(system->get_leafs(false)), sort({ system_root, system_swap, system_home }));
 
-    BOOST_CHECK_EQUAL(sort(sda1->getRoots(false)), sort({ sda }));
-    BOOST_CHECK_EQUAL(sort(system_swap->getRoots(false)), sort({ sda, sdb }));
+    BOOST_CHECK_EQUAL(sort(sda1->get_roots(false)), sort({ sda }));
+    BOOST_CHECK_EQUAL(sort(system_swap->get_roots(false)), sort({ sda, sdb }));
 
-    delete device_graph;
+    delete devicegraph;
 }

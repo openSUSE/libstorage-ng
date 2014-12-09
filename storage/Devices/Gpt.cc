@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/GptImpl.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -12,19 +12,19 @@ namespace storage
 
 
     Gpt*
-    Gpt::create(DeviceGraph* device_graph)
+    Gpt::create(Devicegraph* devicegraph)
     {
 	Gpt* ret = new Gpt(new Gpt::Impl());
-	ret->Device::create(device_graph);
+	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Gpt*
-    Gpt::load(DeviceGraph* device_graph, const xmlNode* node)
+    Gpt::load(Devicegraph* devicegraph, const xmlNode* node)
     {
 	Gpt* ret = new Gpt(new Gpt::Impl(node));
-	ret->Device::load(device_graph);
+	ret->Device::load(devicegraph);
 	return ret;
     }
 
@@ -38,21 +38,21 @@ namespace storage
     Gpt*
     Gpt::clone() const
     {
-	return new Gpt(getImpl().clone());
+	return new Gpt(get_impl().clone());
     }
 
 
     Gpt::Impl&
-    Gpt::getImpl()
+    Gpt::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const Gpt::Impl&
-    Gpt::getImpl() const
+    Gpt::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 }

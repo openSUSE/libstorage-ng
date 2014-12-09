@@ -12,10 +12,10 @@ namespace storage
     {
     public:
 
-	static Using* create(DeviceGraph* device_graph, const Device* source, const Device* target);
-	static Using* load(DeviceGraph* device_graph, const xmlNode* node);
+	static Using* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+	static Using* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual const char* getClassName() const override { return "Using"; }
+	virtual const char* get_classname() const override { return "Using"; }
 
 	virtual Using* clone() const override;
 
@@ -23,8 +23,8 @@ namespace storage
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
     private:
 

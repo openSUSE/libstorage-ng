@@ -5,7 +5,7 @@
 #include <boost/graph/graphviz.hpp>
 #include <boost/graph/graph_utility.hpp>
 
-#include "storage/DeviceGraphImpl.h"
+#include "storage/DevicegraphImpl.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
@@ -27,56 +27,56 @@ namespace storage
 {
 
     bool
-    DeviceGraph::Impl::isEmpty() const
+    Devicegraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;
     }
 
 
     size_t
-    DeviceGraph::Impl::numDevices() const
+    Devicegraph::Impl::num_devices() const
     {
 	return boost::num_vertices(graph);
     }
 
 
     size_t
-    DeviceGraph::Impl::numHolders() const
+    Devicegraph::Impl::num_holders() const
     {
 	return boost::num_edges(graph);
     }
 
 
-    boost::iterator_range<DeviceGraph::Impl::vertex_iterator>
-    DeviceGraph::Impl::vertices() const
+    boost::iterator_range<Devicegraph::Impl::vertex_iterator>
+    Devicegraph::Impl::vertices() const
     {
 	return boost::make_iterator_range(boost::vertices(graph));
     }
 
 
-    boost::iterator_range<DeviceGraph::Impl::edge_iterator>
-    DeviceGraph::Impl::edges() const
+    boost::iterator_range<Devicegraph::Impl::edge_iterator>
+    Devicegraph::Impl::edges() const
     {
 	return boost::make_iterator_range(boost::edges(graph));
     }
 
 
     set<sid_t>
-    DeviceGraph::Impl::getSids() const
+    Devicegraph::Impl::get_sids() const
     {
 	set<sid_t> sids;
 	for (vertex_descriptor vertex : vertices())
-	    sids.insert(graph[vertex]->getSid());
+	    sids.insert(graph[vertex]->get_sid());
 	return sids;
     }
 
 
-    DeviceGraph::Impl::vertex_descriptor
-    DeviceGraph::Impl::find_vertex(sid_t sid) const
+    Devicegraph::Impl::vertex_descriptor
+    Devicegraph::Impl::find_vertex(sid_t sid) const
     {
 	for (vertex_descriptor v : vertices())
 	{
-	    if (graph[v]->getSid() == sid)
+	    if (graph[v]->get_sid() == sid)
 		return v;
 	}
 
@@ -87,7 +87,7 @@ namespace storage
 
 
     void
-    DeviceGraph::Impl::remove_vertex(vertex_descriptor vertex)
+    Devicegraph::Impl::remove_vertex(vertex_descriptor vertex)
     {
 	boost::clear_vertex(vertex, graph);
 	boost::remove_vertex(vertex, graph);
@@ -95,28 +95,28 @@ namespace storage
 
 
     void
-    DeviceGraph::Impl::swap(DeviceGraph::Impl& x)
+    Devicegraph::Impl::swap(Devicegraph::Impl& x)
     {
 	graph.swap(x.graph);
     }
 
 
     size_t
-    DeviceGraph::Impl::num_children(vertex_descriptor vertex) const
+    Devicegraph::Impl::num_children(vertex_descriptor vertex) const
     {
 	return boost::out_degree(vertex, graph);
     }
 
 
     size_t
-    DeviceGraph::Impl::num_parents(vertex_descriptor vertex) const
+    Devicegraph::Impl::num_parents(vertex_descriptor vertex) const
     {
 	return boost::in_degree(vertex, graph);
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::children(vertex_descriptor vertex) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::children(vertex_descriptor vertex) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -127,8 +127,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::parents(vertex_descriptor vertex) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::parents(vertex_descriptor vertex) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -139,8 +139,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::siblings(vertex_descriptor vertex, bool itself) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::siblings(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -160,8 +160,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::descendants(vertex_descriptor vertex, bool itself) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::descendants(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -178,8 +178,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::ancestors(vertex_descriptor vertex, bool itself) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::ancestors(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -200,8 +200,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::leafs(vertex_descriptor vertex, bool itself) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::leafs(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -218,8 +218,8 @@ namespace storage
     }
 
 
-    vector<DeviceGraph::Impl::vertex_descriptor>
-    DeviceGraph::Impl::roots(vertex_descriptor vertex, bool itself) const
+    vector<Devicegraph::Impl::vertex_descriptor>
+    Devicegraph::Impl::roots(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -240,7 +240,7 @@ namespace storage
     }
 
 
-    typedef Device* (*device_load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
+    typedef Device* (*device_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
 
 
     const map<string, device_load_fnc> device_load_registry = {
@@ -255,7 +255,7 @@ namespace storage
     };
 
 
-    typedef Holder* (*holder_load_fnc)(DeviceGraph* device_graph, const xmlNode* node);
+    typedef Holder* (*holder_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
 
 
     const map<string, holder_load_fnc> holder_load_registry = {
@@ -265,16 +265,16 @@ namespace storage
 
 
     void
-    DeviceGraph::Impl::load(DeviceGraph* device_graph, const string& filename)
+    Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
     {
 	XmlFile xml(filename);
 
 	const xmlNode* root_node = xml.getRootElement();
 
-	const xmlNode* device_graph_node = getChildNode(root_node, "DeviceGraph");
-	assert(device_graph_node);
+	const xmlNode* devicegraph_node = getChildNode(root_node, "Devicegraph");
+	assert(devicegraph_node);
 
-	const xmlNode* devices_node = getChildNode(device_graph_node, "Devices");
+	const xmlNode* devices_node = getChildNode(devicegraph_node, "Devices");
 	assert(devices_node);
 
 	for (const xmlNode* device_node : getChildNodes(devices_node))
@@ -285,10 +285,10 @@ namespace storage
 	    if (it == device_load_registry.end())
 		throw runtime_error("unknown device class name");
 
-	    it->second(device_graph, device_node);
+	    it->second(devicegraph, device_node);
 	}
 
-	const xmlNode* holders_node = getChildNode(device_graph_node, "Holders");
+	const xmlNode* holders_node = getChildNode(devicegraph_node, "Holders");
 	assert(holders_node);
 
 	for (const xmlNode* holder_node : getChildNodes(holders_node))
@@ -299,34 +299,34 @@ namespace storage
 	    if (it == holder_load_registry.end())
 		throw runtime_error("unknown holder class name");
 
-	    it->second(device_graph, holder_node);
+	    it->second(devicegraph, holder_node);
 	}
     }
 
 
     void
-    DeviceGraph::Impl::save(const string& filename) const
+    Devicegraph::Impl::save(const string& filename) const
     {
 	XmlFile xml;
 
-	xmlNode* device_graph_node = xmlNewNode("DeviceGraph");
-	xml.setRootElement(device_graph_node);
+	xmlNode* devicegraph_node = xmlNewNode("Devicegraph");
+	xml.setRootElement(devicegraph_node);
 
-	xmlNode* devices_node = xmlNewChild(device_graph_node, "Devices");
+	xmlNode* devices_node = xmlNewChild(devicegraph_node, "Devices");
 
 	for (vertex_descriptor vertex : vertices())
 	{
 	    const Device* device = graph[vertex].get();
-	    xmlNode* device_node = xmlNewChild(devices_node, device->getClassName());
+	    xmlNode* device_node = xmlNewChild(devices_node, device->get_classname());
 	    device->save(device_node);
 	}
 
-	xmlNode* holders_node = xmlNewChild(device_graph_node, "Holders");
+	xmlNode* holders_node = xmlNewChild(devicegraph_node, "Holders");
 
 	for (edge_descriptor edge : edges())
 	{
 	    const Holder* holder = graph[edge].get();
-	    xmlNode* holder_node = xmlNewChild(holders_node, holder->getClassName());
+	    xmlNode* holder_node = xmlNewChild(holders_node, holder->get_classname());
 	    holder->save(holder_node);
 	}
 
@@ -335,7 +335,7 @@ namespace storage
 
 
     void
-    DeviceGraph::Impl::print_graph() const
+    Devicegraph::Impl::print_graph() const
     {
 	typedef map<vertex_descriptor, string> vertex_name_map_t;
 	vertex_name_map_t vertex_name_map;
@@ -343,8 +343,8 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    sid_t sid = graph[v]->getSid();
-	    string label = graph[v]->getDisplayName();
+	    sid_t sid = graph[v]->get_sid();
+	    string label = graph[v]->get_displayname();
 
 	    ostringstream tmp;
 	    tmp << sid << " [ " << label << " ]";
@@ -360,7 +360,7 @@ namespace storage
 
     struct write_graph
     {
-	write_graph(const DeviceGraph::Impl&) {}
+	write_graph(const Devicegraph::Impl&) {}
 
 	void operator()(ostream& out) const
 	{
@@ -372,15 +372,15 @@ namespace storage
 
     struct write_vertex
     {
-	write_vertex(const DeviceGraph::Impl& device_graph) : device_graph(device_graph) {}
+	write_vertex(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
 
-	const DeviceGraph::Impl& device_graph;
+	const Devicegraph::Impl& devicegraph;
 
-	void operator()(ostream& out, const DeviceGraph::Impl::vertex_descriptor& v) const
+	void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
 	{
-	    const Device* device = device_graph.graph[v].get();
+	    const Device* device = devicegraph.graph[v].get();
 
-	    out << "[ label=\"" << device->getSid() << " " << device->getDisplayName() << "\"";
+	    out << "[ label=\"" << device->get_sid() << " " << device->get_displayname() << "\"";
 
 	    if (dynamic_cast<const Disk*>(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
@@ -406,13 +406,13 @@ namespace storage
 
     struct write_edge
     {
-	write_edge(const DeviceGraph::Impl& device_graph) : device_graph(device_graph) {}
+	write_edge(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
 
-	const DeviceGraph::Impl& device_graph;
+	const Devicegraph::Impl& devicegraph;
 
-	void operator()(ostream& out, const DeviceGraph::Impl::edge_descriptor& e) const
+	void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& e) const
 	{
-	    const Holder* holder = device_graph.graph[e].get();
+	    const Holder* holder = devicegraph.graph[e].get();
 
 	    if (dynamic_cast<const Subdevice*>(holder))
 		out << "[ style=solid ]";
@@ -427,7 +427,7 @@ namespace storage
 
 
     void
-    DeviceGraph::Impl::write_graphviz(const string& filename) const
+    Devicegraph::Impl::write_graphviz(const string& filename) const
     {
 	ofstream fout(filename + ".dot");
 

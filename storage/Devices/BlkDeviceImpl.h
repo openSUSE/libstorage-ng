@@ -18,11 +18,11 @@ namespace storage
     {
     public:
 
-	const string& getName() const { return name; }
-	void setName(const string& name);
+	const string& get_name() const { return name; }
+	void set_name(const string& name);
 
-	unsigned long long getSizeK() const { return size_k; }
-	void setSizeK(unsigned long long size_k);
+	unsigned long long get_size_k() const { return size_k; }
+	void set_size_k(unsigned long long size_k);
 
     protected:
 

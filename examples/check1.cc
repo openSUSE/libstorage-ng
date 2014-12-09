@@ -6,51 +6,51 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
 
 
-DeviceGraph device_graph;
+Devicegraph devicegraph;
 
 
 void
-make_device_graph()
+make_devicegraph()
 {
-    Disk* sda = Disk::create(&device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
-    Subdevice::create(&device_graph, sda, sda1);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Subdevice::create(&devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(&device_graph, "/dev/sda2");
-    Subdevice::create(&device_graph, sda, sda2);
+    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2");
+    Subdevice::create(&devicegraph, sda, sda2);
 
-    LvmVg* system = LvmVg::create(&device_graph, "/dev/system");
-    Using::create(&device_graph, sda1, system);
+    LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
+    Using::create(&devicegraph, sda1, system);
 
-    LvmLv* system_root = LvmLv::create(&device_graph, "/dev/system/root");
-    Subdevice::create(&device_graph, system, system_root);
+    LvmLv* system_root = LvmLv::create(&devicegraph, "/dev/system/root");
+    Subdevice::create(&devicegraph, system, system_root);
 
-    LvmLv* system_swap = LvmLv::create(&device_graph, "/dev/system/swap");
-    Subdevice::create(&device_graph, system, system_swap);
+    LvmLv* system_swap = LvmLv::create(&devicegraph, "/dev/system/swap");
+    Subdevice::create(&devicegraph, system, system_swap);
 
-    Using::create(&device_graph, system_swap, sda); // cycle
+    Using::create(&devicegraph, system_swap, sda); // cycle
 
-    Disk::create(&device_graph, "/dev/sda"); // duplicate blk device name
+    Disk::create(&devicegraph, "/dev/sda"); // duplicate blk device name
 }
 
 
 int
 main()
 {
-    make_device_graph();
+    make_devicegraph();
 
-    cout << "num_devices: " << device_graph.numDevices() << endl;
-    cout << "num_holders: " << device_graph.numHolders() << endl;
+    cout << "num_devices: " << devicegraph.num_devices() << endl;
+    cout << "num_holders: " << devicegraph.num_holders() << endl;
     cout << endl;
 
-    device_graph.check();
+    devicegraph.check();
 
-    device_graph.write_graphviz("check1");
+    devicegraph.write_graphviz("check1");
 }

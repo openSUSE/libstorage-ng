@@ -5,7 +5,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 using namespace storage;
@@ -14,24 +14,24 @@ using namespace storage;
 void
 partitions()
 {
-    DeviceGraph device_graph;
+    Devicegraph devicegraph;
 
-    Disk* sda = Disk::create(&device_graph, "/dev/sda");
+    Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Gpt* gpt = Gpt::create(&device_graph);
-    Using::create(&device_graph, sda, gpt);
+    Gpt* gpt = Gpt::create(&devicegraph);
+    Using::create(&devicegraph, sda, gpt);
 
-    Partition* sda1 = Partition::create(&device_graph, "/dev/sda1");
-    Subdevice::create(&device_graph, gpt, sda1);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Subdevice::create(&devicegraph, gpt, sda1);
 
-    gpt->createPartition("/dev/sda2");
+    gpt->create_partition("/dev/sda2");
 
-    device_graph.check();
-    device_graph.print_graph();
+    devicegraph.check();
+    devicegraph.print_graph();
 
-    for (const Partition* partition : gpt->getPartitions())
+    for (const Partition* partition : gpt->get_partitions())
     {
-	cout << partition->getName() << endl;
+	cout << partition->get_name() << endl;
     }
 }
 

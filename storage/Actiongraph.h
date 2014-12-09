@@ -6,7 +6,7 @@
 #include <boost/graph/adjacency_list.hpp>
 
 #include "storage/Devices/Device.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
@@ -18,7 +18,7 @@ namespace storage
     }
 
 
-    class ActionGraph : private boost::noncopyable
+    class Actiongraph : private boost::noncopyable
     {
     public:
 
@@ -33,7 +33,7 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	ActionGraph(const DeviceGraph& lhs, const DeviceGraph& rhs);
+	Actiongraph(const Devicegraph& lhs, const Devicegraph& rhs);
 
 	vertex_descriptor add_vertex(Action::Base* action);
 
@@ -48,8 +48,8 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
 
-	const DeviceGraph& lhs;
-	const DeviceGraph& rhs;
+	const Devicegraph& lhs;
+	const Devicegraph& rhs;
 
 	graph_t graph;
 
@@ -78,7 +78,7 @@ namespace storage
 namespace std
 {
 
-    ostream& operator<<(ostream& s, const storage::ActionGraph::simple_t& simple);
+    ostream& operator<<(ostream& s, const storage::Actiongraph::simple_t& simple);
 
 }
 

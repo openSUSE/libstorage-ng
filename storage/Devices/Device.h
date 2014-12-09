@@ -15,7 +15,7 @@ namespace storage
     using namespace std;
 
 
-    class DeviceGraph;
+    class Devicegraph;
 
 
     // The storage id (sid) is used to identify devices.  The sid is copied
@@ -45,34 +45,34 @@ namespace storage
 
 	virtual ~Device();
 
-	sid_t getSid() const;
+	sid_t get_sid() const;
 
-	virtual string getDisplayName() const = 0;
+	virtual string get_displayname() const = 0;
 
 	virtual void check() const;
 
-	size_t numChildren() const;
-	size_t numParents() const;
+	size_t num_children() const;
+	size_t num_parents() const;
 
 	// TODO check if we can somehow return a iterator. getting rid of the
 	// ptr would also allow to use references instead of pointer in the
 	// interface.
-	vector<const Device*> getChildren() const;
-	vector<const Device*> getParents() const;
-	vector<const Device*> getSiblings(bool itself) const;
-	vector<const Device*> getDescendants(bool itself) const;
-	vector<const Device*> getAncestors(bool itself) const;
-	vector<const Device*> getLeafs(bool itself) const;
-	vector<const Device*> getRoots(bool itself) const;
+	vector<const Device*> get_children() const;
+	vector<const Device*> get_parents() const;
+	vector<const Device*> get_siblings(bool itself) const;
+	vector<const Device*> get_descendants(bool itself) const;
+	vector<const Device*> get_ancestors(bool itself) const;
+	vector<const Device*> get_leafs(bool itself) const;
+	vector<const Device*> get_roots(bool itself) const;
 
     public:
 
 	class Impl;
 
-	Impl& getImpl();
-	const Impl& getImpl() const;
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual const char* getClassName() const = 0;
+	virtual const char* get_classname() const = 0;
 
 	virtual Device* clone() const = 0;
 
@@ -82,12 +82,12 @@ namespace storage
 
 	Device(Impl* impl);
 
-	void create(DeviceGraph* device_graph);
-	void load(DeviceGraph* device_graph);
+	void create(Devicegraph* devicegraph);
+	void load(Devicegraph* devicegraph);
 
     private:
 
-	void addToDeviceGraph(DeviceGraph* device_graph);
+	void add_to_devicegraph(Devicegraph* devicegraph);
 
 	shared_ptr<Impl> impl;
 

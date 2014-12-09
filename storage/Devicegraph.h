@@ -25,37 +25,37 @@ namespace storage
     };
 
 
-    class DeviceGraph : private boost::noncopyable
+    class Devicegraph : private boost::noncopyable
     {
 
     public:
 
-	DeviceGraph();
-	~DeviceGraph();
+	Devicegraph();
+	~Devicegraph();
 
 	void load(const string& filename);
 	void save(const string& filename) const;
 
-	bool isEmpty() const;
+	bool empty() const;
 
-	size_t numDevices() const;
-	size_t numHolders() const;
+	size_t num_devices() const;
+	size_t num_holders() const;
 
-	Device* findDevice(sid_t sid);
-	const Device* findDevice(sid_t sid) const;
+	Device* find_device(sid_t sid);
+	const Device* find_device(sid_t sid) const;
 
 	bool vertex_exists(sid_t sid) const;
 
 	void remove_vertex(sid_t sid);
 	void remove_vertex(Device* a);
 
-	Holder* findHolder(sid_t source_sid, sid_t target_sid);
-	const Holder* findHolder(sid_t source_sid, sid_t target_sid) const;
+	Holder* find_holder(sid_t source_sid, sid_t target_sid);
+	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
 	void check() const;
 
 	// TODO move to Impl
-	void copy(DeviceGraph& dest) const;
+	void copy(Devicegraph& dest) const;
 
 	void print_graph() const;
 	void write_graphviz(const string& filename) const;
@@ -64,8 +64,8 @@ namespace storage
 
 	class Impl;
 
-	Impl& getImpl() { return *impl; }
-	const Impl& getImpl() const { return *impl; }
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
 
     private:
 

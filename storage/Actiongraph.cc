@@ -8,16 +8,16 @@
 
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"
-#include "storage/ActionGraph.h"
+#include "storage/Actiongraph.h"
 
 
 namespace storage
 {
 
-    ActionGraph::ActionGraph(const DeviceGraph& lhs, const DeviceGraph& rhs)
+    Actiongraph::Actiongraph(const Devicegraph& lhs, const Devicegraph& rhs)
 	: lhs(lhs), rhs(rhs)
     {
 	cout << "lhs graph" << endl;
@@ -48,15 +48,15 @@ namespace storage
     }
 
 
-    ActionGraph::vertex_descriptor
-    ActionGraph::add_vertex(Action::Base* action)
+    Actiongraph::vertex_descriptor
+    Actiongraph::add_vertex(Action::Base* action)
     {
 	return boost::add_vertex(shared_ptr<Action::Base>(action), graph);
     }
 
 
-    ActionGraph::edge_descriptor
-    ActionGraph::add_edge(vertex_descriptor a, vertex_descriptor b)
+    Actiongraph::edge_descriptor
+    Actiongraph::add_edge(vertex_descriptor a, vertex_descriptor b)
     {
 	pair<edge_descriptor, bool> tmp = boost::add_edge(a, b, graph);
 
@@ -65,7 +65,7 @@ namespace storage
 
 
     void
-    ActionGraph::add_chain(vector<Action::Base*>& actions)
+    Actiongraph::add_chain(vector<Action::Base*>& actions)
     {
 	vertex_descriptor v1 = 0;
 
@@ -84,12 +84,12 @@ namespace storage
     }
 
 
-    vector<ActionGraph::vertex_descriptor>
-    ActionGraph::huhu(sid_t sid, bool first, bool last) const
+    vector<Actiongraph::vertex_descriptor>
+    Actiongraph::huhu(sid_t sid, bool first, bool last) const
     {
-	vector<ActionGraph::vertex_descriptor> ret;
+	vector<Actiongraph::vertex_descriptor> ret;
 
-	for (ActionGraph::vertex_descriptor tmp : vertices())
+	for (Actiongraph::vertex_descriptor tmp : vertices())
 	{
 	    if (graph[tmp]->sid == sid)
 	    {
@@ -107,18 +107,18 @@ namespace storage
     }
 
 
-    boost::iterator_range<ActionGraph::vertex_iterator>
-    ActionGraph::vertices() const
+    boost::iterator_range<Actiongraph::vertex_iterator>
+    Actiongraph::vertices() const
     {
 	return boost::make_iterator_range(boost::vertices(graph));
     }
 
 
     void
-    ActionGraph::get_actions()
+    Actiongraph::get_actions()
     {
-	const set<sid_t> lhs_sids = lhs.getImpl().getSids();
-	const set<sid_t> rhs_sids = rhs.getImpl().getSids();
+	const set<sid_t> lhs_sids = lhs.get_impl().get_sids();
+	const set<sid_t> rhs_sids = rhs.get_impl().get_sids();
 
 	vector<sid_t> created_sids;
 	back_insert_iterator<vector<sid_t>> bii1(created_sids);
@@ -134,20 +134,20 @@ namespace storage
 
 	for (sid_t sid : created_sids)
 	{
-	    DeviceGraph::Impl::vertex_descriptor v_rhs = rhs.getImpl().find_vertex(sid);
-	    const Device* d_rhs = rhs.getImpl().graph[v_rhs].get();
-	    d_rhs->getImpl().add_create_actions(*this);
+	    Devicegraph::Impl::vertex_descriptor v_rhs = rhs.get_impl().find_vertex(sid);
+	    const Device* d_rhs = rhs.get_impl().graph[v_rhs].get();
+	    d_rhs->get_impl().add_create_actions(*this);
 	}
 
 	for (sid_t sid : common_sids)
 	{
-	    DeviceGraph::Impl::vertex_descriptor v_lhs = lhs.getImpl().find_vertex(sid);
-	    DeviceGraph::Impl::vertex_descriptor v_rhs = rhs.getImpl().find_vertex(sid);
+	    Devicegraph::Impl::vertex_descriptor v_lhs = lhs.get_impl().find_vertex(sid);
+	    Devicegraph::Impl::vertex_descriptor v_rhs = rhs.get_impl().find_vertex(sid);
 
-	    const BlkDevice* d_lhs = dynamic_cast<const BlkDevice*>(lhs.getImpl().graph[v_lhs].get());
-	    const BlkDevice* d_rhs = dynamic_cast<const BlkDevice*>(rhs.getImpl().graph[v_rhs].get());
+	    const BlkDevice* d_lhs = dynamic_cast<const BlkDevice*>(lhs.get_impl().graph[v_lhs].get());
+	    const BlkDevice* d_rhs = dynamic_cast<const BlkDevice*>(rhs.get_impl().graph[v_rhs].get());
 
-	    if ((d_lhs && d_rhs) && (d_lhs->getName() != d_rhs->getName()))
+	    if ((d_lhs && d_rhs) && (d_lhs->get_name() != d_rhs->get_name()))
 	    {
 		Action::Base* action = new Action::Modify(sid);
 		add_vertex(action);
@@ -156,15 +156,15 @@ namespace storage
 
 	for (sid_t sid : deleted_sids)
 	{
-	    DeviceGraph::Impl::vertex_descriptor v_lhs = lhs.getImpl().find_vertex(sid);
-	    const Device* d_lhs = lhs.getImpl().graph[v_lhs].get();
-	    d_lhs->getImpl().add_delete_actions(*this);
+	    Devicegraph::Impl::vertex_descriptor v_lhs = lhs.get_impl().find_vertex(sid);
+	    const Device* d_lhs = lhs.get_impl().graph[v_lhs].get();
+	    d_lhs->get_impl().add_delete_actions(*this);
 	}
     }
 
 
     void
-    ActionGraph::add_dependencies()
+    Actiongraph::add_dependencies()
     {
 	vector<vertex_descriptor> mounts;
 
@@ -197,7 +197,7 @@ namespace storage
 
 
     void
-    ActionGraph::reduce()
+    Actiongraph::reduce()
     {
 	graph_t reduced;
 
@@ -230,7 +230,7 @@ namespace storage
 
 
     void
-    ActionGraph::get_order()
+    Actiongraph::get_order()
     {
 	try
 	{
@@ -244,7 +244,7 @@ namespace storage
 
 
     void
-    ActionGraph::commit() const
+    Actiongraph::commit() const
     {
 	cout << "order" << endl;
 
@@ -259,7 +259,7 @@ namespace storage
 
 
     void
-    ActionGraph::print_graph() const
+    Actiongraph::print_graph() const
     {
 	typedef map<vertex_descriptor, string> vertex_name_map_t;
 	vertex_name_map_t vertex_name_map;
@@ -284,7 +284,7 @@ namespace storage
 
     struct write_graph
     {
-	write_graph(const ActionGraph&) {}
+	write_graph(const Actiongraph&) {}
 
 	void operator()(ostream& out) const
 	{
@@ -295,16 +295,16 @@ namespace storage
 
     struct write_vertex
     {
-	write_vertex(const ActionGraph& action_graph)
-	    : action_graph(action_graph) {}
+	write_vertex(const Actiongraph& actiongraph)
+	    : actiongraph(actiongraph) {}
 
-	const ActionGraph& action_graph;
+	const Actiongraph& actiongraph;
 
-	void operator()(ostream& out, const ActionGraph::vertex_descriptor& v) const
+	void operator()(ostream& out, const Actiongraph::vertex_descriptor& v) const
 	{
-	    const Action::Base* action = action_graph.graph[v].get();
+	    const Action::Base* action = actiongraph.graph[v].get();
 
-	    string label = action->text(action_graph, false);
+	    string label = action->text(actiongraph, false);
 
 	    label += " [";
 	    if (action->first)
@@ -332,7 +332,7 @@ namespace storage
 
 
     void
-    ActionGraph::write_graphviz(const string& filename) const
+    Actiongraph::write_graphviz(const string& filename) const
     {
 	ofstream fout(filename + ".dot");
 
@@ -348,8 +348,8 @@ namespace storage
     }
 
 
-    ActionGraph::simple_t
-    ActionGraph::simple() const
+    Actiongraph::simple_t
+    Actiongraph::simple() const
     {
 	simple_t ret;
 
@@ -377,7 +377,7 @@ namespace std
 {
 
     ostream&
-    operator<<(ostream& s, const storage::ActionGraph::simple_t& simple)
+    operator<<(ostream& s, const storage::Actiongraph::simple_t& simple)
     {
 	for (const pair<const string, vector<string>>& i : simple)
 	{

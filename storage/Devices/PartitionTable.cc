@@ -2,7 +2,7 @@
 
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
+#include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
 
@@ -19,38 +19,38 @@ namespace storage
 
 
     PartitionTable::Impl&
-    PartitionTable::getImpl()
+    PartitionTable::get_impl()
     {
-	return dynamic_cast<Impl&>(Device::getImpl());
+	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
     const PartitionTable::Impl&
-    PartitionTable::getImpl() const
+    PartitionTable::get_impl() const
     {
-	return dynamic_cast<const Impl&>(Device::getImpl());
+	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     Partition*
-    PartitionTable::createPartition(const string& name)
+    PartitionTable::create_partition(const string& name)
     {
-	DeviceGraph* device_graph = getImpl().getDeviceGraph();
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
 
-	Partition* partition = Partition::create(device_graph, name);
-	Subdevice::create(device_graph, this, partition);
+	Partition* partition = Partition::create(devicegraph, name);
+	Subdevice::create(devicegraph, this, partition);
 
 	return partition;
     }
 
 
     vector<const Partition*>
-    PartitionTable::getPartitions() const
+    PartitionTable::get_partitions() const
     {
-	const DeviceGraph* device_graph = getImpl().getDeviceGraph();
-	DeviceGraph::Impl::vertex_descriptor vertex = getImpl().getVertex();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return device_graph->getImpl().getDevices<Partition>(device_graph->getImpl().children(vertex));
+	return devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex));
     }
 
 }

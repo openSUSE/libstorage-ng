@@ -8,8 +8,8 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/DeviceGraph.h"
-#include "storage/ActionGraph.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 
 
 using namespace storage;
@@ -18,11 +18,11 @@ using namespace storage;
 int
 main()
 {
-    DeviceGraph* lhs = new DeviceGraph();
+    Devicegraph* lhs = new Devicegraph();
 
     Disk::create(lhs, "/dev/sda");
 
-    DeviceGraph* rhs = new DeviceGraph();
+    Devicegraph* rhs = new Devicegraph();
     lhs->copy(*rhs);
 
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
@@ -47,9 +47,9 @@ main()
 
     rhs->write_graphviz("compare5-device-rhs");
 
-    ActionGraph action_graph(*lhs, *rhs);
+    Actiongraph actiongraph(*lhs, *rhs);
 
-    action_graph.write_graphviz("compare5-action");
+    actiongraph.write_graphviz("compare5-action");
 
     delete lhs;
     delete rhs;
