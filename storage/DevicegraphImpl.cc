@@ -10,6 +10,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
@@ -245,6 +246,7 @@ namespace storage_bgl
 
     const map<string, device_load_fnc> device_load_registry = {
 	{ "Disk", (device_load_fnc)(&Disk::load) },
+	{ "Msdos", (device_load_fnc)(&Msdos::load) },
 	{ "Gpt", (device_load_fnc)(&Gpt::load) },
 	{ "Partition", (device_load_fnc)(&Partition::load) },
 	{ "LvmVg", (device_load_fnc)(&LvmVg::load) },

@@ -13,6 +13,8 @@ libdevices_la_SOURCES =					\
 	DiskImpl.h		DiskImpl.cc		\
 	PartitionTable.h	PartitionTable.cc	\
 	PartitionTableImpl.h	PartitionTableImpl.cc	\
+	Msdos.h			Msdos.cc		\
+	MsdosImpl.h		MsdosImpl.cc		\
 	Gpt.h			Gpt.cc			\
 	GptImpl.h		GptImpl.cc		\
 	Partition.h		Partition.cc		\
@@ -38,6 +40,7 @@ pkginclude_HEADERS =		\
 	BlkDevice.h		\
 	Disk.h			\
 	PartitionTable.h	\
+	Msdos.h			\
 	Gpt.h			\
 	Partition.h		\
 	LvmVg.h			\

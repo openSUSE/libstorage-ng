@@ -20,6 +20,7 @@ namespace storage_bgl
     void
     PartitionTable::Impl::save(xmlNode* node) const
     {
+	Device::Impl::save(node);
     }
 
 }

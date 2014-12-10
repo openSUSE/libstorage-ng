@@ -35,6 +35,7 @@
 #include <storage/Devices/Partition.h>
 #include <storage/Devices/PartitionTable.h>
 #include <storage/Devices/Disk.h>
+#include <storage/Devices/Msdos.h>
 #include <storage/Devices/Gpt.h>
 #include <storage/Devices/LvmLv.h>
 #include <storage/Devices/LvmVg.h>
@@ -58,6 +59,7 @@ using namespace std;
 %include "../../storage/Devices/Partition.h"
 %include "../../storage/Devices/PartitionTable.h"
 %include "../../storage/Devices/Disk.h"
+%include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
 %include "../../storage/Devices/LvmLv.h"
 %include "../../storage/Devices/LvmVg.h"
