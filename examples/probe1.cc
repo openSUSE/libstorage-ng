@@ -23,6 +23,7 @@ main()
     probed->check();
     probed->print_graph();
     probed->write_graphviz("probe1");
+    probed->save("probe1.info");
 
     const Devicegraph* current = storage.get_current();
 
