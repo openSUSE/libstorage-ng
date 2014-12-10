@@ -116,6 +116,26 @@ namespace storage_bgl
     }
 
 
+    Devicegraph::Impl::vertex_descriptor
+    Devicegraph::Impl::child(vertex_descriptor vertex) const
+    {
+	if (num_children(vertex) != 1)
+	    throw runtime_error("num_children != 1");
+
+	return *boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)).begin();
+    }
+
+
+    Devicegraph::Impl::vertex_descriptor
+    Devicegraph::Impl::parent(vertex_descriptor vertex) const
+    {
+	if (num_parents(vertex) != 1)
+	    throw runtime_error("num_parents != 1");
+
+	return *boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)).begin();
+    }
+
+
     vector<Devicegraph::Impl::vertex_descriptor>
     Devicegraph::Impl::children(vertex_descriptor vertex) const
     {
