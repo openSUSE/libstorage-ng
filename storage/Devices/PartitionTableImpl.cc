@@ -11,6 +11,11 @@ namespace storage_bgl
     using namespace std;
 
 
+    const vector<string> EnumInfo<PtType>::names({
+	"unknown", "msdos", "gpt", "dasd", "mac"
+    });
+
+
     PartitionTable::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node)
     {

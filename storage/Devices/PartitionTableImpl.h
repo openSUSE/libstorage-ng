@@ -12,6 +12,9 @@ namespace storage_bgl
     using namespace std;
 
 
+    template <> struct EnumInfo<PtType> { static const vector<string> names; };
+
+
     // abstract class
 
     class PartitionTable::Impl : public Device::Impl
