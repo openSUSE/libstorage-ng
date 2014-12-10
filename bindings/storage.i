@@ -11,6 +11,8 @@
 // Since dynamic exception specifications are deprecated in C++11 we use the
 // SWIG %catches feature instead.
 
+%catches(storage_bgl::ParseError) storage_bgl::humanstring_to_byte(const string&, bool);
+
 %catches(storage_bgl::DeviceNotFound) storage_bgl::Devicegraph::find_device(sid_t);
 %catches(storage_bgl::DeviceNotFound) storage_bgl::Devicegraph::find_device(sid_t) const;
 %catches(storage_bgl::HolderNotFound) storage_bgl::Devicegraph::find_holder(sid_t, sid_t);
@@ -26,6 +28,7 @@
 #undef seed
 #endif
 
+#include <storage/Utils/HumanString.h>
 #include <storage/Devices/Device.h>
 #include <storage/Devices/Filesystem.h>
 #include <storage/Devices/BlkDevice.h>
@@ -48,6 +51,7 @@ using namespace std;
 %include "std_vector.i"
 %include "std_list.i"
 
+%include "../../storage/Utils/HumanString.h"
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/BlkDevice.h"

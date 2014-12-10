@@ -18,3 +18,8 @@ libutils_la_SOURCES =					\
 	SystemCmd.cc		SystemCmd.h		\
 	XmlFile.h		XmlFile.cc
 
+pkgincludedir = $(includedir)/storage/Utils
+
+pkginclude_HEADERS =		\
+	HumanString.h
+

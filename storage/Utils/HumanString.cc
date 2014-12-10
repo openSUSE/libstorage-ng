@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2013] Novell, Inc.
+ * Copyright (c) [2004-2014] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -33,14 +33,14 @@ namespace storage_bgl
 
 
     int
-    numSuffixes()
+    num_suffixes()
     {
 	return 7;
     }
 
 
     list<Text>
-    getAllSuffixes(int i, bool all = false, bool sloppy = false)
+    get_all_suffixes(int i, bool all = false, bool sloppy = false)
     {
 	list<Text> ret;
 
@@ -125,21 +125,21 @@ namespace storage_bgl
 
 
     string
-    getSuffix(int i, bool classic)
+    get_suffix(int i, bool classic)
     {
-	return classic ? getAllSuffixes(i).front().native : getAllSuffixes(i).front().text;
+	return classic ? get_all_suffixes(i).front().native : get_all_suffixes(i).front().text;
     }
 
 
     string
-    byteToHumanString(unsigned long long size, bool classic, int precision, bool omit_zeroes)
+    byte_to_humanstring(unsigned long long size, bool classic, int precision, bool omit_zeroes)
     {
 	const locale loc = classic ? locale::classic() : locale();
 
 	double f = size;
 	int i = 0;
 
-	while (f >= 1024.0 && i + 1 < numSuffixes())
+	while (f >= 1024.0 && i + 1 < num_suffixes())
 	{
 	    f /= 1024.0;
 	    i++;
@@ -155,14 +155,14 @@ namespace storage_bgl
 	s.setf(ios::fixed);
 	s.precision(precision);
 
-	s << f << ' ' << getSuffix(i, classic);
+	s << f << ' ' << get_suffix(i, classic);
 
 	return s.str();
     }
 
 
-    bool
-    humanStringToByte(const string& str, bool classic, unsigned long long& size)
+    unsigned long long
+    humanstring_to_byte(const string& str, bool classic)
     {
 	const locale loc = classic ? locale::classic() : locale();
 
@@ -170,9 +170,9 @@ namespace storage_bgl
 
 	double f = 1.0;
 
-	for (int i = 0; i < numSuffixes(); ++i)
+	for (int i = 0; i < num_suffixes(); ++i)
 	{
-	    list<Text> suffix = getAllSuffixes(i, true, !classic);
+	    list<Text> suffix = get_all_suffixes(i, true, !classic);
 
 	    for (list<Text>::const_iterator j = suffix.begin(); j != suffix.end(); ++j)
 	    {
@@ -190,8 +190,7 @@ namespace storage_bgl
 
 		    if (!s.fail() && s.eof() && g >= 0.0)
 		    {
-			size = g * f;
-			return true;
+			return g * f;
 		    }
 		}
 	    }
@@ -199,7 +198,7 @@ namespace storage_bgl
 	    f *= 1024.0;
 	}
 
-	return false;
+	throw ParseError(sformat(_("failed to parse \"%1\""), str.c_str()).native);
     }
 
 }

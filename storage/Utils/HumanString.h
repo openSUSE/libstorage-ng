@@ -23,15 +23,21 @@
 #ifndef HUMAN_STRING_H
 #define HUMAN_STRING_H
 
-#include "storage/StorageSwig.h"
-
 #include <string>
+#include <stdexcept>
 
 
 namespace storage_bgl
 {
 
     using std::string;
+    using std::runtime_error;
+
+
+    struct ParseError : public runtime_error
+    {
+        ParseError(const string& msg) throw() : runtime_error(msg) {}
+    };
 
 
     /**
@@ -39,7 +45,7 @@ namespace storage_bgl
      *
      * @return number of suffixes
      */
-    int numSuffixes();
+    int num_suffixes();
 
     /**
      * Return a suffix.
@@ -48,7 +54,7 @@ namespace storage_bgl
      * @param classic use classic locale instead of global C++ locale
      * @return suffix
      */
-    string getSuffix(int i, bool classic);
+    string get_suffix(int i, bool classic);
 
 
     /**
@@ -61,8 +67,8 @@ namespace storage_bgl
      * @param omit_zeroes if true omit trailing zeroes for exact values
      * @return formatted string
      */
-    string byteToHumanString(unsigned long long size, bool classic, int precision,
-			     bool omit_zeroes);
+    string byte_to_humanstring(unsigned long long size, bool classic, int precision,
+			       bool omit_zeroes);
 
     /**
      * Converts a size description using B, KiB, KB, MiB, MB, GiB, GB, TiB,
@@ -77,7 +83,7 @@ namespace storage_bgl
      * The conversion is always case-insensitive. With classic set to
      * false the conversion is also sloppy concerning omission of 'B'.
      */
-    bool humanStringToByte(const string& str, bool classic, unsigned long long& SWIG_OUTPUT(size));
+    unsigned long long humanstring_to_byte(const string& str, bool classic);
 
 }
 
