@@ -3,6 +3,7 @@
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage_bgl
@@ -63,13 +64,6 @@ namespace storage_bgl
     Filesystem::add_mountpoint(const string& mountpoint)
     {
 	return get_impl().mountpoints.push_back(mountpoint);
-    }
-
-
-    template <typename ListType, typename Type>
-    bool contains(const ListType& l, const Type& value)
-    {
-	return find(l.begin(), l.end(), value) != l.end();
     }
 
 
