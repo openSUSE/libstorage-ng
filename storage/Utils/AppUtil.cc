@@ -34,11 +34,11 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AsciiFile.h"
-#include "storage/Storage.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/StorageTypes.h"
+#include "storage/StorageInterface.h"
 #include "storage/ArchInfo.h"
 
 

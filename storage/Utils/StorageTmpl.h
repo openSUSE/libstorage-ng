@@ -32,118 +32,12 @@
 #include <deque>
 #include <set>
 
-// #include "storage/IterPair.h"
-// #include "storage/FilterIterator.h"
-// #include "storage/DerefIterator.h"
 #include "storage/Utils/AppUtil.h"
+
 
 namespace storage_bgl
 {
-/*
-template< class Value >
-class CheckFnc
-    {
-    public:
-        CheckFnc( bool (* ChkFnc)( Value& )=NULL ) : m_check(ChkFnc) {}
-	bool operator()(Value& d) const
-	    { return(m_check==NULL || (*m_check)(d)); }
-	private:
-	    bool (* m_check)( Value& d );
-    };
 
-template< class Pred, class Iter >
-class ContainerIter : public FilterIterator< Pred, Iter >
-    {
-    typedef FilterIterator< Pred, Iter > _bclass;
-    public:
-	ContainerIter() : _bclass() {}
-	ContainerIter( const Iter& b, const Iter& e, const Pred& p,
-		       bool atend=false ) :
-	    _bclass(b, e, p, atend ) {}
-	ContainerIter( const IterPair<Iter>& pair, const Pred& p,
-		       bool atend=false ) :
-	    _bclass(pair, p, atend ) {}
-	template< class It >
-	ContainerIter( const It& i) : _bclass( i.begin(), i.end(), i.pred() )
-	    { this->m_cur=i.cur(); }
-    };
-
-template< class Pred, class Iter, class Value >
-class ContainerDerIter : public DerefIterator<Iter,Value>
-    {
-    typedef DerefIterator<Iter,Value> _bclass;
-    public:
-	ContainerDerIter() : _bclass() {}
-	ContainerDerIter( const _bclass& i ) : _bclass(i) {}
-	template< class It >
-	ContainerDerIter( const It& i) : _bclass( i )
-	    { this->m_cur=i.cur(); }
-    };
-
-template< class Iter, class CastResult >
-class CastIterator : public Iter
-    {
-    public:
-	typedef CastResult value_type;
-	typedef CastResult& reference;
-	typedef CastResult* pointer;
-
-	CastIterator() : Iter() {}
-	CastIterator( const Iter& i ) : Iter( i ) {}
-	template< class It >
-	CastIterator( const It& i ) : Iter( i ) {}
-	CastResult operator*() const
-	    {
-	    return( static_cast<CastResult>(Iter::operator*()) );
-	    }
-	CastResult* operator->() const
-	    {
-	    return( static_cast<CastResult*>(Iter::operator->()) );
-	    }
-	CastIterator& operator++() 
-	    { 
-	    Iter::operator++(); return(*this); 
-	    }
-	CastIterator operator++(int) 
-	    { 
-	    y2war( "Expensive ++ CastIterator" );
-	    CastIterator tmp(*this);
-	    Iter::operator++(); 
-	    return(tmp); 
-	    }
-	CastIterator& operator--() 
-	    { 
-	    Iter::operator--(); return(*this); 
-	    }
-	CastIterator operator--(int) 
-	    { 
-	    y2war( "Expensive -- CastIterator" );
-	    CastIterator tmp(*this);
-	    Iter::operator--(); 
-	    return(tmp); 
-	    }
-    };
-
-template < class Checker, class ContIter, class Iter, class Value >
-class CheckerIterator : public ContIter
-    {
-    public:
-	CheckerIterator() {};
-	CheckerIterator( const Iter& b, const Iter& e,
-			 bool (* CheckFnc)( const Value& )=NULL,
-			 bool atend=false ) :
-	    ContIter( b, e, Checker( CheckFnc ), atend ) {}
-	CheckerIterator( const IterPair<Iter>& p, 
-			 bool (* CheckFnc)( const Value& )=NULL,
-			 bool atend=false ) :
-	    ContIter( p, Checker( CheckFnc ), atend ) {}
-	template<class It>
-	CheckerIterator( const It& i ) :
-	    ContIter( i.begin(), i.end(), Checker(i.pred()), false )
-	    { this->m_cur=i.cur(); }
-    };
-
-*/
 template<class Num> string decString(Num number)
 {
     static_assert(std::is_integral<Num>::value, "not integral");
@@ -153,6 +47,7 @@ template<class Num> string decString(Num number)
     num_str << number;
     return num_str.str();
 }
+
 
 template<class Num> string hexString(Num number)
 {
@@ -164,12 +59,14 @@ template<class Num> string hexString(Num number)
     return num_str.str();
 }
 
+
 template<class Value> void operator>>(const string& d, Value& v)
 {
     std::istringstream Data(d);
     classic(Data);
     Data >> v;
 }
+
 
 template<class Value> std::ostream& operator<<( std::ostream& s, const std::list<Value>& l )
     {
@@ -183,6 +80,7 @@ template<class Value> std::ostream& operator<<( std::ostream& s, const std::list
     s << ">";
     return( s );
     }
+
 
 template<class Value> std::ostream& operator<<( std::ostream& s, const std::deque<Value>& l )
     {
@@ -219,6 +117,7 @@ template<class F, class S> std::ostream& operator<<( std::ostream& s, const std:
     return( s );
     }
 
+
 template<class Key, class Value> std::ostream& operator<<( std::ostream& s, const std::map<Key,Value>& m )
     {
     s << "<";
@@ -242,6 +141,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 	    log << " " << text << ":" << lhs << "-->" << rhs;
     }
 
+
     template <typename Type>
     void logDiffHex(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
     {
@@ -251,6 +151,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 	    log << " " << text << ":" << std::hex << lhs << "-->" << rhs << std::dec;
     }
 
+
     template <typename Type>
     void logDiffEnum(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
     {
@@ -259,6 +160,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 	if (lhs != rhs)
 	    log << " " << text << ":" << toString(lhs) << "-->" << toString(rhs);
     }
+
 
     inline
     void logDiff(std::ostream& log, const char* text, bool lhs, bool rhs)
@@ -302,7 +204,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 
     template<class Type>
     struct deref_equal_to : public std::binary_function<const Type*, const Type*, bool>
-    {	
+    {
 	bool operator()(const Type* x, const Type* y) const { return *x == *y; }
     };
 
@@ -347,6 +249,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 	    pos = m.insert(pos, typename Map::value_type(k, v));
 	return pos;
     }
+
 
     template<typename List, typename Value>
     typename List::const_iterator addIfNotThere(List& l, const Value& v)
@@ -409,8 +312,8 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
     }
 
 
-template <class T, unsigned int sz>
-  inline unsigned int lengthof (T (&)[sz]) { return sz; }
+    template <class T, unsigned int sz>
+    inline unsigned int lengthof (T (&)[sz]) { return sz; }
 
 }
 
