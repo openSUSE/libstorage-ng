@@ -292,6 +292,7 @@ namespace storage_bgl
 	XmlFile xml(filename);
 
 	const xmlNode* root_node = xml.getRootElement();
+	assert(root_node);
 
 	const xmlNode* devicegraph_node = getChildNode(root_node, "Devicegraph");
 	assert(devicegraph_node);
