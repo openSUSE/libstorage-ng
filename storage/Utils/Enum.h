@@ -58,7 +58,7 @@ namespace storage_bgl
     template <> struct EnumInfo<DasdType> { static const vector<string> names; };
     template <> struct EnumInfo<DasdFormat> { static const vector<string> names; };
 
-    
+
     template <typename EnumType>
     const string& toString(EnumType value)
     {
@@ -70,7 +70,8 @@ namespace storage_bgl
 	// define comparison operators.
 	assert((size_t)(value) < names.size());
 
-	return names[value];
+	// TODO query underlying integral type of enum
+	return names[(int)(value)];
     }
 
 
