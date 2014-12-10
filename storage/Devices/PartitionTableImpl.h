@@ -4,6 +4,7 @@
 
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage_bgl
