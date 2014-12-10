@@ -37,7 +37,7 @@ namespace storage_bgl
 
 
     Parted::Parted(const string& device, bool do_probe)
-	: device(device), implicit(false), gpt_enlarge(false)
+	: device(device), label(PtType::PT_UNKNOWN), implicit(false), gpt_enlarge(false)
     {
 	if (do_probe)
 	    probe();
@@ -68,11 +68,17 @@ namespace storage_bgl
 	pos = find_if(lines, string_starts_with("Partition Table:"));
 	if (pos != lines.end())
 	{
-	    label = extractNthWord(2, *pos);
-	    if (label == "unknown")
-		label.clear();
-	    else if (label == LABEL_GPT_SYNC_MBR)
-		label = "gpt";
+	    string label_str = extractNthWord(2, *pos);
+	    if (label_str == "msdos")
+		label = PtType::MSDOS;
+	    else if (label_str == "gpt" || label_str == "gpt_sync_mbr")
+		label = PtType::GPT;
+	    else if (label_str == "dasd")
+		label = PtType::DASD;
+	    else if (label_str == "loop")
+		label = PtType::PT_UNKNOWN;
+	    else
+		throw runtime_error("unknown partition table type");
 	}
 	else
 	    y2war("could not find partition table");
@@ -114,7 +120,7 @@ namespace storage_bgl
 
 	gpt_enlarge = find_if(lines, string_starts_with("fix the GPT to use all")) != lines.end();
 
-	if (label != "loop")
+	if (label != PtType::PT_UNKNOWN)
 	{
 	    int n = 0;
 
@@ -174,8 +180,8 @@ namespace storage_bgl
 
     std::ostream& operator<<(std::ostream& s, const Parted& parted)
     {
-	s << "device:" << parted.device << " label:" << parted.label << " geometry:"
-	  << parted.geometry;
+	s << "device:" << parted.device << " label:" << toString(parted.label)
+	  << " geometry:" << parted.geometry;
 
 	if (parted.implicit)
 	    s << " implicit";
@@ -269,7 +275,7 @@ namespace storage_bgl
 	string PartitionTypeStr;
 	string skip;
 
-	if( label == "msdos" )
+	if (label == PtType::MSDOS)
 	{
 	    Data >> entry.num >> StartM >> skip >> EndM >> skip >> SizeM >> skip >> PartitionTypeStr;
 	}
@@ -329,7 +335,7 @@ namespace storage_bgl
 
 	entry.id = ID_LINUX;
 
-	if( label == "msdos" )
+	if (label == PtType::MSDOS)
 	{
 	    if( PartitionTypeStr == "extended" )
 	    {
@@ -368,7 +374,7 @@ namespace storage_bgl
 	{
 	    string val = string(*it1, 5);
 
-	    if( label != "mac" )
+	    if (label != PtType::MAC)
 	    {
 		int tmp_id = 0;
 		std::istringstream Data2(val);
@@ -406,7 +412,7 @@ namespace storage_bgl
 	    }
 	}
 
-	if( label == "gpt" )
+	if (label == PtType::GPT)
 	{
 	    if (contains(flags, "boot") && contains_if(flags, string_starts_with("fat")))
 	    {

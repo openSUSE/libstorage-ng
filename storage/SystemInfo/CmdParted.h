@@ -26,6 +26,7 @@
 #include "storage/StorageInterface.h"
 #include "storage/Geometry.h"
 #include "storage/Utils/Region.h"
+#include "storage/Devices/PartitionTableImpl.h"
 
 
 namespace storage_bgl
@@ -55,7 +56,7 @@ namespace storage_bgl
 	friend std::ostream& operator<<(std::ostream& s, const Parted& parted);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	const string& getLabel() const { return label; }
+	PtType getLabel() const { return label; }
 	bool getImplicit() const { return implicit; }
 	const Geometry& getGeometry() const { return geometry; }
 	bool getGptEnlarge() const { return gpt_enlarge; }
@@ -73,7 +74,7 @@ namespace storage_bgl
 	typedef vector<Entry>::iterator iterator;
 
 	string device;
-	string label;
+	PtType label;
 	bool implicit;
 	Geometry geometry;
 	bool gpt_enlarge;
