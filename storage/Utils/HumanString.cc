@@ -198,7 +198,7 @@ namespace storage_bgl
 	    f *= 1024.0;
 	}
 
-	throw ParseError(sformat(_("failed to parse \"%1\""), str.c_str()).native);
+	throw ParseError(sformat(_("failed to parse \"%s\""), str.c_str()).native);
     }
 
 }
