@@ -8,8 +8,6 @@
 #include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/StorageInterface.h"
 
-#include "common.h"
-
 
 using namespace std;
 using namespace storage_bgl;
