@@ -76,7 +76,7 @@ namespace storage_bgl
 	    else if (label_str == "dasd")
 		label = PtType::DASD;
 	    else if (label_str == "loop")
-		label = PtType::PT_UNKNOWN;
+		label = PtType::LOOP;
 	    else
 		throw runtime_error("unknown partition table type");
 	}
@@ -120,7 +120,7 @@ namespace storage_bgl
 
 	gpt_enlarge = find_if(lines, string_starts_with("fix the GPT to use all")) != lines.end();
 
-	if (label != PtType::PT_UNKNOWN)
+	if (label != PtType::PT_UNKNOWN && label != PtType::LOOP)
 	{
 	    int n = 0;
 

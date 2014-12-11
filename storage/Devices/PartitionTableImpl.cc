@@ -15,7 +15,7 @@ namespace storage_bgl
 
 
     const vector<string> EnumInfo<PtType>::names({
-	"unknown", "msdos", "gpt", "dasd", "mac"
+	"unknown", "loop", "msdos", "gpt", "dasd", "mac"
     });
 
 
