@@ -331,10 +331,16 @@ bool isNfsDev( const string& dev )
 static const string& component = "libstorage";
 static string filename;
 
-void createLogger( const string& logpath, const string& logfile )
+
+    void
+    createLogger(const string& logpath, const string& logfile)
     {
-    filename = logpath + "/" + logfile;
+	if (logpath == "" && logfile == "cout")
+	    filename = "cout";
+	else
+	    filename = logpath + "/" + logfile;
     }
+
 
 bool queryLog( LogLevel level )
     {
@@ -400,27 +406,39 @@ static void close_logf()
         logf=NULL;
         }
     }
-    
-void defaultLogDo( int level, const string& comp, const char* file,
-                   int line, const char* fct, const string& content )
+
+
+    void
+    defaultLogDo(int level, const string& comp, const char* file, int line, const char* fct,
+		 const string& content)
     {
-    ostringstream pfx;
-    pfx << datetime(time(0), false, true) << " <" << level << "> "
-        << comp << "(" << getpid() << ")" << " " << file 
-        << "(" << fct << "):" << line;
-    string prefix = pfx.str();
+	if (!filename.empty())
+	{
+	    ostringstream pfx;
+	    pfx << datetime(time(0), false, true) << " <" << level << "> "
+		<< comp << "(" << getpid() << ")" << " " << file
+		<< "(" << fct << "):" << line;
+	    string prefix = pfx.str();
 
-    if( !logf )
-        {
-        logf = fopen(filename.c_str(), "ae");
-        if( logf )
-            {
-            setlinebuf(logf);
-            atexit( close_logf );
-            }
-        }
+	    if (filename == "cout")
+	    {
+		cout << prefix << " - " << content << endl;
+	    }
+	    else
+	    {
+		if( !logf )
+		{
+		    logf = fopen(filename.c_str(), "ae");
+		    if( logf )
+		    {
+			setlinebuf(logf);
+			atexit( close_logf );
+		    }
+		}
 
-    fprintf(logf, "%s - %s\n", prefix.c_str(), content.c_str());
+		fprintf(logf, "%s - %s\n", prefix.c_str(), content.c_str());
+	    }
+	}
     }
 
 

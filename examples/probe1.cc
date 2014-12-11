@@ -2,7 +2,6 @@
 
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
-#include "storage/StorageInterface.h"
 
 
 using namespace storage_bgl;
@@ -11,8 +10,6 @@ using namespace storage_bgl;
 int
 main()
 {
-    storage::initDefaultLogger("/var/log/YaST2");
-
     Environment environment(true);
 
     Storage storage(environment);
