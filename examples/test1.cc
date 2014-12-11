@@ -165,7 +165,7 @@ main()
 
     roots(system_swap);
 
-    devicegraph.save("test1.info");
+    devicegraph.save("test1.xml");
 
     devicegraph.print_graph();
 

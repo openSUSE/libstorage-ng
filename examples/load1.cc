@@ -11,7 +11,7 @@ main()
 {
     Devicegraph devicegraph;
 
-    devicegraph.load("test1.info");
+    devicegraph.load("load1.xml");
 
     cout << "num_devices: " << devicegraph.num_devices() << endl;
     cout << "num_holders: " << devicegraph.num_holders() << endl;
@@ -21,6 +21,5 @@ main()
     devicegraph.check();
 
     devicegraph.print_graph();
-
     devicegraph.write_graphviz("load1");
 }

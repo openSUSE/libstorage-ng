@@ -35,12 +35,14 @@ namespace storage_bgl
     Partition*
     PartitionTable::create_partition(const string& name)
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	return get_impl().create_partition(name);
+    }
 
-	Partition* partition = Partition::create(devicegraph, name);
-	Subdevice::create(devicegraph, this, partition);
 
-	return partition;
+    Partition*
+    PartitionTable::create_partition(unsigned int number)
+    {
+	return get_impl().create_partition(number);
     }
 
 

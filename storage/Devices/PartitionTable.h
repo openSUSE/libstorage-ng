@@ -26,6 +26,7 @@ namespace storage_bgl
     public:
 
 	Partition* create_partition(const string& name);
+	Partition* create_partition(unsigned int number);
 
 	vector<const Partition*> get_partitions() const;
 

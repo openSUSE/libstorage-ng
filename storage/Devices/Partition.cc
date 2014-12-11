@@ -59,8 +59,7 @@ namespace storage_bgl
     unsigned int
     Partition::get_number() const
     {
-	string::size_type pos = get_name().find_last_not_of("0123456789");
-	return atoi(get_name().substr(pos + 1).c_str());
+	return get_impl().get_number();
     }
 
 }

@@ -27,9 +27,11 @@ namespace storage_bgl
     protected:
 
 	Impl(const string& name)
-	    : Device::Impl(), name(name), size_k(0) {}
+	    : Device::Impl(), name(name), size_k(0), major_minor(0) {}
 
 	Impl(const xmlNode* node);
+
+	void probe(SystemInfo& systeminfo);
 
 	void save(xmlNode* node) const override;
 
@@ -37,8 +39,8 @@ namespace storage_bgl
 
 	string name;
 	unsigned long long size_k;
+	dev_t major_minor;
 
-	// major and minor
 	// udev_id and udev_path
 
     };

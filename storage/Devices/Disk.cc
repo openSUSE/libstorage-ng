@@ -1,6 +1,7 @@
 
 
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Holders/Using.h"
 #include "storage/Devicegraph.h"
@@ -62,12 +63,7 @@ namespace storage_bgl
     PartitionTable*
     Disk::create_partition_table(PtType pt_type)
     {
-	if (num_children() != 0)
-	    throw runtime_error("has children");
-
-	PartitionTable* ret = Gpt::create(get_impl().get_devicegraph());
-	Using::create(get_impl().get_devicegraph(), this, ret);
-	return ret;
+	return get_impl().create_partition_table(pt_type);
     }
 
 

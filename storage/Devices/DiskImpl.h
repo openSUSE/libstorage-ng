@@ -4,6 +4,7 @@
 
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/StorageInterface.h"
 
 
 namespace storage_bgl
@@ -17,7 +18,7 @@ namespace storage_bgl
     public:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name) {}
+	    : BlkDevice::Impl(name), transport(storage::TUNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
@@ -25,11 +26,18 @@ namespace storage_bgl
 
 	virtual void save(xmlNode* node) const override;
 
+	void probe(SystemInfo& systeminfo);
+
+	PartitionTable* create_partition_table(PtType pt_type);
+
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
+    private:
+
 	// geometry
-	// transport
+
+	storage::Transport transport;
 
     };
 

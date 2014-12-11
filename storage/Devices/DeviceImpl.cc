@@ -30,6 +30,12 @@ namespace storage_bgl
 
 
     void
+    Device::Impl::probe(SystemInfo& systeminfo)
+    {
+    }
+
+
+    void
     Device::Impl::save(xmlNode* node) const
     {
 	setChildValue(node, "sid", sid);

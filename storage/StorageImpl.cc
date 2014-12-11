@@ -2,7 +2,9 @@
 
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/DiskImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/StorageDefines.h"
 
 
 namespace storage_bgl
@@ -57,9 +59,18 @@ namespace storage_bgl
     void
     Storage::Impl::probe(Devicegraph* probed)
     {
+	SystemInfo systeminfo;
+
 	// TODO
 
-	Disk::create(probed, "/dev/sda");
+	for (const string& name : systeminfo.getDir(SYSFSDIR))
+	{
+	    if (!boost::starts_with(name, "sd"))
+		continue;
+
+	    Disk* disk = Disk::create(probed, "/dev/" + name);
+	    disk->get_impl().probe(systeminfo);
+	}
     }
 
 

@@ -2,6 +2,7 @@
 
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
+#include "storage/StorageInterface.h"
 
 
 using namespace storage_bgl;
@@ -10,6 +11,8 @@ using namespace storage_bgl;
 int
 main()
 {
+    storage::initDefaultLogger("/var/log/YaST2");
+
     Environment environment(true);
 
     Storage storage(environment);
@@ -23,7 +26,7 @@ main()
     probed->check();
     probed->print_graph();
     probed->write_graphviz("probe1");
-    probed->save("probe1.info");
+    probed->save("probe1.xml");
 
     const Devicegraph* current = storage.get_current();
 

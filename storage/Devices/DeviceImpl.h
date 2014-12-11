@@ -16,6 +16,7 @@ namespace storage_bgl
 
 
     class Actiongraph;
+    class SystemInfo;
 
 
     // abstract class
@@ -40,6 +41,9 @@ namespace storage_bgl
 
 	Devicegraph::Impl::vertex_descriptor get_vertex() const { return vertex; }
 
+	Device* get_device() { return devicegraph->get_impl().graph[vertex].get(); }
+	const Device* get_device() const { return devicegraph->get_impl().graph[vertex].get(); }
+
 	virtual void add_create_actions(Actiongraph& actiongraph) const;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const;
 
@@ -48,6 +52,8 @@ namespace storage_bgl
 	Impl();
 
 	Impl(const xmlNode* node);
+
+	virtual void probe(SystemInfo& systeminfo);
 
     private:
 

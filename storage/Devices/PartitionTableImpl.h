@@ -22,16 +22,23 @@ namespace storage_bgl
     {
     public:
 
-	// read-only
+	virtual void probe(SystemInfo& systeminfo);
+
+	Partition* create_partition(const string& name);
+	Partition* create_partition(unsigned int number);
 
     protected:
 
 	Impl()
-	    : Device::Impl() {}
+	    : Device::Impl(), read_only(false) {}
 
 	Impl(const xmlNode* node);
 
 	virtual void save(xmlNode* node) const override;
+
+    private:
+
+	bool read_only;
 
     };
 
