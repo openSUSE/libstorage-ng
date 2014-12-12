@@ -26,6 +26,7 @@
 #include <sys/stat.h>
 #include <sys/mount.h>
 #include <string.h>
+#include <unistd.h>
 #include <linux/hdreg.h>
 
 #include "storage/Utils/AppUtil.h"
