@@ -28,21 +28,21 @@
 #undef seed
 #endif
 
-#include <storage/Utils/HumanString.h>
-#include <storage/Devices/Device.h>
-#include <storage/Devices/Filesystem.h>
-#include <storage/Devices/BlkDevice.h>
-#include <storage/Devices/Partition.h>
-#include <storage/Devices/PartitionTable.h>
-#include <storage/Devices/Disk.h>
-#include <storage/Devices/Msdos.h>
-#include <storage/Devices/Gpt.h>
-#include <storage/Devices/LvmLv.h>
-#include <storage/Devices/LvmVg.h>
-#include <storage/Holders/Holder.h>
-#include <storage/Devicegraph.h>
-#include <storage/Environment.h>
-#include <storage/Storage.h>
+#include "storage/Utils/HumanString.h"
+#include "storage/Devices/Device.h"
+#include "storage/Devices/Filesystem.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Msdos.h"
+#include "storage/Devices/Gpt.h"
+#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmVg.h"
+#include "storage/Holders/Holder.h"
+#include "storage/Devicegraph.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 %}
 
 using namespace std;
