@@ -27,6 +27,8 @@
 #include <map>
 #include <vector>
 
+#include "storage/StorageInterface.h"
+
 
 namespace storage_bgl
 {

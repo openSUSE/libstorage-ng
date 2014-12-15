@@ -6,7 +6,6 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/CmdBlkid.h"
-#include "storage/StorageInterface.h"
 
 
 using namespace std;
