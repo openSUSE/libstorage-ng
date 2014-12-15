@@ -15,7 +15,7 @@ namespace storage_bgl
 
 
     enum class PtType {
-	PT_UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC
+	PT_UNKNOWN, PT_LOOP, MSDOS, GPT, DASD, MAC
     };
 
 
