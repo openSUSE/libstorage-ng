@@ -27,6 +27,9 @@ namespace storage_bgl
     {
 	Device::Impl::probe(systeminfo);
 
+	if (!systeminfo.getProcParts().getSize(name, size_k))
+	    throw;
+
 	major_minor = systeminfo.getMajorMinor(name).getMajorMinor();
     }
 

@@ -62,4 +62,23 @@ namespace storage_bgl
 	return get_impl().get_number();
     }
 
+    PartitionType
+    Partition::get_type() const
+    {
+	return get_impl().get_type();
+    }
+
+    unsigned
+    Partition::get_id() const
+    {
+	return get_impl().get_id();
+    }
+
+
+    bool
+    Partition::get_boot() const
+    {
+	return get_impl().get_boot();
+    }
+
 }

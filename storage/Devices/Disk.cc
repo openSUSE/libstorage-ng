@@ -60,10 +60,42 @@ namespace storage_bgl
     }
 
 
+    Transport
+    Disk::get_transport() const
+    {
+	return get_impl().get_transport();
+    }
+
+
+    void
+    Disk::set_transport(Transport transport)
+    {
+	get_impl().set_transport(transport);
+    }
+
+
+    vector<Disk*>
+    Disk::get_all(const Devicegraph* devicegraph)
+    {
+	auto pred = [](const Device* device) {
+	    return dynamic_cast<const Disk*>(device);
+	};
+
+	return devicegraph->get_impl().getDevicesIf<Disk>(pred);
+    }
+
+
     PartitionTable*
     Disk::create_partition_table(PtType pt_type)
     {
 	return get_impl().create_partition_table(pt_type);
+    }
+
+
+    PartitionTable*
+    Disk::get_partition_table()
+    {
+	return get_impl().get_partition_table();
     }
 
 

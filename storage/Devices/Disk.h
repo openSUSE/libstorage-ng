@@ -29,7 +29,13 @@ namespace storage_bgl
 	static Disk* create(Devicegraph* devicegraph, const string& name);
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	static vector<Disk*> get_all(const Devicegraph* devicegraph);
+
+	Transport get_transport() const;
+	void set_transport(Transport transport);
+
 	PartitionTable* create_partition_table(PtType pt_type);
+	PartitionTable* get_partition_table();
 
     public:
 

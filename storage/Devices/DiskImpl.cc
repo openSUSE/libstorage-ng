@@ -80,6 +80,20 @@ namespace storage_bgl
     }
 
 
+    PartitionTable*
+    Disk::Impl::get_partition_table()
+    {
+	if (get_device()->num_children() != 1)
+	    throw runtime_error("has no children");
+
+	const Devicegraph* devicegraph = get_devicegraph();
+
+	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
+
+	return dynamic_cast<PartitionTable*>(child);
+    }
+
+
     void
     Disk::Impl::add_create_actions(Actiongraph& actiongraph) const
     {

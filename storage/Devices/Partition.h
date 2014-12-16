@@ -29,6 +29,10 @@ namespace storage_bgl
 
 	unsigned int get_number() const;
 
+	PartitionType get_type() const;
+	unsigned get_id() const;
+	bool get_boot() const;
+
     public:
 
 	class Impl;

@@ -30,6 +30,11 @@ namespace storage_bgl
 
 	unsigned int get_number() const;
 
+	Region get_region() const { return region; }
+	PartitionType get_type() const { return type; }
+	unsigned get_id() const { return id; }
+	bool get_boot() const { return boot; }
+
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 
     private:
