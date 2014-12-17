@@ -6,7 +6,7 @@
 #include "storage/Devices/FilesystemImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;

@@ -29,8 +29,10 @@
 #include "storage/Utils/XmlFile.h"
 
 
-namespace storage_bgl
+namespace storage
 {
+    using namespace storage_legacy;
+
 
     class Region
     {
@@ -38,7 +40,7 @@ namespace storage_bgl
 
 	Region() : s(0), l(0) {}
 	Region(unsigned long long start, unsigned long long len) : s(start), l(len) {}
-	Region(const storage::RegionInfo& region_info) : s(region_info.start), l(region_info.len) {}
+	Region(const RegionInfo& region_info) : s(region_info.start), l(region_info.len) {}
 
 	bool doIntersect( const Region& r ) const
 	    { return( r.start() <= end() && r.end() >= start() ); }
@@ -91,7 +93,7 @@ namespace storage_bgl
 	friend bool getChildValue(const xmlNode* node, const char* name, Region& value);
 	friend void setChildValue(xmlNode* node, const char* name, const Region& value);
 
-	operator storage::RegionInfo() const { return storage::RegionInfo(s, l); }
+	operator RegionInfo() const { return RegionInfo(s, l); }
 
     protected:
 

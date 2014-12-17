@@ -30,7 +30,7 @@
 #include "storage/Storage.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     class EtcMdadm

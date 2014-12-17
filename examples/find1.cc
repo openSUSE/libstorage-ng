@@ -9,7 +9,7 @@
 #include "storage/Devicegraph.h"
 
 
-using namespace storage_bgl;
+using namespace storage;
 
 
 int
@@ -29,7 +29,7 @@ main()
 
     LvmLv* system_root = system->create_lvm_lv("/dev/system/root");
 
-    Filesystem* filesystem = system_root->create_filesystem(storage::EXT4);
+    Filesystem* filesystem = system_root->create_filesystem(EXT4);
     filesystem->add_mountpoint("/");
 
     cout << "num_devices: " << devicegraph->num_devices() << endl;

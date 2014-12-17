@@ -33,7 +33,7 @@
 #include <map>
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::list;
@@ -115,18 +115,18 @@ std::ostringstream* logStreamOpen();
 void logStreamClose(LogLevel level, const char* file, unsigned line,
 		    const char* func, std::ostringstream*);
 
-#define y2deb(op) y2log_op(storage_bgl::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2mil(op) y2log_op(storage_bgl::MILESTONE, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2war(op) y2log_op(storage_bgl::WARNING, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2err(op) y2log_op(storage_bgl::ERROR, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2deb(op) y2log_op(storage::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2mil(op) y2log_op(storage::MILESTONE, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2war(op) y2log_op(storage::WARNING, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2err(op) y2log_op(storage::ERROR, __FILE__, __LINE__, __FUNCTION__, op)
 
 #define y2log_op(level, file, line, func, op)				\
     do {								\
-	if (storage_bgl::queryLog(level))                       		\
+	if (storage::queryLog(level))                       		\
 	{								\
-	    std::ostringstream* __buf = storage_bgl::logStreamOpen();	\
+	    std::ostringstream* __buf = storage::logStreamOpen();	\
 	    *__buf << op;						\
-	    storage_bgl::logStreamClose(level, file, line, func, __buf);	\
+	    storage::logStreamClose(level, file, line, func, __buf);	\
 	}								\
     } while (0)
 

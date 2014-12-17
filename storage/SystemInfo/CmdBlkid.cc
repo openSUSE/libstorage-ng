@@ -27,7 +27,7 @@
 #include "storage/Utils/Enum.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
@@ -59,23 +59,23 @@ namespace storage_bgl
     void
     Blkid::parse(const vector<string>& lines)
     {
-	static const map<string, storage::FsType> fs_table = {
-	    { "btrfs", storage::BTRFS },
-	    { "ext2", storage::EXT2 },
-	    { "ext3", storage::EXT3 },
-	    { "ext4", storage::EXT4 },
-	    { "hfs", storage::HFS },
-	    { "hfsplus", storage::HFSPLUS },
-	    { "jfs", storage::JFS },
-	    { "msdos", storage::VFAT },
-	    { "ntfs", storage::NTFS },
-	    { "ntfs-3g", storage::NTFS },
-	    { "reiserfs", storage::REISERFS },
-	    { "swap", storage::SWAP },
-	    { "vfat", storage::VFAT },
-	    { "xfs", storage::XFS },
-	    { "iso9660", storage::ISO9660 },
-	    { "udf", storage::UDF }
+	static const map<string, FsType> fs_table = {
+	    { "btrfs", BTRFS },
+	    { "ext2", EXT2 },
+	    { "ext3", EXT3 },
+	    { "ext4", EXT4 },
+	    { "hfs", HFS },
+	    { "hfsplus", HFSPLUS },
+	    { "jfs", JFS },
+	    { "msdos", VFAT },
+	    { "ntfs", NTFS },
+	    { "ntfs-3g", NTFS },
+	    { "reiserfs", REISERFS },
+	    { "swap", SWAP },
+	    { "vfat", VFAT },
+	    { "xfs", XFS },
+	    { "iso9660", ISO9660 },
+	    { "udf", UDF }
 	};
 
 	data.clear();
@@ -96,7 +96,7 @@ namespace storage_bgl
 	    map<string, string>::const_iterator i = m.find("TYPE");
 	    if (i != m.end())
 	    {
-		map<string, storage::FsType>::const_iterator it2 = fs_table.find(i->second);
+		map<string, FsType>::const_iterator it2 = fs_table.find(i->second);
 		if (it2 != fs_table.end())
 		{
 		    entry.is_fs = true;

@@ -42,7 +42,7 @@
 #include "storage/SystemInfo/DevAndSys.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::map;
     using std::list;

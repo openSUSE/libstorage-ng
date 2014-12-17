@@ -5,7 +5,7 @@
 #include "storage/Action.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
@@ -61,6 +61,16 @@ namespace storage_bgl
     {
 	return get_impl().get_number();
     }
+
+
+    /*
+    Region
+    Partition::get_region() const
+    {
+	return get_impl().get_region();
+    }
+    */
+
 
     PartitionType
     Partition::get_type() const

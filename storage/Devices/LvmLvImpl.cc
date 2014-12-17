@@ -8,7 +8,7 @@
 using namespace std;
 
 
-namespace storage_bgl
+namespace storage
 {
 
     LvmLv::Impl::Impl(const xmlNode* node)

@@ -42,9 +42,10 @@
 #include "storage/ArchInfo.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
+    using namespace storage_legacy;
 
 
 void createPath(const string& Path_Cv)
@@ -162,7 +163,7 @@ checkNormalFile(const string& Path_Cv)
 		minor = gnu_dev_minor(sbuf.st_rdev);
 		}
 	}
-	else 
+	else
 	{
 	    if( !may_fail )
 		y2err("stat for " << device << " failed errno:" << errno << " (" << strerror(errno) << ")");
@@ -328,8 +329,9 @@ bool isNfsDev( const string& dev )
 	return dev;
     }
 
-static const string& component = "libstorage";
-static string filename;
+
+    static const string& component = "libstorage";
+    static string filename;
 
 
     void
@@ -342,40 +344,44 @@ static string filename;
     }
 
 
-bool queryLog( LogLevel level )
+    bool
+    queryLog(LogLevel level)
     {
-	storage::CallbackLogQuery pfc = storage::getLogQueryCallback();
-    return( pfc!=NULL && pfc( level, component ));
-    }
-
-bool defaultLogQuery( int level, const string& component )
-    {
-    return( level != DEBUG );
-    }
-
-void
-prepareLogStream(ostringstream& stream)
-    {
-    stream.imbue(std::locale::classic());
-    stream.setf(std::ios::boolalpha);
-    stream.setf(std::ios::showbase);
+	CallbackLogQuery pfc = getLogQueryCallback();
+	return pfc && pfc(level, component);
     }
 
 
-ostringstream*
-logStreamOpen()
+    bool
+    defaultLogQuery(int level, const string& component)
     {
-    std::ostringstream* stream = new ostringstream;
-    prepareLogStream(*stream);
-    return stream;
+	return level != DEBUG;
     }
 
 
-void
-logStreamClose( LogLevel level, const char* file, unsigned line, 
-                const char* func, ostringstream* stream )
+    void
+    prepareLogStream(ostringstream& stream)
     {
-	storage::CallbackLogDo pfc = storage::getLogDoCallback();
+	stream.imbue(std::locale::classic());
+	stream.setf(std::ios::boolalpha);
+	stream.setf(std::ios::showbase);
+    }
+
+
+    ostringstream*
+    logStreamOpen()
+    {
+	std::ostringstream* stream = new ostringstream;
+	prepareLogStream(*stream);
+	return stream;
+    }
+
+
+    void
+    logStreamClose( LogLevel level, const char* file, unsigned line,
+		    const char* func, ostringstream* stream )
+    {
+	CallbackLogDo pfc = getLogDoCallback();
 	if (pfc != NULL)
 	{
 	    string content = stream->str();
@@ -396,14 +402,15 @@ logStreamClose( LogLevel level, const char* file, unsigned line,
     }
 
 
-static FILE* logf = NULL;
+    static FILE* logf = NULL;
 
-static void close_logf()
+    static void
+    close_logf()
     {
-    if( logf )
+	if( logf )
         {
-        fclose(logf);
-        logf=NULL;
+	    fclose(logf);
+	    logf=NULL;
         }
     }
 
@@ -751,7 +758,7 @@ getMajorDevices(const char* driver)
 	    paths.erase(DASDFMTBIN);
 	}
 
-	LogLevel level = instsys ? storage_bgl::ERROR : storage_bgl::MILESTONE;
+	LogLevel level = instsys ? storage::ERROR : storage::MILESTONE;
 	for (set<string>::const_iterator it = paths.begin(); it != paths.end(); ++it)
         {
             if (access(it->c_str(), X_OK) != 0)

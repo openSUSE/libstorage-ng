@@ -32,7 +32,7 @@
 #include "storage/Utils/Enum.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::list;
@@ -64,7 +64,7 @@ namespace storage_bgl
 
     struct FstabChange
     {
-	FstabChange() : freq(0), passno(0), encr(storage::ENC_NONE), tmpcrypt(false) {}
+	FstabChange() : freq(0), passno(0), encr(ENC_NONE), tmpcrypt(false) {}
 
 	explicit FstabChange(const FstabEntry& entry) : FstabChange()
 	    { *this = entry; }
@@ -81,7 +81,7 @@ namespace storage_bgl
 	int freq;
 	int passno;
 	string loop_dev;
-	storage::EncryptType encr;
+	EncryptType encr;
 	bool tmpcrypt;
     };
 
@@ -89,7 +89,7 @@ namespace storage_bgl
     struct FstabEntry : public FstabChange
     {
 	FstabEntry() : loop(false), dmcrypt(false), noauto(false), cryptotab(false),
-		       crypttab(false), mount_by(storage::MOUNTBY_DEVICE) {}
+		       crypttab(false), mount_by(MOUNTBY_DEVICE) {}
 
 	explicit FstabEntry(const FstabChange& change) : FstabEntry()
 	    { *this = change; }
@@ -105,7 +105,7 @@ namespace storage_bgl
 	bool crypttab;
 	string cr_opts;
 	string cr_key;
-	storage::MountByType mount_by;
+	MountByType mount_by;
 
 	void calcDependent();
 	bool optUser() const;

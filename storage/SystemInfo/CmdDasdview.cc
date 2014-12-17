@@ -27,7 +27,7 @@
 #include "storage/StorageTypes.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     Dasdview::Dasdview(const string& device, bool do_probe)

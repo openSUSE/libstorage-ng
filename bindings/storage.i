@@ -11,14 +11,14 @@
 // Since dynamic exception specifications are deprecated in C++11 we use the
 // SWIG %catches feature instead.
 
-%catches(storage_bgl::ParseError) storage_bgl::humanstring_to_byte(const string&, bool);
+%catches(storage::ParseError) storage::humanstring_to_byte(const string&, bool);
 
-%catches(storage_bgl::DeviceNotFound) storage_bgl::Devicegraph::find_device(sid_t);
-%catches(storage_bgl::DeviceNotFound) storage_bgl::Devicegraph::find_device(sid_t) const;
-%catches(storage_bgl::HolderNotFound) storage_bgl::Devicegraph::find_holder(sid_t, sid_t);
-%catches(storage_bgl::HolderNotFound) storage_bgl::Devicegraph::find_holder(sid_t, sid_t) const;
+%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
+%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
+%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t);
+%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t) const;
 
-%catches(storage_bgl::DeviceNotFound) storage_bgl::BlkDevice::find(const Devicegraph*, const string&);
+%catches(storage::DeviceNotFound) storage::BlkDevice::find(const Devicegraph*, const string&);
 
 // order of includes is crucial
 
@@ -52,6 +52,7 @@ using namespace std;
 %include "std_vector.i"
 %include "std_list.i"
 
+%include "../../storage/StorageInterface.h"
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
@@ -67,9 +68,8 @@ using namespace std;
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Environment.h"
 %include "../../storage/Storage.h"
-%include "../../storage/StorageInterface.h"
 
-using namespace storage_bgl;
+using namespace storage;
 
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
@@ -77,28 +77,28 @@ using namespace storage_bgl;
 
 %inline %{
 
-    const storage_bgl::Disk* to_disk(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::Disk*>(device);
+    const storage::Disk* to_disk(const storage::Device* device) {
+	return dynamic_cast<const storage::Disk*>(device);
     }
 
-    const storage_bgl::PartitionTable* to_partition_table(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::PartitionTable*>(device);
+    const storage::PartitionTable* to_partition_table(const storage::Device* device) {
+	return dynamic_cast<const storage::PartitionTable*>(device);
     }
 
-    const storage_bgl::Partition* to_partition(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::Partition*>(device);
+    const storage::Partition* to_partition(const storage::Device* device) {
+	return dynamic_cast<const storage::Partition*>(device);
     }
 
-    const storage_bgl::LvmVg* to_lvm_vg(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::LvmVg*>(device);
+    const storage::LvmVg* to_lvm_vg(const storage::Device* device) {
+	return dynamic_cast<const storage::LvmVg*>(device);
     }
 
-    const storage_bgl::LvmLv* to_lvm_lv(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::LvmLv*>(device);
+    const storage::LvmLv* to_lvm_lv(const storage::Device* device) {
+	return dynamic_cast<const storage::LvmLv*>(device);
     }
 
-    const storage_bgl::Filesystem* to_filesystem(const storage_bgl::Device* device) {
-	return dynamic_cast<const storage_bgl::Filesystem*>(device);
+    const storage::Filesystem* to_filesystem(const storage::Device* device) {
+	return dynamic_cast<const storage::Filesystem*>(device);
     }
 
 %}

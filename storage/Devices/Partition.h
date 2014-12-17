@@ -3,12 +3,14 @@
 
 
 #include "storage/Devices/BlkDevice.h"
+// #include "storage/Utils/Region.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
+    using namespace storage_legacy;
 
 
     enum IdNum {
@@ -29,6 +31,7 @@ namespace storage_bgl
 
 	unsigned int get_number() const;
 
+	// Region get_region() const;
 	PartitionType get_type() const;
 	unsigned get_id() const;
 	bool get_boot() const;

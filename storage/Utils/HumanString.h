@@ -27,7 +27,7 @@
 #include <stdexcept>
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using std::string;

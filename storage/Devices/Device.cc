@@ -5,7 +5,7 @@
 #include "storage/Action.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;

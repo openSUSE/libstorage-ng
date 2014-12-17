@@ -27,13 +27,13 @@
 #include "storage/StorageDefines.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
 
     CmdCryptsetup::CmdCryptsetup(const string& name, bool do_probe)
-	: encrypt_type(storage::ENC_UNKNOWN), name(name)
+	: encrypt_type(ENC_UNKNOWN), name(name)
     {
 	if (do_probe)
 	    probe();
@@ -65,16 +65,16 @@ namespace storage_bgl
 	}
 
 	if (type == "LUKS1")
-	    encrypt_type = storage::ENC_LUKS;
+	    encrypt_type = ENC_LUKS;
 	else if (cipher == "twofish-cbc-plain")
-	    encrypt_type = storage::ENC_TWOFISH;
+	    encrypt_type = ENC_TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
-	    encrypt_type = storage::ENC_TWOFISH_OLD;
+	    encrypt_type = ENC_TWOFISH_OLD;
 	else if (cipher == "twofish-cbc-null" && keysize == "256")
-	    encrypt_type = storage::ENC_TWOFISH256_OLD;
+	    encrypt_type = ENC_TWOFISH256_OLD;
 	else
 	{
-	    encrypt_type = storage::ENC_UNKNOWN;
+	    encrypt_type = ENC_UNKNOWN;
 	    y2err("unknown encryption type:" << type << " cipher:" << cipher << " keysize:" <<
 		  keysize);
 	}

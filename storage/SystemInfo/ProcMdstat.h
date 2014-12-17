@@ -30,10 +30,12 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::map;
     using std::vector;
+
+    using namespace storage_legacy;
 
 
     class ProcMdstat
@@ -46,11 +48,11 @@ namespace storage_bgl
 
 	struct Entry
 	{
-	    Entry() : md_type(storage::RAID_UNK), md_parity(storage::PAR_DEFAULT), size_k(0), chunk_k(0),
+	    Entry() : md_type(RAID_UNK), md_parity(PAR_DEFAULT), size_k(0), chunk_k(0),
 		      readonly(false), inactive(false), is_container(false), has_container(false) {}
 
-	    storage::MdType md_type;
-	    storage::MdParity md_parity;
+	    MdType md_type;
+	    MdParity md_parity;
 
 	    string super;
 

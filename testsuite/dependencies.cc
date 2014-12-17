@@ -15,7 +15,7 @@
 #include "storage/Storage.h"
 
 
-using namespace storage_bgl;
+using namespace storage;
 
 
 BOOST_AUTO_TEST_CASE(dependencies)
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "46 create /dev/system/swap", { } }
     };
 
-    Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
 
     Storage storage(environment);
 

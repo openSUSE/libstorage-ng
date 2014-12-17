@@ -10,19 +10,19 @@
 #include "storage/Utils/Enum.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
 
 
     Disk::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), transport(storage::TUNKNOWN)
+	: BlkDevice::Impl(node), transport(TUNKNOWN)
     {
 	string tmp;
 
 	if (getChildValue(node, "transport", tmp))
-	    transport = toValueWithFallback(tmp, storage::TUNKNOWN);
+	    transport = toValueWithFallback(tmp, TUNKNOWN);
     }
 
 
@@ -49,7 +49,7 @@ namespace storage_bgl
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValueIf(node, "transport", toString(transport), transport != storage::TUNKNOWN);
+	setChildValueIf(node, "transport", toString(transport), transport != TUNKNOWN);
     }
 
 

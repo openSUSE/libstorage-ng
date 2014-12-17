@@ -29,7 +29,7 @@
 
 #include "storage/EtcFstab.h"
 
-namespace storage_bgl
+namespace storage
 {
     using std::list;
     using std::map;

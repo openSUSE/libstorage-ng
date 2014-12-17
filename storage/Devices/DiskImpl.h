@@ -7,7 +7,7 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
@@ -18,7 +18,7 @@ namespace storage_bgl
     public:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name), transport(storage::TUNKNOWN) {}
+	    : BlkDevice::Impl(name), transport(TUNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
@@ -26,9 +26,13 @@ namespace storage_bgl
 
 	virtual void save(xmlNode* node) const override;
 
+	Transport get_transport() const { return transport; }
+	void set_transport(Transport transport) { Impl::transport = transport; }
+
 	void probe(SystemInfo& systeminfo);
 
 	PartitionTable* create_partition_table(PtType pt_type);
+	PartitionTable* get_partition_table();
 
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
@@ -37,7 +41,7 @@ namespace storage_bgl
 
 	// geometry
 
-	storage::Transport transport;
+	Transport transport;
 
     };
 

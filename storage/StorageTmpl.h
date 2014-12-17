@@ -37,7 +37,7 @@
 #include "storage/DerefIterator.h"
 #include "storage/AppUtil.h"
 
-namespace storage_bgl
+namespace storage
 {
 
 template< class Value >

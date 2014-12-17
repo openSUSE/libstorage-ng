@@ -3,7 +3,7 @@
 #include "storage/Holders/UsingImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     Using::Impl::Impl(const xmlNode* node)

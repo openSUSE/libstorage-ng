@@ -35,7 +35,7 @@
 #include "storage/Utils/AppUtil.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
 template<class Num> string decString(Num number)

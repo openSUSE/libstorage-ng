@@ -31,7 +31,7 @@
 #include "storage/StorageTypes.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
@@ -339,12 +339,12 @@ namespace storage_bgl
 	{
 	    if( PartitionTypeStr == "extended" )
 	    {
-		entry.type = storage::EXTENDED;
+		entry.type = EXTENDED;
 		entry.id = ID_EXTENDED;
 	    }
 	    else if( entry.num >= 5 )
 	    {
-		entry.type = storage::LOGICAL;
+		entry.type = LOGICAL;
 	    }
 	}
 	else if (contains_if(flags, string_starts_with("fat")))

@@ -7,7 +7,7 @@
 #include "storage/StorageDefines.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     Storage::Impl::Impl(const Environment& environment)

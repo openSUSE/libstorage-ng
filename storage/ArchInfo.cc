@@ -29,7 +29,7 @@
 #include "storage/StorageTypes.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     ArchInfo::ArchInfo()

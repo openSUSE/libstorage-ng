@@ -5,7 +5,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     BlkDevice::Impl::Impl(const xmlNode* node)

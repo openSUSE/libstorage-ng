@@ -3,7 +3,7 @@
 #include "storage/Holders/SubdeviceImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     Subdevice::Impl::Impl(const xmlNode* node)

@@ -30,10 +30,12 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::map;
     using std::vector;
+
+    using namespace storage_legacy;
 
 
     class Blkid
@@ -47,11 +49,11 @@ namespace storage_bgl
 
 	struct Entry
 	{
-	    Entry() : is_fs(false), fs_type(storage::FSUNKNOWN), fs_uuid(), fs_label(),
+	    Entry() : is_fs(false), fs_type(FSUNKNOWN), fs_uuid(), fs_label(),
 		      is_lvm(false), is_luks(false), luks_uuid() {}
 
 	    bool is_fs;
-	    storage::FsType fs_type;
+	    FsType fs_type;
 	    string fs_uuid;
 	    string fs_label;
 

@@ -34,7 +34,7 @@
 #include "storage/Devices/Disk.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::vector;
@@ -42,18 +42,18 @@ namespace storage_bgl
 
     template <typename EnumType> struct EnumInfo {};
 
-    template <> struct EnumInfo<storage::FsType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::PartitionType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::MountByType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::EncryptType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::MdType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::MdParity> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::MdArrayState> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::UsedByType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::CType> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::Transport> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::MultipathAutostart> { static const vector<string> names; };
-    template <> struct EnumInfo<storage::PartAlign> { static const vector<string> names; };
+    template <> struct EnumInfo<FsType> { static const vector<string> names; };
+    template <> struct EnumInfo<PartitionType> { static const vector<string> names; };
+    template <> struct EnumInfo<MountByType> { static const vector<string> names; };
+    template <> struct EnumInfo<EncryptType> { static const vector<string> names; };
+    template <> struct EnumInfo<MdType> { static const vector<string> names; };
+    template <> struct EnumInfo<MdParity> { static const vector<string> names; };
+    template <> struct EnumInfo<MdArrayState> { static const vector<string> names; };
+    template <> struct EnumInfo<UsedByType> { static const vector<string> names; };
+    template <> struct EnumInfo<CType> { static const vector<string> names; };
+    template <> struct EnumInfo<Transport> { static const vector<string> names; };
+    template <> struct EnumInfo<MultipathAutostart> { static const vector<string> names; };
+    template <> struct EnumInfo<PartAlign> { static const vector<string> names; };
 
     template <> struct EnumInfo<DasdType> { static const vector<string> names; };
     template <> struct EnumInfo<DasdFormat> { static const vector<string> names; };

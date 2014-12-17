@@ -35,5 +35,6 @@ pkgincludedir = $(includedir)/storage
 pkginclude_HEADERS =		\
 	Environment.h		\
 	Storage.h		\
+	StorageInterface.h	\
 	Devicegraph.h
 

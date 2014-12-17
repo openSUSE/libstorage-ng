@@ -30,7 +30,7 @@
 #include "storage/Utils/Enum.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
@@ -78,23 +78,23 @@ namespace storage_bgl
 	    Entry entry;
 
 	    if (boost::starts_with(transport, "sbp:"))
-		entry.transport = storage::SBP;
+		entry.transport = SBP;
 	    else if (boost::starts_with(transport, "ata:"))
-		entry.transport = storage::ATA;
+		entry.transport = ATA;
 	    else if (boost::starts_with(transport, "fc:"))
-		entry.transport = storage::FC;
+		entry.transport = FC;
 	    else if (boost::starts_with(transport, "fcoe:"))
-		entry.transport = storage::FCOE;
+		entry.transport = FCOE;
 	    else if (boost::starts_with(transport, "iqn"))
-		entry.transport = storage::ISCSI;
+		entry.transport = ISCSI;
 	    else if (boost::starts_with(transport, "sas:"))
-		entry.transport = storage::SAS;
+		entry.transport = SAS;
 	    else if (boost::starts_with(transport, "sata:"))
-		entry.transport = storage::SATA;
+		entry.transport = SATA;
 	    else if (boost::starts_with(transport, "spi:"))
-		entry.transport = storage::SPI;
+		entry.transport = SPI;
 	    else if (boost::starts_with(transport, "usb:"))
-		entry.transport = storage::USB;
+		entry.transport = USB;
 
 	    data[device] = entry;
 	}

@@ -7,7 +7,7 @@
 #include "storage/Action.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
@@ -20,7 +20,7 @@ namespace storage_bgl
 
 	getChildValue(node, "region", region);
 	if (getChildValue(node, "partition_type", tmp))
-            type = toValueWithFallback(tmp, storage::PRIMARY);
+            type = toValueWithFallback(tmp, PRIMARY);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
     }

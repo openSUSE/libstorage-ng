@@ -23,7 +23,7 @@
 #include "storage/Utils/Region.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     std::ostream& operator<<(std::ostream& s, const Region& p)

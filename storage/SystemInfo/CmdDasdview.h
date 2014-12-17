@@ -28,7 +28,7 @@
 #include "storage/Devices/Disk.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     class SystemCmd;
 

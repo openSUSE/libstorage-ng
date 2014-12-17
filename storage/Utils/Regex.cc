@@ -27,7 +27,7 @@
 extern int _nl_msg_cat_cntr;
 
 
-namespace storage_bgl
+namespace storage
 {
 
 Regex::Regex (const char* pattern, int cflags, unsigned int nm)

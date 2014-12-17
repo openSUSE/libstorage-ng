@@ -33,7 +33,7 @@
 #include "storage/Utils/StorageTmpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
@@ -112,8 +112,8 @@ namespace storage_bgl
 	tmp = extractNthWord( 0, line );
 	if (boost::starts_with(tmp, "raid"))
 	{
-	    entry.md_type = toValueWithFallback(tmp, storage::RAID_UNK);
-	    if (entry.md_type == storage::RAID_UNK)
+	    entry.md_type = toValueWithFallback(tmp, RAID_UNK);
+	    if (entry.md_type == RAID_UNK)
 		y2war("unknown raid type " << tmp);
 
 	    if( (pos=line.find_first_of( app_ws ))!=string::npos )
@@ -180,7 +180,7 @@ namespace storage_bgl
 	    }
 	}
 
-	entry.md_parity = storage::PAR_DEFAULT;
+	entry.md_parity = PAR_DEFAULT;
 	pos = line2.find( "algorithm" );
 	if( pos != string::npos )
 	{
@@ -191,37 +191,37 @@ namespace storage_bgl
 	    switch( alg )
 	    {
 		case 0:
-		    entry.md_parity = storage::LEFT_ASYMMETRIC;
+		    entry.md_parity = LEFT_ASYMMETRIC;
 		    break;
 		case 1:
-		    entry.md_parity = storage::RIGHT_ASYMMETRIC;
+		    entry.md_parity = RIGHT_ASYMMETRIC;
 		    break;
 		case 2:
-		    entry.md_parity = storage::LEFT_SYMMETRIC;
+		    entry.md_parity = LEFT_SYMMETRIC;
 		    break;
 		case 3:
-		    entry.md_parity = storage::RIGHT_SYMMETRIC;
+		    entry.md_parity = RIGHT_SYMMETRIC;
 		    break;
 		case 4:
-		    entry.md_parity = storage::PAR_FIRST;
+		    entry.md_parity = PAR_FIRST;
 		    break;
 		case 5:
-		    entry.md_parity = storage::PAR_LAST;
+		    entry.md_parity = PAR_LAST;
 		    break;
 		case 16:
-		    entry.md_parity = storage::LEFT_ASYMMETRIC_6;
+		    entry.md_parity = LEFT_ASYMMETRIC_6;
 		    break;
 		case 17:
-		    entry.md_parity = storage::RIGHT_ASYMMETRIC_6;
+		    entry.md_parity = RIGHT_ASYMMETRIC_6;
 		    break;
 		case 18:
-		    entry.md_parity = storage::LEFT_SYMMETRIC_6;
+		    entry.md_parity = LEFT_SYMMETRIC_6;
 		    break;
 		case 19:
-		    entry.md_parity = storage::RIGHT_SYMMETRIC_6;
+		    entry.md_parity = RIGHT_SYMMETRIC_6;
 		    break;
 		case 20:
-		    entry.md_parity = storage::PAR_FIRST_6;
+		    entry.md_parity = PAR_FIRST_6;
 		    break;
 		default:
 		    y2war("unknown parity " << line2.substr(pos));
@@ -240,11 +240,11 @@ namespace storage_bgl
 	    line2.substr( pos ) >> num;
 	    y2mil( "where:" << where << " num:" << num );
 	    if( where=="near-copies" )
-		entry.md_parity = (num==3)?storage::PAR_NEAR_3:storage::PAR_NEAR_2;
+		entry.md_parity = (num==3)?PAR_NEAR_3:PAR_NEAR_2;
 	    else if( where=="far-copies" )
-		entry.md_parity = (num==3)?storage::PAR_FAR_3:storage::PAR_FAR_2;
+		entry.md_parity = (num==3)?PAR_FAR_3:PAR_FAR_2;
 	    else if( where=="offset-copies" )
-		entry.md_parity = (num==3)?storage::PAR_OFFSET_3:storage::PAR_OFFSET_2;
+		entry.md_parity = (num==3)?PAR_OFFSET_3:PAR_OFFSET_2;
 	}
 
 	return entry;
@@ -286,7 +286,7 @@ namespace storage_bgl
     {
 	s << "md_type:" << toString(entry.md_type);
 
-	if (entry.md_parity != storage::PAR_DEFAULT)
+	if (entry.md_parity != PAR_DEFAULT)
 	    s << " md_parity:" + toString(entry.md_parity);
 
 	if (!entry.super.empty())

@@ -5,7 +5,7 @@
 #include "storage/Holders/Holder.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     class Subdevice : public Holder

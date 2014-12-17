@@ -27,7 +27,7 @@
 #include "storage/Utils/HumanString.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 

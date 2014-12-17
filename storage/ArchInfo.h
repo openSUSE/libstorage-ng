@@ -27,7 +27,7 @@
 #include "storage/Utils/XmlFile.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     class ArchInfo

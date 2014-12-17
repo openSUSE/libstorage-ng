@@ -9,7 +9,7 @@
 #include "storage/Devicegraph.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     namespace Action
@@ -78,7 +78,7 @@ namespace storage_bgl
 namespace std
 {
 
-    ostream& operator<<(ostream& s, const storage_bgl::Actiongraph::simple_t& simple);
+    ostream& operator<<(ostream& s, const storage::Actiongraph::simple_t& simple);
 
 }
 

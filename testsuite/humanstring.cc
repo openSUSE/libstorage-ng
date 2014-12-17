@@ -12,7 +12,7 @@
 
 
 using namespace std;
-using namespace storage_bgl;
+using namespace storage;
 
 
 string

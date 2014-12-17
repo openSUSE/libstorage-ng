@@ -33,7 +33,7 @@
 #include "storage/Utils/StorageTmpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::vector;

@@ -136,7 +136,7 @@ using std::map;
  */
 
 
-namespace storage
+namespace storage_legacy
 {
     enum FsType { FSUNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
 		  SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, FSNONE };
@@ -171,10 +171,6 @@ namespace storage
     enum PartAlign { ALIGN_OPTIMAL, ALIGN_CYLINDER };
 
 
-    // TODO
-#ifndef SWIG
-
-    
     /**
      * typedef for a pointer to a function that is called on progress bar
      * events.
@@ -936,6 +932,9 @@ namespace storage
 	CONTAINER_INVALID_VIRTUAL_CALL = -99001,
 
     };
+
+
+#if !defined(SWIG) || defined(LIBSTORAGE_SWIG_RUBY_LEGACY)
 
 
     /**
@@ -2788,6 +2787,9 @@ namespace storage
     };
 
 
+#endif
+
+
     /**
      * Initializes default logging with explicit log dir.
      */
@@ -2826,6 +2828,10 @@ namespace storage
      */
     CallbackLogQuery getLogQueryCallback();
 
+
+#if !defined(SWIG) || defined(LIBSTORAGE_SWIG_RUBY_LEGACY)
+
+
     /**
      * Contains basic environment settings controlling the behaviour of libstorage.
      */
@@ -2835,7 +2841,7 @@ namespace storage
 	    : readonly(readonly), testmode(false), autodetect(true),
 	      instsys(false), logdir(logdir), testdir("tmp")
             {
-            storage::initDefaultLogger( logdir );
+		initDefaultLogger( logdir );
             }
 
 	bool readonly;
@@ -2870,9 +2876,9 @@ namespace storage
      */
     void destroyStorageInterface(StorageInterface*);
 
-    
+
 #endif
-    
+
 }
 
 

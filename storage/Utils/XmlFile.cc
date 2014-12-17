@@ -25,7 +25,7 @@
 #include "storage/Utils/XmlFile.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     XmlFile::XmlFile()

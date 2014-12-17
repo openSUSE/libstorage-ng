@@ -30,7 +30,7 @@
 #include <vector>
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::list;

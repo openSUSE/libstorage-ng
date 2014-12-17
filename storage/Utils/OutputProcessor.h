@@ -27,8 +27,11 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
+
+    using namespace storage_legacy;
+
 
     class OutputProcessor
     {
@@ -44,7 +47,7 @@ namespace storage_bgl
     class ProgressBar : public OutputProcessor
     {
     public:
-	ProgressBar(const string& id, storage::CallbackProgressBar callback)
+	ProgressBar(const string& id, CallbackProgressBar callback)
 	    : id(id), callback(callback), first(true), max(100), cur(0)
 	{}
 
@@ -61,7 +64,7 @@ namespace storage_bgl
 
     protected:
 	const string id;
-	const storage::CallbackProgressBar callback;
+	const CallbackProgressBar callback;
 
 	bool first;
 
@@ -74,7 +77,7 @@ namespace storage_bgl
     class Mke2fsProgressBar : public ProgressBar
     {
     public:
-	Mke2fsProgressBar(storage::CallbackProgressBar callback)
+	Mke2fsProgressBar(CallbackProgressBar callback)
 	    : ProgressBar("format", callback)
 	{
 	    setMaxValue(100);
@@ -94,7 +97,7 @@ namespace storage_bgl
     class ReiserProgressBar : public ProgressBar
     {
     public:
-	ReiserProgressBar(storage::CallbackProgressBar callback)
+	ReiserProgressBar(CallbackProgressBar callback)
 	    : ProgressBar("format", callback)
 	{
 	    setMaxValue(100);
@@ -110,7 +113,7 @@ namespace storage_bgl
     class DasdfmtProgressBar : public ProgressBar
     {
     public:
-	DasdfmtProgressBar(storage::CallbackProgressBar callback)
+	DasdfmtProgressBar(CallbackProgressBar callback)
 	    : ProgressBar("dasdfmt", callback)
 	{
 	    setMaxValue(100);

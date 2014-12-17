@@ -8,7 +8,7 @@
 #include "storage/Devicegraph.h"
 
 
-using namespace storage_bgl;
+using namespace storage;
 
 
 BOOST_AUTO_TEST_CASE(dependencies)

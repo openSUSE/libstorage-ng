@@ -30,10 +30,12 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::map;
     using std::vector;
+
+    using namespace storage_legacy;
 
 
     class Lsscsi
@@ -46,9 +48,9 @@ namespace storage_bgl
 
 	struct Entry
 	{
-	    Entry() : transport(storage::TUNKNOWN) {}
+	    Entry() : transport(TUNKNOWN) {}
 
-	    storage::Transport transport;
+	    Transport transport;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Lsscsi& lsscsi);

@@ -27,7 +27,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     SystemInfo::SystemInfo()

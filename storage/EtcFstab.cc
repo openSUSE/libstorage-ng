@@ -33,7 +33,7 @@
 #include "storage/EtcFstab.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 
@@ -97,7 +97,7 @@ EtcFstab::readFiles()
 		if( p->old.fs=="crypt" )
 		    {
 		    p->old.dmcrypt = true;
-		    p->old.encr = storage::ENC_LUKS;
+		    p->old.encr = ENC_LUKS;
 		    }
 		}
 	    if( i!=l.end() )
@@ -140,7 +140,7 @@ EtcFstab::readFiles()
 	    p->old.fs = *i++;
 	    }
 	if( i!=l.end() )
-	    p->old.encr = toValueWithFallback(*i++, storage::ENC_UNKNOWN);
+	    p->old.encr = toValueWithFallback(*i++, ENC_UNKNOWN);
 	if( i!=l.end() )
 	    p->old.opts = splitString( *i++, "," );
 	p->nnew = p->old;
@@ -179,7 +179,7 @@ EtcFstab::readFiles()
 		p = &(*e);
 	    p->old.dmcrypt = p->old.crypttab = true;
 	    p->old.noauto = false;
-	    p->old.encr = storage::ENC_LUKS;
+	    p->old.encr = ENC_LUKS;
 	    p->old.device = *i;
 	    p->old.opts.remove("nofail");
 	    ++i;
@@ -233,39 +233,39 @@ FstabEntry::calcDependent()
 	string::size_type pos = i->find("=");
 	if( pos!=string::npos )
 	    {
-		encr = toValueWithFallback(i->substr(pos + 1), storage::ENC_UNKNOWN);
+		encr = toValueWithFallback(i->substr(pos + 1), ENC_UNKNOWN);
 	    }
 	}
 
 	if (boost::starts_with(device, "LABEL="))
 	{
-	    mount_by = storage::MOUNTBY_LABEL;
+	    mount_by = MOUNTBY_LABEL;
 	    device.erase();
 	}
 	else if (boost::starts_with(device, "UUID="))
 	{
-	    mount_by = storage::MOUNTBY_UUID;
+	    mount_by = MOUNTBY_UUID;
 	    device.erase();
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-id/"))
         {
-	    mount_by = storage::MOUNTBY_ID;
+	    mount_by = MOUNTBY_ID;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-path/"))
         {
-	    mount_by = storage::MOUNTBY_PATH;
+	    mount_by = MOUNTBY_PATH;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-label/"))
 	{
-	    mount_by = storage::MOUNTBY_LABEL;
+	    mount_by = MOUNTBY_LABEL;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-uuid/"))
 	{
-	    mount_by = storage::MOUNTBY_UUID;
+	    mount_by = MOUNTBY_UUID;
 	}
 
-    dmcrypt = encr == storage::ENC_LUKS;
-    cryptotab = encr != storage::ENC_NONE && !dmcrypt;
+    dmcrypt = encr == ENC_LUKS;
+    cryptotab = encr != ENC_NONE && !dmcrypt;
     crypttab = dmcrypt;
     }
 
@@ -326,7 +326,7 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		readFiles();
 	    }
 	    else
-		ret = storage::FSTAB_CHANGE_PREFIX_IMPOSSIBLE;
+		ret = FSTAB_CHANGE_PREFIX_IMPOSSIBLE;
 	}
 	y2mil("ret:" << ret);
 	return ret;
@@ -414,7 +414,7 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		it->op = Entry::UPDATE;
 	    it->nnew = entry;
 	}
-	int ret = (it != co.end()) ? 0 : storage::FSTAB_ENTRY_NOT_FOUND;
+	int ret = (it != co.end()) ? 0 : FSTAB_ENTRY_NOT_FOUND;
 	y2mil("ret:" << ret);
 	return ret;
     }
@@ -439,7 +439,7 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 	    }
 	}
 
-	return storage::FSTAB_ENTRY_NOT_FOUND;
+	return FSTAB_ENTRY_NOT_FOUND;
     }
 
 
@@ -765,7 +765,7 @@ int EtcFstab::flush()
 		}
 		else
 		{
-		    ret = storage::FSTAB_REMOVE_ENTRY_NOT_FOUND;
+		    ret = FSTAB_REMOVE_ENTRY_NOT_FOUND;
 		}
 		i = co.erase( i );
 	    } break;
@@ -832,7 +832,7 @@ int EtcFstab::flush()
 			}
 		    }
 		else
-		    ret = storage::FSTAB_UPDATE_ENTRY_NOT_FOUND;
+		    ret = FSTAB_UPDATE_ENTRY_NOT_FOUND;
 		++i;
 	    } break;
 
@@ -1020,7 +1020,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	    s << " cr_key:" << v.cr_key;
 	if( !v.cr_opts.empty() )
 	    s << " cr_opts:" << v.cr_opts;
-	if( v.encr != storage::ENC_NONE )
+	if( v.encr != ENC_NONE )
 	    s << " encr:" << toString(v.encr);
 	return s;
     }
@@ -1034,7 +1034,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	  << " freq:" << v.freq << " passno:" << v.passno;
 	if( !v.loop_dev.empty() )
 	    s << " loop_dev:" << v.loop_dev;
-	if( v.encr != storage::ENC_NONE )
+	if( v.encr != ENC_NONE )
 	    s << " encr:" << toString(v.encr);
 	if( v.tmpcrypt )
 	    s << " tmpcrypt";

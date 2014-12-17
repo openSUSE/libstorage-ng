@@ -5,11 +5,14 @@
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
 
+#include "storage/StorageInterface.h"
 
-namespace storage_bgl
+
+namespace storage
 {
 
     using namespace std;
+    using namespace storage_legacy;
 
 
     // abstract class
@@ -30,7 +33,7 @@ namespace storage_bgl
 
 	static BlkDevice* find(const Devicegraph* devicegraph, const string& name);
 
-	Filesystem* create_filesystem(storage::FsType fs_type);
+	Filesystem* create_filesystem(FsType fs_type);
 
     public:
 

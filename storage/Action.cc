@@ -7,7 +7,7 @@
 #include "storage/Devices/Partition.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     namespace Action

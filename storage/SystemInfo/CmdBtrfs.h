@@ -29,7 +29,7 @@
 #include <map>
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::vector;
     using std::list;

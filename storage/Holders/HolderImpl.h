@@ -8,7 +8,7 @@
 #include "storage/DevicegraphImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     // abstract class

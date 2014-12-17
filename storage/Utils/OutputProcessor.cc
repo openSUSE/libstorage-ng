@@ -25,7 +25,7 @@
 #include "storage/Utils/OutputProcessor.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 

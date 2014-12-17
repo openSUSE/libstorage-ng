@@ -6,7 +6,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;

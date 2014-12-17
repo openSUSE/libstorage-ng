@@ -7,7 +7,7 @@
 #include "storage/Utils/Region.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     using namespace std;
@@ -40,7 +40,7 @@ namespace storage_bgl
     private:
 
 	Region region;
-	storage::PartitionType type;
+	PartitionType type;
 	unsigned id;
 	bool boot;
 

@@ -25,7 +25,7 @@
 
 namespace storage_legacy
 {
-    using namespace storage_bgl;
+    using namespace storage;
 
 
     int

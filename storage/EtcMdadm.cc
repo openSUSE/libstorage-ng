@@ -26,7 +26,7 @@
 #include "storage/StorageTypes.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using namespace std;
 

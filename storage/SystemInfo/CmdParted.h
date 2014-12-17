@@ -29,7 +29,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 
 
-namespace storage_bgl
+namespace storage
 {
 
     class Parted
@@ -43,12 +43,12 @@ namespace storage_bgl
 
 	struct Entry
 	{
-	    Entry() : num(0), type(storage::PRIMARY), id(0), boot(false) {}
+	    Entry() : num(0), type(PRIMARY), id(0), boot(false) {}
 
 	    unsigned num;
 	    Region cylRegion;
 	    Region secRegion;
-	    storage::PartitionType type;
+	    PartitionType type;
 	    unsigned id;
 	    bool boot;
 	};

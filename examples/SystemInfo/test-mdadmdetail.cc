@@ -4,7 +4,7 @@
 #include <storage/SystemInfo/SystemInfo.h>
 
 using namespace std;
-using namespace storage_bgl;
+using namespace storage;
 
 
 void

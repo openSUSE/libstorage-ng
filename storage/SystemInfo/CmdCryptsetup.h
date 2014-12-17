@@ -30,10 +30,13 @@
 #include "storage/StorageInterface.h"
 
 
-namespace storage_bgl
+namespace storage
 {
     using std::string;
     using std::vector;
+
+
+    using namespace storage_legacy;
 
 
     class CmdCryptsetup
@@ -49,7 +52,7 @@ namespace storage_bgl
 
 	void parse(const vector<string>& lines);
 
-	storage::EncryptType encrypt_type;
+	EncryptType encrypt_type;
 
     private:
 
