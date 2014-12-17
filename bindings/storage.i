@@ -8,6 +8,9 @@
 %ignore "get_classname";
 %ignore "clone";
 
+%rename("==") "operator==";
+%rename("!=") "operator!=";
+
 // Since dynamic exception specifications are deprecated in C++11 we use the
 // SWIG %catches feature instead.
 
@@ -29,6 +32,7 @@
 #endif
 
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Region.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/BlkDevice.h"
@@ -54,6 +58,7 @@ using namespace std;
 
 %include "../../storage/StorageInterface.h"
 %include "../../storage/Utils/HumanString.h"
+%include "../../storage/Utils/Region.h"
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/BlkDevice.h"

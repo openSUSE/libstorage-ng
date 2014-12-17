@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Devicegraph, Disk, GPT, EXT4
+from storage import Devicegraph, Disk, Region, GPT, EXT4
 
 
 class TestCreate(unittest.TestCase):
@@ -20,6 +20,11 @@ class TestCreate(unittest.TestCase):
 
         sda.set_size_k(2**64 - 1)
         self.assertEqual(sda.get_size_k(), 2**64 - 1)
+
+        sda1.set_region(Region(1, 2))
+        self.assertEqual(sda1.get_region().get_start(), 1)
+        self.assertEqual(sda1.get_region().get_length(), 2)
+        self.assertEqual(sda1.get_region(), Region(1, 2))
 
         ext4.set_label("test-label")
         self.assertEqual(ext4.get_label(), "test-label")

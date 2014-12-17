@@ -3,7 +3,7 @@
 
 
 #include "storage/Devices/BlkDevice.h"
-// #include "storage/Utils/Region.h"
+#include "storage/Utils/Region.h"
 
 
 namespace storage
@@ -31,7 +31,9 @@ namespace storage
 
 	unsigned int get_number() const;
 
-	// Region get_region() const;
+	Region get_region() const;
+	void set_region(const Region& region);
+
 	PartitionType get_type() const;
 	unsigned get_id() const;
 	bool get_boot() const;

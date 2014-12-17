@@ -146,13 +146,14 @@ namespace storage
 		++it;
 	    while (it != entries.end())
 	    {
-		if (prev->cylRegion.start() >= it->cylRegion.start() && it->cylRegion.len() > 0)
+		if (prev->cylRegion.get_start() >= it->cylRegion.get_start() && it->cylRegion.get_length() > 0)
 		{
 		    y2mil("old:" << it->cylRegion);
-		    it->cylRegion.setStart(it->cylRegion.start() + 1);
-		    it->cylRegion.setLen(it->cylRegion.len() - 1);
+		    it->cylRegion.set_start(it->cylRegion.get_start() + 1);
+		    it->cylRegion.set_length(it->cylRegion.get_length() - 1);
 		    y2mil("new:" << it->cylRegion);
 		}
+
 		prev = it;
 		++it;
 	    }

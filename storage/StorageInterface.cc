@@ -544,7 +544,7 @@ namespace storage_legacy
 		info.v.device = partition->get_name();
 		info.v.sizeK = partition->get_size_k();
 
-		// info.cylRegion = partition->get_region();
+		info.cylRegion = partition->get_region();
 		info.nr = partition->get_number();
 		info.partitionType = partition->get_type();
 		info.id = partition->get_id();

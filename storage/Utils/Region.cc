@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) [2004-2014] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,38 +20,131 @@
  */
 
 
-#include "storage/Utils/Region.h"
+#include "storage/Utils/RegionImpl.h"
 
 
 namespace storage
 {
 
-    std::ostream& operator<<(std::ostream& s, const Region& p)
+    Region::Region()
+	: impl(new Impl())
     {
-	return s << "[" << p.s << "," << p.l << "]";
+    }
+
+
+    Region::Region(unsigned long long start, unsigned long long len)
+        : impl(new Impl(start, len))
+    {
+    }
+
+
+    Region::~Region()
+    {
+    }
+
+
+    Region::Impl&
+    Region::get_impl()
+    {
+        return *impl;
+    }
+
+
+    const Region::Impl&
+    Region::get_impl() const
+    {
+        return *impl;
+    }
+
+
+    bool
+    Region::empty() const
+    {
+        return get_impl().empty();
+    }
+
+
+    unsigned long long
+    Region::get_start() const
+    {
+        return get_impl().get_start();
+    }
+
+
+    unsigned long long
+    Region::get_length() const
+    {
+        return get_impl().get_length();
+    }
+
+
+    unsigned long long
+    Region::get_end() const
+    {
+        return get_impl().get_end();
+    }
+
+
+    void
+    Region::set_start(unsigned long long start)
+    {
+	get_impl().set_start(start);
+    }
+
+
+    void
+    Region::set_length(unsigned long long length)
+    {
+	get_impl().set_length(length);
+    }
+
+
+    bool
+    Region::operator==(const Region& rhs) const
+    {
+	return get_impl().operator==(rhs.get_impl());
+    }
+
+
+    bool
+    Region::operator!=(const Region& rhs) const
+    {
+	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
+    bool
+    Region::operator<(const Region& rhs) const
+    {
+	return get_impl().operator<(rhs.get_impl());
+    }
+
+
+    bool
+    Region::operator>(const Region& rhs) const
+    {
+	return get_impl().operator>(rhs.get_impl());
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const Region& region)
+    {
+	return operator<<(s, region.get_impl());
     }
 
 
     bool
     getChildValue(const xmlNode* node, const char* name, Region& value)
     {
-	const xmlNode* tmp = getChildNode(node, name);
-	if (!tmp)
-	    return false;
-
-	getChildValue(tmp, "start", value.s);
-	getChildValue(tmp, "length", value.l);
-	return true;
+	return getChildValue(node, name, value.get_impl());
     }
 
 
     void
     setChildValue(xmlNode* node, const char* name, const Region& value)
     {
-	xmlNode* tmp = xmlNewChild(node, name);
-
-	setChildValue(tmp, "start", value.s);
-	setChildValue(tmp, "length", value.l);
+	setChildValue(node, name, value.get_impl());
     }
 
 }

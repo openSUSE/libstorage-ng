@@ -14,6 +14,7 @@ libutils_la_SOURCES =					\
 	OutputProcessor.cc	OutputProcessor.h	\
 	Regex.cc 		Regex.h			\
 	Region.cc 		Region.h		\
+	RegionImpl.cc 		RegionImpl.h		\
 	StorageTmpl.h					\
 	SystemCmd.cc		SystemCmd.h		\
 	XmlFile.h		XmlFile.cc
@@ -21,5 +22,6 @@ libutils_la_SOURCES =					\
 pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
-	HumanString.h
+	HumanString.h		\
+	Region.h
 

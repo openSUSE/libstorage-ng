@@ -23,14 +23,16 @@
 #ifndef REGION_H
 #define REGION_H
 
-#include <algorithm>
+
+#include <libxml/tree.h>
+#include <memory>
 
 #include "storage/StorageInterface.h"
-#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
 {
+    using namespace std;
     using namespace storage_legacy;
 
 
@@ -38,67 +40,41 @@ namespace storage
     {
     public:
 
-	Region() : s(0), l(0) {}
-	Region(unsigned long long start, unsigned long long len) : s(start), l(len) {}
-	Region(const RegionInfo& region_info) : s(region_info.start), l(region_info.len) {}
+	Region();
+	Region(unsigned long long start, unsigned long long length);
+	~Region();
 
-	bool doIntersect( const Region& r ) const
-	    { return( r.start() <= end() && r.end() >= start() ); }
-	Region intersect( const Region& r ) const
-	    {
-	    if (doIntersect(r))
-		{
-		unsigned long long s = std::max(r.start(), start());
-		unsigned long long e = std::min(r.end(), end());
-		return Region(s, e - s + 1);
-		}
-	    return Region(0, 0);
-	    }
-	bool inside( const Region& r ) const
-	    { return( start()>=r.start() && end() <= r.end() ); }
-	bool operator==(const Region& r) const
-	    { return( r.start()==s && r.len()==l ); }
-	bool operator!=(const Region& r) const
-	    { return( ! (*this==r) ); }
-	bool operator<(const Region& r) const
-	    { return( s < r.start() ); }
-	bool operator>(const Region& r) const
-	    { return( s > r.start() ); }
+	bool empty() const;
 
-	unsigned long long start() const { return s; }
-	unsigned long long len() const { return l; }
-	unsigned long long end() const { return s + l - 1; }
+	unsigned long long get_start() const;
+	unsigned long long get_length() const;
+	unsigned long long get_end() const;
 
-	bool empty() const { return l == 0; }
+	void set_start(unsigned long long start);
+	void set_length(unsigned long long length);
 
-	void setStart(unsigned long long start) { s = start; }
-	void setLen(unsigned long long len) { l = len; }
+	bool operator==(const Region& rhs) const;
+	bool operator!=(const Region& rhs) const;
+	bool operator<(const Region& rhs) const;
+	bool operator>(const Region& rhs) const;
 
-	template <typename Type> friend
-	Region operator*(Type i, const Region& r)
-	{
-	    static_assert(std::is_integral<Type>::value, "not integral");
-	    return Region(i * r.s, i * r.l);
-	}
+	friend std::ostream& operator<<(std::ostream& s, const Region& region);
 
-	template <typename Type> friend
-	Region operator/(const Region& r, Type i)
-	{
-	    static_assert(std::is_integral<Type>::value, "not integral");
-	    return Region(r.s / i, r.l / i);
-	}
+    public:
 
-	friend std::ostream& operator<<(std::ostream& s, const Region& p);
+	class Impl;
+
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
 	friend bool getChildValue(const xmlNode* node, const char* name, Region& value);
 	friend void setChildValue(xmlNode* node, const char* name, const Region& value);
 
-	operator RegionInfo() const { return RegionInfo(s, l); }
+	operator RegionInfo() const { return RegionInfo(get_start(), get_length()); }
 
-    protected:
+    private:
 
-	unsigned long long s;
-	unsigned long long l;
+	shared_ptr<Impl> impl;
 
     };
 
