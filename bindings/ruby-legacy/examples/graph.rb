@@ -1,13 +1,13 @@
 #!/usr/bin/ruby
 
-require 'storage'
+require 'storage_legacy'
 
 
-env = Storage::Environment.new(true)
+env = Storage_legacy::Environment.new(true)
 
-c = Storage::createStorageInterface(env)
+c = Storage_legacy::createStorageInterface(env)
 
-Storage::saveDeviceGraph(c, "device.gv")
-Storage::saveMountGraph(c, "mount.gv")
+Storage_legacy::saveDeviceGraph(c, "device.gv")
+Storage_legacy::saveMountGraph(c, "mount.gv")
 
-Storage::destroyStorageInterface(c)
+Storage_legacy::destroyStorageInterface(c)

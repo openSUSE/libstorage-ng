@@ -294,6 +294,15 @@ namespace storage_legacy
 
 
     StorageInterface*
+    createStorageInterface(const Environment& env)
+    {
+	y2mil("legacy " << __FUNCTION__);
+
+	return new StorageLegacy(env);
+    }
+
+
+    StorageInterface*
     createStorageInterfacePid(const Environment& env, int& locker_pid)
     {
 	y2mil("legacy " << __FUNCTION__);

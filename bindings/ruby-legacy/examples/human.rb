@@ -1,11 +1,11 @@
 #!/usr/bin/ruby
 
-require 'storage'
+require 'storage_legacy'
 
 
-Storage.numSuffixes().times do |i|
-    print Storage.getSuffix(i, false), " "
+Storage_legacy.numSuffixes().times do |i|
+    print Storage_legacy.getSuffix(i, false), " "
 end
 puts
 
-print Storage.byteToHumanString(123456, false, 2, false), "\n"
+print Storage_legacy.byteToHumanString(123456, false, 2, false), "\n"

@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require 'storage'
+require 'storage_legacy'
 
 env = Storage::Environment.new(true)
 storageInterface = Storage::createStorageInterface(env)
