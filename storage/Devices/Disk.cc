@@ -99,6 +99,13 @@ namespace storage
     }
 
 
+    const PartitionTable*
+    Disk::get_partition_table() const
+    {
+	return get_impl().get_partition_table();
+    }
+
+
     const vector<string> EnumInfo<DasdType>::names({
 	"NONE", "ECKD", "FBA"
     });

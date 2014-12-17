@@ -443,6 +443,12 @@ namespace storage_legacy
 	    info.sizeK = disk->get_size_k();
 	    info.transport = disk->get_transport();
 
+	    const PartitionTable* partitiontable = disk->get_partition_table();
+	    if (partitiontable)
+	    {
+		info.disklabel = partitiontable->get_displayname();
+	    }
+
 	    y2mil("DISK " << info.sizeK);
 	    return 0;
 	}

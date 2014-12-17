@@ -32,7 +32,9 @@ namespace storage
 	void probe(SystemInfo& systeminfo);
 
 	PartitionTable* create_partition_table(PtType pt_type);
+
 	PartitionTable* get_partition_table();
+	const PartitionTable* get_partition_table() const;
 
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;

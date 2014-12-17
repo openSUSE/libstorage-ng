@@ -35,7 +35,9 @@ namespace storage
 	void set_transport(Transport transport);
 
 	PartitionTable* create_partition_table(PtType pt_type);
+
 	PartitionTable* get_partition_table();
+	const PartitionTable* get_partition_table() const;
 
     public:
 
