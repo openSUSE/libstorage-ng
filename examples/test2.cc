@@ -1,5 +1,7 @@
 
 
+#include <iostream>
+
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
@@ -8,6 +10,7 @@
 #include "storage/Devicegraph.h"
 
 
+using namespace std;
 using namespace storage;
 
 

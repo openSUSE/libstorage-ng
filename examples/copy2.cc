@@ -1,5 +1,7 @@
 
 
+#include <assert.h>
+
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"

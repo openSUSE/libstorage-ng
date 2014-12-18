@@ -1,9 +1,12 @@
 
+#include <iostream>
 
 #include "storage/Storage.h"
+#include "storage/Environment.h"
 #include "storage/Devicegraph.h"
 
 
+using namespace std;
 using namespace storage;
 
 

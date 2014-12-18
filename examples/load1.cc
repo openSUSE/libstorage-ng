@@ -1,8 +1,11 @@
 
 
+#include <iostream>
+
 #include "storage/Devicegraph.h"
 
 
+using namespace std;
 using namespace storage;
 
 
