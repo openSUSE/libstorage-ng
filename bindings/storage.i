@@ -8,6 +8,7 @@
 %ignore "get_classname";
 %ignore "clone";
 %ignore "operator <<";
+%ignore "print";
 
 %rename("==") "operator==";
 %rename("!=") "operator!=";
@@ -56,6 +57,7 @@ using namespace std;
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_list.i"
+%include "std_map.i"
 
 %include "../../storage/StorageInterface.h"
 %include "../../storage/Utils/HumanString.h"
@@ -77,34 +79,10 @@ using namespace std;
 
 using namespace storage;
 
+%template(ListString) list<string>;
+%template(MapStringString) map<string, string>;
+
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
 
-%inline %{
-
-    const storage::Disk* to_disk(const storage::Device* device) {
-	return dynamic_cast<const storage::Disk*>(device);
-    }
-
-    const storage::PartitionTable* to_partition_table(const storage::Device* device) {
-	return dynamic_cast<const storage::PartitionTable*>(device);
-    }
-
-    const storage::Partition* to_partition(const storage::Device* device) {
-	return dynamic_cast<const storage::Partition*>(device);
-    }
-
-    const storage::LvmVg* to_lvm_vg(const storage::Device* device) {
-	return dynamic_cast<const storage::LvmVg*>(device);
-    }
-
-    const storage::LvmLv* to_lvm_lv(const storage::Device* device) {
-	return dynamic_cast<const storage::LvmLv*>(device);
-    }
-
-    const storage::Filesystem* to_filesystem(const storage::Device* device) {
-	return dynamic_cast<const storage::Filesystem*>(device);
-    }
-
-%}

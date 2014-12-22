@@ -3,7 +3,6 @@
 
 
 #include "storage/Devices/Device.h"
-#include "storage/Devices/Filesystem.h"
 
 #include "storage/StorageInterface.h"
 
@@ -11,8 +10,9 @@
 namespace storage
 {
 
-    using namespace std;
     using namespace storage_legacy;
+
+    class Filesystem;
 
 
     // abstract class
@@ -21,17 +21,23 @@ namespace storage
     {
     public:
 
-	virtual string get_displayname() const override { return get_name(); }
+	virtual std::string get_displayname() const override { return get_name(); }
 
 	virtual void check() const override;
 
-	const string& get_name() const;
-	void set_name(const string& name);
+	const std::string& get_name() const;
+	void set_name(const std::string& name);
 
 	unsigned long long get_size_k() const;
 	void set_size_k(unsigned long long size_k);
 
-	static BlkDevice* find(const Devicegraph* devicegraph, const string& name);
+	std::string get_size_string() const;
+
+	dev_t get_majorminor() const;
+	unsigned int get_major() const;
+	unsigned int get_minor() const;
+
+	static BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
 
 	Filesystem* create_filesystem(FsType fs_type);
 
@@ -46,7 +52,23 @@ namespace storage
 
 	BlkDevice(Impl* impl);
 
+	void print(std::ostream& out) const override = 0;
+
     };
+
+
+    inline BlkDevice*
+    to_blkdevice(Device* device)
+    {
+	return dynamic_cast<BlkDevice*>(device);
+    }
+
+
+    inline const BlkDevice*
+    to_blkdevice(const Device* device)
+    {
+	return dynamic_cast<const BlkDevice*>(device);
+    }
 
 }
 

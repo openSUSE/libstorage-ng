@@ -8,9 +8,6 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class Gpt : public PartitionTable
     {
     public:
@@ -18,7 +15,7 @@ namespace storage
 	static Gpt* create(Devicegraph* devicegraph);
 	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string get_displayname() const override { return "gpt"; }
+	virtual std::string get_displayname() const override { return "gpt"; }
 
     public:
 
@@ -34,6 +31,8 @@ namespace storage
     protected:
 
 	Gpt(Impl* impl);
+
+	void print(std::ostream& out) const override;
 
     };
 

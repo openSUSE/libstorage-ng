@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
@@ -13,6 +14,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
+#include "storage/Environment.h"
 
 
 using namespace storage;
@@ -21,11 +23,12 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(dependencies)
 {
     Actiongraph::simple_t expected = {
-	{ "43 create /dev/sda1", { "43 set type /dev/sda1" } },
-	{ "43 set type /dev/sda1", { "44 create /dev/system" } },
-	{ "44 create /dev/system", { "45 create /dev/system/root", "46 create /dev/system/swap" } },
-	{ "45 create /dev/system/root", { } },
-	{ "46 create /dev/system/swap", { } }
+	{ "Create gpt", { "Create partition /dev/sda1 (1.00 GiB)" } },
+	{ "Create partition /dev/sda1 (1.00 GiB)", { "Set id of partition /dev/sda1 to 0x8E" } },
+	{ "Set id of partition /dev/sda1 to 0x8E", { "Create /dev/system" } },
+	{ "Create /dev/system", { "Create /dev/system/root", "Create /dev/system/swap" } },
+	{ "Create /dev/system/root", { } },
+	{ "Create /dev/system/swap", { } }
     };
 
     storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
@@ -40,8 +43,12 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
+    PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
+
     Partition* sda1 = Partition::create(rhs, "/dev/sda1");
-    Subdevice::create(rhs, sda, sda1);
+    sda1->set_size_k(1024 * 1024);
+    sda1->set_id(ID_LVM);
+    Subdevice::create(rhs, gpt, sda1);
 
     LvmVg* system = LvmVg::create(rhs, "/dev/system");
     Using::create(rhs, sda1, system);
@@ -52,7 +59,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
     Subdevice::create(rhs, system, system_swap);
 
-    Actiongraph actiongraph(*lhs, *rhs);
+    Actiongraph actiongraph(lhs, rhs);
 
-    BOOST_CHECK_EQUAL(actiongraph.simple(), expected);
+    BOOST_CHECK_EQUAL(actiongraph.get_simple(), expected);
 }

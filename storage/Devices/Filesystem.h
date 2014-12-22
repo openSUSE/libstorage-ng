@@ -10,8 +10,7 @@
 
 namespace storage
 {
-
-    using namespace std;
+    class BlkDevice;
 
 
     // abstract class
@@ -23,21 +22,24 @@ namespace storage
 	virtual bool supports_label() const = 0;
 	virtual unsigned int max_labelsize() const = 0;
 
-	const string& get_label() const;
-	void set_label(const string& label);
+	const std::string& get_label() const;
+	void set_label(const std::string& label);
 
 	virtual bool supports_uuid() const = 0;
 
-	const string& get_uuid() const;
+	const std::string& get_uuid() const;
 
-	const vector<string>& get_mountpoints() const;
-	void add_mountpoint(const string& mountpoint);
+	const std::vector<std::string>& get_mountpoints() const;
+	void add_mountpoint(const std::string& mountpoint);
 
-	static vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
-						 const string& label);
+	static std::vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
+						      const std::string& label);
 
-	static vector<Filesystem*> find_by_mountpoint(const Devicegraph* devicegraph,
-						      const string& mountpoint);
+	static std::vector<Filesystem*> find_by_mountpoint(const Devicegraph* devicegraph,
+							   const std::string& mountpoint);
+
+	// TODO class BlkFilesystem for not nfs, tmpfs?
+	std::vector<const BlkDevice*> get_blkdevices() const;
 
     public:
 
@@ -50,7 +52,23 @@ namespace storage
 
 	Filesystem(Impl* impl);
 
+	void print(std::ostream& out) const override = 0;
+
     };
+
+
+    inline Filesystem*
+    to_filesystem(Device* device)
+    {
+	return dynamic_cast<Filesystem*>(device);
+    }
+
+
+    inline const Filesystem*
+    to_filesystem(const Device* device)
+    {
+	return dynamic_cast<const Filesystem*>(device);
+    }
 
 }
 

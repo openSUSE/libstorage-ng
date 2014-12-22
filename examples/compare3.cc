@@ -67,7 +67,7 @@ main()
     Swap* rhs_system_v2_swap_fs = Swap::create(&rhs);
     Using::create(&rhs, rhs_system_v2_swap, rhs_system_v2_swap_fs);
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(&lhs, &rhs);
 
     lhs.write_graphviz("compare3-device-lhs");
     rhs.write_graphviz("compare3-device-rhs");

@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 

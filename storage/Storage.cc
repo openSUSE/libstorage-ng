@@ -6,6 +6,9 @@
 
 namespace storage
 {
+    using std::vector;
+    using std::list;
+
 
     Storage::Storage(const Environment& environment)
 	: impl(new Impl(environment))
@@ -98,6 +101,20 @@ namespace storage
     Storage::equal_devicegraph(const string& lhs, const string& rhs) const
     {
 	return get_impl().equal_devicegraph(lhs, rhs);
+    }
+
+
+    list<string>
+    Storage::get_commit_steps() const
+    {
+	return get_impl().get_commit_steps();
+    }
+
+
+    void
+    Storage::commit()
+    {
+	get_impl().commit();
     }
 
 }

@@ -20,7 +20,7 @@ BOOST_AUTO_TEST_CASE(disk)
 
     Disk::create(&rhs, "/dev/sda");
 
-    BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(lhs, rhs), runtime_error,
-	[](const runtime_error& e) { return e.what() == string("cannot create disk"); }
+    BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(&lhs, &rhs), std::runtime_error,
+	[](const std::runtime_error& e) { return e.what() == string("cannot create disk"); }
     );
 }

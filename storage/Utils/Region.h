@@ -32,7 +32,6 @@
 
 namespace storage
 {
-    using namespace std;
     using namespace storage_legacy;
 
 
@@ -74,7 +73,7 @@ namespace storage
 
     private:
 
-	shared_ptr<Impl> impl;
+	std::shared_ptr<Impl> impl;
 
     };
 

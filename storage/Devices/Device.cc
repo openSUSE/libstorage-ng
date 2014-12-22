@@ -58,20 +58,6 @@ namespace storage
     }
 
 
-    Device::Impl&
-    Device::get_impl()
-    {
-	return *impl;
-    }
-
-
-    const Device::Impl&
-    Device::get_impl() const
-    {
-	return *impl;
-    }
-
-
     sid_t
     Device::get_sid() const
     {
@@ -172,6 +158,36 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().roots(vertex, itself));
+    }
+
+
+    const map<string, string>&
+    Device::get_userdata() const
+    {
+	return get_impl().get_userdata();
+    }
+
+
+    void
+    Device::set_userdata(const map<string, string>& userdata)
+    {
+	get_impl().set_userdata(userdata);
+    }
+
+
+    void
+    Device::print(std::ostream& out) const
+    {
+	out << get_classname() << " sid:" << get_sid()
+	    << " displayname:" << get_displayname();
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& out, const Device& device)
+    {
+	device.print(out);
+	return out;
     }
 
 }

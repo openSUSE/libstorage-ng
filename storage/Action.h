@@ -4,10 +4,12 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Actiongraph.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
 {
+
 
     namespace Action
     {
@@ -22,7 +24,9 @@ namespace storage
 	    Base(sid_t sid, bool first, bool last) : sid(sid), first(first), last(last) {}
 	    virtual ~Base() {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const = 0;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const = 0;
+
+	    virtual void commit(const Actiongraph& actiongraph) const {} // = 0; TODO
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const {}
 
@@ -42,7 +46,7 @@ namespace storage
 	    Nop(sid_t sid) : Base(sid) {}
 	    Nop(sid_t sid, bool first, bool last) : Base(sid, first, last) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -53,7 +57,7 @@ namespace storage
 
 	    Create(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
 
@@ -66,7 +70,7 @@ namespace storage
 
 	    Modify(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -77,20 +81,9 @@ namespace storage
 
 	    Delete(sid_t sid) : Base(sid) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
-
-	};
-
-
-	class SetType : public Modify
-	{
-	public:
-
-	    SetType(sid_t sid) : Modify(sid) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -101,7 +94,7 @@ namespace storage
 
 	    FormatEncryption(sid_t sid) : Create(sid) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 
@@ -112,85 +105,7 @@ namespace storage
 
 	    OpenEncryption(sid_t sid) : Modify(sid) {}
 
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
-
-	class Format : public Create
-	{
-	public:
-
-	    Format(sid_t sid) : Create(sid) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
-
-	class SetLabel : public Modify
-	{
-	public:
-
-	    SetLabel(sid_t sid) : Modify(sid) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
-
-	class Mount : public Modify
-	{
-	public:
-
-	    Mount(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	    const string mount_point;
-
-	};
-
-
-	class Umount : public Delete
-	{
-	public:
-
-	    Umount(sid_t sid, const string& mount_point)
-		: Delete(sid), mount_point(mount_point) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	    const string mount_point;
-
-	};
-
-
-	class AddFstab : public Modify
-	{
-	public:
-
-	    AddFstab(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	    const string mount_point;
-
-	};
-
-
-	class RemoveFstab : public Modify
-	{
-	public:
-
-	    RemoveFstab(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
-
-	    virtual string text(const Actiongraph& actiongraph, bool doing) const override;
-
-	    const string mount_point;
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
 	};
 

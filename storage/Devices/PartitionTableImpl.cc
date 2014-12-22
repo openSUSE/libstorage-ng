@@ -34,7 +34,7 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 
-	string pp_name = dynamic_cast<const BlkDevice*>(g->get_impl().graph[v1].get())->get_name();
+	string pp_name = to_blkdevice(g->get_impl().graph[v1].get())->get_name();
 
 	const Parted& parted = systeminfo.getParted(pp_name);
 
@@ -71,14 +71,65 @@ namespace storage
     Partition*
     PartitionTable::Impl::create_partition(unsigned int number)
     {
-	Devicegraph::Impl::vertex_descriptor v1 = get_devicegraph()->get_impl().parent(get_vertex());
+	Disk* disk = get_disk();
 
-	string pp_name = dynamic_cast<const BlkDevice*>(get_devicegraph()->get_impl().graph[v1].get())->get_name();
+	string disk_name = disk->get_name();
 
-	Partition* partition = Partition::create(get_devicegraph(), pp_name + decString(number));
+	Partition* partition = Partition::create(get_devicegraph(), disk_name + decString(number)); // TODO
+
 	Subdevice::create(get_devicegraph(), get_device(), partition);
 
 	return partition;
+    }
+
+
+    Partition*
+    PartitionTable::Impl::get_partition(const string& name)
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	// TODO
+
+	for (Partition* partition : devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex)))
+	{
+	    if (partition->get_name() == name)
+	    {
+		return partition;
+	    }
+	}
+
+	throw runtime_error("partition not found");
+    }
+
+
+    void
+    PartitionTable::Impl::delete_partition(const string& name)
+    {
+	Partition* partition = get_partition(name);
+	assert(partition);
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	devicegraph->remove_vertex(partition->get_sid());
+    }
+
+
+    Disk*
+    PartitionTable::Impl::get_disk()
+    {
+	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+
+	return to_disk(get_devicegraph()->get_impl().graph[v].get());
+    }
+
+
+    const Disk*
+    PartitionTable::Impl::get_disk() const
+    {
+	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+
+	return to_disk(get_devicegraph()->get_impl().graph[v].get());
     }
 
 }

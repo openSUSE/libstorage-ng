@@ -7,6 +7,8 @@
 
 namespace storage
 {
+    using std::string;
+
 
     class Environment::Impl
     {

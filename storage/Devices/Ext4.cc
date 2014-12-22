@@ -55,4 +55,11 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    void
+    Ext4::print(std::ostream& out) const
+    {
+	Filesystem::print(out);
+    }
+
 }

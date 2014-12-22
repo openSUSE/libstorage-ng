@@ -55,4 +55,11 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    void
+    Encryption::print(std::ostream& out) const
+    {
+	BlkDevice::print(out);
+    }
+
 }

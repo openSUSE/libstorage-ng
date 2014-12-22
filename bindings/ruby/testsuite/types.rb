@@ -29,6 +29,9 @@ class TestTypes < Test::Unit::TestCase
     ext4.label = "test-label"
     assert_equal(ext4.label, "test-label")
 
+    # TODO
+    ext4.userdata = Storage::MapStringString.new()
+
   end
 
 end

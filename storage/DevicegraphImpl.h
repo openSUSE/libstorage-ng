@@ -1,7 +1,8 @@
-#ifndef DEVICE_GRAPH_IMPL_H
-#define DEVICE_GRAPH_IMPL_H
+#ifndef DEVICEGRAPH_IMPL_H
+#define DEVICEGRAPH_IMPL_H
 
 
+#include <set>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
@@ -13,6 +14,9 @@
 
 namespace storage
 {
+    using std::vector;
+    using std::set;
+
 
     class Devicegraph::Impl : private boost::noncopyable
     {
@@ -29,7 +33,7 @@ namespace storage
 	// http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/bundles.html
 
 	typedef boost::adjacency_list<boost::setS, boost::listS, boost::bidirectionalS,
-				      shared_ptr<Device>, shared_ptr<Holder>> graph_t;
+				      std::shared_ptr<Device>, std::shared_ptr<Holder>> graph_t;
 
 	typedef graph_t::vertex_descriptor vertex_descriptor;
 	typedef graph_t::edge_descriptor edge_descriptor;
@@ -56,7 +60,8 @@ namespace storage
 	void load(Devicegraph* devicegraph, const string& filename);
 	void save(const string& filename) const;
 
-	void print_graph() const;
+	void print(std::ostream& out) const;
+
 	void write_graphviz(const string& filename) const;
 
 	size_t num_children(vertex_descriptor vertex) const;
@@ -74,6 +79,24 @@ namespace storage
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
 
 	template <typename Type>
+	vector<Type*>
+	getDevices(const vector<vertex_descriptor>& vertices) // TODO rename
+	{
+	    vector<Type*> ret;
+
+	    for (vertex_descriptor vertex : vertices)
+	    {
+		Type* device = dynamic_cast<Type*>(graph[vertex].get());
+		if (!device)
+		    throw std::bad_cast();
+
+		ret.push_back(device);
+	    }
+
+	    return ret;
+	}
+
+	template <typename Type>
 	vector<const Type*>
 	getDevices(const vector<vertex_descriptor>& vertices) const // TODO rename
 	{
@@ -83,7 +106,7 @@ namespace storage
 	    {
 		const Type* device = dynamic_cast<const Type*>(graph[vertex].get());
 		if (!device)
-		    throw bad_cast();
+		    throw std::bad_cast();
 
 		ret.push_back(device);
 	    }

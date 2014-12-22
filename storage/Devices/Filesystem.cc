@@ -88,4 +88,18 @@ namespace storage
 	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
     }
 
+
+    vector<const BlkDevice*>
+    Filesystem::get_blkdevices() const
+    {
+	return get_impl().get_blkdevices();
+    }
+
+
+    void
+    Filesystem::print(std::ostream& out) const
+    {
+	Device::print(out);
+    }
+
 }

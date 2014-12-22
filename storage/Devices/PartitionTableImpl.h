@@ -27,6 +27,13 @@ namespace storage
 	Partition* create_partition(const string& name);
 	Partition* create_partition(unsigned int number);
 
+	void delete_partition(const string& name);
+
+	Partition* get_partition(const string& name);
+
+	Disk* get_disk();	// TODO rename, blkdevice
+	const Disk* get_disk() const; // TODO rename, blkdevice
+
     protected:
 
 	Impl()

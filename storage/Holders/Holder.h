@@ -10,10 +10,6 @@
 
 namespace storage
 {
-
-    using namespace std;
-
-
     class Devicegraph;
     class Device;
 
@@ -33,14 +29,16 @@ namespace storage
 
 	class Impl;
 
-	Impl& get_impl();
-	const Impl& get_impl() const;
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
 
 	virtual const char* get_classname() const = 0;
 
 	virtual Holder* clone() const = 0;
 
 	void save(xmlNode* node) const;
+
+	friend std::ostream& operator<<(std::ostream& out, const Holder& holder);
 
     protected:
 
@@ -49,12 +47,14 @@ namespace storage
 	void create(Devicegraph* devicegraph, const Device* source, const Device* target);
 	void load(Devicegraph* devicegraph, const xmlNode* node);
 
+	virtual void print(std::ostream& out) const = 0;
+
     private:
 
 	void add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
 				const Device* target);
 
-	shared_ptr<Impl> impl;
+	std::shared_ptr<Impl> impl;
 
     };
 

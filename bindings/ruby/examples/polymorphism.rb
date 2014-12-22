@@ -12,7 +12,7 @@ gpt = sda.create_partition_table(Storage::GPT)
 sda1 = gpt.create_partition("/dev/sda1")
 sda2 = gpt.create_partition("/dev/sda2")
 
-devicegraph.print_graph()
+print devicegraph
 
 
 puts "partitions on gpt:"

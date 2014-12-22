@@ -55,4 +55,11 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    void
+    Msdos::print(std::ostream& out) const
+    {
+	PartitionTable::print(out);
+    }
+
 }

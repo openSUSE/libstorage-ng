@@ -2,6 +2,7 @@
 
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -59,6 +60,13 @@ namespace storage
     BlkDevice::Impl::set_size_k(unsigned long long size_k)
     {
 	Impl::size_k = size_k;
+    }
+
+
+    string
+    BlkDevice::Impl::get_size_string() const
+    {
+	return byte_to_humanstring(1024 * get_size_k(), false, 2, false);
     }
 
 }

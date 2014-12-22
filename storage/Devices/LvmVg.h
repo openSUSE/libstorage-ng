@@ -3,30 +3,28 @@
 
 
 #include "storage/Devices/Device.h"
-#include "storage/Devices/LvmLv.h"
 
 
 namespace storage
 {
-
-    using namespace std;
+    class LvmLv;
 
 
     class LvmVg : public Device
     {
     public:
 
-	static LvmVg* create(Devicegraph* devicegraph, const string& name);
+	static LvmVg* create(Devicegraph* devicegraph, const std::string& name);
 	static LvmVg* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	const string& get_name() const;
-	void set_name(const string& name);
+	const std::string& get_name() const;
+	void set_name(const std::string& name);
 
-	virtual string get_displayname() const override { return get_name(); }
+	virtual std::string get_displayname() const override { return get_name(); }
 
 	virtual void check() const override;
 
-	LvmLv* create_lvm_lv(const string& name);
+	LvmLv* create_lvm_lv(const std::string& name);
 
     protected:
 
@@ -43,7 +41,23 @@ namespace storage
 
 	LvmVg(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline LvmVg*
+    to_lvm_vg(Device* device)
+    {
+	return dynamic_cast<LvmVg*>(device);
+    }
+
+
+    inline const LvmVg*
+    to_lvm_vg(const Device* device)
+    {
+	return dynamic_cast<const LvmVg*>(device);
+    }
 
 }
 

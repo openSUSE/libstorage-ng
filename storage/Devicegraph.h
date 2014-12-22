@@ -1,27 +1,28 @@
-#ifndef DEVICE_GRAPH_H
-#define DEVICE_GRAPH_H
+#ifndef DEVICEGRAPH_H
+#define DEVICEGRAPH_H
 
 
+#include <stdexcept>
 #include <boost/noncopyable.hpp>
-#include <boost/graph/adjacency_list.hpp>
 
 #include "storage/Devices/Device.h"
-// #include "storage/Devices/BlkDevice.h"
-#include "storage/Holders/Holder.h"
 
 
 namespace storage
 {
+    class Device;
+    class Holder;
 
-    struct DeviceNotFound : public runtime_error
+
+    struct DeviceNotFound : public std::runtime_error
     {
-	DeviceNotFound(const string& msg) throw() : runtime_error(msg) {}
+	DeviceNotFound(const std::string& msg) throw() : runtime_error(msg) {}
     };
 
 
-    struct HolderNotFound : public runtime_error
+    struct HolderNotFound : public std::runtime_error
     {
-	HolderNotFound(const string& msg) throw() : runtime_error(msg) {}
+	HolderNotFound(const std::string& msg) throw() : runtime_error(msg) {}
     };
 
 
@@ -33,8 +34,8 @@ namespace storage
 	Devicegraph();
 	~Devicegraph();
 
-	void load(const string& filename);
-	void save(const string& filename) const;
+	void load(const std::string& filename);
+	void save(const std::string& filename) const;
 
 	bool empty() const;
 
@@ -57,8 +58,9 @@ namespace storage
 	// TODO move to Impl
 	void copy(Devicegraph& dest) const;
 
-	void print_graph() const;
-	void write_graphviz(const string& filename) const;
+	void write_graphviz(const std::string& filename) const;
+
+	friend std::ostream& operator<<(std::ostream& out, const Devicegraph& devicegraph);
 
     public:
 
@@ -67,9 +69,13 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
+    protected:
+
+	void print(std::ostream& out) const;
+
     private:
 
-	shared_ptr<Impl> impl;
+	std::shared_ptr<Impl> impl;
 
     };
 

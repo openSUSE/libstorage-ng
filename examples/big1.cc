@@ -65,9 +65,9 @@ main()
 	add_partitions(s.str());
     }
 
-    rhs.print_graph();
+    cout << rhs << endl;
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(&lhs, &rhs);
 
     actiongraph.print_graph();
 }

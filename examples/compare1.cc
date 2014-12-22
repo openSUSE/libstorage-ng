@@ -41,7 +41,7 @@ main()
     assert(d);
     d->set_name("/dev/system/postgresql");
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(&lhs, &rhs);
 
     actiongraph.write_graphviz("compare1-action");
 }

@@ -6,6 +6,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
 #include "storage/DevicegraphImpl.h"
 
 
@@ -15,7 +16,6 @@ namespace storage
     using namespace std;
 
 
-    class Actiongraph;
     class SystemInfo;
 
 
@@ -44,6 +44,9 @@ namespace storage
 	Device* get_device() { return devicegraph->get_impl().graph[vertex].get(); }
 	const Device* get_device() const { return devicegraph->get_impl().graph[vertex].get(); }
 
+	const map<string, string>& get_userdata() const { return userdata; }
+	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
+
 	virtual void add_create_actions(Actiongraph& actiongraph) const;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const;
 
@@ -63,6 +66,8 @@ namespace storage
 
 	Devicegraph* devicegraph;
 	Devicegraph::Impl::vertex_descriptor vertex;
+
+	map<string, string> userdata;
 
     };
 

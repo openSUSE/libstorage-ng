@@ -23,6 +23,7 @@ main()
 
     devicegraph.check();
 
-    devicegraph.print_graph();
+    cout << devicegraph << endl;
+
     devicegraph.write_graphviz("load1");
 }

@@ -8,14 +8,11 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class LvmLv : public BlkDevice
     {
     public:
 
-	static LvmLv* create(Devicegraph* devicegraph, const string& name);
+	static LvmLv* create(Devicegraph* devicegraph, const std::string& name);
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual void check() const override;
@@ -35,7 +32,23 @@ namespace storage
 
 	LvmLv(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline LvmLv*
+    to_lvm_lv(Device* device)
+    {
+	return dynamic_cast<LvmLv*>(device);
+    }
+
+
+    inline const LvmLv*
+    to_lvm_lv(const Device* device)
+    {
+	return dynamic_cast<const LvmLv*>(device);
+    }
 
 }
 

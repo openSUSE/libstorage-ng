@@ -4,6 +4,7 @@
 
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -27,6 +28,8 @@ namespace storage
 
 	// mount-by
 
+	vector<const BlkDevice*> get_blkdevices() const;
+
     protected:
 
 	Impl()
@@ -37,6 +40,96 @@ namespace storage
 	void save(xmlNode* node) const override;
 
     };
+
+
+    namespace Action
+    {
+
+	class Format : public Create
+	{
+	public:
+
+	    Format(sid_t sid) : Create(sid) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	protected:
+
+	    // TODO also useful for SetLabel, Mount, ...
+	    // TODO parameter for lhs, rhs
+	    vector<const BlkDevice*> get_blkdevices(const Actiongraph& actiongraph) const;
+	    const BlkDevice* get_blkdevice(const Actiongraph& actiongraph) const;
+
+	};
+
+
+	class SetLabel : public Modify
+	{
+	public:
+
+	    SetLabel(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	};
+
+
+	class Mount : public Modify
+	{
+	public:
+
+	    Mount(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	    const string mount_point;
+
+	};
+
+
+	class Umount : public Delete
+	{
+	public:
+
+	    Umount(sid_t sid, const string& mount_point)
+		: Delete(sid), mount_point(mount_point) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	    const string mount_point;
+
+	};
+
+
+	class AddFstab : public Modify
+	{
+	public:
+
+	    AddFstab(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	    const string mount_point;
+
+	};
+
+
+	class RemoveFstab : public Modify
+	{
+	public:
+
+	    RemoveFstab(sid_t sid, const string& mount_point)
+		: Modify(sid), mount_point(mount_point) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	    const string mount_point;
+
+	};
+
+    }
 
 }
 

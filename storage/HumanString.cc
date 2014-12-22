@@ -25,6 +25,8 @@
 
 namespace storage_legacy
 {
+    using std::string;
+
     using namespace storage;
 
 

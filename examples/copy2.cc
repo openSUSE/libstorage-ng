@@ -1,6 +1,7 @@
 
 
 #include <assert.h>
+#include <iostream>
 
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
@@ -8,6 +9,7 @@
 #include "storage/Devicegraph.h"
 
 
+using namespace std;
 using namespace storage;
 
 
@@ -34,8 +36,8 @@ main()
 	tmp->set_name("/dev/dasda1");
     }
 
-    devicegraph.print_graph();
-    devicegraph_copy.print_graph();
+    cout << devicegraph << endl;
+    cout << devicegraph_copy << endl;
 
     {
 	Disk* tmp = dynamic_cast<Disk*>(devicegraph.find_device(disk->get_sid()));

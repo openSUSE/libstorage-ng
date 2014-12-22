@@ -24,6 +24,12 @@ namespace storage
 	unsigned long long get_size_k() const { return size_k; }
 	void set_size_k(unsigned long long size_k);
 
+	string get_size_string() const;
+
+	dev_t get_majorminor() const { return major_minor; }
+	unsigned int get_major() const { return gnu_dev_major(major_minor); }
+	unsigned int get_minor() const { return gnu_dev_minor(major_minor); }
+
     protected:
 
 	Impl(const string& name)

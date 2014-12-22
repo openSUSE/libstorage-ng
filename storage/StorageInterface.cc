@@ -6,8 +6,10 @@
 
 #include "storage/StorageInterface.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Region.h"
 #include "storage/Storage.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Environment.h"
 
 
 namespace storage_legacy
@@ -436,7 +438,7 @@ namespace storage_legacy
 	y2mil("legacy " << __FUNCTION__ << " " << name);
 
 	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), name);
-	const Disk* disk = dynamic_cast<const Disk*>(blkdevice);
+	const Disk* disk = to_disk(blkdevice);
 
 	if (disk)
 	{
@@ -544,8 +546,8 @@ namespace storage_legacy
 
 	plist.clear();
 
-	BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), name);
-	Disk* disk = dynamic_cast<Disk*>(blkdevice);
+	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), name);
+	const Disk* disk = to_disk(blkdevice);
 
 	if (disk)
 	{

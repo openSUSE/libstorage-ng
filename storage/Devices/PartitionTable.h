@@ -10,8 +10,7 @@
 
 namespace storage
 {
-
-    using namespace std;
+    class Disk;
 
 
     enum class PtType {
@@ -25,10 +24,16 @@ namespace storage
     {
     public:
 
-	Partition* create_partition(const string& name);
+	Partition* create_partition(const std::string& name);
 	Partition* create_partition(unsigned int number);
 
-	vector<const Partition*> get_partitions() const;
+	void delete_partition(const std::string& name);
+
+	std::vector<const Partition*> get_partitions() const;
+
+	Partition* get_partition(const std::string& name);
+
+	const Disk* get_disk() const;
 
     public:
 
@@ -41,7 +46,16 @@ namespace storage
 
 	PartitionTable(Impl* impl);
 
+	void print(std::ostream& out) const override = 0;
+
     };
+
+
+    inline const PartitionTable*
+    to_partition_table(const Device* device)
+    {
+	return dynamic_cast<const PartitionTable*>(device);
+    }
 
 }
 

@@ -8,14 +8,11 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class Encryption : public BlkDevice
     {
     public:
 
-	static Encryption* create(Devicegraph* devicegraph, const string& name);
+	static Encryption* create(Devicegraph* devicegraph, const std::string& name);
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:
@@ -33,7 +30,23 @@ namespace storage
 
 	Encryption(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline Encryption*
+    to_encryption(Device* device)
+    {
+	return dynamic_cast<Encryption*>(device);
+    }
+
+
+    inline const Encryption*
+    to_encryption(const Device* device)
+    {
+	return dynamic_cast<const Encryption*>(device);
+    }
 
 }
 

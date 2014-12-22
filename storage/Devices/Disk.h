@@ -9,9 +9,6 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     enum DasdFormat {
 	DASDF_NONE, DASDF_LDL, DASDF_CDL
     };
@@ -26,10 +23,10 @@ namespace storage
     {
     public:
 
-	static Disk* create(Devicegraph* devicegraph, const string& name);
+	static Disk* create(Devicegraph* devicegraph, const std::string& name);
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	static vector<Disk*> get_all(const Devicegraph* devicegraph);
+	static std::vector<Disk*> get_all(const Devicegraph* devicegraph);
 
 	Transport get_transport() const;
 	void set_transport(Transport transport);
@@ -38,6 +35,8 @@ namespace storage
 
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
+
+	static Disk* find(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 
@@ -54,7 +53,23 @@ namespace storage
 
 	Disk(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline Disk*
+    to_disk(Device* device)
+    {
+	return dynamic_cast<Disk*>(device);
+    }
+
+
+    inline const Disk*
+    to_disk(const Device* device)
+    {
+	return dynamic_cast<const Disk*>(device);
+    }
 
 }
 

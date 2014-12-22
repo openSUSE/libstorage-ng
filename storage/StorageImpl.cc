@@ -5,6 +5,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageDefines.h"
+#include "storage/Actiongraph.h"
 
 
 namespace storage
@@ -204,6 +205,26 @@ namespace storage
 	// TODO really needed? just calculate Actiongraph instead? not always
 	// same result, e.g. removing a Ext4 object (not mounted, not in
 	// fstab) results in no action - but the graphs differ
+    }
+
+
+    list<string>
+    Storage::Impl::get_commit_steps() const
+    {
+	Actiongraph actiongraph(get_probed(), get_current());
+
+	return actiongraph.get_commit_steps();
+    }
+
+
+    void
+    Storage::Impl::commit()
+    {
+	Actiongraph actiongraph(get_probed(), get_current());
+
+	actiongraph.commit();
+
+	// TODO somehow update probed
     }
 
 }

@@ -30,13 +30,10 @@
 namespace storage
 {
 
-    using std::string;
-    using std::runtime_error;
 
-
-    struct ParseError : public runtime_error
+    struct ParseError : public std::runtime_error
     {
-        ParseError(const string& msg) throw() : runtime_error(msg) {}
+        ParseError(const std::string& msg) throw() : runtime_error(msg) {}
     };
 
 
@@ -54,7 +51,7 @@ namespace storage
      * @param classic use classic locale instead of global C++ locale
      * @return suffix
      */
-    string get_suffix(int i, bool classic);
+    std::string get_suffix(int i, bool classic);
 
 
     /**
@@ -67,8 +64,8 @@ namespace storage
      * @param omit_zeroes if true omit trailing zeroes for exact values
      * @return formatted string
      */
-    string byte_to_humanstring(unsigned long long size, bool classic, int precision,
-			       bool omit_zeroes);
+    std::string byte_to_humanstring(unsigned long long size, bool classic, int precision,
+				    bool omit_zeroes);
 
     /**
      * Converts a size description using B, KiB, KB, MiB, MB, GiB, GB, TiB,
@@ -83,7 +80,7 @@ namespace storage
      * The conversion is always case-insensitive. With classic set to
      * false the conversion is also sloppy concerning omission of 'B'.
      */
-    unsigned long long humanstring_to_byte(const string& str, bool classic);
+    unsigned long long humanstring_to_byte(const std::string& str, bool classic);
 
 }
 

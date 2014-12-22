@@ -15,7 +15,7 @@ sda2 = gpt.create_partition("/dev/sda2")
 ext4 = sda1.create_filesystem(EXT4)
 swap = sda2.create_filesystem(SWAP)
 
-devicegraph.print_graph()
+print devicegraph
 
 
 print "partitions on gpt:"

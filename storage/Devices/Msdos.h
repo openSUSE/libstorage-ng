@@ -8,9 +8,6 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class Msdos : public PartitionTable
     {
     public:
@@ -18,7 +15,7 @@ namespace storage
 	static Msdos* create(Devicegraph* devicegraph);
 	static Msdos* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string get_displayname() const override { return "msdos"; }
+	virtual std::string get_displayname() const override { return "msdos"; }
 
     public:
 
@@ -34,6 +31,8 @@ namespace storage
     protected:
 
 	Msdos(Impl* impl);
+
+	void print(std::ostream& out) const override;
 
     };
 

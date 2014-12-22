@@ -47,20 +47,6 @@ namespace storage
     }
 
 
-    Holder::Impl&
-    Holder::get_impl()
-    {
-	return *impl;
-    }
-
-
-    const Holder::Impl&
-    Holder::get_impl() const
-    {
-	return *impl;
-    }
-
-
     sid_t
     Holder::get_source_sid() const
     {
@@ -103,6 +89,22 @@ namespace storage
     Holder::save(xmlNode* node) const
     {
 	get_impl().save(node);
+    }
+
+
+    void
+    Holder::print(std::ostream& out) const
+    {
+	out << get_classname() << " source-sid:" << get_source_sid()
+	    << " target-sid:" << get_target_sid();
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& out, const Holder& holder)
+    {
+	holder.print(out);
+	return out;
     }
 
 }

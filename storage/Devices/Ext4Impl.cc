@@ -3,6 +3,8 @@
 #include "storage/Devices/Ext4Impl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 namespace storage
@@ -27,7 +29,7 @@ namespace storage
     void
     Ext4::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
-	Action::Format* format = new Action::Format(get_sid());
+	Action::FormatExt4* format = new Action::FormatExt4(get_sid());
 	format->first = true;
 	format->last = false;
 	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
@@ -53,6 +55,38 @@ namespace storage
 		actiongraph.add_edge(t2, v2);
 	    }
 	}
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	FormatExt4::text(const Actiongraph& actiongraph, bool doing) const
+	{
+	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
+
+	    return sformat(_("Create %1$s on %2$s (%3$s)"), "ext4", blkdevice->get_name().c_str(),
+			   blkdevice->get_size_string().c_str());
+	}
+
+
+	void
+	FormatExt4::commit(const Actiongraph& actiongraph) const
+	{
+	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
+
+	    ostringstream cmd_line;
+
+	    cmd_line << MKFSEXT2BIN " -t ext4 -v " << quote(blkdevice->get_name());
+
+	    cout << cmd_line.str() << endl;
+
+	    SystemCmd cmd(cmd_line.str());
+	    if (cmd.retcode() != 0)
+		throw runtime_error("format ext4 failed");
+	}
+
     }
 
 }

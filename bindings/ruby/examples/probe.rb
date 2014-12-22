@@ -9,5 +9,5 @@ storage = Storage::Storage.new(environment)
 
 probed = storage.probed()
 
-probed.print_graph()
+print probed
 

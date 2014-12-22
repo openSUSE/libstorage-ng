@@ -60,6 +60,19 @@ namespace storage
     }
 
 
+    Disk*
+    Disk::find(const Devicegraph* devicegraph, const string& name)
+    {
+	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
+	if (to_disk(blkdevice))
+	    return to_disk(blkdevice);
+
+	ostringstream str;
+	str << "device not found, name = " << name;
+	throw DeviceNotFound(str.str());
+    }
+
+
     Transport
     Disk::get_transport() const
     {
@@ -78,7 +91,7 @@ namespace storage
     Disk::get_all(const Devicegraph* devicegraph)
     {
 	auto pred = [](const Device* device) {
-	    return dynamic_cast<const Disk*>(device);
+	    return to_disk(device);
 	};
 
 	return devicegraph->get_impl().getDevicesIf<Disk>(pred);
@@ -103,6 +116,15 @@ namespace storage
     Disk::get_partition_table() const
     {
 	return get_impl().get_partition_table();
+    }
+
+
+    void
+    Disk::print(std::ostream& out) const
+    {
+	BlkDevice::print(out);
+
+	out << " transport:" << toString(get_transport());
     }
 
 

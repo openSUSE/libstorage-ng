@@ -63,7 +63,7 @@ namespace storage
     }
 
 
-    Region
+    const Region&
     Partition::get_region() const
     {
 	return get_impl().get_region();
@@ -83,6 +83,14 @@ namespace storage
 	return get_impl().get_type();
     }
 
+
+    void
+    Partition::set_type(PartitionType type)
+    {
+	get_impl().set_type(type);
+    }
+
+
     unsigned
     Partition::get_id() const
     {
@@ -90,10 +98,53 @@ namespace storage
     }
 
 
+    void
+    Partition::set_id(unsigned id)
+    {
+	get_impl().set_id(id);
+    }
+
+
     bool
     Partition::get_boot() const
     {
 	return get_impl().get_boot();
+    }
+
+
+    void
+    Partition::set_boot(bool boot)
+    {
+	get_impl().set_boot(boot);
+    }
+
+
+    const PartitionTable*
+    Partition::get_partition_table() const
+    {
+	return get_impl().get_partition_table();
+    }
+
+
+    Partition*
+    Partition::find(const Devicegraph* devicegraph, const string& name)
+    {
+	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
+	if (to_partition(blkdevice))
+	    return to_partition(blkdevice);
+
+	ostringstream str;
+	str << "device not found, name = " << name;
+	throw DeviceNotFound(str.str());
+    }
+
+
+    void
+    Partition::print(std::ostream& out) const
+    {
+	BlkDevice::print(out);
+
+	out << " region:" << get_region();
     }
 
 }

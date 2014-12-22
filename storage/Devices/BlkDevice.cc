@@ -78,6 +78,34 @@ namespace storage
     }
 
 
+    string
+    BlkDevice::get_size_string() const
+    {
+	return get_impl().get_size_string();
+    }
+
+
+    dev_t
+    BlkDevice::get_majorminor() const
+    {
+	return get_impl().get_majorminor();
+    }
+
+
+    unsigned int
+    BlkDevice::get_major() const
+    {
+	return get_impl().get_major();
+    }
+
+
+    unsigned int
+    BlkDevice::get_minor() const
+    {
+	return get_impl().get_minor();
+    }
+
+
     void
     BlkDevice::check() const
     {
@@ -115,6 +143,21 @@ namespace storage
 	Using::create(get_impl().get_devicegraph(), this, ret);
 
 	return ret;
+    }
+
+
+    void
+    BlkDevice::print(std::ostream& out) const
+    {
+	Device::print(out);
+
+	out << " name:" << get_name();
+
+	if (get_size_k() != 0)
+	    out << " size_k:" << get_size_k();
+
+	if (get_majorminor() != 0)
+	    out << " major:" << get_major() << " minor:" << get_minor();
     }
 
 }

@@ -45,7 +45,7 @@ main()
 
     rhs->write_graphviz("compare6-device-rhs");
 
-    Actiongraph actiongraph(*lhs, *rhs);
+    Actiongraph actiongraph(lhs, rhs);
 
     actiongraph.write_graphviz("compare6-action");
 

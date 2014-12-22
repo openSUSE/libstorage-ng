@@ -34,6 +34,7 @@ namespace storage
     });
 
 
+    // strings must match what parted understands
     const vector<string> EnumInfo<PartitionType>::names({
 	"primary", "extended", "logical", "any"
     });

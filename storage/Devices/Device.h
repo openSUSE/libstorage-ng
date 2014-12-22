@@ -4,17 +4,14 @@
 
 #include <stdint.h>
 #include <libxml/tree.h>
-#include <memory>
 #include <string>
 #include <vector>
+#include <map>
+#include <memory>
 
 
 namespace storage
 {
-
-    using namespace std;
-
-
     class Devicegraph;
 
 
@@ -47,7 +44,7 @@ namespace storage
 
 	sid_t get_sid() const;
 
-	virtual string get_displayname() const = 0;
+	virtual std::string get_displayname() const = 0;
 
 	virtual void check() const;
 
@@ -57,20 +54,25 @@ namespace storage
 	// TODO check if we can somehow return a iterator. getting rid of the
 	// ptr would also allow to use references instead of pointer in the
 	// interface.
-	vector<const Device*> get_children() const;
-	vector<const Device*> get_parents() const;
-	vector<const Device*> get_siblings(bool itself) const;
-	vector<const Device*> get_descendants(bool itself) const;
-	vector<const Device*> get_ancestors(bool itself) const;
-	vector<const Device*> get_leafs(bool itself) const;
-	vector<const Device*> get_roots(bool itself) const;
+	std::vector<const Device*> get_children() const;
+	std::vector<const Device*> get_parents() const;
+	std::vector<const Device*> get_siblings(bool itself) const;
+	std::vector<const Device*> get_descendants(bool itself) const;
+	std::vector<const Device*> get_ancestors(bool itself) const;
+	std::vector<const Device*> get_leafs(bool itself) const;
+	std::vector<const Device*> get_roots(bool itself) const;
+
+	const std::map<std::string, std::string>& get_userdata() const;
+	void set_userdata(const std::map<std::string, std::string>& userdata);
+
+	friend std::ostream& operator<<(std::ostream& out, const Device& device);
 
     public:
 
 	class Impl;
 
-	Impl& get_impl();
-	const Impl& get_impl() const;
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
 
 	virtual const char* get_classname() const = 0;
 
@@ -85,11 +87,13 @@ namespace storage
 	void create(Devicegraph* devicegraph);
 	void load(Devicegraph* devicegraph);
 
+	virtual void print(std::ostream& out) const = 0;
+
     private:
 
 	void add_to_devicegraph(Devicegraph* devicegraph);
 
-	shared_ptr<Impl> impl;
+	std::shared_ptr<Impl> impl;
 
     };
 

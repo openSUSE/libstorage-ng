@@ -1,11 +1,14 @@
 
 
+#include <iostream>
+
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
 
+using namespace std;
 using namespace storage;
 
 
@@ -27,6 +30,6 @@ main()
 
     devicegraph_copy.remove_vertex(sda2);
 
-    devicegraph.print_graph();
-    devicegraph_copy.print_graph();
+    cout << devicegraph << endl;
+    cout << devicegraph_copy << endl;
 }

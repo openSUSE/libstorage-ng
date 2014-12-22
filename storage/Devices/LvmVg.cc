@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -90,6 +91,13 @@ namespace storage
 	Subdevice::create(devicegraph, this, lvm_lv);
 
 	return lvm_lv;
+    }
+
+
+    void
+    LvmVg::print(std::ostream& out) const
+    {
+	Device::print(out);
     }
 
 }

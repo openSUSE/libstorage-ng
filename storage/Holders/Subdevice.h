@@ -30,7 +30,23 @@ namespace storage
 
 	Subdevice(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline Subdevice*
+    to_subdevice(Holder* device)
+    {
+	return dynamic_cast<Subdevice*>(device);
+    }
+
+
+    inline const Subdevice*
+    to_subdevice(const Holder* device)
+    {
+	return dynamic_cast<const Subdevice*>(device);
+    }
 
 }
 

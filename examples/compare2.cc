@@ -42,7 +42,7 @@ main()
     LvmLv* rhs_system_swap = LvmLv::create(&rhs, "/dev/system/swap");
     Subdevice::create(&rhs, rhs_system, rhs_system_swap);
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(&lhs, &rhs);
 
     actiongraph.write_graphviz("compare2-action");
 }

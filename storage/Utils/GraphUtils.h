@@ -4,6 +4,9 @@
 
 namespace storage
 {
+    using std::vector;
+    using std::map;
+
 
     class cycle_detector : public boost::default_dfs_visitor
     {

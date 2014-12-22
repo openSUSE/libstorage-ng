@@ -8,9 +8,6 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class Swap : public Filesystem
     {
     public:
@@ -18,7 +15,7 @@ namespace storage
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string get_displayname() const override { return "swap"; }
+	virtual std::string get_displayname() const override { return "swap"; }
 
 	bool supports_label() const override { return false; }
 	unsigned int max_labelsize() const override { return 0; }
@@ -39,6 +36,8 @@ namespace storage
     protected:
 
 	Swap(Impl* impl);
+
+	void print(std::ostream& out) const override;
 
     };
 

@@ -30,7 +30,7 @@ partitions()
     gpt->create_partition("/dev/sda2");
 
     devicegraph.check();
-    devicegraph.print_graph();
+    cout << devicegraph << endl;
 
     for (const Partition* partition : gpt->get_partitions())
     {

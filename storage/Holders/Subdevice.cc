@@ -51,4 +51,11 @@ namespace storage
 	return dynamic_cast<const Impl&>(Holder::get_impl());
     }
 
+
+    void
+    Subdevice::print(std::ostream& out) const
+    {
+	Holder::print(out);
+    }
+
 }

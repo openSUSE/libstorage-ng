@@ -16,13 +16,13 @@ namespace storage
 
 
     Device::Impl::Impl()
-	: sid(global_sid++), devicegraph(nullptr)
+	: sid(global_sid++), devicegraph(nullptr), userdata()
     {
     }
 
 
     Device::Impl::Impl(const xmlNode* node)
-	: sid(0), devicegraph(nullptr)
+	: sid(0), devicegraph(nullptr), userdata()
     {
 	if (!getChildValue(node, "sid", sid))
 	    throw runtime_error("no sid");
@@ -44,7 +44,7 @@ namespace storage
 
     void
     Device::Impl::set_devicegraph_and_vertex(Devicegraph* devicegraph,
-					  Devicegraph::Impl::vertex_descriptor vertex)
+					     Devicegraph::Impl::vertex_descriptor vertex)
     {
 	Impl::devicegraph = devicegraph;
 	Impl::vertex = vertex;

@@ -170,7 +170,7 @@ main()
 
     devicegraph.save("test1.xml");
 
-    devicegraph.print_graph();
+    cout << devicegraph << endl;
 
     devicegraph.write_graphviz("test1");
 }

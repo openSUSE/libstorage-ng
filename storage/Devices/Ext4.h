@@ -8,9 +8,6 @@
 namespace storage
 {
 
-    using namespace std;
-
-
     class Ext4 : public Filesystem
     {
     public:
@@ -18,7 +15,7 @@ namespace storage
 	static Ext4* create(Devicegraph* devicegraph);
 	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual string get_displayname() const override { return "ext4"; }
+	virtual std::string get_displayname() const override { return "ext4"; }
 
 	bool supports_label() const override { return true; }
 	unsigned int max_labelsize() const override { return 16; }
@@ -39,6 +36,8 @@ namespace storage
     protected:
 
 	Ext4(Impl* impl);
+
+	void print(std::ostream& out) const override;
 
     };
 

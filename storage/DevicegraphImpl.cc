@@ -358,26 +358,20 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::print_graph() const
+    Devicegraph::Impl::print(std::ostream& out) const
     {
-	typedef map<vertex_descriptor, string> vertex_name_map_t;
-	vertex_name_map_t vertex_name_map;
-	boost::associative_property_map<vertex_name_map_t> my_vertex_name_map(vertex_name_map);
-
-	for (vertex_descriptor v : vertices())
+	for (vertex_descriptor vertex : vertices())
 	{
-	    sid_t sid = graph[v]->get_sid();
-	    string label = graph[v]->get_displayname();
-
-	    ostringstream tmp;
-	    tmp << sid << " [ " << label << " ]";
-
-	    boost::put(my_vertex_name_map, v, tmp.str());
+	    out << *(graph[vertex].get()) << " -->";
+	    for (vertex_descriptor child : boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)))
+		out << " " << graph[child]->get_sid();
+	    out << endl;
 	}
 
-	boost::print_graph(graph, my_vertex_name_map);
-
-	cout << endl;
+	for (edge_descriptor edge : edges())
+	{
+	    out << *(graph[edge].get()) << endl;
+	}
     }
 
 
@@ -405,19 +399,19 @@ namespace storage
 
 	    out << "[ label=\"" << device->get_sid() << " " << device->get_displayname() << "\"";
 
-	    if (dynamic_cast<const Disk*>(device))
+	    if (to_disk(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (dynamic_cast<const PartitionTable*>(device))
+	    else if (to_partition_table(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (dynamic_cast<const Partition*>(device))
+	    else if (to_partition(device))
 		out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
-	    else if (dynamic_cast<const LvmVg*>(device))
+	    else if (to_lvm_vg(device))
 		out << ", color=\"#0000ff\", fillcolor=\"#aaaaff\"";
-	    else if (dynamic_cast<const LvmLv*>(device))
+	    else if (to_lvm_lv(device))
 		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (dynamic_cast<const Encryption*>(device))
+	    else if (to_encryption(device))
 		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (dynamic_cast<const Filesystem*>(device))
+	    else if (to_filesystem(device))
 		out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 	    else
 		throw logic_error("unknown Device subclass");
@@ -437,12 +431,10 @@ namespace storage
 	{
 	    const Holder* holder = devicegraph.graph[e].get();
 
-	    if (dynamic_cast<const Subdevice*>(holder))
+	    if (to_subdevice(holder))
 		out << "[ style=solid ]";
-	    else if (dynamic_cast<const Using*>(holder))
+	    else if (to_using(holder))
 		out << "[ style=dotted ]";
-	    else if (dynamic_cast<const Filesystem*>(holder))
-		out << "[ style=dashed ]";
 	    else
 		throw logic_error("unknown Holder subclass");
 	}

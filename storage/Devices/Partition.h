@@ -3,14 +3,14 @@
 
 
 #include "storage/Devices/BlkDevice.h"
-#include "storage/Utils/Region.h"
 
 
 namespace storage
 {
-
-    using namespace std;
     using namespace storage_legacy;
+
+    class PartitionTable;
+    class Region;
 
 
     enum IdNum {
@@ -26,17 +26,26 @@ namespace storage
     {
     public:
 
-	static Partition* create(Devicegraph* devicegraph, const string& name);
+	static Partition* create(Devicegraph* devicegraph, const std::string& name);
 	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	unsigned int get_number() const;
 
-	Region get_region() const;
+	const Region& get_region() const;
 	void set_region(const Region& region);
 
 	PartitionType get_type() const;
+	void set_type(PartitionType type);
+
 	unsigned get_id() const;
+	void set_id(unsigned id);
+
 	bool get_boot() const;
+	void set_boot(bool boot);
+
+	const PartitionTable* get_partition_table() const;
+
+	static Partition* find(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 
@@ -53,7 +62,23 @@ namespace storage
 
 	Partition(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline Partition*
+    to_partition(Device* device)
+    {
+	return dynamic_cast<Partition*>(device);
+    }
+
+
+    inline const Partition*
+    to_partition(const Device* device)
+    {
+	return dynamic_cast<const Partition*>(device);
+    }
 
 }
 

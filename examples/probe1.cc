@@ -17,19 +17,11 @@ main()
 
     Storage storage(environment);
 
-    for (const string& name : storage.get_devicegraph_names())
-	cout << name << endl;
-    cout << endl;
-
     const Devicegraph* probed = storage.get_probed();
 
+    cout << *probed << endl;
+
     probed->check();
-    probed->print_graph();
     probed->write_graphviz("probe1");
     probed->save("probe1.xml");
-
-    const Devicegraph* current = storage.get_current();
-
-    current->check();
-    current->print_graph();
 }

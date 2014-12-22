@@ -30,7 +30,23 @@ namespace storage
 
 	Using(Impl* impl);
 
+	void print(std::ostream& out) const override;
+
     };
+
+
+    inline Using*
+    to_using(Holder* device)
+    {
+	return dynamic_cast<Using*>(device);
+    }
+
+
+    inline const Using*
+    to_using(const Holder* device)
+    {
+	return dynamic_cast<const Using*>(device);
+    }
 
 }
 

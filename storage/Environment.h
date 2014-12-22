@@ -9,10 +9,6 @@
 namespace storage
 {
 
-    using std::string;
-    using std::shared_ptr;
-
-
     enum class ProbeMode {
 	PROBE_NORMAL,			// probe system during init
 	PROBE_NONE,			// no probing - for testsuite
@@ -42,8 +38,8 @@ namespace storage
 
 	TargetMode get_target_mode() const;
 
-	const string& get_devicegraph_filename() const;
-	void set_devicegraph_filename(const string& devicegraph_filename);
+	const std::string& get_devicegraph_filename() const;
+	void set_devicegraph_filename(const std::string& devicegraph_filename);
 
     public:
 
@@ -54,7 +50,7 @@ namespace storage
 
     private:
 
-        shared_ptr<Impl> impl;
+	std::shared_ptr<Impl> impl;
 
     };
 

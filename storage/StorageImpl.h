@@ -2,11 +2,17 @@
 #define STORAGE_IMPL_H
 
 
+#include <map>
+
 #include "storage/Storage.h"
+#include "storage/Environment.h"
 
 
 namespace storage
 {
+    using std::string;
+    using std::map;
+
 
     class Storage::Impl
     {
@@ -25,7 +31,7 @@ namespace storage
 	bool equal_devicegraph(const string& lhs, const string& rhs) const;
 
 	bool exist_devicegraph(const string& name) const;
-	vector<string> get_devicegraph_names() const;
+	std::vector<std::string> get_devicegraph_names() const;
 
 	Devicegraph* get_devicegraph(const string& name);
 	const Devicegraph* get_devicegraph(const string& name) const;
@@ -34,6 +40,9 @@ namespace storage
 	const Devicegraph* get_current() const;
 
 	const Devicegraph* get_probed() const;
+
+	std::list<std::string> get_commit_steps() const;
+	void commit();
 
     private:
 
