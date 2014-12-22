@@ -23,6 +23,10 @@ namespace storage
 
 		copy_devicegraph("probed", "current");
 
+		y2mil("probed devicegraph begin");
+		y2mil(*probed);
+		y2mil("probed devicegraph end");
+
 	    } break;
 
 	    case ProbeMode::PROBE_NONE: {
