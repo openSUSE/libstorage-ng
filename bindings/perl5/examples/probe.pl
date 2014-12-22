@@ -10,5 +10,5 @@ my $storage = new storage::Storage($environment);
 
 my $probed = $storage->get_probed();
 
-$probed->print_graph();
+print $probed->as_string(), "\n";
 

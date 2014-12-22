@@ -13,7 +13,7 @@ my $gpt = $sda->create_partition_table($storage::GPT);
 my $sda1 = $gpt->create_partition("/dev/sda1");
 my $sda2 = $gpt->create_partition("/dev/sda2");
 
-$devicegraph->print_graph();
+print $devicegraph->as_string(), "\n";
 
 
 print "partitions on gpt:\n";

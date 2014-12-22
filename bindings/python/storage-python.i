@@ -10,7 +10,7 @@
 
 %extend storage::Devicegraph
 {
-    string __str__()
+    std::string __str__()
     {
 	std::ostringstream out;
 	out << *($self);

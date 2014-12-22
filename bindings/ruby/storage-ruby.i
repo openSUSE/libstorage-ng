@@ -15,7 +15,7 @@
 
 %extend storage::Devicegraph
 {
-    string to_s()
+    std::string to_s()
     {
 	std::ostringstream out;
 	out << *($self);

@@ -16,7 +16,7 @@ my $sda2 = $gpt->create_partition("/dev/sda2");
 my $ext4 = $sda1->create_filesystem($storage::EXT4);
 my $swap = $sda2->create_filesystem($storage::SWAP);
 
-$devicegraph->print_graph();
+print $devicegraph->as_string(), "\n";
 
 
 print "partitions on gpt:\n";
