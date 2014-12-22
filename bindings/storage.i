@@ -51,8 +51,6 @@
 #include "storage/Storage.h"
 %}
 
-using namespace std;
-
 %include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
@@ -79,8 +77,8 @@ using namespace std;
 
 using namespace storage;
 
-%template(ListString) list<string>;
-%template(MapStringString) map<string, string>;
+%template(ListString) std::list<std::string>;
+%template(MapStringString) std::map<std::string, std::string>;
 
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
