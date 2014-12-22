@@ -51,6 +51,7 @@ namespace storage
 	set<sid_t> get_sids() const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
+	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 
 	void remove_vertex(vertex_descriptor a);
 

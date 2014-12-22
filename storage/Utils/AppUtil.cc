@@ -637,6 +637,33 @@ getMajorDevices(const char* driver)
 }
 
 
+    string
+    sformat(const string& format, va_list ap)
+    {
+	char* result;
+
+	if (vasprintf(&result, format.c_str(), ap) == -1)
+	    return string();
+
+	string str(result);
+	free(result);
+	return str;
+    }
+
+
+    string
+    sformat(const string& format, ...)
+    {
+	va_list ap;
+
+	va_start(ap, format);
+	string s = sformat(format, ap);
+	va_end(ap);
+
+	return s;
+    }
+
+
     void
     Text::clear()
     {
@@ -651,20 +678,6 @@ getMajorDevices(const char* driver)
 	native += a.native;
 	text += a.text;
 	return *this;
-    }
-
-
-    string
-    sformat(const string& format, va_list ap)
-    {
-	char* result;
-
-	if (vasprintf(&result, format.c_str(), ap) == -1)
-	    return string();
-
-	string str(result);
-	free(result);
-	return str;
     }
 
 

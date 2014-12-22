@@ -6,6 +6,7 @@
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -44,9 +45,7 @@ namespace storage
 		return blk_device;
 	}
 
-	ostringstream str;
-	str << "device not found, name = " << name;
-	throw DeviceNotFound(str.str());
+	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
     }
 
 

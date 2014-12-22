@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) [2004-2014] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -148,6 +148,9 @@ void logStreamClose(LogLevel level, const char* file, unsigned line,
 	struct timeval start_tv;
 
     };
+
+
+    string sformat(const string& format, ...);
 
 
     struct Text

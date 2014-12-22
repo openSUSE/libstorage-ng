@@ -17,6 +17,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Holders/HolderImpl.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -114,9 +115,8 @@ namespace storage
     const Device*
     Devicegraph::find_device(sid_t sid) const
     {
-	Impl::vertex_descriptor v = get_impl().find_vertex(sid);
-
-	return get_impl().graph[v].get();
+	Impl::vertex_descriptor vertex = get_impl().find_vertex(sid);
+	return get_impl().graph[vertex].get();
     }
 
 
@@ -138,32 +138,16 @@ namespace storage
     Holder*
     Devicegraph::find_holder(sid_t source_sid, sid_t target_sid)
     {
-	for (Impl::edge_descriptor edge : get_impl().edges())
-	{
-	    if (get_impl().graph[source(edge, get_impl().graph)]->get_sid() == source_sid &&
-		get_impl().graph[target(edge, get_impl().graph)]->get_sid() == target_sid)
-		return get_impl().graph[edge].get();
-	}
-
-	ostringstream str;
-	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
-	throw HolderNotFound(str.str());
+	Impl::edge_descriptor edge = get_impl().find_edge(source_sid, target_sid);
+	return get_impl().graph[edge].get();
     }
 
 
     const Holder*
     Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const
     {
-	for (Impl::edge_descriptor edge : get_impl().edges())
-	{
-	    if (get_impl().graph[source(edge, get_impl().graph)]->get_sid() == source_sid &&
-		get_impl().graph[target(edge, get_impl().graph)]->get_sid() == target_sid)
-		return get_impl().graph[edge].get();
-	}
-
-	ostringstream str;
-	str << "holder not found, source_sid = " << source_sid << ", target_sid = " << target_sid;
-	throw HolderNotFound(str.str());
+	Impl::edge_descriptor edge = get_impl().find_edge(source_sid, target_sid);
+	return get_impl().graph[edge].get();
     }
 
 

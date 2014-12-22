@@ -198,7 +198,7 @@ namespace storage
 	    f *= 1024.0;
 	}
 
-	throw ParseError(sformat(_("failed to parse \"%s\""), str.c_str()).native);
+	throw ParseError(sformat("failed to parse \"%s\"", str.c_str()));
     }
 
 }

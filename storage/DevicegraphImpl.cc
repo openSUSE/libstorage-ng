@@ -75,15 +75,28 @@ namespace storage
     Devicegraph::Impl::vertex_descriptor
     Devicegraph::Impl::find_vertex(sid_t sid) const
     {
-	for (vertex_descriptor v : vertices())
+	for (vertex_descriptor vertex : vertices())
 	{
-	    if (graph[v]->get_sid() == sid)
-		return v;
+	    if (graph[vertex]->get_sid() == sid)
+		return vertex;
 	}
 
-	ostringstream str;
-	str << "device not found, sid = " << sid;
-	throw DeviceNotFound(str.str());
+	throw DeviceNotFound(sformat("device not found, sid:%d", sid));
+    }
+
+
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::find_edge(sid_t source_sid, sid_t target_sid) const
+    {
+	for (edge_descriptor edge : edges())
+	{
+	    if (graph[source(edge, graph)]->get_sid() == source_sid &&
+		graph[target(edge, graph)]->get_sid() == target_sid)
+		return edge;
+	}
+
+	throw HolderNotFound(sformat("holder not found, source_sid:%d, target_sid:%d",
+				     source_sid, target_sid));
     }
 
 

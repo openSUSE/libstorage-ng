@@ -133,9 +133,7 @@ namespace storage
 	if (to_partition(blkdevice))
 	    return to_partition(blkdevice);
 
-	ostringstream str;
-	str << "device not found, name = " << name;
-	throw DeviceNotFound(str.str());
+	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
     }
 
 
