@@ -14,45 +14,31 @@ namespace storage
     Storage::Impl::Impl(const Environment& environment)
 	: environment(environment)
     {
+	Devicegraph* probed = create_devicegraph("probed");
+
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::PROBE_NORMAL: {
-
-		Devicegraph* probed = create_devicegraph("probed");
 		probe(probed);
-
-		copy_devicegraph("probed", "current");
-
-		y2mil("probed devicegraph begin");
-		y2mil(*probed);
-		y2mil("probed devicegraph end");
-
 	    } break;
 
 	    case ProbeMode::PROBE_NONE: {
-
-		create_devicegraph("current");
-
 	    } break;
 
 	    case ProbeMode::PROBE_READ_DEVICE_GRAPH: {
-
-		Devicegraph* probed = create_devicegraph("probed");
 		probed->load(environment.get_devicegraph_filename());
-
-		copy_devicegraph("probed", "current");
-
 	    } break;
 
 	    case ProbeMode::PROBE_READ_SYSTEM_INFO: {
-
-		create_devicegraph("current");
-
 		// TODO
-
 	    } break;
-
 	}
+
+	y2mil("probed devicegraph begin");
+	y2mil(*probed);
+	y2mil("probed devicegraph end");
+
+	copy_devicegraph("probed", "current");
     }
 
 
