@@ -57,4 +57,11 @@ namespace storage
 	get_impl().set_devicegraph_filename(devicegraph_filename);
     }
 
+
+    std::ostream&
+    operator<<(std::ostream& out, const Environment& environment)
+    {
+	return operator<<(out, environment.get_impl());
+    }
+
 }

@@ -41,6 +41,8 @@ namespace storage
 	const std::string& get_devicegraph_filename() const;
 	void set_devicegraph_filename(const std::string& devicegraph_filename);
 
+	friend std::ostream& operator<<(std::ostream& out, const Environment& environment);
+
     public:
 
         class Impl;

@@ -3,6 +3,7 @@
 
 
 #include "storage/Environment.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage
@@ -26,6 +27,8 @@ namespace storage
 	const string& get_devicegraph_filename() const { return devicegraph_filename; }
 	void set_devicegraph_filename(const string& devicegraph_filename);
 
+	friend std::ostream& operator<<(std::ostream& out, const Impl& environment);
+
     private:
 
 	bool read_only;
@@ -34,6 +37,10 @@ namespace storage
 	string devicegraph_filename;
 
     };
+
+
+    template <> struct EnumInfo<ProbeMode> { static const vector<string> names; };
+    template <> struct EnumInfo<TargetMode> { static const vector<string> names; };
 
 }
 

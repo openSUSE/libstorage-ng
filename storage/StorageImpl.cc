@@ -1,11 +1,13 @@
 
 
+#include "config.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageDefines.h"
 #include "storage/Actiongraph.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -14,6 +16,9 @@ namespace storage
     Storage::Impl::Impl(const Environment& environment)
 	: environment(environment)
     {
+	y2mil("constructed Storage with " << environment);
+	y2mil("libstorage version " VERSION);
+
 	Devicegraph* probed = create_devicegraph("probed");
 
 	switch (environment.get_probe_mode())
