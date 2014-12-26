@@ -1,5 +1,6 @@
 .deps
 .libs
 storage.py
+storage.pyc
 storage_wrap.*
 _storage.la
