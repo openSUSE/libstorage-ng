@@ -41,7 +41,7 @@ storage.pm storage_wrap.cxx: ../storage.i storage-perl5.i $(DEPENDENCIES)
 
 # TODO
 install-data-hook:
-	install storage.pm /usr/lib/perl5/site_perl
+	install storage.pm $(DESTDIR)/usr/lib/perl5/site_perl
 
 CLEANFILES = storage.pm storage_wrap.cxx
 

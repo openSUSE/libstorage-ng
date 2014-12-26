@@ -1,4 +1,4 @@
 #
-# Makefile.am for libstorage/bindings/perl/examples
+# Makefile.am for libstorage/bindings/perl5/examples
 #
 

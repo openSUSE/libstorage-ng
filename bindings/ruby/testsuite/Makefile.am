@@ -6,3 +6,5 @@ check_SCRIPTS = polymorphism.rb sid.rb types.rb
 
 TESTS = $(check_SCRIPTS)
 
+EXTRA_DIST = $(check_SCRIPTS)
+

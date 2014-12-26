@@ -6,3 +6,5 @@ check_SCRIPTS = polymorphism.pl sid.pl
 
 TESTS = $(check_SCRIPTS)
 
+EXTRA_DIST = $(check_SCRIPTS)
+
