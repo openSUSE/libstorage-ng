@@ -20,7 +20,8 @@ libstorage_la_SOURCES =					\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\
 	HumanString.h		HumanString.cc		\
-	StorageInterface.h	StorageInterface.cc
+	StorageInterface.h	StorageInterface.cc	\
+	StorageTypes.h
 
 libstorage_la_LDFLAGS = -version-info 7:0:2
 libstorage_la_LIBADD =			\
@@ -36,5 +37,8 @@ pkginclude_HEADERS =		\
 	Environment.h		\
 	Storage.h		\
 	StorageInterface.h	\
-	Devicegraph.h
+	StorageSwig.h		\
+	Devicegraph.h		\
+	Graph.h			\
+	Utils.h
 
