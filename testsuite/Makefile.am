@@ -15,3 +15,5 @@ AM_DEFAULT_SOURCE_EXT = .cc
 
 TESTS = $(check_PROGRAMS)
 
+EXTRA_DIST = probe.xml
+
