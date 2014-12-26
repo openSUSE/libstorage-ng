@@ -31,11 +31,12 @@
 #include <sys/utsname.h>
 #include <dirent.h>
 #include <string>
+#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/StorageDefines.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/StorageTypes.h"
 #include "storage/StorageInterface.h"
@@ -759,7 +760,7 @@ getMajorDevices(const char* driver)
 	y2mil("archinfo:" << archinfo << " instsys:" << instsys);
 
 	set<string> paths = {
-#include "../gen_pathlist.cc"
+#include "gen-pathlist.cc"
 	};
 
 	paths.erase(PORTMAPBIN);

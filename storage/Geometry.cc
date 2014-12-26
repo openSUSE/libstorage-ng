@@ -31,7 +31,6 @@
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/StorageDefines.h"
 #include "storage/Geometry.h"
 #include "storage/Utils/Enum.h"
 

@@ -24,7 +24,7 @@
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/StorageDefines.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Partition.h"
@@ -47,7 +47,7 @@ namespace storage
     void
     Parted::probe()
     {
-	SystemCmd cmd(PARTEDCMD + quote(device) + " unit cyl print unit s print");
+	SystemCmd cmd(PARTEDBIN " -s " + quote(device) + " unit cyl print unit s print");
 
 	// No check for exit status since parted 3.1 exits with 1 if no
 	// partition table is found.

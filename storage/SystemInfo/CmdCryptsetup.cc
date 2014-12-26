@@ -24,7 +24,7 @@
 #include "storage/SystemInfo/CmdCryptsetup.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Enum.h"
-#include "storage/StorageDefines.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage

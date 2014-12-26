@@ -29,7 +29,6 @@
 #define SYSCONFIGFILE "/etc/sysconfig/storage"
 
 #define PARTEDBIN "/usr/sbin/parted"
-#define PARTEDCMD PARTEDBIN " -s "	// blank at end !!
 #define LABEL_GPT_SYNC_MBR "gpt_sync_mbr"
 #define ADDPARTBIN "/usr/sbin/addpart"
 #define DELPARTBIN "/usr/sbin/delpart"

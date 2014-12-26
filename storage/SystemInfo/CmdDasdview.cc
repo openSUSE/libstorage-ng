@@ -21,7 +21,7 @@
 
 
 #include "storage/SystemInfo/CmdDasdview.h"
-#include "storage/StorageDefines.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Enum.h"
 #include "storage/StorageTypes.h"
