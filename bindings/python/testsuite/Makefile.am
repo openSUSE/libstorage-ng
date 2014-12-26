@@ -6,5 +6,7 @@ check_SCRIPTS = create.py polymorphism.py sid.py types.py
 
 TESTS = $(check_SCRIPTS)
 
+TESTS_ENVIRONMENT = PYTHONPATH=..:../.libs
+
 EXTRA_DIST = $(check_SCRIPTS)
 

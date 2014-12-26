@@ -6,5 +6,7 @@ check_SCRIPTS = polymorphism.rb sid.rb types.rb
 
 TESTS = $(check_SCRIPTS)
 
+TESTS_ENVIRONMENT = RUBYLIB=..:../.libs
+
 EXTRA_DIST = $(check_SCRIPTS)
 
