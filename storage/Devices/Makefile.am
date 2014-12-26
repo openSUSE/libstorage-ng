@@ -30,8 +30,7 @@ libdevices_la_SOURCES =					\
 	Ext4.h			Ext4.cc			\
 	Ext4Impl.h		Ext4Impl.cc		\
 	Swap.h			Swap.cc			\
-	SwapImpl.h		SwapImpl.cc		\
-	Holder.h
+	SwapImpl.h		SwapImpl.cc
 
 pkgincludedir = $(includedir)/storage/Devices
 
