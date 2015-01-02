@@ -8,6 +8,8 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Ext4.h		\
 	${top_srcdir}/storage/Devices/Filesystem.h	\
 	${top_srcdir}/storage/Devices/Gpt.h		\
+	${top_srcdir}/storage/Devices/LvmLv.h		\
+	${top_srcdir}/storage/Devices/LvmVg.h		\
 	${top_srcdir}/storage/Devices/Msdos.h		\
 	${top_srcdir}/storage/Devices/Partition.h	\
 	${top_srcdir}/storage/Devices/PartitionTable.h	\
