@@ -1,0 +1,14 @@
+## Path: System/Yast2/Storage
+
+## Type: string(id,path,device,uuid,label)
+# Default mount-by method.
+DEVICE_NAMES="uuid"
+
+## Type: string(ext2,ext3,ext4,xfs,btrfs)
+# Default filesystem type.
+DEFAULT_FS="btrfs"
+
+## Type: string(optimal,cylinder)
+# Value for partition alignment
+PARTITION_ALIGN="optimal"
+

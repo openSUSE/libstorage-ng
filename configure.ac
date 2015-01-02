@@ -18,6 +18,8 @@ PYTHON_LIBS=$($PYTHON_CONFIG --libs)
 LT_INIT
 
 CXXFLAGS="${CXXFLAGS} -std=c++11 -Wall -Wextra -Wnon-virtual-dtor -Wno-unused-parameter"
+docdir=\${prefix}/share/doc/packages/libstorage
+fillupdir=/var/adm/fillup-templates
 
 AC_SUBST(PYTHON_INCLUDES)
 AC_SUBST(PYTHON_LIBS)
@@ -61,6 +63,7 @@ AC_OUTPUT(
 	storage/SystemInfo/Makefile
 	doc/Makefile
 	doc/autodocs/Makefile
+	data/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
