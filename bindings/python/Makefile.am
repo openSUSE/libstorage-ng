@@ -10,14 +10,7 @@ AM_CXXFLAGS = -fPIC -DPIC
 
 AM_CPPFLAGS = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
 
-# TODO somehow move to parent Makefile.am
-DEPENDENCIES =						\
-	${top_srcdir}/storage/Devices/Device.h		\
-	${top_srcdir}/storage/Devices/Disk.h		\
-	${top_srcdir}/storage/Devices/Gpt.h		\
-	${top_srcdir}/storage/Devicegraph.h		\
-	${top_srcdir}/storage/Environment.h		\
-	${top_srcdir}/storage/Storage.h
+include ../storage.deps
 
 LIBS = $(top_builddir)/storage/libstorage.la ${PYTHON_LIBS}
 

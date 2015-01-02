@@ -16,15 +16,7 @@ AM_CXXFLAGS = -fPIC -DPIC
 
 AM_CPPFLAGS = -I${top_srcdir} -I$(RUBY_INCLUDE_DIR) -I$(RUBY_INCLUDE_DIR)/$(RUBY_ARCH_NAME)
 
-DEPENDENCIES =						\
-	${top_srcdir}/storage/Devices/Device.h		\
-	${top_srcdir}/storage/Devices/BlkDevice.h	\
-	${top_srcdir}/storage/Devices/Disk.h		\
-	${top_srcdir}/storage/Devices/PartitionTable.h	\
-	${top_srcdir}/storage/Devices/Partition.h	\
-	${top_srcdir}/storage/Devicegraph.h		\
-	${top_srcdir}/storage/Environment.h		\
-	${top_srcdir}/storage/Storage.h
+include ../storage.deps
 
 # Build Ruby module as shared library
 rubyextensiondir_LTLIBRARIES = storage.la

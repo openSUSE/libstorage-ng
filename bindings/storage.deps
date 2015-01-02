@@ -1,0 +1,22 @@
+
+DEPENDENCIES =						\
+	${top_srcdir}/storage/Devicegraph.h		\
+	${top_srcdir}/storage/Devices/BlkDevice.h	\
+	${top_srcdir}/storage/Devices/Device.h		\
+	${top_srcdir}/storage/Devices/Disk.h		\
+	${top_srcdir}/storage/Devices/Encryption.h	\
+	${top_srcdir}/storage/Devices/Ext4.h		\
+	${top_srcdir}/storage/Devices/Filesystem.h	\
+	${top_srcdir}/storage/Devices/Gpt.h		\
+	${top_srcdir}/storage/Devices/Msdos.h		\
+	${top_srcdir}/storage/Devices/Partition.h	\
+	${top_srcdir}/storage/Devices/PartitionTable.h	\
+	${top_srcdir}/storage/Devices/Swap.h		\
+	${top_srcdir}/storage/Environment.h		\
+	${top_srcdir}/storage/Holders/Holder.h		\
+	${top_srcdir}/storage/Holders/Subdevice.h	\
+	${top_srcdir}/storage/Holders/Using.h		\
+	${top_srcdir}/storage/Storage.h			\
+	${top_srcdir}/storage/Utils/HumanString.h	\
+	${top_srcdir}/storage/Utils/Region.h
+

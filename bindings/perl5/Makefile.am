@@ -18,13 +18,7 @@ AM_CXXFLAGS = -fPIC -DPIC
 # TODO
 AM_CPPFLAGS = -I. -I${top_srcdir} -I/usr/lib/perl5/5.20.1/x86_64-linux-thread-multi/CORE/
 
-DEPENDENCIES =						\
-	${top_srcdir}/storage/Devices/Device.h		\
-	${top_srcdir}/storage/Devices/Disk.h		\
-	${top_srcdir}/storage/Devices/Gpt.h		\
-	${top_srcdir}/storage/Devicegraph.h		\
-	${top_srcdir}/storage/Environment.h		\
-	${top_srcdir}/storage/Storage.h
+include ../storage.deps
 
 perlextensiondir_LTLIBRARIES = storage.la
 nodist_storage_la_SOURCES = storage_wrap.cxx
