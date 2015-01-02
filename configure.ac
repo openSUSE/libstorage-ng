@@ -59,6 +59,8 @@ AC_OUTPUT(
 	storage/Holders/Makefile
 	storage/Utils/Makefile
 	storage/SystemInfo/Makefile
+	doc/Makefile
+	doc/autodocs/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
