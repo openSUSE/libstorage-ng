@@ -1,0 +1,1059 @@
+# French message file for YaST2 (@memory@).
+# Copyright (C) 2005 SUSE Linux Products GmbH.
+# Copyright (C) 2002, 2003 SuSE Linux AG.
+# Copyright (C) 2000, 2001 SuSE GmbH.
+#
+# Patricia Vaz <patricia@suse.de>, 2003.
+# Francoise Lermen <flermen@suse.de>, 2000, 2001, 2002.
+# Karine Nguyen <karine@suse.de>, 2001.
+# Guillaume GARDET <guillaume.gardet@opensuse.org>, 2011, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: YaST (@memory@)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-12-26 20:13+0100\n"
+"PO-Revision-Date: 2012-07-23 09:35+0200\n"
+"Last-Translator: Guillaume GARDET <guillaume.gardet@opensuse.org>\n"
+"Language-Team: French <opensuse-fr@opensuse.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.2\n"
+"X-Poedit-Language: French\n"
+
+#: ../storage/Devices/FilesystemImpl.cc:129
+#, fuzzy, c-format
+msgid "Add %1$s to fstab"
+msgstr "Étendre %1$s à %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text before action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:931
+#, c-format
+msgid "Add entry for mount point %1$s to %2$s"
+msgstr "Ajouter une entrée pour point de montage %1$s à %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text during action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:924
+#, c-format
+msgid "Adding entry for mount point %1$s to %2$s"
+msgstr "Ajout d'une entrée pour point de montage %1$s à %2$s"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:51
+msgid "B"
+msgstr "o"
+
+# TLABEL storage_2002_08_07_0216__37
+#: ../storage/Action.cc:26 ../storage/Devices/FilesystemImpl.cc:67
+#, c-format
+msgid "Create %1$s"
+msgstr "Créer %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#: ../storage/Devices/Ext4Impl.cc:71
+#, fuzzy, c-format
+msgid "Create %1$s on %2$s (%3$s)"
+msgstr "Créer le volume swap %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#: ../storage/Action.cc:35
+#, fuzzy, c-format
+msgid "Create encryption on %1$s"
+msgstr "Créer la partition chiffrée %1$s (%2$s)"
+
+#: ../storage/Devices/PartitionImpl.cc:117
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s)"
+msgstr "Créer la partition RAID %1$s (%2$s)"
+
+# TLABEL storage_2002_08_07_0216__37
+#: ../storage/Action.cc:64
+#, fuzzy, c-format
+msgid "Delete %1$s"
+msgstr "Créer %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#: ../storage/Devices/PartitionImpl.cc:197
+#, c-format
+msgid "Delete partition %1$s (%2$s)"
+msgstr "Effacer la partition %1$s (%2$s)"
+
+#. symbol for "exa" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:119
+msgid "E"
+msgstr "E"
+
+#. symbol for "exa bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:116
+msgid "EB"
+msgstr "Eo"
+
+#. symbol for "exbi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:113
+msgid "EiB"
+msgstr "Eio"
+
+# TLABEL wizard_2002_01_04_0147__10
+#. symbol for "giga" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:86
+msgid "G"
+msgstr "G"
+
+# TLABEL wizard_2002_01_04_0147__10
+#. symbol for "giga bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:83
+msgid "GB"
+msgstr "Go"
+
+# TLABEL wizard_2002_01_04_0147__10
+#. symbol for "gibi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:80
+msgid "GiB"
+msgstr "Gio"
+
+# TLABEL wizard_2002_01_04_0147__8
+#. symbol for "kibi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:58
+msgid "KiB"
+msgstr "Kio"
+
+# TLABEL partitioning_2002_01_04_0147__116
+#. symbol for "mega" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:75
+msgid "M"
+msgstr "M"
+
+# TLABEL backup_2002_03_14_2340__149
+#. symbol for "mega bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:72
+msgid "MB"
+msgstr "Mo"
+
+# TLABEL backup_2002_03_14_2340__150
+#. symbol for "mebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:69
+msgid "MiB"
+msgstr "Mio"
+
+#: ../storage/Devices/FilesystemImpl.cc:111
+#, fuzzy, c-format
+msgid "Mount %1$s"
+msgstr "Démontage de %1$s"
+
+#: ../storage/Action.cc:17
+msgid "Nop"
+msgstr ""
+
+# TLABEL wizard_2002_01_04_0147__19
+#: ../storage/Action.cc:44
+#, fuzzy, c-format
+msgid "Open encryption on %1$s"
+msgstr "Configurer le périphérique dm chiffré sur %1$s"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "peta" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:108
+msgid "P"
+msgstr "P"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "peta bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:105
+msgid "PB"
+msgstr "Po"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "pebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:102
+msgid "PiB"
+msgstr "Pio"
+
+# TLABEL storage_2002_08_07_0216__34
+#: ../storage/Devices/FilesystemImpl.cc:138
+#, fuzzy, c-format
+msgid "Remove %1$s from fstab"
+msgstr "Suppression de %1$s de %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text before action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:973
+#, c-format
+msgid "Remove entry for mount point %1$s from %2$s"
+msgstr "Supprimer une entrée pour point de montage %1$s de %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text during action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:966
+#, c-format
+msgid "Removing entry for mount point %1$s from %2$s"
+msgstr "Suppression d'une entrée pour point de montage %1$s de %2$s"
+
+# TLABEL storage_2002_08_07_0216__34
+#: ../storage/Action.cc:54
+#, fuzzy, c-format
+msgid "Rename %1$s to %2$s"
+msgstr "Suppression de %1$s de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#: ../storage/Devices/PartitionImpl.cc:161
+#, fuzzy, c-format
+msgid "Set id of partition %1$s to 0x%2$02X"
+msgstr "Définir le type de partition %1$s sur %2$X"
+
+# TLABEL storage_2002_08_07_0216__32
+#: ../storage/Devices/FilesystemImpl.cc:102
+#, fuzzy, c-format
+msgid "Set label %1$s"
+msgstr "Supprimer le label de %1$s"
+
+#. symbol for "tera" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:97
+msgid "T"
+msgstr "T"
+
+#. symbol for "tera bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:94
+msgid "TB"
+msgstr "To"
+
+#. symbol for "tebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:91
+msgid "TiB"
+msgstr "Tio"
+
+#: ../storage/Devices/FilesystemImpl.cc:120
+#, fuzzy, c-format
+msgid "Unmount %1$s"
+msgstr "Démontage de %1$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text before action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:952
+#, c-format
+msgid "Update entry for mount point %1$s in %2$s"
+msgstr "Mettre à jour une entrée pour point de montage %1$s dans %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#. displayed text during action, %1$s is replaced by mount point e.g. /home
+#. %2$s is replaced by a pathname e.g. /etc/fstab
+#: ../storage/EtcFstab.cc:945
+#, c-format
+msgid "Updating entry for mount point %1$s in %2$s"
+msgstr "Mise à jour d'une entrée pour point de montage %1$s dans %2$s"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "kilo" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:64
+msgid "k"
+msgstr "k"
+
+# TLABEL backup_2002_03_14_2340__147
+#. symbol for "kilo bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:61
+msgid "kB"
+msgstr "ko"
+
+#~ msgid "(Progress bar will not move. May take very long. DO NOT ABORT!)"
+#~ msgstr "(La barre de progression ne bougera pas. Cela peut durer très longtemps. NE PAS INTERROMPRE !)"
+
+#~ msgid "Btrfs Volume"
+#~ msgstr "Volume Btrfs"
+
+# TLABEL storage_2002_08_07_0216__33
+#~ msgid "Change mount point of %1$s to %2$s"
+#~ msgstr "Modification du point de montage de %1$s à %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#~ msgid "Change mount point of tmpfs to %1$s"
+#~ msgstr "Modification du point de montage de tmpfs sur %1$s"
+
+# TLABEL storage_2002_08_07_0216__32
+#~ msgid "Clearing label on %1$s"
+#~ msgstr "Suppression du label de %1$s"
+
+# SLE12
+#~ msgid "Create BIOS grub volume %1$s (%2$s)"
+#~ msgstr "Créer le volume du chargeur d'amorçage du BIOS %1$s (%2$s)"
+
+# SLE12
+#~ msgid "Create GPT PReP volume %1$s (%2$s)"
+#~ msgstr "Créer un volume pour l'architecture PReP avec partitionnement GPT %1$s (%2$s)"
+
+# SLE12
+#~ msgid "Create PReP volume %1$s (%2$s)"
+#~ msgstr "Créer un volume pour l'architecture PReP %1$s (%2$s)"
+
+#~ msgid "Create RAID partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer la partition RAID %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Create boot volume %1$s (%2$s) with %3$s"
+#~ msgstr "Créer la partition de démarrage %1$s (%2$s) avec %3$s"
+
+#~ msgid "Create encrypted RAID partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer la partition RAID chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Create encrypted file-based device %1$s of file %2$s (%3$s) as %5$s with %4$s"
+#~ msgstr "Créer le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Create encrypted logical volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer le volume logique chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create encrypted multipath partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Create encrypted software RAID %1$s (%2$s) from %5$s for %4$s with %3$s"
+#~ msgstr "Créer le RAID logiciel chiffré %1$s (%2$s) à partir de %5$s pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Create encrypted volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer le volume chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create extended RAID partition %1$s (%2$s)"
+#~ msgstr "Créer la partition RAID étendue %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create extended multipath partition %1$s (%2$s)"
+#~ msgstr "Créer une partition multipath étendue %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create extended partition %1$s (%2$s)"
+#~ msgstr "Créer la partition étendue %1$s (%2$s)"
+
+#~ msgid "Create file-based device %1$s of file %2$s (%3$s)"
+#~ msgstr "Créer le périphérique basé sur fichier %1$s du fichier %2$s (%3$s)"
+
+#~ msgid "Create file-based device %1$s of file %2$s (%3$s) as %5$s with %4$s"
+#~ msgstr "Créer le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Create logical volume %1$s (%2$s)"
+#~ msgstr "Créer le volume logique %1$s (%2$s)"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer le volume logique %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create multipath partition %1$s (%2$s)"
+#~ msgstr "Crée la partition multipath %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Create multipath partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer la partition multipath %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Create root volume %1$s (%2$s) with %3$s"
+#~ msgstr "Créer le volume racine %1$s (%2$s) avec %3$s"
+
+#~ msgid "Create software RAID %1$s (%2$s) from %3$s"
+#~ msgstr "Créer le RAID logiciel %1$s (%2$s) à partir de %3$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Create software RAID %1$s (%2$s) from %5$s for %4$s with %3$s"
+#~ msgstr "Créer le RAID logiciel %1$s (%2$s) à partir de %5$s pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Create subvolume %1$s on device %2$s"
+#~ msgstr "Créer le sous-volume %1$s sur le périphérique %2$s"
+
+#~ msgid "Create swap RAID partition %1$s (%2$s)"
+#~ msgstr "Créer la partition d'échange RAID %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Create swap logical volume %1$s (%2$s)"
+#~ msgstr "Créer le volume logique d'échange %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Create swap multipath partition %1$s (%2$s)"
+#~ msgstr "Créer la partition d'échange multipath %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Create volume %1$s (%2$s)"
+#~ msgstr "Créer le volume %1$s (%2$s)"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Créer le volume %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Create volume group %1$s (%2$s) from %3$s"
+#~ msgstr "Créer le groupe de volumes %1$s (%2$s) à partir de %3$s"
+
+# TLABEL packages_2002_01_04_0147__198
+#~ msgid "Creating %1$s"
+#~ msgstr "Création de %1$s"
+
+#~ msgid "Creating RAID partition %1$s"
+#~ msgstr "Création de la partition RAID %1$s"
+
+#~ msgid "Creating file-based device %1$s of file %2$s"
+#~ msgstr "Création du périphérique basé sur fichier %1$s du fichier %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Creating logical volume %1$s"
+#~ msgstr "Création du volume logique %1$s"
+
+# TLABEL update_2002_01_04_0147__20
+#~ msgid "Creating multipath partition %1$s"
+#~ msgstr "Création de la partition multipath %1$s"
+
+#~ msgid "Creating software RAID %1$s from %2$s"
+#~ msgstr "Création du RAID logiciel %1$s à partir de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Creating subvolume %1$s on device %2$s"
+#~ msgstr "Creation du sous-volume %1$s sur le périphérique %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Creating volume %1$s"
+#~ msgstr "Création du volume %1$s"
+
+#~ msgid "Creating volume group %1$s (%2$s) from %3$s"
+#~ msgstr "Création du groupe de volumes %1$s (%2$s) à partir de %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__400
+# Shorten translated string; agreed by flermen 2001-01-27.
+# 2001-01-29 11:13:40 CET -ke-
+# TLABEL modules/inst_custom_part.ycp:2168
+#~ msgid "DM Device"
+#~ msgstr "Périph. DM"
+
+#~ msgid "DM Multipath"
+#~ msgstr "DM Multipath"
+
+# TLABEL partitioning_2002_01_04_0147__465
+#~ msgid "DM RAID"
+#~ msgstr "DM RAID"
+
+#~ msgid "Delete Btrfs volume on devices %1$s (%2$s)"
+#~ msgstr "Effacer le volume Btrfs sur les périphériques %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Delete RAID partition %1$s (%2$s)"
+#~ msgstr "Effacer la partition RAID %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Delete Windows partition %1$s (%2$s)"
+#~ msgstr "Effacer la partition Windows %1$s (%2$s)"
+
+#~ msgid "Delete device mapper volume %1$s (%2$s)"
+#~ msgstr "Effacer le volume d'assignation de périphérique %1$s (%2$s)"
+
+#~ msgid "Delete file-based device %1$s (%2$s)"
+#~ msgstr "Effacer le périphérique basé sur fichier %1$s (%2$s)"
+
+# TLABEL partitioning_2002_03_14_2340__25
+#~ msgid "Delete logical volume %1$s (%2$s)"
+#~ msgstr "Effacer le volume logique %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#~ msgid "Delete multipath partition %1$s (%2$s)"
+#~ msgstr "Effacer la partition multipath %1$s (%2$s)"
+
+#~ msgid "Delete software RAID %1$s (%2$s)"
+#~ msgstr "Effacer le RAID logiciel %1$s (%2$s)"
+
+#~ msgid "Deleting Btrfs volume on devices %1$s"
+#~ msgstr "Effacement du volume Btrfs sur les périphériques %1$s"
+
+# TLABEL update_2002_01_04_0147__20
+#~ msgid "Deleting RAID partition %1$s"
+#~ msgstr "Effacement de la partition RAID %1$s"
+
+# TLABEL packages_2002_01_04_0147__198
+#~ msgid "Deleting device mapper volume %1$s"
+#~ msgstr "Effacement du volume d'assignation de périphérique %1$s"
+
+#~ msgid "Deleting file-based device %1$s"
+#~ msgstr "Effacement du périphérique %1$s basé sur un fichier"
+
+# TLABEL partitioning_2002_01_04_0147__162
+#~ msgid "Deleting logical volume %1$s"
+#~ msgstr "Effacement du volume logique %1$s"
+
+# TLABEL update_2002_01_04_0147__20
+#~ msgid "Deleting multipath partition %1$s"
+#~ msgstr "Effacement de la partition multipath %1$s"
+
+# TLABEL update_2002_01_04_0147__20
+#~ msgid "Deleting partition %1$s"
+#~ msgstr "Effacement de la partition %1$s"
+
+#~ msgid "Deleting software RAID %1$s"
+#~ msgstr "Effacement du RAID logiciel %1$s"
+
+# TLABEL storage_2002_08_07_0216__51
+#~ msgid "Execute dasdfmt on disk %1$s"
+#~ msgid_plural "Execute dasdfmt on disks %1$s"
+#~ msgstr[0] "Exécuter dasdfmt sur le disque %1$s"
+#~ msgstr[1] "Exécuter dasdfmt sur les disques %1$s"
+
+# TLABEL storage_2002_08_07_0216__51
+#~ msgid "Executing dasdfmt for disk %1$s"
+#~ msgid_plural "Executing dasdfmt for disks %1$s"
+#~ msgstr[0] "Exécution de dasdfmt pour le disque %1$s"
+#~ msgstr[1] "Exécution de dasdfmt pour les disques %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__162
+#~ msgid "Extend Btrfs volume %1$s by %2$s"
+#~ msgstr "Étendre le volume Btrfs %1$s de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extend RAID partition %1$s to %2$s"
+#~ msgstr "Étendre la partition RAID %1$s  à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extend Windows partition %1$s to %2$s"
+#~ msgstr "Étendre la partition Windows %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__162
+#~ msgid "Extend logical volume %1$s to %2$s"
+#~ msgstr "Étendre le volume logique %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extend multipath partition %1$s to %2$s"
+#~ msgstr "Étendre la partition multipath %1$s  à (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extend partition %1$s to %2$s"
+#~ msgstr "Étendre la partition %1$s (%2$s)"
+
+#~ msgid "Extend volume group %1$s with %2$s"
+#~ msgstr "Étendre le groupe de volumes %1$s de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__78
+#~ msgid "Extending %1$s to %2$s"
+#~ msgstr "Extension de %1$s à %2$s"
+
+# TLABEL partitioning_2002_03_14_2340__25
+#~ msgid "Extending Btrfs volume %1$s by %2$s"
+#~ msgstr "Extension du volume Btrfs %1$s de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extending RAID partition %1$s to %2$s"
+#~ msgstr "Extension de la partition RAID %1$s à %2$s"
+
+# TLABEL partitioning_2002_03_14_2340__25
+#~ msgid "Extending logical volume %1$s to %2$s"
+#~ msgstr "Extension du volume logique %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extending multipath partition %1$s to %2$s"
+#~ msgstr "Agrandissement de la partition multipath %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Extending partition %1$s to %2$s"
+#~ msgstr "Extension de la partition %1$s (%2$s)"
+
+#~ msgid "Extending volume group %1$s with %2$s"
+#~ msgstr "Extension du groupe de volumes %1$s de %2$s"
+
+#~ msgid "Format Btrfs volume of size %1$s (used devices:%2$s)"
+#~ msgstr "Formater le volume Btrfs de %1$s (périphériques utilisés : %2$s)"
+
+#~ msgid "Format Btrfs volume of size %1$s for %3$s (used devices:%2$s)"
+#~ msgstr "Formater le volume Btrfs de %1$s pour %3$s (périphériques utilisés : %2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format RAID partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition RAID %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__104
+#~ msgid "Format RAID partition %1$s (%2$s) for swap"
+#~ msgstr "Formater la partition RAID %1$s (%2$s) d'échange (swap)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format RAID partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formater la partition RAID %1$s (%2$s) avec %3$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#~ msgid "Format device %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le périphérique %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format device %1$s (%2$s) with %3$s"
+#~ msgstr "Formater le périphérique %1$s (%2$s) avec %3$s"
+
+#~ msgid "Format device mapper volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le volume d'assignation de périphérique %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format device mapper volume %1$s (%2$s) with %3$s"
+#~ msgstr "Formater le volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
+
+#~ msgid "Format encrypted RAID partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition RAID chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le périphérique chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted device mapper volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le volume chiffré d'assignation de périphérique %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted file-based device %1$s of %2$s (%3$s) as %5$s with %4$s"
+#~ msgstr "Formater le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+
+#~ msgid "Format encrypted logical volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le volume logique chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted multipath partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format encrypted software RAID %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le RAID logiciel chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format file-based device %1$s of %2$s (%3$s) as %5$s with %4$s"
+#~ msgstr "Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+
+#~ msgid "Format file-based device %1$s of %2$s (%3$s) with %4$s"
+#~ msgstr "Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+
+#~ msgid "Format logical volume %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le volume logique %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format logical volume %1$s (%2$s) for swap"
+#~ msgstr "Formater le volume logique %1$s (%2$s) d'échange"
+
+#~ msgid "Format logical volume %1$s (%2$s) with %3$s"
+#~ msgstr "Formater le volume logique %1$s (%2$s) avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format multipath partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition multipath %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__104
+#~ msgid "Format multipath partition %1$s (%2$s) for swap"
+#~ msgstr "Formater la partition multipath %1$s (%2$s) d'échange"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format multipath partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formater la partition multipath %1$s (%2$s) avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__104
+#~ msgid "Format partition %1$s (%2$s) for swap"
+#~ msgstr "Formater la partition %1$s (%2$s) d'échange"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Format partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formater la partition %1$s (%2$s) avec %3$s"
+
+#~ msgid "Format software RAID %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater le RAID logiciel %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format software RAID %1$s (%2$s) with %3$s"
+#~ msgstr "Formater le RAID logiciel %1$s (%2$s) avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Formatting Btrfs volume of size %1$s (used devices:%2$s)"
+#~ msgstr "Formatage du volume Btrfs de %1$s (périphériques utilisés : %2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Formatting RAID partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formatage de la partition RAID %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting device %1$s (%2$s) with %3$s"
+#~ msgstr "Formatage du périphérique %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting device mapper volume %1$s (%2$s) with %3$s "
+#~ msgstr "Formatage du volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting file-based device %1$s of %2$s (%3$s) with %4$s "
+#~ msgstr "Formatage du périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+
+#~ msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#~ msgstr "Formatage du volume logique %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting multipath partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formatage de la partition multipath %1$s (%2$s) avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#~ msgid "Formatting partition %1$s (%2$s) with %3$s "
+#~ msgstr "Formatage de la partition %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting software RAID %1$s (%2$s) with %3$s "
+#~ msgstr "Formatage du RAID logiciel %1$s (%2$s) avec %3$s"
+
+# TLABEL packages_2002_01_04_0147__12
+#~ msgid "Hard Disk"
+#~ msgstr "Disque dur"
+
+# TLABEL partitioning_2002_01_04_0147__389
+#~ msgid "Logical Volume"
+#~ msgstr "Volume logique"
+
+# TLABEL partitioning_2002_01_04_0147__465
+#~ msgid "MD RAID"
+#~ msgstr "MD RAID"
+
+# TLABEL partitioning_2002_01_04_0147__241
+#~ msgid "Mount Point"
+#~ msgstr "Point de montage"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Mounting %1$s to %2$s"
+#~ msgstr "Montage de %1$s sur %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Mounting tmpfs to %1$s"
+#~ msgstr "Montage de tmpfs sur %1$s"
+
+# TLABEL packages_2002_01_04_0147__160
+#~ msgid "Partition"
+#~ msgstr "Partition"
+
+#~ msgid "Reduce Btrfs volume %1$s by %2$s"
+#~ msgstr "Réduire le volume Btrfs %1$s de %2$s"
+
+#~ msgid "Reduce volume group %1$s by %2$s"
+#~ msgstr "Réduire le groupe de volumes %1$s de %2$s"
+
+#~ msgid "Reducing Btrfs volume %1$s by %2$s"
+#~ msgstr "Réduction du volume Btrfs %1$s de %2$s"
+
+#~ msgid "Reducing volume group %1$s by %2$s"
+#~ msgstr "Réduction du groupe de volumes %1$s de %2$s"
+
+# TLABEL storage_2002_08_07_0216__37
+#~ msgid "Remove %1$s"
+#~ msgstr "Supprimer %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Remove NFS volume %1$s"
+#~ msgstr "Supprimer le volume NFS %1$s"
+
+# TLABEL storage_2002_08_07_0216__37
+#~ msgid "Remove RAID %1$s"
+#~ msgstr "Supprimer le RAID %1$s"
+
+#~ msgid "Remove software RAID %1$s"
+#~ msgstr "Supprimer le RAID logiciel %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Remove subvolume %1$s on device %2$s"
+#~ msgstr "Supprimer le sous-volume %1$s sur le périphérique %2$s"
+
+# TLABEL storage_2002_08_07_0216__34
+#~ msgid "Remove tmpfs from %1$s"
+#~ msgstr "Supprimer tmpfs de %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Remove tmpfs volume from mount point %1$s"
+#~ msgstr "Supprimer le volume tmpfs du point de montage %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Remove volume %1$s"
+#~ msgstr "Supprimer le volume %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Remove volume group %1$s"
+#~ msgstr "Supprimer le groupe de volumes %1$s"
+
+# TLABEL nis_server_2002_01_04_0147__110
+#~ msgid "Removing %1$s"
+#~ msgstr "Suppression de %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Removing NFS volume %1$s"
+#~ msgstr "Suppression du volume NFS %1$s"
+
+# TLABEL nis_server_2002_01_04_0147__110
+#~ msgid "Removing RAID %1$s"
+#~ msgstr "Suppression du RAID %1$s"
+
+#~ msgid "Removing software RAID %1$s"
+#~ msgstr "Suppression du RAID logiciel %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Removing subvolume %1$s on device %2$s"
+#~ msgstr "Suppression du sous-volume %1$s sur le périphérique %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Removing tmpfs volume from mount point %1$s"
+#~ msgstr "Suppression du volume tmpfs du point de montage %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Removing volume %1$s"
+#~ msgstr "Suppression du volume %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__92
+#~ msgid "Removing volume group %1$s"
+#~ msgstr "Suppression du groupe de volumes %1$s"
+
+#~ msgid "Set disk label of %1$s to %2$s"
+#~ msgstr "Configurer l'étiquette de disque de %1$s à %2$s"
+
+# TLABEL storage_2002_08_07_0216__32
+#~ msgid "Set label on %1$s to %2$s"
+#~ msgstr "Configurer le label de %1$s sur %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#~ msgid "Set mount point of %1$s to %2$s"
+#~ msgstr "Définition du point de montage de %1$s sur %2$s"
+
+# TLABEL storage_2002_08_07_0216__33
+#~ msgid "Set mount point of tmpfs to %1$s"
+#~ msgstr "Définition du point de montage de tmpfs sur %1$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Set type of RAID partition %1$s to %2$X"
+#~ msgstr "Définir le type de partition RAID %1$s sur %2$X"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Set type of multipath partition %1$s to %2$X"
+#~ msgstr "Définir le type de partition multipath %1$s sur %2$X"
+
+# SLE12
+#~ msgid "Set type of partition %1$s to %2$s (%3$X)"
+#~ msgstr "Définir le type de partition %1$s sur %2$s (%3$X)"
+
+# TLABEL wizard_2002_01_04_0147__19
+#~ msgid "Set up encrypted loop device on %1$s"
+#~ msgstr "Configurer le périphérique de boucle chiffré sur %1$s"
+
+#~ msgid "Setting disk label of %1$s to %2$s"
+#~ msgstr "Configuration de l'étiquette de disque de %1$s à %2$s"
+
+# TLABEL storage_2002_08_07_0216__32
+#~ msgid "Setting label on %1$s to %2$s"
+#~ msgstr "Configuration du label de %1$s sur %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Setting type of RAID partition %1$s to %2$X"
+#~ msgstr "Définition du type de partition RAID %1$s sur %2$X"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Setting type of multipath partition %1$s to %2$X"
+#~ msgstr "Définition du type de partition multipath %1$s en %2$X"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Setting type of partition %1$s to %2$X"
+#~ msgstr "Définition du type de partition %1$s sur %2$X"
+
+# SLE12
+#~ msgid "Setting type of partition %1$s to %2$s (%3$X)"
+#~ msgstr "Configuration du type de partition %1$s sur %2$s (%3$X)"
+
+# TLABEL wizard_2002_01_04_0147__19
+#~ msgid "Setting up encrypted dm device on %1$s"
+#~ msgstr "Configuration du périphérique dm chiffré sur %1$s"
+
+# TLABEL wizard_2002_01_04_0147__19
+#~ msgid "Setting up encrypted loop device on %1$s"
+#~ msgstr "Configuration du périphérique de boucle chiffré sur %1$s"
+
+#~ msgid "Shrink %1$s to %2$s"
+#~ msgstr "Réduire %1$s de %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrink RAID partition %1$s to %2$s"
+#~ msgstr "Réduire la partition RAID %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrink Windows partition %1$s to %2$s"
+#~ msgstr "Réduire la partition Windows %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__162
+#~ msgid "Shrink logical volume %1$s to %2$s"
+#~ msgstr "Réduire le volume logique %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrink multipath partition %1$s to %2$s"
+#~ msgstr "Réduire de la partition multipath %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrink partition %1$s to %2$s"
+#~ msgstr "Réduire la partition %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__78
+#~ msgid "Shrinking %1$s to %2$s"
+#~ msgstr "Réduction de %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrinking RAID partition %1$s to %2$s"
+#~ msgstr "Réduction de la partition RAID %1$s à %2$s"
+
+#~ msgid "Shrinking logical volume %1$s to %2$s"
+#~ msgstr "Réduction du volume logique %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrinking multipath partition %1$s to %2$s"
+#~ msgstr "Réduction de la partition multipath %1$s à %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
+#~ msgid "Shrinking partition %1$s to %2$s"
+#~ msgstr "Réduction de la partition %1$s à %2$s"
+
+#~ msgid ""
+#~ "The partition table type on disk %1$s cannot be handled by\n"
+#~ "this tool.\n"
+#~ "\n"
+#~ "You can use the partitions on disk %1$s as they are.\n"
+#~ "You can format them and assign mount points to them, but you\n"
+#~ "cannot add, edit, resize, or remove partitions from that\n"
+#~ "disk with this tool."
+#~ msgstr ""
+#~ "Le type de table de partition du disque %1$s ne peut pas être géré\n"
+#~ "par cet outil.\n"
+#~ " \n"
+#~ " Vous pouvez utiliser les partitions du disque %1$s telles quelles.\n"
+#~ " Vous pouvez les formater et leur assigner des points de montage. En revanche,\n"
+#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des partitions de ce\n"
+#~ "disque avec cet outil."
+
+#~ msgid ""
+#~ "The system seems to have multipath hardware.\n"
+#~ "Do you want to activate multipath?"
+#~ msgstr ""
+#~ "Le système semble avoir du matériel multipath.\n"
+#~ "Voulez-vous activer multipath ?"
+
+#~ msgid "Unmount failed."
+#~ msgstr "Echec du démontage."
+
+#~ msgid "Unmounting tmpfs"
+#~ msgstr "Démontage de tmpfs"
+
+#~ msgid "Use %1$s as %2$s"
+#~ msgstr "Utilisation de %1$s en tant que %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__409
+#~ msgid "Volume Group"
+#~ msgstr "Groupe de volumes"
+
+#~ msgid ""
+#~ "You have the following options:\n"
+#~ "  - Repartition your system so that only the maximal allowed number\n"
+#~ "    of partitions is used. To repartition, use your existing operating\n"
+#~ "    system.\n"
+#~ "  - Use LVM since it can provide an arbitrary and flexible\n"
+#~ "    number of block devices partitions. This needs a repartition\n"
+#~ "    as well."
+#~ msgstr ""
+#~ "Vous disposez des options suivantes :\n"
+#~ "  - Repartitionner votre système pour que le nombre de partitions maximum\n"
+#~ "    autorisées soient utilisées. Pour repartitionner, utiliser votre système\n"
+#~ "    d'exploitation existant.\n"
+#~ "  - Utiliser LVM puisqu'il peut fournir un nombre arbitraire et\n"
+#~ "    flexible de partitions de type block devices. Cela nécessite aussi\n"
+#~ "    un repartitionnement."
+
+#~ msgid ""
+#~ "Your disk %1$s contains %2$lu partitions. The maximum number\n"
+#~ "of partitions that the kernel driver of the disk can handle is %3$lu.\n"
+#~ "Partitions numbered above %3$lu cannot be accessed."
+#~ msgstr ""
+#~ "Votre disque %1$s contient %2$lu partitions. Le pilote de noyau\n"
+#~ "ne peut pas gérer plus de %3$lu partitions.\n"
+#~ "Les partitions dont le numéro est supérieur à %3$lu ne sont pas accessibles."
+
+# TLABEL partitioning_2002_01_04_0147__46
+#~ msgid "Executing fdasd for disk %1$s"
+#~ msgstr "Exécution de fdasd pour le disque %1$s"
+
+#~ msgid ""
+#~ "The partitioning on disk %1$s is not readable by\n"
+#~ "the partitioning tool fdasd, which is used to change the\n"
+#~ "partition table.\n"
+#~ "\n"
+#~ "You can use the partitions on disk %1$s as they are.\n"
+#~ "You can format them and assign mount points to them, but you\n"
+#~ "cannot add, edit, resize, or remove partitions from that\n"
+#~ "disk with this tool."
+#~ msgstr ""
+#~ "Le partitionnement du disque %1$s n'est pas lisible par\n"
+#~ "l'outil de partitionnement fdasd, utilisé pour changer la\n"
+#~ " table de partition.\n"
+#~ " \n"
+#~ " Vous pouvez utiliser les partitions du disque %1$s telles quelles.\n"
+#~ " Vous pouvez les formater et leur assigner des points de montage. En revanche,\n"
+#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des partitions de ce\n"
+#~ "disque avec cet outil."
+
+#~ msgid ""
+#~ "You are running on the Intel(R) Matrix Storage Manager compatible platform.\n"
+#~ "\n"
+#~ "Following MD compatible RAID devices were detected:\n"
+#~ "%1$s\n"
+#~ "If they are clean devices or contain partitions then you can choose to use\n"
+#~ "MD Partitionable RAID sysbsystem to handle them. In case of clean device you\n"
+#~ "will be able to install system on it and boot from such RAID.\n"
+#~ "Do you want MD Partitionable RAID subsystem to manage those partitions?"
+#~ msgstr ""
+#~ "Votre système est une plateforme compatible avec le Intel(R) Matrix Storage Manager.\n"
+#~ "\n"
+#~ "Les périphériques RAID compatibles MD suivants ont été detectés :\n"
+#~ "%1$s\n"
+#~ "S'il s'agit de périphériques vierges ou qui contiennent des partitions, alors vous pouvez\n"
+#~ "choisir d'utiliser le sous-système MD RAID partitionnable pour les gérer. Dans le cas d'un\n"
+#~ "périphérique vierge vous pourrez installer le système dessus et démarrer depuis un tel RAID.\n"
+#~ "Voulez-vous que le sous-système MD RAID partitionnable gère ces partitions ?"
+
+#~ msgid ""
+#~ "The partitioning on disk %1$s is not readable by\n"
+#~ "the partitioning tool parted, which is used to change the\n"
+#~ "partition table.\n"
+#~ "\n"
+#~ "You can use the partitions on disk %1$s as they are.\n"
+#~ "You can format them and assign mount points to them, but you\n"
+#~ "cannot add, edit, resize, or remove partitions from that\n"
+#~ "disk with this tool."
+#~ msgstr ""
+#~ "La partition de disque %1$s n'est pas lisible par\n"
+#~ "l'outil de partitionnement utilisé pour modifier la\n"
+#~ "table de partition.\n"
+#~ "\n"
+#~ "Vous pouvez utiliser les partitions du disque %1$s telles quelles.\n"
+#~ "Vous pouvez les formater et leur assigner des points de montage.\n"
+#~ "En revanche, vous ne pouvez pas ajouter, modifier, redimmensionner\n"
+#~ "ou supprimer des partitions de ce disque avec cet outil."
+
+#~ msgid "(progress bar might not move)"
+#~ msgstr " (la barre de progression pourrait ne pas bouger)"
+
+#~ msgid "Create extended raid partition %1$s (%2$s)"
+#~ msgstr "Créer la partition raid étendue %1$s (%2$s)"
+
+#~ msgid "Delete raid partition %1$s (%2$s)"
+#~ msgstr "Supprimer la partition raid %1$s (%2$s)"
+
+#~ msgid "Deleting raid partition %1$s"
+#~ msgstr "Suppression de la partition raid %1$s"
+
+#~ msgid "Extend raid partition %1$s to %2$s"
+#~ msgstr "Étendre la partition raid %1$s vers %2$s"
+
+#~ msgid "Extending raid partition %1$s to %2$s"
+#~ msgstr "Extension de la partition raid %1$s vers %2$s"
+
+#~ msgid "Format encrypted raid partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition raid codée %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format raid partition %1$s (%2$s) for %4$s with %3$s"
+#~ msgstr "Formater la partition raid %1$s (%2$s) pour %4$s avec %3$s"
+
+#~ msgid "Format raid partition %1$s (%2$s) for swap"
+#~ msgstr "Formater la partition raid %1$s (%2$s) pour l'échange"
+
+#~ msgid "Format raid partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formater la partition raid %1$s (%2$s) avec %3$s"
+
+#~ msgid "Formatting raid partition %1$s (%2$s) with %3$s"
+#~ msgstr "Formatage de la partition raid %1$s (%2$s) avec %3$s"

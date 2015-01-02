@@ -23,6 +23,8 @@ fillupdir=/var/adm/fillup-templates
 
 AC_SUBST(PYTHON_INCLUDES)
 AC_SUBST(PYTHON_LIBS)
+AC_SUBST(docdir)
+AC_SUBST(fillupdir)
 
 AC_PATH_PROG(RUBY, ruby)
 if test -z "$RUBY" ; then
@@ -64,6 +66,7 @@ AC_OUTPUT(
 	doc/Makefile
 	doc/autodocs/Makefile
 	data/Makefile
+	po/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
