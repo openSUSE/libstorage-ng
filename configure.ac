@@ -17,7 +17,11 @@ PYTHON_LIBS=$($PYTHON_CONFIG --libs)
 
 LT_INIT
 
-CXXFLAGS="${CXXFLAGS} -std=c++11 -Wall -Wextra -Wnon-virtual-dtor -Wno-unused-parameter"
+CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
+CFLAGS="${CFLAGS} ${CWARNS}"
+CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter"
+CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
+
 docdir=\${prefix}/share/doc/packages/libstorage
 fillupdir=/var/adm/fillup-templates
 
