@@ -1,7 +1,20 @@
-AC_INIT([test programs], 1.0)
-AM_INIT_AUTOMAKE
 
-AC_CONFIG_HEADERS(config.h)
+AC_INIT(storage/StorageInterface.h)
+
+VERSION=`cat ./VERSION`
+
+LIBVERSION=`cat ./LIBVERSION`
+LIBVERSION_MAJOR=`cut -d . -f 1 ./LIBVERSION`
+LIBVERSION_MINOR=`cut -d . -f 2 ./LIBVERSION`
+LIBVERSION_PATCHLEVEL=`cut -d . -f 3 ./LIBVERSION`
+
+LIBVERSION_CURRENT=`expr $LIBVERSION_MAJOR + $LIBVERSION_MINOR`
+LIBVERSION_REVISON=`expr $LIBVERSION_PATCHLEVEL`
+LIBVERSION_AGE=`expr $LIBVERSION_MINOR`
+LIBVERSION_INFO=$LIBVERSION_CURRENT:$LIBVERSION_REVISON:$LIBVERSION_AGE
+
+AM_INIT_AUTOMAKE(libstorage, $VERSION)
+AM_CONFIG_HEADER(config.h)
 
 AC_DISABLE_STATIC
 
@@ -25,6 +38,12 @@ CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
 docdir=\${prefix}/share/doc/packages/libstorage
 fillupdir=/var/adm/fillup-templates
 
+AC_SUBST(VERSION)
+AC_SUBST(LIBVERSION)
+AC_SUBST(LIBVERSION_MAJOR)
+AC_SUBST(LIBVERSION_MINOR)
+AC_SUBST(LIBVERSION_PATCHLEVEL)
+AC_SUBST(LIBVERSION_INFO)
 AC_SUBST(PYTHON_INCLUDES)
 AC_SUBST(PYTHON_LIBS)
 AC_SUBST(docdir)
@@ -87,4 +106,5 @@ AC_OUTPUT(
 	bindings/perl5/testsuite/Makefile
 	bindings/ruby-legacy/Makefile
 	bindings/ruby-legacy/examples/Makefile
+	package/libstorage.spec:libstorage.spec.in
 )

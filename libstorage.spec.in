@@ -1,0 +1,312 @@
+
+# spec file for package libstorage
+#
+# Copyright (c) 2014 SUSE LINUX Products GmbH, Nuernberg, Germany.
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
+#
+
+
+Name:           libstorage
+Version:        @VERSION@
+Release:        0
+License:        GPL-2.0
+Group:          System/Libraries
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Source:         libstorage-%{version}.tar.bz2
+
+Prefix:         /usr
+
+BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
+BuildRequires:  doxygen
+BuildRequires:  swig
+BuildRequires:  python-devel
+BuildRequires:	ruby ruby-devel
+BuildRequires:  perl perl-Test-Unit perl-Test-Exception
+
+Summary:        Library for storage management
+Url:            http://en.opensuse.org/Portal:Libstorage
+
+%description
+This package contains libstorage, a library for storage management.
+
+%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
+%{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+%{!?py_requires: %global py_requires Requires: python}
+
+%if 0%{?ruby_sitelib} == 0
+%if 0%{?fedora_version} || 0%{?centos_version} || 0%{?rhel_version} || 0%{?fedora} || 0%{?rhel}
+%{!?ruby_sitelib: %global ruby_sitelib %(ruby -r rbconfig -e 'vd = Config::CONFIG["vendorlibdir"]; print(vd ? vd : Config::CONFIG["sitelibdir"])')}
+%{!?ruby_sitearch: %global ruby_sitearch %(ruby -r rbconfig -e 'vad = Config::CONFIG["vendorarchdir"]; print(vad ? vad : Config::CONFIG["sitearchdir"])')}
+%{!?ruby_vendor: %global ruby_vendor %(ruby -r rbconfig -e 'vad = Config::CONFIG["vendor"]; print(vad ? vad : Config::CONFIG["vendor"])')}
+%endif
+%endif
+
+%prep
+%setup -n libstorage-%{version}
+
+%build
+export CFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
+export CXXFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
+
+aclocal
+libtoolize --force --automake --copy
+autoheader
+automake --add-missing --copy
+autoconf
+
+%{?suse_update_config:%{suse_update_config -f}}
+%if 0%{?fedora_version} || 0%{?centos_version}
+CXXFLAGS="-I/usr/include/libxml2" \
+%else
+%if 0%{?rhel_version} >= 500 && 0%{?rhel_version} < 600
+CXXFLAGS="-I/usr/include/libxml2 -I/usr/include/c++/4.1.1/tr1" \
+%endif
+%endif
+
+./configure --libdir=%{_libdir} --prefix=%{prefix} --mandir=%{_mandir} --disable-silent-rules
+make %{?jobs:-j%jobs}
+
+%ifarch s390 s390x
+sed -i -e 's/DEVICE_NAMES=".*"/DEVICE_NAMES="path"/' data/sysconfig.storage-libstorage
+%endif
+
+%check
+LOCALEDIR=$RPM_BUILD_ROOT/usr/share/locale make check
+
+%install
+make install DESTDIR="$RPM_BUILD_ROOT"
+
+install -d -m 755 $RPM_BUILD_ROOT/run/libstorage
+touch $RPM_BUILD_ROOT/run/libstorage/lock
+
+%{find_lang} libstorage
+
+rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.a
+rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.la
+%if 0%{?suse_version}
+%if "%{?rb_vendorarchdir}" != ""
+rm -f $RPM_BUILD_ROOT/%{rb_vendorarchdir}/storage.la
+rm -f $RPM_BUILD_ROOT/%{rb_vendorarchdir}/storage_legacy.la
+%else
+rm -f $RPM_BUILD_ROOT/%{rb_vendorarch}/storage.la
+rm -f $RPM_BUILD_ROOT/%{rb_vendorarch}/storage_legacy.la
+%endif
+%endif
+%if 0%{?mandriva_version}
+rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage.la
+rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage_legacy.la
+%endif
+%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
+rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage.la
+rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage_legacy.la
+%endif
+rm -f $RPM_BUILD_ROOT/usr/lib/perl5/site_perl/storage.la
+
+%clean
+rm -rf "$RPM_BUILD_ROOT"
+
+%package -n libstorage@LIBVERSION_MAJOR@
+
+Requires:	coreutils
+Requires:	cryptsetup
+Requires:	device-mapper
+Requires:	dmraid
+Requires:	lsscsi >= 0.26
+Requires:	lvm2
+Requires:	mdadm >= 3.3
+Requires:	multipath-tools
+Requires:	parted >= 3.1
+Requires:	udev
+Requires:	util-linux >= 2.16
+%ifarch s390 s390x
+Requires:       s390-tools
+%endif
+
+%if 0%{?suse_version}
+PreReq:         %fillup_prereq
+%endif
+Obsoletes:      yast2-storage-lib
+Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" $((@LIBVERSION_MAJOR@ - 1))`)
+Obsoletes:      libstorage@LIBVERSION_MAJOR@ < %{version}
+Summary:        Library for storage management
+Group:          System/Libraries
+
+%description -n libstorage@LIBVERSION_MAJOR@
+This package contains libstorage, a library for storage management.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+    Thomas Fehr <fehr@suse.de>
+
+%files -n libstorage@LIBVERSION_MAJOR@ -f libstorage.lang
+%defattr(-,root,root)
+%{_libdir}/libstorage.so.*
+%ghost /run/libstorage
+/var/adm/fillup-templates/sysconfig.storage-libstorage
+%doc %dir %{prefix}/share/doc/packages/libstorage
+%doc %{prefix}/share/doc/packages/libstorage/AUTHORS
+%doc %{prefix}/share/doc/packages/libstorage/LICENSE
+
+%post -n libstorage@LIBVERSION_MAJOR@
+/sbin/ldconfig
+%if 0%{?suse_version}
+%{fillup_only -an storage}
+%endif
+
+%postun -n libstorage@LIBVERSION_MAJOR@
+/sbin/ldconfig
+
+%package -n libstorage-devel
+
+Requires:	gcc-c++
+Requires:	libstdc++-devel
+Requires:	libstorage@LIBVERSION_MAJOR@ = %version
+Requires:	libxml2-devel
+Summary:        Header files and documentation for libstorage
+Group:          Development/Languages/C and C++
+
+%description -n libstorage-devel
+This package contains header files and documentation for developing with
+libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+    Thomas Fehr <fehr@suse.de>
+
+%files -n libstorage-devel
+%defattr(-,root,root)
+%{_libdir}/libstorage.la
+%{_libdir}/libstorage.so
+%{prefix}/include/storage
+%doc %{prefix}/share/doc/packages/libstorage/autodocs
+%doc %{prefix}/share/doc/packages/libstorage/examples
+
+%package -n libstorage-python
+
+Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+%{py_requires}
+Summary:        Python bindings for libstorage
+Group:          System/Libraries
+
+%description python
+This package contains Python bindings for libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+
+%files -n libstorage-python
+%defattr(-,root,root)
+%{python_sitelib}/storage.py*
+%attr(755,root,root) %{python_sitearch}/_storage.so
+
+%package -n libstorage-ruby
+
+Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+Summary:        Ruby bindings for libstorage
+Group:          System/Libraries
+
+%description ruby
+This package contains Ruby bindings for libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+    Thomas Fehr <fehr@suse.de>
+
+%files -n libstorage-ruby
+%defattr(-,root,root)
+%if 0%{?suse_version}
+%if "%{?rb_vendorarchdir}" != ""
+%{rb_vendorarchdir}/storage.so
+%else
+%{rb_vendorarch}/storage.so
+%endif
+%endif
+%if 0%{?mandriva_version}
+%{ruby_sitearchdir}/storage.so
+%endif
+%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
+%{ruby_sitearch}/storage.so
+%endif
+
+%package -n libstorage-perl5
+
+Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+%{py_requires}
+Summary:        Perl5 bindings for libstorage
+Group:          System/Libraries
+
+%description perl5
+This package contains Perl5 bindings for libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+
+%files -n libstorage-perl5
+%defattr(-,root,root)
+/usr/lib/perl5/site_perl/storage.pm
+/usr/lib/perl5/site_perl/storage.so
+
+%package -n libstorage-ruby-legacy
+
+Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+Summary:        Ruby legacy bindings for libstorage
+Group:          System/Libraries
+
+%description ruby-legacy
+This package contains Ruby legacy bindings for libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+    Thomas Fehr <fehr@suse.de>
+
+%files -n libstorage-ruby-legacy
+%defattr(-,root,root)
+%if 0%{?suse_version}
+%if "%{?rb_vendorarchdir}" != ""
+%{rb_vendorarchdir}/storage_legacy.so
+%else
+%{rb_vendorarch}/storage_legacy.so
+%endif
+%endif
+%if 0%{?mandriva_version}
+%{ruby_sitearchdir}/storage_legacy.so
+%endif
+%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
+%{ruby_sitearch}/storage_legacy.so
+%endif
+
+%package -n libstorage-integration-tests
+
+Requires:       libstorage-python
+Summary:        Integration tests for libstorage
+Group:          Development/Tools/Other
+
+%description -n libstorage-integration-tests
+This package contains integration tests for libstorage.
+
+Authors:
+--------
+    Arvin Schnell <aschnell@suse.de>
+
+%files integration-tests
+%defattr(-,root,root)
+%dir /usr/lib/libstorage
+/usr/lib/libstorage/integration-tests
+
+%changelog
