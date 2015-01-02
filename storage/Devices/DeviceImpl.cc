@@ -55,6 +55,36 @@ namespace storage
     }
 
 
+    Devicegraph*
+    Device::Impl::get_devicegraph()
+    {
+	if (!devicegraph)
+	    throw runtime_error("not part of a devicegraph");
+
+	return devicegraph;
+    }
+
+
+    const Devicegraph*
+    Device::Impl::get_devicegraph() const
+    {
+	if (!devicegraph)
+	    throw runtime_error("not part of a devicegraph");
+
+	return devicegraph;
+    }
+
+
+    Devicegraph::Impl::vertex_descriptor
+    Device::Impl::get_vertex() const
+    {
+	if (!devicegraph)
+	    throw runtime_error("not part of a devicegraph");
+
+	return vertex;
+    }
+
+
     void
     Device::Impl::add_create_actions(Actiongraph& actiongraph) const
     {

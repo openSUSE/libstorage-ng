@@ -36,10 +36,10 @@ namespace storage
 	void set_devicegraph_and_vertex(Devicegraph* devicegraph,
 					Devicegraph::Impl::vertex_descriptor vertex);
 
-	Devicegraph* get_devicegraph() { return devicegraph; }
-	const Devicegraph* get_devicegraph() const { return devicegraph; }
+	Devicegraph* get_devicegraph();
+	const Devicegraph* get_devicegraph() const;
 
-	Devicegraph::Impl::vertex_descriptor get_vertex() const { return vertex; }
+	Devicegraph::Impl::vertex_descriptor get_vertex() const;
 
 	Device* get_device() { return devicegraph->get_impl().graph[vertex].get(); }
 	const Device* get_device() const { return devicegraph->get_impl().graph[vertex].get(); }
