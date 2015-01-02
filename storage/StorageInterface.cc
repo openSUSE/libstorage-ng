@@ -1,4 +1,5 @@
 
+
 #include <unistd.h>
 #include <sys/types.h>
 #include <pwd.h>
@@ -1191,6 +1192,8 @@ namespace storage_legacy
     StorageLegacy::getPartitionAlignment() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	return ALIGN_OPTIMAL;
     }
 
 
@@ -1205,6 +1208,8 @@ namespace storage_legacy
     StorageLegacy::getDefaultMountBy() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	return MOUNTBY_UUID;
     }
 
 
@@ -1219,6 +1224,8 @@ namespace storage_legacy
     StorageLegacy::getDefaultFs() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	return BTRFS;
     }
 
 
@@ -1698,6 +1705,8 @@ namespace storage_legacy
     StorageLegacy::getMultipathAutostart() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	return MPAS_UNDECIDED;
     }
 
 
@@ -1870,6 +1879,10 @@ namespace storage_legacy
     StorageLegacy::getLastAction() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	static const string ret = "some error";
+
+	return ret;
     }
 
 
@@ -1877,6 +1890,10 @@ namespace storage_legacy
     StorageLegacy::getExtendedErrorMessage() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	static const string ret = "some error";
+
+	return ret;
     }
 
 

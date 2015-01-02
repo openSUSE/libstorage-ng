@@ -200,6 +200,8 @@ namespace storage
 	// TODO really needed? just calculate Actiongraph instead? not always
 	// same result, e.g. removing a Ext4 object (not mounted, not in
 	// fstab) results in no action - but the graphs differ
+
+	return true;
     }
 
 
