@@ -23,7 +23,8 @@ libstorage_la_SOURCES =					\
 	StorageInterface.h	StorageInterface.cc	\
 	StorageTypes.h
 
-libstorage_la_LDFLAGS = -version-info 7:0:2
+libstorage_la_LDFLAGS = -version-info @LIBVERSION_INFO@
+
 libstorage_la_LIBADD =			\
 	Devices/libdevices.la		\
 	Holders/libholders.la		\
