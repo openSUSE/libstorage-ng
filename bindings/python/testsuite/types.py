@@ -29,6 +29,10 @@ class TestCreate(unittest.TestCase):
         ext4.set_label("test-label")
         self.assertEqual(ext4.get_label(), "test-label")
 
+        ext4.add_mountpoint("/test1")
+        self.assertEqual(ext4.get_mountpoints().size(), 1)
+        self.assertEqual(ext4.get_mountpoints()[0], "/test1")
+
 
 if __name__ == '__main__':
     unittest.main()
