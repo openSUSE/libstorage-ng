@@ -34,15 +34,7 @@ namespace storage
     using namespace std;
 
 
-    CmdDmraid::CmdDmraid(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdDmraid::probe()
+    CmdDmraid::CmdDmraid()
     {
 	SystemCmd c(DMRAIDBIN " -s -c -c -c");
 	if (c.retcode() == 0 && !c.stdout().empty())

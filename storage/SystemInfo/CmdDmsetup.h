@@ -43,9 +43,7 @@ namespace storage
 
     public:
 
-	CmdDmsetupInfo(bool do_probe = true);
-
-	void probe();
+	CmdDmsetupInfo();
 
 	struct Entry
 	{
@@ -80,9 +78,9 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo& cmddmsetupinfo);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	map<string, Entry> data;
 

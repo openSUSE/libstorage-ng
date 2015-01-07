@@ -32,15 +32,7 @@ namespace storage
     using namespace std;
 
 
-    CmdDmsetupInfo::CmdDmsetupInfo(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdDmsetupInfo::probe()
+    CmdDmsetupInfo::CmdDmsetupInfo()
     {
 	SystemCmd c(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,segments,uuid info");
 	if (c.retcode() == 0 && !c.stdout().empty())

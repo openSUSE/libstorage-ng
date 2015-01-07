@@ -7,8 +7,8 @@ AM_CPPFLAGS = -I$(top_srcdir)
 LDADD = ../../storage/libstorage.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	blkid.test btrfs.test cryptsetup.test dasdview.test			\
-	lsscsi.test								\
+	blkid.test btrfs.test cryptsetup.test dasdview.test dmraid.test		\
+	dmsetup-info.test lsscsi.test						\
 	mdadm-detail.test mdadm-examine.test					\
 	parted.test								\
 	proc-mdstat.test proc-mounts.test proc-parts.test			\

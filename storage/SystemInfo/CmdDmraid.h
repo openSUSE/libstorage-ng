@@ -43,9 +43,7 @@ namespace storage
 
     public:
 
-	CmdDmraid(bool do_probe = true);
-
-	void probe();
+	CmdDmraid();
 
 	struct Entry
 	{
@@ -66,9 +64,9 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const CmdDmraid& cmddmraid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	map<string, Entry> data;
 
