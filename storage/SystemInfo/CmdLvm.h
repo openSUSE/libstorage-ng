@@ -40,17 +40,15 @@ namespace storage
     {
     public:
 
-	CmdVgs(bool do_probe = true);
-
-	void probe();
+	CmdVgs();
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmdvgs);
-
-	void parse(const vector<string>& lines);
 
 	const list<string>& getVgs() const { return vgs; }
 
     private:
+
+	void parse(const vector<string>& lines);
 
 	list<string> vgs;
 
@@ -61,9 +59,7 @@ namespace storage
     {
     public:
 
-	CmdVgdisplay(const string& name, bool do_probe = true);
-
-	void probe();
+	CmdVgdisplay(const string& name);
 
 	struct LvEntry
 	{
@@ -96,8 +92,6 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const LvEntry& lv_entry);
 	friend std::ostream& operator<<(std::ostream& s, const PvEntry& pv_entry);
 
-	void parse(const vector<string>& lines);
-
 	string name;
 	string uuid;
 	string status;
@@ -109,6 +103,10 @@ namespace storage
 
 	list<LvEntry> lv_entries;
 	list<PvEntry> pv_entries;
+
+    private:
+
+	void parse(const vector<string>& lines);
 
     };
 

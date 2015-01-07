@@ -11,7 +11,8 @@ check_PROGRAMS =								\
 	lsscsi.test								\
 	mdadm-detail.test mdadm-examine.test					\
 	parted.test								\
-	proc-mdstat.test proc-mounts.test proc-parts.test
+	proc-mdstat.test proc-mounts.test proc-parts.test			\
+	vgdisplay.test vgs.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

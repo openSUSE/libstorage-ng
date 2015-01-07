@@ -37,15 +37,7 @@ namespace storage
     using namespace std;
 
 
-    CmdVgs::CmdVgs(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdVgs::probe()
+    CmdVgs::CmdVgs()
     {
 	SystemCmd c(VGSBIN " --noheadings --unbuffered --options vg_name");
 	if (c.retcode() == 0 && !c.stdout().empty())
@@ -73,16 +65,8 @@ namespace storage
     }
 
 
-    CmdVgdisplay::CmdVgdisplay(const string& name, bool do_probe)
+    CmdVgdisplay::CmdVgdisplay(const string& name)
 	: name(name), pe_size(0), num_pe(0), free_pe(0), read_only(false), lvm1(false)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdVgdisplay::probe()
     {
 	SystemCmd c(VGDISPLAYBIN " --units k --verbose " + quote(name));
 	if (c.retcode() == 0 && !c.stdout().empty())
