@@ -310,16 +310,8 @@ namespace storage
     }
 
 
-    MdadmDetail::MdadmDetail(const string& device, bool do_probe)
+    MdadmDetail::MdadmDetail(const string& device)
 	: device(device)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    MdadmDetail::probe()
     {
 	SystemCmd cmd(MDADMBIN " --detail " + quote(device) + " --export");
 	if (cmd.retcode() == 0)
@@ -354,16 +346,8 @@ namespace storage
     }
 
 
-    MdadmExamine::MdadmExamine(const list<string>& devices, bool do_probe)
+    MdadmExamine::MdadmExamine(const list<string>& devices)
 	: devices(devices)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    MdadmExamine::probe()
     {
 	SystemCmd cmd(MDADMBIN " --examine " + quote(devices) + " --brief");
 	if (cmd.retcode() == 0)

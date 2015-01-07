@@ -97,9 +97,7 @@ namespace storage
     {
     public:
 
-	MdadmDetail(const string& device, bool do_probe = true);
-
-	void probe();
+	MdadmDetail(const string& device);
 
 	string uuid;
 	string devname;
@@ -107,9 +105,9 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadmdetail);
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	string device;
 
@@ -120,9 +118,7 @@ namespace storage
     {
     public:
 
-	MdadmExamine(const list<string>& devices, bool do_probe = true);
-
-	void probe();
+	MdadmExamine(const list<string>& devices);
 
 	string metadata;
 	string uuid;
@@ -145,9 +141,9 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadmexamine);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	list<string> devices;
 
