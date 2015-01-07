@@ -30,16 +30,8 @@
 namespace storage
 {
 
-    Dasdview::Dasdview(const string& device, bool do_probe)
+    Dasdview::Dasdview(const string& device)
 	: device(device), dasd_format(DASDF_NONE), dasd_type(DASDTYPE_NONE)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    Dasdview::probe()
     {
 	SystemCmd cmd(DASDVIEWBIN " --extended " + quote(device));
 

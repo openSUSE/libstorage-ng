@@ -32,16 +32,8 @@ namespace storage
     using namespace std;
 
 
-    CmdCryptsetup::CmdCryptsetup(const string& name, bool do_probe)
+    CmdCryptsetup::CmdCryptsetup(const string& name)
 	: encrypt_type(ENC_UNKNOWN), name(name)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdCryptsetup::probe()
     {
 	SystemCmd c(CRYPTSETUPBIN " status " + quote(name));
 	if (c.retcode() == 0 && !c.stdout().empty())

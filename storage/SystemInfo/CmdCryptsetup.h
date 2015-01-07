@@ -44,17 +44,15 @@ namespace storage
 
     public:
 
-	CmdCryptsetup(const string& name, bool do_probe = true);
-
-	void probe();
+	CmdCryptsetup(const string& name);
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup);
-
-	void parse(const vector<string>& lines);
 
 	EncryptType encrypt_type;
 
     private:
+
+	void parse(const vector<string>& lines);
 
 	string name;
 
