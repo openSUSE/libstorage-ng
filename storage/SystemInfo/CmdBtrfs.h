@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #define CMD_BTRFS_H
 
 
+#include <string>
 #include <vector>
 #include <list>
 #include <map>
@@ -31,6 +32,7 @@
 
 namespace storage
 {
+    using std::string;
     using std::vector;
     using std::list;
     using std::map;
@@ -40,9 +42,7 @@ namespace storage
     {
     public:
 
-	CmdBtrfsShow(bool do_probe = true);
-
-	void probe();
+	CmdBtrfsShow();
 
 	struct Entry
 	{
@@ -56,9 +56,9 @@ namespace storage
 
 	list<string> getUuids() const;
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	typedef map<string, Entry>::const_iterator const_iterator;
 

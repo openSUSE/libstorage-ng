@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -34,15 +34,7 @@ namespace storage
     using namespace std;
 
 
-    CmdBtrfsShow::CmdBtrfsShow(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    CmdBtrfsShow::probe()
+    CmdBtrfsShow::CmdBtrfsShow()
     {
 	SystemCmd c(BTRFSBIN " filesystem show");
 	if (c.retcode() == 0 && !c.stdout().empty())
