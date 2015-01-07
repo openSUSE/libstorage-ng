@@ -93,6 +93,7 @@ AC_OUTPUT(
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
+	testsuite/Utils/Makefile
 	testsuite/SystemInfo/Makefile
 	integration-tests/Makefile
 	bindings/Makefile
