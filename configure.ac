@@ -93,6 +93,7 @@ AC_OUTPUT(
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
+	testsuite/SystemInfo/Makefile
 	integration-tests/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
