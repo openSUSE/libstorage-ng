@@ -6,6 +6,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/ProcParts.h"
+#include "storage/Utils/Mockup.h"
 
 
 using namespace std;
@@ -15,8 +16,9 @@ using namespace storage;
 void
 check(const vector<string>& input, const vector<string>& output)
 {
-    ProcParts procparts(false);
-    procparts.parse(input);
+    Mockup::set_file("/proc/partitions", input);
+
+    ProcParts procparts;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);

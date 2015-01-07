@@ -31,18 +31,11 @@ namespace storage
     using namespace std;
 
 
-    ProcMounts::ProcMounts(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    ProcMounts::probe()
+    ProcMounts::ProcMounts()
     {
 	AsciiFile mounts("/proc/mounts");
 	AsciiFile swaps("/proc/swaps");
+
 	parse(mounts.lines(), swaps.lines());
     }
 

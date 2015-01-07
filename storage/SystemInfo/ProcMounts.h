@@ -41,9 +41,7 @@ namespace storage
     {
     public:
 
-	ProcMounts(bool do_probe = true);
-
-	void probe();
+	ProcMounts();
 
 	string getMount(const string& device) const;
 	string getMount(const list<string>& devices) const;
@@ -57,9 +55,9 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 
-	void parse(const vector<string>& mount_lines, const vector<string>& swap_lines);
-
     protected:
+
+	void parse(const vector<string>& mount_lines, const vector<string>& swap_lines);
 
 	typedef multimap<string, FstabEntry>::const_iterator const_iterator;
 

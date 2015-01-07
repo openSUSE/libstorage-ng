@@ -38,15 +38,7 @@ namespace storage
     using namespace std;
 
 
-    ProcMdstat::ProcMdstat(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    ProcMdstat::probe()
+    ProcMdstat::ProcMdstat()
     {
 	AsciiFile mdstat("/proc/mdstat");
 	mdstat.logContent();

@@ -37,9 +37,7 @@ namespace storage
 
     public:
 
-	Parted(const string& device, bool do_probe = true);
-
-	void probe();
+	Parted(const string& device);
 
 	struct Entry
 	{
@@ -67,9 +65,9 @@ namespace storage
 
 	bool getEntry(unsigned num, Entry& entry) const;
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	typedef vector<Entry>::iterator iterator;
 

@@ -6,6 +6,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/CmdBlkid.h"
+#include "storage/Utils/Mockup.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 using namespace std;
@@ -15,8 +17,9 @@ using namespace storage;
 void
 check(const vector<string>& input, const vector<string>& output)
 {
-    Blkid blkid(false);
-    blkid.parse(input);
+    Mockup::set_command("BLKID_SKIP_CHECK_MDRAID=1 " BLKIDBIN " -c /dev/null", input);
+
+    Blkid blkid;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);

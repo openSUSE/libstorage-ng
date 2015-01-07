@@ -6,6 +6,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/ProcMounts.h"
+#include "storage/Utils/Mockup.h"
 
 
 using namespace std;
@@ -15,8 +16,10 @@ using namespace storage;
 void
 check(const vector<string>& input_mount, const vector<string>& input_swap, const vector<string>& output)
 {
-    ProcMounts procmounts(false);
-    procmounts.parse(input_mount, input_swap);
+    Mockup::set_file("/proc/mounts", input_mount);
+    Mockup::set_file("/proc/swaps", input_swap);
+
+    ProcMounts procmounts;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);

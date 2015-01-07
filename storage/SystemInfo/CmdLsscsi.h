@@ -42,9 +42,7 @@ namespace storage
     {
     public:
 
-	Lsscsi(bool do_probe = true);
-
-	void probe();
+	Lsscsi();
 
 	struct Entry
 	{
@@ -58,9 +56,9 @@ namespace storage
 
 	bool getEntry(const string& device, Entry& entry) const;
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	typedef map<string, Entry>::const_iterator const_iterator;
 

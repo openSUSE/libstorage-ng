@@ -42,9 +42,7 @@ namespace storage
     {
     public:
 
-	ProcParts(bool do_probe = true);
-
-	void probe();
+	ProcParts();
 
 	bool getSize(const string& device, unsigned long long& sizeK) const;
 	bool findDevice(const string& device) const;
@@ -63,9 +61,9 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcParts& procparts);
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	typedef map<string, unsigned long long>::const_iterator const_iterator;
 

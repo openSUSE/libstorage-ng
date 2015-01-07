@@ -32,15 +32,7 @@ namespace storage
     using namespace std;
 
 
-    Blkid::Blkid(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    Blkid::probe()
+    Blkid::Blkid()
     {
 	SystemCmd cmd("BLKID_SKIP_CHECK_MDRAID=1 " BLKIDBIN " -c /dev/null");
 	if (cmd.retcode() == 0)

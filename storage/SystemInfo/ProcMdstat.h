@@ -42,9 +42,7 @@ namespace storage
     {
     public:
 
-	ProcMdstat(bool do_probe = true);
-
-	void probe();
+	ProcMdstat();
 
 	struct Entry
 	{
@@ -84,9 +82,9 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	void parse(const vector<string>& lines);
-
     private:
+
+	void parse(const vector<string>& lines);
 
 	Entry parse(const string& line1, const string& line2);
 

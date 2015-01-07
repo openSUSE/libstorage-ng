@@ -36,16 +36,8 @@ namespace storage
     using namespace std;
 
 
-    Parted::Parted(const string& device, bool do_probe)
+    Parted::Parted(const string& device)
 	: device(device), label(PtType::PT_UNKNOWN), implicit(false), gpt_enlarge(false)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    Parted::probe()
     {
 	SystemCmd cmd(PARTEDBIN " -s " + quote(device) + " unit cyl print unit s print");
 

@@ -31,15 +31,7 @@ namespace storage
     using namespace std;
 
 
-    ProcParts::ProcParts(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    ProcParts::probe()
+    ProcParts::ProcParts()
     {
 	AsciiFile parts("/proc/partitions");
 

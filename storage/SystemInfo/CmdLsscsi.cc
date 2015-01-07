@@ -35,15 +35,7 @@ namespace storage
     using namespace std;
 
 
-    Lsscsi::Lsscsi(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    Lsscsi::probe()
+    Lsscsi::Lsscsi()
     {
 	SystemCmd cmd(LSSCSIBIN " --transport");
 	if (cmd.retcode() == 0)

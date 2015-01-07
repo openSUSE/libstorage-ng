@@ -6,6 +6,9 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/CmdParted.h"
+#include "storage/Utils/Mockup.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 using namespace std;
@@ -15,8 +18,9 @@ using namespace storage;
 void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
-    Parted parted(device, false);
-    parted.parse(input);
+    Mockup::set_command(PARTEDBIN " -s " + quote(device) + " unit cyl print unit s print", input);
+
+    Parted parted(device);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);

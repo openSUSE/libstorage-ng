@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/AsciiFile.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/StorageTypes.h"
 
 
@@ -53,6 +54,16 @@ AsciiFile::AsciiFile(const string& Name_Cv, bool remove_empty)
 bool
 AsciiFile::reload()
 {
+    try
+    {
+	const Mockup::File& mockup = Mockup::get_file(Name_C);
+	Lines_C = mockup.lines;
+	return true;
+    }
+    catch (...)
+    {
+    }
+
     if (Name_C.empty())
     {
 	y2err("trying to load nameless AsciiFile");

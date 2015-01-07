@@ -6,6 +6,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/CmdLsscsi.h"
+#include "storage/Utils/Mockup.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 using namespace std;
@@ -15,8 +17,9 @@ using namespace storage;
 void
 check(const vector<string>& input, const vector<string>& output)
 {
-    Lsscsi lsscsi(false);
-    lsscsi.parse(input);
+    Mockup::set_command(LSSCSIBIN " --transport", input);
+
+    Lsscsi lsscsi;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
