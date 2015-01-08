@@ -28,14 +28,14 @@ check(const vector<string>& fstab, const vector<string>& crypttab = {})
 {
     Mockup::File file_fstab = Mockup::get_file("/etc/fstab");
 
-    string lhs_fstab = boost::join(file_fstab.lines, "\n");
+    string lhs_fstab = boost::join(file_fstab.content, "\n");
     string rhs_fstab = boost::join(fstab, "\n");
 
     BOOST_CHECK_EQUAL(lhs_fstab, rhs_fstab);
 
     Mockup::File file_crypttab = Mockup::get_file("/etc/crypttab");
 
-    string lhs_crypttab = boost::join(file_crypttab.lines, "\n");
+    string lhs_crypttab = boost::join(file_crypttab.content, "\n");
     string rhs_crypttab = boost::join(crypttab, "\n");
 
     BOOST_CHECK_EQUAL(lhs_crypttab, rhs_crypttab);

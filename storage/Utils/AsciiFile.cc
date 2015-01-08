@@ -57,7 +57,7 @@ AsciiFile::reload()
     if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
     {
 	const Mockup::File& mockup = Mockup::get_file(Name_C);
-	Lines_C = mockup.lines;
+	Lines_C = mockup.content;
 	return true;
     }
 
@@ -82,6 +82,12 @@ AsciiFile::reload()
 	Lines_C.push_back( Line_Ci );
 	getline( File_Ci, Line_Ci );
     }
+
+    if (Mockup::get_mode() == Mockup::Mode::RECORD)
+    {
+	Mockup::set_file(Name_C, Lines_C);
+    }
+
     return Ret_bi;
 }
 
@@ -93,6 +99,11 @@ AsciiFile::save()
     {
 	Mockup::set_file(Name_C, Lines_C);
 	return true;
+    }
+
+    if (Mockup::get_mode() == Mockup::Mode::RECORD)
+    {
+	Mockup::set_file(Name_C, Lines_C);
     }
 
     if (Name_C.empty())

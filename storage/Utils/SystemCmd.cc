@@ -309,6 +309,12 @@ SystemCmd::doExecute( const string& Cmd )
     y2mil("system() Returns:" << Ret_i);
     if( Ret_i!=0 )
 	logOutput();
+
+    if (Mockup::get_mode() == Mockup::Mode::RECORD)
+    {
+	Mockup::set_command(Cmd, stdout());
+    }
+
     return Ret_i;
     }
 
