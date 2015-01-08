@@ -17,6 +17,7 @@ using namespace storage;
 void
 check(const vector<string>& input, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(VGSBIN " --noheadings --unbuffered --options vg_name", input);
 
     CmdVgs cmdvgs;

@@ -18,6 +18,7 @@ using namespace storage;
 void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(MDADMBIN " --detail " + quote(device) + " --export", input);
 
     MdadmDetail mdadmdetail(device);

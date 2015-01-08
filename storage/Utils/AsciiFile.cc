@@ -54,14 +54,11 @@ AsciiFile::AsciiFile(const string& Name_Cv, bool remove_empty)
 bool
 AsciiFile::reload()
 {
-    try
+    if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
     {
 	const Mockup::File& mockup = Mockup::get_file(Name_C);
 	Lines_C = mockup.lines;
 	return true;
-    }
-    catch (...)
-    {
     }
 
     if (Name_C.empty())
@@ -92,6 +89,12 @@ AsciiFile::reload()
 bool
 AsciiFile::save()
 {
+    if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+    {
+	Mockup::set_file(Name_C, Lines_C);
+	return true;
+    }
+
     if (Name_C.empty())
     {
 	y2err("trying to save nameless AsciiFile");

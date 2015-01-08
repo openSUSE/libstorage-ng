@@ -16,6 +16,7 @@ using namespace storage;
 void
 check(const vector<string>& input_mount, const vector<string>& input_swap, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_file("/proc/mounts", input_mount);
     Mockup::set_file("/proc/swaps", input_swap);
 

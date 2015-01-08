@@ -88,17 +88,13 @@ SystemCmd::closeOpenFds() const
 int
 SystemCmd::execute(const string& Cmd_Cv)
 {
-    try
+    if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
     {
 	const Mockup::Command& mockup = Mockup::get_command(Cmd_Cv);
-
 	Lines_aC[IDX_STDOUT] = mockup.stdout;
 	Lines_aC[IDX_STDERR] = mockup.stderr;
 	Ret_i = mockup.exit_code;
 	return 0;
-    }
-    catch (...)
-    {
     }
 
     y2mil("SystemCmd Executing:\"" << Cmd_Cv << "\"");

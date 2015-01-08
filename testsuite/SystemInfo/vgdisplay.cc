@@ -18,6 +18,7 @@ using namespace storage;
 void
 check(const string& name, const vector<string>& input, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(VGDISPLAYBIN " --units k --verbose " + quote(name), input);
 
     CmdVgdisplay cmdvgdisplay(name);

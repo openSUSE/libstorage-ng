@@ -13,7 +13,7 @@ namespace storage
     {
 	map<string, Command>::const_iterator it = commands.find(command);
 	if (it == commands.end())
-	    throw std::runtime_error("no command mockup found");
+	    throw std::runtime_error("no command mockup found for " + command);
 
 	return it->second;
     }
@@ -31,7 +31,7 @@ namespace storage
     {
 	map<string, File>::const_iterator it = files.find(file);
 	if (it == files.end())
-	    throw std::runtime_error("no file mockup found");
+	    throw std::runtime_error("no file mockup found for " + file);
 
 	return it->second;
     }
@@ -43,6 +43,8 @@ namespace storage
 	files[file] = File(lines);
     }
 
+
+    Mockup::Mode Mockup::mode = Mockup::Mode::NONE;
 
     map<string, Mockup::Command> Mockup::commands;
     map<string, Mockup::File> Mockup::files;

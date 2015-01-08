@@ -16,6 +16,7 @@ using namespace storage;
 void
 check(const vector<string>& input, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_file("/proc/partitions", input);
 
     ProcParts procparts;

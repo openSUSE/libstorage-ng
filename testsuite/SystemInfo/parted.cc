@@ -18,6 +18,7 @@ using namespace storage;
 void
 check(const string& device, const vector<string>& input, const vector<string>& output)
 {
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PARTEDBIN " -s " + quote(device) + " unit cyl print unit s print", input);
 
     Parted parted(device);
