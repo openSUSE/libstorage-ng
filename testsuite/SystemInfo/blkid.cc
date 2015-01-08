@@ -18,7 +18,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command("BLKID_SKIP_CHECK_MDRAID=1 " BLKIDBIN " -c /dev/null", input);
+    Mockup::set_command(BLKIDBIN " -c /dev/null", input);
 
     Blkid blkid;
 

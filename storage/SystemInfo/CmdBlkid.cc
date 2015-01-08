@@ -34,7 +34,7 @@ namespace storage
 
     Blkid::Blkid()
     {
-	SystemCmd cmd("BLKID_SKIP_CHECK_MDRAID=1 " BLKIDBIN " -c /dev/null");
+	SystemCmd cmd(BLKIDBIN " -c /dev/null");
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
     }
@@ -42,7 +42,7 @@ namespace storage
 
     Blkid::Blkid(const string& device)
     {
-	SystemCmd cmd("BLKID_SKIP_CHECK_MDRAID=1 " BLKIDBIN " -c /dev/null " + quote(device));
+	SystemCmd cmd(BLKIDBIN " -c /dev/null " + quote(device));
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
     }
