@@ -10,7 +10,7 @@ LDADD = ../storage/libstorage.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
 	copy.test dependencies.test disk.test dynamic.test			\
-	find-vertex.test output.test				\
+	find-vertex.test fstab.test fstab-ng.test output.test			\
 	probe.test								\
 	stable.test relatives.test
 

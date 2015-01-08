@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -74,12 +74,8 @@ EtcFstab::readFiles()
 	}
     y2mil("entries:" << co.size());
 
-    string file = prefix+"/fstab";
-    ifstream mounts(file);
-    classic(mounts);
-    string line;
-    getline( mounts, line );
-    while( mounts.good() )
+    AsciiFile fstab(prefix + "/fstab");
+    for (const string& line : fstab.lines())
 	{
 	y2mil( "line:\"" << line << "\"" );
 	list<string> l = splitString( line );
@@ -113,10 +109,11 @@ EtcFstab::readFiles()
 	    co.push_back( *p );
 	    delete p;
 	    }
-	getline( mounts, line );
 	}
-    mounts.close();
 
+    // Support for /etc/cryptotab was dropped from boot.crypto in 2010, see
+    // cryptsetup package.
+/*
     file = prefix+"/cryptotab";
     mounts.clear();
     mounts.open( file.c_str() );
@@ -150,12 +147,10 @@ EtcFstab::readFiles()
 	getline( mounts, line );
 	}
     mounts.close();
+*/
 
-    file = prefix+"/crypttab";
-    mounts.clear();
-    mounts.open( file.c_str() );
-    getline( mounts, line );
-    while( mounts.good() )
+    AsciiFile crypttab(prefix + "/crypttab");
+    for (const string& line : crypttab.lines())
 	{
 	y2mil( "line:\"" << line << "\"" );
 	list<string> l = splitString( line );
@@ -201,9 +196,7 @@ EtcFstab::readFiles()
 	    p->nnew = p->old;
 	    y2mil( "after crtab " << p->nnew );
 	    }
-	getline( mounts, line );
 	}
-    mounts.close();
 
     y2mil("entries:" << co.size());
     }
