@@ -36,12 +36,12 @@ namespace storage
 
 
     const vector<string> EnumInfo<ProbeMode>::names({
-        "NORMAL", "NONE", "READ_DEVICE_GRAPH", "READ_SYSTEM_INFO"
+	"NORMAL", "NORMAL_WRITE_MOCKUP", "NONE", "READ_DEVICE_GRAPH", "READ_MOCKUP"
     });
 
 
     const vector<string> EnumInfo<TargetMode>::names({
-        "NORMAL", "CHROOT", "IMAGE"
+	"NORMAL", "CHROOT", "IMAGE"
     });
 
 }

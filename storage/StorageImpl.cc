@@ -8,6 +8,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Actiongraph.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Mockup.h"
 
 
 namespace storage
@@ -27,6 +28,12 @@ namespace storage
 		probe(probed);
 	    } break;
 
+	    case ProbeMode::PROBE_NORMAL_WRITE_MOCKUP: {
+		Mockup::set_mode(Mockup::Mode::RECORD);
+		probe(probed);
+		Mockup::save("mockup.xml");
+	    } break;
+
 	    case ProbeMode::PROBE_NONE: {
 	    } break;
 
@@ -34,8 +41,10 @@ namespace storage
 		probed->load(environment.get_devicegraph_filename());
 	    } break;
 
-	    case ProbeMode::PROBE_READ_SYSTEM_INFO: {
-		// TODO
+	    case ProbeMode::PROBE_READ_MOCKUP: {
+		Mockup::set_mode(Mockup::Mode::PLAYBACK);
+		Mockup::load("mockup.xml");
+		probe(probed);
 	    } break;
 	}
 

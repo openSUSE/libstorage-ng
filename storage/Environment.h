@@ -11,9 +11,10 @@ namespace storage
 
     enum class ProbeMode {
 	PROBE_NORMAL,			// probe system during init
+	PROBE_NORMAL_WRITE_MOCKUP,	// probe system during init
 	PROBE_NONE,			// no probing - for testsuite
 	PROBE_READ_DEVICE_GRAPH,	// fake probe - for testsuite
-	PROBE_READ_SYSTEM_INFO		// fake probe - for testsuite
+	PROBE_READ_MOCKUP		// fake probe - for testsuite
     };
 
 
