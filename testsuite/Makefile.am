@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite
 #
 
-SUBDIRS = Utils SystemInfo
+SUBDIRS = Utils SystemInfo probe
 
 AM_CPPFLAGS = -I$(top_srcdir)
 

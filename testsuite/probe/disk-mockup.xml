@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <stdout>sda</stdout>
+      <stdout>sdb</stdout>
+      <stdout>sr0</stdout>
+      <stdout>dm-0</stdout>
+      <stdout>dm-1</stdout>
+      <stdout>dm-2</stdout>
+      <stdout>dm-3</stdout>
+      <stdout>dm-4</stdout>
+      <stdout>dm-5</stdout>
+      <stdout>dm-6</stdout>
+      <stdout>dm-7</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/lsscsi --transport</name>
+      <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
+      <stdout>[1:0:0:0]    cd/dvd  sata:                           /dev/sr0 </stdout>
+      <stdout>[7:0:0:0]    disk    usb: 2-1.5:1.0                  /dev/sdb </stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda'</name>
+      <stdout>block special file 0x8:0x0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda1'</name>
+      <stdout>block special file 0x8:0x1</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda2'</name>
+      <stdout>block special file 0x8:0x2</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdb'</name>
+      <stdout>block special file 0x8:0x10</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdb1'</name>
+      <stdout>block special file 0x8:0x11</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted -s '/dev/sda' unit cyl print unit s print</name>
+      <stdout>Model: ATA WDC WD10EADS-00M (scsi)</stdout>
+      <stdout>Disk /dev/sda: 121601cyl</stdout>
+      <stdout>Sector size (logical/physical): 512B/4096B</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>Partition Table: msdos</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start   End        Size       Type     File system  Flags</stdout>
+      <stdout> 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83</stdout>
+      <stdout> 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e</stdout>
+      <stdout></stdout>
+      <stdout>Model: ATA WDC WD10EADS-00M (scsi)</stdout>
+      <stdout>Disk /dev/sda: 1953525168s</stdout>
+      <stdout>Sector size (logical/physical): 512B/4096B</stdout>
+      <stdout>Partition Table: msdos</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start     End          Size         Type     File system  Flags</stdout>
+      <stdout> 1      2048s     2105343s     2103296s     primary  ext3         boot, type=83</stdout>
+      <stdout> 2      2105344s  1889548287s  1887442944s  primary               lvm, type=8e</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted -s '/dev/sdb' unit cyl print unit s print</name>
+      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
+      <stdout>Disk /dev/sdb: 9964cyl</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>Partition Table: msdos</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start  End     Size    Type     File system  Flags</stdout>
+      <stdout> 1      0cyl   998cyl  998cyl  primary  ext4         type=83</stdout>
+      <stdout></stdout>
+      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
+      <stdout>Disk /dev/sdb: 160086528s</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>Partition Table: msdos</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start  End        Size       Type     File system  Flags</stdout>
+      <stdout> 1      2048s  16048127s  16046080s  primary  ext4         type=83</stdout>
+      <stdout></stdout>
+    </Command>
+  </Commands>
+  <Files>
+    <File>
+      <name>/proc/partitions</name>
+      <content>major minor  #blocks  name</content>
+      <content></content>
+      <content>   8        0  976762584 sda</content>
+      <content>   8        1    1051648 sda1</content>
+      <content>   8        2  943721472 sda2</content>
+      <content>  11        0    1048575 sr0</content>
+      <content> 254        0    2097152 dm-0</content>
+      <content> 254        1   16777216 dm-1</content>
+      <content> 254        2   31457280 dm-2</content>
+      <content> 254        3   52428800 dm-3</content>
+      <content> 254        4  314572800 dm-4</content>
+      <content> 254        5    5242880 dm-5</content>
+      <content> 254        6    2097152 dm-6</content>
+      <content> 254        7    5242880 dm-7</content>
+      <content>   8       16   80043264 sdb</content>
+      <content>   8       17    8023040 sdb1</content>
+    </File>
+  </Files>
+</Mockup>

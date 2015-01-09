@@ -95,6 +95,7 @@ AC_OUTPUT(
 	testsuite/Makefile
 	testsuite/Utils/Makefile
 	testsuite/SystemInfo/Makefile
+	testsuite/probe/Makefile
 	integration-tests/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
