@@ -101,6 +101,13 @@ namespace storage
 
 
     void
+    Devicegraph::Impl::clear()
+    {
+	graph.clear();
+    }
+
+
+    void
     Devicegraph::Impl::remove_vertex(vertex_descriptor vertex)
     {
 	boost::clear_vertex(vertex, graph);

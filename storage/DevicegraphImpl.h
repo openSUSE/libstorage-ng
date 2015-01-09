@@ -53,6 +53,8 @@ namespace storage
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 
+	void clear();
+
 	void remove_vertex(vertex_descriptor a);
 
 	boost::iterator_range<vertex_iterator> vertices() const;

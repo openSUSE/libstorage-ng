@@ -47,6 +47,8 @@ namespace storage
 
 	bool vertex_exists(sid_t sid) const;
 
+	void clear();
+
 	void remove_vertex(sid_t sid);
 	void remove_vertex(Device* a);
 

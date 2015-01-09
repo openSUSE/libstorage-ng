@@ -152,6 +152,13 @@ namespace storage
 
 
     void
+    Devicegraph::clear()
+    {
+	get_impl().clear();
+    }
+
+
+    void
     Devicegraph::remove_vertex(sid_t sid)
     {
 	const Device* device = find_device(sid);
