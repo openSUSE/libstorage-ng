@@ -88,38 +88,38 @@ namespace storage
 
 
     const Mockup::Command&
-    Mockup::get_command(const string& command)
+    Mockup::get_command(const string& name)
     {
-	map<string, Command>::const_iterator it = commands.find(command);
+	map<string, Command>::const_iterator it = commands.find(name);
 	if (it == commands.end())
-	    throw std::runtime_error("no mockup found for command '" + command + "'");
+	    throw std::runtime_error("no mockup found for command '" + name + "'");
 
 	return it->second;
     }
 
 
     void
-    Mockup::set_command(const string& command, const vector<string>& stdout)
+    Mockup::set_command(const string& name, const Command& command)
     {
-	commands[command] = Command(stdout);
+	commands[name] = command;
     }
 
 
     const Mockup::File&
-    Mockup::get_file(const string& file)
+    Mockup::get_file(const string& name)
     {
-	map<string, File>::const_iterator it = files.find(file);
+	map<string, File>::const_iterator it = files.find(name);
 	if (it == files.end())
-	    throw std::runtime_error("no mockup found for file '" + file + "'");
+	    throw std::runtime_error("no mockup found for file '" + name + "'");
 
 	return it->second;
     }
 
 
     void
-    Mockup::set_file(const string& file, const vector<string>& lines)
+    Mockup::set_file(const string& name, const File& file)
     {
-	files[file] = File(lines);
+	files[name] = file;
     }
 
 

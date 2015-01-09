@@ -26,7 +26,9 @@ namespace storage
 	struct Command
 	{
 	    Command() : stdout(), stderr(), exit_code(0) {}
-	    Command(const vector<string>& stdout) : stdout(stdout), exit_code(0) {}
+	    Command(const vector<string>& stdout) : stdout(stdout), stderr(), exit_code(0) {}
+	    Command(const vector<string>& stdout, const vector<string>& stderr, int exit_code)
+		: stdout(stdout), stderr(stderr), exit_code(exit_code) {}
 
 	    vector<string> stdout;
 	    vector<string> stderr;
@@ -47,11 +49,11 @@ namespace storage
 	static void load(const string& filename);
 	static void save(const string& filename);
 
-	static const Command& get_command(const string& command);
-	static void set_command(const string& command, const vector<string>& stdout);
+	static const Command& get_command(const string& name);
+	static void set_command(const string& name, const Command& command);
 
-	static const File& get_file(const string& file);
-	static void set_file(const string& file, const vector<string>& content);
+	static const File& get_file(const string& name);
+	static void set_file(const string& name, const File& file);
 
     private:
 
