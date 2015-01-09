@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -73,6 +73,7 @@
 #define LSSCSIBIN "/usr/bin/lsscsi"
 
 #define LSBIN "/bin/ls"
+#define STATBIN "/usr/bin/stat"
 
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"

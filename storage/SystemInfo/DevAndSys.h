@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -29,24 +29,24 @@
 #include <unistd.h>
 
 #include <string>
-#include <map>
+#include <vector>
 #include <list>
+#include <map>
 
 
 namespace storage
 {
     using std::string;
-    using std::map;
+    using std::vector;
     using std::list;
+    using std::map;
 
 
     class MajorMinor
     {
     public:
 
-	MajorMinor(const string& device, bool do_probe = true);
-
-	void probe();
+	MajorMinor(const string& device);
 
 	friend std::ostream& operator<<(std::ostream& s, const MajorMinor& majorminor);
 
@@ -55,6 +55,8 @@ namespace storage
 	unsigned int getMinor() const { return gnu_dev_minor(majorminor); }
 
     private:
+
+	void parse(const vector<string>& lines);
 
 	string device;
 	dev_t majorminor;

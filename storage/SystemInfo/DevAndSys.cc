@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,8 @@
 #include "storage/SystemInfo/DevAndSys.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -33,31 +35,36 @@ namespace storage
     using namespace std;
 
 
-    MajorMinor::MajorMinor(const string& device, bool do_probe)
+    MajorMinor::MajorMinor(const string& device)
 	: device(device)
     {
-	if (do_probe)
-	    probe();
-    }
+	SystemCmd cmd(STATBIN " --dereference --format '%F 0x%t:0x%T' " + quote(device));
+	if (cmd.retcode() != 0)
+	    throw runtime_error("stat failure for " + device);
 
-
-    void
-    MajorMinor::probe()
-    {
-	struct stat buf;
-	if (stat(device.c_str(), &buf) != 0)
-	    throw runtime_error(device + " not found");
-
-	if (!S_ISBLK(buf.st_mode))
-	    throw runtime_error(device + " not block device");
-
-	majorminor = buf.st_rdev;
+	parse(cmd.stdout());
 
 	y2mil(*this);
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const MajorMinor& majorminor)
+    void
+    MajorMinor::parse(const vector<string>& lines)
+    {
+	if (lines.size() != 1)
+	    throw runtime_error("parse error");
+
+	unsigned int major = 0, minor = 0;
+
+	if (sscanf(lines[0].c_str(), "block special file %X:%X", &major, &minor) != 2)
+	    throw runtime_error("parse error");
+
+	majorminor = makedev(major, minor);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const MajorMinor& majorminor)
     {
 	s << "device:" << majorminor.device << " majorminor:" << majorminor.getMajor()
 	  << ":" << majorminor.getMinor();
