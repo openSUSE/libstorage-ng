@@ -73,20 +73,23 @@ namespace storage
     }
 
 
-    Dir::Dir(const string& path, bool do_probe)
+    Dir::Dir(const string& path)
 	: path(path)
     {
-	if (do_probe)
-	    probe();
+	SystemCmd cmd(LSBIN " -1 --sort=none " + quote(path));
+	if (cmd.retcode() != 0)
+	    throw runtime_error("ls failure for " + path);
+
+	parse(cmd.stdout());
+
+	y2mil(*this);
     }
 
 
     void
-    Dir::probe()
+    Dir::parse(const vector<string>& lines)
     {
-	entries = getDir(path);
-
-	y2mil(*this);
+	entries = list<string>(lines.begin(), lines.end());
     }
 
 

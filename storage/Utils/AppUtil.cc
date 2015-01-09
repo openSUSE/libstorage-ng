@@ -552,39 +552,6 @@ readlink(const string& path, string& buf)
     }
 
 
-    list<string>
-    getDir(const string& path)
-    {
-	int fd = open(path.c_str(), O_RDONLY | O_CLOEXEC);
-	if (fd < 0)
-	{
-	    throw runtime_error("open failed for " + path);
-	}
-
-	DIR* dir = fdopendir(fd);
-	if (dir == NULL)
-	{
-	    close(fd);
-	    throw runtime_error("fdopendir failed for " + path);
-	}
-
-	list<string> entries;
-
-	struct dirent* entry;
-	while ((entry = readdir(dir)) != NULL)
-	{
-	    if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-		continue;
-
-	    entries.push_back(entry->d_name);
-	}
-
-	closedir(dir);
-
-	return entries;
-    }
-
-
     map<string, string>
     getDirLinks(const string& path)
     {

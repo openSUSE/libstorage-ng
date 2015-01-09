@@ -68,9 +68,7 @@ namespace storage
     {
     public:
 
-	Dir(const string& path, bool do_probe = true);
-
-	void probe();
+	Dir(const string& path);
 
 	typedef list<string>::const_iterator const_iterator;
 
@@ -80,6 +78,8 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Dir& dir);
 
     private:
+
+	void parse(const vector<string>& lines);
 
 	string path;
 	list<string> entries;
