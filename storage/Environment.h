@@ -42,6 +42,9 @@ namespace storage
 	const std::string& get_devicegraph_filename() const;
 	void set_devicegraph_filename(const std::string& devicegraph_filename);
 
+	const std::string& get_mockup_filename() const;
+	void set_mockup_filename(const std::string& mockup_filename);
+
 	friend std::ostream& operator<<(std::ostream& out, const Environment& environment);
 
     public:

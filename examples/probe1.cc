@@ -13,7 +13,8 @@ using namespace storage;
 int
 main()
 {
-    Environment environment(true);
+    Environment environment(true, ProbeMode::PROBE_NORMAL_WRITE_MOCKUP, TargetMode::TARGET_NORMAL);
+    environment.set_mockup_filename("probe1-mockup.xml");
 
     Storage storage(environment);
 
@@ -23,5 +24,5 @@ main()
 
     probed->check();
     probed->write_graphviz("probe1");
-    probed->save("probe1.xml");
+    probed->save("probe1-devicegraph.xml");
 }

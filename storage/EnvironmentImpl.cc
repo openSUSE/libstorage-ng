@@ -26,6 +26,13 @@ namespace storage
     }
 
 
+    void
+    Environment::Impl::set_mockup_filename(const string& mockup_filename)
+    {
+	Impl::mockup_filename = mockup_filename;
+    }
+
+
     std::ostream&
     operator<<(std::ostream& out, const Environment::Impl& environment)
     {

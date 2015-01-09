@@ -31,7 +31,7 @@ namespace storage
 	    case ProbeMode::PROBE_NORMAL_WRITE_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::RECORD);
 		probe(probed);
-		Mockup::save("mockup.xml");
+		Mockup::save(environment.get_mockup_filename());
 	    } break;
 
 	    case ProbeMode::PROBE_NONE: {
@@ -43,7 +43,7 @@ namespace storage
 
 	    case ProbeMode::PROBE_READ_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::PLAYBACK);
-		Mockup::load("mockup.xml");
+		Mockup::load(environment.get_mockup_filename());
 		probe(probed);
 	    } break;
 	}

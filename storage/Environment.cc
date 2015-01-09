@@ -58,6 +58,20 @@ namespace storage
     }
 
 
+    const string&
+    Environment::get_mockup_filename() const
+    {
+	return get_impl().get_mockup_filename();
+    }
+
+
+    void
+    Environment::set_mockup_filename(const string& mockup_filename)
+    {
+	get_impl().set_mockup_filename(mockup_filename);
+    }
+
+
     std::ostream&
     operator<<(std::ostream& out, const Environment& environment)
     {
