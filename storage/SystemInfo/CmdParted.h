@@ -67,7 +67,7 @@ namespace storage
 
     private:
 
-	void parse(const vector<string>& lines);
+	void parse(const vector<string>& stdout, const vector<string>& stderr);
 
 	typedef vector<Entry>::iterator iterator;
 
