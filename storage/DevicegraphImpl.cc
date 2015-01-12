@@ -319,6 +319,8 @@ namespace storage
     void
     Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
     {
+	clear();
+
 	XmlFile xml(filename);
 
 	const xmlNode* root_node = xml.getRootElement();

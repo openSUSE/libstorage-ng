@@ -25,7 +25,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Devicegraph* current = storage.get_current();
 
-    current->clear();
     current->load("disk-devicegraph.xml");
     current->check();
 
