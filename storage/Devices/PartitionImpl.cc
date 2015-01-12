@@ -17,13 +17,13 @@ namespace storage
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), boot(false)
+	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
 	getChildValue(node, "region", region);
-	if (getChildValue(node, "partition_type", tmp))
-            type = toValueWithFallback(tmp, PRIMARY);
+	if (getChildValue(node, "type", tmp))
+	    type = toValueWithFallback(tmp, PRIMARY);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
     }
