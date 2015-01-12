@@ -276,42 +276,6 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
     }
 
 
-    template <class InputIterator1, class InputIterator2>
-    void logVolumesDifference(std::ostream& log, InputIterator1 first1, InputIterator1 last1,
-			      InputIterator2 first2, InputIterator2 last2)
-    {
-	for (InputIterator1 i = first1; i != last1; ++i)
-	{
-	    InputIterator2 j = first2;
-	    while (j != last2 && (i->device() != j->device() || i->created() != j->created()))
-		++j;
-	    if (j != last2)
-	    {
-		if (!i->equalContent(*j))
-		{
-		    i->logDifference(log, *j);
-		    log << std::endl;
-		}
-	    }
-	    else
-	    {
-		log << "  -->" << *i << std::endl;
-	    }
-	}
-
-	for (InputIterator2 i = first2; i != last2; ++i)
-	{
-	    InputIterator1 j = first1;
-	    while (j != last1 && (i->device() != j->device() || i->created() != j->created()))
-		++j;
-	    if (j == last1)
-	    {
-		log << "  <--" << *i << std::endl;
-	    }
-	}
-    }
-
-
     template <class T, unsigned int sz>
     inline unsigned int lengthof (T (&)[sz]) { return sz; }
 
