@@ -8,6 +8,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -102,6 +103,32 @@ namespace storage
 	actions.push_back(new Action::DeletePartition(get_sid()));
 
 	actiongraph.add_chain(actions);
+    }
+
+
+    bool
+    Partition::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!BlkDevice::Impl::equal(rhs))
+	    return false;
+
+	return region == rhs.region && type == rhs.type && id == rhs.id && boot == rhs.boot;
+    }
+
+
+    void
+    Partition::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "region", region, rhs.region);
+	storage::log_diff_enum(log, "type", type, rhs.type);
+	storage::log_diff_hex(log, "id", id, rhs.id);
+	storage::log_diff(log, "boot", boot, rhs.boot);
     }
 
 

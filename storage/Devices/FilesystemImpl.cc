@@ -4,6 +4,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -53,6 +54,31 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	return devicegraph->get_impl().getDevices<BlkDevice>(devicegraph->get_impl().parents(vertex));
+    }
+
+
+    bool
+    Filesystem::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!Device::Impl::equal(rhs))
+	    return false;
+
+	return label == rhs.label && uuid == rhs.uuid && mountpoints == rhs.mountpoints;
+    }
+
+
+    void
+    Filesystem::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	Device::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "label", label, rhs.label);
+	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+	// storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints); // TODO
     }
 
 

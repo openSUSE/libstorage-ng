@@ -25,6 +25,9 @@ namespace storage
 	sid_t get_source_sid() const;
 	sid_t get_target_sid() const;
 
+	bool operator==(const Holder& rhs) const;
+	bool operator!=(const Holder& rhs) const;
+
     public:
 
 	class Impl;

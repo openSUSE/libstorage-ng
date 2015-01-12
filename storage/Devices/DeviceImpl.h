@@ -31,6 +31,9 @@ namespace storage
 
 	virtual void save(xmlNode* node) const = 0;
 
+	bool operator==(const Impl& rhs) const;
+	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
+
 	sid_t get_sid() const { return sid; }
 
 	void set_devicegraph_and_vertex(Devicegraph* devicegraph,
@@ -49,6 +52,9 @@ namespace storage
 
 	virtual void add_create_actions(Actiongraph& actiongraph) const;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const;
+
+	virtual bool equal(const Impl& rhs) const = 0;
+	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
 
     protected:
 

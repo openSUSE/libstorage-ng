@@ -24,6 +24,20 @@ namespace storage
     }
 
 
+    bool
+    Device::operator==(const Device& rhs) const
+    {
+	return get_impl().operator==(rhs.get_impl());
+    }
+
+
+    bool
+    Device::operator!=(const Device& rhs) const
+    {
+	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
     void
     Device::create(Devicegraph* devicegraph)
     {

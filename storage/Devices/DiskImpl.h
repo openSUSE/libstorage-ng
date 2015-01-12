@@ -39,6 +39,9 @@ namespace storage
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
+	virtual bool equal(const Device::Impl& rhs) const override;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
+
     private:
 
 	// geometry

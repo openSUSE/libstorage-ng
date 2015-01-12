@@ -25,6 +25,9 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual bool equal(const Device::Impl& rhs) const override;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
+
 	string name;
 
     };

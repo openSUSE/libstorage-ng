@@ -132,4 +132,27 @@ namespace storage
 	return to_disk(get_devicegraph()->get_impl().graph[v].get());
     }
 
+
+    bool
+    PartitionTable::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!Device::Impl::equal(rhs))
+	    return false;
+
+	return read_only == rhs.read_only;
+    }
+
+
+    void
+    PartitionTable::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	Device::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "read-only", read_only, rhs.read_only);
+    }
+
 }

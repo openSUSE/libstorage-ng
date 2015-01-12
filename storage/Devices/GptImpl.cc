@@ -45,4 +45,25 @@ namespace storage
 	actiongraph.add_chain(actions);
     }
 
+
+    bool
+    Gpt::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!PartitionTable::Impl::equal(rhs))
+	    return false;
+
+	return true;
+    }
+
+
+    void
+    Gpt::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	PartitionTable::Impl::log_diff(log, rhs);
+    }
+
 }

@@ -44,6 +44,11 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
+	bool operator==(const Impl& rhs) const;
+	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
+
+	void log_diff(std::ostream& log, const Impl& rhs) const;
+
 	bool empty() const;
 
 	size_t num_devices() const;

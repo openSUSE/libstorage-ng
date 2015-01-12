@@ -4,6 +4,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -26,6 +27,16 @@ namespace storage
     {
 	if (!getChildValue(node, "sid", sid))
 	    throw runtime_error("no sid");
+    }
+
+
+    bool
+    Device::Impl::operator==(const Impl& rhs) const
+    {
+	if (typeid(*this) != typeid(rhs))
+	    return false;
+
+	return equal(rhs);
     }
 
 
@@ -104,6 +115,20 @@ namespace storage
 	actions.push_back(new Action::Delete(sid));
 
 	actiongraph.add_chain(actions);
+    }
+
+
+    bool
+    Device::Impl::equal(const Impl& rhs) const
+    {
+	return sid == rhs.sid;
+    }
+
+
+    void
+    Device::Impl::log_diff(std::ostream& log, const Impl& rhs) const
+    {
+	storage::log_diff(log, "sid", sid, rhs.sid);
     }
 
 }

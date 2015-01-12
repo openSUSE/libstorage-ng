@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2013] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -133,7 +133,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 
 
     template <typename Type>
-    void logDiff(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
+    void log_diff(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
     {
 	static_assert(!std::is_enum<Type>::value, "is enum");
 
@@ -143,7 +143,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 
 
     template <typename Type>
-    void logDiffHex(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
+    void log_diff_hex(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
     {
 	static_assert(std::is_integral<Type>::value, "not integral");
 
@@ -153,7 +153,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 
 
     template <typename Type>
-    void logDiffEnum(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
+    void log_diff_enum(std::ostream& log, const char* text, const Type& lhs, const Type& rhs)
     {
 	static_assert(std::is_enum<Type>::value, "not enum");
 
@@ -163,7 +163,7 @@ template<class Key, class Value> std::ostream& operator<<( std::ostream& s, cons
 
 
     inline
-    void logDiff(std::ostream& log, const char* text, bool lhs, bool rhs)
+    void log_diff(std::ostream& log, const char* text, bool lhs, bool rhs)
     {
 	if (lhs != rhs)
 	{

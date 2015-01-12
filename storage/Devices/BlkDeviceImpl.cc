@@ -3,6 +3,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -67,6 +68,31 @@ namespace storage
     BlkDevice::Impl::get_size_string() const
     {
 	return byte_to_humanstring(1024 * get_size_k(), false, 2, false);
+    }
+
+
+    bool
+    BlkDevice::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!Device::Impl::equal(rhs))
+	    return false;
+
+	return name == rhs.name && size_k == rhs.size_k && major_minor == rhs.major_minor;
+    }
+
+
+    void
+    BlkDevice::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	Device::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "name", name, rhs.name);
+	storage::log_diff(log, "size_k", size_k, rhs.size_k);
+	storage::log_diff(log, "major_minor", major_minor, rhs.major_minor);
     }
 
 }

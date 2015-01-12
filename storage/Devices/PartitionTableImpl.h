@@ -34,6 +34,9 @@ namespace storage
 	Disk* get_disk();	// TODO rename, blkdevice
 	const Disk* get_disk() const; // TODO rename, blkdevice
 
+	virtual bool equal(const Device::Impl& rhs) const override = 0;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
+
     protected:
 
 	Impl()

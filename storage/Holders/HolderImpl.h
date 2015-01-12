@@ -19,6 +19,9 @@ namespace storage
 
 	virtual ~Impl() {}
 
+	bool operator==(const Impl& rhs) const;
+	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
+
 	virtual Impl* clone() const = 0;
 
 	virtual void save(xmlNode* node) const = 0;

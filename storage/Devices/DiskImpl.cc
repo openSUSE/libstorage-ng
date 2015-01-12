@@ -8,6 +8,7 @@
 #include "storage/Action.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -119,6 +120,29 @@ namespace storage
     Disk::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	throw runtime_error("cannot delete disk");
+    }
+
+
+    bool
+    Disk::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!BlkDevice::Impl::equal(rhs))
+	    return false;
+
+	return transport == rhs.transport;
+    }
+
+
+    void
+    Disk::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff_enum(log, "transport", transport, rhs.transport);
     }
 
 }

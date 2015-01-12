@@ -20,6 +20,17 @@ namespace storage
     }
 
 
+
+    bool
+    Holder::Impl::operator==(const Impl& rhs) const
+    {
+	if (typeid(*this) != typeid(rhs))
+	    return false;
+
+	return true; // so far nothing more to compare
+    }
+
+
     void
     Holder::Impl::set_devicegraph_and_edge(Devicegraph* devicegraph,
 					Devicegraph::Impl::edge_descriptor edge)

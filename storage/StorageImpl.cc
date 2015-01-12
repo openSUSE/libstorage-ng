@@ -202,15 +202,7 @@ namespace storage
     bool
     Storage::Impl::equal_devicegraph(const string& lhs, const string& rhs) const
     {
-	const Devicegraph* tmp1 = static_cast<const Impl*>(this)->get_devicegraph(lhs);
-
-	const Devicegraph* tmp2 = static_cast<const Impl*>(this)->get_devicegraph(rhs);
-
-	// TODO really needed? just calculate Actiongraph instead? not always
-	// same result, e.g. removing a Ext4 object (not mounted, not in
-	// fstab) results in no action - but the graphs differ
-
-	return true;
+	return *get_devicegraph(lhs) == *get_devicegraph(rhs);
     }
 
 

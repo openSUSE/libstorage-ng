@@ -34,6 +34,9 @@ namespace storage
 	Devicegraph();
 	~Devicegraph();
 
+	bool operator==(const Devicegraph& rhs) const;
+	bool operator!=(const Devicegraph& rhs) const;
+
 	void load(const std::string& filename);
 	void save(const std::string& filename) const;
 

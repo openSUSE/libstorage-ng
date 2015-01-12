@@ -22,6 +22,20 @@ namespace storage
     }
 
 
+    bool
+    Holder::operator==(const Holder& rhs) const
+    {
+	return get_impl().operator==(rhs.get_impl());
+    }
+
+
+    bool
+    Holder::operator!=(const Holder& rhs) const
+    {
+	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
     void
     Holder::create(Devicegraph* devicegraph, const Device* source, const Device* target)
     {

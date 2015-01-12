@@ -30,6 +30,9 @@ namespace storage
 	unsigned int get_major() const { return gnu_dev_major(major_minor); }
 	unsigned int get_minor() const { return gnu_dev_minor(major_minor); }
 
+	virtual bool equal(const Device::Impl& rhs) const override = 0;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
+
     protected:
 
 	Impl(const string& name)

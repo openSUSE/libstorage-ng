@@ -34,6 +34,20 @@ namespace storage
     }
 
 
+    bool
+    Devicegraph::operator==(const Devicegraph& rhs) const
+    {
+	return get_impl().operator==(rhs.get_impl());
+    }
+
+
+    bool
+    Devicegraph::operator!=(const Devicegraph& rhs) const
+    {
+	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
     void
     Devicegraph::load(const string& filename)
     {

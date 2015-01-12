@@ -60,6 +60,27 @@ namespace storage
     }
 
 
+    bool
+    Ext4::Impl::equal(const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	if (!Filesystem::Impl::equal(rhs))
+	    return false;
+
+	return true;
+    }
+
+
+    void
+    Ext4::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    {
+	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+
+	Filesystem::Impl::log_diff(log, rhs);
+    }
+
+
     namespace Action
     {
 

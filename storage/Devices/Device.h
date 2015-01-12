@@ -44,6 +44,9 @@ namespace storage
 
 	sid_t get_sid() const;
 
+	bool operator==(const Device& rhs) const;
+	bool operator!=(const Device& rhs) const;
+
 	virtual std::string get_displayname() const = 0;
 
 	virtual void check() const;

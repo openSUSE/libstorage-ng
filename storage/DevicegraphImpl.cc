@@ -28,6 +28,82 @@ namespace storage
 {
 
     bool
+    Devicegraph::Impl::operator==(const Impl& rhs) const
+    {
+	const set<sid_t> lhs_device_sids = get_device_sids();
+	const set<sid_t> rhs_device_sids = rhs.get_device_sids();
+
+	if (lhs_device_sids != rhs_device_sids)
+	    return false;
+
+	const set<pair<sid_t, sid_t>> lhs_holder_sids = get_holder_sids();
+	const set<pair<sid_t, sid_t>> rhs_holder_sids = rhs.get_holder_sids();
+
+	if (lhs_holder_sids != rhs_holder_sids)
+	    return false;
+
+	for (sid_t sid : lhs_device_sids)
+	{
+	    vertex_descriptor lhs_vertex = find_vertex(sid);
+	    vertex_descriptor rhs_vertex = rhs.find_vertex(sid);
+
+	    if (*graph[lhs_vertex].get() != *rhs.graph[rhs_vertex].get())
+		return false;
+	}
+
+	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
+	{
+	    edge_descriptor lhs_edge = find_edge(sid.first, sid.second);
+	    edge_descriptor rhs_edge = rhs.find_edge(sid.first, sid.second);
+
+	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
+		return false;
+	}
+
+	return true;
+    }
+
+
+    void
+    Devicegraph::Impl::log_diff(std::ostream& log, const Impl& rhs) const
+    {
+	// TODO
+
+	const set<sid_t> lhs_device_sids = get_device_sids();
+	const set<sid_t> rhs_device_sids = rhs.get_device_sids();
+
+	if (lhs_device_sids != rhs_device_sids)
+	    log << "device sids differ" << endl;
+
+	for (sid_t sid : lhs_device_sids)
+	{
+	    vertex_descriptor lhs_vertex = find_vertex(sid);
+	    vertex_descriptor rhs_vertex = rhs.find_vertex(sid);
+
+	    if (*graph[lhs_vertex].get() != *rhs.graph[rhs_vertex].get())
+		log << "sid " << sid << " device differ" << endl;
+
+	    graph[lhs_vertex]->get_impl().log_diff(log, rhs.graph[rhs_vertex]->get_impl());
+	}
+
+	const set<pair<sid_t, sid_t>> lhs_holder_sids = get_holder_sids();
+	const set<pair<sid_t, sid_t>> rhs_holder_sids = rhs.get_holder_sids();
+
+	if (lhs_holder_sids != rhs_holder_sids)
+	    log << "holder sids differ" << endl;
+
+	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
+	{
+	    edge_descriptor lhs_edge = find_edge(sid.first, sid.second);
+	    edge_descriptor rhs_edge = rhs.find_edge(sid.first, sid.second);
+
+	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
+		log << "sid " << sid.first << " " << sid.second << " holder differ" << endl;
+	}
+    }
+
+
+    bool
     Devicegraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;
