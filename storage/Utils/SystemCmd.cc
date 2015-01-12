@@ -99,7 +99,15 @@ SystemCmd::execute(const string& Cmd_Cv)
 
     y2mil("SystemCmd Executing:\"" << Cmd_Cv << "\"");
     Background_b = false;
-    return doExecute(Cmd_Cv);
+
+    int ret = doExecute(Cmd_Cv);
+
+    if (Mockup::get_mode() == Mockup::Mode::RECORD)
+    {
+	Mockup::set_command(Cmd_Cv, Mockup::Command(Lines_aC[IDX_STDOUT], Lines_aC[IDX_STDERR], Ret_i));
+    }
+
+    return ret;
 }
 
 
@@ -309,12 +317,6 @@ SystemCmd::doExecute( const string& Cmd )
     y2mil("system() Returns:" << Ret_i);
     if( Ret_i!=0 )
 	logOutput();
-
-    if (Mockup::get_mode() == Mockup::Mode::RECORD)
-    {
-	Mockup::set_command(Cmd, stdout());
-    }
-
     return Ret_i;
     }
 
