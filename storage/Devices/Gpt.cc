@@ -60,6 +60,23 @@ namespace storage
     Gpt::print(std::ostream& out) const
     {
 	PartitionTable::print(out);
+
+	if (get_enlarge())
+	    out << " enlarge";
+    }
+
+
+    bool
+    Gpt::get_enlarge() const
+    {
+	return get_impl().get_enlarge();
+    }
+
+
+    void
+    Gpt::set_enlarge(bool enlarge)
+    {
+	get_impl().set_enlarge(enlarge);
     }
 
 }

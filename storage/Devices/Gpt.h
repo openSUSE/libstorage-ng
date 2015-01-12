@@ -17,6 +17,9 @@ namespace storage
 
 	virtual std::string get_displayname() const override { return "gpt"; }
 
+	bool get_enlarge() const;
+	void set_enlarge(bool enlarge);
+
     public:
 
 	class Impl;

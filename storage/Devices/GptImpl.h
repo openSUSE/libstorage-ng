@@ -17,7 +17,7 @@ namespace storage
     public:
 
 	Impl()
-	    : PartitionTable::Impl() {}
+	    : PartitionTable::Impl(), enlarge(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -25,13 +25,20 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void probe(SystemInfo& systeminfo);
+
 	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
-	// enlarge
+	bool get_enlarge() const { return enlarge; }
+	void set_enlarge(bool enlarge) { Impl::enlarge = enlarge; }
+
+    private:
+
+	bool enlarge;
 
     };
 
