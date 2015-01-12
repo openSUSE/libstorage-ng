@@ -108,8 +108,8 @@ namespace storage
     void
     Actiongraph::get_actions()
     {
-	const set<sid_t> lhs_sids = lhs->get_impl().get_sids();
-	const set<sid_t> rhs_sids = rhs->get_impl().get_sids();
+	const set<sid_t> lhs_sids = lhs->get_impl().get_device_sids();
+	const set<sid_t> rhs_sids = rhs->get_impl().get_device_sids();
 
 	vector<sid_t> created_sids;
 	back_insert_iterator<vector<sid_t>> bii1(created_sids);

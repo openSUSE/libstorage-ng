@@ -16,6 +16,7 @@ namespace storage
 {
     using std::vector;
     using std::set;
+    using std::pair;
 
 
     class Devicegraph::Impl : private boost::noncopyable
@@ -48,7 +49,8 @@ namespace storage
 	size_t num_devices() const;
 	size_t num_holders() const;
 
-	set<sid_t> get_sids() const;
+	set<sid_t> get_device_sids() const;
+	set<pair<sid_t, sid_t>> get_holder_sids() const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;

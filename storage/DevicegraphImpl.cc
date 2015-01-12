@@ -63,11 +63,21 @@ namespace storage
 
 
     set<sid_t>
-    Devicegraph::Impl::get_sids() const
+    Devicegraph::Impl::get_device_sids() const
     {
 	set<sid_t> sids;
 	for (vertex_descriptor vertex : vertices())
 	    sids.insert(graph[vertex]->get_sid());
+	return sids;
+    }
+
+
+    set<pair<sid_t, sid_t>>
+    Devicegraph::Impl::get_holder_sids() const
+    {
+	set<pair<sid_t, sid_t>> sids;
+	for (edge_descriptor edge : edges())
+	    sids.insert(make_pair(graph[edge]->get_source_sid(), graph[edge]->get_target_sid()));
 	return sids;
     }
 
