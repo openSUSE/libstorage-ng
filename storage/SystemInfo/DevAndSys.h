@@ -91,8 +91,8 @@ namespace storage
     {
     public:
 
-	typedef map<string, list<string>>::value_type value_type;
-	typedef map<string, list<string>>::const_iterator const_iterator;
+	typedef map<string, vector<string>>::value_type value_type;
+	typedef map<string, vector<string>>::const_iterator const_iterator;
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
@@ -103,7 +103,10 @@ namespace storage
 
     protected:
 
-	map<string, list<string>> data;
+	map<string, string> getDirLinks(const string& path) const;
+	map<string, string> parse(const vector<string>& lines) const;
+
+	map<string, vector<string>> data;
 
     };
 
@@ -112,9 +115,7 @@ namespace storage
     {
     public:
 
-	UdevMap(const string& path, bool do_probe = true);
-
-	void probe();
+	UdevMap(const string& path);
 
 	friend std::ostream& operator<<(std::ostream& s, const UdevMap& udevmap);
 
@@ -129,9 +130,7 @@ namespace storage
     {
     public:
 
-	MdLinks(bool do_probe = true);
-
-	void probe();
+	MdLinks();
 
     };
 

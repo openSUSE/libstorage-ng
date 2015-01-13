@@ -101,6 +101,45 @@ namespace storage
     }
 
 
+    map<string, string>
+    DevLinks::getDirLinks(const string& path) const
+    {
+	SystemCmd cmd(LSBIN " -1l --sort=none " + quote(path));
+	if (cmd.retcode() != 0)
+	    throw runtime_error("ls failure for " + path);
+
+	return parse(cmd.stdout());
+    }
+
+
+    map<string, string>
+    DevLinks::parse(const vector<string>& lines) const
+    {
+	map<string, string> ret;
+
+	for (const string& line : lines)
+	{
+	    list<string> tmp = splitString(line);
+	    if (tmp.size() >= 3)
+	    {
+		string v = tmp.back();
+		tmp.pop_back();
+
+		if (tmp.back() == "->")
+		{
+		    tmp.pop_back();
+
+		    string k = tmp.back();
+
+		    ret[k] = v;
+		}
+	    }
+	}
+
+	return ret;
+    }
+
+
     std::ostream& operator<<(std::ostream& s, const DevLinks& devlinks)
     {
 	for (const DevLinks::value_type& it : devlinks)
@@ -110,16 +149,8 @@ namespace storage
     }
 
 
-    UdevMap::UdevMap(const string& path, bool do_probe)
+    UdevMap::UdevMap(const string& path)
 	: path(path)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    UdevMap::probe()
     {
 	map<string, string> links = getDirLinks(path);
 	for (const map<string, string>::value_type& it : links)
@@ -147,15 +178,7 @@ namespace storage
     }
 
 
-    MdLinks::MdLinks(bool do_probe)
-    {
-	if (do_probe)
-	    probe();
-    }
-
-
-    void
-    MdLinks::probe()
+    MdLinks::MdLinks()
     {
 	map<string, string> links = getDirLinks("/dev/md");
 	for (const map<string, string>::value_type& it : links)

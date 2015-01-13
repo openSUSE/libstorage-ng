@@ -76,8 +76,6 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string udevEncode(const string&);
     string udevDecode(const string&);
 
-    map<string, string> getDirLinks(const string& path);
-
     bool mkdtemp(string& path);
 
     bool readlink(const string& path, string& buf);

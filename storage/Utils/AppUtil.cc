@@ -552,39 +552,6 @@ readlink(const string& path, string& buf)
     }
 
 
-    map<string, string>
-    getDirLinks(const string& path)
-    {
-	map<string, string> links;
-
-	int fd = open(path.c_str(), O_RDONLY | O_CLOEXEC);
-	if (fd >= 0)
-	{
-	    DIR* dir;
-	    if ((dir = fdopendir(fd)) != NULL)
-	    {
-		struct dirent* entry;
-		while ((entry = readdir(dir)) != NULL)
-		{
-		    if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-			continue;
-
-		    string tmp;
-		    if (readlinkat(fd, entry->d_name, tmp))
-			links[entry->d_name] = tmp;
-		}
-		closedir(dir);
-	    }
-	    else
-	    {
-		close(fd);
-	    }
-	}
-
-	return links;
-    }
-
-
 unsigned
 getMajorDevices(const char* driver)
 {
