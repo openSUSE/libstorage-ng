@@ -92,7 +92,8 @@ namespace storage
 
 	storage::log_diff(log, "name", name, rhs.name);
 	storage::log_diff(log, "size_k", size_k, rhs.size_k);
-	storage::log_diff(log, "major_minor", major_minor, rhs.major_minor);
+	storage::log_diff(log, "major", get_major(), rhs.get_major());
+	storage::log_diff(log, "minor", get_minor(), rhs.get_minor());
     }
 
 }
