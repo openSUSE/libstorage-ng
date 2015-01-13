@@ -149,30 +149,6 @@ checkNormalFile(const string& Path_Cv)
     }
 
 
-    bool
-    getMajorMinor(const string& device, unsigned long& major, unsigned long& minor, bool may_fail)
-    {
-	bool ret = false;
-	string dev = normalizeDevice(device);
-	struct stat sbuf;
-	if (stat(device.c_str(), &sbuf) == 0)
-	{
-	    ret = S_ISBLK(sbuf.st_mode)||S_ISLNK(sbuf.st_mode);
-	    if( ret )
-		{
-		major = gnu_dev_major(sbuf.st_rdev);
-		minor = gnu_dev_minor(sbuf.st_rdev);
-		}
-	}
-	else
-	{
-	    if( !may_fail )
-		y2err("stat for " << device << " failed errno:" << errno << " (" << strerror(errno) << ")");
-	}
-	return ret;
-    }
-
-
 string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi)
   {
   string::size_type pos;
@@ -528,48 +504,6 @@ string afterLast(const string& s, const string& pat )
 	free(tmp);
 	return true;
     }
-
-
-bool
-readlink(const string& path, string& buf)
-{
-    char tmp[1024];
-    int count = ::readlink(path.c_str(), tmp, sizeof(tmp));
-    if (count >= 0)
-	buf = string(tmp, count);
-    return count != -1;
-}
-
-
-    bool
-    readlinkat(int fd, const string& path, string& buf)
-    {
-        char tmp[1024];
-        int count = ::readlinkat(fd, path.c_str(), tmp, sizeof(tmp));
-        if (count >= 0)
-            buf = string(tmp, count);
-        return count != -1;
-    }
-
-
-unsigned
-getMajorDevices(const char* driver)
-{
-    unsigned ret = 0;
-
-    AsciiFile file("/proc/devices");
-    const vector<string>& lines = file.lines();
-
-    Regex rx("^" + Regex::ws + "([0-9]+)" + Regex::ws + string(driver) + "$");
-
-    if (find_if(lines, regex_matches(rx)) != lines.end())
-	rx.cap(1) >> ret;
-    else
-	y2err("did not find " << driver << " in /proc/devices");
-
-    y2mil("driver:" << driver << " ret:" << ret);
-    return ret;
-}
 
 
     string

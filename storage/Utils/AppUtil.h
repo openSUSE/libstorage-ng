@@ -59,8 +59,6 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     bool getStatVfs(const string& path, StatVfs&);
 
-    bool getMajorMinor(const string& device, unsigned long& major, unsigned long& minor, bool may_fail=false);
-
 
 string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 std::list<string> splitString( const string& s, const string& delChars=" \t\n",
@@ -78,15 +76,11 @@ std::map<string,string> makeMap( const std::list<string>& l,
 
     bool mkdtemp(string& path);
 
-    bool readlink(const string& path, string& buf);
-
     string normalizeDevice(const string& dev);
     list<string> normalizeDevices(const list<string>& devs);
     string undevDevice(const string& dev);
 
 bool isNfsDev( const string& dev );
-
-unsigned getMajorDevices(const char* driver);
 
 
 template<class StreamType>

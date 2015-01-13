@@ -199,26 +199,6 @@ namespace storage
 
 
     template<class Type>
-    bool
-    read_sysfs_property(const string& path, Type& value, bool log_error = true)
-    {
-	std::ifstream file(path);
-	classic(file);
-	file >> value;
-	file.close();
-
-	if (file.fail())
-	{
-	    if (log_error)
-		y2err("reading " << path << " failed");
-	    return false;
-	}
-
-	return true;
-    }
-
-
-    template<class Type>
     struct deref_less : public std::binary_function<const Type*, const Type*, bool>
     {
 	bool operator()(const Type* x, const Type* y) const { return *x < *y; }
@@ -282,21 +262,6 @@ namespace storage
 	    pos = l.insert(l.end(), v);
 	return pos;
 	}
-
-
-    template <class InputIterator1, class InputIterator2>
-    bool equalContent(InputIterator1 first1, InputIterator1 last1,
-		      InputIterator2 first2, InputIterator2 last2)
-    {
-	while (first1 != last1 && first2 != last2)
-	{
-	    if (!first1->equalContent(*first2))
-		return false;
-	    ++first1;
-	    ++first2;
-	}
-	return first1 == last1 && first2 == last2;
-    }
 
 
     template <class T, unsigned int sz>
