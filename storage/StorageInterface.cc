@@ -427,6 +427,9 @@ namespace storage_legacy
 	    info.device = disk->get_name();
 	    info.readonly = false;
 
+	    info.udevPath = disk->get_udev_path();
+	    info.udevId = list<string>(disk->get_udev_ids().begin(), disk->get_udev_ids().end());
+
 	    y2mil("DISK " << info.name << " " <<  info.device);
 	    infos.push_back(info);
 	}
@@ -561,6 +564,9 @@ namespace storage_legacy
 		info.v.name = partition->get_name().substr(5);
 		info.v.device = partition->get_name();
 		info.v.sizeK = partition->get_size_k();
+
+		info.v.udevPath = partition->get_udev_path();
+		info.v.udevId = list<string>(partition->get_udev_ids().begin(), partition->get_udev_ids().end());
 
 		info.cylRegion = partition->get_region();
 		info.nr = partition->get_number();
