@@ -27,6 +27,7 @@
 #include <ostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include <list>
 #include <map>
 #include <deque>
@@ -38,61 +39,81 @@
 namespace storage
 {
 
-template<class Num> string decString(Num number)
-{
-    static_assert(std::is_integral<Num>::value, "not integral");
-
-    std::ostringstream num_str;
-    classic(num_str);
-    num_str << number;
-    return num_str.str();
-}
-
-
-template<class Num> string hexString(Num number)
-{
-    static_assert(std::is_integral<Num>::value, "not integral");
-
-    std::ostringstream num_str;
-    classic(num_str);
-    num_str << std::hex << number;
-    return num_str.str();
-}
-
-
-template<class Value> void operator>>(const string& d, Value& v)
-{
-    std::istringstream Data(d);
-    classic(Data);
-    Data >> v;
-}
-
-
-template<class Value> std::ostream& operator<<( std::ostream& s, const std::list<Value>& l )
+    template<class Num>
+    string decString(Num number)
     {
-    s << "<";
-    for( typename std::list<Value>::const_iterator i=l.begin(); i!=l.end(); i++ )
-	{
-	if( i!=l.begin() )
-	    s << " ";
-	s << *i;
-	}
-    s << ">";
-    return( s );
+	static_assert(std::is_integral<Num>::value, "not integral");
+
+	std::ostringstream num_str;
+	classic(num_str);
+	num_str << number;
+	return num_str.str();
     }
 
 
-template<class Value> std::ostream& operator<<( std::ostream& s, const std::deque<Value>& l )
+    template<class Num>
+    string hexString(Num number)
     {
-    s << "<";
-    for( typename std::deque<Value>::const_iterator i=l.begin(); i!=l.end(); i++ )
+	static_assert(std::is_integral<Num>::value, "not integral");
+
+	std::ostringstream num_str;
+	classic(num_str);
+	num_str << std::hex << number;
+	return num_str.str();
+    }
+
+
+    template<class Value>
+    void operator>>(const string& d, Value& v)
+    {
+	std::istringstream Data(d);
+	classic(Data);
+	Data >> v;
+    }
+
+
+    template<class Value>
+    std::ostream& operator<<(std::ostream& s, const std::list<Value>& l)
+    {
+	s << "<";
+	for (typename std::list<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
 	{
-	if( i!=l.begin() )
-	    s << " ";
-	s << *i;
+	    if (it != l.begin())
+		s << " ";
+	    s << *it;
 	}
-    s << ">";
-    return( s );
+	s << ">";
+	return s;
+    }
+
+
+    template<class Value>
+    std::ostream& operator<<(std::ostream& s, const std::deque<Value>& l)
+    {
+	s << "<";
+	for (typename std::deque<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
+	{
+	    if (it != l.begin())
+		s << " ";
+	    s << *it;
+	}
+	s << ">";
+	return s;
+    }
+
+
+    template<class Value>
+    std::ostream& operator<<(std::ostream& s, const std::vector<Value>& l)
+    {
+	s << "<";
+	for (typename std::vector<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
+	{
+	    if (it != l.begin())
+		s << " ";
+	    s << *it;
+	}
+	s << ">";
+	return s;
     }
 
 
@@ -111,24 +132,26 @@ template<class Value> std::ostream& operator<<( std::ostream& s, const std::dequ
     }
 
 
-template<class F, class S> std::ostream& operator<<( std::ostream& s, const std::pair<F,S>& p )
+    template<class F, class S>
+    std::ostream& operator<<(std::ostream& s, const std::pair<F, S>& p)
     {
-    s << "[" << p.first << ":" << p.second << "]";
-    return( s );
+	s << "[" << p.first << ":" << p.second << "]";
+	return s;
     }
 
 
-template<class Key, class Value> std::ostream& operator<<( std::ostream& s, const std::map<Key,Value>& m )
+    template<class Key, class Value>
+    std::ostream& operator<<(std::ostream& s, const std::map<Key, Value>& m)
     {
-    s << "<";
-    for( typename std::map<Key,Value>::const_iterator i=m.begin(); i!=m.end(); i++ )
+	s << "<";
+	for (typename std::map<Key,Value>::const_iterator it = m.begin(); it != m.end(); ++it)
 	{
-	if( i!=m.begin() )
-	    s << " ";
-	s << i->first << ":" << i->second;
+	    if (it != m.begin())
+		s << " ";
+	    s << it->first << ":" << it->second;
 	}
-    s << ">";
-    return( s );
+	s << ">";
+	return s;
     }
 
 
