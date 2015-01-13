@@ -104,6 +104,8 @@ namespace storage
     map<string, string>
     DevLinks::getDirLinks(const string& path) const
     {
+	// TODO use cmd(STATBIN " --format '%F %N' " + quote(path) + "/*")?
+
 	SystemCmd cmd(LSBIN " -1l --sort=none " + quote(path));
 	if (cmd.retcode() != 0)
 	    throw runtime_error("ls failure for " + path);
