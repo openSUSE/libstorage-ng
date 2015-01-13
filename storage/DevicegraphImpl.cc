@@ -19,6 +19,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/XmlFile.h"
@@ -448,7 +449,7 @@ namespace storage
 	for (vertex_descriptor vertex : vertices())
 	{
 	    const Device* device = graph[vertex].get();
-	    xmlNode* device_node = xmlNewChild(devices_node, device->get_classname());
+	    xmlNode* device_node = xmlNewChild(devices_node, device->get_impl().get_classname());
 	    device->save(device_node);
 	}
 
@@ -457,7 +458,7 @@ namespace storage
 	for (edge_descriptor edge : edges())
 	{
 	    const Holder* holder = graph[edge].get();
-	    xmlNode* holder_node = xmlNewChild(holders_node, holder->get_classname());
+	    xmlNode* holder_node = xmlNewChild(holders_node, holder->get_impl().get_classname());
 	    holder->save(holder_node);
 	}
 

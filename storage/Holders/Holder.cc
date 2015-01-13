@@ -106,18 +106,10 @@ namespace storage
     }
 
 
-    void
-    Holder::print(std::ostream& out) const
-    {
-	out << get_classname() << " source-sid:" << get_source_sid()
-	    << " target-sid:" << get_target_sid();
-    }
-
-
     std::ostream&
     operator<<(std::ostream& out, const Holder& holder)
     {
-	holder.print(out);
+	holder.get_impl().print(out);
 	return out;
     }
 

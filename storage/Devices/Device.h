@@ -47,7 +47,7 @@ namespace storage
 	bool operator==(const Device& rhs) const;
 	bool operator!=(const Device& rhs) const;
 
-	virtual std::string get_displayname() const = 0;
+	std::string get_displayname() const;
 
 	virtual void check() const;
 
@@ -77,8 +77,6 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
-	virtual const char* get_classname() const = 0;
-
 	virtual Device* clone() const = 0;
 
 	void save(xmlNode* node) const;
@@ -89,8 +87,6 @@ namespace storage
 
 	void create(Devicegraph* devicegraph);
 	void load(Devicegraph* devicegraph);
-
-	virtual void print(std::ostream& out) const = 0;
 
     private:
 

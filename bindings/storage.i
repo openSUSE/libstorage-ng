@@ -5,10 +5,8 @@
 %module storage
 
 %ignore "get_impl";
-%ignore "get_classname";
 %ignore "clone";
 %ignore "operator <<";
-%ignore "print";
 
 %rename("==") "operator==";
 %rename("!=") "operator!=";

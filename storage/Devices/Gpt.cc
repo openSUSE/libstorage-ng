@@ -56,16 +56,6 @@ namespace storage
     }
 
 
-    void
-    Gpt::print(std::ostream& out) const
-    {
-	PartitionTable::print(out);
-
-	if (get_enlarge())
-	    out << " enlarge";
-    }
-
-
     bool
     Gpt::get_enlarge() const
     {

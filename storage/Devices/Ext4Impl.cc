@@ -81,6 +81,13 @@ namespace storage
     }
 
 
+    void
+    Ext4::Impl::print(std::ostream& out) const
+    {
+	Filesystem::Impl::print(out);
+    }
+
+
     namespace Action
     {
 

@@ -63,14 +63,14 @@ namespace storage
     const string&
     LvmVg::get_name() const
     {
-	return get_impl().name;
+	return get_impl().get_name();
     }
 
 
     void
     LvmVg::set_name(const string& name)
     {
-	get_impl().name = name;
+	get_impl().set_name(name);
     }
 
 
@@ -91,13 +91,6 @@ namespace storage
 	Subdevice::create(devicegraph, this, lvm_lv);
 
 	return lvm_lv;
-    }
-
-
-    void
-    LvmVg::print(std::ostream& out) const
-    {
-	Device::print(out);
     }
 
 }

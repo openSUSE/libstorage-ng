@@ -56,4 +56,11 @@ namespace storage
 	BlkDevice::Impl::log_diff(log, rhs);
     }
 
+
+    void
+    Encryption::Impl::print(std::ostream& out) const
+    {
+	BlkDevice::Impl::print(out);
+    }
+
 }

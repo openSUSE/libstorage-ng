@@ -21,6 +21,10 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual const char* get_classname() const override { return "Msdos"; }
+
+	virtual string get_displayname() const override { return "msdos"; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
@@ -30,6 +34,8 @@ namespace storage
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
+
+	virtual void print(std::ostream& out) const override;
 
     };
 

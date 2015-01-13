@@ -136,13 +136,4 @@ namespace storage
 	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
     }
 
-
-    void
-    Partition::print(std::ostream& out) const
-    {
-	BlkDevice::print(out);
-
-	out << " region:" << get_region();
-    }
-
 }

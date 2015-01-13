@@ -57,4 +57,11 @@ namespace storage
 	Filesystem::Impl::log_diff(log, rhs);
     }
 
+
+    void
+    Swap::Impl::print(std::ostream& out) const
+    {
+	Filesystem::Impl::print(out);
+    }
+
 }

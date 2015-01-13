@@ -35,8 +35,6 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
-	virtual const char* get_classname() const = 0;
-
 	virtual Holder* clone() const = 0;
 
 	void save(xmlNode* node) const;
@@ -49,8 +47,6 @@ namespace storage
 
 	void create(Devicegraph* devicegraph, const Device* source, const Device* target);
 	void load(Devicegraph* devicegraph, const xmlNode* node);
-
-	virtual void print(std::ostream& out) const = 0;
 
     private:
 

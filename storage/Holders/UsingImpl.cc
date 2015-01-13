@@ -18,4 +18,11 @@ namespace storage
 	Holder::Impl::save(node);
     }
 
+
+    void
+    Using::Impl::print(std::ostream& out) const
+    {
+	Holder::Impl::print(out);
+    }
+
 }

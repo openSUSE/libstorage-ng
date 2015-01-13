@@ -15,8 +15,6 @@ namespace storage
 	static Msdos* create(Devicegraph* devicegraph);
 	static Msdos* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual std::string get_displayname() const override { return "msdos"; }
-
     public:
 
 	class Impl;
@@ -24,15 +22,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "Msdos"; }
-
 	virtual Msdos* clone() const override;
 
     protected:
 
 	Msdos(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

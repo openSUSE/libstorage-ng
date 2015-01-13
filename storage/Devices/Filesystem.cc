@@ -95,11 +95,4 @@ namespace storage
 	return get_impl().get_blkdevices();
     }
 
-
-    void
-    Filesystem::print(std::ostream& out) const
-    {
-	Device::print(out);
-    }
-
 }

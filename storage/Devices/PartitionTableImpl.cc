@@ -155,4 +155,11 @@ namespace storage
 	storage::log_diff(log, "read-only", read_only, rhs.read_only);
     }
 
+
+    void
+    PartitionTable::Impl::print(std::ostream& out) const
+    {
+	Device::Impl::print(out);
+    }
+
 }

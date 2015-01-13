@@ -24,6 +24,13 @@ namespace storage
     }
 
 
+    string
+    Device::get_displayname() const
+    {
+	return get_impl().get_displayname();
+    }
+
+
     bool
     Device::operator==(const Device& rhs) const
     {
@@ -189,18 +196,10 @@ namespace storage
     }
 
 
-    void
-    Device::print(std::ostream& out) const
-    {
-	out << get_classname() << " sid:" << get_sid()
-	    << " displayname:" << get_displayname();
-    }
-
-
     std::ostream&
     operator<<(std::ostream& out, const Device& device)
     {
-	device.print(out);
+	device.get_impl().print(out);
 	return out;
     }
 

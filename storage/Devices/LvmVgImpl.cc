@@ -50,4 +50,11 @@ namespace storage
 	storage::log_diff(log, "name", name, rhs.name);
     }
 
+
+    void
+    LvmVg::Impl::print(std::ostream& out) const
+    {
+	Device::Impl::print(out);
+    }
+
 }

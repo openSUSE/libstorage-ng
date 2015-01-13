@@ -66,4 +66,11 @@ namespace storage
 	PartitionTable::Impl::log_diff(log, rhs);
     }
 
+
+    void
+    Msdos::Impl::print(std::ostream& out) const
+    {
+	PartitionTable::Impl::print(out);
+    }
+
 }

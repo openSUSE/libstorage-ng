@@ -65,11 +65,4 @@ namespace storage
 	    cerr << "logical volume has no name" << endl;
     }
 
-
-    void
-    LvmLv::print(std::ostream& out) const
-    {
-	BlkDevice::print(out);
-    }
-
 }

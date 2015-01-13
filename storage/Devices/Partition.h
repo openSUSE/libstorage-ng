@@ -54,15 +54,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "Partition"; }
-
 	virtual Partition* clone() const override;
 
     protected:
 
 	Partition(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

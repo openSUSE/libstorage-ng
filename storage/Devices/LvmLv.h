@@ -24,15 +24,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "LvmLv"; }
-
 	virtual LvmLv* clone() const override;
 
     protected:
 
 	LvmLv(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

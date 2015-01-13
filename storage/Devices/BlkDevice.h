@@ -21,8 +21,6 @@ namespace storage
     {
     public:
 
-	virtual std::string get_displayname() const override { return get_name(); }
-
 	virtual void check() const override;
 
 	const std::string& get_name() const;
@@ -51,8 +49,6 @@ namespace storage
     protected:
 
 	BlkDevice(Impl* impl);
-
-	void print(std::ostream& out) const override = 0;
 
     };
 

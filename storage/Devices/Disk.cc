@@ -117,15 +117,6 @@ namespace storage
     }
 
 
-    void
-    Disk::print(std::ostream& out) const
-    {
-	BlkDevice::print(out);
-
-	out << " transport:" << toString(get_transport());
-    }
-
-
     const vector<string> EnumInfo<DasdType>::names({
 	"NONE", "ECKD", "FBA"
     });

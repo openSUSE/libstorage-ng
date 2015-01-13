@@ -15,8 +15,6 @@ namespace storage
 	static Subdevice* create(Devicegraph* devicegraph, const Device* source, const Device* target);
 	static Subdevice* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Subdevice"; }
-
 	virtual Subdevice* clone() const override;
 
     public:
@@ -29,8 +27,6 @@ namespace storage
     protected:
 
 	Subdevice(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

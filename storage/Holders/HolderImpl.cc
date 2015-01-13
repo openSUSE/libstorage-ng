@@ -67,4 +67,12 @@ namespace storage
 	setChildValue(node, "target-sid", get_target_sid());
     }
 
+
+    void
+    Holder::Impl::print(std::ostream& out) const
+    {
+	out << get_classname() << " source-sid:" << get_source_sid()
+	    << " target-sid:" << get_target_sid();
+    }
+
 }

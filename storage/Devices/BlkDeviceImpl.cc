@@ -96,4 +96,19 @@ namespace storage
 	storage::log_diff(log, "minor", get_minor(), rhs.get_minor());
     }
 
+
+    void
+    BlkDevice::Impl::print(std::ostream& out) const
+    {
+	Device::Impl::print(out);
+
+	out << " name:" << get_name();
+
+	if (get_size_k() != 0)
+	    out << " size_k:" << get_size_k();
+
+	if (get_majorminor() != 0)
+	    out << " major:" << get_major() << " minor:" << get_minor();
+    }
+
 }

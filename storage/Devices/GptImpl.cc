@@ -92,4 +92,14 @@ namespace storage
 	storage::log_diff(log, "enlarge", enlarge, rhs.enlarge);
     }
 
+
+    void
+    Gpt::Impl::print(std::ostream& out) const
+    {
+	PartitionTable::Impl::print(out);
+
+	if (get_enlarge())
+	    out << " enlarge";
+    }
+
 }

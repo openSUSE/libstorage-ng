@@ -46,8 +46,6 @@ namespace storage
 
 	PartitionTable(Impl* impl);
 
-	void print(std::ostream& out) const override = 0;
-
     };
 
 

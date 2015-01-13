@@ -44,4 +44,11 @@ namespace storage
 	BlkDevice::Impl::log_diff(log, rhs);
     }
 
+
+    void
+    LvmLv::Impl::print(std::ostream& out) const
+    {
+	BlkDevice::Impl::print(out);
+    }
+
 }

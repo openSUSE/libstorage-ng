@@ -15,8 +15,6 @@ namespace storage
 	static Using* create(Devicegraph* devicegraph, const Device* source, const Device* target);
 	static Using* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Using"; }
-
 	virtual Using* clone() const override;
 
     public:
@@ -29,8 +27,6 @@ namespace storage
     private:
 
 	Using(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

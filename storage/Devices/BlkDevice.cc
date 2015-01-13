@@ -144,19 +144,4 @@ namespace storage
 	return ret;
     }
 
-
-    void
-    BlkDevice::print(std::ostream& out) const
-    {
-	Device::print(out);
-
-	out << " name:" << get_name();
-
-	if (get_size_k() != 0)
-	    out << " size_k:" << get_size_k();
-
-	if (get_majorminor() != 0)
-	    out << " major:" << get_major() << " minor:" << get_minor();
-    }
-
 }

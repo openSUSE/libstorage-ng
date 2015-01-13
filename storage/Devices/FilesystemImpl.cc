@@ -82,6 +82,13 @@ namespace storage
     }
 
 
+    void
+    Filesystem::Impl::print(std::ostream& out) const
+    {
+	Device::Impl::print(out);
+    }
+
+
     namespace Action
     {
 

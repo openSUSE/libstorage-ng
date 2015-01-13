@@ -15,8 +15,6 @@ namespace storage
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual std::string get_displayname() const override { return "swap"; }
-
 	bool supports_label() const override { return false; }
 	unsigned int max_labelsize() const override { return 0; }
 
@@ -29,15 +27,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "Swap"; }
-
 	virtual Swap* clone() const override;
 
     protected:
 
 	Swap(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

@@ -21,12 +21,23 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual const char* get_classname() const override { return "LvmVg"; }
+
+	virtual string get_displayname() const override { return get_name(); }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
 
+	const string& get_name() const { return name; }
+	void set_name(const string& name) { Impl::name = name; }
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
+
+	virtual void print(std::ostream& out) const override;
+
+    private:
 
 	string name;
 

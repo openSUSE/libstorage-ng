@@ -24,6 +24,8 @@ namespace storage
 
 	virtual Impl* clone() const = 0;
 
+	virtual const char* get_classname() const = 0;
+
 	virtual void save(xmlNode* node) const = 0;
 
 	void set_devicegraph_and_edge(Devicegraph* devicegraph,
@@ -36,6 +38,8 @@ namespace storage
 
 	sid_t get_source_sid() const;
 	sid_t get_target_sid() const;
+
+	virtual void print(std::ostream& out) const = 0;
 
     protected:
 

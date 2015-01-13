@@ -75,11 +75,4 @@ namespace storage
 	return get_impl().get_disk();
     }
 
-
-    void
-    PartitionTable::print(std::ostream& out) const
-    {
-	Device::print(out);
-    }
-
 }

@@ -20,8 +20,6 @@ namespace storage
 	const std::string& get_name() const;
 	void set_name(const std::string& name);
 
-	virtual std::string get_displayname() const override { return get_name(); }
-
 	virtual void check() const override;
 
 	LvmLv* create_lvm_lv(const std::string& name);
@@ -33,15 +31,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "LvmVg"; }
-
 	virtual LvmVg* clone() const override;
 
     protected:
 
 	LvmVg(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

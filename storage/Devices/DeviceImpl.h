@@ -29,6 +29,10 @@ namespace storage
 
 	virtual Impl* clone() const = 0;
 
+	virtual const char* get_classname() const = 0;
+
+	virtual string get_displayname() const = 0;
+
 	virtual void save(xmlNode* node) const = 0;
 
 	bool operator==(const Impl& rhs) const;
@@ -55,6 +59,8 @@ namespace storage
 
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
+
+	virtual void print(std::ostream& out) const = 0;
 
     protected:
 

@@ -22,15 +22,11 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual const char* get_classname() const override { return "Encryption"; }
-
 	virtual Encryption* clone() const override;
 
     protected:
 
 	Encryption(Impl* impl);
-
-	void print(std::ostream& out) const override;
 
     };
 

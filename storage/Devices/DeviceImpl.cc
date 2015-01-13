@@ -131,4 +131,12 @@ namespace storage
 	storage::log_diff(log, "sid", sid, rhs.sid);
     }
 
+
+    void
+    Device::Impl::print(std::ostream& out) const
+    {
+	out << get_classname() << " sid:" << get_sid()
+	    << " displayname:" << get_displayname();
+    }
+
 }

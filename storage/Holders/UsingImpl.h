@@ -22,6 +22,10 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual const char* get_classname() const override { return "Using"; }
+
+	virtual void print(std::ostream& out) const override;
+
     };
 
 }

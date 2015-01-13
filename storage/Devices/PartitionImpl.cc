@@ -132,6 +132,15 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::print(std::ostream& out) const
+    {
+	BlkDevice::Impl::print(out);
+
+	out << " region:" << get_region();
+    }
+
+
     namespace Action
     {
 

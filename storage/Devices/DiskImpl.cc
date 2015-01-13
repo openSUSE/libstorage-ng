@@ -145,4 +145,13 @@ namespace storage
 	storage::log_diff_enum(log, "transport", transport, rhs.transport);
     }
 
+
+    void
+    Disk::Impl::print(std::ostream& out) const
+    {
+	BlkDevice::Impl::print(out);
+
+	out << " transport:" << toString(get_transport());
+    }
+
 }
