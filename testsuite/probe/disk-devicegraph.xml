@@ -7,6 +7,14 @@
       <size-k>976762584</size-k>
       <major>8</major>
       <minor>0</minor>
+      <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
+      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683</udev-id>
+      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
+      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</udev-id>
+      <udev-id>scsi-350014ee203733bb5</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683</udev-id>
+      <udev-id>wwn-0x50014ee203733bb5</udev-id>
       <transport>SATA</transport>
     </Disk>
     <Msdos>
@@ -18,6 +26,14 @@
       <size-k>1051648</size-k>
       <major>8</major>
       <minor>1</minor>
+      <udev-path>pci-0000:00:1f.2-ata-1.0-part1</udev-path>
+      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</udev-id>
+      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</udev-id>
+      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</udev-id>
+      <udev-id>scsi-350014ee203733bb5-part1</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1</udev-id>
+      <udev-id>wwn-0x50014ee203733bb5-part1</udev-id>
       <region>
         <start>0</start>
         <length>132</length>
@@ -32,6 +48,14 @@
       <size-k>943721472</size-k>
       <major>8</major>
       <minor>2</minor>
+      <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
+      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</udev-id>
+      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</udev-id>
+      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</udev-id>
+      <udev-id>scsi-350014ee203733bb5-part2</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</udev-id>
+      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2</udev-id>
+      <udev-id>wwn-0x50014ee203733bb5-part2</udev-id>
       <region>
         <start>131</start>
         <length>117488</length>
@@ -45,20 +69,24 @@
       <size-k>80043264</size-k>
       <major>8</major>
       <minor>16</minor>
+      <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</udev-path>
+      <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0</udev-id>
       <transport>USB</transport>
     </Disk>
-    <Msdos>
+    <Gpt>
       <sid>47</sid>
-    </Msdos>
+    </Gpt>
     <Partition>
       <sid>48</sid>
       <name>/dev/sdb1</name>
-      <size-k>8023040</size-k>
+      <size-k>9764864</size-k>
       <major>8</major>
       <minor>17</minor>
+      <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0-part1</udev-path>
+      <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0-part1</udev-id>
       <region>
         <start>0</start>
-        <length>999</length>
+        <length>1216</length>
       </region>
       <type>primary</type>
       <id>131</id>

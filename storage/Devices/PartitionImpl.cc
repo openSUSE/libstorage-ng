@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/PartitionImpl.h"
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/SystemCmd.h"
@@ -138,6 +138,20 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " region:" << get_region();
+    }
+
+
+    void
+    Partition::Impl::process_udev_ids(vector<string>& udev_ids) const
+    {
+	const Devicegraph* g = get_devicegraph();
+
+	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor v2 = g->get_impl().parent(v1);
+
+	const Disk* disk = dynamic_cast<const Disk*>(g->get_impl().graph[v2].get());
+
+	disk->get_impl().process_udev_ids(udev_ids);
     }
 
 

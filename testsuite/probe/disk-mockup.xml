@@ -16,10 +16,72 @@
       <stdout>dm-7</stdout>
     </Command>
     <Command>
+      <name>/bin/ls -1l --sort=none '/dev/disk/by-id'</name>
+      <stdout>total 0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 usb-Maxtor_6_Y080L0_411010006014-0:0-part1 -&gt; ../../sdb1</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 usb-Maxtor_6_Y080L0_411010006014-0:0 -&gt; ../../sdb</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-btrfs -&gt; ../../dm-5</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnFSGfCGnRIJQ5lNx59k7JP7uK3fkyQl48 -&gt; ../../dm-5</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-btrfs -&gt; ../../dm-5</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-testsuite -&gt; ../../dm-6</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn47gLDXzm2P9srqwHhaiuUlNFmLlLJH9V -&gt; ../../dm-6</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-testsuite -&gt; ../../dm-6</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 raid-system-arvin -&gt; ../../dm-3</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRngOeeB8at0WP8Z3sAyZv5BtKT49j6TwN6 -&gt; ../../dm-3</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 dm-name-system-arvin -&gt; ../../dm-3</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-test -&gt; ../../dm-7</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnAL4A6NByky35grIbJsJ8RYCQP0NqLsF7 -&gt; ../../dm-7</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-test -&gt; ../../dm-7</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-abuild -&gt; ../../dm-2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn25elwrmng2K9f1Vnfex9VFkN4tEXD8xI -&gt; ../../dm-2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-abuild -&gt; ../../dm-2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-giant--xfs -&gt; ../../dm-4</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnHdH1l4B0LUptYisBQuf33vP5rGosS1e2 -&gt; ../../dm-4</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-giant--xfs -&gt; ../../dm-4</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-swap -&gt; ../../dm-0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-root -&gt; ../../dm-1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn89Crg8K5dO0VvjVwurvCLK4efhWCtRfN -&gt; ../../dm-1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-root -&gt; ../../dm-1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnKKC5tfbWLpsF2toVKQtE0wxeQpUp8bV0 -&gt; ../../dm-0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-swap -&gt; ../../dm-0</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Dec 22 11:40 ata-ATAPI_iHAS124_Y -&gt; ../../sr0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 wwn-0x50014ee203733bb5-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-350014ee203733bb5-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 wwn-0x50014ee203733bb5-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-350014ee203733bb5-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 wwn-0x50014ee203733bb5 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 scsi-350014ee203733bb5 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683 -&gt; ../../sda</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683 -&gt; ../../sda</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1l --sort=none '/dev/disk/by-path'</name>
+      <stdout>total 0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0-part1 -&gt; ../../sdb1</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0 -&gt; ../../sdb</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Dec 22 11:40 pci-0000:00:1f.2-ata-2.0 -&gt; ../../sr0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 pci-0000:00:1f.2-ata-1.0-part2 -&gt; ../../sda2</stdout>
+      <stdout>lrwxrwxrwx 1 root root 10 Jan 13 15:38 pci-0000:00:1f.2-ata-1.0-part1 -&gt; ../../sda1</stdout>
+      <stdout>lrwxrwxrwx 1 root root  9 Jan 13 15:38 pci-0000:00:1f.2-ata-1.0 -&gt; ../../sda</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
       <stdout>[1:0:0:0]    cd/dvd  sata:                           /dev/sr0 </stdout>
-      <stdout>[7:0:0:0]    disk    usb: 2-1.5:1.0                  /dev/sdb </stdout>
+      <stdout>[8:0:0:0]    disk    usb: 2-1.5:1.0                  /dev/sdb </stdout>
     </Command>
     <Command>
       <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda'</name>
@@ -71,20 +133,20 @@
       <stdout>Disk /dev/sdb: 9964cyl</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
       <stdout>BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.</stdout>
-      <stdout>Partition Table: msdos</stdout>
+      <stdout>Partition Table: gpt</stdout>
       <stdout>Disk Flags: </stdout>
       <stdout></stdout>
-      <stdout>Number  Start  End     Size    Type     File system  Flags</stdout>
-      <stdout> 1      0cyl   998cyl  998cyl  primary  ext4         type=83</stdout>
+      <stdout>Number  Start  End      Size     File system  Name  Flags</stdout>
+      <stdout> 1      0cyl   1215cyl  1215cyl  ext4</stdout>
       <stdout></stdout>
       <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
       <stdout>Disk /dev/sdb: 160086528s</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: msdos</stdout>
+      <stdout>Partition Table: gpt</stdout>
       <stdout>Disk Flags: </stdout>
       <stdout></stdout>
-      <stdout>Number  Start  End        Size       Type     File system  Flags</stdout>
-      <stdout> 1      2048s  16048127s  16046080s  primary  ext4         type=83</stdout>
+      <stdout>Number  Start  End        Size       File system  Name  Flags</stdout>
+      <stdout> 1      2048s  19531775s  19529728s  ext4</stdout>
       <stdout></stdout>
     </Command>
   </Commands>
@@ -106,7 +168,7 @@
       <content> 254        6    2097152 dm-6</content>
       <content> 254        7    5242880 dm-7</content>
       <content>   8       16   80043264 sdb</content>
-      <content>   8       17    8023040 sdb1</content>
+      <content>   8       17    9764864 sdb1</content>
     </File>
   </Files>
 </Mockup>

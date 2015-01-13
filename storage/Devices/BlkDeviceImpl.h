@@ -32,10 +32,16 @@ namespace storage
 	unsigned int get_major() const { return gnu_dev_major(major_minor); }
 	unsigned int get_minor() const { return gnu_dev_minor(major_minor); }
 
+	const string& get_udev_path() const { return udev_path; }
+	const vector<string>& get_udev_ids() const { return udev_ids; }
+
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
 
 	virtual void print(std::ostream& out) const override = 0;
+
+	virtual void process_udev_path(string& udev_path) const {}
+	virtual void process_udev_ids(vector<string>& udev_ids) const {}
 
     protected:
 
@@ -53,8 +59,8 @@ namespace storage
 	string name;
 	unsigned long long size_k;
 	dev_t major_minor;
-
-	// udev_id and udev_path
+	string udev_path;
+	vector<string> udev_ids;
 
     };
 

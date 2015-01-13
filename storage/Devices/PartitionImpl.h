@@ -55,6 +55,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void process_udev_ids(vector<string>& udev_ids) const override;
+
     private:
 
 	Region region;

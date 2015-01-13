@@ -9,6 +9,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/StorageTypes.h"
 
 
 namespace storage
@@ -152,6 +153,16 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " transport:" << toString(get_transport());
+    }
+
+
+    void
+    Disk::Impl::process_udev_ids(vector<string>& udev_ids) const
+    {
+	udev_ids.erase(remove_if(udev_ids.begin(), udev_ids.end(), string_starts_with("edd-")),
+		       udev_ids.end());
+
+	partition(udev_ids.begin(), udev_ids.end(), string_starts_with("ata-"));
     }
 
 }

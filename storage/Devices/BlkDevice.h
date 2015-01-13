@@ -35,6 +35,9 @@ namespace storage
 	unsigned int get_major() const;
 	unsigned int get_minor() const;
 
+	const std::string& get_udev_path() const;
+	const std::vector<std::string>& get_udev_ids() const;
+
 	static BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
 
 	Filesystem* create_filesystem(FsType fs_type);

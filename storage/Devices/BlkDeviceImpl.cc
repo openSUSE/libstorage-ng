@@ -21,6 +21,9 @@ namespace storage
 	unsigned int major = 0, minor = 0;
 	if (getChildValue(node, "major", major) && getChildValue(node, "minor", minor))
 	    major_minor = makedev(major, minor);
+
+	getChildValue(node, "udev-path", udev_path);
+	getChildValue(node, "udev-id", udev_ids);
     }
 
 
@@ -33,6 +36,22 @@ namespace storage
 	    throw;
 
 	major_minor = systeminfo.getMajorMinor(name).getMajorMinor();
+
+	const UdevMap& by_path = systeminfo.getUdevMap("/dev/disk/by-path");
+	UdevMap::const_iterator it1 = by_path.find(name.substr(5)); // TODO
+	if (it1 != by_path.end())
+	{
+	    udev_path = it1->second.front();
+	    process_udev_path(udev_path);
+	}
+
+	const UdevMap& by_id = systeminfo.getUdevMap("/dev/disk/by-id");
+	UdevMap::const_iterator it2 = by_id.find(name.substr(5)); // TODO
+	if (it2 != by_id.end())
+	{
+	    udev_ids = it2->second;
+	    process_udev_ids(udev_ids);
+	}
     }
 
 
@@ -47,6 +66,9 @@ namespace storage
 
 	setChildValueIf(node, "major", gnu_dev_major(major_minor), major_minor != 0);
 	setChildValueIf(node, "minor", gnu_dev_minor(major_minor), major_minor != 0);
+
+	setChildValueIf(node, "udev-path", udev_path, !udev_path.empty());
+	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
     }
 
 
@@ -109,6 +131,12 @@ namespace storage
 
 	if (get_majorminor() != 0)
 	    out << " major:" << get_major() << " minor:" << get_minor();
+
+	if (!udev_path.empty())
+	    out << " udev-path:" << udev_path;
+
+	if (!udev_ids.empty())
+	    out << " udev-ids:" << udev_ids;
     }
 
 }
