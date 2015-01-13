@@ -28,7 +28,7 @@
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Partition.h"
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 
 
 namespace storage

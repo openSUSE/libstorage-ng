@@ -25,7 +25,7 @@
 #include <algorithm>
 
 #include "storage/Utils/AppUtil.h"
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/Regex.h"
 #include "storage/Utils/StorageTmpl.h"

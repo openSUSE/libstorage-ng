@@ -24,7 +24,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Enum.h"
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 
 
 namespace storage

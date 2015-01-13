@@ -16,6 +16,7 @@ libutils_la_SOURCES =					\
 	Region.cc 		Region.h		\
 	RegionImpl.cc 		RegionImpl.h		\
 	StorageTmpl.h					\
+	StorageTypes.h					\
 	SystemCmd.cc		SystemCmd.h		\
 	Mockup.cc		Mockup.h		\
 	XmlFile.h		XmlFile.cc		\

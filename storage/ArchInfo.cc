@@ -26,7 +26,7 @@
 #include "storage/ArchInfo.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 
 
 namespace storage

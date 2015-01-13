@@ -20,8 +20,7 @@ libstorage_la_SOURCES =					\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\
 	HumanString.h		HumanString.cc		\
-	StorageInterface.h	StorageInterface.cc	\
-	StorageTypes.h
+	StorageInterface.h	StorageInterface.cc
 
 libstorage_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 

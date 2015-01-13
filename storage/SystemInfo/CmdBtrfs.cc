@@ -22,7 +22,7 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Utils/AppUtil.h"

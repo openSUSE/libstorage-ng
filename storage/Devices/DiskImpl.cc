@@ -9,7 +9,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/StorageTypes.h"
+#include "storage/Utils/StorageTypes.h"
 
 
 namespace storage
