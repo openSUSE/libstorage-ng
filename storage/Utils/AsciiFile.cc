@@ -61,12 +61,6 @@ AsciiFile::reload()
 	return true;
     }
 
-    if (Name_C.empty())
-    {
-	y2err("trying to load nameless AsciiFile");
-	return false;
-    }
-
     y2mil("loading file " << Name_C);
     clear();
 
@@ -106,12 +100,6 @@ AsciiFile::save()
 	Mockup::set_file(Name_C, Lines_C);
     }
 
-    if (Name_C.empty())
-    {
-	y2err("trying to save nameless AsciiFile");
-	return false;
-    }
-
     if (remove_empty && Lines_C.empty())
     {
 	y2mil("deleting file " << Name_C);
@@ -141,7 +129,7 @@ AsciiFile::save()
     void
     AsciiFile::logContent() const
     {
-	y2mil("content of " << (Name_C.empty() ? "<nameless>" : Name_C));
+	y2mil("content of " << Name_C);
 	for (vector<string>::const_iterator it = Lines_C.begin(); it != Lines_C.end(); ++it)
 	    y2mil(*it);
     }
