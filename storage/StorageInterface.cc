@@ -1441,7 +1441,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	return storage->equal_devicegraph("probed", "current");
     }
 
 
