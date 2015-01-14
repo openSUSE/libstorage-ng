@@ -74,10 +74,6 @@ namespace storage
 	Impl& get_impl() { return *impl; }
 	const Impl& get_impl() const { return *impl; }
 
-    protected:
-
-	void print(std::ostream& out) const;
-
     private:
 
 	std::shared_ptr<Impl> impl;

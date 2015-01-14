@@ -283,17 +283,10 @@ namespace storage
     }
 
 
-    void
-    Devicegraph::print(std::ostream& out) const
-    {
-	get_impl().print(out);
-    }
-
-
     std::ostream&
     operator<<(std::ostream& out, const Devicegraph& devicegraph)
     {
-	devicegraph.print(out);
+	devicegraph.get_impl().print(out);
 	return out;
     }
 
