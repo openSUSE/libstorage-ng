@@ -16,6 +16,8 @@ namespace storage
     Filesystem::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node)
     {
+	getChildValue(node, "label", label);
+	getChildValue(node, "uuid", uuid);
     }
 
 
