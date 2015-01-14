@@ -1,6 +1,7 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/Filesystem.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -137,6 +138,34 @@ namespace storage
 
 	if (!udev_ids.empty())
 	    out << " udev-ids:" << udev_ids;
+    }
+
+
+    Filesystem*
+    BlkDevice::Impl::get_filesystem()
+    {
+	if (get_device()->num_children() != 1)
+	    throw runtime_error("has no children");
+
+	const Devicegraph* devicegraph = get_devicegraph();
+
+	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
+
+	return dynamic_cast<Filesystem*>(child);
+    }
+
+
+    const Filesystem*
+    BlkDevice::Impl::get_filesystem() const
+    {
+	if (get_device()->num_children() != 1)
+	    throw runtime_error("has no children");
+
+	const Devicegraph* devicegraph = get_devicegraph();
+
+	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
+
+	return dynamic_cast<const Filesystem*>(child);
     }
 
 }

@@ -10,6 +10,7 @@
 #include "storage/Utils/Region.h"
 #include "storage/Storage.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Filesystem.h"
 #include "storage/Environment.h"
 
 
@@ -556,25 +557,41 @@ namespace storage_legacy
 	if (disk)
 	{
 	    const PartitionTable* partitiontable = disk->get_partition_table();
-
-	    for (const Partition* partition : partitiontable->get_partitions())
+	    if (partitiontable)
 	    {
-		PartitionInfo info;
+		for (const Partition* partition : partitiontable->get_partitions())
+		{
+		    PartitionInfo info;
 
-		info.v.name = partition->get_name().substr(5);
-		info.v.device = partition->get_name();
-		info.v.sizeK = partition->get_size_k();
+		    info.v.name = partition->get_name().substr(5);
+		    info.v.device = partition->get_name();
+		    info.v.sizeK = partition->get_size_k();
 
-		info.v.udevPath = partition->get_udev_path();
-		info.v.udevId = list<string>(partition->get_udev_ids().begin(), partition->get_udev_ids().end());
+		    info.v.udevPath = partition->get_udev_path();
+		    info.v.udevId = list<string>(partition->get_udev_ids().begin(), partition->get_udev_ids().end());
 
-		info.cylRegion = partition->get_region();
-		info.nr = partition->get_number();
-		info.partitionType = partition->get_type();
-		info.id = partition->get_id();
-		info.boot = partition->get_boot();
+		    info.cylRegion = partition->get_region();
+		    info.nr = partition->get_number();
+		    info.partitionType = partition->get_type();
+		    info.id = partition->get_id();
+		    info.boot = partition->get_boot();
 
-		plist.push_back(info);
+		    try
+		    {
+			const Filesystem* filesystem = partition->get_filesystem();
+			if (filesystem)
+			{
+			    info.v.fs = filesystem->get_type();
+			    info.v.label = filesystem->get_label();
+			    info.v.uuid = filesystem->get_uuid();
+			}
+		    }
+		    catch (...)
+		    {
+		    }
+
+		    plist.push_back(info);
+		}
 	    }
 
 	    return 0;

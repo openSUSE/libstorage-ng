@@ -3,7 +3,6 @@
 
 
 #include "storage/Devices/Device.h"
-
 #include "storage/StorageInterface.h"
 
 
@@ -41,6 +40,9 @@ namespace storage
 	static BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
 
 	Filesystem* create_filesystem(FsType fs_type);
+
+	Filesystem* get_filesystem();
+	const Filesystem* get_filesystem() const;
 
     public:
 

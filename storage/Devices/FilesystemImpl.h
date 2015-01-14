@@ -26,6 +26,7 @@ namespace storage
 
 	vector<string> mountpoints;
 
+	void probe(SystemInfo& systeminfo);
 
 	vector<const BlkDevice*> get_blkdevices() const;
 

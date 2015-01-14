@@ -35,6 +35,9 @@ namespace storage
 	const string& get_udev_path() const { return udev_path; }
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 
+	Filesystem* get_filesystem();
+	const Filesystem* get_filesystem() const;
+
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
 

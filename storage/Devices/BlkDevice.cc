@@ -158,4 +158,18 @@ namespace storage
 	return ret;
     }
 
+
+    Filesystem*
+    BlkDevice::get_filesystem()
+    {
+	return get_impl().get_filesystem();
+    }
+
+
+    const Filesystem*
+    BlkDevice::get_filesystem() const
+    {
+	return get_impl().get_filesystem();
+    }
+
 }

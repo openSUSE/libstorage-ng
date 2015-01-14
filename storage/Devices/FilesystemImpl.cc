@@ -5,6 +5,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -31,6 +32,22 @@ namespace storage
 
 	for (const string& mountpoint : mountpoints)
 	    setChildValue(node, "mountpoint", mountpoint);
+    }
+
+
+    void
+    Filesystem::Impl::probe(SystemInfo& systeminfo)
+    {
+	const Devicegraph* g = get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
+	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(g->get_impl().graph[v1].get());
+
+	Blkid::Entry entry;
+	if (systeminfo.getBlkid().getEntry(blkdevice->get_name(), entry))
+	{
+	    label = entry.fs_label;
+	    uuid = entry.fs_uuid;
+	}
     }
 
 

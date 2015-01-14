@@ -4,6 +4,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Actiongraph.h"
@@ -75,6 +76,30 @@ namespace storage
 
 	    Disk* disk = Disk::create(probed, "/dev/" + name);
 	    disk->get_impl().probe(systeminfo);
+	}
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
+	{
+	    BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(probed->get_impl().graph[vertex].get());
+	    if (!blkdevice)
+		continue;
+
+	    if (blkdevice->num_children() != 0)
+		continue;
+
+	    Blkid::Entry entry;
+	    if (systeminfo.getBlkid().getEntry(blkdevice->get_name(), entry))
+	    {
+		if (entry.is_fs)
+		{
+		    // TODO temporary until all fs are implemented
+		    if (entry.fs_type != EXT4 && entry.fs_type != SWAP)
+			continue;
+
+		    Filesystem* filesystem = blkdevice->create_filesystem(entry.fs_type);
+		    filesystem->get_impl().probe(systeminfo);
+		}
+	    }
 	}
     }
 
