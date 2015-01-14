@@ -86,6 +86,12 @@ namespace storage
     Filesystem::Impl::print(std::ostream& out) const
     {
 	Device::Impl::print(out);
+
+	if (!label.empty())
+	    out << " label:" << label;
+
+	if (!uuid.empty())
+	    out << " uuid:" << uuid;
     }
 
 
