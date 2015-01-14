@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(valid)
 
     devicegraph->check();
 
-    devicegraph->remove_vertex(sda1);
+    devicegraph->remove_device(sda1);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);
     BOOST_CHECK_EQUAL(devicegraph->num_holders(), 1);

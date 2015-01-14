@@ -111,7 +111,7 @@ namespace storage
 
 	Devicegraph* devicegraph = get_devicegraph();
 
-	devicegraph->remove_vertex(partition->get_sid());
+	devicegraph->remove_device(partition);
     }
 
 

@@ -28,7 +28,7 @@ main()
     Devicegraph devicegraph_copy;
     devicegraph.copy(devicegraph_copy);
 
-    devicegraph_copy.remove_vertex(sda2);
+    devicegraph_copy.remove_device(sda2);
 
     cout << devicegraph << endl;
     cout << devicegraph_copy << endl;

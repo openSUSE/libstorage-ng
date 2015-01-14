@@ -135,7 +135,7 @@ namespace storage
 
 
     bool
-    Devicegraph::vertex_exists(sid_t sid) const
+    Devicegraph::device_exists(sid_t sid) const
     {
 	try
 	{
@@ -173,7 +173,7 @@ namespace storage
 
 
     void
-    Devicegraph::remove_vertex(sid_t sid)
+    Devicegraph::remove_device(sid_t sid)
     {
 	const Device* device = find_device(sid);
 	get_impl().remove_vertex(device->get_impl().get_vertex());
@@ -181,7 +181,7 @@ namespace storage
 
 
     void
-    Devicegraph::remove_vertex(Device* device)
+    Devicegraph::remove_device(Device* device)
     {
 	get_impl().remove_vertex(device->get_impl().get_vertex());
     }

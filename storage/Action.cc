@@ -78,7 +78,7 @@ namespace storage
 	    {
 		sid_t parent_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();
 
-		if (!actiongraph.get_devicegraph(LHS)->vertex_exists(parent_sid))
+		if (!actiongraph.get_devicegraph(LHS)->device_exists(parent_sid))
 		{
 		    // parents must be created beforehand if not existed
 

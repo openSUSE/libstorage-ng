@@ -43,11 +43,11 @@ main()
     Devicegraph rhs;
     lhs.copy(rhs);
 
-    rhs.remove_vertex(lhs_system_v1_root_fs->get_sid());
-    rhs.remove_vertex(lhs_system_v1_swap_fs->get_sid());
-    rhs.remove_vertex(lhs_system_v1_root->get_sid());
-    rhs.remove_vertex(lhs_system_v1_swap->get_sid());
-    rhs.remove_vertex(lhs_system_v1->get_sid());
+    rhs.remove_device(lhs_system_v1_root_fs->get_sid());
+    rhs.remove_device(lhs_system_v1_swap_fs->get_sid());
+    rhs.remove_device(lhs_system_v1_root->get_sid());
+    rhs.remove_device(lhs_system_v1_swap->get_sid());
+    rhs.remove_device(lhs_system_v1->get_sid());
 
     LvmVg* rhs_system_v2 = LvmVg::create(&rhs, "/dev/system-v2");
 

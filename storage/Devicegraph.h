@@ -48,12 +48,12 @@ namespace storage
 	Device* find_device(sid_t sid);
 	const Device* find_device(sid_t sid) const;
 
-	bool vertex_exists(sid_t sid) const;
+	bool device_exists(sid_t sid) const;
 
 	void clear();
 
-	void remove_vertex(sid_t sid);
-	void remove_vertex(Device* a);
+	void remove_device(sid_t sid);
+	void remove_device(Device* a);
 
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
