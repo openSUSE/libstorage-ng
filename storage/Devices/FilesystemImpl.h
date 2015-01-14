@@ -26,7 +26,6 @@ namespace storage
 
 	vector<string> mountpoints;
 
-	// mount-by
 
 	vector<const BlkDevice*> get_blkdevices() const;
 
@@ -43,6 +42,10 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
+
+    private:
+
+	// mount-by
 
     };
 
