@@ -2,6 +2,7 @@
 test-blkid
 test-cmdbtrfsshow
 test-cmddmsetupinfo
+test-cmdudevadminfo
 test-cmdvgdisplay
 test-cmdvgs
 test-dir
@@ -14,4 +15,3 @@ test-parted
 test-procmdstat
 test-procmounts
 test-procparts
-test-udevmap

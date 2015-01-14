@@ -17,72 +17,6 @@
       <stdout>dm-7</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1l --sort=none '/dev/disk/by-id'</name>
-      <stdout>total 0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 usb-Maxtor_6_Y080L0_411010004145-0:0-part1 -&gt; ../../sdb1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 usb-Maxtor_6_Y080L0_411010004145-0:0-part2 -&gt; ../../sdb2</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 usb-Maxtor_6_Y080L0_411010006014-0:0 -&gt; ../../sdc</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 usb-Maxtor_6_Y080L0_411010004145-0:0 -&gt; ../../sdb</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-btrfs -&gt; ../../dm-5</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnFSGfCGnRIJQ5lNx59k7JP7uK3fkyQl48 -&gt; ../../dm-5</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-btrfs -&gt; ../../dm-5</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-testsuite -&gt; ../../dm-6</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn47gLDXzm2P9srqwHhaiuUlNFmLlLJH9V -&gt; ../../dm-6</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-testsuite -&gt; ../../dm-6</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 raid-system-arvin -&gt; ../../dm-3</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRngOeeB8at0WP8Z3sAyZv5BtKT49j6TwN6 -&gt; ../../dm-3</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:41 dm-name-system-arvin -&gt; ../../dm-3</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-test -&gt; ../../dm-7</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnAL4A6NByky35grIbJsJ8RYCQP0NqLsF7 -&gt; ../../dm-7</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-test -&gt; ../../dm-7</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-abuild -&gt; ../../dm-2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn25elwrmng2K9f1Vnfex9VFkN4tEXD8xI -&gt; ../../dm-2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-abuild -&gt; ../../dm-2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-giant--xfs -&gt; ../../dm-4</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnHdH1l4B0LUptYisBQuf33vP5rGosS1e2 -&gt; ../../dm-4</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-giant--xfs -&gt; ../../dm-4</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-swap -&gt; ../../dm-0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 raid-system-root -&gt; ../../dm-1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRn89Crg8K5dO0VvjVwurvCLK4efhWCtRfN -&gt; ../../dm-1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-root -&gt; ../../dm-1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-uuid-LVM-OMPzXFm3am1zIlAVdQi5WxtmyNcevmRnKKC5tfbWLpsF2toVKQtE0wxeQpUp8bV0 -&gt; ../../dm-0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Dec 22 11:40 dm-name-system-swap -&gt; ../../dm-0</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Dec 22 11:40 ata-ATAPI_iHAS124_Y -&gt; ../../sr0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 wwn-0x50014ee203733bb5-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-350014ee203733bb5-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 wwn-0x50014ee203733bb5-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-350014ee203733bb5-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 wwn-0x50014ee203733bb5 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 scsi-350014ee203733bb5 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683 -&gt; ../../sda</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683 -&gt; ../../sda</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1l --sort=none '/dev/disk/by-path'</name>
-      <stdout>total 0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1 -&gt; ../../sdb1</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part2 -&gt; ../../sdb2</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0 -&gt; ../../sdc</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0 -&gt; ../../sdb</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Dec 22 11:40 pci-0000:00:1f.2-ata-2.0 -&gt; ../../sr0</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 pci-0000:00:1f.2-ata-1.0-part2 -&gt; ../../sda2</stdout>
-      <stdout>lrwxrwxrwx 1 root root 10 Jan 14 12:24 pci-0000:00:1f.2-ata-1.0-part1 -&gt; ../../sda1</stdout>
-      <stdout>lrwxrwxrwx 1 root root  9 Jan 14 12:24 pci-0000:00:1f.2-ata-1.0 -&gt; ../../sda</stdout>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/sda1: LABEL="BOOT" UUID="14875716-b8e3-4c83-ac86-48c20682b63a" TYPE="ext3" PTTYPE="dos" PARTUUID="000c0a5a-01" </stdout>
       <stdout>/dev/sda2: UUID="qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33" TYPE="LVM2_member" PARTUUID="000c0a5a-02" </stdout>
@@ -98,39 +32,327 @@
       <stdout>/dev/sdc: LABEL="WORLD" UUID="ef589797-a92e-47ec-9903-b4f722f13e1f" TYPE="ext4" </stdout>
     </Command>
     <Command>
+      <name>/sbin/udevadm info '/dev/sda'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
+      <stdout>N: sda</stdout>
+      <stdout>S: disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>S: disk/by-id/scsi-350014ee203733bb5</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683</stdout>
+      <stdout>S: disk/by-id/wwn-0x50014ee203733bb5</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1.0</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683 /dev/disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683 /dev/disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683 /dev/disk/by-id/scsi-350014ee203733bb5 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683 /dev/disk/by-id/wwn-0x50014ee203733bb5 /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0</stdout>
+      <stdout>E: DEVNAME=/dev/sda</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: ID_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=000c0a5a</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1_0</stdout>
+      <stdout>E: ID_REVISION=0A01</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_WDC_WD10EADS-00M_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SCSI_COMPAT_TRUNCATED=SATA_WDC_WD10EADS-00_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL_SHORT=WD-WCAV52321683</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_WWN=0x50014ee203733bb5</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50014ee203733bb5</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA=50014ee203733bb5</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: SCSI_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: SCSI_REVISION=0A01</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=758895</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
+      <stdout>N: sda1</stdout>
+      <stdout>S: disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</stdout>
+      <stdout>S: disk/by-id/scsi-350014ee203733bb5-part1</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1</stdout>
+      <stdout>S: disk/by-id/wwn-0x50014ee203733bb5-part1</stdout>
+      <stdout>S: disk/by-label/BOOT</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1.0-part1</stdout>
+      <stdout>S: disk/by-uuid/14875716-b8e3-4c83-ac86-48c20682b63a</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 /dev/disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 /dev/disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 /dev/disk/by-id/scsi-350014ee203733bb5-part1 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1 /dev/disk/by-id/wwn-0x50014ee203733bb5-part1 /dev/disk/by-label/BOOT /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0-part1 /dev/disk/by-uuid/14875716-b8e3-4c83-ac86-48c20682b63a</stdout>
+      <stdout>E: DEVNAME=/dev/sda1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_FS_LABEL=BOOT</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=BOOT</stdout>
+      <stdout>E: ID_FS_TYPE=ext3</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=14875716-b8e3-4c83-ac86-48c20682b63a</stdout>
+      <stdout>E: ID_FS_UUID_ENC=14875716-b8e3-4c83-ac86-48c20682b63a</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: ID_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: ID_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
+      <stdout>E: ID_PART_ENTRY_FLAGS=0x80</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=dos</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=2103296</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=0x83</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=000c0a5a-01</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=000c0a5a</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1_0</stdout>
+      <stdout>E: ID_REVISION=0A01</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_WDC_WD10EADS-00M_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SCSI_COMPAT_TRUNCATED=SATA_WDC_WD10EADS-00_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL_SHORT=WD-WCAV52321683</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_WWN=0x50014ee203733bb5</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50014ee203733bb5</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=1</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA=50014ee203733bb5</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: SCSI_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: SCSI_REVISION=0A01</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=759018</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
+      <stdout>N: sda2</stdout>
+      <stdout>S: disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</stdout>
+      <stdout>S: disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</stdout>
+      <stdout>S: disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</stdout>
+      <stdout>S: disk/by-id/scsi-350014ee203733bb5-part2</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</stdout>
+      <stdout>S: disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2</stdout>
+      <stdout>S: disk/by-id/wwn-0x50014ee203733bb5-part2</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1.0-part2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 /dev/disk/by-id/scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 /dev/disk/by-id/scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2 /dev/disk/by-id/scsi-350014ee203733bb5-part2 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2 /dev/disk/by-id/scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2 /dev/disk/by-id/wwn-0x50014ee203733bb5-part2 /dev/disk/by-path/pci-0000:00:1f.2-ata-1.0-part2</stdout>
+      <stdout>E: DEVNAME=/dev/sda2</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_ATA=1</stdout>
+      <stdout>E: ID_BUS=ata</stdout>
+      <stdout>E: ID_FS_TYPE=LVM2_member</stdout>
+      <stdout>E: ID_FS_USAGE=raid</stdout>
+      <stdout>E: ID_FS_UUID=qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33</stdout>
+      <stdout>E: ID_FS_UUID_ENC=qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33</stdout>
+      <stdout>E: ID_FS_VERSION=LVM2 001</stdout>
+      <stdout>E: ID_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: ID_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2105344</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=dos</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=1887442944</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=0x8e</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=000c0a5a-02</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=000c0a5a</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1.0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1_0</stdout>
+      <stdout>E: ID_REVISION=0A01</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_COMPAT=SATA_WDC_WD10EADS-00M_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SCSI_COMPAT_TRUNCATED=SATA_WDC_WD10EADS-00_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: ID_SERIAL_SHORT=WD-WCAV52321683</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_VENDOR=ATA</stdout>
+      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_WWN=0x50014ee203733bb5</stdout>
+      <stdout>E: ID_WWN_WITH_EXTENSION=0x50014ee203733bb5</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=2</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_IDENT_LUN_ATA=WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_NAA=50014ee203733bb5</stdout>
+      <stdout>E: SCSI_IDENT_LUN_T10=ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_LUN_VENDOR=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_IDENT_SERIAL=WD-WCAV52321683</stdout>
+      <stdout>E: SCSI_MODEL=WDC_WD10EADS-00M</stdout>
+      <stdout>E: SCSI_MODEL_ENC=WDC\x20WD10EADS-00M</stdout>
+      <stdout>E: SCSI_REVISION=0A01</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=ATA</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: UDISKS_IGNORE=1</stdout>
+      <stdout>E: USEC_INITIALIZED=759133</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdb'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb</stdout>
+      <stdout>N: sdb</stdout>
+      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0 /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVNAME=/dev/sdb</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=Y080L0</stdout>
+      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_MODEL_ID=3100</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=a6cf05b8-38e0-42e5-bed4-0efdf2f2164c</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_6_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=YAR4</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=411010004145</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
+      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: ID_VENDOR_ID=0d49</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=16</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=Y080L0</stdout>
+      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=YAR4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=89611983941</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdb1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb1</stdout>
+      <stdout>N: sdb1</stdout>
+      <stdout>E: DEVNAME=/dev/sdb1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=17</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdb2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb2</stdout>
+      <stdout>N: sdb2</stdout>
+      <stdout>E: DEVNAME=/dev/sdb2</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb2</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=18</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host13/target13:0:0/13:0:0:0/block/sdc</stdout>
+      <stdout>N: sdc</stdout>
+      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010006014-0:0</stdout>
+      <stdout>S: disk/by-label/WORLD</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</stdout>
+      <stdout>S: disk/by-uuid/ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010006014-0:0 /dev/disk/by-label/WORLD /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0 /dev/disk/by-uuid/ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
+      <stdout>E: DEVNAME=/dev/sdc</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host13/target13:0:0/13:0:0:0/block/sdc</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_FS_LABEL=WORLD</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=WORLD</stdout>
+      <stdout>E: ID_FS_TYPE=ext4</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
+      <stdout>E: ID_FS_UUID_ENC=ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=Y080L0</stdout>
+      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_MODEL_ID=3100</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_5_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=YAR4</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010006014-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=411010006014</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
+      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: ID_VENDOR_ID=0d49</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=32</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=Y080L0</stdout>
+      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=YAR4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=89624679831</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
       <stdout>[1:0:0:0]    cd/dvd  sata:                           /dev/sr0 </stdout>
       <stdout>[12:0:0:0]   disk    usb: 2-1.6:1.0                  /dev/sdb </stdout>
       <stdout>[13:0:0:0]   disk    usb: 2-1.5:1.0                  /dev/sdc </stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda'</name>
-      <stdout>block special file 0x8:0x0</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda1'</name>
-      <stdout>block special file 0x8:0x1</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sda2'</name>
-      <stdout>block special file 0x8:0x2</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdb'</name>
-      <stdout>block special file 0x8:0x10</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdb1'</name>
-      <stdout>block special file 0x8:0x11</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdb2'</name>
-      <stdout>block special file 0x8:0x12</stdout>
-    </Command>
-    <Command>
-      <name>/usr/bin/stat --dereference --format '%F 0x%t:0x%T' '/dev/sdc'</name>
-      <stdout>block special file 0x8:0x20</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted -s '/dev/sda' unit cyl print unit s print</name>

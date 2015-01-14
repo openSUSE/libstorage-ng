@@ -36,21 +36,19 @@ namespace storage
 	if (!systeminfo.getProcParts().getSize(name, size_k))
 	    throw;
 
-	major_minor = systeminfo.getMajorMinor(name).getMajorMinor();
+	const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
 
-	const UdevMap& by_path = systeminfo.getUdevMap("/dev/disk/by-path");
-	UdevMap::const_iterator it1 = by_path.find(name.substr(5)); // TODO
-	if (it1 != by_path.end())
+	major_minor = cmdudevadminfo.get_majorminor();
+
+	if (!cmdudevadminfo.get_by_path_links().empty())
 	{
-	    udev_path = it1->second.front();
+	    udev_path = cmdudevadminfo.get_by_path_links().front();
 	    process_udev_path(udev_path);
 	}
 
-	const UdevMap& by_id = systeminfo.getUdevMap("/dev/disk/by-id");
-	UdevMap::const_iterator it2 = by_id.find(name.substr(5)); // TODO
-	if (it2 != by_id.end())
+	if (!cmdudevadminfo.get_by_id_links().empty())
 	{
-	    udev_ids = it2->second;
+	    udev_ids = cmdudevadminfo.get_by_id_links();
 	    process_udev_ids(udev_ids);
 	}
     }

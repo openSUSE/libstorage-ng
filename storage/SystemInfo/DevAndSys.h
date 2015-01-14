@@ -111,21 +111,6 @@ namespace storage
     };
 
 
-    class UdevMap : public DevLinks
-    {
-    public:
-
-	UdevMap(const string& path);
-
-	friend std::ostream& operator<<(std::ostream& s, const UdevMap& udevmap);
-
-    private:
-
-	string path;
-
-    };
-
-
     class MdLinks : public DevLinks
     {
     public:

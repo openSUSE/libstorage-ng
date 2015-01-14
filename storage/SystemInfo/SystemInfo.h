@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,7 @@
 #include "storage/SystemInfo/CmdMultipath.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/SystemInfo/CmdLvm.h"
+#include "storage/SystemInfo/CmdUdevadm.h"
 #include "storage/SystemInfo/DevAndSys.h"
 
 
@@ -57,7 +58,6 @@ namespace storage
 	~SystemInfo();
 
 	const Dir& getDir(const string& path) { return dirs.get(path); }
-	const UdevMap& getUdevMap(const string& path) { return udevmaps.get(path); }
 	const MdLinks& getMdLinks() { return mdlinks.get(); }
 	const ProcParts& getProcParts() { return procparts.get(); }
 	const ProcMounts& getProcMounts() { return procmounts.get(); }
@@ -76,6 +76,7 @@ namespace storage
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdVgdisplay& getCmdVgdisplay(const string& name) { return vgdisplays.get(name); }
 	const MajorMinor& getMajorMinor(const string& device) { return majorminors.get(device); }
+	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
 
     private:
 
@@ -143,7 +144,6 @@ namespace storage
 	};
 
 	LazyObjects<Dir> dirs;
-	LazyObjects<UdevMap> udevmaps;
 	LazyObject<MdLinks> mdlinks;
 	LazyObject<ProcParts> procparts;
 	LazyObject<ProcMounts> procmounts;
@@ -162,6 +162,7 @@ namespace storage
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObjects<CmdVgdisplay> vgdisplays;
 	LazyObjects<MajorMinor> majorminors;
+	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
 
     };
 

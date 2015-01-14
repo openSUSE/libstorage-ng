@@ -12,8 +12,8 @@ check_PROGRAMS =								\
 	dmsetup-info.test lsscsi.test						\
 	majorminor.test mdadm-detail.test mdadm-examine.test mdlinks.test	\
 	parted.test								\
-	proc-mdstat.test proc-mounts.test proc-parts.test udevmap.test		\
-	vgdisplay.test vgs.test
+	proc-mdstat.test proc-mounts.test proc-parts.test			\
+	udevadm-info.test vgdisplay.test vgs.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
