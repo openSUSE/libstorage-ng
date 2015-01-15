@@ -36,18 +36,18 @@ namespace storage
 	format->last = false;
 	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
 
-	if (!label.empty())
+	if (!get_label().empty())
 	{
 	    Actiongraph::vertex_descriptor tmp = actiongraph.add_vertex(new Action::SetLabel(get_sid()));
 	    actiongraph.add_edge(v1, tmp);
 	    v1 = tmp;
 	}
 
-	if (!mountpoints.empty())
+	if (!get_mountpoints().empty())
 	{
 	    Actiongraph::vertex_descriptor v2 = actiongraph.add_vertex(new Action::Nop(get_sid(), false, true));
 
-	    for (const string& mountpoint : mountpoints)
+	    for (const string& mountpoint : get_mountpoints())
 	    {
 		Actiongraph::vertex_descriptor t1 = actiongraph.add_vertex(new Action::Mount(get_sid(), mountpoint));
 		Actiongraph::vertex_descriptor t2 = actiongraph.add_vertex(new Action::AddFstab(get_sid(), mountpoint));

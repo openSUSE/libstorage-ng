@@ -35,35 +35,49 @@ namespace storage
     const string&
     Filesystem::get_label() const
     {
-	return get_impl().label;
+	return get_impl().get_label();
     }
 
 
     void
     Filesystem::set_label(const string& label)
     {
-	get_impl().label = label;
+	get_impl().set_label(label);
     }
 
 
     const string&
     Filesystem::get_uuid() const
     {
-	return get_impl().uuid;
+	return get_impl().get_uuid();
     }
 
 
     const vector<string>&
     Filesystem::get_mountpoints() const
     {
-	return get_impl().mountpoints;
+	return get_impl().get_mountpoints();
     }
 
 
     void
     Filesystem::add_mountpoint(const string& mountpoint)
     {
-	return get_impl().mountpoints.push_back(mountpoint);
+	return get_impl().add_mountpoint(mountpoint);
+    }
+
+
+    const list<string>&
+    Filesystem::get_fstab_options() const
+    {
+	return get_impl().get_fstab_options();
+    }
+
+
+    void
+    Filesystem::set_fstab_options(const list<string>& fstab_options)
+    {
+	get_impl().set_fstab_options(fstab_options);
     }
 
 

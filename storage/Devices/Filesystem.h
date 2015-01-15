@@ -36,6 +36,9 @@ namespace storage
 	const std::vector<std::string>& get_mountpoints() const;
 	void add_mountpoint(const std::string& mountpoint);
 
+	const std::list<std::string>& get_fstab_options() const;
+	void set_fstab_options(const std::list<std::string>& fstab_options);
+
 	static std::vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
 						      const std::string& label);
 

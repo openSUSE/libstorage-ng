@@ -5,12 +5,15 @@
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Action.h"
+#include "storage/StorageInterface.h"
 
 
 namespace storage
 {
 
     using namespace std;
+
+    class EtcFstab;
 
 
     // abstract class
@@ -19,14 +22,20 @@ namespace storage
     {
     public:
 
+	const string& get_label() const { return label; }
+	void set_label(const string& label);
+
+	const string& get_uuid() const { return uuid; }
+
+	const vector<string>& get_mountpoints() const { return mountpoints; }
+	void add_mountpoint(const string& mountpoint);
+
+	const list<string>& get_fstab_options() const { return fstab_options; }
+	void set_fstab_options(const list<string>& fstab_options);
+
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
-	string label;
-	string uuid;
-
-	vector<string> mountpoints;
-
-	void probe(SystemInfo& systeminfo);
+	void probe(SystemInfo& systeminfo, EtcFstab& fstab);
 
 	vector<const BlkDevice*> get_blkdevices() const;
 
@@ -38,7 +47,7 @@ namespace storage
     protected:
 
 	Impl()
-	    : Device::Impl() {}
+	    : Device::Impl(), mount_by(MOUNTBY_DEVICE) {}
 
 	Impl(const xmlNode* node);
 
@@ -46,7 +55,13 @@ namespace storage
 
     private:
 
-	// mount-by
+	string label;
+	string uuid;
+
+	// TODO this should be a list of a struct with mountpoint, mount-by and fstab-options
+	vector<string> mountpoints;
+	MountByType mount_by;
+	list<string> fstab_options;
 
     };
 

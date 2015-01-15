@@ -15,12 +15,38 @@ namespace storage
 
 
     Filesystem::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node)
+	: Device::Impl(node), mount_by(MOUNTBY_DEVICE)
     {
+	string tmp;
+
 	getChildValue(node, "label", label);
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "mountpoint", mountpoints);
+
+	if (getChildValue(node, "fstab-options", tmp))
+	    fstab_options = splitString(tmp, ",");
+    }
+
+
+    void
+    Filesystem::Impl::set_label(const string& label)
+    {
+	Impl::label = label;
+    }
+
+
+    void
+    Filesystem::Impl::add_mountpoint(const string& mountpoint)
+    {
+	Impl::mountpoints.push_back(mountpoint);
+    }
+
+
+    void
+    Filesystem::Impl::set_fstab_options(const list<string>& fstab_options)
+    {
+	Impl::fstab_options = fstab_options;
     }
 
 
@@ -33,11 +59,14 @@ namespace storage
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
 	setChildValue(node, "mountpoint", mountpoints);
+
+	if (!fstab_options.empty())
+	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
     }
 
 
     void
-    Filesystem::Impl::probe(SystemInfo& systeminfo)
+    Filesystem::Impl::probe(SystemInfo& systeminfo, EtcFstab& fstab)
     {
 	const Devicegraph* g = get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
@@ -52,10 +81,16 @@ namespace storage
 	}
 
 	const ProcMounts& proc_mounts = systeminfo.getProcMounts();
-
 	string mountpoint = proc_mounts.getMount(blkdevice->get_name());
 	if (!mountpoint.empty())
 	    mountpoints.push_back(mountpoint);
+
+	FstabEntry fstabentry;
+	if (fstab.findDevice(blkdevice->get_name(), fstabentry))
+	{
+	    mount_by = fstabentry.mount_by;
+	    fstab_options = fstabentry.opts;
+	}
     }
 
 
@@ -92,7 +127,8 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return label == rhs.label && uuid == rhs.uuid && mountpoints == rhs.mountpoints;
+	return label == rhs.label && uuid == rhs.uuid && mountpoints == rhs.mountpoints &&
+	    mount_by == rhs.mount_by && fstab_options == rhs.fstab_options;
     }
 
 
@@ -107,6 +143,8 @@ namespace storage
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints);
+
+	storage::log_diff(log, "fstab-options", fstab_options, rhs.fstab_options);
     }
 
 
@@ -123,6 +161,9 @@ namespace storage
 
 	if (!mountpoints.empty())
 	    out << " mountpoints:" << mountpoints;
+
+	if (!fstab_options.empty())
+	    out << " fstab-options:" << fstab_options;
     }
 
 

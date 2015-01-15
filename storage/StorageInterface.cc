@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <pwd.h>
 #include <boost/noncopyable.hpp>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/StorageInterface.h"
 #include "storage/Utils/AppUtil.h"
@@ -584,6 +585,14 @@ namespace storage_legacy
 			    info.v.fs = filesystem->get_type();
 			    info.v.label = filesystem->get_label();
 			    info.v.uuid = filesystem->get_uuid();
+
+			    if (!filesystem->get_mountpoints().empty())
+				info.v.mount = filesystem->get_mountpoints().front();
+
+			    if (!filesystem->get_fstab_options().empty())
+				info.v.fstab_options = boost::join(filesystem->get_fstab_options(), ",");
+			    else
+				info.v.fstab_options = "defaults";
 			}
 		    }
 		    catch (...)

@@ -524,6 +524,29 @@
   </Commands>
   <Files>
     <File>
+      <name>/etc/crypttab</name>
+    </File>
+    <File>
+      <name>/etc/fstab</name>
+      <content>/dev/disk/by-id/ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1 /boot ext3 acl,user_xattr 1 2</content>
+      <content>/dev/system/swap swap swap defaults 0 0</content>
+      <content>/dev/system/root / ext3 noatime,acl,user_xattr              1 1</content>
+      <content>/dev/system/arvin /ARVIN ext3 noatime,acl,user_xattr 1 2</content>
+      <content>/dev/system/giant-xfs /ARVIN/giant xfs noatime 1 2</content>
+      <content>/dev/system/abuild /abuild ext4 noatime,acl,user_xattr,commit=600 1 2</content>
+      <content></content>
+      <content>proc /proc proc defaults 0 0</content>
+      <content>sysfs /sys sysfs noauto 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs noauto 0 0</content>
+      <content>usbfs /proc/bus/usb usbfs noauto 0 0</content>
+      <content>devpts /dev/pts devpts mode=0620,gid=5 0 0</content>
+      <content></content>
+      <content>UUID=2322b998-e842-48ed-a147-51eb78555977 /btrfs btrfs defaults 0 0</content>
+      <content></content>
+      <content>/dev/sdc1  /mnt  ext4  noauto  0 0</content>
+      <content></content>
+    </File>
+    <File>
       <name>/proc/mounts</name>
       <content>rootfs / rootfs rw 0 0</content>
       <content>sysfs /sys sysfs rw,relatime 0 0</content>

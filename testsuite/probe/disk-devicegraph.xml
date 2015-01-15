@@ -126,6 +126,7 @@
       <label>HELLO</label>
       <uuid>5e4cd0e5-0d70-48fd-b598-7889d135b282</uuid>
       <mountpoint>/mnt</mountpoint>
+      <fstab-options>noauto</fstab-options>
     </Ext4>
     <Swap>
       <sid>53</sid>

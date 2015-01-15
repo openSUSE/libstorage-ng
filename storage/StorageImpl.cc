@@ -67,6 +67,8 @@ namespace storage
     {
 	SystemInfo systeminfo;
 
+	EtcFstab fstab("/etc");
+
 	// TODO
 
 	for (const string& name : systeminfo.getDir(SYSFSDIR))
@@ -97,7 +99,7 @@ namespace storage
 			continue;
 
 		    Filesystem* filesystem = blkdevice->create_filesystem(entry.fs_type);
-		    filesystem->get_impl().probe(systeminfo);
+		    filesystem->get_impl().probe(systeminfo, fstab);
 		}
 	    }
 	}
