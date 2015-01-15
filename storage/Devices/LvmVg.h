@@ -40,6 +40,13 @@ namespace storage
     };
 
 
+    inline bool
+    is_lvm_vg(const Device* device)
+    {
+	return dynamic_cast<const LvmVg*>(device) != 0;
+    }
+
+
     inline LvmVg*
     to_lvm_vg(Device* device)
     {

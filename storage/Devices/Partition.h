@@ -63,6 +63,13 @@ namespace storage
     };
 
 
+    inline bool
+    is_partition(const Device* device)
+    {
+	return dynamic_cast<const Partition*>(device) != 0;
+    }
+
+
     inline Partition*
     to_partition(Device* device)
     {

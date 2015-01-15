@@ -12,6 +12,7 @@
 
 %rename("%(regex:/^(get_)(.*)/\\2/)s") "";
 %rename("%(regex:/^(set_)(.*)/\\2=/)s") "";
+%rename("%(regex:/^(is_)(.*)/\\2?/)s") "";
 
 %extend storage::Devicegraph
 {

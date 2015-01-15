@@ -508,19 +508,19 @@ namespace storage
 
 	    out << "[ label=\"" << device->get_sid() << " " << device->get_displayname() << "\"";
 
-	    if (to_disk(device))
+	    if (is_disk(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (to_partition_table(device))
+	    else if (is_partition_table(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (to_partition(device))
+	    else if (is_partition(device))
 		out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
-	    else if (to_lvm_vg(device))
+	    else if (is_lvm_vg(device))
 		out << ", color=\"#0000ff\", fillcolor=\"#aaaaff\"";
-	    else if (to_lvm_lv(device))
+	    else if (is_lvm_lv(device))
 		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (to_encryption(device))
+	    else if (is_encryption(device))
 		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (to_filesystem(device))
+	    else if (is_filesystem(device))
 		out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 	    else
 		throw logic_error("unknown Device subclass");

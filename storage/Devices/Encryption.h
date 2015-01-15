@@ -31,6 +31,13 @@ namespace storage
     };
 
 
+    inline bool
+    is_encryption(const Device* device)
+    {
+	return dynamic_cast<const Encryption*>(device) != 0;
+    }
+
+
     inline Encryption*
     to_encryption(Device* device)
     {
