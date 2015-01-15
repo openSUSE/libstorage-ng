@@ -110,7 +110,7 @@ rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage_legacy.la
 rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage.la
 rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage_legacy.la
 %endif
-rm -f $RPM_BUILD_ROOT/usr/lib/perl5/site_perl/storage.la
+rm -f $RPM_BUILD_ROOT/usr/lib/perl5/vendor_perl/storage.la
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"
@@ -258,8 +258,8 @@ Authors:
 
 %files -n libstorage-perl5
 %defattr(-,root,root)
-/usr/lib/perl5/site_perl/storage.pm
-/usr/lib/perl5/site_perl/storage.so
+/usr/lib/perl5/vendor_perl/storage.pm
+/usr/lib/perl5/vendor_perl/storage.so
 
 %package -n libstorage-ruby-legacy
 
