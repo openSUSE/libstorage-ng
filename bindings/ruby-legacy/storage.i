@@ -25,7 +25,7 @@ using namespace std;
 %include "std_map.i"
 %include "enum_ref.i"
 
-OUTPUT_TYPEMAP(storage::MountByType, UINT2NUM, (unsigned int));
+OUTPUT_TYPEMAP(storage_legacy::MountByType, UINT2NUM, (unsigned int));
 
 %include "../../storage/StorageSwig.h"
 %include "../../storage/StorageInterface.h"
