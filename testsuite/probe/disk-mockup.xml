@@ -20,16 +20,16 @@
       <name>/sbin/blkid -c /dev/null</name>
       <stdout>/dev/sda1: LABEL="BOOT" UUID="14875716-b8e3-4c83-ac86-48c20682b63a" TYPE="ext3" PTTYPE="dos" PARTUUID="000c0a5a-01" </stdout>
       <stdout>/dev/sda2: UUID="qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33" TYPE="LVM2_member" PARTUUID="000c0a5a-02" </stdout>
-      <stdout>/dev/mapper/system-swap: LABEL="SWAP" UUID="fd39c3f9-2990-435d-8eed-e56b6dc2e592" TYPE="swap" </stdout>
       <stdout>/dev/mapper/system-root: LABEL="ROOT" UUID="31e381c9-5b35-4045-8d01-9274a30e1298" TYPE="ext3" </stdout>
+      <stdout>/dev/mapper/system-swap: LABEL="SWAP" UUID="fd39c3f9-2990-435d-8eed-e56b6dc2e592" TYPE="swap" </stdout>
+      <stdout>/dev/sdb: LABEL="WORLD" UUID="ef589797-a92e-47ec-9903-b4f722f13e1f" TYPE="ext4" </stdout>
+      <stdout>/dev/sdc1: LABEL="HELLO" UUID="5e4cd0e5-0d70-48fd-b598-7889d135b282" TYPE="ext4" PARTUUID="c09bfaa9-570f-47f9-a0fe-abddcbfc0e6b" </stdout>
+      <stdout>/dev/sdc2: UUID="bb2131e0-2531-4ad8-b69b-cbbbf90233ab" TYPE="swap" PARTUUID="cd8bf64a-0739-42b6-867d-c8343b9d07a7" </stdout>
       <stdout>/dev/mapper/system-abuild: LABEL="ABUILD" UUID="16337c60-fc2a-4b87-8199-4f511fa06c65" TYPE="ext4" </stdout>
       <stdout>/dev/mapper/system-arvin: UUID="d4c2b968-3d62-44d7-a0c2-d85d8562a25d" TYPE="ext3" </stdout>
       <stdout>/dev/mapper/system-giant--xfs: LABEL="GIANT" UUID="0857a01f-c58e-464a-b74b-cd46992873e7" TYPE="xfs" </stdout>
       <stdout>/dev/mapper/system-btrfs: UUID="2322b998-e842-48ed-a147-51eb78555977" UUID_SUB="b2dbd0d1-e369-43ac-90d7-a25a38fb20c7" TYPE="btrfs" </stdout>
       <stdout>/dev/mapper/system-testsuite: UUID="8835f743-5290-422b-994a-63a5769a8ae9" UUID_SUB="0521ee05-4666-4cad-983f-cb50265fcd63" TYPE="btrfs" </stdout>
-      <stdout>/dev/sdb1: LABEL="HELLO" UUID="5e4cd0e5-0d70-48fd-b598-7889d135b282" TYPE="ext4" PARTUUID="c09bfaa9-570f-47f9-a0fe-abddcbfc0e6b" </stdout>
-      <stdout>/dev/sdb2: UUID="bb2131e0-2531-4ad8-b69b-cbbbf90233ab" TYPE="swap" PARTUUID="cd8bf64a-0739-42b6-867d-c8343b9d07a7" </stdout>
-      <stdout>/dev/sdc: LABEL="WORLD" UUID="ef589797-a92e-47ec-9903-b4f722f13e1f" TYPE="ext4" </stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sda'</name>
@@ -83,7 +83,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=758895</stdout>
+      <stdout>E: USEC_INITIALIZED=25829</stdout>
       <stdout></stdout>
     </Command>
     <Command>
@@ -155,7 +155,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=759018</stdout>
+      <stdout>E: USEC_INITIALIZED=25952</stdout>
       <stdout></stdout>
     </Command>
     <Command>
@@ -223,89 +223,20 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: UDISKS_IGNORE=1</stdout>
-      <stdout>E: USEC_INITIALIZED=759133</stdout>
+      <stdout>E: USEC_INITIALIZED=26081</stdout>
       <stdout></stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdb'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb</stdout>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host6/target6:0:0/6:0:0:0/block/sdb</stdout>
       <stdout>N: sdb</stdout>
-      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0</stdout>
-      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0 /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
-      <stdout>E: DEVNAME=/dev/sdb</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_BUS=usb</stdout>
-      <stdout>E: ID_INSTANCE=0:0</stdout>
-      <stdout>E: ID_MODEL=Y080L0</stdout>
-      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
-      <stdout>E: ID_MODEL_ID=3100</stdout>
-      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
-      <stdout>E: ID_PART_TABLE_UUID=a6cf05b8-38e0-42e5-bed4-0efdf2f2164c</stdout>
-      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
-      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_6_1_0-scsi-0_0_0_0</stdout>
-      <stdout>E: ID_REVISION=YAR4</stdout>
-      <stdout>E: ID_SCSI=1</stdout>
-      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010004145-0:0</stdout>
-      <stdout>E: ID_SERIAL_SHORT=411010004145</stdout>
-      <stdout>E: ID_TYPE=disk</stdout>
-      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
-      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
-      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
-      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
-      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
-      <stdout>E: ID_VENDOR_ID=0d49</stdout>
-      <stdout>E: MAJOR=8</stdout>
-      <stdout>E: MINOR=16</stdout>
-      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
-      <stdout>E: SCSI_MODEL=Y080L0</stdout>
-      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
-      <stdout>E: SCSI_REVISION=YAR4</stdout>
-      <stdout>E: SCSI_TPGS=0</stdout>
-      <stdout>E: SCSI_TYPE=disk</stdout>
-      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
-      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=89611983941</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/sdb1'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb1</stdout>
-      <stdout>N: sdb1</stdout>
-      <stdout>E: DEVNAME=/dev/sdb1</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb1</stdout>
-      <stdout>E: DEVTYPE=partition</stdout>
-      <stdout>E: MAJOR=8</stdout>
-      <stdout>E: MINOR=17</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/sdb2'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb2</stdout>
-      <stdout>N: sdb2</stdout>
-      <stdout>E: DEVNAME=/dev/sdb2</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host12/target12:0:0/12:0:0:0/block/sdb/sdb2</stdout>
-      <stdout>E: DEVTYPE=partition</stdout>
-      <stdout>E: MAJOR=8</stdout>
-      <stdout>E: MINOR=18</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/sdc'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host13/target13:0:0/13:0:0:0/block/sdc</stdout>
-      <stdout>N: sdc</stdout>
       <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010006014-0:0</stdout>
       <stdout>S: disk/by-label/WORLD</stdout>
       <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</stdout>
       <stdout>S: disk/by-uuid/ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
       <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010006014-0:0 /dev/disk/by-label/WORLD /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0 /dev/disk/by-uuid/ef589797-a92e-47ec-9903-b4f722f13e1f</stdout>
-      <stdout>E: DEVNAME=/dev/sdc</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host13/target13:0:0/13:0:0:0/block/sdc</stdout>
+      <stdout>E: DEVNAME=/dev/sdb</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host6/target6:0:0/6:0:0:0/block/sdb</stdout>
       <stdout>E: DEVTYPE=disk</stdout>
       <stdout>E: ID_BUS=usb</stdout>
       <stdout>E: ID_FS_LABEL=WORLD</stdout>
@@ -333,6 +264,51 @@
       <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
       <stdout>E: ID_VENDOR_ID=0d49</stdout>
       <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=16</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=Y080L0</stdout>
+      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=YAR4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=22783</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc</stdout>
+      <stdout>N: sdc</stdout>
+      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0 /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVNAME=/dev/sdc</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=Y080L0</stdout>
+      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_MODEL_ID=3100</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=a6cf05b8-38e0-42e5-bed4-0efdf2f2164c</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_6_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=YAR4</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=411010004145</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
+      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: ID_VENDOR_ID=0d49</stdout>
+      <stdout>E: MAJOR=8</stdout>
       <stdout>E: MINOR=32</stdout>
       <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
       <stdout>E: SCSI_MODEL=Y080L0</stdout>
@@ -344,15 +320,136 @@
       <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=89624679831</stdout>
+      <stdout>E: USEC_INITIALIZED=23783</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
+      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0-part1</stdout>
+      <stdout>S: disk/by-label/HELLO</stdout>
+      <stdout>S: disk/by-partuuid/c09bfaa9-570f-47f9-a0fe-abddcbfc0e6b</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1</stdout>
+      <stdout>S: disk/by-uuid/5e4cd0e5-0d70-48fd-b598-7889d135b282</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0-part1 /dev/disk/by-label/HELLO /dev/disk/by-partuuid/c09bfaa9-570f-47f9-a0fe-abddcbfc0e6b /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1 /dev/disk/by-uuid/5e4cd0e5-0d70-48fd-b598-7889d135b282</stdout>
+      <stdout>E: DEVNAME=/dev/sdc1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_FS_LABEL=HELLO</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=HELLO</stdout>
+      <stdout>E: ID_FS_TYPE=ext4</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=5e4cd0e5-0d70-48fd-b598-7889d135b282</stdout>
+      <stdout>E: ID_FS_UUID_ENC=5e4cd0e5-0d70-48fd-b598-7889d135b282</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=Y080L0</stdout>
+      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_MODEL_ID=3100</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:32</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=19529728</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=ebd0a0a2-b9e5-4433-87c0-68b6b72699c7</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=c09bfaa9-570f-47f9-a0fe-abddcbfc0e6b</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=a6cf05b8-38e0-42e5-bed4-0efdf2f2164c</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_6_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=YAR4</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=411010004145</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
+      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: ID_VENDOR_ID=0d49</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=33</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=Y080L0</stdout>
+      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=YAR4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=916858</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc2</stdout>
+      <stdout>N: sdc2</stdout>
+      <stdout>S: disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0-part2</stdout>
+      <stdout>S: disk/by-partuuid/cd8bf64a-0739-42b6-867d-c8343b9d07a7</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part2</stdout>
+      <stdout>S: disk/by-uuid/bb2131e0-2531-4ad8-b69b-cbbbf90233ab</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-Maxtor_6_Y080L0_411010004145-0:0-part2 /dev/disk/by-partuuid/cd8bf64a-0739-42b6-867d-c8343b9d07a7 /dev/disk/by-path/pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part2 /dev/disk/by-uuid/bb2131e0-2531-4ad8-b69b-cbbbf90233ab</stdout>
+      <stdout>E: DEVNAME=/dev/sdc2</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.6/2-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc2</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_FS_TYPE=swap</stdout>
+      <stdout>E: ID_FS_USAGE=other</stdout>
+      <stdout>E: ID_FS_UUID=bb2131e0-2531-4ad8-b69b-cbbbf90233ab</stdout>
+      <stdout>E: ID_FS_UUID_ENC=bb2131e0-2531-4ad8-b69b-cbbbf90233ab</stdout>
+      <stdout>E: ID_FS_VERSION=1</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=Y080L0</stdout>
+      <stdout>E: ID_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_MODEL_ID=3100</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:32</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=19531776</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=19529728</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=ebd0a0a2-b9e5-4433-87c0-68b6b72699c7</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=cd8bf64a-0739-42b6-867d-c8343b9d07a7</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=a6cf05b8-38e0-42e5-bed4-0efdf2f2164c</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_1d_0-usb-0_1_6_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=YAR4</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SERIAL=Maxtor_6_Y080L0_411010004145-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=411010004145</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=Maxtor_6</stdout>
+      <stdout>E: ID_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: ID_VENDOR_ID=0d49</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=34</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=Y080L0</stdout>
+      <stdout>E: SCSI_MODEL_ENC=Y080L0\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SCSI_REVISION=YAR4</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=Maxtor_6</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=Maxtor\x206</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=916871</stdout>
       <stdout></stdout>
     </Command>
     <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
       <stdout>[1:0:0:0]    cd/dvd  sata:                           /dev/sr0 </stdout>
-      <stdout>[12:0:0:0]   disk    usb: 2-1.6:1.0                  /dev/sdb </stdout>
-      <stdout>[13:0:0:0]   disk    usb: 2-1.5:1.0                  /dev/sdc </stdout>
+      <stdout>[6:0:0:0]    disk    usb: 2-1.5:1.0                  /dev/sdb </stdout>
+      <stdout>[7:0:0:0]    disk    usb: 2-1.6:1.0                  /dev/sdc </stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted -s '/dev/sda' unit cyl print unit s print</name>
@@ -384,6 +481,28 @@
       <stdout>Disk /dev/sdb: 9964cyl</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
       <stdout>BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>Partition Table: loop</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start  End      Size     File system  Flags</stdout>
+      <stdout> 1      0cyl   9964cyl  9964cyl  ext4</stdout>
+      <stdout></stdout>
+      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
+      <stdout>Disk /dev/sdb: 160086528s</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>Partition Table: loop</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start  End         Size        File system  Flags</stdout>
+      <stdout> 1      0s     160086527s  160086528s  ext4</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted -s '/dev/sdc' unit cyl print unit s print</name>
+      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
+      <stdout>Disk /dev/sdc: 9964cyl</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.</stdout>
       <stdout>Partition Table: gpt</stdout>
       <stdout>Disk Flags: </stdout>
       <stdout></stdout>
@@ -392,7 +511,7 @@
       <stdout> 2      1215cyl  2431cyl  1215cyl  linux-swap(v1)</stdout>
       <stdout></stdout>
       <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
-      <stdout>Disk /dev/sdb: 160086528s</stdout>
+      <stdout>Disk /dev/sdc: 160086528s</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
       <stdout>Partition Table: gpt</stdout>
       <stdout>Disk Flags: </stdout>
@@ -402,30 +521,50 @@
       <stdout> 2      19531776s  39061503s  19529728s  linux-swap(v1)</stdout>
       <stdout></stdout>
     </Command>
-    <Command>
-      <name>/usr/sbin/parted -s '/dev/sdc' unit cyl print unit s print</name>
-      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
-      <stdout>Disk /dev/sdc: 9964cyl</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.</stdout>
-      <stdout>Partition Table: loop</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start  End      Size     File system  Flags</stdout>
-      <stdout> 1      0cyl   9964cyl  9964cyl  ext4</stdout>
-      <stdout></stdout>
-      <stdout>Model: Maxtor 6 Y080L0 (scsi)</stdout>
-      <stdout>Disk /dev/sdc: 160086528s</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: loop</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start  End         Size        File system  Flags</stdout>
-      <stdout> 1      0s     160086527s  160086528s  ext4</stdout>
-      <stdout></stdout>
-    </Command>
   </Commands>
   <Files>
+    <File>
+      <name>/proc/mounts</name>
+      <content>rootfs / rootfs rw 0 0</content>
+      <content>sysfs /sys sysfs rw,relatime 0 0</content>
+      <content>proc /proc proc rw,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,nosuid,size=3008284k,nr_inodes=752071,mode=755 0 0</content>
+      <content>securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0</content>
+      <content>devpts /dev/pts devpts rw,relatime,gid=5,mode=620,ptmxmode=000 0 0</content>
+      <content>tmpfs /run tmpfs rw,nosuid,nodev,mode=755 0 0</content>
+      <content>tmpfs /sys/fs/cgroup tmpfs rw,nosuid,nodev,noexec,mode=755 0 0</content>
+      <content>cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd 0 0</content>
+      <content>pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0</content>
+      <content>cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0</content>
+      <content>cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0</content>
+      <content>cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0</content>
+      <content>cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0</content>
+      <content>cgroup /sys/fs/cgroup/hugetlb cgroup rw,nosuid,nodev,noexec,relatime,hugetlb 0 0</content>
+      <content>/dev/mapper/system-root / ext3 rw,noatime 0 0</content>
+      <content>systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=32,pgrp=1,timeout=300,minproto=5,maxproto=5,direct 0 0</content>
+      <content>mqueue /dev/mqueue mqueue rw,relatime 0 0</content>
+      <content>hugetlbfs /dev/hugepages hugetlbfs rw,relatime 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs rw,relatime 0 0</content>
+      <content>/dev/sda1 /boot ext3 rw,relatime,data=ordered 0 0</content>
+      <content>/dev/mapper/system-btrfs /btrfs btrfs rw,relatime,space_cache 0 0</content>
+      <content>/dev/mapper/system-abuild /abuild ext4 rw,noatime,commit=600 0 0</content>
+      <content>/dev/mapper/system-arvin /ARVIN ext3 rw,noatime,data=ordered 0 0</content>
+      <content>/dev/mapper/system-giant--xfs /ARVIN/giant xfs rw,noatime,attr2,inode64,noquota 0 0</content>
+      <content>nfsd /proc/fs/nfsd nfsd rw,relatime 0 0</content>
+      <content>rpc_pipefs /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0</content>
+      <content>auto.mounts /mounts autofs rw,relatime,fd=6,pgrp=1859,timeout=600,minproto=5,maxproto=5,indirect 0 0</content>
+      <content>auto.suse /suse autofs rw,relatime,fd=12,pgrp=1859,timeout=600,minproto=5,maxproto=5,indirect 0 0</content>
+      <content>none /var/lib/ntp/proc proc ro,nosuid,nodev,relatime 0 0</content>
+      <content>loki:/real-home/aschnell /suse/aschnell nfs rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=10.160.0.111,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=10.160.0.111 0 0</content>
+      <content>fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0</content>
+      <content>gvfsd-fuse /run/user/10176/gvfs fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=10176,group_id=50 0 0</content>
+      <content>/dev/sdc1 /mnt ext4 rw,relatime,data=ordered 0 0</content>
+    </File>
     <File>
       <name>/proc/partitions</name>
       <content>major minor  #blocks  name</content>
@@ -434,18 +573,24 @@
       <content>   8        1    1051648 sda1</content>
       <content>   8        2  943721472 sda2</content>
       <content>  11        0    1048575 sr0</content>
-      <content> 254        0    2097152 dm-0</content>
-      <content> 254        1   16777216 dm-1</content>
+      <content> 254        0   16777216 dm-0</content>
+      <content> 254        1    2097152 dm-1</content>
+      <content>   8       16   80043264 sdb</content>
+      <content>   8       32   80043264 sdc</content>
+      <content>   8       33    9764864 sdc1</content>
+      <content>   8       34    9764864 sdc2</content>
       <content> 254        2   31457280 dm-2</content>
       <content> 254        3   52428800 dm-3</content>
       <content> 254        4  314572800 dm-4</content>
       <content> 254        5    5242880 dm-5</content>
       <content> 254        6    2097152 dm-6</content>
       <content> 254        7    5242880 dm-7</content>
-      <content>   8       16   80043264 sdb</content>
-      <content>   8       17    9764864 sdb1</content>
-      <content>   8       18    9764864 sdb2</content>
-      <content>   8       32   80043264 sdc</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size	Used	Priority</content>
+      <content>/dev/dm-1                               partition	2097148	0	-1</content>
+      <content>/dev/sdc2                               partition	9764860	0	-2</content>
     </File>
   </Files>
 </Mockup>

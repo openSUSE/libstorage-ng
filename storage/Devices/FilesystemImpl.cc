@@ -19,6 +19,8 @@ namespace storage
     {
 	getChildValue(node, "label", label);
 	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "mountpoint", mountpoints);
     }
 
 
@@ -30,8 +32,7 @@ namespace storage
 	setChildValueIf(node, "label", label, !label.empty());
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
-	for (const string& mountpoint : mountpoints)
-	    setChildValue(node, "mountpoint", mountpoint);
+	setChildValue(node, "mountpoint", mountpoints);
     }
 
 
@@ -42,12 +43,19 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(g->get_impl().graph[v1].get());
 
+	const Blkid& blkid = systeminfo.getBlkid();
 	Blkid::Entry entry;
-	if (systeminfo.getBlkid().getEntry(blkdevice->get_name(), entry))
+	if (blkid.getEntry(blkdevice->get_name(), entry))
 	{
 	    label = entry.fs_label;
 	    uuid = entry.fs_uuid;
 	}
+
+	const ProcMounts& proc_mounts = systeminfo.getProcMounts();
+
+	string mountpoint = proc_mounts.getMount(blkdevice->get_name());
+	if (!mountpoint.empty())
+	    mountpoints.push_back(mountpoint);
     }
 
 
@@ -97,7 +105,8 @@ namespace storage
 
 	storage::log_diff(log, "label", label, rhs.label);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
-	// storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints); // TODO
+
+	storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints);
     }
 
 
@@ -111,6 +120,9 @@ namespace storage
 
 	if (!uuid.empty())
 	    out << " uuid:" << uuid;
+
+	if (!mountpoints.empty())
+	    out << " mountpoints:" << mountpoints;
     }
 
 
