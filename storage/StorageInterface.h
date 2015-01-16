@@ -135,6 +135,11 @@ using std::map;
  * examples in the directory /usr/share/doc/packages/libstorage/examples.
  */
 
+namespace storage
+{
+    class Storage;
+}
+
 
 namespace storage_legacy
 {
@@ -946,6 +951,8 @@ namespace storage_legacy
 
 	StorageInterface () {}
 	virtual ~StorageInterface () {}
+
+	virtual storage::Storage* getStorage() = 0;
 
 	/**
 	 * Query all containers found in system

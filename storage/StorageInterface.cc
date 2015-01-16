@@ -49,6 +49,8 @@ namespace storage_legacy
 	StorageLegacy(const Environment& env);
 	virtual ~StorageLegacy();
 
+	storage::Storage* getStorage() override { return storage; }
+
 	void setCacheChanges(bool val = true) override;
 	bool isCacheChanges() const override;
 
