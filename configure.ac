@@ -24,10 +24,6 @@ AM_PATH_PYTHON
 
 AC_PREFIX_DEFAULT(/usr)
 
-PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
-PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
-PYTHON_LIBS=$($PYTHON_CONFIG --libs)
-
 LT_INIT
 
 CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
@@ -35,19 +31,25 @@ CFLAGS="${CFLAGS} ${CWARNS}"
 CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter"
 CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
 
-docdir=\${prefix}/share/doc/packages/libstorage
-fillupdir=/var/adm/fillup-templates
-
 AC_SUBST(VERSION)
 AC_SUBST(LIBVERSION)
 AC_SUBST(LIBVERSION_MAJOR)
 AC_SUBST(LIBVERSION_MINOR)
 AC_SUBST(LIBVERSION_PATCHLEVEL)
 AC_SUBST(LIBVERSION_INFO)
-AC_SUBST(PYTHON_INCLUDES)
-AC_SUBST(PYTHON_LIBS)
+
+docdir=\${prefix}/share/doc/packages/libstorage
+fillupdir=/var/adm/fillup-templates
+
 AC_SUBST(docdir)
 AC_SUBST(fillupdir)
+
+PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
+PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
+PYTHON_LIBS=$($PYTHON_CONFIG --libs)
+
+AC_SUBST(PYTHON_INCLUDES)
+AC_SUBST(PYTHON_LIBS)
 
 AC_PATH_PROG(RUBY, ruby)
 if test -z "$RUBY" ; then
@@ -77,6 +79,9 @@ RUBY_SHARED_LIB=$(RBCONFIG(LIBRUBY))
 AC_SUBST(RUBY_SHARED_LIB)
 RUBY_ARCH_NAME=$(RBCONFIG(arch))
 AC_SUBST(RUBY_ARCH_NAME)
+
+PERL5_INCLUDES=$(perl -e "print '-I', join('/CORE -I', @INC);")
+AC_SUBST(PERL5_INCLUDES)
 
 AC_OUTPUT(
 	Makefile

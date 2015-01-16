@@ -10,13 +10,11 @@ MAINTAINERCLEANFILES = storage_wrap.cxx
 
 BUILT_SOURCES = storage_wrap.cxx
 
-# TODO
 perlextensiondirdir = /usr/lib/perl5/vendor_perl
 
 AM_CXXFLAGS = -fPIC -DPIC
 
-# TODO
-AM_CPPFLAGS = -I. -I${top_srcdir} -I/usr/lib/perl5/5.20.1/x86_64-linux-thread-multi/CORE/
+AM_CPPFLAGS = -I. -I${top_srcdir} ${PERL5_INCLUDES}
 
 include ../storage.deps
 
@@ -33,7 +31,6 @@ storage_la_DEPENDENCIES =				\
 storage.pm storage_wrap.cxx: ../storage.i storage-perl5.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -perl5 ${AM_CPPFLAGS} storage-perl5.i
 
-# TODO
 install-data-hook:
 	install storage.pm $(DESTDIR)/usr/lib/perl5/vendor_perl
 
