@@ -43,7 +43,7 @@ main()
     devicegraph->check();
 
     cout << devicegraph << endl;
-    devicegraph->write_graphviz("test1");
+    devicegraph->write_graphviz("test1.gv");
 
     for (const Filesystem* filesystem : Filesystem::find_by_mountpoint(devicegraph, "/"))
     {

@@ -55,5 +55,5 @@ main()
 
     devicegraph.check();
 
-    devicegraph.write_graphviz("check1");
+    devicegraph.write_graphviz("check1.gv");
 }

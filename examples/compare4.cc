@@ -42,11 +42,11 @@ main()
     Using::create(rhs, rhs_sda2, rhs_system);
     Using::create(rhs, rhs_sda3, rhs_system);
 
-    rhs->write_graphviz("compare4-device-rhs");
+    rhs->write_graphviz("compare4-device-rhs.gv");
 
     Actiongraph actiongraph(lhs, rhs);
 
-    actiongraph.write_graphviz("compare4-action");
+    actiongraph.write_graphviz("compare4-action.gv");
 
     delete lhs;
     delete rhs;

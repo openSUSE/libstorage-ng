@@ -21,6 +21,7 @@ libstorage_la_SOURCES =					\
 	Geometry.h		Geometry.cc		\
 	HumanString.h		HumanString.cc		\
 	StorageInterface.h	StorageInterface.cc	\
+	Graph.cc		Graph.h			\
 	StorageVersion.h
 
 libstorage_la_LDFLAGS = -version-info @LIBVERSION_INFO@

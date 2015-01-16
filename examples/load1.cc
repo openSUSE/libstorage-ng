@@ -25,5 +25,5 @@ main()
 
     cout << devicegraph << endl;
 
-    devicegraph.write_graphviz("load1");
+    devicegraph.write_graphviz("load1.gv");
 }

@@ -43,11 +43,11 @@ main()
     rhs_sda2_fs->add_mountpoint("/var");
     Using::create(rhs, rhs_sda2, rhs_sda2_fs);
 
-    rhs->write_graphviz("compare6-device-rhs");
+    rhs->write_graphviz("compare6-device-rhs.gv");
 
     Actiongraph actiongraph(lhs, rhs);
 
-    actiongraph.write_graphviz("compare6-action");
+    actiongraph.write_graphviz("compare6-action.gv");
 
     delete lhs;
     delete rhs;

@@ -45,11 +45,11 @@ main()
     Swap* rhs_swap = Swap::create(rhs);
     Using::create(rhs, rhs_sda2, rhs_swap);
 
-    rhs->write_graphviz("compare5-device-rhs");
+    rhs->write_graphviz("compare5-device-rhs.gv");
 
     Actiongraph actiongraph(lhs, rhs);
 
-    actiongraph.write_graphviz("compare5-action");
+    actiongraph.write_graphviz("compare5-action.gv");
 
     delete lhs;
     delete rhs;

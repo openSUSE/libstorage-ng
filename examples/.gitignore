@@ -1,4 +1,4 @@
-*.dot
+*.gv
 *.xml
 *.o
 *.png

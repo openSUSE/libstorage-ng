@@ -172,5 +172,5 @@ main()
 
     cout << devicegraph << endl;
 
-    devicegraph.write_graphviz("test1");
+    devicegraph.write_graphviz("test1.gv");
 }

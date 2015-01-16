@@ -553,7 +553,7 @@ namespace storage
     void
     Devicegraph::Impl::write_graphviz(const string& filename) const
     {
-	ofstream fout(filename + ".dot");
+	ofstream fout(filename);
 
 	Haha<graph_t> haha(graph);
 
@@ -574,8 +574,6 @@ namespace storage
 			      write_graph(*this), haha.get());
 
 	fout.close();
-
-	system(string("dot -Tpng < " + filename + ".dot > " + filename + ".png").c_str());
     }
 
 }

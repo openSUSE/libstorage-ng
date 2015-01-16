@@ -23,6 +23,6 @@ main()
     cout << *probed << endl;
 
     probed->check();
-    probed->write_graphviz("probe1");
+    probed->write_graphviz("probe1.gv");
     probed->save("probe1-devicegraph.xml");
 }

@@ -43,5 +43,5 @@ main()
 
     Actiongraph actiongraph(&lhs, &rhs);
 
-    actiongraph.write_graphviz("compare1-action");
+    actiongraph.write_graphviz("compare1-action.gv");
 }
