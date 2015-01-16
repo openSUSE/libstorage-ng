@@ -8,7 +8,7 @@ EXTRA_DIST = storage-python.i
 
 AM_CXXFLAGS = -fPIC -DPIC
 
-AM_CPPFLAGS = -I. -I${top_srcdir} -I${PYTHON_INCLUDES}
+AM_CPPFLAGS = -I. -I${top_srcdir} ${PYTHON_INCLUDES}
 
 include ../storage.deps
 
