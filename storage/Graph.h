@@ -29,7 +29,7 @@
 using std::string;
 
 
-namespace storage
+namespace storage_legacy
 {
     class StorageInterface;
 
