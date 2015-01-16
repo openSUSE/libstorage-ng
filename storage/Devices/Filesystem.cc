@@ -67,6 +67,20 @@ namespace storage
     }
 
 
+    MountByType
+    Filesystem::get_mount_by() const
+    {
+	return get_impl().get_mount_by();
+    }
+
+
+    void
+    Filesystem::set_mount_by(MountByType mount_by)
+    {
+	get_impl().set_mount_by(mount_by);
+    }
+
+
     const list<string>&
     Filesystem::get_fstab_options() const
     {

@@ -129,7 +129,7 @@ namespace storage
 	    { FstabEntry e; return( findMount( mount,e )); }
 
 	void setDevice(const string& device, const list<string>& alt_names, const string& uuid,
-		       const string& label, const list<string>& ids, const string& path);
+		       const string& label, const vector<string>& ids, const string& path);
 
 	int addEntry(const FstabChange& entry);
 	int updateEntry(const FstabKey& key, const FstabChange& entry);

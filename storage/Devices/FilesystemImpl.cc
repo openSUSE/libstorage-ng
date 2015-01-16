@@ -4,6 +4,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -23,6 +24,9 @@ namespace storage
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "mountpoint", mountpoints);
+
+	if (getChildValue(node, "mount-by", tmp))
+	    mount_by = toValueWithFallback(tmp, MOUNTBY_DEVICE);
 
 	if (getChildValue(node, "fstab-options", tmp))
 	    fstab_options = splitString(tmp, ",");
@@ -44,6 +48,13 @@ namespace storage
 
 
     void
+    Filesystem::Impl::set_mount_by(MountByType mount_by)
+    {
+	Impl::mount_by = mount_by;
+    }
+
+
+    void
     Filesystem::Impl::set_fstab_options(const list<string>& fstab_options)
     {
 	Impl::fstab_options = fstab_options;
@@ -59,6 +70,8 @@ namespace storage
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
 	setChildValue(node, "mountpoint", mountpoints);
+
+	setChildValueIf(node, "mount-by", toString(mount_by), mount_by != MOUNTBY_DEVICE);
 
 	if (!fstab_options.empty())
 	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
@@ -85,6 +98,8 @@ namespace storage
 	if (!mountpoint.empty())
 	    mountpoints.push_back(mountpoint);
 
+	fstab.setDevice(blkdevice->get_name(), {}, uuid, label, blkdevice->get_udev_ids(),
+			blkdevice->get_udev_path());
 	FstabEntry fstabentry;
 	if (fstab.findDevice(blkdevice->get_name(), fstabentry))
 	{
@@ -143,6 +158,8 @@ namespace storage
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints);
+
+	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
 	storage::log_diff(log, "fstab-options", fstab_options, rhs.fstab_options);
     }

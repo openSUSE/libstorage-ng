@@ -30,6 +30,9 @@ namespace storage
 	const vector<string>& get_mountpoints() const { return mountpoints; }
 	void add_mountpoint(const string& mountpoint);
 
+	MountByType get_mount_by() const { return mount_by; }
+	void set_mount_by(MountByType mount_by);
+
 	const list<string>& get_fstab_options() const { return fstab_options; }
 	void set_fstab_options(const list<string>& fstab_options);
 

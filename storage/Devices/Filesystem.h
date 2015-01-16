@@ -36,6 +36,9 @@ namespace storage
 	const std::vector<std::string>& get_mountpoints() const;
 	void add_mountpoint(const std::string& mountpoint);
 
+	MountByType get_mount_by() const;
+	void set_mount_by(MountByType mount_by);
+
 	const std::list<std::string>& get_fstab_options() const;
 	void set_fstab_options(const std::list<std::string>& fstab_options);
 

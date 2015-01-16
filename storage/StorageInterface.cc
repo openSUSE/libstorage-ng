@@ -589,6 +589,8 @@ namespace storage_legacy
 			    if (!filesystem->get_mountpoints().empty())
 				info.v.mount = filesystem->get_mountpoints().front();
 
+			    info.v.mount_by = filesystem->get_mount_by();
+
 			    if (!filesystem->get_fstab_options().empty())
 				info.v.fstab_options = boost::join(filesystem->get_fstab_options(), ",");
 			    else

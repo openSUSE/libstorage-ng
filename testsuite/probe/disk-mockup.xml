@@ -543,7 +543,7 @@
       <content></content>
       <content>UUID=2322b998-e842-48ed-a147-51eb78555977 /btrfs btrfs defaults 0 0</content>
       <content></content>
-      <content>/dev/sdc1  /mnt  ext4  noauto  0 0</content>
+      <content>LABEL=HELLO  /mnt  ext4  noauto  0 0</content>
       <content></content>
     </File>
     <File>
