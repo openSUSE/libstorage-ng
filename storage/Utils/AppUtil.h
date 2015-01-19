@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <chrono>
 
 
 namespace storage
@@ -132,11 +133,13 @@ void logStreamClose(LogLevel level, const char* file, unsigned line,
 
 	StopWatch();
 
+	double read() const;
+
 	friend std::ostream& operator<<(std::ostream& s, const StopWatch& sw);
 
     protected:
 
-	struct timeval start_tv;
+	std::chrono::steady_clock::time_point start_time;
 
     };
 

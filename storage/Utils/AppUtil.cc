@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@
 #include <string>
 #include <iostream>
 #include <boost/algorithm/string.hpp>
+#include <boost/io/ios_state.hpp>
 
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -605,20 +606,25 @@ string afterLast(const string& s, const string& pat )
 
 
     StopWatch::StopWatch()
+	: start_time(chrono::steady_clock::now())
     {
-	gettimeofday(&start_tv, NULL);
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const StopWatch& sw)
+    double
+    StopWatch::read() const
     {
-	struct timeval stop_tv;
-	gettimeofday(&stop_tv, NULL);
+	chrono::steady_clock::time_point stop_time = chrono::steady_clock::now();
+	chrono::steady_clock::duration duration = stop_time - start_time;
+	return chrono::duration<double>(duration).count();
+    }
 
-	struct timeval tv;
-	timersub(&stop_tv, &sw.start_tv, &tv);
 
-	return s << fixed << double(tv.tv_sec) + (double)(tv.tv_usec) / 1000000.0 << "s";
+    std::ostream&
+    operator<<(std::ostream& s, const StopWatch& sw)
+    {
+	boost::io::ios_all_saver ias(s);
+	return s << fixed << sw.read() << "s";
     }
 
 
