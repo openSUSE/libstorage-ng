@@ -14,7 +14,6 @@ namespace storage
 
     class Environment;
     class Devicegraph;
-    class Actiongraph;
 
 
     class Storage : private boost::noncopyable
