@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013 Novell, Inc.
+ * Copyright (c) [2013-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -22,13 +22,15 @@
 
 #include <string>
 
-#include "storage/Storage.h"
+#include "storage/Devices/DiskImpl.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
-namespace storage
+namespace storage_legacy
 {
     using namespace std;
+    using namespace storage;
 
 
     list<string>
@@ -38,12 +40,11 @@ namespace storage
 
 	list<string> ret;
 
-	list<pair<string, Disk::SysfsInfo>> dlist = Storage::getDiskList(systeminfo);
-
-	for (list<pair<string, Disk::SysfsInfo>>::const_iterator it = dlist.begin(); it != dlist.end(); ++it)
-	    ret.push_back("/dev/" + Disk::sysfsToDev(it->first));
+	for (const string& name : Disk::Impl::probe_disks(systeminfo))
+	    ret.push_back(name);
 
 	y2mil("ret:" << ret);
+
 	return ret;
     }
 

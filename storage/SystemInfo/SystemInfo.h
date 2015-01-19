@@ -58,6 +58,7 @@ namespace storage
 	~SystemInfo();
 
 	const Dir& getDir(const string& path) { return dirs.get(path); }
+	const File& getFile(const string& path) { return files.get(path); }
 	const MdLinks& getMdLinks() { return mdlinks.get(); }
 	const ProcParts& getProcParts() { return procparts.get(); }
 	const ProcMounts& getProcMounts() { return procmounts.get(); }
@@ -144,6 +145,7 @@ namespace storage
 	};
 
 	LazyObjects<Dir> dirs;
+	LazyObjects<File> files;
 	LazyObject<MdLinks> mdlinks;
 	LazyObject<ProcParts> procparts;
 	LazyObject<ProcMounts> procmounts;

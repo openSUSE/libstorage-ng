@@ -31,7 +31,7 @@ using std::string;
 using std::map;
 
 
-namespace storage
+namespace storage_legacy
 {
 
     /**

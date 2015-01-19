@@ -27,6 +27,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageDefines.h"
 
 
@@ -96,6 +97,61 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const Dir& dir)
     {
 	s << "path:" << dir.path << " entries:" << dir.entries << endl;
+
+	return s;
+    }
+
+
+    File::File(const string& path)
+	: path(path)
+    {
+	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+	{
+	    const Mockup::File& mockup = Mockup::get_file(path);
+	    content = mockup.content;
+	}
+
+	ifstream s(path);
+	classic(s);
+	s.unsetf(ifstream::skipws);
+
+	string line;
+	getline(s, line);
+	while (s.good())
+	{
+	    content.push_back(line);
+	    getline(s, line);
+	}
+
+	// TODO error checking
+
+	if (Mockup::get_mode() == Mockup::Mode::RECORD)
+	{
+	    Mockup::set_file(path, content);
+	}
+
+	y2mil(*this);
+    }
+
+
+    int
+    File::get_int() const
+    {
+	if (content.empty())
+	    throw;
+
+	int ret;
+	content.front() >> ret;
+
+	// TODO error checking
+
+	return ret;
+    }
+
+
+    std::ostream& operator<<(std::ostream& s, const File& file)
+    {
+	s << "path:" << file.path << " content:" << file.content << endl;
 
 	return s;
     }

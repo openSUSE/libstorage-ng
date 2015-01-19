@@ -10,6 +10,7 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -25,6 +26,29 @@ namespace storage
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, TUNKNOWN);
+    }
+
+
+    vector<string>
+    Disk::Impl::probe_disks(SystemInfo& systeminfo)
+    {
+	vector<string> ret;
+
+	for (const string& name : systeminfo.getDir(SYSFSDIR "/block"))
+	{
+	    // we do not treat mds as disks although they can be partitioned since kernel 2.6.28
+	    if (boost::starts_with(name, "md") || boost::starts_with(name, "loop"))
+		continue;
+
+	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo("/dev/" + name);
+
+	    const File range = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/range");
+
+	    if (range.get_int() > 1)
+		ret.push_back("/dev/" + name);
+	}
+
+	return ret;
     }
 
 

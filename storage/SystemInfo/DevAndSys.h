@@ -87,6 +87,31 @@ namespace storage
     };
 
 
+    class File
+    {
+    public:
+
+	typedef vector<string>::const_iterator const_iterator;
+
+	File(const string& path);
+
+	const_iterator begin() const { return content.begin(); }
+	const_iterator end() const { return content.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const File& file);
+
+	// TODO rethink interface
+	int get_int() const;
+
+    private:
+
+	string path;
+
+	vector<string> content;
+
+    };
+
+
     class DevLinks
     {
     public:

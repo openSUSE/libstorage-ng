@@ -69,29 +69,19 @@
       <size-k>80043264</size-k>
       <major>8</major>
       <minor>16</minor>
-      <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</udev-path>
-      <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0</udev-id>
-      <transport>USB</transport>
-    </Disk>
-    <Disk>
-      <sid>47</sid>
-      <name>/dev/sdc</name>
-      <size-k>80043264</size-k>
-      <major>8</major>
-      <minor>32</minor>
       <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0</udev-id>
       <transport>USB</transport>
     </Disk>
     <Gpt>
-      <sid>48</sid>
+      <sid>47</sid>
     </Gpt>
     <Partition>
-      <sid>49</sid>
-      <name>/dev/sdc1</name>
+      <sid>48</sid>
+      <name>/dev/sdb1</name>
       <size-k>9764864</size-k>
       <major>8</major>
-      <minor>33</minor>
+      <minor>17</minor>
       <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0-part1</udev-id>
       <region>
@@ -102,11 +92,11 @@
       <id>131</id>
     </Partition>
     <Partition>
-      <sid>50</sid>
-      <name>/dev/sdc2</name>
+      <sid>49</sid>
+      <name>/dev/sdb2</name>
       <size-k>9764864</size-k>
       <major>8</major>
-      <minor>34</minor>
+      <minor>18</minor>
       <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part2</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0-part2</udev-id>
       <region>
@@ -116,13 +106,18 @@
       <type>primary</type>
       <id>130</id>
     </Partition>
+    <Disk>
+      <sid>50</sid>
+      <name>/dev/sdc</name>
+      <size-k>80043264</size-k>
+      <major>8</major>
+      <minor>32</minor>
+      <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</udev-path>
+      <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0</udev-id>
+      <transport>USB</transport>
+    </Disk>
     <Ext4>
       <sid>51</sid>
-      <label>WORLD</label>
-      <uuid>ef589797-a92e-47ec-9903-b4f722f13e1f</uuid>
-    </Ext4>
-    <Ext4>
-      <sid>52</sid>
       <label>HELLO</label>
       <uuid>5e4cd0e5-0d70-48fd-b598-7889d135b282</uuid>
       <mountpoint>/mnt</mountpoint>
@@ -130,10 +125,15 @@
       <fstab-options>noauto</fstab-options>
     </Ext4>
     <Swap>
-      <sid>53</sid>
+      <sid>52</sid>
       <uuid>bb2131e0-2531-4ad8-b69b-cbbbf90233ab</uuid>
       <mountpoint>swap</mountpoint>
     </Swap>
+    <Ext4>
+      <sid>53</sid>
+      <label>WORLD</label>
+      <uuid>ef589797-a92e-47ec-9903-b4f722f13e1f</uuid>
+    </Ext4>
   </Devices>
   <Holders>
     <Using>
@@ -149,19 +149,19 @@
       <target-sid>45</target-sid>
     </Subdevice>
     <Using>
-      <source-sid>47</source-sid>
-      <target-sid>48</target-sid>
+      <source-sid>46</source-sid>
+      <target-sid>47</target-sid>
     </Using>
     <Subdevice>
-      <source-sid>48</source-sid>
-      <target-sid>49</target-sid>
+      <source-sid>47</source-sid>
+      <target-sid>48</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>48</source-sid>
-      <target-sid>50</target-sid>
+      <source-sid>47</source-sid>
+      <target-sid>49</target-sid>
     </Subdevice>
     <Using>
-      <source-sid>46</source-sid>
+      <source-sid>48</source-sid>
       <target-sid>51</target-sid>
     </Using>
     <Using>

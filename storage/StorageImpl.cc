@@ -6,7 +6,6 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Actiongraph.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Mockup.h"
@@ -71,12 +70,9 @@ namespace storage
 
 	// TODO
 
-	for (const string& name : systeminfo.getDir(SYSFSDIR))
+	for (const string& name : Disk::Impl::probe_disks(systeminfo))
 	{
-	    if (!boost::starts_with(name, "sd"))
-		continue;
-
-	    Disk* disk = Disk::create(probed, "/dev/" + name);
+	    Disk* disk = Disk::create(probed, name);
 	    disk->get_impl().probe(systeminfo);
 	}
 
