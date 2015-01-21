@@ -2,7 +2,7 @@
 // Common SWIG interface definition for libstorage
 //
 
-%module storage
+%module(directors="1") storage
 
 %ignore "get_impl";
 %ignore "clone";
@@ -24,6 +24,8 @@
 %catches(storage::DeviceNotFound) storage::BlkDevice::find(const Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound) storage::Disk::find(const Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound) storage::Partition::find(const Devicegraph*, const std::string&);
+
+%feature("director") storage::CommitCallbacks;
 
 // order of includes is crucial
 

@@ -112,9 +112,9 @@ namespace storage
 
 
     void
-    Storage::commit()
+    Storage::commit(const CommitCallbacks* commit_callbacks)
     {
-	get_impl().commit();
+	get_impl().commit(commit_callbacks);
     }
 
 }

@@ -21,6 +21,9 @@ namespace storage
     using std::deque;
 
 
+    class CommitCallbacks;
+
+
     namespace Action
     {
 	class Base;
@@ -67,7 +70,7 @@ namespace storage
 	graph_t graph;
 
 	list<string> get_commit_steps() const;
-	void commit() const;
+	void commit(const CommitCallbacks* commit_callbacks) const;
 
 	// TODO simple_t is useful for comparing in testsuite, move there?
 	typedef map<string, vector<string>> simple_t;

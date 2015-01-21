@@ -16,6 +16,18 @@ namespace storage
     class Devicegraph;
 
 
+    class CommitCallbacks
+    {
+    public:
+
+	virtual ~CommitCallbacks() {}
+
+	virtual void message(const std::string& message) const = 0;
+	virtual bool error(const std::string& message) const = 0;
+
+    };
+
+
     class Storage : private boost::noncopyable
     {
     public:
@@ -44,7 +56,7 @@ namespace storage
 	const Devicegraph* get_probed() const;
 
 	std::list<std::string> get_commit_steps() const;
-	void commit();
+	void commit(const CommitCallbacks* commit_callbacks = nullptr);
 
     public:
 

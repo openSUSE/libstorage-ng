@@ -13,6 +13,7 @@
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"
 #include "storage/Actiongraph.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -227,14 +228,19 @@ namespace storage
 
 
     void
-    Actiongraph::commit() const
+    Actiongraph::commit(const CommitCallbacks* commit_callbacks) const
     {
 	cout << "commit" << endl;
 
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
+
 	    cout << vertex << " " << action->text(*this, true).text << endl;
+
+	    if (commit_callbacks)
+		commit_callbacks->message(action->text(*this, true).text);
+
 	    action->commit(*this);
 	}
 

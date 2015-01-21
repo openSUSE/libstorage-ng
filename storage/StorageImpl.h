@@ -42,7 +42,7 @@ namespace storage
 	const Devicegraph* get_probed() const;
 
 	std::list<std::string> get_commit_steps() const;
-	void commit();
+	void commit(const CommitCallbacks* commit_callbacks);
 
     private:
 

@@ -239,11 +239,11 @@ namespace storage
 
 
     void
-    Storage::Impl::commit()
+    Storage::Impl::commit(const CommitCallbacks* commit_callbacks)
     {
 	Actiongraph actiongraph(get_probed(), get_current());
 
-	actiongraph.commit();
+	actiongraph.commit(commit_callbacks);
 
 	// TODO somehow update probed
     }

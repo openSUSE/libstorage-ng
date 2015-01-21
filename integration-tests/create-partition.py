@@ -6,6 +6,19 @@
 from storage import *
 
 
+class MyCommitCallbacks(CommitCallbacks):
+
+    def __init__(self):
+        super(MyCommitCallbacks, self).__init__()
+
+    def message(self, s):
+        print "message '%s'" % s
+
+    def error(self, s):
+        print "error '%s'" % s
+        return False
+
+
 environment = Environment(False)
 
 storage = Storage(environment)
@@ -26,5 +39,7 @@ partition.set_region(Region(0, 1000))
 
 print current
 
-storage.commit()
+my_commit_callbacks = MyCommitCallbacks()
+
+storage.commit(my_commit_callbacks)
 
