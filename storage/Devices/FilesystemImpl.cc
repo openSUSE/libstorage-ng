@@ -190,9 +190,13 @@ namespace storage
 	Text
 	Format::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
 
-	    return sformat(_("Create %1$s"), device->get_displayname().c_str());
+	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    assert(is_filesystem(device));
+
+	    return sformat(_("Create %1$s on %2$s (%3$s)"), device->get_displayname().c_str(),
+			   blkdevice->get_name().c_str(), blkdevice->get_size_string().c_str());
 	}
 
 

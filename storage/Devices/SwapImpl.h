@@ -38,6 +38,21 @@ namespace storage
 
     };
 
+    namespace Action
+    {
+
+	class FormatSwap : public Format
+	{
+	public:
+
+	    FormatSwap(sid_t sid) : Format(sid) {}
+
+	    virtual void commit(const Actiongraph& actiongraph) const override;
+
+	};
+
+    }
+
 }
 
 #endif

@@ -49,7 +49,6 @@ namespace storage
 
 	    FormatExt4(sid_t sid) : Format(sid) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 	    virtual void commit(const Actiongraph& actiongraph) const override;
 
 	};

@@ -91,16 +91,6 @@ namespace storage
     namespace Action
     {
 
-	Text
-	FormatExt4::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
-
-	    return sformat(_("Create %1$s on %2$s (%3$s)"), "ext4", blkdevice->get_name().c_str(),
-			   blkdevice->get_size_string().c_str());
-	}
-
-
 	void
 	FormatExt4::commit(const Actiongraph& actiongraph) const
 	{
