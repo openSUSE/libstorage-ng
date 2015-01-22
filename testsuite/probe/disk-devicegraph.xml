@@ -4,17 +4,16 @@
     <Disk>
       <sid>42</sid>
       <name>/dev/sda</name>
-      <size-k>976762584</size-k>
+      <sysfs-name>sda</sysfs-name>
+      <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</sysfs-path>
+      <size-k>8388608</size-k>
       <major>8</major>
       <minor>0</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
-      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683</udev-id>
-      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
-      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683</udev-id>
-      <udev-id>scsi-350014ee203733bb5</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683</udev-id>
-      <udev-id>wwn-0x50014ee203733bb5</udev-id>
+      <udev-id>ata-VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
       <transport>SATA</transport>
     </Disk>
     <Msdos>
@@ -23,116 +22,81 @@
     <Partition>
       <sid>44</sid>
       <name>/dev/sda1</name>
-      <size-k>1051648</size-k>
+      <sysfs-name>sda1</sysfs-name>
+      <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</sysfs-path>
+      <size-k>1018880</size-k>
       <major>8</major>
       <minor>1</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part1</udev-path>
-      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</udev-id>
-      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</udev-id>
-      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</udev-id>
-      <udev-id>scsi-350014ee203733bb5-part1</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1</udev-id>
-      <udev-id>wwn-0x50014ee203733bb5-part1</udev-id>
+      <udev-id>ata-VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part1</udev-id>
       <region>
         <start>0</start>
-        <length>132</length>
+        <length>127</length>
+      </region>
+      <type>primary</type>
+      <id>130</id>
+    </Partition>
+    <Partition>
+      <sid>45</sid>
+      <name>/dev/sda2</name>
+      <sysfs-name>sda2</sysfs-name>
+      <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</sysfs-path>
+      <size-k>7368704</size-k>
+      <major>8</major>
+      <minor>2</minor>
+      <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
+      <udev-id>ata-VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2-part2</udev-id>
+      <region>
+        <start>126</start>
+        <length>918</length>
       </region>
       <type>primary</type>
       <id>131</id>
       <boot>true</boot>
     </Partition>
-    <Partition>
-      <sid>45</sid>
-      <name>/dev/sda2</name>
-      <size-k>943721472</size-k>
-      <major>8</major>
-      <minor>2</minor>
-      <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
-      <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</udev-id>
-      <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</udev-id>
-      <udev-id>scsi-1ATA_WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</udev-id>
-      <udev-id>scsi-350014ee203733bb5-part2</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</udev-id>
-      <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2</udev-id>
-      <udev-id>wwn-0x50014ee203733bb5-part2</udev-id>
-      <region>
-        <start>131</start>
-        <length>117488</length>
-      </region>
-      <type>primary</type>
-      <id>142</id>
-    </Partition>
     <Disk>
       <sid>46</sid>
       <name>/dev/sdb</name>
-      <size-k>80043264</size-k>
+      <sysfs-name>sdb</sysfs-name>
+      <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</sysfs-path>
+      <size-k>16777216</size-k>
       <major>8</major>
       <minor>16</minor>
-      <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</udev-path>
-      <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0</udev-id>
-      <transport>USB</transport>
+      <udev-path>pci-0000:00:1f.2-ata-2.0</udev-path>
+      <udev-id>ata-VBOX_HARDDISK_VB43911086-715441bd</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
+      <rotational>true</rotational>
+      <transport>SATA</transport>
     </Disk>
-    <Gpt>
-      <sid>47</sid>
-    </Gpt>
-    <Partition>
-      <sid>48</sid>
-      <name>/dev/sdb1</name>
-      <size-k>9764864</size-k>
-      <major>8</major>
-      <minor>17</minor>
-      <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1</udev-path>
-      <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0-part1</udev-id>
-      <region>
-        <start>0</start>
-        <length>1216</length>
-      </region>
-      <type>primary</type>
-      <id>131</id>
-    </Partition>
-    <Partition>
-      <sid>49</sid>
-      <name>/dev/sdb2</name>
-      <size-k>9764864</size-k>
-      <major>8</major>
-      <minor>18</minor>
-      <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part2</udev-path>
-      <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0-part2</udev-id>
-      <region>
-        <start>1215</start>
-        <length>1217</length>
-      </region>
-      <type>primary</type>
-      <id>130</id>
-    </Partition>
-    <Disk>
-      <sid>50</sid>
-      <name>/dev/sdc</name>
-      <size-k>80043264</size-k>
-      <major>8</major>
-      <minor>32</minor>
-      <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</udev-path>
-      <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0</udev-id>
-      <transport>USB</transport>
-    </Disk>
-    <Ext4>
-      <sid>51</sid>
-      <label>HELLO</label>
-      <uuid>5e4cd0e5-0d70-48fd-b598-7889d135b282</uuid>
-      <mountpoint>/mnt</mountpoint>
-      <mount-by>label</mount-by>
-      <fstab-options>noauto</fstab-options>
-    </Ext4>
     <Swap>
-      <sid>52</sid>
-      <uuid>bb2131e0-2531-4ad8-b69b-cbbbf90233ab</uuid>
+      <sid>47</sid>
+      <uuid>86b64dbc-0530-4a4b-bca7-72e2c8b4e317</uuid>
       <mountpoint>swap</mountpoint>
+      <mount-by>uuid</mount-by>
+      <fstab-options>defaults</fstab-options>
     </Swap>
     <Ext4>
-      <sid>53</sid>
-      <label>WORLD</label>
-      <uuid>ef589797-a92e-47ec-9903-b4f722f13e1f</uuid>
+      <sid>48</sid>
+      <uuid>9f0f12c5-4d18-494b-b234-7342c953e99a</uuid>
+      <mountpoint>/</mountpoint>
+      <mount-by>uuid</mount-by>
+      <fstab-options>acl,user_xattr</fstab-options>
+    </Ext4>
+    <Ext4>
+      <sid>49</sid>
+      <label>HOME</label>
+      <uuid>49516005-5d9d-4e00-87b5-516f16de7e6f</uuid>
+      <mountpoint>/home</mountpoint>
+      <mount-by>label</mount-by>
+      <fstab-options>defaults</fstab-options>
     </Ext4>
   </Devices>
   <Holders>
@@ -149,28 +113,16 @@
       <target-sid>45</target-sid>
     </Subdevice>
     <Using>
-      <source-sid>46</source-sid>
+      <source-sid>44</source-sid>
       <target-sid>47</target-sid>
     </Using>
-    <Subdevice>
-      <source-sid>47</source-sid>
+    <Using>
+      <source-sid>45</source-sid>
       <target-sid>48</target-sid>
-    </Subdevice>
-    <Subdevice>
-      <source-sid>47</source-sid>
+    </Using>
+    <Using>
+      <source-sid>46</source-sid>
       <target-sid>49</target-sid>
-    </Subdevice>
-    <Using>
-      <source-sid>48</source-sid>
-      <target-sid>51</target-sid>
-    </Using>
-    <Using>
-      <source-sid>49</source-sid>
-      <target-sid>52</target-sid>
-    </Using>
-    <Using>
-      <source-sid>50</source-sid>
-      <target-sid>53</target-sid>
     </Using>
   </Holders>
 </Devicegraph>
