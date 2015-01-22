@@ -51,39 +51,50 @@ AsciiFile::AsciiFile(const string& Name_Cv, bool remove_empty)
 }
 
 
-bool
-AsciiFile::reload()
-{
-    if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+    bool
+    AsciiFile::reload()
     {
-	const Mockup::File& mockup = Mockup::get_file(Name_C);
-	Lines_C = mockup.content;
-	return true;
+	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+	{
+	    const Mockup::File& mockup_file = Mockup::get_file(Name_C);
+	    Lines_C = mockup_file.content;
+	    return true;
+	}
+
+	bool ret;
+
+	if (get_remote_callbacks())
+	{
+	    const RemoteFile remote_file = get_remote_callbacks()->get_file(Name_C);
+	    Lines_C = remote_file.content;
+	    ret = true;
+	}
+	else
+	{
+	    y2mil("loading file " << Name_C);
+	    clear();
+
+	    ifstream File_Ci(Name_C);
+	    classic(File_Ci);
+	    string Line_Ci;
+
+	    ret = File_Ci.good();
+	    File_Ci.unsetf(ifstream::skipws);
+	    getline( File_Ci, Line_Ci );
+	    while( File_Ci.good() )
+	    {
+		Lines_C.push_back( Line_Ci );
+		getline( File_Ci, Line_Ci );
+	    }
+	}
+
+	if (Mockup::get_mode() == Mockup::Mode::RECORD)
+	{
+	    Mockup::set_file(Name_C, Lines_C);
+	}
+
+	return ret;
     }
-
-    y2mil("loading file " << Name_C);
-    clear();
-
-    ifstream File_Ci(Name_C);
-    classic(File_Ci);
-    string Line_Ci;
-
-    bool Ret_bi = File_Ci.good();
-    File_Ci.unsetf(ifstream::skipws);
-    getline( File_Ci, Line_Ci );
-    while( File_Ci.good() )
-    {
-	Lines_C.push_back( Line_Ci );
-	getline( File_Ci, Line_Ci );
-    }
-
-    if (Mockup::get_mode() == Mockup::Mode::RECORD)
-    {
-	Mockup::set_file(Name_C, Lines_C);
-    }
-
-    return Ret_bi;
-}
 
 
 bool

@@ -6,6 +6,8 @@
 #include <vector>
 #include <map>
 
+#include "storage/Utils/Remote.h"
+
 
 namespace storage
 {
@@ -18,29 +20,12 @@ namespace storage
     {
     public:
 
+	typedef RemoteCommand Command;
+	typedef RemoteFile File;
+
 	enum class Mode
 	{
 	    NONE, PLAYBACK, RECORD
-	};
-
-	struct Command
-	{
-	    Command() : stdout(), stderr(), exit_code(0) {}
-	    Command(const vector<string>& stdout) : stdout(stdout), stderr(), exit_code(0) {}
-	    Command(const vector<string>& stdout, const vector<string>& stderr, int exit_code)
-		: stdout(stdout), stderr(stderr), exit_code(exit_code) {}
-
-	    vector<string> stdout;
-	    vector<string> stderr;
-	    int exit_code;
-	};
-
-	struct File
-	{
-	    File() : content() {}
-	    File(const vector<string>& content) : content(content) {}
-
-	    vector<string> content;
 	};
 
 	static Mode get_mode() { return mode; }

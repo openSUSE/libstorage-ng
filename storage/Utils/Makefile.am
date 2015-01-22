@@ -19,6 +19,7 @@ libutils_la_SOURCES =					\
 	StorageTypes.h					\
 	SystemCmd.cc		SystemCmd.h		\
 	Mockup.cc		Mockup.h		\
+	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
 	StorageDefines.h
 
@@ -31,5 +32,6 @@ pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
 	HumanString.h		\
-	Region.h
+	Region.h		\
+	Remote.h
 

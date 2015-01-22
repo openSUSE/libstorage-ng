@@ -107,20 +107,30 @@ namespace storage
     {
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
-	    const Mockup::File& mockup = Mockup::get_file(path);
-	    content = mockup.content;
+	    const Mockup::File& mockup_file = Mockup::get_file(path);
+	    content = mockup_file.content;
+
+	    y2mil(*this);
 	}
 
-	ifstream s(path);
-	classic(s);
-	s.unsetf(ifstream::skipws);
-
-	string line;
-	getline(s, line);
-	while (s.good())
+	if (get_remote_callbacks())
 	{
-	    content.push_back(line);
+	    const RemoteFile mockup_file = get_remote_callbacks()->get_file(path);
+	    content = mockup_file.content;
+	}
+	else
+	{
+	    ifstream s(path);
+	    classic(s);
+	    s.unsetf(ifstream::skipws);
+
+	    string line;
 	    getline(s, line);
+	    while (s.good())
+	    {
+		content.push_back(line);
+		getline(s, line);
+	    }
 	}
 
 	// TODO error checking

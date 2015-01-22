@@ -85,30 +85,42 @@ SystemCmd::closeOpenFds() const
     }
 
 
-int
-SystemCmd::execute(const string& Cmd_Cv)
-{
-    if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+    int
+    SystemCmd::execute(const string& Cmd_Cv)
     {
-	const Mockup::Command& mockup = Mockup::get_command(Cmd_Cv);
-	Lines_aC[IDX_STDOUT] = mockup.stdout;
-	Lines_aC[IDX_STDERR] = mockup.stderr;
-	Ret_i = mockup.exit_code;
-	return 0;
+	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+	{
+	    const Mockup::Command& mockup_command = Mockup::get_command(Cmd_Cv);
+	    Lines_aC[IDX_STDOUT] = mockup_command.stdout;
+	    Lines_aC[IDX_STDERR] = mockup_command.stderr;
+	    Ret_i = mockup_command.exit_code;
+	    return 0;
+	}
+
+	int ret;
+
+	if (get_remote_callbacks())
+	{
+	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(Cmd_Cv);
+	    Lines_aC[IDX_STDOUT] = remote_command.stdout;
+	    Lines_aC[IDX_STDERR] = remote_command.stderr;
+	    Ret_i = remote_command.exit_code;
+	    ret = 0;
+	}
+	else
+	{
+	    y2mil("SystemCmd Executing:\"" << Cmd_Cv << "\"");
+	    Background_b = false;
+	    ret = doExecute(Cmd_Cv);
+	}
+
+	if (Mockup::get_mode() == Mockup::Mode::RECORD)
+	{
+	    Mockup::set_command(Cmd_Cv, Mockup::Command(Lines_aC[IDX_STDOUT], Lines_aC[IDX_STDERR], Ret_i));
+	}
+
+	return ret;
     }
-
-    y2mil("SystemCmd Executing:\"" << Cmd_Cv << "\"");
-    Background_b = false;
-
-    int ret = doExecute(Cmd_Cv);
-
-    if (Mockup::get_mode() == Mockup::Mode::RECORD)
-    {
-	Mockup::set_command(Cmd_Cv, Mockup::Command(Lines_aC[IDX_STDOUT], Lines_aC[IDX_STDERR], Ret_i));
-    }
-
-    return ret;
-}
 
 
 int

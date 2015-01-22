@@ -26,6 +26,7 @@
 %catches(storage::DeviceNotFound) storage::Partition::find(const Devicegraph*, const std::string&);
 
 %feature("director") storage::CommitCallbacks;
+%feature("director") storage::RemoteCallbacks;
 
 // order of includes is crucial
 
@@ -37,6 +38,7 @@
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Remote.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/BlkDevice.h"
@@ -62,6 +64,7 @@
 %include "../../storage/StorageInterface.h"
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Utils/Region.h"
+%include "../../storage/Utils/Remote.h"
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/BlkDevice.h"
