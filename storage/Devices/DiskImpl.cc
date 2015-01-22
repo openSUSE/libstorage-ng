@@ -20,9 +20,11 @@ namespace storage
 
 
     Disk::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), transport(TUNKNOWN)
+	: BlkDevice::Impl(node), rotational(false), transport(TUNKNOWN)
     {
 	string tmp;
+
+	getChildValue(node, "rotational", rotational);
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, TUNKNOWN);
@@ -42,9 +44,9 @@ namespace storage
 
 	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo("/dev/" + name);
 
-	    const File range = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/range");
+	    const File range_file = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/range");
 
-	    if (range.get_int() > 1)
+	    if (range_file.get_int() > 1)
 		ret.push_back("/dev/" + name);
 	}
 
@@ -56,6 +58,9 @@ namespace storage
     Disk::Impl::probe(SystemInfo& systeminfo)
     {
 	BlkDevice::Impl::probe(systeminfo);
+
+	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
+	rotational = rotational_file.get_int() != 0;
 
 	Lsscsi::Entry entry;
 	if (systeminfo.getLsscsi().getEntry(get_name(), entry))
@@ -74,6 +79,8 @@ namespace storage
     Disk::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	setChildValueIf(node, "rotational", rotational, rotational);
 
 	setChildValueIf(node, "transport", toString(transport), transport != TUNKNOWN);
     }
@@ -156,7 +163,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return transport == rhs.transport;
+	return rotational == rhs.rotational && transport == rhs.transport;
     }
 
 
@@ -167,6 +174,8 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
+	storage::log_diff(log, "rotational", rotational, rhs.rotational);
+
 	storage::log_diff_enum(log, "transport", transport, rhs.transport);
     }
 
@@ -175,6 +184,9 @@ namespace storage
     Disk::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	if (rotational)
+	    out << " rotational";
 
 	out << " transport:" << toString(get_transport());
     }

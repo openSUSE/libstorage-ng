@@ -71,6 +71,20 @@ namespace storage
     }
 
 
+    bool
+    Disk::get_rotational() const
+    {
+	return get_impl().get_rotational();
+    }
+
+
+    void
+    Disk::set_rotational(bool rotational)
+    {
+	get_impl().set_rotational(rotational);
+    }
+
+
     Transport
     Disk::get_transport() const
     {

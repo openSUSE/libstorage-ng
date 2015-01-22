@@ -18,7 +18,7 @@ namespace storage
     public:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name), transport(TUNKNOWN) {}
+	    : BlkDevice::Impl(name), rotational(false), transport(TUNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
@@ -27,6 +27,9 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
+
+	bool get_rotational() const { return rotational; }
+	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
@@ -53,6 +56,8 @@ namespace storage
     private:
 
 	// geometry
+
+	bool rotational;
 
 	Transport transport;
 
