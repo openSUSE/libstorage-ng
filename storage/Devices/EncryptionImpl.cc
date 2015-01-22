@@ -63,4 +63,27 @@ namespace storage
 	BlkDevice::Impl::print(out);
     }
 
+
+    namespace Action
+    {
+
+	Text
+	FormatEncryption::text(const Actiongraph& actiongraph, bool doing) const
+	{
+	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+
+	    return sformat(_("Create encryption on %1$s"), device->get_displayname().c_str());
+	}
+
+
+	Text
+	OpenEncryption::text(const Actiongraph& actiongraph, bool doing) const
+	{
+	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+
+	    return sformat(_("Open encryption on %1$s"), device->get_displayname().c_str());
+	}
+
+    }
+
 }

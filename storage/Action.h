@@ -87,28 +87,6 @@ namespace storage
 
 	};
 
-
-	class FormatEncryption : public Create
-	{
-	public:
-
-	    FormatEncryption(sid_t sid) : Create(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
-
-	class OpenEncryption : public Modify
-	{
-	public:
-
-	    OpenEncryption(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
     }
 
 }

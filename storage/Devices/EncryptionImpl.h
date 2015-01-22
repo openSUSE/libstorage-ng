@@ -4,6 +4,7 @@
 
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -40,6 +41,33 @@ namespace storage
 	// mount-by for crypttab
 
     };
+
+
+    namespace Action
+    {
+
+	class FormatEncryption : public Create
+	{
+	public:
+
+	    FormatEncryption(sid_t sid) : Create(sid) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	};
+
+
+	class OpenEncryption : public Modify
+	{
+	public:
+
+	    OpenEncryption(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+
+	};
+
+    }
 
 }
 

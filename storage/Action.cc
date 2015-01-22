@@ -28,24 +28,6 @@ namespace storage
 
 
 	Text
-	FormatEncryption::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-
-	    return sformat(_("Create encryption on %1$s"), device->get_displayname().c_str());
-	}
-
-
-	Text
-	OpenEncryption::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-
-	    return sformat(_("Open encryption on %1$s"), device->get_displayname().c_str());
-	}
-
-
-	Text
 	Modify::text(const Actiongraph& actiongraph, bool doing) const
 	{
 	    const Device* device_lhs = actiongraph.get_devicegraph(LHS)->find_device(sid);
