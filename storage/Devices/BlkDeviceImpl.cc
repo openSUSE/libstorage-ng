@@ -17,6 +17,9 @@ namespace storage
 	if (!getChildValue(node, "name", name))
 	    throw runtime_error("no name");
 
+	getChildValue(node, "sysfs-name", sysfs_name);
+	getChildValue(node, "sysfs-path", sysfs_path);
+
 	getChildValue(node, "size-k", size_k);
 
 	unsigned int major = 0, minor = 0;
@@ -33,10 +36,14 @@ namespace storage
     {
 	Device::Impl::probe(systeminfo);
 
-	if (!systeminfo.getProcParts().getSize(name, size_k))
-	    throw;
-
 	const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
+
+	sysfs_name = cmdudevadminfo.get_name();
+	sysfs_path = cmdudevadminfo.get_path();
+
+	// TODO read "sysfs_path + /size" and drop ProcParts?
+	if (!systeminfo.getProcParts().getSize(sysfs_name, size_k))
+	    throw;
 
 	major_minor = cmdudevadminfo.get_majorminor();
 
@@ -60,6 +67,9 @@ namespace storage
 	Device::Impl::save(node);
 
 	setChildValue(node, "name", name);
+
+	setChildValue(node, "sysfs-name", sysfs_name);
+	setChildValue(node, "sysfs-path", sysfs_path);
 
 	setChildValueIf(node, "size-k", size_k, size_k > 0);
 
@@ -100,7 +110,8 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return name == rhs.name && size_k == rhs.size_k && major_minor == rhs.major_minor;
+	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
+	    size_k == rhs.size_k && major_minor == rhs.major_minor;
     }
 
 
@@ -112,6 +123,10 @@ namespace storage
 	Device::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "name", name, rhs.name);
+
+	storage::log_diff(log, "sysfs-name", sysfs_name, rhs.sysfs_name);
+	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
+
 	storage::log_diff(log, "size_k", size_k, rhs.size_k);
 	storage::log_diff(log, "major", get_major(), rhs.get_major());
 	storage::log_diff(log, "minor", get_minor(), rhs.get_minor());
@@ -124,6 +139,12 @@ namespace storage
 	Device::Impl::print(out);
 
 	out << " name:" << get_name();
+
+	if (!sysfs_name.empty())
+	    out << " sysfs-name:" << sysfs_name;
+
+	if (!sysfs_path.empty())
+	    out << " sysfs-path:" << sysfs_path;
 
 	if (get_size_k() != 0)
 	    out << " size_k:" << get_size_k();

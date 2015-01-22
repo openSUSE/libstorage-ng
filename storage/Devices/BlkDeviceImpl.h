@@ -23,6 +23,9 @@ namespace storage
 	const string& get_name() const { return name; }
 	void set_name(const string& name);
 
+	const string& get_sysfs_name() const { return sysfs_name; }
+	const string& get_sysfs_path() const { return sysfs_path; }
+
 	unsigned long long get_size_k() const { return size_k; }
 	void set_size_k(unsigned long long size_k);
 
@@ -60,6 +63,10 @@ namespace storage
     private:
 
 	string name;
+
+	string sysfs_name;
+	string sysfs_path;
+
 	unsigned long long size_k;
 	dev_t major_minor;
 	string udev_path;
