@@ -56,16 +56,16 @@ namespace storage
 	virtual void do_set_label() const;
 
 	virtual Text do_mount_text(const string& mountpoint, bool doing) const;
-	virtual void do_mount(const string& mointpoint) const;
+	virtual void do_mount(const string& mountpoint) const;
 
 	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
-	virtual void do_umount(const string& mointpoint) const;
+	virtual void do_umount(const string& mountpoint) const;
 
 	virtual Text do_add_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_add_fstab(const string& mointpoint) const;
+	virtual void do_add_fstab(const string& mountpoint) const;
 
 	virtual Text do_remove_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_remove_fstab(const string& mointpoint) const;
+	virtual void do_remove_fstab(const string& mountpoint) const;
 
     protected:
 

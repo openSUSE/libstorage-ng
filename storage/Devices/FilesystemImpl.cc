@@ -244,42 +244,42 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_umount_text(const string& mointpoint, bool doing) const
+    Filesystem::Impl::do_umount_text(const string& mountpoint, bool doing) const
     {
 	return sformat(_("Unmount %1$s"), get_displayname().c_str());
     }
 
 
     void
-    Filesystem::Impl::do_umount(const string& mointpoint) const
+    Filesystem::Impl::do_umount(const string& mountpoint) const
     {
 	// TODO
     }
 
 
     Text
-    Filesystem::Impl::do_add_fstab_text(const string& mointpoint, bool doing) const
+    Filesystem::Impl::do_add_fstab_text(const string& mountpoint, bool doing) const
     {
 	return sformat(_("Add %1$s to fstab"), get_displayname().c_str());
     }
 
 
     void
-    Filesystem::Impl::do_add_fstab(const string& mointpoint) const
+    Filesystem::Impl::do_add_fstab(const string& mountpoint) const
     {
 	// TODO
     }
 
 
     Text
-    Filesystem::Impl::do_remove_fstab_text(const string& mointpoint, bool doing) const
+    Filesystem::Impl::do_remove_fstab_text(const string& mountpoint, bool doing) const
     {
 	return sformat(_("Remove %1$s from fstab"), get_displayname().c_str());
     }
 
 
     void
-    Filesystem::Impl::do_remove_fstab(const string& mointpoint) const
+    Filesystem::Impl::do_remove_fstab(const string& mountpoint) const
     {
 	// TOOD
     }
