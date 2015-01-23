@@ -1,5 +1,7 @@
 
 
+#include <iostream>
+
 #include "storage/Devices/SwapImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
