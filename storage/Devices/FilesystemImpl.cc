@@ -267,7 +267,20 @@ namespace storage
     void
     Filesystem::Impl::do_add_fstab(const string& mountpoint) const
     {
+	EtcFstab fstab("/etc");	// TODO pass as parameter
+
+	const BlkDevice* blkdevice = get_blkdevice();
+
 	// TODO
+
+	FstabChange entry;
+	entry.device = entry.dentry = blkdevice->get_name();
+	entry.mount = mountpoint;
+	entry.fs = toString(get_type());
+	entry.opts = fstab_options;
+
+	fstab.addEntry(entry);
+	fstab.flush();
     }
 
 
