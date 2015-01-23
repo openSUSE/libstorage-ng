@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(add1)
     entry1.device = entry1.dentry = "/dev/sdb1";
     entry1.mount = "/test1";
     entry1.fs = "btrfs";
-    entry1.opts = { ("defaults") };
+    entry1.opts = {};
 
     FstabChange entry2;
     entry2.device = entry2.dentry = "/dev/sdb1";

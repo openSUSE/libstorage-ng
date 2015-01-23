@@ -533,7 +533,12 @@ bool EtcFstab::findCrtab( const string& dev, const AsciiFile& tab,
 	{
 	ls.push_back(toString(e.encr));
 	}
-    ls.push_back( boost::join( e.opts, "," ) );
+
+	if (e.opts.empty())
+	    ls.push_back("defaults");
+	else
+	    ls.push_back(boost::join(e.opts, ","));
+
     if( e.dmcrypt && e.mount!="swap" )
 	{
 	if( find( e.opts.begin(), e.opts.end(), "nofail" )==e.opts.end() )

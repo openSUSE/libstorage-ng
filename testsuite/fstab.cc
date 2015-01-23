@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(add1)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "/test1";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = {};
 
     fstab.addEntry(entry);
     fstab.flush();
