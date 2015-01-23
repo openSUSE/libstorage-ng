@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(add2)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "swap";
     entry.fs = "swap";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
 
     fstab.addEntry(entry);
     fstab.flush();
@@ -95,7 +95,7 @@ BOOST_AUTO_TEST_CASE(add3)
     entry.dentry = "/dev/mapper/cr_sdb1";
     entry.mount = "/test1";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
     entry.encr = storage::ENC_LUKS;
 
     fstab.addEntry(entry);
@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(add4)
     entry.dentry = "/dev/mapper/cr_sdb1";
     entry.mount = "/test1";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
     entry.encr = storage::ENC_LUKS;
     entry.tmpcrypt = true;
 
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE(add5)
     entry.dentry = "UUID=1234";
     entry.mount = "/test1";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
 
     fstab.addEntry(entry);
     fstab.flush();
@@ -168,14 +168,14 @@ BOOST_AUTO_TEST_CASE(add6)
     entry1.dentry = "UUID=1234";
     entry1.mount = "swap";
     entry1.fs = "swap";
-    entry1.opts = { ("defaults") };
+    entry1.opts = { "defaults" };
 
     FstabChange entry2;
     entry2.device = "/dev/sdb1";
     entry2.dentry = "UUID=5678";
     entry2.mount = "swap";
     entry2.fs = "swap";
-    entry2.opts = { ("defaults") };
+    entry2.opts = { "defaults" };
 
     fstab.addEntry(entry1);
     fstab.addEntry(entry2);
@@ -202,7 +202,7 @@ BOOST_AUTO_TEST_CASE(update1)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "/test2";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();
@@ -227,7 +227,7 @@ BOOST_AUTO_TEST_CASE(update2)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "swap";
     entry.fs = "swap";
-    entry.opts = { ("noauto") };
+    entry.opts = { "noauto" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();
@@ -255,7 +255,7 @@ BOOST_AUTO_TEST_CASE(update3)
     entry.dentry = "/dev/mapper/cr_sdb1";
     entry.mount = "/test2";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
     entry.encr = storage::ENC_LUKS;
 
     fstab.updateEntry(key, entry);
@@ -286,7 +286,7 @@ BOOST_AUTO_TEST_CASE(update4)
     entry.dentry = "/dev/mapper/cr_sdb1";
     entry.mount = "/test2";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
     entry.encr = storage::ENC_LUKS;
     entry.tmpcrypt = true;
 
@@ -317,7 +317,7 @@ BOOST_AUTO_TEST_CASE(update5)
     entry.dentry = "UUID=5678";
     entry.mount = "/test2";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();
@@ -344,7 +344,7 @@ BOOST_AUTO_TEST_CASE(update6)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "/test2";
     entry.fs = "ext4";
-    entry.opts = { ("defaults") };
+    entry.opts = { "defaults" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();

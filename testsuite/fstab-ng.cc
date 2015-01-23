@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(add1)
     entry2.device = entry2.dentry = "/dev/sdb1";
     entry2.mount = "/test1/sub";
     entry2.fs = "btrfs";
-    entry2.opts = { ("subvol=sub") };
+    entry2.opts = { "subvol=sub" };
 
     fstab.addEntry(entry1);
     fstab.addEntry(entry2);
@@ -82,14 +82,14 @@ BOOST_AUTO_TEST_CASE(add2)
     entry1.dentry = "UUID=1234";
     entry1.mount = "/test1";
     entry1.fs = "btrfs";
-    entry1.opts = { ("defaults") };
+    entry1.opts = { "defaults" };
 
     FstabChange entry2;
     entry2.device = "/dev/sdb1";
     entry2.dentry = "UUID=1234";
     entry2.mount = "/test1/sub";
     entry2.fs = "btrfs";
-    entry2.opts = { ("subvol=sub") };
+    entry2.opts = { "subvol=sub" };
 
     fstab.addEntry(entry1);
     fstab.addEntry(entry2);
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(add3)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "/test1/sub";
     entry.fs = "btrfs";
-    entry.opts = { ("subvol=sub") };
+    entry.opts = { "subvol=sub" };
 
     fstab.addEntry(entry);
     fstab.flush();
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(update1)
     entry.device = entry.dentry = "/dev/sdb1";
     entry.mount = "/test1/sub2";
     entry.fs = "btrfs";
-    entry.opts = { ("subvol=sub2") };
+    entry.opts = { "subvol=sub2" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();
@@ -170,7 +170,7 @@ BOOST_AUTO_TEST_CASE(update2)
     entry.dentry = "UUID=1234";
     entry.mount = "/test1/sub2";
     entry.fs = "btrfs";
-    entry.opts = { ("subvol=sub2") };
+    entry.opts = { "subvol=sub2" };
 
     fstab.updateEntry(key, entry);
     fstab.flush();
