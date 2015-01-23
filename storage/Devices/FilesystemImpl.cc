@@ -234,7 +234,15 @@ namespace storage
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blkdevice->get_name()) + " " + mountpoint;
+	// TODO handle rootprefix
+
+	if (access(mountpoint.c_str(), R_OK ) != 0)
+	{
+	    createPath(mountpoint);
+	}
+
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blkdevice->get_name())
+	    + " " + mountpoint;
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
