@@ -16,7 +16,8 @@ print current
 
 blkdevice = BlkDevice.find(current, "/dev/sdb1")
 
-blkdevice.create_filesystem(SWAP)
+swap = blkdevice.create_filesystem(SWAP)
+swap.add_mountpoint("swap")
 
 print current
 
