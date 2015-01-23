@@ -166,7 +166,10 @@ namespace storage
     Text
     PartitionTable::Impl::do_create_text(bool doing) const
     {
-	return sformat(_("Create %s"), get_displayname().c_str());
+	const Disk* disk = get_disk();
+
+	return sformat(_("Create %1$s on %2$s"), get_displayname().c_str(),
+		       disk->get_displayname().c_str());
     }
 
 }

@@ -55,7 +55,8 @@ namespace storage
     Text
     LvmLv::Impl::do_create_text(bool doing) const
     {
-	return sformat(_("Create %s"), get_displayname().c_str());
+	return sformat(_("Create logical volume %1$s (%2$s)"), get_displayname().c_str(),
+		       get_size_string().c_str());
     }
 
 }

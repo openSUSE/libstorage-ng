@@ -61,7 +61,7 @@ namespace storage
     Text
     LvmVg::Impl::do_create_text(bool doing) const
     {
-	return sformat(_("Create %s"), get_displayname().c_str());
+	return sformat(_("Create volume group %1$s"), get_displayname().c_str());
     }
 
 }
