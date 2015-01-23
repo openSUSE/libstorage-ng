@@ -6,6 +6,8 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -134,6 +136,16 @@ namespace storage
     }
 
 
+    const BlkDevice*
+    Filesystem::Impl::get_blkdevice() const
+    {
+	vector<const BlkDevice*> blkdevices = get_blkdevices();
+	assert(blkdevices.size() == 1);
+
+	return blkdevices.front();
+    }
+
+
     bool
     Filesystem::Impl::equal(const Device::Impl& rhs_base) const
     {
@@ -184,90 +196,175 @@ namespace storage
     }
 
 
+    Text
+    Filesystem::Impl::do_create_text(bool doing) const
+    {
+	// TODO handle multiple blkdevices
+
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Create %1$s on %2$s (%3$s)"), get_displayname().c_str(),
+		       blkdevice->get_name().c_str(), blkdevice->get_size_string().c_str());
+    }
+
+
+    Text
+    Filesystem::Impl::do_set_label_text(bool doing) const
+    {
+	return sformat(_("Set label %1$s"), get_displayname().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_set_label() const
+    {
+	// TODO
+    }
+
+
+    Text
+    Filesystem::Impl::do_mount_text(const string& mountpoint, bool doing) const
+    {
+	return sformat(_("Mount %1$s"), get_displayname().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_mount(const string& mountpoint) const
+    {
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blkdevice->get_name()) + " " + mountpoint;
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("mount failed");
+    }
+
+
+    Text
+    Filesystem::Impl::do_umount_text(const string& mointpoint, bool doing) const
+    {
+	return sformat(_("Unmount %1$s"), get_displayname().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_umount(const string& mointpoint) const
+    {
+	// TODO
+    }
+
+
+    Text
+    Filesystem::Impl::do_add_fstab_text(const string& mointpoint, bool doing) const
+    {
+	return sformat(_("Add %1$s to fstab"), get_displayname().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_add_fstab(const string& mointpoint) const
+    {
+	// TODO
+    }
+
+
+    Text
+    Filesystem::Impl::do_remove_fstab_text(const string& mointpoint, bool doing) const
+    {
+	return sformat(_("Remove %1$s from fstab"), get_displayname().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_remove_fstab(const string& mointpoint) const
+    {
+	// TOOD
+    }
+
+
     namespace Action
     {
 
 	Text
-	Format::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
-
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-	    assert(is_filesystem(device));
-
-	    return sformat(_("Create %1$s on %2$s (%3$s)"), device->get_displayname().c_str(),
-			   blkdevice->get_name().c_str(), blkdevice->get_size_string().c_str());
-	}
-
-
-	vector<const BlkDevice*>
-	Format::get_blkdevices(const Actiongraph& actiongraph) const
-	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-	    assert(device);
-
-	    const Filesystem* filesystem = dynamic_cast<const Filesystem*>(device);
-	    assert(filesystem);
-
-	    vector<const BlkDevice*> blkdevices = filesystem->get_blkdevices();
-	    assert(blkdevices.size() >= 1);
-
-	    return blkdevices;
-	}
-
-
-	const BlkDevice*
-	Format::get_blkdevice(const Actiongraph& actiongraph) const
-	{
-	    vector<const BlkDevice*> blkdevices = get_blkdevices(actiongraph);
-	    assert(blkdevices.size() == 1);
-
-	    return blkdevices.front();
-	}
-
-
-	Text
 	SetLabel::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    return filesystem->get_impl().do_set_label_text(doing);
+	}
 
-	    return sformat(_("Set label %1$s"), device->get_displayname().c_str());
+
+	void
+	SetLabel::commit(const Actiongraph& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    filesystem->get_impl().do_set_label();
 	}
 
 
 	Text
 	Mount::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    return filesystem->get_impl().do_mount_text(mountpoint, doing);
+	}
 
-	    return sformat(_("Mount %1$s"), device->get_displayname().c_str());
+
+	void
+	Mount::commit(const Actiongraph& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    filesystem->get_impl().do_mount(mountpoint);
 	}
 
 
 	Text
 	Umount::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(LHS)->find_device(sid);
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    return filesystem->get_impl().do_umount_text(mountpoint, doing);
+	}
 
-	    return sformat(_("Unmount %1$s"), device->get_displayname().c_str());
+
+	void
+	Umount::commit(const Actiongraph& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    filesystem->get_impl().do_umount(mountpoint);
 	}
 
 
 	Text
 	AddFstab::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    return filesystem->get_impl().do_add_fstab_text(mountpoint, doing);
+	}
 
-	    return sformat(_("Add %1$s to fstab"), device->get_displayname().c_str());
+
+	void
+	AddFstab::commit(const Actiongraph& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    filesystem->get_impl().do_add_fstab(mountpoint);
 	}
 
 
 	Text
 	RemoveFstab::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(LHS)->find_device(sid);
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    return filesystem->get_impl().do_remove_fstab_text(mountpoint, doing);
+	}
 
-	    return sformat(_("Remove %1$s from fstab"), device->get_displayname().c_str());
+
+	void
+	RemoveFstab::commit(const Actiongraph& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    filesystem->get_impl().do_remove_fstab(mountpoint);
 	}
 
     }

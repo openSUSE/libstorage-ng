@@ -32,6 +32,13 @@ namespace storage
     }
 
 
+    FsType
+    Filesystem::get_type() const
+    {
+	return get_impl().get_type();
+    }
+
+
     const string&
     Filesystem::get_label() const
     {

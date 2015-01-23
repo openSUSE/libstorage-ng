@@ -21,7 +21,7 @@ namespace storage
     {
     public:
 
-	virtual FsType get_type() const = 0;
+	FsType get_type() const;
 
 	virtual bool supports_label() const = 0;
 	virtual unsigned int max_labelsize() const = 0;

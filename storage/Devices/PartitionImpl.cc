@@ -88,7 +88,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::CreatePartition(get_sid()));
+	actions.push_back(new Action::Create(get_sid()));
 	actions.push_back(new Action::SetPartitionId(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -100,7 +100,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::DeletePartition(get_sid()));
+	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -155,121 +155,109 @@ namespace storage
     }
 
 
+    Text
+    Partition::Impl::do_create_text(bool doing) const
+    {
+	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(), get_size_string().c_str());
+    }
+
+
+    void
+    Partition::Impl::do_create() const
+    {
+	const PartitionTable* partitiontable = get_partition_table();
+	assert(partitiontable);
+
+	const Disk* disk = partitiontable->get_disk();
+	assert(disk);
+
+	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " unit cyl mkpart " +
+	    toString(get_type()) + " ";
+
+	if (get_type() != EXTENDED)
+	{
+	    // TODO look at id
+	    cmd_line += "ext2 ";
+	}
+
+	cmd_line += decString(get_region().get_start()) + " " + decString(get_region().get_end());
+
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("create partition failed");
+    }
+
+
+    Text
+    Partition::Impl::do_set_id_text(bool doing) const
+    {
+	return sformat(_("Set id of partition %1$s to 0x%2$02X"), get_name().c_str(), get_id());
+    }
+
+
+    void
+    Partition::Impl::do_set_id() const
+    {
+	const PartitionTable* partitiontable = get_partition_table();
+	assert(partitiontable);
+
+	const Disk* disk = partitiontable->get_disk();
+	assert(disk);
+
+	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
+	    decString(get_number()) + " type " + decString(get_id());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("set partition id failed");
+    }
+
+
+    Text
+    Partition::Impl::do_delete_text(bool doing) const
+    {
+	return sformat(_("Delete partition %1$s (%2$s)"), get_name().c_str(),
+		       get_size_string().c_str());
+    }
+
+
+    void
+    Partition::Impl::do_delete() const
+    {
+	const PartitionTable* partitiontable = get_partition_table();
+	assert(partitiontable);
+
+	const Disk* disk = partitiontable->get_disk();
+	assert(disk);
+
+	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + decString(get_number());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("delete partition failed");
+    }
+
+
     namespace Action
     {
 
 	Text
-	CreatePartition::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(RHS)->find_device(sid));
-	    assert(partition);
-
-	    return sformat(_("Create partition %1$s (%2$s)"), partition->get_name().c_str(),
-			   partition->get_size_string().c_str());
-	}
-
-
-	void
-	CreatePartition::commit(const Actiongraph& actiongraph) const
-	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(RHS)->find_device(sid));
-	    assert(partition);
-
-	    const PartitionTable* partitiontable = partition->get_partition_table();
-	    assert(partitiontable);
-
-	    const Disk* disk = partitiontable->get_disk();
-	    assert(disk);
-
-	    ostringstream cmd_line;
-
-	    cmd_line << PARTEDBIN " -s " << quote(disk->get_name()) << " unit cyl mkpart "
-		     << toString(partition->get_type()) << " ";
-
-	    if (partition->get_type() != EXTENDED)
-            {
-		// TODO look at id
-		cmd_line << "ext2 ";
-	    }
-
-	    cmd_line << partition->get_region().get_start() << " " << partition->get_region().get_end();
-
-	    cout << cmd_line.str() << endl;
-
-	    SystemCmd cmd(cmd_line.str());
-	    if (cmd.retcode() != 0)
-		throw runtime_error("create partition failed");
-	}
-
-
-	Text
 	SetPartitionId::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(RHS)->find_device(sid));
-	    assert(partition);
-
-	    return sformat(_("Set id of partition %1$s to 0x%2$02X"), partition->get_name().c_str(),
-			   partition->get_id());
+	    const Partition* partition = to_partition(device_rhs(actiongraph));
+	    return partition->get_impl().do_set_id_text(doing);
 	}
 
 
 	void
 	SetPartitionId::commit(const Actiongraph& actiongraph) const
 	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(RHS)->find_device(sid));
-	    assert(partition);
-
-	    const PartitionTable* partitiontable = partition->get_partition_table();
-	    assert(partitiontable);
-
-	    const Disk* disk = partitiontable->get_disk();
-	    assert(disk);
-
-	    ostringstream cmd_line;
-
-	    cmd_line << PARTEDBIN " -s " << quote(disk->get_name()) << " set " << partition->get_number()
-		     << " type " << partition->get_id();
-
-	    cout << cmd_line.str() << endl;
-
-	    SystemCmd cmd(cmd_line.str());
-	    if (cmd.retcode() != 0)
-		throw runtime_error("set partition id failed");
-	}
-
-
-	Text
-	DeletePartition::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(LHS)->find_device(sid));
-	    assert(partition);
-
-	    return sformat(_("Delete partition %1$s (%2$s)"), partition->get_name().c_str(),
-			   partition->get_size_string().c_str());
-	}
-
-
-	void
-	DeletePartition::commit(const Actiongraph& actiongraph) const
-	{
-	    const Partition* partition = to_partition(actiongraph.get_devicegraph(LHS)->find_device(sid));
-	    assert(partition);
-
-	    const PartitionTable* partitiontable = partition->get_partition_table();
-	    assert(partitiontable);
-
-	    const Disk* disk = partitiontable->get_disk();
-	    assert(disk);
-
-	    ostringstream cmd_line;
-
-	    cmd_line << PARTEDBIN " -s " << disk->get_name() << " rm " << partition->get_number();
-
-	    cout << cmd_line.str() << endl;
-
-	    SystemCmd cmd(cmd_line.str());
-	    if (cmd.retcode() != 0)
-		throw runtime_error("delete partition failed");
+	    const Partition* partition = to_partition(device_rhs(actiongraph));
+	    partition->get_impl().do_set_id();
 	}
 
     }

@@ -57,4 +57,11 @@ namespace storage
 	Device::Impl::print(out);
     }
 
+
+    Text
+    LvmVg::Impl::do_create_text(bool doing) const
+    {
+	return sformat(_("Create %s"), get_displayname().c_str());
+    }
+
 }

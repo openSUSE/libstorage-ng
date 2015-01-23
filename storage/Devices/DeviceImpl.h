@@ -8,6 +8,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/DevicegraphImpl.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -61,6 +62,12 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
 
 	virtual void print(std::ostream& out) const = 0;
+
+	virtual Text do_create_text(bool doing) const;
+	virtual void do_create() const;
+
+	virtual Text do_delete_text(bool doing) const;
+	virtual void do_delete() const;
 
     protected:
 

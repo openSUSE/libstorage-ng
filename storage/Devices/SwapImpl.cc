@@ -31,7 +31,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::FormatSwap(get_sid()));
+	actions.push_back(new Action::Create(get_sid()));
 
 	if (!get_mountpoints().empty())
 	{
@@ -71,25 +71,31 @@ namespace storage
     }
 
 
-    namespace Action
+    void
+    Swap::Impl::do_create() const
     {
+	const BlkDevice* blkdevice = get_blkdevice();
 
-	void
-	FormatSwap::commit(const Actiongraph& actiongraph) const
-	{
-	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
+	string cmd_line = MKSWAPBIN " -f " + quote(blkdevice->get_name());
+	cout << cmd_line << endl;
 
-	    ostringstream cmd_line;
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("create swap failed");
+    }
 
-	    cmd_line << MKSWAPBIN " -f " << quote(blkdevice->get_name());
 
-	    cout << cmd_line.str() << endl;
+    void
+    Swap::Impl::do_mount(const string& mountpoint) const
+    {
+	const BlkDevice* blkdevice = get_blkdevice();
 
-	    SystemCmd cmd(cmd_line.str());
-	    if (cmd.retcode() != 0)
-		throw runtime_error("format swap failed");
-	}
+	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blkdevice->get_name());
+	cout << cmd_line << endl;
 
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("mount swap failed");
     }
 
 }

@@ -165,7 +165,7 @@ namespace storage
 	    graph[v]->add_dependencies(v, *this);
 
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[v].get());
-	    if (mount && mount->mount_point != "swap")
+	    if (mount && mount->mountpoint != "swap")
 		mounts.push_back(v);
 	}
 
@@ -175,7 +175,7 @@ namespace storage
 	    sort(mounts.begin(), mounts.end(), [this, &mounts](vertex_descriptor l, vertex_descriptor r) {
 		const Action::Mount* ml = dynamic_cast<const Action::Mount*>(graph[l].get());
 		const Action::Mount* mr = dynamic_cast<const Action::Mount*>(graph[r].get());
-		return ml->mount_point <= mr->mount_point;
+		return ml->mountpoint <= mr->mountpoint;
 	    });
 
 	    vertex_descriptor v = mounts[0];

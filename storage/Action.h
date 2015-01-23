@@ -25,7 +25,6 @@ namespace storage
 	    virtual ~Base() {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const = 0;
-
 	    virtual void commit(const Actiongraph& actiongraph) const {} // = 0; TODO
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const {}
@@ -58,8 +57,14 @@ namespace storage
 	    Create(sid_t sid) : Base(sid) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
+
+	protected:
+
+	    const Device* device_rhs(const Actiongraph& actiongraph) const
+		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
 	};
 
@@ -72,6 +77,14 @@ namespace storage
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
+	protected:
+
+	    const Device* device_lhs(const Actiongraph& actiongraph) const
+		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
+
+	    const Device* device_rhs(const Actiongraph& actiongraph) const
+		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
+
 	};
 
 
@@ -82,8 +95,14 @@ namespace storage
 	    Delete(sid_t sid) : Base(sid) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const override;
+
+	protected:
+
+	    const Device* device_lhs(const Actiongraph& actiongraph) const
+		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
 	};
 

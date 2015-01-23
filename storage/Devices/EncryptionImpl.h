@@ -35,6 +35,10 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual Text do_create_text(bool doing) const override;
+
+	virtual Text do_open_text(bool doing) const;
+
     private:
 
 	// password
@@ -45,17 +49,6 @@ namespace storage
 
     namespace Action
     {
-
-	class FormatEncryption : public Create
-	{
-	public:
-
-	    FormatEncryption(sid_t sid) : Create(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-
-	};
-
 
 	class OpenEncryption : public Modify
 	{

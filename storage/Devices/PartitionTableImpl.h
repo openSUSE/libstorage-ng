@@ -39,6 +39,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
+	virtual Text do_create_text(bool doing) const override;
+
     protected:
 
 	Impl()

@@ -22,6 +22,8 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual FsType get_type() const override { return EXT4; }
+
 	virtual const char* get_classname() const override { return "Ext4"; }
 
 	virtual string get_displayname() const override { return "ext4"; }
@@ -37,23 +39,11 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void do_create() const override;
+
+	virtual void do_set_label() const override;
+
     };
-
-
-    namespace Action
-    {
-
-	class FormatExt4 : public Format
-	{
-	public:
-
-	    FormatExt4(sid_t sid) : Format(sid) {}
-
-	    virtual void commit(const Actiongraph& actiongraph) const override;
-
-	};
-
-    }
 
 }
 

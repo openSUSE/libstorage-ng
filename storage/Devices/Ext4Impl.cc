@@ -31,7 +31,7 @@ namespace storage
     void
     Ext4::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
-	Action::FormatExt4* format = new Action::FormatExt4(get_sid());
+	Action::Create* format = new Action::Create(get_sid());
 	format->first = true;
 	format->last = false;
 	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
@@ -88,25 +88,31 @@ namespace storage
     }
 
 
-    namespace Action
+    void
+    Ext4::Impl::do_create() const
     {
+	const BlkDevice* blkdevice = get_blkdevice();
 
-	void
-	FormatExt4::commit(const Actiongraph& actiongraph) const
-	{
-	    const BlkDevice* blkdevice = get_blkdevice(actiongraph);
+	string cmd_line = MKFSEXT2BIN " -t ext4 -v " + quote(blkdevice->get_name());
+	cout << cmd_line << endl;
 
-	    ostringstream cmd_line;
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("create ext4 failed");
+    }
 
-	    cmd_line << MKFSEXT2BIN " -t ext4 -v " << quote(blkdevice->get_name());
 
-	    cout << cmd_line.str() << endl;
+    void
+    Ext4::Impl::do_set_label() const
+    {
+	const BlkDevice* blkdevice = get_blkdevice();
 
-	    SystemCmd cmd(cmd_line.str());
-	    if (cmd.retcode() != 0)
-		throw runtime_error("format ext4 failed");
-	}
+	string cmd_line = TUNE2FSBIN " -L " + quote(get_label()) + " " + quote(blkdevice->get_name());
+	cout << cmd_line << endl;
 
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("set-label ext4 failed");
     }
 
 }

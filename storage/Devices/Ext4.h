@@ -12,8 +12,6 @@ namespace storage
     {
     public:
 
-	virtual FsType get_type() const override { return EXT4; }
-
 	static Ext4* create(Devicegraph* devicegraph);
 	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
 

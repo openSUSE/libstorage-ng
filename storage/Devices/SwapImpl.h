@@ -21,6 +21,8 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual FsType get_type() const override { return SWAP; }
+
 	virtual const char* get_classname() const override { return "Swap"; }
 
 	virtual string get_displayname() const override { return "swap"; }
@@ -36,22 +38,10 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void do_create() const override;
+	virtual void do_mount(const string& mountpoint) const override;
+
     };
-
-    namespace Action
-    {
-
-	class FormatSwap : public Format
-	{
-	public:
-
-	    FormatSwap(sid_t sid) : Format(sid) {}
-
-	    virtual void commit(const Actiongraph& actiongraph) const override;
-
-	};
-
-    }
 
 }
 

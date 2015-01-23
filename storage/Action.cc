@@ -2,6 +2,7 @@
 
 #include "storage/Action.h"
 #include "storage/DevicegraphImpl.h"
+#include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/Partition.h"
 
 
@@ -21,9 +22,14 @@ namespace storage
 	Text
 	Create::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    return device_rhs(actiongraph)->get_impl().do_create_text(doing);
+	}
 
-	    return sformat(_("Create %1$s"), device->get_displayname().c_str());
+
+	void
+	Create::commit(const Actiongraph& actiongraph) const
+	{
+	    device_rhs(actiongraph)->get_impl().do_create();
 	}
 
 
@@ -41,9 +47,14 @@ namespace storage
 	Text
 	Delete::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(LHS)->find_device(sid);
+	    return device_lhs(actiongraph)->get_impl().do_delete_text(doing);
+	}
 
-	    return sformat(_("Delete %1$s"), device->get_displayname().c_str());
+
+	void
+	Delete::commit(const Actiongraph& actiongraph) const
+	{
+	    device_lhs(actiongraph)->get_impl().do_delete();
 	}
 
 

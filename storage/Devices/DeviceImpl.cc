@@ -139,4 +139,32 @@ namespace storage
 	    << " displayname:" << get_displayname();
     }
 
+
+    Text
+    Device::Impl::do_create_text(bool doing) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_create() const
+    {
+	throw std::logic_error("stub function called");
+    }
+
+
+    Text
+    Device::Impl::do_delete_text(bool doing) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_delete() const
+    {
+	throw std::logic_error("stub function called");
+    }
+
 }

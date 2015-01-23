@@ -22,6 +22,8 @@ namespace storage
     {
     public:
 
+	virtual FsType get_type() const = 0;
+
 	const string& get_label() const { return label; }
 	void set_label(const string& label);
 
@@ -41,11 +43,29 @@ namespace storage
 	void probe(SystemInfo& systeminfo, EtcFstab& fstab);
 
 	vector<const BlkDevice*> get_blkdevices() const;
+	const BlkDevice* get_blkdevice() const;
 
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
 
 	virtual void print(std::ostream& out) const override = 0;
+
+	virtual Text do_create_text(bool doing) const override;
+
+	virtual Text do_set_label_text(bool doing) const;
+	virtual void do_set_label() const;
+
+	virtual Text do_mount_text(const string& mountpoint, bool doing) const;
+	virtual void do_mount(const string& mointpoint) const;
+
+	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
+	virtual void do_umount(const string& mointpoint) const;
+
+	virtual Text do_add_fstab_text(const string& mountpoint, bool doing) const;
+	virtual void do_add_fstab(const string& mointpoint) const;
+
+	virtual Text do_remove_fstab_text(const string& mountpoint, bool doing) const;
+	virtual void do_remove_fstab(const string& mointpoint) const;
 
     protected:
 
@@ -72,24 +92,6 @@ namespace storage
     namespace Action
     {
 
-	class Format : public Create
-	{
-	public:
-
-	    Format(sid_t sid) : Create(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-
-	protected:
-
-	    // TODO also useful for SetLabel, Mount, ...
-	    // TODO parameter for lhs, rhs
-	    vector<const BlkDevice*> get_blkdevices(const Actiongraph& actiongraph) const;
-	    const BlkDevice* get_blkdevice(const Actiongraph& actiongraph) const;
-
-	};
-
-
 	class SetLabel : public Modify
 	{
 	public:
@@ -97,6 +99,7 @@ namespace storage
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
 	};
 
@@ -105,26 +108,28 @@ namespace storage
 	{
 	public:
 
-	    Mount(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
+	    Mount(sid_t sid, const string& mountpoint)
+		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
-	    const string mount_point;
+	    const string mountpoint;
 
 	};
 
 
-	class Umount : public Delete
+	class Umount : public Modify
 	{
 	public:
 
-	    Umount(sid_t sid, const string& mount_point)
-		: Delete(sid), mount_point(mount_point) {}
+	    Umount(sid_t sid, const string& mountpoint)
+		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
-	    const string mount_point;
+	    const string mountpoint;
 
 	};
 
@@ -133,12 +138,13 @@ namespace storage
 	{
 	public:
 
-	    AddFstab(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
+	    AddFstab(sid_t sid, const string& mountpoint)
+		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
-	    const string mount_point;
+	    const string mountpoint;
 
 	};
 
@@ -147,12 +153,13 @@ namespace storage
 	{
 	public:
 
-	    RemoveFstab(sid_t sid, const string& mount_point)
-		: Modify(sid), mount_point(mount_point) {}
+	    RemoveFstab(sid_t sid, const string& mountpoint)
+		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
 
-	    const string mount_point;
+	    const string mountpoint;
 
 	};
 

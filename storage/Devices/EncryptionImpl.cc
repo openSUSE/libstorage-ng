@@ -29,7 +29,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::FormatEncryption(get_sid()));
+	actions.push_back(new Action::Create(get_sid()));
 	actions.push_back(new Action::OpenEncryption(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -64,24 +64,28 @@ namespace storage
     }
 
 
+    Text
+    Encryption::Impl::do_create_text(bool doing) const
+    {
+	return sformat(_("Create encryption on %1$s"), get_displayname().c_str());
+    }
+
+
+    Text
+    Encryption::Impl::do_open_text(bool doing) const
+    {
+	return sformat(_("Open encryption on %1$s"), get_displayname().c_str());
+    }
+
+
     namespace Action
     {
 
 	Text
-	FormatEncryption::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-
-	    return sformat(_("Create encryption on %1$s"), device->get_displayname().c_str());
-	}
-
-
-	Text
 	OpenEncryption::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
-
-	    return sformat(_("Open encryption on %1$s"), device->get_displayname().c_str());
+	    const Encryption* encryption = to_encryption(device_rhs(actiongraph));
+	    return encryption->get_impl().do_open_text(doing);
 	}
 
     }

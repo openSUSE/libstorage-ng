@@ -51,4 +51,11 @@ namespace storage
 	BlkDevice::Impl::print(out);
     }
 
+
+    Text
+    LvmLv::Impl::do_create_text(bool doing) const
+    {
+	return sformat(_("Create %s"), get_displayname().c_str());
+    }
+
 }

@@ -57,6 +57,15 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
+	virtual Text do_create_text(bool doing) const override;
+	virtual void do_create() const override;
+
+	virtual Text do_set_id_text(bool doing) const;
+	virtual void do_set_id() const;
+
+	virtual Text do_delete_text(bool doing) const override;
+	virtual void do_delete() const override;
+
     private:
 
 	Region region;
@@ -70,35 +79,11 @@ namespace storage
     namespace Action
     {
 
-	class CreatePartition : public Create
-	{
-	public:
-
-	    CreatePartition(sid_t sid) : Create(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
-
-	};
-
-
 	class SetPartitionId : public Modify
 	{
 	public:
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
-
-	};
-
-
-	class DeletePartition : public Delete
-	{
-	public:
-
-	    DeletePartition(sid_t sid) : Delete(sid) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 	    virtual void commit(const Actiongraph& actiongraph) const override;

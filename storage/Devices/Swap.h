@@ -12,8 +12,6 @@ namespace storage
     {
     public:
 
-	virtual FsType get_type() const override { return SWAP; }
-
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
