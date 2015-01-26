@@ -21,6 +21,13 @@ namespace storage
     }
 
 
+    const Environment&
+    Storage::get_environment() const
+    {
+	return get_impl().get_environment();
+    }
+
+
     Devicegraph*
     Storage::get_devicegraph(const string& name)
     {
@@ -101,6 +108,20 @@ namespace storage
     Storage::equal_devicegraph(const string& lhs, const string& rhs) const
     {
 	return get_impl().equal_devicegraph(lhs, rhs);
+    }
+
+
+    const string&
+    Storage::get_rootprefix() const
+    {
+	return get_impl().get_rootprefix();
+    }
+
+
+    void
+    Storage::set_rootprefix(const string& rootprefix)
+    {
+	get_impl().set_rootprefix(rootprefix);
     }
 
 

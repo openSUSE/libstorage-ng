@@ -23,6 +23,8 @@ namespace storage
 
     public:
 
+	const Environment& get_environment() const { return environment; }
+
 	Devicegraph* create_devicegraph(const string& name);
 	Devicegraph* copy_devicegraph(const string& source_name, const string& dest_name);
 	void remove_devicegraph(const string& name);
@@ -41,8 +43,12 @@ namespace storage
 
 	const Devicegraph* get_probed() const;
 
+	const string& get_rootprefix() const { return rootprefix; }
 	std::list<std::string> get_commit_steps() const;
 	void commit(const CommitCallbacks* commit_callbacks);
+	void set_rootprefix(const string& rootprefix) { Impl::rootprefix = rootprefix; }
+
+	string prepend_rootprefix(const string& mountpoint) const;
 
     private:
 
@@ -51,6 +57,8 @@ namespace storage
 	const Environment environment;
 
 	map<string, Devicegraph> devicegraphs;
+
+	string rootprefix;
 
     };
 

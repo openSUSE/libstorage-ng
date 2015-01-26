@@ -229,6 +229,19 @@ namespace storage
     }
 
 
+    string
+    Storage::Impl::prepend_rootprefix(const string& mountpoint) const
+    {
+	if (mountpoint == "swap" || rootprefix.empty())
+	    return mountpoint;
+
+	if (mountpoint == "/")
+	    return rootprefix;
+	else
+	    return rootprefix + mountpoint;
+    }
+
+
     list<string>
     Storage::Impl::get_commit_steps() const
     {

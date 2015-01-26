@@ -37,6 +37,8 @@ namespace storage
 
     public:
 
+	const Environment& get_environment() const;
+
 	Devicegraph* create_devicegraph(const std::string& name);
 	Devicegraph* copy_devicegraph(const std::string& source_name, const std::string& dest_name);
 	void remove_devicegraph(const std::string& name);
@@ -54,6 +56,9 @@ namespace storage
 	const Devicegraph* get_current() const;
 
 	const Devicegraph* get_probed() const;
+
+	const std::string& get_rootprefix() const;
+	void set_rootprefix(const std::string& rootprefix);
 
 	std::list<std::string> get_commit_steps() const;
 	void commit(const CommitCallbacks* commit_callbacks = nullptr);
