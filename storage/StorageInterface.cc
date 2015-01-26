@@ -1310,6 +1310,8 @@ namespace storage_legacy
     StorageLegacy::setRootPrefix(const string& root)
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	storage->set_rootprefix(root);
     }
 
 
@@ -1318,7 +1320,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return "";
+	return storage->get_rootprefix();
     }
 
 
