@@ -128,14 +128,14 @@ namespace storage
     list<string>
     Storage::get_commit_steps() const
     {
-	return get_impl().get_commit_steps();
+	return get_impl().get_commit_steps(*this);
     }
 
 
     void
     Storage::commit(const CommitCallbacks* commit_callbacks)
     {
-	get_impl().commit(commit_callbacks);
+	get_impl().commit(*this, commit_callbacks);
     }
 
 }

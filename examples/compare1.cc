@@ -10,6 +10,8 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
+#include "storage/Storage.h"
+#include "storage/Environment.h"
 
 
 using namespace storage;
@@ -18,30 +20,33 @@ using namespace storage;
 int
 main()
 {
-    Devicegraph lhs;
+    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
 
-    Disk* sda = Disk::create(&lhs, "/dev/sda");
+    Storage storage(environment);
 
-    Partition* sda1 = Partition::create(&lhs, "/dev/sda1");
-    Subdevice::create(&lhs, sda, sda1);
+    Devicegraph* lhs = storage.create_devicegraph("lhs");
 
-    Partition* sda2 = Partition::create(&lhs, "/dev/sda2");
-    Subdevice::create(&lhs, sda, sda2);
+    Disk* sda = Disk::create(lhs, "/dev/sda");
 
-    LvmVg* system = LvmVg::create(&lhs, "/dev/system");
-    Using::create(&lhs, sda2, system);
+    Partition* sda1 = Partition::create(lhs, "/dev/sda1");
+    Subdevice::create(lhs, sda, sda1);
 
-    LvmLv* system_oracle = LvmLv::create(&lhs, "/dev/system/oracle");
-    Subdevice::create(&lhs, system, system_oracle);
+    Partition* sda2 = Partition::create(lhs, "/dev/sda2");
+    Subdevice::create(lhs, sda, sda2);
 
-    Devicegraph rhs;
-    lhs.copy(rhs);
+    LvmVg* system = LvmVg::create(lhs, "/dev/system");
+    Using::create(lhs, sda2, system);
 
-    LvmLv* d = dynamic_cast<LvmLv*>(rhs.find_device(system_oracle->get_sid()));
+    LvmLv* system_oracle = LvmLv::create(lhs, "/dev/system/oracle");
+    Subdevice::create(lhs, system, system_oracle);
+
+    Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
+
+    LvmLv* d = dynamic_cast<LvmLv*>(rhs->find_device(system_oracle->get_sid()));
     assert(d);
     d->set_name("/dev/system/postgresql");
 
-    Actiongraph actiongraph(&lhs, &rhs);
+    Actiongraph actiongraph(storage, lhs, rhs);
 
     actiongraph.write_graphviz("compare1-action.gv");
 }

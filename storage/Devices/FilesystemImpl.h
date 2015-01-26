@@ -56,7 +56,7 @@ namespace storage
 	virtual void do_set_label() const;
 
 	virtual Text do_mount_text(const string& mountpoint, bool doing) const;
-	virtual void do_mount(const string& mountpoint) const;
+	virtual void do_mount(const Actiongraph& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
 	virtual void do_umount(const string& mountpoint) const;

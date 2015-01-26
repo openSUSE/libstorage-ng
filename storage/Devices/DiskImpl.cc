@@ -6,6 +6,8 @@
 #include "storage/Holders/Using.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Storage.h"
+#include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -144,7 +146,17 @@ namespace storage
     void
     Disk::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
-	throw runtime_error("cannot create disk");
+	const Environment& environment = actiongraph.get_storage().get_environment();
+	if (environment.get_target_mode() == TargetMode::TARGET_IMAGE)
+	{
+	    vector<Action::Base*> actions;
+	    actions.push_back(new Action::Create(get_sid()));
+	    actiongraph.add_chain(actions);
+	}
+	else
+	{
+	    throw runtime_error("cannot create disk");
+	}
     }
 
 
@@ -199,6 +211,14 @@ namespace storage
 		       udev_ids.end());
 
 	partition(udev_ids.begin(), udev_ids.end(), string_starts_with("ata-"));
+    }
+
+
+    Text
+    Disk::Impl::do_create_text(bool doing) const
+    {
+	return sformat(_("Create hard disk %1$s (%2$s)"), get_displayname().c_str(),
+		       get_size_string().c_str());
     }
 
 }

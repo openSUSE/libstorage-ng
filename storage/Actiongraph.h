@@ -21,6 +21,7 @@ namespace storage
     using std::deque;
 
 
+    class Storage;
     class CommitCallbacks;
 
 
@@ -50,7 +51,9 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	Actiongraph(const Devicegraph* lhs, const Devicegraph* rhs);
+	Actiongraph(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs);
+
+	const Storage& get_storage() const { return storage; }
 
 	const Devicegraph* get_devicegraph(Side side) const { return side == LHS ? lhs : rhs; }
 
@@ -88,6 +91,8 @@ namespace storage
 	typedef deque<vertex_descriptor> Order;
 
 	Order order;
+
+	const Storage& storage;
 
     };
 

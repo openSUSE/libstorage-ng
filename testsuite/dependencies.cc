@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     system_swap->set_size_k(2 * 1024 * 1024);
     Subdevice::create(rhs, system, system_swap);
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(storage, lhs, rhs);
 
     BOOST_CHECK_EQUAL(actiongraph.get_simple(), expected);
 }

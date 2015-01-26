@@ -39,7 +39,7 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual void do_create() const override;
-	virtual void do_mount(const string& mountpoint) const override;
+	virtual void do_mount(const Actiongraph& actiongraph, const string& mountpoint) const override;
 
     };
 

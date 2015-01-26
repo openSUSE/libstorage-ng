@@ -11,6 +11,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/StorageImpl.h"
 
 
 namespace storage
@@ -232,19 +233,20 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_mount(const string& mountpoint) const
+    Filesystem::Impl::do_mount(const Actiongraph& actiongraph, const string& mountpoint) const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
-	// TODO handle rootprefix
+	const Storage& storage = actiongraph.get_storage();
 
-	if (access(mountpoint.c_str(), R_OK ) != 0)
+	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
+	if (access(real_mountpoint.c_str(), R_OK ) != 0)
 	{
-	    createPath(mountpoint);
+	    createPath(real_mountpoint);
 	}
 
 	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blkdevice->get_name())
-	    + " " + mountpoint;
+	    + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -339,7 +341,7 @@ namespace storage
 	Mount::commit(const Actiongraph& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    filesystem->get_impl().do_mount(mountpoint);
+	    filesystem->get_impl().do_mount(actiongraph, mountpoint);
 	}
 
 

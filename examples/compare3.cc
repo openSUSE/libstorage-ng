@@ -10,6 +10,8 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
+#include "storage/Storage.h"
+#include "storage/Environment.h"
 
 
 using namespace storage;
@@ -18,58 +20,61 @@ using namespace storage;
 int
 main()
 {
-    Devicegraph lhs;
+    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
 
-    Disk* lhs_sda = Disk::create(&lhs, "/dev/sda");
+    Storage storage(environment);
 
-    Partition* lhs_sda1 = Partition::create(&lhs, "/dev/sda1");
-    Subdevice::create(&lhs, lhs_sda, lhs_sda1);
+    Devicegraph* lhs = storage.create_devicegraph("lhs");
 
-    LvmVg* lhs_system_v1 = LvmVg::create(&lhs, "/dev/system-v1");
-    Using::create(&lhs, lhs_sda1, lhs_system_v1);
+    Disk* lhs_sda = Disk::create(lhs, "/dev/sda");
 
-    LvmLv* lhs_system_v1_root = LvmLv::create(&lhs, "/dev/system-v1/root");
-    Subdevice::create(&lhs, lhs_system_v1, lhs_system_v1_root);
+    Partition* lhs_sda1 = Partition::create(lhs, "/dev/sda1");
+    Subdevice::create(lhs, lhs_sda, lhs_sda1);
 
-    LvmLv* lhs_system_v1_swap = LvmLv::create(&lhs, "/dev/system-v1/swap");
-    Subdevice::create(&lhs, lhs_system_v1, lhs_system_v1_swap);
+    LvmVg* lhs_system_v1 = LvmVg::create(lhs, "/dev/system-v1");
+    Using::create(lhs, lhs_sda1, lhs_system_v1);
 
-    Ext4* lhs_system_v1_root_fs = Ext4::create(&lhs);
-    Using::create(&lhs, lhs_system_v1_root, lhs_system_v1_root_fs);
+    LvmLv* lhs_system_v1_root = LvmLv::create(lhs, "/dev/system-v1/root");
+    Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_root);
 
-    Swap* lhs_system_v1_swap_fs = Swap::create(&lhs);
-    Using::create(&lhs, lhs_system_v1_swap, lhs_system_v1_swap_fs);
+    LvmLv* lhs_system_v1_swap = LvmLv::create(lhs, "/dev/system-v1/swap");
+    Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_swap);
 
-    Devicegraph rhs;
-    lhs.copy(rhs);
+    Ext4* lhs_system_v1_root_fs = Ext4::create(lhs);
+    Using::create(lhs, lhs_system_v1_root, lhs_system_v1_root_fs);
 
-    rhs.remove_device(lhs_system_v1_root_fs->get_sid());
-    rhs.remove_device(lhs_system_v1_swap_fs->get_sid());
-    rhs.remove_device(lhs_system_v1_root->get_sid());
-    rhs.remove_device(lhs_system_v1_swap->get_sid());
-    rhs.remove_device(lhs_system_v1->get_sid());
+    Swap* lhs_system_v1_swap_fs = Swap::create(lhs);
+    Using::create(lhs, lhs_system_v1_swap, lhs_system_v1_swap_fs);
 
-    LvmVg* rhs_system_v2 = LvmVg::create(&rhs, "/dev/system-v2");
+    Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
-    LvmLv* rhs_system_v2_root = LvmLv::create(&rhs, "/dev/system-v2/root");
-    Subdevice::create(&rhs, rhs_system_v2, rhs_system_v2_root);
+    rhs->remove_device(lhs_system_v1_root_fs->get_sid());
+    rhs->remove_device(lhs_system_v1_swap_fs->get_sid());
+    rhs->remove_device(lhs_system_v1_root->get_sid());
+    rhs->remove_device(lhs_system_v1_swap->get_sid());
+    rhs->remove_device(lhs_system_v1->get_sid());
 
-    LvmLv* rhs_system_v2_swap = LvmLv::create(&rhs, "/dev/system-v2/swap");
-    Subdevice::create(&rhs, rhs_system_v2, rhs_system_v2_swap);
+    LvmVg* rhs_system_v2 = LvmVg::create(rhs, "/dev/system-v2");
 
-    Partition* rhs_sda1 = dynamic_cast<Partition*>(rhs.find_device(lhs_sda1->get_sid()));
-    Using::create(&rhs, rhs_sda1, rhs_system_v2);
+    LvmLv* rhs_system_v2_root = LvmLv::create(rhs, "/dev/system-v2/root");
+    Subdevice::create(rhs, rhs_system_v2, rhs_system_v2_root);
 
-    Ext4* rhs_system_v2_root_fs = Ext4::create(&rhs);
+    LvmLv* rhs_system_v2_swap = LvmLv::create(rhs, "/dev/system-v2/swap");
+    Subdevice::create(rhs, rhs_system_v2, rhs_system_v2_swap);
+
+    Partition* rhs_sda1 = dynamic_cast<Partition*>(rhs->find_device(lhs_sda1->get_sid()));
+    Using::create(rhs, rhs_sda1, rhs_system_v2);
+
+    Ext4* rhs_system_v2_root_fs = Ext4::create(rhs);
     rhs_system_v2_root_fs->set_label("hello");
-    Using::create(&rhs, rhs_system_v2_root, rhs_system_v2_root_fs);
+    Using::create(rhs, rhs_system_v2_root, rhs_system_v2_root_fs);
 
-    Swap* rhs_system_v2_swap_fs = Swap::create(&rhs);
-    Using::create(&rhs, rhs_system_v2_swap, rhs_system_v2_swap_fs);
+    Swap* rhs_system_v2_swap_fs = Swap::create(rhs);
+    Using::create(rhs, rhs_system_v2_swap, rhs_system_v2_swap_fs);
 
-    Actiongraph actiongraph(&lhs, &rhs);
+    Actiongraph actiongraph(storage, lhs, rhs);
 
-    lhs.write_graphviz("compare3-device-lhs.gv");
-    rhs.write_graphviz("compare3-device-rhs.gv");
+    lhs->write_graphviz("compare3-device-lhs.gv");
+    rhs->write_graphviz("compare3-device-rhs.gv");
     actiongraph.write_graphviz("compare3-action.gv");
 }

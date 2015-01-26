@@ -10,6 +10,8 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
+#include "storage/Storage.h"
+#include "storage/Environment.h"
 
 
 using namespace storage;
@@ -18,12 +20,15 @@ using namespace storage;
 int
 main()
 {
-    Devicegraph* lhs = new Devicegraph();
+    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+
+    Storage storage(environment);
+
+    Devicegraph* lhs = storage.create_devicegraph("lhs");
 
     Disk::create(lhs, "/dev/sda");
 
-    Devicegraph* rhs = new Devicegraph();
-    lhs->copy(*rhs);
+    Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
@@ -47,10 +52,7 @@ main()
 
     rhs->write_graphviz("compare5-device-rhs.gv");
 
-    Actiongraph actiongraph(lhs, rhs);
+    Actiongraph actiongraph(storage, lhs, rhs);
 
     actiongraph.write_graphviz("compare5-action.gv");
-
-    delete lhs;
-    delete rhs;
 }

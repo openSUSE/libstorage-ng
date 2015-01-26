@@ -19,8 +19,8 @@
 namespace storage
 {
 
-    Actiongraph::Actiongraph(const Devicegraph* lhs, const Devicegraph* rhs)
-	: lhs(lhs), rhs(rhs)
+    Actiongraph::Actiongraph(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs)
+	: storage(storage), lhs(lhs), rhs(rhs)
     {
 	cout << "lhs graph" << endl
 	     << *lhs << endl;

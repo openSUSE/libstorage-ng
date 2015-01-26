@@ -88,7 +88,7 @@ namespace storage
 
 
     void
-    Swap::Impl::do_mount(const string& mountpoint) const
+    Swap::Impl::do_mount(const Actiongraph& actiongraph, const string& mountpoint) const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
