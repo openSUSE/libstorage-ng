@@ -199,6 +199,51 @@ namespace storage
     }
 
 
+    string
+    Filesystem::Impl::get_mount_by_string() const
+    {
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	string ret = blkdevice->get_name();
+
+	switch (mount_by)
+	{
+	    case MOUNTBY_UUID:
+		if (!uuid.empty())
+		    ret = "UUID=" + uuid;
+		else
+		    y2err("no uuid defined");
+		break;
+
+	    case MOUNTBY_LABEL:
+		if (!label.empty())
+		    ret = "LABEL=" + label;
+		else
+		    y2err("no label defined");
+		break;
+
+	    case MOUNTBY_ID:
+		if (!blkdevice->get_udev_ids().empty())
+		    ret = "/dev/disk/by-id/" + blkdevice->get_udev_ids().front();
+		else
+		    y2err("no udev-id defined");
+		break;
+
+	    case MOUNTBY_PATH:
+		if (!blkdevice->get_udev_path().empty())
+		    ret = "/dev/disk/by-path/" + blkdevice->get_udev_path();
+		else
+		    y2err("no udev-path defined");
+		break;
+
+	    case MOUNTBY_DEVICE:
+		break;
+	}
+
+	return ret;
+    }
+
+
     Text
     Filesystem::Impl::do_create_text(bool doing) const
     {
@@ -286,7 +331,8 @@ namespace storage
 	// TODO
 
 	FstabChange entry;
-	entry.device = entry.dentry = blkdevice->get_name();
+	entry.device = blkdevice->get_name();
+	entry.dentry = get_mount_by_string();
 	entry.mount = mountpoint;
 	entry.fs = toString(get_type());
 	entry.opts = fstab_options;

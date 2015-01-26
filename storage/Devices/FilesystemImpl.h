@@ -50,6 +50,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
+	string get_mount_by_string() const;
+
 	virtual Text do_create_text(bool doing) const override;
 
 	virtual Text do_set_label_text(bool doing) const;
