@@ -85,14 +85,14 @@ namespace storage
 	void add_dependencies();
 	void get_order();
 
+	const Storage& storage;
+
 	const Devicegraph* lhs;
 	const Devicegraph* rhs;
 
 	typedef deque<vertex_descriptor> Order;
 
 	Order order;
-
-	const Storage& storage;
 
     };
 
