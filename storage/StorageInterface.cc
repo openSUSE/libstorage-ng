@@ -22,6 +22,38 @@ namespace storage_legacy
     using namespace storage;
 
 
+    static void
+    fill_VolumeInfo(VolumeInfo& info, const BlkDevice* blkdevice, const Filesystem* filesystem)
+    {
+	info.name = blkdevice->get_name().substr(5);
+	info.device = blkdevice->get_name();
+	info.sizeK = blkdevice->get_size_k();
+
+	info.format = false;
+	info.create = false;
+
+	info.udevPath = blkdevice->get_udev_path();
+	info.udevId = list<string>(blkdevice->get_udev_ids().begin(), blkdevice->get_udev_ids().end());
+
+	if (filesystem)
+	{
+	    info.fs = filesystem->get_type();
+	    info.label = filesystem->get_label();
+	    info.uuid = filesystem->get_uuid();
+
+	    if (!filesystem->get_mountpoints().empty())
+		info.mount = filesystem->get_mountpoints().front();
+
+	    info.mount_by = filesystem->get_mount_by();
+
+	    if (!filesystem->get_fstab_options().empty())
+		info.fstab_options = boost::join(filesystem->get_fstab_options(), ",");
+	    else
+		info.fstab_options = "defaults";
+	}
+    }
+
+
     void
     initDefaultLogger(const string& logdir)
     {
@@ -542,9 +574,27 @@ namespace storage_legacy
     int
     StorageLegacy::getVolume(const string& device, VolumeInfo& info)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), device);
+	if (blkdevice)
+	{
+	    const Filesystem* filesystem = nullptr;
+
+	    try
+	    {
+		filesystem = blkdevice->get_filesystem();
+	    }
+	    catch (...)
+	    {
+	    }
+
+	    fill_VolumeInfo(info, blkdevice, filesystem);
+
+	    return 0;
+	}
+
+	return STORAGE_VOLUME_NOT_FOUND;
     }
 
 
@@ -567,42 +617,23 @@ namespace storage_legacy
 		{
 		    PartitionInfo info;
 
-		    info.v.name = partition->get_name().substr(5);
-		    info.v.device = partition->get_name();
-		    info.v.sizeK = partition->get_size_k();
-
-		    info.v.udevPath = partition->get_udev_path();
-		    info.v.udevId = list<string>(partition->get_udev_ids().begin(), partition->get_udev_ids().end());
-
 		    info.cylRegion = partition->get_region();
 		    info.nr = partition->get_number();
 		    info.partitionType = partition->get_type();
 		    info.id = partition->get_id();
 		    info.boot = partition->get_boot();
 
+		    const Filesystem* filesystem = nullptr;
+
 		    try
 		    {
-			const Filesystem* filesystem = partition->get_filesystem();
-			if (filesystem)
-			{
-			    info.v.fs = filesystem->get_type();
-			    info.v.label = filesystem->get_label();
-			    info.v.uuid = filesystem->get_uuid();
-
-			    if (!filesystem->get_mountpoints().empty())
-				info.v.mount = filesystem->get_mountpoints().front();
-
-			    info.v.mount_by = filesystem->get_mount_by();
-
-			    if (!filesystem->get_fstab_options().empty())
-				info.v.fstab_options = boost::join(filesystem->get_fstab_options(), ",");
-			    else
-				info.v.fstab_options = "defaults";
-			}
+			filesystem = partition->get_filesystem();
 		    }
 		    catch (...)
 		    {
 		    }
+
+		    fill_VolumeInfo(info.v, partition, filesystem);
 
 		    plist.push_back(info);
 		}
