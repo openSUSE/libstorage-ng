@@ -958,9 +958,29 @@ namespace storage_legacy
     int
     StorageLegacy::changeFormatVolume(const string& device, bool format, FsType fs)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Devicegraph* current = storage->get_current();
+
+	BlkDevice* blkdevice = BlkDevice::find(current, device);
+	if (!blkdevice)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	try
+	{
+	    Filesystem* filesystem = blkdevice->get_filesystem();
+	    if (filesystem)
+	    {
+		current->remove_device(filesystem);
+	    }
+	}
+	catch (...)
+	{
+	}
+
+	blkdevice->create_filesystem(fs);
+
+	return 0;
     }
 
 
