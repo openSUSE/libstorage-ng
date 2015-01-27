@@ -1910,6 +1910,16 @@ namespace storage_legacy
     StorageLegacy::getCommitInfos(list<CommitInfo>& infos) const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	infos.clear();
+
+	for (const string& step : storage->get_commit_steps())
+	{
+	    CommitInfo info;
+	    info.destructive = false;
+	    info.text = step;
+	    infos.push_back(info);
+	}
     }
 
 
@@ -1940,7 +1950,9 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return -1;
+	storage->commit();
+
+	return 0;
     }
 
 
