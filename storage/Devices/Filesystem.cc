@@ -68,6 +68,13 @@ namespace storage
 
 
     void
+    Filesystem::set_mountpoints(const vector<string>& mountpoints)
+    {
+	get_impl().set_mountpoints(mountpoints);
+    }
+
+
+    void
     Filesystem::add_mountpoint(const string& mountpoint)
     {
 	return get_impl().add_mountpoint(mountpoint);
@@ -99,6 +106,34 @@ namespace storage
     Filesystem::set_fstab_options(const list<string>& fstab_options)
     {
 	get_impl().set_fstab_options(fstab_options);
+    }
+
+
+    const string&
+    Filesystem::get_mkfs_options() const
+    {
+	return get_impl().get_mkfs_options();
+    }
+
+
+    void
+    Filesystem::set_mkfs_options(const string& mkfs_options)
+    {
+	get_impl().set_mkfs_options(mkfs_options);
+    }
+
+
+    const string&
+    Filesystem::get_tune_options() const
+    {
+	return get_impl().get_tune_options();
+    }
+
+
+    void
+    Filesystem::set_tune_options(const string& tune_options)
+    {
+	get_impl().set_tune_options(tune_options);
     }
 
 

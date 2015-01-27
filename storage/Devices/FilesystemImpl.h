@@ -30,6 +30,7 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 
 	const vector<string>& get_mountpoints() const { return mountpoints; }
+	void set_mountpoints(const std::vector<std::string>& mountpoints);
 	void add_mountpoint(const string& mountpoint);
 
 	MountByType get_mount_by() const { return mount_by; }
@@ -37,6 +38,12 @@ namespace storage
 
 	const list<string>& get_fstab_options() const { return fstab_options; }
 	void set_fstab_options(const list<string>& fstab_options);
+
+	const string& get_mkfs_options() const { return mkfs_options; }
+	void set_mkfs_options(const string& mkfs_options);
+
+	const string& get_tune_options() const { return tune_options; }
+	void set_tune_options(const string& tune_options);
 
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
@@ -72,7 +79,8 @@ namespace storage
     protected:
 
 	Impl()
-	    : Device::Impl(), mount_by(MOUNTBY_DEVICE) {}
+	    : Device::Impl(), label(), uuid(), mountpoints({}), mount_by(MOUNTBY_DEVICE),
+	      fstab_options({}), mkfs_options(), tune_options() {}
 
 	Impl(const xmlNode* node);
 
@@ -87,6 +95,9 @@ namespace storage
 	vector<string> mountpoints;
 	MountByType mount_by;
 	list<string> fstab_options;
+
+	string mkfs_options;
+	string tune_options;
 
     };
 

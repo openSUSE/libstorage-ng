@@ -34,6 +34,7 @@ namespace storage
 	const std::string& get_uuid() const;
 
 	const std::vector<std::string>& get_mountpoints() const;
+	void set_mountpoints(const std::vector<std::string>& mountpoints);
 	void add_mountpoint(const std::string& mountpoint);
 
 	MountByType get_mount_by() const;
@@ -41,6 +42,12 @@ namespace storage
 
 	const std::list<std::string>& get_fstab_options() const;
 	void set_fstab_options(const std::list<std::string>& fstab_options);
+
+	const string& get_mkfs_options() const;
+	void set_mkfs_options(const string& mkfs_options);
+
+	const string& get_tune_options() const;
+	void set_tune_options(const string& tune_options);
 
 	static std::vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
 						      const std::string& label);

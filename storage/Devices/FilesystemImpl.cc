@@ -21,7 +21,8 @@ namespace storage
 
 
     Filesystem::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), mount_by(MOUNTBY_DEVICE)
+	: Device::Impl(node), label(), uuid(), mountpoints({}), mount_by(MOUNTBY_DEVICE),
+	  fstab_options({}), mkfs_options(), tune_options()
     {
 	string tmp;
 
@@ -35,6 +36,9 @@ namespace storage
 
 	if (getChildValue(node, "fstab-options", tmp))
 	    fstab_options = splitString(tmp, ",");
+
+	getChildValue(node, "mkfs-options", mkfs_options);
+	getChildValue(node, "tune-options", tune_options);
     }
 
 
@@ -42,6 +46,13 @@ namespace storage
     Filesystem::Impl::set_label(const string& label)
     {
 	Impl::label = label;
+    }
+
+
+    void
+    Filesystem::Impl::set_mountpoints(const vector<string>& mountpoints)
+    {
+	Impl::mountpoints = mountpoints;
     }
 
 
@@ -67,6 +78,20 @@ namespace storage
 
 
     void
+    Filesystem::Impl::set_mkfs_options(const string& mkfs_options)
+    {
+	Impl::mkfs_options = mkfs_options;
+    }
+
+
+    void
+    Filesystem::Impl::set_tune_options(const string& tune_options)
+    {
+	Impl::tune_options = tune_options;
+    }
+
+
+    void
     Filesystem::Impl::save(xmlNode* node) const
     {
 	Device::Impl::save(node);
@@ -80,6 +105,9 @@ namespace storage
 
 	if (!fstab_options.empty())
 	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
+
+	setChildValueIf(node, "mkfs-options", mkfs_options, !mkfs_options.empty());
+	setChildValueIf(node, "tune-options", tune_options, !tune_options.empty());
     }
 
 
@@ -158,7 +186,8 @@ namespace storage
 	    return false;
 
 	return label == rhs.label && uuid == rhs.uuid && mountpoints == rhs.mountpoints &&
-	    mount_by == rhs.mount_by && fstab_options == rhs.fstab_options;
+	    mount_by == rhs.mount_by && fstab_options == rhs.fstab_options &&
+	    mkfs_options == rhs.mkfs_options && tune_options == rhs.tune_options;
     }
 
 
@@ -177,6 +206,9 @@ namespace storage
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
 	storage::log_diff(log, "fstab-options", fstab_options, rhs.fstab_options);
+
+	storage::log_diff(log, "mkfs-options", mkfs_options, rhs.mkfs_options);
+	storage::log_diff(log, "tune-options", tune_options, rhs.tune_options);
     }
 
 
@@ -196,6 +228,12 @@ namespace storage
 
 	if (!fstab_options.empty())
 	    out << " fstab-options:" << fstab_options;
+
+	if (!mkfs_options.empty())
+	    out << " mkfs-options:" << mkfs_options;
+
+	if (!tune_options.empty())
+	    out << " tune-options:" << tune_options;
     }
 
 
