@@ -10,6 +10,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Region.h"
 #include "storage/Storage.h"
+#include "storage/Devicegraph.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Environment.h"
@@ -1913,6 +1914,9 @@ namespace storage_legacy
 
 	infos.clear();
 
+	storage->get_probed()->save("yast2-probed.xml");
+	storage->get_current()->save("yast2-current.xml");
+
 	for (const string& step : storage->get_commit_steps())
 	{
 	    CommitInfo info;
@@ -1949,6 +1953,9 @@ namespace storage_legacy
     StorageLegacy::commit()
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	storage->get_probed()->save("yast2-probed.xml");
+	storage->get_current()->save("yast2-current.xml");
 
 	storage->commit();
 

@@ -2,14 +2,14 @@
 # Makefile.am for libstorage/testsuite
 #
 
-SUBDIRS = Utils SystemInfo probe
+SUBDIRS = Utils SystemInfo probe dependencies
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../storage/libstorage.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	copy.test dependencies.test disk.test dynamic.test			\
+	copy.test disk.test dynamic.test					\
 	find-vertex.test fstab.test fstab-ng.test output.test			\
 	probe.test								\
 	stable.test relatives.test

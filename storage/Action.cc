@@ -89,8 +89,9 @@ namespace storage
 		    {
 			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl().graph[*vi2]->get_sid();
 
-			Actiongraph::vertex_descriptor tmp = actiongraph.huhu(child_sid, false, true).front();
-			actiongraph.add_edge(tmp, v);
+			vector<Actiongraph::vertex_descriptor> tmp = actiongraph.huhu(child_sid, false, true);
+			if (!tmp.empty())
+			    actiongraph.add_edge(tmp.front(), v);
 		    }
 		}
 	    }
