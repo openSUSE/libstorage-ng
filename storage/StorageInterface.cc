@@ -22,6 +22,28 @@ namespace storage_legacy
     using namespace storage;
 
 
+    Filesystem*
+    find_Filesystem_by_device(Storage* storage, const string& device)
+    {
+	Devicegraph* current = storage->get_current();
+
+	BlkDevice* blkdevice = BlkDevice::find(current, device);
+	if (!blkdevice)
+	    return nullptr;
+
+	Filesystem* filesystem = nullptr;
+	try
+	{
+	    filesystem = blkdevice->get_filesystem();
+	}
+	catch (...)
+	{
+	}
+
+	return filesystem;
+    }
+
+
     static void
     fill_VolumeInfo(VolumeInfo& info, const BlkDevice* blkdevice, const Filesystem* filesystem)
     {
@@ -153,7 +175,7 @@ namespace storage_legacy
 	int getMountPoint(const string& device, string& mount) override;
 	int changeMountBy(const string& device, MountByType mby) override;
 	int getMountBy(const string& device, MountByType& mby) override;
-	int changeFstabOptions(const string&, const string& options) override;
+	int changeFstabOptions(const string& device, const string& options) override;
 	int getFstabOptions(const string& device, string& options) override;
 	int addFstabOptions(const string&, const string& options) override;
 	int removeFstabOptions(const string&, const string& options) override;
@@ -987,27 +1009,45 @@ namespace storage_legacy
     int
     StorageLegacy::changeLabelVolume(const string& device, const string& label)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	filesystem->set_label(label);
+
+	return 0;
     }
 
 
     int
     StorageLegacy::changeMkfsOptVolume(const string& device, const string& opts)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	filesystem->set_mkfs_options(opts);
+
+	return 0;
     }
 
 
     int
     StorageLegacy::changeTunefsOptVolume(const string& device, const string& opts)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	filesystem->set_tune_options(opts);
+
+	return 0;
     }
 
 
@@ -1023,54 +1063,102 @@ namespace storage_legacy
     int
     StorageLegacy::changeMountPoint(const string& device, const string& mount)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	if (mount.empty())
+	    filesystem->set_mountpoints({ });
+	else
+	    filesystem->set_mountpoints({ mount });
+
+	return 0;
     }
 
 
     int
     StorageLegacy::getMountPoint(const string& device, string& mount)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	if (filesystem->get_mountpoints().empty())
+	    mount = "";
+	else
+	    mount = filesystem->get_mountpoints().front();
+
+	return 0;
     }
 
 
     int
     StorageLegacy::changeMountBy(const string& device, MountByType mby)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	filesystem->set_mount_by(mby);
+
+	return 0;
     }
 
 
     int
     StorageLegacy::getMountBy(const string& device, MountByType& mby)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	mby = filesystem->get_mount_by();
+
+	return 0;
     }
 
 
     int
-    StorageLegacy::changeFstabOptions(const string&, const string& options)
+    StorageLegacy::changeFstabOptions(const string& device, const string& options)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	if (options == "defaults")
+	    filesystem->set_fstab_options({});
+	else
+	    filesystem->set_fstab_options(splitString(options, ","));
+
+	return 0;
     }
 
 
     int
     StorageLegacy::getFstabOptions(const string& device, string& options)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Filesystem* filesystem = find_Filesystem_by_device(storage, device);
+	if (!filesystem)
+	    return STORAGE_VOLUME_NOT_FOUND;
+
+	if (filesystem->get_fstab_options().empty())
+	    options = "defaults";
+	else
+	    options = boost::join(filesystem->get_fstab_options(), ",");
+
+	return 0;
     }
 
 
