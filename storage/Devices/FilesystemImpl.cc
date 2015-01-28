@@ -297,21 +297,27 @@ namespace storage
     Text
     Filesystem::Impl::do_set_label_text(bool doing) const
     {
-	return sformat(_("Set label %1$s"), get_displayname().c_str());
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Set label of %1$s to %2$s"), blkdevice->get_name().c_str(),
+		       label.c_str());
     }
 
 
     void
     Filesystem::Impl::do_set_label() const
     {
-	// TODO
+	// TODO - stub
     }
 
 
     Text
     Filesystem::Impl::do_mount_text(const string& mountpoint, bool doing) const
     {
-	return sformat(_("Mount %1$s"), get_displayname().c_str());
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Mount %1$s at %2$s"), blkdevice->get_name().c_str(),
+		       mountpoint.c_str());
     }
 
 
@@ -355,7 +361,10 @@ namespace storage
     Text
     Filesystem::Impl::do_add_fstab_text(const string& mountpoint, bool doing) const
     {
-	return sformat(_("Add %1$s to fstab"), get_displayname().c_str());
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Add mountpoint %1$s of %2$s to fstab"), mountpoint.c_str(),
+		       blkdevice->get_name().c_str());
     }
 
 
