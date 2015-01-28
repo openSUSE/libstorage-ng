@@ -14,6 +14,11 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB3b96ac9d-f9f14bd2</udev-id>
+      <geometry>
+        <cylinders>1044</cylinders>
+        <heads>255</heads>
+        <sectors>63</sectors>
+      </geometry>
       <transport>SATA</transport>
     </Disk>
     <Msdos>
@@ -73,6 +78,11 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB43911086-715441bd</udev-id>
+      <geometry>
+        <cylinders>2088</cylinders>
+        <heads>255</heads>
+        <sectors>63</sectors>
+      </geometry>
       <rotational>true</rotational>
       <transport>SATA</transport>
     </Disk>

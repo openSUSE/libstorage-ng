@@ -5,6 +5,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/StorageInterface.h"
+#include "storage/Geometry.h"
 
 
 namespace storage
@@ -27,6 +28,9 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
+
+	const Geometry& get_geometry() const { return geometry; }
+	void set_geometry(const Geometry& geometry) { Impl::geometry = geometry; }
 
 	bool get_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
@@ -57,7 +61,7 @@ namespace storage
 
     private:
 
-	// geometry
+	Geometry geometry;
 
 	bool rotational;
 

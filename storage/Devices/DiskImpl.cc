@@ -26,6 +26,8 @@ namespace storage
     {
 	string tmp;
 
+	getChildValue(node, "geometry", geometry);
+
 	getChildValue(node, "rotational", rotational);
 
 	if (getChildValue(node, "transport", tmp))
@@ -74,6 +76,8 @@ namespace storage
 	    PartitionTable* pt = create_partition_table(parted.getLabel());
 	    pt->get_impl().probe(systeminfo);
 	}
+
+	geometry = parted.getGeometry();
     }
 
 
@@ -81,6 +85,8 @@ namespace storage
     Disk::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	setChildValue(node, "geometry", geometry);
 
 	setChildValueIf(node, "rotational", rotational, rotational);
 
@@ -175,7 +181,8 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && transport == rhs.transport;
+	return geometry == rhs.geometry && rotational == rhs.rotational &&
+	    transport == rhs.transport;
     }
 
 
@@ -185,6 +192,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "geometry", geometry, rhs.geometry);
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
@@ -196,6 +205,8 @@ namespace storage
     Disk::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	out << " geometry:" << geometry;
 
 	if (rotational)
 	    out << " rotational";

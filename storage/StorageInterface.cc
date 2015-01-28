@@ -11,7 +11,7 @@
 #include "storage/Utils/Region.h"
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Environment.h"
 
@@ -345,6 +345,8 @@ namespace storage_legacy
 
 	Storage* storage;
 
+	bool recursive_removal;
+
         CallbackProgressBar progress_bar_cb;
         CallbackShowInstallInfo install_info_cb;
         CallbackInfoPopup info_popup_cb;
@@ -415,6 +417,7 @@ namespace storage_legacy
 
 
     StorageLegacy::StorageLegacy(const Environment& env)
+	: recursive_removal(false)
     {
 	y2mil("legacy " << __FUNCTION__);
 
@@ -506,6 +509,14 @@ namespace storage_legacy
 	if (disk)
 	{
 	    info.sizeK = disk->get_size_k();
+
+	    info.cylSize = disk->get_impl().get_geometry().cylinderSize();
+	    info.cyl = disk->get_impl().get_geometry().cylinders;
+	    info.heads = disk->get_impl().get_geometry().heads;
+	    info.sectors = disk->get_impl().get_geometry().sectors;
+
+	    info.sectorSize = disk->get_impl().get_geometry().sector_size;
+
 	    info.transport = disk->get_transport();
 
 	    const PartitionTable* partitiontable = disk->get_partition_table();
@@ -1474,7 +1485,9 @@ namespace storage_legacy
     void
     StorageLegacy::setRecursiveRemoval(bool val)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << val);
+
+	recursive_removal = val;
     }
 
 
@@ -1483,7 +1496,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	return recursive_removal;
     }
 
 
@@ -1724,6 +1737,9 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << name);
 
+	if (storage->exist_devicegraph(name))
+	    storage->remove_devicegraph(name);
+
 	storage->copy_devicegraph("current", name);
 
 	return 0;
@@ -1766,7 +1782,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << lhs << " " << rhs);
 
-	return storage->equal_devicegraph(lhs, rhs);
+	return storage->equal_devicegraph(lhs.empty() ? "current" : lhs, rhs.empty() ? "current" : rhs);
     }
 
 
