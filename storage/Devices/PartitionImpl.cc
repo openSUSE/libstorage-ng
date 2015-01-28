@@ -74,6 +74,21 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::set_region(const Region& region)
+    {
+	Impl::region = region;
+
+	const PartitionTable* partitiontable = get_partition_table();
+	assert(partitiontable);
+
+	const Disk* disk = partitiontable->get_disk();
+	assert(disk);
+
+	set_size_k(region.get_length() * disk->get_impl().get_geometry().cylinderSize() / 1024);
+    }
+
+
     const PartitionTable*
     Partition::Impl::get_partition_table() const
     {

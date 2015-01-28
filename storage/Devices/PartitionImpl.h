@@ -34,7 +34,7 @@ namespace storage
 	unsigned int get_number() const;
 
 	const Region& get_region() const { return region; }
-	void set_region(const Region& region) { Impl::region = region; }
+	void set_region(const Region& region);
 
 	PartitionType get_type() const { return type; }
 	void set_type(PartitionType type) { Impl::type = type; }
