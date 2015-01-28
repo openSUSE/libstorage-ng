@@ -906,7 +906,46 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	struct label_info
+	{
+	    string name;
+	    bool extended;
+	    unsigned primary;
+	    unsigned logical;
+	    unsigned long long max_sectors;
+	};
+
+	const label_info labels[] = {
+	    { "msdos", true, 4, 256, (1ULL << 32) - 1 }, // actually unlimited number of logical partitions
+	    { "gpt", false, 128, 0, (1ULL << 48) - 1 },	// actually 64 bit but we cannot calculate with that,
+							// 48 bit looks nice since it matches LBA48
+	    { "bsd", false, 8, 0, (1ULL << 32) - 1 },
+	    { "sun", false, 8, 0, (1ULL << 32) - 1 },
+	    { "mac", false, 64, 0, (1ULL << 32) - 1 },
+	    { "dasd", false, 3, 0, (1ULL << 32) - 1 },
+	    { "aix", false, 0, 0, (1ULL << 32) - 1 },
+	    { "amiga", false, 63, 0, (1ULL << 32) - 1 },
+	    { "xenxvd", false, 256, 0, (1ULL << 32) - 1 }, // artificial
+	    { "", false, 0, 0, 0 }
+	};
+
+	bool ret = false;
+	int i = 0;
+	while (!labels[i].name.empty() && labels[i].name != dlabel)
+	{
+	    i++;
+	}
+	if (!labels[i].name.empty())
+	{
+	    ret = true;
+	    dlabelcapabilities.maxPrimary = labels[i].primary;
+	    dlabelcapabilities.extendedPossible = labels[i].extended;
+	    dlabelcapabilities.maxLogical = labels[i].logical;
+	    dlabelcapabilities.maxSectors = labels[i].max_sectors;
+	}
+	y2mil("dlabel:" << dlabel << " ret:" << ret);
+
+	return ret;
     }
 
 
