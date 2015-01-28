@@ -1722,45 +1722,51 @@ namespace storage_legacy
     int
     StorageLegacy::createBackupState(const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	return -1;
+	storage->copy_devicegraph("current", name);
+
+	return 0;
     }
 
 
     int
     StorageLegacy::removeBackupState(const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	return -1;
+	storage->remove_devicegraph(name);
+
+	return 0;
     }
 
 
     int
     StorageLegacy::restoreBackupState(const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	return -1;
+	storage->restore_devicegraph(name);
+
+	return 0;
     }
 
 
     bool
     StorageLegacy::checkBackupState(const string& name) const
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	return false;
+	return storage->exist_devicegraph(name);
     }
 
 
     bool
     StorageLegacy::equalBackupStates(const string& lhs, const string& rhs, bool verbose_log) const
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << lhs << " " << rhs);
 
-	return storage->equal_devicegraph("probed", "current");
+	return storage->equal_devicegraph(lhs, rhs);
     }
 
 
