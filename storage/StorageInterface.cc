@@ -772,7 +772,132 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	struct FsCapabilitiesX : public FsCapabilities
+	{
+	    FsCapabilitiesX(bool isExtendableX, bool isExtendableWhileMountedX,
+			    bool isReduceableX, bool isReduceableWhileMountedX,
+			    bool supportsUuidX, bool supportsLabelX,
+			    bool labelWhileMountedX, unsigned int labelLengthX,
+			    bool canFormatX, unsigned long long minimalFsSizeKX)
+		: FsCapabilities()
+		{
+		    isExtendable = isExtendableX;
+		    isExtendableWhileMounted = isExtendableWhileMountedX;
+		    isReduceable = isReduceableX;
+		    isReduceableWhileMounted = isReduceableWhileMountedX;
+		    supportsUuid = supportsUuidX;
+		    supportsLabel = supportsLabelX;
+		    labelWhileMounted = labelWhileMountedX;
+		    labelLength = labelLengthX;
+		    canFormat = canFormatX;
+		    minimalFsSizeK = minimalFsSizeKX;
+		}
+	};
+
+	static FsCapabilitiesX reiserfsCaps(true, true, true, false, true, true,
+					    false, 16, true, 50*1024);
+
+	static FsCapabilitiesX ext2Caps(true, false, true, false, true, true,
+					true, 16, true, 100);
+
+	static FsCapabilitiesX ext3Caps(true, true, true, false, true, true,
+					true, 16, true, 10*1024);
+
+	static FsCapabilitiesX ext4Caps(true, true, true, false, true, true,
+					true, 16, true, 32*1024);
+
+	// btrfs can be shrunk but it is not possible to know the minimal possible
+	// size in advance (see bnc #894832), thus not allowed here
+	static FsCapabilitiesX btrfsCaps(true, true, false, false, true, true,
+					 true, 256, true, 256*1024);
+
+	static FsCapabilitiesX xfsCaps(true, true, false, false, true, true,
+				       false, 12, true, 40*1024);
+
+	static FsCapabilitiesX ntfsCaps(true, false, true, false, true, true,
+					false, 32, true, 10*1024);
+
+	static FsCapabilitiesX fatCaps(true, false, true, false, true, true,
+				       false, 11, true, 64);
+
+	static FsCapabilitiesX swapCaps(true, false, true, false, true, true,
+					false, 15, true, 64);
+
+	static FsCapabilitiesX jfsCaps(false, false, false, false, true, true,
+				       false, 16, true, 16*1024);
+
+	static FsCapabilitiesX hfsCaps(false, false, false, false, false, false,
+				       false, 0, true, 10*1024);
+
+	static FsCapabilitiesX hfspCaps(false, false, false, false, false, false,
+					false, 0, true, 10*1024);
+
+	static FsCapabilitiesX nfsCaps(false, false, false, false, false, false,
+				       false, 0, true, 10*1024);
+
+	static FsCapabilitiesX iso9660Caps(false, false, false, false, false, false,
+					   false, 0, false, 0);
+
+	static FsCapabilitiesX udfCaps(false, false, false, false, false, false,
+				       false, 0, false, 0);
+
+	switch (fstype)
+	{
+	    case REISERFS:
+		fscapabilities = reiserfsCaps;
+		return true;
+
+	    case EXT2:
+		fscapabilities = ext2Caps;
+		return true;
+
+	    case EXT3:
+		fscapabilities = ext3Caps;
+		return true;
+
+	    case EXT4:
+		fscapabilities = ext4Caps;
+		return true;
+
+	    case BTRFS:
+		fscapabilities = btrfsCaps;
+		return true;
+
+	    case XFS:
+		fscapabilities = xfsCaps;
+		return true;
+
+	    case VFAT:
+		fscapabilities = fatCaps;
+		return true;
+
+	    case NTFS:
+		fscapabilities = ntfsCaps;
+		return true;
+
+	    case JFS:
+		fscapabilities = jfsCaps;
+		return true;
+
+	    case HFS:
+		fscapabilities = hfsCaps;
+		return true;
+
+	    case HFSPLUS:
+		fscapabilities = hfspCaps;
+		return true;
+
+	    case NFS:
+		fscapabilities = nfsCaps;
+		return true;
+
+	    case SWAP:
+		fscapabilities = swapCaps;
+		return true;
+
+	    default:
+		return false;
+	}
     }
 
 
