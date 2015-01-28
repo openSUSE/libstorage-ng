@@ -27,20 +27,16 @@ namespace storage_legacy
     {
 	Devicegraph* current = storage->get_current();
 
-	BlkDevice* blkdevice = BlkDevice::find(current, device);
-	if (!blkdevice)
-	    return nullptr;
-
-	Filesystem* filesystem = nullptr;
 	try
 	{
-	    filesystem = blkdevice->get_filesystem();
+	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    Filesystem* filesystem = blkdevice->get_filesystem();
+	    return filesystem;
 	}
 	catch (...)
 	{
+	    return nullptr;
 	}
-
-	return filesystem;
     }
 
 
@@ -609,9 +605,9 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), device);
-	if (blkdevice)
+	try
 	{
+	    const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), device);
 	    const Filesystem* filesystem = nullptr;
 
 	    try
@@ -626,8 +622,10 @@ namespace storage_legacy
 
 	    return 0;
 	}
-
-	return STORAGE_VOLUME_NOT_FOUND;
+	catch (...)
+	{
+	    return STORAGE_VOLUME_NOT_FOUND;
+	}
     }
 
 
@@ -973,7 +971,7 @@ namespace storage_legacy
     StorageLegacy::createPartition(const string& disk, PartitionType type, const RegionInfo& cylRegion,
 				   string& device)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
 	return -1;
     }
@@ -1081,11 +1079,23 @@ namespace storage_legacy
 
 
     int
-    StorageLegacy::changePartitionId(const string& partition, unsigned id)
+    StorageLegacy::changePartitionId(const string& device, unsigned id)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return -1;
+	Devicegraph* current = storage->get_current();
+
+	try
+	{
+	    Partition* partition = Partition::find(current, device);
+	    partition->set_id(id);
+	}
+	catch (...)
+	{
+	    return DISK_PARTITION_NOT_FOUND;
+	}
+
+	return 0;
     }
 
 
@@ -1110,7 +1120,7 @@ namespace storage_legacy
     string
     StorageLegacy::getPartitionName(const string& disk, int partition_no)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
 	return "";
     }
@@ -1644,7 +1654,7 @@ namespace storage_legacy
     int
     StorageLegacy::removeVolume(const string& device)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
 	return -1;
     }
