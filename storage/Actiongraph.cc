@@ -220,7 +220,9 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    commit_steps.push_back(action->text(*this, false).text);
+	    string text = action->text(*this, true).text;
+
+	    commit_steps.push_back(text);
 	}
 
 	return commit_steps;
@@ -230,21 +232,19 @@ namespace storage
     void
     Actiongraph::commit(const CommitCallbacks* commit_callbacks) const
     {
-	cout << "commit" << endl;
-
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
+	    string text = action->text(*this, true).text;
 
-	    cout << vertex << " " << action->text(*this, true).text << endl;
+	    y2mil("Commit Action " << text);
+	    cout << text << endl;
 
 	    if (commit_callbacks)
-		commit_callbacks->message(action->text(*this, true).text);
+		commit_callbacks->message(text);
 
 	    action->commit(*this);
 	}
-
-	cout << endl;
     }
 
 
