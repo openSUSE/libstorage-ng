@@ -2249,8 +2249,8 @@ namespace storage_legacy
 
 	infos.clear();
 
-	storage->get_probed()->save("yast2-probed.xml");
-	storage->get_current()->save("yast2-current.xml");
+	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
+	storage->get_current()->save("/var/log/YaST2/yast2-current.xml");
 
 	for (const string& step : storage->get_commit_steps())
 	{
@@ -2289,8 +2289,8 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	storage->get_probed()->save("yast2-probed.xml");
-	storage->get_current()->save("yast2-current.xml");
+	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
+	storage->get_current()->save("/var/log/YaST2/yast2-current.xml");
 
 	storage->commit();
 
