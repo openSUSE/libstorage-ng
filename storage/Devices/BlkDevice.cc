@@ -7,6 +7,7 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage
