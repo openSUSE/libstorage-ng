@@ -369,9 +369,11 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_add_fstab(const string& mountpoint) const
+    Filesystem::Impl::do_add_fstab(const Actiongraph& actiongraph, const string& mountpoint) const
     {
-	EtcFstab fstab("/etc");	// TODO pass as parameter
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
 	const BlkDevice* blkdevice = get_blkdevice();
 
@@ -466,7 +468,7 @@ namespace storage
 	AddFstab::commit(const Actiongraph& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    filesystem->get_impl().do_add_fstab(mountpoint);
+	    filesystem->get_impl().do_add_fstab(actiongraph, mountpoint);
 	}
 
 
