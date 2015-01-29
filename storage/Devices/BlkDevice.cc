@@ -146,12 +146,8 @@ namespace storage
 		break;
 
 	    default:
-		// TODO
-		break;
+		throw logic_error("unimplemented filesystem type " + toString(fs_type));
 	}
-
-	if (!ret)
-	    throw runtime_error("unknown filesystem type");
 
 	Using::create(get_impl().get_devicegraph(), this, ret);
 
