@@ -96,7 +96,7 @@ namespace storage
 
 	blkdevice->get_impl().wait_for_device();
 
-	string cmd_line = MKFSEXT2BIN " -t ext4 -v " + quote(blkdevice->get_name());
+	string cmd_line = MKFSEXT2BIN " -t ext4 -v -F " + quote(blkdevice->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

@@ -69,6 +69,8 @@ namespace storage
 		label = PtType::DASD;
 	    else if (label_str == "loop")
 		label = PtType::PT_LOOP;
+	    else if (label_str == "unknown")
+		label = PtType::PT_UNKNOWN;
 	    else
 		throw runtime_error("unknown partition table type");
 	}
