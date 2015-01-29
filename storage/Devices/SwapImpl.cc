@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/SwapImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -77,6 +78,8 @@ namespace storage
     Swap::Impl::do_create() const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
+
+	blkdevice->get_impl().wait_for_device();
 
 	string cmd_line = MKSWAPBIN " -f " + quote(blkdevice->get_name());
 	cout << cmd_line << endl;

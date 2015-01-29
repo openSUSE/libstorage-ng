@@ -6,6 +6,8 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 namespace storage
@@ -185,6 +187,32 @@ namespace storage
 	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
 
 	return dynamic_cast<const Filesystem*>(child);
+    }
+
+
+    void
+    BlkDevice::Impl::wait_for_device() const
+    {
+	string cmd_line(UDEVADMBIN " settle --timeout=20");
+	SystemCmd cmd(cmd_line);
+
+	bool exist = access(name.c_str(), R_OK) == 0;
+	y2mil("name:" << name << " exist:" << exist);
+
+	if (!exist)
+	{
+	    for (int count = 0; count < 500; ++count)
+	    {
+		usleep(10000);
+		exist = access(name.c_str(), R_OK) == 0;
+		if (exist)
+		    break;
+	    }
+	    y2mil("name:" << name << " exist:" << exist);
+	}
+
+	if (!exist)
+	    throw runtime_error("wait_for_device failed");
     }
 
 }

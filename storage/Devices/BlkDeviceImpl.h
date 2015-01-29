@@ -49,6 +49,8 @@ namespace storage
 	virtual void process_udev_path(string& udev_path) const {}
 	virtual void process_udev_ids(vector<string>& udev_ids) const {}
 
+	void wait_for_device() const;
+
     protected:
 
 	Impl(const string& name)

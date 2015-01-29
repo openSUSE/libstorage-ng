@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Ext4Impl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -92,6 +93,8 @@ namespace storage
     Ext4::Impl::do_create() const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
+
+	blkdevice->get_impl().wait_for_device();
 
 	string cmd_line = MKFSEXT2BIN " -t ext4 -v " + quote(blkdevice->get_name());
 	cout << cmd_line << endl;
