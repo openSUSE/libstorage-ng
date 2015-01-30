@@ -5,7 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
@@ -33,7 +33,7 @@ public:
 
 	Disk* sda = Disk::create(devicegraph, "/dev/sda");
 	sda->set_size_k(80 * 1024 * 1024);
-	sda->set_transport(SATA);
+	sda->get_impl().set_transport(SATA);
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 

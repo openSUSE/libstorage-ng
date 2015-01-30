@@ -68,7 +68,6 @@ namespace storage
 
 	Geometry geometry;
 	unsigned int range;
-
 	bool rotational;
 
 	Transport transport;

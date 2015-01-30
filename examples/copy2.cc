@@ -3,7 +3,7 @@
 #include <assert.h>
 #include <iostream>
 
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
@@ -33,7 +33,7 @@ main()
 	BlkDevice* tmp = dynamic_cast<BlkDevice*>(devicegraph_copy.find_device(partition->get_sid()));
 	assert(tmp);
 
-	tmp->set_name("/dev/dasda1");
+	tmp->get_impl().set_name("/dev/dasda1");
     }
 
     cout << devicegraph << endl;

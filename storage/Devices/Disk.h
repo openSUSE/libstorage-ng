@@ -29,10 +29,8 @@ namespace storage
 	static std::vector<Disk*> get_all(const Devicegraph* devicegraph);
 
 	bool get_rotational() const;
-	void set_rotational(bool rotational);
 
 	Transport get_transport() const;
-	void set_transport(Transport transport);
 
 	PartitionTable* create_partition_table(PtType pt_type);
 
