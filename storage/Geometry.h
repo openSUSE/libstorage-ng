@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -32,6 +32,10 @@ namespace storage
     struct Geometry
     {
 	Geometry();
+	Geometry(unsigned long cylinders, unsigned int heads, unsigned int sectors,
+		 unsigned int sector_size)
+	    : cylinders(cylinders), heads(heads), sectors(sectors), sector_size(sector_size)
+	{}
 
 	unsigned long cylinders;
 	unsigned int heads;
