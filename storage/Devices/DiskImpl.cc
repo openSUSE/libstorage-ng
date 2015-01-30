@@ -101,7 +101,7 @@ namespace storage
     Disk::Impl::create_partition_table(PtType pt_type)
     {
 	if (get_device()->num_children() != 0)
-	    throw runtime_error("has children");
+	    throw runtime_error("disk has children");
 
 	PartitionTable* ret = nullptr;
 
@@ -128,7 +128,7 @@ namespace storage
     Disk::Impl::get_partition_table()
     {
 	if (get_device()->num_children() != 1)
-	    throw runtime_error("has no children");
+	    throw runtime_error("disk has no children");
 
 	const Devicegraph* devicegraph = get_devicegraph();
 
@@ -142,7 +142,7 @@ namespace storage
     Disk::Impl::get_partition_table() const
     {
 	if (get_device()->num_children() != 1)
-	    throw runtime_error("has no children");
+	    throw runtime_error("disk has no children");
 
 	const Devicegraph* devicegraph = get_devicegraph();
 

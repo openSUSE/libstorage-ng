@@ -166,7 +166,7 @@ namespace storage
     BlkDevice::Impl::get_filesystem()
     {
 	if (get_device()->num_children() != 1)
-	    throw runtime_error("has no children");
+	    throw runtime_error("blkdevice has no children");
 
 	const Devicegraph* devicegraph = get_devicegraph();
 
@@ -180,7 +180,7 @@ namespace storage
     BlkDevice::Impl::get_filesystem() const
     {
 	if (get_device()->num_children() != 1)
-	    throw runtime_error("has no children");
+	    throw runtime_error("blkdevice has no children");
 
 	const Devicegraph* devicegraph = get_devicegraph();
 
