@@ -1185,7 +1185,14 @@ namespace storage_legacy
 	{
 	}
 
-	blkdevice->create_filesystem(fs);
+	try
+	{
+	    blkdevice->create_filesystem(fs);
+	}
+	catch (...)
+	{
+	    return VOLUME_FORMAT_UNKNOWN_FS;
+	}
 
 	return 0;
     }
