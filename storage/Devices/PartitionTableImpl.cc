@@ -133,6 +133,16 @@ namespace storage
     }
 
 
+    vector<const Partition*>
+    PartitionTable::Impl::get_partitions() const
+    {
+	const Devicegraph* devicegraph = get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex));
+    }
+
+
     bool
     PartitionTable::Impl::equal(const Device::Impl& rhs_base) const
     {
@@ -160,6 +170,36 @@ namespace storage
     PartitionTable::Impl::print(std::ostream& out) const
     {
 	Device::Impl::print(out);
+    }
+
+
+    unsigned int
+    PartitionTable::Impl::num_primary() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
+	    return partition->get_type() == PRIMARY;
+	});
+    }
+
+
+    bool
+    PartitionTable::Impl::has_extended() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	return any_of(partitions.begin(), partitions.end(), [](const Partition* partition) {
+	    return partition->get_type() == EXTENDED;
+	});
+    }
+
+
+    unsigned int
+    PartitionTable::Impl::num_logical() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
+	    return partition->get_type() == LOGICAL;
+	});
     }
 
 

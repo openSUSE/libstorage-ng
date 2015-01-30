@@ -37,6 +37,10 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual unsigned int max_primary(unsigned int range) const override { return min(4U, range); }
+	virtual bool extended_possible() const override { return true; }
+	virtual unsigned int max_logical(unsigned int range) const override { return min(256U, range); }
+
     };
 
 }

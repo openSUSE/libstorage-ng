@@ -31,6 +31,8 @@ namespace storage
 
 	Partition* get_partition(const string& name);
 
+	vector<const Partition*> get_partitions() const;
+
 	Disk* get_disk();	// TODO rename, blkdevice
 	const Disk* get_disk() const; // TODO rename, blkdevice
 
@@ -38,6 +40,14 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
 
 	virtual void print(std::ostream& out) const override = 0;
+
+	virtual unsigned int max_primary(unsigned int range) const = 0;
+	virtual bool extended_possible() const { return false; }
+	virtual unsigned int max_logical(unsigned int range) const { return 0; }
+
+	unsigned int num_primary() const;
+	bool has_extended() const;
+	unsigned int num_logical() const;
 
 	virtual Text do_create_text(bool doing) const override;
 

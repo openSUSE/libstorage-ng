@@ -56,11 +56,9 @@ namespace storage
     vector<const Partition*>
     PartitionTable::get_partitions() const
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
-
-	return devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex));
+	return get_impl().get_partitions();
     }
+
 
     Partition*
     PartitionTable::get_partition(const string& name)

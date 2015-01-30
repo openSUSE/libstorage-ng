@@ -11,7 +11,7 @@ LDADD = ../storage/libstorage.la -lboost_unit_test_framework
 check_PROGRAMS =								\
 	copy.test disk.test dynamic.test					\
 	find-vertex.test fstab.test fstab-ng.test output.test			\
-	probe.test								\
+	probe.test range.test							\
 	stable.test relatives.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
