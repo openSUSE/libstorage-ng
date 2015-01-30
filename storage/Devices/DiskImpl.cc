@@ -22,12 +22,12 @@ namespace storage
 
 
     Disk::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), rotational(false), transport(TUNKNOWN)
+	: BlkDevice::Impl(node), range(0), rotational(false), transport(TUNKNOWN)
     {
 	string tmp;
 
 	getChildValue(node, "geometry", geometry);
-
+	getChildValue(node, "range", range);
 	getChildValue(node, "rotational", rotational);
 
 	if (getChildValue(node, "transport", tmp))
@@ -48,7 +48,7 @@ namespace storage
 
 	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo("/dev/" + name);
 
-	    const File range_file = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/range");
+	    const File range_file = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/ext_range");
 
 	    if (range_file.get_int() > 1)
 		ret.push_back("/dev/" + name);
@@ -62,6 +62,9 @@ namespace storage
     Disk::Impl::probe(SystemInfo& systeminfo)
     {
 	BlkDevice::Impl::probe(systeminfo);
+
+	const File range_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
+	range = range_file.get_int();
 
 	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
@@ -87,7 +90,7 @@ namespace storage
 	BlkDevice::Impl::save(node);
 
 	setChildValue(node, "geometry", geometry);
-
+	setChildValueIf(node, "range", range, range != 0);
 	setChildValueIf(node, "rotational", rotational, rotational);
 
 	setChildValueIf(node, "transport", toString(transport), transport != TUNKNOWN);
@@ -181,7 +184,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return geometry == rhs.geometry && rotational == rhs.rotational &&
+	return geometry == rhs.geometry && range == rhs.range && rotational == rhs.rotational &&
 	    transport == rhs.transport;
     }
 
@@ -194,7 +197,7 @@ namespace storage
 	BlkDevice::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "geometry", geometry, rhs.geometry);
-
+	storage::log_diff(log, "range", range, rhs.range);
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
 	storage::log_diff_enum(log, "transport", transport, rhs.transport);
@@ -207,6 +210,9 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " geometry:" << geometry;
+
+	if (range > 0)
+	    out << " range:" << range;
 
 	if (rotational)
 	    out << " rotational";

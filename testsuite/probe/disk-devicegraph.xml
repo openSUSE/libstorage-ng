@@ -19,6 +19,7 @@
         <heads>255</heads>
         <sectors>63</sectors>
       </geometry>
+      <range>256</range>
       <transport>SATA</transport>
     </Disk>
     <Msdos>
@@ -83,6 +84,7 @@
         <heads>255</heads>
         <sectors>63</sectors>
       </geometry>
+      <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
     </Disk>

@@ -19,7 +19,7 @@ namespace storage
     public:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name), rotational(false), transport(TUNKNOWN) {}
+	    : BlkDevice::Impl(name), range(0), rotational(false), transport(TUNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
@@ -31,6 +31,9 @@ namespace storage
 
 	const Geometry& get_geometry() const { return geometry; }
 	void set_geometry(const Geometry& geometry) { Impl::geometry = geometry; }
+
+	unsigned int get_range() const { return range; }
+	void set_range(unsigned int range) { Impl::range = range; }
 
 	bool get_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
@@ -59,9 +62,12 @@ namespace storage
 
 	Text do_create_text(bool doing) const override;
 
+	string partition_name(int number) const;
+
     private:
 
 	Geometry geometry;
+	unsigned int range;
 
 	bool rotational;
 

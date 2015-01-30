@@ -426,24 +426,24 @@
       <content>/dev/sda1                               partition	1018876	0	-1</content>
     </File>
     <File>
-      <name>/sys/devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0/range</name>
+      <name>/sys/devices/pci0000:00/0000:00:1f.1/ata4/host3/target3:0:0/3:0:0:0/block/sr0/ext_range</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/ext_range</name>
+      <content>256</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/rotational</name>
       <content>0</content>
     </File>
     <File>
-      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/range</name>
-      <content>16</content>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/ext_range</name>
+      <content>256</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/rotational</name>
       <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/range</name>
-      <content>16</content>
     </File>
   </Files>
 </Mockup>
