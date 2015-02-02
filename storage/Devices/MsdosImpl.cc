@@ -1,8 +1,10 @@
 
 
 #include "storage/Devices/MsdosImpl.h"
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/Region.h"
 
 
 namespace storage
@@ -21,6 +23,19 @@ namespace storage
     Msdos::Impl::save(xmlNode* node) const
     {
 	PartitionTable::Impl::save(node);
+    }
+
+
+
+    Region
+    Msdos::Impl::get_usable_region() const
+    {
+	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+
+	unsigned long long max_sectors = (1ULL << 32) - 1;
+	unsigned long len = min(geometry.cylinders, geometry.kbToCylinder(geometry.sectorToKb(max_sectors)));
+
+	return Region(0, len);
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,7 @@ namespace storage
 
 	Region();
 	Region(unsigned long long start, unsigned long long length);
+	Region(const RegionInfo& region) : Region(region.start, region.len) {}
 	~Region();
 
 	bool empty() const;
@@ -56,6 +57,11 @@ namespace storage
 	bool operator!=(const Region& rhs) const;
 	bool operator<(const Region& rhs) const;
 	bool operator>(const Region& rhs) const;
+
+	bool inside(const Region& rhs) const;
+
+	bool intersect(const Region& rhs) const;
+	Region intersection(const Region& rhs) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const Region& region);
 

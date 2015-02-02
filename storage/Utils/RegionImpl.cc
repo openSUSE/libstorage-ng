@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -32,7 +32,20 @@ namespace storage
 	return s << "[" << impl.start << "," << impl.length << "]";
     }
 
-    
+
+    Region
+    Region::Impl::intersection(const Impl& rhs) const
+    {
+	if (!intersect(rhs))
+	    throw runtime_error("regions do not intersect");
+
+	unsigned long long s = std::max(rhs.get_start(), get_start());
+	unsigned long long e = std::min(rhs.get_end(), get_end());
+
+	return Region(s, e - s + 1);
+    }
+
+
     bool
     getChildValue(const xmlNode* node, const char* name, Region::Impl& value)
     {
@@ -54,5 +67,5 @@ namespace storage
 	setChildValue(tmp, "start", value.start);
 	setChildValue(tmp, "length", value.length);
     }
-    
+
 }

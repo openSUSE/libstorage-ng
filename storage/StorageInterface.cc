@@ -973,6 +973,39 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
+	Region region(cylRegion);
+
+	Devicegraph* current = storage->get_current();
+
+	Disk* disk_ptr = Disk::find(current, disk);			   // TODO
+	PartitionTable* partition_table = disk_ptr->get_partition_table(); // TODO
+
+	list<PartitionSlotInfo> slots = partition_table->get_unused_partition_slots();
+	for (const PartitionSlotInfo& slot : slots)
+	{
+	    if (type == PRIMARY && !slot.primaryPossible)
+		continue;
+
+	    if (type == EXTENDED && !slot.extendedPossible)
+		continue;
+
+	    if (type == LOGICAL && !slot.logicalPossible)
+		continue;
+
+	    if (region.inside(Region(slot.cylRegion.start, slot.cylRegion.len)))
+	    {
+		Partition* partition = partition_table->create_partition(slot.device, type);
+		partition->set_region(region);
+
+		if (type != EXTENDED)
+		    partition->create_filesystem(EXT4);
+
+		device = partition->get_name();
+
+		return 0;
+	    }
+	}
+
 	return -1;
     }
 
@@ -1138,9 +1171,20 @@ namespace storage_legacy
     int
     StorageLegacy::getUnusedPartitionSlots(const string& disk, list<PartitionSlotInfo>& slots)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
-	return -1;
+	try
+	{
+	    const Devicegraph* current = storage->get_current();
+	    const Disk* disk_ptr = Disk::find(current, disk);
+	    const PartitionTable* partitiontable = disk_ptr->get_partition_table();
+	    slots = partitiontable->get_unused_partition_slots();
+	    return 0;
+	}
+	catch (...)
+	{
+	    return STORAGE_DISK_NOT_FOUND;
+	}
     }
 
 

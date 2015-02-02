@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -124,6 +124,27 @@ namespace storage
     Region::operator>(const Region& rhs) const
     {
 	return get_impl().operator>(rhs.get_impl());
+    }
+
+
+    bool
+    Region::inside(const Region& rhs) const
+    {
+	return get_impl().inside(rhs.get_impl());
+    }
+
+
+    bool
+    Region::intersect(const Region& rhs) const
+    {
+	return get_impl().intersect(rhs.get_impl());
+    }
+
+
+    Region
+    Region::intersection(const Region& rhs) const
+    {
+	return get_impl().intersection(rhs.get_impl());
     }
 
 

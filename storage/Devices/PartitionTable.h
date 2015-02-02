@@ -34,6 +34,8 @@ namespace storage
 
 	const Disk* get_disk() const;
 
+	list<PartitionSlotInfo> get_unused_partition_slots(bool all = true, bool logical = true) const;
+
     public:
 
 	class Impl;

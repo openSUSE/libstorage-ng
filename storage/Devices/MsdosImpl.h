@@ -41,6 +41,8 @@ namespace storage
 	virtual bool extended_possible() const override { return true; }
 	virtual unsigned int max_logical(unsigned int range) const override { return min(256U, range); }
 
+	virtual Region get_usable_region() const override;
+
     };
 
 }

@@ -66,4 +66,11 @@ namespace storage
 	return get_impl().get_disk();
     }
 
+
+    list<PartitionSlotInfo>
+    PartitionTable::get_unused_partition_slots(bool all, bool logical) const
+    {
+	return get_impl().get_unused_partition_slots(all, logical);
+    }
+
 }

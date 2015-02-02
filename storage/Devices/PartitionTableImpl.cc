@@ -190,6 +190,188 @@ namespace storage
     }
 
 
+    const Partition*
+    PartitionTable::Impl::get_extended() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	for (const Partition* partition : partitions)
+	{
+	    if (partition->get_type() == EXTENDED)
+		return partition;
+	}
+
+	throw runtime_error("has no extended partition");
+    }
+
+
+    Region
+    PartitionTable::Impl::get_usable_region() const
+    {
+	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+
+	return Region(0, geometry.cylinders);
+    }
+
+
+    list<PartitionSlotInfo>
+    PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical) const
+    {
+	y2mil("all:" << all << " logical:" << logical);
+
+	unsigned int range = get_disk()->get_impl().get_range();
+
+	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary(range);
+	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
+	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical(range) - max_primary(range));
+
+	list<PartitionSlotInfo> slots;
+
+	vector<const Partition*> partitions = get_partitions();
+	sort(partitions.begin(), partitions.end(), Partition::Impl::cmp_lt_number);
+
+	if (all || !logical)
+	{
+	    PartitionSlotInfo slot;
+
+	    if (true /* label != "dasd" */)
+	    {
+		vector<const Partition*>::const_iterator it = partitions.begin();
+		unsigned start = 1; // label != "mac" ? 1 : 2;
+		while (it != partitions.end() && (*it)->get_number() <= start &&
+		       (*it)->get_number() <= max_primary(range))
+		{
+		    if ((*it)->get_number() == start)
+			++start;
+		    /*
+		    if (label == "sun" && start == 3)
+		        ++start;
+		    */
+		    ++it;
+		}
+		slot.nr = start;
+	    }
+	    else
+	    {
+		slot.nr = 1;
+	    }
+
+	    slot.device = get_disk()->get_impl().partition_name(slot.nr);
+
+	    slot.primarySlot = true;
+	    slot.primaryPossible = tmp_primary_possible;
+	    slot.extendedSlot = true;
+	    slot.extendedPossible = tmp_extended_possible;
+	    slot.logicalSlot = false;
+	    slot.logicalPossible = false;
+
+	    unsigned long start = 0;
+	    unsigned long end = get_disk()->get_impl().get_geometry().cylinders;
+
+	    list<Region> tmp;
+	    for (const Partition* partition : partitions)
+	    {
+		if (partition->get_type() != LOGICAL)
+		    tmp.push_back(partition->get_region());
+	    }
+	    tmp.sort();
+
+	    for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
+	    {
+		if (i->get_start() > start)
+		{
+		    slot.cylRegion = RegionInfo(start, i->get_start() - start);
+		    slots.push_back(slot);
+		}
+		start = i->get_end() + 1;
+
+		/*
+		if (label == "dasd")
+		{
+		    slot.nr++;
+		    slot.device = getPartDevice(slot.nr);
+		}
+		*/
+	    }
+	    if (end > start)
+	    {
+		slot.cylRegion = RegionInfo(start, end - start);
+		slots.push_back(slot);
+	    }
+	}
+
+	if (all || logical)
+	{
+	    try
+	    {
+		const Partition* extended = get_extended();
+
+		PartitionSlotInfo slot;
+
+		slot.nr = max_primary(range) + num_logical() + 1;
+		slot.device = get_disk()->get_impl().partition_name(slot.nr);
+
+		slot.primarySlot = false;
+		slot.primaryPossible = false;
+		slot.extendedSlot = false;
+		slot.extendedPossible = false;
+		slot.logicalSlot = true;
+		slot.logicalPossible = tmp_logical_possible;
+
+		unsigned long start = extended->get_region().get_start();
+		unsigned long end = extended->get_region().get_end();
+
+		list<Region> tmp;
+		for (const Partition* partition : partitions)
+		{
+		    if (partition->get_type() == LOGICAL)
+			tmp.push_back(partition->get_region());
+		}
+		tmp.sort();
+
+		for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
+		{
+		    if (i->get_start() > start)
+		    {
+			slot.cylRegion = RegionInfo(start, i->get_start() - start);
+			slots.push_back(slot);
+		    }
+		    start = i->get_end() + 1;
+		}
+		if (end > start)
+		{
+		    slot.cylRegion = RegionInfo(start, end - start);
+		    slots.push_back(slot);
+		}
+	    }
+	    catch (...)
+	    {
+	    }
+	}
+
+	y2deb("slots:" << slots);
+
+	Region usable_region = get_usable_region();
+
+	list<PartitionSlotInfo>::iterator it = slots.begin();
+	while (it != slots.end())
+	{
+	    if (usable_region.intersect(it->cylRegion))
+	    {
+		it->cylRegion = usable_region.intersection(it->cylRegion);
+		++it;
+	    }
+	    else
+	    {
+		it = slots.erase(it);
+	    }
+	}
+
+	y2deb("slots:" << slots);
+
+	return slots;
+    }
+
+
     Text
     PartitionTable::Impl::do_create_text(bool doing) const
     {
@@ -197,6 +379,17 @@ namespace storage
 
 	return sformat(_("Create %1$s on %2$s"), get_displayname().c_str(),
 		       disk->get_displayname().c_str());
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const PartitionSlotInfo& a)
+    {
+	s << "region:" << Region(a.cylRegion) << " nr:" << a.nr << " device:" << a.device
+	  << " primary_slot:" << a.primarySlot << " primary_possible:" << a.primaryPossible
+	  << " extended_slot:" << a.extendedSlot << " extended_possible:" << a.extendedPossible
+	  << " logical_slot:" << a.logicalSlot << " logical_possible:" << a.logicalPossible;
+	return s;
     }
 
 }

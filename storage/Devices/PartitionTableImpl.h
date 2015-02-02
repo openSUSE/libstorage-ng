@@ -15,6 +15,8 @@ namespace storage
 
     template <> struct EnumInfo<PtType> { static const vector<string> names; };
 
+    std::ostream& operator<<(std::ostream& s, const PartitionSlotInfo& a);
+
 
     // abstract class
 
@@ -47,6 +49,12 @@ namespace storage
 	unsigned int num_primary() const;
 	bool has_extended() const;
 	unsigned int num_logical() const;
+
+	const Partition* get_extended() const;
+
+	virtual Region get_usable_region() const;
+
+	list<PartitionSlotInfo> get_unused_partition_slots(bool all = true, bool logical = true) const;
 
 	virtual Text do_create_text(bool doing) const override;
 

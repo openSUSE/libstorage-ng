@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -58,6 +58,14 @@ namespace storage
 	    { return start < rhs.get_start(); }
 	bool operator>(const Impl& rhs) const
 	    { return start > rhs.get_start(); }
+
+	bool inside(const Impl& rhs) const
+	    { return get_start() >= rhs.get_start() && get_end() <= rhs.get_end(); }
+
+	bool intersect(const Impl& rhs) const
+	    { return rhs.get_start() <= get_end() && rhs.get_end() >= get_start(); }
+
+	Region intersection(const Impl& rhs) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const Impl& impl);
 

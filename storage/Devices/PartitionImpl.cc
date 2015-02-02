@@ -169,6 +169,13 @@ namespace storage
     }
 
 
+    bool
+    Partition::Impl::cmp_lt_number(const Partition* lhs, const Partition* rhs)
+    {
+	return lhs->get_number() < rhs->get_number();
+    }
+
+
     Text
     Partition::Impl::do_create_text(bool doing) const
     {
