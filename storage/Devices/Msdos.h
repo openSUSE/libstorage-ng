@@ -30,6 +30,13 @@ namespace storage
 
     };
 
+
+    inline bool
+    is_msdos(const Device* device)
+    {
+	return dynamic_cast<const Msdos*>(device) != 0;
+    }
+
 }
 
 #endif

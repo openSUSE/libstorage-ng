@@ -31,6 +31,13 @@ namespace storage
     };
 
 
+    inline bool
+    is_using(const Holder* holder)
+    {
+	return dynamic_cast<const Using*>(holder) != 0;
+    }
+
+
     inline Using*
     to_using(Holder* device)
     {

@@ -58,6 +58,13 @@ namespace storage
     };
 
 
+    inline bool
+    is_blkdevice(Device* device)
+    {
+	return dynamic_cast<BlkDevice*>(device) != nullptr;
+    }
+
+
     inline BlkDevice*
     to_blkdevice(Device* device)
     {

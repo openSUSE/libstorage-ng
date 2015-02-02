@@ -35,6 +35,13 @@ namespace storage
 
     };
 
+
+    inline bool
+    is_ext4(const Device* device)
+    {
+	return dynamic_cast<const Ext4*>(device) != 0;
+    }
+
 }
 
 #endif
