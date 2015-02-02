@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    Partition* sda1 = msdos->create_partition("/dev/sda1");
+    Partition* sda1 = msdos->create_partition("/dev/sda1", PRIMARY);
     sda1->set_type(PRIMARY);
 
     unsigned int range = sda->get_impl().get_range();
@@ -58,7 +58,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    Partition* sda1 = gpt->create_partition("/dev/sda1");
+    Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY);
     sda1->set_type(PRIMARY);
 
     unsigned int range = sda->get_impl().get_range();

@@ -28,7 +28,7 @@ main()
 
     Disk* lhs_sda = Disk::create(lhs, "/dev/sda");
 
-    Partition* lhs_sda1 = Partition::create(lhs, "/dev/sda1");
+    Partition* lhs_sda1 = Partition::create(lhs, "/dev/sda1", PRIMARY);
     Subdevice::create(lhs, lhs_sda, lhs_sda1);
 
     LvmVg* lhs_system_v1 = LvmVg::create(lhs, "/dev/system-v1");

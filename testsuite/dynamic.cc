@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
     Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(&devicegraph, sda, sda1);
 
     LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");

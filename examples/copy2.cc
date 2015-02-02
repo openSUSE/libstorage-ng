@@ -20,7 +20,7 @@ main()
 
     Disk* disk = Disk::create(&devicegraph, "/dev/dasda");
 
-    Partition* partition = Partition::create(&devicegraph, "/dev/dasda2");
+    Partition* partition = Partition::create(&devicegraph, "/dev/dasda2", PRIMARY);
     Subdevice::create(&devicegraph, disk, partition);
 
     Devicegraph devicegraph_copy;

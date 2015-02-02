@@ -19,10 +19,10 @@ BOOST_AUTO_TEST_CASE(valid)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2");
+    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2", PRIMARY);
     Subdevice::create(devicegraph, sda, sda2);
 
     Devicegraph::Impl::vertex_descriptor v_sda = sda->get_impl().get_vertex();

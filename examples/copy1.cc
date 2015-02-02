@@ -19,10 +19,10 @@ main()
 
     Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1");
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(&devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2");
+    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2", PRIMARY);
     Subdevice::create(&devicegraph, sda, sda2);
 
     Devicegraph devicegraph_copy;

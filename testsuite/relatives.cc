@@ -50,18 +50,18 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2");
+    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2", PRIMARY);
     Subdevice::create(devicegraph, sda, sda2);
 
     Disk* sdb = Disk::create(devicegraph, "/dev/sdb");
 
-    Partition* sdb1 = Partition::create(devicegraph, "/dev/sdb1");
+    Partition* sdb1 = Partition::create(devicegraph, "/dev/sdb1", PRIMARY);
     Subdevice::create(devicegraph, sdb, sdb1);
 
-    Partition* sdb2 = Partition::create(devicegraph, "/dev/sdb2");
+    Partition* sdb2 = Partition::create(devicegraph, "/dev/sdb2", PRIMARY);
     Subdevice::create(devicegraph, sdb, sdb2);
 
     LvmVg* system = LvmVg::create(devicegraph, "/dev/system");

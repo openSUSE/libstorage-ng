@@ -1,5 +1,7 @@
 
 
+#include <ctype.h>
+
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
@@ -236,6 +238,18 @@ namespace storage
     {
 	return sformat(_("Create hard disk %1$s (%2$s)"), get_displayname().c_str(),
 		       get_size_string().c_str());
+    }
+
+
+    string
+    Disk::Impl::partition_name(int number) const
+    {
+	if (boost::starts_with(get_name(), "/dev/mapper/"))
+	    return get_name() + "-part" + decString(number);
+	else if (isdigit(get_name().back()))
+	    return get_name() + "p" + decString(number);
+	else
+	    return get_name() + decString(number);
     }
 
 }

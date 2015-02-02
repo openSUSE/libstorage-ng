@@ -1,5 +1,6 @@
 
 
+#include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Holders/Subdevice.h"
@@ -34,16 +35,17 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 
-	string pp_name = to_blkdevice(g->get_impl().graph[v1].get())->get_name();
+	const Disk* disk = to_disk(g->get_impl().graph[v1].get());
 
-	const Parted& parted = systeminfo.getParted(pp_name);
+	const Parted& parted = systeminfo.getParted(disk->get_name());
 
 	if (parted.getImplicit())
 	    read_only = true;
 
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
-	    Partition* p = create_partition(entry.num);
+	    string name = disk->get_impl().partition_name(entry.num);
+	    Partition* p = create_partition(name, entry.type);
 	    p->get_impl().probe(systeminfo);
 	}
     }
@@ -59,24 +61,9 @@ namespace storage
 
 
     Partition*
-    PartitionTable::Impl::create_partition(const string& name)
+    PartitionTable::Impl::create_partition(const string& name, PartitionType type)
     {
-	Partition* partition = Partition::create(get_devicegraph(), name);
-	Subdevice::create(get_devicegraph(), get_device(), partition);
-
-	return partition;
-    }
-
-
-    Partition*
-    PartitionTable::Impl::create_partition(unsigned int number)
-    {
-	Disk* disk = get_disk();
-
-	string disk_name = disk->get_name();
-
-	Partition* partition = Partition::create(get_devicegraph(), disk_name + decString(number)); // TODO
-
+	Partition* partition = Partition::create(get_devicegraph(), name, type);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
 
 	return partition;

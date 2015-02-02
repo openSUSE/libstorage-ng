@@ -48,7 +48,6 @@ namespace storage
 	    throw;
 
 	region = entry.cylRegion;
-	type = entry.type;
 	id = entry.id;
 	boot = entry.boot;
     }

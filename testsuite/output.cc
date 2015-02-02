@@ -37,7 +37,7 @@ public:
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-	Partition* sda1 = gpt->create_partition("/dev/sda1");
+	Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY);
 	sda1->set_size_k(1024 * 1024);
 	sda1->set_id(ID_LINUX);
     }

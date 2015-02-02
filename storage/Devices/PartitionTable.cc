@@ -33,16 +33,9 @@ namespace storage
 
 
     Partition*
-    PartitionTable::create_partition(const string& name)
+    PartitionTable::create_partition(const string& name, PartitionType type)
     {
-	return get_impl().create_partition(name);
-    }
-
-
-    Partition*
-    PartitionTable::create_partition(unsigned int number)
-    {
-	return get_impl().create_partition(number);
+	return get_impl().create_partition(name, type);
     }
 
 

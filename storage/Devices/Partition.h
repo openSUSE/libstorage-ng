@@ -26,7 +26,8 @@ namespace storage
     {
     public:
 
-	static Partition* create(Devicegraph* devicegraph, const std::string& name);
+	static Partition* create(Devicegraph* devicegraph, const std::string& name,
+				 PartitionType type);
 	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	unsigned int get_number() const;

@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1");
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(devicegraph, sda, sda1);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);

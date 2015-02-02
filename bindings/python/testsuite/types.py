@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Devicegraph, Disk, Region, GPT, EXT4
+from storage import Devicegraph, Disk, Region, GPT, PRIMARY, EXT4
 
 
 class TestCreate(unittest.TestCase):
@@ -12,7 +12,7 @@ class TestCreate(unittest.TestCase):
 
         sda = Disk.create(devicegraph, "/dev/sda")
         gpt = sda.create_partition_table(GPT)
-        sda1 = gpt.create_partition("/dev/sda1")
+        sda1 = gpt.create_partition("/dev/sda1", PRIMARY)
         ext4 = sda1.create_filesystem(EXT4)
 
         self.assertEqual(devicegraph.empty(), False)

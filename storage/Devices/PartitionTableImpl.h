@@ -24,8 +24,7 @@ namespace storage
 
 	virtual void probe(SystemInfo& systeminfo);
 
-	Partition* create_partition(const string& name);
-	Partition* create_partition(unsigned int number);
+	Partition* create_partition(const string& name, PartitionType type);
 
 	void delete_partition(const string& name);
 
