@@ -1122,7 +1122,16 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
-	return "";
+	try
+	{
+	    const Devicegraph* current = storage->get_current();
+	    const Disk* disk_ptr = Disk::find(current, disk);
+	    return disk_ptr->get_impl().partition_name(partition_no);
+	}
+	catch (...)
+	{
+	    return "error";
+	}
     }
 
 
