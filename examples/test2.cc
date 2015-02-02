@@ -8,6 +8,7 @@
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -24,10 +25,10 @@ partitions()
     Gpt* gpt = Gpt::create(&devicegraph);
     Using::create(&devicegraph, sda, gpt);
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY, Region(0, 100));
     Subdevice::create(&devicegraph, gpt, sda1);
 
-    gpt->create_partition("/dev/sda2", PRIMARY);
+    gpt->create_partition("/dev/sda2", PRIMARY, Region(100, 100));
 
     devicegraph.check();
     cout << devicegraph << endl;

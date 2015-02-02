@@ -15,6 +15,7 @@
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -29,7 +30,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Gpt* gpt = Gpt::create(devicegraph);
     Using::create(devicegraph, sda, gpt);
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY, Region(0, 100));
     Subdevice::create(devicegraph, gpt, sda1);
 
     Encryption::create(devicegraph, "/dev/mapper/cr_sda1");

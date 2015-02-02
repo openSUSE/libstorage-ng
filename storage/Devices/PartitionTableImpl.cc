@@ -45,7 +45,7 @@ namespace storage
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
 	    string name = disk->get_impl().partition_name(entry.num);
-	    Partition* p = create_partition(name, entry.type);
+	    Partition* p = create_partition(name, entry.type, entry.cylRegion);
 	    p->get_impl().probe(systeminfo);
 	}
     }
@@ -61,9 +61,10 @@ namespace storage
 
 
     Partition*
-    PartitionTable::Impl::create_partition(const string& name, PartitionType type)
+    PartitionTable::Impl::create_partition(const string& name, PartitionType type,
+					   const Region& region)
     {
-	Partition* partition = Partition::create(get_devicegraph(), name, type);
+	Partition* partition = Partition::create(get_devicegraph(), name, type, region);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
 
 	return partition;

@@ -11,6 +11,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -30,7 +31,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    Partition* sda1 = msdos->create_partition("/dev/sda1", PRIMARY);
+    Partition* sda1 = msdos->create_partition("/dev/sda1", PRIMARY, Region(0, 100));
     sda1->set_type(PRIMARY);
 
     unsigned int range = sda->get_impl().get_range();
@@ -58,7 +59,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY);
+    Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY, Region(0, 100));
     sda1->set_type(PRIMARY);
 
     unsigned int range = sda->get_impl().get_range();

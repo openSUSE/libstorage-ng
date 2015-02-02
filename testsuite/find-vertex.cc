@@ -8,6 +8,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -19,7 +20,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY, Region(0, 100));
     Subdevice::create(devicegraph, sda, sda1);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);

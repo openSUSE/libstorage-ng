@@ -18,13 +18,13 @@ namespace storage
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), type(PRIMARY), region(0, 0), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
-	getChildValue(node, "region", region);
 	if (getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, PRIMARY);
+	getChildValue(node, "region", region);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
     }
@@ -47,7 +47,6 @@ namespace storage
 	if (!parted.getEntry(get_number(), entry))
 	    throw;
 
-	region = entry.cylRegion;
 	id = entry.id;
 	boot = entry.boot;
     }
@@ -58,8 +57,8 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "region", region);
 	setChildValue(node, "type", toString(type));
+	setChildValue(node, "region", region);
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
     }

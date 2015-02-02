@@ -15,6 +15,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -46,7 +47,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    Partition* sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY, Region(0, 100));
     sda1->set_size_k(16 * 1024 * 1024);
     sda1->set_id(ID_LVM);
     Subdevice::create(rhs, gpt, sda1);

@@ -6,6 +6,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -19,10 +20,10 @@ main()
 
     Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY, Region(0, 100));
     Subdevice::create(&devicegraph, sda, sda1);
 
-    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2", PRIMARY);
+    Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2", PRIMARY, Region(100, 100));
     Subdevice::create(&devicegraph, sda, sda2);
 
     Devicegraph devicegraph_copy;

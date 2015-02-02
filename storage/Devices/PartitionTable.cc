@@ -33,9 +33,9 @@ namespace storage
 
 
     Partition*
-    PartitionTable::create_partition(const string& name, PartitionType type)
+    PartitionTable::create_partition(const string& name, PartitionType type, const Region& region)
     {
-	return get_impl().create_partition(name, type);
+	return get_impl().create_partition(name, type, region);
     }
 
 

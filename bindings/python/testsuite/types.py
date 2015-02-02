@@ -12,7 +12,7 @@ class TestCreate(unittest.TestCase):
 
         sda = Disk.create(devicegraph, "/dev/sda")
         gpt = sda.create_partition_table(GPT)
-        sda1 = gpt.create_partition("/dev/sda1", PRIMARY)
+        sda1 = gpt.create_partition("/dev/sda1", PRIMARY, Region(0, 100))
         ext4 = sda1.create_filesystem(EXT4)
 
         self.assertEqual(devicegraph.empty(), False)

@@ -24,7 +24,8 @@ namespace storage
     {
     public:
 
-	Partition* create_partition(const std::string& name, PartitionType type);
+	Partition* create_partition(const std::string& name, PartitionType type,
+				    const Region& region);
 
 	void delete_partition(const std::string& name);
 
