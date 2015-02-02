@@ -27,7 +27,7 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 
 	unsigned long long get_size_k() const { return size_k; }
-	void set_size_k(unsigned long long size_k);
+	virtual void set_size_k(unsigned long long size_k);
 
 	string get_size_string() const;
 

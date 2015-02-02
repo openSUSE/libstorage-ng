@@ -10,7 +10,6 @@
 #include "storage/Devices/Ext4.h"
 #include "storage/Holders/Using.h"
 #include "storage/Devicegraph.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -26,8 +25,8 @@ main()
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    gpt->create_partition("/dev/sda1", PRIMARY, Region(0, 100));
-    Partition* sda2 = gpt->create_partition("/dev/sda2", PRIMARY, Region(100, 100));
+    gpt->create_partition("/dev/sda1", PRIMARY);
+    Partition* sda2 = gpt->create_partition("/dev/sda2", PRIMARY);
 
     LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
     Using::create(devicegraph, sda2, system);

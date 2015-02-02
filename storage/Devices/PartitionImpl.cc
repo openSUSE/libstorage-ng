@@ -18,13 +18,13 @@ namespace storage
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), type(PRIMARY), region(0, 0), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
+	getChildValue(node, "region", region);
 	if (getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, PRIMARY);
-	getChildValue(node, "region", region);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
     }
@@ -47,6 +47,7 @@ namespace storage
 	if (!parted.getEntry(get_number(), entry))
 	    throw;
 
+	region = entry.cylRegion;
 	id = entry.id;
 	boot = entry.boot;
     }
@@ -57,8 +58,8 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "type", toString(type));
 	setChildValue(node, "region", region);
+	setChildValue(node, "type", toString(type));
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
     }
@@ -69,6 +70,21 @@ namespace storage
     {
 	string::size_type pos = get_name().find_last_not_of("0123456789");
 	return atoi(get_name().substr(pos + 1).c_str());
+    }
+
+
+    void
+    Partition::Impl::set_size_k(unsigned long long size_k)
+    {
+	BlkDevice::Impl::set_size_k(size_k);
+
+	const PartitionTable* partitiontable = get_partition_table();
+	assert(partitiontable);
+
+	const Disk* disk = partitiontable->get_disk();
+	assert(disk);
+
+	region.set_length(get_size_k() * 1024 / disk->get_impl().get_geometry().cylinderSize());
     }
 
 

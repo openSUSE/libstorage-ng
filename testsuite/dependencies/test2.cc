@@ -15,7 +15,6 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -47,21 +46,21 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    Partition* sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY, Region(0, 100));
+    Partition* sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
+    Subdevice::create(rhs, gpt, sda1);
     sda1->set_size_k(16 * 1024 * 1024);
     sda1->set_id(ID_LVM);
-    Subdevice::create(rhs, gpt, sda1);
 
     LvmVg* system = LvmVg::create(rhs, "/dev/system");
     Using::create(rhs, sda1, system);
 
     LvmLv* system_root = LvmLv::create(rhs, "/dev/system/root");
-    system_root->set_size_k(14 * 1024 * 1024);
     Subdevice::create(rhs, system, system_root);
+    system_root->set_size_k(14 * 1024 * 1024);
 
     LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
-    system_swap->set_size_k(2 * 1024 * 1024);
     Subdevice::create(rhs, system, system_swap);
+    system_swap->set_size_k(2 * 1024 * 1024);
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

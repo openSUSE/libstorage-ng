@@ -18,8 +18,8 @@ namespace storage
     {
     public:
 
-	Impl(const string& name, PartitionType type, const Region& region)
-	    : BlkDevice::Impl(name), type(type), region(region), id(ID_LINUX), boot(false) {}
+	Impl(const string& name, PartitionType type)
+	    : BlkDevice::Impl(name), region(), type(type), id(ID_LINUX), boot(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -33,11 +33,13 @@ namespace storage
 
 	unsigned int get_number() const;
 
-	PartitionType get_type() const { return type; }
-	void set_type(PartitionType type) { Impl::type = type; }
+	virtual void set_size_k(unsigned long long size_k) override;
 
 	const Region& get_region() const { return region; }
 	void set_region(const Region& region);
+
+	PartitionType get_type() const { return type; }
+	void set_type(PartitionType type) { Impl::type = type; }
 
 	unsigned get_id() const { return id; }
 	void set_id(unsigned id) { Impl::id = id; }
@@ -70,8 +72,8 @@ namespace storage
 
     private:
 
-	PartitionType type;
 	Region region;
+	PartitionType type;
 	unsigned id;
 	bool boot;
 

@@ -12,7 +12,6 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -29,10 +28,10 @@ main()
 
     Disk* sda = Disk::create(lhs, "/dev/sda");
 
-    Partition* sda1 = Partition::create(lhs, "/dev/sda1", PRIMARY, Region(0, 100));
+    Partition* sda1 = Partition::create(lhs, "/dev/sda1", PRIMARY);
     Subdevice::create(lhs, sda, sda1);
 
-    Partition* sda2 = Partition::create(lhs, "/dev/sda2", PRIMARY, Region(100, 100));
+    Partition* sda2 = Partition::create(lhs, "/dev/sda2", PRIMARY);
     Subdevice::create(lhs, sda, sda2);
 
     LvmVg* system = LvmVg::create(lhs, "/dev/system");

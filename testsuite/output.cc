@@ -12,7 +12,6 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -38,7 +37,7 @@ public:
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-	Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY, Region(0, 100));
+	Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY);
 	sda1->set_size_k(1024 * 1024);
 	sda1->set_id(ID_LINUX);
     }
@@ -75,7 +74,7 @@ BOOST_AUTO_TEST_CASE(test_disk)
 
 BOOST_AUTO_TEST_CASE(test_partition)
 {
-    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,100]";
+    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,4096]";
 
     ostringstream out;
     out << *(Partition::find(fixture.get_storage()->get_current(), "/dev/sda1")) << endl;
@@ -89,7 +88,7 @@ BOOST_AUTO_TEST_CASE(test_devicegraph)
     list<string> expected = {
 	"Disk sid:42 displayname:/dev/sda name:/dev/sda size_k:83886080 geometry:[0,32,16,512] transport:SATA --> 43",
 	"Gpt sid:43 displayname:gpt --> 44",
-	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,100] -->",
+	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,4096] -->",
 	"Using source-sid:42 target-sid:43",
 	"Subdevice source-sid:43 target-sid:44"
     };

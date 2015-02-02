@@ -11,7 +11,6 @@
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -23,7 +22,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
     Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY, Region(0, 100));
+    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(&devicegraph, sda, sda1);
 
     LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");

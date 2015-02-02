@@ -26,6 +26,12 @@
 namespace storage
 {
 
+    Region::Region()
+	: impl(new Impl())
+    {
+    }
+
+
     Region::Region(unsigned long long start, unsigned long long len)
         : impl(new Impl(start, len))
     {

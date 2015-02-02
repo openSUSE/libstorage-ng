@@ -41,8 +41,7 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : num(0), cylRegion(0, 0), secRegion(0, 0), type(PRIMARY), id(0),
-		      boot(false) {}
+	    Entry() : num(0), type(PRIMARY), id(0), boot(false) {}
 
 	    unsigned num;
 	    Region cylRegion;

@@ -11,13 +11,14 @@
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(test_msdos)
+BOOST_AUTO_TEST_CASE(test_set_region)
 {
     storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
 
@@ -27,25 +28,24 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);
+    sda->get_impl().set_geometry(Geometry(9999, 255, 63, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
     Partition* sda1 = msdos->create_partition("/dev/sda1", PRIMARY);
-    sda1->set_type(PRIMARY);
 
-    unsigned int range = sda->get_impl().get_range();
+    // setting the region affects the size
 
-    BOOST_CHECK_EQUAL(msdos->get_impl().max_primary(range), 4);
-    BOOST_CHECK_EQUAL(msdos->get_impl().extended_possible(), true);
-    BOOST_CHECK_EQUAL(msdos->get_impl().max_logical(range), 256);
+    sda1->set_region(Region(0, 1000));
 
-    BOOST_CHECK_EQUAL(msdos->get_impl().num_primary(), 1);
-    BOOST_CHECK_EQUAL(msdos->get_impl().has_extended(), false);
-    BOOST_CHECK_EQUAL(msdos->get_impl().num_logical(), 0);
+    BOOST_CHECK_EQUAL(sda1->get_region().get_start(), 0);
+    BOOST_CHECK_EQUAL(sda1->get_region().get_length(), 1000);
+
+    BOOST_CHECK_EQUAL(sda1->get_size_k(), 8032500);
 }
 
 
-BOOST_AUTO_TEST_CASE(test_gpt)
+BOOST_AUTO_TEST_CASE(test_set_size_k)
 {
     storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
 
@@ -55,19 +55,18 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);
+    sda->get_impl().set_geometry(Geometry(9999, 255, 63, 512));
 
-    PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
+    PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    Partition* sda1 = gpt->create_partition("/dev/sda1", PRIMARY);
-    sda1->set_type(PRIMARY);
+    Partition* sda1 = msdos->create_partition("/dev/sda1", PRIMARY);
 
-    unsigned int range = sda->get_impl().get_range();
+    // setting the size affects the region
 
-    BOOST_CHECK_EQUAL(gpt->get_impl().max_primary(range), 128);
-    BOOST_CHECK_EQUAL(gpt->get_impl().extended_possible(), false);
-    BOOST_CHECK_EQUAL(gpt->get_impl().max_logical(range), 0);
+    sda1->set_size_k(8032500);
 
-    BOOST_CHECK_EQUAL(gpt->get_impl().num_primary(), 1);
-    BOOST_CHECK_EQUAL(gpt->get_impl().has_extended(), false);
-    BOOST_CHECK_EQUAL(gpt->get_impl().num_logical(), 0);
+    BOOST_CHECK_EQUAL(sda1->get_size_k(), 8032500);
+
+    BOOST_CHECK_EQUAL(sda1->get_region().get_start(), 0);
+    BOOST_CHECK_EQUAL(sda1->get_region().get_length(), 1000);
 }

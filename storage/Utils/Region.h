@@ -39,6 +39,7 @@ namespace storage
     {
     public:
 
+	Region();
 	Region(unsigned long long start, unsigned long long length);
 	Region(const RegionInfo& region) : Region(region.start, region.len) {}
 	~Region();

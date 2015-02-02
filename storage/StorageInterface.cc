@@ -994,7 +994,8 @@ namespace storage_legacy
 
 	    if (region.inside(Region(slot.cylRegion.start, slot.cylRegion.len)))
 	    {
-		Partition* partition = partition_table->create_partition(slot.device, type, region);
+		Partition* partition = partition_table->create_partition(slot.device, type);
+		partition->set_region(region);
 
 		if (type != EXTENDED)
 		    partition->create_filesystem(EXT4);

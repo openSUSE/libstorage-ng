@@ -10,7 +10,6 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/Utils/Region.h"
 
 
 using namespace storage;
@@ -34,10 +33,10 @@ main()
     Gpt* rhs_gpt = Gpt::create(rhs);
     Using::create(rhs, rhs_sda, rhs_gpt);
 
-    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY, Region(0, 100));
+    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda1);
 
-    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", PRIMARY, Region(100, 100));
+    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     Ext4* rhs_sda1_fs = Ext4::create(rhs);
