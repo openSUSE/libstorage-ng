@@ -42,6 +42,20 @@ namespace storage
 	return dynamic_cast<const Ext4*>(device) != 0;
     }
 
+
+    inline Ext4*
+    to_ext4(Device* device)
+    {
+	return dynamic_cast<Ext4*>(device);
+    }
+
+
+    inline const Ext4*
+    to_ext4(const Device* device)
+    {
+	return dynamic_cast<const Ext4*>(device);
+    }
+
 }
 
 #endif

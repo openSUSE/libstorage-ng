@@ -42,6 +42,19 @@ namespace storage
 	return dynamic_cast<const Swap*>(device) != 0;
     }
 
+
+    inline Swap*
+    to_swap(Device* device)
+    {
+	return dynamic_cast<Swap*>(device);
+    }
+
+
+    inline const Swap*
+    to_swap(const Device* device)
+    {
+	return dynamic_cast<const Swap*>(device);
+    }
 }
 
 #endif

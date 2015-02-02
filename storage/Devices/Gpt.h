@@ -40,6 +40,20 @@ namespace storage
 	return dynamic_cast<const Gpt*>(device) != 0;
     }
 
+
+    inline PartitionTable*
+    to_gpt(Device* device)
+    {
+	return dynamic_cast<Gpt*>(device);
+    }
+
+
+    inline const PartitionTable*
+    to_gpt(const Device* device)
+    {
+	return dynamic_cast<const Gpt*>(device);
+    }
+
 }
 
 #endif

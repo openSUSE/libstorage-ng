@@ -37,6 +37,20 @@ namespace storage
 	return dynamic_cast<const Msdos*>(device) != 0;
     }
 
+
+    inline PartitionTable*
+    to_msdos(Device* device)
+    {
+	return dynamic_cast<Msdos*>(device);
+    }
+
+
+    inline const PartitionTable*
+    to_msdos(const Device* device)
+    {
+	return dynamic_cast<const Msdos*>(device);
+    }
+
 }
 
 #endif
