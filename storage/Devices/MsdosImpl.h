@@ -43,6 +43,8 @@ namespace storage
 
 	virtual Region get_usable_region() const override;
 
+	virtual void do_create() const override;
+
     };
 
 }

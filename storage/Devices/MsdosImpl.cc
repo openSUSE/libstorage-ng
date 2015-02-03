@@ -1,10 +1,14 @@
 
 
+#include <iostream>
+
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -86,6 +90,20 @@ namespace storage
     Msdos::Impl::print(std::ostream& out) const
     {
 	PartitionTable::Impl::print(out);
+    }
+
+
+    void
+    Msdos::Impl::do_create() const
+    {
+	const Disk* disk = get_disk();
+
+	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " mklabel msdos";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("create msdos failed");
     }
 
 }

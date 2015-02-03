@@ -1,4 +1,5 @@
 
+#include <iostream>
 
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devicegraph.h"
@@ -6,6 +7,8 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -100,6 +103,20 @@ namespace storage
 
 	if (get_enlarge())
 	    out << " enlarge";
+    }
+
+
+    void
+    Gpt::Impl::do_create() const
+    {
+	const Disk* disk = get_disk();
+
+	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " mklabel gpt";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("create gpt failed");
     }
 
 }
