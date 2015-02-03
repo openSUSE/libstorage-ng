@@ -913,7 +913,7 @@ namespace storage_legacy
     bool
     StorageLegacy::getDlabelCapabilities(const string& dlabel, DlabelCapabilities& dlabelcapabilities) const
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << dlabel);
 
 	struct label_info
 	{
@@ -924,7 +924,7 @@ namespace storage_legacy
 	    unsigned long long max_sectors;
 	};
 
-	const label_info labels[] = {
+	const static label_info labels[] = {
 	    { "msdos", true, 4, 256, (1ULL << 32) - 1 }, // actually unlimited number of logical partitions
 	    { "gpt", false, 128, 0, (1ULL << 48) - 1 },	// actually 64 bit but we cannot calculate with that,
 							// 48 bit looks nice since it matches LBA48
@@ -1209,9 +1209,23 @@ namespace storage_legacy
     string
     StorageLegacy::defaultDiskLabel(const string& device)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	return "";
+	Devicegraph* current = storage->get_current();
+
+	Disk* disk = Disk::find(current, device);
+
+	switch (disk->get_default_partition_table_type())
+	{
+	    case PtType::MSDOS:
+		return "msdos";
+	    case PtType::GPT:
+		return "gpt";
+	    case PtType::DASD:
+		return "dasd";
+	    default:
+		return "error";
+	}
     }
 
 
@@ -2242,16 +2256,16 @@ namespace storage_legacy
     bool
     StorageLegacy::existSubvolume(const string& device, const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	return -1;
+	return false;
     }
 
 
     int
     StorageLegacy::createSubvolume(const string& device, const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
 	return -1;
     }
@@ -2260,7 +2274,7 @@ namespace storage_legacy
     int
     StorageLegacy::removeSubvolume(const string& device, const string& name)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " " << name);
 
 	return -1;
     }
