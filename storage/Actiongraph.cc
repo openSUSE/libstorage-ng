@@ -128,28 +128,26 @@ namespace storage
 	{
 	    Devicegraph::Impl::vertex_descriptor v_rhs = rhs->get_impl().find_vertex(sid);
 	    const Device* d_rhs = rhs->get_impl().graph[v_rhs].get();
+
 	    d_rhs->get_impl().add_create_actions(*this);
 	}
 
 	for (sid_t sid : common_sids)
 	{
 	    Devicegraph::Impl::vertex_descriptor v_lhs = lhs->get_impl().find_vertex(sid);
+	    const Device* d_lhs = lhs->get_impl().graph[v_lhs].get();
+
 	    Devicegraph::Impl::vertex_descriptor v_rhs = rhs->get_impl().find_vertex(sid);
+	    const Device* d_rhs = rhs->get_impl().graph[v_rhs].get();
 
-	    const BlkDevice* d_lhs = to_blkdevice(lhs->get_impl().graph[v_lhs].get());
-	    const BlkDevice* d_rhs = to_blkdevice(rhs->get_impl().graph[v_rhs].get());
-
-	    if ((d_lhs && d_rhs) && (d_lhs->get_name() != d_rhs->get_name()))
-	    {
-		Action::Base* action = new Action::Modify(sid);
-		add_vertex(action);
-	    }
+	    d_rhs->get_impl().add_modify_actions(*this, d_lhs);
 	}
 
 	for (sid_t sid : deleted_sids)
 	{
 	    Devicegraph::Impl::vertex_descriptor v_lhs = lhs->get_impl().find_vertex(sid);
 	    const Device* d_lhs = lhs->get_impl().graph[v_lhs].get();
+
 	    d_lhs->get_impl().add_delete_actions(*this);
 	}
     }

@@ -4,6 +4,7 @@
 
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -32,9 +33,31 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const override;
+
 	virtual Text do_create_text(bool doing) const override;
 
+	virtual Text do_rename_text(const Impl& lhs, bool doing) const;
+	virtual void do_rename(const Impl& lhs) const;
+
     };
+
+
+    namespace Action
+    {
+
+	class Rename : public Modify
+	{
+	public:
+
+	    Rename(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph& actiongraph) const override;
+
+	};
+
+    }
 
 }
 

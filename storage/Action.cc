@@ -34,17 +34,6 @@ namespace storage
 
 
 	Text
-	Modify::text(const Actiongraph& actiongraph, bool doing) const
-	{
-	    const Device* device_lhs = actiongraph.get_devicegraph(LHS)->find_device(sid);
-	    const Device* device_rhs = actiongraph.get_devicegraph(RHS)->find_device(sid);
-
-	    return sformat(_("Rename %1$s to %2$s"), device_lhs->get_displayname().c_str(),
-			   device_rhs->get_displayname().c_str());
-	}
-
-
-	Text
 	Delete::text(const Actiongraph& actiongraph, bool doing) const
 	{
 	    return device_lhs(actiongraph)->get_impl().do_delete_text(doing);

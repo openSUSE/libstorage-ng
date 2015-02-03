@@ -75,8 +75,6 @@ namespace storage
 
 	    Modify(sid_t sid) : Base(sid) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-
 	protected:
 
 	    const Device* device_lhs(const Actiongraph& actiongraph) const

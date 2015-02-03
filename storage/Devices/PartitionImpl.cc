@@ -125,6 +125,29 @@ namespace storage
 
 
     void
+    Partition::Impl::add_modify_actions(Actiongraph& actiongraph, const Device* lhs_base) const
+    {
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (get_type() != lhs.get_type())
+	{
+	    throw runtime_error("cannot change partition type");
+	}
+
+	if (get_region().get_start() != lhs.get_region().get_start())
+	{
+	    throw runtime_error("cannot move partition");
+	}
+
+	if (get_id() != lhs.get_id())
+	{
+	    Action::Base* action = new Action::SetPartitionId(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+    }
+
+
+    void
     Partition::Impl::add_delete_actions(Actiongraph& actiongraph) const
     {
 	vector<Action::Base*> actions;

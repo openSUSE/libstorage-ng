@@ -14,9 +14,10 @@ current = storage.get_current()
 
 print current
 
-blkdevice = BlkDevice.find(current, "/dev/sdb1")
+partition = Partition.find(current, "/dev/sdb1")
+partition.set_id(ID_SWAP)
 
-swap = blkdevice.create_filesystem(SWAP)
+swap = partition.create_filesystem(SWAP)
 swap.add_mountpoint("swap")
 
 print current

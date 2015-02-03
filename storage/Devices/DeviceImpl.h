@@ -56,6 +56,7 @@ namespace storage
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
 	virtual void add_create_actions(Actiongraph& actiongraph) const;
+	virtual void add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const;
 
 	virtual bool equal(const Impl& rhs) const = 0;
