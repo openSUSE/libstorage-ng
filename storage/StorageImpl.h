@@ -43,6 +43,8 @@ namespace storage
 
 	const Devicegraph* get_probed() const;
 
+	void check() const;
+
 	const string& get_rootprefix() const { return rootprefix; }
 	void set_rootprefix(const string& rootprefix) { Impl::rootprefix = rootprefix; }
 

@@ -111,6 +111,13 @@ namespace storage
     }
 
 
+    void
+    Storage::check() const
+    {
+	get_impl().check();
+    }
+
+
     const string&
     Storage::get_rootprefix() const
     {

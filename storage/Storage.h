@@ -57,6 +57,8 @@ namespace storage
 
 	const Devicegraph* get_probed() const;
 
+	void check() const;
+
 	const std::string& get_rootprefix() const;
 	void set_rootprefix(const std::string& rootprefix);
 

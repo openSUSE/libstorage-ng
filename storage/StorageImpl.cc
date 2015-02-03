@@ -229,6 +229,18 @@ namespace storage
     }
 
 
+    void
+    Storage::Impl::check() const
+    {
+	for (const map<string, Devicegraph>::value_type& key_value : devicegraphs)
+	{
+	    key_value.second.check();
+	}
+
+	// TODO check that a object has the same type in every devicegraph
+    }
+
+
     string
     Storage::Impl::prepend_rootprefix(const string& mountpoint) const
     {
