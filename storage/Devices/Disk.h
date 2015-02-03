@@ -32,6 +32,8 @@ namespace storage
 
 	Transport get_transport() const;
 
+	PtType get_default_partition_table_type() const;
+
 	PartitionTable* create_partition_table(PtType pt_type);
 
 	PartitionTable* get_partition_table();

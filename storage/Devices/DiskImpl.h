@@ -41,6 +41,8 @@ namespace storage
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
 
+	PtType get_default_partition_table_type() const;
+
 	static vector<string> probe_disks(SystemInfo& systeminfo);
 
 	void probe(SystemInfo& systeminfo);

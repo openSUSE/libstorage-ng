@@ -99,6 +99,13 @@ namespace storage
     }
 
 
+    PtType
+    Disk::Impl::get_default_partition_table_type() const
+    {
+	return PtType::MSDOS;	// TODO
+    }
+
+
     PartitionTable*
     Disk::Impl::create_partition_table(PtType pt_type)
     {

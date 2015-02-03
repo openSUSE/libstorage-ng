@@ -85,6 +85,13 @@ namespace storage
     }
 
 
+    PtType
+    Disk::get_default_partition_table_type() const
+    {
+	return get_impl().get_default_partition_table_type();
+    }
+
+
     vector<Disk*>
     Disk::get_all(const Devicegraph* devicegraph)
     {
