@@ -2390,8 +2390,7 @@ namespace storage_legacy
 
 
     int
-    StorageLegacy::renameCryptDm(const string& device,
-				      const string& new_name)
+    StorageLegacy::renameCryptDm(const string& device, const string& new_name)
     {
 	y2mil("legacy " << __FUNCTION__);
 
@@ -2412,6 +2411,31 @@ namespace storage_legacy
     StorageLegacy::dumpObjectList()
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	y2mil("DETECTED OBJECTS BEGIN");
+
+	ostringstream buf;
+	buf << *storage->get_probed();
+
+	string s(buf.str());
+	const char* pos1 = s.c_str();
+	const char* pos2;
+	while (pos1 != NULL && *pos1 != 0)
+        {
+	    pos2 = strchr(pos1, '\n');
+	    if (pos2)
+            {
+		y2mil(string(pos1, pos2 - pos1));
+		pos1 = pos2 +1 ;
+            }
+	    else
+            {
+		y2mil(string(pos1));
+		pos1 = pos2;
+            }
+        }
+
+	y2mil("DETECTED OBJECTS END");
     }
 
 
@@ -2419,6 +2443,13 @@ namespace storage_legacy
     StorageLegacy::dumpCommitInfos() const
     {
 	y2mil("legacy " << __FUNCTION__);
+
+	y2mil("COMMIT STEPS BEGIN");
+
+	for (const string& step : storage->get_commit_steps())
+	    y2mil(step);
+
+	y2mil("COMMIT STEPS END");
     }
 
 
@@ -2427,7 +2458,18 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	Devicegraph* current = storage->get_current();
+
+	try
+	{
+	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    blkdevice->set_userdata(userdata);
+	    return 0;
+	}
+	catch (...)
+	{
+	    return STORAGE_DEVICE_NOT_FOUND;
+	}
     }
 
 
@@ -2436,7 +2478,18 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	Devicegraph* current = storage->get_current();
+
+	try
+	{
+	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    userdata = blkdevice->get_userdata();
+	    return 0;
+	}
+	catch (...)
+	{
+	    return STORAGE_DEVICE_NOT_FOUND;
+	}
     }
 
 
