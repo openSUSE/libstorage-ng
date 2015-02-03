@@ -37,7 +37,7 @@ namespace storage
     inline bool
     is_gpt(const Device* device)
     {
-	return dynamic_cast<const Gpt*>(device) != 0;
+	return dynamic_cast<const Gpt*>(device) != nullptr;
     }
 
 

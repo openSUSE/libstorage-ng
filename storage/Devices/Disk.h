@@ -58,7 +58,7 @@ namespace storage
     inline bool
     is_disk(const Device* device)
     {
-	return dynamic_cast<const Disk*>(device) != 0;
+	return dynamic_cast<const Disk*>(device) != nullptr;
     }
 
 

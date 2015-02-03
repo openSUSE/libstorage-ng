@@ -43,7 +43,7 @@ namespace storage
     inline bool
     is_lvm_vg(const Device* device)
     {
-	return dynamic_cast<const LvmVg*>(device) != 0;
+	return dynamic_cast<const LvmVg*>(device) != nullptr;
     }
 
 

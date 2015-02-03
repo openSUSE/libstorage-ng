@@ -34,7 +34,7 @@ namespace storage
     inline bool
     is_encryption(const Device* device)
     {
-	return dynamic_cast<const Encryption*>(device) != 0;
+	return dynamic_cast<const Encryption*>(device) != nullptr;
     }
 
 

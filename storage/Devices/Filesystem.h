@@ -75,7 +75,7 @@ namespace storage
     inline bool
     is_filesystem(const Device* device)
     {
-	return dynamic_cast<const Filesystem*>(device) != 0;
+	return dynamic_cast<const Filesystem*>(device) != nullptr;
     }
 
 
