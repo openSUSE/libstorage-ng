@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/SwapImpl.h"
+#include "storage/Devices/BtrfsImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
@@ -16,39 +16,42 @@ namespace storage
     using namespace std;
 
 
-    Swap::Impl::Impl(const xmlNode* node)
+    Btrfs::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
     }
 
 
     void
-    Swap::Impl::do_create() const
+    Btrfs::Impl::do_create() const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
 	blkdevice->get_impl().wait_for_device();
 
-	string cmd_line = MKSWAPBIN " -f " + quote(blkdevice->get_name());
+	string cmd_line = MKFSBTRFSBIN " -f " + quote(blkdevice->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create swap failed");
+	    throw runtime_error("create btrfs failed");
     }
 
 
     void
-    Swap::Impl::do_mount(const Actiongraph& actiongraph, const string& mountpoint) const
+    Btrfs::Impl::do_set_label() const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
-	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blkdevice->get_name());
+	// TODO handle mounted
+
+        string cmd_line = BTRFSBIN " filesystem label " + quote(blkdevice->get_name()) + " " +
+	    quote(get_label());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("mount swap failed");
+	    throw runtime_error("set-label btrfs failed");
     }
 
 }

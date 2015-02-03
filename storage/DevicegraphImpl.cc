@@ -18,6 +18,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Ext4.h"
+#include "storage/Devices/Btrfs.h"
+#include "storage/Devices/Xfs.h"
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/Using.h"
@@ -380,6 +382,8 @@ namespace storage
 	{ "LvmLv", (device_load_fnc)(&LvmLv::load) },
 	{ "Encryption", (device_load_fnc)(&Encryption::load) },
 	{ "Ext4", (device_load_fnc)(&Ext4::load) },
+	{ "Btrfs", (device_load_fnc)(&Btrfs::load) },
+	{ "Xfs", (device_load_fnc)(&Xfs::load) },
 	{ "Swap", (device_load_fnc)(&Swap::load) },
     };
 

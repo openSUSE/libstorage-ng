@@ -45,6 +45,7 @@ namespace storage
 	const string& get_tune_options() const { return tune_options; }
 	void set_tune_options(const string& tune_options);
 
+	virtual void add_create_actions(Actiongraph& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
 
 	void probe(SystemInfo& systeminfo, EtcFstab& fstab);
@@ -52,10 +53,10 @@ namespace storage
 	vector<const BlkDevice*> get_blkdevices() const;
 	const BlkDevice* get_blkdevice() const;
 
-	virtual bool equal(const Device::Impl& rhs) const override = 0;
-	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;
+	virtual bool equal(const Device::Impl& rhs) const override;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
-	virtual void print(std::ostream& out) const override = 0;
+	virtual void print(std::ostream& out) const override;
 
 	string get_mount_by_string() const;
 

@@ -29,15 +29,6 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void save(xmlNode* node) const override;
-
-	virtual void add_create_actions(Actiongraph& actiongraph) const override;
-
-	virtual bool equal(const Device::Impl& rhs) const override;
-	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
-
-	virtual void print(std::ostream& out) const override;
-
 	virtual void do_create() const override;
 	virtual void do_mount(const Actiongraph& actiongraph, const string& mountpoint) const override;
 

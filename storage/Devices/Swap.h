@@ -15,10 +15,10 @@ namespace storage
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool supports_label() const override { return false; }
-	unsigned int max_labelsize() const override { return 0; }
+	bool supports_label() const override { return true; }
+	unsigned int max_labelsize() const override { return 15; }
 
-	bool supports_uuid() const override { return false; }
+	bool supports_uuid() const override { return true; }
 
     public:
 

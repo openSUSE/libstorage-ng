@@ -4,6 +4,8 @@
 
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Ext4.h"
+#include "storage/Devices/Btrfs.h"
+#include "storage/Devices/Xfs.h"
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/Using.h"
 #include "storage/Utils/AppUtil.h"
@@ -140,6 +142,14 @@ namespace storage
 	{
 	    case EXT4:
 		ret = Ext4::create(get_impl().get_devicegraph());
+		break;
+
+	    case BTRFS:
+		ret = Btrfs::create(get_impl().get_devicegraph());
+		break;
+
+	    case XFS:
+		ret = Xfs::create(get_impl().get_devicegraph());
 		break;
 
 	    case SWAP:

@@ -1,8 +1,8 @@
-#ifndef EXT4_IMPL_H
-#define EXT4_IMPL_H
+#ifndef BTRFS_IMPL_H
+#define BTRFS_IMPL_H
 
 
-#include "storage/Devices/Ext4.h"
+#include "storage/Devices/Btrfs.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/Action.h"
 
@@ -13,7 +13,7 @@ namespace storage
     using namespace std;
 
 
-    class Ext4::Impl : public Filesystem::Impl
+    class Btrfs::Impl : public Filesystem::Impl
     {
     public:
 
@@ -22,11 +22,11 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return EXT4; }
+	virtual FsType get_type() const override { return BTRFS; }
 
-	virtual const char* get_classname() const override { return "Ext4"; }
+	virtual const char* get_classname() const override { return "Btrfs"; }
 
-	virtual string get_displayname() const override { return "ext4"; }
+	virtual string get_displayname() const override { return "btrfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 

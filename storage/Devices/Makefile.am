@@ -29,6 +29,10 @@ libdevices_la_SOURCES =					\
 	FilesystemImpl.h	FilesystemImpl.cc	\
 	Ext4.h			Ext4.cc			\
 	Ext4Impl.h		Ext4Impl.cc		\
+	Btrfs.h			Btrfs.cc		\
+	BtrfsImpl.h		BtrfsImpl.cc		\
+	Xfs.h			Xfs.cc			\
+	XfsImpl.h		XfsImpl.cc		\
 	Swap.h			Swap.cc			\
 	SwapImpl.h		SwapImpl.cc
 
