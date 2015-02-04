@@ -19,7 +19,7 @@ namespace storage
     {
     public:
 
-	Impl(const Environment& environment);
+	Impl(const Storage& storage, const Environment& environment);
 	~Impl();
 
     public:
@@ -54,12 +54,14 @@ namespace storage
 
 	string prepend_rootprefix(const string& mountpoint) const;
 
-	std::list<std::string> get_commit_steps(const Storage& storage) const;
-	void commit(const Storage& storage, const CommitCallbacks* commit_callbacks);
+	std::list<std::string> get_commit_steps() const;
+	void commit(const CommitCallbacks* commit_callbacks);
 
     private:
 
 	void probe(Devicegraph* probed);
+
+	const Storage& storage;
 
 	const Environment environment;
 

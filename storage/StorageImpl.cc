@@ -14,8 +14,8 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(const Environment& environment)
-	: environment(environment), arch(false)
+    Storage::Impl::Impl(const Storage& storage, const Environment& environment)
+	: storage(storage), environment(environment), arch(false)
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage version " VERSION);
@@ -168,7 +168,7 @@ namespace storage
     {
 	pair<map<string, Devicegraph>::iterator, bool> tmp =
 	    devicegraphs.emplace(piecewise_construct, forward_as_tuple(name),
-				  forward_as_tuple());
+				 forward_as_tuple(&storage));
 	if (!tmp.second)
 	    throw logic_error("device graph already exists");
 
@@ -258,7 +258,7 @@ namespace storage
 
 
     list<string>
-    Storage::Impl::get_commit_steps(const Storage& storage) const
+    Storage::Impl::get_commit_steps() const
     {
 	Actiongraph actiongraph(storage, get_probed(), get_current());
 
@@ -267,7 +267,7 @@ namespace storage
 
 
     void
-    Storage::Impl::commit(const Storage& storage, const CommitCallbacks* commit_callbacks)
+    Storage::Impl::commit(const CommitCallbacks* commit_callbacks)
     {
 	Actiongraph actiongraph(storage, get_probed(), get_current());
 

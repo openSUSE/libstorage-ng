@@ -44,6 +44,8 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
+	Impl(const Storage* storage) : storage(storage) {}
+
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
@@ -142,7 +144,13 @@ namespace storage
 
 	void swap(Devicegraph::Impl& x);
 
+	const Storage* get_storage() const { return storage; }
+
 	graph_t graph;
+
+    private:
+
+	const Storage* storage;
 
     };
 

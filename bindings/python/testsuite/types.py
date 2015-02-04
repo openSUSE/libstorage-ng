@@ -1,14 +1,17 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Devicegraph, Disk, Region, GPT, PRIMARY, EXT4
+from storage import Environment, PROBE_NONE, TARGET_NORMAL, Storage, Devicegraph, Disk, Region, GPT, PRIMARY, EXT4
 
 
 class TestCreate(unittest.TestCase):
 
     def test_create(self):
 
-        devicegraph = Devicegraph()
+        environment = Environment(True, PROBE_NONE, TARGET_NORMAL)
+        s = Storage(environment)
+
+        devicegraph = Devicegraph(s)
 
         sda = Disk.create(devicegraph, "/dev/sda")
         gpt = sda.create_partition_table(GPT)

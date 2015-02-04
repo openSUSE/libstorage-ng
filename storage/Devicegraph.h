@@ -10,6 +10,7 @@
 
 namespace storage
 {
+    class Storage;
     class Device;
     class Holder;
 
@@ -31,11 +32,13 @@ namespace storage
 
     public:
 
-	Devicegraph();
+	Devicegraph(const Storage* storage = nullptr); // TODO
 	~Devicegraph();
 
 	bool operator==(const Devicegraph& rhs) const;
 	bool operator!=(const Devicegraph& rhs) const;
+
+	const Storage* get_storage() const;
 
 	void load(const std::string& filename);
 	void save(const std::string& filename) const;

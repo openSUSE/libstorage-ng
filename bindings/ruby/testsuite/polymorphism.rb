@@ -8,7 +8,11 @@ class TestPolymorphism < Test::Unit::TestCase
 
   def test_polymorphism
 
-    devicegraph = Storage::Devicegraph.new()
+    environment = Storage::Environment.new(true, Storage::PROBE_NONE, Storage::TARGET_NORMAL)
+    storage = Storage::Storage.new(environment)
+
+    devicegraph = Storage::Devicegraph.new(storage)
+
     sda = Storage::Disk.create(devicegraph, "/dev/sda")
     gpt = sda.create_partition_table(Storage::GPT)
 

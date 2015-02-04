@@ -8,7 +8,10 @@ class TestPolymorphism(unittest.TestCase):
 
     def test_polymorphism(self):
 
-      devicegraph = storage.Devicegraph()
+      environment = storage.Environment(True, storage.PROBE_NONE, storage.TARGET_NORMAL)
+      s = storage.Storage(environment)
+
+      devicegraph = storage.Devicegraph(s)
       sda = storage.Disk.create(devicegraph, "/dev/sda")
       gpt = sda.create_partition_table(storage.GPT)
 

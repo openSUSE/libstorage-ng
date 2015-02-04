@@ -6,7 +6,11 @@ use Test::Exception;
 use storage;
 
 
-my $devicegraph = new storage::Devicegraph();
+my $environment = new storage::Environment(1, $storage::PROBE_NONE, $storage::TARGET_NORMAL);
+
+my $storage = new storage::Storage($environment);
+
+my $devicegraph = new storage::Devicegraph($storage);
 my $sda = storage::Disk::create($devicegraph, "/dev/sda");
 my $gpt = $sda->create_partition_table($storage::GPT);
 

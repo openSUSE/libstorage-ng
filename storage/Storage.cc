@@ -11,7 +11,7 @@ namespace storage
 
 
     Storage::Storage(const Environment& environment)
-	: impl(new Impl(environment))
+	: impl(new Impl(*this, environment))
     {
     }
 
@@ -142,14 +142,14 @@ namespace storage
     list<string>
     Storage::get_commit_steps() const
     {
-	return get_impl().get_commit_steps(*this);
+	return get_impl().get_commit_steps();
     }
 
 
     void
     Storage::commit(const CommitCallbacks* commit_callbacks)
     {
-	get_impl().commit(*this, commit_callbacks);
+	get_impl().commit(commit_callbacks);
     }
 
 }

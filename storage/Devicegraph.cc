@@ -23,8 +23,8 @@
 namespace storage
 {
 
-    Devicegraph::Devicegraph()
-	: impl(new Impl())
+    Devicegraph::Devicegraph(const Storage* storage)
+	: impl(new Impl(storage))
     {
     }
 
@@ -45,6 +45,13 @@ namespace storage
     Devicegraph::operator!=(const Devicegraph& rhs) const
     {
 	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
+    const Storage*
+    Devicegraph::get_storage() const
+    {
+	return get_impl().get_storage();
     }
 
 
