@@ -1703,7 +1703,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	return false;
+	return storage->get_arch().is_efiboot();
     }
 
 
