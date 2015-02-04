@@ -97,7 +97,7 @@ namespace storage
 	else
 	{
 	    SystemCmd cmd(TESTBIN " -d '/sys/firmware/efi/vars'");
-	    efiboot = cmd.retcode() != 0;
+	    efiboot = cmd.retcode() == 0;
 	}
 
 	const char* tenv = getenv("LIBSTORAGE_EFI");
@@ -105,6 +105,8 @@ namespace storage
 	{
 	    efiboot = string(tenv) == "yes";
 	}
+
+	y2mil(*this);
     }
 
 
