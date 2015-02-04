@@ -10,7 +10,7 @@ MAINTAINERCLEANFILES = storage_wrap.cxx
 
 BUILT_SOURCES = storage_wrap.cxx
 
-perlextensiondirdir = /usr/lib/perl5/vendor_perl
+perlextensiondirdir = /usr/lib/perl5/vendor_perl/${PERL5_VERSION}
 
 AM_CXXFLAGS = -fPIC -DPIC
 
@@ -32,7 +32,7 @@ storage.pm storage_wrap.cxx: ../storage.i storage-perl5.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -perl5 ${AM_CPPFLAGS} storage-perl5.i
 
 install-data-hook:
-	install storage.pm $(DESTDIR)/usr/lib/perl5/vendor_perl
+	install storage.pm $(DESTDIR)/${perlextensiondirdir}
 
 CLEANFILES = storage.pm storage_wrap.cxx
 
