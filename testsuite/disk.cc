@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(disk1)
 
     const Devicegraph* lhs = storage.get_probed();
 
-    Devicegraph* rhs = storage.get_current();
+    Devicegraph* rhs = storage.get_staging();
 
     Disk* sda = Disk::create(rhs, "/dev/sda");
     sda->set_size_k(16 * 1024 * 1024);
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(disk2)
 
     const Devicegraph* lhs = storage.get_probed();
 
-    Devicegraph* rhs = storage.get_current();
+    Devicegraph* rhs = storage.get_staging();
 
     Disk* sda = Disk::create(rhs, "/dev/sda");
     sda->set_size_k(16 * 1024 * 1024);

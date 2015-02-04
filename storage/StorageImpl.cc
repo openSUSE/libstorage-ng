@@ -52,7 +52,7 @@ namespace storage
 	y2mil(*probed);
 	y2mil("probed devicegraph end");
 
-	copy_devicegraph("probed", "current");
+	copy_devicegraph("probed", "staging");
     }
 
 
@@ -131,16 +131,16 @@ namespace storage
 
 
     Devicegraph*
-    Storage::Impl::get_current()
+    Storage::Impl::get_staging()
     {
-	return get_devicegraph("current");
+	return get_devicegraph("staging");
     }
 
 
     const Devicegraph*
-    Storage::Impl::get_current() const
+    Storage::Impl::get_staging() const
     {
-	return get_devicegraph("current");
+	return get_devicegraph("staging");
     }
 
 
@@ -209,7 +209,7 @@ namespace storage
 	if (it1 == devicegraphs.end())
 	    throw runtime_error("device graph not found");
 
-	map<string, Devicegraph>::iterator it2 = devicegraphs.find("current");
+	map<string, Devicegraph>::iterator it2 = devicegraphs.find("staging");
 	if (it2 == devicegraphs.end())
 	    throw runtime_error("device graph not found");
 
@@ -260,7 +260,7 @@ namespace storage
     list<string>
     Storage::Impl::get_commit_steps() const
     {
-	Actiongraph actiongraph(storage, get_probed(), get_current());
+	Actiongraph actiongraph(storage, get_probed(), get_staging());
 
 	return actiongraph.get_commit_steps();
     }
@@ -269,7 +269,7 @@ namespace storage
     void
     Storage::Impl::commit(const CommitCallbacks* commit_callbacks)
     {
-	Actiongraph actiongraph(storage, get_probed(), get_current());
+	Actiongraph actiongraph(storage, get_probed(), get_staging());
 
 	actiongraph.commit(commit_callbacks);
 

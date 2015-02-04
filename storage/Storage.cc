@@ -50,16 +50,16 @@ namespace storage
 
 
     Devicegraph*
-    Storage::get_current()
+    Storage::get_staging()
     {
-	return get_impl().get_current();
+	return get_impl().get_staging();
     }
 
 
     const Devicegraph*
-    Storage::get_current() const
+    Storage::get_staging() const
     {
-	return get_impl().get_current();
+	return get_impl().get_staging();
     }
 
 

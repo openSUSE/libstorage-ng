@@ -29,7 +29,7 @@ public:
 
 	storage = new Storage(environment);
 
-	Devicegraph* devicegraph = storage->get_current();
+	Devicegraph* devicegraph = storage->get_staging();
 
 	Disk* sda = Disk::create(devicegraph, "/dev/sda");
 	sda->set_size_k(80 * 1024 * 1024);
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_disk)
     string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda size_k:83886080 geometry:[0,32,16,512] transport:SATA";
 
     ostringstream out;
-    out << *(Disk::find(fixture.get_storage()->get_current(), "/dev/sda")) << endl;
+    out << *(Disk::find(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
 
     BOOST_CHECK_EQUAL(out.str(), expected + "\n");
 }
@@ -77,7 +77,7 @@ BOOST_AUTO_TEST_CASE(test_partition)
     string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,4096]";
 
     ostringstream out;
-    out << *(Partition::find(fixture.get_storage()->get_current(), "/dev/sda1")) << endl;
+    out << *(Partition::find(fixture.get_storage()->get_staging(), "/dev/sda1")) << endl;
 
     BOOST_CHECK_EQUAL(out.str(), expected + "\n");
 }
@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE(test_devicegraph)
     };
 
     ostringstream out;
-    out << *(fixture.get_storage()->get_current());
+    out << *(fixture.get_storage()->get_staging());
 
     BOOST_CHECK_EQUAL(out.str(), boost::join(expected, "\n") + "\n");
 }

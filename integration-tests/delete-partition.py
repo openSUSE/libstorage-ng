@@ -10,17 +10,17 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-current = storage.get_current()
+staging = storage.get_staging()
 
-print current
+print staging
 
-disk = Disk.find(current, "/dev/sdb")
+disk = Disk.find(staging, "/dev/sdb")
 
 partition_table = disk.get_partition_table()
 
 partition_table.delete_partition("/dev/sdb1")
 
-print current
+print staging
 
 storage.commit()
 

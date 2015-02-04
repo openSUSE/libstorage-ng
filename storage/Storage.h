@@ -54,8 +54,8 @@ namespace storage
 	Devicegraph* get_devicegraph(const std::string& name);
 	const Devicegraph* get_devicegraph(const std::string& name) const;
 
-	Devicegraph* get_current();
-	const Devicegraph* get_current() const;
+	Devicegraph* get_staging();
+	const Devicegraph* get_staging() const;
 
 	const Devicegraph* get_probed() const;
 

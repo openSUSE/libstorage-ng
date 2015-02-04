@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     // the disk is bigger than the address space of a MSDOS partition table with 512
     // bytes per sector
@@ -158,7 +158,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);

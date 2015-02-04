@@ -32,9 +32,9 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Storage storage(environment);
 
-    storage.get_current()->load("test1-current.xml");
+    storage.get_staging()->load("test1-staging.xml");
 
-    Actiongraph actiongraph(storage, storage.get_probed(), storage.get_current());
+    Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
 
     BOOST_CHECK_EQUAL(actiongraph.get_simple(), expected);
 }

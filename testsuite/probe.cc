@@ -27,8 +27,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
     BOOST_CHECK_EQUAL(probed->num_devices(), 2);
     BOOST_CHECK_EQUAL(probed->num_holders(), 1);
 
-    Devicegraph* current = storage.get_current();
+    Devicegraph* staging = storage.get_staging();
 
-    BOOST_CHECK_EQUAL(current->num_devices(), 2);
-    BOOST_CHECK_EQUAL(current->num_holders(), 1);
+    BOOST_CHECK_EQUAL(staging->num_devices(), 2);
+    BOOST_CHECK_EQUAL(staging->num_holders(), 1);
 }

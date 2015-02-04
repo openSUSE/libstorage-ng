@@ -36,11 +36,11 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Storage storage(environment);
 
-    Devicegraph* lhs = storage.get_current();
+    Devicegraph* lhs = storage.get_staging();
 
     Disk::create(lhs, "/dev/sda");
 
-    Devicegraph* rhs = storage.copy_devicegraph("current", "old");
+    Devicegraph* rhs = storage.copy_devicegraph("staging", "old");
 
     Disk* sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 

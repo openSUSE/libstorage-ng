@@ -26,11 +26,11 @@ namespace storage_legacy
     Filesystem*
     find_Filesystem_by_device(Storage* storage, const string& device)
     {
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
 	try
 	{
-	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    BlkDevice* blkdevice = BlkDevice::find(staging, device);
 	    Filesystem* filesystem = blkdevice->get_filesystem();
 	    return filesystem;
 	}
@@ -478,7 +478,7 @@ namespace storage_legacy
 
 	infos.clear();
 
-	for (const Disk* disk : Disk::get_all(storage->get_current()))
+	for (const Disk* disk : Disk::get_all(storage->get_staging()))
 	{
 	    ContainerInfo info;
 	    info.type = DISK;
@@ -500,7 +500,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), name);
+	const BlkDevice* blkdevice = BlkDevice::find(storage->get_staging(), name);
 	const Disk* disk = to_disk(blkdevice);
 
 	if (disk)
@@ -608,7 +608,7 @@ namespace storage_legacy
 
 	try
 	{
-	    const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), device);
+	    const BlkDevice* blkdevice = BlkDevice::find(storage->get_staging(), device);
 	    const Filesystem* filesystem = nullptr;
 
 	    try
@@ -637,7 +637,7 @@ namespace storage_legacy
 
 	plist.clear();
 
-	const BlkDevice* blkdevice = BlkDevice::find(storage->get_current(), name);
+	const BlkDevice* blkdevice = BlkDevice::find(storage->get_staging(), name);
 	const Disk* disk = to_disk(blkdevice);
 
 	if (disk)
@@ -976,9 +976,9 @@ namespace storage_legacy
 
 	Region region(cylRegion);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
-	Disk* disk_ptr = Disk::find(current, disk);			   // TODO
+	Disk* disk_ptr = Disk::find(staging, disk);			   // TODO
 	PartitionTable* partition_table = disk_ptr->get_partition_table(); // TODO
 
 	list<PartitionSlotInfo> slots = partition_table->get_unused_partition_slots();
@@ -1117,11 +1117,11 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
 	try
 	{
-	    Partition* partition = Partition::find(current, device);
+	    Partition* partition = Partition::find(staging, device);
 	    partition->set_id(id);
 	}
 	catch (...)
@@ -1158,8 +1158,8 @@ namespace storage_legacy
 
 	try
 	{
-	    const Devicegraph* current = storage->get_current();
-	    const Disk* disk_ptr = Disk::find(current, disk);
+	    const Devicegraph* staging = storage->get_staging();
+	    const Disk* disk_ptr = Disk::find(staging, disk);
 	    return disk_ptr->get_impl().partition_name(partition_no);
 	}
 	catch (...)
@@ -1176,8 +1176,8 @@ namespace storage_legacy
 
 	try
 	{
-	    const Devicegraph* current = storage->get_current();
-	    const Disk* disk_ptr = Disk::find(current, disk);
+	    const Devicegraph* staging = storage->get_staging();
+	    const Disk* disk_ptr = Disk::find(staging, disk);
 	    const PartitionTable* partitiontable = disk_ptr->get_partition_table();
 	    slots = partitiontable->get_unused_partition_slots();
 	    return 0;
@@ -1212,9 +1212,9 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
-	Disk* disk = Disk::find(current, device);
+	Disk* disk = Disk::find(staging, device);
 
 	switch (disk->get_default_partition_table_type())
 	{
@@ -1235,9 +1235,9 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << device);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
-	BlkDevice* blkdevice = BlkDevice::find(current, device);
+	BlkDevice* blkdevice = BlkDevice::find(staging, device);
 	if (!blkdevice)
 	    return STORAGE_VOLUME_NOT_FOUND;
 
@@ -1246,7 +1246,7 @@ namespace storage_legacy
 	    Filesystem* filesystem = blkdevice->get_filesystem();
 	    if (filesystem)
 	    {
-		current->remove_device(filesystem);
+		staging->remove_device(filesystem);
 	    }
 	}
 	catch (...)
@@ -1825,7 +1825,7 @@ namespace storage_legacy
 	if (storage->exist_devicegraph(name))
 	    storage->remove_devicegraph(name);
 
-	storage->copy_devicegraph("current", name);
+	storage->copy_devicegraph("staging", name);
 
 	return 0;
     }
@@ -1867,7 +1867,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << lhs << " " << rhs);
 
-	return storage->equal_devicegraph(lhs.empty() ? "current" : lhs, rhs.empty() ? "current" : rhs);
+	return storage->equal_devicegraph(lhs.empty() ? "staging" : lhs, rhs.empty() ? "staging" : rhs);
     }
 
 
@@ -2325,7 +2325,7 @@ namespace storage_legacy
 	infos.clear();
 
 	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
-	storage->get_current()->save("/var/log/YaST2/yast2-current.xml");
+	storage->get_staging()->save("/var/log/YaST2/yast2-staging.xml");
 
 	for (const string& step : storage->get_commit_steps())
 	{
@@ -2365,7 +2365,7 @@ namespace storage_legacy
 	y2mil("legacy " << __FUNCTION__);
 
 	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
-	storage->get_current()->save("/var/log/YaST2/yast2-current.xml");
+	storage->get_staging()->save("/var/log/YaST2/yast2-staging.xml");
 
 	storage->commit();
 
@@ -2473,11 +2473,11 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
 	try
 	{
-	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    BlkDevice* blkdevice = BlkDevice::find(staging, device);
 	    blkdevice->set_userdata(userdata);
 	    return 0;
 	}
@@ -2493,11 +2493,11 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	Devicegraph* current = storage->get_current();
+	Devicegraph* staging = storage->get_staging();
 
 	try
 	{
-	    BlkDevice* blkdevice = BlkDevice::find(current, device);
+	    BlkDevice* blkdevice = BlkDevice::find(staging, device);
 	    userdata = blkdevice->get_userdata();
 	    return 0;
 	}

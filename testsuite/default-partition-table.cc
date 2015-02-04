@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(test1)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(320 * 1024 * 1024); // 320 GiB
@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test2)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(3ULL * 1024 * 1024 * 1024); // 3 TiB
@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(test3)
     Storage storage(environment);
     storage.get_impl().get_arch().set_efiboot(true);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(320 * 1024 * 1024); // 320 GiB

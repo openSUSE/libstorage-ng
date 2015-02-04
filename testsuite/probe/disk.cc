@@ -25,15 +25,15 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     probed->check();
 
-    Devicegraph* current = storage.get_current();
+    Devicegraph* staging = storage.get_staging();
 
-    current->load("disk-devicegraph.xml");
-    current->check();
+    staging->load("disk-devicegraph.xml");
+    staging->check();
 
-    bool equal = *probed == *current;
+    bool equal = *probed == *staging;
 
     BOOST_CHECK_MESSAGE(equal, "not equal");
 
     if (!equal)
-	probed->get_impl().log_diff(cout, current->get_impl());
+	probed->get_impl().log_diff(cout, staging->get_impl());
 }

@@ -23,7 +23,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);
@@ -51,7 +51,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     Storage storage(environment);
 
-    Devicegraph* devicegraph = storage.get_current();
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_range(256);

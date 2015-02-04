@@ -23,11 +23,11 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-current = storage.get_current()
+staging = storage.get_staging()
 
-print current
+print staging
 
-disk = Disk.find(current, "/dev/sdb")
+disk = Disk.find(staging, "/dev/sdb")
 
 partition_table = disk.get_partition_table()
 
@@ -37,7 +37,7 @@ partition.set_type(PRIMARY)
 partition.set_id(0x83)
 partition.set_region(Region(0, 1000))
 
-print current
+print staging
 
 my_commit_callbacks = MyCommitCallbacks()
 

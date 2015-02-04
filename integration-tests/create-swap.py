@@ -10,17 +10,17 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-current = storage.get_current()
+staging = storage.get_staging()
 
-print current
+print staging
 
-partition = Partition.find(current, "/dev/sdb1")
+partition = Partition.find(staging, "/dev/sdb1")
 partition.set_id(ID_SWAP)
 
 swap = partition.create_filesystem(SWAP)
 swap.add_mountpoint("swap")
 
-print current
+print staging
 
 storage.commit()
 

@@ -41,9 +41,9 @@ namespace storage_legacy
     bool
     saveDeviceGraph(StorageInterface* s, const string& filename)
     {
-	const Devicegraph* current = s->getStorage()->get_current();
+	const Devicegraph* staging = s->getStorage()->get_staging();
 
-	current->write_graphviz(filename);
+	staging->write_graphviz(filename);
 
 	return true;
     }

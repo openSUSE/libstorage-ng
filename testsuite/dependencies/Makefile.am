@@ -13,5 +13,5 @@ AM_DEFAULT_SOURCE_EXT = .cc
 
 TESTS = $(check_PROGRAMS)
 
-EXTRA_DIST = test1-probed.xml test1-current.xml
+EXTRA_DIST = test1-probed.xml test1-staging.xml
 
