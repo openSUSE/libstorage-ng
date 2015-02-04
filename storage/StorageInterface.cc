@@ -23,6 +23,14 @@ namespace storage_legacy
     using namespace storage;
 
 
+    CallbackProgressBar progress_bar_cb_ycp;
+    CallbackShowInstallInfo install_info_cb_ycp;
+    CallbackInfoPopup info_popup_cb_ycp;
+    CallbackYesNoPopup yesno_popup_cb_ycp;
+    CallbackCommitErrorPopup commit_error_popup_cb_ycp;
+    CallbackPasswordPopup password_popup_cb_ycp;
+
+
     Filesystem*
     find_Filesystem_by_device(Storage* storage, const string& device)
     {
@@ -2364,10 +2372,28 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
+	struct MyCommitCallbacks : public CommitCallbacks
+	{
+	    void
+	    message(const string& message) const
+	    {
+		if (install_info_cb_ycp)
+		    (*install_info_cb_ycp)(message);
+	    }
+
+	    bool
+	    error(const std::string& message) const
+	    {
+		return false;
+	    }
+	};
+
+	MyCommitCallbacks commit_callbacks;
+
 	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
 	storage->get_staging()->save("/var/log/YaST2/yast2-staging.xml");
 
-	storage->commit();
+	storage->commit(&commit_callbacks);
 
 	return 0;
     }
@@ -2506,13 +2532,5 @@ namespace storage_legacy
 	    return STORAGE_DEVICE_NOT_FOUND;
 	}
     }
-
-
-    CallbackProgressBar progress_bar_cb_ycp;
-    CallbackShowInstallInfo install_info_cb_ycp;
-    CallbackInfoPopup info_popup_cb_ycp;
-    CallbackYesNoPopup yesno_popup_cb_ycp;
-    CallbackCommitErrorPopup commit_error_popup_cb_ycp;
-    CallbackPasswordPopup password_popup_cb_ycp;
 
 }
