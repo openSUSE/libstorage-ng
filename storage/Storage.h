@@ -13,6 +13,7 @@ namespace storage
 {
 
     class Environment;
+    class Arch;
     class Devicegraph;
 
 
@@ -38,6 +39,7 @@ namespace storage
     public:
 
 	const Environment& get_environment() const;
+	const Arch& get_arch() const;
 
 	Devicegraph* create_devicegraph(const std::string& name);
 	Devicegraph* copy_devicegraph(const std::string& source_name, const std::string& dest_name);

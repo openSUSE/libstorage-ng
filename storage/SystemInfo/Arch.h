@@ -39,7 +39,8 @@ namespace storage
 	void readData(const xmlNode* node);
 	void saveData(xmlNode* node) const;
 
-	void probe();
+	const string& get_arch() const { return arch; }
+	void set_arch(const string& arch) { Arch::arch = arch; }
 
 	bool is_ia64() const;
 	bool is_ppc() const;
@@ -52,10 +53,13 @@ namespace storage
 	bool is_ppc_pegasos() const { return ppc_pegasos; }
 
 	bool is_efiboot() const { return efiboot; }
+	void set_efiboot(bool efiboot) { Arch::efiboot = efiboot; }
 
 	friend std::ostream& operator<<(std::ostream& s, const Arch& arch);
 
     private:
+
+	void probe();
 
 	string arch;
 	bool ppc_mac;

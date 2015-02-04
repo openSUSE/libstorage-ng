@@ -28,6 +28,13 @@ namespace storage
     }
 
 
+    const Arch&
+    Storage::get_arch() const
+    {
+	return get_impl().get_arch();
+    }
+
+
     Devicegraph*
     Storage::get_devicegraph(const string& name)
     {

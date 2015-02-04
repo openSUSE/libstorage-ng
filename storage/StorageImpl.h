@@ -26,6 +26,9 @@ namespace storage
 
 	const Environment& get_environment() const { return environment; }
 
+	Arch& get_arch() { return arch; }
+	const Arch& get_arch() const { return arch; }
+
 	Devicegraph* create_devicegraph(const string& name);
 	Devicegraph* copy_devicegraph(const string& source_name, const string& dest_name);
 	void remove_devicegraph(const string& name);
