@@ -218,6 +218,9 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
+	    if (dynamic_cast<const Action::Nop*>(action))
+		continue;
+
 	    string text = action->text(*this, true).text;
 
 	    commit_steps.push_back(text);
@@ -233,6 +236,9 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
+	    if (dynamic_cast<const Action::Nop*>(action))
+		continue;
+
 	    string text = action->text(*this, true).text;
 
 	    y2mil("Commit Action " << text);
