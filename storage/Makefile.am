@@ -43,5 +43,6 @@ pkginclude_HEADERS =		\
 	StorageSwig.h		\
 	Devicegraph.h		\
 	Graph.h			\
+	HumanString.h		\
 	Utils.h
 
