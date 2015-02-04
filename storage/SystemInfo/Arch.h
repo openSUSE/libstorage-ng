@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,8 +20,8 @@
  */
 
 
-#ifndef ARCH_INFO_H
-#define ARCH_INFO_H
+#ifndef ARCH_H
+#define ARCH_H
 
 
 #include "storage/Utils/XmlFile.h"
@@ -30,11 +30,11 @@
 namespace storage
 {
 
-    class ArchInfo
+    class Arch
     {
     public:
 
-	ArchInfo();
+	Arch(bool do_probe = true);
 
 	void readData(const xmlNode* node);
 	void saveData(xmlNode* node) const;
@@ -53,7 +53,7 @@ namespace storage
 
 	bool is_efiboot() const { return efiboot; }
 
-	friend std::ostream& operator<<(std::ostream& s, const ArchInfo& archinfo);
+	friend std::ostream& operator<<(std::ostream& s, const Arch& arch);
 
     private:
 
@@ -65,7 +65,7 @@ namespace storage
     };
 
 
-    std::ostream& operator<<(std::ostream& s, const ArchInfo& archinfo);
+    std::ostream& operator<<(std::ostream& s, const Arch& arch);
 
 }
 

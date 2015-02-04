@@ -324,6 +324,16 @@
       <stderr></stderr>
     </Command>
     <Command>
+      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <stdout></stdout>
+      <stderr></stderr>
+    </Command>
+    <Command>
+      <name>/usr/bin/uname -m</name>
+      <stdout>x86_64</stdout>
+      <stderr></stderr>
+    </Command>
+    <Command>
       <name>/usr/sbin/parted -s '/dev/sda' unit cyl print unit s print</name>
       <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
       <stdout>Disk /dev/sda: 1044cyl</stdout>

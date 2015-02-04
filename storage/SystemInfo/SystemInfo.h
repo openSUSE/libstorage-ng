@@ -26,6 +26,7 @@
 
 #include <boost/noncopyable.hpp>
 
+#include "storage/SystemInfo/Arch.h"
 #include "storage/SystemInfo/ProcParts.h"
 #include "storage/SystemInfo/ProcMounts.h"
 #include "storage/SystemInfo/ProcMdstat.h"
@@ -57,6 +58,7 @@ namespace storage
 	SystemInfo();
 	~SystemInfo();
 
+	const Arch& getArch() { return arch.get(); }
 	const Dir& getDir(const string& path) { return dirs.get(path); }
 	const File& getFile(const string& path) { return files.get(path); }
 	const MdLinks& getMdLinks() { return mdlinks.get(); }
@@ -144,6 +146,7 @@ namespace storage
 
 	};
 
+	LazyObject<Arch> arch;
 	LazyObjects<Dir> dirs;
 	LazyObjects<File> files;
 	LazyObject<MdLinks> mdlinks;

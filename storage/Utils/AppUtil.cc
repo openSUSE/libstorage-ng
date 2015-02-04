@@ -41,7 +41,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/StorageInterface.h"
-#include "storage/ArchInfo.h"
+#include "storage/SystemInfo/Arch.h"
 
 
 namespace storage
@@ -629,9 +629,9 @@ string afterLast(const string& s, const string& pat )
 
 
     void
-    checkBinPaths(const ArchInfo& archinfo, bool instsys)
+    checkBinPaths(const Arch& arch, bool instsys)
     {
-	y2mil("archinfo:" << archinfo << " instsys:" << instsys);
+	y2mil("arch:" << arch << " instsys:" << instsys);
 
 	set<string> paths = {
 #include "gen-pathlist.cc"
@@ -640,7 +640,7 @@ string afterLast(const string& s, const string& pat )
 	paths.erase(PORTMAPBIN);
 	paths.erase(HFORMATBIN);
 
-	if (!archinfo.is_s390())
+	if (!arch.is_s390())
 	{
 	    paths.erase(DASDVIEWBIN);
 	    paths.erase(DASDFMTBIN);

@@ -15,7 +15,7 @@ namespace storage
 {
 
     Storage::Impl::Impl(const Environment& environment)
-	: environment(environment)
+	: environment(environment), arch(false)
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage version " VERSION);
@@ -37,7 +37,7 @@ namespace storage
 	    case ProbeMode::PROBE_NONE: {
 	    } break;
 
-	    case ProbeMode::PROBE_READ_DEVICE_GRAPH: {
+	    case ProbeMode::PROBE_READ_DEVICEGRAPH: {
 		probed->load(environment.get_devicegraph_filename());
 	    } break;
 
@@ -65,6 +65,8 @@ namespace storage
     Storage::Impl::probe(Devicegraph* probed)
     {
 	SystemInfo systeminfo;
+
+	arch = systeminfo.getArch();
 
 	EtcFstab fstab("/etc");
 

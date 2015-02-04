@@ -15,7 +15,6 @@ libstorage_la_SOURCES =					\
 	DevicegraphImpl.h	DevicegraphImpl.cc	\
 	Action.h		Action.cc		\
 	Actiongraph.h		Actiongraph.cc		\
-	ArchInfo.h		ArchInfo.cc		\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\

@@ -14,7 +14,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    Environment environment(true, ProbeMode::PROBE_READ_DEVICE_GRAPH, TargetMode::TARGET_NORMAL);
+    Environment environment(true, ProbeMode::PROBE_READ_DEVICEGRAPH, TargetMode::TARGET_NORMAL);
     environment.set_devicegraph_filename("probe.xml");
 
     Storage storage(environment);

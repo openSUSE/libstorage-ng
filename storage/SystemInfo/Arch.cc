@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,26 +20,30 @@
  */
 
 
-#include <string.h>
-#include <sys/utsname.h>
-
-#include "storage/ArchInfo.h"
+#include "storage/SystemInfo/Arch.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
 {
 
-    ArchInfo::ArchInfo()
+    // probing must be avoided for the Arch object in StorageImpl
+    // TODO overall not nice
+
+    Arch::Arch(bool do_probe)
 	: arch("unknown"), ppc_mac(false), ppc_pegasos(false), efiboot(false)
     {
+	if (do_probe)
+	    probe();
     }
 
 
     void
-    ArchInfo::readData(const xmlNode* node)
+    Arch::readData(const xmlNode* node)
     {
 	getChildValue(node, "arch", arch);
 
@@ -49,7 +53,7 @@ namespace storage
 
 
     void
-    ArchInfo::saveData(xmlNode* node) const
+    Arch::saveData(xmlNode* node) const
     {
 	setChildValue(node, "arch", arch);
 
@@ -58,13 +62,11 @@ namespace storage
 
 
     void
-    ArchInfo::probe()
+    Arch::probe()
     {
-	struct utsname buf;
-	if (uname(&buf) == 0)
-	    arch = buf.machine;
-	else
-	    arch = "unknown";
+	SystemCmd cmd(UNAMEBIN " -m");
+	if (cmd.retcode() == 0 && cmd.stdout().size() == 1)
+	    arch = cmd.stdout().front();
 
 	if (is_ppc())
 	{
@@ -94,7 +96,8 @@ namespace storage
 	}
 	else
 	{
-	    efiboot = checkDir("/sys/firmware/efi/vars");
+	    SystemCmd cmd(TESTBIN " -d '/sys/firmware/efi/vars'");
+	    efiboot = cmd.retcode() != 0;
 	}
 
 	const char* tenv = getenv("LIBSTORAGE_EFI");
@@ -106,53 +109,54 @@ namespace storage
 
 
     bool
-    ArchInfo::is_ia64() const
+    Arch::is_ia64() const
     {
 	return boost::starts_with(arch, "ia64");
     }
 
 
     bool
-    ArchInfo::is_ppc() const
+    Arch::is_ppc() const
     {
 	return boost::starts_with(arch, "ppc");
     }
 
 
     bool
-    ArchInfo::is_ppc64le() const
+    Arch::is_ppc64le() const
     {
 	return boost::starts_with(arch, "ppc64le");
     }
 
 
     bool
-    ArchInfo::is_s390() const
+    Arch::is_s390() const
     {
 	return boost::starts_with(arch, "s390");
     }
 
 
     bool
-    ArchInfo::is_sparc() const
+    Arch::is_sparc() const
     {
 	return boost::starts_with(arch, "sparc");
     }
 
 
     bool
-    ArchInfo::is_x86() const
+    Arch::is_x86() const
     {
 	return arch == "i386" || arch == "i486" || arch == "i586" || arch == "i686" ||
 	    arch == "x86_64";
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ArchInfo& archinfo)
+    std::ostream&
+    operator<<(std::ostream& s, const Arch& arch)
     {
-	return s << "arch:" << archinfo.arch << " ppc_mac:" << archinfo.ppc_mac
-		 << " ppc_pegasos:" << archinfo.ppc_pegasos << " efiboot:"
-		 << archinfo.efiboot;
+	return s << "arch:" << arch.arch << " ppc_mac:" << arch.ppc_mac
+		 << " ppc_pegasos:" << arch.ppc_pegasos << " efiboot:"
+		 << arch.efiboot;
     }
 
 }

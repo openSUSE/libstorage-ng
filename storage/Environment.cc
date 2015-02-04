@@ -59,6 +59,20 @@ namespace storage
 
 
     const string&
+    Environment::get_arch_filename() const
+    {
+	return get_impl().get_arch_filename();
+    }
+
+
+    void
+    Environment::set_arch_filename(const string& arch_filename)
+    {
+	get_impl().set_arch_filename(arch_filename);
+    }
+
+
+    const string&
     Environment::get_mockup_filename() const
     {
 	return get_impl().get_mockup_filename();

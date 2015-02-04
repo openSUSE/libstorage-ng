@@ -13,7 +13,7 @@ namespace storage
 	PROBE_NORMAL,			// probe system during init
 	PROBE_NORMAL_WRITE_MOCKUP,	// probe system during init
 	PROBE_NONE,			// no probing - for testsuite
-	PROBE_READ_DEVICE_GRAPH,	// fake probe - for testsuite
+	PROBE_READ_DEVICEGRAPH,		// fake probe - for testsuite
 	PROBE_READ_MOCKUP		// fake probe - for testsuite
     };
 
@@ -41,6 +41,9 @@ namespace storage
 
 	const std::string& get_devicegraph_filename() const;
 	void set_devicegraph_filename(const std::string& devicegraph_filename);
+
+	const std::string& get_arch_filename() const;
+	void set_arch_filename(const std::string& arch_filename);
 
 	const std::string& get_mockup_filename() const;
 	void set_mockup_filename(const std::string& mockup_filename);

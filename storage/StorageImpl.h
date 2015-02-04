@@ -6,6 +6,7 @@
 
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "storage/SystemInfo/Arch.h"
 
 
 namespace storage
@@ -58,6 +59,8 @@ namespace storage
 	void probe(Devicegraph* probed);
 
 	const Environment environment;
+
+	Arch arch;
 
 	map<string, Devicegraph> devicegraphs;
 

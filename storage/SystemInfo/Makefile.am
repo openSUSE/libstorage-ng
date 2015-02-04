@@ -6,6 +6,7 @@ noinst_LTLIBRARIES = libsysteminfo.la
 
 libsysteminfo_la_SOURCES =				\
 	SystemInfo.cc		SystemInfo.h		\
+	Arch.cc			Arch.h			\
 	CmdBlkid.cc		CmdBlkid.h		\
 	CmdBtrfs.cc		CmdBtrfs.h		\
 	CmdCryptsetup.cc	CmdCryptsetup.h		\

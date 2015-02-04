@@ -27,6 +27,13 @@ namespace storage
 
 
     void
+    Environment::Impl::set_arch_filename(const string& arch_filename)
+    {
+	Impl::arch_filename = arch_filename;
+    }
+
+
+    void
     Environment::Impl::set_mockup_filename(const string& mockup_filename)
     {
 	Impl::mockup_filename = mockup_filename;
@@ -43,7 +50,7 @@ namespace storage
 
 
     const vector<string> EnumInfo<ProbeMode>::names({
-	"NORMAL", "NORMAL_WRITE_MOCKUP", "NONE", "READ_DEVICE_GRAPH", "READ_MOCKUP"
+	"NORMAL", "NORMAL_WRITE_MOCKUP", "NONE", "READ_DEVICEGRAPH", "READ_MOCKUP"
     });
 
 

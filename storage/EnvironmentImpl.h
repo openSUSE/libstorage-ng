@@ -27,6 +27,9 @@ namespace storage
 	const string& get_devicegraph_filename() const { return devicegraph_filename; }
 	void set_devicegraph_filename(const string& devicegraph_filename);
 
+	const string& get_arch_filename() const { return arch_filename; }
+	void set_arch_filename(const string& arch_filename);
+
 	const string& get_mockup_filename() const { return mockup_filename; }
 	void set_mockup_filename(const string& mockup_filename);
 
@@ -38,6 +41,7 @@ namespace storage
 	ProbeMode probe_mode;
 	TargetMode target_mode;
 	string devicegraph_filename;
+	string arch_filename;
 	string mockup_filename;
 
     };

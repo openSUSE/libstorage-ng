@@ -28,6 +28,8 @@
 
 #define SYSCONFIGFILE "/etc/sysconfig/storage"
 
+#define UNAMEBIN "/usr/bin/uname"
+
 #define PARTEDBIN "/usr/sbin/parted"
 #define LABEL_GPT_SYNC_MBR "gpt_sync_mbr"
 #define ADDPARTBIN "/usr/sbin/addpart"
@@ -74,6 +76,7 @@
 
 #define LSBIN "/bin/ls"
 #define STATBIN "/usr/bin/stat"
+#define TESTBIN "/usr/bin/test"
 
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"
