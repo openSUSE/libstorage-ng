@@ -102,7 +102,21 @@ namespace storage
     PtType
     Disk::Impl::get_default_partition_table_type() const
     {
-	return PtType::MSDOS;	// TODO
+	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
+
+	PtType ret = PtType::MSDOS;
+
+	unsigned long long int num_sectors = geometry.kbToSector(get_size_k());
+	y2mil("num_sectors:" << num_sectors);
+
+	if (arch.is_efiboot() || arch.is_ia64())
+	    ret = PtType::GPT;
+	else if (num_sectors > (1ULL << 32) - 1)
+	    ret = PtType::GPT;
+
+	y2mil("ret:" << toString(ret));
+
+	return ret;
     }
 
 
