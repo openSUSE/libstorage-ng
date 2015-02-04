@@ -14,6 +14,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Environment.h"
+#include "storage/SystemInfo/Arch.h"
 
 
 namespace storage_legacy
