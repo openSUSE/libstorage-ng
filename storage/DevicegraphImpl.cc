@@ -411,31 +411,33 @@ namespace storage
 	assert(devicegraph_node);
 
 	const xmlNode* devices_node = getChildNode(devicegraph_node, "Devices");
-	assert(devices_node);
-
-	for (const xmlNode* device_node : getChildNodes(devices_node))
+	if (devices_node)
 	{
-	    const string& class_name = (const char*) device_node->parent->name;
+	    for (const xmlNode* device_node : getChildNodes(devices_node))
+	    {
+		const string& class_name = (const char*) device_node->parent->name;
 
-	    map<string, device_load_fnc>::const_iterator it = device_load_registry.find(class_name);
-	    if (it == device_load_registry.end())
-		throw runtime_error("unknown device class name");
+		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(class_name);
+		if (it == device_load_registry.end())
+		    throw runtime_error("unknown device class name");
 
-	    it->second(devicegraph, device_node);
+		it->second(devicegraph, device_node);
+	    }
 	}
 
 	const xmlNode* holders_node = getChildNode(devicegraph_node, "Holders");
-	assert(holders_node);
-
-	for (const xmlNode* holder_node : getChildNodes(holders_node))
+	if (holders_node)
 	{
-	    const string& class_name = (const char*) holder_node->parent->name;
+	    for (const xmlNode* holder_node : getChildNodes(holders_node))
+	    {
+		const string& class_name = (const char*) holder_node->parent->name;
 
-	    map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(class_name);
-	    if (it == holder_load_registry.end())
-		throw runtime_error("unknown holder class name");
+		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(class_name);
+		if (it == holder_load_registry.end())
+		    throw runtime_error("unknown holder class name");
 
-	    it->second(devicegraph, holder_node);
+		it->second(devicegraph, holder_node);
+	    }
 	}
     }
 
