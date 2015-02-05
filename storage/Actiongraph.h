@@ -68,7 +68,7 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 
 	void print_graph() const;
-	void write_graphviz(const string& filename) const;
+	void write_graphviz(const string& filename, bool details = false) const;
 
 	graph_t graph;
 

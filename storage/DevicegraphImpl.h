@@ -74,7 +74,7 @@ namespace storage
 
 	void print(std::ostream& out) const;
 
-	void write_graphviz(const string& filename) const;
+	void write_graphviz(const string& filename, bool details = false) const;
 
 	size_t num_children(vertex_descriptor vertex) const;
 	size_t num_parents(vertex_descriptor vertex) const;

@@ -25,6 +25,7 @@
 #include "storage/Holders/Using.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -504,15 +505,24 @@ namespace storage
 
     struct write_vertex
     {
-	write_vertex(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
+	write_vertex(const Devicegraph::Impl& devicegraph, bool details)
+	    : devicegraph(devicegraph), details(details) {}
 
 	const Devicegraph::Impl& devicegraph;
+	const bool details;
 
 	void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
 	{
 	    const Device* device = devicegraph.graph[v].get();
 
-	    out << "[ label=\"" << device->get_sid() << " " << device->get_displayname() << "\"";
+	    string label = device->get_displayname();
+
+	    if (details)
+	    {
+		label += " - " + decString(device->get_sid());
+	    }
+
+	    out << "[ label=" << boost::escape_dot_string(label);
 
 	    if (is_disk(device))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
@@ -557,7 +567,7 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::write_graphviz(const string& filename) const
+    Devicegraph::Impl::write_graphviz(const string& filename, bool details) const
     {
 	ofstream fout(filename);
 
@@ -576,7 +586,7 @@ namespace storage
 	// needs of YaST).  Just keep a write_graphviz function here for debugging
 	// and move the thing YaST needs to yast2-storage.
 
-	boost::write_graphviz(fout, graph, write_vertex(*this), write_edge(*this),
+	boost::write_graphviz(fout, graph, write_vertex(*this, details), write_edge(*this),
 			      write_graph(*this), haha.get());
 
 	fout.close();
