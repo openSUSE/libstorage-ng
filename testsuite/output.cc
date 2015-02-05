@@ -25,7 +25,7 @@ public:
     Fixture()
 	: storage(nullptr)
     {
-	storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+	storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
 	storage = new Storage(environment);
 

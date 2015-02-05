@@ -28,7 +28,7 @@ Prefix:         /usr
 
 BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
 BuildRequires:  doxygen
-BuildRequires:  swig
+BuildRequires:  swig >= 3.0.3
 BuildRequires:  python-devel
 BuildRequires:	ruby ruby-devel
 BuildRequires:  perl perl-Test-Unit perl-Test-Exception

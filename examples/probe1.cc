@@ -13,7 +13,7 @@ using namespace storage;
 int
 main()
 {
-    Environment environment(true, ProbeMode::PROBE_NORMAL_WRITE_MOCKUP, TargetMode::TARGET_NORMAL);
+    Environment environment(true, ProbeMode::STANDARD_WRITE_MOCKUP, TargetMode::DIRECT);
     environment.set_mockup_filename("probe1-mockup.xml");
 
     Storage storage(environment);

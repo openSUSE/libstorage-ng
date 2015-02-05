@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "Create ext4 on /dev/sdb1 (7.65 GiB)", { } }
     };
 
-    storage::Environment environment(true, ProbeMode::PROBE_READ_DEVICEGRAPH, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
     environment.set_devicegraph_filename("test1-probed.xml");
 
     Storage storage(environment);

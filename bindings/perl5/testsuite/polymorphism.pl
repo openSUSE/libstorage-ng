@@ -5,13 +5,13 @@ use Test::More tests => 10;
 use Test::Exception;
 use storage;
 
-my $environment = new storage::Environment(1, $storage::PROBE_NONE, $storage::TARGET_NORMAL);
+my $environment = new storage::Environment(1, $storage::ProbeMode_NONE, $storage::TargetMode_DIRECT);
 
 my $storage = new storage::Storage($environment);
 
 my $devicegraph = new storage::Devicegraph($storage);
 my $sda = storage::Disk::create($devicegraph, "/dev/sda");
-my $gpt = $sda->create_partition_table($storage::GPT);
+my $gpt = $sda->create_partition_table($storage::PtType_GPT);
 
 is($sda->get_sid(), 42);
 is($gpt->get_sid(), 43);

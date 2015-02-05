@@ -7,7 +7,7 @@ namespace storage
 {
 
     Environment::Environment(bool read_only)
-	: Environment(read_only, ProbeMode::PROBE_NORMAL, TargetMode::TARGET_NORMAL)
+	: Environment(read_only, ProbeMode::STANDARD, TargetMode::DIRECT)
     {
     }
 

@@ -1,19 +1,19 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Environment, PROBE_NONE, TARGET_NORMAL, Storage, Devicegraph, Disk, GPT, DeviceNotFound, HolderNotFound
+from storage import Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk, PtType_GPT, DeviceNotFound, HolderNotFound
 
 
 class TestSid(unittest.TestCase):
 
     def test_sid(self):
 
-        environment = Environment(True, PROBE_NONE, TARGET_NORMAL)
+        environment = Environment(True, ProbeMode_NONE, TargetMode_DIRECT)
         s = Storage(environment)
 
         devicegraph = Devicegraph(s)
         sda = Disk.create(devicegraph, "/dev/sda")
-        gpt = sda.create_partition_table(GPT)
+        gpt = sda.create_partition_table(PtType_GPT)
 
         self.assertEqual(sda.get_sid(), 42)
         self.assertEqual(gpt.get_sid(), 43)

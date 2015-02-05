@@ -8,12 +8,12 @@ class TestPolymorphism(unittest.TestCase):
 
     def test_polymorphism(self):
 
-      environment = storage.Environment(True, storage.PROBE_NONE, storage.TARGET_NORMAL)
+      environment = storage.Environment(True, storage.ProbeMode_NONE, storage.TargetMode_DIRECT)
       s = storage.Storage(environment)
 
       devicegraph = storage.Devicegraph(s)
       sda = storage.Disk.create(devicegraph, "/dev/sda")
-      gpt = sda.create_partition_table(storage.GPT)
+      gpt = sda.create_partition_table(storage.PtType_GPT)
 
       self.assertEqual(sda.get_sid(), 42)
       self.assertEqual(gpt.get_sid(), 43)

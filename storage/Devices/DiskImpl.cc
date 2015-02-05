@@ -179,7 +179,7 @@ namespace storage
     Disk::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
 	const Environment& environment = actiongraph.get_storage().get_environment();
-	if (environment.get_target_mode() == TargetMode::TARGET_IMAGE)
+	if (environment.get_target_mode() == TargetMode::IMAGE)
 	{
 	    vector<Action::Base*> actions;
 	    actions.push_back(new Action::Create(get_sid()));

@@ -50,7 +50,7 @@ add_partitions(const string& name)
 int
 main()
 {
-    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 

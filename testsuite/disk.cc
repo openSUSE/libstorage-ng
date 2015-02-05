@@ -16,7 +16,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(disk1)
 {
-    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(disk1)
 
 BOOST_AUTO_TEST_CASE(disk2)
 {
-    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_IMAGE);
+    storage::Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
 
     Storage storage(environment);
 

@@ -16,7 +16,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    storage::Environment environment(true, ProbeMode::PROBE_READ_MOCKUP, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
     environment.set_mockup_filename("disk-mockup.xml");
 
     Storage storage(environment);

@@ -10,18 +10,18 @@ namespace storage
 {
 
     enum class ProbeMode {
-	PROBE_NORMAL,			// probe system during init
-	PROBE_NORMAL_WRITE_MOCKUP,	// probe system during init
-	PROBE_NONE,			// no probing - for testsuite
-	PROBE_READ_DEVICEGRAPH,		// fake probe - for testsuite
-	PROBE_READ_MOCKUP		// fake probe - for testsuite
+	STANDARD,		// probe system during init
+	STANDARD_WRITE_MOCKUP,	// probe system during init
+	NONE,			// no probing - for testsuite
+	READ_DEVICEGRAPH,	// fake probe - for testsuite
+	READ_MOCKUP		// fake probe - for testsuite
     };
 
 
     enum class TargetMode {
-	TARGET_NORMAL,		// normal target
-	TARGET_CHROOT,		// the target is chrooted, e.g. inst-sys
-	TARGET_IMAGE		// the target is image based
+	DIRECT,			// direct target
+	CHROOT,			// the target is chrooted, e.g. inst-sys
+	IMAGE			// the target is image based
     };
 
 

@@ -20,7 +20,7 @@ using namespace storage;
 int
 main()
 {
-    storage::Environment environment(true, ProbeMode::PROBE_NONE, TargetMode::TARGET_NORMAL);
+    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 

@@ -8,13 +8,13 @@ class TestTypes < Test::Unit::TestCase
 
   def test_types
 
-    environment = Storage::Environment.new(true, Storage::PROBE_NONE, Storage::TARGET_NORMAL)
+    environment = Storage::Environment.new(true, Storage::ProbeMode_NONE, Storage::TargetMode_DIRECT)
     storage = Storage::Storage.new(environment)
 
     devicegraph = Storage::Devicegraph.new(storage)
 
     sda = Storage::Disk.create(devicegraph, "/dev/sda")
-    gpt = sda.create_partition_table(Storage::GPT)
+    gpt = sda.create_partition_table(Storage::PtType_GPT)
     sda1 = gpt.create_partition("/dev/sda", Storage::PRIMARY)
     ext4 = sda1.create_filesystem(Storage::EXT4)
 
