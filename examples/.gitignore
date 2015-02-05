@@ -1,11 +1,13 @@
 *.gv
 *.xml
+!compare-*.xml
 *.o
 *.png
 .deps
 .libs
 big1
 check1
+compare
 compare1
 compare2
 compare3
