@@ -66,6 +66,8 @@ namespace storage
 
 
     xmlNode* xmlNewNode(const char* name);
+    xmlNode* xmlNewComment(const char* content);
+
     xmlNode* xmlNewChild(xmlNode* node, const char* name);
 
 

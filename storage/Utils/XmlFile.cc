@@ -55,6 +55,13 @@ namespace storage
 
 
     xmlNode*
+    xmlNewComment(const char* content)
+    {
+	return ::xmlNewComment((const xmlChar*) content);
+    }
+
+
+    xmlNode*
     xmlNewChild(xmlNode* node, const char* name)
     {
 	return ::xmlNewChild(node, NULL, (const xmlChar*) name, NULL);
