@@ -122,6 +122,9 @@ namespace storage
 	    if (cur_node->type == XML_ELEMENT_NODE &&
 		strcmp(name, (const char*) cur_node->name) == 0)
 	    {
+		if (!cur_node->children)
+		    return false;
+
 		value = (const char*) cur_node->children->content;
 		return true;
 	    }
