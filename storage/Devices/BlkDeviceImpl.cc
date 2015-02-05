@@ -70,8 +70,8 @@ namespace storage
 
 	setChildValue(node, "name", name);
 
-	setChildValue(node, "sysfs-name", sysfs_name);
-	setChildValue(node, "sysfs-path", sysfs_path);
+	setChildValueIf(node, "sysfs-name", sysfs_name, !sysfs_name.empty());
+	setChildValueIf(node, "sysfs-path", sysfs_path, !sysfs_path.empty());
 
 	setChildValueIf(node, "size-k", size_k, size_k > 0);
 
