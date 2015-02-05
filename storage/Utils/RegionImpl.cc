@@ -20,6 +20,8 @@
  */
 
 
+#include <stdexcept>
+
 #include "storage/Utils/RegionImpl.h"
 
 
@@ -37,7 +39,7 @@ namespace storage
     Region::Impl::intersection(const Impl& rhs) const
     {
 	if (!intersect(rhs))
-	    throw runtime_error("regions do not intersect");
+	    throw std::runtime_error("regions do not intersect");
 
 	unsigned long long s = std::max(rhs.get_start(), get_start());
 	unsigned long long e = std::min(rhs.get_end(), get_end());
