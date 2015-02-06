@@ -13,7 +13,7 @@ namespace storage
     class Region;
 
 
-    enum IdNum {
+    enum IdNum : unsigned int {
 	ID_DOS12 = 0x01, ID_DOS16 = 0x06, ID_DOS32 = 0x0c, ID_NTFS = 0x07,
 	ID_EXTENDED = 0x0f, ID_PPC_PREP = 0x41, ID_LINUX = 0x83, ID_SWAP = 0x82,
 	ID_LVM = 0x8e, ID_RAID = 0xfd, ID_APPLE_OTHER = 0x101, ID_APPLE_HFS = 0x102,
@@ -38,8 +38,8 @@ namespace storage
 	PartitionType get_type() const;
 	void set_type(PartitionType type);
 
-	unsigned get_id() const;
-	void set_id(unsigned id);
+	unsigned int get_id() const;
+	void set_id(unsigned int id);
 
 	bool get_boot() const;
 	void set_boot(bool boot);

@@ -41,8 +41,8 @@ namespace storage
 	PartitionType get_type() const { return type; }
 	void set_type(PartitionType type) { Impl::type = type; }
 
-	unsigned get_id() const { return id; }
-	void set_id(unsigned id) { Impl::id = id; }
+	unsigned int get_id() const { return id; }
+	void set_id(unsigned int id) { Impl::id = id; }
 
 	bool get_boot() const { return boot; }
 	void set_boot(bool boot) { Impl::boot = boot; }
@@ -75,7 +75,7 @@ namespace storage
 
 	Region region;
 	PartitionType type;
-	unsigned id;
+	unsigned int id;
 	bool boot;
 
     };
@@ -96,6 +96,9 @@ namespace storage
 	};
 
     }
+
+
+    string id_to_string(unsigned int id);
 
 }
 

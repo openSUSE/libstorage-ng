@@ -252,7 +252,13 @@ namespace storage
     Text
     Partition::Impl::do_set_id_text(bool doing) const
     {
-	return sformat(_("Set id of partition %1$s to 0x%2$02X"), get_name().c_str(), get_id());
+	string tmp = id_to_string(get_id());
+
+	if (tmp.empty())
+	    return sformat(_("Set id of partition %1$s to 0x%2$02X"), get_name().c_str(), get_id());
+	else
+	    return sformat(_("Set id of partition %1$s to %2$s (0x%3$02X)"), get_name().c_str(),
+			   tmp.c_str(), get_id());
     }
 
 
@@ -319,6 +325,20 @@ namespace storage
 	    partition->get_impl().do_set_id();
 	}
 
+    }
+
+    string
+    id_to_string(unsigned int id)
+    {
+	switch (id)
+	{
+	    case ID_SWAP: return "Linux Swap";
+	    case ID_LINUX: return "Linux";
+	    case ID_LVM: return "Linux LVM";
+	    case ID_RAID: return "Linux RAID";
+	}
+
+	return "";
     }
 
 }

@@ -91,7 +91,7 @@ namespace storage
     }
 
 
-    unsigned
+    unsigned int
     Partition::get_id() const
     {
 	return get_impl().get_id();
@@ -99,7 +99,7 @@ namespace storage
 
 
     void
-    Partition::set_id(unsigned id)
+    Partition::set_id(unsigned int id)
     {
 	get_impl().set_id(id);
     }
