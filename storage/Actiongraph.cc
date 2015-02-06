@@ -284,7 +284,7 @@ namespace storage
 
 	void operator()(ostream& out) const
 	{
-	    out << "node [ style=filled ];" << endl;
+	    out << "node [ shape=rectangle, style=filled ];" << endl;
 	}
     };
 
@@ -305,7 +305,7 @@ namespace storage
 
 	    if (details)
 	    {
-		label += " - " + decString(action->sid);
+		label += "\n" "sid:" + decString(action->sid);
 
 		label += " [";
 		if (action->first)
