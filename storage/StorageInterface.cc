@@ -2382,9 +2382,12 @@ namespace storage_legacy
 	    }
 
 	    bool
-	    error(const std::string& message) const
+	    error(const std::string& message, const string& what) const
 	    {
-		return false;
+		if (commit_error_popup_cb_ycp)
+		    return (*commit_error_popup_cb_ycp)(-1, message, what);
+		else
+		    return false;
 	    }
 	};
 
@@ -2393,7 +2396,14 @@ namespace storage_legacy
 	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
 	storage->get_staging()->save("/var/log/YaST2/yast2-staging.xml");
 
-	storage->commit(&commit_callbacks);
+	try
+	{
+	    storage->commit(&commit_callbacks);
+	}
+	catch (...)
+	{
+	    return -1;
+	}
 
 	return 0;
     }

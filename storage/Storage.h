@@ -24,7 +24,7 @@ namespace storage
 	virtual ~CommitCallbacks() {}
 
 	virtual void message(const std::string& message) const = 0;
-	virtual bool error(const std::string& message) const = 0;
+	virtual bool error(const std::string& message, const std::string& what) const = 0;
 
     };
 
