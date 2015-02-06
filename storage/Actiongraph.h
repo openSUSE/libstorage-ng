@@ -79,10 +79,14 @@ namespace storage
 	typedef map<string, vector<string>> simple_t;
 	simple_t get_simple() const;
 
+	// special actions
+	vertex_iterator mount_root_filesystem;
+
     private:
 
 	void get_actions();
 	void add_dependencies();
+	void set_special_actions();
 	void get_order();
 
 	const Storage& storage;

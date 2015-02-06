@@ -504,6 +504,15 @@ namespace storage
 	}
 
 
+	void
+	AddFstab::add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const
+	{
+	    if (mountpoint == "swap")
+		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
+		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, v);
+	}
+
+
 	Text
 	RemoveFstab::text(const Actiongraph& actiongraph, bool doing) const
 	{

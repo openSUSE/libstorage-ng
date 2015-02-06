@@ -158,6 +158,9 @@ namespace storage
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 	    virtual void commit(const Actiongraph& actiongraph) const override;
 
+	    virtual void add_dependencies(Actiongraph::vertex_descriptor v,
+					  Actiongraph& actiongraph) const override;
+
 	    const string mountpoint;
 
 	};

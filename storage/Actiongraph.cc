@@ -33,6 +33,7 @@ namespace storage
 	rhs->check();
 
 	get_actions();
+	set_special_actions();
 	add_dependencies();
 
 	cout << "action graph" << endl;
@@ -151,6 +152,24 @@ namespace storage
 	    const Device* d_lhs = lhs->get_impl().graph[v_lhs].get();
 
 	    d_lhs->get_impl().add_delete_actions(*this);
+	}
+    }
+
+
+    void
+    Actiongraph::set_special_actions()
+    {
+	boost::iterator_range<vertex_iterator> range = vertices();
+
+	mount_root_filesystem = range.end();
+
+	for (vertex_iterator it = range.begin(); it != range.end(); ++it)
+	{
+	    const Action::Base* action = graph[*it].get();
+
+	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
+	    if (mount && mount->mountpoint == "/")
+		mount_root_filesystem = it;
 	}
     }
 
