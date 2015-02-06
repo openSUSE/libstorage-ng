@@ -145,32 +145,46 @@ namespace storage
     void
     Filesystem::Impl::add_create_actions(Actiongraph& actiongraph) const
     {
+	Action::Base* first = nullptr;
+	Action::Base* last = nullptr;
+
 	Action::Create* format = new Action::Create(get_sid());
-	format->first = true;
-	format->last = false;
 	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
+	first = last = format;
 
 	if (!get_label().empty())
 	{
-	    Actiongraph::vertex_descriptor tmp = actiongraph.add_vertex(new Action::SetLabel(get_sid()));
+	    Action::SetLabel* set_label = new Action::SetLabel(get_sid());
+	    Actiongraph::vertex_descriptor tmp = actiongraph.add_vertex(set_label);
 	    actiongraph.add_edge(v1, tmp);
 	    v1 = tmp;
+
+	    last = set_label;
 	}
 
 	if (!get_mountpoints().empty())
 	{
-	    Actiongraph::vertex_descriptor v2 = actiongraph.add_vertex(new Action::Nop(get_sid(), false, true));
+	    Action::Nop* nop = new Action::Nop(get_sid());
+	    Actiongraph::vertex_descriptor v2 = actiongraph.add_vertex(nop);
+
+	    last = nop;
 
 	    for (const string& mountpoint : get_mountpoints())
 	    {
-		Actiongraph::vertex_descriptor t1 = actiongraph.add_vertex(new Action::Mount(get_sid(), mountpoint));
-		Actiongraph::vertex_descriptor t2 = actiongraph.add_vertex(new Action::AddFstab(get_sid(), mountpoint));
+		Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
+		Actiongraph::vertex_descriptor t1 = actiongraph.add_vertex(mount);
+
+		Action::AddFstab* add_fstab = new Action::AddFstab(get_sid(), mountpoint);
+		Actiongraph::vertex_descriptor t2 = actiongraph.add_vertex(add_fstab);
 
 		actiongraph.add_edge(v1, t1);
 		actiongraph.add_edge(t1, t2);
 		actiongraph.add_edge(t2, v2);
 	    }
 	}
+
+	first->first = true;
+	last->last = true;
     }
 
 

@@ -61,6 +61,7 @@ namespace storage
 	{
 	    Action::Base* action = new Action::Rename(get_sid());
 	    actiongraph.add_vertex(action);
+	    action->first = action->last = true;
 	}
     }
 

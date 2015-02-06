@@ -20,8 +20,8 @@ namespace storage
 	{
 	public:
 
-	    Base(sid_t sid) : sid(sid), first(true), last(true) {}
-	    Base(sid_t sid, bool first, bool last) : sid(sid), first(first), last(last) {}
+	    Base(sid_t sid) : sid(sid), first(false), last(false) {}
+
 	    virtual ~Base() {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const = 0;
@@ -43,7 +43,6 @@ namespace storage
 	public:
 
 	    Nop(sid_t sid) : Base(sid) {}
-	    Nop(sid_t sid, bool first, bool last) : Base(sid, first, last) {}
 
 	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
 
