@@ -3,7 +3,7 @@
 from sys import argv, exit
 from getopt import getopt, GetoptError
 from subprocess import Popen, PIPE
-from storage import Environment, Storage, PROBE_NORMAL, PROBE_NORMAL_WRITE_MOCKUP, TARGET_NORMAL
+from storage import Environment, Storage, ProbeMode_STANDARD, ProbeMode_STANDARD_WRITE_MOCKUP, TargetMode_DIRECT
 from storage import RemoteCallbacks, RemoteCommand, RemoteFile, set_remote_callbacks
 
 
@@ -54,7 +54,7 @@ def doit():
 
     set_remote_callbacks(my_remote_callbacks)
 
-    environment = Environment(True, PROBE_NORMAL_WRITE_MOCKUP if save_mockup else PROBE_NORMAL, TARGET_NORMAL)
+    environment = Environment(True, ProbeMode_STANDARD_WRITE_MOCKUP if save_mockup else ProbeMode_STANDARD, TargetMode_DIRECT)
     if save_mockup:
         environment.set_mockup_filename("remote-probe-mockup.xml");
 
