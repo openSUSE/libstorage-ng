@@ -16,6 +16,11 @@ namespace storage
     class Arch;
     class Devicegraph;
 
+    namespace Action
+    {
+	class Base;
+    }
+
 
     class CommitCallbacks
     {
@@ -25,6 +30,11 @@ namespace storage
 
 	virtual void message(const std::string& message) const = 0;
 	virtual bool error(const std::string& message, const std::string& what) const = 0;
+
+	// TODO to make pre and post generally usable the Action classes must
+	// be included in the public libstorage interface
+	virtual void pre(const Action::Base* action) const {}
+	virtual void post(const Action::Base* action) const {}
 
     };
 

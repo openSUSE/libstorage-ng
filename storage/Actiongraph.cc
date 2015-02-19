@@ -265,23 +265,25 @@ namespace storage
 	    y2mil("Commit Action " << text);
 	    cout << text << endl;
 
-	    if (!commit_callbacks)
+	    if (commit_callbacks)
+	    {
+		commit_callbacks->message(text);
+		commit_callbacks->pre(action);
+	    }
+
+	    try
 	    {
 		action->commit(*this);
 	    }
-	    else
+	    catch (const exception& e)
 	    {
-		commit_callbacks->message(text);
+		if (!commit_callbacks || !commit_callbacks->error(text, e.what()))
+		    throw;
+	    }
 
-		try
-		{
-		    action->commit(*this);
-		}
-		catch (const exception& e)
-		{
-		    if (!commit_callbacks->error(text, e.what()))
-			throw;
-		}
+	    if (commit_callbacks)
+	    {
+		commit_callbacks->post(action);
 	    }
 	}
     }
