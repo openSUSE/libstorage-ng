@@ -2375,14 +2375,14 @@ namespace storage_legacy
 	struct MyCommitCallbacks : public CommitCallbacks
 	{
 	    void
-	    message(const string& message) const
+	    message(const string& message) const override
 	    {
 		if (install_info_cb_ycp)
 		    (*install_info_cb_ycp)(message);
 	    }
 
 	    bool
-	    error(const std::string& message, const string& what) const
+	    error(const std::string& message, const string& what) const override
 	    {
 		if (commit_error_popup_cb_ycp)
 		    return (*commit_error_popup_cb_ycp)(-1, message, what);
