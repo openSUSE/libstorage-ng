@@ -51,7 +51,7 @@ PYTHON_LIBS=$($PYTHON_CONFIG --libs)
 AC_SUBST(PYTHON_INCLUDES)
 AC_SUBST(PYTHON_LIBS)
 
-AC_PATH_PROG(RUBY, ruby)
+AC_PATH_PROG([RUBY], [ruby])
 if test -z "$RUBY" ; then
     AC_MSG_ERROR(ruby is missing; please install ruby)
 fi

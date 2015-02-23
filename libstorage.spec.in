@@ -30,8 +30,14 @@ BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
 BuildRequires:  doxygen
 BuildRequires:  swig >= 3.0.3
 BuildRequires:  python-devel
-BuildRequires:	ruby ruby-devel
+BuildRequires:  ruby ruby-devel
+%if 0%{?fedora}
+BuildRequires:  rubypick rubygem-test-unit
+%endif
 BuildRequires:  perl perl-Test-Unit perl-Test-Exception
+%if 0%{?fedora}
+BuildRequires:  perl-devel
+%endif
 
 Summary:        Library for storage management
 Url:            http://en.opensuse.org/Portal:Libstorage
