@@ -317,6 +317,9 @@ namespace storage_legacy
 	const string& getLastAction() const override;
 	const string& getExtendedErrorMessage() const override;
 
+	void setCommitCallbacks(const CommitCallbacks* commit_callbacks) override
+	    { StorageLegacy::commit_callbacks = commit_callbacks; }
+
 	int commit() override;
 
 	string getErrorString(int error) const override;
@@ -358,6 +361,8 @@ namespace storage_legacy
         CallbackYesNoPopup yesno_popup_cb;
         CallbackCommitErrorPopup commit_error_popup_cb;
         CallbackPasswordPopup password_popup_cb;
+
+	const CommitCallbacks* commit_callbacks;
 
     };
 
