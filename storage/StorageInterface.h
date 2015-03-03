@@ -218,6 +218,27 @@ namespace storage_legacy
     typedef bool (*CallbackPasswordPopup)(const string& device, int attempts, string& password);
 
 
+#if !defined(SWIG) || defined(LIBSTORAGE_SWIG_RUBY_LEGACY)
+
+    /**
+     * Abstract class for some callbacks during commit. Currently only works
+     * for btrfs as root filesystem.
+     */
+    class CommitCallbacks
+    {
+    public:
+
+	virtual ~CommitCallbacks() {}
+
+	virtual void post_root_filesystem_create() const {}
+	virtual void post_root_mount() const {}
+	virtual void post_root_fstab_add() const {}
+
+    };
+
+#endif
+
+
     /**
      * Contains capabilities of a filesystem type.
      */
@@ -2518,6 +2539,15 @@ namespace storage_legacy
 	 * Query the caching mode.
 	 */
 	virtual bool isCacheChanges () const = 0;
+
+#if !defined(SWIG) || defined(LIBSTORAGE_SWIG_RUBY_LEGACY)
+
+        /**
+	 * Set the commit callbacks.
+	 */
+	virtual void setCommitCallbacks(const CommitCallbacks* commit_callbacks) = 0;
+
+#endif
 
 	/**
 	 * Commit the current state to the system.  Only useful in caching
