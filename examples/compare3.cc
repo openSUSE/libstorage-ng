@@ -6,7 +6,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -32,7 +32,7 @@ main()
     Subdevice::create(lhs, lhs_sda, lhs_sda1);
 
     LvmVg* lhs_system_v1 = LvmVg::create(lhs, "/dev/system-v1");
-    Using::create(lhs, lhs_sda1, lhs_system_v1);
+    User::create(lhs, lhs_sda1, lhs_system_v1);
 
     LvmLv* lhs_system_v1_root = LvmLv::create(lhs, "/dev/system-v1/root");
     Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_root);
@@ -41,10 +41,10 @@ main()
     Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_swap);
 
     Ext4* lhs_system_v1_root_fs = Ext4::create(lhs);
-    Using::create(lhs, lhs_system_v1_root, lhs_system_v1_root_fs);
+    User::create(lhs, lhs_system_v1_root, lhs_system_v1_root_fs);
 
     Swap* lhs_system_v1_swap_fs = Swap::create(lhs);
-    Using::create(lhs, lhs_system_v1_swap, lhs_system_v1_swap_fs);
+    User::create(lhs, lhs_system_v1_swap, lhs_system_v1_swap_fs);
 
     Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
@@ -63,14 +63,14 @@ main()
     Subdevice::create(rhs, rhs_system_v2, rhs_system_v2_swap);
 
     Partition* rhs_sda1 = dynamic_cast<Partition*>(rhs->find_device(lhs_sda1->get_sid()));
-    Using::create(rhs, rhs_sda1, rhs_system_v2);
+    User::create(rhs, rhs_sda1, rhs_system_v2);
 
     Ext4* rhs_system_v2_root_fs = Ext4::create(rhs);
     rhs_system_v2_root_fs->set_label("hello");
-    Using::create(rhs, rhs_system_v2_root, rhs_system_v2_root_fs);
+    User::create(rhs, rhs_system_v2_root, rhs_system_v2_root_fs);
 
     Swap* rhs_system_v2_swap_fs = Swap::create(rhs);
-    Using::create(rhs, rhs_system_v2_swap, rhs_system_v2_swap_fs);
+    User::create(rhs, rhs_system_v2_swap, rhs_system_v2_swap_fs);
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

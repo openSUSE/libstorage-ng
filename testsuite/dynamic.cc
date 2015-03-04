@@ -8,7 +8,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
     Subdevice::create(&devicegraph, sda, sda1);
 
     LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
-    Using::create(&devicegraph, sda1, system);
+    User::create(&devicegraph, sda1, system);
 
     LvmLv* root = LvmLv::create(&devicegraph, "/dev/system/root");
     Subdevice::create(&devicegraph, system, root);
@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
     BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph.find_holder(sda->get_sid(), sda1->get_sid())));
 
     BOOST_CHECK(dynamic_cast<const LvmVg*>(devicegraph.find_device(system->get_sid())));
-    BOOST_CHECK(dynamic_cast<const Using*>(devicegraph.find_holder(sda1->get_sid(), system->get_sid())));
+    BOOST_CHECK(dynamic_cast<const User*>(devicegraph.find_holder(sda1->get_sid(), system->get_sid())));
 
     BOOST_CHECK(dynamic_cast<const LvmLv*>(devicegraph.find_device(root->get_sid())));
     BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph.find_holder(system->get_sid(), root->get_sid())));

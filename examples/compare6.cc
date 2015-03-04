@@ -4,7 +4,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/Ext4.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -31,7 +31,7 @@ main()
     Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
 
     Gpt* rhs_gpt = Gpt::create(rhs);
-    Using::create(rhs, rhs_sda, rhs_gpt);
+    User::create(rhs, rhs_sda, rhs_gpt);
 
     Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda1);
@@ -42,11 +42,11 @@ main()
     Ext4* rhs_sda1_fs = Ext4::create(rhs);
     rhs_sda1_fs->add_mountpoint("/");
     rhs_sda1_fs->add_mountpoint("/var/log");
-    Using::create(rhs, rhs_sda1, rhs_sda1_fs);
+    User::create(rhs, rhs_sda1, rhs_sda1_fs);
 
     Ext4* rhs_sda2_fs = Ext4::create(rhs);
     rhs_sda2_fs->add_mountpoint("/var");
-    Using::create(rhs, rhs_sda2, rhs_sda2_fs);
+    User::create(rhs, rhs_sda2, rhs_sda2_fs);
 
     rhs->write_graphviz("compare6-device-rhs.gv");
 

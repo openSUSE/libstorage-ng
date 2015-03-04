@@ -9,7 +9,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     sda1->set_id(ID_LVM);
 
     LvmVg* system = LvmVg::create(rhs, "/dev/system");
-    Using::create(rhs, sda1, system);
+    User::create(rhs, sda1, system);
 
     LvmLv* system_root = LvmLv::create(rhs, "/dev/system/root");
     Subdevice::create(rhs, system, system_root);

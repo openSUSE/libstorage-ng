@@ -12,7 +12,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
     Gpt* gpt = Gpt::create(devicegraph);
-    Using::create(devicegraph, sda, gpt);
+    User::create(devicegraph, sda, gpt);
 
     Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(devicegraph, gpt, sda1);

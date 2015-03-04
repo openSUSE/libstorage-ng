@@ -113,10 +113,10 @@
     </Ext4>
   </Devices>
   <Holders>
-    <Using>
+    <User>
       <source-sid>42</source-sid>
       <target-sid>43</target-sid>
-    </Using>
+    </User>
     <Subdevice>
       <source-sid>43</source-sid>
       <target-sid>44</target-sid>
@@ -125,17 +125,17 @@
       <source-sid>43</source-sid>
       <target-sid>45</target-sid>
     </Subdevice>
-    <Using>
+    <User>
       <source-sid>44</source-sid>
       <target-sid>47</target-sid>
-    </Using>
-    <Using>
+    </User>
+    <User>
       <source-sid>45</source-sid>
       <target-sid>48</target-sid>
-    </Using>
-    <Using>
+    </User>
+    <User>
       <source-sid>46</source-sid>
       <target-sid>49</target-sid>
-    </Using>
+    </User>
   </Holders>
 </Devicegraph>

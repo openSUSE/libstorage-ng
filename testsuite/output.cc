@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(test_devicegraph)
 	"Disk sid:42 displayname:/dev/sda name:/dev/sda size_k:83886080 geometry:[0,32,16,512] transport:SATA --> 43",
 	"Gpt sid:43 displayname:gpt --> 44",
 	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0,4096] -->",
-	"Using source-sid:42 target-sid:43",
+	"User source-sid:42 target-sid:43",
 	"Subdevice source-sid:43 target-sid:44"
     };
 

@@ -4,7 +4,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -43,9 +43,9 @@ main()
     Subdevice::create(rhs, rhs_gpt, rhs_sda3);
 
     LvmVg* rhs_system = LvmVg::create(rhs, "/dev/system");
-    Using::create(rhs, rhs_sda1, rhs_system);
-    Using::create(rhs, rhs_sda2, rhs_system);
-    Using::create(rhs, rhs_sda3, rhs_system);
+    User::create(rhs, rhs_sda1, rhs_system);
+    User::create(rhs, rhs_sda2, rhs_system);
+    User::create(rhs, rhs_sda3, rhs_system);
 
     rhs->write_graphviz("compare4-device-rhs.gv");
 

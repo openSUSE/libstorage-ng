@@ -6,7 +6,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
@@ -30,7 +30,7 @@ make_devicegraph()
     Subdevice::create(&devicegraph, sda, sda2);
 
     LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
-    Using::create(&devicegraph, sda1, system);
+    User::create(&devicegraph, sda1, system);
 
     LvmLv* system_root = LvmLv::create(&devicegraph, "/dev/system/root");
     Subdevice::create(&devicegraph, system, system_root);
@@ -38,7 +38,7 @@ make_devicegraph()
     LvmLv* system_swap = LvmLv::create(&devicegraph, "/dev/system/swap");
     Subdevice::create(&devicegraph, system, system_swap);
 
-    Using::create(&devicegraph, system_swap, sda); // cycle
+    User::create(&devicegraph, system_swap, sda); // cycle
 
     Disk::create(&devicegraph, "/dev/sda"); // duplicate blk device name
 }

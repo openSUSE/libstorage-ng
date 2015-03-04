@@ -12,7 +12,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
@@ -65,8 +65,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Subdevice::create(devicegraph, sdb, sdb2);
 
     LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
-    Using::create(devicegraph, sda1, system);
-    Using::create(devicegraph, sdb1, system);
+    User::create(devicegraph, sda1, system);
+    User::create(devicegraph, sdb1, system);
 
     LvmLv* system_root = LvmLv::create(devicegraph, "/dev/system/root");
     Subdevice::create(devicegraph, system, system_root);

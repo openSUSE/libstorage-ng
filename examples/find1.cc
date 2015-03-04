@@ -8,7 +8,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Ext4.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 
 
@@ -29,7 +29,7 @@ main()
     Partition* sda2 = gpt->create_partition("/dev/sda2", PRIMARY);
 
     LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
-    Using::create(devicegraph, sda2, system);
+    User::create(devicegraph, sda2, system);
 
     LvmLv* system_root = system->create_lvm_lv("/dev/system/root");
 

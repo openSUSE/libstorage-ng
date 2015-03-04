@@ -6,7 +6,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Swap.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -42,13 +42,13 @@ main()
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     Encryption* rhs_cr_sda1 = Encryption::create(rhs, "/dev/mapper/cr_sda1");
-    Using::create(rhs, rhs_sda1, rhs_cr_sda1);
+    User::create(rhs, rhs_sda1, rhs_cr_sda1);
 
     Ext4* rhs_ext4 = Ext4::create(rhs);
-    Using::create(rhs, rhs_cr_sda1, rhs_ext4);
+    User::create(rhs, rhs_cr_sda1, rhs_ext4);
 
     Swap* rhs_swap = Swap::create(rhs);
-    Using::create(rhs, rhs_sda2, rhs_swap);
+    User::create(rhs, rhs_sda2, rhs_swap);
 
     rhs->write_graphviz("compare5-device-rhs.gv");
 

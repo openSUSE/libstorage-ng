@@ -23,7 +23,7 @@
 #include "storage/Devices/Xfs.h"
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/HolderImpl.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -394,7 +394,7 @@ namespace storage
 
 
     const map<string, holder_load_fnc> holder_load_registry = {
-	{ "Using", (holder_load_fnc)(&Using::load) },
+	{ "User", (holder_load_fnc)(&User::load) },
 	{ "Subdevice", (holder_load_fnc)(&Subdevice::load) },
     };
 
@@ -560,9 +560,9 @@ namespace storage
 	{
 	    const Holder* holder = devicegraph.graph[e].get();
 
-	    if (to_subdevice(holder))
+	    if (is_subdevice(holder))
 		out << "[ style=solid ]";
-	    else if (to_using(holder))
+	    else if (is_user(holder))
 		out << "[ style=dotted ]";
 	    else
 		throw logic_error("unknown Holder subclass");

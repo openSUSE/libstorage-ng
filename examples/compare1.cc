@@ -6,7 +6,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -35,7 +35,7 @@ main()
     Subdevice::create(lhs, sda, sda2);
 
     LvmVg* system = LvmVg::create(lhs, "/dev/system");
-    Using::create(lhs, sda2, system);
+    User::create(lhs, sda2, system);
 
     LvmLv* system_oracle = LvmLv::create(lhs, "/dev/system/oracle");
     Subdevice::create(lhs, system, system_oracle);

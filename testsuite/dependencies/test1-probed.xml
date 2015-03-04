@@ -38,17 +38,17 @@
     </Ext4>
   </Devices>
   <Holders>
-    <Using>
+    <User>
       <source-sid>46</source-sid>
       <target-sid>47</target-sid>
-    </Using>
+    </User>
     <Subdevice>
       <source-sid>47</source-sid>
       <target-sid>48</target-sid>
     </Subdevice>
-    <Using>
+    <User>
       <source-sid>48</source-sid>
       <target-sid>49</target-sid>
-    </Using>
+    </User>
   </Holders>
 </Devicegraph>

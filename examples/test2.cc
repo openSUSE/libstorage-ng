@@ -5,7 +5,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 
@@ -22,7 +22,7 @@ partitions()
     Disk* sda = Disk::create(&devicegraph, "/dev/sda");
 
     Gpt* gpt = Gpt::create(&devicegraph);
-    Using::create(&devicegraph, sda, gpt);
+    User::create(&devicegraph, sda, gpt);
 
     Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", PRIMARY);
     Subdevice::create(&devicegraph, gpt, sda1);

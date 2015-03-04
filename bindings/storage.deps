@@ -19,7 +19,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Environment.h		\
 	${top_srcdir}/storage/Holders/Holder.h		\
 	${top_srcdir}/storage/Holders/Subdevice.h	\
-	${top_srcdir}/storage/Holders/Using.h		\
+	${top_srcdir}/storage/Holders/User.h		\
 	${top_srcdir}/storage/Storage.h			\
 	${top_srcdir}/storage/Utils/HumanString.h	\
 	${top_srcdir}/storage/Utils/Region.h		\

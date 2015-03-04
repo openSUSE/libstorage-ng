@@ -5,7 +5,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -32,7 +32,7 @@ main()
     Disk* rhs_sda = dynamic_cast<Disk*>(rhs->find_device(lhs_sda->get_sid()));
 
     Gpt* rhs_gpt = Gpt::create(rhs);
-    Using::create(rhs, rhs_sda, rhs_gpt);
+    User::create(rhs, rhs_sda, rhs_gpt);
 
     Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda1);
@@ -41,8 +41,8 @@ main()
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     LvmVg* rhs_system = LvmVg::create(rhs, "/dev/system");
-    Using::create(rhs, rhs_sda1, rhs_system);
-    Using::create(rhs, rhs_sda2, rhs_system);
+    User::create(rhs, rhs_sda1, rhs_system);
+    User::create(rhs, rhs_sda2, rhs_system);
 
     LvmLv* rhs_system_swap = LvmLv::create(rhs, "/dev/system/swap");
     Subdevice::create(rhs, rhs_system, rhs_system_swap);

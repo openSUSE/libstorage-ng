@@ -74,33 +74,33 @@
     </Xfs>
   </Devices>
   <Holders>
-    <Using>
+    <User>
       <source-sid>42</source-sid>
       <target-sid>43</target-sid>
-    </Using>
+    </User>
     <Subdevice>
       <source-sid>43</source-sid>
       <target-sid>44</target-sid>
     </Subdevice>
-    <Using>
+    <User>
       <source-sid>44</source-sid>
       <target-sid>46</target-sid>
-    </Using>
+    </User>
     <Subdevice>
       <source-sid>43</source-sid>
       <target-sid>47</target-sid>
     </Subdevice>
-    <Using>
+    <User>
       <source-sid>47</source-sid>
       <target-sid>49</target-sid>
-    </Using>
+    </User>
     <Subdevice>
       <source-sid>43</source-sid>
       <target-sid>50</target-sid>
     </Subdevice>
-    <Using>
+    <User>
       <source-sid>50</source-sid>
       <target-sid>52</target-sid>
-    </Using>
+    </User>
   </Holders>
 </Devicegraph>

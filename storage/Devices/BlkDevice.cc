@@ -7,7 +7,7 @@
 #include "storage/Devices/Btrfs.h"
 #include "storage/Devices/Xfs.h"
 #include "storage/Devices/Swap.h"
-#include "storage/Holders/Using.h"
+#include "storage/Holders/User.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Enum.h"
 
@@ -160,7 +160,7 @@ namespace storage
 		throw logic_error("unimplemented filesystem type " + toString(fs_type));
 	}
 
-	Using::create(get_impl().get_devicegraph(), this, ret);
+	User::create(get_impl().get_devicegraph(), this, ret);
 
 	return ret;
     }
