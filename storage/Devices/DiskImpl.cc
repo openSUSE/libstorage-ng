@@ -157,7 +157,7 @@ namespace storage
 
 	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
 
-	return dynamic_cast<PartitionTable*>(child);
+	return to_partition_table(child);
     }
 
 
@@ -171,7 +171,7 @@ namespace storage
 
 	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
 
-	return dynamic_cast<const PartitionTable*>(child);
+	return to_partition_table(child);
     }
 
 

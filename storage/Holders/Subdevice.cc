@@ -51,4 +51,33 @@ namespace storage
 	return dynamic_cast<const Impl&>(Holder::get_impl());
     }
 
+
+    bool
+    is_subdevice(const Holder* holder)
+    {
+	return dynamic_cast<const Subdevice*>(holder);
+    }
+
+
+    Subdevice*
+    to_subdevice(Holder* holder)
+    {
+	Subdevice* subdevice = dynamic_cast<Subdevice*>(holder);
+	if (!subdevice)
+	    throw HolderHasWrongType("holder is not a Subdevice");
+
+	return subdevice;
+    }
+
+
+    const Subdevice*
+    to_subdevice(const Holder* holder)
+    {
+	const Subdevice* subdevice = dynamic_cast<const Subdevice*>(holder);
+	if (!subdevice)
+	    throw HolderHasWrongType("holder is not a Subdevice");
+
+	return subdevice;
+    }
+
 }

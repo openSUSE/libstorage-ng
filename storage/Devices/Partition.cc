@@ -130,10 +130,7 @@ namespace storage
     Partition::find(const Devicegraph* devicegraph, const string& name)
     {
 	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
-	if (to_partition(blkdevice))
-	    return to_partition(blkdevice);
-
-	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
+	return to_partition(blkdevice);
     }
 
 }

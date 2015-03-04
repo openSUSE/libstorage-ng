@@ -73,4 +73,33 @@ namespace storage
 	return get_impl().get_unused_partition_slots(all, logical);
     }
 
+
+    bool
+    is_partition_table(const Device* device)
+    {
+	return dynamic_cast<const PartitionTable*>(device);
+    }
+
+
+    PartitionTable*
+    to_partition_table(Device* device)
+    {
+	PartitionTable* partition_table = dynamic_cast<PartitionTable*>(device);
+	if (!partition_table)
+	    throw DeviceHasWrongType("device is not a PartitionTable");
+
+	return partition_table;
+    }
+
+
+    const PartitionTable*
+    to_partition_table(const Device* device)
+    {
+	const PartitionTable* partition_table = dynamic_cast<const PartitionTable*>(device);
+	if (!partition_table)
+	    throw DeviceHasWrongType("device is not a PartitionTable");
+
+	return partition_table;
+    }
+
 }

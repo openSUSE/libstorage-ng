@@ -16,14 +16,21 @@
 
 %catches(storage::ParseError) storage::humanstring_to_byte(const std::string&, bool);
 
+%catches(storage::DeviceHasWrongType) storage::to_blkdevice(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_blkdevice(const Device*);
+%catches(storage::DeviceHasWrongType) storage::to_disk(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_disk(const Device*);
+%catches(storage::DeviceHasWrongType) storage::to_partition_table(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_partition_table(const Device*);
+
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
 %catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t);
 %catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t) const;
 
-%catches(storage::DeviceNotFound) storage::BlkDevice::find(const Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound) storage::Disk::find(const Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound) storage::Partition::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(const Devicegraph*, const std::string&);
 
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
@@ -97,4 +104,3 @@ using namespace storage;
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
-

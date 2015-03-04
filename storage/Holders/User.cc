@@ -51,4 +51,33 @@ namespace storage
 	return dynamic_cast<const Impl&>(Holder::get_impl());
     }
 
+
+    bool
+    is_user(const Holder* holder)
+    {
+	return dynamic_cast<const User*>(holder);
+    }
+
+
+    User*
+    to_user(Holder* holder)
+    {
+	User* user = dynamic_cast<User*>(holder);
+	if (!user)
+	    throw HolderHasWrongType("holder is not a User");
+
+	return user;
+    }
+
+
+    const User*
+    to_using(const Holder* holder)
+    {
+	const User* user = dynamic_cast<const User*>(holder);
+	if (!user)
+	    throw HolderHasWrongType("holder is not a User");
+
+	return user;
+    }
+
 }

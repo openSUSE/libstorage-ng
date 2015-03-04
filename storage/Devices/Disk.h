@@ -57,25 +57,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_disk(const Device* device)
-    {
-	return dynamic_cast<const Disk*>(device) != nullptr;
-    }
+    bool is_disk(const Device* device);
 
-
-    inline Disk*
-    to_disk(Device* device)
-    {
-	return dynamic_cast<Disk*>(device);
-    }
-
-
-    inline const Disk*
-    to_disk(const Device* device)
-    {
-	return dynamic_cast<const Disk*>(device);
-    }
+    Disk* to_disk(Device* device);
+    const Disk* to_disk(const Device* device);
 
 }
 

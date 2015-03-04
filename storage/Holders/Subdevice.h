@@ -31,25 +31,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_subdevice(const Holder* holder)
-    {
-	return dynamic_cast<const Subdevice*>(holder) != 0;
-    }
+    bool is_subdevice(const Holder* holder);
 
-
-    inline Subdevice*
-    to_subdevice(Holder* device)
-    {
-	return dynamic_cast<Subdevice*>(device);
-    }
-
-
-    inline const Subdevice*
-    to_subdevice(const Holder* device)
-    {
-	return dynamic_cast<const Subdevice*>(device);
-    }
+    Subdevice* to_subdevice(Holder* device);
+    const Subdevice* to_subdevice(const Holder* device);
 
 }
 

@@ -64,10 +64,7 @@ namespace storage
     Disk::find(const Devicegraph* devicegraph, const string& name)
     {
 	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
-	if (to_disk(blkdevice))
-	    return to_disk(blkdevice);
-
-	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
+	return to_disk(blkdevice);
     }
 
 
@@ -121,6 +118,35 @@ namespace storage
     Disk::get_partition_table() const
     {
 	return get_impl().get_partition_table();
+    }
+
+
+    bool
+    is_disk(const Device* device)
+    {
+	return dynamic_cast<const Disk*>(device);
+    }
+
+
+    Disk*
+    to_disk(Device* device)
+    {
+	Disk* disk = dynamic_cast<Disk*>(device);
+	if (!disk)
+	    throw DeviceHasWrongType("device is not a Disk");
+
+	return disk;
+    }
+
+
+    const Disk*
+    to_disk(const Device* device)
+    {
+	const Disk* disk = dynamic_cast<const Disk*>(device);
+	if (!disk)
+	    throw DeviceHasWrongType("device is not a Disk");
+
+	return disk;
     }
 
 

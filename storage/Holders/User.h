@@ -31,25 +31,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_user(const Holder* holder)
-    {
-	return dynamic_cast<const User*>(holder) != 0;
-    }
+    bool is_user(const Holder* holder);
 
-
-    inline User*
-    to_user(Holder* device)
-    {
-	return dynamic_cast<User*>(device);
-    }
-
-
-    inline const User*
-    to_user(const Holder* device)
-    {
-	return dynamic_cast<const User*>(device);
-    }
+    User* to_user(Holder* device);
+    const User* to_user(const Holder* device);
 
 }
 

@@ -50,25 +50,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_partition_table(const Device* device)
-    {
-	return dynamic_cast<const PartitionTable*>(device) != nullptr;
-    }
+    bool is_partition_table(const Device* device);
 
-
-    inline PartitionTable*
-    to_partition_table(Device* device)
-    {
-	return dynamic_cast<PartitionTable*>(device);
-    }
-
-
-    inline const PartitionTable*
-    to_partition_table(const Device* device)
-    {
-	return dynamic_cast<const PartitionTable*>(device);
-    }
+    PartitionTable* to_partition_table(Device* device);
+    const PartitionTable* to_partition_table(const Device* device);
 
 }
 

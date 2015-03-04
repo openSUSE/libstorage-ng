@@ -15,6 +15,12 @@ namespace storage
     class Devicegraph;
 
 
+    struct DeviceHasWrongType : public std::runtime_error
+    {
+	DeviceHasWrongType(const std::string& msg) throw() : runtime_error(msg) {}
+    };
+
+
     // The storage id (sid) is used to identify devices.  The sid is copied
     // when copying the device graph.  When adding a device it gets a unique
     // sid (across all device graphs).  By using the storage id instead of a

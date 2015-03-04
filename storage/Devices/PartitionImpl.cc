@@ -108,7 +108,7 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return dynamic_cast<const PartitionTable*>(get_devicegraph()->get_impl().graph[v].get());
+	return to_partition_table(get_devicegraph()->get_impl().graph[v].get());
     }
 
 
