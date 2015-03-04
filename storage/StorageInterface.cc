@@ -64,12 +64,17 @@ namespace storage_legacy
 
 	info.create = !probed->device_exists(blkdevice->get_sid());
 
+	info.origSizeK = blkdevice->get_size_k(); // TODO
+	info.resize = false;	// TODO
+
 	info.udevPath = blkdevice->get_udev_path();
 	info.udevId = list<string>(blkdevice->get_udev_ids().begin(), blkdevice->get_udev_ids().end());
 
 	if (filesystem)
 	{
 	    info.fs = filesystem->get_type();
+	    info.detected_fs = filesystem->get_type(); // TODO
+
 	    info.format = !probed->device_exists(filesystem->get_sid());
 
 	    info.label = filesystem->get_label();
@@ -540,10 +545,21 @@ namespace storage_legacy
 
 	    info.transport = disk->get_transport();
 
-	    const PartitionTable* partitiontable = disk->get_partition_table();
-	    if (partitiontable)
+	    try
 	    {
-		info.disklabel = partitiontable->get_displayname();
+		const PartitionTable* partitiontable = disk->get_partition_table();
+		if (partitiontable)
+		{
+		    info.disklabel = partitiontable->get_displayname();
+		}
+		else
+		{
+		    info.disklabel = defaultDiskLabel(name);
+		}
+	    }
+	    catch (...)
+	    {
+		info.disklabel = defaultDiskLabel(name);
 	    }
 
 	    y2mil("DISK " << info.sizeK);
@@ -661,14 +677,13 @@ namespace storage_legacy
 
 	plist.clear();
 
-	const BlkDevice* blkdevice = BlkDevice::find(storage->get_staging(), name);
-	const Disk* disk = to_disk(blkdevice);
-
-	if (disk)
+	try
 	{
-	    const PartitionTable* partitiontable = disk->get_partition_table();
-	    if (partitiontable)
+	    const Disk* disk = Disk::find(storage->get_staging(), name);
+
+	    try
 	    {
+		const PartitionTable* partitiontable = disk->get_partition_table();
 		for (const Partition* partition : partitiontable->get_partitions())
 		{
 		    PartitionInfo info;
@@ -689,16 +704,21 @@ namespace storage_legacy
 		    {
 		    }
 
-			fill_VolumeInfo(storage, info.v, partition, filesystem);
+		    fill_VolumeInfo(storage, info.v, partition, filesystem);
 
 		    plist.push_back(info);
 		}
 	    }
+	    catch (...)
+	    {
+	    }
 
 	    return 0;
 	}
-
-	return STORAGE_DISK_NOT_FOUND;
+	catch (...)
+	{
+	    return STORAGE_DISK_NOT_FOUND;
+	}
     }
 
 
@@ -1002,36 +1022,53 @@ namespace storage_legacy
 
 	Devicegraph* staging = storage->get_staging();
 
-	Disk* disk_ptr = Disk::find(staging, disk);			   // TODO
-	PartitionTable* partition_table = disk_ptr->get_partition_table(); // TODO
-
-	list<PartitionSlotInfo> slots = partition_table->get_unused_partition_slots();
-	for (const PartitionSlotInfo& slot : slots)
+	try
 	{
-	    if (type == PRIMARY && !slot.primaryPossible)
-		continue;
+	    Disk* disk_ptr = Disk::find(staging, disk);
 
-	    if (type == EXTENDED && !slot.extendedPossible)
-		continue;
-
-	    if (type == LOGICAL && !slot.logicalPossible)
-		continue;
-
-	    if (region.inside(Region(slot.cylRegion.start, slot.cylRegion.len)))
+	    try
 	    {
-		Partition* partition = partition_table->create_partition(slot.device, type);
-		partition->set_region(region);
-
-		if (type != EXTENDED)
-		    partition->create_filesystem(EXT4);
-
-		device = partition->get_name();
-
-		return 0;
+		disk_ptr->get_partition_table();
 	    }
-	}
+	    catch (...)
+	    {
+		disk_ptr->create_partition_table(disk_ptr->get_default_partition_table_type());
+	    }
 
-	return -1;
+	    PartitionTable* partition_table = disk_ptr->get_partition_table();
+
+	    list<PartitionSlotInfo> slots = partition_table->get_unused_partition_slots();
+	    for (const PartitionSlotInfo& slot : slots)
+	    {
+		if (type == PRIMARY && !slot.primaryPossible)
+		    continue;
+
+		if (type == EXTENDED && !slot.extendedPossible)
+		    continue;
+
+		if (type == LOGICAL && !slot.logicalPossible)
+		    continue;
+
+		if (region.inside(Region(slot.cylRegion.start, slot.cylRegion.len)))
+		{
+		    Partition* partition = partition_table->create_partition(slot.device, type);
+		    partition->set_region(region);
+
+		    if (type != EXTENDED)
+			partition->create_filesystem(EXT4);
+
+		    device = partition->get_name();
+
+		    return 0;
+		}
+	    }
+
+	    return -1;
+	}
+	catch (...)
+	{
+	    return STORAGE_DISK_NOT_FOUND;
+	}
     }
 
 
