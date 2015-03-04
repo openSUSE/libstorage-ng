@@ -50,14 +50,19 @@ namespace storage_legacy
 
 
     static void
-    fill_VolumeInfo(VolumeInfo& info, const BlkDevice* blkdevice, const Filesystem* filesystem)
+    fill_VolumeInfo(const Storage* storage, VolumeInfo& info, const BlkDevice* blkdevice,
+		    const Filesystem* filesystem)
     {
+	assert(storage);
+
+	const Devicegraph* probed = storage->get_probed();
+	assert(probed);
+
 	info.name = blkdevice->get_name().substr(5);
 	info.device = blkdevice->get_name();
 	info.sizeK = blkdevice->get_size_k();
 
-	info.format = false;
-	info.create = false;
+	info.create = !probed->device_exists(blkdevice->get_sid());
 
 	info.udevPath = blkdevice->get_udev_path();
 	info.udevId = list<string>(blkdevice->get_udev_ids().begin(), blkdevice->get_udev_ids().end());
@@ -65,6 +70,8 @@ namespace storage_legacy
 	if (filesystem)
 	{
 	    info.fs = filesystem->get_type();
+	    info.format = !probed->device_exists(filesystem->get_sid());
+
 	    info.label = filesystem->get_label();
 	    info.uuid = filesystem->get_uuid();
 
@@ -77,6 +84,10 @@ namespace storage_legacy
 		info.fstab_options = boost::join(filesystem->get_fstab_options(), ",");
 	    else
 		info.fstab_options = "defaults";
+	}
+	else
+	{
+	    info.format = false;
 	}
     }
 
@@ -632,7 +643,7 @@ namespace storage_legacy
 	    {
 	    }
 
-	    fill_VolumeInfo(info, blkdevice, filesystem);
+	    fill_VolumeInfo(storage, info, blkdevice, filesystem);
 
 	    return 0;
 	}
@@ -678,7 +689,7 @@ namespace storage_legacy
 		    {
 		    }
 
-		    fill_VolumeInfo(info.v, partition, filesystem);
+			fill_VolumeInfo(storage, info.v, partition, filesystem);
 
 		    plist.push_back(info);
 		}
@@ -1027,7 +1038,7 @@ namespace storage_legacy
     int
     StorageLegacy::resizePartition(const string& device, unsigned long sizeCyl)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -1036,7 +1047,7 @@ namespace storage_legacy
     int
     StorageLegacy::resizePartitionNoFs(const string& device, unsigned long sizeCyl)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -1136,20 +1147,19 @@ namespace storage_legacy
 	{
 	    Partition* partition = Partition::find(staging, device);
 	    partition->set_id(id);
+	    return 0;
 	}
 	catch (...)
 	{
 	    return DISK_PARTITION_NOT_FOUND;
 	}
-
-	return 0;
     }
 
 
     int
-    StorageLegacy::forgetChangePartitionId(const string& partition)
+    StorageLegacy::forgetChangePartitionId(const string& device)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -1556,7 +1566,7 @@ namespace storage_legacy
     int
     StorageLegacy::resizeVolume(const string& device, unsigned long long newSizeK)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -1565,7 +1575,7 @@ namespace storage_legacy
     int
     StorageLegacy::resizeVolumeNoFs(const string& device, unsigned long long newSizeK)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -1574,7 +1584,7 @@ namespace storage_legacy
     int
     StorageLegacy::forgetResizeVolume(const string& device)
     {
-	y2mil("legacy " << __FUNCTION__);
+	y2mil("legacy " << __FUNCTION__ << " device:" << device);
 
 	return -1;
     }
@@ -2377,7 +2387,7 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__);
 
-	struct MyCommitCallbacks : public CommitCallbacks
+	struct MyCommitCallbacks : public storage::CommitCallbacks
 	{
 	    void
 	    message(const string& message) const override
