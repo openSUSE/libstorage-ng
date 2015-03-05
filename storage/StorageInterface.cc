@@ -1319,13 +1319,13 @@ namespace storage_legacy
 	    {
 		return VOLUME_FORMAT_UNKNOWN_FS;
 	    }
+
+	    return 0;
 	}
 	catch (...)
 	{
 	    return STORAGE_VOLUME_NOT_FOUND;
 	}
-
-	return 0;
     }
 
 
