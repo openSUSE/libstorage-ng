@@ -44,6 +44,7 @@ namespace storage
 	bool get_enlarge() const { return enlarge; }
 	void set_enlarge(bool enlarge) { Impl::enlarge = enlarge; }
 
+	virtual Text do_create_text(bool doing) const override;
 	virtual void do_create() const override;
 
     private:

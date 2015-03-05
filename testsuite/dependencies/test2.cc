@@ -24,7 +24,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     // TODO
     Actiongraph::simple_t expected = {
-	{ "Create gpt on /dev/sda", { "Create partition /dev/sda1 (16.00 GiB)" } },
+	{ "Create GPT on /dev/sda", { "Create partition /dev/sda1 (16.00 GiB)" } },
 	{ "Create partition /dev/sda1 (16.00 GiB)", { "Set id of partition /dev/sda1 to Linux LVM (0x8E)" } },
 	{ "Set id of partition /dev/sda1 to Linux LVM (0x8E)", { "Create volume group /dev/system" } },
 	{ "Create volume group /dev/system", { "Create logical volume /dev/system/root (14.00 GiB)", "Create logical volume /dev/system/swap (2.00 GiB)" } },

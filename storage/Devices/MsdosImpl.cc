@@ -93,6 +93,15 @@ namespace storage
     }
 
 
+    Text
+    Msdos::Impl::do_create_text(bool doing) const
+    {
+	const Disk* disk = get_disk();
+
+	return sformat(_("Create MSDOS partition table on %1$s"), disk->get_displayname().c_str());
+    }
+
+
     void
     Msdos::Impl::do_create() const
     {

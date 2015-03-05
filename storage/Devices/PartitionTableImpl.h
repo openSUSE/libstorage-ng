@@ -56,8 +56,6 @@ namespace storage
 
 	list<PartitionSlotInfo> get_unused_partition_slots(bool all = true, bool logical = true) const;
 
-	virtual Text do_create_text(bool doing) const override;
-
     protected:
 
 	Impl()

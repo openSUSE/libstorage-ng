@@ -106,6 +106,15 @@ namespace storage
     }
 
 
+    Text
+    Gpt::Impl::do_create_text(bool doing) const
+    {
+	const Disk* disk = get_disk();
+
+	return sformat(_("Create GPT on %1$s"), disk->get_displayname().c_str());
+    }
+
+
     void
     Gpt::Impl::do_create() const
     {
