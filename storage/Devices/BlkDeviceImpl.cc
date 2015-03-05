@@ -172,7 +172,7 @@ namespace storage
 
 	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
 
-	return dynamic_cast<Filesystem*>(child);
+	return to_filesystem(child);
     }
 
 
@@ -186,7 +186,7 @@ namespace storage
 
 	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
 
-	return dynamic_cast<const Filesystem*>(child);
+	return to_filesystem(child);
     }
 
 

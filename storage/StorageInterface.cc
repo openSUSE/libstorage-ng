@@ -529,11 +529,10 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << name);
 
-	const BlkDevice* blkdevice = BlkDevice::find(storage->get_staging(), name);
-	const Disk* disk = to_disk(blkdevice);
-
-	if (disk)
+	try
 	{
+	    const Disk* disk = Disk::find(storage->get_staging(), name);
+
 	    info.sizeK = disk->get_size_k();
 
 	    info.cylSize = disk->get_impl().get_geometry().cylinderSize();
@@ -565,8 +564,10 @@ namespace storage_legacy
 	    y2mil("DISK " << info.sizeK);
 	    return 0;
 	}
-
-	return STORAGE_DISK_NOT_FOUND;
+	catch (...)
+	{
+	    return STORAGE_DISK_NOT_FOUND;
+	}
     }
 
 
@@ -1297,29 +1298,31 @@ namespace storage_legacy
 
 	Devicegraph* staging = storage->get_staging();
 
-	BlkDevice* blkdevice = BlkDevice::find(staging, device);
-	if (!blkdevice)
-	    return STORAGE_VOLUME_NOT_FOUND;
-
 	try
 	{
-	    Filesystem* filesystem = blkdevice->get_filesystem();
-	    if (filesystem)
+	    BlkDevice* blkdevice = BlkDevice::find(staging, device);
+
+	    try
 	    {
+		Filesystem* filesystem = blkdevice->get_filesystem();
 		staging->remove_device(filesystem);
+	    }
+	    catch (...)
+	    {
+	    }
+
+	    try
+	    {
+		blkdevice->create_filesystem(fs);
+	    }
+	    catch (...)
+	    {
+		return VOLUME_FORMAT_UNKNOWN_FS;
 	    }
 	}
 	catch (...)
 	{
-	}
-
-	try
-	{
-	    blkdevice->create_filesystem(fs);
-	}
-	catch (...)
-	{
-	    return VOLUME_FORMAT_UNKNOWN_FS;
+	    return STORAGE_VOLUME_NOT_FOUND;
 	}
 
 	return 0;

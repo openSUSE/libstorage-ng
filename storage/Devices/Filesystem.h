@@ -72,25 +72,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_filesystem(const Device* device)
-    {
-	return dynamic_cast<const Filesystem*>(device) != nullptr;
-    }
+    bool is_filesystem(const Device* device);
 
-
-    inline Filesystem*
-    to_filesystem(Device* device)
-    {
-	return dynamic_cast<Filesystem*>(device);
-    }
-
-
-    inline const Filesystem*
-    to_filesystem(const Device* device)
-    {
-	return dynamic_cast<const Filesystem*>(device);
-    }
+    Filesystem* to_filesystem(Device* device);
+    const Filesystem* to_filesystem(const Device* device);
 
 }
 

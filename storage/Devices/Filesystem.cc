@@ -165,4 +165,33 @@ namespace storage
 	return get_impl().get_blkdevices();
     }
 
+
+    bool
+    is_filesystem(const Device* device)
+    {
+	return dynamic_cast<const Filesystem*>(device);
+    }
+
+
+    Filesystem*
+    to_filesystem(Device* device)
+    {
+	Filesystem* filesystem = dynamic_cast<Filesystem*>(device);
+	if (!filesystem)
+	    throw DeviceHasWrongType("device is not a Filesystem");
+
+	return filesystem;
+    }
+
+
+    const Filesystem*
+    to_filesystem(const Device* device)
+    {
+	const Filesystem* filesystem = dynamic_cast<const Filesystem*>(device);
+	if (!filesystem)
+	    throw DeviceHasWrongType("device is not a Filesystem");
+
+	return filesystem;
+    }
+
 }
