@@ -117,16 +117,16 @@ namespace storage
 	const set<sid_t> rhs_sids = rhs->get_impl().get_device_sids();
 
 	vector<sid_t> created_sids;
-	back_insert_iterator<vector<sid_t>> bii1(created_sids);
-	set_difference(rhs_sids.begin(), rhs_sids.end(), lhs_sids.begin(), lhs_sids.end(), bii1);
+	set_difference(rhs_sids.begin(), rhs_sids.end(), lhs_sids.begin(), lhs_sids.end(),
+		       back_inserter(created_sids));
 
 	vector<sid_t> common_sids;
-	back_insert_iterator<vector<sid_t>> bii2(common_sids);
-	set_intersection(lhs_sids.begin(), lhs_sids.end(), rhs_sids.begin(), rhs_sids.end(), bii2);
+	set_intersection(lhs_sids.begin(), lhs_sids.end(), rhs_sids.begin(), rhs_sids.end(),
+			 back_inserter(common_sids));
 
 	vector<sid_t> deleted_sids;
-	back_insert_iterator<vector<sid_t>> bii3(deleted_sids);
-	set_difference(lhs_sids.begin(), lhs_sids.end(), rhs_sids.begin(), rhs_sids.end(), bii3);
+	set_difference(lhs_sids.begin(), lhs_sids.end(), rhs_sids.begin(), rhs_sids.end(),
+		       back_inserter(deleted_sids));
 
 	for (sid_t sid : created_sids)
 	{
