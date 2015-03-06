@@ -1,5 +1,6 @@
 
 
+#include <boost/algorithm/string.hpp>
 #include <boost/graph/copy.hpp>
 #include <boost/graph/topological_sort.hpp>
 #include <boost/graph/transitive_reduction.hpp>
@@ -289,6 +290,13 @@ namespace storage
     }
 
 
+    Text
+    Actiongraph::get_action_text(vertex_descriptor v, bool doing) const
+    {
+	return graph[v]->text(*this, doing);
+    }
+
+
     void
     Actiongraph::print_graph() const
     {
@@ -383,46 +391,136 @@ namespace storage
     }
 
 
-    Actiongraph::simple_t
-    Actiongraph::get_simple() const
+    Cmp::Cmp(const Actiongraph& actiongraph, const expected_t& expected)
     {
-	simple_t ret;
+	for (const string& line : expected)
+	    entries.push_back(Entry(line));
 
-	for (vertex_descriptor v : vertices())
-	{
-	    string key = graph[v]->text(*this, false).native;
+	check();
 
-	    vector<string> value;
+	cmp_texts(actiongraph);
 
-	    for (edge_descriptor e : boost::make_iterator_range(out_edges(v, graph)))
-		value.push_back(graph[target(e, graph)]->text(*this, false).native);
+	if (!ok())
+	    return;
 
-	    sort(value.begin(), value.end());
-
-	    ret[key] = value;
-	}
-
-	return ret;
+	cmp_dependencies(actiongraph);
     }
 
-}
 
-
-namespace std
-{
-
-    ostream&
-    operator<<(ostream& s, const storage::Actiongraph::simple_t& simple)
+    Cmp::Entry::Entry(const string& line)
     {
-	for (const pair<const string, vector<string>>& i : simple)
+	string::size_type pos1 = line.find('-');
+	if (pos1 == string::npos)
+	    throw runtime_error("parse error");
+
+	string::size_type pos2 = line.rfind("->");
+	if (pos2 == string::npos)
+	    throw runtime_error("parse error");
+
+	id = boost::trim_copy(line.substr(0, pos1), locale::classic());
+	text = boost::trim_copy(line.substr(pos1 + 1, pos2 - pos1 - 1), locale::classic());
+
+	string tmp = boost::trim_copy(line.substr(pos2 + 2), locale::classic());
+	if (!tmp.empty())
+	    boost::split(dep_ids, tmp, boost::is_any_of(" "), boost::token_compress_on);
+    }
+
+
+    void
+    Cmp::check() const
+    {
+	set<string> ids;
+	set<string> texts;
+
+	for (const Entry& entry : entries)
 	{
-	    s << "{ \"" << i.first << "\", { ";
-	    for (const string& j : i.second)
-		s << "\"" << j << "\", ";
-	    s << "}," << endl;
+	    if (!ids.insert(entry.id).second)
+		throw runtime_error("duplicate id");
+
+	    if (!texts.insert(entry.text).second)
+		throw runtime_error("duplicate text");
 	}
 
-	return s;
+	for (const Entry& entry : entries)
+	{
+	    for (const string dep_id : entry.dep_ids)
+	    {
+		if (ids.find(dep_id) == ids.end())
+		    throw runtime_error("unknown dependency-id");
+	    }
+	}
+    }
+
+
+    void
+    Cmp::cmp_texts(const Actiongraph& actiongraph)
+    {
+	set<string> tmp1;
+	for (Actiongraph::vertex_descriptor v : actiongraph.vertices())
+	    tmp1.insert(actiongraph.get_action_text(v, false).native);
+
+	set<string> tmp2;
+	for (const Entry& entry : entries)
+	    tmp2.insert(entry.text);
+
+	if (tmp1 != tmp2)
+	{
+	    errors.push_back("action texts differ");
+
+	    vector<string> diff1;
+	    set_difference(tmp2.begin(), tmp2.end(), tmp1.begin(), tmp1.end(), back_inserter(diff1));
+	    for (const string& error : diff1)
+		errors.push_back("- " + error);
+
+	    vector<string> diff2;
+	    set_difference(tmp1.begin(), tmp1.end(), tmp2.begin(), tmp2.end(), back_inserter(diff2));
+	    for (const string& error : diff2)
+		errors.push_back("+ " + error);
+	}
+    }
+
+
+    void
+    Cmp::cmp_dependencies(const Actiongraph& actiongraph)
+    {
+	map<string, string> text_to_id;
+	for (const Entry& entry : entries)
+	    text_to_id[entry.text] = entry.id;
+
+	map<string, Actiongraph::vertex_descriptor> text_to_v;
+	for (Actiongraph::vertex_descriptor v : actiongraph.vertices())
+	    text_to_v[actiongraph.get_action_text(v, false).native] = v;
+
+	for (const Entry& entry : entries)
+	{
+	    Actiongraph::vertex_descriptor v = text_to_v[entry.text];
+
+	    set<string> tmp;
+	    for (Actiongraph::edge_descriptor e : boost::make_iterator_range(out_edges(v, actiongraph.graph)))
+	    {
+		string text = actiongraph.get_action_text(target(e, actiongraph.graph), false).native;
+		tmp.insert(text_to_id[text]);
+	    }
+
+	    if (tmp != entry.dep_ids)
+	    {
+		errors.push_back("wrong dependencies for '" + entry.text + "'");
+		errors.push_back("- " + boost::join(tmp, " "));
+		errors.push_back("+ " + boost::join(entry.dep_ids, " "));
+	    }
+	}
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& out, const Cmp& cmp)
+    {
+	out << endl;
+
+	for (const string& error : cmp.errors)
+	    out << error << endl;
+
+	return out;
     }
 
 }

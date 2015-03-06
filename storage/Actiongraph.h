@@ -5,11 +5,13 @@
 #include <list>
 #include <map>
 #include <deque>
+#include <set>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
 #include "storage/Devices/Device.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -19,6 +21,7 @@ namespace storage
     using std::list;
     using std::map;
     using std::deque;
+    using std::set;
 
 
     class Storage;
@@ -67,6 +70,8 @@ namespace storage
 
 	boost::iterator_range<vertex_iterator> vertices() const;
 
+	Text get_action_text(vertex_descriptor v, bool doing) const;
+
 	void print_graph() const;
 	void write_graphviz(const string& filename, bool details = false) const;
 
@@ -74,10 +79,6 @@ namespace storage
 
 	list<string> get_commit_steps() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
-
-	// TODO simple_t is useful for comparing in testsuite, move there?
-	typedef map<string, vector<string>> simple_t;
-	simple_t get_simple() const;
 
 	// special actions
 	vertex_iterator mount_root_filesystem;
@@ -100,15 +101,41 @@ namespace storage
 
     };
 
+
+    class Cmp			// TODO rename, maybe move to testsuite
+    {
+    public:
+
+	typedef vector<string> expected_t;
+
+	Cmp(const Actiongraph& actiongraph, const expected_t& expected);
+
+	bool ok() const { return errors.empty(); }
+
+	friend std::ostream& operator<<(std::ostream& out, const Cmp& cmp);
+
+    private:
+
+	struct Entry
+	{
+	    Entry(const string& line);
+
+	    string id;
+	    string text;
+	    set<string> dep_ids;
+	};
+
+	vector<Entry> entries;
+
+	void check() const;
+
+	void cmp_texts(const Actiongraph& actiongraph);
+	void cmp_dependencies(const Actiongraph& actiongraph);
+
+	vector<string> errors;
+
+    };
+
 }
-
-
-namespace std
-{
-
-    ostream& operator<<(ostream& s, const storage::Actiongraph::simple_t& simple);
-
-}
-
 
 #endif

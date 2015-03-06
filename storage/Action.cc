@@ -15,7 +15,7 @@ namespace storage
 	Text
 	Nop::text(const Actiongraph& actiongraph, bool doing) const
 	{
-	    return _("Nop");
+	    return sformat(_("Nop [sid:%1$d]"), sid);
 	}
 
 

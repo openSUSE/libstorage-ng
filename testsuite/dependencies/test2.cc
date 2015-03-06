@@ -22,14 +22,13 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    // TODO
-    Actiongraph::simple_t expected = {
-	{ "Create GPT on /dev/sda", { "Create partition /dev/sda1 (16.00 GiB)" } },
-	{ "Create partition /dev/sda1 (16.00 GiB)", { "Set id of partition /dev/sda1 to Linux LVM (0x8E)" } },
-	{ "Set id of partition /dev/sda1 to Linux LVM (0x8E)", { "Create volume group /dev/system" } },
-	{ "Create volume group /dev/system", { "Create logical volume /dev/system/root (14.00 GiB)", "Create logical volume /dev/system/swap (2.00 GiB)" } },
-	{ "Create logical volume /dev/system/root (14.00 GiB)", { } },
-	{ "Create logical volume /dev/system/swap (2.00 GiB)", { } }
+    Cmp::expected_t expected = {
+	{ "1 - Create GPT on /dev/sda -> 2a" },
+	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
+	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
+	{ "3 - Create volume group /dev/system -> 4 5" },
+	{ "4 - Create logical volume /dev/system/root (14.00 GiB) ->" },
+	{ "5 - Create logical volume /dev/system/swap (2.00 GiB) ->" }
     };
 
     storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -64,5 +63,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Actiongraph actiongraph(storage, lhs, rhs);
 
-    BOOST_CHECK_EQUAL(actiongraph.get_simple(), expected);
+    Cmp cmp(actiongraph, expected);
+    BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

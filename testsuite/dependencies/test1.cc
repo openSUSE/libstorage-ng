@@ -4,13 +4,6 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Devices/Disk.h"
-#include "storage/Devices/PartitionTable.h"
-#include "storage/Devices/Partition.h"
-#include "storage/Devices/LvmVg.h"
-#include "storage/Devices/LvmLv.h"
-#include "storage/Holders/User.h"
-#include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
@@ -22,9 +15,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    // TODO
-    Actiongraph::simple_t expected = {
-	{ "Create ext4 on /dev/sdb1 (7.65 GiB)", { } }
+    Cmp::expected_t expected = {
+	{ "1 - Create ext4 on /dev/sdb1 (7.65 GiB) ->" }
     };
 
     storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
@@ -36,5 +28,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
 
-    BOOST_CHECK_EQUAL(actiongraph.get_simple(), expected);
+    Cmp cmp(actiongraph, expected);
+    BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }
