@@ -348,7 +348,7 @@ namespace storage
 
 	    if (details)
 	    {
-		label += "\n" "sid:" + decString(action->sid);
+		label += "\\n" "sid:" + decString(action->sid);
 
 		label += " [";
 		if (action->first)
