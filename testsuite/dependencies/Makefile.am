@@ -4,7 +4,8 @@
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
-LDADD = ../../storage/libstorage.la -lboost_unit_test_framework
+LDADD = ../../storage/libstorage.la ../helpers/libhelpers.la			\
+	-lboost_unit_test_framework
 
 check_PROGRAMS =								\
 	test1.test test2.test test3.test

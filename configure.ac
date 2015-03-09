@@ -100,6 +100,7 @@ AC_OUTPUT(
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile
+	testsuite/helpers/Makefile
 	testsuite/Utils/Makefile
 	testsuite/SystemInfo/Makefile
 	testsuite/probe/Makefile

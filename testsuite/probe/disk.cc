@@ -9,6 +9,8 @@
 #include "storage/Storage.h"
 #include "storage/DevicegraphImpl.h"
 
+#include "testsuite/helpers/TsCmp.h"
+
 
 using namespace std;
 using namespace storage;
@@ -30,10 +32,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
     staging->load("disk-devicegraph.xml");
     staging->check();
 
-    bool equal = *probed == *staging;
-
-    BOOST_CHECK_MESSAGE(equal, "not equal");
-
-    if (!equal)
-	probed->get_impl().log_diff(cout, staging->get_impl());
+    TsCmpDevicegraph cmp(*probed, *staging);
+    BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

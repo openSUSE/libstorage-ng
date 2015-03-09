@@ -11,6 +11,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "testsuite/helpers/TsCmp.h"
 
 
 using namespace storage;
@@ -18,7 +19,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    Cmp::expected_t expected;
+    TsCmpActiongraph::expected_t expected;
 
     std::ifstream fin("test3-expected.txt");
     string line;
@@ -42,6 +43,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	system("dot -Tpng < test3.gv > test3.png");
     }
 
-    Cmp cmp(actiongraph, expected);
+    TsCmpActiongraph cmp(actiongraph, expected);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

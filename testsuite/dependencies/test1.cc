@@ -8,6 +8,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "testsuite/helpers/TsCmp.h"
 
 
 using namespace storage;
@@ -15,7 +16,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    Cmp::expected_t expected = {
+    TsCmpActiongraph::expected_t expected = {
 	{ "1 - Create ext4 on /dev/sdb1 (7.65 GiB) ->" }
     };
 
@@ -28,6 +29,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
 
-    Cmp cmp(actiongraph, expected);
+    TsCmpActiongraph cmp(actiongraph, expected);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

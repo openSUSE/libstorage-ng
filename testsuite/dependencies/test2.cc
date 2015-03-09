@@ -15,6 +15,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
+#include "testsuite/helpers/TsCmp.h"
 
 
 using namespace storage;
@@ -22,7 +23,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    Cmp::expected_t expected = {
+    TsCmpActiongraph::expected_t expected = {
 	{ "1 - Create GPT on /dev/sda -> 2a" },
 	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
 	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
@@ -63,6 +64,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Actiongraph actiongraph(storage, lhs, rhs);
 
-    Cmp cmp(actiongraph, expected);
+    TsCmpActiongraph cmp(actiongraph, expected);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

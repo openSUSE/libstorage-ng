@@ -101,41 +101,6 @@ namespace storage
 
     };
 
-
-    class Cmp			// TODO rename, maybe move to testsuite
-    {
-    public:
-
-	typedef vector<string> expected_t;
-
-	Cmp(const Actiongraph& actiongraph, const expected_t& expected);
-
-	bool ok() const { return errors.empty(); }
-
-	friend std::ostream& operator<<(std::ostream& out, const Cmp& cmp);
-
-    private:
-
-	struct Entry
-	{
-	    Entry(const string& line);
-
-	    string id;
-	    string text;
-	    set<string> dep_ids;
-	};
-
-	vector<Entry> entries;
-
-	void check() const;
-
-	void cmp_texts(const Actiongraph& actiongraph);
-	void cmp_dependencies(const Actiongraph& actiongraph);
-
-	vector<string> errors;
-
-    };
-
 }
 
 #endif
