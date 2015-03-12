@@ -31,9 +31,8 @@ disk = Disk.find(staging, "/dev/sdb")
 
 partition_table = disk.get_partition_table()
 
-partition = partition_table.create_partition("/dev/sdb1")
+partition = partition_table.create_partition("/dev/sdb1", PRIMARY)
 
-partition.set_type(PRIMARY)
 partition.set_id(0x83)
 partition.set_region(Region(0, 1000))
 
