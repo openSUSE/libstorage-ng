@@ -523,7 +523,7 @@ namespace storage
 
 	    if (details)
 	    {
-		label += "\\n" "sid:" + decString(device->get_sid());
+		label += "\\n" "sid:" + to_string(device->get_sid());
 	    }
 
 	    out << "[ label=" << boost::escape_dot_string(label);

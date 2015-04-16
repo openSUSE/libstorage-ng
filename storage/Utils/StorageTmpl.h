@@ -40,30 +40,6 @@
 namespace storage
 {
 
-    template<class Num>
-    string decString(Num number)
-    {
-	static_assert(std::is_integral<Num>::value, "not integral");
-
-	std::ostringstream num_str;
-	classic(num_str);
-	num_str << number;
-	return num_str.str();
-    }
-
-
-    template<class Num>
-    string hexString(Num number)
-    {
-	static_assert(std::is_integral<Num>::value, "not integral");
-
-	std::ostringstream num_str;
-	classic(num_str);
-	num_str << std::hex << number;
-	return num_str.str();
-    }
-
-
     template<class Value>
     void operator>>(const string& d, Value& v)
     {

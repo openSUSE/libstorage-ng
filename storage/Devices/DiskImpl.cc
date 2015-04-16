@@ -266,11 +266,11 @@ namespace storage
     Disk::Impl::partition_name(int number) const
     {
 	if (boost::starts_with(get_name(), "/dev/mapper/"))
-	    return get_name() + "-part" + decString(number);
+	    return get_name() + "-part" + to_string(number);
 	else if (isdigit(get_name().back()))
-	    return get_name() + "p" + decString(number);
+	    return get_name() + "p" + to_string(number);
 	else
-	    return get_name() + decString(number);
+	    return get_name() + to_string(number);
     }
 
 }

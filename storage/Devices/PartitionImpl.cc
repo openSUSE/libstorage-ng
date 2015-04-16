@@ -239,7 +239,7 @@ namespace storage
 	    cmd_line += "ext2 ";
 	}
 
-	cmd_line += decString(get_region().get_start()) + " " + decString(get_region().get_end());
+	cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
 
 	cout << cmd_line << endl;
 
@@ -272,7 +272,7 @@ namespace storage
 	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
-	    decString(get_number()) + " type " + decString(get_id());
+	    to_string(get_number()) + " type " + to_string(get_id());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -298,7 +298,7 @@ namespace storage
 	const Disk* disk = partitiontable->get_disk();
 	assert(disk);
 
-	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + decString(get_number());
+	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

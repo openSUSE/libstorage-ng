@@ -439,7 +439,7 @@ string afterLast(const string& s, const string& pat )
     string
     udevAppendPart(const string& s, unsigned num)
     {
-	return s + "-part" + decString(num);
+	return s + "-part" + to_string(num);
     }
 
 

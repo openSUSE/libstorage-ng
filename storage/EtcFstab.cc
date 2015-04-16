@@ -551,8 +551,8 @@ bool EtcFstab::findCrtab( const string& dev, const AsciiFile& tab,
 	}
     if( !e.cryptotab )
 	{
-	ls.push_back( decString(e.freq) );
-	ls.push_back( decString(e.passno) );
+	ls.push_back(to_string(e.freq));
+	ls.push_back(to_string(e.passno));
 	}
     return ls;
     }
