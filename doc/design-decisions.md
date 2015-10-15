@@ -7,13 +7,13 @@ Query Type of Objects in Device-Graph
 -------------------------------------
 
 There are no functions in Device and Holder to query the type,
-e.g. device.is_disk().
+e.g. ```device.is_disk()```.
 
 Such an interface would be very bad idea since for every new class the base
 class would have to be modified. With such an interface ABI stability is not
 possible.
 
-Instead use is_disk(device).
+Instead use ```is_disk(device)```.
 
 
 Pimpl Idiom
@@ -47,9 +47,11 @@ No Global Find Function
 
 So far there is no global find function. There have been some proposals, e.g.
 
-  f = Storage.find(device_graph, "filesystem");
-  f.add_filter("mountpoint", "/");
-  f.first();
+```
+f = Storage.find(device_graph, "filesystem");
+f.add_filter("mountpoint", "/");
+f.first();
+```
 
 Such an interface has several drawbacks:
 
