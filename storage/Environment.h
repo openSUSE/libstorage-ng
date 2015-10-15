@@ -9,6 +9,7 @@
 namespace storage
 {
 
+    //! How to probe the system
     enum class ProbeMode {
 	STANDARD,		// probe system during init
 	STANDARD_WRITE_MOCKUP,	// probe system during init
@@ -17,7 +18,7 @@ namespace storage
 	READ_MOCKUP		// fake probe - for testsuite
     };
 
-
+    //! Is the target a disk, chroot, or image?
     enum class TargetMode {
 	DIRECT,			// direct target
 	CHROOT,			// the target is chrooted, e.g. inst-sys

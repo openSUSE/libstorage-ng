@@ -34,7 +34,7 @@ namespace storage
 {
     using namespace storage_legacy;
 
-
+    //! A start+length pair.
     class Region
     {
     public:

@@ -14,8 +14,7 @@ namespace storage
     class Filesystem;
 
 
-    // abstract class
-
+    //! An abstract Block Device.
     class BlkDevice : public Device
     {
     public:

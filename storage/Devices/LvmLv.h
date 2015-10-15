@@ -8,6 +8,7 @@
 namespace storage
 {
 
+    //! A Logical Volume of the Logical Volume Manager (LVM).
     class LvmLv : public BlkDevice
     {
     public:

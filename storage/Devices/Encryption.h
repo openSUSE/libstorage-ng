@@ -8,6 +8,7 @@
 namespace storage
 {
 
+    //! An encryption layer on a device
     class Encryption : public BlkDevice
     {
     public:

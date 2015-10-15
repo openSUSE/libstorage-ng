@@ -140,14 +140,17 @@ namespace storage
     class Storage;
 }
 
-
+//! The legacy API
 namespace storage_legacy
 {
+    //! Filesystem type (ext4, btrfs, ...)
     enum FsType { FSUNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
 		  SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, FSNONE };
 
+    //! Partition type (primary, logical, ...)
     enum PartitionType { PRIMARY, EXTENDED, LOGICAL, PTYPE_ANY };
 
+    //! The key by which the mount program identifies a filesystem
     enum MountByType { MOUNTBY_DEVICE, MOUNTBY_UUID, MOUNTBY_LABEL, MOUNTBY_ID, MOUNTBY_PATH };
 
     enum EncryptType { ENC_NONE, ENC_TWOFISH, ENC_TWOFISH_OLD,
@@ -169,6 +172,7 @@ namespace storage_legacy
 
     enum CType { CUNKNOWN, DISK, MD, LOOP, LVM, DM, DMRAID, NFSC, DMMULTIPATH, MDPART, BTRFSC, TMPFSC };
 
+    //! Data Transport Layer
     enum Transport { TUNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE };
 
     enum MultipathAutostart { MPAS_UNDECIDED, MPAS_ON, MPAS_OFF };

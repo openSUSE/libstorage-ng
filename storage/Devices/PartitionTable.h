@@ -13,6 +13,7 @@ namespace storage
     class Disk;
 
 
+    //! Partition Table Type.
     enum class PtType {
 	PT_UNKNOWN, PT_LOOP, MSDOS, GPT, DASD, MAC
     };

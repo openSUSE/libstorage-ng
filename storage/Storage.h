@@ -39,6 +39,7 @@ namespace storage
     };
 
 
+    //! The main entry point to the library.
     class Storage : private boost::noncopyable
     {
     public:
