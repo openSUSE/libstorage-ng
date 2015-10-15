@@ -1,4 +1,8 @@
 
+Style Guide
+===========
+
+
 Class names should normally use the CapWords convention.
 
 Function names should be lowercase with words separated by underscores.
