@@ -11,4 +11,28 @@ Compiling
 
 ```sh
 make -f Makefile.repo
+make -j$(nproc)
+```
+
+Making an RPM
+-------------
+
+```sh
+make -f Makefile.repo
+make package
+cd package
+osc build --local-package --alternative-project=openSUSE:Factory
+```
+
+Code Documentation
+------------------
+
+```sh
+xdg-open doc/autodocs/index.html
+```
+
+See especially the class hierarchy:
+
+```sh
+xdg-open doc/autodocs/inherits.html
 ```
