@@ -19,6 +19,7 @@ namespace storage
     };
 
 
+    //! A physical disk device
     class Disk : public BlkDevice
     {
     public:

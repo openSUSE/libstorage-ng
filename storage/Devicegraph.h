@@ -27,6 +27,7 @@ namespace storage
     };
 
 
+    //! The master container of the library.
     class Devicegraph : private boost::noncopyable
     {
 

@@ -21,7 +21,7 @@ namespace storage
 	ID_APPLE_UFS = 0x106, ID_GPT_BIOS = 0x107, ID_GPT_PREP = 0x108
     };
 
-
+    //! A partition of a Disk.
     class Partition : public BlkDevice
     {
     public:

@@ -9,7 +9,7 @@ namespace storage
 {
     class LvmLv;
 
-
+    //! A Volume Group of the Logical Volume Manager (LVM).
     class LvmVg : public Device
     {
     public:
