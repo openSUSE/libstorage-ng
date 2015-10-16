@@ -25,7 +25,8 @@ namespace storage
     public:
 
 	// Using OutEdgeList=boost::setS disallowes parallel edges.  Using
-	// VertexList=boost::listS makes iterators stable.  See:
+	// VertexList=boost::listS and OutEdgeList=boost::setS makes both
+	// vertex and edge iterators stable (never invalidated).  See:
 	// http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/adjacency_list.html
 
 	// The shared_ptr is required for runtime polymorphism of Device and
