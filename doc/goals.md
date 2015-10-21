@@ -55,7 +55,7 @@ early as possible for quick feedback during development. To ensure that:
 The code must be designed to be easy testable wherever possible, e.g. complex
 algorithms and functions should be testable in unit tests. The prototype
 already includes several testsuites on different levels, see
-https://github.com/aschnell/libstorage-bgl-eval/wiki.
+https://github.com/openSUSE/libstorage-bgl-eval/wiki.
 
 Simulating the complete linux storage system seems unrealistic since 1. it is
 very complex, 2. not bug free and 3. constantly changing. So integration tests
