@@ -18,3 +18,12 @@ The auto keyword should be avoided.
 
   http://en.wikipedia.org/wiki/C%2B%2B11
 
+
+C++11, C++14 and C++17 features can be used when the tool-chain for all
+supported distributions provide them.
+
+
+For API functions it must be avoided to modify parameters and use them as
+return values since this is not always obvious and difficult to support in
+some target languages.
+
