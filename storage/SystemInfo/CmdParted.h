@@ -32,37 +32,77 @@
 namespace storage
 {
 
+    /**
+     * Class for probing for partitions with the 'parted' command.
+     */
     class Parted
     {
 
     public:
 
+	/**
+	 * Constructor: Probe the specified device
+	 * with the 'parted' command and parse its output.
+	 * This may throw a SystemCmdException or a ParseException.
+	 */
 	Parted(const string& device);
 
 	struct Entry
 	{
 	    Entry() : num(0), type(PRIMARY), id(0), boot(false) {}
 
-	    unsigned num;
-	    Region cylRegion;
-	    Region secRegion;
-	    PartitionType type;
-	    unsigned id;
-	    bool boot;
+	    unsigned num;	// Partition number (1..n)
+	    Region cylRegion;	// Partition region in cylinders
+	    Region secRegion;	// Partition region in sectors
+	    PartitionType type;	// primary / extended / logical / any
+	    unsigned id;	// Numeric partition ID (Linux: 0x83 etc.)
+	    bool boot;		// Boot flag of the partition
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Parted& parted);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
+	/**
+	 * Get the disk label type as string ("msdos", "gpt", ...) as returned
+	 * by the 'parted' command.
+	 */
 	PtType getLabel() const { return label; }
+
+	/**
+	 * S/390 arch : zfcp dasds create implicit partitions if there is none
+	 * on that disk yet. This function returns if this is the case for this
+	 * device.
+	 */
 	bool getImplicit() const { return implicit; }
+
+	/**
+	 * Get the disk geometry (cylinders, heads, sectors).
+	 */
 	const Geometry& getGeometry() const { return geometry; }
+
+	/**
+	 * Special for GPT disk labels: If disk was enlarged, the backup
+	 * partition table at the end of the disk might need to be moved to the
+	 * new actual end of the disk. This function returns that flag.
+	 */
 	bool getGptEnlarge() const { return gpt_enlarge; }
 
+	/**
+	 * Get the partition entries.
+	 */
 	typedef vector<Entry>::const_iterator const_iterator;
 
+	/**
+	 * Get the partition entry with the specified number (1..n) and return
+	 * it in 'entry'. Return 'true' upon success, 'false' if there is no
+	 * entry with that number.
+	 */
 	const vector<Entry>& getEntries() const { return entries; }
 
+	/**
+	 * Parse the output of the 'parted' command in 'lines'.
+	 * This may throw a ParseException.
+	 */
 	bool getEntry(unsigned num, Entry& entry) const;
 
     private:

@@ -259,6 +259,16 @@ namespace storage
     void
     Parted::scanCylEntryLine(const string& line)
     {
+	// Sample input:
+	//
+	//  1      0cyl      261cyl     261cyl     primary   linux-swap(v1)  type=82
+	//  2      261cyl    5484cyl    5222cyl    primary   btrfs           boot, type=83
+	//  3      5484cyl   10705cyl   5221cyl    primary   btrfs           type=83
+	//  4      10705cyl  243201cyl  232495cyl  extended                  lba, type=0f
+	//  5      10706cyl  243200cyl  232493cyl  logical   xfs             type=83
+	//
+	// (Number) (Start)  (End)      (Size)     (Type)    (File system)   (Flags)
+
 	Entry entry;
 
 	std::istringstream Data(line);
@@ -443,6 +453,16 @@ namespace storage
     void
     Parted::scanSecEntryLine(const string& line)
     {
+	// Sample input:
+	//
+	//  1      2048s       4208639s     4206592s     primary   linux-swap(v1)  type=82
+	//  2      4208640s    88100863s    83892224s    primary   btrfs           boot, type=83
+	//  3      88100864s   171991039s   83890176s    primary   btrfs           type=83
+	//  4      171991040s  3907028991s  3735037952s  extended                  lba, type=0f
+	//  5      171993088s  3907008511s  3735015424s  logical   xfs             type=83
+	//
+	// (Number) (Start)    (End)        (Size)       (Type)    (File system)   (Flags)
+
 	std::istringstream Data(line);
 	classic(Data);
 
