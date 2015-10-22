@@ -13,6 +13,7 @@ check_PROGRAMS =								\
 	find-vertex.test fstab.test fstab-ng.test output.test			\
 	partition-size.test partition-slots.test probe.test range.test		\
 	stable.test relatives.test
+# TO DO: add systemcmd1.test and adapt systemcmd1.cc
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
