@@ -3,6 +3,35 @@ Design Decisions
 ================
 
 
+C++11
+-----
+
+Here are some reasons for using C++11 for the library. Of course some reasons
+also apply to other programming languages.
+
+- Allows reuse of existing code from libstorage.
+
+- Widely used programming language
+  (http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html). Even
+  several compilers are available (e.g. gcc-c++ and clang).
+
+- Language is standardized by ISO. One strong focus is compatibility.
+
+- Compiler performs many checks on code (starting with type-checks) at
+  compile-time. Additionally tools for static code analysis are available
+  (e.g. https://scan.coverity.com/).
+
+- Comprehensive and documented graph library available
+  (http://www.boost.org/doc/libs/1_59_0/libs/graph/doc/index.html).
+
+- Wide range of libraries and tools (e.g. http://www.swig.org/ - a generator
+  for scripting language bindings for e.g. Python, Ruby and Perl) are
+  available and included in many distributions like openSUSE, Fedora, SLE and
+  RHEL.
+
+- The developers are confident with it.
+
+
 Query Type of Objects in Device-Graph
 -------------------------------------
 
