@@ -47,6 +47,9 @@ namespace storage
 	 */
 	Parted(const string& device);
 
+        /**
+	 * Entry for one partition.
+	 */
 	struct Entry
 	{
 	    Entry() : num(0), type(PRIMARY), id(0), boot(false) {}
@@ -105,9 +108,26 @@ namespace storage
 	 */
 	bool getEntry(unsigned num, Entry& entry) const;
 
-    private:
-
+       /**
+	 * Parse the output of the 'parted' command in 'lines'.
+	 * This may throw a ParseException.
+	 */
 	void parse(const vector<string>& stdout, const vector<string>& stderr);
+
+	/**
+	 * Return the stderr output of parted command.
+	 *
+	 * Unlike many similar classes in the SystemInfo/ directory, This class
+	 * does not throw an exception whenever the underlying command (here:
+	 * parted) writes any output to stderr: It is quite common for the
+	 * parted command to write messages to stderr in certain situations
+	 * that may not necessarily be fatal.
+	 *
+	 * Any stderr messages are written to the log, though.
+	 */
+	const vector<string> & getStderr() const { return stderr; }
+
+    private:
 
 	typedef vector<Entry>::iterator iterator;
 
@@ -117,6 +137,7 @@ namespace storage
 	Geometry geometry;
 	bool gpt_enlarge;
 	vector<Entry> entries;
+	vector<string> stderr;
 
 	void scanDiskFlags(const string& line);
 	void scanSectorSizeLine(const string& line);
