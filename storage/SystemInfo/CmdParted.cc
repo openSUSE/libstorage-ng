@@ -75,6 +75,7 @@ namespace storage
     {
 	implicit = false;
 	gpt_enlarge = false;
+	gpt_fix_backup = false;
 	entries.clear();
 
 	vector<string>::const_iterator pos;
@@ -138,6 +139,8 @@ namespace storage
 	    y2war("could not find disk flags");
 
 	gpt_enlarge = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
+	gpt_fix_backup = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
+							 "primary appears OK")) != stderr.end();
 
 	if (label != PtType::PT_UNKNOWN && label != PtType::PT_LOOP)
 	{
@@ -212,6 +215,9 @@ namespace storage
 
 	if (parted.gpt_enlarge)
 	    s << " gpt_enlarge";
+
+	if (parted.gpt_fix_backup)
+	    s << " gpt_fix_backup";
 
 	s << endl;
 
