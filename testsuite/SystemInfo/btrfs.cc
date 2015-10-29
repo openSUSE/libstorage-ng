@@ -5,11 +5,16 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
+#include <iostream>
+
+#include "../common.h"
+
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 
+#include <storage/StorageInterface.h>
 
 using namespace std;
 using namespace storage;
@@ -28,14 +33,17 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << cmdbtrfsshow;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
+    string rhs;
+
+    if ( !output.empty() )
+	rhs = boost::join(output, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
-
-BOOST_AUTO_TEST_CASE(parse1)
+BOOST_AUTO_TEST_CASE(parse_good)
 {
+
     vector<string> input = {
 	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
 	"        Total devices 1 FS bytes used 28.00KiB",
@@ -60,3 +68,18 @@ BOOST_AUTO_TEST_CASE(parse1)
 
     check(input, output);
 }
+
+BOOST_AUTO_TEST_CASE(parse_empty)
+{
+
+    // Sample output if there is no btrfs filesystem at all on the system
+    vector<string> input = {
+	"Btrfs v3.12+20131125"
+    };
+
+    vector<string> output;
+
+    check(input, output);
+}
+
+// TO DO: add test cases  parse_bad_device_name and parse_no_devices
