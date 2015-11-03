@@ -146,15 +146,7 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumes::CmdBtrfsSubvolumes(const string& mount_point, bool do_probe)
-    {
-	if (do_probe)
-	    probe(mount_point);
-    }
-
-
-    void
-    CmdBtrfsSubvolumes::probe(const string& mount_point)
+    CmdBtrfsSubvolumes::CmdBtrfsSubvolumes(const string& mount_point)
     {
 	SystemCmd cmd(BTRFSBIN " subvolume list -a -p " + quote(mount_point), SystemCmd::DoThrow);
 

@@ -49,7 +49,8 @@ namespace storage
 
 	/**
 	 * Constructor: Probe for btrfs filesystems with the
-	 * 'btrfs filesystem show' command and parse its output.
+	 * "btrfs filesystem show" command and parse its output.
+	 *
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
 	CmdBtrfsShow();
@@ -79,14 +80,14 @@ namespace storage
 	 */
 	list<string> getUuids() const;
 
+    private:
+
 	/**
 	 * Parse the output of "btrfs filesystem show" passed in 'lines'.
 	 *
 	 * This may throw a ParseException.
 	 */
 	void parse(const vector<string>& lines);
-
-    private:
 
 	typedef map<string, Entry>::const_iterator const_iterator;
 
@@ -102,21 +103,12 @@ namespace storage
     public:
 
 	/**
-	 * Constructor. If 'do_probe' is 'true', call "btrfs subvolume list
-	 * <mount-point>" as an external command. If 'do_probe' is 'false', do
-	 * nothing for now (this is mostly useful for testing).
+	 * Constructor. Probe for btrfs subvolumes with the "btrfs subvolume
+	 * list <mount-point>" command and parse its output.
 	 *
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
-	CmdBtrfsSubvolumes(const string& mount_point, bool do_probe = true);
-
-	/**
-	 * Probe for btrfs subvolumes with the "btrfs subvolume list
-	 * <mount-point>" command and parse its output.
-	 *
-	 * This may throw a SystemCmdException or a ParseException.
-	 */
-	void probe(const string& mount_point);
+	CmdBtrfsSubvolumes(const string& mount_point);
 
 	/**
 	 * Entry for one btrfs subvolume.
@@ -135,6 +127,8 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumes& cmdbtrfssubvolumes);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
+    private:
+
 	/**
 	 * Parse the output of "btrfs subvolume list <mount-point>" passed in
 	 * 'lines'.
@@ -142,8 +136,6 @@ namespace storage
 	 * This may throw a ParseException.
 	 */
 	void parse(const vector<string>& lines);
-
-    private:
 
 	vector<Entry> data;
 
