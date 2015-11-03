@@ -234,12 +234,12 @@ namespace storage
 	/**
 	 * Returns the source file name where the exception occured.
 	 **/
-	std::string file() const { return _file; }
+	const std::string& file() const { return _file; }
 
 	/**
 	 * Returns the name of the function where the exception occured.
 	 **/
-	std::string func() const { return _func; }
+	const std::string& func() const { return _func; }
 
 	/**
 	 * Returns the source line number where the exception occured.
