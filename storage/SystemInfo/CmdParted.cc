@@ -59,7 +59,7 @@ namespace storage
 		//
 		// See also bsc#938572, bsc#938561
 
-		for ( string line: stderr )
+		for ( const string& line: stderr )
 		{
 		    y2war( "parted stderr> " + line );
 		}
