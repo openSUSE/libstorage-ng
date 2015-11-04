@@ -34,7 +34,7 @@ check(const string& device, const vector<string>& input, const vector<string>& o
 }
 
 
-BOOST_AUTO_TEST_CASE(parse1)
+BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
 {
     vector<string> input = {
 	"Model: ATA WDC WD10EADS-00M (scsi)",
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(parse1)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse2)
+BOOST_AUTO_TEST_CASE(parse_gpt_good)
 {
     vector<string> input = {
 	"Model: ATA ST3500320NS (scsi)",
@@ -114,7 +114,7 @@ BOOST_AUTO_TEST_CASE(parse2)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse3)
+BOOST_AUTO_TEST_CASE(parse_dasd_good)
 {
     vector<string> input = {
 	"Model: IBM S390 DASD drive (dasd)",
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE(parse3)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse4)
+BOOST_AUTO_TEST_CASE(parse_loop_good)
 {
     vector<string> input = {
 	"Model: Maxtor 6 Y080L0 (scsi)",
@@ -183,7 +183,7 @@ BOOST_AUTO_TEST_CASE(parse4)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse5)
+BOOST_AUTO_TEST_CASE(parse_dasd_implicit_good)
 {
     vector<string> input = {
 	"Model: IBM S390 DASD drive (dasd)",
@@ -212,4 +212,24 @@ BOOST_AUTO_TEST_CASE(parse5)
     };
 
     check("/dev/dasdc", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_wiped_disk_good)
+{
+
+    // Disk with no partition table at all (brand new or after 'wipefs')
+    vector<string> input = {
+	"Error: /dev/sdb: unrecognised disk label",
+	"Model: Maxtor 6 Y080L0 (scsi)",
+	"Disk /dev/sdb: 9964cyl",
+	"Sector size (logical/physical): 512B/512B",
+	"BIOS cylinder,head,sector geometry: 9964,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: unknown",
+	"Disk Flags: "
+    };
+
+    vector<string> output = { "device:/dev/sdb label:unknown geometry:[9964,255,63,512]" };
+
+    check("/dev/sdb", input, output);
 }
