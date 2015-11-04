@@ -33,6 +33,15 @@ check(const string& device, const vector<string>& input, const vector<string>& o
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
+void
+check_parse_exception(const string& device, const vector<string>& input)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(PARTEDBIN " -s " + quote(device) + " unit cyl print unit s print", input);
+
+    BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
+}
+
 
 BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
 {
@@ -233,3 +242,228 @@ BOOST_AUTO_TEST_CASE(parse_wiped_disk_good)
 
     check("/dev/sdb", input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_no_geometry)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B/4096B",
+	// "BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End        Size       Type     File system  Flags",
+	" 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83",
+	" 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e",
+	"",
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start     End          Size         Type     File system  Flags",
+	" 1      2048s     2105343s     2103296s     primary  ext3         boot, type=83",
+	" 2      2105344s  1889548287s  1887442944s  primary               lvm, type=8e",
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_bad_geometry)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B/4096B",
+	"BIOS cylinder,head,sector geometry:  Each cylinder is 8225kB.", // malformed
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End        Size       Type     File system  Flags",
+	" 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83",
+	" 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e",
+	"",
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start     End          Size         Type     File system  Flags",
+	" 1      2048s     2105343s     2103296s     primary  ext3         boot, type=83",
+	" 2      2105344s  1889548287s  1887442944s  primary               lvm, type=8e",
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}
+
+BOOST_AUTO_TEST_CASE(parse_bad_sector_size_line)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B, 4096B",
+	"BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End        Size       Type     File system  Flags",
+	" 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83",
+	" 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e",
+	"",
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start     End          Size         Type     File system  Flags",
+	" 1      2048s     2105343s     2103296s     primary  ext3         boot, type=83",
+	" 2      2105344s  1889548287s  1887442944s  primary               lvm, type=8e",
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_bad_msdos_part_entry_1)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B/4096B",
+	"BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End     Size    Type     File system  Flags",
+	" 1      0       131     130     primary  ext3         boot, type=83", // no "cyl" units
+	" 2      131     117618  117487  primary               lvm, type=8e",  // no "cyl" units
+	""
+    };
+
+     check_parse_exception("/dev/sda", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_bad_msdos_part_entry_2)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B/4096B",
+	"BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End        Size       Type     File system  Flags",
+	" 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83",
+	" 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e",
+	"",
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start    End         Size        Type     File system  Flags",
+	" 1      2048     2105343     2103296     primary  ext3         boot, type=83", // no "s" units
+	" 2      2105344  1889548287  1887442944  primary               lvm, type=8e",  // no "s" units
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}
+
+BOOST_AUTO_TEST_CASE(parse_bad_gpt_part_entry)
+{
+
+    vector<string> input = {
+	"Model: ATA ST3500320NS (scsi)",
+	"Disk /dev/sda: 60801cyl",
+	"Sector size (logical/physical): 512B/512B",
+	"BIOS cylinder,head,sector geometry: 60801,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: gpt_sync_mbr",
+	"",
+	"Number  Start  End    Size   File system     Name     Flags",
+	" 1      0      63     63     fat16           primary",                    // no "cyl" units
+	" 2      63     127    63     ext3            primary  boot, legacy_boot", // no "cyl" units
+	" 3      127    18369  18241  ext3            primary",                    // no "cyl" units
+	""
+    };
+    check_parse_exception("/dev/sda", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_inconsistent_partition_tables)
+{
+
+    vector<string> input = {
+	"Model: ATA ST3500320NS (scsi)",
+	"Disk /dev/sda: 60801cyl",
+	"Sector size (logical/physical): 512B/512B",
+	"BIOS cylinder,head,sector geometry: 60801,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: gpt_sync_mbr",
+	"",
+	"Number  Start     End       Size      File system     Name     Flags",
+	" 1      0cyl      63cyl     63cyl     fat16           primary",
+	" 2      63cyl     127cyl    63cyl     ext3            primary  boot, legacy_boot",
+	"",
+	"Model: ATA ST3500320NS (scsi)",
+	"Disk /dev/sda: 976773168s",
+	"Sector size (logical/physical): 512B/512B",
+	"Partition Table: gpt_sync_mbr",
+	"",
+	"Number  Start       End         Size        File system     Name     Flags",
+	" 1      2048s       1028095s    1026048s    fat16           primary",
+	" 2      1028096s    2056191s    1028096s    ext3            primary  boot, legacy_boot",
+	// Partition #3 is not in first (cylinder-based) partition table
+	" 3      2056192s    295098367s  293042176s  ext3            primary",
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}    
+
+
+BOOST_AUTO_TEST_CASE(parse_third_partition_table)
+{
+
+    vector<string> input = {
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 121601cyl",
+	"Sector size (logical/physical): 512B/4096B",
+	"BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
+	"Partition Table: msdos",
+	"",
+	"Number  Start   End        Size       Type     File system  Flags",
+	" 1      0cyl    131cyl     130cyl     primary  ext3         boot, type=83",
+	" 2      131cyl  117618cyl  117487cyl  primary               lvm, type=8e",
+	"",
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start     End          Size         Type     File system  Flags",
+	" 1      2048s     2105343s     2103296s     primary  ext3         boot, type=83",
+	" 2      2105344s  1889548287s  1887442944s  primary               lvm, type=8e",
+	"",
+	// One partition table too many
+	"Model: ATA WDC WD10EADS-00M (scsi)",
+	"Disk /dev/sda: 1953525168s",
+	"Sector size (logical/physical): 512B/4096B",
+	"Partition Table: msdos",
+	"",
+	"Number  Start       End            Size           Type     File system  Flags",
+	" 1      2048foo     2105343foo     2103296foo     primary  ext3         boot, type=83",
+	" 2      2105344foo  1889548287foo  1887442944foo  primary               lvm, type=8e",
+	""
+    };
+
+    check_parse_exception("/dev/sda", input);
+}
+
