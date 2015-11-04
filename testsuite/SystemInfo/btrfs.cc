@@ -7,6 +7,7 @@
 
 #include <iostream>
 
+#include "storage/Exception.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
@@ -38,6 +39,26 @@ check(const vector<string>& input, const vector<string>& output)
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
+
+void
+check_parse_exception(const vector<string>& input)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(BTRFSBIN " filesystem show", input);
+
+    BOOST_CHECK_THROW({ CmdBtrfsShow cmdbtrfsshow; }, ParseException);
+}
+
+void
+check_systemcmd_exception(const vector<string>& input, const vector<string>& stderr)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::Command command(input, stderr, 1);
+    Mockup::set_command(BTRFSBIN " filesystem show", command);
+
+    BOOST_CHECK_THROW({ CmdBtrfsShow cmdbtrfsshow; }, SystemCmdException);
+}
+
 
 BOOST_AUTO_TEST_CASE(parse_good)
 {
@@ -80,4 +101,44 @@ BOOST_AUTO_TEST_CASE(parse_empty)
     check(input, output);
 }
 
-// TO DO: add test cases  parse_bad_device_name and parse_no_devices
+BOOST_AUTO_TEST_CASE(parse_bad_device_name)
+{
+
+    vector<string> input = {
+	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
+	"        Total devices 1 FS bytes used 28.00KiB",
+	"        devid    1 size 1.00GiB used 138.38MiB path notadevicename", // no /dev/...
+	"",
+	"Btrfs v3.12+20131125"
+    };
+
+    check_parse_exception(input);
+}
+
+BOOST_AUTO_TEST_CASE(parse_no_devices)
+{
+
+    vector<string> input = {
+	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
+	"        Total devices 1 FS bytes used 28.00KiB",
+	"",
+	"Btrfs v3.12+20131125"
+    };
+
+    check_parse_exception(input);
+}
+
+BOOST_AUTO_TEST_CASE(systemcmd_error)
+{
+    vector<string> input = {
+	"Label: none  uuid: 653764e0-7ea2-4dbe-9fa1-866f3f7783c9",
+	"        Total devices 1 FS bytes used 316.00KiB",
+	"        devid    1 size 5.00GiB used 548.00MiB path /dev/mapper/system-btrfs",
+	"",
+	"Btrfs v3.12+20131125"
+    };
+
+    vector<string> stderr = { "Unknown error..." };
+
+    check_systemcmd_exception(input, stderr);
+}
