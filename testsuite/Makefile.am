@@ -12,8 +12,7 @@ check_PROGRAMS =								\
 	copy.test default-partition-table.test disk.test dynamic.test		\
 	find-vertex.test fstab.test fstab-ng.test output.test			\
 	partition-size.test partition-slots.test probe.test range.test		\
-	stable.test relatives.test
-# TO DO: add systemcmd1.test and adapt systemcmd1.cc
+	stable.test relatives.test systemcmd.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

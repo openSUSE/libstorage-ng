@@ -53,6 +53,7 @@ void
 check_systemcmd_exception(const vector<string>& input, const vector<string>& stderr)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    // "input" is (mocked) "stdout" of command
     Mockup::Command command(input, stderr, 1);
     Mockup::set_command(BTRFSBIN " filesystem show", command);
 
