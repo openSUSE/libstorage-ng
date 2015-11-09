@@ -82,3 +82,37 @@ BOOST_AUTO_TEST_CASE(retcode_42)
     BOOST_CHECK(cmd.retcode() == 42);
 #endif
 }
+
+BOOST_AUTO_TEST_CASE(non_existent_no_throw)
+{
+    BOOST_CHECK_NO_THROW({SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::NoThrow);});
+}
+
+BOOST_AUTO_TEST_CASE(non_existent_throw)
+{
+    BOOST_CHECK_THROW({SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::DoThrow);},
+	               CommandNotFoundException);
+}
+
+BOOST_AUTO_TEST_CASE(segfault_no_throw)
+{
+    BOOST_CHECK_NO_THROW({SystemCmd cmd( "helpers/segfaulter", SystemCmd::ThrowBehaviour::NoThrow);});
+}
+
+BOOST_AUTO_TEST_CASE(segfault_throw)
+{
+    BOOST_CHECK_THROW({SystemCmd cmd( "helpers/segfaulter", SystemCmd::ThrowBehaviour::DoThrow);},
+		      SystemCmdException);
+}
+
+BOOST_AUTO_TEST_CASE(non_exec_no_throw)
+{
+    BOOST_CHECK_NO_THROW({SystemCmd cmd( "/etc/fstab", SystemCmd::ThrowBehaviour::NoThrow);});
+}
+
+BOOST_AUTO_TEST_CASE(non_exec_throw)
+{
+    BOOST_CHECK_THROW({SystemCmd cmd( "/etc/fstab", SystemCmd::ThrowBehaviour::DoThrow);},
+		      SystemCmdException);
+}
+
