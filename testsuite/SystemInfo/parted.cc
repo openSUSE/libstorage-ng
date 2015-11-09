@@ -122,6 +122,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
     check("/dev/sdb", input, output);
 }
 
+// TO DO: add test cases "parse_gpt_enlarge_good" and "parse_gpt_fix_backup_good"
 
 BOOST_AUTO_TEST_CASE(parse_dasd_good)
 {
