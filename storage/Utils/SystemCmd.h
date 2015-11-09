@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2009] Novell, Inc.
+ * Copyright (c) [2004-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -31,45 +31,137 @@
 #include <list>
 #include <boost/noncopyable.hpp>
 
+#include "storage/Exception.h"
+
 
 namespace storage
 {
     using std::string;
     using std::vector;
 
-class OutputProcessor;
+    class OutputProcessor;
 
-class SystemCmd : private boost::noncopyable
+    /**
+     * Class to invoke a shell command and capture its output.
+     * By default, stdout and stderr output are kept separate.
+     * Use 'setCombine()' to merge them.
+     */
+    class SystemCmd : private boost::noncopyable
     {
     public:
 
 	enum OutputStream { IDX_STDOUT, IDX_STDERR };
+	enum ThrowBehaviour { DoThrow, NoThrow };
 
-	SystemCmd(const string& Command_Cv);
+	/**
+	 * Constructor. Invoke the specified command immediately in the foreground.
+	 * If 'throwBehaviour' is 'DoThrow', this might throw exceptions.
+	 * Use 'retcode()' to get the command's exit code.
+	 */
+	SystemCmd(const string& command, ThrowBehaviour throwBehaviour = NoThrow );
+
+	/**
+	 * Default constructor for the more advanced cases or where immediate
+	 * execution is not desired.
+	 */
 	SystemCmd();
 
+	/**
+	 * Destructor.
+	 */
 	virtual ~SystemCmd();
 
-	int execute(const string& Command_Cv);
-	int executeBackground(const string& Command_Cv);
-	int executeRestricted(const string& Command_Cv,
-			      unsigned long MaxTimeSec, unsigned long MaxLineOut,
-			      bool& ExceedTime, bool& ExceedLines);
+	/**
+	 * Execute the specified command in the foreground and return its exit code.
+	 **/
+	int execute(const string& command);
 
-	void setOutputProcessor(OutputProcessor* proc) { output_proc = proc; }
+	/**
+	 * Execute the specified command in the background.
+	 * The return value is only meaningful if < 0 (fork() or exec() failed).
+	 */
+	int executeBackground(const string& command);
 
-	const vector<string>& stdout() const { return Lines_aC[IDX_STDOUT]; }
-	const vector<string>& stderr() const { return Lines_aC[IDX_STDERR]; }
+	/**
+	 * Execute the specified command in the foreground with some restrictions:
+	 *
+	 * If 'maxTimeSec' is > 0, the command is killed (with SIGKILL) after
+	 * 'maxTimeSec' seconds, and 'timeExceeded_ret' is set to 'true'.
+	 *
+	 * If 'maxLineOut' is > 0, the command is killed (with SIGKILL) if more
+	 * than 'maxLineOut' lines have been collected in both stdout and
+	 * stderr.
+	 *
+	 * This function returns the command's exit code if none of the limits
+	 * was exceeded, and -257 otherwise.
+	 */
+	int executeRestricted(const string& command,
+			      unsigned long maxTimeSec, unsigned long maxLineOut,
+			      bool& timeExceeded_ret, bool& linesExceeded_ret);
 
-	string cmd() const { return lastCmd; }
-	int retcode() const { return Ret_i; }
+	/**
+	 * Set an OutputProcessor. This is mostly useful for visual feedback to
+	 * the user (progress bar, busy animation). The OutputProcessor is
+	 * called when an output line is read. See OutputProcessor.h.
+	 */
+	void setOutputProcessor(OutputProcessor* proc) { _outputProc = proc; }
 
-	int select(const string& Reg_Cv, OutputStream Idx_ii = IDX_STDOUT);
-	unsigned numLines(bool Selected_bv = false, OutputStream Idx_ii = IDX_STDOUT) const;
-	string getLine(unsigned Num_iv, bool Selected_bv = false, OutputStream Idx_ii = IDX_STDOUT) const;
+	/**
+	 * Return the output lines collected on stdout so far.
+	 */
+	const vector<string>& stdout() const { return _outputLines[IDX_STDOUT]; }
 
+	/**
+	 * Return the output lines collected on stderr so far.
+	 */
+	const vector<string>& stderr() const { return _outputLines[IDX_STDERR]; }
+
+	/**
+	 * Return the (last) command executed.
+	 */
+	string cmd() const { return _lastCmd; }
+
+	/**
+	 * Return the exit code of the command.
+	 */
+	int retcode() const { return _cmdRet; }
+
+	/**
+	 * Select which output lines to use in the specified output stream (stdout or stderr).
+	 * 'pattern' is a fixed string with minimal regexp functionality:
+	 * '^' start of line
+	 * '$' end of line
+	 * Returns how many lines matched.
+	 */
+	int select(const string& pattern, OutputStream streamIndex = IDX_STDOUT);
+
+	/**
+	 * Return the number of lines collected so far in the specified output
+	 * stream (stdout or stderr). If 'selected' is 'true', return only the
+	 * ones matched by the last 'select()' call.
+	 */
+	unsigned numLines(bool selected = false, OutputStream streamIndex = IDX_STDOUT) const;
+
+	/**
+	 * Return the output line number 'lineNo' from the specified output stream
+	 * (stdout or stderr). If 'selected' is 'true', restrict this to the
+	 * lines matched by the last 'select()' call.
+	 */
+	string getLine(unsigned lineNo, bool selected = false, OutputStream streamIndex = IDX_STDOUT) const;
+
+	/**
+	 * Combine stdout and stderr in output lines?
+	 */
 	void setCombine(bool combine = true);
 
+	/**
+	 * Set the throw behaviour: Should exceptions be thrown or not?
+	 */
+	void setThrowBehaviour( ThrowBehaviour val );
+
+	/**
+	 * Set test mode, i.e. don't actually invoke the command.
+	 */
 	static void setTestmode(bool testmode = true);
 
 	/**
@@ -84,36 +176,121 @@ class SystemCmd : private boost::noncopyable
 
     protected:
 
+	void init();
+	void cleanup();
 	void invalidate();
 	void closeOpenFds() const;
-	int doExecute(const string& Cmd_Cv);
-	bool doWait(bool Hang_bv, int& Ret_ir);
-        void checkOutput();
-	void getUntilEOF(FILE* File_Cr, std::vector<string>& Lines_Cr,
-			 bool& NewLineSeen_br, bool Stderr_bv);
-	void extractNewline(const string& Buf_ti, int Cnt_ii, bool& NewLineSeen_br,
-			    string& Text_Cr, std::vector<string>& Lines_Cr);
-	void addLine(const string& Text_Cv, std::vector<string>& Lines_Cr);
-	void init();
+	int doExecute(const string& command);
+	bool doWait(bool hang, int& cmdRet_ret);
+	void checkOutput();
+	void getUntilEOF(FILE* file, std::vector<string>& lines,
+			 bool& newLineSeen_ret, bool isStderr) const;
+	void extractNewline(const string& buffer, int count, bool& newLineSeen_ret,
+			    string& text, std::vector<string>& lines) const;
+	void addLine(const string& text, std::vector<string>& lines) const;
 
 	void logOutput() const;
 
-	FILE* File_aC[2];
-	std::vector<string> Lines_aC[2];
-	std::vector<string*> SelLines_aC[2];
-	bool NewLineSeen_ab[2];
-	bool Combine_b;
-	bool Background_b;
-	string lastCmd;
-	int Ret_i;
-	int Pid_i;
-	OutputProcessor* output_proc;
-	struct pollfd pfds[2];
+	//
+	// Data members
+	//
 
-	static bool testmode;
+	FILE* _files[2];
+	std::vector<string> _outputLines[2];
+	std::vector<string*> _selectedOutputLines[2];
+	bool _newLineSeen[2];
+	bool _combineOutput;
+	bool _execInBackground;
+	string _lastCmd;
+	int _cmdRet;
+	int _cmdPid;
+	bool _doThrow;
+	OutputProcessor* _outputProc;
+	struct pollfd _pfds[2];
 
-	static const unsigned line_limit = 50;
+	static bool _testmode;
+
+	static const unsigned LINE_LIMIT = 50;
     };
+
+
+    /**
+     * Exception class for SystemCmd. This is used both to really throw
+     * exceptions (if the 'DoThrow' behaviour was set for the SystemCmd) as
+     * well as for just logging the problem (done in both cases, 'DoThrow' and
+     * 'NoThrow'.
+     */
+    class SystemCmdException : public Exception
+    {
+    public:
+	SystemCmdException( const SystemCmd * sysCmd, const string & msg )
+	    : Exception( "" )
+	{
+	    _cmdRet = -1;
+
+	    if ( sysCmd )
+	    {
+		// Copy relevant information from sysCmd because it might go
+		// out of scope while this exception still exists.
+		_cmd = sysCmd->cmd();
+		setMsg( msg + ": \"" + _cmd + "\"" );
+		_cmdRet = sysCmd->retcode();
+		_stderr = sysCmd->stderr();
+	    }
+	    else
+	    {
+		setMsg( msg );
+	    }
+	}
+
+	virtual ~SystemCmdException() throw()
+	    {}
+
+	/**
+	 * Return the command that was to be called with all arguments.
+	 */
+	const string & cmd() const { return _cmd; }
+
+	/**
+	 * Return the return code (the exit code) of the command. This might
+	 * not always be meaningful, e.g. if fork() failed or if the command
+	 * could not even be started.
+	 */
+	int cmdRet() const { return _cmdRet; }
+
+	/**
+	 * Return the stderr output of the command. If the command could not be
+	 * started, this will be empty.
+	 */
+	const vector<string> & stderr() const { return _stderr; }
+
+    protected:
+	string _cmd;
+	int    _cmdRet;
+	vector<string> _stderr;
+    };
+
+
+    /**
+     * Specialized exception class for the very common case "command not found".
+     * This might legally happen while probing for storage features with a
+     * command that might or might not be installed.
+     *
+     * The purpose of this class is to make this special case easily
+     * distinguishable from other error cases (command installed, but failed
+     * for some reason).
+     **/
+    class CommandNotFoundException: public SystemCmdException
+    {
+    public:
+	CommandNotFoundException( const SystemCmd * sysCmd )
+	    : SystemCmdException( sysCmd, "Command not found" )
+	    {}
+
+	virtual ~CommandNotFoundException() throw()
+	    {}
+    };
+
 
 
     inline string quote(const string& str)
