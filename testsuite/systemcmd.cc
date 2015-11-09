@@ -1,9 +1,7 @@
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
-
-#define BOOST_TEST_DYN_LINK
-#define BOOST_TEST_MODULE libstorage
+#define BOOST_TEST_IGNORE_NON_ZERO_CHILD_CODE
 
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
@@ -19,7 +17,6 @@
 
 using namespace std;
 using namespace storage;
-
 
 
 string
@@ -52,7 +49,6 @@ BOOST_AUTO_TEST_CASE(hello_stderr)
     SystemCmd cmd("helpers/echoargs_stderr hello stderr");
     
     BOOST_CHECK_EQUAL(join(cmd.stderr()),join(stderr));
-    vector<string> empty;
     BOOST_CHECK(cmd.stdout().empty());
 }
 
@@ -77,6 +73,9 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 
 BOOST_AUTO_TEST_CASE(retcode_42)
 {
+    setenv("BOOST_TEST_CATCH_SYSTEM_ERRORS", "no", 1);
+
     SystemCmd cmd("helpers/retcode 42");
+
     BOOST_CHECK(cmd.retcode() == 42);
 }
