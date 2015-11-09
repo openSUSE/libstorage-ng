@@ -3,6 +3,7 @@
 #define BOOST_TEST_MODULE libstorage
 #define BOOST_TEST_IGNORE_NON_ZERO_CHILD_CODE
 
+#include <boost/version.hpp>
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
@@ -73,9 +74,11 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 
 BOOST_AUTO_TEST_CASE(retcode_42)
 {
+#if BOOST_VERSION >= 1058000
     setenv("BOOST_TEST_CATCH_SYSTEM_ERRORS", "no", 1);
 
     SystemCmd cmd("helpers/retcode 42");
 
     BOOST_CHECK(cmd.retcode() == 42);
+#endif
 }
