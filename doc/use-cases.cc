@@ -97,18 +97,18 @@ void multi_boot_pc_with_windows()
     const DeviceGraph *probed = Storage::get_probed();
 
     if ( ! probed->have_disks() )
-	THROW( StorageException( "Preconditions not met: No hard disk" ) );
+	ST_THROW( StorageException( "Preconditions not met: No hard disk" ) );
 
     DeviceGraph *staging = Storage::get_staging();
     Disk *disk = staging->get_disks().front();
     MsDosPartitionTable * partition_table = disk->get_partition_table();
 
     if ( ! partition_table )
-	THROW( StorageException( "Preconditions not met: No MS-DOS partition table" ) );
+	ST_THROW( StorageException( "Preconditions not met: No MS-DOS partition table" ) );
 
     std::vector<const Partition *> partitions = disk->get_partitions();
     if ( partitions.size() != 1 )
-	THROW( StorageException( "Preconditions not met: One partition on disk expected" ) );
+	ST_THROW( StorageException( "Preconditions not met: One partition on disk expected" ) );
 
 
     // Find windows partition and resize it
@@ -116,7 +116,7 @@ void multi_boot_pc_with_windows()
     Partition *win_part = partitions.front();
     FsType win_fs_type = win_part->get_type();
     if ( win_part->get_type() != NTFS && win_part->get_type() != VFAT )
-	THROW( StorageException( "Preconditions not met: Expected NTFS or VFAT partition" ) );
+	ST_THROW( StorageException( "Preconditions not met: Expected NTFS or VFAT partition" ) );
 
     DiskSize win_size = win_part.get_size();
     DiskSize win_min_size = win_part.get_resize_info();
