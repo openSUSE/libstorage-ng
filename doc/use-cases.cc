@@ -1,6 +1,10 @@
 // Use cases in C++
 // See also file use-cases.md
 //
+// This is how I (shundhammer@suse.de) would like to use it from an application
+// developer's point of view. Many aspects are already slightly changed to
+// match some technical aspects of Arvin's prototype of the new libstorage.
+//
 // Notice: This is pseudo code. It will not compile, much less do anything useful.
 //
 
