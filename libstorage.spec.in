@@ -87,7 +87,7 @@ sed -i -e 's/DEVICE_NAMES=".*"/DEVICE_NAMES="path"/' data/sysconfig.storage-libs
 %endif
 
 %check
-make check LOCALEDIR=$RPM_BUILD_ROOT/usr/share/locale VERBOSE=1
+make %{?jobs:-j%jobs} check LOCALEDIR=$RPM_BUILD_ROOT/usr/share/locale VERBOSE=1
 
 %install
 make install DESTDIR="$RPM_BUILD_ROOT"
