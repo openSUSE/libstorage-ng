@@ -1,7 +1,6 @@
 
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
-#define BOOST_TEST_IGNORE_NON_ZERO_CHILD_CODE
 
 #include <boost/version.hpp>
 #include <boost/test/unit_test.hpp>
