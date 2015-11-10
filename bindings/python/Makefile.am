@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/bindings/python
 #
 
-SUBDIRS = examples testsuite
+SUBDIRS = . examples testsuite
 
 EXTRA_DIST = storage-python.i
 
