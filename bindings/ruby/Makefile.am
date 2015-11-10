@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/bindings/ruby
 #
 
-SUBDIRS = examples testsuite
+SUBDIRS = . examples testsuite
 
 EXTRA_DIST = storage-ruby.i
 
