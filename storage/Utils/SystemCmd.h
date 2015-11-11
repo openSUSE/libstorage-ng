@@ -20,8 +20,9 @@
  */
 
 
-#ifndef SYSTEM_CMD_H
-#define SYSTEM_CMD_H
+#ifndef STORAGE_SYSTEM_CMD_H
+#define STORAGE_SYSTEM_CMD_H
+
 
 #include <sys/poll.h>
 #include <stdio.h>

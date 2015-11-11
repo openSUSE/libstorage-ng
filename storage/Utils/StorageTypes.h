@@ -20,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_TYPES_H
-#define STORAGE_TYPES_H
+#ifndef STORAGE_STORAGE_TYPES_H
+#define STORAGE_STORAGE_TYPES_H
 
 
 #include <string>

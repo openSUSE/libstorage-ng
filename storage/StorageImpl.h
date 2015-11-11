@@ -1,5 +1,5 @@
-#ifndef STORAGE_IMPL_H
-#define STORAGE_IMPL_H
+#ifndef STORAGE_STORAGE_IMPL_H
+#define STORAGE_STORAGE_IMPL_H
 
 
 #include <map>

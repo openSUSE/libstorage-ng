@@ -1,5 +1,5 @@
-#ifndef DEVICEGRAPH_H
-#define DEVICEGRAPH_H
+#ifndef STORAGE_DEVICEGRAPH_H
+#define STORAGE_DEVICEGRAPH_H
 
 
 #include <stdexcept>

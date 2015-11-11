@@ -1,5 +1,5 @@
-#ifndef SWAP_H
-#define SWAP_H
+#ifndef STORAGE_SWAP_H
+#define STORAGE_SWAP_H
 
 
 #include "storage/Devices/Filesystem.h"

@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_LVM_H
-#define CMD_LVM_H
+#ifndef STORAGE_CMD_LVM_H
+#define STORAGE_CMD_LVM_H
 
 
 #include <string>

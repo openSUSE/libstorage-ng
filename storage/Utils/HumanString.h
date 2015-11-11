@@ -20,8 +20,8 @@
  */
 
 
-#ifndef HUMAN_STRING_H
-#define HUMAN_STRING_H
+#ifndef STORAGE_HUMAN_STRING_H
+#define STORAGE_HUMAN_STRING_H
 
 #include <string>
 #include <stdexcept>

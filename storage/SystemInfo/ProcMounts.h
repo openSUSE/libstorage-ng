@@ -20,8 +20,9 @@
  */
 
 
-#ifndef PROC_MOUNTS_H
-#define PROC_MOUNTS_H
+#ifndef STORAGE_PROC_MOUNTS_H
+#define STORAGE_PROC_MOUNTS_H
+
 
 #include <string>
 #include <list>

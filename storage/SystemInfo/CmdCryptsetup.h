@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_CRYPTSETUP_H
-#define CMD_CRYPTSETUP_H
+#ifndef STORAGE_CMD_CRYPTSETUP_H
+#define STORAGE_CMD_CRYPTSETUP_H
 
 
 #include <string>

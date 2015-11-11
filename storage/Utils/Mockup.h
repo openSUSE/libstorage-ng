@@ -1,5 +1,5 @@
-#ifndef MOCKUP_H
-#define MOCKUP_H
+#ifndef STORAGE_MOCKUP_H
+#define STORAGE_MOCKUP_H
 
 
 #include <string>

@@ -20,8 +20,8 @@
  */
 
 
-#ifndef LOCK_H
-#define LOCK_H
+#ifndef STORAGE_LOCK_H
+#define STORAGE_LOCK_H
 
 
 #include <stdexcept>

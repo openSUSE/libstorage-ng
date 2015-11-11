@@ -20,8 +20,8 @@
  */
 
 
-#ifndef FREE_INFO_H
-#define FREE_INFO_H
+#ifndef STORAGE_FREE_INFO_H
+#define STORAGE_FREE_INFO_H
 
 #include <ostream>
 

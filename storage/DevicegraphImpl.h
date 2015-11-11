@@ -1,5 +1,5 @@
-#ifndef DEVICEGRAPH_IMPL_H
-#define DEVICEGRAPH_IMPL_H
+#ifndef STORAGE_DEVICEGRAPH_IMPL_H
+#define STORAGE_DEVICEGRAPH_IMPL_H
 
 
 #include <set>

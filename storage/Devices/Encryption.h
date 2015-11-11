@@ -1,5 +1,5 @@
-#ifndef ENCRYPTION_H
-#define ENCRYPTION_H
+#ifndef STORAGE_ENCRYPTION_H
+#define STORAGE_ENCRYPTION_H
 
 
 #include "storage/Devices/BlkDevice.h"

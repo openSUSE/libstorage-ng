@@ -20,8 +20,8 @@
  */
 
 
-#ifndef ASCII_FILE_H
-#define ASCII_FILE_H
+#ifndef STORAGE_ASCII_FILE_H
+#define STORAGE_ASCII_FILE_H
 
 
 #include <string>

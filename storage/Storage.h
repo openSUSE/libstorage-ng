@@ -1,5 +1,5 @@
-#ifndef STORAGE_H
-#define STORAGE_H
+#ifndef STORAGE_STORAGE_H
+#define STORAGE_STORAGE_H
 
 
 #include <string>

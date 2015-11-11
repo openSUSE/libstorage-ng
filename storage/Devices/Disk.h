@@ -1,5 +1,5 @@
-#ifndef DISK_H
-#define DISK_H
+#ifndef STORAGE_DISK_H
+#define STORAGE_DISK_H
 
 
 #include "storage/Devices/BlkDevice.h"

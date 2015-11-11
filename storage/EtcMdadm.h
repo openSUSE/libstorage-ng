@@ -20,8 +20,8 @@
  */
 
 
-#ifndef ETC_MDADM_H
-#define ETC_MDADM_H
+#ifndef STORAGE_ETC_MDADM_H
+#define STORAGE_ETC_MDADM_H
 
 #include <string>
 #include <map>

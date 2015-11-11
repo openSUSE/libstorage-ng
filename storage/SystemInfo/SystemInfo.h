@@ -20,8 +20,8 @@
  */
 
 
-#ifndef SYSTEM_INFO_H
-#define SYSTEM_INFO_H
+#ifndef STORAGE_SYSTEM_INFO_H
+#define STORAGE_SYSTEM_INFO_H
 
 
 #include <boost/noncopyable.hpp>

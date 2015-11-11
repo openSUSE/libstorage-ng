@@ -20,8 +20,9 @@
  */
 
 
-#ifndef CMD_PARTED_H
-#define CMD_PARTED_H
+#ifndef STORAGE_CMD_PARTED_H
+#define STORAGE_CMD_PARTED_H
+
 
 #include "storage/StorageInterface.h"
 #include "storage/Geometry.h"

@@ -20,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_DEFINES_H
-#define STORAGE_DEFINES_H
+#ifndef STORAGE_STORAGE_DEFINES_H
+#define STORAGE_STORAGE_DEFINES_H
 
 
 #define SYSFSDIR "/sys"

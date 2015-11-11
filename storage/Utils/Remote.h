@@ -1,5 +1,5 @@
-#ifndef REMOTE_H
-#define REMOTE_H
+#ifndef STORAGE_REMOTE_H
+#define STORAGE_REMOTE_H
 
 
 #include <string>

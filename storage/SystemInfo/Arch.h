@@ -20,8 +20,8 @@
  */
 
 
-#ifndef ARCH_H
-#define ARCH_H
+#ifndef STORAGE_ARCH_H
+#define STORAGE_ARCH_H
 
 
 #include "storage/Utils/XmlFile.h"

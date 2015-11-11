@@ -1,5 +1,5 @@
-#ifndef EXT4_H
-#define EXT4_H
+#ifndef STORAGE_EXT4_H
+#define STORAGE_EXT4_H
 
 
 #include "storage/Devices/Filesystem.h"

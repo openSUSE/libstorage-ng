@@ -1,5 +1,5 @@
-#ifndef DEVICE_IMPL_H
-#define DEVICE_IMPL_H
+#ifndef STORAGE_DEVICE_IMPL_H
+#define STORAGE_DEVICE_IMPL_H
 
 
 #include <libxml/tree.h>

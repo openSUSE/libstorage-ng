@@ -20,8 +20,8 @@
  */
 
 
-#ifndef XML_FILE_H
-#define XML_FILE_H
+#ifndef STORAGE_XML_FILE_H
+#define STORAGE_XML_FILE_H
 
 
 #include <libxml/tree.h>

@@ -20,8 +20,9 @@
  */
 
 
-#ifndef CMD_BLKID_H
-#define CMD_BLKID_H
+#ifndef STORAGE_CMD_BLKID_H
+#define STORAGE_CMD_BLKID_H
+
 
 #include <string>
 #include <map>

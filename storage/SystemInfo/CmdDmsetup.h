@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_DMSETUP_H
-#define CMD_DMSETUP_H
+#ifndef STORAGE_CMD_DMSETUP_H
+#define STORAGE_CMD_DMSETUP_H
 
 
 #include <string>

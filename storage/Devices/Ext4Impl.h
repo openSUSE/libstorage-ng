@@ -1,5 +1,5 @@
-#ifndef EXT4_IMPL_H
-#define EXT4_IMPL_H
+#ifndef STORAGE_EXT4_IMPL_H
+#define STORAGE_EXT4_IMPL_H
 
 
 #include "storage/Devices/Ext4.h"

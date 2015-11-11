@@ -1,5 +1,5 @@
-#ifndef DEVICE_H
-#define DEVICE_H
+#ifndef STORAGE_DEVICE_H
+#define STORAGE_DEVICE_H
 
 
 #include <stdint.h>

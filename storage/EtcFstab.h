@@ -20,8 +20,9 @@
  */
 
 
-#ifndef ETC_FSTAB_H
-#define ETC_FSTAB_H
+#ifndef STORAGE_ETC_FSTAB_H
+#define STORAGE_ETC_FSTAB_H
+
 
 #include <string>
 #include <list>

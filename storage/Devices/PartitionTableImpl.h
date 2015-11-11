@@ -1,5 +1,5 @@
-#ifndef PARTITION_TABLE_IMPL_H
-#define PARTITION_TABLE_IMPL_H
+#ifndef STORAGE_PARTITION_TABLE_IMPL_H
+#define STORAGE_PARTITION_TABLE_IMPL_H
 
 
 #include "storage/Devices/PartitionTable.h"

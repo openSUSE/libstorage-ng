@@ -20,8 +20,8 @@
  */
 
 
-#ifndef GRAPH_H
-#define GRAPH_H
+#ifndef STORAGE_GRAPH_H
+#define STORAGE_GRAPH_H
 
 
 #include <string>

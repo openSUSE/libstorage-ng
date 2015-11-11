@@ -1,5 +1,5 @@
-#ifndef LVM_LV_H
-#define LVM_LV_H
+#ifndef STORAGE_LVM_LV_H
+#define STORAGE_LVM_LV_H
 
 
 #include "storage/Devices/BlkDevice.h"

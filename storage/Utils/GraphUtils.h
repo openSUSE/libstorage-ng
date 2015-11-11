@@ -1,5 +1,5 @@
-#ifndef GRAPH_UTILS_H
-#define GRAPH_UTILS_H
+#ifndef STORAGE_GRAPH_UTILS_H
+#define STORAGE_GRAPH_UTILS_H
 
 
 #include <string>

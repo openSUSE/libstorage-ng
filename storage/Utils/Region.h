@@ -20,8 +20,8 @@
  */
 
 
-#ifndef REGION_H
-#define REGION_H
+#ifndef STORAGE_REGION_H
+#define STORAGE_REGION_H
 
 
 #include <libxml/tree.h>

@@ -1,5 +1,5 @@
-#ifndef SUBDEVICE_IMPL_H
-#define SUBDEVICE_IMPL_H
+#ifndef STORAGE_SUBDEVICE_IMPL_H
+#define STORAGE_SUBDEVICE_IMPL_H
 
 
 #include "storage/Holders/Subdevice.h"
