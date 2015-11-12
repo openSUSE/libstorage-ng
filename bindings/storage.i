@@ -32,6 +32,12 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find(const Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(const Devicegraph*, const std::string&);
 
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table() const;
+
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
+
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
 
@@ -102,5 +108,7 @@ using namespace storage;
 %template(MapStringString) std::map<std::string, std::string>;
 
 %template(VectorConstDevicePtr) std::vector<const Device*>;
+%template(VectorDiskPtr) std::vector<Disk*>;
+%template(VectorConstDiskPtr) std::vector<const Disk*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;

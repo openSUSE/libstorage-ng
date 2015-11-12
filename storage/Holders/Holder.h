@@ -14,9 +14,9 @@ namespace storage
     class Device;
 
 
-    struct HolderHasWrongType : public std::runtime_error
+    struct HolderHasWrongType : public Exception
     {
-	HolderHasWrongType(const std::string& msg) throw() : runtime_error(msg) {}
+	HolderHasWrongType(const std::string& msg) : Exception(msg) {}
     };
 
 

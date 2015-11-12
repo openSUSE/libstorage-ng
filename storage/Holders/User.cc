@@ -64,7 +64,7 @@ namespace storage
     {
 	User* user = dynamic_cast<User*>(holder);
 	if (!user)
-	    throw HolderHasWrongType("holder is not a User");
+	    ST_THROW(HolderHasWrongType("holder is not a User"));
 
 	return user;
     }
@@ -75,7 +75,7 @@ namespace storage
     {
 	const User* user = dynamic_cast<const User*>(holder);
 	if (!user)
-	    throw HolderHasWrongType("holder is not a User");
+	    ST_THROW(HolderHasWrongType("holder is not a User"));
 
 	return user;
     }

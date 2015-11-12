@@ -149,7 +149,7 @@ namespace storage
 	    get_impl().find_vertex(sid);
 	    return true;
 	}
-	catch (const runtime_error& e)
+	catch (const DeviceNotFound& e)
 	{
 	    return false;
 	}

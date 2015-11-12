@@ -48,7 +48,10 @@ namespace storage
 		return blk_device;
 	}
 
-	throw DeviceNotFound(sformat("device not found, name:%s", name.c_str()));
+	ST_THROW(DeviceNotFound(sformat("device not found, name:%s", name.c_str())));
+	// TODO, compiler does not understand that ST_THROW with doThrow = true
+	// always does a throw.
+	__builtin_unreachable();
     }
 
 
@@ -192,7 +195,7 @@ namespace storage
     {
 	BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(device);
 	if (!blkdevice)
-	    throw DeviceHasWrongType("device is not a BlkDevice");
+	    ST_THROW(DeviceHasWrongType("device is not a BlkDevice"));
 
 	return blkdevice;
     }
@@ -203,7 +206,7 @@ namespace storage
     {
 	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(device);
 	if (!blkdevice)
-	    throw DeviceHasWrongType("device is not a BlkDevice");
+	    ST_THROW(DeviceHasWrongType("device is not a BlkDevice"));
 
 	return blkdevice;
     }

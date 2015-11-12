@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     BOOST_CHECK_EQUAL(BlkDevice::find(devicegraph, "/dev/sda"), sda);
     BOOST_CHECK_EQUAL(BlkDevice::find(devicegraph, "/dev/sda1"), sda1);
-    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda2"), std::runtime_error);
+    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda2"), DeviceNotFound);
 
     delete devicegraph;
 }

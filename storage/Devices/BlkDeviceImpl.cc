@@ -165,28 +165,14 @@ namespace storage
     Filesystem*
     BlkDevice::Impl::get_filesystem()
     {
-	if (get_device()->num_children() != 1)
-	    throw runtime_error("blkdevice has no children");
-
-	const Devicegraph* devicegraph = get_devicegraph();
-
-	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
-
-	return to_filesystem(child);
+	return get_single_child_of_type<Filesystem>();
     }
 
 
     const Filesystem*
     BlkDevice::Impl::get_filesystem() const
     {
-	if (get_device()->num_children() != 1)
-	    throw runtime_error("blkdevice has no children");
-
-	const Devicegraph* devicegraph = get_devicegraph();
-
-	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
-
-	return to_filesystem(child);
+	return get_single_child_of_type<const Filesystem>();
     }
 
 

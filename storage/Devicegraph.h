@@ -15,15 +15,25 @@ namespace storage
     class Holder;
 
 
-    struct DeviceNotFound : public std::runtime_error
+    struct DeviceNotFound : public Exception
     {
-	DeviceNotFound(const std::string& msg) throw() : runtime_error(msg) {}
+	DeviceNotFound(const std::string& msg) : Exception(msg) {}
     };
 
 
-    struct HolderNotFound : public std::runtime_error
+    struct HolderNotFound : public Exception
     {
-	HolderNotFound(const std::string& msg) throw() : runtime_error(msg) {}
+	HolderNotFound(const std::string& msg) : Exception(msg) {}
+    };
+
+    struct WrongNumberOfParents : public Exception
+    {
+	WrongNumberOfParents(const std::string& msg) : Exception(msg) {}
+    };
+
+    struct WrongNumberOfChildren : public Exception
+    {
+	WrongNumberOfChildren(const std::string& msg) : Exception(msg) {}
     };
 
 

@@ -178,7 +178,7 @@ namespace storage
     {
 	Filesystem* filesystem = dynamic_cast<Filesystem*>(device);
 	if (!filesystem)
-	    throw DeviceHasWrongType("device is not a Filesystem");
+	    ST_THROW(DeviceHasWrongType("device is not a Filesystem"));
 
 	return filesystem;
     }
@@ -189,7 +189,7 @@ namespace storage
     {
 	const Filesystem* filesystem = dynamic_cast<const Filesystem*>(device);
 	if (!filesystem)
-	    throw DeviceHasWrongType("device is not a Filesystem");
+	    ST_THROW(DeviceHasWrongType("device is not a Filesystem"));
 
 	return filesystem;
     }
