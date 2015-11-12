@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_DMRAID_H
-#define CMD_DMRAID_H
+#ifndef STORAGE_CMD_DMRAID_H
+#define STORAGE_CMD_DMRAID_H
 
 
 #include <string>

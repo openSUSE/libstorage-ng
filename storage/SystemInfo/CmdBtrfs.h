@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_BTRFS_H
-#define CMD_BTRFS_H
+#ifndef STORAGE_CMD_BTRFS_H
+#define STORAGE_CMD_BTRFS_H
 
 
 #include <string>

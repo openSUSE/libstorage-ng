@@ -1,5 +1,5 @@
-#ifndef ENVIRONMENT_IMPL_H
-#define ENVIRONMENT_IMPL_H
+#ifndef STORAGE_ENVIRONMENT_IMPL_H
+#define STORAGE_ENVIRONMENT_IMPL_H
 
 
 #include "storage/Environment.h"

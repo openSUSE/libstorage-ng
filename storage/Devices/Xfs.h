@@ -1,5 +1,5 @@
-#ifndef XFS_H
-#define XFS_H
+#ifndef STORAGE_XFS_H
+#define STORAGE_XFS_H
 
 
 #include "storage/Devices/Filesystem.h"

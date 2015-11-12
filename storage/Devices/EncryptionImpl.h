@@ -1,5 +1,5 @@
-#ifndef ENCRYPTION_IMPL_H
-#define ENCRYPTION_IMPL_H
+#ifndef STORAGE_ENCRYPTION_IMPL_H
+#define STORAGE_ENCRYPTION_IMPL_H
 
 
 #include "storage/Devices/Encryption.h"

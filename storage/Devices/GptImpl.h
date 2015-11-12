@@ -1,5 +1,5 @@
-#ifndef GPT_IMPL_H
-#define GPT_IMPL_H
+#ifndef STORAGE_GPT_IMPL_H
+#define STORAGE_GPT_IMPL_H
 
 
 #include "storage/Devices/Gpt.h"

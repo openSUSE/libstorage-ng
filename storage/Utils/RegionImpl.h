@@ -20,8 +20,8 @@
  */
 
 
-#ifndef REGION_IMPL_H
-#define REGION_IMPL_H
+#ifndef STORAGE_REGION_IMPL_H
+#define STORAGE_REGION_IMPL_H
 
 #include <algorithm>
 

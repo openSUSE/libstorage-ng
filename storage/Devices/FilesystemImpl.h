@@ -1,5 +1,5 @@
-#ifndef FILESYSTEM_IMPL_H
-#define FILESYSTEM_IMPL_H
+#ifndef STORAGE_FILESYSTEM_IMPL_H
+#define STORAGE_FILESYSTEM_IMPL_H
 
 
 #include "storage/Devices/Filesystem.h"

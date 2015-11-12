@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_UDEVADM_H
-#define CMD_UDEVADM_H
+#ifndef STORAGE_CMD_UDEVADM_H
+#define STORAGE_CMD_UDEVADM_H
 
 
 #include <string>

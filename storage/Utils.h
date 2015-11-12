@@ -20,8 +20,8 @@
  */
 
 
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef STORAGE_UTILS_H
+#define STORAGE_UTILS_H
 
 
 #include <string>

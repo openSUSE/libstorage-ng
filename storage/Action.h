@@ -1,5 +1,5 @@
-#ifndef ACTION_H
-#define ACTION_H
+#ifndef STORAGE_ACTION_H
+#define STORAGE_ACTION_H
 
 
 #include "storage/Devices/Device.h"

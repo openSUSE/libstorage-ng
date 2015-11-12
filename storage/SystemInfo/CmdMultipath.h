@@ -20,8 +20,8 @@
  */
 
 
-#ifndef CMD_MULTIPATH_H
-#define CMD_MULTIPATH_H
+#ifndef STORAGE_CMD_MULTIPATH_H
+#define STORAGE_CMD_MULTIPATH_H
 
 
 #include <string>

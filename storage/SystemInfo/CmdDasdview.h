@@ -20,8 +20,9 @@
  */
 
 
-#ifndef CMD_DASDVIEW_H
-#define CMD_DASDVIEW_H
+#ifndef STORAGE_CMD_DASDVIEW_H
+#define STORAGE_CMD_DASDVIEW_H
+
 
 #include "storage/StorageInterface.h"
 #include "storage/Geometry.h"

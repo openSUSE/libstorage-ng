@@ -1,5 +1,5 @@
-#ifndef LVM_VG_H
-#define LVM_VG_H
+#ifndef STORAGE_LVM_VG_H
+#define STORAGE_LVM_VG_H
 
 
 #include "storage/Devices/Device.h"

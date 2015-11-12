@@ -24,12 +24,14 @@
  * Large parts stolen from libyui/YUIException.h
  */
 
-#ifndef Exception_h
-#define Exception_h
+#ifndef STORAGE_EXCEPTION_H
+#define STORAGE_EXCEPTION_H
+
 
 #include <stdexcept>
 #include <string>
 #include <ostream>
+
 
 namespace storage
 {
@@ -594,4 +596,4 @@ namespace storage
 
 } // namespace storage
 
-#endif // Exception_h
+#endif

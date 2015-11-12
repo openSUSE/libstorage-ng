@@ -20,8 +20,8 @@
  */
 
 
-#ifndef DEV_AND_SYS_H
-#define DEV_AND_SYS_H
+#ifndef STORAGE_DEV_AND_SYS_H
+#define STORAGE_DEV_AND_SYS_H
 
 
 #include <sys/types.h>

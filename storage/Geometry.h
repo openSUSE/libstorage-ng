@@ -20,8 +20,8 @@
  */
 
 
-#ifndef GEOMETRY_H
-#define GEOMETRY_H
+#ifndef STORAGE_GEOMETRY_H
+#define STORAGE_GEOMETRY_H
 
 #include "storage/Utils/XmlFile.h"
 

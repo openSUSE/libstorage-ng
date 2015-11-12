@@ -20,8 +20,8 @@
  */
 
 
-#ifndef PROC_MDSTAT_H
-#define PROC_MDSTAT_H
+#ifndef STORAGE_PROC_MDSTAT_H
+#define STORAGE_PROC_MDSTAT_H
 
 
 #include <map>

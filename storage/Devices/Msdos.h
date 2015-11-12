@@ -1,5 +1,5 @@
-#ifndef MSDOS_H
-#define MSDOS_H
+#ifndef STORAGE_MSDOS_H
+#define STORAGE_MSDOS_H
 
 
 #include "storage/Devices/PartitionTable.h"

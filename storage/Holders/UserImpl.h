@@ -1,5 +1,5 @@
-#ifndef USER_IMPL_H
-#define USER_IMPL_H
+#ifndef STORAGE_USER_IMPL_H
+#define STORAGE_USER_IMPL_H
 
 
 #include "storage/Holders/User.h"

@@ -1,5 +1,5 @@
-#ifndef ENVIRONMENT_H
-#define ENVIRONMENT_H
+#ifndef STORAGE_ENVIRONMENT_H
+#define STORAGE_ENVIRONMENT_H
 
 
 #include <string>

@@ -20,8 +20,9 @@
  */
 
 
-#ifndef APP_UTIL_H
-#define APP_UTIL_H
+#ifndef STORAGE_APP_UTIL_H
+#define STORAGE_APP_UTIL_H
+
 
 #include <libintl.h>
 #include <sys/time.h>

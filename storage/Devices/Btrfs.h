@@ -1,5 +1,5 @@
-#ifndef BTRFS_H
-#define BTRFS_H
+#ifndef STORAGE_BTRFS_H
+#define STORAGE_BTRFS_H
 
 
 #include "storage/Devices/Filesystem.h"

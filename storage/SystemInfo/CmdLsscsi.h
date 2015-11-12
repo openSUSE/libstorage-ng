@@ -20,8 +20,9 @@
  */
 
 
-#ifndef CMD_LSSCSI_H
-#define CMD_LSSCSI_H
+#ifndef STORAGE_CMD_LSSCSI_H
+#define STORAGE_CMD_LSSCSI_H
+
 
 #include <string>
 #include <map>

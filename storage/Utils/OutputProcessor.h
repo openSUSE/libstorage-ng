@@ -20,8 +20,8 @@
  */
 
 
-#ifndef OUTPUT_PROCESSOR_H
-#define OUTPUT_PROCESSOR_H
+#ifndef STORAGE_OUTPUT_PROCESSOR_H
+#define STORAGE_OUTPUT_PROCESSOR_H
 
 
 #include "storage/StorageInterface.h"

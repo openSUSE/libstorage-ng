@@ -1,5 +1,5 @@
-#ifndef DISK_IMPL_H
-#define DISK_IMPL_H
+#ifndef STORAGE_DISK_IMPL_H
+#define STORAGE_DISK_IMPL_H
 
 
 #include "storage/Devices/Disk.h"

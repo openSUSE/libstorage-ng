@@ -1,5 +1,5 @@
-#ifndef HOLDER_IMPL_H
-#define HOLDER_IMPL_H
+#ifndef STORAGE_HOLDER_IMPL_H
+#define STORAGE_HOLDER_IMPL_H
 
 
 #include <libxml/tree.h>

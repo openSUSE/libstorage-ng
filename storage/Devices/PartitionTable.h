@@ -1,5 +1,5 @@
-#ifndef PARTITION_TABLE_H
-#define PARTITION_TABLE_H
+#ifndef STORAGE_PARTITION_TABLE_H
+#define STORAGE_PARTITION_TABLE_H
 
 
 #include <vector>

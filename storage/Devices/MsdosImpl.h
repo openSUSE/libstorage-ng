@@ -1,5 +1,5 @@
-#ifndef MSDOS_IMPL_H
-#define MSDOS_IMPL_H
+#ifndef STORAGE_MSDOS_IMPL_H
+#define STORAGE_MSDOS_IMPL_H
 
 
 #include "storage/Devices/Msdos.h"

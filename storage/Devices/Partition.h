@@ -1,5 +1,5 @@
-#ifndef PARTITION_H
-#define PARTITION_H
+#ifndef STORAGE_PARTITION_H
+#define STORAGE_PARTITION_H
 
 
 #include "storage/Devices/BlkDevice.h"

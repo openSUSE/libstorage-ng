@@ -20,8 +20,8 @@
  */
 
 
-#ifndef ENUM_H
-#define ENUM_H
+#ifndef STORAGE_ENUM_H
+#define STORAGE_ENUM_H
 
 
 #include <assert.h>

@@ -20,8 +20,8 @@
  */
 
 
-#ifndef PROC_PARTS_H
-#define PROC_PARTS_H
+#ifndef STORAGE_PROC_PARTS_H
+#define STORAGE_PROC_PARTS_H
 
 
 #include <string>

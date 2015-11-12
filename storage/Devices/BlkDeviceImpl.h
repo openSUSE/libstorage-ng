@@ -1,5 +1,5 @@
-#ifndef BLK_DEVICE_IMPL_H
-#define BLK_DEVICE_IMPL_H
+#ifndef STORAGE_BLK_DEVICE_IMPL_H
+#define STORAGE_BLK_DEVICE_IMPL_H
 
 
 #include "storage/Devices/BlkDevice.h"

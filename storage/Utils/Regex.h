@@ -20,8 +20,8 @@
  */
 
 
-#ifndef REGEX_H
-#define REGEX_H
+#ifndef STORAGE_REGEX_H
+#define STORAGE_REGEX_H
 
 
 #include <regex.h>

@@ -1,5 +1,5 @@
-#ifndef GPT_H
-#define GPT_H
+#ifndef STORAGE_GPT_H
+#define STORAGE_GPT_H
 
 
 #include "storage/Devices/PartitionTable.h"

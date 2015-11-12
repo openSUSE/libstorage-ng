@@ -20,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_TMPL_H
-#define STORAGE_TMPL_H
+#ifndef STORAGE_STORAGE_TMPL_H
+#define STORAGE_STORAGE_TMPL_H
 
 
 #include <functional>

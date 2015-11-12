@@ -1,5 +1,5 @@
-#ifndef ACTIONGRAPH_H
-#define ACTIONGRAPH_H
+#ifndef STORAGE_ACTIONGRAPH_H
+#define STORAGE_ACTIONGRAPH_H
 
 
 #include <list>
