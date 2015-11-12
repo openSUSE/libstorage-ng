@@ -133,7 +133,7 @@ namespace storage
     {
 	Disk* disk = dynamic_cast<Disk*>(device);
 	if (!disk)
-	    throw DeviceHasWrongType("device is not a Disk");
+	    ST_THROW(DeviceHasWrongType("device is not a Disk"));
 
 	return disk;
     }
@@ -144,7 +144,7 @@ namespace storage
     {
 	const Disk* disk = dynamic_cast<const Disk*>(device);
 	if (!disk)
-	    throw DeviceHasWrongType("device is not a Disk");
+	    ST_THROW(DeviceHasWrongType("device is not a Disk"));
 
 	return disk;
     }

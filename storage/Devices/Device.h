@@ -9,15 +9,18 @@
 #include <map>
 #include <memory>
 
+#include "storage/Exception.h"
+
+
 //! The storage namespace.
 namespace storage
 {
     class Devicegraph;
 
 
-    struct DeviceHasWrongType : public std::runtime_error
+    struct DeviceHasWrongType : public Exception
     {
-	DeviceHasWrongType(const std::string& msg) throw() : runtime_error(msg) {}
+	DeviceHasWrongType(const std::string& msg) : Exception(msg) {}
     };
 
 

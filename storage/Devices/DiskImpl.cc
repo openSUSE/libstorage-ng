@@ -150,28 +150,14 @@ namespace storage
     PartitionTable*
     Disk::Impl::get_partition_table()
     {
-	if (get_device()->num_children() != 1)
-	    throw runtime_error("disk has no children");
-
-	const Devicegraph* devicegraph = get_devicegraph();
-
-	Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
-
-	return to_partition_table(child);
+	return get_single_child_of_type<PartitionTable>();
     }
 
 
     const PartitionTable*
     Disk::Impl::get_partition_table() const
     {
-	if (get_device()->num_children() != 1)
-	    throw runtime_error("disk has no children");
-
-	const Devicegraph* devicegraph = get_devicegraph();
-
-	const Device* child = devicegraph->get_impl().graph[devicegraph->get_impl().child(get_vertex())].get();
-
-	return to_partition_table(child);
+	return get_single_child_of_type<const PartitionTable>();
     }
 
 

@@ -3,6 +3,7 @@
 
 
 #include <libxml/tree.h>
+#include <type_traits>
 
 #include "storage/Devices/Device.h"
 #include "storage/Devicegraph.h"
@@ -69,6 +70,38 @@ namespace storage
 
 	virtual Text do_delete_text(bool doing) const;
 	virtual void do_delete() const;
+
+	template<typename Type>
+	Type* get_single_child_of_type()
+	{
+	    static_assert(!is_const<Type>::value, "Type must not be const");
+
+	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    Device* tmp1 = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+
+	    Type* tmp2 = dynamic_cast<Type*>(tmp1);
+	    if (!tmp2)
+		ST_THROW(DeviceHasWrongType("device has wrong type"));
+
+	    return tmp2;
+	}
+
+	template<typename Type>
+	const Type* get_single_child_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    const Device* tmp1 = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+
+	    const Type* tmp2 = dynamic_cast<const Type*>(tmp1);
+	    if (!tmp2)
+		ST_THROW(DeviceHasWrongType("device has wrong type"));
+
+	    return tmp2;
+	}
 
     protected:
 

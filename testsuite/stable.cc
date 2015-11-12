@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(valid)
     BOOST_CHECK_EQUAL(sda->get_name(), "/dev/sda");
     BOOST_CHECK_EQUAL(sda2->get_name(), "/dev/sda2");
 
-    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda1"), runtime_error);
+    BOOST_CHECK_THROW(BlkDevice::find(devicegraph, "/dev/sda1"), DeviceNotFound);
 
     delete devicegraph;
 }

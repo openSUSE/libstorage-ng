@@ -64,7 +64,7 @@ namespace storage
     {
 	Subdevice* subdevice = dynamic_cast<Subdevice*>(holder);
 	if (!subdevice)
-	    throw HolderHasWrongType("holder is not a Subdevice");
+	    ST_THROW(HolderHasWrongType("holder is not a Subdevice"));
 
 	return subdevice;
     }
@@ -75,7 +75,7 @@ namespace storage
     {
 	const Subdevice* subdevice = dynamic_cast<const Subdevice*>(holder);
 	if (!subdevice)
-	    throw HolderHasWrongType("holder is not a Subdevice");
+	    ST_THROW(HolderHasWrongType("holder is not a Subdevice"));
 
 	return subdevice;
     }

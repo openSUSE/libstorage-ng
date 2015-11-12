@@ -172,8 +172,9 @@ namespace storage
 		return vertex;
 	}
 
-	throw DeviceNotFound(sformat("device not found, sid:%d", sid));
-    }
+	ST_THROW(DeviceNotFound(sformat("device not found, sid:%d", sid)));
+	__builtin_unreachable();
+     }
 
 
     Devicegraph::Impl::edge_descriptor
@@ -231,7 +232,7 @@ namespace storage
     Devicegraph::Impl::child(vertex_descriptor vertex) const
     {
 	if (num_children(vertex) != 1)
-	    throw runtime_error("num_children != 1");
+	    ST_THROW(WrongNumberOfChildren("num_children != 1"));
 
 	return *boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)).begin();
     }
@@ -241,7 +242,7 @@ namespace storage
     Devicegraph::Impl::parent(vertex_descriptor vertex) const
     {
 	if (num_parents(vertex) != 1)
-	    throw runtime_error("num_parents != 1");
+	    ST_THROW(WrongNumberOfParents("num_parents != 1"));
 
 	return *boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)).begin();
     }
