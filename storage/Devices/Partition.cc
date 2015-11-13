@@ -133,4 +133,25 @@ namespace storage
 	return to_partition(blkdevice);
     }
 
+
+    bool
+    is_partition(const Device* device)
+    {
+	return dynamic_cast<const Partition*>(device);
+    }
+
+
+    Partition*
+    to_partition(Device* device)
+    {
+	return to_device_of_type<Partition>(device);
+    }
+
+
+    const Partition*
+    to_partition(const Device* device)
+    {
+	return to_device_of_type<const Partition>(device);
+    }
+
 }
