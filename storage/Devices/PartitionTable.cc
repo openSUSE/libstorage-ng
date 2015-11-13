@@ -84,22 +84,14 @@ namespace storage
     PartitionTable*
     to_partition_table(Device* device)
     {
-	PartitionTable* partition_table = dynamic_cast<PartitionTable*>(device);
-	if (!partition_table)
-	    ST_THROW(DeviceHasWrongType("device is not a PartitionTable"));
-
-	return partition_table;
+	return to_device_of_type<PartitionTable>(device);
     }
 
 
     const PartitionTable*
     to_partition_table(const Device* device)
     {
-	const PartitionTable* partition_table = dynamic_cast<const PartitionTable*>(device);
-	if (!partition_table)
-	    ST_THROW(DeviceHasWrongType("device is not a PartitionTable"));
-
-	return partition_table;
+	return to_device_of_type<const PartitionTable>(device);
     }
 
 }

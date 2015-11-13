@@ -21,6 +21,32 @@ namespace storage
     class SystemInfo;
 
 
+    template <typename Type>
+    Type* to_device_of_type(Device* device)
+    {
+	static_assert(!is_const<Type>::value, "Type must not be const");
+
+	Type* tmp = dynamic_cast<Type*>(device);
+	if (!tmp)
+	    ST_THROW(DeviceHasWrongType("device has wrong type"));
+
+	return tmp;
+    }
+
+
+    template <typename Type>
+    const Type* to_device_of_type(const Device* device)
+    {
+	static_assert(is_const<Type>::value, "Type must be const");
+
+	const Type* tmp = dynamic_cast<const Type*>(device);
+	if (!tmp)
+	    ST_THROW(DeviceHasWrongType("device has wrong type"));
+
+	return tmp;
+    }
+
+
     // abstract class
 
     class Device::Impl
@@ -78,13 +104,9 @@ namespace storage
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    Device* tmp1 = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+	    Device* tmp = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
 
-	    Type* tmp2 = dynamic_cast<Type*>(tmp1);
-	    if (!tmp2)
-		ST_THROW(DeviceHasWrongType("device has wrong type"));
-
-	    return tmp2;
+	    return to_device_of_type<Type>(tmp);
 	}
 
 	template<typename Type>
@@ -94,13 +116,9 @@ namespace storage
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp1 = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+	    const Device* tmp = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
 
-	    const Type* tmp2 = dynamic_cast<const Type*>(tmp1);
-	    if (!tmp2)
-		ST_THROW(DeviceHasWrongType("device has wrong type"));
-
-	    return tmp2;
+	    return to_device_of_type<Type>(tmp);
 	}
 
     protected:
