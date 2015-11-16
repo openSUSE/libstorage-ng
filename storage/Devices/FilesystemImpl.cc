@@ -20,6 +20,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Filesystem>::classname = "Filesystem";
+
+
     Filesystem::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), label(), uuid(), mountpoints({}), mount_by(MOUNTBY_DEVICE),
 	  fstab_options({}), mkfs_options(), tune_options()

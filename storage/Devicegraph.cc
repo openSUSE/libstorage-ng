@@ -23,6 +23,37 @@
 namespace storage
 {
 
+
+    DeviceNotFound::DeviceNotFound(sid_t sid)
+	: Exception(sformat("device not found, sid:%d", sid))
+    {
+    }
+
+
+    DeviceNotFound::DeviceNotFound(const string& name)
+	: Exception(sformat("device not found, name:%s", name.c_str()))
+    {
+    }
+
+
+    HolderNotFound::HolderNotFound(sid_t source_sid, sid_t target_sid)
+	: Exception(sformat("holder not found, source_sid:%d, target_sid:%d", source_sid, target_sid))
+    {
+    }
+
+
+    WrongNumberOfParents::WrongNumberOfParents(size_t seen, size_t expected)
+	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected))
+    {
+    }
+
+
+    WrongNumberOfChildren::WrongNumberOfChildren(size_t seen, size_t expected)
+	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected))
+    {
+    }
+
+
     Devicegraph::Devicegraph(const Storage* storage)
 	: impl(new Impl(storage))
     {
@@ -151,6 +182,7 @@ namespace storage
 	}
 	catch (const DeviceNotFound& e)
 	{
+	    ST_CAUGHT(e);
 	    return false;
 	}
     }

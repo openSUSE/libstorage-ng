@@ -17,23 +17,26 @@ namespace storage
 
     struct DeviceNotFound : public Exception
     {
-	DeviceNotFound(const std::string& msg) : Exception(msg) {}
+	DeviceNotFound(sid_t sid);
+	DeviceNotFound(const std::string& name);
     };
 
 
     struct HolderNotFound : public Exception
     {
-	HolderNotFound(const std::string& msg) : Exception(msg) {}
+	HolderNotFound(sid_t source_sid, sid_t target_sid);
     };
+
 
     struct WrongNumberOfParents : public Exception
     {
-	WrongNumberOfParents(const std::string& msg) : Exception(msg) {}
+	WrongNumberOfParents(size_t seen, size_t expected);
     };
+
 
     struct WrongNumberOfChildren : public Exception
     {
-	WrongNumberOfChildren(const std::string& msg) : Exception(msg) {}
+	WrongNumberOfChildren(size_t seen, size_t expected);
     };
 
 

@@ -17,6 +17,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Partition>::classname = "Partition";
+
+
     Partition::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
     {

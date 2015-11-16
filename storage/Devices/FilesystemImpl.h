@@ -16,6 +16,9 @@ namespace storage
     class EtcFstab;
 
 
+    template <> struct DeviceTraits<Filesystem> { static const char* classname; };
+
+
     // abstract class
 
     class Filesystem::Impl : public Device::Impl

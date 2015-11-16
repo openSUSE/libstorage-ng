@@ -1,7 +1,7 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/Filesystem.h"
+#include "storage/Devices/FilesystemImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -12,6 +12,10 @@
 
 namespace storage
 {
+
+
+    const char* DeviceTraits<BlkDevice>::classname = "BlkDevice";
+
 
     BlkDevice::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), name(), size_k(0), major_minor(0)

@@ -131,22 +131,14 @@ namespace storage
     Disk*
     to_disk(Device* device)
     {
-	Disk* disk = dynamic_cast<Disk*>(device);
-	if (!disk)
-	    ST_THROW(DeviceHasWrongType("device is not a Disk"));
-
-	return disk;
+	return to_device_of_type<Disk>(device);
     }
 
 
     const Disk*
     to_disk(const Device* device)
     {
-	const Disk* disk = dynamic_cast<const Disk*>(device);
-	if (!disk)
-	    ST_THROW(DeviceHasWrongType("device is not a Disk"));
-
-	return disk;
+	return to_device_of_type<const Disk>(device);
     }
 
 

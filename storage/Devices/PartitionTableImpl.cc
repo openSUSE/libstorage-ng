@@ -20,6 +20,9 @@ namespace storage
     });
 
 
+    const char* DeviceTraits<PartitionTable>::classname = "PartitionTable";
+
+
     PartitionTable::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), read_only(false)
     {

@@ -11,6 +11,12 @@ namespace storage
     using namespace std;
 
 
+    DeviceHasWrongType::DeviceHasWrongType(const char* seen, const char* expected)
+	: Exception(sformat("device has wrong type, seen '%s', expected '%s'", seen, expected))
+    {
+    }
+
+
     Device::Device(Impl* impl)
 	: impl(impl)
     {

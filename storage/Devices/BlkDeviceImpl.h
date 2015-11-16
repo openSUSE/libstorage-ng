@@ -12,6 +12,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<BlkDevice> { static const char* classname; };
+
+
     // abstract class
 
     class BlkDevice::Impl : public Device::Impl

@@ -20,7 +20,7 @@ namespace storage
 
     struct DeviceHasWrongType : public Exception
     {
-	DeviceHasWrongType(const std::string& msg) : Exception(msg) {}
+	DeviceHasWrongType(const char* seen, const char* expected);
     };
 
 
