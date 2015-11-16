@@ -172,7 +172,7 @@ namespace storage
 		return vertex;
 	}
 
-	ST_THROW(DeviceNotFound(sformat("device not found, sid:%d", sid)));
+	ST_THROW(DeviceNotFound(sid));
 	__builtin_unreachable();
      }
 
@@ -187,8 +187,8 @@ namespace storage
 		return edge;
 	}
 
-	throw HolderNotFound(sformat("holder not found, source_sid:%d, target_sid:%d",
-				     source_sid, target_sid));
+	ST_THROW(HolderNotFound(source_sid, target_sid));
+	__builtin_unreachable();
     }
 
 

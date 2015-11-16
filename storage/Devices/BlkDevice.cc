@@ -48,7 +48,7 @@ namespace storage
 		return blk_device;
 	}
 
-	ST_THROW(DeviceNotFound(sformat("device not found, name:%s", name.c_str())));
+	ST_THROW(DeviceNotFound(name));
 	// TODO, compiler does not understand that ST_THROW with doThrow = true
 	// always does a throw.
 	__builtin_unreachable();
