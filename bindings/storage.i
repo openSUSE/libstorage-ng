@@ -40,6 +40,7 @@
 
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
+%feature("director") storage::Logger;
 
 // order of includes is crucial
 
@@ -69,6 +70,7 @@
 #include "storage/Holders/Holder.h"
 #include "storage/Devicegraph.h"
 #include "storage/Environment.h"
+#include "storage/Logger.h"
 #include "storage/Storage.h"
 %}
 
@@ -99,6 +101,7 @@
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Environment.h"
+%include "../../storage/Logger.h"
 %include "../../storage/Storage.h"
 
 using namespace storage;
