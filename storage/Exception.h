@@ -81,7 +81,7 @@ namespace storage
     /**
      * Create CodeLocation object storing the current location.
      **/
-#define ST_EXCEPTION_CODE_LOCATION CodeLocation(__FILE__,__FUNCTION__,__LINE__)
+#define ST_EXCEPTION_CODE_LOCATION CodeLocation(__BASE_FILE__, __FUNCTION__, __LINE__)
 
 
     /**
