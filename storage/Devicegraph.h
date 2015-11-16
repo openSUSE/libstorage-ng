@@ -26,14 +26,16 @@ namespace storage
 	HolderNotFound(const std::string& msg) : Exception(msg) {}
     };
 
+
     struct WrongNumberOfParents : public Exception
     {
-	WrongNumberOfParents(const std::string& msg) : Exception(msg) {}
+	WrongNumberOfParents(size_t seen, size_t expected);
     };
+
 
     struct WrongNumberOfChildren : public Exception
     {
-	WrongNumberOfChildren(const std::string& msg) : Exception(msg) {}
+	WrongNumberOfChildren(size_t seen, size_t expected);
     };
 
 

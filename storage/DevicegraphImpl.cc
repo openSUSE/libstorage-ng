@@ -232,7 +232,7 @@ namespace storage
     Devicegraph::Impl::child(vertex_descriptor vertex) const
     {
 	if (num_children(vertex) != 1)
-	    ST_THROW(WrongNumberOfChildren("num_children != 1"));
+	    ST_THROW(WrongNumberOfChildren(num_children(vertex), 1));
 
 	return *boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)).begin();
     }
@@ -242,7 +242,7 @@ namespace storage
     Devicegraph::Impl::parent(vertex_descriptor vertex) const
     {
 	if (num_parents(vertex) != 1)
-	    ST_THROW(WrongNumberOfParents("num_parents != 1"));
+	    ST_THROW(WrongNumberOfParents(num_children(vertex), 1));
 
 	return *boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)).begin();
     }

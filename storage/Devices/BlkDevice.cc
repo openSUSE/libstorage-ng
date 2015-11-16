@@ -193,22 +193,14 @@ namespace storage
     BlkDevice*
     to_blkdevice(Device* device)
     {
-	BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(device);
-	if (!blkdevice)
-	    ST_THROW(DeviceHasWrongType("device is not a BlkDevice"));
-
-	return blkdevice;
+	return to_device_of_type<BlkDevice>(device);
     }
 
 
     const BlkDevice*
     to_blkdevice(const Device* device)
     {
-	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(device);
-	if (!blkdevice)
-	    ST_THROW(DeviceHasWrongType("device is not a BlkDevice"));
-
-	return blkdevice;
+	return to_device_of_type<const BlkDevice>(device);
     }
 
 }

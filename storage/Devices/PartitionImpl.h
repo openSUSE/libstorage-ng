@@ -14,6 +14,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Partition> { static const char* classname; };
+
+
     class Partition::Impl : public BlkDevice::Impl
     {
     public:

@@ -21,30 +21,11 @@ namespace storage
     class SystemInfo;
 
 
-    template <typename Type>
-    Type* to_device_of_type(Device* device)
-    {
-	static_assert(!is_const<Type>::value, "Type must not be const");
-
-	Type* tmp = dynamic_cast<Type*>(device);
-	if (!tmp)
-	    ST_THROW(DeviceHasWrongType("device has wrong type"));
-
-	return tmp;
-    }
+    template <typename Type> struct DeviceTraits {};
 
 
-    template <typename Type>
-    const Type* to_device_of_type(const Device* device)
-    {
-	static_assert(is_const<Type>::value, "Type must be const");
-
-	const Type* tmp = dynamic_cast<const Type*>(device);
-	if (!tmp)
-	    ST_THROW(DeviceHasWrongType("device has wrong type"));
-
-	return tmp;
-    }
+    template <typename Type> Type* to_device_of_type(Device* device);
+    template <typename Type> const Type* to_device_of_type(const Device* device);
 
 
     // abstract class
@@ -141,6 +122,34 @@ namespace storage
 	map<string, string> userdata;
 
     };
+
+
+    template <typename Type>
+    Type* to_device_of_type(Device* device)
+    {
+	static_assert(!is_const<Type>::value, "Type must not be const");
+
+	Type* tmp = dynamic_cast<Type*>(device);
+	if (!tmp)
+	    ST_THROW(DeviceHasWrongType(device->get_impl().get_classname(),
+					DeviceTraits<Type>::classname));
+
+	return tmp;
+    }
+
+
+    template <typename Type>
+    const Type* to_device_of_type(const Device* device)
+    {
+	static_assert(is_const<Type>::value, "Type must be const");
+
+	const Type* tmp = dynamic_cast<const Type*>(device);
+	if (!tmp)
+	    ST_THROW(DeviceHasWrongType(device->get_impl().get_classname(),
+					DeviceTraits<typename remove_const<Type>::type>::classname));
+
+	return tmp;
+    }
 
 }
 

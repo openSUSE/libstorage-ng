@@ -23,6 +23,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Disk>::classname = "Disk";
+
+
     Disk::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), range(0), rotational(false), transport(TUNKNOWN)
     {

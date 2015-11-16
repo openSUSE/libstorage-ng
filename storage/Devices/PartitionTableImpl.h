@@ -18,6 +18,9 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const PartitionSlotInfo& a);
 
 
+    template <> struct DeviceTraits<PartitionTable> { static const char* classname; };
+
+
     // abstract class
 
     class PartitionTable::Impl : public Device::Impl

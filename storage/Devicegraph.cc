@@ -23,6 +23,19 @@
 namespace storage
 {
 
+
+    WrongNumberOfParents::WrongNumberOfParents(size_t seen, size_t expected)
+	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected))
+    {
+    }
+
+
+    WrongNumberOfChildren::WrongNumberOfChildren(size_t seen, size_t expected)
+	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected))
+    {
+    }
+
+
     Devicegraph::Devicegraph(const Storage* storage)
 	: impl(new Impl(storage))
     {
@@ -151,6 +164,7 @@ namespace storage
 	}
 	catch (const DeviceNotFound& e)
 	{
+	    ST_CAUGHT(e);
 	    return false;
 	}
     }

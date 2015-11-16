@@ -14,6 +14,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Disk> { static const char* classname; };
+
+
     class Disk::Impl : public BlkDevice::Impl
     {
     public:

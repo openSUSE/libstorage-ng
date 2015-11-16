@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
 	BOOST_CHECK(!is_partition(tmp));
 	BOOST_CHECK_EXCEPTION(to_partition(tmp), DeviceHasWrongType, [](const DeviceHasWrongType& e) {
-	    return strcmp(e.what(), "device has wrong type") == 0;
+	    return strcmp(e.what(), "device has wrong type, seen 'Disk', expected 'Partition'") == 0;
 	});
     }
 
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
 	BOOST_CHECK(!is_disk(tmp));
 	BOOST_CHECK_EXCEPTION(to_disk(tmp), DeviceHasWrongType, [](const DeviceHasWrongType& e) {
-	    return strcmp(e.what(), "device has wrong type") == 0;
+	    return strcmp(e.what(), "device has wrong type, seen 'Partition', expected 'Disk'") == 0;
 	});
     }
 }
