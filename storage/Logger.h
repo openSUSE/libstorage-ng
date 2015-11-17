@@ -15,6 +15,7 @@ namespace storage
     {
     public:
 
+	Logger() {}
 	virtual ~Logger() {}
 
 	/**
