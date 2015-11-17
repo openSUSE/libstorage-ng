@@ -82,6 +82,7 @@
 #define DASDVIEWBIN "/sbin/dasdview"
 
 #define UDEVADMBIN "/sbin/udevadm"
+#define UDEVADMBIN_SETTLE UDEVADMBIN " settle --timeout=20"
 
 #define MODPROBEBIN "/sbin/modprobe"
 #define GREPBIN        "/usr/bin/grep"
@@ -118,5 +119,6 @@
 #define MKFSREISERBIN  "/sbin/mkreiserfs"
 #define MKFSEXT2BIN    "/sbin/mke2fs"
 #define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
+
 
 #endif

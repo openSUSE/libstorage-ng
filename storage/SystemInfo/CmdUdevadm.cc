@@ -42,7 +42,7 @@ namespace storage
 	// can happen since e.g. 'parted' opens the disk device read-write
 	// even when all parted commands are read-only, thus triggering udev
 	// events. So always run 'udevadm settle'.
-	SystemCmd(UDEVADMBIN " settle --timeout=20");
+	SystemCmd(UDEVADMBIN_SETTLE);
 
 	SystemCmd cmd(UDEVADMBIN " info " + quote(file));
 	if (cmd.retcode() == 0)
