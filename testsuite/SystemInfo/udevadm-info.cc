@@ -19,6 +19,7 @@ void
 check(const string& file, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(UDEVADMBIN " settle --timeout=20", {});
     Mockup::set_command(UDEVADMBIN " info " + quote(file), input);
 
     CmdUdevadmInfo cmdudevadminfo(file);
