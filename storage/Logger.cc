@@ -9,7 +9,7 @@
 namespace storage
 {
 
-    Logger* my_logger = nullptr;
+    static Logger* my_logger = nullptr;
 
 
     Logger*
