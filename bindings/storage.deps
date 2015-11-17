@@ -17,6 +17,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Swap.h		\
 	${top_srcdir}/storage/Devices/Xfs.h		\
 	${top_srcdir}/storage/Environment.h		\
+	${top_srcdir}/storage/Logger.h			\
 	${top_srcdir}/storage/Holders/Holder.h		\
 	${top_srcdir}/storage/Holders/Subdevice.h	\
 	${top_srcdir}/storage/Holders/User.h		\
