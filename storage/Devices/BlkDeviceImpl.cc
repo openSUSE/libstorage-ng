@@ -183,8 +183,7 @@ namespace storage
     void
     BlkDevice::Impl::wait_for_device() const
     {
-	string cmd_line(UDEVADMBIN " settle --timeout=20");
-	SystemCmd cmd(cmd_line);
+	SystemCmd(UDEVADMBIN_SETTLE);
 
 	bool exist = access(name.c_str(), R_OK) == 0;
 	y2mil("name:" << name << " exist:" << exist);

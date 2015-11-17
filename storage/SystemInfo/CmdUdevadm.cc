@@ -37,6 +37,13 @@ namespace storage
     CmdUdevadmInfo::CmdUdevadmInfo(const string& file)
 	: file(file)
     {
+	// Without emptying the udev queue 'udevadm info' can display old data
+	// or even complain about unknown devices. Even during probing this
+	// can happen since e.g. 'parted' opens the disk device read-write
+	// even when all parted commands are read-only, thus triggering udev
+	// events. So always run 'udevadm settle'.
+	SystemCmd(UDEVADMBIN_SETTLE);
+
 	SystemCmd cmd(UDEVADMBIN " info " + quote(file));
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());

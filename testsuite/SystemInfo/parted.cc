@@ -427,7 +427,7 @@ BOOST_AUTO_TEST_CASE(parse_inconsistent_partition_tables)
     };
 
     check_parse_exception("/dev/sda", input);
-}    
+}
 
 
 BOOST_AUTO_TEST_CASE(parse_third_partition_table)
@@ -467,4 +467,3 @@ BOOST_AUTO_TEST_CASE(parse_third_partition_table)
 
     check_parse_exception("/dev/sda", input);
 }
-

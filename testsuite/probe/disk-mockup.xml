@@ -318,6 +318,9 @@
       <stderr></stderr>
     </Command>
     <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
       <stdout>[1:0:0:0]    disk    sata:                           /dev/sdb </stdout>
