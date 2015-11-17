@@ -328,7 +328,7 @@ bool isNfsDev( const string& dev )
     {
 	Logger* logger = get_logger();
 	if (logger)
-	    return logger->test(level);
+	    return logger->test(level, component);
 
 	// legacy
 	CallbackLogQuery pfc = getLogQueryCallback();

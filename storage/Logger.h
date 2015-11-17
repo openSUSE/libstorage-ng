@@ -14,7 +14,7 @@ namespace storage
 
 	virtual ~Logger() {}
 
-	virtual bool test(int level);
+	virtual bool test(int level, const std::string& component);
 
 	virtual void write(int level, const std::string& component, const std::string& file,
 			   int line, const std::string& function, const std::string& content) = 0;

@@ -27,7 +27,7 @@ namespace storage
 
 
     bool
-    Logger::test(int level)
+    Logger::test(int level, const std::string& component)
     {
 	return true;
     }
@@ -36,7 +36,7 @@ namespace storage
     class StdoutLogger : public Logger
     {
 	virtual void write(int level, const std::string& component, const std::string& file,
-			   int line, const std::string& function, const std::string& content);
+			   int line, const std::string& function, const std::string& content) override;
     };
 
 
