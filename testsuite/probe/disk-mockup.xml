@@ -338,7 +338,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/sbin/parted -s '/dev/sda' unit cyl print unit s print</name>
+      <name>/usr/sbin/parted --script '/dev/sda' unit cyl print unit s print</name>
       <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
       <stdout>Disk /dev/sda: 1044cyl</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
@@ -362,7 +362,7 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/sbin/parted -s '/dev/sdb' unit cyl print unit s print</name>
+      <name>/usr/sbin/parted --script '/dev/sdb' unit cyl print unit s print</name>
       <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
       <stdout>Disk /dev/sdb: 2088cyl</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
