@@ -54,7 +54,8 @@ namespace storage
 
 	string prepend_rootprefix(const string& mountpoint) const;
 
-	std::list<std::string> get_commit_steps() const;
+	const Actiongraph* calculate_actiongraph();
+
 	void commit(const CommitCallbacks* commit_callbacks);
 
     private:
@@ -70,6 +71,8 @@ namespace storage
 	map<string, Devicegraph> devicegraphs;
 
 	string rootprefix;
+
+	unique_ptr<const Actiongraph> actiongraph;
 
     };
 

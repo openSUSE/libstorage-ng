@@ -257,21 +257,19 @@ namespace storage
     }
 
 
-    list<string>
-    Storage::Impl::get_commit_steps() const
+    const Actiongraph*
+    Storage::Impl::calculate_actiongraph()
     {
-	Actiongraph actiongraph(storage, get_probed(), get_staging());
+	actiongraph.reset(new Actiongraph(storage, get_probed(), get_staging()));
 
-	return actiongraph.get_commit_steps();
+	return actiongraph.get();
     }
 
 
     void
     Storage::Impl::commit(const CommitCallbacks* commit_callbacks)
     {
-	Actiongraph actiongraph(storage, get_probed(), get_staging());
-
-	actiongraph.commit(commit_callbacks);
+	actiongraph->get_impl().commit(commit_callbacks);
 
 	// TODO somehow update probed
     }

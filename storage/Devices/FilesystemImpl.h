@@ -48,8 +48,8 @@ namespace storage
 	const string& get_tune_options() const { return tune_options; }
 	void set_tune_options(const string& tune_options);
 
-	virtual void add_create_actions(Actiongraph& actiongraph) const override;
-	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	void probe(SystemInfo& systeminfo, EtcFstab& fstab);
 
@@ -69,13 +69,13 @@ namespace storage
 	virtual void do_set_label() const;
 
 	virtual Text do_mount_text(const string& mountpoint, bool doing) const;
-	virtual void do_mount(const Actiongraph& actiongraph, const string& mountpoint) const;
+	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
 	virtual void do_umount(const string& mountpoint) const;
 
 	virtual Text do_add_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_add_fstab(const Actiongraph& actiongraph, const string& mountpoint) const;
+	virtual void do_add_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_remove_fstab_text(const string& mountpoint, bool doing) const;
 	virtual void do_remove_fstab(const string& mountpoint) const;
@@ -115,8 +115,8 @@ namespace storage
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 
@@ -128,8 +128,8 @@ namespace storage
 	    Mount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
 
@@ -143,8 +143,8 @@ namespace storage
 	    Umount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
 
@@ -158,11 +158,11 @@ namespace storage
 	    AddFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
-	    virtual void add_dependencies(Actiongraph::vertex_descriptor v,
-					  Actiongraph& actiongraph) const override;
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+					  Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
 
@@ -176,8 +176,8 @@ namespace storage
 	    RemoveFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
 

@@ -147,7 +147,7 @@ namespace storage
 
 	const Storage* get_storage() const { return storage; }
 
-	graph_t graph;
+	graph_t graph;		// TODO private?
 
     private:
 

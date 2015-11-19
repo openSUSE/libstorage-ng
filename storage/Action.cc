@@ -13,44 +13,44 @@ namespace storage
     {
 
 	Text
-	Nop::text(const Actiongraph& actiongraph, bool doing) const
+	Nop::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    return sformat(_("Nop [sid:%1$d]"), sid);
 	}
 
 
 	Text
-	Create::text(const Actiongraph& actiongraph, bool doing) const
+	Create::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    return device_rhs(actiongraph)->get_impl().do_create_text(doing);
 	}
 
 
 	void
-	Create::commit(const Actiongraph& actiongraph) const
+	Create::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    device_rhs(actiongraph)->get_impl().do_create();
 	}
 
 
 	Text
-	Delete::text(const Actiongraph& actiongraph, bool doing) const
+	Delete::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    return device_lhs(actiongraph)->get_impl().do_delete_text(doing);
 	}
 
 
 	void
-	Delete::commit(const Actiongraph& actiongraph) const
+	Delete::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    device_lhs(actiongraph)->get_impl().do_delete();
 	}
 
 
 	void
-	Create::add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const
+	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
-	    sid_t sid = actiongraph.graph[v]->sid;
+	    sid_t sid = actiongraph.get_vertex(v)->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
 
@@ -64,7 +64,7 @@ namespace storage
 		{
 		    // parents must be created beforehand if not existed
 
-		    Actiongraph::vertex_descriptor tmp = actiongraph.huhu(parent_sid, false, true).front();
+		    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.huhu(parent_sid, false, true).front();
 		    actiongraph.add_edge(tmp, v);
 		}
 		else
@@ -78,7 +78,7 @@ namespace storage
 		    {
 			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl().graph[*vi2]->get_sid();
 
-			vector<Actiongraph::vertex_descriptor> tmp = actiongraph.huhu(child_sid, false, true);
+			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.huhu(child_sid, false, true);
 			if (!tmp.empty())
 			    actiongraph.add_edge(tmp.front(), v);
 		    }
@@ -90,16 +90,16 @@ namespace storage
 	    {
 		vector<Devicegraph::Impl::vertex_descriptor> siblings = actiongraph.get_devicegraph(RHS)->get_impl().siblings(v_in_rhs, false);
 
-		vector<Actiongraph::vertex_descriptor> w;
+		vector<Actiongraph::Impl::vertex_descriptor> w;
 
 		for (Devicegraph::Impl::vertex_descriptor q : siblings)
 		{
 		    sid_t s_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[q]->get_sid();
 
-		    for (Actiongraph::vertex_descriptor tmp : actiongraph.vertices())
+		    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 		    {
-			sid_t a_sid = actiongraph.graph[tmp]->sid;
-			if (s_sid == a_sid && actiongraph.graph[tmp]->last)
+			sid_t a_sid = actiongraph.get_vertex(tmp)->sid;
+			if (s_sid == a_sid && actiongraph.get_vertex(tmp)->last)
 			{
 			    Partition* p_lhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(LHS)->get_impl().graph[q].get());
 			    Partition* p_rhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(RHS)->get_impl().graph[v_in_rhs].get());
@@ -120,11 +120,11 @@ namespace storage
 
 
 	void
-	Delete::add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const
+	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
 	    // all children must be deleted beforehand
 
-	    sid_t sid = actiongraph.graph[v]->sid;
+	    sid_t sid = actiongraph.get_vertex(v)->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
 
@@ -134,7 +134,7 @@ namespace storage
 	    {
 		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();
 
-		for (Actiongraph::vertex_descriptor tmp : actiongraph.huhu(child_sid, true, false))
+		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.huhu(child_sid, true, false))
 		    actiongraph.add_edge(v, tmp);
 	    }
 	}

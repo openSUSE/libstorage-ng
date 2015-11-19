@@ -54,9 +54,9 @@ namespace storage
 
 	static bool cmp_lt_number(const Partition* rhs, const Partition* lhs);
 
-	virtual void add_create_actions(Actiongraph& actiongraph) const override;
-	virtual void add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const override;
-	virtual void add_delete_actions(Actiongraph& actiongraph) const override;
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -93,8 +93,8 @@ namespace storage
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

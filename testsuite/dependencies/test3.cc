@@ -43,6 +43,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	system("dot -Tpng < test3.gv > test3.png");
     }
 
-    TsCmpActiongraph cmp(actiongraph, expected);
+    TsCmpActiongraph cmp(actiongraph.get_impl(), expected);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

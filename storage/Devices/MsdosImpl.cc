@@ -44,7 +44,7 @@ namespace storage
 
 
     void
-    Msdos::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Msdos::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -55,7 +55,7 @@ namespace storage
 
 
     void
-    Msdos::Impl::add_delete_actions(Actiongraph& actiongraph) const
+    Msdos::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 

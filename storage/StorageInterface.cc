@@ -2390,7 +2390,8 @@ namespace storage_legacy
 	storage->get_probed()->save("/var/log/YaST2/yast2-probed.xml");
 	storage->get_staging()->save("/var/log/YaST2/yast2-staging.xml");
 
-	for (const string& step : storage->get_commit_steps())
+	const Actiongraph* actiongraph = storage->calculate_actiongraph();
+	for (const string& step : actiongraph->get_commit_actions_as_strings())
 	{
 	    CommitInfo info;
 	    info.destructive = false;
@@ -2453,6 +2454,7 @@ namespace storage_legacy
 
 	try
 	{
+	    storage->calculate_actiongraph();
 	    storage->commit(&commit_callbacks);
 	}
 	catch (...)
@@ -2552,7 +2554,8 @@ namespace storage_legacy
 
 	y2mil("COMMIT STEPS BEGIN");
 
-	for (const string& step : storage->get_commit_steps())
+	const Actiongraph* actiongraph = storage->calculate_actiongraph();
+	for (const string& step : actiongraph->get_commit_actions_as_strings())
 	    y2mil(step);
 
 	y2mil("COMMIT STEPS END");
