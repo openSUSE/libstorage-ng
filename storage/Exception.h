@@ -404,6 +404,18 @@ namespace storage
 
 
     /**
+     * Exception class for features not implemented.
+     * When available, a more specialized exception class should be used.
+     **/
+    class NotImplementedException : public Exception
+    {
+    public:
+	NotImplementedException(const std::string& msg) : Exception(msg) {}
+	virtual ~NotImplementedException() noexcept {}
+    };
+
+
+    /**
      * Exception class for "out of memory".
      * Typically used if operator new returned 0.
      **/

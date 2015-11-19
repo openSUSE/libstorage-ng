@@ -38,6 +38,8 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
+%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
+
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::Logger;
