@@ -72,6 +72,8 @@ namespace storage
 	void remove_device(sid_t sid);
 	void remove_device(Device* a);
 
+	void remove_devices(std::vector<Device*> devices);
+
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
