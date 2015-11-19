@@ -38,6 +38,8 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
+%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
+
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::Logger;
@@ -110,8 +112,11 @@ using namespace storage;
 %template(ListString) std::list<std::string>;
 %template(MapStringString) std::map<std::string, std::string>;
 
+%template(VectorDevicePtr) std::vector<Device*>;
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 %template(VectorDiskPtr) std::vector<Disk*>;
 %template(VectorConstDiskPtr) std::vector<const Disk*>;
+%template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
+%template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;

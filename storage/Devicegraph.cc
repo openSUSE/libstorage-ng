@@ -227,6 +227,14 @@ namespace storage
 
 
     void
+    Devicegraph::remove_devices(std::vector<Device*> devices)
+    {
+	for (Device* device : devices)
+	    get_impl().remove_vertex(device->get_impl().get_vertex());
+    }
+
+
+    void
     Devicegraph::check() const
     {
 	{

@@ -66,12 +66,26 @@ namespace storage
 	// TODO check if we can somehow return a iterator. getting rid of the
 	// ptr would also allow to use references instead of pointer in the
 	// interface.
+
+	std::vector<Device*> get_children();
 	std::vector<const Device*> get_children() const;
+
+	std::vector<Device*> get_parents();
 	std::vector<const Device*> get_parents() const;
+
+	std::vector<Device*> get_siblings(bool itself);
 	std::vector<const Device*> get_siblings(bool itself) const;
+
+	std::vector<Device*> get_descendants(bool itself);
 	std::vector<const Device*> get_descendants(bool itself) const;
+
+	std::vector<Device*> get_ancestors(bool itself);
 	std::vector<const Device*> get_ancestors(bool itself) const;
+
+	std::vector<Device*> get_leafs(bool itself);
 	std::vector<const Device*> get_leafs(bool itself) const;
+
+	std::vector<Device*> get_roots(bool itself);
 	std::vector<const Device*> get_roots(bool itself) const;
 
 	const std::map<std::string, std::string>& get_userdata() const;

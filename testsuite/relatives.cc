@@ -21,10 +21,10 @@ using namespace std;
 using namespace storage;
 
 
-vector<const Device*>
-sort(const vector<const Device*>& devices)
+vector<Device*>
+sort(const vector<Device*>& devices)
 {
-    vector<const Device*> ret(devices.begin(), devices.end());
+    vector<Device*> ret(devices.begin(), devices.end());
     sort(ret.begin(), ret.end());
     return ret;
 }
@@ -32,10 +32,10 @@ sort(const vector<const Device*>& devices)
 
 namespace std
 {
-    ostream& operator<<(ostream& s, const vector<const Device*>& devices)
+    ostream& operator<<(ostream& s, const vector<Device*>& devices)
     {
 	s << "{";
-	for (vector<const Device*>::const_iterator it = devices.begin(); it != devices.end(); ++it)
+	for (vector<Device*>::const_iterator it = devices.begin(); it != devices.end(); ++it)
 	    s << (it == devices.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
 	s << " }";
 

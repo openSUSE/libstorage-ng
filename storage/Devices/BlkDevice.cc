@@ -137,7 +137,7 @@ namespace storage
     BlkDevice::create_filesystem(FsType fs_type)
     {
 	if (num_children() != 0)
-	    throw runtime_error("BlkDevice has children");
+	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
 
 	Filesystem* ret = nullptr;
 
@@ -160,7 +160,7 @@ namespace storage
 		break;
 
 	    default:
-		throw logic_error("unimplemented filesystem type " + toString(fs_type));
+		ST_THROW(NotImplementedException("unimplemented filesystem type " + toString(fs_type)));
 	}
 
 	User::create(get_impl().get_devicegraph(), this, ret);
