@@ -25,7 +25,7 @@ namespace storage
 
 
     void
-    Encryption::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Encryption::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -82,7 +82,7 @@ namespace storage
     {
 
 	Text
-	OpenEncryption::text(const Actiongraph& actiongraph, bool doing) const
+	OpenEncryption::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Encryption* encryption = to_encryption(device_rhs(actiongraph));
 	    return encryption->get_impl().do_open_text(doing);

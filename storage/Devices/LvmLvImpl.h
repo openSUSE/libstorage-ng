@@ -33,7 +33,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual void add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 
 	virtual Text do_create_text(bool doing) const override;
 
@@ -52,8 +52,8 @@ namespace storage
 
 	    Rename(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph& actiongraph, bool doing) const override;
-	    virtual void commit(const Actiongraph& actiongraph) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

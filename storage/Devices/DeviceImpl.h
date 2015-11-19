@@ -7,7 +7,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Devicegraph.h"
-#include "storage/Actiongraph.h"
+#include "storage/ActiongraphImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/AppUtil.h"
 
@@ -63,9 +63,9 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
-	virtual void add_create_actions(Actiongraph& actiongraph) const;
-	virtual void add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const;
-	virtual void add_delete_actions(Actiongraph& actiongraph) const;
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
 
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;

@@ -97,7 +97,7 @@ namespace storage
 
 
     void
-    Device::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Device::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -108,13 +108,13 @@ namespace storage
 
 
     void
-    Device::Impl::add_modify_actions(Actiongraph& actiongraph, const Device* lhs) const
+    Device::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const
     {
     }
 
 
     void
-    Device::Impl::add_delete_actions(Actiongraph& actiongraph) const
+    Device::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 

@@ -53,7 +53,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::add_modify_actions(Actiongraph& actiongraph, const Device* lhs_base) const
+    LvmLv::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
@@ -92,7 +92,7 @@ namespace storage
     {
 
 	Text
-	Rename::text(const Actiongraph& actiongraph, bool doing) const
+	Rename::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const LvmLv* lhs_lvm_lv = to_lvm_lv(device_lhs(actiongraph));
 	    const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs(actiongraph));
@@ -100,7 +100,7 @@ namespace storage
 	}
 
 	void
-	Rename::commit(const Actiongraph& actiongraph) const
+	Rename::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const LvmLv* lhs_lvm_lv = to_lvm_lv(device_lhs(actiongraph));
 	    const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs(actiongraph));

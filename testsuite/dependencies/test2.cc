@@ -64,6 +64,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Actiongraph actiongraph(storage, lhs, rhs);
 
-    TsCmpActiongraph cmp(actiongraph, expected);
+    TsCmpActiongraph cmp(actiongraph.get_impl(), expected);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

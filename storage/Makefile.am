@@ -16,6 +16,7 @@ libstorage_la_SOURCES =					\
 	DevicegraphImpl.h	DevicegraphImpl.cc	\
 	Action.h		Action.cc		\
 	Actiongraph.h		Actiongraph.cc		\
+	ActiongraphImpl.h	ActiongraphImpl.cc	\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\
@@ -45,6 +46,7 @@ pkginclude_HEADERS =		\
 	StorageVersion.h	\
 	StorageSwig.h		\
 	Devicegraph.h		\
+	Actiongraph.h		\
 	Graph.h			\
 	HumanString.h		\
 	Exception.h		\

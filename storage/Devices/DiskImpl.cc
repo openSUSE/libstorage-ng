@@ -165,7 +165,7 @@ namespace storage
 
 
     void
-    Disk::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Disk::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	const Environment& environment = actiongraph.get_storage().get_environment();
 	if (environment.get_target_mode() == TargetMode::IMAGE)
@@ -182,7 +182,7 @@ namespace storage
 
 
     void
-    Disk::Impl::add_delete_actions(Actiongraph& actiongraph) const
+    Disk::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	throw runtime_error("cannot delete disk");
     }

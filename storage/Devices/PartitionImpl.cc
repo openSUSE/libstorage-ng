@@ -116,7 +116,7 @@ namespace storage
 
 
     void
-    Partition::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Partition::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -128,7 +128,7 @@ namespace storage
 
 
     void
-    Partition::Impl::add_modify_actions(Actiongraph& actiongraph, const Device* lhs_base) const
+    Partition::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
@@ -151,7 +151,7 @@ namespace storage
 
 
     void
-    Partition::Impl::add_delete_actions(Actiongraph& actiongraph) const
+    Partition::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -314,7 +314,7 @@ namespace storage
     {
 
 	Text
-	SetPartitionId::text(const Actiongraph& actiongraph, bool doing) const
+	SetPartitionId::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Partition* partition = to_partition(device_rhs(actiongraph));
 	    return partition->get_impl().do_set_id_text(doing);
@@ -322,7 +322,7 @@ namespace storage
 
 
 	void
-	SetPartitionId::commit(const Actiongraph& actiongraph) const
+	SetPartitionId::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Partition* partition = to_partition(device_rhs(actiongraph));
 	    partition->get_impl().do_set_id();

@@ -4,6 +4,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/DevicegraphImpl.h"
+#include "storage/Action.h"
 #include "testsuite/helpers/TsCmp.h"
 
 
@@ -37,7 +38,7 @@ namespace storage
     }
 
 
-    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const expected_t& expected)
+    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const expected_t& expected)
     {
 	for (const string& line : expected)
 	    entries.push_back(Entry(line));
@@ -99,11 +100,11 @@ namespace storage
 
 
     void
-    TsCmpActiongraph::cmp_texts(const Actiongraph& actiongraph)
+    TsCmpActiongraph::cmp_texts(const Actiongraph::Impl& actiongraph)
     {
 	set<string> tmp1;
-	for (Actiongraph::vertex_descriptor v : actiongraph.vertices())
-	    tmp1.insert(actiongraph.get_action_text(v, false).native);
+	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
+	    tmp1.insert(actiongraph.get_vertex(v)->text(actiongraph, false).native);
 
 	set<string> tmp2;
 	for (const Entry& entry : entries)
@@ -127,24 +128,24 @@ namespace storage
 
 
     void
-    TsCmpActiongraph::cmp_dependencies(const Actiongraph& actiongraph)
+    TsCmpActiongraph::cmp_dependencies(const Actiongraph::Impl& actiongraph)
     {
 	map<string, string> text_to_id;
 	for (const Entry& entry : entries)
 	    text_to_id[entry.text] = entry.id;
 
-	map<string, Actiongraph::vertex_descriptor> text_to_v;
-	for (Actiongraph::vertex_descriptor v : actiongraph.vertices())
-	    text_to_v[actiongraph.get_action_text(v, false).native] = v;
+	map<string, Actiongraph::Impl::vertex_descriptor> text_to_v;
+	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
+	    text_to_v[actiongraph.get_vertex(v)->text(actiongraph, false).native] = v;
 
 	for (const Entry& entry : entries)
 	{
-	    Actiongraph::vertex_descriptor v = text_to_v[entry.text];
+	    Actiongraph::Impl::vertex_descriptor v = text_to_v[entry.text];
 
 	    set<string> tmp;
-	    for (Actiongraph::edge_descriptor e : boost::make_iterator_range(out_edges(v, actiongraph.graph)))
+	    for (Actiongraph::Impl::edge_descriptor e : boost::make_iterator_range(out_edges(v, actiongraph.graph)))
 	    {
-		string text = actiongraph.get_action_text(target(e, actiongraph.graph), false).native;
+		string text = actiongraph.get_vertex(target(e, actiongraph.graph))->text(actiongraph, false).native;
 		tmp.insert(text_to_id[text]);
 	    }
 

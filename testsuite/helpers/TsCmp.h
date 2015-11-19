@@ -1,7 +1,7 @@
 
 
 #include "storage/Devicegraph.h"
-#include "storage/Actiongraph.h"
+#include "storage/ActiongraphImpl.h"
 
 
 namespace storage
@@ -48,7 +48,7 @@ namespace storage
 
 	typedef vector<string> expected_t;
 
-	TsCmpActiongraph(const Actiongraph& actiongraph, const expected_t& expected);
+	TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const expected_t& expected);
 
     private:
 
@@ -65,8 +65,8 @@ namespace storage
 
 	void check() const;
 
-	void cmp_texts(const Actiongraph& actiongraph);
-	void cmp_dependencies(const Actiongraph& actiongraph);
+	void cmp_texts(const Actiongraph::Impl& actiongraph);
+	void cmp_dependencies(const Actiongraph::Impl& actiongraph);
 
     };
 

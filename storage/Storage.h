@@ -15,6 +15,8 @@ namespace storage
     class Environment;
     class Arch;
     class Devicegraph;
+    class Actiongraph;
+
 
     namespace Action
     {
@@ -75,7 +77,15 @@ namespace storage
 	const std::string& get_rootprefix() const;
 	void set_rootprefix(const std::string& rootprefix);
 
-	std::list<std::string> get_commit_steps() const;
+	/**
+	 * The actiongraph is only valid until either the probed or staging
+	 * devicegraph is modified.
+	 */
+	const Actiongraph* calculate_actiongraph();
+
+	/**
+	 * The actiongraph must be valid.
+	 */
 	void commit(const CommitCallbacks* commit_callbacks = nullptr);
 
     public:

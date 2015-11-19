@@ -146,19 +146,19 @@ namespace storage
 
 
     void
-    Filesystem::Impl::add_create_actions(Actiongraph& actiongraph) const
+    Filesystem::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	Action::Base* first = nullptr;
 	Action::Base* last = nullptr;
 
 	Action::Create* format = new Action::Create(get_sid());
-	Actiongraph::vertex_descriptor v1 = actiongraph.add_vertex(format);
+	Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(format);
 	first = last = format;
 
 	if (!get_label().empty())
 	{
 	    Action::SetLabel* set_label = new Action::SetLabel(get_sid());
-	    Actiongraph::vertex_descriptor tmp = actiongraph.add_vertex(set_label);
+	    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.add_vertex(set_label);
 	    actiongraph.add_edge(v1, tmp);
 	    v1 = tmp;
 
@@ -168,17 +168,17 @@ namespace storage
 	if (!get_mountpoints().empty())
 	{
 	    Action::Nop* nop = new Action::Nop(get_sid());
-	    Actiongraph::vertex_descriptor v2 = actiongraph.add_vertex(nop);
+	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(nop);
 
 	    last = nop;
 
 	    for (const string& mountpoint : get_mountpoints())
 	    {
 		Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
-		Actiongraph::vertex_descriptor t1 = actiongraph.add_vertex(mount);
+		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(mount);
 
 		Action::AddFstab* add_fstab = new Action::AddFstab(get_sid(), mountpoint);
-		Actiongraph::vertex_descriptor t2 = actiongraph.add_vertex(add_fstab);
+		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_fstab);
 
 		actiongraph.add_edge(v1, t1);
 		actiongraph.add_edge(t1, t2);
@@ -192,7 +192,7 @@ namespace storage
 
 
     void
-    Filesystem::Impl::add_delete_actions(Actiongraph& actiongraph) const
+    Filesystem::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
 
@@ -371,7 +371,7 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_mount(const Actiongraph& actiongraph, const string& mountpoint) const
+    Filesystem::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
 	const BlkDevice* blkdevice = get_blkdevice();
 
@@ -418,7 +418,7 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_add_fstab(const Actiongraph& actiongraph, const string& mountpoint) const
+    Filesystem::Impl::do_add_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
 	const Storage& storage = actiongraph.get_storage();
 
@@ -458,7 +458,7 @@ namespace storage
     {
 
 	Text
-	SetLabel::text(const Actiongraph& actiongraph, bool doing) const
+	SetLabel::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    return filesystem->get_impl().do_set_label_text(doing);
@@ -466,7 +466,7 @@ namespace storage
 
 
 	void
-	SetLabel::commit(const Actiongraph& actiongraph) const
+	SetLabel::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    filesystem->get_impl().do_set_label();
@@ -474,7 +474,7 @@ namespace storage
 
 
 	Text
-	Mount::text(const Actiongraph& actiongraph, bool doing) const
+	Mount::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    return filesystem->get_impl().do_mount_text(mountpoint, doing);
@@ -482,7 +482,7 @@ namespace storage
 
 
 	void
-	Mount::commit(const Actiongraph& actiongraph) const
+	Mount::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    filesystem->get_impl().do_mount(actiongraph, mountpoint);
@@ -490,7 +490,7 @@ namespace storage
 
 
 	Text
-	Umount::text(const Actiongraph& actiongraph, bool doing) const
+	Umount::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    return filesystem->get_impl().do_umount_text(mountpoint, doing);
@@ -498,7 +498,7 @@ namespace storage
 
 
 	void
-	Umount::commit(const Actiongraph& actiongraph) const
+	Umount::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    filesystem->get_impl().do_umount(mountpoint);
@@ -506,7 +506,7 @@ namespace storage
 
 
 	Text
-	AddFstab::text(const Actiongraph& actiongraph, bool doing) const
+	AddFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    return filesystem->get_impl().do_add_fstab_text(mountpoint, doing);
@@ -514,7 +514,7 @@ namespace storage
 
 
 	void
-	AddFstab::commit(const Actiongraph& actiongraph) const
+	AddFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    filesystem->get_impl().do_add_fstab(actiongraph, mountpoint);
@@ -522,7 +522,7 @@ namespace storage
 
 
 	void
-	AddFstab::add_dependencies(Actiongraph::vertex_descriptor v, Actiongraph& actiongraph) const
+	AddFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
 	    if (mountpoint == "swap")
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
@@ -531,7 +531,7 @@ namespace storage
 
 
 	Text
-	RemoveFstab::text(const Actiongraph& actiongraph, bool doing) const
+	RemoveFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    return filesystem->get_impl().do_remove_fstab_text(mountpoint, doing);
@@ -539,7 +539,7 @@ namespace storage
 
 
 	void
-	RemoveFstab::commit(const Actiongraph& actiongraph) const
+	RemoveFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
 	    filesystem->get_impl().do_remove_fstab(mountpoint);

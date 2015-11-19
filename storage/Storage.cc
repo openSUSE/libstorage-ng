@@ -139,10 +139,10 @@ namespace storage
     }
 
 
-    list<string>
-    Storage::get_commit_steps() const
+    const Actiongraph*
+    Storage::calculate_actiongraph()
     {
-	return get_impl().get_commit_steps();
+	return get_impl().calculate_actiongraph();
     }
 
 
