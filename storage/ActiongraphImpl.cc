@@ -324,7 +324,7 @@ namespace storage
 
 	void operator()(ostream& out) const
 	{
-	    out << "node [ shape=rectangle, style=filled ];" << endl;
+	    out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << endl;
 	}
     };
 
