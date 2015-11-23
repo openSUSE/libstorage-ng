@@ -116,6 +116,13 @@ namespace storage
     }
 
 
+    boost::iterator_range<Actiongraph::Impl::adjacency_iterator>
+    Actiongraph::Impl::children(vertex_descriptor vertex) const
+    {
+	return boost::make_iterator_range(boost::adjacent_vertices(vertex, graph));
+    }
+
+
     void
     Actiongraph::Impl::get_actions()
     {
@@ -339,7 +346,7 @@ namespace storage
 
 	void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& v) const
 	{
-	    const Action::Base* action = actiongraph.get_vertex(v);
+	    const Action::Base* action = actiongraph[v];
 
 	    string label = action->text(actiongraph, false).text;
 

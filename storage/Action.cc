@@ -50,7 +50,7 @@ namespace storage
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
-	    sid_t sid = actiongraph.get_vertex(v)->sid;
+	    sid_t sid = actiongraph[v]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
 
@@ -98,8 +98,8 @@ namespace storage
 
 		    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 		    {
-			sid_t a_sid = actiongraph.get_vertex(tmp)->sid;
-			if (s_sid == a_sid && actiongraph.get_vertex(tmp)->last)
+			sid_t a_sid = actiongraph[tmp]->sid;
+			if (s_sid == a_sid && actiongraph[tmp]->last)
 			{
 			    Partition* p_lhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(LHS)->get_impl().graph[q].get());
 			    Partition* p_rhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(RHS)->get_impl().graph[v_in_rhs].get());
@@ -124,7 +124,7 @@ namespace storage
 	{
 	    // all children must be deleted beforehand
 
-	    sid_t sid = actiongraph.get_vertex(v)->sid;
+	    sid_t sid = actiongraph[v]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
 

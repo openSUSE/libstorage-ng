@@ -2,16 +2,11 @@
 #define STORAGE_ACTIONGRAPH_IMPL_H
 
 
-#include <list>
-#include <map>
 #include <deque>
-#include <set>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
 #include "storage/Devices/Device.h"
-#include "storage/Devicegraph.h"
-#include "storage/Utils/AppUtil.h"
 #include "storage/Actiongraph.h"
 
 
@@ -19,12 +14,10 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
-    using std::map;
     using std::deque;
-    using std::set;
 
 
+    class Devicegraph;
     class Storage;
     class CommitCallbacks;
 
@@ -48,6 +41,8 @@ namespace storage
 	typedef graph_t::vertex_iterator vertex_iterator;
 	typedef graph_t::edge_iterator edge_iterator;
 
+	typedef graph_t::adjacency_iterator adjacency_iterator;
+
 	typedef graph_t::vertices_size_type vertices_size_type;
 
 	Impl(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs);
@@ -68,16 +63,16 @@ namespace storage
 
 	boost::iterator_range<vertex_iterator> vertices() const;
 
-	Action::Base* get_vertex(vertex_descriptor v) { return graph[v].get(); }
-	const Action::Base* get_vertex(vertex_descriptor v) const { return graph[v].get(); }
+	boost::iterator_range<adjacency_iterator> children(vertex_descriptor vertex) const;
+
+	Action::Base* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
+	const Action::Base* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
 
 	void print_graph() const;
 	void write_graphviz(const string& filename, bool details = false) const;
 
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
-
-	graph_t graph;		// TODO private?
 
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;
@@ -97,6 +92,8 @@ namespace storage
 	typedef deque<vertex_descriptor> Order;
 
 	Order order;
+
+	graph_t graph;
 
     };
 

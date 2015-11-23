@@ -104,7 +104,7 @@ namespace storage
     {
 	set<string> tmp1;
 	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    tmp1.insert(actiongraph.get_vertex(v)->text(actiongraph, false).native);
+	    tmp1.insert(actiongraph[v]->text(actiongraph, false).native);
 
 	set<string> tmp2;
 	for (const Entry& entry : entries)
@@ -136,16 +136,16 @@ namespace storage
 
 	map<string, Actiongraph::Impl::vertex_descriptor> text_to_v;
 	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    text_to_v[actiongraph.get_vertex(v)->text(actiongraph, false).native] = v;
+	    text_to_v[actiongraph[v]->text(actiongraph, false).native] = v;
 
 	for (const Entry& entry : entries)
 	{
 	    Actiongraph::Impl::vertex_descriptor v = text_to_v[entry.text];
 
 	    set<string> tmp;
-	    for (Actiongraph::Impl::edge_descriptor e : boost::make_iterator_range(out_edges(v, actiongraph.graph)))
+	    for (Actiongraph::Impl::vertex_descriptor child : actiongraph.children(v))
 	    {
-		string text = actiongraph.get_vertex(target(e, actiongraph.graph))->text(actiongraph, false).native;
+		string text = actiongraph[child]->text(actiongraph, false).native;
 		tmp.insert(text_to_id[text]);
 	    }
 
