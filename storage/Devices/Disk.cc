@@ -61,10 +61,16 @@ namespace storage
 
 
     Disk*
+    Disk::find(Devicegraph* devicegraph, const string& name)
+    {
+	return to_disk(BlkDevice::find(devicegraph, name));
+    }
+
+
+    const Disk*
     Disk::find(const Devicegraph* devicegraph, const string& name)
     {
-	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
-	return to_disk(blkdevice);
+	return to_disk(BlkDevice::find(devicegraph, name));
     }
 
 
@@ -90,9 +96,9 @@ namespace storage
 
 
     vector<Disk*>
-    Disk::get_all(const Devicegraph* devicegraph)
+    Disk::get_all(Devicegraph* devicegraph)
     {
-	auto pred = [](const Device* device) {
+	auto pred = [](Device* device) {
 	    return to_disk(device);
 	};
 

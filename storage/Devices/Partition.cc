@@ -127,10 +127,16 @@ namespace storage
 
 
     Partition*
+    Partition::find(Devicegraph* devicegraph, const string& name)
+    {
+	return to_partition(BlkDevice::find(devicegraph, name));
+    }
+
+
+    const Partition*
     Partition::find(const Devicegraph* devicegraph, const string& name)
     {
-	BlkDevice* blkdevice = BlkDevice::find(devicegraph, name);
-	return to_partition(blkdevice);
+	return to_partition(BlkDevice::find(devicegraph, name));
     }
 
 

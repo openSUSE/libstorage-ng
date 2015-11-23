@@ -57,8 +57,8 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor get_vertex() const;
 
-	Device* get_device() { return devicegraph->get_impl().graph[vertex].get(); }
-	const Device* get_device() const { return devicegraph->get_impl().graph[vertex].get(); }
+	Device* get_device() { return devicegraph->get_impl()[vertex]; }
+	const Device* get_device() const { return devicegraph->get_impl()[vertex]; }
 
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
@@ -85,7 +85,7 @@ namespace storage
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    Device* tmp = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+	    Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
 
 	    return to_device_of_type<Type>(tmp);
 	}
@@ -97,7 +97,7 @@ namespace storage
 
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
-	    const Device* tmp = devicegraph_impl.graph[devicegraph_impl.child(get_vertex())].get();
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
 
 	    return to_device_of_type<Type>(tmp);
 	}

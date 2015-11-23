@@ -119,7 +119,7 @@ namespace storage
     {
 	const Devicegraph* g = get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(g->get_impl().graph[v1].get());
+	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(g->get_impl()[v1]);
 
 	const Blkid& blkid = systeminfo.getBlkid();
 	Blkid::Entry entry;

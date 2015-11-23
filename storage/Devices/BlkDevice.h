@@ -36,7 +36,8 @@ namespace storage
 	const std::string& get_udev_path() const;
 	const std::vector<std::string>& get_udev_ids() const;
 
-	static BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
+	static BlkDevice* find(Devicegraph* devicegraph, const std::string& name);
+	static const BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
 
 	Filesystem* create_filesystem(FsType fs_type);
 

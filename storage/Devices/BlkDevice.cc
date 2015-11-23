@@ -39,11 +39,11 @@ namespace storage
 
 
     BlkDevice*
-    BlkDevice::find(const Devicegraph* devicegraph, const string& name)
+    BlkDevice::find(Devicegraph* devicegraph, const string& name)
     {
 	for (Devicegraph::Impl::vertex_descriptor v : devicegraph->get_impl().vertices())
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl().graph[v].get());
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[v]);
 	    if (blk_device && blk_device->get_name() == name)
 		return blk_device;
 	}
@@ -51,6 +51,21 @@ namespace storage
 	ST_THROW(DeviceNotFound(name));
 	// TODO, compiler does not understand that ST_THROW with doThrow = true
 	// always does a throw.
+	__builtin_unreachable();
+    }
+
+
+    const BlkDevice*
+    BlkDevice::find(const Devicegraph* devicegraph, const string& name)
+    {
+	for (Devicegraph::Impl::vertex_descriptor v : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[v]);
+	    if (blk_device && blk_device->get_name() == name)
+		return blk_device;
+	}
+
+	ST_THROW(DeviceNotFound(name));
 	__builtin_unreachable();
     }
 

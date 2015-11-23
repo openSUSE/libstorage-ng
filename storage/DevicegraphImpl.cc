@@ -182,8 +182,8 @@ namespace storage
     {
 	for (edge_descriptor edge : edges())
 	{
-	    if (graph[source(edge, graph)]->get_sid() == source_sid &&
-		graph[target(edge, graph)]->get_sid() == target_sid)
+	    if (graph[source(edge)]->get_sid() == source_sid &&
+		graph[target(edge)]->get_sid() == target_sid)
 		return edge;
 	}
 

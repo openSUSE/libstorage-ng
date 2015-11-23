@@ -158,9 +158,8 @@ namespace storage
     Device*
     Devicegraph::find_device(sid_t sid)
     {
-	Impl::vertex_descriptor v = get_impl().find_vertex(sid);
-
-	return get_impl().graph[v].get();
+	Impl::vertex_descriptor vertex = get_impl().find_vertex(sid);
+	return get_impl()[vertex];
     }
 
 
@@ -168,7 +167,7 @@ namespace storage
     Devicegraph::find_device(sid_t sid) const
     {
 	Impl::vertex_descriptor vertex = get_impl().find_vertex(sid);
-	return get_impl().graph[vertex].get();
+	return get_impl()[vertex];
     }
 
 
@@ -192,7 +191,7 @@ namespace storage
     Devicegraph::find_holder(sid_t source_sid, sid_t target_sid)
     {
 	Impl::edge_descriptor edge = get_impl().find_edge(source_sid, target_sid);
-	return get_impl().graph[edge].get();
+	return get_impl()[edge];
     }
 
 
@@ -200,7 +199,7 @@ namespace storage
     Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const
     {
 	Impl::edge_descriptor edge = get_impl().find_edge(source_sid, target_sid);
-	return get_impl().graph[edge].get();
+	return get_impl()[edge];
     }
 
 
@@ -249,7 +248,7 @@ namespace storage
 	    {
 		// check uniqueness of device object
 
-		const Device* device = get_impl().graph[vertex].get();
+		const Device* device = get_impl()[vertex];
 		if (!devices.insert(device).second)
 		    throw logic_error("device object not unique within graph");
 
@@ -272,7 +271,7 @@ namespace storage
 	    {
 		// check uniqueness of holder object
 
-		const Holder* holder = get_impl().graph[edge].get();
+		const Holder* holder = get_impl()[edge];
 		if (!holders.insert(holder).second)
 		    throw logic_error("holder object not unique within graph");
 

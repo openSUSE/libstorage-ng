@@ -63,6 +63,15 @@ namespace storage
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 
+	vertex_descriptor source(edge_descriptor edge) const { return boost::source(edge, graph); }
+	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }
+
+	Device* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
+	const Device* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
+
+	Holder* operator[](edge_descriptor edge) { return graph[edge].get(); }
+	const Holder* operator[](edge_descriptor edge) const { return graph[edge].get(); }
+
 	void clear();
 
 	void remove_vertex(vertex_descriptor a);
