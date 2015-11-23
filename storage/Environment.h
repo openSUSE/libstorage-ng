@@ -11,11 +11,12 @@ namespace storage
 
     //! How to probe the system
     enum class ProbeMode {
-	STANDARD,		// probe system during init
-	STANDARD_WRITE_MOCKUP,	// probe system during init
-	NONE,			// no probing - for testsuite
-	READ_DEVICEGRAPH,	// fake probe - for testsuite
-	READ_MOCKUP		// fake probe - for testsuite
+	STANDARD,			// probe system during init
+	STANDARD_WRITE_DEVICEGRAPH,	// probe system during init, write devicegraph
+	STANDARD_WRITE_MOCKUP,		// probe system during init, write mockup
+	NONE,				// no probing - for testsuite
+	READ_DEVICEGRAPH,		// fake probe - for testsuite
+	READ_MOCKUP			// fake probe - for testsuite
     };
 
     //! Is the target a disk, chroot, or image?

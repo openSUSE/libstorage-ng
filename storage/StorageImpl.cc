@@ -28,6 +28,11 @@ namespace storage
 		probe(probed);
 	    } break;
 
+	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
+		probe(probed);
+		probed->save(environment.get_devicegraph_filename());
+	    } break;
+
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::RECORD);
 		probe(probed);
