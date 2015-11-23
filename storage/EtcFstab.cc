@@ -1059,7 +1059,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
     const unsigned EtcFstab::crypttabFields[] = { 15, 20, 10, 1 };
 
 
-    const vector<string> EnumInfo<EtcFstab::Entry::Operation>::names({
+    const vector<string> EnumTraits<EtcFstab::Entry::Operation>::names({
 	"NONE", "ADD", "UPDATE", "REMOVE"
     });
 

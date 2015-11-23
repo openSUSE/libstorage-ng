@@ -47,8 +47,8 @@ namespace storage
     };
 
 
-    template <> struct EnumInfo<ProbeMode> { static const vector<string> names; };
-    template <> struct EnumInfo<TargetMode> { static const vector<string> names; };
+    template <> struct EnumTraits<ProbeMode> { static const vector<string> names; };
+    template <> struct EnumTraits<TargetMode> { static const vector<string> names; };
 
 }
 

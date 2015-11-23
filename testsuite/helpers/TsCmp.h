@@ -1,5 +1,8 @@
 
 
+#include <vector>
+#include <set>
+
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 
@@ -8,6 +11,7 @@ namespace storage
 {
 
     using std::vector;
+    using std::set;
 
 
     /*

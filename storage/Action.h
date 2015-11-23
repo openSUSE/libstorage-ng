@@ -4,6 +4,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/ActiongraphImpl.h"
+#include "storage/Devicegraph.h"
 #include "storage/Utils/AppUtil.h"
 
 

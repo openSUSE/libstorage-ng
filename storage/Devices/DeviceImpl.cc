@@ -60,7 +60,7 @@ namespace storage
 	Impl::devicegraph = devicegraph;
 	Impl::vertex = vertex;
 
-	const Device* device = devicegraph->get_impl().graph[vertex].get();
+	const Device* device = devicegraph->get_impl()[vertex];
 	if (&device->get_impl() != this)
 	    throw runtime_error("wrong vertex for back references");
     }

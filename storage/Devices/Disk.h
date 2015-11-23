@@ -27,7 +27,7 @@ namespace storage
 	static Disk* create(Devicegraph* devicegraph, const std::string& name);
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	static std::vector<Disk*> get_all(const Devicegraph* devicegraph);
+	static std::vector<Disk*> get_all(Devicegraph* devicegraph);
 
 	bool get_rotational() const;
 
@@ -40,7 +40,8 @@ namespace storage
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
 
-	static Disk* find(const Devicegraph* devicegraph, const std::string& name);
+	static Disk* find(Devicegraph* devicegraph, const std::string& name);
+	static const Disk* find(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 

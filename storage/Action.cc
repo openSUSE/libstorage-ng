@@ -50,12 +50,12 @@ namespace storage
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
-	    sid_t sid = actiongraph.get_vertex(v)->sid;
+	    sid_t sid = actiongraph[v]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
 
 	    // iterate parents
-	    Devicegraph::Impl::graph_t::inv_adjacency_iterator vi, vi_end;
+	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, actiongraph.get_devicegraph(RHS)->get_impl().graph); vi != vi_end; ++vi)
 	    {
 		sid_t parent_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();
@@ -73,7 +73,7 @@ namespace storage
 
 		    Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
 
-		    Devicegraph::Impl::graph_t::adjacency_iterator vi2, vi2_end;
+		    Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
 		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
 		    {
 			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl().graph[*vi2]->get_sid();
@@ -98,8 +98,8 @@ namespace storage
 
 		    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 		    {
-			sid_t a_sid = actiongraph.get_vertex(tmp)->sid;
-			if (s_sid == a_sid && actiongraph.get_vertex(tmp)->last)
+			sid_t a_sid = actiongraph[tmp]->sid;
+			if (s_sid == a_sid && actiongraph[tmp]->last)
 			{
 			    Partition* p_lhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(LHS)->get_impl().graph[q].get());
 			    Partition* p_rhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(RHS)->get_impl().graph[v_in_rhs].get());
@@ -124,12 +124,12 @@ namespace storage
 	{
 	    // all children must be deleted beforehand
 
-	    sid_t sid = actiongraph.get_vertex(v)->sid;
+	    sid_t sid = actiongraph[v]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
 
 	    // iterate children
-	    Devicegraph::Impl::graph_t::inv_adjacency_iterator vi, vi_end;
+	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi != vi_end; ++vi)
 	    {
 		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();

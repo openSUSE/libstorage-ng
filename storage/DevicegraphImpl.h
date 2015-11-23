@@ -43,6 +43,9 @@ namespace storage
 	typedef graph_t::vertex_iterator vertex_iterator;
 	typedef graph_t::edge_iterator edge_iterator;
 
+	typedef graph_t::adjacency_iterator adjacency_iterator;
+	typedef graph_t::inv_adjacency_iterator inv_adjacency_iterator;
+
 	typedef graph_t::vertices_size_type vertices_size_type;
 
 	Impl(const Storage* storage) : storage(storage) {}
@@ -63,6 +66,15 @@ namespace storage
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 
+	vertex_descriptor source(edge_descriptor edge) const { return boost::source(edge, graph); }
+	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }
+
+	Device* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
+	const Device* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
+
+	Holder* operator[](edge_descriptor edge) { return graph[edge].get(); }
+	const Holder* operator[](edge_descriptor edge) const { return graph[edge].get(); }
+
 	void clear();
 
 	void remove_vertex(vertex_descriptor a);
@@ -82,6 +94,10 @@ namespace storage
 
 	vertex_descriptor child(vertex_descriptor vertex) const;
 	vertex_descriptor parent(vertex_descriptor vertex) const;
+
+	// TODO use iterator base functions instead of vector based below
+	// boost::iterator_range<adjacency_iterator> children(vertex_descriptor vertex) const;
+	// boost::iterator_range<inv_adjacency_iterator> parents(vertex_descriptor vertex) const;
 
 	vector<vertex_descriptor> children(vertex_descriptor vertex) const;
 	vector<vertex_descriptor> parents(vertex_descriptor vertex) const;

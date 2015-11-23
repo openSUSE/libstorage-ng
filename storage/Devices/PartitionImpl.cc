@@ -43,7 +43,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 	Devicegraph::Impl::vertex_descriptor v2 = g->get_impl().parent(v1);
 
-	string pp_name = dynamic_cast<const BlkDevice*>(g->get_impl().graph[v2].get())->get_name();
+	string pp_name = dynamic_cast<const BlkDevice*>(g->get_impl()[v2])->get_name();
 
 	const Parted& parted = systeminfo.getParted(pp_name);
 	Parted::Entry entry;
@@ -111,7 +111,7 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partition_table(get_devicegraph()->get_impl().graph[v].get());
+	return to_partition_table(get_devicegraph()->get_impl()[v]);
     }
 
 
@@ -204,7 +204,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 	Devicegraph::Impl::vertex_descriptor v2 = g->get_impl().parent(v1);
 
-	const Disk* disk = dynamic_cast<const Disk*>(g->get_impl().graph[v2].get());
+	const Disk* disk = dynamic_cast<const Disk*>(g->get_impl()[v2]);
 
 	disk->get_impl().process_udev_ids(udev_ids);
     }

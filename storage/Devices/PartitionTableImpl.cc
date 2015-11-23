@@ -15,7 +15,7 @@ namespace storage
     using namespace std;
 
 
-    const vector<string> EnumInfo<PtType>::names({
+    const vector<string> EnumTraits<PtType>::names({
 	"unknown", "loop", "msdos", "gpt", "dasd", "mac"
     });
 
@@ -38,7 +38,7 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 
-	const Disk* disk = to_disk(g->get_impl().graph[v1].get());
+	const Disk* disk = to_disk(g->get_impl()[v1]);
 
 	const Parted& parted = systeminfo.getParted(disk->get_name());
 
@@ -110,7 +110,7 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_disk(get_devicegraph()->get_impl().graph[v].get());
+	return to_disk(get_devicegraph()->get_impl()[v]);
     }
 
 
@@ -119,7 +119,7 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_disk(get_devicegraph()->get_impl().graph[v].get());
+	return to_disk(get_devicegraph()->get_impl()[v]);
     }
 
 

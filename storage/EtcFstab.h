@@ -159,7 +159,7 @@ namespace storage
 	    FstabEntry old;
 	};
 
-	friend EnumInfo<Entry::Operation>;
+	friend EnumTraits<Entry::Operation>;
 
 	void readFiles();
 
@@ -201,7 +201,7 @@ namespace storage
     };
 
 
-    template <> struct EnumInfo<EtcFstab::Entry::Operation> { static const vector<string> names; };
+    template <> struct EnumTraits<EtcFstab::Entry::Operation> { static const vector<string> names; };
 
 }
 

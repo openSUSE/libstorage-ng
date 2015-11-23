@@ -38,7 +38,7 @@ namespace storage
 	Impl::devicegraph = devicegraph;
 	Impl::edge = edge;
 
-	const Holder* holder = devicegraph->get_impl().graph[edge].get();
+	const Holder* holder = devicegraph->get_impl()[edge];
 	if (&holder->get_impl() != this)
 	    throw runtime_error("wrong edge for back references");
     }
@@ -47,16 +47,16 @@ namespace storage
     sid_t
     Holder::Impl::get_source_sid() const
     {
-	const Devicegraph::Impl::graph_t& graph = devicegraph->get_impl().graph;
-	return graph[source(edge, graph)]->get_sid();
+	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().source(edge);
+	return devicegraph->get_impl()[source]->get_sid();
     }
 
 
     sid_t
     Holder::Impl::get_target_sid() const
     {
-	const Devicegraph::Impl::graph_t& graph = devicegraph->get_impl().graph;
-	return graph[target(edge, graph)]->get_sid();
+	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().target(edge);
+	return devicegraph->get_impl()[target]->get_sid();
     }
 
 

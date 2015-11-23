@@ -49,13 +49,14 @@ namespace storage
     }
 
 
-    const vector<string> EnumInfo<ProbeMode>::names({
-	"NORMAL", "NORMAL_WRITE_MOCKUP", "NONE", "READ_DEVICEGRAPH", "READ_MOCKUP"
+    const vector<string> EnumTraits<ProbeMode>::names({
+	"STANDARD", "STANDARD_WRITE_DEVICEGRAPH", "STANDARD_WRITE_MOCKUP", "NONE",
+	"READ_DEVICEGRAPH", "READ_MOCKUP"
     });
 
 
-    const vector<string> EnumInfo<TargetMode>::names({
-	"NORMAL", "CHROOT", "IMAGE"
+    const vector<string> EnumTraits<TargetMode>::names({
+	"DIRECT", "CHROOT", "IMAGE"
     });
 
 }
