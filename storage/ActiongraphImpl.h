@@ -30,10 +30,13 @@ namespace storage
 
     class Actiongraph::Impl : private boost::noncopyable
     {
-    public:
+
+    private:
 
 	typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
 				      std::shared_ptr<Action::Base>> graph_t;
+
+    public:
 
 	typedef graph_t::vertex_descriptor vertex_descriptor;
 	typedef graph_t::edge_descriptor edge_descriptor;
