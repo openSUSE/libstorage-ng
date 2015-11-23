@@ -43,6 +43,9 @@ namespace storage
 	typedef graph_t::vertex_iterator vertex_iterator;
 	typedef graph_t::edge_iterator edge_iterator;
 
+	typedef graph_t::adjacency_iterator adjacency_iterator;
+	typedef graph_t::inv_adjacency_iterator inv_adjacency_iterator;
+
 	typedef graph_t::vertices_size_type vertices_size_type;
 
 	Impl(const Storage* storage) : storage(storage) {}
@@ -91,6 +94,10 @@ namespace storage
 
 	vertex_descriptor child(vertex_descriptor vertex) const;
 	vertex_descriptor parent(vertex_descriptor vertex) const;
+
+	// TODO use iterator base functions instead of vector based below
+	// boost::iterator_range<adjacency_iterator> children(vertex_descriptor vertex) const;
+	// boost::iterator_range<inv_adjacency_iterator> parents(vertex_descriptor vertex) const;
 
 	vector<vertex_descriptor> children(vertex_descriptor vertex) const;
 	vector<vertex_descriptor> parents(vertex_descriptor vertex) const;
