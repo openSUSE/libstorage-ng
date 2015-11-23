@@ -13,7 +13,7 @@ namespace storage
     using namespace std;
 
 
-    template <> struct EnumInfo<PtType> { static const vector<string> names; };
+    template <> struct EnumTraits<PtType> { static const vector<string> names; };
 
     std::ostream& operator<<(std::ostream& s, const PartitionSlotInfo& a);
 

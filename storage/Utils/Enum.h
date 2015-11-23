@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2010 Novell, Inc.
+ * Copyright (c) 2015 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,23 +41,23 @@ namespace storage
     using std::vector;
 
 
-    template <typename EnumType> struct EnumInfo {};
+    template <typename EnumType> struct EnumTraits {};
 
-    template <> struct EnumInfo<FsType> { static const vector<string> names; };
-    template <> struct EnumInfo<PartitionType> { static const vector<string> names; };
-    template <> struct EnumInfo<MountByType> { static const vector<string> names; };
-    template <> struct EnumInfo<EncryptType> { static const vector<string> names; };
-    template <> struct EnumInfo<MdType> { static const vector<string> names; };
-    template <> struct EnumInfo<MdParity> { static const vector<string> names; };
-    template <> struct EnumInfo<MdArrayState> { static const vector<string> names; };
-    template <> struct EnumInfo<UsedByType> { static const vector<string> names; };
-    template <> struct EnumInfo<CType> { static const vector<string> names; };
-    template <> struct EnumInfo<Transport> { static const vector<string> names; };
-    template <> struct EnumInfo<MultipathAutostart> { static const vector<string> names; };
-    template <> struct EnumInfo<PartAlign> { static const vector<string> names; };
+    template <> struct EnumTraits<FsType> { static const vector<string> names; };
+    template <> struct EnumTraits<PartitionType> { static const vector<string> names; };
+    template <> struct EnumTraits<MountByType> { static const vector<string> names; };
+    template <> struct EnumTraits<EncryptType> { static const vector<string> names; };
+    template <> struct EnumTraits<MdType> { static const vector<string> names; };
+    template <> struct EnumTraits<MdParity> { static const vector<string> names; };
+    template <> struct EnumTraits<MdArrayState> { static const vector<string> names; };
+    template <> struct EnumTraits<UsedByType> { static const vector<string> names; };
+    template <> struct EnumTraits<CType> { static const vector<string> names; };
+    template <> struct EnumTraits<Transport> { static const vector<string> names; };
+    template <> struct EnumTraits<MultipathAutostart> { static const vector<string> names; };
+    template <> struct EnumTraits<PartAlign> { static const vector<string> names; };
 
-    template <> struct EnumInfo<DasdType> { static const vector<string> names; };
-    template <> struct EnumInfo<DasdFormat> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdType> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdFormat> { static const vector<string> names; };
 
 
     template <typename EnumType>
@@ -64,7 +65,7 @@ namespace storage
     {
 	static_assert(std::is_enum<EnumType>::value, "not enum");
 
-	const vector<string>& names = EnumInfo<EnumType>::names;
+	const vector<string>& names = EnumTraits<EnumType>::names;
 
 	// Comparisons must not be done with type of enum since the enum may
 	// define comparison operators.
@@ -80,7 +81,7 @@ namespace storage
     {
 	static_assert(std::is_enum<EnumType>::value, "not enum");
 
-	const vector<string>& names = EnumInfo<EnumType>::names;
+	const vector<string>& names = EnumTraits<EnumType>::names;
 
 	vector<string>::const_iterator it = find(names.begin(), names.end(), str);
 

@@ -15,7 +15,7 @@ namespace storage
     using namespace std;
 
 
-    const vector<string> EnumInfo<PtType>::names({
+    const vector<string> EnumTraits<PtType>::names({
 	"unknown", "loop", "msdos", "gpt", "dasd", "mac"
     });
 

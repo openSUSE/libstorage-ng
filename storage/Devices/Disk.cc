@@ -148,12 +148,12 @@ namespace storage
     }
 
 
-    const vector<string> EnumInfo<DasdType>::names({
+    const vector<string> EnumTraits<DasdType>::names({
 	"NONE", "ECKD", "FBA"
     });
 
 
-    const vector<string> EnumInfo<DasdFormat>::names({
+    const vector<string> EnumTraits<DasdFormat>::names({
 	"NONE", "LDL", "CDL"
     });
 
