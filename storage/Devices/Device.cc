@@ -68,8 +68,7 @@ namespace storage
     void
     Device::add_to_devicegraph(Devicegraph* devicegraph)
     {
-	if (!devicegraph)
-	    throw runtime_error("devicegraph is nullptr");
+	ST_CHECK_PTR(devicegraph);
 
 	Devicegraph::Impl::vertex_descriptor vertex =
 	    boost::add_vertex(shared_ptr<Device>(this), devicegraph->get_impl().graph);
