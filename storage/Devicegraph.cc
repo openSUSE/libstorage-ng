@@ -121,6 +121,20 @@ namespace storage
     }
 
 
+    std::vector<Disk*>
+    Devicegraph::get_all_disks()
+    {
+	return Disk::get_all(this);
+    }
+
+
+    std::vector<const Disk*>
+    Devicegraph::get_all_disks() const
+    {
+	return Disk::get_all(this);
+    }
+
+
     class CloneCopier
     {
 
