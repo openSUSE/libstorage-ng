@@ -106,6 +106,17 @@ namespace storage
     }
 
 
+    vector<const Disk*>
+    Disk::get_all(const Devicegraph* devicegraph)
+    {
+	auto pred = [](const Device* device) {
+	    return to_disk(device);
+	};
+
+	return devicegraph->get_impl().getDevicesIf<const Disk>(pred);
+    }
+
+
     PartitionTable*
     Disk::create_partition_table(PtType pt_type)
     {
