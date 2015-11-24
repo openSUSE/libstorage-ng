@@ -58,7 +58,7 @@ namespace storage
 	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_rhs, actiongraph.get_devicegraph(RHS)->get_impl().graph); vi != vi_end; ++vi)
 	    {
-		sid_t parent_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();
+		sid_t parent_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
 
 		if (!actiongraph.get_devicegraph(LHS)->device_exists(parent_sid))
 		{
@@ -76,7 +76,7 @@ namespace storage
 		    Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
 		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
 		    {
-			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl().graph[*vi2]->get_sid();
+			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
 
 			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.huhu(child_sid, false, true);
 			if (!tmp.empty())
@@ -86,7 +86,7 @@ namespace storage
 	    }
 
 	    // create order of partitions
-	    if (dynamic_cast<const Partition*>(actiongraph.get_devicegraph(RHS)->get_impl().graph[v_in_rhs].get()))
+	    if (dynamic_cast<const Partition*>(actiongraph.get_devicegraph(RHS)->get_impl()[v_in_rhs]))
 	    {
 		vector<Devicegraph::Impl::vertex_descriptor> siblings = actiongraph.get_devicegraph(RHS)->get_impl().siblings(v_in_rhs, false);
 
@@ -94,15 +94,15 @@ namespace storage
 
 		for (Devicegraph::Impl::vertex_descriptor q : siblings)
 		{
-		    sid_t s_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[q]->get_sid();
+		    sid_t s_sid = actiongraph.get_devicegraph(RHS)->get_impl()[q]->get_sid();
 
 		    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 		    {
 			sid_t a_sid = actiongraph[tmp]->sid;
 			if (s_sid == a_sid && actiongraph[tmp]->last)
 			{
-			    Partition* p_lhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(LHS)->get_impl().graph[q].get());
-			    Partition* p_rhs = dynamic_cast<Partition*>(actiongraph.get_devicegraph(RHS)->get_impl().graph[v_in_rhs].get());
+			    const Partition* p_lhs = dynamic_cast<const Partition*>(actiongraph.get_devicegraph(LHS)->get_impl()[q]);
+			    const Partition* p_rhs = dynamic_cast<const Partition*>(actiongraph.get_devicegraph(RHS)->get_impl()[v_in_rhs]);
 
 			    if (p_lhs->get_number() < p_rhs->get_number())
 				w.push_back(tmp);
@@ -132,7 +132,7 @@ namespace storage
 	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
 	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi != vi_end; ++vi)
 	    {
-		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl().graph[*vi]->get_sid();
+		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
 
 		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.huhu(child_sid, true, false))
 		    actiongraph.add_edge(v, tmp);

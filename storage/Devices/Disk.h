@@ -28,6 +28,7 @@ namespace storage
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	static std::vector<Disk*> get_all(Devicegraph* devicegraph);
+	static std::vector<const Disk*> get_all(const Devicegraph* devicegraph);
 
 	bool get_rotational() const;
 

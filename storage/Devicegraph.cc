@@ -121,6 +121,20 @@ namespace storage
     }
 
 
+    std::vector<Disk*>
+    Devicegraph::get_all_disks()
+    {
+	return Disk::get_all(this);
+    }
+
+
+    std::vector<const Disk*>
+    Devicegraph::get_all_disks() const
+    {
+	return Disk::get_all(this);
+    }
+
+
     class CloneCopier
     {
 
@@ -302,7 +316,7 @@ namespace storage
 	{
 	    for (Impl::vertex_descriptor v : get_impl().vertices())
 	    {
-		const Device* device = get_impl().graph[v].get();
+		const Device* device = get_impl()[v];
 		device->check();
 	    }
 	}
@@ -318,7 +332,7 @@ namespace storage
     void
     Devicegraph::copy(Devicegraph& dest) const
     {
-	dest.get_impl().graph.clear();
+	dest.get_impl().clear();
 
 	Haha<Impl::graph_t> haha(get_impl().graph);
 

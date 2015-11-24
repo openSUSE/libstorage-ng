@@ -13,6 +13,7 @@ namespace storage
     class Storage;
     class Device;
     class Holder;
+    class Disk;
 
 
     struct DeviceNotFound : public Exception
@@ -68,6 +69,12 @@ namespace storage
 	bool device_exists(sid_t sid) const;
 
 	void clear();
+
+	// convenient functions, equivalent to Disk::get_all(devicegraph)
+	// TODO add for important and/or "toplevel" types,
+	// e.g. get_all_lvm_vgs, get_all_mds, get_all_filesystems
+	std::vector<Disk*> get_all_disks();
+	std::vector<const Disk*> get_all_disks() const;
 
 	void remove_device(sid_t sid);
 	void remove_device(Device* a);

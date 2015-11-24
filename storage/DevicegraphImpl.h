@@ -63,6 +63,10 @@ namespace storage
 	set<sid_t> get_device_sids() const;
 	set<pair<sid_t, sid_t>> get_holder_sids() const;
 
+	vertex_descriptor add_vertex(Device* device);
+	edge_descriptor add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
+				 Holder* holder);
+
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 
