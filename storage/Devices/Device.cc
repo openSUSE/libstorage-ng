@@ -70,8 +70,7 @@ namespace storage
     {
 	ST_CHECK_PTR(devicegraph);
 
-	Devicegraph::Impl::vertex_descriptor vertex =
-	    boost::add_vertex(shared_ptr<Device>(this), devicegraph->get_impl().graph);
+	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex(this);
 
 	get_impl().set_devicegraph_and_vertex(devicegraph, vertex);
     }
