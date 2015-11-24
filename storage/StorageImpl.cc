@@ -86,7 +86,7 @@ namespace storage
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
-	    BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(probed->get_impl().graph[vertex].get());
+	    BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(probed->get_impl()[vertex]);
 	    if (!blkdevice)
 		continue;
 

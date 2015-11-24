@@ -77,8 +77,12 @@ namespace storage
 
     void
     Holder::add_to_devicegraph(Devicegraph* devicegraph, const Device* source,
-			     const Device* target)
+			       const Device* target)
     {
+	ST_CHECK_PTR(devicegraph);
+	ST_CHECK_PTR(source);
+	ST_CHECK_PTR(target);
+
 	if (source->get_impl().get_devicegraph() != devicegraph)
 	    throw runtime_error("wrong graph in source");
 
@@ -88,14 +92,9 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor source_vertex = source->get_impl().get_vertex();
 	Devicegraph::Impl::vertex_descriptor target_vertex = target->get_impl().get_vertex();
 
-	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
-	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(this),
-			    devicegraph->get_impl().graph);
+	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge(source_vertex, target_vertex, this);
 
-	if (!tmp.second)
-	    throw runtime_error("holder already exists");
-
-	get_impl().set_devicegraph_and_edge(devicegraph, tmp.first);
+	get_impl().set_devicegraph_and_edge(devicegraph, edge);
     }
 
 

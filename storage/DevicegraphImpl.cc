@@ -143,6 +143,27 @@ namespace storage
     }
 
 
+    Devicegraph::Impl::vertex_descriptor
+    Devicegraph::Impl::add_vertex(Device* device)
+    {
+	return boost::add_vertex(shared_ptr<Device>(device), graph);
+    }
+
+
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
+				Holder* holder)
+    {
+	pair<Devicegraph::Impl::edge_descriptor, bool> tmp =
+	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
+
+	if (!tmp.second)
+	    throw runtime_error("holder already exists");
+
+	return tmp.first;
+    }
+
+
     set<sid_t>
     Devicegraph::Impl::get_device_sids() const
     {
@@ -518,7 +539,7 @@ namespace storage
 
 	void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
 	{
-	    const Device* device = devicegraph.graph[v].get();
+	    const Device* device = devicegraph[v];
 
 	    string label = device->get_displayname();
 
@@ -559,7 +580,7 @@ namespace storage
 
 	void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& e) const
 	{
-	    const Holder* holder = devicegraph.graph[e].get();
+	    const Holder* holder = devicegraph[e];
 
 	    if (is_subdevice(holder))
 		out << "[ style=solid ]";
