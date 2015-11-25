@@ -21,6 +21,9 @@ namespace storage
     {
     public:
 
+	static std::vector<Filesystem*> get_all(Devicegraph* devicegraph);
+	static std::vector<const Filesystem*> get_all(const Devicegraph* devicegraph);
+
 	FsType get_type() const;
 
 	virtual bool supports_label() const = 0;

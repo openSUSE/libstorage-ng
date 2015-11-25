@@ -32,6 +32,28 @@ namespace storage
     }
 
 
+    vector<Filesystem*>
+    Filesystem::get_all(Devicegraph* devicegraph)
+    {
+	auto pred = [](Device* device) {
+	    return to_filesystem(device);
+	};
+
+	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
+    }
+
+
+    vector<const Filesystem*>
+    Filesystem::get_all(const Devicegraph* devicegraph)
+    {
+	auto pred = [](const Device* device) {
+	    return to_filesystem(device);
+	};
+
+	return devicegraph->get_impl().getDevicesIf<const Filesystem>(pred);
+    }
+
+
     FsType
     Filesystem::get_type() const
     {
