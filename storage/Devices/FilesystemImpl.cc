@@ -492,7 +492,7 @@ namespace storage
 	Text
 	Umount::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
 	    return filesystem->get_impl().do_umount_text(mountpoint, doing);
 	}
 
@@ -500,7 +500,7 @@ namespace storage
 	void
 	Umount::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
 	    filesystem->get_impl().do_umount(mountpoint);
 	}
 
@@ -533,7 +533,7 @@ namespace storage
 	Text
 	RemoveFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
 	    return filesystem->get_impl().do_remove_fstab_text(mountpoint, doing);
 	}
 
@@ -541,7 +541,7 @@ namespace storage
 	void
 	RemoveFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
 	    filesystem->get_impl().do_remove_fstab(mountpoint);
 	}
 

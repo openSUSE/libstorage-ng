@@ -1,0 +1,7 @@
+1 - Remove ext4 from fstab -> 2
+2 - Unmount ext4 -> 3
+
+3 - Create xfs on /dev/sdb (256.00 MiB) -> 4
+4 - Mount /dev/sdb at /test2 -> 5
+5 - Add mountpoint /test2 of /dev/sdb to fstab -> 6
+6 - Nop [sid:48] ->
