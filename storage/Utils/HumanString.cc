@@ -25,6 +25,7 @@
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage
@@ -199,6 +200,20 @@ namespace storage
 	}
 
 	throw ParseError(sformat("failed to parse \"%s\"", str.c_str()));
+    }
+
+
+    string
+    get_mount_by_name(MountByType mount_by_type)
+    {
+	return toString(mount_by_type);
+    }
+
+
+    string
+    get_transport_name(Transport transport)
+    {
+	return toString(transport);
     }
 
 }

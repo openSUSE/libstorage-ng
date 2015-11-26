@@ -26,9 +26,13 @@
 #include <string>
 #include <stdexcept>
 
+#include "storage/StorageInterface.h"
+
 
 namespace storage
 {
+
+    using namespace storage_legacy;
 
 
     struct ParseError : public std::runtime_error
@@ -81,6 +85,11 @@ namespace storage
      * false the conversion is also sloppy concerning omission of 'B'.
      */
     unsigned long long humanstring_to_byte(const std::string& str, bool classic);
+
+
+    std::string get_mount_by_name(MountByType mount_by_type);
+
+    std::string get_transport_name(Transport transport);
 
 }
 
