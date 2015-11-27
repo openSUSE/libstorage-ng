@@ -63,7 +63,7 @@ namespace storage
     }
 
 
-    Exception::~Exception() throw()
+    Exception::~Exception() noexcept
     {
 	// NOP
     }

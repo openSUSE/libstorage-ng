@@ -298,7 +298,7 @@ namespace storage
 	/**
 	 * Destructor.
 	 **/
-	virtual ~Exception() throw();
+	virtual ~Exception() noexcept;
 
 	/**
 	 * Return CodeLocation.
@@ -353,7 +353,7 @@ namespace storage
 	 *
 	 * Reimplemented from std::exception.
 	 **/
-	virtual const char * what() const throw()
+	virtual const char * what() const noexcept
 	    { return _msg.c_str(); }
 
     protected:
@@ -398,7 +398,7 @@ namespace storage
 	    : Exception( "Null pointer" )
 	    {}
 
-	virtual ~NullPointerException() throw()
+	virtual ~NullPointerException() noexcept
 	    {}
     };
 
@@ -426,7 +426,7 @@ namespace storage
 	    : Exception( "Out of memory" )
 	    {}
 
-	virtual ~OutOfMemoryException() throw()
+	virtual ~OutOfMemoryException() noexcept
 	    {}
 
     };
@@ -456,7 +456,7 @@ namespace storage
 	    , _validMax( validMax )
 	    {}
 
-	virtual ~IndexOutOfRangeException() throw()
+	virtual ~IndexOutOfRangeException() noexcept
 	    {}
 
 	/**
@@ -526,7 +526,7 @@ namespace storage
 	/**
 	 * Destructor.
 	 */
-	virtual ~ParseException() throw()
+	virtual ~ParseException() noexcept
 	    {}
 
 	/**

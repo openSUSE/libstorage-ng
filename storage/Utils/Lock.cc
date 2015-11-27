@@ -45,7 +45,7 @@ namespace storage
     }
 
 
-    LockException::~LockException() throw()
+    LockException::~LockException() noexcept
     {
     }
 
@@ -104,7 +104,7 @@ namespace storage
     }
 
 
-    Lock::~Lock() throw()
+    Lock::~Lock() noexcept
     {
 	if (disabled)
 	    return;
