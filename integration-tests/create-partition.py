@@ -40,5 +40,6 @@ print staging
 
 my_commit_callbacks = MyCommitCallbacks()
 
+storage.calculate_actiongraph()
 storage.commit(my_commit_callbacks)
 
