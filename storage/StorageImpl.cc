@@ -275,6 +275,8 @@ namespace storage
     void
     Storage::Impl::commit(const CommitCallbacks* commit_callbacks)
     {
+	ST_CHECK_PTR(actiongraph.get());
+
 	actiongraph->get_impl().commit(commit_callbacks);
 
 	// TODO somehow update probed
