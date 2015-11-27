@@ -396,7 +396,10 @@ namespace storage
     Text
     Filesystem::Impl::do_umount_text(const string& mountpoint, bool doing) const
     {
-	return sformat(_("Unmount %1$s"), get_displayname().c_str());
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Unmount %1$s at %2$s"), blkdevice->get_name().c_str(),
+		       mountpoint.c_str());
     }
 
 
@@ -443,7 +446,10 @@ namespace storage
     Text
     Filesystem::Impl::do_remove_fstab_text(const string& mountpoint, bool doing) const
     {
-	return sformat(_("Remove %1$s from fstab"), get_displayname().c_str());
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	return sformat(_("Remove mountpoint %1$s of %2$s from fstab"), mountpoint.c_str(),
+		       blkdevice->get_name().c_str());
     }
 
 
