@@ -404,9 +404,18 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_umount(const string& mountpoint) const
+    Filesystem::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
-	// TODO
+	const Storage& storage = actiongraph.get_storage();
+
+	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
+
+	string cmd_line = UMOUNTBIN " " + quote(real_mountpoint);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("umount failed");
     }
 
 
@@ -454,9 +463,19 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_remove_fstab(const string& mountpoint) const
+    Filesystem::Impl::do_remove_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
-	// TOOD
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	// TODO error handling
+
+	FstabKey entry(blkdevice->get_name(), mountpoint);
+	fstab.removeEntry(entry);
+	fstab.flush();
     }
 
 
@@ -507,7 +526,7 @@ namespace storage
 	Umount::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    filesystem->get_impl().do_umount(mountpoint);
+	    filesystem->get_impl().do_umount(actiongraph, mountpoint);
 	}
 
 
@@ -548,7 +567,7 @@ namespace storage
 	RemoveFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    filesystem->get_impl().do_remove_fstab(mountpoint);
+	    filesystem->get_impl().do_remove_fstab(actiongraph, mountpoint);
 	}
 
     }

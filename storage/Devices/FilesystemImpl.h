@@ -72,13 +72,13 @@ namespace storage
 	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
-	virtual void do_umount(const string& mountpoint) const;
+	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_add_fstab_text(const string& mountpoint, bool doing) const;
 	virtual void do_add_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_remove_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_remove_fstab(const string& mountpoint) const;
+	virtual void do_remove_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
     protected:
 
