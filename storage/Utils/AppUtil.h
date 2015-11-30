@@ -94,8 +94,6 @@ void classic(StreamType& stream)
 }
 
 
-enum LogLevel { DEBUG=0, MILESTONE=1, WARNING=2, ERROR=3 };
-
 void createLogger(const string& logpath, const string& logfile);
 
 bool queryLog( LogLevel level );

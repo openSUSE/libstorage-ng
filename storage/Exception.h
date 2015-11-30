@@ -32,6 +32,8 @@
 #include <string>
 #include <ostream>
 
+#include "storage/Utils/Logger.h"
+
 
 namespace storage
 {
@@ -256,8 +258,7 @@ namespace storage
 	/**
 	 * Stream output
 	 **/
-	friend std::ostream & operator<<( std::ostream & str,
-					  const CodeLocation & obj );
+	friend std::ostream & operator<<( std::ostream & str, const CodeLocation & obj );
 
     private:
 	std::string	_file;
@@ -287,13 +288,13 @@ namespace storage
 	 * Default constructor.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception();
+	Exception(LogLevel log_level = ERROR);
 
 	/**
 	 * Constructor taking a message.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception( const std::string & msg );
+	Exception(const std::string & msg, LogLevel log_level = ERROR);
 
 	/**
 	 * Destructor.
@@ -319,6 +320,11 @@ namespace storage
 	 **/
 	const std::string & msg() const
 	    { return _msg; }
+
+	/**
+	 *
+	 */
+	LogLevel log_level() const { return _log_level; }
 
 	/**
 	 * Set a new message string.
@@ -371,6 +377,7 @@ namespace storage
 
 	mutable CodeLocation	_where;
 	std::string		_msg;
+	LogLevel _log_level;
 
 	/**
 	 * Called by std::ostream & operator<<() .
@@ -395,7 +402,7 @@ namespace storage
     {
     public:
 	NullPointerException()
-	    : Exception( "Null pointer" )
+	    : Exception( "Null pointer", ERROR )
 	    {}
 
 	virtual ~NullPointerException() noexcept
@@ -423,7 +430,7 @@ namespace storage
     {
     public:
 	OutOfMemoryException()
-	    : Exception( "Out of memory" )
+	    : Exception( "Out of memory", ERROR )
 	    {}
 
 	virtual ~OutOfMemoryException() noexcept
