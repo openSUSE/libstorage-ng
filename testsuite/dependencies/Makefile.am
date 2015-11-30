@@ -16,6 +16,6 @@ TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST =									\
 	test1-probed.xml test1-staging.xml 					\
-	test3-probed.xml test3-staging.xml test3-expected.txt
+	test3-probed.xml test3-staging.xml test3-expected.txt			\
 	test4-probed.xml test4-staging.xml test4-expected.txt
 
