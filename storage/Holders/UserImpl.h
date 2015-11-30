@@ -9,6 +9,9 @@
 namespace storage
 {
 
+    template <> struct HolderTraits<User> { static const char* classname; };
+
+
     class User::Impl : public Holder::Impl
     {
     public:

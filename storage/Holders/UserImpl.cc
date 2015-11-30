@@ -6,6 +6,9 @@
 namespace storage
 {
 
+    const char* HolderTraits<User>::classname = "User";
+
+
     User::Impl::Impl(const xmlNode* node)
 	: Holder::Impl(node)
     {

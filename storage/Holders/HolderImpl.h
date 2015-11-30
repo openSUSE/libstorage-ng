@@ -3,6 +3,7 @@
 
 
 #include <libxml/tree.h>
+#include <type_traits>
 
 #include "storage/Holders/Holder.h"
 #include "storage/DevicegraphImpl.h"
@@ -10,6 +11,9 @@
 
 namespace storage
 {
+
+    template <typename Type> struct HolderTraits {};
+
 
     // abstract class
 

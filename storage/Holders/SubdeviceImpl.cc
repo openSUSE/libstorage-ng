@@ -6,6 +6,9 @@
 namespace storage
 {
 
+    const char* HolderTraits<Subdevice>::classname = "Subdevice";
+
+
     Subdevice::Impl::Impl(const xmlNode* node)
 	: Holder::Impl(node)
     {
