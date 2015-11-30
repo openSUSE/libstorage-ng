@@ -141,6 +141,8 @@ namespace storage
     bool
     is_disk(const Device* device)
     {
+	ST_CHECK_PTR(device);
+
 	return dynamic_cast<const Disk*>(device);
     }
 

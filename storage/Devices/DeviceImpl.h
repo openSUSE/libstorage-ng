@@ -127,7 +127,9 @@ namespace storage
     template <typename Type>
     Type* to_device_of_type(Device* device)
     {
-	static_assert(!is_const<Type>::value, "Type must not be const");
+	static_assert(!std::is_const<Type>::value, "Type must not be const");
+
+	ST_CHECK_PTR(device);
 
 	Type* tmp = dynamic_cast<Type*>(device);
 	if (!tmp)
@@ -141,12 +143,14 @@ namespace storage
     template <typename Type>
     const Type* to_device_of_type(const Device* device)
     {
-	static_assert(is_const<Type>::value, "Type must be const");
+	static_assert(std::is_const<Type>::value, "Type must be const");
+
+	ST_CHECK_PTR(device);
 
 	const Type* tmp = dynamic_cast<const Type*>(device);
 	if (!tmp)
 	    ST_THROW(DeviceHasWrongType(device->get_impl().get_classname(),
-					DeviceTraits<typename remove_const<Type>::type>::classname));
+					DeviceTraits<typename std::remove_const<Type>::type>::classname));
 
 	return tmp;
     }

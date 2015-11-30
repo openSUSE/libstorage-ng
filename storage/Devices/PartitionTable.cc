@@ -77,6 +77,8 @@ namespace storage
     bool
     is_partition_table(const Device* device)
     {
+	ST_CHECK_PTR(device);
+
 	return dynamic_cast<const PartitionTable*>(device);
     }
 
