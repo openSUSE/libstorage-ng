@@ -7,10 +7,10 @@ devicegraph = Storage::Devicegraph.new()
 
 sda = Storage::Disk.create(devicegraph, "/dev/sda")
 
-gpt = sda.create_partition_table(Storage::GPT)
+gpt = sda.create_partition_table(Storage::PtType_GPT)
 
-sda1 = gpt.create_partition("/dev/sda1")
-sda2 = gpt.create_partition("/dev/sda2")
+sda1 = gpt.create_partition("/dev/sda1", Storage::PRIMARY)
+sda2 = gpt.create_partition("/dev/sda2", Storage::PRIMARY)
 
 ext4 = sda1.create_filesystem(Storage::EXT4)
 swap = sda2.create_filesystem(Storage::SWAP)
