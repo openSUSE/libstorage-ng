@@ -30,11 +30,14 @@
 
 #include "storage/Exception.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Logger.h"
 
 
 namespace storage
 {
-    std::string CodeLocation::asString() const
+
+    std::string
+    CodeLocation::asString() const
     {
 	// Format as "MySource.cc(myFunc):177"
 	std::string str( _file );
@@ -51,19 +54,21 @@ namespace storage
     }
 
 
-    Exception::Exception()
-    {
-	// NOP
-    }
-
-    Exception::Exception( const std::string & msg_r )
-	: _msg( msg_r )
+    Exception::Exception(LogLevel log_level)
+	: _log_level(log_level)
     {
 	// NOP
     }
 
 
-    Exception::~Exception() throw()
+    Exception::Exception( const std::string & msg_r, LogLevel log_level )
+	: _msg( msg_r ), _log_level(log_level)
+    {
+	// NOP
+    }
+
+
+    Exception::~Exception() noexcept
     {
 	// NOP
     }
@@ -118,7 +123,7 @@ namespace storage
 		    const CodeLocation & location,
 		    const char * const 	 prefix )
     {
-	y2log_op( storage::WARNING,
+	y2log_op( exception.log_level(),
 		  location.file().c_str(),
 		  location.line(),
 		  location.func().c_str(),

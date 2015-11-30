@@ -9,6 +9,9 @@
 namespace storage
 {
 
+    template <> struct HolderTraits<Subdevice> { static const char* classname; };
+
+
     class Subdevice::Impl : public Holder::Impl
     {
     public:

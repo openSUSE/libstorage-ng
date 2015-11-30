@@ -3,6 +3,7 @@
 
 
 #include <libxml/tree.h>
+#include <type_traits>
 
 #include "storage/Holders/Holder.h"
 #include "storage/DevicegraphImpl.h"
@@ -10,6 +11,9 @@
 
 namespace storage
 {
+
+    template <typename Type> struct HolderTraits {};
+
 
     // abstract class
 
@@ -53,6 +57,38 @@ namespace storage
 	Devicegraph::Impl::edge_descriptor edge;
 
     };
+
+
+    template <typename Type>
+    Type* to_holder_of_type(Holder* holder)
+    {
+	static_assert(!std::is_const<Type>::value, "Type must not be const");
+
+	ST_CHECK_PTR(holder);
+
+	Type* tmp = dynamic_cast<Type*>(holder);
+	if (!tmp)
+	    ST_THROW(HolderHasWrongType(holder->get_impl().get_classname(),
+					HolderTraits<Type>::classname));
+
+	return tmp;
+    }
+
+
+    template <typename Type>
+    const Type* to_holder_of_type(const Holder* holder)
+    {
+	static_assert(std::is_const<Type>::value, "Type must be const");
+
+	ST_CHECK_PTR(holder);
+
+	const Type* tmp = dynamic_cast<const Type*>(holder);
+	if (!tmp)
+	    ST_THROW(HolderHasWrongType(holder->get_impl().get_classname(),
+					HolderTraits<typename std::remove_const<Type>::type>::classname));
+
+	return tmp;
+    }
 
 }
 

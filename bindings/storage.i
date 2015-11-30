@@ -25,6 +25,9 @@
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_partition(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_partition(const Device*);
+
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
 
@@ -63,6 +66,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/Remote.h"
+#include "storage/Utils/Logger.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/Ext4.h"
@@ -81,7 +85,6 @@
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Environment.h"
-#include "storage/Logger.h"
 #include "storage/Storage.h"
 %}
 
@@ -95,6 +98,7 @@
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Utils/Region.h"
 %include "../../storage/Utils/Remote.h"
+%include "../../storage/Utils/Logger.h"
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/Ext4.h"
@@ -113,7 +117,6 @@
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Actiongraph.h"
 %include "../../storage/Environment.h"
-%include "../../storage/Logger.h"
 %include "../../storage/Storage.h"
 
 using namespace storage;

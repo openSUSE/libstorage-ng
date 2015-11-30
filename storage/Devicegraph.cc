@@ -18,6 +18,7 @@
 #include "storage/Devices/Filesystem.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Logger.h"
 
 
 namespace storage
@@ -43,13 +44,15 @@ namespace storage
 
 
     WrongNumberOfParents::WrongNumberOfParents(size_t seen, size_t expected)
-	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected))
+	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected),
+		    Silencer::is_any_active() ? DEBUG : WARNING)
     {
     }
 
 
     WrongNumberOfChildren::WrongNumberOfChildren(size_t seen, size_t expected)
-	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected))
+	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected),
+		    Silencer::is_any_active() ? DEBUG : WARNING)
     {
     }
 

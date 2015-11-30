@@ -37,7 +37,7 @@ namespace storage
     public:
 
 	LockException(pid_t locker_pid);
-	virtual ~LockException() throw();
+	virtual ~LockException() noexcept;
 
 	pid_t getLockerPid() const { return locker_pid; }
 
@@ -57,7 +57,7 @@ namespace storage
     public:
 
 	Lock(bool readonly, bool disable = false);
-	~Lock() throw();
+	~Lock() noexcept;
 
     private:
 

@@ -16,7 +16,7 @@ namespace storage
 
     struct HolderHasWrongType : public Exception
     {
-	HolderHasWrongType(const std::string& msg) : Exception(msg) {}
+	HolderHasWrongType(const char* seen, const char* expected);
     };
 
 

@@ -42,7 +42,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/StorageInterface.h"
 #include "storage/SystemInfo/Arch.h"
-#include "storage/Logger.h"
+#include "storage/Utils/Logger.h"
 
 
 namespace storage

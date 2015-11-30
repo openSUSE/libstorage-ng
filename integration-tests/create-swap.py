@@ -22,5 +22,6 @@ swap.add_mountpoint("swap")
 
 print staging
 
+storage.calculate_actiongraph()
 storage.commit()
 

@@ -23,5 +23,6 @@ ext4.add_mountpoint("/test")
 
 print staging
 
+storage.calculate_actiongraph()
 storage.commit()
 

@@ -34,6 +34,8 @@
 #include <map>
 #include <chrono>
 
+#include "storage/Utils/Logger.h"
+
 
 namespace storage
 {
@@ -91,8 +93,6 @@ void classic(StreamType& stream)
     stream.imbue(std::locale::classic());
 }
 
-
-enum LogLevel { DEBUG=0, MILESTONE=1, WARNING=2, ERROR=3 };
 
 void createLogger(const string& logpath, const string& logfile);
 

@@ -22,5 +22,6 @@ partition_table.delete_partition("/dev/sdb1")
 
 print staging
 
+storage.calculate_actiongraph()
 storage.commit()
 

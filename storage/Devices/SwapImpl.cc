@@ -48,7 +48,21 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("mount swap failed");
+	    throw runtime_error("swapon failed");
+    }
+
+
+    void
+    Swap::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    {
+	const BlkDevice* blkdevice = get_blkdevice();
+
+	string cmd_line = SWAPOFFBIN " " + quote(blkdevice->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    throw runtime_error("swapoff failed");
     }
 
 }

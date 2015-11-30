@@ -7,10 +7,10 @@ devicegraph = Storage::Devicegraph.new()
 
 sda = Storage::Disk::create(devicegraph, "/dev/sda")
 
-gpt = sda.create_partition_table(Storage::GPT)
+gpt = sda.create_partition_table(Storage::PtType_GPT)
 
-sda1 = gpt.create_partition("/dev/sda1")
-sda2 = gpt.create_partition("/dev/sda2")
+sda1 = gpt.create_partition("/dev/sda1", Storage::PRIMARY)
+sda2 = gpt.create_partition("/dev/sda2", Storage::PRIMARY)
 
 print devicegraph
 
@@ -25,14 +25,16 @@ puts
 puts "descendants of sda:"
 sda.descendants(false).each do |device|
 
-  partition_table = Storage::to_partition_table(device)
-  if partition_table
+  begin
+    partition_table = Storage::to_partition_table(device)
     puts "  #{partition_table} is partition table"
+  rescue Storage::DeviceHasWrongType
   end
 
-  partition = Storage::to_partition(device)
-  if partition
+  begin
+    partition = Storage::to_partition(device)
     puts "  #{partition} #{partition.number()} is partition"
+  rescue Storage::DeviceHasWrongType
   end
 
 end

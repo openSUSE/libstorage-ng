@@ -55,6 +55,8 @@ namespace storage
     bool
     is_user(const Holder* holder)
     {
+	ST_CHECK_PTR(holder);
+
 	return dynamic_cast<const User*>(holder);
     }
 
@@ -62,22 +64,14 @@ namespace storage
     User*
     to_user(Holder* holder)
     {
-	User* user = dynamic_cast<User*>(holder);
-	if (!user)
-	    ST_THROW(HolderHasWrongType("holder is not a User"));
-
-	return user;
+	return to_holder_of_type<User>(holder);
     }
 
 
     const User*
-    to_using(const Holder* holder)
+    to_user(const Holder* holder)
     {
-	const User* user = dynamic_cast<const User*>(holder);
-	if (!user)
-	    ST_THROW(HolderHasWrongType("holder is not a User"));
-
-	return user;
+	return to_holder_of_type<const User>(holder);
     }
 
 }

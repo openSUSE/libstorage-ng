@@ -244,7 +244,7 @@ namespace storage
 	    }
 	}
 
-	virtual ~SystemCmdException() throw()
+	virtual ~SystemCmdException() noexcept
 	    {}
 
 	/**
@@ -288,7 +288,7 @@ namespace storage
 	    : SystemCmdException( sysCmd, "Command not found" )
 	    {}
 
-	virtual ~CommandNotFoundException() throw()
+	virtual ~CommandNotFoundException() noexcept
 	    {}
     };
 

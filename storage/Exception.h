@@ -32,6 +32,8 @@
 #include <string>
 #include <ostream>
 
+#include "storage/Utils/Logger.h"
+
 
 namespace storage
 {
@@ -256,8 +258,7 @@ namespace storage
 	/**
 	 * Stream output
 	 **/
-	friend std::ostream & operator<<( std::ostream & str,
-					  const CodeLocation & obj );
+	friend std::ostream & operator<<( std::ostream & str, const CodeLocation & obj );
 
     private:
 	std::string	_file;
@@ -287,18 +288,18 @@ namespace storage
 	 * Default constructor.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception();
+	Exception(LogLevel log_level = ERROR);
 
 	/**
 	 * Constructor taking a message.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception( const std::string & msg );
+	Exception(const std::string & msg, LogLevel log_level = ERROR);
 
 	/**
 	 * Destructor.
 	 **/
-	virtual ~Exception() throw();
+	virtual ~Exception() noexcept;
 
 	/**
 	 * Return CodeLocation.
@@ -319,6 +320,11 @@ namespace storage
 	 **/
 	const std::string & msg() const
 	    { return _msg; }
+
+	/**
+	 *
+	 */
+	LogLevel log_level() const { return _log_level; }
 
 	/**
 	 * Set a new message string.
@@ -353,7 +359,7 @@ namespace storage
 	 *
 	 * Reimplemented from std::exception.
 	 **/
-	virtual const char * what() const throw()
+	virtual const char * what() const noexcept
 	    { return _msg.c_str(); }
 
     protected:
@@ -371,6 +377,7 @@ namespace storage
 
 	mutable CodeLocation	_where;
 	std::string		_msg;
+	LogLevel _log_level;
 
 	/**
 	 * Called by std::ostream & operator<<() .
@@ -395,10 +402,10 @@ namespace storage
     {
     public:
 	NullPointerException()
-	    : Exception( "Null pointer" )
+	    : Exception( "Null pointer", ERROR )
 	    {}
 
-	virtual ~NullPointerException() throw()
+	virtual ~NullPointerException() noexcept
 	    {}
     };
 
@@ -423,10 +430,10 @@ namespace storage
     {
     public:
 	OutOfMemoryException()
-	    : Exception( "Out of memory" )
+	    : Exception( "Out of memory", ERROR )
 	    {}
 
-	virtual ~OutOfMemoryException() throw()
+	virtual ~OutOfMemoryException() noexcept
 	    {}
 
     };
@@ -456,7 +463,7 @@ namespace storage
 	    , _validMax( validMax )
 	    {}
 
-	virtual ~IndexOutOfRangeException() throw()
+	virtual ~IndexOutOfRangeException() noexcept
 	    {}
 
 	/**
@@ -526,7 +533,7 @@ namespace storage
 	/**
 	 * Destructor.
 	 */
-	virtual ~ParseException() throw()
+	virtual ~ParseException() noexcept
 	    {}
 
 	/**

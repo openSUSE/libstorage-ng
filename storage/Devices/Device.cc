@@ -12,7 +12,8 @@ namespace storage
 
 
     DeviceHasWrongType::DeviceHasWrongType(const char* seen, const char* expected)
-	: Exception(sformat("device has wrong type, seen '%s', expected '%s'", seen, expected))
+	: Exception(sformat("device has wrong type, seen '%s', expected '%s'", seen, expected),
+		    Silencer::is_any_active() ? DEBUG : WARNING)
     {
     }
 
