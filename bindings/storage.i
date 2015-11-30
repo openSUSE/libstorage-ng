@@ -25,6 +25,9 @@
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_partition(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_partition(const Device*);
+
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
 
