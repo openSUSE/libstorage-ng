@@ -63,7 +63,6 @@ namespace storage
 
     Storage::Impl::~Impl()
     {
-	y2mil("destructed Storage");
     }
 
 
