@@ -63,6 +63,7 @@ namespace storage
 
     Storage::Impl::~Impl()
     {
+	// TO DO: Make sure logger is destroyed after this object
     }
 
 
