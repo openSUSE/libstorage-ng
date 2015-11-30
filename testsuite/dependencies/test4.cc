@@ -11,7 +11,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
-#include "storage/Logger.h"
+#include "storage/Utils/Logger.h"
 #include "testsuite/helpers/TsCmp.h"
 
 

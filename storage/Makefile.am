@@ -7,7 +7,6 @@ SUBDIRS = Devices Holders SystemInfo Utils
 lib_LTLIBRARIES = libstorage.la
 
 libstorage_la_SOURCES =					\
-	Logger.h		Logger.cc		\
 	Environment.h		Environment.cc		\
 	EnvironmentImpl.h	EnvironmentImpl.cc	\
 	Storage.h		Storage.cc		\
@@ -39,7 +38,6 @@ libstorage_la_LIBADD =			\
 pkgincludedir = $(includedir)/storage
 
 pkginclude_HEADERS =		\
-	Logger.h		\
 	Environment.h		\
 	Storage.h		\
 	StorageInterface.h	\

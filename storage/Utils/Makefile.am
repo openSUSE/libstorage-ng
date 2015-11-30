@@ -5,6 +5,7 @@
 noinst_LTLIBRARIES = libutils.la
 
 libutils_la_SOURCES =					\
+	Logger.h		Logger.cc		\
 	AppUtil.cc		AppUtil.h		\
 	AsciiFile.cc 		AsciiFile.h		\
 	Enum.cc			Enum.h			\
@@ -31,6 +32,7 @@ BUILT_SOURCES = gen-pathlist.cc
 pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
+	Logger.h		\
 	HumanString.h		\
 	Region.h		\
 	Remote.h

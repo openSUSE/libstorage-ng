@@ -34,6 +34,8 @@
 #include <map>
 #include <chrono>
 
+#include "storage/Utils/Logger.h"
+
 
 namespace storage
 {
