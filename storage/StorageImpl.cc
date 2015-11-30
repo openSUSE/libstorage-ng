@@ -63,7 +63,7 @@ namespace storage
 
     Storage::Impl::~Impl()
     {
-	y2mil("destructed Storage");
+	// TO DO: Make sure logger is destroyed after this object
     }
 
 
