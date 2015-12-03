@@ -120,3 +120,15 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12345 GB", false), ParseError);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_big_numbers)
+{
+    unsigned long long EiB = 1ULL << (10 * 6);
+
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", EiB, true, 2, false), "1.00 EiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 15 * EiB, true, 2, true), "15 EiB");
+
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), EiB);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "15 EiB", true), 15 * EiB);
+}
