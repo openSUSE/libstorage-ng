@@ -9,8 +9,8 @@ sda = Storage::Disk::create(devicegraph, "/dev/sda")
 
 gpt = sda.create_partition_table(Storage::PtType_GPT)
 
-sda1 = gpt.create_partition("/dev/sda1", Storage::PRIMARY)
-sda2 = gpt.create_partition("/dev/sda2", Storage::PRIMARY)
+sda1 = gpt.create_partition("/dev/sda1", Storage::Region.new(0, 100, 262144), Storage::PRIMARY)
+sda2 = gpt.create_partition("/dev/sda2", Storage::Region.new(100, 100, 262144), Storage::PRIMARY)
 
 print devicegraph
 

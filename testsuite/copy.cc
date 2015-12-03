@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Gpt* gpt = Gpt::create(devicegraph);
     User::create(devicegraph, sda, gpt);
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", PRIMARY);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 262144), PRIMARY);
     Subdevice::create(devicegraph, gpt, sda1);
 
     Encryption::create(devicegraph, "/dev/mapper/cr_sda1");

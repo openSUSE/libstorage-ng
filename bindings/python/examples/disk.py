@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-from storage import Devicegraph, Disk, BlkDevice, PtType_GPT, EXT4, SWAP, PRIMARY
+from storage import Devicegraph, Disk, BlkDevice, Region, PtType_GPT, EXT4, SWAP, PRIMARY
 
 
 devicegraph = Devicegraph()
@@ -9,8 +9,8 @@ sda = Disk.create(devicegraph, "/dev/sda")
 
 gpt = sda.create_partition_table(PtType_GPT)
 
-sda1 = gpt.create_partition("/dev/sda1", PRIMARY)
-sda2 = gpt.create_partition("/dev/sda2", PRIMARY)
+sda1 = gpt.create_partition("/dev/sda1", Region(0, 100, 262144), PRIMARY)
+sda2 = gpt.create_partition("/dev/sda2", Region(100, 100, 262144), PRIMARY)
 
 ext4 = sda1.create_filesystem(EXT4)
 swap = sda2.create_filesystem(SWAP)

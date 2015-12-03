@@ -79,13 +79,14 @@ namespace storage
 	    transport = entry.transport;
 
 	const Parted& parted = systeminfo.getParted(get_name());
+
+	geometry = parted.getGeometry();
+
 	if (parted.getLabel() == PtType::MSDOS || parted.getLabel() == PtType::GPT)
 	{
 	    PartitionTable* pt = create_partition_table(parted.getLabel());
 	    pt->get_impl().probe(systeminfo);
 	}
-
-	geometry = parted.getGeometry();
     }
 
 

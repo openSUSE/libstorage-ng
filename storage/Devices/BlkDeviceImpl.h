@@ -59,6 +59,9 @@ namespace storage
 	Impl(const string& name)
 	    : Device::Impl(), name(name), size_k(0), major_minor(0) {}
 
+	Impl(const string& name, unsigned long long size_k)
+	    : Device::Impl(), name(name), size_k(size_k), major_minor(0) {}
+
 	Impl(const xmlNode* node);
 
 	void probe(SystemInfo& systeminfo);

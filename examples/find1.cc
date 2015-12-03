@@ -25,8 +25,8 @@ main()
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    gpt->create_partition("/dev/sda1", PRIMARY);
-    Partition* sda2 = gpt->create_partition("/dev/sda2", PRIMARY);
+    gpt->create_partition("/dev/sda1", Region(0, 1000, 262144), PRIMARY);
+    Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1000, 1000, 262144), PRIMARY);
 
     LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
     User::create(devicegraph, sda2, system);

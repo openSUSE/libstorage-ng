@@ -35,10 +35,10 @@ main()
     Gpt* rhs_gpt = Gpt::create(rhs);
     Subdevice::create(rhs, rhs_sda, rhs_gpt);
 
-    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", PRIMARY);
+    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 1000, 262144), PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda1);
 
-    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", PRIMARY);
+    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", Region(1000, 1000, 262144), PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     Encryption* rhs_cr_sda1 = Encryption::create(rhs, "/dev/mapper/cr_sda1");

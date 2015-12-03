@@ -20,6 +20,13 @@ namespace storage
     const char* DeviceTraits<Partition>::classname = "Partition";
 
 
+    Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
+	: BlkDevice::Impl(name, region.to_kb(region.get_length())), region(region), type(type),
+	  id(ID_LINUX), boot(false)
+    {
+    }
+
+
     Partition::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
     {
@@ -50,7 +57,6 @@ namespace storage
 	if (!parted.getEntry(get_number(), entry))
 	    throw;
 
-	region = entry.cylRegion;
 	id = entry.id;
 	boot = entry.boot;
     }
@@ -82,10 +88,8 @@ namespace storage
 	BlkDevice::Impl::set_size_k(size_k);
 
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	region.set_length(get_size_k() * 1024 / disk->get_impl().get_geometry().cylinderSize());
     }
@@ -97,10 +101,12 @@ namespace storage
 	Impl::region = region;
 
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
+
+	const Geometry& geometry = disk->get_impl().get_geometry();
+	if (region.get_block_size() != geometry.cylinderSize())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
 
 	set_size_k(region.get_length() * disk->get_impl().get_geometry().cylinderSize() / 1024);
     }
@@ -228,10 +234,8 @@ namespace storage
     Partition::Impl::do_create() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " unit cyl mkpart " +
 	    toString(get_type()) + " ";
@@ -269,10 +273,8 @@ namespace storage
     Partition::Impl::do_set_id() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
@@ -296,10 +298,8 @@ namespace storage
     Partition::Impl::do_delete() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
