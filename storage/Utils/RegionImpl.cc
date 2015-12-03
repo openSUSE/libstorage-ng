@@ -20,18 +20,110 @@
  */
 
 
-#include <stdexcept>
-
 #include "storage/Utils/RegionImpl.h"
 
 
 namespace storage
 {
 
+    Region::Impl::Impl(unsigned long long start, unsigned long long length, unsigned int block_size)
+	: start(start), length(length), block_size(block_size)
+    {
+	assert_valid_block_size();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const Region::Impl& impl)
     {
-	return s << "[" << impl.start << "," << impl.length << "]";
+	return s << "[" << impl.start << ", " << impl.length << ", " << impl.block_size << " B]";
+    }
+
+
+    void
+    Region::Impl::assert_valid_block_size() const
+    {
+	if (block_size == 0)
+	    ST_THROW(InvalidBlockSize(block_size));
+    }
+
+
+    void
+    Region::Impl::assert_valid_block_size(unsigned int block_size) const
+    {
+	if (block_size == 0)
+	    ST_THROW(InvalidBlockSize(block_size));
+    }
+
+
+    void
+    Region::Impl::assert_equal_block_size(const Impl& rhs) const
+    {
+	if (block_size != rhs.block_size)
+	    ST_THROW(DifferentBlockSizes(block_size, rhs.block_size));
+    }
+
+
+    void
+    Region::Impl::set_block_size(unsigned int block_size)
+    {
+	assert_valid_block_size(block_size);
+
+	Impl::block_size = block_size;
+    }
+
+
+    unsigned long long
+    Region::Impl::to_kb(unsigned long long value) const
+    {
+	assert_valid_block_size();
+
+	return block_size * value / 1024;
+    }
+
+
+    bool
+    Region::Impl::operator==(const Impl& rhs) const
+    {
+	assert_equal_block_size(rhs);
+
+	return start == rhs.get_start() && length == rhs.get_length();
+    }
+
+
+    bool
+    Region::Impl::operator<(const Impl& rhs) const
+    {
+	assert_equal_block_size(rhs);
+
+	return start < rhs.get_start();
+    }
+
+
+    bool
+    Region::Impl::operator>(const Impl& rhs) const
+    {
+	assert_equal_block_size(rhs);
+
+	return start > rhs.get_start();
+    }
+
+
+    bool
+    Region::Impl::inside(const Impl& rhs) const
+    {
+	assert_equal_block_size(rhs);
+
+	return get_start() >= rhs.get_start() && get_end() <= rhs.get_end();
+    }
+
+
+    bool
+    Region::Impl::intersect(const Impl& rhs) const
+    {
+	assert_equal_block_size(rhs);
+
+	return rhs.get_start() <= get_end() && rhs.get_end() >= get_start();
     }
 
 
@@ -39,12 +131,12 @@ namespace storage
     Region::Impl::intersection(const Impl& rhs) const
     {
 	if (!intersect(rhs))
-	    throw std::runtime_error("regions do not intersect");
+	    ST_THROW(NoIntersection());
 
 	unsigned long long s = std::max(rhs.get_start(), get_start());
 	unsigned long long e = std::min(rhs.get_end(), get_end());
 
-	return Region(s, e - s + 1);
+	return Region(s, e - s + 1, block_size);
     }
 
 
@@ -57,6 +149,9 @@ namespace storage
 
 	getChildValue(tmp, "start", value.start);
 	getChildValue(tmp, "length", value.length);
+
+	getChildValue(tmp, "block-size", value.block_size);
+
 	return true;
     }
 
@@ -68,6 +163,8 @@ namespace storage
 
 	setChildValue(tmp, "start", value.start);
 	setChildValue(tmp, "length", value.length);
+
+	setChildValue(tmp, "block-size", value.block_size);
     }
 
 }

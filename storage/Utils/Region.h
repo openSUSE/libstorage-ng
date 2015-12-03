@@ -28,20 +28,48 @@
 #include <memory>
 
 #include "storage/StorageInterface.h"
+#include "storage/Exception.h"
 
 
 namespace storage
 {
     using namespace storage_legacy;
 
-    //! A start+length pair.
+
+    class InvalidBlockSize : public Exception
+    {
+    public:
+	InvalidBlockSize(unsigned int block_size);
+    };
+
+
+    class DifferentBlockSizes : public Exception
+    {
+    public:
+	DifferentBlockSizes(unsigned int seen, unsigned int expected);
+    };
+
+
+    class NoIntersection : public Exception
+    {
+    public:
+	NoIntersection();
+    };
+
+
+    /**
+     * A start/length pair with a block size.
+     *
+     * Comparing Regions with different block_sizes will throw an exception.
+     */
     class Region
     {
     public:
 
 	Region();
-	Region(unsigned long long start, unsigned long long length);
-	Region(const RegionInfo& region) : Region(region.start, region.len) {}
+	Region(unsigned long long start, unsigned long long length, unsigned int block_size);
+	Region(const RegionInfo& region_info, unsigned int block_size)
+	    : Region(region_info.start, region_info.len, block_size) {} // legacy
 	~Region();
 
 	bool empty() const;
@@ -52,6 +80,11 @@ namespace storage
 
 	void set_start(unsigned long long start);
 	void set_length(unsigned long long length);
+
+	unsigned int get_block_size() const;
+	void set_block_size(unsigned int block_size);
+
+	unsigned long long to_kb(unsigned long long value) const;
 
 	bool operator==(const Region& rhs) const;
 	bool operator!=(const Region& rhs) const;
@@ -75,7 +108,7 @@ namespace storage
 	friend bool getChildValue(const xmlNode* node, const char* name, Region& value);
 	friend void setChildValue(xmlNode* node, const char* name, const Region& value);
 
-	operator RegionInfo() const { return RegionInfo(get_start(), get_length()); }
+	operator RegionInfo() const { return RegionInfo(get_start(), get_length()); } // legacy
 
     private:
 

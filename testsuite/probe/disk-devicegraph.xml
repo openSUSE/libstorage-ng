@@ -42,6 +42,7 @@
       <region>
         <start>0</start>
         <length>127</length>
+	<block-size>8225280</block-size>
       </region>
       <type>primary</type>
       <id>130</id>
@@ -62,6 +63,7 @@
       <region>
         <start>126</start>
         <length>918</length>
+	<block-size>8225280</block-size>
       </region>
       <type>primary</type>
       <id>131</id>

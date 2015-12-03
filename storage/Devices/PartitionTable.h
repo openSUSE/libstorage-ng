@@ -4,6 +4,7 @@
 
 #include <vector>
 
+#include "storage/Utils/Region.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Partition.h"
 
@@ -19,13 +20,31 @@ namespace storage
     };
 
 
+    struct PartitionSlot
+    {
+	PartitionSlot();
+
+	Region region;
+	unsigned nr;
+	std::string name;
+	bool primary_slot;
+	bool primary_possible;
+	bool extended_slot;
+	bool extended_possible;
+	bool logical_slot;
+	bool logical_possible;
+
+	operator PartitionSlotInfo() const; // legacy
+    };
+
+
     // abstract class
 
     class PartitionTable : public Device
     {
     public:
 
-	Partition* create_partition(const std::string& name, PartitionType type);
+	Partition* create_partition(const std::string& name, const Region& region, PartitionType type);
 
 	void delete_partition(const std::string& name);
 
@@ -35,7 +54,7 @@ namespace storage
 
 	const Disk* get_disk() const;
 
-	list<PartitionSlotInfo> get_unused_partition_slots(bool all = true, bool logical = true) const;
+	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
 
     public:
 

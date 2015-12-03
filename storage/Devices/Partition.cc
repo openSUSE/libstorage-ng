@@ -12,9 +12,9 @@ namespace storage
 
 
     Partition*
-    Partition::create(Devicegraph* devicegraph, const string& name, PartitionType type)
+    Partition::create(Devicegraph* devicegraph, const string& name, const Region& region, PartitionType type)
     {
-	Partition* ret = new Partition(new Partition::Impl(name, type));
+	Partition* ret = new Partition(new Partition::Impl(name, region, type));
 	ret->Device::create(devicegraph);
 	return ret;
     }

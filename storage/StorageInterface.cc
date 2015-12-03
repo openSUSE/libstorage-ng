@@ -1019,8 +1019,6 @@ namespace storage_legacy
     {
 	y2mil("legacy " << __FUNCTION__ << " " << disk);
 
-	Region region(cylRegion);
-
 	Devicegraph* staging = storage->get_staging();
 
 	try
@@ -1036,24 +1034,27 @@ namespace storage_legacy
 		disk_ptr->create_partition_table(disk_ptr->get_default_partition_table_type());
 	    }
 
+	    const Geometry& geometry = disk_ptr->get_impl().get_geometry();
+
+	    Region region(cylRegion, geometry.cylinderSize());
+
 	    PartitionTable* partition_table = disk_ptr->get_partition_table();
 
-	    list<PartitionSlotInfo> slots = partition_table->get_unused_partition_slots();
-	    for (const PartitionSlotInfo& slot : slots)
+	    vector<PartitionSlot> slots = partition_table->get_unused_partition_slots();
+	    for (const PartitionSlot& slot : slots)
 	    {
-		if (type == PRIMARY && !slot.primaryPossible)
+		if (type == PRIMARY && !slot.primary_possible)
 		    continue;
 
-		if (type == EXTENDED && !slot.extendedPossible)
+		if (type == EXTENDED && !slot.extended_possible)
 		    continue;
 
-		if (type == LOGICAL && !slot.logicalPossible)
+		if (type == LOGICAL && !slot.logical_possible)
 		    continue;
 
-		if (region.inside(Region(slot.cylRegion.start, slot.cylRegion.len)))
+		if (region.inside(slot.region))
 		{
-		    Partition* partition = partition_table->create_partition(slot.device, type);
-		    partition->set_region(region);
+		    Partition* partition = partition_table->create_partition(slot.name, region, type);
 
 		    if (type != EXTENDED)
 			partition->create_filesystem(EXT4);
@@ -1240,7 +1241,12 @@ namespace storage_legacy
 	    const Devicegraph* staging = storage->get_staging();
 	    const Disk* disk_ptr = Disk::find(staging, disk);
 	    const PartitionTable* partitiontable = disk_ptr->get_partition_table();
-	    slots = partitiontable->get_unused_partition_slots();
+
+	    slots.clear();
+
+	    for (const PartitionSlot& partition_slot : partitiontable->get_unused_partition_slots())
+		slots.push_back(partition_slot);
+
 	    return 0;
 	}
 	catch (...)

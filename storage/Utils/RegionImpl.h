@@ -38,8 +38,8 @@ namespace storage
     {
     public:
 
-	Impl() : start(0), length(0) {}
-	Impl(unsigned long long start, unsigned long long length) : start(start), length(length) {}
+	Impl() : start(0), length(0), block_size(0) {}
+	Impl(unsigned long long start, unsigned long long length, unsigned int block_size);
 
 	bool empty() const { return length == 0; }
 
@@ -50,21 +50,18 @@ namespace storage
 	void set_start(unsigned long long start) { Impl::start = start; }
 	void set_length(unsigned long long length) { Impl::length = length; }
 
-	bool operator==(const Impl& rhs) const
-	    { return start == rhs.get_start() && length == rhs.get_length(); }
-	bool operator!=(const Impl& rhs) const
-	    { return !(*this == rhs); }
-	bool operator<(const Impl& rhs) const
-	    { return start < rhs.get_start(); }
-	bool operator>(const Impl& rhs) const
-	    { return start > rhs.get_start(); }
+	unsigned int get_block_size() const { return block_size; }
+	void set_block_size(unsigned int block_size);
 
-	bool inside(const Impl& rhs) const
-	    { return get_start() >= rhs.get_start() && get_end() <= rhs.get_end(); }
+	unsigned long long to_kb(unsigned long long value) const;
 
-	bool intersect(const Impl& rhs) const
-	    { return rhs.get_start() <= get_end() && rhs.get_end() >= get_start(); }
+	bool operator==(const Impl& rhs) const;
+	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
+	bool operator<(const Impl& rhs) const;
+	bool operator>(const Impl& rhs) const;
 
+	bool inside(const Impl& rhs) const;
+	bool intersect(const Impl& rhs) const;
 	Region intersection(const Impl& rhs) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const Impl& impl);
@@ -74,8 +71,14 @@ namespace storage
 
     protected:
 
+	void assert_valid_block_size() const;
+	void assert_valid_block_size(unsigned int block_size) const;
+	void assert_equal_block_size(const Impl& rhs) const;
+
 	unsigned long long start;
 	unsigned long long length;
+
+	unsigned int block_size;
 
     };
 

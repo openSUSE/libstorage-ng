@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"device:/dev/dasda geometry:[10017,15,12,4096] dasd_format:CDL dasd_type:ECKD"
+	"device:/dev/dasda geometry:[10017, 15, 12, 4096 B] dasd_format:CDL dasd_type:ECKD"
     };
 
     check("/dev/dasda", input, output);
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"device:/dev/dasdb geometry:[3339,15,0,512] dasd_format:NONE dasd_type:ECKD"
+	"device:/dev/dasdb geometry:[3339, 15, 0, 512 B] dasd_format:NONE dasd_type:ECKD"
     };
 
     check("/dev/dasdb", input, output);
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"device:/dev/dasdc geometry:[777,16,128,512] dasd_format:LDL dasd_type:FBA"
+	"device:/dev/dasdc geometry:[777, 16, 128, 512 B] dasd_format:LDL dasd_type:FBA"
     };
 
     check("/dev/dasdc", input, output);

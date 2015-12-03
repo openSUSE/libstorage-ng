@@ -12,6 +12,32 @@ namespace storage
     using namespace std;
 
 
+    PartitionSlot::PartitionSlot()
+	: region(), nr(0), name(), primary_slot(false), primary_possible(false),
+	  extended_slot(false), extended_possible(false), logical_slot(false),
+	  logical_possible(false)
+    {
+    }
+
+
+    PartitionSlot::operator PartitionSlotInfo() const // legacy
+    {
+	PartitionSlotInfo info;
+
+	info.cylRegion = region;
+	info.nr = nr;
+	info.device = name;
+	info.primarySlot = primary_slot;
+	info.primaryPossible = primary_possible;
+	info.extendedSlot = extended_slot;
+	info.extendedPossible = extended_possible;
+	info.logicalSlot = logical_slot;
+	info.logicalPossible = logical_possible;
+
+	return info;
+    }
+
+
     PartitionTable::PartitionTable(Impl* impl)
 	: Device(impl)
     {
@@ -33,9 +59,9 @@ namespace storage
 
 
     Partition*
-    PartitionTable::create_partition(const string& name, PartitionType type)
+    PartitionTable::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	return get_impl().create_partition(name, type);
+	return get_impl().create_partition(name, region, type);
     }
 
 
@@ -67,7 +93,7 @@ namespace storage
     }
 
 
-    list<PartitionSlotInfo>
+    vector<PartitionSlot>
     PartitionTable::get_unused_partition_slots(bool all, bool logical) const
     {
 	return get_impl().get_unused_partition_slots(all, logical);

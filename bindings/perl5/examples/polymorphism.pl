@@ -8,10 +8,10 @@ my $devicegraph = new storage::Devicegraph();
 
 my $sda = storage::Disk::create($devicegraph, "/dev/sda");
 
-my $gpt = $sda->create_partition_table($storage::GPT);
+my $gpt = $sda->create_partition_table($storage::PtType_GPT);
 
-my $sda1 = $gpt->create_partition("/dev/sda1");
-my $sda2 = $gpt->create_partition("/dev/sda2");
+my $sda1 = $gpt->create_partition("/dev/sda1", new storage::Region(0, 100, 262144), $storage::PRIMARY);
+my $sda2 = $gpt->create_partition("/dev/sda2", new storage::Region(100, 100, 262144), $storage::PRIMARY);
 
 print $devicegraph->as_string(), "\n";
 

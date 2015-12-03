@@ -48,7 +48,7 @@ namespace storage
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
 	    string name = disk->get_impl().partition_name(entry.num);
-	    Partition* p = create_partition(name, entry.type);
+	    Partition* p = create_partition(name, entry.cylRegion, entry.type);
 	    p->get_impl().probe(systeminfo);
 	}
     }
@@ -64,9 +64,13 @@ namespace storage
 
 
     Partition*
-    PartitionTable::Impl::create_partition(const string& name, PartitionType type)
+    PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	Partition* partition = Partition::create(get_devicegraph(), name, type);
+	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+	if (region.get_block_size() != geometry.cylinderSize())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
+
+	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
 
 	return partition;
@@ -211,29 +215,30 @@ namespace storage
     {
 	const Geometry& geometry = get_disk()->get_impl().get_geometry();
 
-	return Region(0, geometry.cylinders);
+	return Region(0, geometry.cylinders, geometry.cylinderSize());
     }
 
 
-    list<PartitionSlotInfo>
+    vector<PartitionSlot>
     PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical) const
     {
 	y2mil("all:" << all << " logical:" << logical);
 
 	unsigned int range = get_disk()->get_impl().get_range();
+	const Geometry& geometry = get_disk()->get_impl().get_geometry();
 
 	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary(range);
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
 	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical(range) - max_primary(range));
 
-	list<PartitionSlotInfo> slots;
+	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
 	sort(partitions.begin(), partitions.end(), Partition::Impl::cmp_lt_number);
 
 	if (all || !logical)
 	{
-	    PartitionSlotInfo slot;
+	    PartitionSlot slot;
 
 	    if (true /* label != "dasd" */)
 	    {
@@ -257,17 +262,17 @@ namespace storage
 		slot.nr = 1;
 	    }
 
-	    slot.device = get_disk()->get_impl().partition_name(slot.nr);
+	    slot.name = get_disk()->get_impl().partition_name(slot.nr);
 
-	    slot.primarySlot = true;
-	    slot.primaryPossible = tmp_primary_possible;
-	    slot.extendedSlot = true;
-	    slot.extendedPossible = tmp_extended_possible;
-	    slot.logicalSlot = false;
-	    slot.logicalPossible = false;
+	    slot.primary_slot = true;
+	    slot.primary_possible = tmp_primary_possible;
+	    slot.extended_slot = true;
+	    slot.extended_possible = tmp_extended_possible;
+	    slot.logical_slot = false;
+	    slot.logical_possible = false;
 
 	    unsigned long start = 0;
-	    unsigned long end = get_disk()->get_impl().get_geometry().cylinders;
+	    unsigned long end = geometry.cylinders;
 
 	    list<Region> tmp;
 	    for (const Partition* partition : partitions)
@@ -281,7 +286,7 @@ namespace storage
 	    {
 		if (i->get_start() > start)
 		{
-		    slot.cylRegion = RegionInfo(start, i->get_start() - start);
+		    slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
 		    slots.push_back(slot);
 		}
 		start = i->get_end() + 1;
@@ -296,7 +301,7 @@ namespace storage
 	    }
 	    if (end > start)
 	    {
-		slot.cylRegion = RegionInfo(start, end - start);
+		slot.region = Region(start, end - start, geometry.cylinderSize());
 		slots.push_back(slot);
 	    }
 	}
@@ -307,17 +312,17 @@ namespace storage
 	    {
 		const Partition* extended = get_extended();
 
-		PartitionSlotInfo slot;
+		PartitionSlot slot;
 
 		slot.nr = max_primary(range) + num_logical() + 1;
-		slot.device = get_disk()->get_impl().partition_name(slot.nr);
+		slot.name = get_disk()->get_impl().partition_name(slot.nr);
 
-		slot.primarySlot = false;
-		slot.primaryPossible = false;
-		slot.extendedSlot = false;
-		slot.extendedPossible = false;
-		slot.logicalSlot = true;
-		slot.logicalPossible = tmp_logical_possible;
+		slot.primary_slot = false;
+		slot.primary_possible = false;
+		slot.extended_slot = false;
+		slot.extended_possible = false;
+		slot.logical_slot = true;
+		slot.logical_possible = tmp_logical_possible;
 
 		unsigned long start = extended->get_region().get_start();
 		unsigned long end = extended->get_region().get_end();
@@ -334,14 +339,14 @@ namespace storage
 		{
 		    if (i->get_start() > start)
 		    {
-			slot.cylRegion = RegionInfo(start, i->get_start() - start);
+			slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
 			slots.push_back(slot);
 		    }
 		    start = i->get_end() + 1;
 		}
 		if (end > start)
 		{
-		    slot.cylRegion = RegionInfo(start, end - start);
+		    slot.region = Region(start, end - start, geometry.cylinderSize());
 		    slots.push_back(slot);
 		}
 	    }
@@ -354,12 +359,12 @@ namespace storage
 
 	Region usable_region = get_usable_region();
 
-	list<PartitionSlotInfo>::iterator it = slots.begin();
+	vector<PartitionSlot>::iterator it = slots.begin();
 	while (it != slots.end())
 	{
-	    if (usable_region.intersect(it->cylRegion))
+	    if (usable_region.intersect(it->region))
 	    {
-		it->cylRegion = usable_region.intersection(it->cylRegion);
+		it->region = usable_region.intersection(it->region);
 		++it;
 	    }
 	    else
@@ -375,12 +380,17 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const PartitionSlotInfo& a)
+    operator<<(std::ostream& s, const PartitionSlot& partition_slot)
     {
-	s << "region:" << Region(a.cylRegion) << " nr:" << a.nr << " device:" << a.device
-	  << " primary_slot:" << a.primarySlot << " primary_possible:" << a.primaryPossible
-	  << " extended_slot:" << a.extendedSlot << " extended_possible:" << a.extendedPossible
-	  << " logical_slot:" << a.logicalSlot << " logical_possible:" << a.logicalPossible;
+	s << "region:" << partition_slot.region << " nr:" << partition_slot.nr
+	  << " name:" << partition_slot.name
+	  << " primary_slot:" << partition_slot.primary_slot
+	  << " primary_possible:" << partition_slot.primary_possible
+	  << " extended_slot:" << partition_slot.extended_slot
+	  << " extended_possible:" << partition_slot.extended_possible
+	  << " logical_slot:" << partition_slot.logical_slot
+	  << " logical_possible:" << partition_slot.logical_possible;
+
 	return s;
     }
 

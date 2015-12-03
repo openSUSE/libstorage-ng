@@ -26,14 +26,32 @@
 namespace storage
 {
 
+    InvalidBlockSize::InvalidBlockSize(unsigned int block_size)
+	: Exception(sformat("invalid block size %d", block_size), ERROR)
+    {
+    }
+
+
+    DifferentBlockSizes::DifferentBlockSizes(unsigned int seen, unsigned int expected)
+	: Exception(sformat("different block sizes, seen: %d, exception: %d", seen, expected), ERROR)
+    {
+    }
+
+
+    NoIntersection::NoIntersection()
+	: Exception("no intersection", WARNING)
+    {
+    }
+
+
     Region::Region()
 	: impl(new Impl())
     {
     }
 
 
-    Region::Region(unsigned long long start, unsigned long long len)
-        : impl(new Impl(start, len))
+    Region::Region(unsigned long long start, unsigned long long len, unsigned int block_size)
+        : impl(new Impl(start, len, block_size))
     {
     }
 
@@ -96,6 +114,27 @@ namespace storage
     Region::set_length(unsigned long long length)
     {
 	get_impl().set_length(length);
+    }
+
+
+    unsigned int
+    Region::get_block_size() const
+    {
+        return get_impl().get_block_size();
+    }
+
+
+    void
+    Region::set_block_size(unsigned int block_size)
+    {
+        get_impl().set_block_size(block_size);
+    }
+
+
+    unsigned long long
+    Region::to_kb(unsigned long long value) const
+    {
+	return get_impl().to_kb(value);
     }
 
 

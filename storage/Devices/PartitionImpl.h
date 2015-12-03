@@ -21,8 +21,7 @@ namespace storage
     {
     public:
 
-	Impl(const string& name, PartitionType type)
-	    : BlkDevice::Impl(name), region(), type(type), id(ID_LINUX), boot(false) {}
+	Impl(const string& name, const Region& region, PartitionType type);
 
 	Impl(const xmlNode* node);
 

@@ -20,6 +20,13 @@ namespace storage
     const char* DeviceTraits<Partition>::classname = "Partition";
 
 
+    Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
+	: BlkDevice::Impl(name, region.to_kb(region.get_length())), region(region), type(type),
+	  id(ID_LINUX), boot(false)
+    {
+    }
+
+
     Partition::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
     {
@@ -50,7 +57,6 @@ namespace storage
 	if (!parted.getEntry(get_number(), entry))
 	    throw;
 
-	region = entry.cylRegion;
 	id = entry.id;
 	boot = entry.boot;
     }
@@ -97,6 +103,10 @@ namespace storage
 	const PartitionTable* partitiontable = get_partition_table();
 
 	const Disk* disk = partitiontable->get_disk();
+
+	const Geometry& geometry = disk->get_impl().get_geometry();
+	if (region.get_block_size() != geometry.cylinderSize())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
 
 	set_size_k(region.get_length() * disk->get_impl().get_geometry().cylinderSize() / 1024);
     }

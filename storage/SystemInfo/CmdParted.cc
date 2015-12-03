@@ -376,7 +376,7 @@ namespace storage
 	    csize = geometry.cylinders - start;
 	    y2mil("new csize:" << csize);
 	}
-	entry.cylRegion = Region(start, csize);
+	entry.cylRegion = Region(start, csize, geometry.cylinderSize());
 
 	boost::to_lower(TInfo, locale::classic());
 	list<string> flags = splitString(TInfo, ",");
@@ -538,14 +538,13 @@ namespace storage
 	{
 	    if (it->num == num)
 	    {
-		it->secRegion = Region(startSec, sizeSec);
+		it->secRegion = Region(startSec, sizeSec, geometry.sector_size);
 		return;
 	    }
 	}
 
 	// Entry no. 'num' not found
 	ST_THROW( ParseException( "No corresponding partition number in cylinder table", line, "" ) );
-
     }
 
 }

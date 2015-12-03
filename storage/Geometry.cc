@@ -112,8 +112,8 @@ namespace storage
 
     std::ostream& operator<<(std::ostream& s, const Geometry& geo)
     {
-	return s << "[" << geo.cylinders << "," << geo.heads << "," << geo.sectors << ","
-		 << geo.sector_size << "]";
+	return s << "[" << geo.cylinders << ", " << geo.heads << ", " << geo.sectors << ", "
+		 << geo.sector_size << " B]";
     }
 
 

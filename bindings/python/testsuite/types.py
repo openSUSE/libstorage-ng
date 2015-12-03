@@ -15,7 +15,7 @@ class TestCreate(unittest.TestCase):
 
         sda = Disk.create(devicegraph, "/dev/sda")
         gpt = sda.create_partition_table(PtType_GPT)
-        sda1 = gpt.create_partition("/dev/sda1", PRIMARY)
+        sda1 = gpt.create_partition("/dev/sda1", Region(1, 2, 262144), PRIMARY)
         ext4 = sda1.create_filesystem(EXT4)
 
         self.assertEqual(devicegraph.empty(), False)
@@ -24,10 +24,11 @@ class TestCreate(unittest.TestCase):
         sda.set_size_k(2**64 - 1)
         self.assertEqual(sda.get_size_k(), 2**64 - 1)
 
-        sda1.set_region(Region(1, 2))
+        sda1.set_region(Region(1, 2, 262144))
         self.assertEqual(sda1.get_region().get_start(), 1)
         self.assertEqual(sda1.get_region().get_length(), 2)
-        self.assertEqual(sda1.get_region(), Region(1, 2))
+        self.assertEqual(sda1.get_region().get_block_size(), 262144)
+        self.assertEqual(sda1.get_region(), Region(1, 2, 262144))
 
         ext4.set_label("test-label")
         self.assertEqual(ext4.get_label(), "test-label")

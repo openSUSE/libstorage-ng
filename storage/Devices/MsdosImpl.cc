@@ -38,7 +38,7 @@ namespace storage
 	unsigned long long max_sectors = (1ULL << 32) - 1;
 	unsigned long len = min(geometry.cylinders, geometry.kbToCylinder(geometry.sectorToKb(max_sectors)));
 
-	return Region(0, len);
+	return Region(0, len, geometry.cylinderSize());
     }
 
 

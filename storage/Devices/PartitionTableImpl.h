@@ -15,7 +15,7 @@ namespace storage
 
     template <> struct EnumTraits<PtType> { static const vector<string> names; };
 
-    std::ostream& operator<<(std::ostream& s, const PartitionSlotInfo& a);
+    std::ostream& operator<<(std::ostream& s, const PartitionSlot& partition_slot);
 
 
     template <> struct DeviceTraits<PartitionTable> { static const char* classname; };
@@ -29,7 +29,7 @@ namespace storage
 
 	virtual void probe(SystemInfo& systeminfo);
 
-	Partition* create_partition(const string& name, PartitionType type);
+	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
 	void delete_partition(const string& name);
 
@@ -57,7 +57,7 @@ namespace storage
 
 	virtual Region get_usable_region() const;
 
-	list<PartitionSlotInfo> get_unused_partition_slots(bool all = true, bool logical = true) const;
+	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
 
     protected:
 
