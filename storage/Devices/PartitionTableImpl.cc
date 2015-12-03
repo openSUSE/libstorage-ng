@@ -97,7 +97,6 @@ namespace storage
     PartitionTable::Impl::delete_partition(const string& name)
     {
 	Partition* partition = get_partition(name);
-	assert(partition);
 
 	Devicegraph* devicegraph = get_devicegraph();
 

@@ -82,10 +82,8 @@ namespace storage
 	BlkDevice::Impl::set_size_k(size_k);
 
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	region.set_length(get_size_k() * 1024 / disk->get_impl().get_geometry().cylinderSize());
     }
@@ -97,10 +95,8 @@ namespace storage
 	Impl::region = region;
 
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	set_size_k(region.get_length() * disk->get_impl().get_geometry().cylinderSize() / 1024);
     }
@@ -228,10 +224,8 @@ namespace storage
     Partition::Impl::do_create() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " unit cyl mkpart " +
 	    toString(get_type()) + " ";
@@ -269,10 +263,8 @@ namespace storage
     Partition::Impl::do_set_id() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
@@ -296,10 +288,8 @@ namespace storage
     Partition::Impl::do_delete() const
     {
 	const PartitionTable* partitiontable = get_partition_table();
-	assert(partitiontable);
 
 	const Disk* disk = partitiontable->get_disk();
-	assert(disk);
 
 	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
