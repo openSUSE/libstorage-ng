@@ -15,6 +15,23 @@ using namespace std;
 using namespace storage;
 
 
+class Fixture
+{
+public:
+
+    Fixture()
+    {
+	const char* localedir = getenv("LOCALEDIR");
+	if (localedir)
+	    bindtextdomain("libstorage", localedir);
+    }
+
+};
+
+
+BOOST_GLOBAL_FIXTURE(Fixture);
+
+
 string
 test(const char* loc, unsigned long long size, bool classic, int precision, bool omit_zeroes)
 {
@@ -24,12 +41,17 @@ test(const char* loc, unsigned long long size, bool classic, int precision, bool
 }
 
 
+unsigned long long
+test(const char* loc, const char* str, bool classic)
+{
+    locale::global(locale(loc));
+
+    return humanstring_to_byte(str, classic);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 {
-    const char* localedir = getenv("LOCALEDIR");
-    if (localedir)
-	bindtextdomain("libstorage", localedir);
-
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, true), "0 B");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, false), "0 B");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, true), "1 KiB");
@@ -48,21 +70,8 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 }
 
 
-unsigned long long
-test(const char* loc, const char* str, bool classic)
-{
-    locale::global(locale(loc));
-
-    return humanstring_to_byte(str, classic);
-}
-
-
 BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 {
-    const char* localedir = getenv("LOCALEDIR");
-    if (localedir)
-	bindtextdomain("libstorage", localedir);
-
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "42", true), ParseError); // classic=true needs a suffix
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42B", true), 42);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42 b", true), 42);
