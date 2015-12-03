@@ -337,7 +337,7 @@ namespace storage
 	if ( Data.fail() )	// parse error?
 	{
 	    ST_THROW( ParseException( "Bad cylinder-based partition entry", line,
-+				      "2  261cyl  5484cyl  5222cyl primary  btrfs  boot, type=83" ) );
+				      "2  261cyl  5484cyl  5222cyl primary  btrfs  boot, type=83" ) );
 	}
 
 	if ( entry.num == 0 )
