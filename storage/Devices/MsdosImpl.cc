@@ -30,7 +30,6 @@ namespace storage
     }
 
 
-
     Region
     Msdos::Impl::get_usable_region() const
     {
