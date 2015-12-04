@@ -6,7 +6,7 @@ Design Decisions
 C++11
 -----
 
-Here are some reasons for using C++11 for the library. Of course some reasons
+Here are some reasons for using C++11 for libstorage. Of course some reasons
 also apply to other programming languages.
 
 - Allows reuse of existing code from libstorage.
