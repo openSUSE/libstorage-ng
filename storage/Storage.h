@@ -11,6 +11,34 @@
 
 namespace storage
 {
+    /**
+     * \mainpage libstorage Documentation
+     *
+     * \section Thread-Safety Thread Safety
+     *
+     * There is no guarantee about the thread safety of libstorage.
+     *
+     * \section Exceptions-and-Side-Effects Exceptions and Side Effects
+     *
+     * There is no guarantee that functions have no side effects if an
+     * exception is thrown unless stated differently.
+     *
+     * \section Locking Locking
+     *
+     * During initialisation libstorage installs a global lock so that several
+     * programs trying to use libstorage at the same time do not
+     * interfere. This lock is either read-only or read-write depending on the
+     * read_only parameter used in \link storage::Environment() \endlink.
+     *
+     * Several processes may hold a read-lock, but only one process may hold a
+     * read-write lock. An read-write lock excludes all other locks, both
+     * read-only and read-write.
+     *
+     * The support for multiple read-only locks is experimental.
+     *
+     * Locking may also fail for other reasons, e.g. limited permissions.
+     */
+
 
     class Environment;
     class Arch;
@@ -41,7 +69,7 @@ namespace storage
     };
 
 
-    //! The main entry point to the library.
+    //! The main entry point to libstorage.
     class Storage : private boost::noncopyable
     {
     public:

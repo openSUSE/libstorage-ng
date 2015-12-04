@@ -41,7 +41,39 @@ namespace storage
     };
 
 
-    //! The master container of the library.
+    /**
+     * The master container of the libstorage.
+     *
+     * There are two levels of functions to manipulate the device graph. As an
+     * example we show how to create a partition table containing one
+     * partition on the disk sda.
+     *
+     * - High-level
+     *     \parblock
+     *     \code{.cpp}
+     *     Gpt* gpt = sda->create_partition_table(GPT);
+     *     Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 100, cylinder-size), PRIMARY)
+     *     \endcode
+     *
+     *     These functions will not only create the Gpt and Partition object but
+     *     also the holders in the device graph.
+     *     \endparblock
+     *
+     * - Low-level
+     *     \parblock
+     *     \code{.cpp}
+     *     Gpt* gpt = Gpt::create(staging);
+     *     User::create(staging, sda, gpt);
+     *
+     *     Partition* sda1 = Partition::create(staging, "/dev/sda1", Region(0, 100, cylinder-size), PRIMARY);
+     *     Subdevice::create(staging, gpt, sda1);
+     *     \endcode
+     *
+     *     As you can see with the low-level functions you have to create the holders yourself.
+     *     \endparblock
+     *
+     * Whenever possible use the high-level functions.
+     */
     class Devicegraph : private boost::noncopyable
     {
 
