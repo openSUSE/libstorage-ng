@@ -34,25 +34,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_lvm_lv(const Device* device)
-    {
-	return dynamic_cast<const LvmLv*>(device) != nullptr;
-    }
+    bool is_lvm_lv(const Device* device);
 
-
-    inline LvmLv*
-    to_lvm_lv(Device* device)
-    {
-	return dynamic_cast<LvmLv*>(device);
-    }
-
-
-    inline const LvmLv*
-    to_lvm_lv(const Device* device)
-    {
-	return dynamic_cast<const LvmLv*>(device);
-    }
+    LvmLv* to_lvm_lv(Device* device);
+    const LvmLv* to_lvm_lv(const Device* device);
 
 }
 

@@ -69,4 +69,25 @@ namespace storage
 	get_impl().set_enlarge(enlarge);
     }
 
+
+    bool
+    is_gpt(const Device* device)
+    {
+	return is_device_of_type<const Gpt>(device);
+    }
+
+
+    Gpt*
+    to_gpt(Device* device)
+    {
+	return to_device_of_type<Gpt>(device);
+    }
+
+
+    const Gpt*
+    to_gpt(const Device* device)
+    {
+	return to_device_of_type<const Gpt>(device);
+    }
+
 }

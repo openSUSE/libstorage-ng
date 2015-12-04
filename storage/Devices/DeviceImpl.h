@@ -125,6 +125,17 @@ namespace storage
 
 
     template <typename Type>
+    bool is_device_of_type(const Device* device)
+    {
+	static_assert(std::is_const<Type>::value, "Type must be const");
+
+	ST_CHECK_PTR(device);
+
+	return dynamic_cast<const Type*>(device);
+    }
+
+
+    template <typename Type>
     Type* to_device_of_type(Device* device)
     {
 	static_assert(!std::is_const<Type>::value, "Type must not be const");

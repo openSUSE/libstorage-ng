@@ -36,25 +36,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_btrfs(const Device* device)
-    {
-	return dynamic_cast<const Btrfs*>(device) != nullptr;
-    }
+    bool is_btrfs(const Device* device);
 
-
-    inline Btrfs*
-    to_btrfs(Device* device)
-    {
-	return dynamic_cast<Btrfs*>(device);
-    }
-
-
-    inline const Btrfs*
-    to_btrfs(const Device* device)
-    {
-	return dynamic_cast<const Btrfs*>(device);
-    }
+    Btrfs* to_btrfs(Device* device);
+    const Btrfs* to_btrfs(const Device* device);
 
 }
 

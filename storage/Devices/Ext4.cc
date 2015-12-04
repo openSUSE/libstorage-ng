@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_ext4(const Device* device)
+    {
+	return is_device_of_type<const Ext4>(device);
+    }
+
+
+    Ext4*
+    to_ext4(Device* device)
+    {
+	return to_device_of_type<Ext4>(device);
+    }
+
+
+    const Ext4*
+    to_ext4(const Device* device)
+    {
+	return to_device_of_type<const Ext4>(device);
+    }
+
 }

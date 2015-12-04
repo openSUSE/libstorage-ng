@@ -60,6 +60,17 @@ namespace storage
 
 
     template <typename Type>
+    bool is_holder_of_type(const Holder* holder)
+    {
+	static_assert(std::is_const<Type>::value, "Type must be const");
+
+	ST_CHECK_PTR(holder);
+
+	return dynamic_cast<const Type*>(holder);
+    }
+
+
+    template <typename Type>
     Type* to_holder_of_type(Holder* holder)
     {
 	static_assert(!std::is_const<Type>::value, "Type must not be const");

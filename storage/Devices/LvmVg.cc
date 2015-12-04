@@ -93,4 +93,25 @@ namespace storage
 	return lvm_lv;
     }
 
+
+    bool
+    is_lvm_vg(const Device* device)
+    {
+	return is_device_of_type<const LvmVg>(device);
+    }
+
+
+    LvmVg*
+    to_lvm_vg(Device* device)
+    {
+	return to_device_of_type<LvmVg>(device);
+    }
+
+
+    const LvmVg*
+    to_lvm_vg(const Device* device)
+    {
+	return to_device_of_type<const LvmVg>(device);
+    }
+
 }

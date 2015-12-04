@@ -31,26 +31,12 @@ namespace storage
     };
 
 
-    inline bool
-    is_msdos(const Device* device)
-    {
-	return dynamic_cast<const Msdos*>(device) != nullptr;
-    }
+    bool is_msdos(const Device* device);
 
-
-    inline PartitionTable*
-    to_msdos(Device* device)
-    {
-	return dynamic_cast<Msdos*>(device);
-    }
-
-
-    inline const PartitionTable*
-    to_msdos(const Device* device)
-    {
-	return dynamic_cast<const Msdos*>(device);
-    }
+    Msdos* to_msdos(Device* device);
+    const Msdos* to_msdos(const Device* device);
 
 }
+
 
 #endif

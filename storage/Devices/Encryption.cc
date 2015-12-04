@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_encryption(const Device* device)
+    {
+	return is_device_of_type<const Encryption>(device);
+    }
+
+
+    Encryption*
+    to_encryption(Device* device)
+    {
+	return to_device_of_type<Encryption>(device);
+    }
+
+
+    const Encryption*
+    to_encryption(const Device* device)
+    {
+	return to_device_of_type<const Encryption>(device);
+    }
+
 }

@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_btrfs(const Device* device)
+    {
+	return is_device_of_type<const Btrfs>(device);
+    }
+
+
+    Btrfs*
+    to_btrfs(Device* device)
+    {
+	return to_device_of_type<Btrfs>(device);
+    }
+
+
+    const Btrfs*
+    to_btrfs(const Device* device)
+    {
+	return to_device_of_type<const Btrfs>(device);
+    }
+
 }

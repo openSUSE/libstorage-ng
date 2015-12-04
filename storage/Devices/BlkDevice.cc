@@ -201,9 +201,7 @@ namespace storage
     bool
     is_blk_device(const Device* device)
     {
-	ST_CHECK_PTR(device);
-
-	return dynamic_cast<const BlkDevice*>(device);
+	return is_device_of_type<const BlkDevice>(device);
     }
 
 
