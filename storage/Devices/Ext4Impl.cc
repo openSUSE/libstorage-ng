@@ -16,6 +16,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Ext4>::classname = "Ext4";
+
+
     Ext4::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {

@@ -16,6 +16,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Swap>::classname = "Swap";
+
+
     Swap::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {

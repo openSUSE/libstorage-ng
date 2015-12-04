@@ -16,6 +16,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Btrfs>::classname = "Btrfs";
+
+
     Btrfs::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {

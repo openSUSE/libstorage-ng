@@ -13,6 +13,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Xfs> { static const char* classname; };
+
+
     class Xfs::Impl : public Filesystem::Impl
     {
     public:

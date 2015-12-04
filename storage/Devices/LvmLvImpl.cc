@@ -11,6 +11,9 @@ using namespace std;
 namespace storage
 {
 
+    const char* DeviceTraits<LvmLv>::classname = "LvmLv";
+
+
     LvmLv::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node)
     {

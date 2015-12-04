@@ -12,6 +12,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Msdos> { static const char* classname; };
+
+
     class Msdos::Impl : public PartitionTable::Impl
     {
     public:

@@ -12,6 +12,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Gpt> { static const char* classname; };
+
+
     class Gpt::Impl : public PartitionTable::Impl
     {
     public:

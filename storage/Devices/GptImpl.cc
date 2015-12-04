@@ -17,6 +17,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Gpt>::classname = "Gpt";
+
+
     Gpt::Impl::Impl(const xmlNode* node)
 	: PartitionTable::Impl(node), enlarge(false)
     {

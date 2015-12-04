@@ -11,6 +11,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<LvmVg>::classname = "LvmVg";
+
+
     LvmVg::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node)
     {

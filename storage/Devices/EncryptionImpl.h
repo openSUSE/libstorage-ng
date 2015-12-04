@@ -13,6 +13,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Encryption> { static const char* classname; };
+
+
     class Encryption::Impl : public BlkDevice::Impl
     {
     public:

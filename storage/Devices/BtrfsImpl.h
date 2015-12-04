@@ -13,6 +13,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Btrfs> { static const char* classname; };
+
+
     class Btrfs::Impl : public Filesystem::Impl
     {
     public:
