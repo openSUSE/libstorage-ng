@@ -109,3 +109,33 @@ maintained, documented and thorough tested. Additional it will be more
 demanding for developers to use libstorage with different languages and it
 could complicate debugging.
 
+
+No use of BGL subgraph and filtered_graph in the API
+----------------------------------------------------
+
+The BGL subgraph class implements induced subgraphs. Modifying a subgraph also
+modifies the parent graphs.
+
+Subgraphs could be used to group device objects, e.g. a subgraph for each disk
+and its partitions and a subgraph for each volume group and its logical
+volumes. But we do not see advantages of such a design, quite the contrary it
+complicate creating edges from inside those subgraph to other nodes.
+
+The BGL filtered_graph is intended to allow using standard graph algorithms on
+filtered graphs.
+
+So far all the examples people brought forward to require some filtering were
+not dealing with filtered graphs but only with lists of devices/nodes. The
+holders/edges were never important. So simple functions returning lists of
+devices are sufficient and using filtered_graph is not needed.
+
+Technical the filtering done by filtered_graph is not done once during
+creation of the filtered_graph but whenever the filtered graph is
+accessed. Thus iterating twice over a filtered graph calls also the vertex
+predicate function twice. Having a complex predicate function that
+e.g. inspects the graph structure and not only the data of the single vertex
+can easily cause quadratic runtime complexity.
+
+So overall we do not see justification to invest in providing filtered_graph
+in the API. Internally it should be easy to use it when a use cases are found.
+
