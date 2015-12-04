@@ -199,7 +199,7 @@ namespace storage
 
 
     bool
-    is_blkdevice(const Device* device)
+    is_blk_device(const Device* device)
     {
 	ST_CHECK_PTR(device);
 
@@ -208,14 +208,14 @@ namespace storage
 
 
     BlkDevice*
-    to_blkdevice(Device* device)
+    to_blk_device(Device* device)
     {
 	return to_device_of_type<BlkDevice>(device);
     }
 
 
     const BlkDevice*
-    to_blkdevice(const Device* device)
+    to_blk_device(const Device* device)
     {
 	return to_device_of_type<const BlkDevice>(device);
     }

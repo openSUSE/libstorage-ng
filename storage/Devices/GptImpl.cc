@@ -36,7 +36,7 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
 
-	string pp_name = to_blkdevice(g->get_impl()[v1])->get_name();
+	string pp_name = to_blk_device(g->get_impl()[v1])->get_name();
 
 	const Parted& parted = systeminfo.getParted(pp_name);
 
