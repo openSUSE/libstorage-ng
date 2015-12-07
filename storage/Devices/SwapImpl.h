@@ -12,6 +12,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Swap> { static const char* classname; };
+
+
     class Swap::Impl : public Filesystem::Impl
     {
     public:

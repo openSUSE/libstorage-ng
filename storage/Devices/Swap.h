@@ -36,25 +36,11 @@ namespace storage
     };
 
 
-    inline bool
-    is_swap(const Device* device)
-    {
-	return dynamic_cast<const Swap*>(device) != nullptr;
-    }
+    bool is_swap(const Device* device);
 
+    Swap* to_swap(Device* device);
+    const Swap* to_swap(const Device* device);
 
-    inline Swap*
-    to_swap(Device* device)
-    {
-	return dynamic_cast<Swap*>(device);
-    }
-
-
-    inline const Swap*
-    to_swap(const Device* device)
-    {
-	return dynamic_cast<const Swap*>(device);
-    }
 }
 
 #endif

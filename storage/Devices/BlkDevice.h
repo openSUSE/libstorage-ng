@@ -58,10 +58,10 @@ namespace storage
     };
 
 
-    bool is_blkdevice(const Device* device);
+    bool is_blk_device(const Device* device);
 
-    BlkDevice* to_blkdevice(Device* device);
-    const BlkDevice* to_blkdevice(const Device* device);
+    BlkDevice* to_blk_device(Device* device);
+    const BlkDevice* to_blk_device(const Device* device);
 
 }
 

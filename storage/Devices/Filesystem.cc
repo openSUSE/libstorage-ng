@@ -191,9 +191,7 @@ namespace storage
     bool
     is_filesystem(const Device* device)
     {
-	ST_CHECK_PTR(device);
-
-	return dynamic_cast<const Filesystem*>(device);
+	return is_device_of_type<const Filesystem>(device);
     }
 
 

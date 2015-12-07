@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_xfs(const Device* device)
+    {
+	return is_device_of_type<const Xfs>(device);
+    }
+
+
+    Xfs*
+    to_xfs(Device* device)
+    {
+	return to_device_of_type<Xfs>(device);
+    }
+
+
+    const Xfs*
+    to_xfs(const Device* device)
+    {
+	return to_device_of_type<const Xfs>(device);
+    }
+
 }

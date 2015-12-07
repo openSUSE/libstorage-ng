@@ -13,6 +13,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<Ext4> { static const char* classname; };
+
+
     class Ext4::Impl : public Filesystem::Impl
     {
     public:

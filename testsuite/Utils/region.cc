@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(test_different_block_size)
     Region a(0, 100, 1);
     Region b(0, 50, 2);
 
-    BOOST_CHECK_THROW(a == b, DifferentBlockSizes);
+    BOOST_CHECK_THROW((void)(a == b), DifferentBlockSizes);
 }
 
 

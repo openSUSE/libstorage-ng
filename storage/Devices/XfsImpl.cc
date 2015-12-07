@@ -16,6 +16,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Xfs>::classname = "Xfs";
+
+
     Xfs::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {

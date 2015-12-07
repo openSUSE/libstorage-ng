@@ -34,25 +34,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_gpt(const Device* device)
-    {
-	return dynamic_cast<const Gpt*>(device) != nullptr;
-    }
+    bool is_gpt(const Device* device);
 
-
-    inline PartitionTable*
-    to_gpt(Device* device)
-    {
-	return dynamic_cast<Gpt*>(device);
-    }
-
-
-    inline const PartitionTable*
-    to_gpt(const Device* device)
-    {
-	return dynamic_cast<const Gpt*>(device);
-    }
+    Gpt* to_gpt(Device* device);
+    const Gpt* to_gpt(const Device* device);
 
 }
 

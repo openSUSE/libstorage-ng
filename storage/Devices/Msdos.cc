@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_msdos(const Device* device)
+    {
+	return is_device_of_type<const Msdos>(device);
+    }
+
+
+    Msdos*
+    to_msdos(Device* device)
+    {
+	return to_device_of_type<Msdos>(device);
+    }
+
+
+    const Msdos*
+    to_msdos(const Device* device)
+    {
+	return to_device_of_type<const Msdos>(device);
+    }
+
 }

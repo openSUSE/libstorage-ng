@@ -17,6 +17,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Msdos>::classname = "Msdos";
+
+
     Msdos::Impl::Impl(const xmlNode* node)
 	: PartitionTable::Impl(node)
     {

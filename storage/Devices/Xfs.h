@@ -36,25 +36,10 @@ namespace storage
     };
 
 
-    inline bool
-    is_xfs(const Device* device)
-    {
-	return dynamic_cast<const Xfs*>(device) != nullptr;
-    }
+    bool is_xfs(const Device* device);
 
-
-    inline Xfs*
-    to_xfs(Device* device)
-    {
-	return dynamic_cast<Xfs*>(device);
-    }
-
-
-    inline const Xfs*
-    to_xfs(const Device* device)
-    {
-	return dynamic_cast<const Xfs*>(device);
-    }
+    Xfs* to_xfs(Device* device);
+    const Xfs* to_xfs(const Device* device);
 
 }
 

@@ -55,9 +55,7 @@ namespace storage
     bool
     is_user(const Holder* holder)
     {
-	ST_CHECK_PTR(holder);
-
-	return dynamic_cast<const User*>(holder);
+	return is_holder_of_type<const User>(holder);
     }
 
 

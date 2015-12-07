@@ -11,6 +11,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Encryption>::classname = "Encryption";
+
+
     Encryption::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node)
     {

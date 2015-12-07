@@ -65,4 +65,25 @@ namespace storage
 	    cerr << "logical volume has no name" << endl;
     }
 
+
+    bool
+    is_lvm_lv(const Device* device)
+    {
+	return is_device_of_type<const LvmLv>(device);
+    }
+
+
+    LvmLv*
+    to_lvm_lv(Device* device)
+    {
+	return to_device_of_type<LvmLv>(device);
+    }
+
+
+    const LvmLv*
+    to_lvm_lv(const Device* device)
+    {
+	return to_device_of_type<const LvmLv>(device);
+    }
+
 }

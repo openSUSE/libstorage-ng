@@ -13,6 +13,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<LvmLv> { static const char* classname; };
+
+
     class LvmLv::Impl : public BlkDevice::Impl
     {
     public:

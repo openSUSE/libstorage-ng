@@ -12,6 +12,9 @@ namespace storage
     using namespace std;
 
 
+    template <> struct DeviceTraits<LvmVg> { static const char* classname; };
+
+
     class LvmVg::Impl : public Device::Impl
     {
     public:

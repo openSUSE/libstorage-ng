@@ -55,4 +55,25 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
+
+    bool
+    is_swap(const Device* device)
+    {
+	return is_device_of_type<const Swap>(device);
+    }
+
+
+    Swap*
+    to_swap(Device* device)
+    {
+	return to_device_of_type<Swap>(device);
+    }
+
+
+    const Swap*
+    to_swap(const Device* device)
+    {
+	return to_device_of_type<const Swap>(device);
+    }
+
 }
