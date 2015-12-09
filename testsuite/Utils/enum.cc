@@ -15,8 +15,8 @@ BOOST_AUTO_TEST_CASE(test_to_string)
 {
     BOOST_CHECK_EQUAL(toString(PRIMARY), "primary");
 
-    BOOST_CHECK_THROW(toString(PartitionType(-10)), IndexOutOfRangeException);
-    BOOST_CHECK_THROW(toString(PartitionType(+10)), IndexOutOfRangeException);
+    BOOST_CHECK_THROW(toString(PartitionType(-1)), IndexOutOfRangeException);
+    BOOST_CHECK_THROW(toString(PartitionType(+4)), IndexOutOfRangeException);
 }
 
 

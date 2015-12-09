@@ -68,7 +68,7 @@ namespace storage
 
 	// Comparisons must not be done with type of enum since the enum may
 	// define comparison operators.
-	ST_CHECK_INDEX((size_t)(value), 0, names.size());
+	ST_CHECK_INDEX((size_t)(value), 0, names.size() - 1);
 
 	// TODO query underlying integral type of enum
 	return names[(int)(value)];
