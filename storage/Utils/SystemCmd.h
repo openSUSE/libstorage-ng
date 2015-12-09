@@ -32,7 +32,7 @@
 #include <list>
 #include <boost/noncopyable.hpp>
 
-#include "storage/Exception.h"
+#include "storage/Utils/Exception.h"
 
 
 namespace storage

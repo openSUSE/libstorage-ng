@@ -354,6 +354,7 @@ namespace storage
 	static void log( const Exception  &	exception,
 			 const CodeLocation &	location,
 			 const char * const	prefix );
+
 	/**
 	 * Return message string.
 	 *

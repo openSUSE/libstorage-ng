@@ -20,7 +20,6 @@ libstorage_la_SOURCES =					\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\
 	HumanString.h		HumanString.cc		\
-	Exception.h		Exception.cc		\
 	StorageInterface.h	StorageInterface.cc	\
 	Utils.cc		Utils.h			\
 	Graph.cc		Graph.h			\
@@ -47,6 +46,5 @@ pkginclude_HEADERS =		\
 	Actiongraph.h		\
 	Graph.h			\
 	HumanString.h		\
-	Exception.h		\
 	Utils.h
 

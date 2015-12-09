@@ -28,7 +28,7 @@
 #include <memory>
 
 #include "storage/StorageInterface.h"
-#include "storage/Exception.h"
+#include "storage/Utils/Exception.h"
 
 
 namespace storage
