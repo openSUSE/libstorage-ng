@@ -24,6 +24,6 @@ supported distributions provide them.
 
 
 For API functions it must be avoided to modify parameters and use them as
-return values since this is not always obvious and difficult to support in
-some target languages.
+return values since this is not always obvious for API users and difficult to
+support in some target languages.
 
