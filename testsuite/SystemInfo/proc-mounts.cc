@@ -139,7 +139,7 @@ BOOST_AUTO_TEST_CASE(parse2)
 
     vector<string> output = {
 	"data[/dev/mapper/system-test] -> device:/dev/mapper/system-test dentry: mount:/test/mountpoint with spaces fs:ext4 opts:rw,relatime,commit=600 freq:0 passno:0",
-"data[server:/data] -> device:server:/data dentry: mount:/data fs:nfs opts:rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4 freq:0 passno:0"
+	"data[server:/data] -> device:server:/data dentry: mount:/data fs:nfs opts:rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4 freq:0 passno:0"
     };
 
     check(input_mount, input_swap, output);
