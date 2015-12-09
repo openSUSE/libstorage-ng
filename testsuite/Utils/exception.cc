@@ -12,6 +12,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(code_location)
 {
+    int line = __LINE__;
+
     try
     {
 	ST_THROW(Exception("test"));
@@ -21,8 +23,8 @@ BOOST_AUTO_TEST_CASE(code_location)
 	BOOST_CHECK_EQUAL(e.msg(), "test");
 
 	const CodeLocation& code_location = e.where();
-	BOOST_CHECK_EQUAL(code_location.file(), "exception.cc");
-	BOOST_CHECK_EQUAL(code_location.line(), 17);
+	BOOST_CHECK_EQUAL(code_location.file(), __BASE_FILE__);
+	BOOST_CHECK_EQUAL(code_location.line(), line + 4);
     }
 }
 
