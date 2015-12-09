@@ -28,7 +28,7 @@
 #include <string.h>	// strerror()
 #include <stdio.h>
 
-#include "storage/Exception.h"
+#include "storage/Utils/Exception.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
 

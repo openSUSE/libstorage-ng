@@ -9,7 +9,7 @@
 #include <map>
 #include <memory>
 
-#include "storage/Exception.h"
+#include "storage/Utils/Exception.h"
 
 
 //! The storage namespace.

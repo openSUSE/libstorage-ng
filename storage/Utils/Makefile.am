@@ -7,6 +7,7 @@ noinst_LTLIBRARIES = libutils.la
 libutils_la_SOURCES =					\
 	Logger.h		Logger.cc		\
 	AppUtil.cc		AppUtil.h		\
+	Exception.h		Exception.cc		\
 	AsciiFile.cc 		AsciiFile.h		\
 	Enum.cc			Enum.h			\
 	GraphUtils.h					\
@@ -33,6 +34,7 @@ pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
 	Logger.h		\
+	Exception.h		\
 	HumanString.h		\
 	Region.h		\
 	Remote.h
