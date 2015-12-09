@@ -25,7 +25,6 @@
 #define STORAGE_ENUM_H
 
 
-#include <assert.h>
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -69,7 +68,7 @@ namespace storage
 
 	// Comparisons must not be done with type of enum since the enum may
 	// define comparison operators.
-	assert((size_t)(value) < names.size());
+	ST_CHECK_INDEX((size_t)(value), 0, names.size());
 
 	// TODO query underlying integral type of enum
 	return names[(int)(value)];
