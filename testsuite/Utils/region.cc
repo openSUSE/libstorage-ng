@@ -27,6 +27,8 @@ BOOST_AUTO_TEST_CASE(test_block_size_512)
 {
     Region region(2048, 1603584, 512);
 
+    BOOST_CHECK(!region.empty());
+
     BOOST_CHECK_EQUAL(region.get_start(), 2048);
     BOOST_CHECK_EQUAL(region.get_length(), 1603584);
     BOOST_CHECK_EQUAL(region.get_end(), 1605631);
@@ -42,6 +44,8 @@ BOOST_AUTO_TEST_CASE(test_block_size_512)
 BOOST_AUTO_TEST_CASE(test_block_size_4096)
 {
     Region region(256, 65280, 4096);
+
+    BOOST_CHECK(!region.empty());
 
     BOOST_CHECK_EQUAL(region.get_start(), 256);
     BOOST_CHECK_EQUAL(region.get_length(), 65280);
