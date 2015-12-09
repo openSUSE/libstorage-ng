@@ -9,8 +9,8 @@ AM_CPPFLAGS = -I$(top_srcdir)
 LDADD = ../storage/libstorage.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	copy.test default-partition-table.test disk.test dynamic.test		\
-	find-vertex.test fstab.test fstab-ng.test output.test			\
+	copy.test coverage-tests.test default-partition-table.test disk.test	\
+	dynamic.test find-vertex.test fstab.test fstab-ng.test output.test	\
 	partition-size.test partition-slots.test probe.test range.test		\
 	stable.test relatives.test systemcmd.test
 
