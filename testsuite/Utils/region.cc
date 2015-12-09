@@ -59,6 +59,44 @@ BOOST_AUTO_TEST_CASE(test_block_size_4096)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_set_values)
+{
+    Region region(0, 1024, 32);
+
+    BOOST_CHECK_EQUAL(region.get_start(), 0);
+    BOOST_CHECK_EQUAL(region.get_length(), 1024);
+    BOOST_CHECK_EQUAL(region.get_end(), 1023);
+    BOOST_CHECK_EQUAL(region.get_block_size(), 32);
+
+    // setting the start does not change the length but the end
+
+    region.set_start(256);
+
+    BOOST_CHECK_EQUAL(region.get_start(), 256);
+    BOOST_CHECK_EQUAL(region.get_length(), 1024);
+    BOOST_CHECK_EQUAL(region.get_end(), 1279);
+    BOOST_CHECK_EQUAL(region.get_block_size(), 32);
+
+    // setting the length does not change the start but the end
+
+    region.set_length(512);
+
+    BOOST_CHECK_EQUAL(region.get_start(), 256);
+    BOOST_CHECK_EQUAL(region.get_length(), 512);
+    BOOST_CHECK_EQUAL(region.get_end(), 767);
+    BOOST_CHECK_EQUAL(region.get_block_size(), 32);
+
+    // setting the block-size does not change the start, length nor end
+
+    region.set_block_size(64);
+
+    BOOST_CHECK_EQUAL(region.get_start(), 256);
+    BOOST_CHECK_EQUAL(region.get_length(), 512);
+    BOOST_CHECK_EQUAL(region.get_end(), 767);
+    BOOST_CHECK_EQUAL(region.get_block_size(), 64);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_comparisons)
 {
     // Four regions with block layout:
