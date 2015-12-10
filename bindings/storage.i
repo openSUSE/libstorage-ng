@@ -28,6 +28,18 @@
 %catches(storage::DeviceHasWrongType) storage::to_partition(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partition(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_ext4(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_ext4(const Device*);
+
+%catches(storage::DeviceHasWrongType) storage::to_xfs(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_xfs(const Device*);
+
+%catches(storage::DeviceHasWrongType) storage::to_btrfs(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_btrfs(const Device*);
+
+%catches(storage::DeviceHasWrongType) storage::to_swap(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_swap(const Device*);
+
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
 
@@ -133,3 +145,6 @@ using namespace storage;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
+
+%template(VectorPartitionSlot) std::vector<PartitionSlot>;
+
