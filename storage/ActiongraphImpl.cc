@@ -373,7 +373,7 @@ namespace storage
 	    else if (dynamic_cast<const Action::Delete*>(action))
 		out << ", color=\"#ff0000\", fillcolor=\"#ffcccc\"";
 	    else
-		throw logic_error("unknown Action::Base subclass");
+		ST_THROW(LogicException("unknown Action::Base subclass"));
 
 	    out << " ]";
 	}

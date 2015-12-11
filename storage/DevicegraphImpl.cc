@@ -158,7 +158,8 @@ namespace storage
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
 
 	if (!tmp.second)
-	    throw runtime_error("holder already exists");
+	    ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
+					 graph[target_vertex]->get_sid()));
 
 	return tmp.first;
     }
@@ -566,7 +567,7 @@ namespace storage
 	    else if (is_filesystem(device))
 		out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 	    else
-		throw logic_error("unknown Device subclass");
+		ST_THROW(LogicException("unknown Device subclass"));
 
 	    out << " ]";
 	}
@@ -588,7 +589,7 @@ namespace storage
 	    else if (is_user(holder))
 		out << "[ style=dotted ]";
 	    else
-		throw logic_error("unknown Holder subclass");
+		ST_THROW(LogicException("unknown Holder subclass"));
 	}
     };
 
