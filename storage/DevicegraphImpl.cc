@@ -422,6 +422,9 @@ namespace storage
     void
     Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
     {
+	if (devicegraph->get_impl() != *this)
+	    ST_THROW(LogicException("wrong impl-ptr"));
+
 	clear();
 
 	XmlFile xml(filename);

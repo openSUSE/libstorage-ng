@@ -424,6 +424,18 @@ namespace storage
 
 
     /**
+     * Exception class for faulty logic within the program.
+     * When available, a more specialized exception class should be used.
+     **/
+    class LogicException : public Exception
+    {
+    public:
+	LogicException(const std::string& msg) : Exception(msg) {}
+	virtual ~LogicException() noexcept {}
+    };
+
+
+    /**
      * Exception class for "out of memory".
      * Typically used if operator new returned 0.
      **/
