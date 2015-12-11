@@ -27,7 +27,7 @@ namespace storage
 
 	virtual FsType get_type() const override { return EXT4; }
 
-	virtual const char* get_classname() const override { return "Ext4"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Ext4>::classname; }
 
 	virtual string get_displayname() const override { return "ext4"; }
 

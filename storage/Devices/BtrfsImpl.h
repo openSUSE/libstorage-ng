@@ -27,7 +27,7 @@ namespace storage
 
 	virtual FsType get_type() const override { return BTRFS; }
 
-	virtual const char* get_classname() const override { return "Btrfs"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Btrfs>::classname; }
 
 	virtual string get_displayname() const override { return "btrfs"; }
 

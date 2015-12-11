@@ -24,7 +24,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Msdos"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Msdos>::classname; }
 
 	virtual string get_displayname() const override { return "msdos"; }
 
