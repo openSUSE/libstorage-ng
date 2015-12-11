@@ -439,9 +439,9 @@ namespace storage
 	{
 	    for (const xmlNode* device_node : getChildNodes(devices_node))
 	    {
-		const string& class_name = (const char*) device_node->parent->name;
+		const string& classname = (const char*) device_node->parent->name;
 
-		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(class_name);
+		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(classname);
 		if (it == device_load_registry.end())
 		    throw runtime_error("unknown device class name");
 
@@ -454,9 +454,9 @@ namespace storage
 	{
 	    for (const xmlNode* holder_node : getChildNodes(holders_node))
 	    {
-		const string& class_name = (const char*) holder_node->parent->name;
+		const string& classname = (const char*) holder_node->parent->name;
 
-		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(class_name);
+		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(classname);
 		if (it == holder_load_registry.end())
 		    throw runtime_error("unknown holder class name");
 
