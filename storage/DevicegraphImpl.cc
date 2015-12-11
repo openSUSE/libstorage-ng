@@ -394,30 +394,28 @@ namespace storage
     }
 
 
-    typedef Device* (*device_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
-
+    typedef std::function<Device* (Devicegraph* devicegraph, const xmlNode* node)> device_load_fnc;
 
     const map<string, device_load_fnc> device_load_registry = {
-	{ "Disk", (device_load_fnc)(&Disk::load) },
-	{ "Msdos", (device_load_fnc)(&Msdos::load) },
-	{ "Gpt", (device_load_fnc)(&Gpt::load) },
-	{ "Partition", (device_load_fnc)(&Partition::load) },
-	{ "LvmVg", (device_load_fnc)(&LvmVg::load) },
-	{ "LvmLv", (device_load_fnc)(&LvmLv::load) },
-	{ "Encryption", (device_load_fnc)(&Encryption::load) },
-	{ "Ext4", (device_load_fnc)(&Ext4::load) },
-	{ "Btrfs", (device_load_fnc)(&Btrfs::load) },
-	{ "Xfs", (device_load_fnc)(&Xfs::load) },
-	{ "Swap", (device_load_fnc)(&Swap::load) },
+	{ "Disk", &Disk::load },
+	{ "Msdos", &Msdos::load },
+	{ "Gpt", &Gpt::load },
+	{ "Partition", &Partition::load },
+	{ "LvmVg", &LvmVg::load },
+	{ "LvmLv", &LvmLv::load },
+	{ "Encryption", &Encryption::load },
+	{ "Ext4", &Ext4::load },
+	{ "Btrfs", &Btrfs::load },
+	{ "Xfs", &Xfs::load },
+	{ "Swap", &Swap::load },
     };
 
 
-    typedef Holder* (*holder_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
-
+    typedef std::function<Holder* (Devicegraph* devicegraph, const xmlNode* node)> holder_load_fnc;
 
     const map<string, holder_load_fnc> holder_load_registry = {
-	{ "User", (holder_load_fnc)(&User::load) },
-	{ "Subdevice", (holder_load_fnc)(&Subdevice::load) },
+	{ "User", &User::load },
+	{ "Subdevice", &Subdevice::load },
     };
 
 
