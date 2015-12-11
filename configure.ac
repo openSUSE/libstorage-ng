@@ -13,6 +13,11 @@ LIBVERSION_REVISON=`expr $LIBVERSION_PATCHLEVEL`
 LIBVERSION_AGE=`expr $LIBVERSION_MINOR`
 LIBVERSION_INFO=$LIBVERSION_CURRENT:$LIBVERSION_REVISON:$LIBVERSION_AGE
 
+CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
+CFLAGS="${CFLAGS} ${CWARNS}"
+CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter"
+CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
+
 AM_INIT_AUTOMAKE(libstorage, $VERSION)
 AM_CONFIG_HEADER(config.h)
 
@@ -25,11 +30,6 @@ AM_PATH_PYTHON
 AC_PREFIX_DEFAULT(/usr)
 
 LT_INIT
-
-CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
-CFLAGS="${CFLAGS} ${CWARNS}"
-CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter"
-CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
 
 AC_SUBST(VERSION)
 AC_SUBST(LIBVERSION)
