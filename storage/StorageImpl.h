@@ -10,7 +10,6 @@
 #include "storage/SystemInfo/Arch.h"
 
 
-
 namespace storage
 {
     using std::string;
