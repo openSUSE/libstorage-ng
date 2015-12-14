@@ -61,7 +61,6 @@ namespace storage
 	    { "jfs", JFS },
 	    { "msdos", VFAT },
 	    { "ntfs", NTFS },
-	    { "ntfs-3g", NTFS },
 	    { "reiserfs", REISERFS },
 	    { "swap", SWAP },
 	    { "vfat", VFAT },

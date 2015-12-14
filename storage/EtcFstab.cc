@@ -528,7 +528,7 @@ bool EtcFstab::findCrtab( const string& dev, const AsciiFile& tab,
     if( e.dmcrypt && e.optUser() )
 	ls.push_back( "crypt" );
     else
-	ls.push_back( (e.fs!="ntfs")?e.fs:"ntfs-3g" );
+	ls.push_back(e.fs);
     if( e.cryptotab )
 	{
 	ls.push_back(toString(e.encr));
