@@ -46,7 +46,7 @@ if not good_partition_slot:
     exit()
 
 partition = partition_table.create_partition(good_partition_slot.name, good_partition_slot.region, PRIMARY)
-partition.set_id(0x83)
+partition.set_id(ID_LINUX)
 
 print staging
 
