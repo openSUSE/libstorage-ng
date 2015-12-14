@@ -518,22 +518,6 @@ string afterLast(const string& s, const string& pat )
     }
 
 
-    bool
-    mkdtemp(string& path)
-    {
-	char* tmp = strdup(path.c_str());
-	if (!::mkdtemp(tmp))
-	{
-	    free(tmp);
-	    return false;
-	}
-
-	path = tmp;
-	free(tmp);
-	return true;
-    }
-
-
     string
     sformat(const string& format, va_list ap)
     {

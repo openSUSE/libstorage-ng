@@ -3,9 +3,10 @@
 #include <getopt.h>
 #include <iostream>
 
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Environment.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 using namespace std;
@@ -38,9 +39,14 @@ doit()
 
     if (display_devicegraph)
     {
-	probed->write_graphviz("probe1.gv");
-	system("dot -Tpng < probe1.gv > probe1.png");
-	system("display probe1.png");
+	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
+
+	probed->write_graphviz(tmp_dir.get_fullname() + "/probe1.gv");
+	system(string("dot -Tpng < " + quote(tmp_dir.get_fullname() + "/probe1.gv") + " > " +
+		      quote(tmp_dir.get_fullname() + "/probe1.png")).c_str());
+	unlink(string(tmp_dir.get_fullname() + "/probe1.gv").c_str());
+	system(string("display " + quote(tmp_dir.get_fullname() + "/probe1.png")).c_str());
+	unlink(string(tmp_dir.get_fullname() + "/probe1.png").c_str());
     }
 }
 

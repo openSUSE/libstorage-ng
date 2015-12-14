@@ -78,8 +78,6 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string udevEncode(const string&);
     string udevDecode(const string&);
 
-    bool mkdtemp(string& path);
-
     string normalizeDevice(const string& dev);
     list<string> normalizeDevices(const list<string>& devs);
     string undevDevice(const string& dev);

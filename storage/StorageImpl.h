@@ -4,9 +4,11 @@
 
 #include <map>
 
+#include "storage/Utils/FileUtils.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/Arch.h"
+
 
 
 namespace storage
@@ -58,6 +60,8 @@ namespace storage
 
 	void commit(const CommitCallbacks* commit_callbacks);
 
+	const TmpDir& get_tmp_dir() const { return tmp_dir; }
+
     private:
 
 	void probe(Devicegraph* probed);
@@ -73,6 +77,8 @@ namespace storage
 	string rootprefix;
 
 	unique_ptr<const Actiongraph> actiongraph;
+
+	TmpDir tmp_dir;
 
     };
 

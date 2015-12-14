@@ -7,6 +7,7 @@ noinst_LTLIBRARIES = libutils.la
 libutils_la_SOURCES =					\
 	Logger.h		Logger.cc		\
 	AppUtil.cc		AppUtil.h		\
+	FileUtils.cc		FileUtils.h		\
 	Exception.h		Exception.cc		\
 	AsciiFile.cc 		AsciiFile.h		\
 	Enum.cc			Enum.h			\
