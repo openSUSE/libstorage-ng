@@ -101,7 +101,7 @@
 #define TUNEJFSBIN     "/sbin/jfs_tune"
 #define XFSADMINBIN    "/usr/sbin/xfs_admin"
 #define NTFSLABELBIN   "/usr/sbin/ntfslabel"
-#define DOSFSLABELBIN  "/usr/sbin/dosfslabel"
+#define FATLABELBIN	"/usr/sbin/fatlabel"
 
 #define FSCKBIN        "/sbin/fsck"
 #define FSCKEXT2BIN    "/sbin/fsck.ext2"
@@ -114,7 +114,8 @@
 #define MKSWAPBIN      "/sbin/mkswap"
 #define HFORMATBIN     "/usr/bin/hformat"
 #define MKFSXFSBIN     "/sbin/mkfs.xfs"
-#define MKFSFATBIN     "/sbin/mkdosfs"
+#define MKFSFATBIN	"/sbin/mkfs.fat"
+#define MKFSNTFSBIN	"/sbin/mkfs.ntfs"
 #define MKFSJFSBIN     "/sbin/mkfs.jfs"
 #define MKFSREISERBIN  "/sbin/mkreiserfs"
 #define MKFSEXT2BIN    "/sbin/mke2fs"

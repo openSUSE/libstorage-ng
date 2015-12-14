@@ -100,7 +100,7 @@ namespace storage
 		{
 		    // TODO temporary until all fs are implemented
 		    if (entry.fs_type != EXT4 && entry.fs_type != BTRFS && entry.fs_type != XFS &&
-			entry.fs_type != SWAP)
+			entry.fs_type != SWAP && entry.fs_type != NTFS && entry.fs_type != VFAT)
 			continue;
 
 		    Filesystem* filesystem = blkdevice->create_filesystem(entry.fs_type);
