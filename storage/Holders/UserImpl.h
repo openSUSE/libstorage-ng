@@ -25,7 +25,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual const char* get_classname() const override { return "User"; }
+	virtual const char* get_classname() const override { return HolderTraits<User>::classname; }
 
 	virtual void print(std::ostream& out) const override;
 

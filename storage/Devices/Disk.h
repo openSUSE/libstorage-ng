@@ -62,7 +62,17 @@ namespace storage
 
     bool is_disk(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Disk.
+     *
+     * @return Pointer to Disk.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Disk* to_disk(Device* device);
+
+    /**
+     * @copydoc to_disk(Device*)
+     */
     const Disk* to_disk(const Device* device);
 
 }

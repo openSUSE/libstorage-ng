@@ -27,7 +27,7 @@ namespace storage
 
 	virtual FsType get_type() const override { return XFS; }
 
-	virtual const char* get_classname() const override { return "Xfs"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Xfs>::classname; }
 
 	virtual string get_displayname() const override { return "xfs"; }
 

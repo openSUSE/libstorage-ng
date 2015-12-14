@@ -158,7 +158,8 @@ namespace storage
 	    boost::add_edge(source_vertex, target_vertex, shared_ptr<Holder>(holder), graph);
 
 	if (!tmp.second)
-	    throw runtime_error("holder already exists");
+	    ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
+					 graph[target_vertex]->get_sid()));
 
 	return tmp.first;
     }
@@ -394,36 +395,37 @@ namespace storage
     }
 
 
-    typedef Device* (*device_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
-
+    typedef std::function<Device* (Devicegraph* devicegraph, const xmlNode* node)> device_load_fnc;
 
     const map<string, device_load_fnc> device_load_registry = {
-	{ "Disk", (device_load_fnc)(&Disk::load) },
-	{ "Msdos", (device_load_fnc)(&Msdos::load) },
-	{ "Gpt", (device_load_fnc)(&Gpt::load) },
-	{ "Partition", (device_load_fnc)(&Partition::load) },
-	{ "LvmVg", (device_load_fnc)(&LvmVg::load) },
-	{ "LvmLv", (device_load_fnc)(&LvmLv::load) },
-	{ "Encryption", (device_load_fnc)(&Encryption::load) },
-	{ "Ext4", (device_load_fnc)(&Ext4::load) },
-	{ "Btrfs", (device_load_fnc)(&Btrfs::load) },
-	{ "Xfs", (device_load_fnc)(&Xfs::load) },
-	{ "Swap", (device_load_fnc)(&Swap::load) },
+	{ "Disk", &Disk::load },
+	{ "Msdos", &Msdos::load },
+	{ "Gpt", &Gpt::load },
+	{ "Partition", &Partition::load },
+	{ "LvmVg", &LvmVg::load },
+	{ "LvmLv", &LvmLv::load },
+	{ "Encryption", &Encryption::load },
+	{ "Ext4", &Ext4::load },
+	{ "Btrfs", &Btrfs::load },
+	{ "Xfs", &Xfs::load },
+	{ "Swap", &Swap::load },
     };
 
 
-    typedef Holder* (*holder_load_fnc)(Devicegraph* devicegraph, const xmlNode* node);
-
+    typedef std::function<Holder* (Devicegraph* devicegraph, const xmlNode* node)> holder_load_fnc;
 
     const map<string, holder_load_fnc> holder_load_registry = {
-	{ "User", (holder_load_fnc)(&User::load) },
-	{ "Subdevice", (holder_load_fnc)(&Subdevice::load) },
+	{ "User", &User::load },
+	{ "Subdevice", &Subdevice::load },
     };
 
 
     void
     Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
     {
+	if (devicegraph->get_impl() != *this)
+	    ST_THROW(LogicException("wrong impl-ptr"));
+
 	clear();
 
 	XmlFile xml(filename);
@@ -439,9 +441,9 @@ namespace storage
 	{
 	    for (const xmlNode* device_node : getChildNodes(devices_node))
 	    {
-		const string& class_name = (const char*) device_node->parent->name;
+		const string& classname = (const char*) device_node->parent->name;
 
-		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(class_name);
+		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(classname);
 		if (it == device_load_registry.end())
 		    throw runtime_error("unknown device class name");
 
@@ -454,9 +456,9 @@ namespace storage
 	{
 	    for (const xmlNode* holder_node : getChildNodes(holders_node))
 	    {
-		const string& class_name = (const char*) holder_node->parent->name;
+		const string& classname = (const char*) holder_node->parent->name;
 
-		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(class_name);
+		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(classname);
 		if (it == holder_load_registry.end())
 		    throw runtime_error("unknown holder class name");
 
@@ -565,7 +567,7 @@ namespace storage
 	    else if (is_filesystem(device))
 		out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 	    else
-		throw logic_error("unknown Device subclass");
+		ST_THROW(LogicException("unknown Device subclass"));
 
 	    out << " ]";
 	}
@@ -587,7 +589,7 @@ namespace storage
 	    else if (is_user(holder))
 		out << "[ style=dotted ]";
 	    else
-		throw logic_error("unknown Holder subclass");
+		ST_THROW(LogicException("unknown Holder subclass"));
 	}
     };
 

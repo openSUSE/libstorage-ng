@@ -28,7 +28,7 @@ storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
 	${top_builddir}/storage/libstorage.la
 
-storage.pm storage_wrap.cxx: ../storage.i storage-perl5.i $(DEPENDENCIES)
+storage.pm storage_wrap.cxx: storage-perl5.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -perl5 ${AM_CPPFLAGS} storage-perl5.i
 
 install-data-hook:

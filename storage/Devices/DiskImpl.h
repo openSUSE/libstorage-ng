@@ -26,7 +26,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Disk"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Disk>::classname; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 

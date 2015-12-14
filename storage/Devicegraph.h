@@ -29,6 +29,12 @@ namespace storage
     };
 
 
+    struct HolderAlreadyExists : public Exception
+    {
+	HolderAlreadyExists(sid_t source_sid, sid_t target_sid);
+    };
+
+
     struct WrongNumberOfParents : public Exception
     {
 	WrongNumberOfParents(size_t seen, size_t expected);

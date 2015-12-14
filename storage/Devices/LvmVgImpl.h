@@ -24,7 +24,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "LvmVg"; }
+	virtual const char* get_classname() const override { return DeviceTraits<LvmVg>::classname; }
 
 	virtual string get_displayname() const override { return get_name(); }
 

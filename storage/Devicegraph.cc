@@ -43,6 +43,12 @@ namespace storage
     }
 
 
+    HolderAlreadyExists::HolderAlreadyExists(sid_t source_sid, sid_t target_sid)
+	: Exception(sformat("holder already exists, source_sid:%d, target_sid:%d", source_sid, target_sid))
+    {
+    }
+
+
     WrongNumberOfParents::WrongNumberOfParents(size_t seen, size_t expected)
 	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected),
 		    Silencer::is_any_active() ? DEBUG : WARNING)

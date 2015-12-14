@@ -4,5 +4,5 @@
 
 SUBDIRS = python ruby perl5 ruby-legacy
 
-EXTRA_DIST = storage.i
+EXTRA_DIST = storage.i storage-catches.i
 

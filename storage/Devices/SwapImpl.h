@@ -26,7 +26,7 @@ namespace storage
 
 	virtual FsType get_type() const override { return SWAP; }
 
-	virtual const char* get_classname() const override { return "Swap"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Swap>::classname; }
 
 	virtual string get_displayname() const override { return "swap"; }
 
