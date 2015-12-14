@@ -35,7 +35,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create vfat failed");
+	    ST_THROW(Exception("create vfat failed"));
     }
 
 
@@ -49,7 +49,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set-label vfat failed");
+	    ST_THROW(Exception("set-label vfat failed"));
     }
 
 }

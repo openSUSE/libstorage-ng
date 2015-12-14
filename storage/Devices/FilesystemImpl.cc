@@ -389,7 +389,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("mount failed");
+	    ST_THROW(Exception("mount failed"));
     }
 
 
@@ -415,7 +415,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("umount failed");
+	    ST_THROW(Exception("umount failed"));
     }
 
 

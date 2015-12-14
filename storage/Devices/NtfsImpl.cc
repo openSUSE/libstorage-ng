@@ -35,7 +35,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create ntfs failed");
+	    ST_THROW(Exception("create ntfs failed"));
     }
 
 
@@ -49,7 +49,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set-label ntfs failed");
+	    ST_THROW(Exception("set-label ntfs failed"));
     }
 
 }

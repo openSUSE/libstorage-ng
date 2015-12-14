@@ -37,7 +37,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create xfs failed");
+	    ST_THROW(Exception("create xfs failed"));
     }
 
 
@@ -52,7 +52,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set-label xfs failed");
+	    ST_THROW(Exception("set-label xfs failed"));
     }
 
 }
