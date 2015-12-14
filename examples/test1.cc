@@ -82,11 +82,11 @@ ancestors(const Device* device)
 
 
 void
-leafs(const Device* device)
+leaves(const Device* device)
 {
-    cout << "leafs of " << device->get_displayname() << ":" << endl;
+    cout << "leaves of " << device->get_displayname() << ":" << endl;
 
-    for (const Device* leaf : device->get_leafs(false))
+    for (const Device* leaf : device->get_leaves(false))
 	cout << "  " << leaf->get_displayname() << endl;
 
     cout << endl;
@@ -164,7 +164,7 @@ main()
 
     ancestors(system_swap);
 
-    leafs(sda1);
+    leaves(sda1);
 
     roots(system_swap);
 

@@ -37,7 +37,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create swap failed");
+	    ST_THROW(Exception("create swap failed"));
     }
 
 
@@ -51,7 +51,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("swapon failed");
+	    ST_THROW(Exception("swapon failed"));
     }
 
 
@@ -65,7 +65,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("swapoff failed");
+	    ST_THROW(Exception("swapoff failed"));
     }
 
 }

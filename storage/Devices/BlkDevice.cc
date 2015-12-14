@@ -7,6 +7,8 @@
 #include "storage/Devices/Btrfs.h"
 #include "storage/Devices/Xfs.h"
 #include "storage/Devices/Swap.h"
+#include "storage/Devices/Ntfs.h"
+#include "storage/Devices/Vfat.h"
 #include "storage/Holders/User.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Enum.h"
@@ -172,6 +174,14 @@ namespace storage
 
 	    case SWAP:
 		ret = Swap::create(get_impl().get_devicegraph());
+		break;
+
+	    case NTFS:
+		ret = Ntfs::create(get_impl().get_devicegraph());
+		break;
+
+	    case VFAT:
+		ret = Vfat::create(get_impl().get_devicegraph());
 		break;
 
 	    default:

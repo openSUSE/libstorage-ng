@@ -4,6 +4,7 @@
 
 #include <libxml/tree.h>
 #include <memory>
+#include <boost/noncopyable.hpp>
 
 #include "storage/Devices/Device.h"
 
@@ -22,7 +23,7 @@ namespace storage
 
     // abstract class
 
-    class Holder
+    class Holder : private boost::noncopyable
     {
     public:
 

@@ -31,6 +31,12 @@
 %catches(storage::DeviceHasWrongType) storage::to_swap(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_swap(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_ntfs(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_ntfs(const Device*);
+
+%catches(storage::DeviceHasWrongType) storage::to_vfat(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_vfat(const Device*);
+
 %catches(storage::HolderHasWrongType) storage::to_subdevice(Holder*);
 %catches(storage::HolderHasWrongType) storage::to_subdevice(const Holder*);
 

@@ -37,7 +37,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create btrfs failed");
+	    ST_THROW(Exception("create btrfs failed"));
     }
 
 
@@ -54,7 +54,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set-label btrfs failed");
+	    ST_THROW(Exception("set-label btrfs failed"));
     }
 
 }

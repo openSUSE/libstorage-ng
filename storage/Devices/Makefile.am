@@ -33,6 +33,10 @@ libdevices_la_SOURCES =					\
 	BtrfsImpl.h		BtrfsImpl.cc		\
 	Xfs.h			Xfs.cc			\
 	XfsImpl.h		XfsImpl.cc		\
+	Ntfs.h			Ntfs.cc			\
+	NtfsImpl.h		NtfsImpl.cc		\
+	Vfat.h			Vfat.cc			\
+	VfatImpl.h		VfatImpl.cc		\
 	Swap.h			Swap.cc			\
 	SwapImpl.h		SwapImpl.cc
 

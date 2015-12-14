@@ -108,7 +108,7 @@ namespace storage
 	vector<vertex_descriptor> siblings(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> descendants(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself) const;
-	vector<vertex_descriptor> leafs(vertex_descriptor vertex, bool itself) const;
+	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
 
 	template <typename Type>

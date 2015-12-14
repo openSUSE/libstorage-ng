@@ -8,6 +8,7 @@
 #include <vector>
 #include <map>
 #include <memory>
+#include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Exception.h"
 
@@ -44,7 +45,7 @@ namespace storage
     /// derived from BlkDevice which has a device name, major and minor number,
     /// udev path and udev ids.
 
-    class Device
+    class Device : private boost::noncopyable
     {
 
     public:
@@ -82,8 +83,8 @@ namespace storage
 	std::vector<Device*> get_ancestors(bool itself);
 	std::vector<const Device*> get_ancestors(bool itself) const;
 
-	std::vector<Device*> get_leafs(bool itself);
-	std::vector<const Device*> get_leafs(bool itself) const;
+	std::vector<Device*> get_leaves(bool itself);
+	std::vector<const Device*> get_leaves(bool itself) const;
 
 	std::vector<Device*> get_roots(bool itself);
 	std::vector<const Device*> get_roots(bool itself) const;
