@@ -95,8 +95,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
     BOOST_CHECK_EQUAL(sort(sda1->get_ancestors(false)), sort({ sda }));
     BOOST_CHECK_EQUAL(sort(system->get_ancestors(true)), sort({ system, sda1, sda, sdb1, sdb }));
 
-    BOOST_CHECK_EQUAL(sort(sda->get_leafs(false)), sort({ sda2, system_root, system_swap, system_home }));
-    BOOST_CHECK_EQUAL(sort(system->get_leafs(false)), sort({ system_root, system_swap, system_home }));
+    BOOST_CHECK_EQUAL(sort(sda->get_leaves(false)), sort({ sda2, system_root, system_swap, system_home }));
+    BOOST_CHECK_EQUAL(sort(system->get_leaves(false)), sort({ system_root, system_swap, system_home }));
 
     BOOST_CHECK_EQUAL(sort(sda1->get_roots(false)), sort({ sda }));
     BOOST_CHECK_EQUAL(sort(system_swap->get_roots(false)), sort({ sda, sdb }));

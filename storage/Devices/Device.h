@@ -82,8 +82,8 @@ namespace storage
 	std::vector<Device*> get_ancestors(bool itself);
 	std::vector<const Device*> get_ancestors(bool itself) const;
 
-	std::vector<Device*> get_leafs(bool itself);
-	std::vector<const Device*> get_leafs(bool itself) const;
+	std::vector<Device*> get_leaves(bool itself);
+	std::vector<const Device*> get_leaves(bool itself) const;
 
 	std::vector<Device*> get_roots(bool itself);
 	std::vector<const Device*> get_roots(bool itself) const;

@@ -218,22 +218,22 @@ namespace storage
 
 
     vector<const Device*>
-    Device::get_leafs(bool itself) const
+    Device::get_leaves(bool itself) const
     {
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leafs(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leaves(vertex, itself));
     }
 
 
     vector<Device*>
-    Device::get_leafs(bool itself)
+    Device::get_leaves(bool itself)
     {
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leafs(vertex, itself));
+	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leaves(vertex, itself));
     }
 
 

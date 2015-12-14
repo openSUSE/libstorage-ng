@@ -356,7 +356,7 @@ namespace storage
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
-    Devicegraph::Impl::leafs(vertex_descriptor vertex, bool itself) const
+    Devicegraph::Impl::leaves(vertex_descriptor vertex, bool itself) const
     {
 	vector<vertex_descriptor> ret;
 

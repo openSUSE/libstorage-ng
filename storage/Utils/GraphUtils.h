@@ -37,19 +37,19 @@ namespace storage
     {
     public:
 
-	vertex_recorder(bool only_leafs, vector<Vertex>& vertices)
-	    : only_leafs(only_leafs), vertices(vertices) {}
+	vertex_recorder(bool only_leaves, vector<Vertex>& vertices)
+	    : only_leaves(only_leaves), vertices(vertices) {}
 
 	template<typename Graph>
 	void discover_vertex(Vertex v, const Graph& g) const
 	{
-	    if (!only_leafs || out_degree(v, g) == 0)
+	    if (!only_leaves || out_degree(v, g) == 0)
 		vertices.push_back(v);
 	}
 
     protected:
 
-	bool only_leafs;
+	bool only_leaves;
 
 	vector<Vertex>& vertices;
 
