@@ -96,6 +96,30 @@ namespace storage
     }
 
 
+    size_t
+    Device::Impl::num_children() const
+    {
+	return devicegraph->get_impl().num_children(vertex);
+    }
+
+
+    size_t
+    Device::Impl::num_parents() const
+    {
+	return devicegraph->get_impl().num_parents(vertex);
+    }
+
+
+    void
+    Device::Impl::remove_descendants()
+    {
+	Devicegraph::Impl& devicegraph_impl = devicegraph->get_impl();
+
+	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false))
+	    devicegraph_impl.remove_vertex(descendant);
+    }
+
+
     void
     Device::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {

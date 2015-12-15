@@ -60,6 +60,8 @@ namespace storage
 	Device* get_device() { return devicegraph->get_impl()[vertex]; }
 	const Device* get_device() const { return devicegraph->get_impl()[vertex]; }
 
+	void remove_descendants();
+
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
@@ -77,6 +79,9 @@ namespace storage
 
 	virtual Text do_delete_text(bool doing) const;
 	virtual void do_delete() const;
+
+	size_t num_children() const;
+	size_t num_parents() const;
 
 	template<typename Type>
 	Type* get_single_child_of_type()

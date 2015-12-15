@@ -11,6 +11,7 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageTypes.h"
@@ -127,8 +128,8 @@ namespace storage
     PartitionTable*
     Disk::Impl::create_partition_table(PtType pt_type)
     {
-	if (get_device()->num_children() != 0)
-	    throw runtime_error("disk has children");
+	if (num_children() != 0)
+	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
 
 	PartitionTable* ret = nullptr;
 
@@ -143,7 +144,7 @@ namespace storage
 		break;
 
 	    default:
-		throw;
+		ST_THROW(NotImplementedException("unimplemented partition table type " + toString(pt_type)));
 	}
 
 	User::create(get_devicegraph(), get_device(), ret);
