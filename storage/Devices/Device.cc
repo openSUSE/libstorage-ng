@@ -257,6 +257,13 @@ namespace storage
     }
 
 
+    void
+    Device::remove_descendants()
+    {
+	get_impl().remove_descendants();
+    }
+
+
     const map<string, string>&
     Device::get_userdata() const
     {

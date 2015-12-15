@@ -89,6 +89,8 @@ namespace storage
 	std::vector<Device*> get_roots(bool itself);
 	std::vector<const Device*> get_roots(bool itself) const;
 
+	void remove_descendants();
+
 	const std::map<std::string, std::string>& get_userdata() const;
 	void set_userdata(const std::map<std::string, std::string>& userdata);
 

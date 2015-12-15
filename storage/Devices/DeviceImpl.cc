@@ -97,6 +97,16 @@ namespace storage
 
 
     void
+    Device::Impl::remove_descendants()
+    {
+	Devicegraph::Impl& devicegraph_impl = devicegraph->get_impl();
+
+	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false))
+	    devicegraph_impl.remove_vertex(descendant);
+    }
+
+
+    void
     Device::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
