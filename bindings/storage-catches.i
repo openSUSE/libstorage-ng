@@ -61,6 +61,8 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table() const;
 
+%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Disk::create_partition_table(PtType);
+
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
