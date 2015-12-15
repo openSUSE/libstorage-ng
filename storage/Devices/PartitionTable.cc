@@ -58,6 +58,13 @@ namespace storage
     }
 
 
+    PtType
+    PartitionTable::get_type() const
+    {
+	return get_impl().get_type();
+    }
+
+
     Partition*
     PartitionTable::create_partition(const string& name, const Region& region, PartitionType type)
     {
