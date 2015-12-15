@@ -80,6 +80,9 @@ namespace storage
 	virtual Text do_delete_text(bool doing) const;
 	virtual void do_delete() const;
 
+	size_t num_children() const;
+	size_t num_parents() const;
+
 	template<typename Type>
 	Type* get_single_child_of_type()
 	{

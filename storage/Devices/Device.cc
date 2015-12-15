@@ -100,20 +100,14 @@ namespace storage
     size_t
     Device::num_children() const
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
-
-	return devicegraph->get_impl().num_children(vertex);
+	return get_impl().num_children();
     }
 
 
     size_t
     Device::num_parents() const
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
-
-	return devicegraph->get_impl().num_parents(vertex);
+	return get_impl().num_parents();
     }
 
 
