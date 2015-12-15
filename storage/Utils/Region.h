@@ -70,7 +70,10 @@ namespace storage
 	Region(unsigned long long start, unsigned long long length, unsigned int block_size);
 	Region(const RegionInfo& region_info, unsigned int block_size)
 	    : Region(region_info.start, region_info.len, block_size) {} // legacy
+	Region(const Region& region);
 	~Region();
+
+	Region& operator=(const Region& region);
 
 	bool empty() const;
 

@@ -128,6 +128,36 @@ BOOST_AUTO_TEST_CASE(test_comparisons)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_copy_constructor)
+{
+    Region a(0, 10, 1);
+
+    Region b(a);
+    b.set_start(1);
+
+    BOOST_CHECK_EQUAL(a.get_start(), 0);
+    BOOST_CHECK_EQUAL(b.get_start(), 1);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_copy_assignment)
+{
+    Region a(0, 10, 1);
+
+    Region b;
+    (b = a).set_start(1);
+
+    BOOST_CHECK_EQUAL(a.get_start(), 0);
+    BOOST_CHECK_EQUAL(b.get_start(), 1);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_invalid_block_size)
+{
+    BOOST_CHECK_THROW(Region a(1, 2, 0), InvalidBlockSize);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_different_block_size)
 {
     Region a(0, 100, 1);

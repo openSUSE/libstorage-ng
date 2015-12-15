@@ -56,8 +56,22 @@ namespace storage
     }
 
 
+    Region::Region(const Region& region)
+	: impl(new Impl(region.get_impl()))
+    {
+    }
+
+
     Region::~Region()
     {
+    }
+
+
+    Region&
+    Region::operator=(const Region& region)
+    {
+	impl.reset(new Impl(region.get_impl()));
+	return *this;
     }
 
 
