@@ -28,6 +28,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return "gpt"; }
 
+	virtual PtType get_type() const override { return PtType::GPT; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;

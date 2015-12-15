@@ -33,6 +33,8 @@ namespace storage
 
 	void delete_partition(const string& name);
 
+	virtual PtType get_type() const = 0;
+
 	Partition* get_partition(const string& name);
 
 	vector<const Partition*> get_partitions() const;
