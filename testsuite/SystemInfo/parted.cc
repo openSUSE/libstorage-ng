@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
     };
 
     vector<string> output = {
-	"device:/dev/sda label:msdos geometry:[121601, 255, 63, 512 B]",
+	"device:/dev/sda label:MSDOS geometry:[121601, 255, 63, 512 B]",
 	"num:1 cylRegion:[0, 132, 8225280 B] secRegion:[2048, 2103296, 512 B] type:primary id:131 boot",
 	"num:2 cylRegion:[131, 117488, 8225280 B] secRegion:[2105344, 1887442944, 512 B] type:primary id:142"
     };
@@ -110,7 +110,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
     };
 
     vector<string> output = {
-	"device:/dev/sdb label:gpt geometry:[60801, 255, 63, 512 B]",
+	"device:/dev/sdb label:GPT geometry:[60801, 255, 63, 512 B]",
 	"num:1 cylRegion:[0, 64, 8225280 B] secRegion:[2048, 1026048, 512 B] type:primary id:12",
 	"num:2 cylRegion:[63, 65, 8225280 B] secRegion:[1028096, 1028096, 512 B] type:primary id:131 boot",
 	"num:3 cylRegion:[127, 18243, 8225280 B] secRegion:[2056192, 293042176, 512 B] type:primary id:131",
@@ -153,7 +153,7 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good)
     };
 
     vector<string> output = {
-	"device:/dev/dasda label:dasd geometry:[178079, 15, 12, 512 B]",
+	"device:/dev/dasda label:DASD geometry:[178079, 15, 12, 512 B]",
 	"num:1 cylRegion:[1, 23303, 92160 B] secRegion:[192, 4194528, 512 B] type:primary id:130",
 	"num:2 cylRegion:[23304, 2280, 92160 B] secRegion:[4194720, 410400, 512 B] type:primary id:131",
 	"num:3 cylRegion:[25584, 152495, 92160 B] secRegion:[4605120, 27449280, 512 B] type:primary id:131"
@@ -217,7 +217,7 @@ BOOST_AUTO_TEST_CASE(parse_dasd_implicit_good)
     };
 
     vector<string> output = {
-	"device:/dev/dasdc label:dasd geometry:[244, 16, 128, 512 B] implicit",
+	"device:/dev/dasdc label:DASD geometry:[244, 16, 128, 512 B] implicit",
 	"num:1 cylRegion:[0, 244, 1048576 B] secRegion:[2, 499998, 512 B] type:primary id:131"
     };
 
