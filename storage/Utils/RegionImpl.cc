@@ -82,6 +82,15 @@ namespace storage
     }
 
 
+    unsigned long long
+    Region::Impl::to_value(unsigned long long kb) const
+    {
+	assert_valid_block_size();
+
+	return kb * 1024 / block_size;
+    }
+
+
     bool
     Region::Impl::operator==(const Impl& rhs) const
     {

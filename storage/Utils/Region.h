@@ -88,6 +88,7 @@ namespace storage
 	void set_block_size(unsigned int block_size);
 
 	unsigned long long to_kb(unsigned long long value) const;
+	unsigned long long to_value(unsigned long long kb) const;
 
 	bool operator==(const Region& rhs) const;
 	bool operator!=(const Region& rhs) const;

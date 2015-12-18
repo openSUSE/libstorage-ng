@@ -38,6 +38,8 @@ BOOST_AUTO_TEST_CASE(test_block_size_512)
     BOOST_CHECK_EQUAL(region.to_kb(region.get_start()), 1024);
     BOOST_CHECK_EQUAL(region.to_kb(region.get_length()), 801792);
     BOOST_CHECK_EQUAL(region.to_kb(region.get_end()), 802815);
+
+    BOOST_CHECK_EQUAL(region.to_value(1024), region.get_start());
 }
 
 
@@ -56,6 +58,8 @@ BOOST_AUTO_TEST_CASE(test_block_size_4096)
     BOOST_CHECK_EQUAL(region.to_kb(region.get_start()), 1024);
     BOOST_CHECK_EQUAL(region.to_kb(region.get_length()), 261120);
     BOOST_CHECK_EQUAL(region.to_kb(region.get_end()), 262140);
+
+    BOOST_CHECK_EQUAL(region.to_value(1024), region.get_start());
 }
 
 
