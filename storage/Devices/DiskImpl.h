@@ -46,6 +46,8 @@ namespace storage
 
 	PtType get_default_partition_table_type() const;
 
+	std::vector<PtType> get_possible_partition_table_types() const;
+
 	static vector<string> probe_disks(SystemInfo& systeminfo);
 
 	void probe(SystemInfo& systeminfo);

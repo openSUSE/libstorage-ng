@@ -105,3 +105,5 @@ using namespace storage;
 
 %template(VectorPartitionSlot) std::vector<PartitionSlot>;
 
+%template(VectorPtType) std::vector<PtType>;
+

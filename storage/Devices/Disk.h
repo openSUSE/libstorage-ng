@@ -34,7 +34,16 @@ namespace storage
 
 	Transport get_transport() const;
 
+	/**
+	 * Get the default partition table type for the disk.
+	 */
 	PtType get_default_partition_table_type() const;
+
+	/**
+	 * Get possible partition table types for the disk. The first entry is
+	 * identical to the default partition table type for the disk.
+	 */
+	std::vector<PtType> get_possible_partition_table_types() const;
 
 	PartitionTable* create_partition_table(PtType pt_type);
 
