@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -293,6 +294,11 @@ namespace storage
 	const PartitionTable* partitiontable = get_partition_table();
 
 	const Disk* disk = partitiontable->get_disk();
+
+	// TODO
+
+	if (get_id() > 255 || !is_msdos(get_device()))
+	    return;
 
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
