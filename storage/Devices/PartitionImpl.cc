@@ -252,7 +252,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create partition failed");
+	    ST_THROW(Exception("create partition failed"));
     }
 
 
@@ -282,7 +282,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set partition id failed");
+	    ST_THROW(Exception("set partition id failed"));
     }
 
 
@@ -306,7 +306,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("delete partition failed");
+	    ST_THROW(Exception("delete partition failed"));
     }
 
 
