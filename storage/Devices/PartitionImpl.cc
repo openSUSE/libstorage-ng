@@ -242,8 +242,26 @@ namespace storage
 
 	if (get_type() != EXTENDED)
 	{
-	    // TODO look at id
-	    cmd_line += "ext2 ";
+	    switch (get_id())
+	    {
+		case ID_SWAP:
+		    cmd_line += "linux-swap ";
+		    break;
+
+		case ID_GPT_BOOT:
+		case ID_DOS16:
+		case ID_DOS32:
+		    cmd_line += "fat32 ";
+		    break;
+
+		case ID_APPLE_HFS:
+		    cmd_line += "hfs ";
+		    break;
+
+		default:
+		    cmd_line += "ext2 ";
+		    break;
+	    }
 	}
 
 	cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
