@@ -123,7 +123,7 @@ namespace storage
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
 
 	unsigned long long int num_sectors = geometry.kbToSector(get_size_k());
-	bool size_ok_for_msdos = num_sectors <= (1ULL << 32) - 1;
+	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
 	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
 
 	PtType best = PtType::MSDOS;
