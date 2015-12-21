@@ -249,10 +249,17 @@ namespace storage
 		    cmd_line += "linux-swap ";
 		    break;
 
-		case ID_GPT_BOOT:
 		case ID_DOS16:
+		    cmd_line += "fat16 ";
+		    break;
+
+		case ID_GPT_BOOT:
 		case ID_DOS32:
 		    cmd_line += "fat32 ";
+		    break;
+
+		case ID_NTFS:
+		    cmd_line += "ntfs ";
 		    break;
 
 		case ID_APPLE_HFS:
