@@ -16,7 +16,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<PtType>::names({
-	"unknown", "loop", "MSDOS", "GPT", "DASD", "mac"
+	"unknown", "loop", "MS-DOS", "GPT", "DASD", "Mac"
     });
 
 

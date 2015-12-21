@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
     };
 
     vector<string> output = {
-	"device:/dev/sda label:MSDOS geometry:[121601, 255, 63, 512 B]",
+	"device:/dev/sda label:MS-DOS geometry:[121601, 255, 63, 512 B]",
 	"num:1 cylRegion:[0, 132, 8225280 B] secRegion:[2048, 2103296, 512 B] type:primary id:131 boot",
 	"num:2 cylRegion:[131, 117488, 8225280 B] secRegion:[2105344, 1887442944, 512 B] type:primary id:142"
     };
