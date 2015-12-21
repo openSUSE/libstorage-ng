@@ -95,6 +95,13 @@ namespace storage
     }
 
 
+    std::vector<PtType>
+    Disk::get_possible_partition_table_types() const
+    {
+	return get_impl().get_possible_partition_table_types();
+    }
+
+
     vector<Disk*>
     Disk::get_all(Devicegraph* devicegraph)
     {

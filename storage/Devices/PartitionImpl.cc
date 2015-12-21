@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -242,8 +243,33 @@ namespace storage
 
 	if (get_type() != EXTENDED)
 	{
-	    // TODO look at id
-	    cmd_line += "ext2 ";
+	    switch (get_id())
+	    {
+		case ID_SWAP:
+		    cmd_line += "linux-swap ";
+		    break;
+
+		case ID_DOS16:
+		    cmd_line += "fat16 ";
+		    break;
+
+		case ID_GPT_BOOT:
+		case ID_DOS32:
+		    cmd_line += "fat32 ";
+		    break;
+
+		case ID_NTFS:
+		    cmd_line += "ntfs ";
+		    break;
+
+		case ID_APPLE_HFS:
+		    cmd_line += "hfs ";
+		    break;
+
+		default:
+		    cmd_line += "ext2 ";
+		    break;
+	    }
 	}
 
 	cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
@@ -252,7 +278,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("create partition failed");
+	    ST_THROW(Exception("create partition failed"));
     }
 
 
@@ -276,13 +302,18 @@ namespace storage
 
 	const Disk* disk = partitiontable->get_disk();
 
+	// TODO
+
+	if (get_id() > 255 || !is_msdos(get_device()))
+	    return;
+
 	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("set partition id failed");
+	    ST_THROW(Exception("set partition id failed"));
     }
 
 
@@ -306,7 +337,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    throw runtime_error("delete partition failed");
+	    ST_THROW(Exception("delete partition failed"));
     }
 
 

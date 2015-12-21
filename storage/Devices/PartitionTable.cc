@@ -12,6 +12,13 @@ namespace storage
     using namespace std;
 
 
+    string
+    get_pt_type_name(PtType pt_type)
+    {
+	return toString(pt_type);
+    }
+
+
     PartitionSlot::PartitionSlot()
 	: region(), nr(0), name(), primary_slot(false), primary_possible(false),
 	  extended_slot(false), extended_possible(false), logical_slot(false),

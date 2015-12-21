@@ -5,6 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Partition.h"
@@ -18,6 +19,15 @@ using namespace std;
 using namespace storage;
 
 
+namespace std
+{
+    ostream& operator<<(ostream& s, PtType pt_type)
+    {
+	return s << toString(pt_type);
+    }
+}
+
+
 BOOST_AUTO_TEST_CASE(test1)
 {
     storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -29,7 +39,10 @@ BOOST_AUTO_TEST_CASE(test1)
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(320 * 1024 * 1024); // 320 GiB
 
-    BOOST_CHECK(sda->get_default_partition_table_type() == PtType::MSDOS);
+    BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::MSDOS);
+
+    BOOST_CHECK_EQUAL(sda->get_possible_partition_table_types(),
+		      vector<PtType>({ PtType::MSDOS, PtType::GPT }));
 }
 
 
@@ -44,7 +57,9 @@ BOOST_AUTO_TEST_CASE(test2)
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(3ULL * 1024 * 1024 * 1024); // 3 TiB
 
-    BOOST_CHECK(sda->get_default_partition_table_type() == PtType::GPT);
+    BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
+
+    BOOST_CHECK_EQUAL(sda->get_possible_partition_table_types(), vector<PtType>({ PtType::GPT }));
 }
 
 
@@ -60,5 +75,8 @@ BOOST_AUTO_TEST_CASE(test3)
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->get_impl().set_size_k(320 * 1024 * 1024); // 320 GiB
 
-    BOOST_CHECK(sda->get_default_partition_table_type() == PtType::GPT);
+    BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
+
+    BOOST_CHECK_EQUAL(sda->get_possible_partition_table_types(),
+		      vector<PtType>({ PtType::GPT, PtType::MSDOS }));
 }

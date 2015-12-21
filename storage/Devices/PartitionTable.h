@@ -19,6 +19,8 @@ namespace storage
 	PT_UNKNOWN, PT_LOOP, MSDOS, GPT, DASD, MAC
     };
 
+    std::string get_pt_type_name(PtType pt_type);
+
 
     struct PartitionSlot
     {

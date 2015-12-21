@@ -107,19 +107,39 @@ namespace storage
     PtType
     Disk::Impl::get_default_partition_table_type() const
     {
-	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
-
-	PtType ret = PtType::MSDOS;
-
-	unsigned long long int num_sectors = geometry.kbToSector(get_size_k());
-	y2mil("num_sectors:" << num_sectors);
-
-	if (arch.is_efiboot() || arch.is_ia64())
-	    ret = PtType::GPT;
-	else if (num_sectors > (1ULL << 32) - 1)
-	    ret = PtType::GPT;
+	PtType ret = get_possible_partition_table_types().front();
 
 	y2mil("ret:" << toString(ret));
+
+	return ret;
+    }
+
+
+    std::vector<PtType>
+    Disk::Impl::get_possible_partition_table_types() const
+    {
+	// TODO other archs
+
+	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
+
+	unsigned long long int num_sectors = geometry.kbToSector(get_size_k());
+	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
+	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
+
+	PtType best = PtType::MSDOS;
+
+	if (arch.is_efiboot() || arch.is_ia64() || !size_ok_for_msdos)
+	    best = PtType::GPT;
+
+	vector<PtType> ret = { best };
+
+	if (best == PtType::MSDOS)
+	    ret.push_back(PtType::GPT);
+
+	// For a small disk attached to a EFI machine MSDOS is possible
+	// (e.g. use-case USB stick).
+	if (best == PtType::GPT && size_ok_for_msdos)
+	    ret.push_back(PtType::MSDOS);
 
 	return ret;
     }

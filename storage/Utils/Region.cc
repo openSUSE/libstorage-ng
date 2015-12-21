@@ -152,6 +152,13 @@ namespace storage
     }
 
 
+    unsigned long long
+    Region::to_value(unsigned long long kb) const
+    {
+	return get_impl().to_value(kb);
+    }
+
+
     bool
     Region::operator==(const Region& rhs) const
     {
