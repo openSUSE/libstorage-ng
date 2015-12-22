@@ -325,59 +325,64 @@ namespace storage
     }
 
 
-    struct write_graph
+    namespace
     {
-	write_graph(const Actiongraph::Impl&) {}
 
-	void operator()(ostream& out) const
+	struct write_graph
 	{
-	    out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << endl;
-	}
-    };
+	    write_graph(const Actiongraph::Impl&) {}
 
-
-    struct write_vertex
-    {
-	write_vertex(const Actiongraph::Impl& actiongraph, bool details)
-	    : actiongraph(actiongraph), details(details) {}
-
-	const Actiongraph::Impl& actiongraph;
-	const bool details;
-
-	void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& v) const
-	{
-	    const Action::Base* action = actiongraph[v];
-
-	    string label = action->text(actiongraph, false).text;
-
-	    if (details)
+	    void operator()(ostream& out) const
 	    {
-		label += "\\n" "sid:" + to_string(action->sid);
-
-		label += " [";
-		if (action->first)
-		    label += "f";
-		if (action->last)
-		    label += "l";
-		label += "]";
+		out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << endl;
 	    }
+	};
 
-	    out << "[ label=" << boost::escape_dot_string(label);
 
-	    if (dynamic_cast<const Action::Nop*>(action))
-		out << ", color=\"#000000\", fillcolor=\"#cccccc\"";
-	    else if (dynamic_cast<const Action::Create*>(action))
-		out << ", color=\"#00ff00\", fillcolor=\"#ccffcc\"";
-	    else if (dynamic_cast<const Action::Modify*>(action))
-		out << ", color=\"#0000ff\", fillcolor=\"#ccccff\"";
-	    else if (dynamic_cast<const Action::Delete*>(action))
-		out << ", color=\"#ff0000\", fillcolor=\"#ffcccc\"";
-	    else
-		ST_THROW(LogicException("unknown Action::Base subclass"));
+	struct write_vertex
+	{
+	    write_vertex(const Actiongraph::Impl& actiongraph, bool details)
+		: actiongraph(actiongraph), details(details) {}
 
-	    out << " ]";
-	}
-    };
+	    const Actiongraph::Impl& actiongraph;
+	    const bool details;
+
+	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& v) const
+	    {
+		const Action::Base* action = actiongraph[v];
+
+		string label = action->text(actiongraph, false).text;
+
+		if (details)
+		{
+		    label += "\\n" "sid:" + to_string(action->sid);
+
+		    label += " [";
+		    if (action->first)
+			label += "f";
+		    if (action->last)
+			label += "l";
+		    label += "]";
+		}
+
+		out << "[ label=" << boost::escape_dot_string(label);
+
+		if (dynamic_cast<const Action::Nop*>(action))
+		    out << ", color=\"#000000\", fillcolor=\"#cccccc\"";
+		else if (dynamic_cast<const Action::Create*>(action))
+		    out << ", color=\"#00ff00\", fillcolor=\"#ccffcc\"";
+		else if (dynamic_cast<const Action::Modify*>(action))
+		    out << ", color=\"#0000ff\", fillcolor=\"#ccccff\"";
+		else if (dynamic_cast<const Action::Delete*>(action))
+		    out << ", color=\"#ff0000\", fillcolor=\"#ffcccc\"";
+		else
+		    ST_THROW(LogicException("unknown Action::Base subclass"));
+
+		out << " ]";
+	    }
+	};
+
+    }
 
 
     void
