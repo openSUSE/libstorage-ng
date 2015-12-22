@@ -56,6 +56,8 @@ namespace storage
 
 	bool empty() const;
 
+	size_t num_actions() const;
+
 	vertex_descriptor add_vertex(Action::Base* action);
 
 	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b);

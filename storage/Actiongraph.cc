@@ -34,6 +34,13 @@ namespace storage
     }
 
 
+    size_t
+    Actiongraph::num_actions() const
+    {
+	return get_impl().num_actions();
+    }
+
+
     vector<const Action::Base*>
     Actiongraph::get_commit_actions() const
     {
