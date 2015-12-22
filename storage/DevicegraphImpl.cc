@@ -523,79 +523,84 @@ namespace storage
     }
 
 
-    struct write_graph
+    namespace
     {
-	write_graph(const Devicegraph::Impl&) {}
 
-	void operator()(ostream& out) const
+	struct write_graph
 	{
-	    out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << endl;
-	    out << "edge [ color=\"#444444\" ];" << endl;
-	}
-    };
+	    write_graph(const Devicegraph::Impl&) {}
 
-
-    struct write_vertex
-    {
-	write_vertex(const Devicegraph::Impl& devicegraph, bool details)
-	    : devicegraph(devicegraph), details(details) {}
-
-	const Devicegraph::Impl& devicegraph;
-	const bool details;
-
-	void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
-	{
-	    const Device* device = devicegraph[v];
-
-	    string label = device->get_displayname();
-
-	    if (details)
+	    void operator()(ostream& out) const
 	    {
-		label += "\\n" "sid:" + to_string(device->get_sid());
+		out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << endl;
+		out << "edge [ color=\"#444444\" ];" << endl;
 	    }
-
-	    out << "[ label=" << boost::escape_dot_string(label);
-
-	    if (is_disk(device))
-		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (is_partition_table(device))
-		out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-	    else if (is_partition(device))
-		out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
-	    else if (is_lvm_vg(device))
-		out << ", color=\"#0000ff\", fillcolor=\"#aaaaff\"";
-	    else if (is_lvm_lv(device))
-		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (is_encryption(device))
-		out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-	    else if (is_filesystem(device))
-		out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
-	    else
-		ST_THROW(LogicException("unknown Device subclass"));
-
-	    out << " ]";
-	}
-    };
+	};
 
 
-    struct write_edge
-    {
-	write_edge(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
-
-	const Devicegraph::Impl& devicegraph;
-
-	void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& e) const
+	struct write_vertex
 	{
-	    const Holder* holder = devicegraph[e];
+	    write_vertex(const Devicegraph::Impl& devicegraph, bool details)
+		: devicegraph(devicegraph), details(details) {}
 
-	    if (is_subdevice(holder))
-		out << "[ style=solid ]";
-	    else if (is_user(holder))
-		out << "[ style=dotted ]";
-	    else
-		ST_THROW(LogicException("unknown Holder subclass"));
-	}
-    };
+	    const Devicegraph::Impl& devicegraph;
+	    const bool details;
+
+	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
+	    {
+		const Device* device = devicegraph[v];
+
+		string label = device->get_displayname();
+
+		if (details)
+		{
+		    label += "\\n" "sid:" + to_string(device->get_sid());
+		}
+
+		out << "[ label=" << boost::escape_dot_string(label);
+
+		if (is_disk(device))
+		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
+		else if (is_partition_table(device))
+		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
+		else if (is_partition(device))
+		    out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
+		else if (is_lvm_vg(device))
+		    out << ", color=\"#0000ff\", fillcolor=\"#aaaaff\"";
+		else if (is_lvm_lv(device))
+		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
+		else if (is_encryption(device))
+		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
+		else if (is_filesystem(device))
+		    out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
+		else
+		    ST_THROW(LogicException("unknown Device subclass"));
+
+		out << " ]";
+	    }
+	};
+
+
+	struct write_edge
+	{
+	    write_edge(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
+
+	    const Devicegraph::Impl& devicegraph;
+
+	    void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& e) const
+	    {
+		const Holder* holder = devicegraph[e];
+
+		if (is_subdevice(holder))
+		    out << "[ style=solid ]";
+		else if (is_user(holder))
+		    out << "[ style=dotted ]";
+		else
+		    ST_THROW(LogicException("unknown Holder subclass"));
+	    }
+	};
+
+    }
 
 
     void
