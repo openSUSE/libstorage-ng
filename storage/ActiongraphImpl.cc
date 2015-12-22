@@ -50,6 +50,13 @@ namespace storage
     }
 
 
+    size_t
+    Actiongraph::Impl::num_actions() const
+    {
+	return boost::num_vertices(graph);
+    }
+
+
     Actiongraph::Impl::vertex_descriptor
     Actiongraph::Impl::add_vertex(Action::Base* action)
     {

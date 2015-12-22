@@ -42,6 +42,8 @@ namespace storage
 
 	bool empty() const;
 
+	size_t num_actions() const;
+
 	std::vector<const Action::Base*> get_commit_actions() const;
 
 	// TODO add Action to the public interface and use get_commit_actions instead
