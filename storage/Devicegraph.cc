@@ -311,12 +311,13 @@ namespace storage
 	{
 	    // look for cycles
 
-	    Haha<Impl::graph_t> haha(get_impl().graph);
+	    VertexIndexMapGenerator<Impl::graph_t> vertex_index_map_generator(get_impl().graph);
 
 	    bool has_cycle = false;
 
-	    cycle_detector vis(has_cycle);
-	    boost::depth_first_search(get_impl().graph, visitor(vis).vertex_index_map(haha.get()));
+	    CycleDetector cycle_detector(has_cycle);
+	    boost::depth_first_search(get_impl().graph, visitor(cycle_detector).
+				      vertex_index_map(vertex_index_map_generator.get()));
 
 	    if (has_cycle)
 		cerr << "graph has a cycle" << endl;
@@ -343,12 +344,13 @@ namespace storage
     {
 	dest.get_impl().clear();
 
-	Haha<Impl::graph_t> haha(get_impl().graph);
+	VertexIndexMapGenerator<Impl::graph_t> vertex_index_map_generator(get_impl().graph);
 
 	CloneCopier copier(*this, dest);
 
 	boost::copy_graph(get_impl().graph, dest.get_impl().graph,
-			  vertex_index_map(haha.get()).vertex_copy(copier).edge_copy(copier));
+			  vertex_index_map(vertex_index_map_generator.get()).
+			  vertex_copy(copier).edge_copy(copier));
     }
 
 
