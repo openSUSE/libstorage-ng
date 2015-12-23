@@ -243,17 +243,17 @@ namespace storage
 
 	// TODO code below only works with vecS and is maybe not so clean
 
-	for (size_t v = 0; v < num_actions(); ++v)
+	for (size_t vertex = 0; vertex < num_actions(); ++vertex)
 	{
-	    if (!operator[](v)->only_sync)
+	    if (!(*this)[vertex]->only_sync)
 		continue;
 
-	    for (vertex_descriptor v1 : parents(v))
-		for (vertex_descriptor v2 : children(v))
-		    add_edge(v1, v2);
+	    for (vertex_descriptor parent : parents(vertex))
+		for (vertex_descriptor child : children(vertex))
+		    add_edge(parent, child);
 
-	    clear_vertex(v, graph);
-	    remove_vertex(v--, graph);
+	    clear_vertex(vertex, graph);
+	    remove_vertex(vertex--, graph);
 	}
     }
 
