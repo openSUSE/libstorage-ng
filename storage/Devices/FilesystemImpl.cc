@@ -231,7 +231,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph->get_impl().getDevices<BlkDevice>(devicegraph->get_impl().parents(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<BlkDevice>(devicegraph->get_impl().parents(vertex));
     }
 
 

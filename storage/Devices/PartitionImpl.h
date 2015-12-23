@@ -113,6 +113,8 @@ namespace storage
 
     string id_to_string(unsigned int id);
 
+    bool compare_by_number(const Partition* lhs, const Partition* rhs);
+
 }
 
 #endif

@@ -35,22 +35,14 @@ namespace storage
     vector<Filesystem*>
     Filesystem::get_all(Devicegraph* devicegraph)
     {
-	auto pred = [](Device* device) {
-	    return to_filesystem(device);
-	};
-
-	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
+	return devicegraph->get_impl().get_devices_of_type<Filesystem>();
     }
 
 
     vector<const Filesystem*>
     Filesystem::get_all(const Devicegraph* devicegraph)
     {
-	auto pred = [](const Device* device) {
-	    return to_filesystem(device);
-	};
-
-	return devicegraph->get_impl().getDevicesIf<const Filesystem>(pred);
+	return devicegraph->get_impl().get_devices_of_type<const Filesystem>();
     }
 
 
@@ -166,7 +158,7 @@ namespace storage
 	    return filesystem->get_label() == label;
 	};
 
-	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
+	return devicegraph->get_impl().get_devices_of_type_if<Filesystem>(pred);
     }
 
 
@@ -177,7 +169,7 @@ namespace storage
 	    return contains(filesystem->get_mountpoints(), mountpoint);
 	};
 
-	return devicegraph->get_impl().getDevicesIf<Filesystem>(pred);
+	return devicegraph->get_impl().get_devices_of_type_if<Filesystem>(pred);
     }
 
 

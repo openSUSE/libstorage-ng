@@ -111,45 +111,39 @@ namespace storage
 	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
 
-	template <typename Type>
+
+	template<typename Type>
 	vector<Type*>
-	getDevices(const vector<vertex_descriptor>& vertices) // TODO rename
+	get_devices_of_type() const
 	{
 	    vector<Type*> ret;
 
-	    for (vertex_descriptor vertex : vertices)
+	    for (vertex_descriptor vertex : vertices())
 	    {
 		Type* device = dynamic_cast<Type*>(graph[vertex].get());
-		if (!device)
-		    throw std::bad_cast();
-
-		ret.push_back(device);
+		if (device)
+		    ret.push_back(device);
 	    }
 
 	    return ret;
 	}
 
-	template <typename Type>
-	vector<const Type*>
-	getDevices(const vector<vertex_descriptor>& vertices) const // TODO rename
-	{
-	    vector<const Type*> ret;
 
-	    for (vertex_descriptor vertex : vertices)
-	    {
-		const Type* device = dynamic_cast<const Type*>(graph[vertex].get());
-		if (!device)
-		    throw std::bad_cast();
-
-		ret.push_back(device);
-	    }
-
-	    return ret;
-	}
-
-	template <typename Type, typename Predicate>
+	template <typename Type, class StrictWeakOrdering>
 	vector<Type*>
-	getDevicesIf(Predicate pred) const // TODO rename
+	get_devices_of_type(StrictWeakOrdering compare) const
+	{
+	    vector<Type*> ret = get_devices_of_type<Type>();
+
+	    sort(ret.begin(), ret.end(), compare);
+
+	    return ret;
+	}
+
+
+	template <typename Type, typename Pred>
+	vector<Type*>
+	get_devices_of_type_if(Pred pred) const
 	{
 	    vector<Type*> ret;
 
@@ -162,6 +156,77 @@ namespace storage
 
 	    return ret;
 	}
+
+
+	template <typename Type, typename Pred, class StrictWeakOrdering>
+	vector<Type*>
+	get_devices_of_type_if(Pred pred, StrictWeakOrdering compare) const
+	{
+	    vector<Type*> ret = get_devices_of_type_if<Type>(pred);
+
+	    sort(ret.begin(), ret.end(), compare);
+
+	    return ret;
+	}
+
+
+	template <typename Type>
+	vector<Type*>
+	filter_devices_of_type(const vector<vertex_descriptor>& vertices)
+	{
+	    vector<Type*> ret;
+
+	    for (vertex_descriptor vertex : vertices)
+	    {
+		Type* device = dynamic_cast<Type*>(graph[vertex].get());
+		if (device)
+		    ret.push_back(device);
+	    }
+
+	    return ret;
+	}
+
+
+	template <typename Type, class StrictWeakOrdering>
+	vector<Type*>
+	filter_devices_of_type(const vector<vertex_descriptor>& vertices, StrictWeakOrdering compare)
+	{
+	    vector<Type*> ret = filter_devices_of_type<Type>(vertices);
+
+	    sort(ret.begin(), ret.end(), compare);
+
+	    return ret;
+	}
+
+
+	template <typename Type>
+	vector<const Type*>
+	filter_devices_of_type(const vector<vertex_descriptor>& vertices) const
+	{
+	    vector<const Type*> ret;
+
+	    for (vertex_descriptor vertex : vertices)
+	    {
+		const Type* device = dynamic_cast<const Type*>(graph[vertex].get());
+		if (device)
+		    ret.push_back(device);
+	    }
+
+	    return ret;
+	}
+
+
+	template <typename Type, class StrictWeakOrdering>
+	vector<const Type*>
+	filter_devices_of_type(const vector<vertex_descriptor>& vertices, StrictWeakOrdering compare) const
+	{
+	    vector<const Type*> ret = filter_devices_of_type<const Type>(vertices);
+
+	    sort(ret.begin(), ret.end(), compare);
+
+	    return ret;
+	}
+
 
 	void swap(Devicegraph::Impl& x);
 

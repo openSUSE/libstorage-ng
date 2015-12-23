@@ -23,6 +23,10 @@ namespace storage
      * There is no guarantee that functions have no side effects if an
      * exception is thrown unless stated differently.
      *
+     * \section Sorting Sorting
+     *
+     * Results are unsorted unless stated differently.
+     *
      * \section Locking Locking
      *
      * During initialisation libstorage installs a global lock so that several
