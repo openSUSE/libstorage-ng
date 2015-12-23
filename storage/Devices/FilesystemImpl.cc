@@ -167,10 +167,9 @@ namespace storage
 
 	if (!get_mountpoints().empty())
 	{
-	    Action::Nop* nop = new Action::Nop(get_sid());
-	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(nop);
-
-	    last = nop;
+	    Action::Base* sync = new Action::Create(get_sid(), true);
+	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync);
+	    last = sync;
 
 	    for (const string& mountpoint : get_mountpoints())
 	    {
@@ -194,15 +193,35 @@ namespace storage
     void
     Filesystem::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	Action::Base* first = nullptr;
+	Action::Base* last = nullptr;
 
-	for (const string& mountpoint : mountpoints)
+	Action::Base* sync1 = new Action::Delete(get_sid(), true);
+	Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(sync1);
+	first = last = sync1;
+
+	if (!get_mountpoints().empty())
 	{
-	    actions.push_back(new Action::RemoveFstab(get_sid(), mountpoint));
-	    actions.push_back(new Action::Umount(get_sid(), mountpoint));
+	    Action::Base* sync2 = new Action::Delete(get_sid(), true);
+	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync2);
+	    first = sync2;
+
+	    for (const string& mountpoint : get_mountpoints())
+	    {
+		Action::RemoveFstab* remove_fstab = new Action::RemoveFstab(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_fstab);
+
+		Action::Umount* umount = new Action::Umount(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(umount);
+
+		actiongraph.add_edge(v2, t1);
+		actiongraph.add_edge(t1, t2);
+		actiongraph.add_edge(t2, v1);
+	    }
 	}
 
-	actiongraph.add_chain(actions);
+	first->first = true;
+	last->last = true;
     }
 
 

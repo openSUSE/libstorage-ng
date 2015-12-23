@@ -1,0 +1,7 @@
+1a - Remove mountpoint /test1 of /dev/sdb1 from fstab -> 1b
+1b - Unmount /dev/sdb1 at /test1 -> 3
+
+2a - Remove mountpoint /test2 of /dev/sdb1 from fstab -> 2b
+2b - Unmount /dev/sdb1 at /test2 -> 3
+
+3 - Delete partition /dev/sdb1 (38.00 MiB) ->

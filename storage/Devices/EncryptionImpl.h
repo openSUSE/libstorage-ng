@@ -60,6 +60,7 @@ namespace storage
 	    OpenEncryption(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

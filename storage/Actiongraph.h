@@ -38,8 +38,6 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const std::string& filename, bool details = false) const;
 
-	// TODO how to deal with Action::Nop in empty and get_commit_actions
-
 	bool empty() const;
 
 	size_t num_actions() const;
