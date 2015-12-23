@@ -11,22 +11,19 @@
 namespace storage
 {
 
-
     namespace Action
     {
-
-	// TODO rethink class hierarchy
 
 	class Base
 	{
 	public:
 
-	    Base(sid_t sid) : sid(sid), first(false), last(false) {}
+	    Base(sid_t sid, bool only_sync) : sid(sid), first(false), last(false), only_sync(only_sync) {}
 
 	    virtual ~Base() {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const = 0;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const {} // = 0; TODO
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const = 0;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const {}
 
@@ -35,17 +32,8 @@ namespace storage
 	    bool first;
 	    bool last;
 
-	};
-
-
-	// Used a synchronization point.
-	class Nop : public Base
-	{
-	public:
-
-	    Nop(sid_t sid) : Base(sid) {}
-
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    // Action is only used as interim synchronization point and will be removed.
+	    bool only_sync;
 
 	};
 
@@ -54,7 +42,7 @@ namespace storage
 	{
 	public:
 
-	    Create(sid_t sid) : Base(sid) {}
+	    Create(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
@@ -73,7 +61,7 @@ namespace storage
 	{
 	public:
 
-	    Modify(sid_t sid) : Base(sid) {}
+	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	protected:
 
@@ -90,7 +78,7 @@ namespace storage
 	{
 	public:
 
-	    Delete(sid_t sid) : Base(sid) {}
+	    Delete(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
@@ -104,6 +92,38 @@ namespace storage
 
 	};
 
+    }
+
+
+    template <typename Type>
+    bool is_action_of_type(const Action::Base* action)
+    {
+	static_assert(std::is_const<Type>::value, "Type must be const");
+
+	ST_CHECK_PTR(action);
+
+	return dynamic_cast<const Type*>(action);
+    }
+
+
+    inline bool
+    is_create(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Create>(action);
+    }
+
+
+    inline bool
+    is_modify(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Modify>(action);
+    }
+
+
+    inline bool
+    is_delete(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Delete>(action);
     }
 
 }

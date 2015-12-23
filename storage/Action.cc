@@ -13,13 +13,6 @@ namespace storage
     {
 
 	Text
-	Nop::text(const Actiongraph::Impl& actiongraph, bool doing) const
-	{
-	    return sformat(_("Nop [sid:%1$d]"), sid);
-	}
-
-
-	Text
 	Create::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    return device_rhs(actiongraph)->get_impl().do_create_text(doing);
@@ -82,38 +75,6 @@ namespace storage
 			if (!tmp.empty())
 			    actiongraph.add_edge(tmp.front(), v);
 		    }
-		}
-	    }
-
-	    // create order of partitions
-	    if (dynamic_cast<const Partition*>(actiongraph.get_devicegraph(RHS)->get_impl()[v_in_rhs]))
-	    {
-		vector<Devicegraph::Impl::vertex_descriptor> siblings = actiongraph.get_devicegraph(RHS)->get_impl().siblings(v_in_rhs, false);
-
-		vector<Actiongraph::Impl::vertex_descriptor> w;
-
-		for (Devicegraph::Impl::vertex_descriptor q : siblings)
-		{
-		    sid_t s_sid = actiongraph.get_devicegraph(RHS)->get_impl()[q]->get_sid();
-
-		    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
-		    {
-			sid_t a_sid = actiongraph[tmp]->sid;
-			if (s_sid == a_sid && actiongraph[tmp]->last)
-			{
-			    const Partition* p_lhs = dynamic_cast<const Partition*>(actiongraph.get_devicegraph(LHS)->get_impl()[q]);
-			    const Partition* p_rhs = dynamic_cast<const Partition*>(actiongraph.get_devicegraph(RHS)->get_impl()[v_in_rhs]);
-
-			    if (p_lhs->get_number() < p_rhs->get_number())
-				w.push_back(tmp);
-			}
-		    }
-		}
-
-		if (!w.empty())
-		{
-		    sort(w.begin(), w.end()); // TODO number sort
-		    actiongraph.add_edge(w.back(), v);
 		}
 	    }
 	}

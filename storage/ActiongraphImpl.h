@@ -45,6 +45,7 @@ namespace storage
 	typedef graph_t::edge_iterator edge_iterator;
 
 	typedef graph_t::adjacency_iterator adjacency_iterator;
+	typedef graph_t::inv_adjacency_iterator inv_adjacency_iterator;
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
@@ -69,6 +70,7 @@ namespace storage
 	boost::iterator_range<vertex_iterator> vertices() const;
 
 	boost::iterator_range<adjacency_iterator> children(vertex_descriptor vertex) const;
+	boost::iterator_range<inv_adjacency_iterator> parents(vertex_descriptor vertex) const;
 
 	Action::Base* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
 	const Action::Base* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
@@ -85,8 +87,9 @@ namespace storage
     private:
 
 	void get_actions();
-	void add_dependencies();
 	void set_special_actions();
+	void add_dependencies();
+	void remove_only_syncs();
 	void get_order();
 
 	const Storage& storage;

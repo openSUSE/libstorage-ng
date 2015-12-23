@@ -35,6 +35,7 @@ namespace storage
 	get_actions();
 	set_special_actions();
 	add_dependencies();
+	remove_only_syncs();
 
 	cout << "action graph" << endl;
 	print_graph();
@@ -127,6 +128,13 @@ namespace storage
     Actiongraph::Impl::children(vertex_descriptor vertex) const
     {
 	return boost::make_iterator_range(boost::adjacent_vertices(vertex, graph));
+    }
+
+
+    boost::iterator_range<Actiongraph::Impl::inv_adjacency_iterator>
+    Actiongraph::Impl::parents(vertex_descriptor vertex) const
+    {
+	return boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph));
     }
 
 
@@ -229,6 +237,28 @@ namespace storage
 
 
     void
+    Actiongraph::Impl::remove_only_syncs()
+    {
+	// TODO vertices are invalidated my remove_vertex, use listS?
+
+	// TODO code below only works with vecS and is maybe not so clean
+
+	for (size_t v = 0; v < num_actions(); ++v)
+	{
+	    if (!operator[](v)->only_sync)
+		continue;
+
+	    for (vertex_descriptor v1 : parents(v))
+		for (vertex_descriptor v2 : children(v))
+		    add_edge(v1, v2);
+
+	    clear_vertex(v, graph);
+	    remove_vertex(v--, graph);
+	}
+    }
+
+
+    void
     Actiongraph::Impl::get_order()
     {
 	try
@@ -260,8 +290,6 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    if (dynamic_cast<const Action::Nop*>(action))
-		continue;
 
 	    commit_actions.push_back(action);
 	}
@@ -276,8 +304,6 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    if (dynamic_cast<const Action::Nop*>(action))
-		continue;
 
 	    string text = action->text(*this, true).text;
 
@@ -374,13 +400,11 @@ namespace storage
 
 		out << "[ label=" << boost::escape_dot_string(label);
 
-		if (dynamic_cast<const Action::Nop*>(action))
-		    out << ", color=\"#000000\", fillcolor=\"#cccccc\"";
-		else if (dynamic_cast<const Action::Create*>(action))
+		if (is_create(action))
 		    out << ", color=\"#00ff00\", fillcolor=\"#ccffcc\"";
-		else if (dynamic_cast<const Action::Modify*>(action))
+		else if (is_modify(action))
 		    out << ", color=\"#0000ff\", fillcolor=\"#ccccff\"";
-		else if (dynamic_cast<const Action::Delete*>(action))
+		else if (is_delete(action))
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffcccc\"";
 		else
 		    ST_THROW(LogicException("unknown Action::Base subclass"));

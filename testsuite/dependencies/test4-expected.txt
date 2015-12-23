@@ -3,5 +3,4 @@
 
 3 - Create xfs on /dev/sdb (256.00 MiB) -> 4
 4 - Mount /dev/sdb at /test2 -> 5
-5 - Add mountpoint /test2 of /dev/sdb to fstab -> 6
-6 - Nop [sid:48] ->
+5 - Add mountpoint /test2 of /dev/sdb to fstab ->

@@ -91,6 +91,12 @@ namespace storage
 	    return encryption->get_impl().do_open_text(doing);
 	}
 
+	void
+	OpenEncryption::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    // TODO
+	}
+
     }
 
 }

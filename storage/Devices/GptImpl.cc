@@ -70,7 +70,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Nop(get_sid()));
+	actions.push_back(new Action::Delete(get_sid(), true));
 
 	actiongraph.add_chain(actions);
     }
