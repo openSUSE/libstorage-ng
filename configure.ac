@@ -1,5 +1,5 @@
 
-AC_INIT(storage/StorageInterface.h)
+AC_INIT(storage/Storage.h)
 
 VERSION=`cat ./VERSION`
 
