@@ -21,8 +21,7 @@ namespace storage
     Device::Device(Impl* impl)
 	: impl(impl)
     {
-	if (!impl)
-	    throw runtime_error("impl is nullptr");
+	ST_CHECK_PTR(impl);
     }
 
 
