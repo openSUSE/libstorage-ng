@@ -1,5 +1,5 @@
 
-AC_INIT(storage/StorageInterface.h)
+AC_INIT(storage/Storage.h)
 
 VERSION=`cat ./VERSION`
 
@@ -105,6 +105,7 @@ AC_OUTPUT(
 	testsuite/SystemInfo/Makefile
 	testsuite/probe/Makefile
 	testsuite/dependencies/Makefile
+	testsuite/sorting/Makefile
 	integration-tests/Makefile
 	integration-tests/partitions/Makefile
 	integration-tests/filesystems/Makefile

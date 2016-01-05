@@ -105,22 +105,14 @@ namespace storage
     vector<Disk*>
     Disk::get_all(Devicegraph* devicegraph)
     {
-	auto pred = [](Device* device) {
-	    return to_disk(device);
-	};
-
-	return devicegraph->get_impl().getDevicesIf<Disk>(pred);
+	return devicegraph->get_impl().get_devices_of_type<Disk>(compare_by_name);
     }
 
 
     vector<const Disk*>
     Disk::get_all(const Devicegraph* devicegraph)
     {
-	auto pred = [](const Device* device) {
-	    return to_disk(device);
-	};
-
-	return devicegraph->get_impl().getDevicesIf<const Disk>(pred);
+	return devicegraph->get_impl().get_devices_of_type<const Disk>(compare_by_name);
     }
 
 

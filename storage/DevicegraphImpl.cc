@@ -275,24 +275,18 @@ namespace storage
     vector<Devicegraph::Impl::vertex_descriptor>
     Devicegraph::Impl::children(vertex_descriptor vertex) const
     {
-	vector<vertex_descriptor> ret;
-
-	for (vertex_descriptor tmp : boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)))
-	    ret.push_back(tmp);
-
-	return ret;
+	boost::iterator_range<adjacency_iterator> range =
+	    boost::make_iterator_range(boost::adjacent_vertices(vertex, graph));
+	return vector<vertex_descriptor>(range.begin(), range.end());
     }
 
 
     vector<Devicegraph::Impl::vertex_descriptor>
     Devicegraph::Impl::parents(vertex_descriptor vertex) const
     {
-	vector<vertex_descriptor> ret;
-
-	for (vertex_descriptor tmp : boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph)))
-	    ret.push_back(tmp);
-
-	return ret;
+	boost::iterator_range<inv_adjacency_iterator> range =
+	    boost::make_iterator_range(boost::inv_adjacent_vertices(vertex, graph));
+	return vector<vertex_descriptor>(range.begin(), range.end());
     }
 
 

@@ -81,6 +81,9 @@ namespace storage
 
     };
 
+
+    bool compare_by_name(const Disk* lhs, const Disk* rhs);
+
 }
 
 #endif

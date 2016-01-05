@@ -55,17 +55,6 @@ namespace storage
 
 
     void
-    Gpt::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Create(get_sid()));
-
-	actiongraph.add_chain(actions);
-    }
-
-
-    void
     Gpt::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;

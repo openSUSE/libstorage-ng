@@ -86,6 +86,13 @@ namespace storage
     }
 
 
+    vector<Partition*>
+    PartitionTable::get_partitions()
+    {
+	return get_impl().get_partitions();
+    }
+
+
     vector<const Partition*>
     PartitionTable::get_partitions() const
     {

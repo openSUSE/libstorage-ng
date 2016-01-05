@@ -37,6 +37,7 @@ namespace storage
 
 	Partition* get_partition(const string& name);
 
+	vector<Partition*> get_partitions();
 	vector<const Partition*> get_partitions() const;
 
 	Disk* get_disk();	// TODO rename, blkdevice

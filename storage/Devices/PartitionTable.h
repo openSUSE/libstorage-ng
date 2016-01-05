@@ -52,6 +52,14 @@ namespace storage
 
 	void delete_partition(const std::string& name);
 
+	/**
+	 * Sorted by partition number.
+	 */
+	std::vector<Partition*> get_partitions();
+
+	/**
+	 * @copydoc get_partitions()
+	 */
 	std::vector<const Partition*> get_partitions() const;
 
 	Partition* get_partition(const std::string& name);

@@ -85,7 +85,7 @@ namespace storage
 
 	// TODO
 
-	for (Partition* partition : devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex)))
+	for (Partition* partition : devicegraph->get_impl().filter_devices_of_type<Partition>(devicegraph->get_impl().children(vertex)))
 	{
 	    if (partition->get_name() == name)
 	    {
@@ -126,13 +126,25 @@ namespace storage
     }
 
 
+    vector<Partition*>
+    PartitionTable::Impl::get_partitions()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
+							     compare_by_number);
+    }
+
+
     vector<const Partition*>
     PartitionTable::Impl::get_partitions() const
     {
-	const Devicegraph* devicegraph = get_devicegraph();
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph->get_impl().getDevices<Partition>(devicegraph->get_impl().children(vertex));
+	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
+							     compare_by_number);
     }
 
 

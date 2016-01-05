@@ -21,8 +21,7 @@ namespace storage
     Device::Device(Impl* impl)
 	: impl(impl)
     {
-	if (!impl)
-	    throw runtime_error("impl is nullptr");
+	ST_CHECK_PTR(impl);
     }
 
 
@@ -117,7 +116,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().children(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex));
     }
 
 
@@ -127,7 +126,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().children(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().children(vertex));
     }
 
 
@@ -137,7 +136,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().parents(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
     }
 
 
@@ -147,7 +146,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().parents(vertex));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
     }
 
 
@@ -157,7 +156,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().siblings(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().siblings(vertex, itself));
     }
 
 
@@ -167,7 +166,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().siblings(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().siblings(vertex, itself));
     }
 
 
@@ -177,7 +176,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().descendants(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself));
     }
 
 
@@ -187,7 +186,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().descendants(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().descendants(vertex, itself));
     }
 
 
@@ -197,7 +196,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().ancestors(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().ancestors(vertex, itself));
     }
 
 
@@ -207,7 +206,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().ancestors(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().ancestors(vertex, itself));
     }
 
 
@@ -217,7 +216,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leaves(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().leaves(vertex, itself));
     }
 
 
@@ -227,7 +226,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().leaves(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().leaves(vertex, itself));
     }
 
 
@@ -237,7 +236,7 @@ namespace storage
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().roots(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().roots(vertex, itself));
     }
 
 
@@ -247,7 +246,7 @@ namespace storage
 	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
-	return devicegraph->get_impl().getDevices<Device>(devicegraph->get_impl().roots(vertex, itself));
+	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().roots(vertex, itself));
     }
 
 

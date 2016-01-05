@@ -42,6 +42,9 @@ namespace storage
 
 	size_t num_actions() const;
 
+	/**
+	 * Sorted according to dependencies among actions.
+	 */
 	std::vector<const Action::Base*> get_commit_actions() const;
 
 	// TODO add Action to the public interface and use get_commit_actions instead
