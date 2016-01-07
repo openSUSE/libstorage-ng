@@ -210,7 +210,7 @@ namespace storage
 
 
     /**
-     * Helper class for UI exceptions: Store _FILE_, _FUNCTION_ and _LINE_.
+     * Helper class for UI exceptions: Store __BASE_FILE__, __FUNCTION__ and __LINE__.
      * Construct this using the ST_EXCEPTION_CODE_LOCATION macro.
      **/
     class CodeLocation
