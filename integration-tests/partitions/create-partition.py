@@ -5,19 +5,7 @@
 
 from sys import exit
 from storage import *
-
-
-class MyCommitCallbacks(CommitCallbacks):
-
-    def __init__(self):
-        super(MyCommitCallbacks, self).__init__()
-
-    def message(self, s):
-        print "message '%s'" % s
-
-    def error(self, s):
-        print "error '%s'" % s
-        return False
+from storageitu import *
 
 
 environment = Environment(False)
@@ -50,8 +38,5 @@ partition.set_id(ID_LINUX)
 
 print staging
 
-my_commit_callbacks = MyCommitCallbacks()
-
-storage.calculate_actiongraph()
-storage.commit(my_commit_callbacks)
+commit(storage)
 

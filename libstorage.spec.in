@@ -1,7 +1,6 @@
-
 # spec file for package libstorage
 #
-# Copyright (c) 2015 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2016 SUSE LINUX GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -312,6 +311,7 @@ Authors:
 
 %files integration-tests
 %defattr(-,root,root)
+%{python_sitelib}/storageitu.py*
 %dir /usr/lib/libstorage
 /usr/lib/libstorage/integration-tests
 
