@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -171,6 +172,11 @@ namespace storage
 	static string quote(const string& str);
 
 	/**
+	 * Quotes and protects every single string in the vector for shell execution.
+	 */
+	static string quote(const std::vector<string>& strs);
+
+	/**
 	 * Quotes and protects every single string in the list for shell execution.
 	 */
 	static string quote(const std::list<string>& strs);
@@ -294,12 +300,20 @@ namespace storage
 
 
 
-    inline string quote(const string& str)
+    inline string
+    quote(const string& str)
     {
 	return SystemCmd::quote(str);
     }
 
-    inline string quote(const std::list<string>& strs)
+    inline string
+    quote(const std::vector<string>& strs)
+    {
+	return SystemCmd::quote(strs);
+    }
+
+    inline string
+    quote(const std::list<string>& strs)
     {
 	return SystemCmd::quote(strs);
     }
