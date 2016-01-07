@@ -330,14 +330,14 @@ namespace storage
 
 	    case MOUNTBY_ID:
 		if (!blkdevice->get_udev_ids().empty())
-		    ret = "/dev/disk/by-id/" + blkdevice->get_udev_ids().front();
+		    ret = DEVDIR "/disk/by-id/" + blkdevice->get_udev_ids().front();
 		else
 		    y2err("no udev-id defined");
 		break;
 
 	    case MOUNTBY_PATH:
 		if (!blkdevice->get_udev_path().empty())
-		    ret = "/dev/disk/by-path/" + blkdevice->get_udev_path();
+		    ret = DEVDIR "/disk/by-path/" + blkdevice->get_udev_path();
 		else
 		    y2err("no udev-path defined");
 		break;

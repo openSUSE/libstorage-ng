@@ -44,9 +44,9 @@ namespace storage
 
 	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
 	{
-	    string name = "/dev/" + short_name;
+	    string name = DEVDIR "/" + short_name;
 
-	    if (Md::Impl::is_valid_name(name) || boost::starts_with(name, "/dev/loop"))
+	    if (Md::Impl::is_valid_name(name) || boost::starts_with(name, DEVDIR "/loop"))
 		continue;
 
 	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo(name);
@@ -174,7 +174,7 @@ namespace storage
 	string::size_type size_lhs = string_lhs.size();
 	string::size_type size_rhs = string_rhs.size();
 
-	for (const string& tmp : { "/dev/sd", "/dev/vd", "/dev/dasd" })
+	for (const string& tmp : { DEVDIR "/sd", DEVDIR "/vd", DEVDIR "/dasd" })
 	{
 	    if (boost::starts_with(string_lhs, tmp) && boost::starts_with(string_rhs, tmp))
 	    {

@@ -149,7 +149,7 @@ namespace storage
     string
     Partitionable::Impl::partition_name(int number) const
     {
-	if (boost::starts_with(get_name(), "/dev/mapper/"))
+	if (boost::starts_with(get_name(), DEVDIR "/mapper/"))
 	    return get_name() + "-part" + to_string(number);
 	else if (isdigit(get_name().back()))
 	    return get_name() + "p" + to_string(number);

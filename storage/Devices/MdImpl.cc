@@ -65,7 +65,7 @@ namespace storage
     bool
     Md::Impl::is_valid_name(const string& name)
     {
-	static boost::regex name_regex("/dev/md[0-9]+", boost::regex_constants::extended);
+	static boost::regex name_regex(DEVDIR "/md[0-9]+", boost::regex_constants::extended);
 
 	return boost::regex_match(name, name_regex);
     }
@@ -78,7 +78,7 @@ namespace storage
 
 	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
 	{
-	    string name = "/dev/" + short_name;
+	    string name = DEVDIR "/" + short_name;
 
 	    if (!is_valid_name(name))
 		continue;
