@@ -95,7 +95,7 @@ namespace storage
     {
 	Partitionable::Impl::probe(systeminfo);
 
-	string tmp = get_name().substr(5); // strip" /dev/"
+	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
 	ProcMdstat::Entry entry;
 	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
