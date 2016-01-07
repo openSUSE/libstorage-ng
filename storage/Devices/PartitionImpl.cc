@@ -74,6 +74,9 @@ namespace storage
     Partition::Impl::get_number() const
     {
 	string::size_type pos = get_name().find_last_not_of("0123456789");
+	if (pos == string::npos || pos == get_name().size() - 1)
+	    ST_THROW(Exception("partition name has no number"));
+
 	return atoi(get_name().substr(pos + 1).c_str());
     }
 
