@@ -133,7 +133,7 @@ namespace storage
 	storage::log_diff(log, "sysfs-name", sysfs_name, rhs.sysfs_name);
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
-	storage::log_diff(log, "size_k", size_k, rhs.size_k);
+	storage::log_diff(log, "size-k", size_k, rhs.size_k);
 	storage::log_diff(log, "major", get_major(), rhs.get_major());
 	storage::log_diff(log, "minor", get_minor(), rhs.get_minor());
     }

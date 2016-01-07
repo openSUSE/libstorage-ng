@@ -107,7 +107,7 @@ namespace storage
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
 
-	chunk_size_k = entry.chunk_k;
+	chunk_size_k = entry.chunk_size_k;
 
 	for (const string& device : entry.devices)
 	{

@@ -147,7 +147,7 @@ namespace storage
 	{
 	    pos = line2.find_last_not_of( app_ws, pos-1 );
 	    pos = line2.find_last_of( app_ws, pos );
-	    line2.substr( pos+1 ) >> entry.chunk_k;
+	    line2.substr( pos+1 ) >> entry.chunk_size_k;
 	}
 
 	pos = line2.find("super");
@@ -279,15 +279,15 @@ namespace storage
 	s << "md-level:" << toString(entry.md_level);
 
 	if (entry.md_parity != PAR_DEFAULT)
-	    s << " md_parity:" + toString(entry.md_parity);
+	    s << " md-parity:" + toString(entry.md_parity);
 
 	if (!entry.super.empty())
 	    s << " super:" + entry.super;
 
-	if (entry.chunk_k != 0)
-	    s << " chunk_k:" << entry.chunk_k;
+	if (entry.chunk_size_k != 0)
+	    s << " chunk-size-k:" << entry.chunk_size_k;
 
-	s << " size_k:" << entry.size_k;
+	s << " size-k:" << entry.size_k;
 
 	if (entry.readonly)
 	    s << " readonly";
@@ -300,10 +300,10 @@ namespace storage
 	    s << " spares:" << entry.spares;
 
 	if (entry.is_container)
-	    s << " is_container";
+	    s << " is-container";
 
 	if (entry.has_container)
-	    s << " has_container container_name:" << entry.container_name << " container_member:"
+	    s << " has-container container-name:" << entry.container_name << " container-member:"
 	      << entry.container_member;
 
 	return s;
