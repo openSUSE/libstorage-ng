@@ -20,20 +20,19 @@ namespace storage
     }
 
 
-
     bool
     Holder::Impl::operator==(const Impl& rhs) const
     {
 	if (typeid(*this) != typeid(rhs))
 	    return false;
 
-	return true; // so far nothing more to compare
+	return equal(rhs);
     }
 
 
     void
     Holder::Impl::set_devicegraph_and_edge(Devicegraph* devicegraph,
-					Devicegraph::Impl::edge_descriptor edge)
+					   Devicegraph::Impl::edge_descriptor edge)
     {
 	Impl::devicegraph = devicegraph;
 	Impl::edge = edge;
@@ -65,6 +64,22 @@ namespace storage
     {
 	setChildValue(node, "source-sid", get_source_sid());
 	setChildValue(node, "target-sid", get_target_sid());
+    }
+
+
+    bool
+    Holder::Impl::equal(const Impl& rhs) const
+    {
+	// TODO handle source and target sid here?
+
+	return true;
+    }
+
+
+    void
+    Holder::Impl::log_diff(std::ostream& log, const Impl& rhs) const
+    {
+	// TODO handle source and target sid here?
     }
 
 

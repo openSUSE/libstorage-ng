@@ -53,7 +53,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdType>::names({
-	"unknown", "raid0", "raid1", "raid5", "raid6", "raid10", "multipath"
+	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10", "Multipath"
     });
 
 

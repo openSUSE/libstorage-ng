@@ -14,6 +14,7 @@ namespace storage
     class Device;
     class Holder;
     class Disk;
+    class Md;
 
 
     struct DeviceNotFound : public Exception
@@ -113,6 +114,9 @@ namespace storage
 	// e.g. get_all_lvm_vgs, get_all_mds, get_all_filesystems
 	std::vector<Disk*> get_all_disks();
 	std::vector<const Disk*> get_all_disks() const;
+
+	std::vector<Md*> get_all_mds();
+	std::vector<const Md*> get_all_mds() const;
 
 	void remove_device(sid_t sid);
 	void remove_device(Device* a);

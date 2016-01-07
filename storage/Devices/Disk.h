@@ -2,8 +2,7 @@
 #define STORAGE_DISK_H
 
 
-#include "storage/Devices/BlkDevice.h"
-#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/Partitionable.h"
 
 
 namespace storage
@@ -20,7 +19,7 @@ namespace storage
 
 
     //! A physical disk device
-    class Disk : public BlkDevice
+    class Disk : public Partitionable
     {
     public:
 
@@ -40,22 +39,6 @@ namespace storage
 	bool get_rotational() const;
 
 	Transport get_transport() const;
-
-	/**
-	 * Get the default partition table type for the disk.
-	 */
-	PtType get_default_partition_table_type() const;
-
-	/**
-	 * Get possible partition table types for the disk. The first entry is
-	 * identical to the default partition table type for the disk.
-	 */
-	std::vector<PtType> get_possible_partition_table_types() const;
-
-	PartitionTable* create_partition_table(PtType pt_type);
-
-	PartitionTable* get_partition_table();
-	const PartitionTable* get_partition_table() const;
 
 	static Disk* find(Devicegraph* devicegraph, const std::string& name);
 	static const Disk* find(const Devicegraph* devicegraph, const std::string& name);

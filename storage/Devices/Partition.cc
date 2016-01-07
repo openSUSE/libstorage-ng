@@ -1,5 +1,7 @@
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -14,6 +16,9 @@ namespace storage
     Partition*
     Partition::create(Devicegraph* devicegraph, const string& name, const Region& region, PartitionType type)
     {
+	if (!boost::starts_with(name, "/dev/"))
+	    ST_THROW(Exception("invalid partition name"));
+
 	Partition* ret = new Partition(new Partition::Impl(name, region, type));
 	ret->Device::create(devicegraph);
 	return ret;

@@ -10,6 +10,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Md.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/LvmVg.h"
@@ -141,6 +142,20 @@ namespace storage
     Devicegraph::get_all_disks() const
     {
 	return Disk::get_all(this);
+    }
+
+
+    std::vector<Md*>
+    Devicegraph::get_all_mds()
+    {
+	return Md::get_all(this);
+    }
+
+
+    std::vector<const Md*>
+    Devicegraph::get_all_mds() const
+    {
+	return Md::get_all(this);
     }
 
 

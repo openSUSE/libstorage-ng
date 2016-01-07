@@ -17,6 +17,7 @@
 namespace storage
 {
     class Devicegraph;
+    class Holder;
 
 
     struct DeviceHasWrongType : public Exception
@@ -88,6 +89,12 @@ namespace storage
 
 	std::vector<Device*> get_roots(bool itself);
 	std::vector<const Device*> get_roots(bool itself) const;
+
+	std::vector<Holder*> get_in_holders();
+	std::vector<const Holder*> get_in_holders() const;
+
+	std::vector<Holder*> get_out_holders();
+	std::vector<const Holder*> get_out_holders() const;
 
 	void remove_descendants();
 

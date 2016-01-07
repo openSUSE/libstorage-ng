@@ -130,20 +130,20 @@ namespace storage
     }
 
 
-    vector<const Device*>
-    Device::get_parents() const
+    vector<Device*>
+    Device::get_parents()
     {
-	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
     }
 
 
-    vector<Device*>
-    Device::get_parents()
+    vector<const Device*>
+    Device::get_parents() const
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().parents(vertex));
@@ -247,6 +247,46 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
 
 	return devicegraph->get_impl().filter_devices_of_type<Device>(devicegraph->get_impl().roots(vertex, itself));
+    }
+
+
+    vector<Holder*>
+    Device::get_in_holders()
+    {
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_holders_of_type<Holder>(devicegraph->get_impl().in_edges(vertex));
+    }
+
+
+    vector<const Holder*>
+    Device::get_in_holders() const
+    {
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_holders_of_type<Holder>(devicegraph->get_impl().in_edges(vertex));
+    }
+
+
+    vector<Holder*>
+    Device::get_out_holders()
+    {
+	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_holders_of_type<Holder>(devicegraph->get_impl().out_edges(vertex));
+    }
+
+
+    vector<const Holder*>
+    Device::get_out_holders() const
+    {
+	const Devicegraph* devicegraph = get_impl().get_devicegraph();
+	Devicegraph::Impl::vertex_descriptor vertex = get_impl().get_vertex();
+
+	return devicegraph->get_impl().filter_holders_of_type<Holder>(devicegraph->get_impl().out_edges(vertex));
     }
 
 

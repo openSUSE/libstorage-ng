@@ -11,6 +11,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
@@ -26,6 +27,7 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/User.h"
+#include "storage/Holders/MdUser.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -106,6 +108,8 @@ namespace storage
 
 	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
 		log << "sid " << sid.first << " " << sid.second << " holder differ" << endl;
+
+	    graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
 	}
     }
 
@@ -395,10 +399,29 @@ namespace storage
     }
 
 
+    vector<Devicegraph::Impl::edge_descriptor>
+    Devicegraph::Impl::in_edges(vertex_descriptor vertex) const
+    {
+	boost::iterator_range<in_edge_iterator> range =
+	    boost::make_iterator_range(boost::in_edges(vertex, graph));
+	return vector<edge_descriptor>(range.begin(), range.end());
+    }
+
+
+    vector<Devicegraph::Impl::edge_descriptor>
+    Devicegraph::Impl::out_edges(vertex_descriptor vertex) const
+    {
+	boost::iterator_range<out_edge_iterator> range =
+	    boost::make_iterator_range(boost::out_edges(vertex, graph));
+	return vector<edge_descriptor>(range.begin(), range.end());
+    }
+
+
     typedef std::function<Device* (Devicegraph* devicegraph, const xmlNode* node)> device_load_fnc;
 
     const map<string, device_load_fnc> device_load_registry = {
 	{ "Disk", &Disk::load },
+	{ "Md", &Md::load },
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
 	{ "Partition", &Partition::load },
@@ -418,6 +441,7 @@ namespace storage
 
     const map<string, holder_load_fnc> holder_load_registry = {
 	{ "User", &User::load },
+	{ "MdUser", &MdUser::load },
 	{ "Subdevice", &Subdevice::load },
     };
 
@@ -425,7 +449,7 @@ namespace storage
     void
     Devicegraph::Impl::load(Devicegraph* devicegraph, const string& filename)
     {
-	if (devicegraph->get_impl() != *this)
+	if (&devicegraph->get_impl() != this)
 	    ST_THROW(LogicException("wrong impl-ptr"));
 
 	clear();
@@ -559,6 +583,8 @@ namespace storage
 
 		if (is_disk(device))
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
+		else if (is_md(device))
+		    out << ", color=\"#aaaa00\", fillcolor=\"#ffffaa\"";
 		else if (is_partition_table(device))
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else if (is_partition(device))
@@ -591,8 +617,10 @@ namespace storage
 
 		if (is_subdevice(holder))
 		    out << "[ style=solid ]";
-		else if (is_user(holder))
+		else if (is_md_user(holder) && to_md_user(holder)->is_spare())
 		    out << "[ style=dotted ]";
+		else if (is_user(holder))
+		    out << "[ style=dashed ]";
 		else
 		    ST_THROW(LogicException("unknown Holder subclass"));
 	    }

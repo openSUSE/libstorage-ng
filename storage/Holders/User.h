@@ -24,7 +24,7 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-    private:
+    protected:
 
 	User(Impl* impl);
 

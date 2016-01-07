@@ -46,6 +46,9 @@ namespace storage
 	typedef graph_t::adjacency_iterator adjacency_iterator;
 	typedef graph_t::inv_adjacency_iterator inv_adjacency_iterator;
 
+	typedef graph_t::in_edge_iterator in_edge_iterator;
+	typedef graph_t::out_edge_iterator out_edge_iterator;
+
 	typedef graph_t::vertices_size_type vertices_size_type;
 
 	Impl(const Storage* storage) : storage(storage) {}
@@ -110,6 +113,9 @@ namespace storage
 	vector<vertex_descriptor> ancestors(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
+
+	vector<edge_descriptor> in_edges(vertex_descriptor vertex) const;
+	vector<edge_descriptor> out_edges(vertex_descriptor vertex) const;
 
 
 	template<typename Type>
@@ -223,6 +229,40 @@ namespace storage
 	    vector<const Type*> ret = filter_devices_of_type<const Type>(vertices);
 
 	    sort(ret.begin(), ret.end(), compare);
+
+	    return ret;
+	}
+
+
+	template <typename Type>
+	vector<Type*>
+	filter_holders_of_type(const vector<edge_descriptor>& edges)
+	{
+	    vector<Type*> ret;
+
+	    for (edge_descriptor edge : edges)
+	    {
+		Type* holder = dynamic_cast<Type*>(graph[edge].get());
+		if (holder)
+		    ret.push_back(holder);
+	    }
+
+	    return ret;
+	}
+
+
+	template <typename Type>
+	vector<const Type*>
+	filter_holders_of_type(const vector<edge_descriptor>& edges) const
+	{
+	    vector<const Type*> ret;
+
+	    for (edge_descriptor edge : edges)
+	    {
+		const Type* holder = dynamic_cast<const Type*>(graph[edge].get());
+		if (holder)
+		    ret.push_back(holder);
+	    }
 
 	    return ret;
 	}

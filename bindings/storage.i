@@ -32,6 +32,7 @@
 #include "storage/Utils/Region.h"
 #include "storage/Utils/Remote.h"
 #include "storage/Utils/Logger.h"
+
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/Ext4.h"
@@ -43,12 +44,19 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/LvmVg.h"
+
 #include "storage/Holders/Holder.h"
+#include "storage/Holders/Subdevice.h"
+#include "storage/Holders/User.h"
+#include "storage/Holders/MdUser.h"
+
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Environment.h"
@@ -62,10 +70,12 @@
 %include "std_map.i"
 
 %include "../../storage/StorageInterface.h"
+
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Utils/Region.h"
 %include "../../storage/Utils/Remote.h"
 %include "../../storage/Utils/Logger.h"
+
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
 %include "../../storage/Devices/Ext4.h"
@@ -77,12 +87,19 @@
 %include "../../storage/Devices/BlkDevice.h"
 %include "../../storage/Devices/Partition.h"
 %include "../../storage/Devices/PartitionTable.h"
+%include "../../storage/Devices/Partitionable.h"
 %include "../../storage/Devices/Disk.h"
+%include "../../storage/Devices/Md.h"
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
 %include "../../storage/Devices/LvmLv.h"
 %include "../../storage/Devices/LvmVg.h"
+
 %include "../../storage/Holders/Holder.h"
+%include "../../storage/Holders/Subdevice.h"
+%include "../../storage/Holders/User.h"
+%include "../../storage/Holders/MdUser.h"
+
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Actiongraph.h"
 %include "../../storage/Environment.h"
@@ -96,12 +113,24 @@ using namespace storage;
 
 %template(VectorDevicePtr) std::vector<Device*>;
 %template(VectorConstDevicePtr) std::vector<const Device*>;
+
+%template(VectorBlkDevicePtr) std::vector<BlkDevice*>;
+%template(VectorConstBlkDevicePtr) std::vector<const BlkDevice*>;
+
 %template(VectorDiskPtr) std::vector<Disk*>;
 %template(VectorConstDiskPtr) std::vector<const Disk*>;
+
+%template(VectorMdPtr) std::vector<Md*>;
+%template(VectorConstMdPtr) std::vector<const Md*>;
+
 %template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
+
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
+
+%template(VectorHolderPtr) std::vector<Holder*>;
+%template(VectorConstHolderPtr) std::vector<const Holder*>;
 
 %template(VectorPartitionSlot) std::vector<PartitionSlot>;
 

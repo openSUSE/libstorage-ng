@@ -4,6 +4,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/MdImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
@@ -63,7 +64,7 @@ namespace storage
 
     Storage::Impl::~Impl()
     {
-	// TO DO: Make sure logger is destroyed after this object
+	// TODO: Make sure logger is destroyed after this object
     }
 
 
@@ -82,6 +83,12 @@ namespace storage
 	{
 	    Disk* disk = Disk::create(probed, name);
 	    disk->get_impl().probe(systeminfo);
+	}
+
+	for (const string& name : Md::Impl::probe_mds(systeminfo))
+	{
+	    Md* md = Md::create(probed, name);
+	    md->get_impl().probe(probed, systeminfo);
 	}
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())

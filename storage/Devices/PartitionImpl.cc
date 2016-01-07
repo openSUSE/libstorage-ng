@@ -46,14 +46,9 @@ namespace storage
     {
 	BlkDevice::Impl::probe(systeminfo);
 
-	const Devicegraph* g = get_devicegraph();
+	const Partitionable* partitionable = get_partitionable();
 
-	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-	Devicegraph::Impl::vertex_descriptor v2 = g->get_impl().parent(v1);
-
-	string pp_name = dynamic_cast<const BlkDevice*>(g->get_impl()[v2])->get_name();
-
-	const Parted& parted = systeminfo.getParted(pp_name);
+	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 	Parted::Entry entry;
 	if (!parted.getEntry(get_number(), entry))
 	    throw;
@@ -88,11 +83,9 @@ namespace storage
     {
 	BlkDevice::Impl::set_size_k(size_k);
 
-	const PartitionTable* partitiontable = get_partition_table();
+	const Partitionable* partitionable = get_partitionable();
 
-	const Disk* disk = partitiontable->get_disk();
-
-	region.set_length(get_size_k() * 1024 / disk->get_impl().get_geometry().cylinderSize());
+	region.set_length(get_size_k() * 1024 / partitionable->get_impl().get_geometry().cylinderSize());
     }
 
 
@@ -101,24 +94,34 @@ namespace storage
     {
 	Impl::region = region;
 
-	const PartitionTable* partitiontable = get_partition_table();
+	const Partitionable* partitionable = get_partitionable();
 
-	const Disk* disk = partitiontable->get_disk();
-
-	const Geometry& geometry = disk->get_impl().get_geometry();
+	const Geometry& geometry = partitionable->get_impl().get_geometry();
 	if (region.get_block_size() != geometry.cylinderSize())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
 
-	set_size_k(region.get_length() * disk->get_impl().get_geometry().cylinderSize() / 1024);
+	set_size_k(region.get_length() * partitionable->get_impl().get_geometry().cylinderSize() / 1024);
     }
 
 
     const PartitionTable*
     Partition::Impl::get_partition_table() const
     {
-	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partition_table(get_devicegraph()->get_impl()[v]);
+	return to_partition_table(get_devicegraph()->get_impl()[vertex]);
+    }
+
+
+    const Partitionable*
+    Partition::Impl::get_partitionable() const
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	Devicegraph::Impl::vertex_descriptor vertex =
+	    get_devicegraph()->get_impl().parent(partition_table->get_impl().get_vertex());
+
+	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
     }
 
 
@@ -206,14 +209,9 @@ namespace storage
     void
     Partition::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	const Devicegraph* g = get_devicegraph();
+	const Partitionable* partitionable = get_partitionable();
 
-	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-	Devicegraph::Impl::vertex_descriptor v2 = g->get_impl().parent(v1);
-
-	const Disk* disk = dynamic_cast<const Disk*>(g->get_impl()[v2]);
-
-	disk->get_impl().process_udev_ids(udev_ids);
+	partitionable->get_impl().process_udev_ids(udev_ids);
     }
 
 
@@ -234,11 +232,9 @@ namespace storage
     void
     Partition::Impl::do_create() const
     {
-	const PartitionTable* partitiontable = get_partition_table();
+	const Partitionable* partitionable = get_partitionable();
 
-	const Disk* disk = partitiontable->get_disk();
-
-	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " unit cyl mkpart " +
+	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit cyl mkpart " +
 	    toString(get_type()) + " ";
 
 	if (get_type() != EXTENDED)
@@ -298,16 +294,14 @@ namespace storage
     void
     Partition::Impl::do_set_id() const
     {
-	const PartitionTable* partitiontable = get_partition_table();
-
-	const Disk* disk = partitiontable->get_disk();
+	const Partitionable* partitionable = get_partitionable();
 
 	// TODO
 
 	if (get_id() > 255 || !is_msdos(get_device()))
 	    return;
 
-	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " set " +
+	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
 	cout << cmd_line << endl;
 
@@ -328,11 +322,9 @@ namespace storage
     void
     Partition::Impl::do_delete() const
     {
-	const PartitionTable* partitiontable = get_partition_table();
+	const Partitionable* partitionable = get_partitionable();
 
-	const Disk* disk = partitiontable->get_disk();
-
-	string cmd_line = PARTEDBIN " -s " + disk->get_name() + " rm " + to_string(get_number());
+	string cmd_line = PARTEDBIN " -s " + partitionable->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

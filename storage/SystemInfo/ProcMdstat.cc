@@ -104,8 +104,8 @@ namespace storage
 	tmp = extractNthWord( 0, line );
 	if (boost::starts_with(tmp, "raid"))
 	{
-	    entry.md_type = toValueWithFallback(tmp, RAID_UNK);
-	    if (entry.md_type == RAID_UNK)
+	    entry.md_level = toValueWithFallback(boost::to_upper_copy(tmp, locale::classic()), RAID_UNK);
+	    if (entry.md_level == RAID_UNK)
 		y2war("unknown raid type " << tmp);
 
 	    if( (pos=line.find_first_of( app_ws ))!=string::npos )
@@ -276,7 +276,7 @@ namespace storage
 
     std::ostream& operator<<(std::ostream& s, const ProcMdstat::Entry& entry)
     {
-	s << "md_type:" << toString(entry.md_type);
+	s << "md-level:" << toString(entry.md_level);
 
 	if (entry.md_parity != PAR_DEFAULT)
 	    s << " md_parity:" + toString(entry.md_parity);

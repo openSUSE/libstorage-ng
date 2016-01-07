@@ -153,7 +153,7 @@ namespace storage
 	    out << " sysfs-path:" << sysfs_path;
 
 	if (get_size_k() != 0)
-	    out << " size_k:" << get_size_k();
+	    out << " size-k:" << get_size_k();
 
 	if (get_majorminor() != 0)
 	    out << " major:" << get_major() << " minor:" << get_minor();
@@ -201,7 +201,18 @@ namespace storage
 	}
 
 	if (!exist)
-	    throw runtime_error("wait_for_device failed");
+	    ST_THROW(Exception("wait_for_device failed"));
+    }
+
+
+    void
+    BlkDevice::Impl::wipe_device() const
+    {
+	string cmd_line = WIPEFSBIN " --all " + quote(get_name());
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("wipefs failed"));
     }
 
 }

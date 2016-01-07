@@ -32,7 +32,7 @@ libstorage_la_LIBADD =			\
 	Holders/libholders.la		\
 	Utils/libutils.la 		\
 	SystemInfo/libsysteminfo.la	\
-	-lxml2
+	-lxml2 -lboost_regex
 
 pkgincludedir = $(includedir)/storage
 
