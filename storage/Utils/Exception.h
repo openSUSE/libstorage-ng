@@ -223,16 +223,14 @@ namespace storage
 	CodeLocation( const std::string & file_r,
 		      const std::string & func_r,
 		      int		  line_r )
-	    : _file( file_r )
-	    , _func( func_r )
-	    , _line( line_r )
+	    : _file(file_r), _func(func_r), _line(line_r)
 	    {}
 
 	/**
 	 * Default constructor.
 	 ***/
 	CodeLocation()
-	    : _line( 0 )
+	    : _file(), _func(), _line(0)
 	    {}
 
 	/**
