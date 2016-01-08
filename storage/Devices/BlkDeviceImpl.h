@@ -53,6 +53,7 @@ namespace storage
 	virtual void process_udev_ids(vector<string>& udev_ids) const {}
 
 	void wait_for_device() const;
+	void wipe_device() const;
 
     protected:
 

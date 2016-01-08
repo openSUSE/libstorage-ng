@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -739,16 +740,32 @@ namespace storage
 
 
     string
-    SystemCmd::quote(const list<string>& strs)
+    SystemCmd::quote(const vector<string>& strs)
     {
 	string ret;
 
-	for (std::list<string>::const_iterator it = strs.begin(); it != strs.end(); it++)
+	for (std::vector<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
 	{
 	    if (it != strs.begin())
 		ret.append(" ");
 	    ret.append(quote(*it));
 	}
+
+	return ret;
+    }
+
+    string
+    SystemCmd::quote(const list<string>& strs)
+    {
+	string ret;
+
+	for (std::list<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
+	{
+	    if (it != strs.begin())
+		ret.append(" ");
+	    ret.append(quote(*it));
+	}
+
 	return ret;
     }
 

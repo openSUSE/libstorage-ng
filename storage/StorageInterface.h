@@ -156,6 +156,7 @@ namespace storage_legacy
     enum EncryptType { ENC_NONE, ENC_TWOFISH, ENC_TWOFISH_OLD,
 		       ENC_TWOFISH256_OLD, ENC_LUKS, ENC_UNKNOWN };
 
+    // TODO rename to MdLevel
     enum MdType { RAID_UNK, RAID0, RAID1, RAID5, RAID6, RAID10, MULTIPATH };
 
     enum MdParity { PAR_DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC,

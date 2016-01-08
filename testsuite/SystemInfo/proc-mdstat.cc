@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"data[md0] -> md_type:raid1 super:1.0 size_k:8387520 devices:</dev/sda1 /dev/sdb1>"
+	"data[md0] -> md-level:RAID1 super:1.0 size-k:8387520 devices:</dev/sda1 /dev/sdb1>"
     };
 
     check(input, output);
@@ -69,9 +69,9 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"data[md125] -> md_type:raid1 super:external:/md127/0 size_k:4194304 readonly devices:</dev/sdb /dev/sda> has_container container_name:md127 container_member:0",
-	"data[md126] -> md_type:raid0 super:external:/md127/1 chunk_k:128 size_k:8378790 devices:</dev/sdb /dev/sda> has_container container_name:md127 container_member:1",
-	"data[md127] -> md_type:unknown super:external:imsm size_k:5104 readonly inactive devices:<> spares:</dev/sda /dev/sdb> is_container"
+	"data[md125] -> md-level:RAID1 super:external:/md127/0 size-k:4194304 readonly devices:</dev/sdb /dev/sda> has-container container-name:md127 container-member:0",
+	"data[md126] -> md-level:RAID0 super:external:/md127/1 chunk-size-k:128 size-k:8378790 devices:</dev/sdb /dev/sda> has-container container-name:md127 container-member:1",
+	"data[md127] -> md-level:unknown super:external:imsm size-k:5104 readonly inactive devices:<> spares:</dev/sda /dev/sdb> is-container"
     };
 
     check(input, output);
@@ -95,9 +95,9 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"data[md125] -> md_type:raid1 super:external:/md127/1 size_k:7355904 devices:</dev/sdb /dev/sda> has_container container_name:md127 container_member:1",
-	"data[md126] -> md_type:raid0 super:external:/md127/0 chunk_k:512 size_k:1999872 devices:</dev/sdb /dev/sda> has_container container_name:md127 container_member:0",
-	"data[md127] -> md_type:unknown super:external:ddf size_k:65536 readonly inactive devices:<> spares:</dev/sda /dev/sdb> is_container"
+	"data[md125] -> md-level:RAID1 super:external:/md127/1 size-k:7355904 devices:</dev/sdb /dev/sda> has-container container-name:md127 container-member:1",
+	"data[md126] -> md-level:RAID0 super:external:/md127/0 chunk-size-k:512 size-k:1999872 devices:</dev/sdb /dev/sda> has-container container-name:md127 container-member:0",
+	"data[md127] -> md-level:unknown super:external:ddf size-k:65536 readonly inactive devices:<> spares:</dev/sda /dev/sdb> is-container"
     };
 
     check(input, output);

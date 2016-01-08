@@ -43,6 +43,9 @@ namespace storage
 	sid_t get_source_sid() const;
 	sid_t get_target_sid() const;
 
+	virtual bool equal(const Impl& rhs) const = 0;
+	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
+
 	virtual void print(std::ostream& out) const = 0;
 
     protected:

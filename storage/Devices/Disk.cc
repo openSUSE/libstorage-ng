@@ -1,9 +1,9 @@
 
 
+#include <boost/algorithm/string.hpp>
+
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/Msdos.h"
-#include "storage/Devices/Gpt.h"
-#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Enum.h"
@@ -18,6 +18,9 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name)
     {
+	if (!boost::starts_with(name, DEVDIR "/"))
+	    ST_THROW(Exception("invalid disk name"));
+
 	Disk* ret = new Disk(new Disk::Impl(name));
 	ret->Device::create(devicegraph);
 	return ret;
@@ -34,7 +37,7 @@ namespace storage
 
 
     Disk::Disk(Impl* impl)
-	: BlkDevice(impl)
+	: Partitionable(impl)
     {
     }
 
@@ -88,20 +91,6 @@ namespace storage
     }
 
 
-    PtType
-    Disk::get_default_partition_table_type() const
-    {
-	return get_impl().get_default_partition_table_type();
-    }
-
-
-    std::vector<PtType>
-    Disk::get_possible_partition_table_types() const
-    {
-	return get_impl().get_possible_partition_table_types();
-    }
-
-
     vector<Disk*>
     Disk::get_all(Devicegraph* devicegraph)
     {
@@ -113,27 +102,6 @@ namespace storage
     Disk::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const Disk>(compare_by_name);
-    }
-
-
-    PartitionTable*
-    Disk::create_partition_table(PtType pt_type)
-    {
-	return get_impl().create_partition_table(pt_type);
-    }
-
-
-    PartitionTable*
-    Disk::get_partition_table()
-    {
-	return get_impl().get_partition_table();
-    }
-
-
-    const PartitionTable*
-    Disk::get_partition_table() const
-    {
-	return get_impl().get_partition_table();
     }
 
 

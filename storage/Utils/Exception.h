@@ -210,7 +210,7 @@ namespace storage
 
 
     /**
-     * Helper class for UI exceptions: Store _FILE_, _FUNCTION_ and _LINE_.
+     * Helper class for UI exceptions: Store __BASE_FILE__, __FUNCTION__ and __LINE__.
      * Construct this using the ST_EXCEPTION_CODE_LOCATION macro.
      **/
     class CodeLocation
@@ -223,16 +223,14 @@ namespace storage
 	CodeLocation( const std::string & file_r,
 		      const std::string & func_r,
 		      int		  line_r )
-	    : _file( file_r )
-	    , _func( func_r )
-	    , _line( line_r )
+	    : _file(file_r), _func(func_r), _line(line_r)
 	    {}
 
 	/**
 	 * Default constructor.
 	 ***/
 	CodeLocation()
-	    : _line( 0 )
+	    : _file(), _func(), _line(0)
 	    {}
 
 	/**

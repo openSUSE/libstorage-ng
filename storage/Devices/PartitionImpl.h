@@ -14,6 +14,9 @@ namespace storage
     using namespace std;
 
 
+    class Partitionable;
+
+
     template <> struct DeviceTraits<Partition> { static const char* classname; };
 
 
@@ -50,6 +53,7 @@ namespace storage
 	void set_boot(bool boot) { Impl::boot = boot; }
 
 	const PartitionTable* get_partition_table() const;
+	const Partitionable* get_partitionable() const;
 
 	static bool cmp_lt_number(const Partition* rhs, const Partition* lhs);
 

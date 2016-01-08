@@ -11,7 +11,7 @@
 
 namespace storage
 {
-    class Disk;
+    class Partitionable;
 
 
     //! Partition Table Type.
@@ -64,7 +64,7 @@ namespace storage
 
 	Partition* get_partition(const std::string& name);
 
-	const Disk* get_disk() const;
+	const Partitionable* get_partitionable() const;
 
 	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
 

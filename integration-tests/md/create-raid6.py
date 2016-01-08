@@ -1,0 +1,35 @@
+#!/usr/bin/python
+
+# requirements: disk /dev/sdb with five empty and unused partitions (sdb1-sdb5)
+
+
+from sys import exit
+from storage import *
+from storageitu import *
+
+
+environment = Environment(False)
+
+storage = Storage(environment)
+
+staging = storage.get_staging()
+
+sdb1 = Partition.find(staging, "/dev/sdb1")
+sdb2 = Partition.find(staging, "/dev/sdb2")
+sdb3 = Partition.find(staging, "/dev/sdb3")
+sdb4 = Partition.find(staging, "/dev/sdb4")
+sdb5 = Partition.find(staging, "/dev/sdb5")
+
+md = Md.create(staging, "/dev/md0")
+md.set_md_level(RAID6)
+
+md.add_device(sdb1)
+md.add_device(sdb2)
+md.add_device(sdb3)
+md.add_device(sdb4)
+md.add_device(sdb5).set_spare(True)
+
+print staging
+
+commit(storage)
+

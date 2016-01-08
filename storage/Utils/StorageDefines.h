@@ -24,6 +24,8 @@
 #define STORAGE_STORAGE_DEFINES_H
 
 
+#define DEVDIR "/dev"
+
 #define SYSFSDIR "/sys"
 
 #define SYSCONFIGFILE "/etc/sysconfig/storage"

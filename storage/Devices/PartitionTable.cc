@@ -107,10 +107,10 @@ namespace storage
     }
 
 
-    const Disk*
-    PartitionTable::get_disk() const
+    const Partitionable*
+    PartitionTable::get_partitionable() const
     {
-	return get_impl().get_disk();
+	return get_impl().get_partitionable();
     }
 
 

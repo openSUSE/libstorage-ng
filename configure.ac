@@ -109,6 +109,7 @@ AC_OUTPUT(
 	integration-tests/Makefile
 	integration-tests/partitions/Makefile
 	integration-tests/filesystems/Makefile
+	integration-tests/md/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
 	bindings/python/examples/Makefile

@@ -40,8 +40,8 @@ namespace storage
 	vector<Partition*> get_partitions();
 	vector<const Partition*> get_partitions() const;
 
-	Disk* get_disk();	// TODO rename, blkdevice
-	const Disk* get_disk() const; // TODO rename, blkdevice
+	Partitionable* get_partitionable();
+	const Partitionable* get_partitionable() const;
 
 	virtual bool equal(const Device::Impl& rhs) const override = 0;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override = 0;

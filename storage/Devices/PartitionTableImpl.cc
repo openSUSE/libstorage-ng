@@ -1,6 +1,6 @@
 
 
-#include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Holders/Subdevice.h"
@@ -34,20 +34,16 @@ namespace storage
     {
 	Device::Impl::probe(systeminfo);
 
-	const Devicegraph* g = get_devicegraph();
+	const Partitionable* partitionable = get_partitionable();
 
-	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-
-	const Disk* disk = to_disk(g->get_impl()[v1]);
-
-	const Parted& parted = systeminfo.getParted(disk->get_name());
+	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 
 	if (parted.getImplicit())
 	    read_only = true;
 
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
-	    string name = disk->get_impl().partition_name(entry.num);
+	    string name = partitionable->get_impl().partition_name(entry.num);
 	    Partition* p = create_partition(name, entry.cylRegion, entry.type);
 	    p->get_impl().probe(systeminfo);
 	}
@@ -66,7 +62,7 @@ namespace storage
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
 	if (region.get_block_size() != geometry.cylinderSize())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
 
@@ -108,21 +104,21 @@ namespace storage
     }
 
 
-    Disk*
-    PartitionTable::Impl::get_disk()
+    Partitionable*
+    PartitionTable::Impl::get_partitionable()
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_disk(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[v]);
     }
 
 
-    const Disk*
-    PartitionTable::Impl::get_disk() const
+    const Partitionable*
+    PartitionTable::Impl::get_partitionable() const
     {
 	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_disk(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[v]);
     }
 
 
@@ -225,7 +221,7 @@ namespace storage
     Region
     PartitionTable::Impl::get_usable_region() const
     {
-	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
 
 	return Region(0, geometry.cylinders, geometry.cylinderSize());
     }
@@ -236,8 +232,8 @@ namespace storage
     {
 	y2mil("all:" << all << " logical:" << logical);
 
-	unsigned int range = get_disk()->get_impl().get_range();
-	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+	unsigned int range = get_partitionable()->get_impl().get_range();
+	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
 
 	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary(range);
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
@@ -274,7 +270,7 @@ namespace storage
 		slot.nr = 1;
 	    }
 
-	    slot.name = get_disk()->get_impl().partition_name(slot.nr);
+	    slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
 
 	    slot.primary_slot = true;
 	    slot.primary_possible = tmp_primary_possible;
@@ -327,7 +323,7 @@ namespace storage
 		PartitionSlot slot;
 
 		slot.nr = max_primary(range) + num_logical() + 1;
-		slot.name = get_disk()->get_impl().partition_name(slot.nr);
+		slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
 
 		slot.primary_slot = false;
 		slot.primary_possible = false;

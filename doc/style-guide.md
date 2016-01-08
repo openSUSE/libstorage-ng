@@ -37,3 +37,7 @@ called do_xx_text() and do_xx(). E.g. the Mount action uses
 Filesystem.do_mount() and Filesystem.do_mount_text(). No other functions
 should have that naming schema.
 
+When variables or values with an underscores in the name are written to XML
+the underscores have to be replaced by dashed. So e.g. size_k is saved as
+<size-k>18</size-k>. In the logs the names should follow the same convention.
+

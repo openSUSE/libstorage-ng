@@ -63,7 +63,7 @@ Fixture fixture;
 
 BOOST_AUTO_TEST_CASE(test_disk)
 {
-    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda size_k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA";
+    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda size-k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA";
 
     ostringstream out;
     out << *(Disk::find(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
@@ -74,7 +74,7 @@ BOOST_AUTO_TEST_CASE(test_disk)
 
 BOOST_AUTO_TEST_CASE(test_partition)
 {
-    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0, 4096, 262144 B]";
+    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size-k:1048576 region:[0, 4096, 262144 B]";
 
     ostringstream out;
     out << *(Partition::find(fixture.get_storage()->get_staging(), "/dev/sda1")) << endl;
@@ -86,9 +86,9 @@ BOOST_AUTO_TEST_CASE(test_partition)
 BOOST_AUTO_TEST_CASE(test_devicegraph)
 {
     list<string> expected = {
-	"Disk sid:42 displayname:/dev/sda name:/dev/sda size_k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA --> 43",
+	"Disk sid:42 displayname:/dev/sda name:/dev/sda size-k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA --> 43",
 	"Gpt sid:43 displayname:gpt --> 44",
-	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size_k:1048576 region:[0, 4096, 262144 B] -->",
+	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size-k:1048576 region:[0, 4096, 262144 B] -->",
 	"User source-sid:42 target-sid:43",
 	"Subdevice source-sid:43 target-sid:44"
     };

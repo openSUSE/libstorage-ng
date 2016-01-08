@@ -4,8 +4,14 @@
 %catches(storage::DeviceHasWrongType) storage::to_blkdevice(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_blkdevice(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_partitionable(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_partitionable(const Device*);
+
 %catches(storage::DeviceHasWrongType) storage::to_disk(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_disk(const Device*);
+
+%catches(storage::DeviceHasWrongType) storage::to_md(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_md(const Device*);
 
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partition_table(const Device*);
@@ -58,13 +64,15 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(const Devicegraph*, const std::string&);
 
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table();
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Disk::get_partition_table() const;
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 
-%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Disk::create_partition_table(PtType);
+%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Partitionable::create_partition_table(PtType);
 
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
 %catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
+
+%catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
 

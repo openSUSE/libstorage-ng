@@ -36,7 +36,7 @@ namespace storage
     Region
     Msdos::Impl::get_usable_region() const
     {
-	const Geometry& geometry = get_disk()->get_impl().get_geometry();
+	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
 
 	unsigned long long max_sectors = (1ULL << 32) - 1;
 	unsigned long len = min(geometry.cylinders, geometry.kbToCylinder(geometry.sectorToKb(max_sectors)));
@@ -87,18 +87,18 @@ namespace storage
     Text
     Msdos::Impl::do_create_text(bool doing) const
     {
-	const Disk* disk = get_disk();
+	const Partitionable* partitionable = get_partitionable();
 
-	return sformat(_("Create MSDOS partition table on %1$s"), disk->get_displayname().c_str());
+	return sformat(_("Create MSDOS partition table on %1$s"), partitionable->get_displayname().c_str());
     }
 
 
     void
     Msdos::Impl::do_create() const
     {
-	const Disk* disk = get_disk();
+	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " mklabel msdos";
+	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " mklabel msdos";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

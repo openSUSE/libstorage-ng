@@ -11,6 +11,10 @@ libdevices_la_SOURCES =					\
 	BlkDeviceImpl.h		BlkDeviceImpl.cc	\
 	Disk.h			Disk.cc			\
 	DiskImpl.h		DiskImpl.cc		\
+	Md.h			Md.cc			\
+	MdImpl.h		MdImpl.cc		\
+	Partitionable.h		Partitionable.cc	\
+	PartitionableImpl.h	PartitionableImpl.cc	\
 	PartitionTable.h	PartitionTable.cc	\
 	PartitionTableImpl.h	PartitionTableImpl.cc	\
 	Msdos.h			Msdos.cc		\
@@ -46,6 +50,8 @@ pkginclude_HEADERS =		\
 	Device.h		\
 	BlkDevice.h		\
 	Disk.h			\
+	Md.h			\
+	Partitionable.h		\
 	PartitionTable.h	\
 	Msdos.h			\
 	Gpt.h			\

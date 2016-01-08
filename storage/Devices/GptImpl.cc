@@ -101,18 +101,18 @@ namespace storage
     Text
     Gpt::Impl::do_create_text(bool doing) const
     {
-	const Disk* disk = get_disk();
+	const Partitionable* partitionable = get_partitionable();
 
-	return sformat(_("Create GPT on %1$s"), disk->get_displayname().c_str());
+	return sformat(_("Create GPT on %1$s"), partitionable->get_displayname().c_str());
     }
 
 
     void
     Gpt::Impl::do_create() const
     {
-	const Disk* disk = get_disk();
+	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(disk->get_name()) + " mklabel gpt";
+	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " mklabel gpt";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
