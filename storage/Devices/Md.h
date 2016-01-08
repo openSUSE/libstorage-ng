@@ -13,6 +13,8 @@ namespace storage
 
     std::string get_md_level_name(MdType md_level);
 
+    std::string get_md_parity_name(MdParity md_parity);
+
 
     /**
      * A MD device

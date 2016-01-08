@@ -19,6 +19,13 @@ namespace storage
     }
 
 
+    string
+    get_md_parity_name(MdParity md_parity)
+    {
+	return toString(md_parity);
+    }
+
+
     Md*
     Md::create(Devicegraph* devicegraph, const string& name)
     {
