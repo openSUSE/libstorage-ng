@@ -79,29 +79,43 @@ namespace storage
 
 	// TODO
 
+	// Pass 1: Detect all BlkDevices and some Holders, e.g. between
+	// Partitionable, PartitionTable and Partitions.
+
 	for (const string& name : Disk::Impl::probe_disks(systeminfo))
 	{
 	    Disk* disk = Disk::create(probed, name);
-	    disk->get_impl().probe(systeminfo);
+	    disk->get_impl().probe_pass_1(probed, systeminfo);
 	}
 
 	for (const string& name : Md::Impl::probe_mds(systeminfo))
 	{
 	    Md* md = Md::create(probed, name);
-	    md->get_impl().probe(probed, systeminfo);
+	    md->get_impl().probe_pass_1(probed, systeminfo);
 	}
+
+	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
+	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
+	// and md2).
+
+	for (Md* md : probed->get_all_mds())
+	{
+	    md->get_impl().probe_pass_2(probed, systeminfo);
+	}
+
+	// Pass 3: Detect filesystems.
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
-	    BlkDevice* blkdevice = dynamic_cast<BlkDevice*>(probed->get_impl()[vertex]);
-	    if (!blkdevice)
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(probed->get_impl()[vertex]);
+	    if (!blk_device)
 		continue;
 
-	    if (blkdevice->num_children() != 0)
+	    if (blk_device->num_children() != 0)
 		continue;
 
 	    Blkid::Entry entry;
-	    if (systeminfo.getBlkid().getEntry(blkdevice->get_name(), entry))
+	    if (systeminfo.getBlkid().getEntry(blk_device->get_name(), entry))
 	    {
 		if (entry.is_fs)
 		{
@@ -110,8 +124,8 @@ namespace storage
 			entry.fs_type != SWAP && entry.fs_type != NTFS && entry.fs_type != VFAT)
 			continue;
 
-		    Filesystem* filesystem = blkdevice->create_filesystem(entry.fs_type);
-		    filesystem->get_impl().probe(systeminfo, fstab);
+		    Filesystem* filesystem = blk_device->create_filesystem(entry.fs_type);
+		    filesystem->get_impl().probe_pass_3(probed, systeminfo, fstab);
 		}
 	    }
 	}

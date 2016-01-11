@@ -28,17 +28,13 @@ namespace storage
 
 
     void
-    Gpt::Impl::probe(SystemInfo& systeminfo)
+    Gpt::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	PartitionTable::Impl::probe(systeminfo);
+	PartitionTable::Impl::probe_pass_1(probed, systeminfo);
 
-	const Devicegraph* g = get_devicegraph();
+	const Partitionable* partitionable = get_partitionable();
 
-	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-
-	string pp_name = to_blk_device(g->get_impl()[v1])->get_name();
-
-	const Parted& parted = systeminfo.getParted(pp_name);
+	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 
 	if (parted.getGptEnlarge())
 	    enlarge = true;

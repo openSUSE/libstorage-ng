@@ -38,9 +38,9 @@ namespace storage
 
 
     void
-    BlkDevice::Impl::probe(SystemInfo& systeminfo)
+    BlkDevice::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	Device::Impl::probe(systeminfo);
+	Device::Impl::probe_pass_1(probed, systeminfo);
 
 	const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
 

@@ -115,29 +115,27 @@ namespace storage
 
 
     void
-    Filesystem::Impl::probe(SystemInfo& systeminfo, EtcFstab& fstab)
+    Filesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, EtcFstab& fstab)
     {
-	const Devicegraph* g = get_devicegraph();
-	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());
-	const BlkDevice* blkdevice = dynamic_cast<const BlkDevice*>(g->get_impl()[v1]);
+	const BlkDevice* blk_device = get_blk_device();
 
 	const Blkid& blkid = systeminfo.getBlkid();
 	Blkid::Entry entry;
-	if (blkid.getEntry(blkdevice->get_name(), entry))
+	if (blkid.getEntry(blk_device->get_name(), entry))
 	{
 	    label = entry.fs_label;
 	    uuid = entry.fs_uuid;
 	}
 
 	const ProcMounts& proc_mounts = systeminfo.getProcMounts();
-	string mountpoint = proc_mounts.getMount(blkdevice->get_name());
+	string mountpoint = proc_mounts.getMount(blk_device->get_name());
 	if (!mountpoint.empty())
 	    mountpoints.push_back(mountpoint);
 
-	fstab.setDevice(blkdevice->get_name(), {}, uuid, label, blkdevice->get_udev_ids(),
-			blkdevice->get_udev_path());
+	fstab.setDevice(blk_device->get_name(), {}, uuid, label, blk_device->get_udev_ids(),
+			blk_device->get_udev_path());
 	FstabEntry fstabentry;
-	if (fstab.findDevice(blkdevice->get_name(), fstabentry))
+	if (fstab.findDevice(blk_device->get_name(), fstabentry))
 	{
 	    mount_by = fstabentry.mount_by;
 	    fstab_options = fstabentry.opts;
@@ -226,7 +224,7 @@ namespace storage
 
 
     vector<const BlkDevice*>
-    Filesystem::Impl::get_blkdevices() const
+    Filesystem::Impl::get_blk_devices() const
     {
 	const Devicegraph* devicegraph = get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
@@ -236,12 +234,13 @@ namespace storage
 
 
     const BlkDevice*
-    Filesystem::Impl::get_blkdevice() const
+    Filesystem::Impl::get_blk_device() const
     {
-	vector<const BlkDevice*> blkdevices = get_blkdevices();
-	assert(blkdevices.size() == 1);
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+	if (blk_devices.size() != 1)
+	    throw;
 
-	return blkdevices.front();
+	return blk_devices.front();
     }
 
 
@@ -308,9 +307,9 @@ namespace storage
     string
     Filesystem::Impl::get_mount_by_string() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	string ret = blkdevice->get_name();
+	string ret = blk_device->get_name();
 
 	switch (mount_by)
 	{
@@ -329,15 +328,15 @@ namespace storage
 		break;
 
 	    case MOUNTBY_ID:
-		if (!blkdevice->get_udev_ids().empty())
-		    ret = DEVDIR "/disk/by-id/" + blkdevice->get_udev_ids().front();
+		if (!blk_device->get_udev_ids().empty())
+		    ret = DEVDIR "/disk/by-id/" + blk_device->get_udev_ids().front();
 		else
 		    y2err("no udev-id defined");
 		break;
 
 	    case MOUNTBY_PATH:
-		if (!blkdevice->get_udev_path().empty())
-		    ret = DEVDIR "/disk/by-path/" + blkdevice->get_udev_path();
+		if (!blk_device->get_udev_path().empty())
+		    ret = DEVDIR "/disk/by-path/" + blk_device->get_udev_path();
 		else
 		    y2err("no udev-path defined");
 		break;
@@ -353,21 +352,21 @@ namespace storage
     Text
     Filesystem::Impl::do_create_text(bool doing) const
     {
-	// TODO handle multiple blkdevices
+	// TODO handle multiple BlkDevices
 
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	return sformat(_("Create %1$s on %2$s (%3$s)"), get_displayname().c_str(),
-		       blkdevice->get_name().c_str(), blkdevice->get_size_string().c_str());
+		       blk_device->get_name().c_str(), blk_device->get_size_string().c_str());
     }
 
 
     Text
     Filesystem::Impl::do_set_label_text(bool doing) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Set label of %1$s to %2$s"), blkdevice->get_name().c_str(),
+	return sformat(_("Set label of %1$s to %2$s"), blk_device->get_name().c_str(),
 		       label.c_str());
     }
 
@@ -382,9 +381,9 @@ namespace storage
     Text
     Filesystem::Impl::do_mount_text(const string& mountpoint, bool doing) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Mount %1$s at %2$s"), blkdevice->get_name().c_str(),
+	return sformat(_("Mount %1$s at %2$s"), blk_device->get_name().c_str(),
 		       mountpoint.c_str());
     }
 
@@ -392,7 +391,7 @@ namespace storage
     void
     Filesystem::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	const Storage& storage = actiongraph.get_storage();
 
@@ -402,7 +401,7 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blkdevice->get_name())
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blk_device->get_name())
 	    + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
@@ -415,9 +414,9 @@ namespace storage
     Text
     Filesystem::Impl::do_umount_text(const string& mountpoint, bool doing) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Unmount %1$s at %2$s"), blkdevice->get_name().c_str(),
+	return sformat(_("Unmount %1$s at %2$s"), blk_device->get_name().c_str(),
 		       mountpoint.c_str());
     }
 
@@ -441,10 +440,10 @@ namespace storage
     Text
     Filesystem::Impl::do_add_fstab_text(const string& mountpoint, bool doing) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	return sformat(_("Add mountpoint %1$s of %2$s to fstab"), mountpoint.c_str(),
-		       blkdevice->get_name().c_str());
+		       blk_device->get_name().c_str());
     }
 
 
@@ -455,12 +454,12 @@ namespace storage
 
 	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	// TODO
 
 	FstabChange entry;
-	entry.device = blkdevice->get_name();
+	entry.device = blk_device->get_name();
 	entry.dentry = get_mount_by_string();
 	entry.mount = mountpoint;
 	entry.fs = toString(get_type());
@@ -474,10 +473,10 @@ namespace storage
     Text
     Filesystem::Impl::do_remove_fstab_text(const string& mountpoint, bool doing) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	return sformat(_("Remove mountpoint %1$s of %2$s from fstab"), mountpoint.c_str(),
-		       blkdevice->get_name().c_str());
+		       blk_device->get_name().c_str());
     }
 
 
@@ -488,11 +487,11 @@ namespace storage
 
 	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	// TODO error handling
 
-	FstabKey entry(blkdevice->get_name(), mountpoint);
+	FstabKey entry(blk_device->get_name(), mountpoint);
 	fstab.removeEntry(entry);
 	fstab.flush();
     }

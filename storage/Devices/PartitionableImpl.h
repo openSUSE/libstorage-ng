@@ -32,7 +32,7 @@ namespace storage
 
 	std::vector<PtType> get_possible_partition_table_types() const;
 
-	void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	PartitionTable* create_partition_table(PtType pt_type);
 

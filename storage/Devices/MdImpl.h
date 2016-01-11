@@ -51,7 +51,8 @@ namespace storage
 
 	static vector<string> probe_mds(SystemInfo& systeminfo);
 
-	void probe(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;

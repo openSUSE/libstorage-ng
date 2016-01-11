@@ -28,11 +28,11 @@ namespace storage
     void
     Swap::Impl::do_create() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	blkdevice->get_impl().wait_for_device();
+	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKSWAPBIN " -f " + quote(blkdevice->get_name());
+	string cmd_line = MKSWAPBIN " -f " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -44,9 +44,9 @@ namespace storage
     void
     Swap::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blkdevice->get_name());
+	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -58,9 +58,9 @@ namespace storage
     void
     Swap::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = SWAPOFFBIN " " + quote(blkdevice->get_name());
+	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

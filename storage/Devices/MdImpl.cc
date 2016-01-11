@@ -30,7 +30,7 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(PAR_DEFAULT), chunk_size_k(0)
     {
 	string tmp;
 
@@ -91,9 +91,9 @@ namespace storage
 
 
     void
-    Md::Impl::probe(Devicegraph* probed, SystemInfo& systeminfo)
+    Md::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	Partitionable::Impl::probe(systeminfo);
+	Partitionable::Impl::probe_pass_1(probed, systeminfo);
 
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
@@ -108,6 +108,20 @@ namespace storage
 	md_parity = entry.md_parity;
 
 	chunk_size_k = entry.chunk_size_k;
+    }
+
+
+    void
+    Md::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	string tmp = get_name().substr(strlen(DEVDIR "/"));
+
+	ProcMdstat::Entry entry;
+	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
+	{
+	    // TODO
+	    throw;
+	}
 
 	for (const string& device : entry.devices)
 	{

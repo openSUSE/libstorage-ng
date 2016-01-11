@@ -34,7 +34,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 

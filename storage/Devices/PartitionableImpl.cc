@@ -45,21 +45,30 @@ namespace storage
 
 
     void
-    Partitionable::Impl::probe(SystemInfo& systeminfo)
+    Partitionable::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	BlkDevice::Impl::probe(systeminfo);
+	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
 
 	const File range_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
 	range = range_file.get_int();
+
+	// When the kernel reports the device to have holders we can and
+	// should skip looking for a partition table and partitions.
+
+	// TODO Another way to probe geometry or drop geometry.
 
 	const Parted& parted = systeminfo.getParted(get_name());
 
 	geometry = parted.getGeometry();
 
-	if (parted.getLabel() == PtType::MSDOS || parted.getLabel() == PtType::GPT)
+	const Dir& dir = systeminfo.getDir(SYSFSDIR + get_sysfs_path() + "/holders");
+	if (dir.empty())
 	{
-	    PartitionTable* pt = create_partition_table(parted.getLabel());
-	    pt->get_impl().probe(systeminfo);
+	    if (parted.getLabel() == PtType::MSDOS || parted.getLabel() == PtType::GPT)
+	    {
+		PartitionTable* pt = create_partition_table(parted.getLabel());
+		pt->get_impl().probe_pass_1(probed, systeminfo);
+	    }
 	}
     }
 

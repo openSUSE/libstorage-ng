@@ -28,11 +28,11 @@ namespace storage
     void
     Xfs::Impl::do_create() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	blkdevice->get_impl().wait_for_device();
+	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSXFSBIN " -q -f -m crc=1 " + quote(blkdevice->get_name());
+	string cmd_line = MKFSXFSBIN " -q -f -m crc=1 " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -44,10 +44,10 @@ namespace storage
     void
     Xfs::Impl::do_set_label() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = XFSADMINBIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
-	    quote(blkdevice->get_name());
+	    quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

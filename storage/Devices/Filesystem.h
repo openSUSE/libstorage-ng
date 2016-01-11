@@ -59,7 +59,7 @@ namespace storage
 							   const std::string& mountpoint);
 
 	// TODO class BlkFilesystem for not nfs, tmpfs?
-	std::vector<const BlkDevice*> get_blkdevices() const;
+	std::vector<const BlkDevice*> get_blk_devices() const;
 
     public:
 

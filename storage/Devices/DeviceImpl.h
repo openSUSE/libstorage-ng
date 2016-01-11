@@ -113,7 +113,8 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
 
     private:
 

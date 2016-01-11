@@ -42,9 +42,9 @@ namespace storage
 
 
     void
-    Partition::Impl::probe(SystemInfo& systeminfo)
+    Partition::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	BlkDevice::Impl::probe(systeminfo);
+	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
 
 	const Partitionable* partitionable = get_partitionable();
 
