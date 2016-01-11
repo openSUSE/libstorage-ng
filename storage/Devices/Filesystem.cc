@@ -174,9 +174,9 @@ namespace storage
 
 
     vector<const BlkDevice*>
-    Filesystem::get_blkdevices() const
+    Filesystem::get_blk_devices() const
     {
-	return get_impl().get_blkdevices();
+	return get_impl().get_blk_devices();
     }
 
 

@@ -28,11 +28,11 @@ namespace storage
     void
     Btrfs::Impl::do_create() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	blkdevice->get_impl().wait_for_device();
+	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSBTRFSBIN " -f " + quote(blkdevice->get_name());
+	string cmd_line = MKFSBTRFSBIN " -f " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -44,11 +44,11 @@ namespace storage
     void
     Btrfs::Impl::do_set_label() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
 	// TODO handle mounted
 
-        string cmd_line = BTRFSBIN " filesystem label " + quote(blkdevice->get_name()) + " " +
+        string cmd_line = BTRFSBIN " filesystem label " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 	cout << cmd_line << endl;
 

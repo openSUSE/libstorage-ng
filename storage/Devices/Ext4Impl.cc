@@ -28,11 +28,11 @@ namespace storage
     void
     Ext4::Impl::do_create() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	blkdevice->get_impl().wait_for_device();
+	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSEXT2BIN " -t ext4 -v -F " + quote(blkdevice->get_name());
+	string cmd_line = MKFSEXT2BIN " -t ext4 -v -F " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -44,9 +44,9 @@ namespace storage
     void
     Ext4::Impl::do_set_label() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = TUNE2FSBIN " -L " + quote(get_label()) + " " + quote(blkdevice->get_name());
+	string cmd_line = TUNE2FSBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

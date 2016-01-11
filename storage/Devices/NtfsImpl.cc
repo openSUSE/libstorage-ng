@@ -26,11 +26,11 @@ namespace storage
     void
     Ntfs::Impl::do_create() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	blkdevice->get_impl().wait_for_device();
+	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSNTFSBIN " --fast --with-uuid " + quote(blkdevice->get_name());
+	string cmd_line = MKFSNTFSBIN " --fast --with-uuid " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -42,9 +42,10 @@ namespace storage
     void
     Ntfs::Impl::do_set_label() const
     {
-	const BlkDevice* blkdevice = get_blkdevice();
+	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = NTFSLABELBIN " " + quote(blkdevice->get_name()) + " " + quote(get_label());
+	string cmd_line = NTFSLABELBIN " " + quote(blk_device->get_name()) + " " +
+	    quote(get_label());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
