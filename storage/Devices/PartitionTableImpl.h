@@ -27,7 +27,7 @@ namespace storage
     {
     public:
 
-	virtual void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 

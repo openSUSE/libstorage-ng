@@ -59,6 +59,7 @@ namespace storage
 	void parse(const vector<string>& lines);
 
 	string device;
+
 	dev_t majorminor;
 
     };
@@ -72,6 +73,8 @@ namespace storage
 
 	typedef list<string>::const_iterator const_iterator;
 
+	bool empty() const { return entries.empty(); }
+
 	const_iterator begin() const { return entries.begin(); }
 	const_iterator end() const { return entries.end(); }
 
@@ -82,6 +85,7 @@ namespace storage
 	void parse(const vector<string>& lines);
 
 	string path;
+
 	list<string> entries;
 
     };

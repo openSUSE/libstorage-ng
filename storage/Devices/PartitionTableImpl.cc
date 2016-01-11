@@ -30,9 +30,9 @@ namespace storage
 
 
     void
-    PartitionTable::Impl::probe(SystemInfo& systeminfo)
+    PartitionTable::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	Device::Impl::probe(systeminfo);
+	Device::Impl::probe_pass_1(probed, systeminfo);
 
 	const Partitionable* partitionable = get_partitionable();
 
@@ -45,7 +45,7 @@ namespace storage
 	{
 	    string name = partitionable->get_impl().partition_name(entry.num);
 	    Partition* p = create_partition(name, entry.cylRegion, entry.type);
-	    p->get_impl().probe(systeminfo);
+	    p->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
 

@@ -19,13 +19,20 @@ def run_command(name):
     p = Popen(cmd, shell = True, stdout = PIPE, stderr = PIPE, close_fds = True)
     stdout, stderr = p.communicate()
 
+    stdout = stdout.rstrip()
+    stderr = stderr.rstrip()
+
     ret = RemoteCommand()
 
-    for line in stdout.rstrip().split('\n'):
-        ret.stdout.push_back(line)
+    # TODO rethink difference between no line and single empty line
 
-    for line in stderr.rstrip().split('\n'):
-        ret.stderr.push_back(line)
+    if stdout:
+        for line in stdout.split('\n'):
+            ret.stdout.push_back(line)
+
+    if stderr:
+        for line in stderr.split('\n'):
+            ret.stderr.push_back(line)
 
     ret.exitcode = p.returncode
 

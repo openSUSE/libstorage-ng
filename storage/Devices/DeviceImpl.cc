@@ -41,7 +41,13 @@ namespace storage
 
 
     void
-    Device::Impl::probe(SystemInfo& systeminfo)
+    Device::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+    }
+
+
+    void
+    Device::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
     {
     }
 

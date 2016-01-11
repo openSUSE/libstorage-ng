@@ -62,9 +62,9 @@ namespace storage
 
 
     void
-    Disk::Impl::probe(SystemInfo& systeminfo)
+    Disk::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	Partitionable::Impl::probe(systeminfo);
+	Partitionable::Impl::probe_pass_1(probed, systeminfo);
 
 	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;

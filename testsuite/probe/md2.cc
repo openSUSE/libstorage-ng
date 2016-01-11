@@ -19,7 +19,7 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(dependencies)
 {
     storage::Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("md-mockup.xml");
+    environment.set_mockup_filename("md2-mockup.xml");
 
     Storage storage(environment);
 
@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Devicegraph* staging = storage.get_staging();
 
-    staging->load("md-devicegraph.xml");
+    staging->load("md2-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);

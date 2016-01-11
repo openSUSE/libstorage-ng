@@ -5,6 +5,8 @@
     <Command>
       <name>/bin/ls -1 --sort=none '/sys/block'</name>
       <stdout>md0</stdout>
+      <stdout>md1</stdout>
+      <stdout>md2</stdout>
       <stdout>sda</stdout>
       <stdout>sdb</stdout>
       <stdout>sdc</stdout>
@@ -74,58 +76,239 @@
       <stdout>loop61</stdout>
       <stdout>loop62</stdout>
       <stdout>loop63</stdout>
-      <stderr></stderr>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
+      <stdout>md1</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/holders'</name>
+      <stdout>md1</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/holders'</name>
+      <stdout>md2</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/holders'</name>
+      <stdout>md2</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md0/holders'</name>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md1/holders'</name>
+      <stdout>md0</stdout>
+    </Command>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md2/holders'</name>
+      <stdout>md0</stdout>
     </Command>
     <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
-      <stdout>/dev/sda: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="0193d8d8-ba9f-1a0d-3dad-ae7e9d264336" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
-      <stdout>/dev/sdb: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="d49e9bf5-6946-5039-0c60-23d3d6f3c1fb" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
-      <stdout>/dev/sdc: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="96411a8d-e9c9-b287-4be7-c3f0343693be" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/sda: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="ad3cff36-a8fd-6728-2f2d-8c348472cddd" LABEL="any:1" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/sdb: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="6ba92495-88b5-33a4-ed2b-1fb1fa6387f7" LABEL="any:1" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/sdc: UUID="c8440826-8e55-745c-d7e1-4cddac26716d" UUID_SUB="df4a8d48-2a56-b0b2-3cfb-7fd99bf196ac" LABEL="any:2" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/loop0: TYPE="squashfs" </stdout>
-      <stdout>/dev/sdd: UUID="2ce25515-3d25-5c09-a0e9-1f18d9c098d3" UUID_SUB="98723522-57a0-a22b-5a68-b865784616bf" LABEL="(none):0" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/sdd: UUID="c8440826-8e55-745c-d7e1-4cddac26716d" UUID_SUB="bec2677c-33ad-1e4a-75f5-ce58baffb776" LABEL="any:2" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/loop1: TYPE="squashfs" </stdout>
       <stdout>/dev/loop2: TYPE="squashfs" </stdout>
       <stdout>/dev/loop3: TYPE="squashfs" </stdout>
       <stdout>/dev/loop4: TYPE="squashfs" </stdout>
       <stdout>/dev/loop5: TYPE="squashfs" </stdout>
       <stdout>/dev/loop6: TYPE="squashfs" </stdout>
-      <stdout>/dev/sr0: UUID="2014-10-27-14-56-02-00" LABEL="openSUSE-13.2-DVD-x86_640051" TYPE="iso9660" PTUUID="10ce3e4f" PTTYPE="dos"</stdout>
-      <stderr></stderr>
+      <stdout>/dev/sr0: UUID="2014-10-27-14-56-02-00" LABEL="openSUSE-13.2-DVD-x86_640051" TYPE="iso9660" PTUUID="10ce3e4f" PTTYPE="dos" </stdout>
+      <stdout>/dev/md1: UUID="d11cbd17-b4fa-9ccd-bb7b-9bab557d863c" UUID_SUB="a400c8f9-ceae-e29a-b7b3-c1c868974711" LABEL="any:0" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/md2: UUID="d11cbd17-b4fa-9ccd-bb7b-9bab557d863c" UUID_SUB="3ed18246-99c6-a49a-36ef-fe7c90029c93" LABEL="any:0" TYPE="linux_raid_member" </stdout>
+      <stdout>/dev/md0: PTUUID="b99887d0-1a71-494d-ad5c-38e7e78fd433" PTTYPE="gpt" </stdout>
+      <stdout>/dev/md0p1: UUID="bdf87a88-d1b0-4724-8437-d52e493b9c0d" TYPE="ext4" PARTUUID="6149fb93-9e92-4be3-9798-639244fe27d2" </stdout>
+      <stdout>/dev/md0p2: UUID="178825b0-311f-4914-b4d9-5a60e322150c" UUID_SUB="c5ead4b3-b7e1-419f-8298-df4157251d35" TYPE="btrfs" PARTUUID="8bd64fbc-17e6-4de6-998f-f7027fa3b049"</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/md0'</name>
       <stdout>P: /devices/virtual/block/md0</stdout>
       <stdout>N: md0</stdout>
       <stdout>L: 100</stdout>
-      <stdout>S: disk/by-id/md-name-_none_:0</stdout>
-      <stdout>S: disk/by-id/md-uuid-2ce25515:3d255c09:a0e91f18:d9c098d3</stdout>
-      <stdout>S: md/0</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-_none_:0 /dev/disk/by-id/md-uuid-2ce25515:3d255c09:a0e91f18:d9c098d3 /dev/md/0</stdout>
+      <stdout>S: disk/by-id/md-name-any:0</stdout>
+      <stdout>S: disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-any:0 /dev/disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
       <stdout>E: DEVNAME=/dev/md0</stdout>
       <stdout>E: DEVPATH=/devices/virtual/block/md0</stdout>
       <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=b99887d0-1a71-494d-ad5c-38e7e78fd433</stdout>
       <stdout>E: MAJOR=9</stdout>
-      <stdout>E: MD_DEVICES=3</stdout>
+      <stdout>E: MD_DEVICES=2</stdout>
+      <stdout>E: MD_DEVICE_md1_DEV=/dev/md1</stdout>
+      <stdout>E: MD_DEVICE_md1_ROLE=0</stdout>
+      <stdout>E: MD_DEVICE_md2_DEV=/dev/md2</stdout>
+      <stdout>E: MD_DEVICE_md2_ROLE=1</stdout>
+      <stdout>E: MD_LEVEL=raid0</stdout>
+      <stdout>E: MD_METADATA=1.0</stdout>
+      <stdout>E: MD_NAME=any:0</stdout>
+      <stdout>E: MD_UUID=d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=349261752</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/md0p1'</name>
+      <stdout>P: /devices/virtual/block/md0/md0p1</stdout>
+      <stdout>N: md0p1</stdout>
+      <stdout>L: 100</stdout>
+      <stdout>S: disk/by-id/md-name-any:0-part1</stdout>
+      <stdout>S: disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part1</stdout>
+      <stdout>S: disk/by-uuid/bdf87a88-d1b0-4724-8437-d52e493b9c0d</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-any:0-part1 /dev/disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part1 /dev/disk/by-uuid/bdf87a88-d1b0-4724-8437-d52e493b9c0d</stdout>
+      <stdout>E: DEVNAME=/dev/md0p1</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/md0/md0p1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_FS_TYPE=ext4</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=bdf87a88-d1b0-4724-8437-d52e493b9c0d</stdout>
+      <stdout>E: ID_FS_UUID_ENC=bdf87a88-d1b0-4724-8437-d52e493b9c0d</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=9:0</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=997376</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=ebd0a0a2-b9e5-4433-87c0-68b6b72699c7</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=6149fb93-9e92-4be3-9798-639244fe27d2</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: MAJOR=259</stdout>
+      <stdout>E: MD_DEVICES=2</stdout>
+      <stdout>E: MD_DEVICE_md1_DEV=/dev/md1</stdout>
+      <stdout>E: MD_DEVICE_md1_ROLE=0</stdout>
+      <stdout>E: MD_DEVICE_md2_DEV=/dev/md2</stdout>
+      <stdout>E: MD_DEVICE_md2_ROLE=1</stdout>
+      <stdout>E: MD_LEVEL=raid0</stdout>
+      <stdout>E: MD_METADATA=1.0</stdout>
+      <stdout>E: MD_NAME=any:0</stdout>
+      <stdout>E: MD_UUID=d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
+      <stdout>E: MINOR=2</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=49347283</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/md0p2'</name>
+      <stdout>P: /devices/virtual/block/md0/md0p2</stdout>
+      <stdout>N: md0p2</stdout>
+      <stdout>L: 100</stdout>
+      <stdout>S: disk/by-id/md-name-any:0-part2</stdout>
+      <stdout>S: disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part2</stdout>
+      <stdout>S: disk/by-uuid/178825b0-311f-4914-b4d9-5a60e322150c</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-any:0-part2 /dev/disk/by-id/md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part2 /dev/disk/by-uuid/178825b0-311f-4914-b4d9-5a60e322150c</stdout>
+      <stdout>E: DEVNAME=/dev/md0p2</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/md0/md0p2</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: ID_FS_TYPE=btrfs</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=178825b0-311f-4914-b4d9-5a60e322150c</stdout>
+      <stdout>E: ID_FS_UUID_ENC=178825b0-311f-4914-b4d9-5a60e322150c</stdout>
+      <stdout>E: ID_FS_UUID_SUB=c5ead4b3-b7e1-419f-8298-df4157251d35</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=c5ead4b3-b7e1-419f-8298-df4157251d35</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=9:0</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=999424</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=66105344</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=ebd0a0a2-b9e5-4433-87c0-68b6b72699c7</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=8bd64fbc-17e6-4de6-998f-f7027fa3b049</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: MAJOR=259</stdout>
+      <stdout>E: MD_DEVICES=2</stdout>
+      <stdout>E: MD_DEVICE_md1_DEV=/dev/md1</stdout>
+      <stdout>E: MD_DEVICE_md1_ROLE=0</stdout>
+      <stdout>E: MD_DEVICE_md2_DEV=/dev/md2</stdout>
+      <stdout>E: MD_DEVICE_md2_ROLE=1</stdout>
+      <stdout>E: MD_LEVEL=raid0</stdout>
+      <stdout>E: MD_METADATA=1.0</stdout>
+      <stdout>E: MD_NAME=any:0</stdout>
+      <stdout>E: MD_UUID=d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
+      <stdout>E: MINOR=3</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=4449347299</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/md1'</name>
+      <stdout>P: /devices/virtual/block/md1</stdout>
+      <stdout>N: md1</stdout>
+      <stdout>L: 100</stdout>
+      <stdout>S: disk/by-id/md-name-any:1</stdout>
+      <stdout>S: disk/by-id/md-uuid-3e531727:0857f684:cd2e394b:62046b74</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-any:1 /dev/disk/by-id/md-uuid-3e531727:0857f684:cd2e394b:62046b74</stdout>
+      <stdout>E: DEVNAME=/dev/md1</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/md1</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_FS_LABEL=any:0</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:0</stdout>
+      <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
+      <stdout>E: ID_FS_USAGE=raid</stdout>
+      <stdout>E: ID_FS_UUID=d11cbd17-b4fa-9ccd-bb7b-9bab557d863c</stdout>
+      <stdout>E: ID_FS_UUID_ENC=d11cbd17-b4fa-9ccd-bb7b-9bab557d863c</stdout>
+      <stdout>E: ID_FS_UUID_SUB=a400c8f9-ceae-e29a-b7b3-c1c868974711</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=a400c8f9-ceae-e29a-b7b3-c1c868974711</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: MAJOR=9</stdout>
+      <stdout>E: MD_DEVICES=2</stdout>
       <stdout>E: MD_DEVICE_sda_DEV=/dev/sda</stdout>
       <stdout>E: MD_DEVICE_sda_ROLE=0</stdout>
       <stdout>E: MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
       <stdout>E: MD_DEVICE_sdb_ROLE=1</stdout>
-      <stdout>E: MD_DEVICE_sdc_DEV=/dev/sdc</stdout>
-      <stdout>E: MD_DEVICE_sdc_ROLE=2</stdout>
-      <stdout>E: MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>E: MD_DEVICE_sdd_ROLE=spare</stdout>
-      <stdout>E: MD_DEVNAME=0</stdout>
-      <stdout>E: MD_LEVEL=raid5</stdout>
-      <stdout>E: MD_METADATA=1.2</stdout>
-      <stdout>E: MD_NAME=(none):0</stdout>
-      <stdout>E: MD_UUID=2ce25515:3d255c09:a0e91f18:d9c098d3</stdout>
-      <stdout>E: MINOR=0</stdout>
+      <stdout>E: MD_LEVEL=raid1</stdout>
+      <stdout>E: MD_METADATA=1.0</stdout>
+      <stdout>E: MD_NAME=any:1</stdout>
+      <stdout>E: MD_UUID=3e531727:0857f684:cd2e394b:62046b74</stdout>
+      <stdout>E: MINOR=1</stdout>
       <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: SYSTEMD_WANTS=mdmonitor.service</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=60031</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=336772678</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/md2'</name>
+      <stdout>P: /devices/virtual/block/md2</stdout>
+      <stdout>N: md2</stdout>
+      <stdout>L: 100</stdout>
+      <stdout>S: disk/by-id/md-name-any:2</stdout>
+      <stdout>S: disk/by-id/md-uuid-c8440826:8e55745c:d7e14cdd:ac26716d</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/md-name-any:2 /dev/disk/by-id/md-uuid-c8440826:8e55745c:d7e14cdd:ac26716d</stdout>
+      <stdout>E: DEVNAME=/dev/md2</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/md2</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_FS_LABEL=any:0</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:0</stdout>
+      <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
+      <stdout>E: ID_FS_USAGE=raid</stdout>
+      <stdout>E: ID_FS_UUID=d11cbd17-b4fa-9ccd-bb7b-9bab557d863c</stdout>
+      <stdout>E: ID_FS_UUID_ENC=d11cbd17-b4fa-9ccd-bb7b-9bab557d863c</stdout>
+      <stdout>E: ID_FS_UUID_SUB=3ed18246-99c6-a49a-36ef-fe7c90029c93</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=3ed18246-99c6-a49a-36ef-fe7c90029c93</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: MAJOR=9</stdout>
+      <stdout>E: MD_DEVICES=2</stdout>
+      <stdout>E: MD_DEVICE_sdc_DEV=/dev/sdc</stdout>
+      <stdout>E: MD_DEVICE_sdc_ROLE=0</stdout>
+      <stdout>E: MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
+      <stdout>E: MD_DEVICE_sdd_ROLE=1</stdout>
+      <stdout>E: MD_LEVEL=raid1</stdout>
+      <stdout>E: MD_METADATA=1.0</stdout>
+      <stdout>E: MD_NAME=any:2</stdout>
+      <stdout>E: MD_UUID=c8440826:8e55745c:d7e14cdd:ac26716d</stdout>
+      <stdout>E: MINOR=2</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: SYSTEMD_WANTS=mdmonitor.service</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=345642759</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sda'</name>
@@ -142,15 +325,15 @@
       <stdout>E: DEVTYPE=disk</stdout>
       <stdout>E: ID_ATA=1</stdout>
       <stdout>E: ID_BUS=ata</stdout>
-      <stdout>E: ID_FS_LABEL=_none_:0</stdout>
-      <stdout>E: ID_FS_LABEL_ENC=\x28none\x29:0</stdout>
+      <stdout>E: ID_FS_LABEL=any:1</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:1</stdout>
       <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
       <stdout>E: ID_FS_USAGE=raid</stdout>
-      <stdout>E: ID_FS_UUID=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_ENC=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_SUB=0193d8d8-ba9f-1a0d-3dad-ae7e9d264336</stdout>
-      <stdout>E: ID_FS_UUID_SUB_ENC=0193d8d8-ba9f-1a0d-3dad-ae7e9d264336</stdout>
-      <stdout>E: ID_FS_VERSION=1.2</stdout>
+      <stdout>E: ID_FS_UUID=3e531727-0857-f684-cd2e-394b62046b74</stdout>
+      <stdout>E: ID_FS_UUID_ENC=3e531727-0857-f684-cd2e-394b62046b74</stdout>
+      <stdout>E: ID_FS_UUID_SUB=ad3cff36-a8fd-6728-2f2d-8c348472cddd</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=ad3cff36-a8fd-6728-2f2d-8c348472cddd</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1.0</stdout>
@@ -180,8 +363,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=25984</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=82172</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdb'</name>
@@ -198,15 +380,15 @@
       <stdout>E: DEVTYPE=disk</stdout>
       <stdout>E: ID_ATA=1</stdout>
       <stdout>E: ID_BUS=ata</stdout>
-      <stdout>E: ID_FS_LABEL=_none_:0</stdout>
-      <stdout>E: ID_FS_LABEL_ENC=\x28none\x29:0</stdout>
+      <stdout>E: ID_FS_LABEL=any:1</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:1</stdout>
       <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
       <stdout>E: ID_FS_USAGE=raid</stdout>
-      <stdout>E: ID_FS_UUID=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_ENC=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_SUB=d49e9bf5-6946-5039-0c60-23d3d6f3c1fb</stdout>
-      <stdout>E: ID_FS_UUID_SUB_ENC=d49e9bf5-6946-5039-0c60-23d3d6f3c1fb</stdout>
-      <stdout>E: ID_FS_VERSION=1.2</stdout>
+      <stdout>E: ID_FS_UUID=3e531727-0857-f684-cd2e-394b62046b74</stdout>
+      <stdout>E: ID_FS_UUID_ENC=3e531727-0857-f684-cd2e-394b62046b74</stdout>
+      <stdout>E: ID_FS_UUID_SUB=6ba92495-88b5-33a4-ed2b-1fb1fa6387f7</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=6ba92495-88b5-33a4-ed2b-1fb1fa6387f7</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-2.0</stdout>
@@ -236,8 +418,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=26093</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=82290</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdc'</name>
@@ -254,15 +435,15 @@
       <stdout>E: DEVTYPE=disk</stdout>
       <stdout>E: ID_ATA=1</stdout>
       <stdout>E: ID_BUS=ata</stdout>
-      <stdout>E: ID_FS_LABEL=_none_:0</stdout>
-      <stdout>E: ID_FS_LABEL_ENC=\x28none\x29:0</stdout>
+      <stdout>E: ID_FS_LABEL=any:2</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:2</stdout>
       <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
       <stdout>E: ID_FS_USAGE=raid</stdout>
-      <stdout>E: ID_FS_UUID=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_ENC=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_SUB=96411a8d-e9c9-b287-4be7-c3f0343693be</stdout>
-      <stdout>E: ID_FS_UUID_SUB_ENC=96411a8d-e9c9-b287-4be7-c3f0343693be</stdout>
-      <stdout>E: ID_FS_VERSION=1.2</stdout>
+      <stdout>E: ID_FS_UUID=c8440826-8e55-745c-d7e1-4cddac26716d</stdout>
+      <stdout>E: ID_FS_UUID_ENC=c8440826-8e55-745c-d7e1-4cddac26716d</stdout>
+      <stdout>E: ID_FS_UUID_SUB=df4a8d48-2a56-b0b2-3cfb-7fd99bf196ac</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=df4a8d48-2a56-b0b2-3cfb-7fd99bf196ac</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-3.0</stdout>
@@ -292,8 +473,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=26204</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=82411</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdd'</name>
@@ -310,15 +490,15 @@
       <stdout>E: DEVTYPE=disk</stdout>
       <stdout>E: ID_ATA=1</stdout>
       <stdout>E: ID_BUS=ata</stdout>
-      <stdout>E: ID_FS_LABEL=_none_:0</stdout>
-      <stdout>E: ID_FS_LABEL_ENC=\x28none\x29:0</stdout>
+      <stdout>E: ID_FS_LABEL=any:2</stdout>
+      <stdout>E: ID_FS_LABEL_ENC=any:2</stdout>
       <stdout>E: ID_FS_TYPE=linux_raid_member</stdout>
       <stdout>E: ID_FS_USAGE=raid</stdout>
-      <stdout>E: ID_FS_UUID=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_ENC=2ce25515-3d25-5c09-a0e9-1f18d9c098d3</stdout>
-      <stdout>E: ID_FS_UUID_SUB=98723522-57a0-a22b-5a68-b865784616bf</stdout>
-      <stdout>E: ID_FS_UUID_SUB_ENC=98723522-57a0-a22b-5a68-b865784616bf</stdout>
-      <stdout>E: ID_FS_VERSION=1.2</stdout>
+      <stdout>E: ID_FS_UUID=c8440826-8e55-745c-d7e1-4cddac26716d</stdout>
+      <stdout>E: ID_FS_UUID_ENC=c8440826-8e55-745c-d7e1-4cddac26716d</stdout>
+      <stdout>E: ID_FS_UUID_SUB=bec2677c-33ad-1e4a-75f5-ce58baffb776</stdout>
+      <stdout>E: ID_FS_UUID_SUB_ENC=bec2677c-33ad-1e4a-75f5-ce58baffb776</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
       <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
       <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
       <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-4.0</stdout>
@@ -348,8 +528,7 @@
       <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=26373</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=82583</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sr0'</name>
@@ -415,13 +594,10 @@
       <stdout>E: SCSI_VENDOR_ENC=VBOX\x20\x20\x20\x20</stdout>
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=90875</stdout>
-      <stderr></stderr>
+      <stdout>E: USEC_INITIALIZED=66804</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm settle --timeout=20</name>
-      <stdout></stdout>
-      <stderr></stderr>
     </Command>
     <Command>
       <name>/usr/bin/lsscsi --transport</name>
@@ -430,27 +606,56 @@
       <stdout>[2:0:0:0]    disk    sata:                           /dev/sdc </stdout>
       <stdout>[3:0:0:0]    disk    sata:                           /dev/sdd </stdout>
       <stdout>[9:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
-      <stderr></stderr>
     </Command>
     <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
-      <stdout></stdout>
-      <stderr></stderr>
     </Command>
     <Command>
       <name>/usr/bin/uname -m</name>
       <stdout>x86_64</stdout>
-      <stderr></stderr>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script '/dev/md0' unit cyl print unit s print</name>
       <stdout>Model: Linux Software RAID Array (md)</stdout>
-      <stdout>Disk /dev/md0: 4173cyl</stdout>
+      <stdout>Disk /dev/md0: 4177cyl</stdout>
       <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>BIOS cylinder,head,sector geometry: 4173,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 4177,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>Partition Table: gpt</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start  End      Size     File system  Name  Flags</stdout>
+      <stdout> 1      0cyl   62cyl    62cyl    ext4</stdout>
+      <stdout> 2      62cyl  4177cyl  4114cyl  btrfs</stdout>
+      <stdout></stdout>
+      <stdout>Model: Linux Software RAID Array (md)</stdout>
+      <stdout>Disk /dev/md0: 67106816s</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>Partition Table: gpt</stdout>
+      <stdout>Disk Flags: </stdout>
+      <stdout></stdout>
+      <stdout>Number  Start    End        Size       File system  Name  Flags</stdout>
+      <stdout> 1      2048s    999423s    997376s    ext4</stdout>
+      <stdout> 2      999424s  67104767s  66105344s  btrfs</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/md1' unit cyl print unit s print</name>
+      <stdout>Model: Linux Software RAID Array (md)</stdout>
+      <stdout>Disk /dev/md1: 2088cyl</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
       <stdout>Partition Table: unknown</stdout>
       <stdout>Disk Flags:</stdout>
-      <stderr>Error: /dev/md0: unrecognised disk label</stderr>
+      <stderr>Error: Invalid argument during seek for read on /dev/md1</stderr>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/md2' unit cyl print unit s print</name>
+      <stdout>Model: Linux Software RAID Array (md)</stdout>
+      <stdout>Disk /dev/md2: 2088cyl</stdout>
+      <stdout>Sector size (logical/physical): 512B/512B</stdout>
+      <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
+      <stdout>Partition Table: unknown</stdout>
+      <stdout>Disk Flags:</stdout>
+      <stderr>Error: /dev/md2: unrecognised disk label</stderr>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script '/dev/sda' unit cyl print unit s print</name>
@@ -460,7 +665,7 @@
       <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
       <stdout>Partition Table: unknown</stdout>
       <stdout>Disk Flags:</stdout>
-      <stderr>Error: /dev/sda: unrecognised disk label</stderr>
+      <stderr>Error: Invalid argument during seek for read on /dev/sda</stderr>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script '/dev/sdb' unit cyl print unit s print</name>
@@ -470,7 +675,7 @@
       <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
       <stdout>Partition Table: unknown</stdout>
       <stdout>Disk Flags:</stdout>
-      <stderr>Error: /dev/sdb: unrecognised disk label</stderr>
+      <stderr>Error: Invalid argument during seek for read on /dev/sdb</stderr>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script '/dev/sdc' unit cyl print unit s print</name>
@@ -496,7 +701,6 @@
   <Files>
     <File>
       <name>/etc/crypttab</name>
-      <content></content>
     </File>
     <File>
       <name>/etc/fstab</name>
@@ -506,11 +710,36 @@
     </File>
     <File>
       <name>/proc/mdstat</name>
-      <content>Personalities : [raid6] [raid5] [raid4] </content>
-      <content>md0 : active raid5 sdc[4] sdd[3](S) sda[0] sdb[1]</content>
-      <content>      33521664 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/3] [UUU]</content>
+      <content>Personalities : [raid6] [raid5] [raid4] [raid0] [raid1] </content>
+      <content>md0 : active raid0 md2[1] md1[0]</content>
+      <content>      33553408 blocks super 1.0 512k chunks</content>
+      <content>      </content>
+      <content>md2 : active raid1 sdd[1] sdc[0]</content>
+      <content>      16777088 blocks super 1.0 [2/2] [UU]</content>
+      <content>      </content>
+      <content>md1 : active raid1 sdb[1] sda[0]</content>
+      <content>      16777088 blocks super 1.0 [2/2] [UU]</content>
       <content>      </content>
       <content>unused devices: &lt;none&gt;</content>
+    </File>
+    <File>
+      <name>/proc/mounts</name>
+      <content>rootfs / rootfs rw,size=480832k,nr_inodes=120208 0 0</content>
+      <content>tmpfs / tmpfs rw,relatime,size=1020200k 0 0</content>
+      <content>tmpfs / tmpfs rw,relatime,size=1020200k 0 0</content>
+      <content>proc /proc proc rw,relatime 0 0</content>
+      <content>sysfs /sys sysfs rw,relatime 0 0</content>
+      <content>/dev/loop0 /parts/mp_0000 squashfs ro,relatime 0 0</content>
+      <content>/dev/loop1 /parts/mp_0001 squashfs ro,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,relatime,size=480844k,nr_inodes=120211,mode=755 0 0</content>
+      <content>devpts /dev/pts devpts rw,relatime,mode=600,ptmxmode=000 0 0</content>
+      <content>rpc_pipefs /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0</content>
+      <content>/dev/disk/by-id/ata-VBOX_CD-ROM_VB2-01700376 /var/adm/mount iso9660 ro,relatime 0 0</content>
+      <content>/dev/loop2 /mounts/mp_0000 squashfs ro,relatime 0 0</content>
+      <content>/dev/loop3 /mounts/mp_0001 squashfs ro,relatime 0 0</content>
+      <content>/dev/loop4 /mounts/mp_0002 squashfs ro,relatime 0 0</content>
+      <content>/dev/loop5 /mounts/mp_0003 squashfs ro,relatime 0 0</content>
+      <content>/dev/loop6 /mounts/mp_0004 squashfs ro,relatime 0 0</content>
     </File>
     <File>
       <name>/proc/partitions</name>
@@ -527,8 +756,16 @@
       <content>   7        4       4224 loop4</content>
       <content>   7        5       1600 loop5</content>
       <content>   7        6        128 loop6</content>
-      <content>   9        0   33521664 md0</content>
       <content>  11        0    4569088 sr0</content>
+      <content>   9        1   16777088 md1</content>
+      <content>   9        2   16777088 md2</content>
+      <content>   9        0   33553408 md0</content>
+      <content> 259        0     498688 md0p1</content>
+      <content> 259        1   33052672 md0p2</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size	Used	Priority</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.1/ata10/host9/target9:0:0/9:0:0:0/block/sr0/ext_range</name>
@@ -568,6 +805,14 @@
     </File>
     <File>
       <name>/sys/devices/virtual/block/md0/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md1/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md2/ext_range</name>
       <content>256</content>
     </File>
   </Files>

@@ -115,7 +115,7 @@ namespace storage
 
 
     void
-    Filesystem::Impl::probe(SystemInfo& systeminfo, EtcFstab& fstab)
+    Filesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, EtcFstab& fstab)
     {
 	const Devicegraph* g = get_devicegraph();
 	Devicegraph::Impl::vertex_descriptor v1 = g->get_impl().parent(get_vertex());

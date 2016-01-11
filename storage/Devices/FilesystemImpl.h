@@ -51,7 +51,7 @@ namespace storage
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
-	void probe(SystemInfo& systeminfo, EtcFstab& fstab);
+	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, EtcFstab& fstab);
 
 	vector<const BlkDevice*> get_blkdevices() const;
 	const BlkDevice* get_blkdevice() const;

@@ -28,9 +28,9 @@ namespace storage
 
 
     void
-    Gpt::Impl::probe(SystemInfo& systeminfo)
+    Gpt::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	PartitionTable::Impl::probe(systeminfo);
+	PartitionTable::Impl::probe_pass_1(probed, systeminfo);
 
 	const Devicegraph* g = get_devicegraph();
 

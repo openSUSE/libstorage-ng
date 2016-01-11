@@ -39,7 +39,7 @@ namespace storage
 
 	static vector<string> probe_disks(SystemInfo& systeminfo);
 
-	void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;

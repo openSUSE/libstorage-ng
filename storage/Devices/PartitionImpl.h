@@ -32,7 +32,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	void probe(SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void save(xmlNode* node) const override;
 
