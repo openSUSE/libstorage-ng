@@ -1,8 +1,8 @@
 
 %catches(storage::ParseError) storage::humanstring_to_byte(const std::string&, bool);
 
-%catches(storage::DeviceHasWrongType) storage::to_blkdevice(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_blkdevice(const Device*);
+%catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_blk_device(const Device*);
 
 %catches(storage::DeviceHasWrongType) storage::to_partitionable(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partitionable(const Device*);
