@@ -52,6 +52,14 @@ namespace storage
 
 	void delete_partition(const std::string& name);
 
+	unsigned int max_primary() const;
+	bool extended_possible() const;
+	unsigned int max_logical() const;
+
+	unsigned int num_primary() const;
+	bool has_extended() const;
+	unsigned int num_logical() const;
+
 	/**
 	 * Sorted by partition number.
 	 */

@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "storage/Devices/GptImpl.h"
+#include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -91,6 +92,13 @@ namespace storage
 
 	if (get_enlarge())
 	    out << " enlarge";
+    }
+
+
+    unsigned int
+    Gpt::Impl::max_primary() const
+    {
+	return min(128U, get_partitionable()->get_range());
     }
 
 

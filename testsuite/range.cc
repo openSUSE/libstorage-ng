@@ -32,15 +32,15 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     msdos->create_partition("/dev/sda1", Region(0, 0, 262144), PRIMARY);
 
-    unsigned int range = sda->get_impl().get_range();
+    BOOST_CHECK_EQUAL(msdos->get_partitionable()->get_range(), 256);
 
-    BOOST_CHECK_EQUAL(msdos->get_impl().max_primary(range), 4);
-    BOOST_CHECK_EQUAL(msdos->get_impl().extended_possible(), true);
-    BOOST_CHECK_EQUAL(msdos->get_impl().max_logical(range), 256);
+    BOOST_CHECK_EQUAL(msdos->max_primary(), 4);
+    BOOST_CHECK_EQUAL(msdos->extended_possible(), true);
+    BOOST_CHECK_EQUAL(msdos->max_logical(), 256);
 
-    BOOST_CHECK_EQUAL(msdos->get_impl().num_primary(), 1);
-    BOOST_CHECK_EQUAL(msdos->get_impl().has_extended(), false);
-    BOOST_CHECK_EQUAL(msdos->get_impl().num_logical(), 0);
+    BOOST_CHECK_EQUAL(msdos->num_primary(), 1);
+    BOOST_CHECK_EQUAL(msdos->has_extended(), false);
+    BOOST_CHECK_EQUAL(msdos->num_logical(), 0);
 }
 
 
@@ -59,13 +59,13 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     gpt->create_partition("/dev/sda1", Region(0, 0, 262144), PRIMARY);
 
-    unsigned int range = sda->get_impl().get_range();
+    BOOST_CHECK_EQUAL(gpt->get_partitionable()->get_range(), 256);
 
-    BOOST_CHECK_EQUAL(gpt->get_impl().max_primary(range), 128);
-    BOOST_CHECK_EQUAL(gpt->get_impl().extended_possible(), false);
-    BOOST_CHECK_EQUAL(gpt->get_impl().max_logical(range), 0);
+    BOOST_CHECK_EQUAL(gpt->max_primary(), 128);
+    BOOST_CHECK_EQUAL(gpt->extended_possible(), false);
+    BOOST_CHECK_EQUAL(gpt->max_logical(), 0);
 
-    BOOST_CHECK_EQUAL(gpt->get_impl().num_primary(), 1);
-    BOOST_CHECK_EQUAL(gpt->get_impl().has_extended(), false);
-    BOOST_CHECK_EQUAL(gpt->get_impl().num_logical(), 0);
+    BOOST_CHECK_EQUAL(gpt->num_primary(), 1);
+    BOOST_CHECK_EQUAL(gpt->has_extended(), false);
+    BOOST_CHECK_EQUAL(gpt->num_logical(), 0);
 }

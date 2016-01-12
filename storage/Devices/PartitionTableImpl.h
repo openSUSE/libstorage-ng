@@ -48,13 +48,13 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
-	virtual unsigned int max_primary(unsigned int range) const = 0;
+	virtual unsigned int max_primary() const = 0;
 	virtual bool extended_possible() const { return false; }
-	virtual unsigned int max_logical(unsigned int range) const { return 0; }
+	virtual unsigned int max_logical() const { return 0; }
 
-	unsigned int num_primary() const;
-	bool has_extended() const;
-	unsigned int num_logical() const;
+	virtual unsigned int num_primary() const;
+	virtual bool has_extended() const { return false; }
+	virtual unsigned int num_logical() const { return 0; }
 
 	const Partition* get_extended() const;
 

@@ -32,6 +32,13 @@ namespace storage
     }
 
 
+    unsigned int
+    Partitionable::get_range() const
+    {
+	return get_impl().get_range();
+    }
+
+
     PtType
     Partitionable::get_default_partition_table_type() const
     {

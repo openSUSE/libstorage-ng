@@ -184,26 +184,6 @@ namespace storage
     }
 
 
-    bool
-    PartitionTable::Impl::has_extended() const
-    {
-	vector<const Partition*> partitions = get_partitions();
-	return any_of(partitions.begin(), partitions.end(), [](const Partition* partition) {
-	    return partition->get_type() == EXTENDED;
-	});
-    }
-
-
-    unsigned int
-    PartitionTable::Impl::num_logical() const
-    {
-	vector<const Partition*> partitions = get_partitions();
-	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
-	    return partition->get_type() == LOGICAL;
-	});
-    }
-
-
     const Partition*
     PartitionTable::Impl::get_extended() const
     {
@@ -232,12 +212,11 @@ namespace storage
     {
 	y2mil("all:" << all << " logical:" << logical);
 
-	unsigned int range = get_partitionable()->get_impl().get_range();
 	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
 
-	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary(range);
+	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
-	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical(range) - max_primary(range));
+	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical() - max_primary());
 
 	vector<PartitionSlot> slots;
 
@@ -253,7 +232,7 @@ namespace storage
 		vector<const Partition*>::const_iterator it = partitions.begin();
 		unsigned start = 1; // label != "mac" ? 1 : 2;
 		while (it != partitions.end() && (*it)->get_number() <= start &&
-		       (*it)->get_number() <= max_primary(range))
+		       (*it)->get_number() <= max_primary())
 		{
 		    if ((*it)->get_number() == start)
 			++start;
@@ -322,7 +301,7 @@ namespace storage
 
 		PartitionSlot slot;
 
-		slot.nr = max_primary(range) + num_logical() + 1;
+		slot.nr = max_primary() + num_logical() + 1;
 		slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
 
 		slot.primary_slot = false;
