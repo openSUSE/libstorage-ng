@@ -340,6 +340,6 @@ namespace storage
     compare_by_number(const Md* lhs, const Md* rhs)
     {
 	return lhs->get_number() < rhs->get_number();
-    };
+    }
 
 }

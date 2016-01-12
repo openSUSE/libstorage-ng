@@ -417,6 +417,6 @@ namespace storage
     compare_by_number(const Partition* lhs, const Partition* rhs)
     {
 	return lhs->get_number() < rhs->get_number();
-    };
+    }
 
 }
