@@ -70,7 +70,9 @@ namespace storage
 
 	// Comparisons must not be done with type of enum since the enum may
 	// define comparison operators.
-	ST_CHECK_INDEX(static_cast<underlying_type>(value), 0, names.size() - 1);
+	ST_CHECK_INDEX(static_cast<underlying_type>(value),
+		       static_cast<underlying_type>(0),
+		       static_cast<underlying_type>(names.size() - 1));
 
 	return names[static_cast<underlying_type>(value)];
     }
