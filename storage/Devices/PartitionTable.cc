@@ -86,6 +86,48 @@ namespace storage
     }
 
 
+    unsigned int
+    PartitionTable::max_primary() const
+    {
+	return get_impl().max_primary();
+    }
+
+
+    bool
+    PartitionTable::extended_possible() const
+    {
+	return get_impl().extended_possible();
+    }
+
+
+    unsigned int
+    PartitionTable::max_logical() const
+    {
+	return get_impl().max_logical();
+    }
+
+
+    unsigned int
+    PartitionTable::num_primary() const
+    {
+	return get_impl().num_primary();
+    }
+
+
+    bool
+    PartitionTable::has_extended() const
+    {
+	return get_impl().has_extended();
+    }
+
+
+    unsigned int
+    PartitionTable::num_logical() const
+    {
+	return get_impl().num_logical();
+    }
+
+
     vector<Partition*>
     PartitionTable::get_partitions()
     {

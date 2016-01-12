@@ -43,7 +43,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual unsigned int max_primary(unsigned int range) const override { return min(128U, range); }
+	virtual unsigned int max_primary() const override;
 
 	bool get_enlarge() const { return enlarge; }
 	void set_enlarge(bool enlarge) { Impl::enlarge = enlarge; }

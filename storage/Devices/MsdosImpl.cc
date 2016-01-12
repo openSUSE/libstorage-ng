@@ -84,6 +84,40 @@ namespace storage
     }
 
 
+    unsigned int
+    Msdos::Impl::max_primary() const
+    {
+	return min(4U, get_partitionable()->get_range());
+    }
+
+
+    unsigned int
+    Msdos::Impl::max_logical() const
+    {
+	return min(256U, get_partitionable()->get_range());
+    }
+
+
+    bool
+    Msdos::Impl::has_extended() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	return any_of(partitions.begin(), partitions.end(), [](const Partition* partition) {
+	    return partition->get_type() == EXTENDED;
+	});
+    }
+
+
+    unsigned int
+    Msdos::Impl::num_logical() const
+    {
+	vector<const Partition*> partitions = get_partitions();
+	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
+	    return partition->get_type() == LOGICAL;
+	});
+    }
+
+
     Text
     Msdos::Impl::do_create_text(bool doing) const
     {

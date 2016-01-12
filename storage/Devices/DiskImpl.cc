@@ -188,6 +188,6 @@ namespace storage
 	// TODO mmcblk, nvme, ...
 
 	return string_lhs < string_rhs;
-    };
+    }
 
 }

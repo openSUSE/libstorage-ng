@@ -18,6 +18,8 @@ namespace storage
     {
     public:
 
+	unsigned int get_range() const;
+
 	/**
 	 * Get the default partition table type for the partitionable.
 	 */
