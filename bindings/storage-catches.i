@@ -1,4 +1,27 @@
 
+%exceptionclass storage::Exception;
+
+%exceptionclass storage::LogicException;
+
+%exceptionclass storage::NullPointerException;
+%exceptionclass storage::OutOfMemoryException;
+%exceptionclass storage::IndexOutOfRangeException;
+
+%exceptionclass storage::DeviceHasWrongType;
+%exceptionclass storage::DeviceNotFound;
+
+%exceptionclass storage::HolderHasWrongType;
+%exceptionclass storage::HolderNotFound;
+%exceptionclass storage::HolderAlreadyExists;
+
+%exceptionclass storage::WrongNumberOfChildren;
+%exceptionclass storage::WrongNumberOfParents;
+
+%exceptionclass storage::InvalidBlockSize;
+%exceptionclass storage::NoIntersection;
+%exceptionclass storage::DifferentBlockSizes;
+
+
 %catches(storage::ParseError) storage::humanstring_to_byte(const std::string&, bool);
 
 %catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
