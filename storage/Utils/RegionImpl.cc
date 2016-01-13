@@ -21,6 +21,7 @@
 
 
 #include "storage/Utils/RegionImpl.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage

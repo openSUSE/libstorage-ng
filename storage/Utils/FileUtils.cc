@@ -5,7 +5,7 @@
 
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Exception.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
