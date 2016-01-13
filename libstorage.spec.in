@@ -35,7 +35,11 @@ BuildRequires:  ruby ruby-devel
 # Using rubygem(test-unit) does not work since ruby2.1-stdlib claims to
 # provide rubygem(test-unit). But that is plain wrong. The version in
 # ruby2.1-stdlib does not provide the function assert_raise_kind_of.
+%if 0%{?suse_version} == 1315
+BuildRequires:  ruby2.1-rubygem-test-unit
+%else
 BuildRequires:  rubygem-test-unit
+%endif
 %endif
 
 %if 0%{?fedora}
