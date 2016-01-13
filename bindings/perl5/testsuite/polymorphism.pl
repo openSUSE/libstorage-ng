@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-use Test::More tests => 10;
+use Test::More tests => 12;
 use Test::Exception;
 use storage;
 
@@ -21,9 +21,11 @@ is(storage::is_disk($tmp1), 1);
 isnt(storage::to_disk($tmp1), undef);
 isnt(storage::is_partition_table($tmp1), 1);
 throws_ok { storage::to_partition_table($tmp1) } 'storage::DeviceHasWrongType';
+throws_ok { storage::to_partition_table($tmp1) } 'storage::Exception';
 
 my $tmp2 = $devicegraph->find_device(43);
 is(storage::is_partition_table($tmp2), 1);
 isnt(storage::to_partition_table($tmp2), undef);
 isnt(storage::is_disk($tmp2), 1);
 throws_ok { storage::to_disk($tmp2) } 'storage::DeviceHasWrongType';
+throws_ok { storage::to_disk($tmp2) } 'storage::Exception';

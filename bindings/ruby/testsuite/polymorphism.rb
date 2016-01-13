@@ -24,12 +24,14 @@ class TestPolymorphism < Test::Unit::TestCase
     assert(Storage::to_disk(tmp1))
     assert(!Storage::partition_table?(tmp1))
     assert_raises(Storage::DeviceHasWrongType) { Storage::to_partition_table(tmp1) }
+    assert_raise_kind_of(Storage::Exception) { Storage::to_partition_table(tmp1) }
 
     tmp2 = devicegraph.find_device(43)
     assert(Storage::partition_table?(tmp2))
     assert(Storage::to_partition_table(tmp2))
     assert(!Storage::disk?(tmp2))
     assert_raises(Storage::DeviceHasWrongType) { Storage::to_disk(tmp2) }
+    assert_raise_kind_of(Storage::Exception) { Storage::to_disk(tmp2) }
 
   end
 

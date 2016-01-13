@@ -28,10 +28,11 @@
 #undef seed
 #endif
 
+#include "storage/Utils/Logger.h"
+#include "storage/Utils/Exception.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/Remote.h"
-#include "storage/Utils/Logger.h"
 
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
@@ -71,10 +72,11 @@
 
 %include "../../storage/StorageInterface.h"
 
+%include "../../storage/Utils/Logger.h"
+%include "../../storage/Utils/Exception.h"
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Utils/Region.h"
 %include "../../storage/Utils/Remote.h"
-%include "../../storage/Utils/Logger.h"
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"

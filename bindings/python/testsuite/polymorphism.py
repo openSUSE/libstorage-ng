@@ -23,12 +23,14 @@ class TestPolymorphism(unittest.TestCase):
       self.assertTrue(storage.to_disk(tmp1))
       self.assertFalse(storage.is_partition_table(tmp1))
       self.assertRaises(storage.DeviceHasWrongType, lambda: storage.to_partition_table(tmp1))
+      self.assertRaises(storage.Exception, lambda: storage.to_partition_table(tmp1))
 
       tmp2 = devicegraph.find_device(43)
       self.assertTrue(storage.is_partition_table(tmp2))
       self.assertTrue(storage.to_partition_table(tmp2))
       self.assertFalse(storage.is_disk(tmp2))
       self.assertRaises(storage.DeviceHasWrongType, lambda: storage.to_disk(tmp2))
+      self.assertRaises(storage.Exception, lambda: storage.to_partition_table(tmp1))
 
 
 if __name__ == '__main__':

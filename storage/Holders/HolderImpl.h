@@ -5,6 +5,7 @@
 #include <libxml/tree.h>
 #include <type_traits>
 
+#include "storage/Utils/ExceptionImpl.h"
 #include "storage/Holders/Holder.h"
 #include "storage/DevicegraphImpl.h"
 

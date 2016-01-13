@@ -29,7 +29,15 @@ BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
 BuildRequires:  doxygen
 BuildRequires:  swig >= 3.0.3
 BuildRequires:  python-devel
+
 BuildRequires:  ruby ruby-devel
+%if 0%{?suse_version} <= 1320
+# Using rubygem(test-unit) does not work since ruby2.1-stdlib claims to
+# provide rubygem(test-unit). But that is plain wrong. The version in
+# ruby2.1-stdlib does not provide the function assert_raise_kind_of.
+BuildRequires:  rubygem-test-unit
+%endif
+
 %if 0%{?fedora}
 BuildRequires:  rubypick rubygem-test-unit
 %endif

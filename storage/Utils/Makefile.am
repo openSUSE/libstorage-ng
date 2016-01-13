@@ -9,6 +9,7 @@ libutils_la_SOURCES =					\
 	AppUtil.cc		AppUtil.h		\
 	FileUtils.cc		FileUtils.h		\
 	Exception.h		Exception.cc		\
+	ExceptionImpl.h					\
 	AsciiFile.cc 		AsciiFile.h		\
 	Enum.cc			Enum.h			\
 	GraphUtils.h					\

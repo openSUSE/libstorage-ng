@@ -31,6 +31,7 @@
 
 #include "storage/StorageInterface.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/ExceptionImpl.h"
 #include "storage/Devices/Disk.h"
 
 

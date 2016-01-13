@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Utils/Exception.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 using namespace storage;
