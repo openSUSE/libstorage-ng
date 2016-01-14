@@ -29,7 +29,7 @@ main()
 
     Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
-    Disk* rhs_sda = dynamic_cast<Disk*>(rhs->find_device(lhs_sda->get_sid()));
+    Disk* rhs_sda = to_disk(rhs->find_device(lhs_sda->get_sid()));
 
     Gpt* rhs_gpt = Gpt::create(rhs);
     User::create(rhs, rhs_sda, rhs_gpt);

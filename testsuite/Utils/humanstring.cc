@@ -9,6 +9,7 @@
 #include <locale>
 
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Exception.h"
 
 
 using namespace std;
@@ -54,6 +55,7 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 {
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, true), "0 B");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, false), "0 B");
+
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, true), "1 KiB");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, false), "1.00 KiB");
 
@@ -72,7 +74,11 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 
 BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 {
-    BOOST_CHECK_THROW(test("en_GB.UTF-8", "42", true), ParseError); // classic=true needs a suffix
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "0 B", true), 0);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "-0 B", true), 0);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "+0 B", true), 0);
+
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "42", true), ParseException); // classic=true needs a suffix
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42B", true), 42);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42 b", true), 42);
 
@@ -106,10 +112,10 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5Go", false), 5368709120);
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5 Go", false), 5368709120);
 
-    BOOST_CHECK_THROW(test("en_US.UTF-8", "5 G B", false), ParseError);
-    BOOST_CHECK_THROW(test("de_DE.UTF-8", "12.34 kB", false), ParseError);
-    BOOST_CHECK_THROW(test("de_DE.UTF-8", "12'34 kB", false), ParseError);
-    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12 34 Go", false), ParseError);
+    BOOST_CHECK_THROW(test("en_US.UTF-8", "5 G B", false), ParseException);
+    BOOST_CHECK_THROW(test("de_DE.UTF-8", "12.34 kB", false), ParseException);
+    BOOST_CHECK_THROW(test("de_DE.UTF-8", "12'34 kB", false), ParseException);
+    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12 34 Go", false), ParseException);
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "3.14 G", false), 3371549327);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "3.14 GB", false), 3371549327);
@@ -118,7 +124,7 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "12345 GB", false), 13255342817280);
-    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12345 GB", false), ParseError);
+    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12345 GB", false), ParseException);
 }
 
 
@@ -131,4 +137,13 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), EiB);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "15 EiB", true), 15 * EiB);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_overflow)
+{
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1B", false), OverflowException);
+
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "16.5 EiB", true), OverflowException);
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-16.5 EiB", false), OverflowException);
 }

@@ -28,7 +28,7 @@ main()
 
     Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
-    Disk* rhs_sda = dynamic_cast<Disk*>(BlkDevice::find(rhs, "/dev/sda"));
+    Disk* rhs_sda = to_disk(BlkDevice::find(rhs, "/dev/sda"));
 
     Gpt* rhs_gpt = Gpt::create(rhs);
     Subdevice::create(rhs, rhs_sda, rhs_gpt);

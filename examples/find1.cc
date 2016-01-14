@@ -49,7 +49,7 @@ main()
     {
 	for (const Device* device : filesystem->get_ancestors(false))
 	{
-	    if (dynamic_cast<const LvmLv*>(device))
+	    if (is_lvm_lv(device))
 		cout << "mount point \"/\" somehow uses a logical volume" << endl;
 	}
     }

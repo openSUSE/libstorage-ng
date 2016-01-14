@@ -31,7 +31,7 @@ add_disk(const string& name)
 void
 add_partitions(const string& name)
 {
-    Disk* disk = dynamic_cast<Disk*>(BlkDevice::find(rhs, name));
+    Disk* disk = to_disk(BlkDevice::find(rhs, name));
 
     Gpt* gpt = Gpt::create(rhs);
     Subdevice::create(rhs, disk, gpt);
