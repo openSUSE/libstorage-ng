@@ -62,7 +62,7 @@ main()
 
     {
 	Partition* tmp = dynamic_cast<Partition*>(devicegraph_copy.find_device(partition->get_sid()));
-	assert(partition);
+	assert(tmp);
 
 	assert(tmp->get_name() == "/dev/dasda1");
     }
