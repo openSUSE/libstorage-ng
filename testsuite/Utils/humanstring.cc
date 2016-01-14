@@ -74,7 +74,9 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 
 BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 {
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "0B", true), 0);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "0 B", true), 0);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "-0 B", true), 0);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "+0 B", true), 0);
 
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "42", true), ParseException); // classic=true needs a suffix
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42B", true), 42);
