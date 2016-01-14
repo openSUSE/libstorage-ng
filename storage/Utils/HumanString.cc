@@ -189,9 +189,17 @@ namespace storage
 		    double g;
 		    s >> g;
 
-		    if (!s.fail() && s.eof() && g >= 0.0)
+		    if (!s.fail() && s.eof())
 		    {
-			return g * f;
+			if (g < 0.0)
+			    ST_THROW(OverflowException());
+
+			double r = g * f;
+
+			if (r > std::numeric_limits<unsigned long long>::max())
+			    ST_THROW(OverflowException());
+
+			return r;
 		    }
 		}
 	    }

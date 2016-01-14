@@ -9,6 +9,7 @@
 #include <locale>
 
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Exception.h"
 
 
 using namespace std;
@@ -54,6 +55,7 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 {
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, true), "0 B");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, false), "0 B");
+
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, true), "1 KiB");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, false), "1.00 KiB");
 
@@ -72,6 +74,8 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
 
 BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 {
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "0B", true), 0);
+
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "42", true), ParseError); // classic=true needs a suffix
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42B", true), 42);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42 b", true), 42);
@@ -131,4 +135,13 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), EiB);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "15 EiB", true), 15 * EiB);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_overflow)
+{
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1B", false), OverflowException);
+
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "16.5 EiB", true), OverflowException);
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-16.5 EiB", false), OverflowException);
 }

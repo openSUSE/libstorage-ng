@@ -349,6 +349,19 @@ namespace storage
 
 
     /**
+     * Exception class for "overflow".
+     */
+    class OverflowException : public Exception
+    {
+    public:
+
+	OverflowException() : Exception("overflow") {}
+	virtual ~OverflowException() noexcept {}
+
+    };
+
+
+    /**
      * Exception class for parse errors, e.g. when parsing the output of
      * external commands like "parted".
      */
