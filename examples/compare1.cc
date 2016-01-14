@@ -42,8 +42,7 @@ main()
 
     Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
-    LvmLv* d = dynamic_cast<LvmLv*>(rhs->find_device(system_oracle->get_sid()));
-    assert(d);
+    LvmLv* d = to_lvm_lv(rhs->find_device(system_oracle->get_sid()));
     d->set_name("/dev/system/postgresql");
 
     Actiongraph actiongraph(storage, lhs, rhs);

@@ -30,8 +30,7 @@ main()
     devicegraph_copy.check();
 
     {
-	BlkDevice* tmp = dynamic_cast<BlkDevice*>(devicegraph_copy.find_device(partition->get_sid()));
-	assert(tmp);
+	BlkDevice* tmp = to_blk_device(devicegraph_copy.find_device(partition->get_sid()));
 
 	tmp->get_impl().set_name("/dev/dasda1");
     }
@@ -40,29 +39,25 @@ main()
     cout << devicegraph_copy << endl;
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(devicegraph.find_device(disk->get_sid()));
-	assert(tmp);
+	Disk* tmp = to_disk(devicegraph.find_device(disk->get_sid()));
 
 	assert(tmp->get_name() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(devicegraph.find_device(partition->get_sid()));
-	assert(tmp);
+	Partition* tmp = to_partition(devicegraph.find_device(partition->get_sid()));
 
 	assert(tmp->get_name() == "/dev/dasda2");
     }
 
     {
-	Disk* tmp = dynamic_cast<Disk*>(devicegraph_copy.find_device(disk->get_sid()));
-	assert(tmp);
+	Disk* tmp = to_disk(devicegraph_copy.find_device(disk->get_sid()));
 
 	assert(tmp->get_name() == "/dev/dasda");
     }
 
     {
-	Partition* tmp = dynamic_cast<Partition*>(devicegraph_copy.find_device(partition->get_sid()));
-	assert(tmp);
+	Partition* tmp = to_partition(devicegraph_copy.find_device(partition->get_sid()));
 
 	assert(tmp->get_name() == "/dev/dasda1");
     }
