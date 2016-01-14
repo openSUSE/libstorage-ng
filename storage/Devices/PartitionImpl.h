@@ -55,8 +55,6 @@ namespace storage
 	const PartitionTable* get_partition_table() const;
 	const Partitionable* get_partitionable() const;
 
-	static bool cmp_lt_number(const Partition* rhs, const Partition* lhs);
-
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;

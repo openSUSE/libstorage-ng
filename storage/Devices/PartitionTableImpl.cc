@@ -221,7 +221,7 @@ namespace storage
 	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
-	sort(partitions.begin(), partitions.end(), Partition::Impl::cmp_lt_number);
+	sort(partitions.begin(), partitions.end(), compare_by_number);
 
 	if (all || !logical)
 	{
