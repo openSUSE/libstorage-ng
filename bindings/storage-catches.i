@@ -7,6 +7,7 @@
 %exceptionclass storage::OutOfMemoryException;
 %exceptionclass storage::IndexOutOfRangeException;
 %exceptionclass storage::OverflowException;
+%exceptionclass storage::ParseException;
 
 %exceptionclass storage::DeviceHasWrongType;
 %exceptionclass storage::DeviceNotFound;
@@ -23,7 +24,7 @@
 %exceptionclass storage::DifferentBlockSizes;
 
 
-%catches(storage::ParseError, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
+%catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
 
 %catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_blk_device(const Device*);

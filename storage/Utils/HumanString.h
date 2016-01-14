@@ -35,13 +35,6 @@ namespace storage
     using namespace storage_legacy;
 
 
-    // TODO replace by ParseException from Execption.h
-    struct ParseError : public std::runtime_error
-    {
-        ParseError(const std::string& msg) noexcept : runtime_error(msg) {}
-    };
-
-
     /**
      * Return number of suffixes.
      *

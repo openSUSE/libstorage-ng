@@ -21,6 +21,7 @@
 
 
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Exception.h"
 
 
 namespace storage_legacy
@@ -59,7 +60,7 @@ namespace storage_legacy
 	    size = humanstring_to_byte(str, classic);
 	    return true;
 	}
-	catch (const ParseError&)
+	catch (const Exception&)
 	{
 	    return false;
 	}
