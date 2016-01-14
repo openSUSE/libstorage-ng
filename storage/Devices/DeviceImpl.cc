@@ -17,13 +17,13 @@ namespace storage
 
 
     Device::Impl::Impl()
-	: sid(global_sid++), devicegraph(nullptr), userdata()
+	: sid(global_sid++), devicegraph(nullptr), vertex(), userdata()
     {
     }
 
 
     Device::Impl::Impl(const xmlNode* node)
-	: sid(0), devicegraph(nullptr), userdata()
+	: sid(0), devicegraph(nullptr), vertex(), userdata()
     {
 	if (!getChildValue(node, "sid", sid))
 	    throw runtime_error("no sid");
