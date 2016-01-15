@@ -5,6 +5,7 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/StorageInterface.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -54,6 +55,9 @@ namespace storage
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
@@ -67,6 +71,12 @@ namespace storage
 	virtual Text do_delete_text(bool doing) const override;
 	virtual void do_delete() const override;
 
+	virtual Text do_add_etc_mdadm_text(bool doing) const;
+	virtual void do_add_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+
+	virtual Text do_remove_etc_mdadm_text(bool doing) const;
+	virtual void do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+
     private:
 
 	MdType md_level;	// TODO MdLevel
@@ -76,6 +86,40 @@ namespace storage
 	unsigned long chunk_size_k;
 
     };
+
+
+    namespace Action
+    {
+
+	class AddEtcMdadm : public Modify
+	{
+	public:
+
+	    AddEtcMdadm(sid_t sid)
+		: Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+					  Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class RemoveEtcMdadm : public Modify
+	{
+	public:
+
+	    RemoveEtcMdadm(sid_t sid)
+		: Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+    }
 
 
     bool compare_by_number(const Md* lhs, const Md* rhs);
