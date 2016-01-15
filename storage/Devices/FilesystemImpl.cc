@@ -174,8 +174,8 @@ namespace storage
 		Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
 		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(mount);
 
-		Action::AddFstab* add_fstab = new Action::AddFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_fstab);
+		Action::AddEtcFstab* add_etc_fstab = new Action::AddEtcFstab(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_etc_fstab);
 
 		actiongraph.add_edge(v1, t1);
 		actiongraph.add_edge(t1, t2);
@@ -206,8 +206,8 @@ namespace storage
 
 	    for (const string& mountpoint : get_mountpoints())
 	    {
-		Action::RemoveFstab* remove_fstab = new Action::RemoveFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_fstab);
+		Action::RemoveEtcFstab* remove_etc_fstab = new Action::RemoveEtcFstab(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_etc_fstab);
 
 		Action::Umount* umount = new Action::Umount(get_sid(), mountpoint);
 		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(umount);
@@ -438,17 +438,18 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_add_fstab_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_add_etc_fstab_text(const string& mountpoint, bool doing) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Add mountpoint %1$s of %2$s to fstab"), mountpoint.c_str(),
+	return sformat(_("Add mountpoint %1$s of %2$s to /etc/fstab"), mountpoint.c_str(),
 		       blk_device->get_name().c_str());
     }
 
 
     void
-    Filesystem::Impl::do_add_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Filesystem::Impl::do_add_etc_fstab(const Actiongraph::Impl& actiongraph,
+				       const string& mountpoint) const
     {
 	const Storage& storage = actiongraph.get_storage();
 
@@ -471,17 +472,18 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_remove_fstab_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, bool doing) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Remove mountpoint %1$s of %2$s from fstab"), mountpoint.c_str(),
+	return sformat(_("Remove mountpoint %1$s of %2$s from /etc/fstab"), mountpoint.c_str(),
 		       blk_device->get_name().c_str());
     }
 
 
     void
-    Filesystem::Impl::do_remove_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Filesystem::Impl::do_remove_etc_fstab(const Actiongraph::Impl& actiongraph,
+					  const string& mountpoint) const
     {
 	const Storage& storage = actiongraph.get_storage();
 
@@ -549,23 +551,24 @@ namespace storage
 
 
 	Text
-	AddFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	AddEtcFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    return filesystem->get_impl().do_add_fstab_text(mountpoint, doing);
+	    return filesystem->get_impl().do_add_etc_fstab_text(mountpoint, doing);
 	}
 
 
 	void
-	AddFstab::commit(const Actiongraph::Impl& actiongraph) const
+	AddEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    filesystem->get_impl().do_add_fstab(actiongraph, mountpoint);
+	    filesystem->get_impl().do_add_etc_fstab(actiongraph, mountpoint);
 	}
 
 
 	void
-	AddFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
+	AddEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+				      Actiongraph::Impl& actiongraph) const
 	{
 	    if (mountpoint == "swap")
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
@@ -574,18 +577,18 @@ namespace storage
 
 
 	Text
-	RemoveFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	RemoveEtcFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    return filesystem->get_impl().do_remove_fstab_text(mountpoint, doing);
+	    return filesystem->get_impl().do_remove_etc_fstab_text(mountpoint, doing);
 	}
 
 
 	void
-	RemoveFstab::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    filesystem->get_impl().do_remove_fstab(actiongraph, mountpoint);
+	    filesystem->get_impl().do_remove_etc_fstab(actiongraph, mountpoint);
 	}
 
     }
