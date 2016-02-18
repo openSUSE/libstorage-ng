@@ -49,7 +49,7 @@ namespace storage
 
     private:
 
-	void parse(const vector<string>& lines);
+	void parse(const std::vector<string>& lines);
 
 	string device;
 	Geometry geometry;

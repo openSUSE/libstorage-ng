@@ -45,6 +45,7 @@ pkginclude_HEADERS =		\
 	Devicegraph.h		\
 	Actiongraph.h		\
 	Graph.h			\
+	Geometry.h		\
 	HumanString.h		\
 	Utils.h
 
