@@ -140,6 +140,30 @@ namespace storage
 
 
     void
+    Md::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Create(get_sid()));
+	actions.push_back(new Action::AddEtcMdadm(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Md::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::RemoveEtcMdadm(get_sid()));
+	actions.push_back(new Action::Delete(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
     Md::Impl::save(xmlNode* node) const
     {
 	Partitionable::Impl::save(node);
@@ -333,6 +357,80 @@ namespace storage
 	{
 	    blk_device->get_impl().wipe_device();
 	}
+    }
+
+
+    Text
+    Md::Impl::do_add_etc_mdadm_text(bool doing) const
+    {
+	return sformat(_("Add %1$s to /etc/mdadm.conf"), get_name().c_str());
+    }
+
+
+    void
+    Md::Impl::do_add_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    {
+	// TODO
+    }
+
+
+    Text
+    Md::Impl::do_remove_etc_mdadm_text(bool doing) const
+    {
+	return sformat(_("Remove %1$s from /etc/mdadm.conf"), get_name().c_str());
+    }
+
+
+    void
+    Md::Impl::do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    {
+	// TODO
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	AddEtcMdadm::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	{
+	    const Md* md = to_md(device_rhs(actiongraph));
+	    return md->get_impl().do_add_etc_mdadm_text(doing);
+	}
+
+
+	void
+	AddEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Md* md = to_md(device_rhs(actiongraph));
+	    md->get_impl().do_add_etc_mdadm(actiongraph);
+	}
+
+
+	void
+	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+				      Actiongraph::Impl& actiongraph) const
+	{
+	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
+		actiongraph.add_edge(*actiongraph.mount_root_filesystem, v);
+	}
+
+
+	Text
+	RemoveEtcMdadm::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	{
+	    const Md* md = to_md(device_lhs(actiongraph));
+	    return md->get_impl().do_remove_etc_mdadm_text(doing);
+	}
+
+
+	void
+	RemoveEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Md* md = to_md(device_lhs(actiongraph));
+	    md->get_impl().do_remove_etc_mdadm(actiongraph);
+	}
+
     }
 
 

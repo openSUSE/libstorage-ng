@@ -74,11 +74,11 @@ namespace storage
 	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
 	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_add_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_add_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+	virtual Text do_add_etc_fstab_text(const string& mountpoint, bool doing) const;
+	virtual void do_add_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_remove_fstab_text(const string& mountpoint, bool doing) const;
-	virtual void do_remove_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+	virtual Text do_remove_etc_fstab_text(const string& mountpoint, bool doing) const;
+	virtual void do_remove_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
     protected:
 
@@ -151,11 +151,11 @@ namespace storage
 	};
 
 
-	class AddFstab : public Modify
+	class AddEtcFstab : public Modify
 	{
 	public:
 
-	    AddFstab(sid_t sid, const string& mountpoint)
+	    AddEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
@@ -169,11 +169,11 @@ namespace storage
 	};
 
 
-	class RemoveFstab : public Modify
+	class RemoveEtcFstab : public Modify
 	{
 	public:
 
-	    RemoveFstab(sid_t sid, const string& mountpoint)
+	    RemoveEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
