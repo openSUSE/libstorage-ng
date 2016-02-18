@@ -33,6 +33,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Geometry.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage

@@ -32,6 +32,20 @@ namespace storage
     }
 
 
+    const Geometry&
+    Partitionable::get_geometry() const
+    {
+	return get_impl().get_geometry();
+    }
+
+
+    void
+    Partitionable::set_geometry(const Geometry& geometry)
+    {
+	get_impl().set_geometry(geometry);
+    }
+
+
     unsigned int
     Partitionable::get_range() const
     {

@@ -23,12 +23,12 @@
 #ifndef STORAGE_GEOMETRY_H
 #define STORAGE_GEOMETRY_H
 
-#include "storage/Utils/XmlFile.h"
+#include <libxml/tree.h>
 
 
 namespace storage
 {
-
+    // This is a candidate for removal.
     struct Geometry
     {
 	Geometry();

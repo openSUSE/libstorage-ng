@@ -4,7 +4,6 @@
 
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Partitionable.h"
-#include "storage/Geometry.h"
 
 
 namespace storage
