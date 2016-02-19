@@ -25,6 +25,7 @@ class TestPolymorphism < Test::Unit::TestCase
     assert(!Storage::partition_table?(tmp1))
     assert_raises(Storage::DeviceHasWrongType) { Storage::to_partition_table(tmp1) }
     assert_raise_kind_of(Storage::Exception) { Storage::to_partition_table(tmp1) }
+    assert_equal(Storage.downcast(tmp1).class, Storage::Disk)
 
     tmp2 = devicegraph.find_device(43)
     assert(Storage::partition_table?(tmp2))
@@ -32,6 +33,7 @@ class TestPolymorphism < Test::Unit::TestCase
     assert(!Storage::disk?(tmp2))
     assert_raises(Storage::DeviceHasWrongType) { Storage::to_disk(tmp2) }
     assert_raise_kind_of(Storage::Exception) { Storage::to_disk(tmp2) }
+    assert_equal(Storage.downcast(tmp2).class, Storage::Gpt)
 
   end
 

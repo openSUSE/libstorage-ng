@@ -109,6 +109,8 @@
 %include "../../storage/Environment.h"
 %include "../../storage/Storage.h"
 
+%include "storage-downcast.i"
+
 using namespace storage;
 
 %template(VectorString) std::vector<std::string>;
