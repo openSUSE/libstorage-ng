@@ -26,7 +26,7 @@ test_blkid(SystemInfo& systeminfo)
 int
 main()
 {
-    createLogger("/var/log/YaST2", "libstorage");
+    set_logger(get_logfile_logger());
 
     SystemInfo systeminfo;
 

@@ -41,7 +41,19 @@ namespace storage
     void set_logger(Logger* logger);
 
 
+    /**
+     * Returns a Logger that logs to stdout. Do not use this function for
+     * production code but only for examples and test-cases.
+     */
     Logger* get_stdout_logger();
+
+
+    /**
+     * Returns a Logger that logs to the standard libstorage log file
+     * ("/var/log/libstorage.log"). Do not use this function for production
+     * code but only for examples and test-cases.
+     */
+    Logger* get_logfile_logger();
 
 
     /**

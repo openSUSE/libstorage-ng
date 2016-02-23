@@ -26,7 +26,7 @@ test_dir(SystemInfo& systeminfo, const string& path)
 int
 main()
 {
-    createLogger("/var/log/YaST2", "libstorage");
+    set_logger(get_logfile_logger());
 
     SystemInfo systeminfo;
 

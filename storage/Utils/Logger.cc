@@ -35,8 +35,11 @@ namespace storage
 
     class StdoutLogger : public Logger
     {
+    public:
+
 	virtual void write(LogLevel log_level, const std::string& component, const std::string& file,
 			   int line, const std::string& function, const std::string& content) override;
+
     };
 
 
@@ -55,6 +58,41 @@ namespace storage
 	static StdoutLogger stdout_logger;
 
 	return &stdout_logger;
+    }
+
+
+    class LogfileLogger : public Logger
+    {
+    public:
+
+	virtual void write(LogLevel log_level, const std::string& component, const std::string& file,
+			   int line, const std::string& function, const std::string& content) override;
+
+    };
+
+
+    void
+    LogfileLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
+			 int line, const std::string& function, const std::string& content)
+    {
+	FILE* f = fopen("/var/log/libstorage.log", "ae");
+	if (f)
+	{
+	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(NULL), true, true).c_str(),
+		    log_level, component.c_str(), file.c_str(), function.c_str(), line,
+		    content.c_str());
+
+	    fclose(f);
+	}
+    }
+
+
+    Logger*
+    get_logfile_logger()
+    {
+	static LogfileLogger logfile_logger;
+
+	return &logfile_logger;
     }
 
 
