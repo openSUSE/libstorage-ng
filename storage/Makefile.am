@@ -4,9 +4,9 @@
 
 SUBDIRS = Devices Holders SystemInfo Utils
 
-lib_LTLIBRARIES = libstorage.la
+lib_LTLIBRARIES = libstorage-ng.la
 
-libstorage_la_SOURCES =					\
+libstorage_ng_la_SOURCES =					\
 	Environment.h		Environment.cc		\
 	EnvironmentImpl.h	EnvironmentImpl.cc	\
 	Storage.h		Storage.cc		\
@@ -21,9 +21,9 @@ libstorage_la_SOURCES =					\
 	Geometry.h		Geometry.cc		\
 	StorageVersion.h
 
-libstorage_la_LDFLAGS = -version-info @LIBVERSION_INFO@
+libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
-libstorage_la_LIBADD =			\
+libstorage_ng_la_LIBADD =			\
 	Devices/libdevices.la		\
 	Holders/libholders.la		\
 	Utils/libutils.la 		\

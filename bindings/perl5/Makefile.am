@@ -21,12 +21,12 @@ include ../storage.deps
 perlextensiondir_LTLIBRARIES = storage.la
 nodist_storage_la_SOURCES = storage_wrap.cxx
 
-storage_la_LIBADD = $(top_builddir)/storage/libstorage.la
+storage_la_LIBADD = $(top_builddir)/storage/libstorage-ng.la
 storage_la_LDFLAGS = -no-undefined -module -avoid-version
 
 storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
-	${top_builddir}/storage/libstorage.la
+	${top_builddir}/storage/libstorage-ng.la
 
 storage.pm storage_wrap.cxx: storage-perl5.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -perl5 ${AM_CPPFLAGS} storage-perl5.i

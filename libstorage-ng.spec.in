@@ -1,4 +1,4 @@
-# spec file for package libstorage
+# spec file for package libstorage-ng
 #
 # Copyright (c) 2016 SUSE LINUX GmbH, Nuernberg, Germany.
 #
@@ -15,13 +15,13 @@
 #
 
 
-Name:           libstorage
+Name:           libstorage-ng
 Version:        @VERSION@
 Release:        0
 License:        GPL-2.0
 Group:          System/Libraries
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
-Source:         libstorage-%{version}.tar.bz2
+Source:         libstorage-ng-%{version}.tar.bz2
 
 Prefix:         /usr
 
@@ -51,10 +51,10 @@ BuildRequires:  perl-devel
 %endif
 
 Summary:        Library for storage management
-Url:            http://en.opensuse.org/Portal:Libstorage
+Url:            http://github.com/openSUSE/libstorage-ng
 
 %description
-This package contains libstorage, a library for storage management.
+This package contains libstorage-ng, a library for storage management.
 
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
@@ -69,7 +69,7 @@ This package contains libstorage, a library for storage management.
 %endif
 
 %prep
-%setup -n libstorage-%{version}
+%setup -n libstorage-ng-%{version}
 
 %build
 export CFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
@@ -106,7 +106,7 @@ make install DESTDIR="$RPM_BUILD_ROOT"
 install -d -m 755 $RPM_BUILD_ROOT/run/libstorage
 touch $RPM_BUILD_ROOT/run/libstorage/lock
 
-%{find_lang} libstorage
+%{find_lang} libstorage-ng
 
 rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.a
 rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.la
@@ -128,7 +128,7 @@ rm -f $RPM_BUILD_ROOT/usr/lib/perl5/vendor_perl/*/storage.la
 %clean
 rm -rf "$RPM_BUILD_ROOT"
 
-%package -n libstorage@LIBVERSION_MAJOR@
+%package -n libstorage-ng@LIBVERSION_MAJOR@
 
 Requires:	coreutils
 Requires:	cryptsetup
@@ -154,91 +154,91 @@ Obsoletes:      libstorage@LIBVERSION_MAJOR@ < %{version}
 Summary:        Library for storage management
 Group:          System/Libraries
 
-%description -n libstorage@LIBVERSION_MAJOR@
-This package contains libstorage, a library for storage management.
+%description -n libstorage-ng@LIBVERSION_MAJOR@
+This package contains libstorage-ng, a library for storage management.
 
 Authors:
 --------
     Arvin Schnell <aschnell@suse.de>
     Thomas Fehr <fehr@suse.de>
 
-%files -n libstorage@LIBVERSION_MAJOR@ -f libstorage.lang
+%files -n libstorage-ng@LIBVERSION_MAJOR@ -f libstorage-ng.lang
 %defattr(-,root,root)
-%{_libdir}/libstorage.so.*
+%{_libdir}/libstorage-ng.so.*
 %ghost /run/libstorage
 /var/adm/fillup-templates/sysconfig.storage-libstorage
 %doc %dir %{prefix}/share/doc/packages/libstorage
 %doc %{prefix}/share/doc/packages/libstorage/AUTHORS
 %doc %{prefix}/share/doc/packages/libstorage/LICENSE
 
-%post -n libstorage@LIBVERSION_MAJOR@
+%post -n libstorage-ng@LIBVERSION_MAJOR@
 /sbin/ldconfig
 %if 0%{?suse_version}
 %{fillup_only -an storage}
 %endif
 
-%postun -n libstorage@LIBVERSION_MAJOR@
+%postun -n libstorage-ng@LIBVERSION_MAJOR@
 /sbin/ldconfig
 
-%package -n libstorage-devel
+%package -n libstorage-ng-devel
 
 Requires:	gcc-c++
 Requires:	libstdc++-devel
-Requires:	libstorage@LIBVERSION_MAJOR@ = %version
+Requires:	libstorage-ng@LIBVERSION_MAJOR@ = %version
 Requires:	libxml2-devel
-Summary:        Header files and documentation for libstorage
+Summary:        Header files and documentation for libstorage-ng
 Group:          Development/Languages/C and C++
 
-%description -n libstorage-devel
+%description -n libstorage-ng-devel
 This package contains header files and documentation for developing with
-libstorage.
+libstorage-ng.
 
 Authors:
 --------
     Arvin Schnell <aschnell@suse.de>
     Thomas Fehr <fehr@suse.de>
 
-%files -n libstorage-devel
+%files -n libstorage-ng-devel
 %defattr(-,root,root)
-%{_libdir}/libstorage.la
-%{_libdir}/libstorage.so
+%{_libdir}/libstorage-ng.la
+%{_libdir}/libstorage-ng.so
 %{prefix}/include/storage
 %doc %{prefix}/share/doc/packages/libstorage/autodocs
 
-%package -n libstorage-python
+%package -n libstorage-ng-python
 
-Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
 %{py_requires}
-Summary:        Python bindings for libstorage
+Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
 
 %description python
-This package contains Python bindings for libstorage.
+This package contains Python bindings for libstorage-ng.
 
 Authors:
 --------
     Arvin Schnell <aschnell@suse.de>
 
-%files -n libstorage-python
+%files -n libstorage-ng-python
 %defattr(-,root,root)
 %{python_sitelib}/storage.py*
 %attr(755,root,root) %{python_sitearch}/_storage.so
 
-%package -n libstorage-ruby
+%package -n libstorage-ng-ruby
 
-Requires:       libstorage@LIBVERSION_MAJOR@ = %version
-Summary:        Ruby bindings for libstorage
+Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
+Summary:        Ruby bindings for libstorage-ng
 Group:          System/Libraries
 
 %description ruby
-This package contains Ruby bindings for libstorage.
+This package contains Ruby bindings for libstorage-ng.
 
 Authors:
 --------
     Arvin Schnell <aschnell@suse.de>
     Thomas Fehr <fehr@suse.de>
 
-%files -n libstorage-ruby
+%files -n libstorage-ng-ruby
 %defattr(-,root,root)
 %if 0%{?suse_version}
 %if "%{?rb_vendorarchdir}" != ""
@@ -254,33 +254,33 @@ Authors:
 %{ruby_sitearch}/storage.so
 %endif
 
-%package -n libstorage-perl5
+%package -n libstorage-ng-perl5
 
-Requires:       libstorage@LIBVERSION_MAJOR@ = %version
+Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
 %{py_requires}
-Summary:        Perl5 bindings for libstorage
+Summary:        Perl5 bindings for libstorage-ng
 Group:          System/Libraries
 
 %description perl5
-This package contains Perl5 bindings for libstorage.
+This package contains Perl5 bindings for libstorage-ng.
 
 Authors:
 --------
     Arvin Schnell <aschnell@suse.de>
 
-%files -n libstorage-perl5
+%files -n libstorage-ng-perl5
 %defattr(-,root,root)
 /usr/lib/perl5/vendor_perl/*/storage.pm
 /usr/lib/perl5/vendor_perl/*/storage.so
 
-%package -n libstorage-integration-tests
+%package -n libstorage-ng-integration-tests
 
-Requires:       libstorage-python
-Summary:        Integration tests for libstorage
+Requires:       libstorage-ng-python
+Summary:        Integration tests for libstorage-ng
 Group:          Development/Tools/Other
 
-%description -n libstorage-integration-tests
-This package contains integration tests for libstorage.
+%description -n libstorage-ng-integration-tests
+This package contains integration tests for libstorage-ng.
 
 Authors:
 --------

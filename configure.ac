@@ -18,7 +18,7 @@ CFLAGS="${CFLAGS} ${CWARNS}"
 CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter"
 CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
 
-AM_INIT_AUTOMAKE(libstorage, $VERSION)
+AM_INIT_AUTOMAKE(libstorage-ng, $VERSION)
 AM_CONFIG_HEADER(config.h)
 
 AC_DISABLE_STATIC
@@ -120,5 +120,5 @@ AC_OUTPUT(
 	bindings/perl5/Makefile
 	bindings/perl5/examples/Makefile
 	bindings/perl5/testsuite/Makefile
-	package/libstorage.spec:libstorage.spec.in
+	package/libstorage-ng.spec:libstorage-ng.spec.in
 )

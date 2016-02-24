@@ -22,12 +22,12 @@ include ../storage.deps
 rubyextensiondir_LTLIBRARIES = storage.la
 nodist_storage_la_SOURCES = storage_wrap.cxx
 
-storage_la_LIBADD = $(top_builddir)/storage/libstorage.la -l$(RUBY_SO_NAME)
+storage_la_LIBADD = $(top_builddir)/storage/libstorage-ng.la -l$(RUBY_SO_NAME)
 storage_la_LDFLAGS = -no-undefined -module -avoid-version -L$(RUBY_EXTENSION_DIR)
 
 storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
-	${top_builddir}/storage/libstorage.la
+	${top_builddir}/storage/libstorage-ng.la
 
 storage_wrap.cxx: storage-ruby.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -ruby -autorename ${AM_CPPFLAGS} storage-ruby.i
