@@ -113,19 +113,15 @@ rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.la
 %if 0%{?suse_version}
 %if "%{?rb_vendorarchdir}" != ""
 rm -f $RPM_BUILD_ROOT/%{rb_vendorarchdir}/storage.la
-rm -f $RPM_BUILD_ROOT/%{rb_vendorarchdir}/storage_legacy.la
 %else
 rm -f $RPM_BUILD_ROOT/%{rb_vendorarch}/storage.la
-rm -f $RPM_BUILD_ROOT/%{rb_vendorarch}/storage_legacy.la
 %endif
 %endif
 %if 0%{?mandriva_version}
 rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage.la
-rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage_legacy.la
 %endif
 %if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
 rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage.la
-rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage_legacy.la
 %endif
 rm -f $RPM_BUILD_ROOT/usr/lib/perl5/vendor_perl/*/storage.la
 
@@ -208,7 +204,6 @@ Authors:
 %{_libdir}/libstorage.so
 %{prefix}/include/storage
 %doc %{prefix}/share/doc/packages/libstorage/autodocs
-%doc %{prefix}/share/doc/packages/libstorage/examples
 
 %package -n libstorage-python
 
@@ -277,36 +272,6 @@ Authors:
 %defattr(-,root,root)
 /usr/lib/perl5/vendor_perl/*/storage.pm
 /usr/lib/perl5/vendor_perl/*/storage.so
-
-%package -n libstorage-ruby-legacy
-
-Requires:       libstorage@LIBVERSION_MAJOR@ = %version
-Summary:        Ruby legacy bindings for libstorage
-Group:          System/Libraries
-
-%description ruby-legacy
-This package contains Ruby legacy bindings for libstorage.
-
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
-    Thomas Fehr <fehr@suse.de>
-
-%files -n libstorage-ruby-legacy
-%defattr(-,root,root)
-%if 0%{?suse_version}
-%if "%{?rb_vendorarchdir}" != ""
-%{rb_vendorarchdir}/storage_legacy.so
-%else
-%{rb_vendorarch}/storage_legacy.so
-%endif
-%endif
-%if 0%{?mandriva_version}
-%{ruby_sitearchdir}/storage_legacy.so
-%endif
-%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
-%{ruby_sitearch}/storage_legacy.so
-%endif
 
 %package -n libstorage-integration-tests
 
