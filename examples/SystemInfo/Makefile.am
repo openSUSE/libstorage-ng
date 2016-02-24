@@ -4,7 +4,7 @@
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
-LDADD = ../../storage/libstorage.la
+LDADD = ../../storage/libstorage-ng.la
 
 noinst_PROGRAMS = test-blkid test-cmdbtrfsshow test-cmddmsetupinfo		\
 	test-cmdvgdisplay test-cmdvgs test-cmdudevadminfo test-dir 		\

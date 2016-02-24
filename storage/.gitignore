@@ -1,4 +1,4 @@
 *.lo
 .deps
 .libs
-libstorage.la
+libstorage-ng.la

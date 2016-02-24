@@ -10,9 +10,9 @@ doc_DATA = AUTHORS LICENSE
 
 EXTRA_DIST = $(doc_DATA) VERSION LIBVERSION
 
-libstorage-$(VERSION).tar.bz2: dist-bzip2
+libstorage-ng-$(VERSION).tar.bz2: dist-bzip2
 
-package: libstorage-$(VERSION).tar.bz2
-	rm -f package/libstorage-*.tar.bz2
-	mv libstorage-$(VERSION).tar.bz2 package/
+package: libstorage-ng-$(VERSION).tar.bz2
+	rm -f package/libstorage-ng-*.tar.bz2
+	mv libstorage-ng-$(VERSION).tar.bz2 package/
 

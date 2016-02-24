@@ -436,12 +436,12 @@ string afterLast(const string& s, const string& pat )
 
     Text _(const char* msgid)
     {
-	return Text(msgid, dgettext("libstorage", msgid));
+	return Text(msgid, dgettext("libstorage-ng", msgid));
     }
 
     Text _(const char* msgid, const char* msgid_plural, unsigned long int n)
     {
-	return Text(n == 1 ? msgid : msgid_plural, dngettext("libstorage", msgid, msgid_plural, n));
+	return Text(n == 1 ? msgid : msgid_plural, dngettext("libstorage-ng", msgid, msgid_plural, n));
     }
 
 

@@ -24,7 +24,7 @@ public:
     {
 	const char* localedir = getenv("LOCALEDIR");
 	if (localedir)
-	    bindtextdomain("libstorage", localedir);
+	    bindtextdomain("libstorage-ng", localedir);
     }
 
 };

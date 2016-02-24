@@ -12,7 +12,7 @@ AM_CPPFLAGS = -I. -I${top_srcdir} ${PYTHON_INCLUDES}
 
 include ../storage.deps
 
-LIBS = $(top_builddir)/storage/libstorage.la ${PYTHON_LIBS}
+LIBS = $(top_builddir)/storage/libstorage-ng.la ${PYTHON_LIBS}
 
 python_PYTHON = storage.py
 
@@ -23,7 +23,7 @@ _storage_la_HEADERS: $(top_builddir)/config.h
 
 _storage_la_DEPENDENCIES =				\
 	$(DEPENDENCIES)					\
-	${top_builddir}/storage/libstorage.la
+	${top_builddir}/storage/libstorage-ng.la
 
 nodist__storage_la_SOURCES = storage_wrap.cxx
 
