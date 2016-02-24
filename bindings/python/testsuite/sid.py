@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk, PtType_GPT, DeviceNotFound, HolderNotFound
+from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk,
+        PtType_GPT, DeviceNotFound, HolderNotFound)
 
 
 class TestSid(unittest.TestCase):

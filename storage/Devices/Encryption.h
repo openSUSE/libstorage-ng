@@ -8,6 +8,11 @@
 namespace storage
 {
 
+    enum class EncryptionType {
+	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, UNKNOWN
+    };
+
+
     //! An encryption layer on a device
     class Encryption : public BlkDevice
     {

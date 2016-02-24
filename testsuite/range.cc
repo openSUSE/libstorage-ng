@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    msdos->create_partition("/dev/sda1", Region(0, 0, 262144), PRIMARY);
+    msdos->create_partition("/dev/sda1", Region(0, 0, 262144), PartitionType::PRIMARY);
 
     BOOST_CHECK_EQUAL(msdos->get_partitionable()->get_range(), 256);
 
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    gpt->create_partition("/dev/sda1", Region(0, 0, 262144), PRIMARY);
+    gpt->create_partition("/dev/sda1", Region(0, 0, 262144), PartitionType::PRIMARY);
 
     BOOST_CHECK_EQUAL(gpt->get_partitionable()->get_range(), 256);
 

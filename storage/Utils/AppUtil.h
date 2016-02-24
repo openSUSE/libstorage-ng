@@ -34,8 +34,6 @@
 #include <map>
 #include <chrono>
 
-#include "storage/Utils/Logger.h"
-
 
 namespace storage
 {
@@ -90,36 +88,6 @@ void classic(StreamType& stream)
 {
     stream.imbue(std::locale::classic());
 }
-
-
-void createLogger(const string& logpath, const string& logfile);
-
-bool queryLog( LogLevel level );
-bool defaultLogQuery( int level, const string& component );
-void defaultLogDo( int level, const string& component, const char* file,
-                   int line, const char* function, const string& content );
-
-void prepareLogStream(std::ostringstream& stream);
-
-std::ostringstream* logStreamOpen();
-
-void logStreamClose(LogLevel level, const char* file, unsigned line,
-		    const char* func, std::ostringstream*);
-
-#define y2deb(op) y2log_op(storage::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2mil(op) y2log_op(storage::MILESTONE, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2war(op) y2log_op(storage::WARNING, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2err(op) y2log_op(storage::ERROR, __FILE__, __LINE__, __FUNCTION__, op)
-
-#define y2log_op(level, file, line, func, op)				\
-    do {								\
-	if (storage::queryLog(level))                       		\
-	{								\
-	    std::ostringstream* __buf = storage::logStreamOpen();	\
-	    *__buf << op;						\
-	    storage::logStreamClose(level, file, line, func, __buf);	\
-	}								\
-    } while (0)
 
 
     string hostname();

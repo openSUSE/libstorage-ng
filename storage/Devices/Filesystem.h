@@ -3,16 +3,30 @@
 
 
 #include <vector>
+#include <list>
 
 #include "storage/Devices/Device.h"
-#include "storage/StorageInterface.h"
 
 
 namespace storage
 {
-    using namespace storage_legacy;
 
     class BlkDevice;
+
+
+    enum class FsType {
+	UNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
+	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF
+    };
+
+
+    //! The key by which the mount program identifies a filesystem
+    enum class MountByType {
+	DEVICE, UUID, LABEL, ID, PATH
+    };
+
+
+    std::string get_mount_by_name(MountByType mount_by_type);
 
 
     // abstract class

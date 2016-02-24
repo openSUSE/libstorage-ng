@@ -27,24 +27,6 @@ namespace storage
     }
 
 
-    PartitionSlot::operator PartitionSlotInfo() const // legacy
-    {
-	PartitionSlotInfo info;
-
-	info.cylRegion = region;
-	info.nr = nr;
-	info.device = name;
-	info.primarySlot = primary_slot;
-	info.primaryPossible = primary_possible;
-	info.extendedSlot = extended_slot;
-	info.extendedPossible = extended_possible;
-	info.logicalSlot = logical_slot;
-	info.logicalPossible = logical_possible;
-
-	return info;
-    }
-
-
     PartitionTable::PartitionTable(Impl* impl)
 	: Device(impl)
     {

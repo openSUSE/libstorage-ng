@@ -34,6 +34,7 @@
 
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/OutputProcessor.h"

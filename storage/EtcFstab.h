@@ -28,9 +28,9 @@
 #include <list>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/StorageInterface.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Devices/Encryption.h"
 
 
 namespace storage
@@ -65,7 +65,7 @@ namespace storage
 
     struct FstabChange
     {
-	FstabChange() : freq(0), passno(0), encr(ENC_NONE), tmpcrypt(false) {}
+	FstabChange() : freq(0), passno(0), encr(EncryptionType::NONE), tmpcrypt(false) {}
 
 	explicit FstabChange(const FstabEntry& entry) : FstabChange()
 	    { *this = entry; }
@@ -82,7 +82,7 @@ namespace storage
 	int freq;
 	int passno;
 	string loop_dev;
-	EncryptType encr;
+	EncryptionType encr;
 	bool tmpcrypt;
     };
 
@@ -90,7 +90,7 @@ namespace storage
     struct FstabEntry : public FstabChange
     {
 	FstabEntry() : loop(false), dmcrypt(false), noauto(false), cryptotab(false),
-		       crypttab(false), mount_by(MOUNTBY_DEVICE) {}
+		       crypttab(false), mount_by(MountByType::DEVICE) {}
 
 	explicit FstabEntry(const FstabChange& change) : FstabEntry()
 	    { *this = change; }
@@ -132,11 +132,11 @@ namespace storage
 	void setDevice(const string& device, const list<string>& alt_names, const string& uuid,
 		       const string& label, const vector<string>& ids, const string& path);
 
-	int addEntry(const FstabChange& entry);
-	int updateEntry(const FstabKey& key, const FstabChange& entry);
-	int removeEntry(const FstabKey& key);
+	bool addEntry(const FstabChange& entry);
+	bool updateEntry(const FstabKey& key, const FstabChange& entry);
+	bool removeEntry(const FstabKey& key);
 
-	int changeRootPrefix(const string& new_prefix);
+	bool changeRootPrefix(const string& new_prefix);
 
 	void getFileBasedLoops( const string& prefix, list<FstabEntry>& l ) const;
 
@@ -146,7 +146,7 @@ namespace storage
 	Text updateText( bool doing, bool crypto, const string& mp ) const;
 	Text removeText( bool doing, bool crypto, const string& mp ) const;
 
-	int flush();
+	bool flush();
 
     protected:
 

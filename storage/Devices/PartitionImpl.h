@@ -2,10 +2,11 @@
 #define STORAGE_PARTITION_IMPL_H
 
 
+#include "storage/Utils/Region.h"
+#include "storage/Utils/Enum.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"
-#include "storage/Utils/Region.h"
 
 
 namespace storage
@@ -18,6 +19,8 @@ namespace storage
 
 
     template <> struct DeviceTraits<Partition> { static const char* classname; };
+
+    template <> struct EnumTraits<PartitionType> { static const vector<string> names; };
 
 
     class Partition::Impl : public BlkDevice::Impl

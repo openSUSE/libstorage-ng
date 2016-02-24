@@ -8,6 +8,14 @@
 namespace storage
 {
 
+    //! Data Transport Layer
+    enum class Transport {
+	UNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE
+    };
+
+    std::string get_transport_name(Transport transport);
+
+
     enum DasdFormat {
 	DASDF_NONE, DASDF_LDL, DASDF_CDL
     };

@@ -23,8 +23,20 @@ namespace storage
     const char* DeviceTraits<Filesystem>::classname = "Filesystem";
 
 
+    // strings must match /etc/fstab
+    const vector<string> EnumTraits<FsType>::names({
+	"unknown", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
+	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf"
+    });
+
+
+    const vector<string> EnumTraits<MountByType>::names({
+	"device", "uuid", "label", "id", "path"
+    });
+
+
     Filesystem::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), label(), uuid(), mountpoints({}), mount_by(MOUNTBY_DEVICE),
+	: Device::Impl(node), label(), uuid(), mountpoints({}), mount_by(MountByType::DEVICE),
 	  fstab_options({}), mkfs_options(), tune_options()
     {
 	string tmp;
@@ -35,7 +47,7 @@ namespace storage
 	getChildValue(node, "mountpoint", mountpoints);
 
 	if (getChildValue(node, "mount-by", tmp))
-	    mount_by = toValueWithFallback(tmp, MOUNTBY_DEVICE);
+	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
 
 	if (getChildValue(node, "fstab-options", tmp))
 	    fstab_options = splitString(tmp, ",");
@@ -104,7 +116,7 @@ namespace storage
 
 	setChildValue(node, "mountpoint", mountpoints);
 
-	setChildValueIf(node, "mount-by", toString(mount_by), mount_by != MOUNTBY_DEVICE);
+	setChildValueIf(node, "mount-by", toString(mount_by), mount_by != MountByType::DEVICE);
 
 	if (!fstab_options.empty())
 	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
@@ -313,35 +325,35 @@ namespace storage
 
 	switch (mount_by)
 	{
-	    case MOUNTBY_UUID:
+	    case MountByType::UUID:
 		if (!uuid.empty())
 		    ret = "UUID=" + uuid;
 		else
 		    y2err("no uuid defined");
 		break;
 
-	    case MOUNTBY_LABEL:
+	    case MountByType::LABEL:
 		if (!label.empty())
 		    ret = "LABEL=" + label;
 		else
 		    y2err("no label defined");
 		break;
 
-	    case MOUNTBY_ID:
+	    case MountByType::ID:
 		if (!blk_device->get_udev_ids().empty())
 		    ret = DEVDIR "/disk/by-id/" + blk_device->get_udev_ids().front();
 		else
 		    y2err("no udev-id defined");
 		break;
 
-	    case MOUNTBY_PATH:
+	    case MountByType::PATH:
 		if (!blk_device->get_udev_path().empty())
 		    ret = DEVDIR "/disk/by-path/" + blk_device->get_udev_path();
 		else
 		    y2err("no udev-path defined");
 		break;
 
-	    case MOUNTBY_DEVICE:
+	    case MountByType::DEVICE:
 		break;
 	}
 

@@ -3,13 +3,11 @@
 
 
 #include "storage/Devices/Device.h"
-#include "storage/StorageInterface.h"
+#include "storage/Devices/Filesystem.h"
 
 
 namespace storage
 {
-
-    using namespace storage_legacy;
 
     class Filesystem;
 

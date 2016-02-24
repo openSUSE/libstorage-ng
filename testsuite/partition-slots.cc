@@ -65,10 +65,10 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
     // primary partition from 0 to 1000
-    msdos->create_partition("/dev/sda1", Region(0, 1000, 8225280), PRIMARY);
+    msdos->create_partition("/dev/sda1", Region(0, 1000, 8225280), PartitionType::PRIMARY);
 
     // extended partition from 2000 to 5000
-    msdos->create_partition("/dev/sda2", Region(2000, 3000, 8225280), EXTENDED);
+    msdos->create_partition("/dev/sda2", Region(2000, 3000, 8225280), PartitionType::EXTENDED);
 
     vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
 
@@ -165,11 +165,11 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
     // primary partition from 0 to 1000
-    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 1000, 8225280), PRIMARY);
+    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 1000, 8225280), PartitionType::PRIMARY);
     sda1->set_region(Region(0, 1000, 8225280));
 
     // primary partition from 2000 to 5000
-    Partition* sda2 = gpt->create_partition("/dev/sda2", Region(2000, 3000, 8225280), PRIMARY);
+    Partition* sda2 = gpt->create_partition("/dev/sda2", Region(2000, 3000, 8225280), PartitionType::PRIMARY);
     sda2->set_region(Region(2000, 3000, 8225280));
 
     vector<PartitionSlot> slots = gpt->get_unused_partition_slots();

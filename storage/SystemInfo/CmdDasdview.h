@@ -24,13 +24,14 @@
 #define STORAGE_CMD_DASDVIEW_H
 
 
-#include "storage/StorageInterface.h"
 #include "storage/Geometry.h"
 #include "storage/Devices/Disk.h"
 
 
 namespace storage
 {
+    using std::string;
+
     class SystemCmd;
 
 

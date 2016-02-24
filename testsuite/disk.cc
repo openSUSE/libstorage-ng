@@ -11,6 +11,7 @@
 #include "storage/Environment.h"
 
 
+using namespace std;
 using namespace storage;
 
 

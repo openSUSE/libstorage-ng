@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/FilesystemImpl.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Btrfs.h"
 #include "storage/Devices/Xfs.h"
@@ -11,7 +12,6 @@
 #include "storage/Devices/Vfat.h"
 #include "storage/Holders/User.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Enum.h"
 
 
 namespace storage
@@ -160,27 +160,27 @@ namespace storage
 
 	switch (fs_type)
 	{
-	    case EXT4:
+	    case FsType::EXT4:
 		ret = Ext4::create(get_impl().get_devicegraph());
 		break;
 
-	    case BTRFS:
+	    case FsType::BTRFS:
 		ret = Btrfs::create(get_impl().get_devicegraph());
 		break;
 
-	    case XFS:
+	    case FsType::XFS:
 		ret = Xfs::create(get_impl().get_devicegraph());
 		break;
 
-	    case SWAP:
+	    case FsType::SWAP:
 		ret = Swap::create(get_impl().get_devicegraph());
 		break;
 
-	    case NTFS:
+	    case FsType::NTFS:
 		ret = Ntfs::create(get_impl().get_devicegraph());
 		break;
 
-	    case VFAT:
+	    case FsType::VFAT:
 		ret = Vfat::create(get_impl().get_devicegraph());
 		break;
 

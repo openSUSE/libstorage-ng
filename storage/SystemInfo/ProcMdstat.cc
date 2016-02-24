@@ -25,9 +25,8 @@
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/AsciiFile.h"
-#include "storage/StorageInterface.h"
 #include "storage/SystemInfo/ProcMdstat.h"
-#include "storage/Utils/Enum.h"
+#include "storage/Devices/MdImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -104,8 +103,8 @@ namespace storage
 	tmp = extractNthWord( 0, line );
 	if (boost::starts_with(tmp, "raid"))
 	{
-	    entry.md_level = toValueWithFallback(boost::to_upper_copy(tmp, locale::classic()), RAID_UNK);
-	    if (entry.md_level == RAID_UNK)
+	    entry.md_level = toValueWithFallback(boost::to_upper_copy(tmp, locale::classic()), MdLevel::UNKNOWN);
+	    if (entry.md_level == MdLevel::UNKNOWN)
 		y2war("unknown raid type " << tmp);
 
 	    if( (pos=line.find_first_of( app_ws ))!=string::npos )
@@ -172,7 +171,7 @@ namespace storage
 	    }
 	}
 
-	entry.md_parity = PAR_DEFAULT;
+	entry.md_parity = MdParity::DEFAULT;
 	pos = line2.find( "algorithm" );
 	if( pos != string::npos )
 	{
@@ -195,10 +194,10 @@ namespace storage
 		    entry.md_parity = RIGHT_SYMMETRIC;
 		    break;
 		case 4:
-		    entry.md_parity = PAR_FIRST;
+		    entry.md_parity = FIRST;
 		    break;
 		case 5:
-		    entry.md_parity = PAR_LAST;
+		    entry.md_parity = LAST;
 		    break;
 		case 16:
 		    entry.md_parity = LEFT_ASYMMETRIC_6;
@@ -213,7 +212,7 @@ namespace storage
 		    entry.md_parity = RIGHT_SYMMETRIC_6;
 		    break;
 		case 20:
-		    entry.md_parity = PAR_FIRST_6;
+		    entry.md_parity = FIRST_6;
 		    break;
 		default:
 		    y2war("unknown parity " << line2.substr(pos));
@@ -231,12 +230,12 @@ namespace storage
 	    pos = line2.find_last_of( app_ws, pos );
 	    line2.substr( pos ) >> num;
 	    y2mil( "where:" << where << " num:" << num );
-	    if( where=="near-copies" )
-		entry.md_parity = (num==3)?PAR_NEAR_3:PAR_NEAR_2;
-	    else if( where=="far-copies" )
-		entry.md_parity = (num==3)?PAR_FAR_3:PAR_FAR_2;
-	    else if( where=="offset-copies" )
-		entry.md_parity = (num==3)?PAR_OFFSET_3:PAR_OFFSET_2;
+	    if (where == "near-copies")
+		entry.md_parity = (num == 3) ? NEAR_3 : NEAR_2;
+	    else if (where == "far-copies")
+		entry.md_parity = (num == 3)? FAR_3 : FAR_2;
+	    else if (where == "offset-copies")
+		entry.md_parity = (num == 3) ? OFFSET_3 : OFFSET_2;
 	}
 
 	return entry;
@@ -278,7 +277,7 @@ namespace storage
     {
 	s << "md-level:" << toString(entry.md_level);
 
-	if (entry.md_parity != PAR_DEFAULT)
+	if (entry.md_parity != DEFAULT)
 	    s << " md-parity:" + toString(entry.md_parity);
 
 	if (!entry.super.empty())

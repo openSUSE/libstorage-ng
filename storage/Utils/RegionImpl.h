@@ -31,8 +31,6 @@
 
 namespace storage
 {
-    using namespace storage_legacy;
-
 
     class Region::Impl
     {

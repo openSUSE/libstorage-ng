@@ -27,7 +27,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Devices/Partition.h"
+#include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
 
 
@@ -390,12 +390,12 @@ namespace storage
 	{
 	    if(  PartitionTypeStr == "extended" )
 	    {
-		entry.type = EXTENDED;
+		entry.type = PartitionType::EXTENDED;
 		entry.id = ID_EXTENDED;
 	    }
 	    else if ( entry.num >= 5 )
 	    {
-		entry.type = LOGICAL;
+		entry.type = PartitionType::LOGICAL;
 	    }
 	}
 	else if (contains_if(flags, string_starts_with("fat")))

@@ -24,7 +24,6 @@
 #define STORAGE_CMD_PARTED_H
 
 
-#include "storage/StorageInterface.h"
 #include "storage/Geometry.h"
 #include "storage/Utils/Region.h"
 #include "storage/Devices/PartitionTableImpl.h"
@@ -53,7 +52,7 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : num(0), type(PRIMARY), id(0), boot(false) {}
+	    Entry() : num(0), type(PartitionType::PRIMARY), id(0), boot(false) {}
 
 	    unsigned num;	// Partition number (1..n)
 	    Region cylRegion;	// Partition region in cylinders

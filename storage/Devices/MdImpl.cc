@@ -29,8 +29,23 @@ namespace storage
     const char* DeviceTraits<Md>::classname = "Md";
 
 
+    // strings must match /proc/mdstat
+    const vector<string> EnumTraits<MdLevel>::names({
+	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+    });
+
+
+    // strings must match "mdadm --parity" option
+    const vector<string> EnumTraits<MdParity>::names({
+	"default", "left-asymmetric", "left-symmetric", "right-asymmetric",
+	"right-symmetric", "parity-first", "parity-last", "left-asymmetric-6",
+	"left-symmetric-6", "right-asymmetric-6", "right-symmetric-6",
+	"parity-first-6", "n2", "o2", "f2", "n3", "o3", "f3"
+    });
+
+
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(PAR_DEFAULT), chunk_size_k(0)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
     {
 	string tmp;
 
@@ -38,14 +53,14 @@ namespace storage
 	    md_level = toValueWithFallback(tmp, RAID0);
 
 	if (getChildValue(node, "md-parity", tmp))
-	    md_parity = toValueWithFallback(tmp, PAR_DEFAULT);
+	    md_parity = toValueWithFallback(tmp, DEFAULT);
 
 	getChildValue(node, "chunk-size-k", chunk_size_k);
     }
 
 
     void
-    Md::Impl::set_md_level(MdType md_level)
+    Md::Impl::set_md_level(MdLevel md_level)
     {
 	// TODO calculate size_k
 
@@ -169,7 +184,7 @@ namespace storage
 	Partitionable::Impl::save(node);
 
 	setChildValue(node, "md-level", toString(md_level));
-	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != PAR_DEFAULT);
+	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
 	setChildValueIf(node, "chunk-size-k", chunk_size_k, chunk_size_k != 0);
     }
@@ -290,7 +305,7 @@ namespace storage
 	if (chunk_size_k > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size_k);
 
-	if (md_parity != PAR_DEFAULT)
+	if (md_parity != DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
 
 	vector<string> devices;

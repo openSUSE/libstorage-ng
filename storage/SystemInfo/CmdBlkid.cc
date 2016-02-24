@@ -24,7 +24,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdBlkid.h"
-#include "storage/Utils/Enum.h"
+#include "storage/Devices/FilesystemImpl.h"
 
 
 namespace storage
@@ -52,21 +52,21 @@ namespace storage
     Blkid::parse(const vector<string>& lines)
     {
 	static const map<string, FsType> fs_table = {
-	    { "btrfs", BTRFS },
-	    { "ext2", EXT2 },
-	    { "ext3", EXT3 },
-	    { "ext4", EXT4 },
-	    { "hfs", HFS },
-	    { "hfsplus", HFSPLUS },
-	    { "jfs", JFS },
-	    { "msdos", VFAT },
-	    { "ntfs", NTFS },
-	    { "reiserfs", REISERFS },
-	    { "swap", SWAP },
-	    { "vfat", VFAT },
-	    { "xfs", XFS },
-	    { "iso9660", ISO9660 },
-	    { "udf", UDF }
+	    { "btrfs", FsType::BTRFS },
+	    { "ext2", FsType::EXT2 },
+	    { "ext3", FsType::EXT3 },
+	    { "ext4", FsType::EXT4 },
+	    { "hfs", FsType::HFS },
+	    { "hfsplus", FsType::HFSPLUS },
+	    { "jfs", FsType::JFS },
+	    { "msdos", FsType::VFAT },
+	    { "ntfs", FsType::NTFS },
+	    { "reiserfs", FsType::REISERFS },
+	    { "swap", FsType::SWAP },
+	    { "vfat", FsType::VFAT },
+	    { "xfs", FsType::XFS },
+	    { "iso9660", FsType::ISO9660 },
+	    { "udf", FsType::UDF }
 	};
 
 	data.clear();

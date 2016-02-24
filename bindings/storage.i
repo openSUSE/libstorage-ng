@@ -71,8 +71,6 @@
 %include "std_list.i"
 %include "std_map.i"
 
-%include "../../storage/StorageInterface.h"
-
 %include "../../storage/Utils/Logger.h"
 %include "../../storage/Utils/Exception.h"
 %include "../../storage/Utils/HumanString.h"

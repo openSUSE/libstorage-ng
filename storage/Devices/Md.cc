@@ -13,7 +13,7 @@ namespace storage
 
 
     string
-    get_md_level_name(MdType md_level)
+    get_md_level_name(MdLevel md_level)
     {
 	return toString(md_level);
     }
@@ -116,7 +116,7 @@ namespace storage
     }
 
 
-    MdType
+    MdLevel
     Md::get_md_level() const
     {
 	return get_impl().get_md_level();
@@ -124,7 +124,7 @@ namespace storage
 
 
     void
-    Md::set_md_level(MdType md_level)
+    Md::set_md_level(MdLevel md_level)
     {
 	get_impl().set_md_level(md_level);
     }

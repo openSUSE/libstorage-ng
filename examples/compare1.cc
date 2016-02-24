@@ -28,10 +28,10 @@ main()
 
     Disk* sda = Disk::create(lhs, "/dev/sda");
 
-    Partition* sda1 = Partition::create(lhs, "/dev/sda1", Region(0, 1000, 262144), PRIMARY);
+    Partition* sda1 = Partition::create(lhs, "/dev/sda1", Region(0, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(lhs, sda, sda1);
 
-    Partition* sda2 = Partition::create(lhs, "/dev/sda2", Region(1000, 1000, 262144), PRIMARY);
+    Partition* sda2 = Partition::create(lhs, "/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(lhs, sda, sda2);
 
     LvmVg* system = LvmVg::create(lhs, "/dev/system");

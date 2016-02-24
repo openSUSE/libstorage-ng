@@ -6,12 +6,13 @@ noinst_LTLIBRARIES = libutils.la
 
 libutils_la_SOURCES =					\
 	Logger.h		Logger.cc		\
+	LoggerImpl.h		LoggerImpl.cc		\
 	AppUtil.cc		AppUtil.h		\
 	FileUtils.cc		FileUtils.h		\
 	Exception.h		Exception.cc		\
 	ExceptionImpl.h					\
 	AsciiFile.cc 		AsciiFile.h		\
-	Enum.cc			Enum.h			\
+	Enum.h						\
 	GraphUtils.h					\
 	HumanString.h		HumanString.cc		\
 	Lock.cc 		Lock.h			\

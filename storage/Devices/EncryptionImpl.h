@@ -2,6 +2,7 @@
 #define STORAGE_ENCRYPTION_IMPL_H
 
 
+#include "storage/Utils/Enum.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"
@@ -14,6 +15,8 @@ namespace storage
 
 
     template <> struct DeviceTraits<Encryption> { static const char* classname; };
+
+    template <> struct EnumTraits<EncryptionType> { static const vector<string> names; };
 
 
     class Encryption::Impl : public BlkDevice::Impl

@@ -21,6 +21,12 @@ namespace storage
     const char* DeviceTraits<Partition>::classname = "Partition";
 
 
+    // strings must match what parted understands
+    const vector<string> EnumTraits<PartitionType>::names({
+	"primary", "extended", "logical"
+    });
+
+
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
 	: BlkDevice::Impl(name, region.to_kb(region.get_length())), region(region), type(type),
 	  id(ID_LINUX), boot(false)
@@ -29,13 +35,13 @@ namespace storage
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), region(), type(PRIMARY), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), region(), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
 	getChildValue(node, "region", region);
 	if (getChildValue(node, "type", tmp))
-	    type = toValueWithFallback(tmp, PRIMARY);
+	    type = toValueWithFallback(tmp, PartitionType::PRIMARY);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
     }
@@ -233,7 +239,7 @@ namespace storage
 	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit cyl mkpart " +
 	    toString(get_type()) + " ";
 
-	if (get_type() != EXTENDED)
+	if (get_type() != PartitionType::EXTENDED)
 	{
 	    switch (get_id())
 	    {

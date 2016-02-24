@@ -25,7 +25,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return XFS; }
+	virtual FsType get_type() const override { return FsType::XFS; }
 
 	virtual const char* get_classname() const override { return DeviceTraits<Xfs>::classname; }
 

@@ -20,11 +20,11 @@
  */
 
 
-#include "storage/SystemInfo/CmdDasdview.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/SystemInfo/CmdDasdview.h"
+#include "storage/Devices/DiskImpl.h"
 
 
 namespace storage

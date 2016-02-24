@@ -41,15 +41,13 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTypes.h"
-#include "storage/StorageInterface.h"
 #include "storage/SystemInfo/Arch.h"
-#include "storage/Utils/Logger.h"
+#include "storage/Utils/LoggerImpl.h"
 
 
 namespace storage
 {
     using namespace std;
-    using namespace storage_legacy;
 
 
 void createPath(const string& Path_Cv)
@@ -310,150 +308,6 @@ bool isNfsDev( const string& dev )
     }
 
 
-    static const string& component = "libstorage";
-    static string filename;
-
-
-    void
-    createLogger(const string& logpath, const string& logfile)
-    {
-	if (logpath == "" && logfile == "cout")
-	    filename = "cout";
-	else
-	    filename = logpath + "/" + logfile;
-    }
-
-
-    bool
-    queryLog(LogLevel level)
-    {
-	Logger* logger = get_logger();
-	if (logger)
-	    return logger->test(level, component);
-
-	// legacy
-	CallbackLogQuery pfc = getLogQueryCallback();
-	return pfc && pfc(level, component);
-    }
-
-
-    bool
-    defaultLogQuery(int level, const string& component)
-    {
-	return level != DEBUG;
-    }
-
-
-    void
-    prepareLogStream(ostringstream& stream)
-    {
-	stream.imbue(std::locale::classic());
-	stream.setf(std::ios::boolalpha);
-	stream.setf(std::ios::showbase);
-    }
-
-
-    ostringstream*
-    logStreamOpen()
-    {
-	std::ostringstream* stream = new ostringstream;
-	prepareLogStream(*stream);
-	return stream;
-    }
-
-
-    void
-    logStreamClose( LogLevel level, const char* file, unsigned line,
-		    const char* func, ostringstream* stream )
-    {
-	Logger* logger = get_logger();
-	if (logger)
-	{
-	    string content = stream->str();
-	    string::size_type pos1 = 0;
-	    while (true)
-	    {
-		string::size_type pos2 = content.find('\n', pos1);;
-		if (pos2 != string::npos || pos1 != content.length())
-		    logger->write(level, component, file, line, func,
-				  content.substr(pos1, pos2 - pos1));
-		if (pos2 == string::npos)
-		    break;
-		pos1 = pos2 + 1;
-	    }
-	}
-	else
-	{
-	    // legacy
-	    CallbackLogDo pfc = getLogDoCallback();
-	    if (pfc != NULL)
-	    {
-		string content = stream->str();
-		string::size_type pos1 = 0;
-		while (true)
-		{
-		    string::size_type pos2 = content.find('\n', pos1);;
-		    if (pos2 != string::npos || pos1 != content.length())
-			pfc(level, component, file, line, func,
-			    content.substr(pos1, pos2 - pos1));
-		    if (pos2 == string::npos)
-			break;
-		    pos1 = pos2 + 1;
-		}
-	    }
-	}
-
-	delete stream;
-    }
-
-
-    static FILE* logf = NULL;
-
-    static void
-    close_logf()
-    {
-	if( logf )
-        {
-	    fclose(logf);
-	    logf=NULL;
-        }
-    }
-
-
-    void
-    defaultLogDo(int level, const string& comp, const char* file, int line, const char* fct,
-		 const string& content)
-    {
-	if (!filename.empty())
-	{
-	    ostringstream pfx;
-	    pfx << datetime(time(0), false, true) << " <" << level << "> "
-		<< comp << "(" << getpid() << ")" << " " << file
-		<< "(" << fct << "):" << line;
-	    string prefix = pfx.str();
-
-	    if (filename == "cout")
-	    {
-		cout << prefix << " - " << content << endl;
-	    }
-	    else
-	    {
-		if( !logf )
-		{
-		    logf = fopen(filename.c_str(), "ae");
-		    if( logf )
-		    {
-			setlinebuf(logf);
-			atexit( close_logf );
-		    }
-		}
-
-		fprintf(logf, "%s - %s\n", prefix.c_str(), content.c_str());
-	    }
-	}
-    }
-
-
 string afterLast(const string& s, const string& pat )
     {
     string ret(s);
@@ -657,12 +511,12 @@ string afterLast(const string& s, const string& pat )
 	    paths.erase(DASDFMTBIN);
 	}
 
-	LogLevel level = instsys ? storage::ERROR : storage::MILESTONE;
-	for (set<string>::const_iterator it = paths.begin(); it != paths.end(); ++it)
+	LogLevel log_level = instsys ? storage::ERROR : storage::MILESTONE;
+	for (const string& name : paths)
         {
-            if (access(it->c_str(), X_OK) != 0)
-                y2log_op(level, __FILE__, __LINE__, __FUNCTION__,
-		    "error accessing " << *it);
+            if (access(name.c_str(), X_OK) != 0)
+                y2log_op(log_level, __FILE__, __LINE__, __FUNCTION__, "error accessing " <<
+			 name);
 	}
     }
 

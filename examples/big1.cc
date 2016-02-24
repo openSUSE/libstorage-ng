@@ -36,13 +36,13 @@ add_partitions(const string& name)
     Gpt* gpt = Gpt::create(rhs);
     Subdevice::create(rhs, disk, gpt);
 
-    Partition* partition1 = Partition::create(rhs, name + "p1", Region(0, 1000, 262144), PRIMARY);
+    Partition* partition1 = Partition::create(rhs, name + "p1", Region(0, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, gpt, partition1);
 
-    Partition* partition2 = Partition::create(rhs, name + "p2", Region(1000, 1000, 262144), PRIMARY);
+    Partition* partition2 = Partition::create(rhs, name + "p2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, gpt, partition2);
 
-    Partition* partition3 = Partition::create(rhs, name + "p3", Region(2000, 1000, 262144), PRIMARY);
+    Partition* partition3 = Partition::create(rhs, name + "p3", Region(2000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, gpt, partition3);
 }
 

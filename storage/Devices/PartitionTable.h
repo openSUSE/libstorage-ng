@@ -35,8 +35,6 @@ namespace storage
 	bool extended_possible;
 	bool logical_slot;
 	bool logical_possible;
-
-	operator PartitionSlotInfo() const; // legacy
     };
 
 

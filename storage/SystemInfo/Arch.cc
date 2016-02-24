@@ -22,7 +22,7 @@
 
 #include "storage/SystemInfo/Arch.h"
 #include "storage/Utils/AsciiFile.h"
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"

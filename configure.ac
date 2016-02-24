@@ -120,7 +120,5 @@ AC_OUTPUT(
 	bindings/perl5/Makefile
 	bindings/perl5/examples/Makefile
 	bindings/perl5/testsuite/Makefile
-	bindings/ruby-legacy/Makefile
-	bindings/ruby-legacy/examples/Makefile
 	package/libstorage.spec:libstorage.spec.in
 )

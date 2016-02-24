@@ -13,7 +13,6 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 
-#include <storage/StorageInterface.h>
 
 using namespace std;
 using namespace storage;

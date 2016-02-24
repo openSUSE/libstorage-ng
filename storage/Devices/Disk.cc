@@ -15,6 +15,13 @@ namespace storage
     using namespace std;
 
 
+    string
+    get_transport_name(Transport transport)
+    {
+	return toString(transport);
+    }
+
+
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name)
     {
@@ -124,15 +131,5 @@ namespace storage
     {
 	return to_device_of_type<const Disk>(device);
     }
-
-
-    const vector<string> EnumTraits<DasdType>::names({
-	"NONE", "ECKD", "FBA"
-    });
-
-
-    const vector<string> EnumTraits<DasdFormat>::names({
-	"NONE", "LDL", "CDL"
-    });
 
 }

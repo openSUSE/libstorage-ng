@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(test_set_region)
 
     // creating a partition also sets the size
 
-    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(0, 2000, 8225280), PRIMARY);
+    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(0, 2000, 8225280), PartitionType::PRIMARY);
 
     BOOST_CHECK_EQUAL(sda1->get_region().get_start(), 0);
     BOOST_CHECK_EQUAL(sda1->get_region().get_length(), 2000);
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(test_set_size_k)
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(0, 0, 8225280), PRIMARY);
+    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(0, 0, 8225280), PartitionType::PRIMARY);
 
     // setting the size affects the region
 

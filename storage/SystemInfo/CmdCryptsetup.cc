@@ -21,10 +21,10 @@
 
 
 #include "storage/Utils/SystemCmd.h"
-#include "storage/SystemInfo/CmdCryptsetup.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/SystemInfo/CmdCryptsetup.h"
+#include "storage/Devices/EncryptionImpl.h"
 
 
 namespace storage
@@ -33,7 +33,7 @@ namespace storage
 
 
     CmdCryptsetup::CmdCryptsetup(const string& name)
-	: encrypt_type(ENC_UNKNOWN), name(name)
+	: encrypt_type(EncryptionType::UNKNOWN), name(name)
     {
 	SystemCmd c(CRYPTSETUPBIN " status " + quote(name));
 	if (c.retcode() == 0 && !c.stdout().empty())
@@ -57,17 +57,17 @@ namespace storage
 	}
 
 	if (type == "LUKS1")
-	    encrypt_type = ENC_LUKS;
+	    encrypt_type = EncryptionType::LUKS;
 	else if (cipher == "twofish-cbc-plain")
-	    encrypt_type = ENC_TWOFISH;
+	    encrypt_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
-	    encrypt_type = ENC_TWOFISH_OLD;
+	    encrypt_type = EncryptionType::TWOFISH_OLD;
 	else if (cipher == "twofish-cbc-null" && keysize == "256")
-	    encrypt_type = ENC_TWOFISH256_OLD;
+	    encrypt_type = EncryptionType::TWOFISH256_OLD;
 	else
 	{
-	    encrypt_type = ENC_UNKNOWN;
-	    y2err("unknown encryption type:" << type << " cipher:" << cipher << " keysize:" <<
+	    encrypt_type = EncryptionType::UNKNOWN;
+	    y2err("unknown encryption-type:" << type << " cipher:" << cipher << " keysize:" <<
 		  keysize);
 	}
     }

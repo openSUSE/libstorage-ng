@@ -211,18 +211,4 @@ namespace storage
 	__builtin_unreachable();
     }
 
-
-    string
-    get_mount_by_name(MountByType mount_by_type)
-    {
-	return toString(mount_by_type);
-    }
-
-
-    string
-    get_transport_name(Transport transport)
-    {
-	return toString(transport);
-    }
-
 }
