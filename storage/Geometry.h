@@ -23,7 +23,9 @@
 #ifndef STORAGE_GEOMETRY_H
 #define STORAGE_GEOMETRY_H
 
+
 #include <libxml/tree.h>
+#include <ostream>
 
 
 namespace storage
@@ -63,7 +65,7 @@ namespace storage
     };
 
 
-    bool detectGeometry(const string& device, Geometry& geometry);
+    bool detectGeometry(const std::string& device, Geometry& geometry);
 
 }
 

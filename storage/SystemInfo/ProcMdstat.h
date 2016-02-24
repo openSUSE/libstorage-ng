@@ -27,15 +27,15 @@
 #include <map>
 #include <vector>
 
-#include "storage/StorageInterface.h"
+#include "storage/Devices/Md.h"
 
 
 namespace storage
 {
+    using std::string;
     using std::map;
+    using std::list;
     using std::vector;
-
-    using namespace storage_legacy;
 
 
     class ProcMdstat
@@ -46,10 +46,10 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : md_level(RAID_UNK), md_parity(PAR_DEFAULT), size_k(0), chunk_size_k(0),
+	    Entry() : md_level(UNKNOWN), md_parity(DEFAULT), size_k(0), chunk_size_k(0),
 		      readonly(false), inactive(false), is_container(false), has_container(false) {}
 
-	    MdType md_level;
+	    MdLevel md_level;
 	    MdParity md_parity;
 
 	    string super;

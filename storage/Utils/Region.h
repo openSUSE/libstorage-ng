@@ -27,14 +27,11 @@
 #include <libxml/tree.h>
 #include <memory>
 
-#include "storage/StorageInterface.h"
 #include "storage/Utils/Exception.h"
 
 
 namespace storage
 {
-    using namespace storage_legacy;
-
 
     class InvalidBlockSize : public Exception
     {
@@ -68,8 +65,6 @@ namespace storage
 
 	Region();
 	Region(unsigned long long start, unsigned long long length, unsigned int block_size);
-	Region(const RegionInfo& region_info, unsigned int block_size)
-	    : Region(region_info.start, region_info.len, block_size) {} // legacy
 	Region(const Region& region);
 	~Region();
 
@@ -111,8 +106,6 @@ namespace storage
 
 	friend bool getChildValue(const xmlNode* node, const char* name, Region& value);
 	friend void setChildValue(xmlNode* node, const char* name, const Region& value);
-
-	operator RegionInfo() const { return RegionInfo(get_start(), get_length()); } // legacy
 
     private:
 

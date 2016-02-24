@@ -29,8 +29,16 @@
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/Regex.h"
 #include "storage/Utils/StorageTmpl.h"
-// #include "storage/Volume.h"
+#include "storage/Devices/EncryptionImpl.h"
 #include "storage/EtcFstab.h"
+
+
+// TODO use exception for error reporting
+
+// TODO simplify, no need to cache changes since / is mounted before any
+// changes to fstab
+
+// TODO remove cryptotab code
 
 
 namespace storage
@@ -93,7 +101,7 @@ EtcFstab::readFiles()
 		if( p->old.fs=="crypt" )
 		    {
 		    p->old.dmcrypt = true;
-		    p->old.encr = ENC_LUKS;
+		    p->old.encr = EncryptType::LUKS;
 		    }
 		}
 	    if( i!=l.end() )
@@ -174,7 +182,7 @@ EtcFstab::readFiles()
 		p = &(*e);
 	    p->old.dmcrypt = p->old.crypttab = true;
 	    p->old.noauto = false;
-	    p->old.encr = ENC_LUKS;
+	    p->old.encr = EncryptType::LUKS;
 	    p->old.device = *i;
 	    p->old.opts.remove("nofail");
 	    ++i;
@@ -226,41 +234,42 @@ FstabEntry::calcDependent()
 	string::size_type pos = i->find("=");
 	if( pos!=string::npos )
 	    {
-		encr = toValueWithFallback(i->substr(pos + 1), ENC_UNKNOWN);
+		encr = toValueWithFallback(i->substr(pos + 1), EncryptType::UNKNOWN);
 	    }
 	}
 
 	if (boost::starts_with(device, "LABEL="))
 	{
-	    mount_by = MOUNTBY_LABEL;
+	    mount_by = MountByType::LABEL;
 	    device.erase();
 	}
 	else if (boost::starts_with(device, "UUID="))
 	{
-	    mount_by = MOUNTBY_UUID;
+	    mount_by = MountByType::UUID;
 	    device.erase();
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-id/"))
         {
-	    mount_by = MOUNTBY_ID;
+	    mount_by = MountByType::ID;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-path/"))
         {
-	    mount_by = MOUNTBY_PATH;
+	    mount_by = MountByType::PATH;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-label/"))
 	{
-	    mount_by = MOUNTBY_LABEL;
+	    mount_by = MountByType::LABEL;
 	}
 	else if (boost::starts_with(device, "/dev/disk/by-uuid/"))
 	{
-	    mount_by = MOUNTBY_UUID;
+	    mount_by = MountByType::UUID;
 	}
 
-    dmcrypt = encr == ENC_LUKS;
-    cryptotab = encr != ENC_NONE && !dmcrypt;
-    crypttab = dmcrypt;
+	dmcrypt = encr == EncryptType::LUKS;
+	cryptotab = encr != EncryptType::NONE && !dmcrypt;
+	crypttab = dmcrypt;
     }
+
 
 bool
 FstabEntry::optUser() const
@@ -303,11 +312,11 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
     }
 
 
-    int
+    bool
     EtcFstab::changeRootPrefix(const string& new_prefix)
     {
 	y2mil("new prefix:" << new_prefix);
-	int ret = 0;
+	bool ret = true;
 	if (new_prefix != prefix)
 	{
 	    list<Entry>::const_iterator it = co.begin();
@@ -319,7 +328,10 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		readFiles();
 	    }
 	    else
-		ret = FSTAB_CHANGE_PREFIX_IMPOSSIBLE;
+	    {
+		ret = false;
+	    }
+
 	}
 	y2mil("ret:" << ret);
 	return ret;
@@ -374,7 +386,7 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
     }
 
 
-    int
+    bool
     EtcFstab::addEntry(const FstabChange& entry)
     {
 	y2mil("dentry:" << entry.dentry << " mount:" << entry.mount);
@@ -382,11 +394,11 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 	e.nnew = entry;
 	y2mil("e.nnew " << e.nnew);
 	co.push_back(e);
-	return 0;
+	return true;
     }
 
 
-    int
+    bool
     EtcFstab::updateEntry(const FstabKey& key, const FstabChange& entry)
     {
 	y2mil("device:" << key.device << " mount:" << key.mount);
@@ -407,13 +419,12 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		it->op = Entry::UPDATE;
 	    it->nnew = entry;
 	}
-	int ret = (it != co.end()) ? 0 : FSTAB_ENTRY_NOT_FOUND;
-	y2mil("ret:" << ret);
-	return ret;
+
+	return it != co.end();
     }
 
 
-    int
+    bool
     EtcFstab::removeEntry(const FstabKey& key)
     {
 	y2mil("device:" << key.device << " mount:" << key.mount);
@@ -428,11 +439,11 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		else
 		    co.erase(it);
 
-		return 0;
+		return true;
 	    }
 	}
 
-	return FSTAB_ENTRY_NOT_FOUND;
+	return false;
     }
 
 
@@ -730,9 +741,10 @@ void EtcFstab::updateTabLine( list<string>(*fnc)(const FstabEntry&),
     }
 
 
-int EtcFstab::flush()
+    bool
+    EtcFstab::flush()
     {
-    int ret = 0;
+    bool ret = true;
     AsciiFile *fstab = NULL;
     AsciiFile *cryptotab = NULL;
     AsciiFile *cur = NULL;
@@ -741,7 +753,7 @@ int EtcFstab::flush()
 	createPath( prefix );
 
     list<Entry>::iterator i = co.begin();
-    while( i!=co.end() && ret==0 )
+    while( i!=co.end() && ret )
 	{
 	switch( i->op )
 	    {
@@ -763,7 +775,7 @@ int EtcFstab::flush()
 		}
 		else
 		{
-		    ret = FSTAB_REMOVE_ENTRY_NOT_FOUND;
+		    ret = false;
 		}
 		i = co.erase( i );
 	    } break;
@@ -830,7 +842,9 @@ int EtcFstab::flush()
 			}
 		    }
 		else
-		    ret = FSTAB_UPDATE_ENTRY_NOT_FOUND;
+		{
+		    ret = false;
+		}
 		++i;
 	    } break;
 
@@ -1018,7 +1032,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	    s << " cr_key:" << v.cr_key;
 	if( !v.cr_opts.empty() )
 	    s << " cr_opts:" << v.cr_opts;
-	if( v.encr != ENC_NONE )
+	if (v.encr != EncryptType::NONE)
 	    s << " encr:" << toString(v.encr);
 	return s;
     }
@@ -1032,7 +1046,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	  << " freq:" << v.freq << " passno:" << v.passno;
 	if( !v.loop_dev.empty() )
 	    s << " loop_dev:" << v.loop_dev;
-	if( v.encr != ENC_NONE )
+	if (v.encr != EncryptType::NONE)
 	    s << " encr:" << toString(v.encr);
 	if( v.tmpcrypt )
 	    s << " tmpcrypt";

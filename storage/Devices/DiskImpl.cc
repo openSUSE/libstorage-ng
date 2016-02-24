@@ -25,15 +25,30 @@ namespace storage
     const char* DeviceTraits<Disk>::classname = "Disk";
 
 
+    const vector<string> EnumTraits<Transport>::names({
+	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE"
+    });
+
+
+    const vector<string> EnumTraits<DasdType>::names({
+	"NONE", "ECKD", "FBA"
+    });
+
+
+    const vector<string> EnumTraits<DasdFormat>::names({
+	"NONE", "LDL", "CDL"
+    });
+
+
     Disk::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), transport(TUNKNOWN)
+	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN)
     {
 	string tmp;
 
 	getChildValue(node, "rotational", rotational);
 
 	if (getChildValue(node, "transport", tmp))
-	    transport = toValueWithFallback(tmp, TUNKNOWN);
+	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
     }
 
 
@@ -82,7 +97,7 @@ namespace storage
 
 	setChildValueIf(node, "rotational", rotational, rotational);
 
-	setChildValueIf(node, "transport", toString(transport), transport != TUNKNOWN);
+	setChildValueIf(node, "transport", toString(transport), transport != Transport::UNKNOWN);
     }
 
 

@@ -103,7 +103,7 @@ namespace storage
     {
 	vector<const Partition*> partitions = get_partitions();
 	return any_of(partitions.begin(), partitions.end(), [](const Partition* partition) {
-	    return partition->get_type() == EXTENDED;
+	    return partition->get_type() == PartitionType::EXTENDED;
 	});
     }
 
@@ -113,7 +113,7 @@ namespace storage
     {
 	vector<const Partition*> partitions = get_partitions();
 	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
-	    return partition->get_type() == LOGICAL;
+	    return partition->get_type() == PartitionType::LOGICAL;
 	});
     }
 

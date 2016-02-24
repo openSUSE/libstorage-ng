@@ -27,7 +27,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/CmdLsscsi.h"
-#include "storage/Utils/Enum.h"
+#include "storage/Devices/DiskImpl.h"
 
 
 namespace storage
@@ -70,23 +70,23 @@ namespace storage
 	    Entry entry;
 
 	    if (boost::starts_with(transport, "sbp:"))
-		entry.transport = SBP;
+		entry.transport = Transport::SBP;
 	    else if (boost::starts_with(transport, "ata:"))
-		entry.transport = ATA;
+		entry.transport = Transport::ATA;
 	    else if (boost::starts_with(transport, "fc:"))
-		entry.transport = FC;
+		entry.transport = Transport::FC;
 	    else if (boost::starts_with(transport, "fcoe:"))
-		entry.transport = FCOE;
+		entry.transport = Transport::FCOE;
 	    else if (boost::starts_with(transport, "iqn"))
-		entry.transport = ISCSI;
+		entry.transport = Transport::ISCSI;
 	    else if (boost::starts_with(transport, "sas:"))
-		entry.transport = SAS;
+		entry.transport = Transport::SAS;
 	    else if (boost::starts_with(transport, "sata:"))
-		entry.transport = SATA;
+		entry.transport = Transport::SATA;
 	    else if (boost::starts_with(transport, "spi:"))
-		entry.transport = SPI;
+		entry.transport = Transport::SPI;
 	    else if (boost::starts_with(transport, "usb:"))
-		entry.transport = USB;
+		entry.transport = Transport::USB;
 
 	    data[device] = entry;
 	}

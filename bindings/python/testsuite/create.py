@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 import unittest
-from storage import Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk, Region, PtType_GPT, PRIMARY, EXT4, SWAP
+from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk,
+        Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4, FsType_SWAP)
 
 
 class TestCreate(unittest.TestCase):
@@ -17,11 +18,11 @@ class TestCreate(unittest.TestCase):
 
         gpt = sda.create_partition_table(PtType_GPT)
 
-        sda1 = gpt.create_partition("/dev/sda1", Region(0, 100, 262144), PRIMARY)
-        sda2 = gpt.create_partition("/dev/sda2", Region(100, 100, 262144), PRIMARY)
+        sda1 = gpt.create_partition("/dev/sda1", Region(0, 100, 262144), PartitionType_PRIMARY)
+        sda2 = gpt.create_partition("/dev/sda2", Region(100, 100, 262144), PartitionType_PRIMARY)
 
-        ext4 = sda1.create_filesystem(EXT4)
-        swap = sda2.create_filesystem(SWAP)
+        ext4 = sda1.create_filesystem(FsType_EXT4)
+        swap = sda2.create_filesystem(FsType_SWAP)
 
         self.assertEqual(devicegraph.num_devices(), 6)
         self.assertEqual(devicegraph.num_holders(), 5)

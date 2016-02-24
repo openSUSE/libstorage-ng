@@ -14,6 +14,7 @@
 
 namespace storage
 {
+    using std::string;
     using std::vector;
     using std::set;
     using std::pair;

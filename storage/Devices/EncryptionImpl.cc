@@ -14,6 +14,11 @@ namespace storage
     const char* DeviceTraits<Encryption>::classname = "Encryption";
 
 
+    const vector<string> EnumTraits<EncryptType>::names({
+	"none", "twofish256", "twofish", "twofishSL92", "luks", "unknown"
+    });
+
+
     Encryption::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node)
     {

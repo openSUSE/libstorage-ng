@@ -7,10 +7,15 @@
 
 namespace storage
 {
-    using namespace storage_legacy;
 
     class PartitionTable;
     class Region;
+
+
+    //! Partition type (primary, extended, logical)
+    enum class PartitionType {
+	PRIMARY, EXTENDED, LOGICAL
+    };
 
 
     enum IdNum : unsigned int {
@@ -20,6 +25,7 @@ namespace storage
 	ID_GPT_BOOT = 0x103, ID_GPT_SERVICE = 0x104, ID_GPT_MSFTRES = 0x105,
 	ID_APPLE_UFS = 0x106, ID_GPT_BIOS = 0x107, ID_GPT_PREP = 0x108
     };
+
 
     //! A partition of a Disk.
     class Partition : public BlkDevice

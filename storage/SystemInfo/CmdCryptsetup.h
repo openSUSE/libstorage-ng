@@ -27,16 +27,13 @@
 #include <string>
 #include <vector>
 
-#include "storage/StorageInterface.h"
+#include "storage/Devices/Encryption.h"
 
 
 namespace storage
 {
     using std::string;
     using std::vector;
-
-
-    using namespace storage_legacy;
 
 
     class CmdCryptsetup

@@ -6,6 +6,7 @@
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/ExceptionImpl.h"
+#include "storage/Utils/LoggerImpl.h"
 
 
 namespace storage

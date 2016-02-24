@@ -2,10 +2,10 @@
 #define STORAGE_FILESYSTEM_IMPL_H
 
 
+#include "storage/Utils/Enum.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Action.h"
-#include "storage/StorageInterface.h"
 
 
 namespace storage
@@ -17,6 +17,9 @@ namespace storage
 
 
     template <> struct DeviceTraits<Filesystem> { static const char* classname; };
+
+    template <> struct EnumTraits<FsType> { static const vector<string> names; };
+    template <> struct EnumTraits<MountByType> { static const vector<string> names; };
 
 
     // abstract class
@@ -83,7 +86,7 @@ namespace storage
     protected:
 
 	Impl()
-	    : Device::Impl(), label(), uuid(), mountpoints({}), mount_by(MOUNTBY_DEVICE),
+	    : Device::Impl(), label(), uuid(), mountpoints({}), mount_by(MountByType::DEVICE),
 	      fstab_options({}), mkfs_options(), tune_options() {}
 
 	Impl(const xmlNode* node);

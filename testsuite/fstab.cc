@@ -96,7 +96,7 @@ BOOST_AUTO_TEST_CASE(add3)
     entry.mount = "/test1";
     entry.fs = "ext4";
     entry.opts = { "defaults" };
-    entry.encr = storage::ENC_LUKS;
+    entry.encr = EncryptType::LUKS;
 
     fstab.addEntry(entry);
     fstab.flush();
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE(add4)
     entry.mount = "/test1";
     entry.fs = "ext4";
     entry.opts = { "defaults" };
-    entry.encr = storage::ENC_LUKS;
+    entry.encr = EncryptType::LUKS;
     entry.tmpcrypt = true;
 
     fstab.addEntry(entry);
@@ -256,7 +256,7 @@ BOOST_AUTO_TEST_CASE(update3)
     entry.mount = "/test2";
     entry.fs = "ext4";
     entry.opts = { "defaults" };
-    entry.encr = storage::ENC_LUKS;
+    entry.encr = EncryptType::LUKS;
 
     fstab.updateEntry(key, entry);
     fstab.flush();
@@ -287,7 +287,7 @@ BOOST_AUTO_TEST_CASE(update4)
     entry.mount = "/test2";
     entry.fs = "ext4";
     entry.opts = { "defaults" };
-    entry.encr = storage::ENC_LUKS;
+    entry.encr = EncryptType::LUKS;
     entry.tmpcrypt = true;
 
     fstab.updateEntry(key, entry);

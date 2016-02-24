@@ -33,10 +33,10 @@ main()
     Gpt* rhs_gpt = Gpt::create(rhs);
     User::create(rhs, rhs_sda, rhs_gpt);
 
-    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 1000, 262144), PRIMARY);
+    Partition* rhs_sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda1);
 
-    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", Region(1000, 1000, 262144), PRIMARY);
+    Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
     Ext4* rhs_sda1_fs = Ext4::create(rhs);

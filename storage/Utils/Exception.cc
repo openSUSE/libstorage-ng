@@ -30,7 +30,7 @@
 
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Logger.h"
+#include "storage/Utils/LoggerImpl.h"
 
 
 namespace storage

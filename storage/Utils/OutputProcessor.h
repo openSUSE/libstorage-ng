@@ -24,14 +24,8 @@
 #define STORAGE_OUTPUT_PROCESSOR_H
 
 
-#include "storage/StorageInterface.h"
-
-
 namespace storage
 {
-
-    using namespace storage_legacy;
-
 
     class OutputProcessor
     {
@@ -42,6 +36,9 @@ namespace storage
 	virtual void finish() = 0;
 	virtual void process(const string& txt, bool stderr) = 0;
     };
+
+
+    typedef void (*CallbackProgressBar)(const string& id, unsigned cur, unsigned max);
 
 
     class ProgressBar : public OutputProcessor

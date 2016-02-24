@@ -25,7 +25,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return BTRFS; }
+	virtual FsType get_type() const override { return FsType::BTRFS; }
 
 	virtual const char* get_classname() const override { return DeviceTraits<Btrfs>::classname; }
 

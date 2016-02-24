@@ -28,15 +28,14 @@
 #include <map>
 #include <vector>
 
-#include "storage/StorageInterface.h"
+#include "storage/Devices/Disk.h"
 
 
 namespace storage
 {
+    using std::string;
     using std::map;
     using std::vector;
-
-    using namespace storage_legacy;
 
 
     class Lsscsi
@@ -47,7 +46,7 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : transport(TUNKNOWN) {}
+	    Entry() : transport(Transport::UNKNOWN) {}
 
 	    Transport transport;
 	};

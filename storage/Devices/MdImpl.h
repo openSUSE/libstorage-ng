@@ -4,7 +4,7 @@
 
 #include "storage/Devices/Md.h"
 #include "storage/Devices/PartitionableImpl.h"
-#include "storage/StorageInterface.h"
+#include "storage/Utils/Enum.h"
 #include "storage/Action.h"
 
 
@@ -16,13 +16,16 @@ namespace storage
 
     template <> struct DeviceTraits<Md> { static const char* classname; };
 
+    template <> struct EnumTraits<MdLevel> { static const vector<string> names; };
+    template <> struct EnumTraits<MdParity> { static const vector<string> names; };
+
 
     class Md::Impl : public Partitionable::Impl
     {
     public:
 
 	Impl(const string& name)
-	    : Partitionable::Impl(name), md_level(RAID0), md_parity(PAR_DEFAULT), chunk_size_k(0) {}
+	    : Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -39,8 +42,8 @@ namespace storage
 
 	unsigned int get_number() const;
 
-	MdType get_md_level() const { return md_level; }
-	void set_md_level(MdType md_level);
+	MdLevel get_md_level() const { return md_level; }
+	void set_md_level(MdLevel md_level);
 
 	MdParity get_md_parity() const { return md_parity; }
 	void set_md_parity(MdParity md_parity) { Impl::md_parity = md_parity; }
@@ -79,7 +82,7 @@ namespace storage
 
     private:
 
-	MdType md_level;	// TODO MdLevel
+	MdLevel md_level;
 
 	MdParity md_parity;
 

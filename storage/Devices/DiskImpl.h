@@ -2,9 +2,9 @@
 #define STORAGE_DISK_IMPL_H
 
 
+#include "storage/Utils/Enum.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionableImpl.h"
-#include "storage/StorageInterface.h"
 
 
 namespace storage
@@ -15,13 +15,17 @@ namespace storage
 
     template <> struct DeviceTraits<Disk> { static const char* classname; };
 
+    template <> struct EnumTraits<Transport> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdType> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdFormat> { static const vector<string> names; };
+
 
     class Disk::Impl : public Partitionable::Impl
     {
     public:
 
 	Impl(const string& name)
-	    : Partitionable::Impl(name), rotational(false), transport(TUNKNOWN) {}
+	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const xmlNode* node);
 

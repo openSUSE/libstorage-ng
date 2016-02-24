@@ -28,15 +28,14 @@
 #include <map>
 #include <vector>
 
-#include "storage/StorageInterface.h"
+#include "storage/Devices/Filesystem.h"
 
 
 namespace storage
 {
+    using std::string;
     using std::map;
     using std::vector;
-
-    using namespace storage_legacy;
 
 
     class Blkid
@@ -48,7 +47,7 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : is_fs(false), fs_type(FSUNKNOWN), fs_uuid(), fs_label(),
+	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(),
 		      is_lvm(false), is_luks(false), luks_uuid() {}
 
 	    bool is_fs;

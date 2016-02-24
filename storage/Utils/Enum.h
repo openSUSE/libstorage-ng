@@ -29,10 +29,8 @@
 #include <vector>
 #include <algorithm>
 
-#include "storage/StorageInterface.h"
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
-#include "storage/Devices/Disk.h"
 
 
 namespace storage
@@ -42,22 +40,6 @@ namespace storage
 
 
     template <typename EnumType> struct EnumTraits {};
-
-    template <> struct EnumTraits<FsType> { static const vector<string> names; };
-    template <> struct EnumTraits<PartitionType> { static const vector<string> names; };
-    template <> struct EnumTraits<MountByType> { static const vector<string> names; };
-    template <> struct EnumTraits<EncryptType> { static const vector<string> names; };
-    template <> struct EnumTraits<MdType> { static const vector<string> names; };
-    template <> struct EnumTraits<MdParity> { static const vector<string> names; };
-    template <> struct EnumTraits<MdArrayState> { static const vector<string> names; };
-    template <> struct EnumTraits<UsedByType> { static const vector<string> names; };
-    template <> struct EnumTraits<CType> { static const vector<string> names; };
-    template <> struct EnumTraits<Transport> { static const vector<string> names; };
-    template <> struct EnumTraits<MultipathAutostart> { static const vector<string> names; };
-    template <> struct EnumTraits<PartAlign> { static const vector<string> names; };
-
-    template <> struct EnumTraits<DasdType> { static const vector<string> names; };
-    template <> struct EnumTraits<DasdFormat> { static const vector<string> names; };
 
 
     template <typename EnumType>

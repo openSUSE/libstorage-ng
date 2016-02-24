@@ -11,7 +11,19 @@ namespace storage
     class MdUser;
 
 
-    std::string get_md_level_name(MdType md_level);
+    enum MdLevel {
+	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10
+    };
+
+    enum MdParity {
+	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
+	RIGHT_SYMMETRIC, FIRST, LAST, LEFT_ASYMMETRIC_6, LEFT_SYMMETRIC_6,
+	RIGHT_ASYMMETRIC_6, RIGHT_SYMMETRIC_6, FIRST_6, NEAR_2, OFFSET_2,
+	FAR_2, NEAR_3, OFFSET_3, FAR_3
+    };
+
+
+    std::string get_md_level_name(MdLevel md_level);
 
     std::string get_md_parity_name(MdParity md_parity);
 
@@ -33,8 +45,8 @@ namespace storage
 
 	unsigned int get_number() const;
 
-	MdType get_md_level() const;
-	void set_md_level(MdType md_level);
+	MdLevel get_md_level() const;
+	void set_md_level(MdLevel md_level);
 
 	MdParity get_md_parity() const;
 	void set_md_parity(MdParity md_parity);

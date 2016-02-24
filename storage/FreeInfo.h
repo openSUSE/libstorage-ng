@@ -25,7 +25,6 @@
 
 #include <ostream>
 
-#include "storage/StorageInterface.h"
 #include "storage/Utils/XmlFile.h"
 
 

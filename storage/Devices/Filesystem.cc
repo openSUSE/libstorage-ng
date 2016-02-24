@@ -12,6 +12,13 @@ namespace storage
     using namespace std;
 
 
+    string
+    get_mount_by_name(MountByType mount_by_type)
+    {
+	return toString(mount_by_type);
+    }
+
+
     Filesystem::Filesystem(Impl* impl)
 	: Device(impl)
     {

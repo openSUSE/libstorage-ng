@@ -179,7 +179,7 @@ namespace storage
     {
 	vector<const Partition*> partitions = get_partitions();
 	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
-	    return partition->get_type() == PRIMARY;
+	    return partition->get_type() == PartitionType::PRIMARY;
 	});
     }
 
@@ -190,7 +190,7 @@ namespace storage
 	vector<const Partition*> partitions = get_partitions();
 	for (const Partition* partition : partitions)
 	{
-	    if (partition->get_type() == EXTENDED)
+	    if (partition->get_type() == PartitionType::EXTENDED)
 		return partition;
 	}
 
@@ -264,7 +264,7 @@ namespace storage
 	    list<Region> tmp;
 	    for (const Partition* partition : partitions)
 	    {
-		if (partition->get_type() != LOGICAL)
+		if (partition->get_type() != PartitionType::LOGICAL)
 		    tmp.push_back(partition->get_region());
 	    }
 	    tmp.sort();
@@ -317,7 +317,7 @@ namespace storage
 		list<Region> tmp;
 		for (const Partition* partition : partitions)
 		{
-		    if (partition->get_type() == LOGICAL)
+		    if (partition->get_type() == PartitionType::LOGICAL)
 			tmp.push_back(partition->get_region());
 		}
 		tmp.sort();
