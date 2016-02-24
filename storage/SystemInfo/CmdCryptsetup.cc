@@ -33,7 +33,7 @@ namespace storage
 
 
     CmdCryptsetup::CmdCryptsetup(const string& name)
-	: encrypt_type(EncryptType::UNKNOWN), name(name)
+	: encrypt_type(EncryptionType::UNKNOWN), name(name)
     {
 	SystemCmd c(CRYPTSETUPBIN " status " + quote(name));
 	if (c.retcode() == 0 && !c.stdout().empty())
@@ -57,17 +57,17 @@ namespace storage
 	}
 
 	if (type == "LUKS1")
-	    encrypt_type = EncryptType::LUKS;
+	    encrypt_type = EncryptionType::LUKS;
 	else if (cipher == "twofish-cbc-plain")
-	    encrypt_type = EncryptType::TWOFISH;
+	    encrypt_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
-	    encrypt_type = EncryptType::TWOFISH_OLD;
+	    encrypt_type = EncryptionType::TWOFISH_OLD;
 	else if (cipher == "twofish-cbc-null" && keysize == "256")
-	    encrypt_type = EncryptType::TWOFISH256_OLD;
+	    encrypt_type = EncryptionType::TWOFISH256_OLD;
 	else
 	{
-	    encrypt_type = EncryptType::UNKNOWN;
-	    y2err("unknown encryption type:" << type << " cipher:" << cipher << " keysize:" <<
+	    encrypt_type = EncryptionType::UNKNOWN;
+	    y2err("unknown encryption-type:" << type << " cipher:" << cipher << " keysize:" <<
 		  keysize);
 	}
     }

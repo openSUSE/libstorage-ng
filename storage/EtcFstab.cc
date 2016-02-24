@@ -101,7 +101,7 @@ EtcFstab::readFiles()
 		if( p->old.fs=="crypt" )
 		    {
 		    p->old.dmcrypt = true;
-		    p->old.encr = EncryptType::LUKS;
+		    p->old.encr = EncryptionType::LUKS;
 		    }
 		}
 	    if( i!=l.end() )
@@ -182,7 +182,7 @@ EtcFstab::readFiles()
 		p = &(*e);
 	    p->old.dmcrypt = p->old.crypttab = true;
 	    p->old.noauto = false;
-	    p->old.encr = EncryptType::LUKS;
+	    p->old.encr = EncryptionType::LUKS;
 	    p->old.device = *i;
 	    p->old.opts.remove("nofail");
 	    ++i;
@@ -234,7 +234,7 @@ FstabEntry::calcDependent()
 	string::size_type pos = i->find("=");
 	if( pos!=string::npos )
 	    {
-		encr = toValueWithFallback(i->substr(pos + 1), EncryptType::UNKNOWN);
+		encr = toValueWithFallback(i->substr(pos + 1), EncryptionType::UNKNOWN);
 	    }
 	}
 
@@ -265,8 +265,8 @@ FstabEntry::calcDependent()
 	    mount_by = MountByType::UUID;
 	}
 
-	dmcrypt = encr == EncryptType::LUKS;
-	cryptotab = encr != EncryptType::NONE && !dmcrypt;
+	dmcrypt = encr == EncryptionType::LUKS;
+	cryptotab = encr != EncryptionType::NONE && !dmcrypt;
 	crypttab = dmcrypt;
     }
 
@@ -1032,7 +1032,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	    s << " cr_key:" << v.cr_key;
 	if( !v.cr_opts.empty() )
 	    s << " cr_opts:" << v.cr_opts;
-	if (v.encr != EncryptType::NONE)
+	if (v.encr != EncryptionType::NONE)
 	    s << " encr:" << toString(v.encr);
 	return s;
     }
@@ -1046,7 +1046,7 @@ Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
 	  << " freq:" << v.freq << " passno:" << v.passno;
 	if( !v.loop_dev.empty() )
 	    s << " loop_dev:" << v.loop_dev;
-	if (v.encr != EncryptType::NONE)
+	if (v.encr != EncryptionType::NONE)
 	    s << " encr:" << toString(v.encr);
 	if( v.tmpcrypt )
 	    s << " tmpcrypt";

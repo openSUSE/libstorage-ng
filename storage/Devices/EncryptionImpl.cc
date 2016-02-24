@@ -14,7 +14,7 @@ namespace storage
     const char* DeviceTraits<Encryption>::classname = "Encryption";
 
 
-    const vector<string> EnumTraits<EncryptType>::names({
+    const vector<string> EnumTraits<EncryptionType>::names({
 	"none", "twofish256", "twofish", "twofishSL92", "luks", "unknown"
     });
 

@@ -65,7 +65,7 @@ namespace storage
 
     struct FstabChange
     {
-	FstabChange() : freq(0), passno(0), encr(EncryptType::NONE), tmpcrypt(false) {}
+	FstabChange() : freq(0), passno(0), encr(EncryptionType::NONE), tmpcrypt(false) {}
 
 	explicit FstabChange(const FstabEntry& entry) : FstabChange()
 	    { *this = entry; }
@@ -82,7 +82,7 @@ namespace storage
 	int freq;
 	int passno;
 	string loop_dev;
-	EncryptType encr;
+	EncryptionType encr;
 	bool tmpcrypt;
     };
 

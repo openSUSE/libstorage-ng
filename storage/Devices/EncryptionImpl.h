@@ -16,7 +16,7 @@ namespace storage
 
     template <> struct DeviceTraits<Encryption> { static const char* classname; };
 
-    template <> struct EnumTraits<EncryptType> { static const vector<string> names; };
+    template <> struct EnumTraits<EncryptionType> { static const vector<string> names; };
 
 
     class Encryption::Impl : public BlkDevice::Impl

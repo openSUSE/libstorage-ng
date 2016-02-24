@@ -8,7 +8,7 @@
 namespace storage
 {
 
-    enum class EncryptType {
+    enum class EncryptionType {
 	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, UNKNOWN
     };
 
