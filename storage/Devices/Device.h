@@ -43,8 +43,7 @@ namespace storage
     //! and a vertex in the Devicegraph.
     /// The Device class does not have a device name since some device types do
     /// not have a intrinsic device name, e.g. btrfs.  Instead most devices are
-    /// derived from BlkDevice which has a device name, major and minor number,
-    /// udev path and udev ids.
+    /// derived from BlkDevice which has a device name, udev path and udev ids.
 
     class Device : private boost::noncopyable
     {

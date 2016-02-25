@@ -27,10 +27,6 @@ namespace storage
 
 	std::string get_size_string() const;
 
-	dev_t get_majorminor() const;
-	unsigned int get_major() const;
-	unsigned int get_minor() const;
-
 	const std::string& get_udev_path() const;
 	const std::vector<std::string>& get_udev_ids() const;
 

@@ -15,8 +15,13 @@ namespace storage
     template <> struct DeviceTraits<BlkDevice> { static const char* classname; };
 
 
-    // abstract class
-
+    /**
+     * abstract class
+     *
+     * Class has no major and minor number since those from the Block Extended
+     * Major range are not stable. E.g. when you have sda20 and sda21 and
+     * delete sda20 the minor number of sda21 can change.
+     */
     class BlkDevice::Impl : public Device::Impl
     {
     public:
@@ -33,10 +38,6 @@ namespace storage
 	virtual void set_size_k(unsigned long long size_k);
 
 	string get_size_string() const;
-
-	dev_t get_majorminor() const { return major_minor; }
-	unsigned int get_major() const { return gnu_dev_major(major_minor); }
-	unsigned int get_minor() const { return gnu_dev_minor(major_minor); }
 
 	const string& get_udev_path() const { return udev_path; }
 	const vector<string>& get_udev_ids() const { return udev_ids; }
@@ -58,10 +59,10 @@ namespace storage
     protected:
 
 	Impl(const string& name)
-	    : Device::Impl(), name(name), size_k(0), major_minor(0) {}
+	    : Device::Impl(), name(name), size_k(0) {}
 
 	Impl(const string& name, unsigned long long size_k)
-	    : Device::Impl(), name(name), size_k(size_k), major_minor(0) {}
+	    : Device::Impl(), name(name), size_k(size_k) {}
 
 	Impl(const xmlNode* node);
 
@@ -77,7 +78,6 @@ namespace storage
 	string sysfs_path;
 
 	unsigned long long size_k;
-	dev_t major_minor;
 	string udev_path;
 	vector<string> udev_ids;
 

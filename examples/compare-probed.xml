@@ -7,8 +7,6 @@
       <sysfs-name>sda</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</sysfs-path>
       <size-k>16777216</size-k>
-      <major>8</major>
-      <minor>0</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBade2d318-f2b8767f</udev-id>
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VBade2d318-f2b8767f</udev-id>

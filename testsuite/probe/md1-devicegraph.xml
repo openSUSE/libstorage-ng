@@ -8,8 +8,6 @@
       <sysfs-name>sda</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</sysfs-path>
       <size-k>16777216</size-k>
-      <major>8</major>
-      <minor>0</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VBb5bd49a6-9719c9ff</udev-id>
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VBb5bd49a6-9719c9ff</udev-id>
@@ -30,8 +28,6 @@
       <sysfs-name>sdb</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb</sysfs-path>
       <size-k>16777216</size-k>
-      <major>8</major>
-      <minor>16</minor>
       <udev-path>pci-0000:00:1f.2-ata-2.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB558bee5c-c4399e89</udev-id>
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB558bee5c-c4399e89</udev-id>
@@ -52,8 +48,6 @@
       <sysfs-name>sdc</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</sysfs-path>
       <size-k>16777216</size-k>
-      <major>8</major>
-      <minor>32</minor>
       <udev-path>pci-0000:00:1f.2-ata-3.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB0eeaf303-8fd4e564</udev-id>
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB0eeaf303-8fd4e564</udev-id>
@@ -74,8 +68,6 @@
       <sysfs-name>sdd</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd</sysfs-path>
       <size-k>16777216</size-k>
-      <major>8</major>
-      <minor>48</minor>
       <udev-path>pci-0000:00:1f.2-ata-4.0</udev-path>
       <udev-id>ata-VBOX_HARDDISK_VB2990e9d7-d065ff3e</udev-id>
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB2990e9d7-d065ff3e</udev-id>
@@ -96,8 +88,6 @@
       <sysfs-name>md0</sysfs-name>
       <sysfs-path>/devices/virtual/block/md0</sysfs-path>
       <size-k>33521664</size-k>
-      <major>9</major>
-      <minor>0</minor>
       <udev-id>md-uuid-2ce25515:3d255c09:a0e91f18:d9c098d3</udev-id>
       <udev-id>md-name-_none_:0</udev-id>
       <geometry>
