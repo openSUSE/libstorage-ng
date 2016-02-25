@@ -149,8 +149,8 @@ Requires:       s390-tools
 PreReq:         %fillup_prereq
 %endif
 Obsoletes:      yast2-storage-lib
-Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" $((@LIBVERSION_MAJOR@ - 1))`)
-Obsoletes:      libstorage@LIBVERSION_MAJOR@ < %{version}
+Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
+Obsoletes:      libstorage-ng@LIBVERSION_MAJOR@ < %{version}
 Summary:        Library for storage management
 Group:          System/Libraries
 
@@ -167,9 +167,9 @@ Authors:
 %{_libdir}/libstorage-ng.so.*
 %ghost /run/libstorage
 /var/adm/fillup-templates/sysconfig.storage-libstorage
-%doc %dir %{prefix}/share/doc/packages/libstorage
-%doc %{prefix}/share/doc/packages/libstorage/AUTHORS
-%doc %{prefix}/share/doc/packages/libstorage/LICENSE
+%doc %dir %{prefix}/share/doc/packages/libstorage-ng
+%doc %{prefix}/share/doc/packages/libstorage-ng/AUTHORS
+%doc %{prefix}/share/doc/packages/libstorage-ng/LICENSE
 
 %post -n libstorage-ng@LIBVERSION_MAJOR@
 /sbin/ldconfig
@@ -203,7 +203,7 @@ Authors:
 %{_libdir}/libstorage-ng.la
 %{_libdir}/libstorage-ng.so
 %{prefix}/include/storage
-%doc %{prefix}/share/doc/packages/libstorage/autodocs
+%doc %{prefix}/share/doc/packages/libstorage-ng/autodocs
 
 %package -n libstorage-ng-python
 
@@ -289,7 +289,7 @@ Authors:
 %files integration-tests
 %defattr(-,root,root)
 %{python_sitelib}/storageitu.py*
-%dir /usr/lib/libstorage
-/usr/lib/libstorage/integration-tests
+%dir /usr/lib/libstorage-ng
+/usr/lib/libstorage-ng/integration-tests
 
 %changelog

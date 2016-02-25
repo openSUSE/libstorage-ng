@@ -11,7 +11,7 @@
 namespace storage
 {
     /**
-     * \mainpage libstorage Documentation
+     * \mainpage libstorage-ng Documentation
      *
      * \section Thread-Safety Thread Safety
      *

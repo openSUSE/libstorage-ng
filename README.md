@@ -1,5 +1,5 @@
-libstorage-bgl-eval
-===================
+libstorage-ng
+=============
 
 Evaluating use of the [boost graph library
 (BGL)](http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/index.html) in
@@ -10,10 +10,11 @@ libstorage. More information is in the
 Requirements
 ------------
 
-Some required tools for compiling and testing libstorage-bgl-eval are:
+Some required tools for compiling and testing libstorage-ng are:
 
-gcc-c++, boost-devel, libxml2-devel, libtool, swig >= 3.0.3, doxygen,
-python-devel, ruby, ruby-devel, perl, perl-Test-Exception, perl-Test-Unit
+gcc-c++, boost-devel, libxml2-devel, libtool, swig >= 3.0.3 and != 3.0.8,
+doxygen, python-devel, ruby, ruby-devel, perl, perl-Test-Exception,
+perl-Test-Unit
 
 Compiling
 ---------

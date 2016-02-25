@@ -38,7 +38,7 @@ AC_SUBST(LIBVERSION_MINOR)
 AC_SUBST(LIBVERSION_PATCHLEVEL)
 AC_SUBST(LIBVERSION_INFO)
 
-docdir=\${prefix}/share/doc/packages/libstorage
+docdir=\${prefix}/share/doc/packages/libstorage-ng
 fillupdir=/var/adm/fillup-templates
 
 AC_SUBST(docdir)
