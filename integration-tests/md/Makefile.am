@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/integration-tests/md
 #
 
-integration_testsdir = /usr/lib/libstorage/integration-tests/md
+integration_testsdir = /usr/lib/libstorage-ng/integration-tests/md
 
 integration_tests_SCRIPTS = *.py
 
