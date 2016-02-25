@@ -8,8 +8,6 @@
       <sysfs-name>sda</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda</sysfs-path>
       <size-k>976762584</size-k>
-      <major>8</major>
-      <minor>0</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0</udev-path>
       <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683</udev-id>
       <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
@@ -36,8 +34,6 @@
       <sysfs-name>sda1</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1</sysfs-path>
       <size-k>1051648</size-k>
-      <major>8</major>
-      <minor>1</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part1</udev-path>
       <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1</udev-id>
       <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part1</udev-id>
@@ -60,8 +56,6 @@
       <sysfs-name>sda2</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</sysfs-path>
       <size-k>943721472</size-k>
-      <major>8</major>
-      <minor>2</minor>
       <udev-path>pci-0000:00:1f.2-ata-1.0-part2</udev-path>
       <udev-id>ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part2</udev-id>
       <udev-id>scsi-0ATA_WDC_WD10EADS-00M_WD-WCAV52321683-part2</udev-id>
@@ -83,8 +77,6 @@
       <sysfs-name>sdb</sysfs-name>
       <sysfs-path>/devices/pseudo_0/adapter0/host7/target7:0:0/7:0:0:0/block/sdb</sysfs-path>
       <size-k>262144</size-k>
-      <major>8</major>
-      <minor>16</minor>
       <udev-path>scsi-0:0:0:0</udev-path>
       <udev-id>scsi-1Linux_scsi_debug_16000</udev-id>
       <udev-id>scsi-35333333000003e80</udev-id>

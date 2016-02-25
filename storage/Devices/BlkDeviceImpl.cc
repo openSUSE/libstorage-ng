@@ -18,7 +18,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), size_k(0), major_minor(0)
+	: Device::Impl(node), name(), size_k(0)
     {
 	if (!getChildValue(node, "name", name))
 	    throw runtime_error("no name");
@@ -27,10 +27,6 @@ namespace storage
 	getChildValue(node, "sysfs-path", sysfs_path);
 
 	getChildValue(node, "size-k", size_k);
-
-	unsigned int major = 0, minor = 0;
-	if (getChildValue(node, "major", major) && getChildValue(node, "minor", minor))
-	    major_minor = makedev(major, minor);
 
 	getChildValue(node, "udev-path", udev_path);
 	getChildValue(node, "udev-id", udev_ids);
@@ -50,8 +46,6 @@ namespace storage
 	// TODO read "sysfs_path + /size" and drop ProcParts?
 	if (!systeminfo.getProcParts().getSize(sysfs_name, size_k))
 	    throw;
-
-	major_minor = cmdudevadminfo.get_majorminor();
 
 	if (!cmdudevadminfo.get_by_path_links().empty())
 	{
@@ -78,9 +72,6 @@ namespace storage
 	setChildValueIf(node, "sysfs-path", sysfs_path, !sysfs_path.empty());
 
 	setChildValueIf(node, "size-k", size_k, size_k > 0);
-
-	setChildValueIf(node, "major", gnu_dev_major(major_minor), major_minor != 0);
-	setChildValueIf(node, "minor", gnu_dev_minor(major_minor), major_minor != 0);
 
 	setChildValueIf(node, "udev-path", udev_path, !udev_path.empty());
 	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
@@ -117,7 +108,7 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    size_k == rhs.size_k && major_minor == rhs.major_minor;
+	    size_k == rhs.size_k;
     }
 
 
@@ -134,8 +125,6 @@ namespace storage
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
 	storage::log_diff(log, "size-k", size_k, rhs.size_k);
-	storage::log_diff(log, "major", get_major(), rhs.get_major());
-	storage::log_diff(log, "minor", get_minor(), rhs.get_minor());
     }
 
 
@@ -154,9 +143,6 @@ namespace storage
 
 	if (get_size_k() != 0)
 	    out << " size-k:" << get_size_k();
-
-	if (get_majorminor() != 0)
-	    out << " major:" << get_major() << " minor:" << get_minor();
 
 	if (!udev_path.empty())
 	    out << " udev-path:" << udev_path;

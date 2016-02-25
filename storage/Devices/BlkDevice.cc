@@ -107,27 +107,6 @@ namespace storage
     }
 
 
-    dev_t
-    BlkDevice::get_majorminor() const
-    {
-	return get_impl().get_majorminor();
-    }
-
-
-    unsigned int
-    BlkDevice::get_major() const
-    {
-	return get_impl().get_major();
-    }
-
-
-    unsigned int
-    BlkDevice::get_minor() const
-    {
-	return get_impl().get_minor();
-    }
-
-
     const std::string&
     BlkDevice::get_udev_path() const
     {

@@ -7,8 +7,6 @@
       <sysfs-name>sdb</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host7/target7:0:0/7:0:0:0/block/sdb</sysfs-path>
       <size-k>80043264</size-k>
-      <major>8</major>
-      <minor>16</minor>
       <udev-path>pci-0000:00:1d.0-usb-0:1.5:1.0-scsi-0:0:0:0</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010006014-0:0</udev-id>
       <rotational>true</rotational>
@@ -23,8 +21,6 @@
       <sysfs-name>sdb1</sysfs-name>
       <sysfs-path>/devices/pci0000:00/0000:00:1d.0/usb2/2-1/2-1.5/2-1.5:1.0/host7/target7:0:0/7:0:0:0/block/sdb/sdb1</sysfs-path>
       <size-k>8023040</size-k>
-      <major>8</major>
-      <minor>17</minor>
       <region>
         <start>0</start>
         <length>999</length>
