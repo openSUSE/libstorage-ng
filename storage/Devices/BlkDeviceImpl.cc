@@ -1,13 +1,13 @@
 
 
-#include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/FilesystemImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/FilesystemImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -96,6 +96,53 @@ namespace storage
     BlkDevice::Impl::get_size_string() const
     {
 	return byte_to_humanstring(1024 * get_size_k(), false, 2, false);
+    }
+
+
+    void
+    BlkDevice::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (get_size_k() < lhs.get_size_k())
+	{
+	    vector<Action::Base*> actions;
+
+	    // TODO handle children that cannot be resized
+
+	    try
+	    {
+		const Filesystem* filesystem = get_filesystem();
+		actions.push_back(new Action::Resize(filesystem->get_sid(), ResizeMode::SHRINK));
+	    }
+	    catch (const Exception&)
+	    {
+	    }
+
+	    actions.push_back(new Action::Resize(get_sid(), ResizeMode::SHRINK));
+
+	    actiongraph.add_chain(actions);
+	}
+
+	if (get_size_k() > lhs.get_size_k())
+	{
+	    vector<Action::Base*> actions;
+
+	    actions.push_back(new Action::Resize(get_sid(), ResizeMode::GROW));
+
+	    // TODO handle children that cannot be resized
+
+	    try
+	    {
+		const Filesystem* filesystem = get_filesystem();
+		actions.push_back(new Action::Resize(filesystem->get_sid(), ResizeMode::GROW));
+	    }
+	    catch (const Exception&)
+	    {
+	    }
+
+	    actiongraph.add_chain(actions);
+	}
     }
 
 

@@ -33,8 +33,12 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void do_create() const override;
+
 	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
+
 	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
+
+	virtual void do_resize(ResizeMode resize_mode) const override;
 
     };
 

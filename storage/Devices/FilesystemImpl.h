@@ -82,6 +82,8 @@ namespace storage
 	virtual Text do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_remove_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+
     protected:
 
 	Impl()

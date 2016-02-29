@@ -203,4 +203,40 @@ namespace storage
 	throw std::logic_error("stub function called");
     }
 
+
+    Text
+    Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	throw std::logic_error("stub function called");
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	Resize::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Device* device_lhs = get_device_lhs(actiongraph);
+	    const Device* device_rhs = get_device_rhs(actiongraph);
+	    return device_rhs->get_impl().do_resize_text(resize_mode, device_lhs, tense);
+	}
+
+
+	void
+	Resize::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device_rhs(actiongraph);
+	    device->get_impl().do_resize(resize_mode);
+	}
+
+    }
+
 }
