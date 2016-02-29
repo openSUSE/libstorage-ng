@@ -2,14 +2,14 @@
 
 #include <iostream>
 
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
-#include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -149,6 +149,8 @@ namespace storage
     void
     Partition::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
+	BlkDevice::Impl::add_modify_actions(actiongraph, lhs_base);
+
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
 	if (get_type() != lhs.get_type())
@@ -227,7 +229,8 @@ namespace storage
     Text
     Partition::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(), get_size_string().c_str());
+	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(),
+		       get_size_string().c_str());
     }
 
 
@@ -332,6 +335,66 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("delete partition failed"));
+    }
+
+
+    Text
+    Partition::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const Partition* partition_lhs = to_partition(lhs);
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = _("Shrink partition %1$s from %2$s to %3$s");
+		break;
+
+	    case ResizeMode::GROW:
+		text = _("Grow partition %1$s from %2$s to %3$s");
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, get_name().c_str(), partition_lhs->get_size_string().c_str(),
+		       get_size_string().c_str());
+    }
+
+
+    void
+    Partition::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	wait_for_device();
+
+	const Partitionable* partitionable = get_partitionable();
+
+	Region blk_region = detect_sysfs_blk_region();
+
+	long long unsigned end = blk_region.to_kb(blk_region.get_start()) + get_size_k();
+
+	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit KiB "
+	    "resize " + to_string(get_number()) + " " + to_string(end);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize partition failed"));
+    }
+
+
+    Region
+    Partition::Impl::detect_sysfs_blk_region() const
+    {
+	string start_p = SYSFSDIR + get_sysfs_path() + "/start";
+	string size_p = SYSFSDIR + get_sysfs_path() + "/size";
+
+	unsigned long long start = read_sysfs_property<unsigned long long>(start_p);
+	unsigned long long length = read_sysfs_property<unsigned long long>(size_p);
+
+	return Region(start, length, 512);
     }
 
 

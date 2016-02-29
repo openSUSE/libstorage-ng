@@ -2,14 +2,13 @@
 
 #include <iostream>
 
-#include "storage/Devices/FilesystemImpl.h"
-#include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 
@@ -508,6 +507,34 @@ namespace storage
 	FstabKey entry(blk_device->get_name(), mountpoint);
 	fstab.removeEntry(entry);
 	fstab.flush();
+    }
+
+
+    Text
+    Filesystem::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const BlkDevice* blk_device_lhs = to_filesystem(lhs)->get_impl().get_blk_device();
+	const BlkDevice* blk_device_rhs = get_blk_device();
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = _("Shrink %1$s on %2$s from %3$s to %4$s");
+		break;
+
+	    case ResizeMode::GROW:
+		text = _("Grow %1$s on %2$s from %3$s to %4$s");
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, get_displayname().c_str(), blk_device_rhs->get_name().c_str(),
+		       blk_device_lhs->get_size_string().c_str(),
+		       blk_device_rhs->get_size_string().c_str());
     }
 
 

@@ -30,6 +30,12 @@ namespace storage
     template <typename Type> const Type* to_device_of_type(const Device* device);
 
 
+    enum class ResizeMode
+    {
+	SHRINK, GROW
+    };
+
+
     // abstract class
 
     class Device::Impl
@@ -82,6 +88,9 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;
 
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
+	virtual void do_resize(ResizeMode resize_mode) const;
+
 	size_t num_children() const;
 	size_t num_parents() const;
 
@@ -130,6 +139,25 @@ namespace storage
 	map<string, string> userdata;
 
     };
+
+
+    namespace Action
+    {
+
+	class Resize : public Modify
+	{
+	public:
+
+	    Resize(sid_t sid, ResizeMode resize_mode) : Modify(sid), resize_mode(resize_mode) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    const ResizeMode resize_mode;
+
+	};
+
+    }
 
 
     template <typename Type>

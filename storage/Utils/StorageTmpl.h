@@ -35,6 +35,8 @@
 #include <set>
 
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Logger.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -239,6 +241,24 @@ namespace storage
 	    pos = l.insert(l.end(), v);
 	return pos;
 	}
+
+
+    template<class Type>
+    Type
+    read_sysfs_property(const string& path)
+    {
+	Type ret;
+
+	std::ifstream file(path);
+	classic(file);
+	file >> ret;
+	file.close();
+
+	if (file.fail())
+	    ST_THROW(Exception(sformat("failed to read %s", path.c_str())));
+
+	return ret;
+    }
 
 
     template <class T, unsigned int sz>

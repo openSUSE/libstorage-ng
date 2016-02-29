@@ -68,4 +68,25 @@ namespace storage
 	    ST_THROW(Exception("swapoff failed"));
     }
 
+
+    void
+    Swap::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	string cmd_line = MKSWAPBIN;
+	if (!get_label().empty())
+	    cmd_line += " -L " + quote(get_label());
+	if (!get_uuid().empty())
+	    cmd_line += " -U " + quote(get_uuid());
+	cmd_line += " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize ext4 failed"));
+    }
+
 }
