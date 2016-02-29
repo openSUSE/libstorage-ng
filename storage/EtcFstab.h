@@ -28,7 +28,6 @@
 #include <list>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Encryption.h"
 
@@ -141,10 +140,6 @@ namespace storage
 	void getFileBasedLoops( const string& prefix, list<FstabEntry>& l ) const;
 
 	list<FstabEntry> getEntries() const;
-
-	Text addText( bool doing, bool crypto, const string& mp ) const;
-	Text updateText( bool doing, bool crypto, const string& mp ) const;
-	Text removeText( bool doing, bool crypto, const string& mp ) const;
 
 	bool flush();
 
