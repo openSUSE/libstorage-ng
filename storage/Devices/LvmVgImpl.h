@@ -40,7 +40,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(bool doing) const override;
+	virtual Text do_create_text(Tense tense) const override;
 
     private:
 

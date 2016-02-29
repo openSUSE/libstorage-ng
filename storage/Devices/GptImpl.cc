@@ -103,7 +103,7 @@ namespace storage
 
 
     Text
-    Gpt::Impl::do_create_text(bool doing) const
+    Gpt::Impl::do_create_text(Tense tense) const
     {
 	const Partitionable* partitionable = get_partitionable();
 

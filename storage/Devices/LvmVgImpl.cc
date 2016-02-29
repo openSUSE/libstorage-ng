@@ -62,7 +62,7 @@ namespace storage
 
 
     Text
-    LvmVg::Impl::do_create_text(bool doing) const
+    LvmVg::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create volume group %1$s"), get_displayname().c_str());
     }

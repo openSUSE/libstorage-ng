@@ -11,6 +11,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/DevicegraphImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -75,10 +76,10 @@ namespace storage
 
 	virtual void print(std::ostream& out) const = 0;
 
-	virtual Text do_create_text(bool doing) const;
+	virtual Text do_create_text(Tense tense) const;
 	virtual void do_create() const;
 
-	virtual Text do_delete_text(bool doing) const;
+	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;
 
 	size_t num_children() const;

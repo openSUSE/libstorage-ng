@@ -362,7 +362,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_create_text(bool doing) const
+    Filesystem::Impl::do_create_text(Tense tense) const
     {
 	// TODO handle multiple BlkDevices
 
@@ -374,7 +374,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_set_label_text(bool doing) const
+    Filesystem::Impl::do_set_label_text(Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -391,7 +391,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_mount_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -424,7 +424,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_umount_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_umount_text(const string& mountpoint, Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -450,7 +450,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_add_etc_fstab_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_add_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -484,7 +484,7 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, bool doing) const
+    Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -515,65 +515,65 @@ namespace storage
     {
 
 	Text
-	SetLabel::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	SetLabel::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    return filesystem->get_impl().do_set_label_text(doing);
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem->get_impl().do_set_label_text(tense);
 	}
 
 
 	void
 	SetLabel::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
 	    filesystem->get_impl().do_set_label();
 	}
 
 
 	Text
-	Mount::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	Mount::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    return filesystem->get_impl().do_mount_text(mountpoint, doing);
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem->get_impl().do_mount_text(mountpoint, tense);
 	}
 
 
 	void
 	Mount::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
 	    filesystem->get_impl().do_mount(actiongraph, mountpoint);
 	}
 
 
 	Text
-	Umount::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	Umount::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    return filesystem->get_impl().do_umount_text(mountpoint, doing);
+	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
+	    return filesystem->get_impl().do_umount_text(mountpoint, tense);
 	}
 
 
 	void
 	Umount::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
 	    filesystem->get_impl().do_umount(actiongraph, mountpoint);
 	}
 
 
 	Text
-	AddEtcFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	AddEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
-	    return filesystem->get_impl().do_add_etc_fstab_text(mountpoint, doing);
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem->get_impl().do_add_etc_fstab_text(mountpoint, tense);
 	}
 
 
 	void
 	AddEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_rhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
 	    filesystem->get_impl().do_add_etc_fstab(actiongraph, mountpoint);
 	}
 
@@ -589,17 +589,17 @@ namespace storage
 
 
 	Text
-	RemoveEtcFstab::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	RemoveEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
-	    return filesystem->get_impl().do_remove_etc_fstab_text(mountpoint, doing);
+	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
+	    return filesystem->get_impl().do_remove_etc_fstab_text(mountpoint, tense);
 	}
 
 
 	void
 	RemoveEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Filesystem* filesystem = to_filesystem(device_lhs(actiongraph));
+	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
 	    filesystem->get_impl().do_remove_etc_fstab(actiongraph, mountpoint);
 	}
 
