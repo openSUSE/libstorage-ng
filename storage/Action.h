@@ -12,6 +12,13 @@
 namespace storage
 {
 
+
+    enum class Tense
+    {
+	SIMPLE_PRESENT, PRESENT_CONTINUOUS
+    };
+
+
     namespace Action
     {
 
@@ -23,7 +30,7 @@ namespace storage
 
 	    virtual ~Base() {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const = 0;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const = 0;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const = 0;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const {}
@@ -45,14 +52,14 @@ namespace storage
 
 	    Create(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
 
 	protected:
 
-	    const Device* device_rhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
 	};
@@ -66,10 +73,10 @@ namespace storage
 
 	protected:
 
-	    const Device* device_lhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
-	    const Device* device_rhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
 	};
@@ -81,14 +88,14 @@ namespace storage
 
 	    Delete(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
 
 	protected:
 
-	    const Device* device_lhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
 	};

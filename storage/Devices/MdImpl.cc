@@ -286,7 +286,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_create_text(bool doing) const
+    Md::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create MD RAID %1$s (%2$s)"), get_displayname().c_str(),
 		       get_size_string().c_str());
@@ -348,7 +348,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_delete_text(bool doing) const
+    Md::Impl::do_delete_text(Tense tense) const
     {
 	return sformat(_("Delete MD RAID %1$s (%2$s)"), get_displayname().c_str(),
 		       get_size_string().c_str());
@@ -376,7 +376,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_add_etc_mdadm_text(bool doing) const
+    Md::Impl::do_add_etc_mdadm_text(Tense tense) const
     {
 	return sformat(_("Add %1$s to /etc/mdadm.conf"), get_name().c_str());
     }
@@ -390,7 +390,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_remove_etc_mdadm_text(bool doing) const
+    Md::Impl::do_remove_etc_mdadm_text(Tense tense) const
     {
 	return sformat(_("Remove %1$s from /etc/mdadm.conf"), get_name().c_str());
     }
@@ -407,17 +407,17 @@ namespace storage
     {
 
 	Text
-	AddEtcMdadm::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	AddEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Md* md = to_md(device_rhs(actiongraph));
-	    return md->get_impl().do_add_etc_mdadm_text(doing);
+	    const Md* md = to_md(get_device_rhs(actiongraph));
+	    return md->get_impl().do_add_etc_mdadm_text(tense);
 	}
 
 
 	void
 	AddEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Md* md = to_md(device_rhs(actiongraph));
+	    const Md* md = to_md(get_device_rhs(actiongraph));
 	    md->get_impl().do_add_etc_mdadm(actiongraph);
 	}
 
@@ -432,17 +432,17 @@ namespace storage
 
 
 	Text
-	RemoveEtcMdadm::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	RemoveEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Md* md = to_md(device_lhs(actiongraph));
-	    return md->get_impl().do_remove_etc_mdadm_text(doing);
+	    const Md* md = to_md(get_device_lhs(actiongraph));
+	    return md->get_impl().do_remove_etc_mdadm_text(tense);
 	}
 
 
 	void
 	RemoveEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Md* md = to_md(device_lhs(actiongraph));
+	    const Md* md = to_md(get_device_lhs(actiongraph));
 	    md->get_impl().do_remove_etc_mdadm(actiongraph);
 	}
 

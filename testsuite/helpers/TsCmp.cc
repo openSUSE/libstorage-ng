@@ -104,7 +104,7 @@ namespace storage
     {
 	set<string> tmp1;
 	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    tmp1.insert(actiongraph[v]->text(actiongraph, false).native);
+	    tmp1.insert(actiongraph[v]->text(actiongraph, Tense::SIMPLE_PRESENT).native);
 
 	set<string> tmp2;
 	for (const Entry& entry : entries)
@@ -136,7 +136,7 @@ namespace storage
 
 	map<string, Actiongraph::Impl::vertex_descriptor> text_to_v;
 	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    text_to_v[actiongraph[v]->text(actiongraph, false).native] = v;
+	    text_to_v[actiongraph[v]->text(actiongraph, Tense::SIMPLE_PRESENT).native] = v;
 
 	for (const Entry& entry : entries)
 	{
@@ -145,7 +145,7 @@ namespace storage
 	    set<string> tmp;
 	    for (Actiongraph::Impl::vertex_descriptor child : actiongraph.children(v))
 	    {
-		string text = actiongraph[child]->text(actiongraph, false).native;
+		string text = actiongraph[child]->text(actiongraph, Tense::SIMPLE_PRESENT).native;
 		tmp.insert(text_to_id[text]);
 	    }
 

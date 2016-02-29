@@ -55,7 +55,7 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
-	Text do_create_text(bool doing) const override;
+	Text do_create_text(Tense tense) const override;
 
     private:
 

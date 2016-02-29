@@ -225,7 +225,7 @@ namespace storage
 
 
     Text
-    Partition::Impl::do_create_text(bool doing) const
+    Partition::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(), get_size_string().c_str());
     }
@@ -281,7 +281,7 @@ namespace storage
 
 
     Text
-    Partition::Impl::do_set_id_text(bool doing) const
+    Partition::Impl::do_set_id_text(Tense tense) const
     {
 	string tmp = id_to_string(get_id());
 
@@ -314,7 +314,7 @@ namespace storage
 
 
     Text
-    Partition::Impl::do_delete_text(bool doing) const
+    Partition::Impl::do_delete_text(Tense tense) const
     {
 	return sformat(_("Delete partition %1$s (%2$s)"), get_name().c_str(),
 		       get_size_string().c_str());
@@ -381,17 +381,17 @@ namespace storage
 
 
 	Text
-	SetPartitionId::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	SetPartitionId::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Partition* partition = to_partition(device_rhs(actiongraph));
-	    return partition->get_impl().do_set_id_text(doing);
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    return partition->get_impl().do_set_id_text(tense);
 	}
 
 
 	void
 	SetPartitionId::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Partition* partition = to_partition(device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
 	    partition->get_impl().do_set_id();
 	}
 

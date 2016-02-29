@@ -69,13 +69,13 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
-	virtual Text do_create_text(bool doing) const override;
+	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() const override;
 
-	virtual Text do_set_id_text(bool doing) const;
+	virtual Text do_set_id_text(Tense tense) const;
 	virtual void do_set_id() const;
 
-	virtual Text do_delete_text(bool doing) const override;
+	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
     private:
@@ -108,7 +108,7 @@ namespace storage
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};

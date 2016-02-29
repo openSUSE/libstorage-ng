@@ -925,69 +925,6 @@ void EtcFstab::updateTabLine( list<string>(*fnc)(const FstabEntry&),
     return( ret );
     }
 
-Text EtcFstab::addText( bool doing, bool crypto, const string& mp ) const
-    {
-    const char* file = crypto?"/etc/cryptotab":"/etc/fstab";
-    Text txt;
-    if( doing )
-	{
-	// displayed text during action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Adding entry for mount point %1$s to %2$s"),
-		       mp.c_str(), file );
-	}
-    else
-	{
-	// displayed text before action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Add entry for mount point %1$s to %2$s"),
-		       mp.c_str(), file );
-	}
-    return( txt );
-    }
-
-Text EtcFstab::updateText( bool doing, bool crypto, const string& mp ) const
-    {
-    const char* file = crypto?"/etc/cryptotab":"/etc/fstab";
-    Text txt;
-    if( doing )
-	{
-	// displayed text during action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Updating entry for mount point %1$s in %2$s"),
-		       mp.c_str(), file );
-	}
-    else
-	{
-	// displayed text before action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Update entry for mount point %1$s in %2$s"),
-		       mp.c_str(), file );
-	}
-    return( txt );
-    }
-
-Text EtcFstab::removeText( bool doing, bool crypto, const string& mp ) const
-    {
-    const char* file = crypto?"/etc/cryptotab":"/etc/fstab";
-    Text txt;
-    if( doing )
-	{
-	// displayed text during action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Removing entry for mount point %1$s from %2$s"),
-		       mp.c_str(), file );
-	}
-    else
-	{
-	// displayed text before action, %1$s is replaced by mount point e.g. /home
-	// %2$s is replaced by a pathname e.g. /etc/fstab
-	txt = sformat( _("Remove entry for mount point %1$s from %2$s"),
-		       mp.c_str(), file );
-	}
-    return( txt );
-    }
-
 
     FstabEntry& FstabEntry::operator=(const FstabChange& rhs)
     {

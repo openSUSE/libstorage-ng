@@ -73,14 +73,14 @@ namespace storage
 
 
     Text
-    Encryption::Impl::do_create_text(bool doing) const
+    Encryption::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create encryption on %1$s"), get_displayname().c_str());
     }
 
 
     Text
-    Encryption::Impl::do_open_text(bool doing) const
+    Encryption::Impl::do_open_text(Tense tense) const
     {
 	return sformat(_("Open encryption on %1$s"), get_displayname().c_str());
     }
@@ -90,10 +90,10 @@ namespace storage
     {
 
 	Text
-	OpenEncryption::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	OpenEncryption::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Encryption* encryption = to_encryption(device_rhs(actiongraph));
-	    return encryption->get_impl().do_open_text(doing);
+	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
+	    return encryption->get_impl().do_open_text(tense);
 	}
 
 	void

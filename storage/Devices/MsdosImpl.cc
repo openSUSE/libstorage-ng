@@ -119,7 +119,7 @@ namespace storage
 
 
     Text
-    Msdos::Impl::do_create_text(bool doing) const
+    Msdos::Impl::do_create_text(Tense tense) const
     {
 	const Partitionable* partitionable = get_partitionable();
 

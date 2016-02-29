@@ -41,9 +41,9 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(bool doing) const override;
+	virtual Text do_create_text(Tense tense) const override;
 
-	virtual Text do_open_text(bool doing) const;
+	virtual Text do_open_text(Tense tense) const;
 
     private:
 
@@ -62,7 +62,7 @@ namespace storage
 
 	    OpenEncryption(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};

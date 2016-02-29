@@ -275,7 +275,7 @@ namespace storage
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
-	    cout << vertex << " " << action->text(*this, false).native << endl;
+	    cout << vertex << " " << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
 	}
 
 	cout << endl;
@@ -305,7 +305,7 @@ namespace storage
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(*this, true).text;
+	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).text;
 
 	    y2mil("Commit Action " << text);
 	    cout << text << endl;
@@ -344,7 +344,7 @@ namespace storage
 	for (vertex_descriptor v : vertices())
 	{
 	    int i = v;
-	    string text = graph[v]->text(*this, false).text;
+	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).text;
 
 	    ostringstream tmp;
 	    tmp << i << " [ " << text << " ]";
@@ -384,7 +384,7 @@ namespace storage
 	    {
 		const Action::Base* action = actiongraph[v];
 
-		string label = action->text(actiongraph, false).text;
+		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
 
 		if (details)
 		{

@@ -177,7 +177,7 @@ namespace storage
 
 
     Text
-    Device::Impl::do_create_text(bool doing) const
+    Device::Impl::do_create_text(Tense tense) const
     {
 	return _("error: stub function called");
     }
@@ -191,7 +191,7 @@ namespace storage
 
 
     Text
-    Device::Impl::do_delete_text(bool doing) const
+    Device::Impl::do_delete_text(Tense tense) const
     {
 	return _("error: stub function called");
     }

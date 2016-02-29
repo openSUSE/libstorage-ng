@@ -173,7 +173,7 @@ namespace storage
 
 
     Text
-    Disk::Impl::do_create_text(bool doing) const
+    Disk::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create hard disk %1$s (%2$s)"), get_displayname().c_str(),
 		       get_size_string().c_str());

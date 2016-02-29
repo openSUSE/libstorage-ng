@@ -5,7 +5,6 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -66,21 +65,21 @@ namespace storage
 
 	string get_mount_by_string() const;
 
-	virtual Text do_create_text(bool doing) const override;
+	virtual Text do_create_text(Tense tense) const override;
 
-	virtual Text do_set_label_text(bool doing) const;
+	virtual Text do_set_label_text(Tense tense) const;
 	virtual void do_set_label() const;
 
-	virtual Text do_mount_text(const string& mountpoint, bool doing) const;
+	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
 	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_umount_text(const string& mountpoint, bool doing) const;
+	virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
 	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_add_etc_fstab_text(const string& mountpoint, bool doing) const;
+	virtual Text do_add_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_add_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_remove_etc_fstab_text(const string& mountpoint, bool doing) const;
+	virtual Text do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_remove_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
     protected:
@@ -118,7 +117,7 @@ namespace storage
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
@@ -131,7 +130,7 @@ namespace storage
 	    Mount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
@@ -146,7 +145,7 @@ namespace storage
 	    Umount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
@@ -161,7 +160,7 @@ namespace storage
 	    AddEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v,
@@ -179,7 +178,7 @@ namespace storage
 	    RemoveEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, bool doing) const override;
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;

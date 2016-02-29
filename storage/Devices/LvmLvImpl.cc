@@ -70,7 +70,7 @@ namespace storage
 
 
     Text
-    LvmLv::Impl::do_create_text(bool doing) const
+    LvmLv::Impl::do_create_text(Tense tense) const
     {
 	return sformat(_("Create logical volume %1$s (%2$s)"), get_displayname().c_str(),
 		       get_size_string().c_str());
@@ -78,7 +78,7 @@ namespace storage
 
 
     Text
-    LvmLv::Impl::do_rename_text(const Impl& lhs, bool doing) const
+    LvmLv::Impl::do_rename_text(const Impl& lhs, Tense tense) const
     {
         return sformat(_("Rename %1$s to %2$s"), lhs.get_displayname().c_str(),
 		       get_displayname().c_str());
@@ -95,18 +95,18 @@ namespace storage
     {
 
 	Text
-	Rename::text(const Actiongraph::Impl& actiongraph, bool doing) const
+	Rename::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(device_lhs(actiongraph));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs(actiongraph));
-	    return rhs_lvm_lv->get_impl().do_rename_text(lhs_lvm_lv->get_impl(), doing);
+	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device_lhs(actiongraph));
+	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device_rhs(actiongraph));
+	    return rhs_lvm_lv->get_impl().do_rename_text(lhs_lvm_lv->get_impl(), tense);
 	}
 
 	void
 	Rename::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(device_lhs(actiongraph));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(device_rhs(actiongraph));
+	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device_lhs(actiongraph));
+	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device_rhs(actiongraph));
 	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
 	}
 
