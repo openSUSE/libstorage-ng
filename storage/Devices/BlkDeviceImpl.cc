@@ -104,41 +104,33 @@ namespace storage
     {
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_size_k() < lhs.get_size_k())
+	if (get_size_k() != lhs.get_size_k())
 	{
+	    ResizeMode resize_mode = get_size_k() < lhs.get_size_k() ? ResizeMode::SHRINK : ResizeMode::GROW;
+
 	    vector<Action::Base*> actions;
 
-	    // TODO handle children that cannot be resized
+	    if (resize_mode == ResizeMode::GROW)
+	    {
+		actions.push_back(new Action::Resize(get_sid(), resize_mode));
+	    }
+
+	    // TODO handle children that cannot be resized, filesystems that
+	    // are created must not be resized, encryption between partition
+	    // and filesystem, ...
 
 	    try
 	    {
 		const Filesystem* filesystem = get_filesystem();
-		actions.push_back(new Action::Resize(filesystem->get_sid(), ResizeMode::SHRINK));
+		actions.push_back(new Action::Resize(filesystem->get_sid(), resize_mode));
 	    }
 	    catch (const Exception&)
 	    {
 	    }
 
-	    actions.push_back(new Action::Resize(get_sid(), ResizeMode::SHRINK));
-
-	    actiongraph.add_chain(actions);
-	}
-
-	if (get_size_k() > lhs.get_size_k())
-	{
-	    vector<Action::Base*> actions;
-
-	    actions.push_back(new Action::Resize(get_sid(), ResizeMode::GROW));
-
-	    // TODO handle children that cannot be resized
-
-	    try
+	    if (resize_mode == ResizeMode::SHRINK)
 	    {
-		const Filesystem* filesystem = get_filesystem();
-		actions.push_back(new Action::Resize(filesystem->get_sid(), ResizeMode::GROW));
-	    }
-	    catch (const Exception&)
-	    {
+		actions.push_back(new Action::Resize(get_sid(), resize_mode));
 	    }
 
 	    actiongraph.add_chain(actions);
