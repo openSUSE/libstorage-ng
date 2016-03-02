@@ -8,6 +8,8 @@ from storage import *
 from storageitu import *
 
 
+set_logger(get_logfile_logger())
+
 environment = Environment(False)
 
 storage = Storage(environment)
