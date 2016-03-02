@@ -75,7 +75,7 @@ namespace storage
     LogfileLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
 			 int line, const std::string& function, const std::string& content)
     {
-	FILE* f = fopen("/var/log/libstorage.log", "ae");
+	FILE* f = fopen("/var/log/libstorage-ng.log", "ae");
 	if (f)
 	{
 	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(NULL), true, true).c_str(),
