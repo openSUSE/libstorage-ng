@@ -8,7 +8,9 @@
 
 %rename("__str__") "get_displayname";
 
-%extend storage::Devicegraph
+%define use_ostream(CLASS)
+
+%extend CLASS
 {
     std::string __str__()
     {
@@ -17,6 +19,10 @@
 	return out.str();
     }
 };
+
+%enddef
+
+use_ostream(storage::Devicegraph);
 
 %include "../storage.i"
 
