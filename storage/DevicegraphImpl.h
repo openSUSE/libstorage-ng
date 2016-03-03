@@ -59,6 +59,11 @@ namespace storage
 
 	void log_diff(std::ostream& log, const Impl& rhs) const;
 
+	/**
+	 * Check if this devicegraph is the probed devicegraph.
+	 */
+	bool is_probed() const;
+
 	bool empty() const;
 
 	size_t num_devices() const;

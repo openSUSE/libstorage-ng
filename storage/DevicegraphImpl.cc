@@ -8,6 +8,8 @@
 #include "config.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/GraphUtils.h"
+#include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
@@ -29,8 +31,7 @@
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/Utils/XmlFile.h"
-#include "storage/Utils/StorageTmpl.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -111,6 +112,13 @@ namespace storage
 
 	    graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
 	}
+    }
+
+
+    bool
+    Devicegraph::Impl::is_probed() const
+    {
+	return &(get_storage()->get_probed()->get_impl()) == this;
     }
 
 
