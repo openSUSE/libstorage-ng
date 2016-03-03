@@ -471,7 +471,7 @@ namespace storage
 
 		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(classname);
 		if (it == device_load_registry.end())
-		    throw runtime_error("unknown device class name");
+		    ST_THROW(Exception("unknown device class name"));
 
 		it->second(devicegraph, device_node);
 	    }
@@ -486,7 +486,7 @@ namespace storage
 
 		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(classname);
 		if (it == holder_load_registry.end())
-		    throw runtime_error("unknown holder class name");
+		    ST_THROW(Exception("unknown holder class name"));
 
 		it->second(devicegraph, holder_node);
 	    }

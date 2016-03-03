@@ -26,7 +26,7 @@ namespace storage
 	: sid(0), devicegraph(nullptr), vertex(), userdata()
     {
 	if (!getChildValue(node, "sid", sid))
-	    throw runtime_error("no sid");
+	    ST_THROW(Exception("no sid"));
     }
 
 
@@ -68,7 +68,7 @@ namespace storage
 
 	const Device* device = devicegraph->get_impl()[vertex];
 	if (&device->get_impl() != this)
-	    throw runtime_error("wrong vertex for back references");
+	    ST_THROW(LogicException("wrong vertex for back references"));
     }
 
 
@@ -76,7 +76,7 @@ namespace storage
     Device::Impl::get_devicegraph()
     {
 	if (!devicegraph)
-	    throw runtime_error("not part of a devicegraph");
+	    ST_THROW(LogicException("not part of a devicegraph"));
 
 	return devicegraph;
     }
@@ -86,7 +86,7 @@ namespace storage
     Device::Impl::get_devicegraph() const
     {
 	if (!devicegraph)
-	    throw runtime_error("not part of a devicegraph");
+	    ST_THROW(LogicException("not part of a devicegraph"));
 
 	return devicegraph;
     }
@@ -96,7 +96,7 @@ namespace storage
     Device::Impl::get_vertex() const
     {
 	if (!devicegraph)
-	    throw runtime_error("not part of a devicegraph");
+	    ST_THROW(LogicException("not part of a devicegraph"));
 
 	return vertex;
     }
