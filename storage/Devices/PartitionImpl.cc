@@ -8,8 +8,10 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -223,6 +225,18 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	partitionable->get_impl().process_udev_ids(udev_ids);
+    }
+
+
+    ResizeInfo
+    Partition::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+
+	// TODO check free space behind partition
+	// TODO check limits of partition table
+
+	return resize_info;
     }
 
 

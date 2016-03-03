@@ -8,6 +8,7 @@
 #include "storage/Devices/Ext4Impl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -22,6 +23,17 @@ namespace storage
     Ext4::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
+    }
+
+
+    ResizeInfo
+    Ext4::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+
+	resize_info.combine(ResizeInfo(32 * MiB, 16 * TiB));
+
+	return resize_info;
     }
 
 

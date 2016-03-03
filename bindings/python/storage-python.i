@@ -24,6 +24,8 @@ use_ostream(storage::Devicegraph);
 use_ostream(storage::Device);
 use_ostream(storage::Holder);
 use_ostream(storage::Region);
+use_ostream(storage::ResizeInfo);
+use_ostream(storage::ContentInfo);
 
 %include "../storage.i"
 

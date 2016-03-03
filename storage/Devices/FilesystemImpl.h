@@ -63,6 +63,12 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual ResizeInfo detect_resize_info() const;
+	virtual ResizeInfo detect_resize_info_pure() const;
+
+	virtual ContentInfo detect_content_info() const;
+	virtual ContentInfo detect_content_info_pure() const;
+
 	string get_mount_by_string() const;
 
 	virtual Text do_create_text(Tense tense) const override;
@@ -93,6 +99,10 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
+
+	static bool detect_is_windows(const string& mountpoint);
+	static bool detect_is_efi(const string& mountpoint);
+	static unsigned detect_num_homes(const string& mountpoint);
 
     private:
 

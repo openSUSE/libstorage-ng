@@ -123,30 +123,30 @@ checkNormalFile(const string& Path_Cv)
     }
 
 
-    bool
-    getStatVfs(const string& path, StatVfs& buf)
+    StatVfs
+    detect_stat_vfs(const string& path)
     {
 	struct statvfs64 fsbuf;
 	if (statvfs64(path.c_str(), &fsbuf) != 0)
 	{
-	    buf.sizeK = buf.freeK = 0;
-
-	    y2err("errno:" << errno << " " << strerror(errno));
-	    return false;
+	    ST_THROW(Exception("statvfs64 failed"));
 	}
 
-	buf.sizeK = fsbuf.f_blocks;
-	buf.sizeK *= fsbuf.f_bsize;
-	buf.sizeK /= 1024;
+	StatVfs stat_vfs;
 
-	buf.freeK = fsbuf.f_bfree;
-	buf.freeK *= fsbuf.f_bsize;
-	buf.freeK /= 1024;
+	stat_vfs.size_k = fsbuf.f_blocks;
+	stat_vfs.size_k *= fsbuf.f_bsize;
+	stat_vfs.size_k /= 1024;
 
-	y2mil("blocks:" << fsbuf.f_blocks << " bfree:" << fsbuf.f_bfree <<
-	      " bsize:" << fsbuf.f_bsize << " sizeK:" << buf.sizeK <<
-	      " freeK:" << buf.freeK);
-	return true;
+	stat_vfs.free_k = fsbuf.f_bfree;
+	stat_vfs.free_k *= fsbuf.f_bsize;
+	stat_vfs.free_k /= 1024;
+
+	y2mil("path:" << path << " blocks:" << fsbuf.f_blocks << " bfree:" << fsbuf.f_bfree
+	      << " bsize:" << fsbuf.f_bsize << " size-k:" << stat_vfs.size_k
+	      << " free-k:" << stat_vfs.free_k);
+
+	return stat_vfs;
     }
 
 

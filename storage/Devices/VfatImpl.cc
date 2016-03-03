@@ -6,6 +6,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/VfatImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -20,6 +21,40 @@ namespace storage
     Vfat::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
+    }
+
+
+    ResizeInfo
+    Vfat::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+
+	resize_info.combine(ResizeInfo(64 * KiB, 2 * TiB));
+
+	return resize_info;
+    }
+
+
+    ContentInfo
+    Vfat::Impl::detect_content_info_pure() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	// TODO filesystem must be mounted
+
+	if (get_mountpoints().empty())
+	    throw;
+
+	ContentInfo content_info;
+
+	if (detect_is_efi(get_mountpoints().front()))
+	    content_info.is_efi = true;
+	else
+	    content_info.is_windows = detect_is_windows(get_mountpoints().front());
+
+	return content_info;
     }
 
 

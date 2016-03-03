@@ -25,14 +25,47 @@
 
 #include <ostream>
 
-#include "storage/Utils/XmlFile.h"
-
 
 namespace storage
 {
     class Volume;
 
 
+    class ResizeInfo
+    {
+    public:
+
+	ResizeInfo(unsigned long long min_size_k, unsigned long long max_size_k);
+	ResizeInfo();
+
+	void combine(ResizeInfo resize_info);
+
+	bool resize_ok;
+
+	unsigned long long min_size_k;
+	unsigned long long max_size_k;
+
+	friend std::ostream& operator<<(std::ostream& out, const ResizeInfo& resize_info);
+
+    };
+
+
+    class ContentInfo
+    {
+    public:
+
+	ContentInfo();
+
+	bool is_windows;
+	bool is_efi;
+	unsigned num_homes;
+
+	friend std::ostream& operator<<(std::ostream& out, const ContentInfo& content_info);
+
+    };
+
+
+    /*
     class FreeInfo
     {
 
@@ -59,16 +92,10 @@ namespace storage
 	static ResizeInfo detectResizeInfo(const string& mp, const Volume& vol);
 	static ContentInfo detectContentInfo(const string& mp, const Volume& vol);
 
-    protected:
-
-	static bool isWindows(const string& mp);
-	static unsigned numHomes(const string& mp);
-
     };
 
-    std::ostream& operator<<(std::ostream& s, const ResizeInfo& resize_info);
-    std::ostream& operator<<(std::ostream& s, const ContentInfo& content_info);
     std::ostream& operator<<(std::ostream& s, const FreeInfo& free_info);
+    */
 
 }
 
