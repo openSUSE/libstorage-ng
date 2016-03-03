@@ -8,6 +8,8 @@
 #include "config.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/GraphUtils.h"
+#include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
@@ -29,8 +31,7 @@
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/Utils/XmlFile.h"
-#include "storage/Utils/StorageTmpl.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -111,6 +112,13 @@ namespace storage
 
 	    graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
 	}
+    }
+
+
+    bool
+    Devicegraph::Impl::is_probed() const
+    {
+	return &(get_storage()->get_probed()->get_impl()) == this;
     }
 
 
@@ -471,7 +479,7 @@ namespace storage
 
 		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(classname);
 		if (it == device_load_registry.end())
-		    throw runtime_error("unknown device class name");
+		    ST_THROW(Exception("unknown device class name"));
 
 		it->second(devicegraph, device_node);
 	    }
@@ -486,7 +494,7 @@ namespace storage
 
 		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(classname);
 		if (it == holder_load_registry.end())
-		    throw runtime_error("unknown holder class name");
+		    ST_THROW(Exception("unknown holder class name"));
 
 		it->second(devicegraph, holder_node);
 	    }

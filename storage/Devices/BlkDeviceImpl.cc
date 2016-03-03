@@ -8,6 +8,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -96,6 +97,19 @@ namespace storage
     BlkDevice::Impl::get_size_string() const
     {
 	return byte_to_humanstring(1024 * get_size_k(), false, 2, false);
+    }
+
+
+    ResizeInfo
+    BlkDevice::Impl::detect_resize_info() const
+    {
+	// TODO handle all types of children
+
+	const Filesystem* filesystem = get_filesystem();
+
+	ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
+
+	return resize_info;
     }
 
 

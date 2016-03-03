@@ -288,21 +288,21 @@ namespace storage
 
 		const Device* device = get_impl()[vertex];
 		if (!devices.insert(device).second)
-		    throw logic_error("device object not unique within graph");
+		    ST_THROW(LogicException("device object not unique within graph"));
 
 		// check uniqueness of device sid
 
 		sid_t sid = device->get_sid();
 		if (!sids.insert(sid).second)
-		    throw logic_error("sid not unique within graph");
+		    ST_THROW(LogicException("sid not unique within graph"));
 
 		// check device back reference
 
 		if (device->get_impl().get_devicegraph() != this)
-		    throw logic_error("wrong graph in back references");
+		    ST_THROW(LogicException("wrong graph in back references"));
 
 		if (device->get_impl().get_vertex() != vertex)
-		    throw logic_error("wrong vertex in back references");
+		    ST_THROW(LogicException("wrong vertex in back references"));
 	    }
 
 	    for (Impl::edge_descriptor edge : get_impl().edges())
@@ -311,15 +311,15 @@ namespace storage
 
 		const Holder* holder = get_impl()[edge];
 		if (!holders.insert(holder).second)
-		    throw logic_error("holder object not unique within graph");
+		    ST_THROW(LogicException("holder object not unique within graph"));
 
 		// check holder back reference
 
 		if (holder->get_impl().get_devicegraph() != this)
-		    throw logic_error("wrong graph in back references");
+		    ST_THROW(LogicException("wrong graph in back references"));
 
 		if (holder->get_impl().get_edge() != edge)
-		    throw logic_error("wrong edge in back references");
+		    ST_THROW(LogicException("wrong edge in back references"));
 	    }
 	}
 

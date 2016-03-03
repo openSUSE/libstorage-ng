@@ -8,6 +8,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -22,6 +23,20 @@ namespace storage
     Swap::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
+    }
+
+
+    ResizeInfo
+    Swap::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(40 * KiB, 1 * TiB);
+    }
+
+
+    ContentInfo
+    Swap::Impl::detect_content_info() const
+    {
+	return ContentInfo();
     }
 
 

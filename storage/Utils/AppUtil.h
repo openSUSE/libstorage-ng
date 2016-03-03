@@ -44,6 +44,14 @@ namespace storage
     class Arch;
 
 
+    // for size_k variables
+    const unsigned long long KiB = 1;
+    const unsigned long long MiB = 1024 * KiB;
+    const unsigned long long GiB = 1024 * MiB;
+    const unsigned long long TiB = 1024 * GiB;
+    const unsigned long long EiB = 1024 * TiB;
+
+
 void createPath(const string& Path_Cv);
 bool checkNormalFile(const string& Path_Cv);
 bool checkDir(const string& Path_Cv);
@@ -55,11 +63,11 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     struct StatVfs
     {
-	unsigned long long sizeK;
-	unsigned long long freeK;
+	unsigned long long size_k;
+	unsigned long long free_k;
     };
 
-    bool getStatVfs(const string& path, StatVfs&);
+    StatVfs detect_stat_vfs(const string& path);
 
 
 string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);

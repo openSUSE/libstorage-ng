@@ -55,6 +55,8 @@ namespace storage
 	bool get_boot() const { return boot; }
 	void set_boot(bool boot) { Impl::boot = boot; }
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	const PartitionTable* get_partition_table() const;
 	const Partitionable* get_partitionable() const;
 

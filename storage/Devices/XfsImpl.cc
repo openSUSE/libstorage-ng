@@ -8,6 +8,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -22,6 +23,17 @@ namespace storage
     Xfs::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
+    }
+
+
+    ResizeInfo
+    Xfs::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+
+	resize_info.combine(ResizeInfo(40 * MiB, 16 * EiB));
+
+	return resize_info;
     }
 
 

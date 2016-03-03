@@ -6,9 +6,9 @@
 #include <sstream>
 %}
 
-%rename("__str__") "get_displayname";
+%define use_ostream(CLASS)
 
-%extend storage::Devicegraph
+%extend CLASS
 {
     std::string __str__()
     {
@@ -17,6 +17,15 @@
 	return out.str();
     }
 };
+
+%enddef
+
+use_ostream(storage::Devicegraph);
+use_ostream(storage::Device);
+use_ostream(storage::Holder);
+use_ostream(storage::Region);
+use_ostream(storage::ResizeInfo);
+use_ostream(storage::ContentInfo);
 
 %include "../storage.i"
 

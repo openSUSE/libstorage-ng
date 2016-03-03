@@ -9,9 +9,6 @@
 namespace storage
 {
 
-    class Filesystem;
-
-
     //! An abstract Block Device.
     class BlkDevice : public Device
     {
@@ -29,6 +26,8 @@ namespace storage
 
 	const std::string& get_udev_path() const;
 	const std::vector<std::string>& get_udev_ids() const;
+
+	ResizeInfo detect_resize_info() const;
 
 	static BlkDevice* find(Devicegraph* devicegraph, const std::string& name);
 	static const BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);

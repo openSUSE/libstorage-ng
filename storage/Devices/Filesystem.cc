@@ -1,9 +1,10 @@
 
 
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/Utils/StorageTmpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -155,6 +156,20 @@ namespace storage
     Filesystem::set_tune_options(const string& tune_options)
     {
 	get_impl().set_tune_options(tune_options);
+    }
+
+
+    ResizeInfo
+    Filesystem::detect_resize_info() const
+    {
+	return get_impl().detect_resize_info();
+    }
+
+
+    ContentInfo
+    Filesystem::detect_content_info() const
+    {
+	return get_impl().detect_content_info();
     }
 
 

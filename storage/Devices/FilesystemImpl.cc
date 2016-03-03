@@ -1,5 +1,6 @@
 
 
+#include <glob.h>
 #include <iostream>
 
 #include "storage/Utils/XmlFile.h"
@@ -8,9 +9,11 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/FilesystemImpl.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -151,6 +154,131 @@ namespace storage
 	    mount_by = fstabentry.mount_by;
 	    fstab_options = fstabentry.opts;
 	}
+    }
+
+
+    ResizeInfo
+    Filesystem::Impl::detect_resize_info() const
+    {
+	// TODO lookup in cache
+	// TODO redirect to probed devicegraph
+
+	return detect_resize_info_pure();
+    }
+
+
+    ResizeInfo
+    Filesystem::Impl::detect_resize_info_pure() const
+    {
+	if (!get_devicegraph()->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong device"));
+
+	const BlkDevice* blk_device = get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	// TODO filesystem must be mounted
+
+	if (mountpoints.empty())
+	    throw;
+
+	StatVfs stat_vfs = detect_stat_vfs(mountpoints.front());
+
+	ResizeInfo resize_info;
+	resize_info.resize_ok = true;
+	resize_info.min_size_k = stat_vfs.size_k - stat_vfs.free_k;
+
+	return resize_info;
+    }
+
+
+    ContentInfo
+    Filesystem::Impl::detect_content_info() const
+    {
+	// TODO same logic as detect_resize_info
+
+	return detect_content_info_pure();
+    }
+
+
+    ContentInfo
+    Filesystem::Impl::detect_content_info_pure() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	// TODO filesystem must be mounted
+
+	if (mountpoints.empty())
+	    throw;
+
+	ContentInfo content_info;
+	content_info.is_windows = false;
+	content_info.is_efi = false;
+	content_info.num_homes = detect_num_homes(mountpoints.front());
+
+	return content_info;
+    }
+
+
+    bool
+    Filesystem::Impl::detect_is_windows(const string& mountpoint)
+    {
+	const char* files[] = { "boot.ini", "msdos.sys", "io.sys", "config.sys", "MSDOS.SYS",
+				"IO.SYS", "bootmgr", "$Boot" };
+
+	for (unsigned int i = 0; i < lengthof(files); ++i)
+	{
+	    string file = mountpoint + "/" + files[i];
+	    if (access(file.c_str(), R_OK) == 0)
+	    {
+		y2mil("found windows file " << quote(file));
+		return true;
+	    }
+	}
+
+	return false;
+    }
+
+
+    bool
+    Filesystem::Impl::detect_is_efi(const string& mountpoint)
+    {
+	return checkDir(mountpoint + "/efi");
+    }
+
+
+    unsigned
+    Filesystem::Impl::detect_num_homes(const string& mountpoint)
+    {
+	const char* files[] = { ".profile", ".bashrc", ".ssh", ".kde", ".kde4", ".gnome",
+				".gnome2" };
+
+	unsigned num_homes = 0;
+
+	const list<string> dirs = glob(mountpoint + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
+	for (const string& dir : dirs)
+	{
+	    if (!boost::ends_with(dir, "/root") && checkDir(dir))
+	    {
+		for (unsigned int i = 0; i < lengthof(files); ++i)
+		{
+		    string file = dir + "/" + files[i];
+		    if (access(file.c_str(), R_OK) == 0)
+		    {
+			y2mil("found home file " << quote(file));
+			++num_homes;
+			break;
+		    }
+		}
+	    }
+
+	    if (num_homes >= 2)
+		return num_homes;
+	}
+
+	return num_homes;
     }
 
 

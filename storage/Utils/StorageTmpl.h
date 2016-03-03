@@ -262,7 +262,7 @@ namespace storage
 
 
     template <class T, unsigned int sz>
-    inline unsigned int lengthof (T (&)[sz]) { return sz; }
+    inline unsigned int lengthof(T (&)[sz]) { return sz; }
 
 }
 

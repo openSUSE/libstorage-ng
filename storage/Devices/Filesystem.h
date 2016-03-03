@@ -12,6 +12,8 @@ namespace storage
 {
 
     class BlkDevice;
+    class ResizeInfo;
+    class ContentInfo;
 
 
     enum class FsType {
@@ -65,6 +67,10 @@ namespace storage
 
 	const std::string& get_tune_options() const;
 	void set_tune_options(const std::string& tune_options);
+
+	ResizeInfo detect_resize_info() const;
+
+	ContentInfo detect_content_info() const;
 
 	static std::vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
 						      const std::string& label);

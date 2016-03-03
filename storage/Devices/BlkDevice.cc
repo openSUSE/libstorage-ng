@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/AppUtil.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/Devices/Ext4.h"
@@ -11,7 +12,7 @@
 #include "storage/Devices/Ntfs.h"
 #include "storage/Devices/Vfat.h"
 #include "storage/Holders/User.h"
-#include "storage/Utils/AppUtil.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -118,6 +119,13 @@ namespace storage
     BlkDevice::get_udev_ids() const
     {
 	return get_impl().get_udev_ids();
+    }
+
+
+    ResizeInfo
+    BlkDevice::detect_resize_info() const
+    {
+	return get_impl().detect_resize_info();
     }
 
 
