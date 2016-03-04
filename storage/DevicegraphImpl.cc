@@ -465,10 +465,12 @@ namespace storage
 	XmlFile xml(filename);
 
 	const xmlNode* root_node = xml.getRootElement();
-	assert(root_node);
+	if (!root_node)
+	    ST_THROW(Exception("root node not found"));
 
 	const xmlNode* devicegraph_node = getChildNode(root_node, "Devicegraph");
-	assert(devicegraph_node);
+	if (!devicegraph_node)
+	    ST_THROW(Exception("Devicegraph node not found"));
 
 	const xmlNode* devices_node = getChildNode(devicegraph_node, "Devices");
 	if (devices_node)
