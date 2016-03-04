@@ -137,11 +137,11 @@ namespace storage
     Storage::Impl::get_devicegraph(const string& name)
     {
 	if (name == "probed")
-	    throw runtime_error("invalid name");
+	    ST_THROW(Exception("invalid name"));
 
 	map<string, Devicegraph>::iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
-	    throw runtime_error("device graph not found");
+	    ST_THROW(Exception("device graph not found"));
 
 	return &it->second;
     }
@@ -152,7 +152,7 @@ namespace storage
     {
 	map<string, Devicegraph>::const_iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
-	    throw runtime_error("device graph not found");
+	    ST_THROW(Exception("device graph not found"));
 
 	return &it->second;
     }
@@ -198,7 +198,7 @@ namespace storage
 	    devicegraphs.emplace(piecewise_construct, forward_as_tuple(name),
 				 forward_as_tuple(&storage));
 	if (!tmp.second)
-	    throw logic_error("device graph already exists");
+	    ST_THROW(Exception("device graph already exists"));
 
 	map<string, Devicegraph>::iterator it = tmp.first;
 
@@ -224,7 +224,7 @@ namespace storage
     {
 	map<string, Devicegraph>::const_iterator it1 = devicegraphs.find(name);
 	if (it1 == devicegraphs.end())
-	    throw runtime_error("device graph not found");
+	    ST_THROW(Exception("device graph not found"));
 
 	devicegraphs.erase(it1);
     }
@@ -235,11 +235,11 @@ namespace storage
     {
 	map<string, Devicegraph>::iterator it1 = devicegraphs.find(name);
 	if (it1 == devicegraphs.end())
-	    throw runtime_error("device graph not found");
+	    ST_THROW(Exception("device graph not found"));
 
 	map<string, Devicegraph>::iterator it2 = devicegraphs.find("staging");
 	if (it2 == devicegraphs.end())
-	    throw runtime_error("device graph not found");
+	    ST_THROW(Exception("device graph not found"));
 
 	it1->second.get_impl().swap(it2->second.get_impl());
 	devicegraphs.erase(it1);
