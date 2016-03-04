@@ -55,7 +55,7 @@ BOOST_AUTO_TEST_CASE(test2)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_size_k(3ULL * TiB);
+    sda->get_impl().set_size_k(3 * TiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
