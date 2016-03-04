@@ -2,7 +2,6 @@
 #define STORAGE_DEVICE_H
 
 
-#include <stdint.h>
 #include <libxml/tree.h>
 #include <string>
 #include <vector>
@@ -36,7 +35,7 @@ namespace storage
     /// could even have objects for unused space, e.g. space between partitions
     /// or unallocated space of a volume group.
 
-    typedef uint32_t sid_t;
+    typedef unsigned int sid_t;
 
 
     //! An abstract base class of storage devices,
