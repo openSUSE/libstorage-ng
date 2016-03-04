@@ -41,10 +41,13 @@ namespace storage
 	// TODO filesystem must not be mounted
 
 	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(blk_device->get_name()));
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("ntfsresize --info failed"));
+
 	string fstr = " might resize at ";
 	string::size_type pos;
 	string stdout = boost::join(cmd.stdout(), "\n");
-	if (cmd.retcode() == 0 && (pos = stdout.find(fstr)) != string::npos)
+	if ((pos = stdout.find(fstr)) != string::npos)
 	{
 	    resize_info.resize_ok = true;
 
