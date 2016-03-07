@@ -699,11 +699,35 @@ namespace storage
 	switch (resize_mode)
 	{
 	    case ResizeMode::SHRINK:
-		text = _("Shrink %1$s on %2$s from %3$s to %4$s");
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %3$s is replaced by old size (e.g. 2GiB),
+			      // %4$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink %1$s on %2$s from %3$s to %4$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %3$s is replaced by old size (e.g. 2GiB),
+			      // %4$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking %1$s on %2$s from %3$s to %4$s"));
 		break;
 
 	    case ResizeMode::GROW:
-		text = _("Grow %1$s on %2$s from %3$s to %4$s");
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %3$s is replaced by old size (e.g. 1GiB),
+			      // %4$s is replaced by new size (e.g. 2GiB)
+			      _("Grow %1$s on %2$s from %3$s to %4$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %3$s is replaced by old size (e.g. 1GiB),
+			      // %4$s is replaced by new size (e.g. 2GiB)
+			      _("Growing %1$s on %2$s from %3$s to %4$s"));
 		break;
 
 	    default:

@@ -49,7 +49,8 @@ namespace storage
     const unsigned long long MiB = 1024 * KiB;
     const unsigned long long GiB = 1024 * MiB;
     const unsigned long long TiB = 1024 * GiB;
-    const unsigned long long EiB = 1024 * TiB;
+    const unsigned long long PiB = 1024 * TiB;
+    const unsigned long long EiB = 1024 * PiB;
 
 
 void createPath(const string& Path_Cv);
@@ -141,6 +142,20 @@ void classic(StreamType& stream)
 
     Text _(const char* msgid);
     Text _(const char* msgid, const char* msgid_plural, unsigned long int n);
+
+
+    enum class Tense
+    {
+	SIMPLE_PRESENT, PRESENT_CONTINUOUS
+    };
+
+
+    /**
+     * Function to select between tenses. Implemented as macro to avoid all
+     * arguments to be evaluated.
+     */
+#define tenser(tense, msgid_simple_present, msgid_present_continuous)  \
+    (tense == Tense::SIMPLE_PRESENT ? (msgid_simple_present) : (msgid_present_continuous))
 
 
 extern const string app_ws;

@@ -362,11 +362,31 @@ namespace storage
 	switch (resize_mode)
 	{
 	    case ResizeMode::SHRINK:
-		text = _("Shrink partition %1$s from %2$s to %3$s");
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink partition %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking partition %1$s from %2$s to %3$s"));
 		break;
 
 	    case ResizeMode::GROW:
-		text = _("Grow partition %1$s from %2$s to %3$s");
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Grow partition %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Growing partition %1$s from %2$s to %3$s"));
 		break;
 
 	    default:
