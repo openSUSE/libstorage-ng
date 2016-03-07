@@ -39,7 +39,7 @@ namespace storage
 
     Filesystem::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), label(), uuid(), mountpoints({}), mount_by(MountByType::DEVICE),
-	  fstab_options({}), mkfs_options(), tune_options()
+	  fstab_options({}), mkfs_options(), tune_options(), resize_info(), content_info()
     {
 	string tmp;
 
@@ -56,6 +56,14 @@ namespace storage
 
 	getChildValue(node, "mkfs-options", mkfs_options);
 	getChildValue(node, "tune-options", tune_options);
+
+	const xmlNode* resize_info_node = getChildNode(node, "ResizeInfo");
+	if (resize_info_node)
+	    resize_info.set_value(ResizeInfo(resize_info_node));
+
+	const xmlNode* content_info_node = getChildNode(node, "ContentInfo");
+	if (content_info_node)
+	    content_info.set_value(ContentInfo(content_info_node));
     }
 
 
@@ -125,6 +133,18 @@ namespace storage
 
 	setChildValueIf(node, "mkfs-options", mkfs_options, !mkfs_options.empty());
 	setChildValueIf(node, "tune-options", tune_options, !tune_options.empty());
+
+	if (resize_info.has_value())
+	{
+	    xmlNode* resize_info_node = xmlNewChild(node, "ResizeInfo");
+	    resize_info.get_value().save(resize_info_node);
+	}
+
+	if (content_info.has_value())
+	{
+	    xmlNode* content_info_node = xmlNewChild(node, "ContentInfo");
+	    content_info.get_value().save(content_info_node);
+	}
     }
 
 
@@ -160,10 +180,14 @@ namespace storage
     ResizeInfo
     Filesystem::Impl::detect_resize_info() const
     {
-	// TODO lookup in cache
-	// TODO redirect to probed devicegraph
+	if (!resize_info.has_value())
+	{
+	    // TODO redirect to probed devicegraph
 
-	return detect_resize_info_pure();
+	    resize_info.set_value(detect_resize_info_pure());
+	}
+
+	return resize_info.get_value();
     }
 
 
@@ -172,6 +196,8 @@ namespace storage
     {
 	if (!get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
+
+	// TODO only in real probe mode allowed
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -192,18 +218,35 @@ namespace storage
     }
 
 
+    void
+    Filesystem::Impl::set_resize_info(const ResizeInfo& tmp)
+    {
+	resize_info.set_value(tmp);
+    }
+
+
     ContentInfo
     Filesystem::Impl::detect_content_info() const
     {
-	// TODO same logic as detect_resize_info
+	if (!content_info.has_value())
+	{
+	    // TODO redirect to probed devicegraph
 
-	return detect_content_info_pure();
+	    content_info.set_value(detect_content_info_pure());
+	}
+
+	return content_info.get_value();
     }
 
 
     ContentInfo
     Filesystem::Impl::detect_content_info_pure() const
     {
+	if (!get_devicegraph()->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong device"));
+
+	// TODO only in real probe mode allowed
+
 	const BlkDevice* blk_device = get_blk_device();
 
 	blk_device->get_impl().wait_for_device();
@@ -219,6 +262,13 @@ namespace storage
 	content_info.num_homes = detect_num_homes(mountpoints.front());
 
 	return content_info;
+    }
+
+
+    void
+    Filesystem::Impl::set_content_info(const ContentInfo& tmp)
+    {
+	content_info.set_value(tmp);
     }
 
 

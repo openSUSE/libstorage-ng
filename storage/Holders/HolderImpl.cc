@@ -39,7 +39,7 @@ namespace storage
 
 	const Holder* holder = devicegraph->get_impl()[edge];
 	if (&holder->get_impl() != this)
-	    throw runtime_error("wrong edge for back references");
+	    ST_THROW(LogicException("wrong edge for back references"));
     }
 
 

@@ -1,11 +1,9 @@
 
 
-#include <assert.h>
-#include <stdexcept>
-
 #include "config.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -17,13 +15,16 @@ namespace storage
 	XmlFile xml(filename);
 
 	const xmlNode* root_node = xml.getRootElement();
-	assert(root_node);
+	if (!root_node)
+	    ST_THROW(Exception("root node not found"));
 
 	const xmlNode* mockup_node = getChildNode(root_node, "Mockup");
-	assert(mockup_node);
+	if (!mockup_node)
+	    ST_THROW(Exception("Mockup node not found"));
 
 	const xmlNode* commands_node = getChildNode(mockup_node, "Commands");
-	assert(commands_node);
+	if (!commands_node)
+	    ST_THROW(Exception("Commands node not found"));
 
 	for (const xmlNode* command_node : getChildNodes(commands_node))
 	{
@@ -39,7 +40,8 @@ namespace storage
 	}
 
 	const xmlNode* files_node = getChildNode(mockup_node, "Files");
-	assert(files_node);
+	if (!files_node)
+	    ST_THROW(Exception("Files node not found"));
 
 	for (const xmlNode* file_node : getChildNodes(files_node))
 	{
@@ -96,7 +98,7 @@ namespace storage
     {
 	map<string, Command>::const_iterator it = commands.find(name);
 	if (it == commands.end())
-	    throw std::runtime_error("no mockup found for command '" + name + "'");
+	    ST_THROW(Exception("no mockup found for command '" + name + "'"));
 
 	return it->second;
     }
@@ -114,7 +116,7 @@ namespace storage
     {
 	map<string, File>::const_iterator it = files.find(name);
 	if (it == files.end())
-	    throw std::runtime_error("no mockup found for file '" + name + "'");
+	    ST_THROW(Exception("no mockup found for file '" + name + "'"));
 
 	return it->second;
     }

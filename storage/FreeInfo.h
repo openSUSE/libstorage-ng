@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,19 +24,22 @@
 #ifndef STORAGE_FREE_INFO_H
 #define STORAGE_FREE_INFO_H
 
+
+#include <libxml/tree.h>
 #include <ostream>
+
+
+// TODO find better name for file and class
 
 
 namespace storage
 {
-    class Volume;
-
 
     class ResizeInfo
     {
     public:
 
-	ResizeInfo(unsigned long long min_size_k, unsigned long long max_size_k);
+	ResizeInfo(bool resize_ok, unsigned long long min_size_k, unsigned long long max_size_k);
 	ResizeInfo();
 
 	void combine(ResizeInfo resize_info);
@@ -47,6 +51,12 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& out, const ResizeInfo& resize_info);
 
+    public:
+
+	ResizeInfo(const xmlNode* node);
+
+	void save(xmlNode* node) const;
+
     };
 
 
@@ -54,6 +64,7 @@ namespace storage
     {
     public:
 
+	ContentInfo(bool is_windows, bool is_efi, unsigned num_homes);
 	ContentInfo();
 
 	bool is_windows;
@@ -62,40 +73,13 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& out, const ContentInfo& content_info);
 
-    };
-
-
-    /*
-    class FreeInfo
-    {
-
     public:
 
-	FreeInfo(bool resize_cached, const ResizeInfo& resize_info,
-		 bool content_cached, const ContentInfo& content_info)
-	    : resize_cached(resize_cached), resize_info(resize_info),
-	      content_cached(content_cached), content_info(content_info) {}
+	ContentInfo(const xmlNode* node);
 
-	FreeInfo(const xmlNode* node);
-
-	void saveData(xmlNode* node) const;
-
-	bool resize_cached;
-	ResizeInfo resize_info;
-
-	bool content_cached;
-	ContentInfo content_info;
-
-	void update(bool resize_cached, const ResizeInfo& resize_info,
-		    bool content_cached, const ContentInfo& content_info);
-
-	static ResizeInfo detectResizeInfo(const string& mp, const Volume& vol);
-	static ContentInfo detectContentInfo(const string& mp, const Volume& vol);
+	void save(xmlNode* node) const;
 
     };
-
-    std::ostream& operator<<(std::ostream& s, const FreeInfo& free_info);
-    */
 
 }
 

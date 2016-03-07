@@ -54,11 +54,11 @@ namespace storage
     {
 	sid_t source_sid = 0;
 	if (!getChildValue(node, "source-sid", source_sid))
-	    throw runtime_error("no source-sid");
+	    ST_THROW(Exception("no source-sid"));
 
 	sid_t target_sid = 0;
 	if (!getChildValue(node, "target-sid", target_sid))
-	    throw runtime_error("no target-sid");
+	    ST_THROW(Exception("no target-sid"));
 
 	const Device* source = devicegraph->find_device(source_sid);
 	const Device* target = devicegraph->find_device(target_sid);
@@ -90,10 +90,10 @@ namespace storage
 	ST_CHECK_PTR(target);
 
 	if (source->get_impl().get_devicegraph() != devicegraph)
-	    throw runtime_error("wrong graph in source");
+	    ST_THROW(Exception("wrong graph in source"));
 
 	if (target->get_impl().get_devicegraph() != devicegraph)
-	    throw runtime_error("wrong graph in target");
+	    ST_THROW(Exception("wrong graph in target"));
 
 	Devicegraph::Impl::vertex_descriptor source_vertex = source->get_impl().get_vertex();
 	Devicegraph::Impl::vertex_descriptor target_vertex = target->get_impl().get_vertex();

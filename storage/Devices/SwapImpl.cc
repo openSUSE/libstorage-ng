@@ -29,7 +29,7 @@ namespace storage
     ResizeInfo
     Swap::Impl::detect_resize_info() const
     {
-	return ResizeInfo(40 * KiB, 1 * TiB);
+	return ResizeInfo(true, 40 * KiB, 1 * TiB);
     }
 
 

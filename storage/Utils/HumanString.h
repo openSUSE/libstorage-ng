@@ -23,8 +23,8 @@
 #ifndef STORAGE_HUMAN_STRING_H
 #define STORAGE_HUMAN_STRING_H
 
+
 #include <string>
-#include <stdexcept>
 
 
 namespace storage

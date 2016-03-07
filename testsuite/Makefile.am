@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite
 #
 
-SUBDIRS = helpers Utils SystemInfo probe dependencies sorting
+SUBDIRS = helpers Utils SystemInfo probe dependencies sorting freeinfo
 
 AM_CPPFLAGS = -I$(top_srcdir)
 

@@ -166,10 +166,24 @@ namespace storage
     }
 
 
+    void
+    Filesystem::set_resize_info(const ResizeInfo& resize_info)
+    {
+	get_impl().set_resize_info(resize_info);
+    }
+
+
     ContentInfo
     Filesystem::detect_content_info() const
     {
 	return get_impl().detect_content_info();
+    }
+
+
+    void
+    Filesystem::set_content_info(const ContentInfo& content_info)
+    {
+	get_impl().set_content_info(content_info);
     }
 
 
