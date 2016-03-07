@@ -50,9 +50,18 @@ namespace storage
     {
     public:
 
-	typedef vector<string> expected_t;
+	class Expected
+	{
+	public:
 
-	TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const expected_t& expected);
+	    Expected(const vector<string> lines) : lines(lines) {}
+	    Expected(const string& filename);
+
+	    vector<string> lines;
+
+	};
+
+	TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected);
 
     private:
 

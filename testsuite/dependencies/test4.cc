@@ -22,15 +22,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph::expected_t expected;
-
-    std::ifstream fin("test4-expected.txt");
-    string line;
-    while (getline(fin, line))
-    {
-	if (!line.empty() && !boost::starts_with(line, "#"))
-	    expected.push_back(line);
-    }
+    TsCmpActiongraph::Expected expected("test4-expected.txt");
 
     storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
     environment.set_devicegraph_filename("test4-probed.xml");

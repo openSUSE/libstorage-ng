@@ -1,5 +1,6 @@
 
 
+#include <fstream>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
 
@@ -38,9 +39,21 @@ namespace storage
     }
 
 
-    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const expected_t& expected)
+    TsCmpActiongraph::Expected::Expected(const string& filename)
     {
-	for (const string& line : expected)
+	std::ifstream fin(filename);
+	string line;
+	while (getline(fin, line))
+	{
+	    if (!line.empty() && !boost::starts_with(line, "#"))
+		lines.push_back(line);
+	}
+    }
+
+
+    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected)
+    {
+	for (const string& line : expected.lines)
 	    entries.push_back(Entry(line));
 
 	check();
@@ -58,11 +71,11 @@ namespace storage
     {
 	string::size_type pos1 = line.find('-');
 	if (pos1 == string::npos)
-	    throw runtime_error("parse error");
+	    throw runtime_error("parse error, did not find '-'");
 
 	string::size_type pos2 = line.rfind("->");
 	if (pos2 == string::npos)
-	    throw runtime_error("parse error");
+	    throw runtime_error("parse error, did not find '->'");
 
 	id = boost::trim_copy(line.substr(0, pos1), locale::classic());
 	text = boost::trim_copy(line.substr(pos1 + 1, pos2 - pos1 - 1), locale::classic());

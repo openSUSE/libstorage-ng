@@ -19,15 +19,9 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    TsCmpActiongraph::expected_t expected;
+    set_logger(get_stdout_logger());
 
-    std::ifstream fin("test3-expected.txt");
-    string line;
-    while (getline(fin, line))
-    {
-	if (!line.empty() && !boost::starts_with(line, "#"))
-	    expected.push_back(line);
-    }
+    TsCmpActiongraph::Expected expected("test3-expected.txt");
 
     storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
     environment.set_devicegraph_filename("test3-probed.xml");
