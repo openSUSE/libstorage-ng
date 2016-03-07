@@ -16,9 +16,9 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    TsCmpActiongraph::expected_t expected = {
-	{ "1 - Create ext4 on /dev/sdb1 (7.65 GiB) ->" }
-    };
+    set_logger(get_stdout_logger());
+
+    TsCmpActiongraph::Expected expected("test1-expected.txt");
 
     storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
     environment.set_devicegraph_filename("test1-probed.xml");

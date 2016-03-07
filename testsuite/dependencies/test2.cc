@@ -23,14 +23,16 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    TsCmpActiongraph::expected_t expected = {
+    set_logger(get_stdout_logger());
+
+    TsCmpActiongraph::Expected expected({
 	{ "1 - Create GPT on /dev/sda -> 2a" },
 	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
 	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
 	{ "3 - Create volume group /dev/system -> 4 5" },
 	{ "4 - Create logical volume /dev/system/root (14.00 GiB) ->" },
 	{ "5 - Create logical volume /dev/system/swap (2.00 GiB) ->" }
-    };
+    });
 
     storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 

@@ -22,20 +22,20 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph::Expected expected("test4-expected.txt");
+    TsCmpActiongraph::Expected expected("grow1-expected.txt");
 
     storage::Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-    environment.set_devicegraph_filename("test4-probed.xml");
+    environment.set_devicegraph_filename("grow1-probed.xml");
 
     Storage storage(environment);
 
-    storage.get_staging()->load("test4-staging.xml");
+    storage.get_staging()->load("grow1-staging.xml");
 
     Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
     if (access("/usr/bin/dot", X_OK) == 0)
     {
-	actiongraph.write_graphviz("test4.gv", true);
-	system("dot -Tpng < test4.gv > test4.png");
+	actiongraph.write_graphviz("grow1.gv", true);
+	system("dot -Tpng < grow1.gv > grow1.png");
     }
 
     TsCmpActiongraph cmp(actiongraph.get_impl(), expected);
