@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,7 +21,7 @@
  */
 
 
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/XmlFile.h"
 #include "storage/FreeInfo.h"
 
 
@@ -30,8 +31,9 @@ namespace storage
     using namespace std;
 
 
-    ResizeInfo::ResizeInfo(unsigned long long min_size_k, unsigned long long max_size_k)
-	: resize_ok(true), min_size_k(min_size_k), max_size_k(max_size_k)
+    ResizeInfo::ResizeInfo(bool resize_ok, unsigned long long min_size_k,
+			   unsigned long long max_size_k)
+	: resize_ok(resize_ok), min_size_k(min_size_k), max_size_k(max_size_k)
     {
     }
 
@@ -39,6 +41,24 @@ namespace storage
     ResizeInfo::ResizeInfo()
 	: resize_ok(false), min_size_k(0), max_size_k(1 * EiB)
     {
+    }
+
+
+    ResizeInfo::ResizeInfo(const xmlNode* node)
+	: resize_ok(false), min_size_k(0), max_size_k(1 * EiB)
+    {
+	getChildValue(node, "resize-ok", resize_ok);
+	getChildValue(node, "min-size-k", min_size_k);
+	getChildValue(node, "max-size-k", max_size_k);
+    }
+
+
+    void
+    ResizeInfo::save(xmlNode* node) const
+    {
+	setChildValue(node, "resize-ok", resize_ok);
+	setChildValue(node, "min-size-k", min_size_k);
+	setChildValue(node, "max-size-k", max_size_k);
     }
 
 
@@ -60,9 +80,33 @@ namespace storage
     }
 
 
+    ContentInfo::ContentInfo(bool is_windows, bool is_efi, unsigned num_homes)
+	: is_windows(is_windows), is_efi(is_efi), num_homes(num_homes)
+    {
+    }
+
+
     ContentInfo::ContentInfo()
 	: is_windows(false), is_efi(false), num_homes(0)
     {
+    }
+
+
+    ContentInfo::ContentInfo(const xmlNode* node)
+	: is_windows(false), is_efi(false), num_homes(0)
+    {
+	getChildValue(node, "is-windows", is_windows);
+	getChildValue(node, "is-efi", is_efi);
+	getChildValue(node, "num-homes", num_homes);
+    }
+
+
+    void
+    ContentInfo::save(xmlNode* node) const
+    {
+	setChildValue(node, "is-windows", is_windows);
+	setChildValue(node, "is-efi", is_efi);
+	setChildValue(node, "num-homes", num_homes);
     }
 
 
@@ -72,83 +116,5 @@ namespace storage
 	return out << "is-windows:" << content_info.is_windows << " is-efi:" << content_info.is_efi
 		   << " num-homes:" << content_info.num_homes;
     }
-
-
-    /*
-    FreeInfo::FreeInfo(const xmlNode* node)
-	: resize_cached(false), content_cached(false)
-    {
-	if (getChildValue(node, "resize_cached", resize_cached) && resize_cached)
-	{
-	    getChildValue(node, "df_free_k", resize_info.df_freeK);
-	    getChildValue(node, "resize_free_k", resize_info.resize_freeK);
-	    getChildValue(node, "used_k", resize_info.usedK);
-	    getChildValue(node, "resize_ok", resize_info.resize_ok);
-	}
-
-	if (getChildValue(node, "content_cached", content_cached) && content_cached)
-	{
-	    getChildValue(node, "windows", content_info.windows);
-	    getChildValue(node, "efi", content_info.efi);
-	    getChildValue(node, "homes", content_info.homes);
-	}
-    }
-
-
-    void
-    FreeInfo::saveData(xmlNode* node) const
-    {
-	if (resize_cached)
-	{
-	    setChildValue(node, "resize_cached", resize_cached);
-
-	    setChildValue(node, "df_free_k", resize_info.df_freeK);
-	    setChildValue(node, "resize_free_k", resize_info.resize_freeK);
-	    setChildValue(node, "used_k", resize_info.usedK);
-	    setChildValue(node, "resize_ok", resize_info.resize_ok);
-	}
-
-	if (content_cached)
-	{
-	    setChildValue(node, "content_cached", content_cached);
-
-	    setChildValue(node, "windows", content_info.windows);
-	    setChildValue(node, "efi", content_info.efi);
-	    setChildValue(node, "homes", content_info.homes);
-	}
-    }
-
-
-    void
-    FreeInfo::update(bool new_resize_cached, const ResizeInfo& new_resize_info,
-		     bool new_content_cached, const ContentInfo& new_content_info)
-    {
-	if (new_resize_cached)
-	{
-	    resize_cached = true;
-	    resize_info = new_resize_info;
-	}
-
-	if (new_content_cached)
-	{
-	    content_cached = true;
-	    content_info = new_content_info;
-	}
-    }
-
-
-    std::ostream& operator<<(std::ostream& s, const FreeInfo& free_info)
-    {
-	s << "resize_cached:" << free_info.resize_cached;
-	if (free_info.resize_cached)
-	    s << " resize_info " << free_info.resize_info;
-
-	s << "content_cached:" << free_info.content_cached;
-	if (free_info.content_cached)
-	    s << " content_info " << free_info.content_info;
-
-	return s;
-    }
-    */
 
 }

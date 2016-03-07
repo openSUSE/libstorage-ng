@@ -106,6 +106,7 @@ AC_OUTPUT(
 	testsuite/probe/Makefile
 	testsuite/dependencies/Makefile
 	testsuite/sorting/Makefile
+	testsuite/freeinfo/Makefile
 	integration-tests/Makefile
 	integration-tests/partitions/Makefile
 	integration-tests/filesystems/Makefile

@@ -31,7 +31,7 @@ namespace storage
     {
 	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
 
-	resize_info.combine(ResizeInfo(256 * MiB, 16 * EiB));
+	resize_info.combine(ResizeInfo(true, 256 * MiB, 16 * EiB));
 
 	return resize_info;
     }

@@ -3,8 +3,10 @@
 
 
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/CDgD.h"
 #include "storage/Devices/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -65,9 +67,11 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const;
 	virtual ResizeInfo detect_resize_info_pure() const;
+	void set_resize_info(const ResizeInfo& resize_info);
 
 	virtual ContentInfo detect_content_info() const;
 	virtual ContentInfo detect_content_info_pure() const;
+	void set_content_info(const ContentInfo& content_info);
 
 	string get_mount_by_string() const;
 
@@ -94,7 +98,8 @@ namespace storage
 
 	Impl()
 	    : Device::Impl(), label(), uuid(), mountpoints({}), mount_by(MountByType::DEVICE),
-	      fstab_options({}), mkfs_options(), tune_options() {}
+	      fstab_options({}), mkfs_options(), tune_options(), resize_info(), content_info()
+	    {}
 
 	Impl(const xmlNode* node);
 
@@ -116,6 +121,14 @@ namespace storage
 
 	string mkfs_options;
 	string tune_options;
+
+	/**
+	 * mutable to allow updating cache from const functions. Otherwise
+	 * caching would not be possible when working with the probed
+	 * devicegraph.
+	 */
+	mutable CDgD<ResizeInfo> resize_info;
+	mutable CDgD<ContentInfo> content_info;
 
     };
 

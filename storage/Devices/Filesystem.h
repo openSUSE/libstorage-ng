@@ -70,7 +70,17 @@ namespace storage
 
 	ResizeInfo detect_resize_info() const;
 
+	/**
+	 * Set the ResizeInfo. Only use for testsuites.
+	 */
+	void set_resize_info(const ResizeInfo& resize_info);
+
 	ContentInfo detect_content_info() const;
+
+	/**
+	 * Set the ResizeInfo. Only use for testsuites.
+	 */
+	void set_content_info(const ContentInfo& content_info);
 
 	static std::vector<Filesystem*> find_by_label(const Devicegraph* devicegraph,
 						      const std::string& label);

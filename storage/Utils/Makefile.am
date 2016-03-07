@@ -26,6 +26,7 @@ libutils_la_SOURCES =					\
 	Mockup.cc		Mockup.h		\
 	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
+	CDgD.h						\
 	StorageDefines.h
 
 $(srcdir)/gen-pathlist.cc: StorageDefines.h
