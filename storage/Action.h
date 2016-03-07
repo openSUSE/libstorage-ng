@@ -12,13 +12,6 @@
 namespace storage
 {
 
-
-    enum class Tense
-    {
-	SIMPLE_PRESENT, PRESENT_CONTINUOUS
-    };
-
-
     namespace Action
     {
 

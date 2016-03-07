@@ -48,75 +48,75 @@ namespace storage
 	switch (i)
 	{
 	    case 0:
-		/* symbol for "bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "bytes" (best keep untranslated)
 		ret.push_back(_("B"));
 		if (sloppy)
 		    ret.push_back(Text("", ""));
 		break;
 
 	    case 1:
-		/* symbol for "kibi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 		ret.push_back(_("KiB"));
 		if (all)
-		    /* symbol for "kilo bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 		    ret.push_back(_("kB"));
 		if (sloppy)
-		    /* symbol for "kilo" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "kilo" (best keep untranslated)
 		    ret.push_back(_("k"));
 		break;
 
 	    case 2:
-		/* symbol for "mebi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 		ret.push_back(_("MiB"));
 		if (all)
-		    /* symbol for "mega bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
 		    ret.push_back(_("MB"));
 		if (sloppy)
-		    /* symbol for "mega" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "mega" (best keep untranslated)
 		    ret.push_back(_("M"));
 		break;
 
 	    case 3:
-		/* symbol for "gibi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 		ret.push_back(_("GiB"));
 		if (all)
-		    /* symbol for "giga bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
 		    ret.push_back(_("GB"));
 		if (sloppy)
-		    /* symbol for "giga" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "giga" (best keep untranslated)
 		    ret.push_back(_("G"));
 		break;
 
 	    case 4:
-		/* symbol for "tebi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
 		ret.push_back(_("TiB"));
 		if (all)
-		    /* symbol for "tera bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
 		    ret.push_back(_("TB"));
 		if (sloppy)
-		    /* symbol for "tera" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "tera" (best keep untranslated)
 		    ret.push_back(_("T"));
 		break;
 
 	    case 5:
-		/* symbol for "pebi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 		ret.push_back(_("PiB"));
 		if (all)
-		    /* symbol for "peta bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 		    ret.push_back(_("PB"));
 		if (sloppy)
-		    /* symbol for "peta" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "peta" (best keep untranslated)
 		    ret.push_back(_("P"));
 		break;
 
 	    case 6:
-		/* symbol for "exbi bytes" (best keep untranslated) */
+		// TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 		ret.push_back(_("EiB"));
 		if (all)
-		    /* symbol for "exa bytes" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 		    ret.push_back(_("EB"));
 		if (sloppy)
-		    /* symbol for "exa" (best keep untranslated) */
+		    // TRANSLATORS: symbol for "exa" (best keep untranslated)
 		    ret.push_back(_("E"));
 		break;
 	}
