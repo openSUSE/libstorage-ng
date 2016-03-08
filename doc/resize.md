@@ -13,7 +13,7 @@ world. In this document we use the following definitions:
 
 Whether a block devices can be shrunk or grown depends not only on the block
 device itself but also on the holder of the block device. E.g. a partition can
-in general be grown but if the partition is hold by a MD RAID growing is not
+in general be grown but if the partition is held by a MD RAID growing is not
 possible since MD RAID does not support to grow the underlying devices.
 
 Also note that most block devices and filesystems must be inactive to allow
@@ -31,13 +31,13 @@ Shrink/Grow
 
 - LVM logical volumes: yes.
 
-- Block devices hold by a LVM volume group: yes.
+- Block devices held by a LVM volume group: yes.
 
-- Block devices hold by a MD RAID: no. A cumbersome and slow procedure exists
+- Block devices held by a MD RAID: no. A cumbersome and slow procedure exists
   but is not supported, see
   http://superuser.com/questions/469117/resize-underlying-partitions-in-mdadm-raid1.
 
-- Block devices hold by a btrfs: yes.
+- Block devices held by a btrfs: yes.
 
 
 Extending/Reducing
