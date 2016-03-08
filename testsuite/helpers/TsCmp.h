@@ -10,8 +10,7 @@
 namespace storage
 {
 
-    using std::vector;
-    using std::set;
+    using namespace std;
 
 
     /*
@@ -61,9 +60,19 @@ namespace storage
 
 	};
 
-	TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected);
+	/**
+	 * Loads "<name>-probed.xml", <name>-staging.xml" and
+	 * "<name>-expected.txt", compares the probed with the staging
+	 * devicegraph and verifies the resulting actiongraph. Additionally it
+	 * generates a picture of the actiongraph.
+	 */
+	TsCmpActiongraph(const string& name);
+
+	TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected);
 
     private:
+
+	void doit(const Actiongraph& actiongraph, const Expected& expected);
 
 	struct Entry
 	{

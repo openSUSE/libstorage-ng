@@ -5,6 +5,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/DevicegraphImpl.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/Action.h"
 #include "testsuite/helpers/TsCmp.h"
 
@@ -51,19 +53,47 @@ namespace storage
     }
 
 
-    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected)
+    TsCmpActiongraph::TsCmpActiongraph(const string& name)
+    {
+	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+	environment.set_devicegraph_filename(name + "-probed.xml");
+
+	Storage storage(environment);
+	storage.get_staging()->load(name + "-staging.xml");
+
+	Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
+	if (access("/usr/bin/dot", X_OK) == 0)
+	{
+	    actiongraph.write_graphviz(name + ".gv", true);
+	    system(("dot -Tpng < " + name + ".gv > " + name + ".png").c_str());
+	}
+
+	TsCmpActiongraph::Expected expected(name + "-expected.txt");
+
+	doit(actiongraph, expected);
+    }
+
+
+    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected)
+    {
+	doit(actiongraph, expected);
+    }
+
+
+    void
+    TsCmpActiongraph::doit(const Actiongraph& actiongraph, const Expected& expected)
     {
 	for (const string& line : expected.lines)
 	    entries.push_back(Entry(line));
 
 	check();
 
-	cmp_texts(actiongraph);
+	cmp_texts(actiongraph.get_impl());
 
 	if (!ok())
 	    return;
 
-	cmp_dependencies(actiongraph);
+	cmp_dependencies(actiongraph.get_impl());
     }
 
 
