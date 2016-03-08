@@ -65,10 +65,17 @@ namespace storage
 	storage.get_staging()->load(name + "-staging.xml");
 
 	Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
+
 	if (access("/usr/bin/dot", X_OK) == 0)
 	{
-	    actiongraph.write_graphviz(name + ".gv", true);
-	    system(("dot -Tpng < " + name + ".gv > " + name + ".png").c_str());
+	    storage.get_probed()->write_graphviz(name + "-probed.gv");
+	    system(("dot -Tpng < " + name + "-probed.gv > " + name + "-probed.png").c_str());
+
+	    storage.get_staging()->write_graphviz(name + "-staging.gv");
+	    system(("dot -Tpng < " + name + "-staging.gv > " + name + "-staging.png").c_str());
+
+	    actiongraph.write_graphviz(name + "-action.gv", true);
+	    system(("dot -Tpng < " + name + "-action.gv > " + name + "-action.png").c_str());
 	}
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");
