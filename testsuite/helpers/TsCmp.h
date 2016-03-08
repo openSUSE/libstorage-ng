@@ -45,6 +45,9 @@ namespace storage
     };
 
 
+    /**
+     * Class to compare an actiongraph with an expected actiongraph.
+     */
     class TsCmpActiongraph : public TsCmp
     {
     public:
@@ -68,11 +71,18 @@ namespace storage
 	 */
 	TsCmpActiongraph(const string& name);
 
+	/**
+	 * Compares the actiongraph with the expected actiongraph.
+	 */
 	TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected);
 
     private:
 
-	void doit(const Actiongraph& actiongraph, const Expected& expected);
+	/**
+	 * Main function of class that compares the actiongraph with the
+	 * expected actiongraph.
+	 */
+	void cmp(const Actiongraph& actiongraph, const Expected& expected);
 
 	struct Entry
 	{

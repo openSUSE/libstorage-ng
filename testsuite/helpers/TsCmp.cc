@@ -80,18 +80,18 @@ namespace storage
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");
 
-	doit(actiongraph, expected);
+	cmp(actiongraph, expected);
     }
 
 
     TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected)
     {
-	doit(actiongraph, expected);
+	cmp(actiongraph, expected);
     }
 
 
     void
-    TsCmpActiongraph::doit(const Actiongraph& actiongraph, const Expected& expected)
+    TsCmpActiongraph::cmp(const Actiongraph& actiongraph, const Expected& expected)
     {
 	for (const string& line : expected.lines)
 	    entries.push_back(Entry(line));
@@ -111,11 +111,11 @@ namespace storage
     {
 	string::size_type pos1 = line.find('-');
 	if (pos1 == string::npos)
-	    throw runtime_error("parse error, did not find '-'");
+	    ST_THROW(Exception("parse error, did not find '-'"));
 
 	string::size_type pos2 = line.rfind("->");
 	if (pos2 == string::npos)
-	    throw runtime_error("parse error, did not find '->'");
+	    ST_THROW(Exception("parse error, did not find '->'"));
 
 	id = boost::trim_copy(line.substr(0, pos1), locale::classic());
 	text = boost::trim_copy(line.substr(pos1 + 1, pos2 - pos1 - 1), locale::classic());
@@ -135,10 +135,10 @@ namespace storage
 	for (const Entry& entry : entries)
 	{
 	    if (!ids.insert(entry.id).second)
-		throw runtime_error("duplicate id");
+		ST_THROW(Exception("duplicate id"));
 
 	    if (!texts.insert(entry.text).second)
-		throw runtime_error("duplicate text");
+		ST_THROW(Exception("duplicate text"));
 	}
 
 	for (const Entry& entry : entries)
@@ -146,7 +146,7 @@ namespace storage
 	    for (const string dep_id : entry.dep_ids)
 	    {
 		if (ids.find(dep_id) == ids.end())
-		    throw runtime_error("unknown dependency-id");
+		    ST_THROW(Exception("unknown dependency-id"));
 	    }
 	}
     }
