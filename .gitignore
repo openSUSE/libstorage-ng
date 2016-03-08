@@ -19,3 +19,5 @@ StorageVersion.h
 test-driver
 py-compile
 cov-int
+/.obsdir/
+/obs-package-from-git
