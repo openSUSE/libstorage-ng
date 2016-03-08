@@ -10,8 +10,7 @@
 namespace storage
 {
 
-    using std::vector;
-    using std::set;
+    using namespace std;
 
 
     /*
@@ -46,6 +45,9 @@ namespace storage
     };
 
 
+    /**
+     * Class to compare an actiongraph with an expected actiongraph.
+     */
     class TsCmpActiongraph : public TsCmp
     {
     public:
@@ -61,9 +63,26 @@ namespace storage
 
 	};
 
-	TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected);
+	/**
+	 * Loads "<name>-probed.xml", <name>-staging.xml" and
+	 * "<name>-expected.txt", compares the probed with the staging
+	 * devicegraph and verifies the resulting actiongraph. Additionally it
+	 * generates a picture of the actiongraph.
+	 */
+	TsCmpActiongraph(const string& name);
+
+	/**
+	 * Compares the actiongraph with the expected actiongraph.
+	 */
+	TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected);
 
     private:
+
+	/**
+	 * Main function of class that compares the actiongraph with the
+	 * expected actiongraph.
+	 */
+	void cmp(const Actiongraph& actiongraph, const Expected& expected);
 
 	struct Entry
 	{

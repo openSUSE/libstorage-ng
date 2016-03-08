@@ -5,6 +5,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/DevicegraphImpl.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/Action.h"
 #include "testsuite/helpers/TsCmp.h"
 
@@ -42,6 +44,9 @@ namespace storage
     TsCmpActiongraph::Expected::Expected(const string& filename)
     {
 	std::ifstream fin(filename);
+	if (!fin)
+	    ST_THROW(Exception("failed to load " + filename));
+
 	string line;
 	while (getline(fin, line))
 	{
@@ -51,19 +56,54 @@ namespace storage
     }
 
 
-    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph::Impl& actiongraph, const Expected& expected)
+    TsCmpActiongraph::TsCmpActiongraph(const string& name)
+    {
+	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+	environment.set_devicegraph_filename(name + "-probed.xml");
+
+	Storage storage(environment);
+	storage.get_staging()->load(name + "-staging.xml");
+
+	Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
+
+	if (access("/usr/bin/dot", X_OK) == 0)
+	{
+	    storage.get_probed()->write_graphviz(name + "-probed.gv");
+	    system(("dot -Tpng < " + name + "-probed.gv > " + name + "-probed.png").c_str());
+
+	    storage.get_staging()->write_graphviz(name + "-staging.gv");
+	    system(("dot -Tpng < " + name + "-staging.gv > " + name + "-staging.png").c_str());
+
+	    actiongraph.write_graphviz(name + "-action.gv", true);
+	    system(("dot -Tpng < " + name + "-action.gv > " + name + "-action.png").c_str());
+	}
+
+	TsCmpActiongraph::Expected expected(name + "-expected.txt");
+
+	cmp(actiongraph, expected);
+    }
+
+
+    TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected)
+    {
+	cmp(actiongraph, expected);
+    }
+
+
+    void
+    TsCmpActiongraph::cmp(const Actiongraph& actiongraph, const Expected& expected)
     {
 	for (const string& line : expected.lines)
 	    entries.push_back(Entry(line));
 
 	check();
 
-	cmp_texts(actiongraph);
+	cmp_texts(actiongraph.get_impl());
 
 	if (!ok())
 	    return;
 
-	cmp_dependencies(actiongraph);
+	cmp_dependencies(actiongraph.get_impl());
     }
 
 
@@ -71,11 +111,11 @@ namespace storage
     {
 	string::size_type pos1 = line.find('-');
 	if (pos1 == string::npos)
-	    throw runtime_error("parse error, did not find '-'");
+	    ST_THROW(Exception("parse error, did not find '-'"));
 
 	string::size_type pos2 = line.rfind("->");
 	if (pos2 == string::npos)
-	    throw runtime_error("parse error, did not find '->'");
+	    ST_THROW(Exception("parse error, did not find '->'"));
 
 	id = boost::trim_copy(line.substr(0, pos1), locale::classic());
 	text = boost::trim_copy(line.substr(pos1 + 1, pos2 - pos1 - 1), locale::classic());
@@ -95,10 +135,10 @@ namespace storage
 	for (const Entry& entry : entries)
 	{
 	    if (!ids.insert(entry.id).second)
-		throw runtime_error("duplicate id");
+		ST_THROW(Exception("duplicate id"));
 
 	    if (!texts.insert(entry.text).second)
-		throw runtime_error("duplicate text");
+		ST_THROW(Exception("duplicate text"));
 	}
 
 	for (const Entry& entry : entries)
@@ -106,7 +146,7 @@ namespace storage
 	    for (const string dep_id : entry.dep_ids)
 	    {
 		if (ids.find(dep_id) == ids.end())
-		    throw runtime_error("unknown dependency-id");
+		    ST_THROW(Exception("unknown dependency-id"));
 	    }
 	}
     }
