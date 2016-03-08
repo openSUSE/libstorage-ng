@@ -44,6 +44,9 @@ namespace storage
     TsCmpActiongraph::Expected::Expected(const string& filename)
     {
 	std::ifstream fin(filename);
+	if (!fin)
+	    ST_THROW(Exception("failed to load " + filename));
+
 	string line;
 	while (getline(fin, line))
 	{

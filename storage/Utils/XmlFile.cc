@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -31,19 +32,22 @@ namespace storage
     XmlFile::XmlFile()
 	: doc(xmlNewDoc((const xmlChar*) "1.0"))
     {
+	if (!doc)
+	    ST_THROW(Exception("failed to create xml document"));
     }
 
 
     XmlFile::XmlFile(const string& filename)
 	: doc(xmlReadFile(filename.c_str(), NULL, XML_PARSE_NOBLANKS | XML_PARSE_NONET))
     {
+	if (!doc)
+	    ST_THROW(Exception("failed to load xml document " + filename));
     }
 
 
     XmlFile::~XmlFile()
     {
-	if (doc)
-	    xmlFreeDoc(doc);
+	xmlFreeDoc(doc);
     }
 
 
