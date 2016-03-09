@@ -19,6 +19,7 @@ namespace storage
     public:
 
 	unsigned int get_range() const;
+	void set_range(unsigned int range);
 
 	const Geometry& get_geometry() const;
 	void set_geometry(const Geometry& geometry);
