@@ -30,9 +30,23 @@ namespace storage
     template <typename Type> const Type* to_device_of_type(const Device* device);
 
 
+    /*
+     * We use the term "resize" for chaning the size of a non-container block
+     * device, e.g. change the size of a partition or LVM logical volume.
+     */
     enum class ResizeMode
     {
 	SHRINK, GROW
+    };
+
+
+    /*
+     * We use the term "reallot" for adding and removing block devices from a
+     * container, e.g. a LVM volume group or a MD RAID.
+     */
+    enum class ReallotMode
+    {
+	REDUCE, EXTEND
     };
 
 
