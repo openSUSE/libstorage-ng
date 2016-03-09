@@ -37,7 +37,16 @@ namespace storage
     };
 
 
+    /**
+     * Get the current logger object.
+     */
     Logger* get_logger();
+
+
+    /**
+     * Set the current logger object. The logger object must be valid until
+     * replaced by another logger object.
+     */
     void set_logger(Logger* logger);
 
 
