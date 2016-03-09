@@ -53,6 +53,13 @@ namespace storage
     }
 
 
+    void
+    Partitionable::set_range(unsigned int range)
+    {
+	return get_impl().set_range(range);
+    }
+
+
     PtType
     Partitionable::get_default_partition_table_type() const
     {
