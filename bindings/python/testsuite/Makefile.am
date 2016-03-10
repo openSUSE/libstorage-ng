@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/bindings/python/testsuite
 #
 
-check_SCRIPTS = create.py find.py polymorphism.py sid.py types.py
+check_SCRIPTS = create.py find.py polymorphism.py sid.py types.py logger.py
 
 TESTS = $(check_SCRIPTS)
 
