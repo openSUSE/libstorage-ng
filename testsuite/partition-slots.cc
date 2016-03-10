@@ -5,8 +5,8 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -27,8 +27,8 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
-    sda->get_impl().set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_range(256);
+    sda->set_geometry(Geometry(9999, 255, 63, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -59,8 +59,8 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
-    sda->get_impl().set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_range(256);
+    sda->set_geometry(Geometry(9999, 255, 63, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -127,8 +127,8 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
     // bytes per sector
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
-    sda->get_impl().set_geometry(Geometry(534698, 255, 63, 4096));
+    sda->set_range(256);
+    sda->set_geometry(Geometry(534698, 255, 63, 4096));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -159,8 +159,8 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
-    sda->get_impl().set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_range(256);
+    sda->set_geometry(Geometry(9999, 255, 63, 512));
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 

@@ -5,8 +5,8 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
+    sda->set_range(256);
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->get_impl().set_range(256);
+    sda->set_range(256);
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
