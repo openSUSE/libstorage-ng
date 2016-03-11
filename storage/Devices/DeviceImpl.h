@@ -41,8 +41,8 @@ namespace storage
 
 
     /*
-     * We use the term "reallot" for adding and removing block devices from a
-     * container, e.g. a LVM volume group or a MD RAID.
+     * We use the term "reallot" for reducing or extending a container, e.g. a
+     * LVM volume group or a MD RAID.
      */
     enum class ReallotMode
     {
@@ -105,6 +105,10 @@ namespace storage
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
 	virtual void do_resize(ResizeMode resize_mode) const;
 
+	virtual Text do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device,
+				     Tense tense) const;
+	virtual void do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const;
+
 	size_t num_children() const;
 	size_t num_parents() const;
 
@@ -143,6 +147,8 @@ namespace storage
 
     private:
 
+	void add_reallot_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
+
 	static sid_t global_sid;
 
 	sid_t sid;
@@ -168,6 +174,26 @@ namespace storage
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const ResizeMode resize_mode;
+
+	};
+
+
+	class Reallot : public Modify
+	{
+	public:
+
+	    Reallot(sid_t sid, ReallotMode reallot_mode, const BlkDevice* blk_device)
+		: Modify(sid), reallot_mode(reallot_mode), blk_device(blk_device) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    const ReallotMode reallot_mode;
+
+	    /**
+	     * The block device for addition or removal.
+	     */
+	    const BlkDevice* blk_device;
 
 	};
 

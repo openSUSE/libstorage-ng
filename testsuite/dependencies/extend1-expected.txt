@@ -1,0 +1,1 @@
+1 - Add /dev/sdd to /dev/md0 ->

@@ -410,6 +410,52 @@ namespace storage
     }
 
 
+    Text
+    Md::Impl::do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device, Tense tense) const
+    {
+	Text text;
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Remove %1$s from %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Removing %1$s from %2$s"));
+		break;
+
+	    case ReallotMode::EXTEND:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Add %1$s to %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Adding %1$s to %2$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for reallot_mode"));
+	}
+
+	return sformat(text, blk_device->get_name().c_str(), get_displayname().c_str());
+    }
+
+
+    void
+    Md::Impl::do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const
+    {
+	// TODO
+    }
+
+
     namespace Action
     {
 

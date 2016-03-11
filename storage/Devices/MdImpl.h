@@ -80,6 +80,11 @@ namespace storage
 	virtual Text do_remove_etc_mdadm_text(Tense tense) const;
 	virtual void do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
 
+	virtual Text do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device,
+				     Tense tense) const override;
+	virtual void do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device)
+	    const override;
+
     private:
 
 	MdLevel md_level;

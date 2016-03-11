@@ -1,0 +1,1 @@
+1 - Remove /dev/sdd from /dev/md0 ->
