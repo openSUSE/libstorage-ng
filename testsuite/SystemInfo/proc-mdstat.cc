@@ -102,3 +102,21 @@ BOOST_AUTO_TEST_CASE(parse3)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse4)
+{
+    vector<string> input = {
+	"Personalities : [raid1] [raid0] [raid6] [raid5] [raid4] [raid10] [multipath] ",
+	"md0 : active raid5 sdd[4](F) sdc[3] sdb[1] sda[0]",
+	"      33521664 blocks super 1.2 level 5, 512k chunk, algorithm 2 [3/3] [UUU]",
+	"      ",
+	"unused devices: <none>"
+    };
+
+    vector<string> output = {
+	"data[md0] -> md-level:RAID5 md-parity:left-symmetric super:1.2 chunk-size-k:512 size-k:33521664 devices:</dev/sda /dev/sdb /dev/sdc> faults:</dev/sdd>",
+    };
+
+    check(input, output);
+}

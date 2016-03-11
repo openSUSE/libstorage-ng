@@ -35,7 +35,8 @@ Shrink/Grow
 
 - Block devices held by a MD RAID: no. A cumbersome and slow procedure exists
   but is not supported, see
-  http://superuser.com/questions/469117/resize-underlying-partitions-in-mdadm-raid1.
+  http://superuser.com/questions/469117/resize-underlying-partitions-in-mdadm-raid1
+  or https://raid.wiki.kernel.org/index.php/Growing.
 
 - Block devices held by a btrfs: yes.
 

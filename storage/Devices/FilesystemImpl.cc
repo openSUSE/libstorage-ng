@@ -701,13 +701,13 @@ namespace storage
 	    case ResizeMode::SHRINK:
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %1$s is replaced by filesystem (e.g. ext4),
 			      // %2$s is replaced by partition name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 2GiB),
 			      // %4$s is replaced by new size (e.g. 1GiB)
 			      _("Shrink %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %1$s is replaced by filesystem (e.g. ext4),
 			      // %2$s is replaced by partition name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 2GiB),
 			      // %4$s is replaced by new size (e.g. 1GiB)
@@ -717,13 +717,13 @@ namespace storage
 	    case ResizeMode::GROW:
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %1$s is replaced by filesystem (e.g. ext4),
 			      // %2$s is replaced by partition name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 1GiB),
 			      // %4$s is replaced by new size (e.g. 2GiB)
 			      _("Grow %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by filesystem (e.g. ext4)
+			      // %1$s is replaced by filesystem (e.g. ext4),
 			      // %2$s is replaced by partition name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 1GiB),
 			      // %4$s is replaced by new size (e.g. 2GiB)

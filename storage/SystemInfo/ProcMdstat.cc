@@ -128,11 +128,12 @@ namespace storage
 	    else
 		d = normalizeDevice(tmp);
 
-	    bool is_spare = boost::ends_with(tmp, "(S)");
-	    if (!is_spare)
-		entry.devices.push_front(d);
-	    else
+	    if (boost::ends_with(tmp, "(S)"))
 		entry.spares.push_front(d);
+	    else if (boost::ends_with(tmp, "(F)"))
+		entry.faults.push_front(d);
+	    else
+		entry.devices.push_front(d);
 
 	    line.erase( 0, tmp.length() );
 	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
@@ -297,6 +298,8 @@ namespace storage
 	s << " devices:" << entry.devices;
 	if (!entry.spares.empty())
 	    s << " spares:" << entry.spares;
+	if (!entry.faults.empty())
+	    s << " faults:" << entry.faults;
 
 	if (entry.is_container)
 	    s << " is-container";

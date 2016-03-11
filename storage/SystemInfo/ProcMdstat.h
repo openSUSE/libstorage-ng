@@ -62,6 +62,7 @@ namespace storage
 
 	    list<string> devices;
 	    list<string> spares;
+	    list<string> faults;
 
 	    bool is_container;
 

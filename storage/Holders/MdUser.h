@@ -20,6 +20,9 @@ namespace storage
 	bool is_spare() const;
 	void set_spare(bool spare);
 
+	bool is_faulty() const;
+	void set_faulty(bool faulty);
+
     public:
 
 	class Impl;

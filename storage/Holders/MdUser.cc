@@ -67,6 +67,20 @@ namespace storage
 
 
     bool
+    MdUser::is_faulty() const
+    {
+	return get_impl().is_faulty();
+    }
+
+
+    void
+    MdUser::set_faulty(bool faulty)
+    {
+	get_impl().set_faulty(faulty);
+    }
+
+
+    bool
     is_md_user(const Holder* holder)
     {
 	return is_holder_of_type<const MdUser>(holder);

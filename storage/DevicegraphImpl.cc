@@ -626,13 +626,25 @@ namespace storage
 		const Holder* holder = devicegraph[e];
 
 		if (is_subdevice(holder))
+		{
 		    out << "[ style=solid ]";
-		else if (is_md_user(holder) && to_md_user(holder)->is_spare())
-		    out << "[ style=dotted ]";
+		}
+		else if (is_md_user(holder))
+		{
+		    const MdUser* md_user = to_md_user(holder);
+		    if (md_user->is_spare() || md_user->is_faulty())
+			out << "[ style=dotted ]";
+		    else
+			out << "[ style=dashed ]";
+		}
 		else if (is_user(holder))
+		{
 		    out << "[ style=dashed ]";
+		}
 		else
+		{
 		    ST_THROW(LogicException("unknown Holder subclass"));
+		}
 	    }
 	};
 
