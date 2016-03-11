@@ -151,6 +151,13 @@ namespace storage
 	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
 	    md_user->set_spare(true);
 	}
+
+	for (const string& device : entry.faults)
+	{
+	    BlkDevice* blk_device = BlkDevice::find(probed, device);
+	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
+	    md_user->set_faulty(true);
+	}
     }
 
 

@@ -12,9 +12,10 @@ namespace storage
 
 
     MdUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), spare(false)
+	: User::Impl(node), spare(false), faulty(false)
     {
 	getChildValue(node, "spare", spare);
+	getChildValue(node, "faulty", faulty);
     }
 
 
@@ -24,6 +25,7 @@ namespace storage
 	User::Impl::save(node);
 
 	setChildValueIf(node, "spare", spare, spare);
+	setChildValueIf(node, "faulty", faulty, faulty);
     }
 
 
@@ -35,7 +37,7 @@ namespace storage
 	if (!User::Impl::equal(rhs))
 	    return false;
 
-	return spare == rhs.spare;
+	return spare == rhs.spare && faulty == rhs.faulty;
     }
 
 
@@ -47,6 +49,7 @@ namespace storage
 	User::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "spare", spare, rhs.spare);
+	storage::log_diff(log, "faulty", faulty, rhs.faulty);
     }
 
 
@@ -57,6 +60,9 @@ namespace storage
 
 	if (spare)
 	    out << " spare";
+
+	if (faulty)
+	    out << " faulty";
     }
 
 }

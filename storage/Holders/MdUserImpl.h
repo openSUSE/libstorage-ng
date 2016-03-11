@@ -17,7 +17,7 @@ namespace storage
     public:
 
 	Impl()
-	    : User::Impl(), spare(false) {}
+	    : User::Impl(), spare(false), faulty(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -35,9 +35,13 @@ namespace storage
 	bool is_spare() const { return spare; }
 	void set_spare(bool spare) { Impl::spare = spare; }
 
+	bool is_faulty() const { return faulty; }
+	void set_faulty(bool faulty) { Impl::faulty = faulty; }
+
     private:
 
 	bool spare;
+	bool faulty;
 
     };
 
