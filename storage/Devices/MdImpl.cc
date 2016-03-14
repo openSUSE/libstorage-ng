@@ -450,7 +450,48 @@ namespace storage
     void
     Md::Impl::do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const
     {
-	// TODO
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		do_reduce(blk_device);
+		break;
+
+	    case ReallotMode::EXTEND:
+		do_extend(blk_device);
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for reallot_mode"));
+	}
+    }
+
+
+    void
+    Md::Impl::do_reduce(const BlkDevice* blk_device) const
+    {
+	string cmd_line = MDADMBIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("reduce md failed"));
+
+	// Thanks to udev "md-raid-assembly.rules" running "parted <disk>
+	// print" readds the device to the md if the signature is still
+	// valid. Thus remove the signature.
+	blk_device->get_impl().wipe_device();
+    }
+
+
+    void
+    Md::Impl::do_extend(const BlkDevice* blk_device) const
+    {
+	string cmd_line = MDADMBIN " --add " + quote(get_name()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("extend md failed"));
     }
 
 

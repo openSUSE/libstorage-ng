@@ -250,6 +250,7 @@ namespace storage
     BlkDevice::Impl::wipe_device() const
     {
 	string cmd_line = WIPEFSBIN " --all " + quote(get_name());
+	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
