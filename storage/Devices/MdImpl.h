@@ -36,6 +36,7 @@ namespace storage
 	virtual void save(xmlNode* node) const override;
 
 	MdUser* add_device(BlkDevice* blk_device);
+	void remove_device(BlkDevice* blk_device);
 
 	vector<BlkDevice*> get_devices();
 	vector<const BlkDevice*> get_devices() const;
