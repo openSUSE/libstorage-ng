@@ -126,6 +126,8 @@ namespace storage
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
+	void remove_holder(Holder* holder);
+
 	void check() const;
 
 	// TODO move to Impl

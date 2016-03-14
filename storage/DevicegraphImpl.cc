@@ -244,6 +244,13 @@ namespace storage
 
 
     void
+    Devicegraph::Impl::remove_edge(edge_descriptor edge)
+    {
+	boost::remove_edge(edge, graph);
+    }
+
+
+    void
     Devicegraph::Impl::swap(Devicegraph::Impl& x)
     {
 	graph.swap(x.graph);
