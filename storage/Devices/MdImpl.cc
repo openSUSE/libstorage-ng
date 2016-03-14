@@ -138,25 +138,12 @@ namespace storage
 	    throw;
 	}
 
-	for (const string& device : entry.devices)
+	for (const ProcMdstat::Device& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
+	    BlkDevice* blk_device = BlkDevice::find(probed, device.name);
 	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_spare(false);
-	}
-
-	for (const string& device : entry.spares)
-	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_spare(true);
-	}
-
-	for (const string& device : entry.faults)
-	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_faulty(true);
+	    md_user->set_spare(device.spare);
+	    md_user->set_faulty(device.faulty);
 	}
     }
 

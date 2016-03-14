@@ -128,17 +128,19 @@ namespace storage
 	    else
 		d = normalizeDevice(tmp);
 
+	    Device device(d);
 	    if (boost::ends_with(tmp, "(S)"))
-		entry.spares.push_front(d);
+		device.spare = true;
 	    else if (boost::ends_with(tmp, "(F)"))
-		entry.faults.push_front(d);
-	    else
-		entry.devices.push_front(d);
+		device.faulty = true;
+	    entry.devices.push_back(device);
 
 	    line.erase( 0, tmp.length() );
 	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
 		line.erase( 0, pos );
 	}
+
+	sort(entry.devices.begin(), entry.devices.end());
 
 	extractNthWord(0, line2) >> entry.size_k;
 
@@ -296,10 +298,6 @@ namespace storage
 	    s << " inactive";
 
 	s << " devices:" << entry.devices;
-	if (!entry.spares.empty())
-	    s << " spares:" << entry.spares;
-	if (!entry.faults.empty())
-	    s << " faults:" << entry.faults;
 
 	if (entry.is_container)
 	    s << " is-container";
@@ -307,6 +305,20 @@ namespace storage
 	if (entry.has_container)
 	    s << " has-container container-name:" << entry.container_name << " container-member:"
 	      << entry.container_member;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const ProcMdstat::Device& device)
+    {
+	s << device.name;
+
+	if (device.spare)
+	    s << "(S)";
+	if (device.faulty)
+	    s << "(F)";
 
 	return s;
     }
