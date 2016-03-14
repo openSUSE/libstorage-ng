@@ -320,10 +320,14 @@ namespace storage
 	    {
 		action->commit(*this);
 	    }
-	    catch (const exception& e)
+	    catch (const Exception& e)
 	    {
+		ST_CAUGHT(e);
+
 		if (!commit_callbacks || !commit_callbacks->error(text, e.what()))
-		    throw;
+		    ST_RETHROW(e);
+
+		y2mil("user decides to continue after error");
 	    }
 
 	    if (commit_callbacks)
