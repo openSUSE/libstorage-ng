@@ -30,7 +30,7 @@ namespace storage
     template <typename Type> const Type* to_device_of_type(const Device* device);
 
 
-    /*
+    /**
      * We use the term "resize" for chaning the size of a non-container block
      * device, e.g. change the size of a partition or LVM logical volume.
      */
@@ -40,7 +40,7 @@ namespace storage
     };
 
 
-    /*
+    /**
      * We use the term "reallot" for reducing or extending a container, e.g. a
      * LVM volume group or a MD RAID.
      */
@@ -87,8 +87,24 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
+	/**
+	 * Add create actions for the Device.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 */
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Detect modifications to the Device and add actions as needed.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param lhs Device on the left hand side of the comparison
+	 * leading to the actiongraph.
+	 */
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
+
+	/**
+	 * Add delete actions for the Device.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 */
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
 
 	virtual bool equal(const Impl& rhs) const = 0;
@@ -147,6 +163,12 @@ namespace storage
 
     private:
 
+	/**
+	 * Detect reallot and add Action::Reallot as needed.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param lhs Device on the left hand side of the comparison
+	 * leading to the actiongraph.
+	 */
 	void add_reallot_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
 
 	static sid_t global_sid;
