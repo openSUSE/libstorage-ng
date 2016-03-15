@@ -95,12 +95,29 @@ namespace storage
 	bool exist_devicegraph(const std::string& name) const;
 	std::vector<std::string> get_devicegraph_names() const;
 
+	/**
+	 * Return a devicegraph by name.
+	 */
 	Devicegraph* get_devicegraph(const std::string& name);
+
+	/**
+	 * Return a devicegraph by name.
+	 */
 	const Devicegraph* get_devicegraph(const std::string& name) const;
 
+	/**
+	 * Return the staging devicegraph.
+	 */
 	Devicegraph* get_staging();
+
+	/**
+	 * Return the staging devicegraph.
+	 */
 	const Devicegraph* get_staging() const;
 
+	/**
+	 * Return the probed devicegraph.
+	 */
 	const Devicegraph* get_probed() const;
 
 	void check() const;

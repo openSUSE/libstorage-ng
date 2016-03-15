@@ -90,7 +90,8 @@ namespace storage
 
 	void clear();
 
-	void remove_vertex(vertex_descriptor a);
+	void remove_vertex(vertex_descriptor vertex);
+	void remove_edge(edge_descriptor edge);
 
 	boost::iterator_range<vertex_iterator> vertices() const;
 	boost::iterator_range<edge_iterator> edges() const;

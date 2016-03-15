@@ -39,6 +39,7 @@ namespace storage
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	MdUser* add_device(BlkDevice* blk_device);
+	void remove_device(BlkDevice* blk_device);
 
 	std::vector<BlkDevice*> get_devices();
 	std::vector<const BlkDevice*> get_devices() const;

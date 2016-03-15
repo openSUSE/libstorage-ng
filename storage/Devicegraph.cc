@@ -272,6 +272,13 @@ namespace storage
 
 
     void
+    Devicegraph::remove_holder(Holder* holder)
+    {
+	get_impl().remove_edge(holder->get_impl().get_edge());
+    }
+
+
+    void
     Devicegraph::check() const
     {
 	{

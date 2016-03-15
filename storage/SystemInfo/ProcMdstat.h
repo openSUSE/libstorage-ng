@@ -44,6 +44,21 @@ namespace storage
 
 	ProcMdstat();
 
+
+	struct Device
+	{
+	    Device(const string& name, bool spare, bool faulty)
+		: name(name), spare(spare), faulty(faulty) {}
+
+	    string name;
+	    bool spare;
+	    bool faulty;
+
+	    bool operator<(const Device& rhs) const { return name < rhs.name; }
+
+	};
+
+
 	struct Entry
 	{
 	    Entry() : md_level(UNKNOWN), md_parity(DEFAULT), size_k(0), chunk_size_k(0),
@@ -60,9 +75,7 @@ namespace storage
 	    bool readonly;
 	    bool inactive;
 
-	    list<string> devices;
-	    list<string> spares;
-	    list<string> faults;
+	    vector<Device> devices;
 
 	    bool is_container;
 
@@ -73,6 +86,7 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMdstat& procmdstat);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+	friend std::ostream& operator<<(std::ostream& s, const Device& device);
 
 	list<string> getEntries() const;
 

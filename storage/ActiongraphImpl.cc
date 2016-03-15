@@ -320,10 +320,14 @@ namespace storage
 	    {
 		action->commit(*this);
 	    }
-	    catch (const exception& e)
+	    catch (const Exception& e)
 	    {
+		ST_CAUGHT(e);
+
 		if (!commit_callbacks || !commit_callbacks->error(text, e.what()))
-		    throw;
+		    ST_RETHROW(e);
+
+		y2mil("user decides to continue after error");
 	    }
 
 	    if (commit_callbacks)
@@ -380,9 +384,9 @@ namespace storage
 	    const Actiongraph::Impl& actiongraph;
 	    const bool details;
 
-	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& v) const
+	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& vertex) const
 	    {
-		const Action::Base* action = actiongraph[v];
+		const Action::Base* action = actiongraph[vertex];
 
 		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
 

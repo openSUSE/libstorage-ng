@@ -81,6 +81,13 @@ namespace storage
     }
 
 
+    void
+    Md::remove_device(BlkDevice* blk_device)
+    {
+	return get_impl().remove_device(blk_device);
+    }
+
+
     vector<BlkDevice*>
     Md::get_devices()
     {

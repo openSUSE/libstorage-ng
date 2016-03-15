@@ -30,7 +30,7 @@ namespace storage
     template <typename Type> const Type* to_device_of_type(const Device* device);
 
 
-    /*
+    /**
      * We use the term "resize" for chaning the size of a non-container block
      * device, e.g. change the size of a partition or LVM logical volume.
      */
@@ -40,9 +40,9 @@ namespace storage
     };
 
 
-    /*
-     * We use the term "reallot" for adding and removing block devices from a
-     * container, e.g. a LVM volume group or a MD RAID.
+    /**
+     * We use the term "reallot" for reducing or extending a container, e.g. a
+     * LVM volume group or a MD RAID.
      */
     enum class ReallotMode
     {
@@ -87,8 +87,24 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
+	/**
+	 * Add create actions for the Device.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 */
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Detect modifications to the Device and add actions as needed.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param lhs Device on the left hand side of the comparison
+	 * leading to the actiongraph.
+	 */
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
+
+	/**
+	 * Add delete actions for the Device.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 */
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
 
 	virtual bool equal(const Impl& rhs) const = 0;
@@ -104,6 +120,10 @@ namespace storage
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
 	virtual void do_resize(ResizeMode resize_mode) const;
+
+	virtual Text do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device,
+				     Tense tense) const;
+	virtual void do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const;
 
 	size_t num_children() const;
 	size_t num_parents() const;
@@ -143,6 +163,14 @@ namespace storage
 
     private:
 
+	/**
+	 * Detect reallot and add Action::Reallot as needed.
+	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param lhs Device on the left hand side of the comparison
+	 * leading to the actiongraph.
+	 */
+	void add_reallot_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
+
 	static sid_t global_sid;
 
 	sid_t sid;
@@ -168,6 +196,26 @@ namespace storage
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const ResizeMode resize_mode;
+
+	};
+
+
+	class Reallot : public Modify
+	{
+	public:
+
+	    Reallot(sid_t sid, ReallotMode reallot_mode, const BlkDevice* blk_device)
+		: Modify(sid), reallot_mode(reallot_mode), blk_device(blk_device) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    const ReallotMode reallot_mode;
+
+	    /**
+	     * The block device for addition or removal.
+	     */
+	    const BlkDevice* blk_device;
 
 	};
 

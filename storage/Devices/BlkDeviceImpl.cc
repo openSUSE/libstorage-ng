@@ -116,6 +116,8 @@ namespace storage
     void
     BlkDevice::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
+	Device::Impl::add_modify_actions(actiongraph, lhs_base);
+
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
 	if (get_size_k() != lhs.get_size_k())
@@ -248,6 +250,7 @@ namespace storage
     BlkDevice::Impl::wipe_device() const
     {
 	string cmd_line = WIPEFSBIN " --all " + quote(get_name());
+	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

@@ -138,25 +138,12 @@ namespace storage
 	    throw;
 	}
 
-	for (const string& device : entry.devices)
+	for (const ProcMdstat::Device& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
+	    BlkDevice* blk_device = BlkDevice::find(probed, device.name);
 	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_spare(false);
-	}
-
-	for (const string& device : entry.spares)
-	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_spare(true);
-	}
-
-	for (const string& device : entry.faults)
-	{
-	    BlkDevice* blk_device = BlkDevice::find(probed, device);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
-	    md_user->set_faulty(true);
+	    md_user->set_spare(device.spare);
+	    md_user->set_faulty(device.faulty);
 	}
     }
 
@@ -208,6 +195,17 @@ namespace storage
 	// TODO set partition id?
 
 	return MdUser::create(get_devicegraph(), blk_device, get_device());
+    }
+
+
+    void
+    Md::Impl::remove_device(BlkDevice* blk_device)
+    {
+	MdUser* md_user = to_md_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
+
+	get_devicegraph()->remove_holder(md_user);
+
+	// TODO calculate size_k
     }
 
 
@@ -407,6 +405,92 @@ namespace storage
     Md::Impl::do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const
     {
 	// TODO
+    }
+
+
+    Text
+    Md::Impl::do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device, Tense tense) const
+    {
+	Text text;
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Remove %1$s from %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Removing %1$s from %2$s"));
+		break;
+
+	    case ReallotMode::EXTEND:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Add %1$s to %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by device name (e.g. /dev/md0)
+			      _("Adding %1$s to %2$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for reallot_mode"));
+	}
+
+	return sformat(text, blk_device->get_name().c_str(), get_displayname().c_str());
+    }
+
+
+    void
+    Md::Impl::do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const
+    {
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		do_reduce(blk_device);
+		return;
+
+	    case ReallotMode::EXTEND:
+		do_extend(blk_device);
+		return;
+	}
+
+	ST_THROW(LogicException("invalid value for reallot_mode"));
+    }
+
+
+    void
+    Md::Impl::do_reduce(const BlkDevice* blk_device) const
+    {
+	string cmd_line = MDADMBIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("reduce md failed"));
+
+	// Thanks to udev "md-raid-assembly.rules" running "parted <disk>
+	// print" readds the device to the md if the signature is still
+	// valid. Thus remove the signature.
+	blk_device->get_impl().wipe_device();
+    }
+
+
+    void
+    Md::Impl::do_extend(const BlkDevice* blk_device) const
+    {
+	string cmd_line = MDADMBIN " --add " + quote(get_name()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("extend md failed"));
     }
 
 
