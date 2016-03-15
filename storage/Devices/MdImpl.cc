@@ -454,15 +454,14 @@ namespace storage
 	{
 	    case ReallotMode::REDUCE:
 		do_reduce(blk_device);
-		break;
+		return;
 
 	    case ReallotMode::EXTEND:
 		do_extend(blk_device);
-		break;
-
-	    default:
-		ST_THROW(LogicException("invalid value for reallot_mode"));
+		return;
 	}
+
+	ST_THROW(LogicException("invalid value for reallot_mode"));
     }
 
 
