@@ -12,9 +12,10 @@ Requirements
 
 Some required tools for compiling and testing libstorage-ng are:
 
-gcc-c++, boost-devel, libxml2-devel, libtool, swig >= 3.0.3 and != 3.0.8,
+gcc-c++, boost-devel, libxml2-devel, libtool, swig >= 3.0.3 and != 3.0.8
+(from [YaST:storage-ng](https://build.opensuse.org/project/show/YaST:storage-ng)),
 doxygen, python-devel, ruby, ruby-devel, perl, perl-Test-Exception,
-perl-Test-Unit
+perl-Test-Unit, rubygem-test-unit
 
 Compiling
 ---------
@@ -28,7 +29,8 @@ Running Unit Tests
 ------------------
 
 ```sh
-make -j$(nproc) check
+make -j$(nproc) install DESTDIR=/tmp/scratch
+make -j$(nproc) check LOCALEDIR=/tmp/scratch/usr/share/locale
 ```
 
 Making an RPM
