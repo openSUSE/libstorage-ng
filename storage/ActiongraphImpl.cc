@@ -384,9 +384,9 @@ namespace storage
 	    const Actiongraph::Impl& actiongraph;
 	    const bool details;
 
-	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& v) const
+	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& vertex) const
 	    {
-		const Action::Base* action = actiongraph[v];
+		const Action::Base* action = actiongraph[vertex];
 
 		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
 

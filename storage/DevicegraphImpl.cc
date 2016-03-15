@@ -585,9 +585,9 @@ namespace storage
 	    const Devicegraph::Impl& devicegraph;
 	    const bool details;
 
-	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& v) const
+	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& vertex) const
 	    {
-		const Device* device = devicegraph[v];
+		const Device* device = devicegraph[vertex];
 
 		string label = device->get_displayname();
 
@@ -628,9 +628,9 @@ namespace storage
 
 	    const Devicegraph::Impl& devicegraph;
 
-	    void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& e) const
+	    void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& edge) const
 	    {
-		const Holder* holder = devicegraph[e];
+		const Holder* holder = devicegraph[edge];
 
 		if (is_subdevice(holder))
 		{
