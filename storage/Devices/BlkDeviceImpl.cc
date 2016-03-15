@@ -1,5 +1,7 @@
 
 
+#include <iostream>
+
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
