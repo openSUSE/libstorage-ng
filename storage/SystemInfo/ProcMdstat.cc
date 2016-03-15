@@ -128,12 +128,10 @@ namespace storage
 	    else
 		d = normalizeDevice(tmp);
 
-	    Device device(d);
-	    if (boost::ends_with(tmp, "(S)"))
-		device.spare = true;
-	    else if (boost::ends_with(tmp, "(F)"))
-		device.faulty = true;
-	    entry.devices.push_back(device);
+	    bool is_spare = boost::ends_with(tmp, "(S)");
+	    bool is_faulty = boost::ends_with(tmp, "(F)");
+
+	    entry.devices.emplace_back(d, is_spare, is_faulty);
 
 	    line.erase( 0, tmp.length() );
 	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )

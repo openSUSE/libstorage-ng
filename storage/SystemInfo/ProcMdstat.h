@@ -47,7 +47,8 @@ namespace storage
 
 	struct Device
 	{
-	    Device(const string& name) : name(name), spare(false), faulty(false) {}
+	    Device(const string& name, bool spare, bool faulty)
+		: name(name), spare(spare), faulty(faulty) {}
 
 	    string name;
 	    bool spare;
