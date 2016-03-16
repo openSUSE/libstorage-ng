@@ -66,9 +66,9 @@ namespace storage
 
 
     void
-    Actiongraph::write_graphviz(const string& filename, bool details) const
+    Actiongraph::write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const
     {
-	get_impl().write_graphviz(filename, details);
+	get_impl().write_graphviz(filename, graphviz_flags);
     }
 
 }

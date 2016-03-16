@@ -6,6 +6,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Devices/Device.h"
+#include "storage/Graphviz.h"
 
 
 namespace storage
@@ -133,7 +134,8 @@ namespace storage
 	// TODO move to Impl
 	void copy(Devicegraph& dest) const;
 
-	void write_graphviz(const std::string& filename) const;
+	void write_graphviz(const std::string& filename, GraphvizFlags graphviz_flags =
+			    GraphvizFlags::NONE) const;
 
 	friend std::ostream& operator<<(std::ostream& out, const Devicegraph& devicegraph);
 

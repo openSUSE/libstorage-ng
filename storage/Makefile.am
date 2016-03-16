@@ -16,6 +16,7 @@ libstorage_ng_la_SOURCES =				\
 	Action.h		Action.cc		\
 	Actiongraph.h		Actiongraph.cc		\
 	ActiongraphImpl.h	ActiongraphImpl.cc	\
+	Graphviz.h		Graphviz.cc		\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
 	Geometry.h		Geometry.cc		\
@@ -39,6 +40,7 @@ pkginclude_HEADERS =		\
 	StorageVersion.h	\
 	Devicegraph.h		\
 	Actiongraph.h		\
+	Graphviz.h		\
 	Geometry.h		\
 	FreeInfo.h
 

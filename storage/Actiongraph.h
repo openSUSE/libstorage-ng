@@ -6,6 +6,8 @@
 #include <vector>
 #include <boost/noncopyable.hpp>
 
+#include "storage/Graphviz.h"
+
 
 namespace storage
 {
@@ -36,7 +38,8 @@ namespace storage
 	const Devicegraph* get_devicegraph(Side side) const;
 
 	void print_graph() const;
-	void write_graphviz(const std::string& filename, bool details = false) const;
+	void write_graphviz(const std::string& filename, GraphvizFlags flags =
+			    GraphvizFlags::NONE) const;
 
 	bool empty() const;
 
