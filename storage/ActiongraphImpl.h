@@ -76,7 +76,7 @@ namespace storage
 	const Action::Base* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
 
 	void print_graph() const;
-	void write_graphviz(const string& filename, bool details = false) const;
+	void write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const;
 
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;

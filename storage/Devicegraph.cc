@@ -385,9 +385,9 @@ namespace storage
 
 
     void
-    Devicegraph::write_graphviz(const string& filename) const
+    Devicegraph::write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const
     {
-	get_impl().write_graphviz(filename);
+	get_impl().write_graphviz(filename, graphviz_flags);
     }
 
 }

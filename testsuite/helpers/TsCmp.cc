@@ -74,7 +74,7 @@ namespace storage
 	    storage.get_staging()->write_graphviz(name + "-staging.gv");
 	    system(("dot -Tpng < " + name + "-staging.gv > " + name + "-staging.png").c_str());
 
-	    actiongraph.write_graphviz(name + "-action.gv", true);
+	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID);
 	    system(("dot -Tpng < " + name + "-action.gv > " + name + "-action.png").c_str());
 	}
 

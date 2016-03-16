@@ -76,5 +76,5 @@ main()
 
     lhs->write_graphviz("compare3-device-lhs.gv");
     rhs->write_graphviz("compare3-device-rhs.gv");
-    actiongraph.write_graphviz("compare3-action.gv", true);
+    actiongraph.write_graphviz("compare3-action.gv", GraphvizFlags::SID);
 }

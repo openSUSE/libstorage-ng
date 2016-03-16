@@ -42,7 +42,8 @@ doit()
     {
 	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
-	probed->write_graphviz(tmp_dir.get_fullname() + "/probe1.gv");
+	probed->write_graphviz(tmp_dir.get_fullname() + "/probe1.gv", GraphvizFlags::CLASSNAME |
+			       GraphvizFlags::SID | GraphvizFlags::SIZE);
 	system(string("dot -Tpng < " + quote(tmp_dir.get_fullname() + "/probe1.gv") + " > " +
 		      quote(tmp_dir.get_fullname() + "/probe1.png")).c_str());
 	unlink(string(tmp_dir.get_fullname() + "/probe1.gv").c_str());

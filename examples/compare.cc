@@ -25,7 +25,7 @@ main()
     lhs->load("compare-probed.xml");
     if (false)
     {
-	lhs->get_impl().write_graphviz("compare-probed.gv", true);
+	lhs->get_impl().write_graphviz("compare-probed.gv", GraphvizFlags::SID);
 	system("dot -Tpng < compare-probed.gv > compare-probed.png");
 	system("display compare-probed.png");
     }
@@ -35,7 +35,7 @@ main()
     rhs->load("compare-staging.xml");
     if (false)
     {
-	rhs->get_impl().write_graphviz("compare-staging.gv", true);
+	rhs->get_impl().write_graphviz("compare-staging.gv", GraphvizFlags::SID);
 	system("dot -Tpng < compare-staging.gv > compare-staging.png");
 	system("display compare-staging.png");
     }
@@ -44,7 +44,7 @@ main()
     Actiongraph actiongraph(storage, lhs, rhs);
     if (true)
     {
-	actiongraph.write_graphviz("compare-action.gv", true);
+	actiongraph.write_graphviz("compare-action.gv", GraphvizFlags::SID);
 	system("dot -Tpng < compare-action.gv > compare-action.png");
 	system("display compare-action.png");
     }

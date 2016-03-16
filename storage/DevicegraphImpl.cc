@@ -10,6 +10,7 @@
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
@@ -579,21 +580,39 @@ namespace storage
 
 	struct write_vertex
 	{
-	    write_vertex(const Devicegraph::Impl& devicegraph, bool details)
-		: devicegraph(devicegraph), details(details) {}
+	    write_vertex(const Devicegraph::Impl& devicegraph, GraphvizFlags graphviz_flags)
+		: devicegraph(devicegraph), graphviz_flags(graphviz_flags) {}
 
 	    const Devicegraph::Impl& devicegraph;
-	    const bool details;
+	    const GraphvizFlags graphviz_flags;
 
 	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& vertex) const
 	    {
 		const Device* device = devicegraph[vertex];
 
 		string label = device->get_displayname();
+		string tooltip = device->get_displayname();
 
-		if (details)
+		string& extra = (graphviz_flags && GraphvizFlags::TOOLTIP) ? tooltip : label;
+
+		if (graphviz_flags && GraphvizFlags::CLASSNAME)
 		{
-		    label += "\\n" "sid:" + to_string(device->get_sid());
+		    extra += "\\n" + string(device->get_impl().get_classname());
+		}
+
+		if (graphviz_flags && GraphvizFlags::SID)
+		{
+		    extra += "\\n" "sid:" + to_string(device->get_sid());
+		}
+
+		if (graphviz_flags && GraphvizFlags::SIZE)
+		{
+		    if (is_blk_device(device))
+		    {
+			const BlkDevice* blk_device = to_blk_device(device);
+			extra += "\\n" + byte_to_humanstring(1024 * blk_device->get_size_k(),
+							     false, 2, false);
+		    }
 		}
 
 		out << "[ label=" << boost::escape_dot_string(label);
@@ -616,6 +635,11 @@ namespace storage
 		    out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 		else
 		    ST_THROW(LogicException("unknown Device subclass"));
+
+		if (graphviz_flags && GraphvizFlags::TOOLTIP)
+		{
+		    out << ", tooltip=" << boost::escape_dot_string(tooltip);
+		}
 
 		out << " ]";
 	    }
@@ -659,7 +683,7 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::write_graphviz(const string& filename, bool details) const
+    Devicegraph::Impl::write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const
     {
 	ofstream fout(filename);
 
@@ -678,7 +702,7 @@ namespace storage
 
 	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
 
-	boost::write_graphviz(fout, graph, write_vertex(*this, details), write_edge(*this),
+	boost::write_graphviz(fout, graph, write_vertex(*this, graphviz_flags), write_edge(*this),
 			      write_graph(*this), vertex_index_map_generator.get());
 
 	fout.close();

@@ -47,5 +47,5 @@ main()
 
     Actiongraph actiongraph(storage, lhs, rhs);
 
-    actiongraph.write_graphviz("compare1-action.gv", true);
+    actiongraph.write_graphviz("compare1-action.gv", GraphvizFlags::SID);
 }
