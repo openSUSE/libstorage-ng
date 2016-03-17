@@ -5,14 +5,17 @@
 
 require "packaging/tasks"
 require "packaging/configuration"
-# skip 'tarball' task, it's redefined here
-Packaging::Tasks.load_tasks(:exclude => ["tarball.rake"])
+# skip 'tarball' task because it's redefined here and 'check:changelog' task
+# because it makes no sense at this stage of the development
+Packaging::Tasks.load_tasks(:exclude => ["tarball.rake", "check_changelog.rake"])
+Rake::Task["package"].prerequisites.delete("check:changelog")
 
 require "yast/tasks"
 Yast::Tasks.submit_to(ENV.fetch("YAST_SUBMIT", "factory").to_sym)
 
 Packaging.configuration do |conf|
   conf.package_dir    = ".obsdir" # Makefile.ci puts it there
+  # FIXME: we should not skip .c and .h files from the license check
   conf.skip_license_check << /.*/
   conf.package_name = "libstorage-ng"
   # The package does not live in the official YaST:Head OBS project
