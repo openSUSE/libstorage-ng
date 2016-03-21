@@ -34,7 +34,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "5 - Create logical volume /dev/system/swap (2.00 GiB) ->" }
     });
 
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
