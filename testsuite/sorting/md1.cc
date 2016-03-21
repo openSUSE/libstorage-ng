@@ -30,7 +30,7 @@ namespace std
 
 BOOST_AUTO_TEST_CASE(md_sorting1)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 

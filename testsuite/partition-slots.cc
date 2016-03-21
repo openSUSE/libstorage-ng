@@ -20,7 +20,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(test_msdos1)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
 BOOST_AUTO_TEST_CASE(test_msdos2)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -117,7 +117,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
 BOOST_AUTO_TEST_CASE(test_msdos3)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -152,7 +152,7 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
 
 BOOST_AUTO_TEST_CASE(test_gpt1)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 

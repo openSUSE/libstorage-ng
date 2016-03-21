@@ -20,7 +20,7 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(test_set_region)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(test_set_region)
 
 BOOST_AUTO_TEST_CASE(test_set_size_k)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 

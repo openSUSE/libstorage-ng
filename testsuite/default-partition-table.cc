@@ -30,7 +30,7 @@ namespace std
 
 BOOST_AUTO_TEST_CASE(test1)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test1)
 
 BOOST_AUTO_TEST_CASE(test2)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
 
@@ -65,7 +65,7 @@ BOOST_AUTO_TEST_CASE(test2)
 
 BOOST_AUTO_TEST_CASE(test3)
 {
-    storage::Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
     storage.get_impl().get_arch().set_efiboot(true);
