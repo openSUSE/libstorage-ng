@@ -8,6 +8,11 @@ start/end are a bit 'fuzzy'. For example:
  - 'parted p ext2 1% 2%' will give nicely aligned partitions; so does
  - 'parted p ext2 1MB 2MB'. But the supposedly more correct
  - 'parted p ext2 1MiB 2MiB' will **not** do what you (well, at least I did) expect. The partition size will be 1 MiB + 1 sector.
+
+- to get exact partition locations, use `sector` units
+
+- parted has an `--align` option controlling the partition alignment strategy;
+this document describes the `'optimal'` setting (default); to turn alignment off completely, use `'none'`
  
 - parted does **not** align to cylinder sizes
 
@@ -28,8 +33,8 @@ _This seems to be inconsistent to me. 1MiB * 'usable disks' would be more logica
 
 ### setup using mdadm
 
-	mdadm --create /dev/md0 -R -l 0 -c 32 -n 3 /dev/sdb /dev/sdc /dev/sdd
-	# raid 0, 32k chunks, 3 disks
+	mdadm --create /dev/md0 --run --level=0 --chunk=32 --raid-devices=3 /dev/sdb /dev/sdc /dev/sdd
+	# raid 0, 32k chunks, 3 disks, --run is there to skip confirmation questions
 	# mdadm --detail /dev/md0
 	mdadm --stop /dev/md0
 
