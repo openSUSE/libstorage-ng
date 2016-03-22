@@ -10,6 +10,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 
 
@@ -18,32 +20,36 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dynamic)
 {
-    Devicegraph devicegraph;
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
-    Disk* sda = Disk::create(&devicegraph, "/dev/sda");
+    Storage storage(environment);
 
-    Partition* sda1 = Partition::create(&devicegraph, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
-    Subdevice::create(&devicegraph, sda, sda1);
+    Devicegraph* devicegraph = storage.get_staging();
 
-    LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
-    User::create(&devicegraph, sda1, system);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    LvmLv* root = LvmLv::create(&devicegraph, "/dev/system/root");
-    Subdevice::create(&devicegraph, system, root);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
+    Subdevice::create(devicegraph, sda, sda1);
 
-    BOOST_CHECK_EQUAL(devicegraph.num_devices(), 4);
-    BOOST_CHECK_EQUAL(devicegraph.num_holders(), 3);
+    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    User::create(devicegraph, sda1, system);
 
-    BOOST_CHECK(dynamic_cast<const Disk*>(devicegraph.find_device(sda->get_sid())));
+    LvmLv* root = LvmLv::create(devicegraph, "/dev/system/root");
+    Subdevice::create(devicegraph, system, root);
 
-    BOOST_CHECK(dynamic_cast<const Partition*>(devicegraph.find_device(sda1->get_sid())));
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph.find_holder(sda->get_sid(), sda1->get_sid())));
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 4);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 3);
 
-    BOOST_CHECK(dynamic_cast<const LvmVg*>(devicegraph.find_device(system->get_sid())));
-    BOOST_CHECK(dynamic_cast<const User*>(devicegraph.find_holder(sda1->get_sid(), system->get_sid())));
+    BOOST_CHECK(dynamic_cast<const Disk*>(devicegraph->find_device(sda->get_sid())));
 
-    BOOST_CHECK(dynamic_cast<const LvmLv*>(devicegraph.find_device(root->get_sid())));
-    BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph.find_holder(system->get_sid(), root->get_sid())));
+    BOOST_CHECK(dynamic_cast<const Partition*>(devicegraph->find_device(sda1->get_sid())));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph->find_holder(sda->get_sid(), sda1->get_sid())));
+
+    BOOST_CHECK(dynamic_cast<const LvmVg*>(devicegraph->find_device(system->get_sid())));
+    BOOST_CHECK(dynamic_cast<const User*>(devicegraph->find_holder(sda1->get_sid(), system->get_sid())));
+
+    BOOST_CHECK(dynamic_cast<const LvmLv*>(devicegraph->find_device(root->get_sid())));
+    BOOST_CHECK(dynamic_cast<const Subdevice*>(devicegraph->find_holder(system->get_sid(), root->get_sid())));
 
     {
 	Device* tmp = sda;

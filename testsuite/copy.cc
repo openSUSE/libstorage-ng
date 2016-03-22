@@ -14,15 +14,21 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 
 
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(dependencies)
+BOOST_AUTO_TEST_CASE(copy)
 {
-    Devicegraph* devicegraph = new Devicegraph();
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
@@ -45,14 +51,10 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     devicegraph->check();
 
-    Devicegraph* devicegraph_copy = new Devicegraph();
-    devicegraph->copy(*devicegraph_copy);
+    Devicegraph* devicegraph_copy = storage.copy_devicegraph("staging", "copy");
 
     BOOST_CHECK_EQUAL(devicegraph_copy->num_devices(), 8);
     BOOST_CHECK_EQUAL(devicegraph_copy->num_holders(), 2);
 
     devicegraph_copy->check();
-
-    delete devicegraph;
-    delete devicegraph_copy;
 }

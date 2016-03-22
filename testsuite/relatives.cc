@@ -14,6 +14,8 @@
 #include "storage/Devices/Swap.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/Devicegraph.h"
 
 
@@ -46,7 +48,11 @@ namespace std
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
-    Devicegraph* devicegraph = new Devicegraph();
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
@@ -100,6 +106,4 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     BOOST_CHECK_EQUAL(sort(sda1->get_roots(false)), sort({ sda }));
     BOOST_CHECK_EQUAL(sort(system_swap->get_roots(false)), sort({ sda, sdb }));
-
-    delete devicegraph;
 }
