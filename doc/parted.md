@@ -66,11 +66,45 @@ _This seems to be inconsistent to me. 1MiB * 'usable disks' would be more logica
 
   - n/2 * chunksize or 1MiB
 
+## Reading Alignment For Existing Devices
+
+### sysfs
+
+*[all values are in bytes]*
+
+- /sys/block/<DEVICE>/alignment_offset
+
+	Normally 0; this is for 4k disks that emulate 512 byte sectors but misalign them so
+	that a Windows partition starting with block 63 is perfectly aligned.
+	*(Hopefully such things are no longer around.)*
+
+	You should align at alignment_offset/sector_size.
+
+- /sys/block/<DEVICE>/queue/minimum_io_size
+
+	For disks, the underlying block size (512 bytes or 4k), for raid, the chunk size.
+
+- /sys/block/<DEVICE>/queue/optimal_io_size
+
+	Normally 0. But for raid this is the chunksize * 'usable disks' as explained above.
+
+### libblkid
+
+- blkid_topology_get_alignment_offset()
+
+- blkid_topology_get_minimum_io_size()
+
+- blkid_topology_get_optimal_io_size()
+
+These functions provide the values from sysfs explained above.
+
+For parted's strategy look at `libparted/arch/linux.c::linux_get_optimum_alignment()`.
+
 
 ## Conclusion
 
 Letting parted decide on the exact partition sizes seems to be prone to
 achive unpredictable results. It might be better to deal with it inside
-libstorage.
+libstorage. As shown, aligning partitions is no rocket science. :-)
 
 
