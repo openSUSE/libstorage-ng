@@ -24,8 +24,14 @@
 #define STORAGE_OUTPUT_PROCESSOR_H
 
 
+#include <string>
+
+
 namespace storage
 {
+
+    using namespace std;
+
 
     class OutputProcessor
     {
