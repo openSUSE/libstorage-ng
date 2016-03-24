@@ -37,9 +37,9 @@ BOOST_AUTO_TEST_CASE(md_sorting1)
     Devicegraph* staging = storage.get_staging();
 
     Md* md0 = Md::create(staging, "/dev/md0");
-    Md* md1 =  Md::create(staging, "/dev/md1");
-    Md* md10 =  Md::create(staging, "/dev/md10");
-    Md* md2 =  Md::create(staging, "/dev/md2");
+    Md* md1 = Md::create(staging, "/dev/md1");
+    Md* md10 = Md::create(staging, "/dev/md10");
+    Md* md2 = Md::create(staging, "/dev/md2");
 
     BOOST_CHECK_EQUAL(staging->get_all_mds(), vector<Md*>({ md0, md1, md2, md10 }));
 }
