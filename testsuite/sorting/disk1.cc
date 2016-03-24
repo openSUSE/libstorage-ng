@@ -37,12 +37,12 @@ BOOST_AUTO_TEST_CASE(disk_sorting1)
     Devicegraph* staging = storage.get_staging();
 
     Disk* sda = Disk::create(staging, "/dev/sda");
-    Disk* sdz =  Disk::create(staging, "/dev/sdz");
-    Disk* sdaa =  Disk::create(staging, "/dev/sdaa");
+    Disk* sdz = Disk::create(staging, "/dev/sdz");
+    Disk* sdaa = Disk::create(staging, "/dev/sdaa");
 
     Disk* vda = Disk::create(staging, "/dev/vda");
-    Disk* vdb =  Disk::create(staging, "/dev/vdb");
-    Disk* vdaa =  Disk::create(staging, "/dev/vdaa");
+    Disk* vdb = Disk::create(staging, "/dev/vdb");
+    Disk* vdaa = Disk::create(staging, "/dev/vdaa");
 
     BOOST_CHECK_EQUAL(staging->get_all_disks(), vector<Disk*>({ sda, sdz, sdaa, vda, vdb, vdaa }));
 }

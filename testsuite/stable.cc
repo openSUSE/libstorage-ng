@@ -7,6 +7,8 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
 #include "storage/DevicegraphImpl.h"
 
 
@@ -15,7 +17,11 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(valid)
 {
-    Devicegraph* devicegraph = new Devicegraph();
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
@@ -52,6 +58,4 @@ BOOST_AUTO_TEST_CASE(valid)
     BOOST_CHECK_EXCEPTION(BlkDevice::find(devicegraph, "/dev/sda1"), DeviceNotFound,
 	[](const DeviceNotFound& e) { return strcmp(e.what(), "device not found, name:/dev/sda1") == 0;
     });
-
-    delete devicegraph;
 }
