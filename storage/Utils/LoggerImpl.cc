@@ -53,7 +53,7 @@ namespace storage
 	    string::size_type pos1 = 0;
 	    while (true)
 	    {
-		string::size_type pos2 = content.find('\n', pos1);;
+		string::size_type pos2 = content.find('\n', pos1);
 		if (pos2 != string::npos || pos1 != content.length())
 		    logger->write(log_level, component, file, line, func,
 				  content.substr(pos1, pos2 - pos1));
