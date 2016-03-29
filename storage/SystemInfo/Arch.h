@@ -24,7 +24,8 @@
 #define STORAGE_ARCH_H
 
 
-#include "storage/Utils/XmlFile.h"
+#include <libxml/tree.h>
+#include <string>
 
 
 namespace storage
@@ -39,8 +40,8 @@ namespace storage
 	void readData(const xmlNode* node);
 	void saveData(xmlNode* node) const;
 
-	const string& get_arch() const { return arch; }
-	void set_arch(const string& arch) { Arch::arch = arch; }
+	const std::string& get_arch() const { return arch; }
+	void set_arch(const std::string& arch) { Arch::arch = arch; }
 
 	bool is_ia64() const;
 	bool is_ppc() const;
@@ -61,7 +62,7 @@ namespace storage
 
 	void probe();
 
-	string arch;
+	std::string arch;
 	bool ppc_mac;
 	bool ppc_pegasos;
 	bool efiboot;

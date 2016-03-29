@@ -18,6 +18,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
