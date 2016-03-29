@@ -71,19 +71,19 @@ namespace storage
 	if (is_ppc())
 	{
 	    AsciiFile cpuinfo("/proc/cpuinfo");
-	    vector<string>::const_iterator it = find_if(cpuinfo.lines(), string_starts_with("machine\t"));
+	    vector<std::string>::const_iterator it = find_if(cpuinfo.lines(), string_starts_with("machine\t"));
 	    if (it != cpuinfo.lines().end())
 	    {
 		y2mil("line:" << *it);
 
-		string tmp1 = extractNthWord(2, *it);
+		std::string tmp1 = extractNthWord(2, *it);
 		y2mil("tmp1:" << tmp1);
 		ppc_mac = boost::starts_with(tmp1, "PowerMac") || boost::starts_with(tmp1, "PowerBook");
 		ppc_pegasos = boost::starts_with(tmp1, "EFIKA5K2");
 
 		if (!ppc_mac && !ppc_pegasos)
 		{
-		    string tmp2 = extractNthWord(3, *it);
+		    std::string tmp2 = extractNthWord(3, *it);
 		    y2mil("tmp2:" << tmp2);
 		    ppc_pegasos = boost::starts_with(tmp2, "Pegasos");
 		}
@@ -103,7 +103,7 @@ namespace storage
 	const char* tenv = getenv("LIBSTORAGE_EFI");
 	if (tenv)
 	{
-	    efiboot = string(tenv) == "yes";
+	    efiboot = std::string(tenv) == "yes";
 	}
 
 	y2mil(*this);

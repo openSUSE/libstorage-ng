@@ -60,6 +60,8 @@
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 
+#include "storage/SystemInfo/Arch.h"
+
 #include "storage/Graphviz.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -103,6 +105,8 @@
 %include "../../storage/Holders/Subdevice.h"
 %include "../../storage/Holders/User.h"
 %include "../../storage/Holders/MdUser.h"
+
+%include "../../storage/SystemInfo/Arch.h"
 
 %include "../../storage/Graphviz.h"
 %include "../../storage/Devicegraph.h"

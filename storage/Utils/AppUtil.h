@@ -34,6 +34,7 @@
 #include <map>
 #include <chrono>
 
+#undef _
 
 namespace storage
 {
