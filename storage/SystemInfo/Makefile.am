@@ -23,5 +23,7 @@ libsysteminfo_la_SOURCES =				\
 	ProcMounts.cc		ProcMounts.h		\
 	ProcParts.cc		ProcParts.h
 
+pkgincludedir = $(includedir)/storage/SystemInfo
+
 pkginclude_HEADERS =		\
 	Arch.h
