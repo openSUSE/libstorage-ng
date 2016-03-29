@@ -75,7 +75,7 @@ namespace storage
 
 	string rootprefix;
 
-	unique_ptr<const Actiongraph> actiongraph;
+	std::unique_ptr<const Actiongraph> actiongraph;
 
 	TmpDir tmp_dir;
 

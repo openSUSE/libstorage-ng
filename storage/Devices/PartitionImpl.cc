@@ -12,6 +12,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage

@@ -5,6 +5,7 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionableImpl.h"
+#include "storage/Geometry.h"
 
 
 namespace storage

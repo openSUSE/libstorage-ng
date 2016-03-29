@@ -26,6 +26,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage

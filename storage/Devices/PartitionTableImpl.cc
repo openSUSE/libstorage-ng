@@ -7,6 +7,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
