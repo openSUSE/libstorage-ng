@@ -23,3 +23,5 @@ libsysteminfo_la_SOURCES =				\
 	ProcMounts.cc		ProcMounts.h		\
 	ProcParts.cc		ProcParts.h
 
+pkginclude_HEADERS =		\
+	Arch.h
