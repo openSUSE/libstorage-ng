@@ -26,7 +26,6 @@
 
 #include <libxml/tree.h>
 #include <string>
-#include <list>
 
 
 namespace storage
