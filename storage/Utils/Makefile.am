@@ -20,6 +20,8 @@ libutils_la_SOURCES =					\
 	Regex.cc 		Regex.h			\
 	Region.cc 		Region.h		\
 	RegionImpl.cc 		RegionImpl.h		\
+	Topology.cc		Topology.h		\
+	TopologyImpl.cc		TopologyImpl.h		\
 	StorageTmpl.h					\
 	StorageTypes.h					\
 	SystemCmd.cc		SystemCmd.h		\
@@ -41,5 +43,6 @@ pkginclude_HEADERS =		\
 	Exception.h		\
 	HumanString.h		\
 	Region.h		\
+	Topology.h		\
 	Remote.h
 

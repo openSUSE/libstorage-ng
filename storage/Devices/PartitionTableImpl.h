@@ -62,6 +62,8 @@ namespace storage
 
 	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
 
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
+
     protected:
 
 	Impl()
