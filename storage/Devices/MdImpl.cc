@@ -45,6 +45,18 @@ namespace storage
     });
 
 
+    Md::Impl::Impl(const string& name)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
+    {
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Md name"));
+
+	string::size_type pos = string(DEVDIR).size() + 1;
+	set_sysfs_name(name.substr(pos));
+	set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
+    }
+
+
     Md::Impl::Impl(const xmlNode* node)
 	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
     {
@@ -63,18 +75,18 @@ namespace storage
     void
     Md::Impl::set_md_level(MdLevel md_level)
     {
-	// TODO calculate size_k
-
 	Impl::md_level = md_level;
+
+	calculate_region_and_topology();
     }
 
 
     void
     Md::Impl::set_chunk_size_k(unsigned long chunk_size_k)
     {
-	// TODO calculate size_k
-
 	Impl::chunk_size_k = chunk_size_k;
+
+	calculate_region_and_topology();
     }
 
 
@@ -191,11 +203,13 @@ namespace storage
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
-	// TODO calculate size_k
-
 	// TODO set partition id?
 
-	return MdUser::create(get_devicegraph(), blk_device, get_device());
+	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_device());
+
+	calculate_region_and_topology();
+
+	return md_user;
     }
 
 
@@ -206,7 +220,7 @@ namespace storage
 
 	get_devicegraph()->remove_holder(md_user);
 
-	// TODO calculate size_k
+	calculate_region_and_topology();
     }
 
 
@@ -291,6 +305,91 @@ namespace storage
     }
 
 
+    void
+    Md::Impl::calculate_region_and_topology()
+    {
+	vector<BlkDevice*> devices = get_devices();
+
+	int number = 0;
+	unsigned long long sum_k = 0;
+	unsigned long long smallest_k = std::numeric_limits<unsigned long long>::max();
+
+	unsigned long size_metadata_k = 4;
+
+	// TODO
+	long ch_k = 512;
+	if (md_level == RAID1)
+	    ch_k = 1;
+
+	for (const BlkDevice* device : devices)
+	{
+	    // TODO handle spare
+
+	    unsigned long long tmp_k = device->get_size_k() - size_metadata_k;
+
+	    long rest = tmp_k % ch_k;
+	    if (rest > 0)
+		tmp_k -= rest;
+
+	    number++;
+	    sum_k += tmp_k;
+	    smallest_k = min(smallest_k, tmp_k);
+	}
+
+	unsigned long long size_k = 0;
+	long optimal_io_size = 0;
+
+	switch (md_level)
+	{
+	    case RAID0:
+		if (number >= 2)
+		{
+		    size_k = sum_k;
+		    optimal_io_size = ch_k * 1024 * number;
+		}
+		break;
+
+	    case RAID1:
+		if (number >= 2)
+		{
+		    size_k = smallest_k;
+		    optimal_io_size = 32768;
+		}
+		break;
+
+	    case RAID5:
+		if (number >= 3)
+		{
+		    size_k = smallest_k * (number - 1);
+		    optimal_io_size = ch_k * 1024 * (number - 1);
+		}
+		break;
+
+	    case RAID6:
+		if (number >= 4)
+		{
+		    size_k = smallest_k * (number - 2);
+		    optimal_io_size = ch_k * 1024 * (number - 2);
+		}
+		break;
+
+	    case RAID10:
+		if (number >= 2)
+		{
+		    size_k = smallest_k * (number / 2);
+		    optimal_io_size = ch_k * 1024 * (number / 2);
+		}
+		break;
+
+	    case UNKNOWN:
+		break;
+	}
+
+	set_size_k(size_k);
+	set_topology(Topology(0, optimal_io_size));
+    }
+
+
     Text
     Md::Impl::do_create_text(Tense tense) const
     {
@@ -303,10 +402,11 @@ namespace storage
     Md::Impl::do_create() const
     {
 	string cmd_line = MDADMBIN " --create " + quote(get_name()) + " --run --level=" +
-	    boost::to_lower_copy(toString(md_level), locale::classic()) + " -e 1.0 --homehost=any";
+	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata 1.0"
+	    " --homehost=any";
 
 	if (md_level == RAID1 || md_level == RAID5 || md_level == RAID6 || md_level == RAID10)
-	    cmd_line += " -b internal";
+	    cmd_line += " --bitmap internal";
 
 	if (chunk_size_k > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size_k);

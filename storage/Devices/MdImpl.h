@@ -24,9 +24,7 @@ namespace storage
     {
     public:
 
-	Impl(const string& name)
-	    : Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0) {}
-
+	Impl(const string& name);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<Md>::classname; }
@@ -89,6 +87,8 @@ namespace storage
 	virtual void do_extend(const BlkDevice* blk_device) const;
 
     private:
+
+	void calculate_region_and_topology();
 
 	MdLevel md_level;
 

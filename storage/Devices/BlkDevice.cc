@@ -108,6 +108,20 @@ namespace storage
     }
 
 
+    const string&
+    BlkDevice::get_sysfs_name() const
+    {
+	return get_impl().get_sysfs_name();
+    }
+
+
+    const string&
+    BlkDevice::get_sysfs_path() const
+    {
+	return get_impl().get_sysfs_path();
+    }
+
+
     const std::string&
     BlkDevice::get_udev_path() const
     {

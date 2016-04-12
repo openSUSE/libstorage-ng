@@ -171,7 +171,7 @@ namespace storage
     {
 	xmlNode* tmp = xmlNewChild(node, name);
 
-	setChildValue(tmp, "start", value.start);
+	setChildValueIf(tmp, "start", value.start, value.start != 0);
 	setChildValue(tmp, "length", value.length);
 
 	setChildValue(tmp, "block-size", value.block_size);

@@ -27,6 +27,7 @@ BOOST_AUTO_TEST_CASE(test_grain)
     BOOST_CHECK_EQUAL(Topology(0, 0).calculate_grain(), 1024 * 1024);
     BOOST_CHECK_EQUAL(Topology(-512, 4096).calculate_grain(), 1024 * 1024);
 
+    BOOST_CHECK_EQUAL(Topology(0, 32 * 1024).calculate_grain(), 1024 * 1024);
     BOOST_CHECK_EQUAL(Topology(0, 1024 * 1024).calculate_grain(), 1024 * 1024);
     BOOST_CHECK_EQUAL(Topology(0, 8 * 1024 * 1024).calculate_grain(), 8 * 1024 * 1024);
 
@@ -40,6 +41,10 @@ BOOST_AUTO_TEST_CASE(test_align1)
 
     BOOST_CHECK_EQUAL(topology.align(Region(0, 10000, 512), AlignPolicy::ALIGN_END), Region(0, 8192, 512));
     BOOST_CHECK_EQUAL(topology.align(Region(1, 10000, 512), AlignPolicy::ALIGN_END), Region(2048, 6144, 512));
+
+    BOOST_CHECK_EQUAL(topology.align(Region(2048, 10239, 512), AlignPolicy::ALIGN_END), Region(2048, 8192, 512));
+    BOOST_CHECK_EQUAL(topology.align(Region(2048, 10240, 512), AlignPolicy::ALIGN_END), Region(2048, 10240, 512));
+    BOOST_CHECK_EQUAL(topology.align(Region(2048, 10241, 512), AlignPolicy::ALIGN_END), Region(2048, 10240, 512));
 
     BOOST_CHECK_EQUAL(topology.align(Region(0, 10000, 512), AlignPolicy::KEEP_END), Region(0, 10000, 512));
     BOOST_CHECK_EQUAL(topology.align(Region(1, 10000, 512), AlignPolicy::KEEP_END), Region(2048, 7953, 512));

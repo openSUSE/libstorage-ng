@@ -62,19 +62,19 @@ namespace storage
 
 	unsigned long long ret = sector - alignment_offset_in_blocks;
 
-	long rest = ret % grain_in_blocks;
-	if (rest != 0)
+	switch (location)
 	{
-	    switch (location)
-	    {
-		case Location::START:
+	    case Location::START: {
+		long rest = ret % grain_in_blocks;
+		if (rest != 0)
 		    ret += grain_in_blocks - rest;
-		    break;
+	    } break;
 
-		case Location::END:
-		    ret -= rest + 1;
-		    break;
-	    }
+	    case Location::END: {
+		long rest = (ret + 1) % grain_in_blocks;
+		if (rest != 0)
+		    ret -= rest;
+	    } break;
 	}
 
 	ret += alignment_offset_in_blocks;

@@ -32,7 +32,10 @@ namespace storage
 	void set_name(const string& name);
 
 	const string& get_sysfs_name() const { return sysfs_name; }
+	void set_sysfs_name(const string& sysfs_name) { Impl::sysfs_name = sysfs_name; }
+
 	const string& get_sysfs_path() const { return sysfs_path; }
+	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
 	unsigned long long get_size_k() const { return size_k; }
 	virtual void set_size_k(unsigned long long size_k);
