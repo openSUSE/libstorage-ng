@@ -81,6 +81,7 @@ namespace storage
 		y2mil("tmp1:" << tmp1);
 		ppc_mac = boost::starts_with(tmp1, "PowerMac") || boost::starts_with(tmp1, "PowerBook");
 		ppc_pegasos = boost::starts_with(tmp1, "EFIKA5K2");
+                ppc_power_nv = boost::starts_with(tmp1, "PowerNV");
 
 		if (!ppc_mac && !ppc_pegasos)
 		{
