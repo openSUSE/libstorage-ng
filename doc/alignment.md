@@ -3,8 +3,9 @@ Partition Alignment
 ===================
 
 Unfortunately these days for optimal performance care must be taken that
-partitions are properly aligned, see e.g.
-https://en.wikipedia.org/wiki/Partition_alignment.
+partitions are properly aligned to avoid excessive read-modify-write cycles.
+For details please refer to https://en.wikipedia.org/wiki/Partition_alignment,
+esp. "4 KB sector alignment" and "SSD page partition alignment".
 
 
 Goals:
@@ -50,11 +51,13 @@ Use Cases:
 
   Call align with KEEP_SIZE.
 
+- Create partition using rest of slot:
+
+  Call align with KEEP_END.
+
 
 Following these workflows ensures that new partitions are aligned and that
-there are only few gaps. E.g. there can be a gap when creating small
-partitions or before unaligned existing partitions and at the end of the
-partitionable.
+there are no gaps.
 
 
 TODO logical partitions
