@@ -171,6 +171,18 @@ BOOST_AUTO_TEST_CASE(test_different_block_size)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_big_kb)
+{
+    Region r(0, 0, 512);
+
+    // currently an intermediate result is in bytes and 64 bit so larger
+    // numbers are not possible
+
+    BOOST_CHECK_EQUAL(r.to_value(1ULL << 53) - 1, (1ULL << 54) - 1);
+    BOOST_CHECK_EQUAL(r.to_kb(1ULL << 54) - 1, (1ULL << 53) - 1);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
     unsigned long long EiB = 1ULL << (10 * 6);
