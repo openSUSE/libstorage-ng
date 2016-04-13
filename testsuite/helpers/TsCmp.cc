@@ -69,13 +69,13 @@ namespace storage
 	if (access("/usr/bin/dot", X_OK) == 0)
 	{
 	    storage.get_probed()->write_graphviz(name + "-probed.gv");
-	    system(("dot -Tpng < " + name + "-probed.gv > " + name + "-probed.png").c_str());
+	    system(("dot -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
 
 	    storage.get_staging()->write_graphviz(name + "-staging.gv");
-	    system(("dot -Tpng < " + name + "-staging.gv > " + name + "-staging.png").c_str());
+	    system(("dot -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
 
 	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID);
-	    system(("dot -Tpng < " + name + "-action.gv > " + name + "-action.png").c_str());
+	    system(("dot -Tsvg < " + name + "-action.gv > " + name + "-action.svg").c_str());
 	}
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");
