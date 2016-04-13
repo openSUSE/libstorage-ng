@@ -2,6 +2,7 @@
 #define STORAGE_BLK_DEVICE_IMPL_H
 
 
+#include "storage/Utils/Region.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -37,7 +38,10 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
-	unsigned long long get_size_k() const { return size_k; }
+	const Region& get_region() const { return region; }
+	void set_region(const Region& region);
+
+	unsigned long long get_size_k() const;
 	virtual void set_size_k(unsigned long long size_k);
 
 	string get_size_string() const;
@@ -66,10 +70,10 @@ namespace storage
     protected:
 
 	Impl(const string& name)
-	    : Device::Impl(), name(name), size_k(0) {}
+	    : Device::Impl(), name(name), region(0, 0, 512) {}
 
-	Impl(const string& name, unsigned long long size_k)
-	    : Device::Impl(), name(name), size_k(size_k) {}
+	Impl(const string& name, const Region& region)
+	    : Device::Impl(), name(name), region(region) {}
 
 	Impl(const xmlNode* node);
 
@@ -84,7 +88,12 @@ namespace storage
 	string sysfs_name;
 	string sysfs_path;
 
-	unsigned long long size_k;
+	/**
+	 * For most devices region.start is zero. Always used to keep track of
+	 * size and sector size.
+	 */
+	Region region;
+
 	string udev_path;
 	vector<string> udev_ids;
 

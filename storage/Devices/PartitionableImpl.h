@@ -2,6 +2,7 @@
 #define STORAGE_PARTITIONABLE_IMPL_H
 
 
+#include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Partitionable.h"
 
@@ -21,8 +22,8 @@ namespace storage
     {
     public:
 
-	const Geometry& get_geometry() const { return geometry; }
-	void set_geometry(const Geometry& geometry) { Impl::geometry = geometry; }
+	const Topology& get_topology() const { return topology; }
+	void set_topology(const Topology& topology) { Impl::topology = topology; }
 
 	unsigned int get_range() const { return range; }
 	void set_range(unsigned int range) { Impl::range = range; }
@@ -48,7 +49,7 @@ namespace storage
     protected:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name), range(0) {}
+	    : BlkDevice::Impl(name), topology(0, 0), range(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -56,7 +57,7 @@ namespace storage
 
     private:
 
-	Geometry geometry;
+	Topology topology;
 
 	unsigned int range;
 

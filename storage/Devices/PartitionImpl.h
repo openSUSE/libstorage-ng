@@ -41,11 +41,6 @@ namespace storage
 
 	unsigned int get_number() const;
 
-	virtual void set_size_k(unsigned long long size_k) override;
-
-	const Region& get_region() const { return region; }
-	void set_region(const Region& region);
-
 	PartitionType get_type() const { return type; }
 	void set_type(PartitionType type) { Impl::type = type; }
 
@@ -89,7 +84,6 @@ namespace storage
 
     private:
 
-	Region region;
 	PartitionType type;
 	unsigned int id;
 	bool boot;

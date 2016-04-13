@@ -139,9 +139,16 @@ namespace storage
 
 
     vector<PartitionSlot>
-    PartitionTable::get_unused_partition_slots(bool all, bool logical) const
+    PartitionTable::get_unused_partition_slots(bool all, bool logical, AlignPolicy align_policy) const
     {
-	return get_impl().get_unused_partition_slots(all, logical);
+	return get_impl().get_unused_partition_slots(all, logical, align_policy);
+    }
+
+
+    Region
+    PartitionTable::align(const Region& region, AlignPolicy align_policy) const
+    {
+	return get_impl().align(region, align_policy);
     }
 
 

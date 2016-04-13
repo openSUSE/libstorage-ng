@@ -45,7 +45,7 @@ namespace storage
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
 	    string name = partitionable->get_impl().partition_name(entry.num);
-	    Partition* p = create_partition(name, entry.cylRegion, entry.type);
+	    Partition* p = create_partition(name, entry.region, entry.type);
 	    p->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
@@ -63,9 +63,9 @@ namespace storage
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
-	if (region.get_block_size() != geometry.cylinderSize())
-	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
+	const Region& partitionable_region = get_partitionable()->get_impl().get_region();
+	if (region.get_block_size() != partitionable_region.get_block_size())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
@@ -199,21 +199,15 @@ namespace storage
     }
 
 
-    Region
-    PartitionTable::Impl::get_usable_region() const
-    {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
-
-	return Region(0, geometry.cylinders, geometry.cylinderSize());
-    }
-
-
     vector<PartitionSlot>
-    PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical) const
+    PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical, AlignPolicy align_policy) const
     {
 	y2mil("all:" << all << " logical:" << logical);
 
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
+	const Partitionable* partitionable = get_partitionable();
+	const Topology& topology = partitionable->get_topology();
+
+	const Region& region = partitionable->get_impl().get_region();
 
 	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
@@ -250,7 +244,7 @@ namespace storage
 		slot.nr = 1;
 	    }
 
-	    slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
+	    slot.name = partitionable->get_impl().partition_name(slot.nr);
 
 	    slot.primary_slot = true;
 	    slot.primary_possible = tmp_primary_possible;
@@ -260,7 +254,7 @@ namespace storage
 	    slot.logical_possible = false;
 
 	    unsigned long start = 0;
-	    unsigned long end = geometry.cylinders;
+	    unsigned long end = region.get_length();
 
 	    list<Region> tmp;
 	    for (const Partition* partition : partitions)
@@ -274,7 +268,7 @@ namespace storage
 	    {
 		if (i->get_start() > start)
 		{
-		    slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
+		    slot.region = Region(start, i->get_start() - start, region.get_block_size());
 		    slots.push_back(slot);
 		}
 		start = i->get_end() + 1;
@@ -289,7 +283,7 @@ namespace storage
 	    }
 	    if (end > start)
 	    {
-		slot.region = Region(start, end - start, geometry.cylinderSize());
+		slot.region = Region(start, end - start, region.get_block_size());
 		slots.push_back(slot);
 	    }
 	}
@@ -303,7 +297,7 @@ namespace storage
 		PartitionSlot slot;
 
 		slot.nr = max_primary() + num_logical() + 1;
-		slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
+		slot.name = partitionable->get_impl().partition_name(slot.nr);
 
 		slot.primary_slot = false;
 		slot.primary_possible = false;
@@ -327,14 +321,14 @@ namespace storage
 		{
 		    if (i->get_start() > start)
 		    {
-			slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
+			slot.region = Region(start, i->get_start() - start, region.get_block_size());
 			slots.push_back(slot);
 		    }
 		    start = i->get_end() + 1;
 		}
 		if (end > start)
 		{
-		    slot.region = Region(start, end - start, geometry.cylinderSize());
+		    slot.region = Region(start, end - start, region.get_block_size());
 		    slots.push_back(slot);
 		}
 	    }
@@ -353,7 +347,17 @@ namespace storage
 	    if (usable_region.intersect(it->region))
 	    {
 		it->region = usable_region.intersection(it->region);
-		++it;
+
+		it->region = topology.align(it->region, align_policy);
+
+		if (it->region.get_length() > 0) // TODO
+		{
+		    ++it;
+		}
+		else
+		{
+		    it = slots.erase(it);
+		}
 	    }
 	    else
 	    {
@@ -361,9 +365,16 @@ namespace storage
 	    }
 	}
 
-	y2deb("slots:" << slots);
+	y2mil("slots:" << slots);
 
 	return slots;
+    }
+
+
+    Region
+    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy) const
+    {
+	return get_partitionable()->get_topology().align(region, align_policy);
     }
 
 

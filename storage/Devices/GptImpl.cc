@@ -51,6 +51,27 @@ namespace storage
     }
 
 
+    Region
+    Gpt::Impl::get_usable_region() const
+    {
+	Region device_region = get_partitionable()->get_impl().get_region();
+
+	// 1 sector for protective MBR (only at beginning), 1 sector for
+	// primary or secondary header and 128 partition entries with 128
+	// bytes per partition entry. In theory these values are
+	// variables. See https://en.wikipedia.org/wiki/GUID_Partition_Table.
+
+	unsigned long long pt_size = 1 + 128 * 128 / device_region.get_block_size();
+
+	unsigned long long first_usable_sector = 1 + pt_size;
+	unsigned long long last_usabe_sector = device_region.get_end() - pt_size;
+	Region usable_region(first_usable_sector, last_usabe_sector - first_usable_sector,
+			     device_region.get_block_size());
+
+	return device_region.intersection(usable_region);
+    }
+
+
     void
     Gpt::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {

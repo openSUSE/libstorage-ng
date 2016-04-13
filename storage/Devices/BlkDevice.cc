@@ -87,6 +87,20 @@ namespace storage
     }
 
 
+    const Region&
+    BlkDevice::get_region() const
+    {
+	return get_impl().get_region();
+    }
+
+
+    void
+    BlkDevice::set_region(const Region& region)
+    {
+	get_impl().set_region(region);
+    }
+
+
     unsigned long long
     BlkDevice::get_size_k() const
     {

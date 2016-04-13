@@ -21,7 +21,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), size_k(0)
+	: Device::Impl(node), name(), region(0, 0, 512)
     {
 	if (!getChildValue(node, "name", name))
 	    throw runtime_error("no name");
@@ -29,7 +29,7 @@ namespace storage
 	getChildValue(node, "sysfs-name", sysfs_name);
 	getChildValue(node, "sysfs-path", sysfs_path);
 
-	getChildValue(node, "size-k", size_k);
+	getChildValue(node, "region", region);
 
 	getChildValue(node, "udev-path", udev_path);
 	getChildValue(node, "udev-id", udev_ids);
@@ -46,9 +46,7 @@ namespace storage
 	sysfs_name = cmdudevadminfo.get_name();
 	sysfs_path = cmdudevadminfo.get_path();
 
-	// TODO read "sysfs_path + /size" and drop ProcParts?
-	if (!systeminfo.getProcParts().getSize(sysfs_name, size_k))
-	    throw;
+	// region is probed in subclasses
 
 	if (!cmdudevadminfo.get_by_path_links().empty())
 	{
@@ -74,7 +72,7 @@ namespace storage
 	setChildValueIf(node, "sysfs-name", sysfs_name, !sysfs_name.empty());
 	setChildValueIf(node, "sysfs-path", sysfs_path, !sysfs_path.empty());
 
-	setChildValueIf(node, "size-k", size_k, size_k > 0);
+	setChildValue(node, "region", region);
 
 	setChildValueIf(node, "udev-path", udev_path, !udev_path.empty());
 	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
@@ -89,9 +87,23 @@ namespace storage
 
 
     void
+    BlkDevice::Impl::set_region(const Region& region)
+    {
+	Impl::region = region;
+    }
+
+
+    unsigned long long
+    BlkDevice::Impl::get_size_k() const
+    {
+	return region.to_kb(region.get_length());
+    }
+
+
+    void
     BlkDevice::Impl::set_size_k(unsigned long long size_k)
     {
-	Impl::size_k = size_k;
+	region.set_length(region.to_value(size_k));
     }
 
 
@@ -122,9 +134,10 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_size_k() != lhs.get_size_k())
+	if (get_region().get_length() != lhs.get_region().get_length())
 	{
-	    ResizeMode resize_mode = get_size_k() < lhs.get_size_k() ? ResizeMode::SHRINK : ResizeMode::GROW;
+	    ResizeMode resize_mode = get_region().get_length() < lhs.get_region().get_length()
+								 ? ResizeMode::SHRINK : ResizeMode::GROW;
 
 	    vector<Action::Base*> actions;
 
@@ -165,7 +178,7 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    size_k == rhs.size_k;
+	    region == rhs.region;
     }
 
 
@@ -181,7 +194,7 @@ namespace storage
 	storage::log_diff(log, "sysfs-name", sysfs_name, rhs.sysfs_name);
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
-	storage::log_diff(log, "size-k", size_k, rhs.size_k);
+	storage::log_diff(log, "region", region, rhs.region);
     }
 
 
@@ -198,8 +211,7 @@ namespace storage
 	if (!sysfs_path.empty())
 	    out << " sysfs-path:" << sysfs_path;
 
-	if (get_size_k() != 0)
-	    out << " size-k:" << get_size_k();
+	out << " region:" << get_region();
 
 	if (!udev_path.empty())
 	    out << " udev-path:" << udev_path;

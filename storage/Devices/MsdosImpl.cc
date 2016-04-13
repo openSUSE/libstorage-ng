@@ -36,12 +36,14 @@ namespace storage
     Region
     Msdos::Impl::get_usable_region() const
     {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
+	Region device_region = get_partitionable()->get_impl().get_region();
 
-	unsigned long long max_sectors = (1ULL << 32) - 1;
-	unsigned long len = min(geometry.cylinders, geometry.kbToCylinder(geometry.sectorToKb(max_sectors)));
+	unsigned long long first_usable_sector = 1;
+	unsigned long long last_usabe_sector = (1ULL << 32) - 1;
+	Region usable_region(first_usable_sector, last_usabe_sector - first_usable_sector,
+			     device_region.get_block_size());
 
-	return Region(0, len, geometry.cylinderSize());
+	return device_region.intersection(usable_region);
     }
 
 

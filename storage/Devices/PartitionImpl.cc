@@ -31,18 +31,16 @@ namespace storage
 
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
-	: BlkDevice::Impl(name, region.to_kb(region.get_length())), region(region), type(type),
-	  id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(name, region), type(type), id(ID_LINUX), boot(false)
     {
     }
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), region(), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
-	getChildValue(node, "region", region);
 	if (getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, PartitionType::PRIMARY);
 	getChildValue(node, "id", id);
@@ -72,7 +70,6 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "region", region);
 	setChildValue(node, "type", toString(type));
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
@@ -90,30 +87,17 @@ namespace storage
     }
 
 
-    void
-    Partition::Impl::set_size_k(unsigned long long size_k)
-    {
-	BlkDevice::Impl::set_size_k(size_k);
-
-	const Partitionable* partitionable = get_partitionable();
-
-	region.set_length(get_size_k() * 1024 / partitionable->get_impl().get_geometry().cylinderSize());
-    }
-
-
+    /*
     void
     Partition::Impl::set_region(const Region& region)
     {
-	Impl::region = region;
+	const Region& partitionable_region = partitionable->get_impl().get_region();
+	if (region.get_block_size() != partitionable_region.get_block_size())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
-	const Partitionable* partitionable = get_partitionable();
-
-	const Geometry& geometry = partitionable->get_impl().get_geometry();
-	if (region.get_block_size() != geometry.cylinderSize())
-	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
-
-	set_size_k(region.get_length() * partitionable->get_impl().get_geometry().cylinderSize() / 1024);
+	BlkDevice::set_region(region);
     }
+    */
 
 
     const PartitionTable*
@@ -193,7 +177,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return region == rhs.region && type == rhs.type && id == rhs.id && boot == rhs.boot;
+	return type == rhs.type && id == rhs.id && boot == rhs.boot;
     }
 
 
@@ -204,7 +188,6 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "region", region, rhs.region);
 	storage::log_diff_enum(log, "type", type, rhs.type);
 	storage::log_diff_hex(log, "id", id, rhs.id);
 	storage::log_diff(log, "boot", boot, rhs.boot);
@@ -215,8 +198,6 @@ namespace storage
     Partition::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
-
-	out << " region:" << get_region();
     }
 
 

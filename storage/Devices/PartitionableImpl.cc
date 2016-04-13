@@ -29,7 +29,7 @@ namespace storage
     Partitionable::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node)
     {
-	getChildValue(node, "geometry", geometry);
+	getChildValue(node, "topology", topology);
 	getChildValue(node, "range", range);
     }
 
@@ -39,7 +39,7 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "geometry", geometry);
+	setChildValue(node, "topology", topology);
 	setChildValue(node, "range", range);
     }
 
@@ -49,23 +49,44 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
 
+	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	const File logical_block_size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
+								"/queue/logical_block_size");
+
+	// size is always in 512 byte blocks
+	unsigned long long a = size_file.get_int();
+	unsigned long long b = logical_block_size_file.get_int();
+	unsigned long long c = a * 512 / b;
+	set_region(Region(0, c, b));
+
+	const File alignment_offset_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
+							      "/alignment_offset");
+	const File optimal_io_size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
+							     "/queue/optimal_io_size");
+	topology = Topology(alignment_offset_file.get_int(), optimal_io_size_file.get_int());
+
 	const File range_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
 	range = range_file.get_int();
 
 	// When the kernel reports the device to have holders we can and
 	// should skip looking for a partition table and partitions.
 
-	// TODO Another way to probe geometry or drop geometry.
-
-	const Parted& parted = systeminfo.getParted(get_name());
-
-	geometry = parted.getGeometry();
-
 	const Dir& dir = systeminfo.getDir(SYSFSDIR + get_sysfs_path() + "/holders");
 	if (dir.empty())
 	{
+	    const Parted& parted = systeminfo.getParted(get_name());
 	    if (parted.getLabel() == PtType::MSDOS || parted.getLabel() == PtType::GPT)
 	    {
+		if (get_region().get_length() != parted.get_region().get_length())
+		{
+		    cout << get_name() << " " << get_region().get_length() << " "
+			 << parted.get_region().get_length() << endl;
+		    ST_THROW(Exception("different size reported by kernel and parted"));
+		}
+
+		if (get_region().get_block_size() != parted.get_region().get_block_size())
+		    ST_THROW(Exception("different block size reported by kernel and parted"));
+
 		PartitionTable* pt = create_partition_table(parted.getLabel());
 		pt->get_impl().probe_pass_1(probed, systeminfo);
 	    }
@@ -91,7 +112,7 @@ namespace storage
 
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
 
-	unsigned long long int num_sectors = geometry.kbToSector(get_size_k());
+	unsigned long long int num_sectors = get_region().get_length();
 	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
 	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
 
@@ -175,7 +196,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return geometry == rhs.geometry && range == rhs.range;
+	return topology == rhs.topology && range == rhs.range;
     }
 
 
@@ -186,7 +207,7 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "geometry", geometry, rhs.geometry);
+	storage::log_diff(log, "topology", topology, rhs.topology);
 	storage::log_diff(log, "range", range, rhs.range);
     }
 
@@ -196,10 +217,8 @@ namespace storage
     {
 	BlkDevice::Impl::print(out);
 
-	out << " geometry:" << geometry;
-
-	if (range > 0)
-	    out << " range:" << range;
+	out << " topology:" << topology
+	    << " range:" << range;
     }
 
 }

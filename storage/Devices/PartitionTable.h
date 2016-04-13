@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Topology.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Partition.h"
 
@@ -72,7 +73,10 @@ namespace storage
 
 	const Partitionable* get_partitionable() const;
 
-	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
+	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true,
+							      AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
+
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
     public:
 
