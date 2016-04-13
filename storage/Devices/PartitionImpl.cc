@@ -254,7 +254,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit cyl mkpart " +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s mkpart " +
 	    toString(get_type()) + " ";
 
 	if (get_type() != PartitionType::EXTENDED)
@@ -321,7 +321,7 @@ namespace storage
 	if (get_id() > 255 || !is_msdos(get_device()))
 	    return;
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " set " +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
 	cout << cmd_line << endl;
 
@@ -344,7 +344,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + partitionable->get_name() + " rm " + to_string(get_number());
+	string cmd_line = PARTEDBIN " --script " + partitionable->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -410,7 +410,7 @@ namespace storage
 
 	long long unsigned end = blk_region.to_kb(blk_region.get_start()) + get_size_k();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit KiB "
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit KiB "
 	    "resize " + to_string(get_number()) + " " + to_string(end);
 	cout << cmd_line << endl;
 

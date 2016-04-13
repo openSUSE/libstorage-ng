@@ -116,7 +116,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " mklabel gpt";
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
