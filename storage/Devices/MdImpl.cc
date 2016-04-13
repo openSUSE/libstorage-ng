@@ -318,6 +318,10 @@ namespace storage
 
 	// TODO
 	long ch_k = 512;
+
+	if (chunk_size_k != 0)
+	    ch_k = chunk_size_k;
+
 	if (md_level == RAID1)
 	    ch_k = 1;
 
@@ -345,7 +349,7 @@ namespace storage
 		if (number >= 2)
 		{
 		    size_k = sum_k;
-		    optimal_io_size = ch_k * 1024 * number;
+		    optimal_io_size = 1024 * ch_k * number;
 		}
 		break;
 
@@ -361,7 +365,7 @@ namespace storage
 		if (number >= 3)
 		{
 		    size_k = smallest_k * (number - 1);
-		    optimal_io_size = ch_k * 1024 * (number - 1);
+		    optimal_io_size = 1024 * ch_k * (number - 1);
 		}
 		break;
 
@@ -369,15 +373,17 @@ namespace storage
 		if (number >= 4)
 		{
 		    size_k = smallest_k * (number - 2);
-		    optimal_io_size = ch_k * 1024 * (number - 2);
+		    optimal_io_size = 1024 * ch_k * (number - 2);
 		}
 		break;
 
 	    case RAID10:
 		if (number >= 2)
 		{
-		    size_k = smallest_k * (number / 2);
-		    optimal_io_size = ch_k * 1024 * (number / 2);
+		    size_k = smallest_k * number / 2;
+		    optimal_io_size = 1024 * ch_k * number / 2;
+		    if (number % 2 == 1)
+			optimal_io_size *= 2;
 		}
 		break;
 
