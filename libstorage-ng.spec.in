@@ -26,7 +26,7 @@ Source:         libstorage-ng-%{version}.tar.bz2
 Prefix:         /usr
 
 BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
-BuildRequires:  doxygen
+BuildRequires:  doxygen graphviz
 BuildRequires:  swig >= 3.0.3
 BuildRequires:  python-devel
 
