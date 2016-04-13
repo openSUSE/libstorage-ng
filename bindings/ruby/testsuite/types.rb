@@ -21,8 +21,8 @@ class TestTypes < Test::Unit::TestCase
     assert_equal(devicegraph.empty?, false)
     assert_equal(devicegraph.num_devices, 4)
 
-    sda.size_k = 2**64 - 1
-    assert_equal(sda.size_k, 2**64 - 1)
+    sda.size_k = 2**54 - 1
+    assert_equal(sda.size_k, 2**54 - 1)
 
     sda1.region = Storage::Region.new(1, 2, 262144)
     assert_equal(sda1.region.start, 1)
