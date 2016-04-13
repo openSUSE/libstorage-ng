@@ -19,7 +19,6 @@ libstorage_ng_la_SOURCES =				\
 	Graphviz.h		Graphviz.cc		\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
-	Geometry.h		Geometry.cc		\
 	FreeInfo.h		FreeInfo.cc		\
 	StorageVersion.h
 
@@ -41,6 +40,5 @@ pkginclude_HEADERS =		\
 	Devicegraph.h		\
 	Actiongraph.h		\
 	Graphviz.h		\
-	Geometry.h		\
 	FreeInfo.h
 

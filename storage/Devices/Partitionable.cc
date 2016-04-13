@@ -32,17 +32,17 @@ namespace storage
     }
 
 
-    const Geometry&
-    Partitionable::get_geometry() const
+    const Topology&
+    Partitionable::get_topology() const
     {
-	return get_impl().get_geometry();
+	return get_impl().get_topology();
     }
 
 
     void
-    Partitionable::set_geometry(const Geometry& geometry)
+    Partitionable::set_topology(const Topology& topology)
     {
-	get_impl().set_geometry(geometry);
+	get_impl().set_topology(topology);
     }
 
 
