@@ -31,25 +31,25 @@ namespace storage
     using namespace std;
 
 
-    ResizeInfo::ResizeInfo(bool resize_ok, unsigned long long min_size_k,
-			   unsigned long long max_size_k)
-	: resize_ok(resize_ok), min_size_k(min_size_k), max_size_k(max_size_k)
+    ResizeInfo::ResizeInfo(bool resize_ok, unsigned long long min_size,
+			   unsigned long long max_size)
+	: resize_ok(resize_ok), min_size(min_size), max_size(max_size)
     {
     }
 
 
     ResizeInfo::ResizeInfo()
-	: resize_ok(false), min_size_k(0), max_size_k(1 * EiB)
+	: resize_ok(false), min_size(0), max_size(1 * EiB)
     {
     }
 
 
     ResizeInfo::ResizeInfo(const xmlNode* node)
-	: resize_ok(false), min_size_k(0), max_size_k(1 * EiB)
+	: ResizeInfo()
     {
 	getChildValue(node, "resize-ok", resize_ok);
-	getChildValue(node, "min-size-k", min_size_k);
-	getChildValue(node, "max-size-k", max_size_k);
+	getChildValue(node, "min-size", min_size);
+	getChildValue(node, "max-size", max_size);
     }
 
 
@@ -57,8 +57,8 @@ namespace storage
     ResizeInfo::save(xmlNode* node) const
     {
 	setChildValue(node, "resize-ok", resize_ok);
-	setChildValue(node, "min-size-k", min_size_k);
-	setChildValue(node, "max-size-k", max_size_k);
+	setChildValue(node, "min-size", min_size);
+	setChildValue(node, "max-size", max_size);
     }
 
 
@@ -67,16 +67,16 @@ namespace storage
     {
 	resize_ok = resize_ok && resize_info.resize_ok;
 
-	min_size_k = max(min_size_k, resize_info.min_size_k);
-	max_size_k = min(max_size_k, resize_info.max_size_k);
+	min_size = max(min_size, resize_info.min_size);
+	max_size = min(max_size, resize_info.max_size);
     }
 
 
     std::ostream&
     operator<<(std::ostream& out, const ResizeInfo& resize_info)
     {
-	return out << "resize-ok:" << resize_info.resize_ok << " min-size-k:" <<
-	    resize_info.min_size_k << " max-size-k:" << resize_info.max_size_k;
+	return out << "resize-ok:" << resize_info.resize_ok << " min-size:" <<
+	    resize_info.min_size << " max-size:" << resize_info.max_size;
     }
 
 

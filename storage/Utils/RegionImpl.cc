@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2015 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -75,20 +76,20 @@ namespace storage
 
 
     unsigned long long
-    Region::Impl::to_kb(unsigned long long value) const
+    Region::Impl::to_bytes(unsigned long long blocks) const
     {
 	assert_valid_block_size();
 
-	return block_size * value / 1024;
+	return blocks * block_size;
     }
 
 
     unsigned long long
-    Region::Impl::to_value(unsigned long long kb) const
+    Region::Impl::to_blocks(unsigned long long bytes) const
     {
 	assert_valid_block_size();
 
-	return kb * 1024 / block_size;
+	return bytes / block_size;
     }
 
 

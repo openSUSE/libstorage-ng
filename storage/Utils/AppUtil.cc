@@ -134,17 +134,15 @@ checkNormalFile(const string& Path_Cv)
 
 	StatVfs stat_vfs;
 
-	stat_vfs.size_k = fsbuf.f_blocks;
-	stat_vfs.size_k *= fsbuf.f_bsize;
-	stat_vfs.size_k /= 1024;
+	stat_vfs.size = fsbuf.f_blocks;
+	stat_vfs.size *= fsbuf.f_bsize;
 
-	stat_vfs.free_k = fsbuf.f_bfree;
-	stat_vfs.free_k *= fsbuf.f_bsize;
-	stat_vfs.free_k /= 1024;
+	stat_vfs.free = fsbuf.f_bfree;
+	stat_vfs.free *= fsbuf.f_bsize;
 
 	y2mil("path:" << path << " blocks:" << fsbuf.f_blocks << " bfree:" << fsbuf.f_bfree
-	      << " bsize:" << fsbuf.f_bsize << " size-k:" << stat_vfs.size_k
-	      << " free-k:" << stat_vfs.free_k);
+	      << " bsize:" << fsbuf.f_bsize << " size:" << stat_vfs.size
+	      << " free:" << stat_vfs.free);
 
 	return stat_vfs;
     }

@@ -52,8 +52,8 @@ namespace storage
 	MdParity get_md_parity() const;
 	void set_md_parity(MdParity md_parity);
 
-	unsigned long get_chunk_size_k() const;
-	void set_chunk_size_k(unsigned long chunk_size_k);
+	unsigned long get_chunk_size() const;
+	void set_chunk_size(unsigned long chunk_size);
 
 	/**
 	 * Sorted by number.

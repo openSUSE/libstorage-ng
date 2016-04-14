@@ -94,23 +94,23 @@ namespace storage
 
 
     unsigned long long
-    BlkDevice::Impl::get_size_k() const
+    BlkDevice::Impl::get_size() const
     {
-	return region.to_kb(region.get_length());
+	return region.to_bytes(region.get_length());
     }
 
 
     void
-    BlkDevice::Impl::set_size_k(unsigned long long size_k)
+    BlkDevice::Impl::set_size(unsigned long long size)
     {
-	region.set_length(region.to_value(size_k));
+	region.set_length(region.to_blocks(size));
     }
 
 
     string
     BlkDevice::Impl::get_size_string() const
     {
-	return byte_to_humanstring(1024 * get_size_k(), false, 2, false);
+	return byte_to_humanstring(get_size(), false, 2, false);
     }
 
 

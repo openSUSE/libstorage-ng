@@ -102,16 +102,16 @@ namespace storage
 
 
     unsigned long long
-    BlkDevice::get_size_k() const
+    BlkDevice::get_size() const
     {
-	return get_impl().get_size_k();
+	return get_impl().get_size();
     }
 
 
     void
-    BlkDevice::set_size_k(unsigned long long size_k)
+    BlkDevice::set_size(unsigned long long size)
     {
-	get_impl().set_size_k(size_k);
+	get_impl().set_size(size);
     }
 
 

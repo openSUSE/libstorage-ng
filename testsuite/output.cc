@@ -32,13 +32,13 @@ public:
 	Devicegraph* devicegraph = storage->get_staging();
 
 	Disk* sda = Disk::create(devicegraph, "/dev/sda");
-	sda->set_size_k(80 * 1024 * 1024);
+	sda->set_size(80 * GiB);
 	sda->get_impl().set_transport(Transport::SATA);
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
 	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 0, 512), PartitionType::PRIMARY);
-	sda1->set_size_k(1024 * 1024);
+	sda1->set_size(1 * GiB);
 	sda1->set_id(ID_LINUX);
     }
 

@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Environment.h"
 #include "storage/Storage.h"
@@ -38,8 +39,8 @@ BOOST_AUTO_TEST_CASE(load)
 
 	ResizeInfo resize_info = filesystem->detect_resize_info();
 	BOOST_CHECK_EQUAL(resize_info.resize_ok, true);
-	BOOST_CHECK_EQUAL(resize_info.min_size_k, 1000);
-	BOOST_CHECK_EQUAL(resize_info.max_size_k, 2000000);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 1000 * KiB);
+	BOOST_CHECK_EQUAL(resize_info.max_size, 2000000 * KiB);
 
 	ContentInfo content_info = filesystem->detect_content_info();
 	BOOST_CHECK_EQUAL(content_info.is_windows, true);
@@ -55,8 +56,8 @@ BOOST_AUTO_TEST_CASE(load)
 
 	ResizeInfo resize_info = filesystem->detect_resize_info();
 	BOOST_CHECK_EQUAL(resize_info.resize_ok, true);
-	BOOST_CHECK_EQUAL(resize_info.min_size_k, 1000);
-	BOOST_CHECK_EQUAL(resize_info.max_size_k, 2000000);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 1000 * KiB);
+	BOOST_CHECK_EQUAL(resize_info.max_size, 2000000 * KiB);
 
 	ContentInfo content_info = filesystem->detect_content_info();
 	BOOST_CHECK_EQUAL(content_info.is_windows, true);

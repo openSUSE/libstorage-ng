@@ -47,8 +47,8 @@ namespace storage
 	MdParity get_md_parity() const { return md_parity; }
 	void set_md_parity(MdParity md_parity) { Impl::md_parity = md_parity; }
 
-	unsigned long get_chunk_size_k() const { return chunk_size_k; }
-	void set_chunk_size_k(unsigned long chunk_size_k);
+	unsigned long get_chunk_size() const { return chunk_size; }
+	void set_chunk_size(unsigned long chunk_size);
 
 	static bool is_valid_name(const string& name);
 
@@ -94,7 +94,7 @@ namespace storage
 
 	MdParity md_parity;
 
-	unsigned long chunk_size_k;
+	unsigned long chunk_size;
 
     };
 

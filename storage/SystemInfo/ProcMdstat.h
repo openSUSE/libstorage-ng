@@ -61,7 +61,7 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : md_level(UNKNOWN), md_parity(DEFAULT), size_k(0), chunk_size_k(0),
+	    Entry() : md_level(UNKNOWN), md_parity(DEFAULT), size(0), chunk_size(0),
 		      readonly(false), inactive(false), is_container(false), has_container(false) {}
 
 	    MdLevel md_level;
@@ -69,8 +69,8 @@ namespace storage
 
 	    string super;
 
-	    unsigned long long size_k;
-	    unsigned long chunk_size_k;
+	    unsigned long long size;
+	    unsigned long chunk_size;
 
 	    bool readonly;
 	    bool inactive;

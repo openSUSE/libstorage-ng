@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->set_range(256);
-    sda->set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_region(Region(0, 100000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -37,8 +37,8 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
     BOOST_CHECK_EQUAL(slots.size(), 1);
 
     vector<PartitionSlot>::const_iterator it = slots.begin();
-    BOOST_CHECK_EQUAL(it->region.get_start(), 0);
-    BOOST_CHECK_EQUAL(it->region.get_length(), 9999);
+    BOOST_CHECK_EQUAL(it->region.get_start(), 1);
+    BOOST_CHECK_EQUAL(it->region.get_length(), 99999);
     BOOST_CHECK_EQUAL(it->nr, 1);
     BOOST_CHECK_EQUAL(it->name, "/dev/sda1");
     BOOST_CHECK_EQUAL(it->primary_slot, true);
@@ -60,15 +60,15 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->set_range(256);
-    sda->set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_region(Region(0, 100000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
     // primary partition from 0 to 1000
-    msdos->create_partition("/dev/sda1", Region(0, 1000, 8225280), PartitionType::PRIMARY);
+    msdos->create_partition("/dev/sda1", Region(0, 1000, 512), PartitionType::PRIMARY);
 
     // extended partition from 2000 to 5000
-    msdos->create_partition("/dev/sda2", Region(2000, 3000, 8225280), PartitionType::EXTENDED);
+    msdos->create_partition("/dev/sda2", Region(2000, 3000, 512), PartitionType::EXTENDED);
 
     vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
 
@@ -87,10 +87,10 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     BOOST_CHECK_EQUAL(it->logical_slot, false);
     BOOST_CHECK_EQUAL(it->logical_possible, false);
 
-    // primary possible from 5000 to 9999
+    // primary possible from 5000 to 99999
     ++it;
     BOOST_CHECK_EQUAL(it->region.get_start(), 5000);
-    BOOST_CHECK_EQUAL(it->region.get_length(), 4999);
+    BOOST_CHECK_EQUAL(it->region.get_length(), 95000);
     BOOST_CHECK_EQUAL(it->nr, 3);
     BOOST_CHECK_EQUAL(it->name, "/dev/sda3");
     BOOST_CHECK_EQUAL(it->primary_slot, true);
@@ -128,7 +128,7 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->set_range(256);
-    sda->set_geometry(Geometry(534698, 255, 63, 4096));
+    sda->set_region(Region(0, 100000, 4096));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -137,8 +137,8 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
     BOOST_CHECK_EQUAL(slots.size(), 1);
 
     vector<PartitionSlot>::const_iterator it = slots.begin();
-    BOOST_CHECK_EQUAL(it->region.get_start(), 0);
-    BOOST_CHECK_EQUAL(it->region.get_length(), 267350);
+    BOOST_CHECK_EQUAL(it->region.get_start(), 1);
+    BOOST_CHECK_EQUAL(it->region.get_length(), 99999);
     BOOST_CHECK_EQUAL(it->nr, 1);
     BOOST_CHECK_EQUAL(it->name, "/dev/sda1");
     BOOST_CHECK_EQUAL(it->primary_slot, true);
@@ -160,17 +160,17 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
     sda->set_range(256);
-    sda->set_geometry(Geometry(9999, 255, 63, 512));
+    sda->set_region(Region(0, 100000, 512));
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
     // primary partition from 0 to 1000
-    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 1000, 8225280), PartitionType::PRIMARY);
-    sda1->set_region(Region(0, 1000, 8225280));
+    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 1000, 512), PartitionType::PRIMARY);
+    sda1->set_region(Region(0, 1000, 512));
 
     // primary partition from 2000 to 5000
-    Partition* sda2 = gpt->create_partition("/dev/sda2", Region(2000, 3000, 8225280), PartitionType::PRIMARY);
-    sda2->set_region(Region(2000, 3000, 8225280));
+    Partition* sda2 = gpt->create_partition("/dev/sda2", Region(2000, 3000, 512), PartitionType::PRIMARY);
+    sda2->set_region(Region(2000, 3000, 512));
 
     vector<PartitionSlot> slots = gpt->get_unused_partition_slots();
 
@@ -192,7 +192,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     // primary possible from 5000 to 9999
     ++it;
     BOOST_CHECK_EQUAL(it->region.get_start(), 5000);
-    BOOST_CHECK_EQUAL(it->region.get_length(), 4999);
+    BOOST_CHECK_EQUAL(it->region.get_length(), 94966);
     BOOST_CHECK_EQUAL(it->nr, 3);
     BOOST_CHECK_EQUAL(it->name, "/dev/sda3");
     BOOST_CHECK_EQUAL(it->primary_slot, true);

@@ -41,8 +41,8 @@ namespace storage
 	const Region& get_region() const { return region; }
 	void set_region(const Region& region);
 
-	unsigned long long get_size_k() const;
-	virtual void set_size_k(unsigned long long size_k);
+	unsigned long long get_size() const;
+	virtual void set_size(unsigned long long size);
 
 	string get_size_string() const;
 

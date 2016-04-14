@@ -389,9 +389,9 @@ namespace storage
 
 	Region blk_region = detect_sysfs_blk_region();
 
-	long long unsigned end = blk_region.to_kb(blk_region.get_start()) + get_size_k();
+	long long unsigned end = blk_region.to_bytes(blk_region.get_start()) + get_size();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit KiB "
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit B "
 	    "resize " + to_string(get_number()) + " " + to_string(end);
 	cout << cmd_line << endl;
 

@@ -46,7 +46,7 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -58,7 +58,7 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
     {
 	string tmp;
 
@@ -68,7 +68,7 @@ namespace storage
 	if (getChildValue(node, "md-parity", tmp))
 	    md_parity = toValueWithFallback(tmp, DEFAULT);
 
-	getChildValue(node, "chunk-size-k", chunk_size_k);
+	getChildValue(node, "chunk-size", chunk_size);
     }
 
 
@@ -82,9 +82,9 @@ namespace storage
 
 
     void
-    Md::Impl::set_chunk_size_k(unsigned long chunk_size_k)
+    Md::Impl::set_chunk_size(unsigned long chunk_size)
     {
-	Impl::chunk_size_k = chunk_size_k;
+	Impl::chunk_size = chunk_size;
 
 	calculate_region_and_topology();
     }
@@ -135,7 +135,7 @@ namespace storage
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
 
-	chunk_size_k = entry.chunk_size_k;
+	chunk_size = entry.chunk_size;
     }
 
 
@@ -193,7 +193,7 @@ namespace storage
 	setChildValue(node, "md-level", toString(md_level));
 	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
-	setChildValueIf(node, "chunk-size-k", chunk_size_k, chunk_size_k != 0);
+	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
     }
 
 
@@ -268,7 +268,7 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size_k == rhs.chunk_size_k;
+	    chunk_size == rhs.chunk_size;
     }
 
 
@@ -282,7 +282,7 @@ namespace storage
 	storage::log_diff_enum(log, "md-level", md_level, rhs.md_level);
 	storage::log_diff_enum(log, "md-parity", md_parity, rhs.md_parity);
 
-	storage::log_diff(log, "chunk-size-k", chunk_size_k, rhs.chunk_size_k);
+	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
     }
 
 
@@ -294,7 +294,7 @@ namespace storage
 	out << " md-level:" << toString(get_md_level());
 	out << " md-parity:" << toString(get_md_parity());
 
-	out << " chunk-size-k:" << get_chunk_size_k();
+	out << " chunk-size:" << get_chunk_size();
     }
 
 
@@ -311,36 +311,42 @@ namespace storage
 	vector<BlkDevice*> devices = get_devices();
 
 	int number = 0;
-	unsigned long long sum_k = 0;
-	unsigned long long smallest_k = std::numeric_limits<unsigned long long>::max();
-
-	unsigned long size_metadata_k = 4;
+	unsigned long long sum = 0;
+	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
 
 	// TODO
-	long ch_k = 512;
+	long ch = 512;
 
-	if (chunk_size_k != 0)
-	    ch_k = chunk_size_k;
+	if (chunk_size != 0)
+	    ch = chunk_size;
 
 	if (md_level == RAID1)
-	    ch_k = 1;
+	    ch = 16 * KiB;
 
 	for (const BlkDevice* device : devices)
 	{
 	    // TODO handle spare
 
-	    unsigned long long tmp_k = device->get_size_k() - size_metadata_k;
+	    unsigned long long size = device->get_size();
 
-	    long rest = tmp_k % ch_k;
+	    {
+		// https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
+
+		// libblkid does (size & ~(0x1000 - 1)) - 0x2000;
+
+		size = (size & ~(0x1000 - 1)) - 0x2000;
+	    }
+
+	    long rest = size % ch;
 	    if (rest > 0)
-		tmp_k -= rest;
+		size -= rest;
 
 	    number++;
-	    sum_k += tmp_k;
-	    smallest_k = min(smallest_k, tmp_k);
+	    sum += size;
+	    smallest = min(smallest, size);
 	}
 
-	unsigned long long size_k = 0;
+	unsigned long long size = 0;
 	long optimal_io_size = 0;
 
 	switch (md_level)
@@ -348,15 +354,15 @@ namespace storage
 	    case RAID0:
 		if (number >= 2)
 		{
-		    size_k = sum_k;
-		    optimal_io_size = 1024 * ch_k * number;
+		    size = sum;
+		    optimal_io_size = ch * number;
 		}
 		break;
 
 	    case RAID1:
 		if (number >= 2)
 		{
-		    size_k = smallest_k;
+		    size = smallest;
 		    optimal_io_size = 32768;
 		}
 		break;
@@ -364,24 +370,24 @@ namespace storage
 	    case RAID5:
 		if (number >= 3)
 		{
-		    size_k = smallest_k * (number - 1);
-		    optimal_io_size = 1024 * ch_k * (number - 1);
+		    size = smallest * (number - 1);
+		    optimal_io_size = ch * (number - 1);
 		}
 		break;
 
 	    case RAID6:
 		if (number >= 4)
 		{
-		    size_k = smallest_k * (number - 2);
-		    optimal_io_size = 1024 * ch_k * (number - 2);
+		    size = smallest * (number - 2);
+		    optimal_io_size = ch * (number - 2);
 		}
 		break;
 
 	    case RAID10:
 		if (number >= 2)
 		{
-		    size_k = smallest_k * number / 2;
-		    optimal_io_size = 1024 * ch_k * number / 2;
+		    size = smallest * number / 2;
+		    optimal_io_size = ch * number / 2;
 		    if (number % 2 == 1)
 			optimal_io_size *= 2;
 		}
@@ -391,7 +397,7 @@ namespace storage
 		break;
 	}
 
-	set_size_k(size_k);
+	set_size(size);
 	set_topology(Topology(0, optimal_io_size));
     }
 
@@ -414,8 +420,8 @@ namespace storage
 	if (md_level == RAID1 || md_level == RAID5 || md_level == RAID6 || md_level == RAID10)
 	    cmd_line += " --bitmap internal";
 
-	if (chunk_size_k > 0)
-	    cmd_line += " --chunk=" + to_string(chunk_size_k);
+	if (chunk_size > 0)
+	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
 
 	if (md_parity != DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);

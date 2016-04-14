@@ -55,13 +55,12 @@ namespace storage
 	    pos = stdout.find_first_not_of(" \t\n", pos + fstr.size());
 	    y2mil("pos:" << pos);
 	    string number = stdout.substr(pos, stdout.find_first_not_of("0123456789", pos));
-	    number >> resize_info.min_size_k;
-	    resize_info.min_size_k /= 1024;
+	    number >> resize_info.min_size;
 
-	    // see ntfsresize(8) for += 100MiB
-	    resize_info.min_size_k = min(resize_info.min_size_k + 100 * MiB, blk_device->get_size_k());
+	    // see ntfsresize(8) for += 100 MiB
+	    resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
 
-	    resize_info.max_size_k = 256 * TiB;
+	    resize_info.max_size = 256 * TiB;
 	}
 
 	y2mil("resize-info:" << resize_info);
@@ -130,7 +129,7 @@ namespace storage
 
 	string cmd_line = "echo y | " NTFSRESIZEBIN " --force";
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --size " + to_string(blk_device->get_size_k()) + "k";
+	    cmd_line += " --size " + to_string(blk_device->get_size() * 1024) + "k";
 	cmd_line += " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 

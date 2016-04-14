@@ -39,15 +39,15 @@ namespace storage
     {
     public:
 
-	ResizeInfo(bool resize_ok, unsigned long long min_size_k, unsigned long long max_size_k);
+	ResizeInfo(bool resize_ok, unsigned long long min_size, unsigned long long max_size);
 	ResizeInfo();
 
 	void combine(ResizeInfo resize_info);
 
 	bool resize_ok;
 
-	unsigned long long min_size_k;
-	unsigned long long max_size_k;
+	unsigned long long min_size;
+	unsigned long long max_size;
 
 	friend std::ostream& operator<<(std::ostream& out, const ResizeInfo& resize_info);
 

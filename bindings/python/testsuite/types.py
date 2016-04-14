@@ -25,8 +25,8 @@ class TestCreate(unittest.TestCase):
         self.assertEqual(devicegraph.empty(), False)
         self.assertEqual(devicegraph.num_devices(), 4)
 
-        sda.set_size_k(2**54 - 1)
-        self.assertEqual(sda.get_size_k(), 2**54 - 1)
+        sda.set_size(2**64 - 512)
+        self.assertEqual(sda.get_size(), 2**64 - 512)
 
         sda1.set_region(Region(2048, 4096, 512))
         self.assertEqual(sda1.get_region().get_start(), 2048)

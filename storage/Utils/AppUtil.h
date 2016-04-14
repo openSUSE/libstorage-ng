@@ -44,8 +44,8 @@ namespace storage
     class Arch;
 
 
-    // for size_k variables
-    const unsigned long long KiB = 1;
+    // for size variables
+    const unsigned long long KiB = 1024;
     const unsigned long long MiB = 1024 * KiB;
     const unsigned long long GiB = 1024 * MiB;
     const unsigned long long TiB = 1024 * GiB;
@@ -64,8 +64,8 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     struct StatVfs
     {
-	unsigned long long size_k;
-	unsigned long long free_k;
+	unsigned long long size;
+	unsigned long long free;
     };
 
     StatVfs detect_stat_vfs(const string& path);

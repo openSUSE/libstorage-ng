@@ -610,7 +610,7 @@ namespace storage
 		    if (is_blk_device(device))
 		    {
 			const BlkDevice* blk_device = to_blk_device(device);
-			extra += "\\n" + byte_to_humanstring(1024 * blk_device->get_size_k(),
+			extra += "\\n" + byte_to_humanstring(blk_device->get_size(),
 							     false, 2, false);
 		    }
 		}

@@ -140,14 +140,16 @@ namespace storage
 
 	sort(entry.devices.begin(), entry.devices.end());
 
-	extractNthWord(0, line2) >> entry.size_k;
+	extractNthWord(0, line2) >> entry.size;
+	entry.size *= KiB;
 
 	pos = line2.find( "chunk" );
 	if( pos != string::npos )
 	{
 	    pos = line2.find_last_not_of( app_ws, pos-1 );
 	    pos = line2.find_last_of( app_ws, pos );
-	    line2.substr( pos+1 ) >> entry.chunk_size_k;
+	    line2.substr( pos+1 ) >> entry.chunk_size;
+	    entry.chunk_size *= KiB;
 	}
 
 	pos = line2.find("super");
@@ -284,10 +286,10 @@ namespace storage
 	if (!entry.super.empty())
 	    s << " super:" + entry.super;
 
-	if (entry.chunk_size_k != 0)
-	    s << " chunk-size-k:" << entry.chunk_size_k;
+	if (entry.chunk_size != 0)
+	    s << " chunk-size:" << entry.chunk_size;
 
-	s << " size-k:" << entry.size_k;
+	s << " size:" << entry.size;
 
 	if (entry.readonly)
 	    s << " readonly";

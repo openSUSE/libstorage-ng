@@ -114,8 +114,8 @@
       <uuid>1419F5B71AAD58CE</uuid>
       <ResizeInfo>
 	<resize-ok>true</resize-ok>
-	<min-size-k>1000</min-size-k>
-	<max-size-k>2000000</max-size-k>
+	<min-size>1024000</min-size>
+	<max-size>2048000000</max-size>
       </ResizeInfo>
       <ContentInfo>
 	<is-windows>true</is-windows>
