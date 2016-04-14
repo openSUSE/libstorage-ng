@@ -70,7 +70,7 @@ namespace storage
 	unsigned long long align_block(unsigned long long sector, unsigned long block_size,
 				       Location location) const;
 
-	bool align_helper(Region& region, AlignPolicy align_policy) const;
+	bool align_in_place(Region& region, AlignPolicy align_policy) const;
 
 	long alignment_offset;
 	unsigned long optimal_io_size;

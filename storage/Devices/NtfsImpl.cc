@@ -6,6 +6,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/NtfsImpl.h"
 #include "storage/FreeInfo.h"

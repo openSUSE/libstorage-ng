@@ -86,7 +86,7 @@ namespace storage
 
 
     bool
-    Topology::Impl::align_helper(Region& region, AlignPolicy align_policy) const
+    Topology::Impl::align_in_place(Region& region, AlignPolicy align_policy) const
     {
 	unsigned long block_size = region.get_block_size();
 
@@ -123,7 +123,7 @@ namespace storage
     Topology::Impl::can_be_aligned(const Region& region, AlignPolicy align_policy) const
     {
 	Region tmp(region);
-	return align_helper(tmp, align_policy);
+	return align_in_place(tmp, align_policy);
     }
 
 
@@ -131,7 +131,7 @@ namespace storage
     Topology::Impl::align(const Region& region, AlignPolicy align_policy) const
     {
 	Region tmp(region);
-	if (!align_helper(tmp, align_policy))
+	if (!align_in_place(tmp, align_policy))
 	    ST_THROW(AlignError());
 
 	return tmp;

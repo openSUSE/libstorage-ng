@@ -38,7 +38,6 @@ def doit(level, devices, chunk_size):
     md.set_chunk_size(chunk_size)
 
     for number in range(1, devices + 1):
-        print '/dev/sdb%d' % number
         partition = Partition.find(staging, '/dev/sdb%d' % number)
         md.add_device(partition)
 

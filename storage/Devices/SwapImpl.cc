@@ -8,6 +8,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/FreeInfo.h"
 
 

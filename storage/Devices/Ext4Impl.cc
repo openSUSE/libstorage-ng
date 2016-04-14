@@ -4,6 +4,7 @@
 
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Ext4Impl.h"
 #include "storage/Devicegraph.h"

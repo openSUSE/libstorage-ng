@@ -4,9 +4,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Region.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Region.h"
 
 
 using namespace std;
@@ -172,24 +171,13 @@ BOOST_AUTO_TEST_CASE(test_different_block_size)
 }
 
 
-BOOST_AUTO_TEST_CASE(test_big_number1)
-{
-    Region r(0, 0, 512);
-
-    BOOST_CHECK_EQUAL(r.to_blocks(1ULL << 63) - 1, (1ULL << 54) - 1);
-    BOOST_CHECK_EQUAL(r.to_bytes(1ULL << 54) - 1, (1ULL << 63) - 1);
-}
-
-
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
     Region kb(0, 1ULL << (10 * 5), 1 * KiB);
 
     BOOST_CHECK_EQUAL(kb.to_bytes(kb.get_length()), EiB);
-    BOOST_CHECK_EQUAL(byte_to_humanstring(kb.to_bytes(kb.get_length()), true, 1, false), "1.0 EiB");
 
     Region mb(0, 1ULL << (10 * 4), 1 * MiB);
 
     BOOST_CHECK_EQUAL(mb.to_bytes(mb.get_length()), EiB);
-    BOOST_CHECK_EQUAL(byte_to_humanstring(mb.to_bytes(mb.get_length()), true, 1, false), "1.0 EiB");
 }

@@ -20,7 +20,7 @@ print staging
 
 partition = Partition.find(staging, "/dev/sdb1")
 
-partition.set_size(partition.get_size() - 512 * 1024 * 1024)
+partition.set_size(partition.get_size() - 512 * MiB)
 
 print staging
 

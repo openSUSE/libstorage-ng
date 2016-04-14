@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
@@ -50,7 +51,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Partition* sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, gpt, sda1);
-    sda1->set_size_k(16 * 1024 * 1024);
+    sda1->set_size(16 * GiB);
     sda1->set_id(ID_LVM);
 
     LvmVg* system = LvmVg::create(rhs, "/dev/system");
@@ -58,11 +59,11 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     LvmLv* system_root = LvmLv::create(rhs, "/dev/system/root");
     Subdevice::create(rhs, system, system_root);
-    system_root->set_size_k(14 * 1024 * 1024);
+    system_root->set_size(14 * GiB);
 
     LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
     Subdevice::create(rhs, system, system_swap);
-    system_swap->set_size_k(2 * 1024 * 1024);
+    system_swap->set_size(2 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

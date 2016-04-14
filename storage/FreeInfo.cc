@@ -21,6 +21,7 @@
  */
 
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/FreeInfo.h"
 

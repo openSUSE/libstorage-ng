@@ -30,6 +30,15 @@
 namespace storage
 {
 
+
+    const unsigned long long KiB = 1024;
+    const unsigned long long MiB = 1024 * KiB;
+    const unsigned long long GiB = 1024 * MiB;
+    const unsigned long long TiB = 1024 * GiB;
+    const unsigned long long PiB = 1024 * TiB;
+    const unsigned long long EiB = 1024 * PiB;
+
+
     /**
      * Return number of suffixes.
      *

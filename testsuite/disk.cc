@@ -4,7 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"

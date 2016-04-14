@@ -5,6 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionTableImpl.h"

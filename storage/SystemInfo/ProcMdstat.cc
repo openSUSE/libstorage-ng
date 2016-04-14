@@ -23,7 +23,7 @@
 #include <locale>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/SystemInfo/ProcMdstat.h"
 #include "storage/Devices/MdImpl.h"
