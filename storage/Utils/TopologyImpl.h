@@ -48,6 +48,8 @@ namespace storage
 
 	unsigned long calculate_grain() const;
 
+	bool can_be_aligned(const Region& region, AlignPolicy align_policy) const;
+
 	Region align(const Region& region, AlignPolicy align_policy) const;
 
 	bool operator==(const Impl& rhs) const;
@@ -65,8 +67,10 @@ namespace storage
 	/**
 	 *
 	 */
-	unsigned long long align(unsigned long long sector, unsigned long block_size,
-				 Location location) const;
+	unsigned long long align_block(unsigned long long sector, unsigned long block_size,
+				       Location location) const;
+
+	bool align_helper(Region& region, AlignPolicy align_policy) const;
 
 	long alignment_offset;
 	unsigned long optimal_io_size;

@@ -29,6 +29,7 @@
 #include <ostream>
 
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Exception.h"
 
 
 namespace storage
@@ -37,6 +38,13 @@ namespace storage
     enum class AlignPolicy
     {
 	ALIGN_END, KEEP_END, KEEP_SIZE
+    };
+
+
+    class AlignError : public Exception
+    {
+    public:
+	AlignError();
     };
 
 
@@ -61,6 +69,11 @@ namespace storage
 	 *
 	 */
 	unsigned long calculate_grain() const;
+
+	/**
+	 * alignable
+	 */
+	bool can_be_aligned(const Region& region, AlignPolicy align_policy) const;
 
 	/**
 	 *

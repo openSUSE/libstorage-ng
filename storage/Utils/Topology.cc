@@ -26,6 +26,12 @@
 namespace storage
 {
 
+    AlignError::AlignError()
+	: Exception("region cannot be aligned")
+    {
+    }
+
+
     Topology::Topology()
 	: impl(new Impl())
     {
@@ -103,6 +109,13 @@ namespace storage
     Topology::calculate_grain() const
     {
 	return get_impl().calculate_grain();
+    }
+
+
+    bool
+    Topology::can_be_aligned(const Region& region, AlignPolicy align_policy) const
+    {
+	return get_impl().can_be_aligned(region, align_policy);
     }
 
 

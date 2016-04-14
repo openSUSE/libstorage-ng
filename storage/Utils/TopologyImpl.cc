@@ -23,6 +23,7 @@
 #include <iostream>
 
 #include "storage/Utils/TopologyImpl.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -55,7 +56,8 @@ namespace storage
 
 
     unsigned long long
-    Topology::Impl::align(unsigned long long sector, unsigned long block_size, Location location) const
+    Topology::Impl::align_block(unsigned long long sector, unsigned long block_size,
+				Location location) const
     {
 	long alignment_offset_in_blocks = alignment_offset / block_size;
 	unsigned long grain_in_blocks = calculate_grain() / block_size;
@@ -83,21 +85,21 @@ namespace storage
     }
 
 
-    // TODO aligned region can be non-existent, return length = 0 or exception?
-
-    Region
-    Topology::Impl::align(const Region& region, AlignPolicy align_policy) const
+    bool
+    Topology::Impl::align_helper(Region& region, AlignPolicy align_policy) const
     {
 	unsigned long block_size = region.get_block_size();
 
-	unsigned long long start = align(region.get_start(), block_size, Location::START);
+	unsigned long long start = align_block(region.get_start(), block_size, Location::START);
 
 	unsigned long long length = 0;
 	switch (align_policy)
 	{
 	    case AlignPolicy::ALIGN_END: {
 		// TODO logical
-		unsigned long long end = align(region.get_end(), block_size, Location::END);
+		unsigned long long end = align_block(region.get_end(), block_size, Location::END);
+		if (end < start)
+		    return false;
 		length = end - start + 1;
 	    } break;
 
@@ -106,11 +108,33 @@ namespace storage
 	    } break;
 
 	    case AlignPolicy::KEEP_END: {
+		if (region.get_end() < start - region.get_start())
+		    return false;
 		length = region.get_length() - (start - region.get_start());
 	    } break;
 	}
 
-	return Region(start, length, region.get_block_size());
+	region = Region(start, length, region.get_block_size());
+	return true;
+    }
+
+
+    bool
+    Topology::Impl::can_be_aligned(const Region& region, AlignPolicy align_policy) const
+    {
+	Region tmp(region);
+	return align_helper(tmp, align_policy);
+    }
+
+
+    Region
+    Topology::Impl::align(const Region& region, AlignPolicy align_policy) const
+    {
+	Region tmp(region);
+	if (!align_helper(tmp, align_policy))
+	    ST_THROW(AlignError());
+
+	return tmp;
     }
 
 
