@@ -82,6 +82,13 @@ namespace storage
     }
 
 
+    void
+    Filesystem::set_uuid(const string& uuid)
+    {
+	get_impl().set_uuid(uuid);
+    }
+
+
     const vector<string>&
     Filesystem::get_mountpoints() const
     {

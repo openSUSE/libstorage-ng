@@ -75,6 +75,13 @@ namespace storage
 
 
     void
+    Filesystem::Impl::set_uuid(const string& uuid)
+    {
+	Impl::uuid = uuid;
+    }
+
+
+    void
     Filesystem::Impl::set_mountpoints(const vector<string>& mountpoints)
     {
 	Impl::mountpoints = mountpoints;
@@ -352,6 +359,16 @@ namespace storage
 	    last = set_label;
 	}
 
+	if (!get_uuid().empty())
+	{
+	    Action::SetUuid* set_uuid = new Action::SetUuid(get_sid());
+	    Actiongraph::Impl::vertex_descriptor tmp2 = actiongraph.add_vertex(set_uuid);
+	    actiongraph.add_edge(v1, tmp2);
+	    v1 = tmp2;
+
+	    last = set_uuid;
+	}
+
 	if (!get_mountpoints().empty())
 	{
 	    Action::Base* sync = new Action::Create(get_sid(), true);
@@ -566,6 +583,21 @@ namespace storage
 	// TODO - stub
     }
 
+    Text
+    Filesystem::Impl::do_set_uuid_text(Tense tense) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	return sformat(_("Set UUID of %1$s to %2$s"), blk_device->get_name().c_str(),
+		       uuid.c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_set_uuid() const
+    {
+	// TODO - stub
+    }
 
     Text
     Filesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
@@ -756,6 +788,22 @@ namespace storage
 	{
 	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
 	    filesystem->get_impl().do_set_label();
+	}
+
+
+	Text
+	SetUuid::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem->get_impl().do_set_uuid_text(tense);
+	}
+
+
+	void
+	SetUuid::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
+	    filesystem->get_impl().do_set_uuid();
 	}
 
 
