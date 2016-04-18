@@ -30,6 +30,7 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Devices/PartitionTableImpl.h"
 
 
 namespace storage
