@@ -317,12 +317,8 @@ namespace storage
 
 	// TODO
 	long ch = 512;
-
 	if (chunk_size != 0)
 	    ch = chunk_size;
-
-	if (md_level == RAID1)
-	    ch = 16 * KiB;
 
 	for (const BlkDevice* device : devices)
 	{
@@ -330,13 +326,12 @@ namespace storage
 
 	    unsigned long long size = device->get_size();
 
-	    {
-		// https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
+	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
+	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
+	    size = (size & ~(0x1000 - 1)) - 0x2000;
 
-		// libblkid does (size & ~(0x1000 - 1)) - 0x2000;
-
-		size = (size & ~(0x1000 - 1)) - 0x2000;
-	    }
+	    // bitmap uses otherwise unused space,
+	    // https://raid.wiki.kernel.org/index.php/Write-intent_bitmap
 
 	    long rest = size % ch;
 	    if (rest > 0)
@@ -414,6 +409,9 @@ namespace storage
     void
     Md::Impl::do_create() const
     {
+	// Note: Changing any parameter to "mdadm --create' requires the
+	// function calculate_region_and_topology() to be checked!
+
 	string cmd_line = MDADMBIN " --create " + quote(get_name()) + " --run --level=" +
 	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata 1.0"
 	    " --homehost=any";
