@@ -35,6 +35,7 @@ namespace storage
 	void set_label(const string& label);
 
 	const string& get_uuid() const { return uuid; }
+	void set_uuid(const string& uuid);
 
 	const vector<string>& get_mountpoints() const { return mountpoints; }
 	void set_mountpoints(const std::vector<std::string>& mountpoints);
@@ -79,6 +80,9 @@ namespace storage
 
 	virtual Text do_set_label_text(Tense tense) const;
 	virtual void do_set_label() const;
+
+	virtual Text do_set_uuid_text(Tense tense) const;
+	virtual void do_set_uuid() const;
 
 	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
 	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
@@ -141,6 +145,18 @@ namespace storage
 	public:
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class SetUuid : public Modify
+	{
+	public:
+
+	    SetUuid(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;

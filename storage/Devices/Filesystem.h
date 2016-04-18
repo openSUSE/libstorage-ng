@@ -51,6 +51,7 @@ namespace storage
 	virtual bool supports_uuid() const = 0;
 
 	const std::string& get_uuid() const;
+	void set_uuid(const std::string& uuid);
 
 	const std::vector<std::string>& get_mountpoints() const;
 	void set_mountpoints(const std::vector<std::string>& mountpoints);

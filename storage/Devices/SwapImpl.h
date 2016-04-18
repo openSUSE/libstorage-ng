@@ -44,6 +44,10 @@ namespace storage
 
 	virtual void do_resize(ResizeMode resize_mode) const override;
 
+	virtual void do_set_label() const override;
+
+	virtual void do_set_uuid() const override;
+
     };
 
 }
