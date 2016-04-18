@@ -39,10 +39,10 @@ namespace storage
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
 	const Region& get_region() const { return region; }
-	void set_region(const Region& region);
+	virtual void set_region(const Region& region);
 
 	unsigned long long get_size() const;
-	virtual void set_size(unsigned long long size);
+	void set_size(unsigned long long size);
 
 	string get_size_string() const;
 

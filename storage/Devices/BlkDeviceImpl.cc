@@ -90,6 +90,8 @@ namespace storage
     BlkDevice::Impl::set_region(const Region& region)
     {
 	Impl::region = region;
+
+	// TODO inform children, e.g. Md
     }
 
 
@@ -103,7 +105,10 @@ namespace storage
     void
     BlkDevice::Impl::set_size(unsigned long long size)
     {
-	region.set_length(region.to_blocks(size));
+	// Direct to virtual set_region so that derived classes can perform
+	// checks and that children can be informed.
+
+	set_region(Region(region.get_start(), region.to_blocks(size), region.get_block_size()));
     }
 
 
