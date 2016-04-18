@@ -56,7 +56,7 @@ namespace storage
 
 	    unsigned num;	// Partition number (1..n)
 	    Region region;	// Partition region in sectors
-	    PartitionType type;	// primary / extended / logical / any
+	    PartitionType type;	// primary / extended / logical
 	    unsigned id;	// Numeric partition ID (Linux: 0x83 etc.)
 	    bool boot;		// Boot flag of the partition
 	};
