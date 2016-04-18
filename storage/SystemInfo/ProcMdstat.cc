@@ -148,7 +148,7 @@ namespace storage
 	{
 	    pos = line2.find_last_not_of( app_ws, pos-1 );
 	    pos = line2.find_last_of( app_ws, pos );
-	    line2.substr( pos+1 ) >> entry.chunk_size;
+	    line2.substr(pos + 1) >> entry.chunk_size;
 	    entry.chunk_size *= KiB;
 	}
 

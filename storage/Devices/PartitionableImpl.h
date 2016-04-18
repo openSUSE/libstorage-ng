@@ -49,7 +49,7 @@ namespace storage
     protected:
 
 	Impl(const string& name)
-	    : BlkDevice::Impl(name), topology(0, 0), range(0) {}
+	    : BlkDevice::Impl(name), topology(), range(0) {}
 
 	Impl(const xmlNode* node);
 

@@ -46,7 +46,8 @@
 
 namespace storage
 {
-    using namespace std;
+    using std::map;
+    using std::list;
 
 
     class SystemInfo : private boost::noncopyable
@@ -94,7 +95,7 @@ namespace storage
 	    const Object& get(Args... args)
 	    {
 		if (e)
-		    rethrow_exception(e);
+		    std::rethrow_exception(e);
 
 		if (!object)
 		{
@@ -102,10 +103,10 @@ namespace storage
 		    {
 			object.reset(new Object(args...));
 		    }
-		    catch (exception)
+		    catch (std::exception)
 		    {
-			e = current_exception();
-			rethrow_exception(e);
+			e = std::current_exception();
+			std::rethrow_exception(e);
 		    }
 		}
 
@@ -114,8 +115,8 @@ namespace storage
 
 	private:
 
-	    shared_ptr<Object> object;
-	    exception_ptr e;
+	    std::shared_ptr<Object> object;
+	    std::exception_ptr e;
 
 	};
 
