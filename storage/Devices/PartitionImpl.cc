@@ -87,17 +87,15 @@ namespace storage
     }
 
 
-    /*
     void
     Partition::Impl::set_region(const Region& region)
     {
-	const Region& partitionable_region = partitionable->get_impl().get_region();
+	const Region& partitionable_region = get_partitionable()->get_region();
 	if (region.get_block_size() != partitionable_region.get_block_size())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
-	BlkDevice::set_region(region);
+	BlkDevice::Impl::set_region(region);
     }
-    */
 
 
     const PartitionTable*
@@ -387,12 +385,8 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	Region blk_region = detect_sysfs_blk_region();
-
-	long long unsigned end = blk_region.to_bytes(blk_region.get_start()) + get_size();
-
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit B "
-	    "resize " + to_string(get_number()) + " " + to_string(end);
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s "
+	    "resize " + to_string(get_number()) + " " + to_string(get_region().get_end());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
