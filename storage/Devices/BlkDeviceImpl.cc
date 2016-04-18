@@ -139,10 +139,10 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_region().get_length() != lhs.get_region().get_length())
+	if (get_size() != lhs.get_size())
 	{
-	    ResizeMode resize_mode = get_region().get_length() < lhs.get_region().get_length()
-								 ? ResizeMode::SHRINK : ResizeMode::GROW;
+	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
+		ResizeMode::GROW;
 
 	    vector<Action::Base*> actions;
 
