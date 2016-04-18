@@ -130,7 +130,7 @@ namespace storage
 
 	string cmd_line = "echo y | " NTFSRESIZEBIN " --force";
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --size " + to_string(blk_device->get_size() * 1024) + "k";
+	    cmd_line += " --size " + to_string(blk_device->get_size());
 	cmd_line += " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 

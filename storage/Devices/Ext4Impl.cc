@@ -77,7 +77,7 @@ namespace storage
 
 	string cmd_line = EXT2RESIZEBIN " -f " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device->get_size() * 1024) + "K";
+	    cmd_line += " " + to_string(blk_device->get_size() / KiB) + "K";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
