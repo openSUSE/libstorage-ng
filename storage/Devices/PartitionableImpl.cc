@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/PartitionableImpl.h"
+#include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Holders/User.h"

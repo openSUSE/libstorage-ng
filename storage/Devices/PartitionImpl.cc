@@ -6,6 +6,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
