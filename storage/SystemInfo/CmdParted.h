@@ -65,8 +65,7 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
-	 * Get the disk label type as string ("msdos", "gpt", ...) as returned
-	 * by the 'parted' command.
+	 * Get the disk label type as enum PtType.
 	 */
 	PtType getLabel() const { return label; }
 
