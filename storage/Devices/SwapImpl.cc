@@ -102,7 +102,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize ext4 failed"));
+	    ST_THROW(Exception("resize swap failed"));
     }
 
 }
