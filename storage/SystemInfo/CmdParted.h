@@ -31,6 +31,9 @@
 
 namespace storage
 {
+    using std::string;
+    using std::vector;
+
 
     /**
      * Class for probing for partitions with the 'parted' command.
