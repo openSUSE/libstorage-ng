@@ -46,8 +46,7 @@
 
 namespace storage
 {
-    using std::map;
-    using std::list;
+    using namespace std;
 
 
     class SystemInfo : private boost::noncopyable
