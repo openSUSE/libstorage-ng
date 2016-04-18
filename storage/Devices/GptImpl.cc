@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "storage/Devices/GptImpl.h"
-#include "storage/Devices/PartitionableImpl.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -54,7 +54,7 @@ namespace storage
     Region
     Gpt::Impl::get_usable_region() const
     {
-	Region device_region = get_partitionable()->get_impl().get_region();
+	Region device_region = get_partitionable()->get_region();
 
 	// 1 sector for protective MBR (only at beginning), 1 sector for
 	// primary or secondary header and 128 partition entries with 128

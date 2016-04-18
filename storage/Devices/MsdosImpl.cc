@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "storage/Devices/MsdosImpl.h"
-#include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Region.h"
@@ -36,7 +36,7 @@ namespace storage
     Region
     Msdos::Impl::get_usable_region() const
     {
-	Region device_region = get_partitionable()->get_impl().get_region();
+	Region device_region = get_partitionable()->get_region();
 
 	unsigned long long first_usable_sector = 1;
 	unsigned long long last_usabe_sector = (1ULL << 32) - 1;
