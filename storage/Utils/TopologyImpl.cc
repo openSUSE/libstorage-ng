@@ -22,6 +22,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/TopologyImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
 
@@ -48,7 +49,7 @@ namespace storage
     {
 	unsigned long grain = max(optimal_io_size, 1UL);
 
-	while (grain < 1024 * 1024)
+	while (grain < 1 * MiB)
 	    grain *= 2;
 
 	return grain;
