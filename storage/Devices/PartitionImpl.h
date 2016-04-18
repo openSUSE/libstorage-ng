@@ -41,6 +41,8 @@ namespace storage
 
 	unsigned int get_number() const;
 
+	virtual void set_region(const Region& region) override;
+
 	PartitionType get_type() const { return type; }
 	void set_type(PartitionType type) { Impl::type = type; }
 
