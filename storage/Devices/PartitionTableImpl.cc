@@ -63,7 +63,7 @@ namespace storage
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	const Region& partitionable_region = get_partitionable()->get_impl().get_region();
+	const Region& partitionable_region = get_partitionable()->get_region();
 	if (region.get_block_size() != partitionable_region.get_block_size())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
@@ -206,8 +206,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 	const Topology& topology = partitionable->get_topology();
-
-	const Region& region = partitionable->get_impl().get_region();
+	const Region& region = partitionable->get_region();
 
 	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
