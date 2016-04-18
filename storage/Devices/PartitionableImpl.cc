@@ -54,6 +54,7 @@ namespace storage
 								"/queue/logical_block_size");
 
 	// size is always in 512 byte blocks
+	// TODO see get_int() TODO
 	unsigned long long a = size_file.get_int();
 	unsigned long long b = logical_block_size_file.get_int();
 	unsigned long long c = a * 512 / b;
