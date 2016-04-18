@@ -26,7 +26,7 @@
 
 
 #include "storage/Utils/Region.h"
-#include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/PartitionTable.h"
 
 
 namespace storage
