@@ -395,6 +395,31 @@ namespace storage
 
 
     void
+    Filesystem::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+	vector<Action::Base*> actions;
+
+	if (get_type() != lhs.get_type())
+	{
+	    throw runtime_error("cannot change filesystem type");
+	}
+
+	if (get_label() != lhs.get_label())
+	{
+	    actions.push_back(new Action::SetLabel(get_sid()));
+	}
+
+	if (get_uuid() != lhs.get_uuid())
+	{
+	    actions.push_back(new Action::SetUuid(get_sid()));
+	}
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
     Filesystem::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	Action::Base* first = nullptr;
