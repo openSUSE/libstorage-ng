@@ -163,7 +163,7 @@ namespace storage
 
 	vector<Region> ret;
 
-	for (const Region used_region : used_regions_sorted)
+	for (const Region& used_region : used_regions_sorted)
 	{
 	    assert_equal_block_size(used_region.get_impl());
 
