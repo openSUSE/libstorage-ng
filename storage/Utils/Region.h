@@ -56,6 +56,13 @@ namespace storage
     };
 
 
+    class NotInside : public Exception
+    {
+    public:
+	NotInside();
+    };
+
+
     /**
      * A start/length pair with a block size.
      *
@@ -99,7 +106,8 @@ namespace storage
 
 	/**
 	 * Returns all regions not included in used_regions. Regions in
-	 * used_regions must not overlap. All block sizes must be identical.
+	 * used_regions must not overlap and be inside the region. All block
+	 * sizes must be identical.
 	 */
 	std::vector<Region> unused_regions(const std::vector<Region>& used_regions) const;
 

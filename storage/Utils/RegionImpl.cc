@@ -165,6 +165,9 @@ namespace storage
 
 	for (const Region& used_region : used_regions_sorted)
 	{
+	    if (!used_region.get_impl().inside(*this))
+		ST_THROW(NotInside());
+
 	    assert_equal_block_size(used_region.get_impl());
 
 	    if (used_region.get_start() > start)

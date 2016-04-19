@@ -45,6 +45,12 @@ namespace storage
     }
 
 
+    NotInside::NotInside()
+	: Exception("not inside", WARNING)
+    {
+    }
+
+
     Region::Region()
 	: impl(new Impl())
     {
