@@ -64,8 +64,8 @@ namespace storage
 	unsigned long long pt_size = 1 + 128 * 128 / device_region.get_block_size();
 
 	unsigned long long first_usable_sector = 1 + pt_size;
-	unsigned long long last_usabe_sector = device_region.get_end() - pt_size;
-	Region usable_region(first_usable_sector, last_usabe_sector - first_usable_sector,
+	unsigned long long last_usable_sector = device_region.get_end() - pt_size;
+	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
 			     device_region.get_block_size());
 
 	return device_region.intersection(usable_region);
