@@ -402,7 +402,7 @@ namespace storage
 
 	if (get_type() != lhs.get_type())
 	{
-	    throw runtime_error("cannot change filesystem type");
+	    ST_THROW(Exception("cannot change filesystem type"));
 	}
 
 	if (get_label() != lhs.get_label())
