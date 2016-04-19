@@ -104,4 +104,30 @@ namespace storage
 	    ST_THROW(Exception("resize ext4 failed"));
     }
 
+    void
+    Swap::Impl::do_set_label() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = SWAPLABELBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set-label swap failed"));
+    }
+
+    void
+    Swap::Impl::do_set_uuid() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = SWAPLABELBIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set-uuid swap failed"));
+    }
+
 }

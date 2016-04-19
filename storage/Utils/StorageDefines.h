@@ -104,6 +104,7 @@
 #define XFSADMINBIN    "/usr/sbin/xfs_admin"
 #define NTFSLABELBIN   "/usr/sbin/ntfslabel"
 #define FATLABELBIN	"/usr/sbin/fatlabel"
+#define SWAPLABELBIN   "/sbin/swaplabel"
 
 #define FSCKBIN        "/sbin/fsck"
 #define FSCKEXT2BIN    "/sbin/fsck.ext2"
