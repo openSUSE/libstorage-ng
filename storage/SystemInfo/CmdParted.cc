@@ -39,7 +39,7 @@ namespace storage
 
 
     Parted::Parted(const string& device)
-	: device(device), label(PtType::PT_UNKNOWN), region(0, 0, 512), implicit(false),
+	: device(device), label(PtType::PT_UNKNOWN), region(), implicit(false),
 	  gpt_enlarge(false)
     {
 	SystemCmd cmd(PARTEDBIN " --script " + quote(device) + " unit s print", SystemCmd::DoThrow);
