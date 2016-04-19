@@ -54,6 +54,19 @@ BOOST_AUTO_TEST_CASE(test_align1)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_align2)
+{
+    Topology topology(0, 0);
+
+    BOOST_CHECK_EQUAL(topology.can_be_aligned(Region(1, 4094, 512), AlignPolicy::ALIGN_END), false);
+    BOOST_CHECK_THROW(topology.align(Region(1, 4094, 512), AlignPolicy::ALIGN_END), AlignError);
+
+    BOOST_CHECK_EQUAL(topology.can_be_aligned(Region(1, 4095, 512), AlignPolicy::ALIGN_END), true);
+    BOOST_CHECK_EQUAL(topology.align(Region(1, 4095, 512), AlignPolicy::ALIGN_END), Region(2048, 2048, 512));
+}
+
+
+
 BOOST_AUTO_TEST_CASE(test_align_with_offset)
 {
     Topology topology(-512, 0);

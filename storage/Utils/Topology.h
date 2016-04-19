@@ -48,6 +48,12 @@ namespace storage
     };
 
 
+    /**
+     * A class to calculate partition alignment based on hardware
+     * topology. The starting sector of a partition must obey the form "sector
+     * = offset + X * grain". Alignment may fail is the start of the aligned
+     * partition region is after the end of the aligned partition region.
+     */
     class Topology
     {
     public:
@@ -66,17 +72,19 @@ namespace storage
 	void set_optimal_io_size(unsigned long optimal_io_size);
 
 	/**
-	 *
+	 * Calculates the grain.
 	 */
 	unsigned long calculate_grain() const;
 
 	/**
-	 * alignable
+	 * Checks whether a region can be aligned. Alignment may fail if the
+	 * aligned end is before the aligned start.
 	 */
 	bool can_be_aligned(const Region& region, AlignPolicy align_policy) const;
 
 	/**
-	 *
+	 * Aligns a region.
+	 * @throw AlignError
 	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 

@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/TopologyImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
@@ -56,33 +54,35 @@ namespace storage
     }
 
 
-    unsigned long long
-    Topology::Impl::align_block(unsigned long long sector, unsigned long block_size,
-				Location location) const
+    bool
+    Topology::Impl::align_block_in_place(unsigned long long& block, unsigned long block_size,
+					 Location location) const
     {
 	long alignment_offset_in_blocks = alignment_offset / block_size;
 	unsigned long grain_in_blocks = calculate_grain() / block_size;
 
-	unsigned long long ret = sector - alignment_offset_in_blocks;
+	block -= alignment_offset_in_blocks;
 
 	switch (location)
 	{
 	    case Location::START: {
-		long rest = ret % grain_in_blocks;
+		unsigned long long rest = block % grain_in_blocks;
 		if (rest != 0)
-		    ret += grain_in_blocks - rest;
+		    block += grain_in_blocks - rest;
 	    } break;
 
 	    case Location::END: {
-		long rest = (ret + 1) % grain_in_blocks;
+		unsigned long long rest = (block + 1) % grain_in_blocks;
+		if (rest > block)
+		    return false;
 		if (rest != 0)
-		    ret -= rest;
+		    block -= rest;
 	    } break;
 	}
 
-	ret += alignment_offset_in_blocks;
+	block += alignment_offset_in_blocks;
 
-	return ret;
+	return true;
     }
 
 
@@ -91,14 +91,18 @@ namespace storage
     {
 	unsigned long block_size = region.get_block_size();
 
-	unsigned long long start = align_block(region.get_start(), block_size, Location::START);
+	unsigned long long start = region.get_start();
+	if (!align_block_in_place(start, block_size, Location::START))
+	    return false;
 
 	unsigned long long length = 0;
 	switch (align_policy)
 	{
 	    case AlignPolicy::ALIGN_END: {
 		// TODO logical
-		unsigned long long end = align_block(region.get_end(), block_size, Location::END);
+		unsigned long long end = region.get_end();
+		if (!align_block_in_place(end, block_size, Location::END))
+		    return false;
 		if (end < start)
 		    return false;
 		length = end - start + 1;
