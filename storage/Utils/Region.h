@@ -27,6 +27,7 @@
 
 #include <libxml/tree.h>
 #include <memory>
+#include <vector>
 
 #include "storage/Utils/Exception.h"
 
@@ -95,6 +96,12 @@ namespace storage
 
 	bool intersect(const Region& rhs) const;
 	Region intersection(const Region& rhs) const;
+
+	/**
+	 * Returns all regions not included in used_regions. Regions in
+	 * used_regions must not overlap. All block sizes must be identical.
+	 */
+	std::vector<Region> unused_regions(const std::vector<Region>& used_regions) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const Region& region);
 

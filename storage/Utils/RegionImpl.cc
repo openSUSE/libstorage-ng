@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2015 SUSE LLC
+ * Copyright (c) [2015-2016] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -148,6 +148,35 @@ namespace storage
 	unsigned long long e = std::min(rhs.get_end(), get_end());
 
 	return Region(s, e - s + 1, block_size);
+    }
+
+
+    vector<Region>
+    Region::Impl::unused_regions(const vector<Region>& used_regions) const
+    {
+	unsigned long long start = get_start();
+	unsigned long long end = get_end();
+	unsigned long long block_size = get_block_size();
+
+	vector<Region> used_regions_sorted = used_regions;
+	sort(used_regions_sorted.begin(), used_regions_sorted.end());
+
+	vector<Region> ret;
+
+	for (const Region used_region : used_regions_sorted)
+	{
+	    assert_equal_block_size(used_region.get_impl());
+
+	    if (used_region.get_start() > start)
+		ret.emplace_back(start, used_region.get_start() - start, block_size);
+
+	    start = used_region.get_end() + 1;
+	}
+
+	if (end > start)
+	    ret.emplace_back(start, end - start + 1, block_size);
+
+	return ret;
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2015 SUSE LLC
+ * Copyright (c) [2015-2016] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -62,8 +62,11 @@ namespace storage
 	bool operator>(const Impl& rhs) const;
 
 	bool inside(const Impl& rhs) const;
+
 	bool intersect(const Impl& rhs) const;
 	Region intersection(const Impl& rhs) const;
+
+	vector<Region> unused_regions(const vector<Region>& used_regions) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const Impl& impl);
 

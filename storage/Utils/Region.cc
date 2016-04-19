@@ -209,6 +209,13 @@ namespace storage
     }
 
 
+    vector<Region>
+    Region::unused_regions(const vector<Region>& used_regions) const
+    {
+	return get_impl().unused_regions(used_regions);
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const Region& region)
     {

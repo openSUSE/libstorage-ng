@@ -181,3 +181,60 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
 
     BOOST_CHECK_EQUAL(mb.to_bytes(mb.get_length()), EiB);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions1)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(30, 50, 1),
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 30);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 80);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions2)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(0, 10, 1), Region(90, 10, 1)
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 1);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 10);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 80);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions3)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(10, 10, 1), Region(40, 20, 1), Region(80, 15, 1)
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 4);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 10);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 20);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[2].get_start(), 60);
+    BOOST_CHECK_EQUAL(unused_regions[2].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[3].get_start(), 95);
+    BOOST_CHECK_EQUAL(unused_regions[3].get_length(), 5);
+}
