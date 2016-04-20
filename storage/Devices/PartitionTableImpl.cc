@@ -205,9 +205,9 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const Topology& topology = partitionable->get_topology();
 
-	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
-	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
-	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical() - max_primary());
+	bool is_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
+	bool is_extended_possible = is_primary_possible && extended_possible() && !has_extended();
+	bool is_logical_possible = has_extended() && num_logical() < (max_logical() - max_primary());
 
 	vector<PartitionSlot> slots;
 
@@ -243,9 +243,9 @@ namespace storage
 	    slot.name = partitionable->get_impl().partition_name(slot.nr);
 
 	    slot.primary_slot = true;
-	    slot.primary_possible = tmp_primary_possible;
+	    slot.primary_possible = is_primary_possible;
 	    slot.extended_slot = true;
-	    slot.extended_possible = tmp_extended_possible;
+	    slot.extended_possible = is_extended_possible;
 	    slot.logical_slot = false;
 	    slot.logical_possible = false;
 
@@ -256,13 +256,15 @@ namespace storage
 		    used_regions.push_back(partition->get_region());
 	    }
 
-	    for (const Region& unused_region : get_usable_region().unused_regions(used_regions))
+	    Region usable_region = get_usable_region();
+	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
 		if (topology.can_be_aligned(unused_region, align_policy))
 		{
 		    slot.region = topology.align(unused_region, align_policy);
-		    // if (slot.region.get_length() > 0) // TODO
-		    slots.push_back(slot);
+
+		    if (slot.region.get_length() > 0) // TODO
+			slots.push_back(slot);
 
 		    /*
 		      if (label == "dasd")
@@ -291,35 +293,34 @@ namespace storage
 	    slot.extended_slot = false;
 	    slot.extended_possible = false;
 	    slot.logical_slot = true;
-	    slot.logical_possible = tmp_logical_possible;
+	    slot.logical_possible = is_logical_possible;
 
 	    vector<Region> used_regions;
 	    for (const Partition* partition : partitions)
 	    {
 		if (partition->get_type() == PartitionType::LOGICAL)
-		{
-		    Region adjusted_region = partition->get_region();
-		    adjusted_region.adjust_length(+1);
-
-		    y2mil("haha " << partition->get_region() << " " << adjusted_region);
-
-		    used_regions.push_back(adjusted_region);
-		}
+		    used_regions.push_back(partition->get_region());
 	    }
 
-	    Region adjusted_region = get_extended()->get_region();
-	    adjusted_region.adjust_start(+1);
-	    adjusted_region.adjust_length(-1);
-
-	    for (const Region& unused_region : adjusted_region.unused_regions(used_regions))
+	    const Region& extended_region = get_extended()->get_region();
+	    for (const Region& unused_region : extended_region.unused_regions(used_regions))
 	    {
-		y2mil("huhu " << unused_region);
+		// one sector is needed for the EBR, see
+		// https://en.wikipedia.org/wiki/Extended_boot_record
 
-		if (topology.can_be_aligned(unused_region, align_policy))
+		if (unused_region.get_length() <= 1)
+		    continue;
+
+		Region adjusted_region = unused_region;
+		adjusted_region.adjust_start(+1);
+		adjusted_region.adjust_length(-1);
+
+		if (topology.can_be_aligned(adjusted_region, align_policy))
 		{
-		    slot.region = topology.align(unused_region, align_policy);
-		    // if (slot.region.get_length() > 0) // TODO
-		    slots.push_back(slot);
+		    slot.region = topology.align(adjusted_region, align_policy);
+
+		    if (slot.region.get_length() > 0) // TODO
+			slots.push_back(slot);
 		}
 	    }
 	}
