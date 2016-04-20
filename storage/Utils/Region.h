@@ -88,6 +88,9 @@ namespace storage
 	void set_start(unsigned long long start);
 	void set_length(unsigned long long length);
 
+	void adjust_start(long long delta);
+	void adjust_length(long long delta);
+
 	unsigned int get_block_size() const;
 	void set_block_size(unsigned int block_size);
 

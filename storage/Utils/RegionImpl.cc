@@ -67,6 +67,20 @@ namespace storage
 
 
     void
+    Region::Impl::adjust_start(long long delta)
+    {
+	Impl::start += delta;
+    }
+
+
+    void
+    Region::Impl::adjust_length(long long delta)
+    {
+	length += delta;
+    }
+
+
+    void
     Region::Impl::set_block_size(unsigned int block_size)
     {
 	assert_valid_block_size(block_size);

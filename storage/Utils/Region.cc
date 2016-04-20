@@ -138,6 +138,20 @@ namespace storage
     }
 
 
+    void
+    Region::adjust_start(long long delta)
+    {
+	get_impl().adjust_start(delta);
+    }
+
+
+    void
+    Region::adjust_length(long long delta)
+    {
+	get_impl().adjust_length(delta);
+    }
+
+
     unsigned int
     Region::get_block_size() const
     {
