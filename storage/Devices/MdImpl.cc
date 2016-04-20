@@ -91,6 +91,13 @@ namespace storage
     }
 
 
+    unsigned long
+    Md::Impl::get_default_chunk_size() const
+    {
+	return 512 * KiB;
+    }
+
+
     bool
     Md::Impl::is_valid_name(const string& name)
     {
@@ -311,14 +318,11 @@ namespace storage
     {
 	vector<BlkDevice*> devices = get_devices();
 
+	long real_chunk_size = chunk_size != 0 ? chunk_size : get_default_chunk_size();
+
 	int number = 0;
 	unsigned long long sum = 0;
 	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
-
-	// TODO
-	long ch = 512;
-	if (chunk_size != 0)
-	    ch = chunk_size;
 
 	for (const BlkDevice* device : devices)
 	{
@@ -333,7 +337,7 @@ namespace storage
 	    // bitmap uses otherwise unused space,
 	    // https://raid.wiki.kernel.org/index.php/Write-intent_bitmap
 
-	    long rest = size % ch;
+	    long rest = size % real_chunk_size;
 	    if (rest > 0)
 		size -= rest;
 
@@ -351,7 +355,7 @@ namespace storage
 		if (number >= 2)
 		{
 		    size = sum;
-		    optimal_io_size = ch * number;
+		    optimal_io_size = real_chunk_size * number;
 		}
 		break;
 
@@ -367,7 +371,7 @@ namespace storage
 		if (number >= 3)
 		{
 		    size = smallest * (number - 1);
-		    optimal_io_size = ch * (number - 1);
+		    optimal_io_size = real_chunk_size * (number - 1);
 		}
 		break;
 
@@ -375,7 +379,7 @@ namespace storage
 		if (number >= 4)
 		{
 		    size = smallest * (number - 2);
-		    optimal_io_size = ch * (number - 2);
+		    optimal_io_size = real_chunk_size * (number - 2);
 		}
 		break;
 
@@ -383,7 +387,7 @@ namespace storage
 		if (number >= 2)
 		{
 		    size = smallest * number / 2;
-		    optimal_io_size = ch * number / 2;
+		    optimal_io_size = real_chunk_size * number / 2;
 		    if (number % 2 == 1)
 			optimal_io_size *= 2;
 		}

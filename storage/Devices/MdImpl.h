@@ -50,6 +50,8 @@ namespace storage
 	unsigned long get_chunk_size() const { return chunk_size; }
 	void set_chunk_size(unsigned long chunk_size);
 
+	unsigned long get_default_chunk_size() const;
+
 	static bool is_valid_name(const string& name);
 
 	static vector<string> probe_mds(SystemInfo& systeminfo);
