@@ -200,13 +200,10 @@ namespace storage
 
 
     vector<PartitionSlot>
-    PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical, AlignPolicy align_policy) const
+    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy) const
     {
-	y2mil("all:" << all << " logical:" << logical);
-
 	const Partitionable* partitionable = get_partitionable();
 	const Topology& topology = partitionable->get_topology();
-	const Region& region = partitionable->get_region();
 
 	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
@@ -217,7 +214,7 @@ namespace storage
 	vector<const Partition*> partitions = get_partitions();
 	sort(partitions.begin(), partitions.end(), compare_by_number);
 
-	if (all || !logical)
+	if (true)
 	{
 	    PartitionSlot slot;
 
@@ -252,119 +249,82 @@ namespace storage
 	    slot.logical_slot = false;
 	    slot.logical_possible = false;
 
-	    unsigned long start = 0;
-	    unsigned long end = region.get_length();
-
-	    list<Region> tmp;
+	    vector<Region> used_regions;
 	    for (const Partition* partition : partitions)
 	    {
 		if (partition->get_type() != PartitionType::LOGICAL)
-		    tmp.push_back(partition->get_region());
+		    used_regions.push_back(partition->get_region());
 	    }
-	    tmp.sort();
 
-	    for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
+	    for (const Region& unused_region : get_usable_region().unused_regions(used_regions))
 	    {
-		if (i->get_start() > start)
+		if (topology.can_be_aligned(unused_region, align_policy))
 		{
-		    slot.region = Region(start, i->get_start() - start, region.get_block_size());
+		    slot.region = topology.align(unused_region, align_policy);
+		    // if (slot.region.get_length() > 0) // TODO
 		    slots.push_back(slot);
-		}
-		start = i->get_end() + 1;
 
-		/*
-		if (label == "dasd")
-		{
-		    slot.nr++;
-		    slot.device = getPartDevice(slot.nr);
+		    /*
+		      if (label == "dasd")
+		      {
+		      slot.nr++;
+		      slot.device = getPartDevice(slot.nr);
+		      }
+		    */
 		}
-		*/
-	    }
-	    if (end > start)
-	    {
-		slot.region = Region(start, end - start, region.get_block_size());
-		slots.push_back(slot);
+		else
+		{
+		    y2err("haha not alignable");
+		}
 	    }
 	}
 
-	if (all || logical)
+	if (has_extended())
 	{
-	    try
+	    PartitionSlot slot;
+
+	    slot.nr = max_primary() + num_logical() + 1;
+	    slot.name = partitionable->get_impl().partition_name(slot.nr);
+
+	    slot.primary_slot = false;
+	    slot.primary_possible = false;
+	    slot.extended_slot = false;
+	    slot.extended_possible = false;
+	    slot.logical_slot = true;
+	    slot.logical_possible = tmp_logical_possible;
+
+	    vector<Region> used_regions;
+	    for (const Partition* partition : partitions)
 	    {
-		const Partition* extended = get_extended();
-
-		PartitionSlot slot;
-
-		slot.nr = max_primary() + num_logical() + 1;
-		slot.name = partitionable->get_impl().partition_name(slot.nr);
-
-		slot.primary_slot = false;
-		slot.primary_possible = false;
-		slot.extended_slot = false;
-		slot.extended_possible = false;
-		slot.logical_slot = true;
-		slot.logical_possible = tmp_logical_possible;
-
-		unsigned long start = extended->get_region().get_start();
-		unsigned long end = extended->get_region().get_end();
-
-		list<Region> tmp;
-		for (const Partition* partition : partitions)
+		if (partition->get_type() == PartitionType::LOGICAL)
 		{
-		    if (partition->get_type() == PartitionType::LOGICAL)
-			tmp.push_back(partition->get_region());
-		}
-		tmp.sort();
+		    Region adjusted_region = partition->get_region();
+		    adjusted_region.adjust_length(+1);
 
-		for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
-		{
-		    if (i->get_start() > start)
-		    {
-			slot.region = Region(start, i->get_start() - start, region.get_block_size());
-			slots.push_back(slot);
-		    }
-		    start = i->get_end() + 1;
-		}
-		if (end > start)
-		{
-		    slot.region = Region(start, end - start, region.get_block_size());
-		    slots.push_back(slot);
+		    y2mil("haha " << partition->get_region() << " " << adjusted_region);
+
+		    used_regions.push_back(adjusted_region);
 		}
 	    }
-	    catch (...)
+
+	    Region adjusted_region = get_extended()->get_region();
+	    adjusted_region.adjust_start(+1);
+	    adjusted_region.adjust_length(-1);
+
+	    for (const Region& unused_region : adjusted_region.unused_regions(used_regions))
 	    {
+		y2mil("huhu " << unused_region);
+
+		if (topology.can_be_aligned(unused_region, align_policy))
+		{
+		    slot.region = topology.align(unused_region, align_policy);
+		    // if (slot.region.get_length() > 0) // TODO
+		    slots.push_back(slot);
+		}
 	    }
 	}
 
 	y2deb("slots:" << slots);
-
-	Region usable_region = get_usable_region();
-
-	vector<PartitionSlot>::iterator it = slots.begin();
-	while (it != slots.end())
-	{
-	    if (usable_region.intersect(it->region))
-	    {
-		it->region = usable_region.intersection(it->region);
-
-		it->region = topology.align(it->region, align_policy);
-
-		if (it->region.get_length() > 0) // TODO
-		{
-		    ++it;
-		}
-		else
-		{
-		    it = slots.erase(it);
-		}
-	    }
-	    else
-	    {
-		it = slots.erase(it);
-	    }
-	}
-
-	y2mil("slots:" << slots);
 
 	return slots;
     }
