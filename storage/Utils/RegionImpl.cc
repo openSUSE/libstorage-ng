@@ -69,13 +69,19 @@ namespace storage
     void
     Region::Impl::adjust_start(long long delta)
     {
-	Impl::start += delta;
+	if (delta < 0 && (unsigned long long)(-delta) > start)
+	    ST_THROW(Exception("value out of range"));
+
+	start += delta;
     }
 
 
     void
     Region::Impl::adjust_length(long long delta)
     {
+	if (delta < 0 && (unsigned long long)(-delta) > length)
+	    ST_THROW(Exception("value out of range"));
+
 	length += delta;
     }
 
