@@ -4,8 +4,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/HumanString.h"
 
 
 using namespace std;
