@@ -59,6 +59,3 @@ Use Cases:
 Following these workflows ensures that new partitions are aligned and that
 there are no gaps unless technical inevitable.
 
-
-TODO logical partitions
-
