@@ -224,8 +224,63 @@ namespace storage
     Text
     Partition::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(),
-		       get_size_string().c_str());
+	Text text;
+
+	if (!is_msdos(get_partition_table()))
+	{
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2GiB)
+			  _("Create partition %1$s (%2$s)"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2GiB)
+			  _("Creating partition %1$s (%2$s)"));
+	}
+	else
+	{
+	    switch (type)
+	    {
+		case PartitionType::PRIMARY:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create primary partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating primary partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::EXTENDED:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create extended partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating extended partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::LOGICAL:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create logical partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating logical partition %1$s (%2$s)"));
+		    break;
+	    }
+	}
+
+	return sformat(text, get_name().c_str(), get_size_string().c_str());
     }
 
 
