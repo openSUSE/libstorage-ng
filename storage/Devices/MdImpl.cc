@@ -370,7 +370,7 @@ namespace storage
 		if (number >= 2)
 		{
 		    size = smallest;
-		    optimal_io_size = 32768;
+		    optimal_io_size = 0;
 		}
 		break;
 
@@ -393,7 +393,7 @@ namespace storage
 	    case RAID10:
 		if (number >= 2)
 		{
-		    size = smallest * number / 2;
+		    size = ((smallest / real_chunk_size) * number / 2) * real_chunk_size;
 		    optimal_io_size = real_chunk_size * number / 2;
 		    if (number % 2 == 1)
 			optimal_io_size *= 2;
