@@ -41,7 +41,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Devicegraph* lhs = storage.get_staging();
 
-    Disk::create(lhs, "/dev/sda");
+    Disk* tmp = Disk::create(lhs, "/dev/sda");
+    tmp->set_region(Region(0, 100000, 512));
 
     Devicegraph* rhs = storage.copy_devicegraph("staging", "old");
 
@@ -49,7 +50,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    Partition* sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
+    Partition* sda1 = Partition::create(rhs, "/dev/sda1", Region(0, 0, 512), PartitionType::PRIMARY);
     Subdevice::create(rhs, gpt, sda1);
     sda1->set_size(16 * GiB);
     sda1->set_id(ID_LVM);
