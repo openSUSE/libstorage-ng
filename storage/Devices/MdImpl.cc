@@ -318,7 +318,14 @@ namespace storage
     {
 	vector<BlkDevice*> devices = get_devices();
 
-	long real_chunk_size = chunk_size != 0 ? chunk_size : get_default_chunk_size();
+	long real_chunk_size = chunk_size;
+
+	if (real_chunk_size == 0)
+	    real_chunk_size = get_default_chunk_size();
+
+	// mdadm uses a chunk size of 64 KiB just in case the RAID1 is ever reshaped to RAID5.
+	if (md_level == RAID1)
+	    real_chunk_size = 64 * KiB;
 
 	int number = 0;
 	unsigned long long sum = 0;
