@@ -412,7 +412,19 @@ namespace storage
     Text
     Md::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create MD RAID %1$s (%2$s)"), get_displayname().c_str(),
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Create MD %1$s %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Creating MD %1$s %2$s (%3$s)"));
+
+	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
 		       get_size_string().c_str());
     }
 
@@ -478,7 +490,19 @@ namespace storage
     Text
     Md::Impl::do_delete_text(Tense tense) const
     {
-	return sformat(_("Delete MD RAID %1$s (%2$s)"), get_displayname().c_str(),
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Delete MD %1$s %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Deleting MD %1$s %2$s (%3$s)"));
+
+	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
 		       get_size_string().c_str());
     }
 
