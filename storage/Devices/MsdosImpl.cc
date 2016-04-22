@@ -9,6 +9,7 @@
 #include "storage/Utils/Region.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -38,10 +39,16 @@ namespace storage
     {
 	Region device_region = get_partitionable()->get_region();
 
-	unsigned long long first_usable_sector = 1;
-	unsigned long long last_usabe_sector = (1ULL << 32) - 1;
-	Region usable_region(first_usable_sector, last_usabe_sector - first_usable_sector,
-			     device_region.get_block_size());
+	// Reserve 1 MiB for the MBR and the MBR gap, see
+	// https://en.wikipedia.org/wiki/BIOS_boot_partition. Normally the
+	// space for the MBR gap is unused anyway due to partition alignment
+	// but for disks with an alignment offset it can be required to
+	// explicitely reserve it.
+
+	unsigned long long first_usable_sector = device_region.to_blocks(1 * MiB);
+	unsigned long long last_usable_sector = UINT32_MAX - 1;
+	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
+				   device_region.get_block_size());
 
 	return device_region.intersection(usable_region);
     }
