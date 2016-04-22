@@ -27,9 +27,7 @@ BOOST_AUTO_TEST_CASE(test_set_region)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 512));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 100000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -63,9 +61,7 @@ BOOST_AUTO_TEST_CASE(test_set_size)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 512));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 100000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 

@@ -69,6 +69,7 @@ namespace storage
 
     protected:
 
+	// TODO remove this contructor so always require a region?
 	Impl(const string& name)
 	    : Device::Impl(), name(name), region(0, 0, 512) {}
 

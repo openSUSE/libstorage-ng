@@ -51,6 +51,9 @@ namespace storage
 	Impl(const string& name)
 	    : BlkDevice::Impl(name), topology(), range(0) {}
 
+	Impl(const string& name, const Region& region, unsigned int range)
+	    : BlkDevice::Impl(name, region), topology(), range(range) {}
+
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;

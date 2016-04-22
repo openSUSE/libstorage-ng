@@ -26,9 +26,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 512));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -58,9 +56,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 512));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -126,9 +122,7 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
     // the disk is bigger than the address space of a MSDOS partition table with 512
     // bytes per sector
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 4096));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 20000000, 4096));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
@@ -158,9 +152,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
-    sda->set_region(Region(0, 100000, 512));
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 

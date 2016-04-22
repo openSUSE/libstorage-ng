@@ -27,6 +27,9 @@ namespace storage
 	Impl(const string& name)
 	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
 
+	Impl(const string& name, const Region& region)
+	    : Partitionable::Impl(name, region, 256), rotational(false), transport(Transport::UNKNOWN) {}
+
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<Disk>::classname; }
