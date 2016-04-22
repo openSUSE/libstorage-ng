@@ -27,7 +27,8 @@ General Workflow:
 
 - Set the size of the region, optionally the start of the region.
 
-- Call align().
+- Optionally call align(), always call align() if you changed the start of the
+  region.
 
   Per default this will align the start and end of the region. The start is
   rounded up and the end is rounded down. This way it is assured that the
@@ -49,13 +50,21 @@ Use Cases:
 
 - Create small (just a few grains) partition:
 
-  Call align with KEEP_SIZE.
+  Do not call align or call it with KEEP_SIZE.
 
 - Create partition using rest of slot:
 
-  Call align with KEEP_END.
+  Do not call align or call it with KEEP_END.
 
 
 Following these workflows ensures that new partitions are aligned and that
-there are no gaps unless technical inevitable.
+there are no gaps unless technical inevitable. Usually gaps will appear before
+the first partition and before logical partitions.
+
+On the other hand by not using the align() function still unaligned partitions
+can be created. Gaps can also be created when exact sizes are preferred over
+no gaps.
+
+It should be obviously that "exact sizes" are only possible within the
+possibility of the hardware, usually multiples of 512 B or 4 KiB.
 
