@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,8 +31,10 @@
 namespace storage
 {
 
+    // TODO use C++11 user-defined literals? Swig has some support for them.
 
-    const unsigned long long KiB = 1024;
+    const unsigned long long B = 1;
+    const unsigned long long KiB = 1024 * B;
     const unsigned long long MiB = 1024 * KiB;
     const unsigned long long GiB = 1024 * MiB;
     const unsigned long long TiB = 1024 * GiB;

@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/Topology.h"
 
 
@@ -69,8 +70,8 @@ BOOST_AUTO_TEST_CASE(test_align2)
 
 BOOST_AUTO_TEST_CASE(test_align_with_offset)
 {
-    Topology topology(-512, 0);
+    Topology topology(4 * KiB - 512 * B, 0);
 
-    BOOST_CHECK_EQUAL(topology.align(Region(0, 10000, 512), AlignPolicy::KEEP_SIZE), Region(2047, 10000, 512));
-    BOOST_CHECK_EQUAL(topology.align(Region(1, 10000, 512), AlignPolicy::KEEP_SIZE), Region(2047, 10000, 512));
+    BOOST_CHECK_EQUAL(topology.align(Region(0, 10000, 512), AlignPolicy::KEEP_SIZE), Region(7, 10000, 512));
+    BOOST_CHECK_EQUAL(topology.align(Region(7, 10000, 512), AlignPolicy::KEEP_SIZE), Region(7, 10000, 512));
 }

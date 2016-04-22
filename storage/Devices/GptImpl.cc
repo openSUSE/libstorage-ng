@@ -1,6 +1,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/Partitionable.h"
 #include "storage/Devicegraph.h"
@@ -61,7 +62,7 @@ namespace storage
 	// bytes per partition entry. In theory these values are
 	// variables. See https://en.wikipedia.org/wiki/GUID_Partition_Table.
 
-	unsigned long long pt_size = 1 + 128 * 128 / device_region.get_block_size();
+	unsigned long long pt_size = 1 + 128 * 128 * B / device_region.get_block_size();
 
 	unsigned long long first_usable_sector = 1 + pt_size;
 	unsigned long long last_usable_sector = device_region.get_end() - pt_size;
