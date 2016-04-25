@@ -25,14 +25,14 @@ BOOST_AUTO_TEST_CASE(test_output)
 
 BOOST_AUTO_TEST_CASE(test_grain)
 {
-    BOOST_CHECK_EQUAL(Topology(0, 0).calculate_grain(), 1024 * 1024);
-    BOOST_CHECK_EQUAL(Topology(-512, 4096).calculate_grain(), 1024 * 1024);
+    BOOST_CHECK_EQUAL(Topology(0, 0 * B).calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Topology(-512, 4 * KiB).calculate_grain(), 1 * MiB);
 
-    BOOST_CHECK_EQUAL(Topology(0, 32 * 1024).calculate_grain(), 1024 * 1024);
-    BOOST_CHECK_EQUAL(Topology(0, 1024 * 1024).calculate_grain(), 1024 * 1024);
-    BOOST_CHECK_EQUAL(Topology(0, 8 * 1024 * 1024).calculate_grain(), 8 * 1024 * 1024);
+    BOOST_CHECK_EQUAL(Topology(0, 32 * KiB).calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Topology(0, 1 * MiB).calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Topology(0, 8 * MiB).calculate_grain(), 8 * MiB);
 
-    BOOST_CHECK_EQUAL(Topology(0, 768 * 1024).calculate_grain(), 1536 * 1024);
+    BOOST_CHECK_EQUAL(Topology(0, 768 * KiB).calculate_grain(), 1536 * KiB);
 }
 
 
@@ -97,6 +97,16 @@ BOOST_AUTO_TEST_CASE(test_align_region_in_place)
     region = Region(0, 2048, 512);
     BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
     BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
+
+    // AlignPolicy::KEEP_SIZE
+
+    region = Region(0, 2048, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_SIZE));
+    BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
+
+    region = Region(1, 2048, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_SIZE));
+    BOOST_CHECK_EQUAL(region, Region(2048, 2048, 512));
 
     // AlignPolicy::KEEP_END
 
