@@ -1,7 +1,5 @@
 
 
-#include <iostream>
-
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
@@ -80,11 +78,7 @@ namespace storage
 	    if (parted.getLabel() == PtType::MSDOS || parted.getLabel() == PtType::GPT)
 	    {
 		if (get_region().get_length() != parted.get_region().get_length())
-		{
-		    cout << get_name() << " " << get_region().get_length() << " "
-			 << parted.get_region().get_length() << endl;
 		    ST_THROW(Exception("different size reported by kernel and parted"));
-		}
 
 		if (get_region().get_block_size() != parted.get_region().get_block_size())
 		    ST_THROW(Exception("different block size reported by kernel and parted"));
