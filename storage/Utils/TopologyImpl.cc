@@ -75,8 +75,7 @@ namespace storage
 		unsigned long long rest = (block + 1) % grain_in_blocks;
 		if (rest > block)
 		    return false;
-		if (rest != 0)
-		    block -= rest;
+		block -= rest;
 	    } break;
 	}
 
@@ -87,7 +86,7 @@ namespace storage
 
 
     bool
-    Topology::Impl::align_in_place(Region& region, AlignPolicy align_policy) const
+    Topology::Impl::align_region_in_place(Region& region, AlignPolicy align_policy) const
     {
 	unsigned long block_size = region.get_block_size();
 
@@ -99,11 +98,10 @@ namespace storage
 	switch (align_policy)
 	{
 	    case AlignPolicy::ALIGN_END: {
-		// TODO logical
 		unsigned long long end = region.get_end();
 		if (!align_block_in_place(end, block_size, Location::END))
 		    return false;
-		if (end < start)
+		if (end + 1 <= start)
 		    return false;
 		length = end - start + 1;
 	    } break;
@@ -113,9 +111,10 @@ namespace storage
 	    } break;
 
 	    case AlignPolicy::KEEP_END: {
-		if (region.get_end() < start - region.get_start())
+		unsigned long long delta = start - region.get_start();
+		if (region.get_length() <= delta)
 		    return false;
-		length = region.get_length() - (start - region.get_start());
+		length = region.get_length() - delta;
 	    } break;
 	}
 
@@ -128,7 +127,7 @@ namespace storage
     Topology::Impl::can_be_aligned(const Region& region, AlignPolicy align_policy) const
     {
 	Region tmp(region);
-	return align_in_place(tmp, align_policy);
+	return align_region_in_place(tmp, align_policy);
     }
 
 
@@ -136,7 +135,7 @@ namespace storage
     Topology::Impl::align(const Region& region, AlignPolicy align_policy) const
     {
 	Region tmp(region);
-	if (!align_in_place(tmp, align_policy))
+	if (!align_region_in_place(tmp, align_policy))
 	    ST_THROW(AlignError());
 
 	return tmp;

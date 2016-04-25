@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Utils/HumanString.h"
-#include "storage/Utils/Topology.h"
+#include "storage/Utils/TopologyImpl.h"
 
 
 using namespace std;
@@ -36,6 +36,87 @@ BOOST_AUTO_TEST_CASE(test_grain)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_align_block_in_place)
+{
+    unsigned long block_size = 512;
+    Topology topology(0, 0);
+
+    unsigned long long block;
+
+    // Location::START
+
+    block = 0;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 0);
+
+    block = 1;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 2048);
+
+    block = 2048;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 2048);
+
+    block = 2049;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 4096);
+
+    // Location::END
+
+    block = 2046;
+    BOOST_CHECK(!topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::END));
+
+    block = 2047;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::END));
+    BOOST_CHECK_EQUAL(block, 2047);
+
+    block = 2048;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::END));
+    BOOST_CHECK_EQUAL(block, 2047);
+
+    block = 4096;
+    BOOST_CHECK(topology.get_impl().align_block_in_place(block, block_size, Topology::Impl::Location::END));
+    BOOST_CHECK_EQUAL(block, 4095);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_align_region_in_place)
+{
+    Topology topology(0, 0);
+
+    Region region;
+
+    // AlignPolicy::ALIGN_END
+
+    region = Region(0, 2047, 512);
+    BOOST_CHECK(!topology.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+
+    region = Region(1, 2048, 512);
+    BOOST_CHECK(!topology.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+
+    region = Region(0, 2048, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+    BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
+
+    // AlignPolicy::KEEP_END
+
+    region = Region(0, 2048, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
+
+    region = Region(0, 2047, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK_EQUAL(region, Region(0, 2047, 512));
+
+    region = Region(1, 2047, 512);
+    BOOST_CHECK(!topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+
+    region = Region(1, 2048, 512);
+    BOOST_CHECK(topology.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK_EQUAL(region, Region(2048, 1, 512));
+}
+
+
 BOOST_AUTO_TEST_CASE(test_align1)
 {
     Topology topology(0, 0);
@@ -59,13 +140,12 @@ BOOST_AUTO_TEST_CASE(test_align2)
 {
     Topology topology(0, 0);
 
-    BOOST_CHECK_EQUAL(topology.can_be_aligned(Region(1, 4094, 512), AlignPolicy::ALIGN_END), false);
+    BOOST_CHECK(!topology.can_be_aligned(Region(1, 4094, 512), AlignPolicy::ALIGN_END));
     BOOST_CHECK_THROW(topology.align(Region(1, 4094, 512), AlignPolicy::ALIGN_END), AlignError);
 
-    BOOST_CHECK_EQUAL(topology.can_be_aligned(Region(1, 4095, 512), AlignPolicy::ALIGN_END), true);
+    BOOST_CHECK(topology.can_be_aligned(Region(1, 4095, 512), AlignPolicy::ALIGN_END));
     BOOST_CHECK_EQUAL(topology.align(Region(1, 4095, 512), AlignPolicy::ALIGN_END), Region(2048, 2048, 512));
 }
-
 
 
 BOOST_AUTO_TEST_CASE(test_align_with_offset)

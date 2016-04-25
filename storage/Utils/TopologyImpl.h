@@ -52,6 +52,13 @@ namespace storage
 
 	Region align(const Region& region, AlignPolicy align_policy) const;
 
+	enum class Location { START, END };
+
+	bool align_block_in_place(unsigned long long& block, unsigned long block_size,
+				  Location location) const;
+
+	bool align_region_in_place(Region& region, AlignPolicy align_policy) const;
+
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
@@ -61,13 +68,6 @@ namespace storage
 	friend void setChildValue(xmlNode* node, const char* name, const Impl& value);
 
     private:
-
-	enum class Location { START, END };
-
-	bool align_block_in_place(unsigned long long& block, unsigned long block_size,
-				  Location location) const;
-
-	bool align_in_place(Region& region, AlignPolicy align_policy) const;
 
 	long alignment_offset;
 	unsigned long optimal_io_size;

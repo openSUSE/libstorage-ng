@@ -25,7 +25,7 @@ General Workflow:
 
 - Choose a region.
 
-- Set the size of the region, optionally the start of the region.
+- Optionally set the start and/or size of the region.
 
 - Optionally call align(), always call align() if you changed the start of the
   region.

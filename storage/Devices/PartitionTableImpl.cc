@@ -8,6 +8,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/TopologyImpl.h"
 
 
 namespace storage
@@ -259,12 +260,10 @@ namespace storage
 	    Region usable_region = get_usable_region();
 	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
-		if (topology.can_be_aligned(unused_region, align_policy))
+		slot.region = unused_region;
+		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    slot.region = topology.align(unused_region, align_policy);
-
-		    if (slot.region.get_length() > 0) // TODO
-			slots.push_back(slot);
+		    slots.push_back(slot);
 
 		    /*
 		      if (label == "dasd")
@@ -273,10 +272,6 @@ namespace storage
 		      slot.device = getPartDevice(slot.nr);
 		      }
 		    */
-		}
-		else
-		{
-		    y2err("haha not alignable");
 		}
 	    }
 	}
@@ -315,12 +310,10 @@ namespace storage
 		adjusted_region.adjust_start(+1);
 		adjusted_region.adjust_length(-1);
 
-		if (topology.can_be_aligned(adjusted_region, align_policy))
+		slot.region = adjusted_region;
+		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    slot.region = topology.align(adjusted_region, align_policy);
-
-		    if (slot.region.get_length() > 0) // TODO
-			slots.push_back(slot);
+		    slots.push_back(slot);
 		}
 	    }
 	}
