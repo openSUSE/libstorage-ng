@@ -3,6 +3,9 @@
 # requirements: disk /dev/sdb with 8 empty and unused partitions preferably of
 # slightly different size (sdb1-sdb8)
 
+# TODO create the partitions in the program so that tests are run several
+# times with partitions of different sizes
+
 
 from sys import exit
 from os import system

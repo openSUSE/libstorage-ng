@@ -341,8 +341,7 @@ namespace storage
 	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
 	    size = (size & ~(0x1000 - 1)) - 0x2000;
 
-	    // bitmap uses otherwise unused space,
-	    // https://raid.wiki.kernel.org/index.php/Write-intent_bitmap
+	    // size used for bitmap depends on device size
 
 	    long rest = size % real_chunk_size;
 	    if (rest > 0)
