@@ -21,3 +21,4 @@ py-compile
 cov-int
 /.obsdir/
 /obs-package-from-git
+compile
