@@ -101,3 +101,8 @@
 
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
 
+%catches(storage::Exception) storage::Storage::create_devicegraph(const std::string&);
+%catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string&, const std::string&);
+%catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string&);
+%catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string&);
+
