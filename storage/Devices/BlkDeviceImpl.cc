@@ -20,6 +20,20 @@ namespace storage
     const char* DeviceTraits<BlkDevice>::classname = "BlkDevice";
 
 
+    BlkDevice::Impl::Impl(const string& name)
+	: Impl(name, Region(0, 0, 512))
+    {
+    }
+
+
+    BlkDevice::Impl::Impl(const string& name, const Region& region)
+	: Device::Impl(), name(name), region(region)
+    {
+	if (!boost::starts_with(name, DEVDIR "/"))
+	    ST_THROW(Exception("invalid blkdevice name"));
+    }
+
+
     BlkDevice::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), name(), region(0, 0, 512)
     {

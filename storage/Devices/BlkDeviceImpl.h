@@ -70,11 +70,9 @@ namespace storage
     protected:
 
 	// TODO remove this contructor so always require a region?
-	Impl(const string& name)
-	    : Device::Impl(), name(name), region(0, 0, 512) {}
+	Impl(const string& name);
 
-	Impl(const string& name, const Region& region)
-	    : Device::Impl(), name(name), region(region) {}
+	Impl(const string& name, const Region& region);
 
 	Impl(const xmlNode* node);
 

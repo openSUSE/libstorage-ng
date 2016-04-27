@@ -25,9 +25,6 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name)
     {
-	if (!boost::starts_with(name, DEVDIR "/"))
-	    ST_THROW(Exception("invalid disk name"));
-
 	Disk* ret = new Disk(new Disk::Impl(name));
 	ret->Device::create(devicegraph);
 	return ret;
@@ -37,10 +34,16 @@ namespace storage
     Disk*
     Disk::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	if (!boost::starts_with(name, DEVDIR "/"))
-	    ST_THROW(Exception("invalid disk name"));
-
 	Disk* ret = new Disk(new Disk::Impl(name, region));
+	ret->Device::create(devicegraph);
+	return ret;
+    }
+
+
+    Disk*
+    Disk::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
+    {
+	Disk* ret = new Disk(new Disk::Impl(name, Region(0, size / 512, 512)));
 	ret->Device::create(devicegraph);
 	return ret;
     }

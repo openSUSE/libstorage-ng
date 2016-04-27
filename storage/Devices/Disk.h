@@ -34,6 +34,9 @@ namespace storage
 	static Disk* create(Devicegraph* devicegraph, const std::string& name);
 	static Disk* create(Devicegraph* devicegraph, const std::string& name,
 			    const Region& region);
+	static Disk* create(Devicegraph* devicegraph, const std::string& name,
+			    unsigned long long size);
+
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
