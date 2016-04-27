@@ -102,10 +102,24 @@ namespace storage
     }
 
 
+    bool
+    Device::Impl::has_children() const
+    {
+	return devicegraph->get_impl().num_children(vertex) > 0;
+    }
+
+
     size_t
     Device::Impl::num_children() const
     {
 	return devicegraph->get_impl().num_children(vertex);
+    }
+
+
+    bool
+    Device::Impl::has_parents() const
+    {
+	return devicegraph->get_impl().num_parents(vertex) > 0;
     }
 
 
