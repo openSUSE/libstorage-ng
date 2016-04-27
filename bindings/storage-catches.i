@@ -22,6 +22,7 @@
 %exceptionclass storage::InvalidBlockSize;
 %exceptionclass storage::NoIntersection;
 %exceptionclass storage::DifferentBlockSizes;
+%exceptionclass storage::NotInside;
 
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
@@ -93,6 +94,9 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 
 %catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Partitionable::create_partition_table(PtType);
+
+%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots() const;
+%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy) const;
 
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
