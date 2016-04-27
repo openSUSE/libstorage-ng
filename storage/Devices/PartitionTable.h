@@ -47,6 +47,9 @@ namespace storage
 
 	PtType get_type() const;
 
+	/**
+	 * region is sector-based.
+	 */
 	Partition* create_partition(const std::string& name, const Region& region, PartitionType type);
 
 	void delete_partition(const std::string& name);
@@ -75,6 +78,9 @@ namespace storage
 
 	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
 
+	/**
+	 * region is sector-based.
+	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
     public:

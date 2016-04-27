@@ -32,6 +32,9 @@ namespace storage
     {
     public:
 
+	/**
+	 * region is sector-based.
+	 */
 	static Partition* create(Devicegraph* devicegraph, const std::string& name,
 				 const Region& region, PartitionType type);
 	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
