@@ -339,7 +339,7 @@ namespace storage
 
 	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
 	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
-	    size = (size & ~(0x1000 - 1)) - 0x2000;
+	    size = (size & ~(0x1000ULL - 1)) - 0x2000;
 
 	    // size used for bitmap depends on device size
 
