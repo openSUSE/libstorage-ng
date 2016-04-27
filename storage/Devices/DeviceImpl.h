@@ -125,7 +125,10 @@ namespace storage
 				     Tense tense) const;
 	virtual void do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const;
 
+	bool has_children() const;
 	size_t num_children() const;
+
+	bool has_parents() const;
 	size_t num_parents() const;
 
 	template<typename Type>
