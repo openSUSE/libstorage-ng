@@ -38,7 +38,7 @@ Filesystem.do_mount() and Filesystem.do_mount_text(). No other functions
 should have that naming schema.
 
 When variables or values with an underscores in the name are written to XML
-the underscores have to be replaced by dashed. So e.g. chunk_size is saved as
+the underscores have to be replaced by dashes. So e.g. chunk_size is saved as
 <chunk-size>16384</chunk-size>. In the logs the names should follow the same
 convention.
 
