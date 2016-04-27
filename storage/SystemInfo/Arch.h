@@ -52,6 +52,7 @@ namespace storage
 
 	bool is_ppc_mac() const { return ppc_mac; }
 	bool is_ppc_pegasos() const { return ppc_pegasos; }
+        bool is_ppc_power_nv() const { return ppc_power_nv; }
 
 	bool is_efiboot() const { return efiboot; }
 	void set_efiboot(bool efiboot) { Arch::efiboot = efiboot; }
@@ -65,6 +66,7 @@ namespace storage
 	std::string arch;
 	bool ppc_mac;
 	bool ppc_pegasos;
+        bool ppc_power_nv;
 	bool efiboot;
 
     };
