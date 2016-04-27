@@ -60,7 +60,10 @@ namespace storage
 
 	virtual void check() const;
 
+	bool has_children() const;
 	size_t num_children() const;
+
+	bool has_parents() const;
 	size_t num_parents() const;
 
 	// TODO check if we can somehow return a iterator. getting rid of the
