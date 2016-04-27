@@ -4,9 +4,9 @@
 
 #include <vector>
 
+#include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTable.h"
-#include "storage/Geometry.h"
 
 
 namespace storage
@@ -18,11 +18,11 @@ namespace storage
     {
     public:
 
+	const Topology& get_topology() const;
+	void set_topology(const Topology& topology);
+
 	unsigned int get_range() const;
 	void set_range(unsigned int range);
-
-	const Geometry& get_geometry() const;
-	void set_geometry(const Geometry& geometry);
 
 	/**
 	 * Get the default partition table type for the partitionable.

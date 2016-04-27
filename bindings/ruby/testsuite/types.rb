@@ -15,20 +15,20 @@ class TestTypes < Test::Unit::TestCase
 
     sda = Storage::Disk.create(devicegraph, "/dev/sda")
     gpt = sda.create_partition_table(Storage::PtType_GPT)
-    sda1 = gpt.create_partition("/dev/sda", Storage::Region.new(0, 100, 262144), Storage::PartitionType_PRIMARY)
+    sda1 = gpt.create_partition("/dev/sda", Storage::Region.new(0, 100, 512), Storage::PartitionType_PRIMARY)
     ext4 = sda1.create_filesystem(Storage::FsType_EXT4)
 
     assert_equal(devicegraph.empty?, false)
     assert_equal(devicegraph.num_devices, 4)
 
-    sda.size_k = 2**64 - 1
-    assert_equal(sda.size_k, 2**64 - 1)
+    sda.size = 2**64 - 512
+    assert_equal(sda.size, 2**64 - 512)
 
-    sda1.region = Storage::Region.new(1, 2, 262144)
+    sda1.region = Storage::Region.new(1, 2, 512)
     assert_equal(sda1.region.start, 1)
     assert_equal(sda1.region.length, 2)
-    assert_equal(sda1.region.block_size, 262144)
-    assert_equal(sda1.region, Storage::Region.new(1, 2, 262144))
+    assert_equal(sda1.region.block_size, 512)
+    assert_equal(sda1.region, Storage::Region.new(1, 2, 512))
 
     ext4.label = "test-label"
     assert_equal(ext4.label, "test-label")

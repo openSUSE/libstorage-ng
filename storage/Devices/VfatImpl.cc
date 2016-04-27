@@ -4,6 +4,7 @@
 
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/VfatImpl.h"
 #include "storage/FreeInfo.h"
@@ -98,7 +99,7 @@ namespace storage
 
 	string cmd_line = FATRESIZE " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device->get_size_k());
+	    cmd_line += " " + to_string(blk_device->get_size() / KiB);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

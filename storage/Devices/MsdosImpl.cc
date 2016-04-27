@@ -3,12 +3,13 @@
 #include <iostream>
 
 #include "storage/Devices/MsdosImpl.h"
-#include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -36,12 +37,20 @@ namespace storage
     Region
     Msdos::Impl::get_usable_region() const
     {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
+	Region device_region = get_partitionable()->get_region();
 
-	unsigned long long max_sectors = (1ULL << 32) - 1;
-	unsigned long len = min(geometry.cylinders, geometry.kbToCylinder(geometry.sectorToKb(max_sectors)));
+	// Reserve 1 MiB for the MBR and the MBR gap, see
+	// https://en.wikipedia.org/wiki/BIOS_boot_partition. Normally the
+	// space for the MBR gap is unused anyway due to partition alignment
+	// but for disks with an alignment offset it can be required to
+	// explicitely reserve it.
 
-	return Region(0, len, geometry.cylinderSize());
+	unsigned long long first_usable_sector = device_region.to_blocks(1 * MiB);
+	unsigned long long last_usable_sector = UINT32_MAX - 1;
+	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
+				   device_region.get_block_size());
+
+	return device_region.intersection(usable_region);
     }
 
 
@@ -132,7 +141,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " mklabel msdos";
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

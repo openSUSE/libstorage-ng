@@ -18,6 +18,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(dependencies)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
     environment.set_mockup_filename("md2-mockup.xml");
 

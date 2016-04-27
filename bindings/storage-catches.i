@@ -22,6 +22,7 @@
 %exceptionclass storage::InvalidBlockSize;
 %exceptionclass storage::NoIntersection;
 %exceptionclass storage::DifferentBlockSizes;
+%exceptionclass storage::NotInside;
 
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
@@ -94,10 +95,18 @@
 
 %catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Partitionable::create_partition_table(PtType);
 
+%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots() const;
+%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy) const;
+
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
 %catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
 
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
+
+%catches(storage::Exception) storage::Storage::create_devicegraph(const std::string&);
+%catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string&, const std::string&);
+%catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string&);
+%catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string&);
 

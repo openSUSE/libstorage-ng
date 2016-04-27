@@ -1,8 +1,9 @@
 
 #include <iostream>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/GptImpl.h"
-#include "storage/Devices/PartitionableImpl.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -48,6 +49,27 @@ namespace storage
 	PartitionTable::Impl::save(node);
 
 	setChildValueIf(node, "enlarge", enlarge, enlarge);
+    }
+
+
+    Region
+    Gpt::Impl::get_usable_region() const
+    {
+	Region device_region = get_partitionable()->get_region();
+
+	// 1 sector for protective MBR (only at beginning), 1 sector for
+	// primary or secondary header and 128 partition entries with 128
+	// bytes per partition entry. In theory these values are
+	// variables. See https://en.wikipedia.org/wiki/GUID_Partition_Table.
+
+	unsigned long long sectors = 1 + 128 * 128 * B / device_region.get_block_size();
+
+	unsigned long long first_usable_sector = 1 + sectors;
+	unsigned long long last_usable_sector = device_region.get_end() - sectors;
+	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
+			     device_region.get_block_size());
+
+	return device_region.intersection(usable_region);
     }
 
 
@@ -116,7 +138,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " mklabel gpt";
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

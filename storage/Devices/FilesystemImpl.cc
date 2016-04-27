@@ -219,7 +219,7 @@ namespace storage
 
 	ResizeInfo resize_info;
 	resize_info.resize_ok = true;
-	resize_info.min_size_k = stat_vfs.size_k - stat_vfs.free_k;
+	resize_info.min_size = stat_vfs.size - stat_vfs.free;
 
 	return resize_info;
     }

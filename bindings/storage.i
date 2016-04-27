@@ -32,8 +32,8 @@
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Topology.h"
 #include "storage/Utils/Remote.h"
-#include "storage/Geometry.h"
 #include "storage/FreeInfo.h"
 
 #include "storage/Devices/Device.h"
@@ -78,8 +78,8 @@
 %include "../../storage/Utils/Exception.h"
 %include "../../storage/Utils/HumanString.h"
 %include "../../storage/Utils/Region.h"
+%include "../../storage/Utils/Topology.h"
 %include "../../storage/Utils/Remote.h"
-%include "../../storage/Geometry.h"
 %include "../../storage/FreeInfo.h"
 
 %include "../../storage/Devices/Device.h"

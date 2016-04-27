@@ -5,6 +5,7 @@
 #include <boost/algorithm/string.hpp>
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
@@ -32,13 +33,13 @@ public:
 	Devicegraph* devicegraph = storage->get_staging();
 
 	Disk* sda = Disk::create(devicegraph, "/dev/sda");
-	sda->set_size_k(80 * 1024 * 1024);
+	sda->set_size(80 * GiB);
 	sda->get_impl().set_transport(Transport::SATA);
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 0, 262144), PartitionType::PRIMARY);
-	sda1->set_size_k(1024 * 1024);
+	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 0, 512), PartitionType::PRIMARY);
+	sda1->set_size(1 * GiB);
 	sda1->set_id(ID_LINUX);
     }
 
@@ -63,7 +64,7 @@ Fixture fixture;
 
 BOOST_AUTO_TEST_CASE(test_disk)
 {
-    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda size-k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA";
+    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:0 transport:SATA";
 
     ostringstream out;
     out << *(Disk::find(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
@@ -74,7 +75,7 @@ BOOST_AUTO_TEST_CASE(test_disk)
 
 BOOST_AUTO_TEST_CASE(test_partition)
 {
-    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size-k:1048576 region:[0, 4096, 262144 B]";
+    string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 region:[2048, 2097152, 512 B]";
 
     ostringstream out;
     out << *(Partition::find(fixture.get_storage()->get_staging(), "/dev/sda1")) << endl;
@@ -86,9 +87,9 @@ BOOST_AUTO_TEST_CASE(test_partition)
 BOOST_AUTO_TEST_CASE(test_devicegraph)
 {
     list<string> expected = {
-	"Disk sid:42 displayname:/dev/sda name:/dev/sda size-k:83886080 geometry:[0, 32, 16, 512 B] transport:SATA --> 43",
+	"Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:0 transport:SATA --> 43",
 	"Gpt sid:43 displayname:gpt --> 44",
-	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 size-k:1048576 region:[0, 4096, 262144 B] -->",
+	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 region:[2048, 2097152, 512 B] -->",
 	"User source-sid:42 target-sid:43",
 	"Subdevice source-sid:43 target-sid:44"
     };

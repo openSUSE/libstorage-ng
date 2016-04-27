@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,13 +25,15 @@
 #define STORAGE_CMD_PARTED_H
 
 
-#include "storage/Geometry.h"
 #include "storage/Utils/Region.h"
-#include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/PartitionTable.h"
 
 
 namespace storage
 {
+    using std::string;
+    using std::vector;
+
 
     /**
      * Class for probing for partitions with the 'parted' command.
@@ -55,9 +58,8 @@ namespace storage
 	    Entry() : num(0), type(PartitionType::PRIMARY), id(0), boot(false) {}
 
 	    unsigned num;	// Partition number (1..n)
-	    Region cylRegion;	// Partition region in cylinders
-	    Region secRegion;	// Partition region in sectors
-	    PartitionType type;	// primary / extended / logical / any
+	    Region region;	// Partition region in sectors
+	    PartitionType type;	// primary / extended / logical
 	    unsigned id;	// Numeric partition ID (Linux: 0x83 etc.)
 	    bool boot;		// Boot flag of the partition
 	};
@@ -66,10 +68,15 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
-	 * Get the disk label type as string ("msdos", "gpt", ...) as returned
-	 * by the 'parted' command.
+	 * Get the disk label type as enum PtType.
 	 */
 	PtType getLabel() const { return label; }
+
+	/**
+	 * Region spanning whole device. Used to report device size in sectors
+	 * and sector size in bytes.
+	 */
+	const Region& get_region() const { return region; }
 
 	/**
 	 * S/390 arch : zfcp dasds create implicit partitions if there is none
@@ -77,11 +84,6 @@ namespace storage
 	 * device.
 	 */
 	bool getImplicit() const { return implicit; }
-
-	/**
-	 * Get the disk geometry (cylinders, heads, sectors).
-	 */
-	const Geometry& getGeometry() const { return geometry; }
 
 	/**
 	 * Special for GPT disk labels: If disk was enlarged, the backup
@@ -138,18 +140,17 @@ namespace storage
 
 	string device;
 	PtType label;
+	Region region;
 	bool implicit;
-	Geometry geometry;
 	bool gpt_enlarge;
 	bool gpt_fix_backup;
 	vector<Entry> entries;
 	vector<string> stderr;
 
+	void scanDiskSize(const string& line);
 	void scanDiskFlags(const string& line);
 	void scanSectorSizeLine(const string& line);
-	void scanGeometryLine(const string& line);
-	void scanCylEntryLine(const string& line);
-	void scanSecEntryLine(const string& line);
+	void scanSectorEntryLine(const string& line);
 
     };
 

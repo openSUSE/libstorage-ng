@@ -9,7 +9,6 @@ namespace storage
 {
 
     class PartitionTable;
-    class Region;
 
 
     //! Partition type (primary, extended, logical)
@@ -33,14 +32,14 @@ namespace storage
     {
     public:
 
+	/**
+	 * region is sector-based.
+	 */
 	static Partition* create(Devicegraph* devicegraph, const std::string& name,
 				 const Region& region, PartitionType type);
 	static Partition* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	unsigned int get_number() const;
-
-	const Region& get_region() const;
-	void set_region(const Region& region);
 
 	PartitionType get_type() const;
 	void set_type(PartitionType type);

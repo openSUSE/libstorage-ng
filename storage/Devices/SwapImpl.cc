@@ -8,6 +8,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/FreeInfo.h"
 
 
@@ -101,7 +102,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize ext4 failed"));
+	    ST_THROW(Exception("resize swap failed"));
     }
 
     void

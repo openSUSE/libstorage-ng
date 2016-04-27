@@ -58,9 +58,11 @@ namespace storage
 
 	const Partition* get_extended() const;
 
-	virtual Region get_usable_region() const;
+	virtual Region get_usable_region() const = 0;
 
-	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
+	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
+
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
     protected:
 

@@ -1,20 +1,20 @@
 1 - Create MSDOS partition table on /dev/sda -> 2a 4a 6a
 
-2a - Create partition /dev/sda1 (1.46 GiB) -> 2b
+2a - Create primary partition /dev/sda1 (1.46 GiB) -> 2b
 2b - Set id of partition /dev/sda1 to Linux Swap (0x82) -> 3a 4a
 
 3a - Create swap on /dev/sda1 (1.46 GiB) -> 3b
 3b - Mount /dev/sda1 at swap -> 3c
 3c - Add mountpoint swap of /dev/sda1 to /etc/fstab ->
 
-4a - Create partition /dev/sda2 (10.00 GiB) -> 4b
+4a - Create primary partition /dev/sda2 (10.00 GiB) -> 4b
 4b - Set id of partition /dev/sda2 to Linux (0x83) -> 5a 6a
 
 5a - Create btrfs on /dev/sda2 (10.00 GiB) -> 5b
 5b - Mount /dev/sda2 at / -> 3c 5c 7b
 5c - Add mountpoint / of /dev/sda2 to /etc/fstab ->
 
-6a - Create partition /dev/sda3 (4.53 GiB) -> 6b
+6a - Create primary partition /dev/sda3 (4.53 GiB) -> 6b
 6b - Set id of partition /dev/sda3 to Linux (0x83) -> 7a
 
 7a - Create xfs on /dev/sda3 (4.53 GiB) -> 7b

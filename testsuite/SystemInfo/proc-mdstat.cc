@@ -45,7 +45,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"data[md0] -> md-level:RAID1 super:1.0 size-k:8387520 devices:</dev/sda1 /dev/sdb1>"
+	"data[md0] -> md-level:RAID1 super:1.0 size:8588820480 devices:</dev/sda1 /dev/sdb1>"
     };
 
     check(input, output);
@@ -69,9 +69,9 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"data[md125] -> md-level:RAID1 super:external:/md127/0 size-k:4194304 readonly devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:0",
-	"data[md126] -> md-level:RAID0 super:external:/md127/1 chunk-size-k:128 size-k:8378790 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:1",
-	"data[md127] -> md-level:unknown super:external:imsm size-k:5104 readonly inactive devices:</dev/sda(S) /dev/sdb(S)> is-container"
+	"data[md125] -> md-level:RAID1 super:external:/md127/0 size:4294967296 readonly devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:0",
+	"data[md126] -> md-level:RAID0 super:external:/md127/1 chunk-size:131072 size:8579880960 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:1",
+	"data[md127] -> md-level:unknown super:external:imsm size:5226496 readonly inactive devices:</dev/sda(S) /dev/sdb(S)> is-container"
     };
 
     check(input, output);
@@ -95,9 +95,9 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"data[md125] -> md-level:RAID1 super:external:/md127/1 size-k:7355904 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:1",
-	"data[md126] -> md-level:RAID0 super:external:/md127/0 chunk-size-k:512 size-k:1999872 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:0",
-	"data[md127] -> md-level:unknown super:external:ddf size-k:65536 readonly inactive devices:</dev/sda(S) /dev/sdb(S)> is-container"
+	"data[md125] -> md-level:RAID1 super:external:/md127/1 size:7532445696 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:1",
+	"data[md126] -> md-level:RAID0 super:external:/md127/0 chunk-size:524288 size:2047868928 devices:</dev/sda /dev/sdb> has-container container-name:md127 container-member:0",
+	"data[md127] -> md-level:unknown super:external:ddf size:67108864 readonly inactive devices:</dev/sda(S) /dev/sdb(S)> is-container"
     };
 
     check(input, output);
@@ -115,7 +115,7 @@ BOOST_AUTO_TEST_CASE(parse4)
     };
 
     vector<string> output = {
-	"data[md0] -> md-level:RAID5 md-parity:left-symmetric super:1.2 chunk-size-k:512 size-k:33521664 devices:</dev/sda /dev/sdb /dev/sdc /dev/sdd(F)>",
+	"data[md0] -> md-level:RAID5 md-parity:left-symmetric super:1.2 chunk-size:524288 size:34326183936 devices:</dev/sda /dev/sdb /dev/sdc /dev/sdd(F)>",
     };
 
     check(input, output);

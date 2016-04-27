@@ -35,11 +35,11 @@ BOOST_AUTO_TEST_CASE(test_block_size_512)
 
     BOOST_CHECK_EQUAL(region.get_block_size(), 512);
 
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_start()), 1024);
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_length()), 801792);
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_end()), 802815);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_start()), 1 * MiB);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_length()), 821035008);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_end()), 822083072);
 
-    BOOST_CHECK_EQUAL(region.to_value(1024), region.get_start());
+    BOOST_CHECK_EQUAL(region.to_blocks(1 * MiB), region.get_start());
 }
 
 
@@ -55,11 +55,11 @@ BOOST_AUTO_TEST_CASE(test_block_size_4096)
 
     BOOST_CHECK_EQUAL(region.get_block_size(), 4096);
 
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_start()), 1024);
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_length()), 261120);
-    BOOST_CHECK_EQUAL(region.to_kb(region.get_end()), 262140);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_start()), 1 * MiB);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_length()), 261120 * KiB);
+    BOOST_CHECK_EQUAL(region.to_bytes(region.get_end()), 262140 * KiB);
 
-    BOOST_CHECK_EQUAL(region.to_value(1024), region.get_start());
+    BOOST_CHECK_EQUAL(region.to_blocks(1 * MiB), region.get_start());
 }
 
 
@@ -173,15 +173,68 @@ BOOST_AUTO_TEST_CASE(test_different_block_size)
 
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
-    unsigned long long EiB = 1ULL << (10 * 6);
+    Region kb(0, 1ULL << (10 * 5), 1 * KiB);
 
-    Region kb(0, 1ULL << (10 * 5), 1ULL << (10 * 1));
+    BOOST_CHECK_EQUAL(kb.to_bytes(kb.get_length()), EiB);
 
-    BOOST_CHECK_EQUAL(kb.to_kb(kb.get_length()), EiB / 1024);
-    BOOST_CHECK_EQUAL(byte_to_humanstring(kb.to_kb(kb.get_length()) * 1024, true, 1, false), "1.0 EiB");
+    Region mb(0, 1ULL << (10 * 4), 1 * MiB);
 
-    Region mb(0, 1ULL << (10 * 4), 1ULL << (10 * 2));
+    BOOST_CHECK_EQUAL(mb.to_bytes(mb.get_length()), EiB);
+}
 
-    BOOST_CHECK_EQUAL(mb.to_kb(mb.get_length()), EiB / 1024);
-    BOOST_CHECK_EQUAL(byte_to_humanstring(mb.to_kb(mb.get_length()) * 1024, true, 1, false), "1.0 EiB");
+
+BOOST_AUTO_TEST_CASE(test_unused_regions1)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(30, 50, 1),
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 30);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 80);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions2)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(0, 10, 1), Region(90, 10, 1)
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 1);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 10);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 80);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions3)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+	Region(10, 10, 1), Region(40, 20, 1), Region(80, 15, 1)
+    }));
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 4);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 10);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 20);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[2].get_start(), 60);
+    BOOST_CHECK_EQUAL(unused_regions[2].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[3].get_start(), 95);
+    BOOST_CHECK_EQUAL(unused_regions[3].get_length(), 5);
 }

@@ -87,17 +87,31 @@ namespace storage
     }
 
 
-    unsigned long long
-    BlkDevice::get_size_k() const
+    const Region&
+    BlkDevice::get_region() const
     {
-	return get_impl().get_size_k();
+	return get_impl().get_region();
     }
 
 
     void
-    BlkDevice::set_size_k(unsigned long long size_k)
+    BlkDevice::set_region(const Region& region)
     {
-	get_impl().set_size_k(size_k);
+	get_impl().set_region(region);
+    }
+
+
+    unsigned long long
+    BlkDevice::get_size() const
+    {
+	return get_impl().get_size();
+    }
+
+
+    void
+    BlkDevice::set_size(unsigned long long size)
+    {
+	get_impl().set_size(size);
     }
 
 
@@ -105,6 +119,20 @@ namespace storage
     BlkDevice::get_size_string() const
     {
 	return get_impl().get_size_string();
+    }
+
+
+    const string&
+    BlkDevice::get_sysfs_name() const
+    {
+	return get_impl().get_sysfs_name();
+    }
+
+
+    const string&
+    BlkDevice::get_sysfs_path() const
+    {
+	return get_impl().get_sysfs_path();
     }
 
 

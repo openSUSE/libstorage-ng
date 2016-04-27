@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Topology.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Partition.h"
 
@@ -46,6 +47,9 @@ namespace storage
 
 	PtType get_type() const;
 
+	/**
+	 * region is sector-based.
+	 */
 	Partition* create_partition(const std::string& name, const Region& region, PartitionType type);
 
 	void delete_partition(const std::string& name);
@@ -72,7 +76,12 @@ namespace storage
 
 	const Partitionable* get_partitionable() const;
 
-	std::vector<PartitionSlot> get_unused_partition_slots(bool all = true, bool logical = true) const;
+	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
+
+	/**
+	 * region is sector-based.
+	 */
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
     public:
 

@@ -25,12 +25,11 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    msdos->create_partition("/dev/sda1", Region(0, 0, 262144), PartitionType::PRIMARY);
+    msdos->create_partition("/dev/sda1", Region(2048, 100000, 512), PartitionType::PRIMARY);
 
     BOOST_CHECK_EQUAL(msdos->get_partitionable()->get_range(), 256);
 
@@ -52,12 +51,11 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_range(256);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-    gpt->create_partition("/dev/sda1", Region(0, 0, 262144), PartitionType::PRIMARY);
+    gpt->create_partition("/dev/sda1", Region(2048, 100000, 512), PartitionType::PRIMARY);
 
     BOOST_CHECK_EQUAL(gpt->get_partitionable()->get_range(), 256);
 

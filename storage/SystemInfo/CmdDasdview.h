@@ -24,7 +24,6 @@
 #define STORAGE_CMD_DASDVIEW_H
 
 
-#include "storage/Geometry.h"
 #include "storage/Devices/Disk.h"
 
 
@@ -44,7 +43,6 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
 
-	const Geometry& getGeometry() const { return geometry; }
 	DasdFormat getDasdFormat() const { return dasd_format; }
 	DasdType getDasdType() const { return dasd_type; }
 
@@ -53,7 +51,6 @@ namespace storage
 	void parse(const std::vector<string>& lines);
 
 	string device;
-	Geometry geometry;
 	DasdFormat dasd_format;
 	DasdType dasd_type;
 

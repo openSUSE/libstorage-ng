@@ -31,10 +31,10 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Holders/User.h		\
 	${top_srcdir}/storage/Holders/MdUser.h		\
 	${top_srcdir}/storage/Storage.h			\
-	${top_srcdir}/storage/Geometry.h		\
 	${top_srcdir}/storage/FreeInfo.h		\
 	${top_srcdir}/storage/SystemInfo/Arch.h		\
 	${top_srcdir}/storage/Utils/Logger.h		\
 	${top_srcdir}/storage/Utils/HumanString.h	\
 	${top_srcdir}/storage/Utils/Region.h		\
+	${top_srcdir}/storage/Utils/Topology.h		\
 	${top_srcdir}/storage/Utils/Remote.h

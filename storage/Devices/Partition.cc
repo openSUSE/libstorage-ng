@@ -69,20 +69,6 @@ namespace storage
     }
 
 
-    const Region&
-    Partition::get_region() const
-    {
-	return get_impl().get_region();
-    }
-
-
-    void
-    Partition::set_region(const Region& region)
-    {
-	get_impl().set_region(region);
-    }
-
-
     PartitionType
     Partition::get_type() const
     {

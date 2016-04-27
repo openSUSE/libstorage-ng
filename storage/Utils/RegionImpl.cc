@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2015-2016] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -66,6 +67,26 @@ namespace storage
 
 
     void
+    Region::Impl::adjust_start(long long delta)
+    {
+	if (delta < 0 && (unsigned long long)(-delta) > start)
+	    ST_THROW(Exception("value out of range"));
+
+	start += delta;
+    }
+
+
+    void
+    Region::Impl::adjust_length(long long delta)
+    {
+	if (delta < 0 && (unsigned long long)(-delta) > length)
+	    ST_THROW(Exception("value out of range"));
+
+	length += delta;
+    }
+
+
+    void
     Region::Impl::set_block_size(unsigned int block_size)
     {
 	assert_valid_block_size(block_size);
@@ -75,20 +96,20 @@ namespace storage
 
 
     unsigned long long
-    Region::Impl::to_kb(unsigned long long value) const
+    Region::Impl::to_bytes(unsigned long long blocks) const
     {
 	assert_valid_block_size();
 
-	return block_size * value / 1024;
+	return blocks * block_size;
     }
 
 
     unsigned long long
-    Region::Impl::to_value(unsigned long long kb) const
+    Region::Impl::to_blocks(unsigned long long bytes) const
     {
 	assert_valid_block_size();
 
-	return kb * 1024 / block_size;
+	return bytes / block_size;
     }
 
 
@@ -150,6 +171,38 @@ namespace storage
     }
 
 
+    vector<Region>
+    Region::Impl::unused_regions(const vector<Region>& used_regions) const
+    {
+	unsigned long long start = get_start();
+	unsigned long long end = get_end();
+	unsigned long long block_size = get_block_size();
+
+	vector<Region> used_regions_sorted = used_regions;
+	sort(used_regions_sorted.begin(), used_regions_sorted.end());
+
+	vector<Region> ret;
+
+	for (const Region& used_region : used_regions_sorted)
+	{
+	    if (!used_region.get_impl().inside(*this))
+		ST_THROW(NotInside());
+
+	    assert_equal_block_size(used_region.get_impl());
+
+	    if (used_region.get_start() > start)
+		ret.emplace_back(start, used_region.get_start() - start, block_size);
+
+	    start = used_region.get_end() + 1;
+	}
+
+	if (end > start)
+	    ret.emplace_back(start, end - start + 1, block_size);
+
+	return ret;
+    }
+
+
     bool
     getChildValue(const xmlNode* node, const char* name, Region::Impl& value)
     {
@@ -171,7 +224,7 @@ namespace storage
     {
 	xmlNode* tmp = xmlNewChild(node, name);
 
-	setChildValue(tmp, "start", value.start);
+	setChildValueIf(tmp, "start", value.start, value.start != 0);
 	setChildValue(tmp, "length", value.length);
 
 	setChildValue(tmp, "block-size", value.block_size);

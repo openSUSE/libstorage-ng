@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +41,12 @@ namespace storage
 
     NoIntersection::NoIntersection()
 	: Exception("no intersection", WARNING)
+    {
+    }
+
+
+    NotInside::NotInside()
+	: Exception("not inside", WARNING)
     {
     }
 
@@ -131,6 +138,20 @@ namespace storage
     }
 
 
+    void
+    Region::adjust_start(long long delta)
+    {
+	get_impl().adjust_start(delta);
+    }
+
+
+    void
+    Region::adjust_length(long long delta)
+    {
+	get_impl().adjust_length(delta);
+    }
+
+
     unsigned int
     Region::get_block_size() const
     {
@@ -146,16 +167,16 @@ namespace storage
 
 
     unsigned long long
-    Region::to_kb(unsigned long long value) const
+    Region::to_bytes(unsigned long long blocks) const
     {
-	return get_impl().to_kb(value);
+	return get_impl().to_bytes(blocks);
     }
 
 
     unsigned long long
-    Region::to_value(unsigned long long kb) const
+    Region::to_blocks(unsigned long long bytes) const
     {
-	return get_impl().to_value(kb);
+	return get_impl().to_blocks(bytes);
     }
 
 
@@ -205,6 +226,13 @@ namespace storage
     Region::intersection(const Region& rhs) const
     {
 	return get_impl().intersection(rhs.get_impl());
+    }
+
+
+    vector<Region>
+    Region::unused_regions(const vector<Region>& used_regions) const
+    {
+	return get_impl().unused_regions(used_regions);
     }
 
 

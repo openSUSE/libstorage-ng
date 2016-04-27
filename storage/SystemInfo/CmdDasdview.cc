@@ -42,10 +42,6 @@ namespace storage
 	else
 	{
 	    y2err("dasdview failed");
-
-	    geometry.heads = 15;
-	    geometry.sectors = 12;
-	    geometry.sector_size = 4096;
 	}
     }
 
@@ -79,51 +75,14 @@ namespace storage
 		dasd_type = DASDTYPE_FBA;
 	}
 
-	pos = find_if(lines, string_starts_with("number of cylinders"));
-	if (pos != lines.end())
-	{
-	    y2mil("Cylinder line:" << *pos);
-	    string tmp = string(*pos, pos->find(':') + 1);
-	    tmp = extractNthWord(3, tmp);
-	    tmp >> geometry.cylinders;
-	}
-
-	pos = find_if(lines, string_starts_with("tracks per cylinder"));
-	if (pos != lines.end())
-	{
-	    y2mil("Tracks line:" << *pos);
-	    string tmp = string(*pos, pos->find(':') + 1);
-	    tmp = extractNthWord(3, tmp);
-	    tmp >> geometry.heads;
-	}
-
-	pos = find_if(lines, string_starts_with("blocks per track"));
-	if (pos != lines.end())
-	{
-	    y2mil("Blocks line:" << *pos);
-	    string tmp = string(*pos, pos->find(':') + 1);
-	    tmp = extractNthWord(3, tmp);
-	    tmp >> geometry.sectors;
-	}
-
-	pos = find_if(lines, string_starts_with("blocksize"));
-	if (pos != lines.end())
-	{
-	    y2mil("Bytes line:" << *pos);
-	    string tmp = string(*pos, pos->find(':') + 1);
-	    tmp = extractNthWord(3, tmp);
-	    tmp >> geometry.sector_size;
-	}
-
 	y2mil(*this);
     }
 
 
     std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview)
     {
-	s << "device:" << dasdview.device << " geometry:" << dasdview.geometry
-	  << " dasd_format:" << toString(dasdview.dasd_format) << " dasd_type:"
-	  << toString(dasdview.dasd_type);
+	s << "device:" << dasdview.device << " dasd_format:"
+	  << toString(dasdview.dasd_format) << " dasd_type:" << toString(dasdview.dasd_type);
 
 	return s;
     }

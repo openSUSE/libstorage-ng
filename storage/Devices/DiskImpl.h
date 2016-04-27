@@ -5,7 +5,6 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionableImpl.h"
-#include "storage/Geometry.h"
 
 
 namespace storage
@@ -27,6 +26,9 @@ namespace storage
 
 	Impl(const string& name)
 	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
+
+	Impl(const string& name, const Region& region)
+	    : Partitionable::Impl(name, region, 256), rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const xmlNode* node);
 

@@ -19,6 +19,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -45,8 +46,20 @@ namespace storage
     });
 
 
+    Md::Impl::Impl(const string& name)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
+    {
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Md name"));
+
+	string::size_type pos = string(DEVDIR).size() + 1;
+	set_sysfs_name(name.substr(pos));
+	set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
+    }
+
+
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size_k(0)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
     {
 	string tmp;
 
@@ -56,25 +69,32 @@ namespace storage
 	if (getChildValue(node, "md-parity", tmp))
 	    md_parity = toValueWithFallback(tmp, DEFAULT);
 
-	getChildValue(node, "chunk-size-k", chunk_size_k);
+	getChildValue(node, "chunk-size", chunk_size);
     }
 
 
     void
     Md::Impl::set_md_level(MdLevel md_level)
     {
-	// TODO calculate size_k
-
 	Impl::md_level = md_level;
+
+	calculate_region_and_topology();
     }
 
 
     void
-    Md::Impl::set_chunk_size_k(unsigned long chunk_size_k)
+    Md::Impl::set_chunk_size(unsigned long chunk_size)
     {
-	// TODO calculate size_k
+	Impl::chunk_size = chunk_size;
 
-	Impl::chunk_size_k = chunk_size_k;
+	calculate_region_and_topology();
+    }
+
+
+    unsigned long
+    Md::Impl::get_default_chunk_size() const
+    {
+	return 512 * KiB;
     }
 
 
@@ -123,7 +143,7 @@ namespace storage
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
 
-	chunk_size_k = entry.chunk_size_k;
+	chunk_size = entry.chunk_size;
     }
 
 
@@ -181,7 +201,7 @@ namespace storage
 	setChildValue(node, "md-level", toString(md_level));
 	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
-	setChildValueIf(node, "chunk-size-k", chunk_size_k, chunk_size_k != 0);
+	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
     }
 
 
@@ -191,11 +211,13 @@ namespace storage
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
-	// TODO calculate size_k
-
 	// TODO set partition id?
 
-	return MdUser::create(get_devicegraph(), blk_device, get_device());
+	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_device());
+
+	calculate_region_and_topology();
+
+	return md_user;
     }
 
 
@@ -206,7 +228,7 @@ namespace storage
 
 	get_devicegraph()->remove_holder(md_user);
 
-	// TODO calculate size_k
+	calculate_region_and_topology();
     }
 
 
@@ -254,7 +276,7 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size_k == rhs.chunk_size_k;
+	    chunk_size == rhs.chunk_size;
     }
 
 
@@ -268,7 +290,7 @@ namespace storage
 	storage::log_diff_enum(log, "md-level", md_level, rhs.md_level);
 	storage::log_diff_enum(log, "md-parity", md_parity, rhs.md_parity);
 
-	storage::log_diff(log, "chunk-size-k", chunk_size_k, rhs.chunk_size_k);
+	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
     }
 
 
@@ -280,7 +302,7 @@ namespace storage
 	out << " md-level:" << toString(get_md_level());
 	out << " md-parity:" << toString(get_md_parity());
 
-	out << " chunk-size-k:" << get_chunk_size_k();
+	out << " chunk-size:" << get_chunk_size();
     }
 
 
@@ -291,10 +313,117 @@ namespace storage
     }
 
 
+    void
+    Md::Impl::calculate_region_and_topology()
+    {
+	vector<BlkDevice*> devices = get_devices();
+
+	long real_chunk_size = chunk_size;
+
+	if (real_chunk_size == 0)
+	    real_chunk_size = get_default_chunk_size();
+
+	// mdadm uses a chunk size of 64 KiB just in case the RAID1 is ever reshaped to RAID5.
+	if (md_level == RAID1)
+	    real_chunk_size = 64 * KiB;
+
+	int number = 0;
+	unsigned long long sum = 0;
+	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
+
+	for (const BlkDevice* device : devices)
+	{
+	    // TODO handle spare
+
+	    unsigned long long size = device->get_size();
+
+	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
+	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
+	    size = (size & ~(0x1000ULL - 1)) - 0x2000;
+
+	    // size used for bitmap depends on device size
+
+	    long rest = size % real_chunk_size;
+	    if (rest > 0)
+		size -= rest;
+
+	    number++;
+	    sum += size;
+	    smallest = min(smallest, size);
+	}
+
+	unsigned long long size = 0;
+	long optimal_io_size = 0;
+
+	switch (md_level)
+	{
+	    case RAID0:
+		if (number >= 2)
+		{
+		    size = sum;
+		    optimal_io_size = real_chunk_size * number;
+		}
+		break;
+
+	    case RAID1:
+		if (number >= 2)
+		{
+		    size = smallest;
+		    optimal_io_size = 0;
+		}
+		break;
+
+	    case RAID5:
+		if (number >= 3)
+		{
+		    size = smallest * (number - 1);
+		    optimal_io_size = real_chunk_size * (number - 1);
+		}
+		break;
+
+	    case RAID6:
+		if (number >= 4)
+		{
+		    size = smallest * (number - 2);
+		    optimal_io_size = real_chunk_size * (number - 2);
+		}
+		break;
+
+	    case RAID10:
+		if (number >= 2)
+		{
+		    size = ((smallest / real_chunk_size) * number / 2) * real_chunk_size;
+		    optimal_io_size = real_chunk_size * number / 2;
+		    if (number % 2 == 1)
+			optimal_io_size *= 2;
+		}
+		break;
+
+	    case UNKNOWN:
+		break;
+	}
+
+	set_size(size);
+	set_topology(Topology(0, optimal_io_size));
+    }
+
+
     Text
     Md::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create MD RAID %1$s (%2$s)"), get_displayname().c_str(),
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Create MD %1$s %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Creating MD %1$s %2$s (%3$s)"));
+
+	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
 		       get_size_string().c_str());
     }
 
@@ -302,14 +431,18 @@ namespace storage
     void
     Md::Impl::do_create() const
     {
+	// Note: Changing any parameter to "mdadm --create' requires the
+	// function calculate_region_and_topology() to be checked!
+
 	string cmd_line = MDADMBIN " --create " + quote(get_name()) + " --run --level=" +
-	    boost::to_lower_copy(toString(md_level), locale::classic()) + " -e 1.0 --homehost=any";
+	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata 1.0"
+	    " --homehost=any";
 
 	if (md_level == RAID1 || md_level == RAID5 || md_level == RAID6 || md_level == RAID10)
-	    cmd_line += " -b internal";
+	    cmd_line += " --bitmap internal";
 
-	if (chunk_size_k > 0)
-	    cmd_line += " --chunk=" + to_string(chunk_size_k);
+	if (chunk_size > 0)
+	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
 
 	if (md_parity != DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
@@ -356,7 +489,19 @@ namespace storage
     Text
     Md::Impl::do_delete_text(Tense tense) const
     {
-	return sformat(_("Delete MD RAID %1$s (%2$s)"), get_displayname().c_str(),
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Delete MD %1$s %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Deleting MD %1$s %2$s (%3$s)"));
+
+	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
 		       get_size_string().c_str());
     }
 

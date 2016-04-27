@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
@@ -26,7 +27,7 @@ BOOST_AUTO_TEST_CASE(disk1)
     Devicegraph* rhs = storage.get_staging();
 
     Disk* sda = Disk::create(rhs, "/dev/sda");
-    sda->set_size_k(16 * 1024 * 1024);
+    sda->set_size(16 * GiB);
 
     BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(storage, lhs, rhs), std::runtime_error,
 	[](const std::runtime_error& e) { return e.what() == string("cannot create disk"); }
@@ -45,7 +46,7 @@ BOOST_AUTO_TEST_CASE(disk2)
     Devicegraph* rhs = storage.get_staging();
 
     Disk* sda = Disk::create(rhs, "/dev/sda");
-    sda->set_size_k(16 * 1024 * 1024);
+    sda->set_size(16 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

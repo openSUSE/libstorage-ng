@@ -1,6 +1,6 @@
-1 - Remove mountpoint /mnt of /dev/sdb from /etc/fstab -> 2
-2 - Unmount /dev/sdb at /mnt -> 3
+1 - Remove mountpoint /mnt of /dev/sda from /etc/fstab -> 2
+2 - Unmount /dev/sda at /mnt -> 3
 
-3 - Create xfs on /dev/sdb (256.00 MiB) -> 4
-4 - Mount /dev/sdb at /test2 -> 5
-5 - Add mountpoint /test2 of /dev/sdb to /etc/fstab ->
+3 - Create xfs on /dev/sda (256.00 MiB) -> 4
+4 - Mount /dev/sda at /test2 -> 5
+5 - Add mountpoint /test2 of /dev/sda to /etc/fstab ->

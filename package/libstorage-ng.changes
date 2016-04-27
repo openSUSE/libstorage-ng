@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri Apr 19 12:34:56 CEST 2016 - aschnell@suse.com
+
+- switched from cylinder to sector based sized for disks and
+  partitions
+
+-------------------------------------------------------------------
 Wed Feb 24 15:24:51 CET 2016 - aschnell@suse.com
 
 - initial package with libstorage-ng, successor of libstorage

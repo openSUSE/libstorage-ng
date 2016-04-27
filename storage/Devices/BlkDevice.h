@@ -9,6 +9,9 @@
 namespace storage
 {
 
+    class Region;
+
+
     //! An abstract Block Device.
     class BlkDevice : public Device
     {
@@ -19,10 +22,16 @@ namespace storage
 	const std::string& get_name() const;
 	void set_name(const std::string& name);
 
-	unsigned long long get_size_k() const;
-	void set_size_k(unsigned long long size_k);
+	const Region& get_region() const;
+	void set_region(const Region& region);
+
+	unsigned long long get_size() const;
+	void set_size(unsigned long long size);
 
 	std::string get_size_string() const;
+
+	const std::string& get_sysfs_name() const;
+	const std::string& get_sysfs_path() const;
 
 	const std::string& get_udev_path() const;
 	const std::vector<std::string>& get_udev_ids() const;

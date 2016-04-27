@@ -8,6 +8,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/TopologyImpl.h"
 
 
 namespace storage
@@ -45,7 +46,7 @@ namespace storage
 	for (const Parted::Entry& entry : parted.getEntries())
 	{
 	    string name = partitionable->get_impl().partition_name(entry.num);
-	    Partition* p = create_partition(name, entry.cylRegion, entry.type);
+	    Partition* p = create_partition(name, entry.region, entry.type);
 	    p->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
@@ -63,9 +64,9 @@ namespace storage
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
-	if (region.get_block_size() != geometry.cylinderSize())
-	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
+	const Region& partitionable_region = get_partitionable()->get_region();
+	if (region.get_block_size() != partitionable_region.get_block_size())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
@@ -199,32 +200,22 @@ namespace storage
     }
 
 
-    Region
-    PartitionTable::Impl::get_usable_region() const
-    {
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
-
-	return Region(0, geometry.cylinders, geometry.cylinderSize());
-    }
-
-
     vector<PartitionSlot>
-    PartitionTable::Impl::get_unused_partition_slots(bool all, bool logical) const
+    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy) const
     {
-	y2mil("all:" << all << " logical:" << logical);
+	const Partitionable* partitionable = get_partitionable();
+	const Topology& topology = partitionable->get_topology();
 
-	const Geometry& geometry = get_partitionable()->get_impl().get_geometry();
-
-	bool tmp_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
-	bool tmp_extended_possible = tmp_primary_possible && extended_possible() && !has_extended();
-	bool tmp_logical_possible = has_extended() && num_logical() < (max_logical() - max_primary());
+	bool is_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
+	bool is_extended_possible = is_primary_possible && extended_possible() && !has_extended();
+	bool is_logical_possible = has_extended() && num_logical() < (max_logical() - max_primary());
 
 	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
 	sort(partitions.begin(), partitions.end(), compare_by_number);
 
-	if (all || !logical)
+	if (true)
 	{
 	    PartitionSlot slot;
 
@@ -250,120 +241,93 @@ namespace storage
 		slot.nr = 1;
 	    }
 
-	    slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
+	    slot.name = partitionable->get_impl().partition_name(slot.nr);
 
 	    slot.primary_slot = true;
-	    slot.primary_possible = tmp_primary_possible;
+	    slot.primary_possible = is_primary_possible;
 	    slot.extended_slot = true;
-	    slot.extended_possible = tmp_extended_possible;
+	    slot.extended_possible = is_extended_possible;
 	    slot.logical_slot = false;
 	    slot.logical_possible = false;
 
-	    unsigned long start = 0;
-	    unsigned long end = geometry.cylinders;
-
-	    list<Region> tmp;
+	    vector<Region> used_regions;
 	    for (const Partition* partition : partitions)
 	    {
 		if (partition->get_type() != PartitionType::LOGICAL)
-		    tmp.push_back(partition->get_region());
+		    used_regions.push_back(partition->get_region());
 	    }
-	    tmp.sort();
 
-	    for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
+	    Region usable_region = get_usable_region();
+	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
-		if (i->get_start() > start)
+		slot.region = unused_region;
+		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
 		    slots.push_back(slot);
-		}
-		start = i->get_end() + 1;
 
-		/*
-		if (label == "dasd")
-		{
-		    slot.nr++;
-		    slot.device = getPartDevice(slot.nr);
+		    /*
+		      if (label == "dasd")
+		      {
+		      slot.nr++;
+		      slot.device = getPartDevice(slot.nr);
+		      }
+		    */
 		}
-		*/
-	    }
-	    if (end > start)
-	    {
-		slot.region = Region(start, end - start, geometry.cylinderSize());
-		slots.push_back(slot);
 	    }
 	}
 
-	if (all || logical)
+	if (has_extended())
 	{
-	    try
+	    PartitionSlot slot;
+
+	    slot.nr = max_primary() + num_logical() + 1;
+	    slot.name = partitionable->get_impl().partition_name(slot.nr);
+
+	    slot.primary_slot = false;
+	    slot.primary_possible = false;
+	    slot.extended_slot = false;
+	    slot.extended_possible = false;
+	    slot.logical_slot = true;
+	    slot.logical_possible = is_logical_possible;
+
+	    vector<Region> used_regions;
+	    for (const Partition* partition : partitions)
 	    {
-		const Partition* extended = get_extended();
+		if (partition->get_type() == PartitionType::LOGICAL)
+		    used_regions.push_back(partition->get_region());
+	    }
 
-		PartitionSlot slot;
+	    const Region& extended_region = get_extended()->get_region();
+	    for (const Region& unused_region : extended_region.unused_regions(used_regions))
+	    {
+		// one sector is needed for the EBR, see
+		// https://en.wikipedia.org/wiki/Extended_boot_record
 
-		slot.nr = max_primary() + num_logical() + 1;
-		slot.name = get_partitionable()->get_impl().partition_name(slot.nr);
+		if (unused_region.get_length() <= 1)
+		    continue;
 
-		slot.primary_slot = false;
-		slot.primary_possible = false;
-		slot.extended_slot = false;
-		slot.extended_possible = false;
-		slot.logical_slot = true;
-		slot.logical_possible = tmp_logical_possible;
+		Region adjusted_region = unused_region;
+		adjusted_region.adjust_start(+1);
+		adjusted_region.adjust_length(-1);
 
-		unsigned long start = extended->get_region().get_start();
-		unsigned long end = extended->get_region().get_end();
-
-		list<Region> tmp;
-		for (const Partition* partition : partitions)
+		slot.region = adjusted_region;
+		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    if (partition->get_type() == PartitionType::LOGICAL)
-			tmp.push_back(partition->get_region());
-		}
-		tmp.sort();
-
-		for (list<Region>::const_iterator i = tmp.begin(); i != tmp.end(); ++i)
-		{
-		    if (i->get_start() > start)
-		    {
-			slot.region = Region(start, i->get_start() - start, geometry.cylinderSize());
-			slots.push_back(slot);
-		    }
-		    start = i->get_end() + 1;
-		}
-		if (end > start)
-		{
-		    slot.region = Region(start, end - start, geometry.cylinderSize());
 		    slots.push_back(slot);
 		}
-	    }
-	    catch (...)
-	    {
-	    }
-	}
-
-	y2deb("slots:" << slots);
-
-	Region usable_region = get_usable_region();
-
-	vector<PartitionSlot>::iterator it = slots.begin();
-	while (it != slots.end())
-	{
-	    if (usable_region.intersect(it->region))
-	    {
-		it->region = usable_region.intersection(it->region);
-		++it;
-	    }
-	    else
-	    {
-		it = slots.erase(it);
 	    }
 	}
 
 	y2deb("slots:" << slots);
 
 	return slots;
+    }
+
+
+    Region
+    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy) const
+    {
+	return get_partitionable()->get_topology().align(region, align_policy);
     }
 
 

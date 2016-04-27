@@ -25,6 +25,6 @@ resize_info = partition.detect_resize_info()
 print resize_info
 
 print resize_info.resize_ok
-print resize_info.min_size_k
-print resize_info.max_size_k
+print resize_info.min_size
+print resize_info.max_size
 

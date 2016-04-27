@@ -6,6 +6,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
@@ -31,18 +32,16 @@ namespace storage
 
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
-	: BlkDevice::Impl(name, region.to_kb(region.get_length())), region(region), type(type),
-	  id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(name, region), type(type), id(ID_LINUX), boot(false)
     {
     }
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), region(), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
     {
 	string tmp;
 
-	getChildValue(node, "region", region);
 	if (getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, PartitionType::PRIMARY);
 	getChildValue(node, "id", id);
@@ -72,7 +71,6 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "region", region);
 	setChildValue(node, "type", toString(type));
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
@@ -91,28 +89,13 @@ namespace storage
 
 
     void
-    Partition::Impl::set_size_k(unsigned long long size_k)
-    {
-	BlkDevice::Impl::set_size_k(size_k);
-
-	const Partitionable* partitionable = get_partitionable();
-
-	region.set_length(get_size_k() * 1024 / partitionable->get_impl().get_geometry().cylinderSize());
-    }
-
-
-    void
     Partition::Impl::set_region(const Region& region)
     {
-	Impl::region = region;
+	const Region& partitionable_region = get_partitionable()->get_region();
+	if (region.get_block_size() != partitionable_region.get_block_size())
+	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
-	const Partitionable* partitionable = get_partitionable();
-
-	const Geometry& geometry = partitionable->get_impl().get_geometry();
-	if (region.get_block_size() != geometry.cylinderSize())
-	    ST_THROW(DifferentBlockSizes(region.get_block_size(), geometry.cylinderSize()));
-
-	set_size_k(region.get_length() * partitionable->get_impl().get_geometry().cylinderSize() / 1024);
+	BlkDevice::Impl::set_region(region);
     }
 
 
@@ -193,7 +176,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return region == rhs.region && type == rhs.type && id == rhs.id && boot == rhs.boot;
+	return type == rhs.type && id == rhs.id && boot == rhs.boot;
     }
 
 
@@ -204,7 +187,6 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "region", region, rhs.region);
 	storage::log_diff_enum(log, "type", type, rhs.type);
 	storage::log_diff_hex(log, "id", id, rhs.id);
 	storage::log_diff(log, "boot", boot, rhs.boot);
@@ -215,8 +197,6 @@ namespace storage
     Partition::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
-
-	out << " region:" << get_region();
     }
 
 
@@ -244,8 +224,63 @@ namespace storage
     Text
     Partition::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create partition %1$s (%2$s)"), get_name().c_str(),
-		       get_size_string().c_str());
+	Text text;
+
+	if (!is_msdos(get_partition_table()))
+	{
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2GiB)
+			  _("Create partition %1$s (%2$s)"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2GiB)
+			  _("Creating partition %1$s (%2$s)"));
+	}
+	else
+	{
+	    switch (type)
+	    {
+		case PartitionType::PRIMARY:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create primary partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating primary partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::EXTENDED:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create extended partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating extended partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::LOGICAL:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Create logical partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2GiB)
+				  _("Creating logical partition %1$s (%2$s)"));
+		    break;
+	    }
+	}
+
+	return sformat(text, get_name().c_str(), get_size_string().c_str());
     }
 
 
@@ -254,7 +289,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit cyl mkpart " +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s mkpart " +
 	    toString(get_type()) + " ";
 
 	if (get_type() != PartitionType::EXTENDED)
@@ -321,7 +356,7 @@ namespace storage
 	if (get_id() > 255 || !is_msdos(get_device()))
 	    return;
 
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " set " +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " type " + to_string(get_id());
 	cout << cmd_line << endl;
 
@@ -344,7 +379,7 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " -s " + partitionable->get_name() + " rm " + to_string(get_number());
+	string cmd_line = PARTEDBIN " --script " + partitionable->get_name() + " rm " + to_string(get_number());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -406,12 +441,8 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	Region blk_region = detect_sysfs_blk_region();
-
-	long long unsigned end = blk_region.to_kb(blk_region.get_start()) + get_size_k();
-
-	string cmd_line = PARTEDBIN " -s " + quote(partitionable->get_name()) + " unit KiB "
-	    "resize " + to_string(get_number()) + " " + to_string(end);
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s "
+	    "resize " + to_string(get_number()) + " " + to_string(get_region().get_end());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

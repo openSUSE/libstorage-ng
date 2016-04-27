@@ -2,6 +2,7 @@
 #define STORAGE_BLK_DEVICE_IMPL_H
 
 
+#include "storage/Utils/Region.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -32,10 +33,16 @@ namespace storage
 	void set_name(const string& name);
 
 	const string& get_sysfs_name() const { return sysfs_name; }
-	const string& get_sysfs_path() const { return sysfs_path; }
+	void set_sysfs_name(const string& sysfs_name) { Impl::sysfs_name = sysfs_name; }
 
-	unsigned long long get_size_k() const { return size_k; }
-	virtual void set_size_k(unsigned long long size_k);
+	const string& get_sysfs_path() const { return sysfs_path; }
+	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
+
+	const Region& get_region() const { return region; }
+	virtual void set_region(const Region& region);
+
+	unsigned long long get_size() const;
+	void set_size(unsigned long long size);
 
 	string get_size_string() const;
 
@@ -62,11 +69,10 @@ namespace storage
 
     protected:
 
-	Impl(const string& name)
-	    : Device::Impl(), name(name), size_k(0) {}
+	// TODO remove this contructor so always require a region?
+	Impl(const string& name);
 
-	Impl(const string& name, unsigned long long size_k)
-	    : Device::Impl(), name(name), size_k(size_k) {}
+	Impl(const string& name, const Region& region);
 
 	Impl(const xmlNode* node);
 
@@ -81,7 +87,12 @@ namespace storage
 	string sysfs_name;
 	string sysfs_path;
 
-	unsigned long long size_k;
+	/**
+	 * For most devices region.start is zero. Always used to keep track of
+	 * size and sector size.
+	 */
+	Region region;
+
 	string udev_path;
 	vector<string> udev_ids;
 

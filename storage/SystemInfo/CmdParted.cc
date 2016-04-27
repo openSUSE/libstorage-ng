@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +30,7 @@
 #include "storage/Utils/Enum.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Devices/PartitionTableImpl.h"
 
 
 namespace storage
@@ -37,9 +39,10 @@ namespace storage
 
 
     Parted::Parted(const string& device)
-	: device(device), label(PtType::PT_UNKNOWN), implicit(false), gpt_enlarge(false)
+	: device(device), label(PtType::PT_UNKNOWN), region(), implicit(false),
+	  gpt_enlarge(false)
     {
-	SystemCmd cmd(PARTEDBIN " --script " + quote(device) + " unit cyl print unit s print", SystemCmd::DoThrow);
+	SystemCmd cmd(PARTEDBIN " --script " + quote(device) + " unit s print", SystemCmd::DoThrow);
 
 	// No check for exit status since parted 3.1 exits with 1 if no
 	// partition table is found.
@@ -100,30 +103,11 @@ namespace storage
 	else
 	    y2war("could not find partition table");
 
-	// only present for unrecognised disk label due to patch in parted
-	pos = find_if(stdout, string_starts_with("BIOS cylinder,head,sector geometry:"));
-	if (pos != stdout.end())
-	    scanGeometryLine(*pos);
-	else
-	{
-	    ST_THROW( ParseException( "No disk geometry line",
-				      "...", // don't pass complete parted output to exception
-				      "BIOS cylinder,head,sector geometry:" ) );
-	}
-	// see bnc #866535
 	pos = find_if(stdout, string_starts_with("Disk " + device + ":"));
 	if (pos != stdout.end())
-	{
-	    unsigned long tmp;
-	    extractNthWord(2, *pos) >> tmp;
-	    if (geometry.cylinders != tmp)
-	    {
-		y2war("parted reported different cylinder numbers");
-		geometry.cylinders = min(geometry.cylinders, tmp);
-	    }
-	}
+	    scanDiskSize(*pos);
 	else
-	    y2war("could not find cylinder number");
+	    y2war("could not find disk size");
 
 	// not present for unrecognised disk label
 	pos = find_if(stdout, string_starts_with("Sector size (logical/physical):"));
@@ -157,31 +141,11 @@ namespace storage
 		if (!tmp.empty() && isdigit(tmp[0]))
 		{
 		    if (n == 1)
-			scanCylEntryLine(line);
-		    else if (n == 2)
-			scanSecEntryLine(line);
+			scanSectorEntryLine(line);
 		    else
 			ST_THROW( ParseException( string( "Unexpected partition table #" )
 						  + std::to_string(n), "", "" ) );
 		}
-	    }
-
-	    iterator prev = entries.begin();
-	    iterator it = prev;
-	    if (it != entries.end())
-		++it;
-	    while (it != entries.end())
-	    {
-		if (prev->cylRegion.get_start() >= it->cylRegion.get_start() && it->cylRegion.get_length() > 0)
-		{
-		    y2mil("old:" << it->cylRegion);
-		    it->cylRegion.set_start(it->cylRegion.get_start() + 1);
-		    it->cylRegion.set_length(it->cylRegion.get_length() - 1);
-		    y2mil("new:" << it->cylRegion);
-		}
-
-		prev = it;
-		++it;
 	    }
 	}
 
@@ -205,10 +169,11 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const Parted& parted)
+    std::ostream&
+    operator<<(std::ostream& s, const Parted& parted)
     {
 	s << "device:" << parted.device << " label:" << toString(parted.label)
-	  << " geometry:" << parted.geometry;
+	  << " region:" << parted.region;
 
 	if (parted.implicit)
 	    s << " implicit";
@@ -228,15 +193,28 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const Parted::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const Parted::Entry& entry)
     {
-	s << "num:" << entry.num << " cylRegion:" << entry.cylRegion << " secRegion:"
-	  << entry.secRegion << " type:" << toString(entry.type) << " id:" << entry.id;
+	s << "num:" << entry.num << " region:"
+	  << entry.region << " type:" << toString(entry.type) << " id:" << entry.id;
 
 	if (entry.boot)
 	    s << " boot";
 
 	return s;
+    }
+
+
+    void
+    Parted::scanDiskSize(const string& line)
+    {
+	string tmp(line);
+	tmp.erase(0, tmp.find(':') + 1);
+
+	int num_sectors = 0;
+	tmp >> num_sectors;
+	region.set_length(num_sectors);
     }
 
 
@@ -248,36 +226,13 @@ namespace storage
 
 
     void
-    Parted::scanGeometryLine(const string& line)
-    {
-	string tmp(line);
-	tmp.erase(0, tmp.find(':') + 1);
-	tmp = extractNthWord(0, tmp);
-
-	list<string> l = splitString(extractNthWord(0, tmp), ",");
-
-	if (l.size() == 3)
-	{
-	    list<string>::const_iterator i = l.begin();
-	    *i++ >> geometry.cylinders;
-	    *i++ >> geometry.heads;
-	    *i++ >> geometry.sectors;
-	}
-	else
-	{
-	    ST_THROW( ParseException( "Bad disk geometry line", line,
-				      "BIOS cylinder,head,sector geometry: 243201,255,63.  Each cylinder is 8225kB." ) );
-	}
-    }
-
-
-    void
     Parted::scanSectorSizeLine(const string& line)
     {
 	// FIXME: This parser is too minimalistic and allows too much illegal input.
 	// It turned out to be near impossible to come up with any test case that
 	// actually made it throw an exception and not just silently do something random.
 	// -- shundhammer 2015-05-13
+
 	string tmp(line);
 	tmp.erase(0, tmp.find(':') + 1);
 	tmp = extractNthWord(0, tmp);
@@ -287,7 +242,9 @@ namespace storage
 	if (l.size() == 2)
 	{
 	    list<string>::const_iterator i = l.begin();
-	    *i >> geometry.sector_size;
+	    int logical_sector_size = 0;
+	    *i >> logical_sector_size;
+	    region.set_block_size(logical_sector_size);
 	}
 	else
 	{
@@ -298,51 +255,53 @@ namespace storage
 
 
     void
-    Parted::scanCylEntryLine(const string& line)
+    Parted::scanSectorEntryLine(const string& line)
     {
-	// Sample input: (msdos disk label)
+	// Sample input:
 	//
-	//  1      0cyl      261cyl     261cyl     primary   linux-swap(v1)  type=82
-	//  2      261cyl    5484cyl    5222cyl    primary   btrfs           boot, type=83
-	//  3      5484cyl   10705cyl   5221cyl    primary   btrfs           type=83
-	//  4      10705cyl  243201cyl  232495cyl  extended                  lba, type=0f
-	//  5      10706cyl  243200cyl  232493cyl  logical   xfs             type=83
+	//  1      2048s       4208639s     4206592s     primary   linux-swap(v1)  type=82
+	//  2      4208640s    88100863s    83892224s    primary   btrfs           boot, type=83
+	//  3      88100864s   171991039s   83890176s    primary   btrfs           type=83
+	//  4      171991040s  3907028991s  3735037952s  extended                  lba, type=0f
+	//  5      171993088s  3907008511s  3735015424s  logical   xfs             type=83
 	//
-	// (Number) (Start)  (End)      (Size)     (Type)    (File system)   (Flags)
-	//
-	// gpt disk label: no primary/extended/logical column:
-	//
-	//  1      0cyl      261cyl     261cyl     linux-swap(v1)  type=82
+	// (Number) (Start)    (End)        (Size)       (Type)    (File system)   (Flags)
 
 	Entry entry;
 
 	std::istringstream Data(line);
 	classic(Data);
 
-	unsigned long StartM = 0;
-	unsigned long EndM = 0;
-	unsigned long SizeM = 0;
+	unsigned long start_sector = 0;
+	unsigned long end_sector = 0;
+	unsigned long size_sector = 0;
 	string PartitionTypeStr;
 	string skip;
 
 	if (label == PtType::MSDOS)
 	{
-	    Data >> entry.num >> StartM >> skip >> EndM >> skip >> SizeM >> skip >> PartitionTypeStr;
+	    Data >> entry.num >> start_sector >> skip >> end_sector >> skip >> size_sector
+		 >> skip >> PartitionTypeStr;
 	}
 	else
 	{
-	    Data >> entry.num >> StartM >> skip >> EndM >> skip >> SizeM >> skip;
+	    Data >> entry.num >> start_sector >> skip >> end_sector >> skip >> size_sector
+		 >> skip;
 	}
 
 	if ( Data.fail() )	// parse error?
 	{
-	    ST_THROW( ParseException( "Bad cylinder-based partition entry", line,
-				      "2  261cyl  5484cyl  5222cyl primary  btrfs  boot, type=83" ) );
+	    ST_THROW(ParseException("Bad sector-based partition entry", line,
+				    "2  4208640s  88100863s  83892224s  primary  btrfs boot, type=83"));
 	}
 
-	if ( entry.num == 0 )
-	    ST_THROW( ParseException( "Illegal partition number 0", line, "" ) );
+	y2mil("num:" << entry.num << " start-sector:" << start_sector << " end-sector:" <<
+	      end_sector << " size-sector:" << size_sector);
 
+	if (entry.num == 0)
+	    ST_THROW(ParseException("Illegal partition number 0", line, ""));
+
+	entry.region = Region(start_sector, size_sector, region.get_block_size());
 
 	char c;
 	string TInfo;
@@ -367,17 +326,6 @@ namespace storage
 	    Data >> c;
 	}
 
-	y2mil("num:" << entry.num << " Start:" << StartM << " End:" << EndM << " Size:" << SizeM);
-
-	unsigned long start = StartM;
-	unsigned long csize = EndM-StartM+1;
-	if ( start + csize > geometry.cylinders )
-	{
-	    csize = geometry.cylinders - start;
-	    y2mil("new csize:" << csize);
-	}
-	entry.cylRegion = Region(start, csize, geometry.cylinderSize());
-
 	boost::to_lower(TInfo, locale::classic());
 	list<string> flags = splitString(TInfo, ",");
 	y2mil("TInfo:" << TInfo << " flags:" << flags);
@@ -388,12 +336,12 @@ namespace storage
 
 	if (label == PtType::MSDOS)
 	{
-	    if(  PartitionTypeStr == "extended" )
+	    if (PartitionTypeStr == "extended")
 	    {
 		entry.type = PartitionType::EXTENDED;
 		entry.id = ID_EXTENDED;
 	    }
-	    else if ( entry.num >= 5 )
+	    else if (entry.num >= 5)
 	    {
 		entry.type = PartitionType::LOGICAL;
 	    }
@@ -490,61 +438,10 @@ namespace storage
 		entry.id = ID_GPT_PREP;
 	    }
 	}
-	y2mil("num:" << entry.num << " id:" << entry.id << " type:" << toString(entry.type));
+
+	y2mil("num:" << entry.num << " region:" << entry.region << " id:" << entry.id <<
+	      " type:" << toString(entry.type));
 
 	entries.push_back(entry);
     }
-
-
-    void
-    Parted::scanSecEntryLine(const string& line)
-    {
-	// Sample input:
-	//
-	//  1      2048s       4208639s     4206592s     primary   linux-swap(v1)  type=82
-	//  2      4208640s    88100863s    83892224s    primary   btrfs           boot, type=83
-	//  3      88100864s   171991039s   83890176s    primary   btrfs           type=83
-	//  4      171991040s  3907028991s  3735037952s  extended                  lba, type=0f
-	//  5      171993088s  3907008511s  3735015424s  logical   xfs             type=83
-	//
-	// (Number) (Start)    (End)        (Size)       (Type)    (File system)   (Flags)
-
-	std::istringstream Data(line);
-	classic(Data);
-
-	unsigned num;
-	unsigned long long startSec = 0;
-	unsigned long long endSec = 0;
-	unsigned long long sizeSec = 0;
-	string skip;
-
-	Data >> num >> startSec >> skip >> endSec >> skip >> sizeSec >> skip;
-
-	if ( Data.fail() )
-	{
-	    ST_THROW( ParseException( "Bad sector-based partition entry", line,
-				      "2  4208640s  88100863s  83892224s  primary  btrfs boot, type=83" ) );
-
-	}
-
-	if ( num == 0 )
-	    ST_THROW( ParseException( "Illegal partition number 0", line, "" ) );
-
-
-	// Search corresponding entry in 'entries' vector which was created earlier
-	// from the by-cylinder output
-
-	for (iterator it = entries.begin(); it != entries.end(); ++it)
-	{
-	    if (it->num == num)
-	    {
-		it->secRegion = Region(startSec, sizeSec, geometry.sector_size);
-		return;
-	    }
-	}
-
-	// Entry no. 'num' not found
-	ST_THROW( ParseException( "No corresponding partition number in cylinder table", line, "" ) );
-    }
-
 }

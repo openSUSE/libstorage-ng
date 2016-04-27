@@ -13,11 +13,10 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VBb5bd49a6-9719c9ff</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VBb5bd49a6-9719c9ff</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBb5bd49a6-9719c9ff</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777216</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -33,11 +32,10 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB558bee5c-c4399e89</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB558bee5c-c4399e89</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB558bee5c-c4399e89</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777216</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -53,11 +51,10 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB0eeaf303-8fd4e564</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB0eeaf303-8fd4e564</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB0eeaf303-8fd4e564</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777216</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -73,11 +70,10 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VB2990e9d7-d065ff3e</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VB2990e9d7-d065ff3e</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VB2990e9d7-d065ff3e</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777216</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -90,14 +86,13 @@
       <size-k>33553408</size-k>
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c</udev-id>
       <udev-id>md-name-any:0</udev-id>
-      <geometry>
-        <cylinders>4177</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>67106816</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <md-level>RAID0</md-level>
-      <chunk-size-k>512</chunk-size-k>
+      <chunk-size>524288</chunk-size>
     </Md>
     <Gpt>
       <sid>47</sid>
@@ -111,9 +106,9 @@
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part1</udev-id>
       <udev-id>md-name-any:0-part1</udev-id>
       <region>
-        <start>0</start>
-        <length>63</length>
-        <block-size>8225280</block-size>
+        <start>2048</start>
+        <length>997376</length>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>131</id>
@@ -127,9 +122,9 @@
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part2</udev-id>
       <udev-id>md-name-any:0-part2</udev-id>
       <region>
-        <start>62</start>
-        <length>4115</length>
-        <block-size>8225280</block-size>
+        <start>999424</start>
+        <length>66105344</length>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>131</id>
@@ -142,11 +137,10 @@
       <size-k>16777088</size-k>
       <udev-id>md-uuid-3e531727:0857f684:cd2e394b:62046b74</udev-id>
       <udev-id>md-name-any:1</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777088</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <md-level>RAID1</md-level>
     </Md>
@@ -158,11 +152,10 @@
       <size-k>16777088</size-k>
       <udev-id>md-uuid-c8440826:8e55745c:d7e14cdd:ac26716d</udev-id>
       <udev-id>md-name-any:2</udev-id>
-      <geometry>
-        <cylinders>2088</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>16777088</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <md-level>RAID1</md-level>
     </Md>

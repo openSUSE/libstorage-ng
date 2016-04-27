@@ -151,16 +151,16 @@ namespace storage
 
 
     unsigned long
-    Md::get_chunk_size_k() const
+    Md::get_chunk_size() const
     {
-	return get_impl().get_chunk_size_k();
+	return get_impl().get_chunk_size();
     }
 
 
     void
-    Md::set_chunk_size_k(unsigned long chunk_size_k)
+    Md::set_chunk_size(unsigned long chunk_size)
     {
-	get_impl().set_chunk_size_k(chunk_size_k);
+	get_impl().set_chunk_size(chunk_size);
     }
 
 

@@ -8,6 +8,7 @@
 #include "storage/Environment.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Logger.h"
 
 
 using namespace std;
@@ -22,6 +23,8 @@ bool save_mockup = false;
 void
 doit()
 {
+    set_logger(get_logfile_logger());
+
     Environment environment(true, save_mockup ? ProbeMode::STANDARD_WRITE_MOCKUP : ProbeMode::STANDARD,
 			    TargetMode::DIRECT);
 
