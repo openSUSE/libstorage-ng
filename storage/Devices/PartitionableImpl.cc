@@ -158,6 +158,13 @@ namespace storage
     }
 
 
+    bool
+    Partitionable::Impl::has_partition_table() const
+    {
+	return has_single_child_of_type<const PartitionTable>();
+    }
+
+
     PartitionTable*
     Partitionable::Impl::get_partition_table()
     {

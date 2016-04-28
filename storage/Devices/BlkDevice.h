@@ -43,6 +43,8 @@ namespace storage
 
 	Filesystem* create_filesystem(FsType fs_type);
 
+	bool has_filesystem() const;
+
 	Filesystem* get_filesystem();
 	const Filesystem* get_filesystem() const;
 

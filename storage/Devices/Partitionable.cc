@@ -81,6 +81,13 @@ namespace storage
     }
 
 
+    bool
+    Partitionable::has_partition_table() const
+    {
+	return get_impl().has_partition_table();
+    }
+
+
     PartitionTable*
     Partitionable::get_partition_table()
     {

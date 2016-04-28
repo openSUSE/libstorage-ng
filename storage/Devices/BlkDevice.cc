@@ -209,6 +209,13 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::has_filesystem() const
+    {
+	return get_impl().has_filesystem();
+    }
+
+
     Filesystem*
     BlkDevice::get_filesystem()
     {

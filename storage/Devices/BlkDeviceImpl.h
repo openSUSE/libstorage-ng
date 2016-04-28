@@ -49,6 +49,8 @@ namespace storage
 	const string& get_udev_path() const { return udev_path; }
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 
+	bool has_filesystem() const;
+
 	Filesystem* get_filesystem();
 	const Filesystem* get_filesystem() const;
 

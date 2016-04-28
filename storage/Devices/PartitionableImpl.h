@@ -36,6 +36,8 @@ namespace storage
 
 	PartitionTable* create_partition_table(PtType pt_type);
 
+	bool has_partition_table() const;
+
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
 
