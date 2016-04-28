@@ -96,10 +96,24 @@ namespace storage
     }
 
 
+    bool
+    Device::has_children() const
+    {
+	return get_impl().has_children();
+    }
+
+
     size_t
     Device::num_children() const
     {
 	return get_impl().num_children();
+    }
+
+
+    bool
+    Device::has_parents() const
+    {
+	return get_impl().has_parents();
     }
 
 
