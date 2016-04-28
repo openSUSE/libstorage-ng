@@ -71,6 +71,9 @@ namespace storage
 	unsigned long get_optimal_io_size() const;
 	void set_optimal_io_size(unsigned long optimal_io_size);
 
+	unsigned long get_minimal_grain() const;
+	void set_minimal_grain(unsigned long minimal_grain);
+
 	/**
 	 * Calculates the grain.
 	 */
