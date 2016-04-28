@@ -24,9 +24,10 @@
 #define STORAGE_TOPOLOGY_IMPL_H
 
 
+#include "storage/Utils/Topology.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/XmlFile.h"
-#include "storage/Utils/Topology.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -36,15 +37,19 @@ namespace storage
     {
     public:
 
-	Impl() : alignment_offset(0), optimal_io_size(0) {}
+	Impl() : alignment_offset(0), optimal_io_size(0), minimal_grain(default_minimal_grain) {}
 	Impl(long alignment_offset, unsigned long optimal_io_size) :
-	    alignment_offset(alignment_offset), optimal_io_size(optimal_io_size) {}
+	    alignment_offset(alignment_offset), optimal_io_size(optimal_io_size),
+	    minimal_grain(default_minimal_grain) {}
 
 	long get_alignment_offset() const { return alignment_offset; }
 	void set_alignment_offset(long alignment_offset);
 
 	unsigned long get_optimal_io_size() const { return optimal_io_size; }
 	void set_optimal_io_size(unsigned long optimal_io_size);
+
+	unsigned long get_minimal_grain() const { return minimal_grain; }
+	void set_minimal_grain(unsigned long minimal_grain);
 
 	unsigned long calculate_grain() const;
 
@@ -69,8 +74,11 @@ namespace storage
 
     private:
 
+	const unsigned long default_minimal_grain = 1 * MiB;
+
 	long alignment_offset;
 	unsigned long optimal_io_size;
+	unsigned long minimal_grain;
 
     };
 

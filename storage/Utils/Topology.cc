@@ -106,6 +106,20 @@ namespace storage
 
 
     unsigned long
+    Topology::get_minimal_grain() const
+    {
+	return get_impl().get_minimal_grain();
+    }
+
+
+    void
+    Topology::set_minimal_grain(unsigned long minimal_grain)
+    {
+	get_impl().set_minimal_grain(minimal_grain);
+    }
+
+
+    unsigned long
     Topology::calculate_grain() const
     {
 	return get_impl().calculate_grain();

@@ -42,12 +42,19 @@ namespace storage
     }
 
 
+    void
+    Topology::Impl::set_minimal_grain(unsigned long minimal_grain)
+    {
+	Impl::minimal_grain = minimal_grain;
+    }
+
+
     unsigned long
     Topology::Impl::calculate_grain() const
     {
 	unsigned long grain = max(optimal_io_size, 1UL);
 
-	while (grain < 1 * MiB)
+	while (grain < minimal_grain)
 	    grain *= 2;
 
 	return grain;
@@ -146,14 +153,19 @@ namespace storage
     Topology::Impl::operator==(const Topology::Impl& rhs) const
     {
 	return alignment_offset == rhs.alignment_offset &&
-	    optimal_io_size == rhs.optimal_io_size;
+	    optimal_io_size == rhs.optimal_io_size && minimal_grain == rhs.minimal_grain;
     }
 
 
     std::ostream&
     operator<<(std::ostream& s, const Topology::Impl& impl)
     {
-	return s << "[" << impl.alignment_offset << " B, " << impl.optimal_io_size << " B]";
+	s << "[" << impl.alignment_offset << " B, " << impl.optimal_io_size << " B";
+	if (impl.minimal_grain != impl.default_minimal_grain)
+	    s << ", " << impl.minimal_grain << " B";
+	s << "]";
+
+	return s;
     }
 
 
@@ -166,6 +178,7 @@ namespace storage
 
 	getChildValue(tmp, "alignment-offset", value.alignment_offset);
 	getChildValue(tmp, "optimal-io-size", value.optimal_io_size);
+	getChildValue(tmp, "minimal-grain", value.minimal_grain);
 
 	return true;
     }
@@ -178,6 +191,8 @@ namespace storage
 
 	setChildValueIf(tmp, "alignment-offset", value.alignment_offset, value.alignment_offset != 0);
 	setChildValueIf(tmp, "optimal-io-size", value.optimal_io_size, value.optimal_io_size != 0);
+	setChildValueIf(tmp, "minimal-grain", value.minimal_grain,
+			value.minimal_grain != value.default_minimal_grain);
     }
 
 }
