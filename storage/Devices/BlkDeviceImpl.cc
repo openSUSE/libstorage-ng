@@ -240,6 +240,13 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::has_filesystem() const
+    {
+	return has_single_child_of_type<const Filesystem>();
+    }
+
+
     Filesystem*
     BlkDevice::Impl::get_filesystem()
     {

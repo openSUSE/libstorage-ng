@@ -26,6 +26,7 @@ namespace storage
     template <typename Type> struct DeviceTraits {};
 
 
+    template <typename Type> bool is_device_of_type(const Device* device);
     template <typename Type> Type* to_device_of_type(Device* device);
     template <typename Type> const Type* to_device_of_type(const Device* device);
 
@@ -130,6 +131,21 @@ namespace storage
 
 	bool has_parents() const;
 	size_t num_parents() const;
+
+	template<typename Type>
+	bool has_single_child_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    if (num_children() != 1)
+		return false;
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.child(get_vertex())];
+
+	    return is_device_of_type<Type>(tmp);
+	}
 
 	template<typename Type>
 	Type* get_single_child_of_type()
