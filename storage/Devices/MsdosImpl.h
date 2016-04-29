@@ -2,6 +2,7 @@
 #define STORAGE_MSDOS_IMPL_H
 
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/PartitionTableImpl.h"
 
@@ -20,7 +21,7 @@ namespace storage
     public:
 
 	Impl()
-	    : PartitionTable::Impl() {}
+	    : PartitionTable::Impl(), minimal_mbr_gap(default_minimal_mbr_gap) {}
 
 	Impl(const xmlNode* node);
 
@@ -48,10 +49,19 @@ namespace storage
 	virtual bool has_extended() const override;
 	virtual unsigned int num_logical() const override;
 
+	unsigned long get_minimal_mbr_gap() const { return minimal_mbr_gap; }
+	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
+
 	virtual Region get_usable_region() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() const override;
+
+    private:
+
+	const unsigned long default_minimal_mbr_gap = 1 * MiB;
+
+	unsigned long minimal_mbr_gap;
 
     };
 

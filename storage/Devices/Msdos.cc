@@ -56,6 +56,20 @@ namespace storage
     }
 
 
+    unsigned long
+    Msdos::get_minimal_mbr_gap() const
+    {
+	return get_impl().get_minimal_mbr_gap();
+    }
+
+
+    void
+    Msdos::set_minimal_mbr_gap(unsigned long minimal_mbr_gap)
+    {
+	get_impl().set_minimal_mbr_gap(minimal_mbr_gap);
+    }
+
+
     bool
     is_msdos(const Device* device)
     {

@@ -24,6 +24,9 @@ namespace storage
 
 	virtual Msdos* clone() const override;
 
+	unsigned long get_minimal_mbr_gap() const;
+	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
+
     protected:
 
 	Msdos(Impl* impl);

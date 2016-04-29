@@ -6,12 +6,13 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
-#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/Msdos.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/HumanString.h"
 
 
 using namespace std;
@@ -183,4 +184,40 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[1].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[1].logical_possible, false);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_small_grain_and_mbr_gap)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
+
+    Topology topology;
+    topology.set_minimal_grain(8 * KiB);
+    sda->set_topology(topology);
+
+    Msdos* msdos = to_msdos(sda->create_partition_table(PtType::MSDOS));
+    msdos->set_minimal_mbr_gap(8 * KiB);
+
+    vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 1);
+
+    BOOST_CHECK_EQUAL(slots[0].region.get_start(), 16);
+    BOOST_CHECK_EQUAL(slots[0].region.get_length(), 1000000 - 16);
+    BOOST_CHECK_EQUAL(slots[0].nr, 1);
+    BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda1");
+    BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
+    BOOST_CHECK_EQUAL(slots[0].extended_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].extended_possible, true);
+    BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
 }
