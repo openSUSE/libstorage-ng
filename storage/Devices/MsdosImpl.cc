@@ -10,6 +10,8 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/XmlFile.h"
 
 
 namespace storage
@@ -22,8 +24,9 @@ namespace storage
 
 
     Msdos::Impl::Impl(const xmlNode* node)
-	: PartitionTable::Impl(node)
+	: PartitionTable::Impl(node), minimal_mbr_gap(default_minimal_mbr_gap)
     {
+	getChildValue(node, "minimal-mbr-gap", minimal_mbr_gap);
     }
 
 
@@ -31,6 +34,16 @@ namespace storage
     Msdos::Impl::save(xmlNode* node) const
     {
 	PartitionTable::Impl::save(node);
+
+	setChildValueIf(node, "minimal-mbr-gap", minimal_mbr_gap, minimal_mbr_gap !=
+			default_minimal_mbr_gap);
+    }
+
+
+    void
+    Msdos::Impl::set_minimal_mbr_gap(unsigned long minimal_mbr_gap)
+    {
+	Impl::minimal_mbr_gap = minimal_mbr_gap;
     }
 
 
@@ -39,13 +52,14 @@ namespace storage
     {
 	Region device_region = get_partitionable()->get_region();
 
-	// Reserve 1 MiB for the MBR and the MBR gap, see
+	// Reserve one sector or minimal-mbr-gap (per default 1 MiB) for the
+	// MBR and the MBR gap, see
 	// https://en.wikipedia.org/wiki/BIOS_boot_partition. Normally the
 	// space for the MBR gap is unused anyway due to partition alignment
 	// but for disks with an alignment offset it can be required to
 	// explicitely reserve it.
 
-	unsigned long long first_usable_sector = device_region.to_blocks(1 * MiB);
+	unsigned long long first_usable_sector = max(1ULL, device_region.to_blocks(minimal_mbr_gap));
 	unsigned long long last_usable_sector = UINT32_MAX - 1;
 	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
 				   device_region.get_block_size());
@@ -73,7 +87,7 @@ namespace storage
 	if (!PartitionTable::Impl::equal(rhs))
 	    return false;
 
-	return true;
+	return minimal_mbr_gap == rhs.minimal_mbr_gap;
     }
 
 
@@ -83,6 +97,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	PartitionTable::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "minimal-mbr-gap", minimal_mbr_gap, rhs.minimal_mbr_gap);
     }
 
 
@@ -90,6 +106,9 @@ namespace storage
     Msdos::Impl::print(std::ostream& out) const
     {
 	PartitionTable::Impl::print(out);
+
+	if (minimal_mbr_gap != default_minimal_mbr_gap)
+	    out << " minimal_mbr_gap:" << minimal_mbr_gap;
     }
 
 
