@@ -36,7 +36,8 @@ namespace storage
     // TODO overall not nice
 
     Arch::Arch(bool do_probe)
-	: arch("unknown"), ppc_mac(false), ppc_pegasos(false), efiboot(false)
+	: arch("unknown"), ppc_mac(false), ppc_pegasos(false), ppc_power_nv(false),
+	  efiboot(false)
     {
 	if (do_probe)
 	    probe();
@@ -158,8 +159,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Arch& arch)
     {
-	return s << "arch:" << arch.arch << " ppc_mac:" << arch.ppc_mac
-		 << " ppc_pegasos:" << arch.ppc_pegasos << " efiboot:"
+	return s << "arch:" << arch.arch << " ppc-mac:" << arch.ppc_mac << " ppc-pegasos:"
+		 << arch.ppc_pegasos << " ppc-power-nv:" << arch.ppc_power_nv << " efiboot:"
 		 << arch.efiboot;
     }
 
