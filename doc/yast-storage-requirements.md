@@ -154,27 +154,27 @@ This covers storage devices, which are not accessible out-of-the-box and some op
 ### SystemZ Configuration
 (s/390 specific)
 
-       * DASDs (Direct Access Storage Devices) need to be activated for use with Linux with the *dasd\_configure* command
-       * DASDs are created/managed by the s/390 host system
-       * Ihno wants to provide a script which lists all disks
-       * zFCP
-       * AI: Provide specifics for zFCP devices
+   * DASDs (Direct Access Storage Devices) need to be activated for use with Linux with the *dasd\_configure* command
+   * DASDs are created/managed by the s/390 host system
+   * Ihno wants to provide a script which lists all disks
+   * zFCP
+   * AI: Provide specifics for zFCP devices
 
 ### iSCSI
 (Internet SCSI)
 
-       * networked storage using SCSI commands over TCP/IP
-       * using a separate set of commands and tools
-       * currently out of the scope of YaST storage, using a separate YaST module
-       * might need to be integrated into YaST storage some day
+   * networked storage using SCSI commands over TCP/IP
+   * using a separate set of commands and tools
+   * currently out of the scope of YaST storage, using a separate YaST module
+   * might need to be integrated into YaST storage some day
 
 ### FCoE
 (Fibre Channel Over Ethernet)
 
-       * networked storage using fibre channel over ethernet
-       * using a separate set of commands and tools
-       * currently out of the scope of YaST storage, using a separate YaST module
-       * might need to be integrated into YaST storage some day
+   * networked storage using fibre channel over ethernet
+   * using a separate set of commands and tools
+   * currently out of the scope of YaST storage, using a separate YaST module
+   * might need to be integrated into YaST storage some day
 
 
 ## File Systems
@@ -203,11 +203,11 @@ File Systems and operations to be supported by new libstorage
 
 Supported actions (for all filesystems, unless excluded in table above):
 
-       * create
-       * resize (for some types, see above)
-       * /etc/fstab -handling (managing individual mount points, mount options)
-       * mount
-       * unmount
+   * create
+   * resize (for some types, see above)
+   * /etc/fstab -handling (managing individual mount points, mount options)
+   * mount
+   * unmount
 
 A file system can be located in a disk partition, in whole disk, on an MD array, on a logical volume
 
@@ -215,114 +215,114 @@ A file system can be located in a disk partition, in whole disk, on an MD array,
 ## Bootloader Constraints
 ***Caution: Voodoo inside***
 
-       * MS-DOS - Legacy BIOS
-           * BIOS loads the first sector of the disk (the MBR (Master Boot Record)) and executes it
-           * only 512 bytes - sizeof( partition\_table ) = 446 bytes for this first stage of the boot loader, i.e., the next stage (Grub2, Grub, LILO) has to be chain-loaded
-           * the next stage has to be accessible by the BIOS
-           * limitations depending on BIOS:  
-               * legacy: 1024 cylinders in CHS (Cylinder/Head/Sector) mode (obsolete today)
-               * LBA (Logical Block Address):  
-                   * 32 bit LBA (obsolete today): 2 TB limit
-                   * latest (7/2015): 48 bit LBA; 144 PB (144000 TB) limit
-               * there have always been limits, they always seemed way out of reach, and we always reached them before we thought it possible.
-               * BIOS can only access first 8 disks
-           * Stage1 and Stage2 of grub2 should always be on the same disk (means including the partition where stage2 will be insalled into and the config)
-           * BIOS can only support 8 harddisks, so bootloader needs to be on the first 8 ones
+   * MS-DOS - Legacy BIOS
+       * BIOS loads the first sector of the disk (the MBR (Master Boot Record)) and executes it
+       * only 512 bytes - sizeof( partition\_table ) = 446 bytes for this first stage of the boot loader, i.e., the next stage (Grub2, Grub, LILO) has to be chain-loaded
+       * the next stage has to be accessible by the BIOS
+       * limitations depending on BIOS:  
+           * legacy: 1024 cylinders in CHS (Cylinder/Head/Sector) mode (obsolete today)
+           * LBA (Logical Block Address):  
+               * 32 bit LBA (obsolete today): 2 TB limit
+               * latest (7/2015): 48 bit LBA; 144 PB (144000 TB) limit
+           * there have always been limits, they always seemed way out of reach, and we always reached them before we thought it possible.
+           * BIOS can only access first 8 disks
+       * Stage1 and Stage2 of grub2 should always be on the same disk (means including the partition where stage2 will be insalled into and the config)
+       * BIOS can only support 8 harddisks, so bootloader needs to be on the first 8 ones
 
-       * UEFI (Unified Extensible Firmware Interface):
-           * typically used with GPT disk label
-           * requires EFI system partition (with FAT file system)
+   * UEFI (Unified Extensible Firmware Interface):
+       * typically used with GPT disk label
+       * requires EFI system partition (with FAT file system)
 
-       * PPC (Power PC)
-           * can use MS-DOS or GPT disk label
-           * requires PReP partition in KVM or LPAR, on LPAR less than 8MB, idealy size of grub2 stage1
-           * no special partition required for OPAL/PowerNV/Bare
-           * ***TO DO: Get more information from the PPC arch maintainers***
+   * PPC (Power PC)
+       * can use MS-DOS or GPT disk label
+       * requires PReP partition in KVM or LPAR, on LPAR less than 8MB, idealy size of grub2 stage1
+       * no special partition required for OPAL/PowerNV/Bare
+       * ***TO DO: Get more information from the PPC arch maintainers***
 
-       * s/390
-           * uses a z/IPL (Initial Boot Loader for z Series) initial boot loader
-           * uses a /boot/zipl partition (typically with ext2 file system)
-           * AI: Define requirements on /boot/zipl partition
+   * s/390
+       * uses a z/IPL (Initial Boot Loader for z Series) initial boot loader
+       * uses a /boot/zipl partition (typically with ext2 file system)
+       * AI: Define requirements on /boot/zipl partition
 
 ### Disk Labels
 (ways to create partition tables)
 
-       * Allow restricting installation to a single disk, even if this is not the first one (use case with many disks)
-       * On new, empty disks, if there is no partition or if the disks will be wiped (use full disk): prefer GPT disk label
+   * Allow restricting installation to a single disk, even if this is not the first one (use case with many disks)
+   * On new, empty disks, if there is no partition or if the disks will be wiped (use full disk): prefer GPT disk label
 
-       * MS-DOS (PC classic/legacy)
-           * can be used on all supported architectures: i586, x86\_64, ppc, s/390
-           * 4 primary partition entries in MBR (Master Boot Record)
-           * one partition can be an "extended partition": A container for *logical partitions*
-           * each logical partition links to the next one
-           * the first logical partition is always /dev/sd..5 (no matter if /dev/sd..4 etc. exist)
-           * need bootflags to mark active partition for BIOS
+   * MS-DOS (PC classic/legacy)
+       * can be used on all supported architectures: i586, x86\_64, ppc, s/390
+       * 4 primary partition entries in MBR (Master Boot Record)
+       * one partition can be an "extended partition": A container for *logical partitions*
+       * each logical partition links to the next one
+       * the first logical partition is always /dev/sd..5 (no matter if /dev/sd..4 etc. exist)
+       * need bootflags to mark active partition for BIOS
 
-       * GPT  (GUID Partition Table; new PCs with UEFI boot support)
-           * New tool of choice: gptfdisk / sgdisk
-           * Backup copy might be present or not (not mandatory)
-           * partitions can have labels
-           * can be used on all supported architectures: i586, x86\_64, ppc, s/390
-           * large number of partitions (128 or more)
-           * no longer limited by available space in MBR
-           * partitions keep their numbers when other partitions are removed or added
-           * parted will use the smallest available number when creating a new partition
-           * bootflags are not required (maybe important for legacy BIOS, ignored UEFI)
-           * **UEFI**
-               * EFI system partiton, vfat formated, might require specific UUID, limited to 32GB (vfat)
-           * **legacy BIOS**
-               * protective MBR (should have active flag)
-               * hybrid MBR -> we do not want that any longer
-               * GPT Bios grub partition (needed for grub2)
+   * GPT  (GUID Partition Table; new PCs with UEFI boot support)
+       * New tool of choice: gptfdisk / sgdisk
+       * Backup copy might be present or not (not mandatory)
+       * partitions can have labels
+       * can be used on all supported architectures: i586, x86\_64, ppc, s/390
+       * large number of partitions (128 or more)
+       * no longer limited by available space in MBR
+       * partitions keep their numbers when other partitions are removed or added
+       * parted will use the smallest available number when creating a new partition
+       * bootflags are not required (maybe important for legacy BIOS, ignored UEFI)
+       * **UEFI**
+           * EFI system partiton, vfat formated, might require specific UUID, limited to 32GB (vfat)
+       * **legacy BIOS**
+           * protective MBR (should have active flag)
+           * hybrid MBR -> we do not want that any longer
+           * GPT Bios grub partition (needed for grub2)
 
-       * DASD (s/390 specific)
-           * Up to 4 partitions
-           * Separate zipl partition needed
-           * First sector is special, only writeable with appropriate tools
-           * Needs to write the blocklist onto zipl partition, kernel/initrd must reside there (needs to be large enough to hold two copies of kernel and initrd)
-           * AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
+   * DASD (s/390 specific)
+       * Up to 4 partitions
+       * Separate zipl partition needed
+       * First sector is special, only writeable with appropriate tools
+       * Needs to write the blocklist onto zipl partition, kernel/initrd must reside there (needs to be large enough to hold two copies of kernel and initrd)
+       * AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
 
-       * Not supported or very limited support (which will be dropped in the future) in YaST storage:
-           * BSD  
-               * Fixed number of 8 or 16 partition slots
-               * Fixed role (by convention) for some slots:  
-                   * slot a: root
-                   * slot b: swap
-                   * slot c: complete disk
-           * Sun
-           * AIX
-           * Mac
-           * Amiga
+   * Not supported or very limited support (which will be dropped in the future) in YaST storage:
+       * BSD  
+           * Fixed number of 8 or 16 partition slots
+           * Fixed role (by convention) for some slots:  
+               * slot a: root
+               * slot b: swap
+               * slot c: complete disk
+       * Sun
+       * AIX
+       * Mac
+       * Amiga
 
 ### Dedicated Boot Partitions
 (AI: combine with disk labels and bootloader constraints; need to be clarified before merging)
 ***very architecture/system/bootloader specific***
 
-       * when is a boot partition needed?
-       * on what disk should it be?
-       * where on the disk should it be? (Boot sequence!)
-       * size constraints? (too small vs. too large; ppc for example loads the *PReP* partition into the RAM completely, so it should be as small as possible)
-       * dependent on boot loader type
-       * dependent on encryption (BIOS cannot load files from encrypted partitions)
-       * dependent on presence of LVM
+   * when is a boot partition needed?
+   * on what disk should it be?
+   * where on the disk should it be? (Boot sequence!)
+   * size constraints? (too small vs. too large; ppc for example loads the *PReP* partition into the RAM completely, so it should be as small as possible)
+   * dependent on boot loader type
+   * dependent on encryption (BIOS cannot load files from encrypted partitions)
+   * dependent on presence of LVM
 
 ## Automated Storage Proposal
 
 ***Caution: Voodoo inside***
 
-       * a lot of code that tries to make a reasonable suggestion for many different storage setups
-       * trying to be everybody's darling (well, at least most people's)
+   * a lot of code that tries to make a reasonable suggestion for many different storage setups
+   * trying to be everybody's darling (well, at least most people's)
 Supported scenarios:
 
-       * simple partition-based proposal
-       * with or without LVM
-       * with or without Btrfs
-       * with or without LVM full disk encryption
-       * with or without automated file system snapshots (if using Btrfs)
-       * with or without SWAP partition
-       * using all available space or leaving up unpartitioned disk space
-       * using whole disk or keeping (and resizing) already installed system
-       * RAID-based proposal?
+   * simple partition-based proposal
+   * with or without LVM
+   * with or without Btrfs
+   * with or without LVM full disk encryption
+   * with or without automated file system snapshots (if using Btrfs)
+   * with or without SWAP partition
+   * using all available space or leaving up unpartitioned disk space
+   * using whole disk or keeping (and resizing) already installed system
+   * RAID-based proposal?
 AI: speak with different parties which requirements they have (Cloud, SES, SAP, ...)
    * -> bring all the use cases up
    * -> mark those that make most sense
@@ -330,9 +330,9 @@ AI: speak with different parties which requirements they have (Cloud, SES, SAP, 
 
 Not supported by the automated proposal:
 
-       * RAID
-         * will work for HW RAID or BIOS RAID, which both can be seen as a single disk by proposal
-         * -> Options to be explored, so far we have no experience with proposal spread over multiple disks
+   * RAID
+     * will work for HW RAID or BIOS RAID, which both can be seen as a single disk by proposal
+     * -> Options to be explored, so far we have no experience with proposal spread over multiple disks
 
 ##Misc. Topics to be taken care of
 
