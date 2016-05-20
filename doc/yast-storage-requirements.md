@@ -44,108 +44,108 @@ ways to manage the disk space provided by the disks
 
 ###RAID (Redundant Array of Independent Disks)
 
-       * Hardware RAID: mostly automatic and transparent
-           * Behaves like any regular disk
-           * No need for any special handling (or even detection)
-       * Linux Software RAID / BIOS RAID (type dependent on BIOS):  
-           * mdadm RAID: https://en.wikipedia.org/wiki/Mdadm
-           * dmraid (Device Mapper RAID): https://en.wikipedia.org/wiki/Device_mapper ?
+   * Hardware RAID: mostly automatic and transparent
+       * Behaves like any regular disk
+       * No need for any special handling (or even detection)
+   * Linux Software RAID / BIOS RAID (type dependent on BIOS):  
+       * mdadm RAID: https://en.wikipedia.org/wiki/Mdadm
+       * dmraid (Device Mapper RAID): https://en.wikipedia.org/wiki/Device_mapper ?
 
 BIOS-managed raid is configured in BIOS (and Linux system detects it), Linux softwre RAID must be configured in Linux
 
 RAID levels:
 
-       * **RAID 0**: striping; performance improvement due to parallel disk I/O; less fault tolerance than one disk
-       * **RAID 1**: mirroring; improved fault tolerance, same performance as one disk
-       * **RAID 5**: 3 or more disks with redundancy (for parity blocks): Good fault tolerance, improved performance (parallel I/O)
-       * **RAID 6**: 4 or more disks; more redundancy than RAID 5, thus even better fault tolerance
-       * **RAID 10**: striping + mirroring; combination of RAID 1 and RAID 0
+   * **RAID 0**: striping; performance improvement due to parallel disk I/O; less fault tolerance than one disk
+   * **RAID 1**: mirroring; improved fault tolerance, same performance as one disk
+   * **RAID 5**: 3 or more disks with redundancy (for parity blocks): Good fault tolerance, improved performance (parallel I/O)
+   * **RAID 6**: 4 or more disks; more redundancy than RAID 5, thus even better fault tolerance
+   * **RAID 10**: striping + mirroring; combination of RAID 1 and RAID 0
 
 Supported actions:
 
-       * create RAID 0, 1, 5, 6, 10
-       * create partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already- AI: Arvin - why?)
+   * create RAID 0, 1, 5, 6, 10
+   * create partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already- AI: Arvin - why?)
 
 Not supported by YaST storage - use dedicated tools instead:
 
-       * add another disk (to already created RAID)
-       * remove disk (from RAID)
-       * create BIOS RAID (use BIOS or mdadm/dmraid)
-       * These cases need to be documented properly
+   * add another disk (to already created RAID)
+   * remove disk (from RAID)
+   * create BIOS RAID (use BIOS or mdadm/dmraid)
+   * These cases need to be documented properly
 
 Raid and boot partitions
 
-       * AI: Define which Raid configurations are bootable?
+   * AI: Define which Raid configurations are bootable?
 
 ### Volume Managers
 
-       * LVM
-       * Btrfs (volume manager features): not yet supported, needs FATE with usecases and technical information
-       * EVMS: legacy; no longer supported, drop
-       * AI: Find out if we need upgrade support of EVMS
+   * LVM
+   * Btrfs (volume manager features): not yet supported, needs FATE with usecases and technical information
+   * EVMS: legacy; no longer supported, drop
+   * AI: Find out if we need upgrade support of EVMS
 
 Supported actions (LVM only):
 
-       * create VG (Volume Group)
-       * add VG
-       * remove VG
-       * add PV (Physical Volume) to VG
-       * remove PV from VG
-       * create LV (Logical Volume)
-       * delete LV
-       * resize LV
-       * thin provisioning (overcommited disk space)
+   * create VG (Volume Group)
+   * add VG
+   * remove VG
+   * add PV (Physical Volume) to VG
+   * remove PV from VG
+   * create LV (Logical Volume)
+   * delete LV
+   * resize LV
+   * thin provisioning (overcommited disk space)
 
 Not supported (use low-level tools instead):
 
-       * force LV to specific PV
-       * merge VGs
-       * split VG
-       * resize PV
-       * move content between PVs
-       * ...
+   * force LV to specific PV
+   * merge VGs
+   * split VG
+   * resize PV
+   * move content between PVs
+   * ...
 
 ### Encryption
 
-       * full disk encryptionn (LVM only: encrypted PVs) 
-       * per partition (not root file system) with device mapper
-       * per partition also for the root filesystem (currently not supported, AI: find out why it is not possible and fix it)
-       * using LUKS (Linux Unified Key Setup) 
-       * limited support for legacy method: loop devices and crypto kernel modules
+   * full disk encryptionn (LVM only: encrypted PVs) 
+   * per partition (not root file system) with device mapper
+   * per partition also for the root filesystem (currently not supported, AI: find out why it is not possible and fix it)
+   * using LUKS (Linux Unified Key Setup) 
+   * limited support for legacy method: loop devices and crypto kernel modules
 
 Actions:
 
-       * create
-       * mount
-       * unmount
-       * /etc/crypttab and /etc/fstab handling
+   * create
+   * mount
+   * unmount
+   * /etc/crypttab and /etc/fstab handling
 
 Not supported (use LUKS commands instead):
 
-       * LUKS multiple password slots handling
-       * change password
-       * set cipher (encryption method)
+   * LUKS multiple password slots handling
+   * change password
+   * set cipher (encryption method)
 
 ### Multipath
 
-       * network storage devices (typically fibre channel) where multiple low-level kernel devices for the same storage device exist that have redundant connections to the machine 
-       * improved performance (parallel I/O over multiple channels) 
-       * fail safe against some I/O channels being blocked 
-       * special hardware that needs to be set up with special tools (outside the scope of YaST storage) 
-       * for most operations, it is important to use only the one device mapper device for that storage device (representing the multipath device), not the multiple low-level devices (representing individual paths to the device)
+   * network storage devices (typically fibre channel) where multiple low-level kernel devices for the same storage device exist that have redundant connections to the machine 
+   * improved performance (parallel I/O over multiple channels) 
+   * fail safe against some I/O channels being blocked 
+   * special hardware that needs to be set up with special tools (outside the scope of YaST storage) 
+   * for most operations, it is important to use only the one device mapper device for that storage device (representing the multipath device), not the multiple low-level devices (representing individual paths to the device)
 
 Supported actions:
 
-       * start
-       * stop
+   * start
+   * stop
 
 ### Multiple Dimensions
 
-       * LVM on RAID 
-       * Btrfs (which has its own volume manager) on LVM 
-       * Btrfs on LVM on RAID 
-       * Btrfs on encrypted LVM on RAID 
-       * ... (use your imagination)
+   * LVM on RAID 
+   * Btrfs (which has its own volume manager) on LVM 
+   * Btrfs on LVM on RAID 
+   * Btrfs on encrypted LVM on RAID 
+   * ... (use your imagination)
 
 ## Remote Storage
 
