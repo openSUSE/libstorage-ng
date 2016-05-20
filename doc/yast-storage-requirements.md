@@ -4,19 +4,19 @@ This is about *libstorage* and the *yast-storage* Ruby code.
 
 ##AIs summary
 
-AI Lukas: ML: libstorage-ng@opensuse.org
-AI PM: Clarify requirements on FAT partitions
-AI lmb, Holgi: Claryfy requirements on filesystems (see below)
-AI Arvin: clarify why: reate partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already
-AI Architecture maintainers: Clarify which configurations of RAID are bootable, possibly under which conditions
-AI: Veryfy support of resizing logical volumes for LVM
-AI: Clarify why we do not support encryption of root filesystem, which tools would possibly need to be fixed
-AI: speak with different parties which requirements they have on automated proposal (Cloud, SES, SAP, ...)
-AI: Define when dedicated boot partition is needed before merging into the 
-AI: Find otu if EVMS support for upgrade is necessary (when was it last supported?)
-AI: Provide specifics for zFCP devices
-AI: Define requirements on /boot/zipl partition
-AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
+* AI Lukas: ML: libstorage-ng@opensuse.org
+* AI PM: Clarify requirements on FAT partitions
+* AI lmb, Holgi: Claryfy requirements on filesystems (see below)
+* AI Arvin: clarify why: reate partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already
+* AI Architecture maintainers: Clarify which configurations of RAID are bootable, possibly under which conditions
+* AI: Veryfy support of resizing logical volumes for LVM
+* AI: Clarify why we do not support encryption of root filesystem, which tools would possibly need to be fixed
+* AI: speak with different parties which requirements they have on automated proposal (Cloud, SES, SAP, ...)
+* AI: Define when dedicated boot partition is needed before merging into the 
+* AI: Find otu if EVMS support for upgrade is necessary (when was it last supported?)
+* AI: Provide specifics for zFCP devices
+* AI: Define requirements on /boot/zipl partition
+* AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
 
 
 ## Disks and Partitions Simple case:
