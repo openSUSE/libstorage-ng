@@ -7,7 +7,6 @@ This is about *libstorage* and the *yast-storage* Ruby code.
 * AI Lukas: ML: libstorage-ng@opensuse.org
 * AI PM: Clarify requirements on FAT partitions
 * AI lmb, Holgi: Claryfy requirements on filesystems (see below)
-* AI Arvin: clarify why: reate partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already
 * AI Architecture maintainers: Clarify which configurations of RAID are bootable, possibly under which conditions
 * AI: Veryfy support of resizing logical volumes for LVM
 * AI: Clarify why we do not support encryption of root filesystem, which tools would possibly need to be fixed
@@ -56,7 +55,7 @@ BIOS-managed raid is configured in BIOS (and Linux system detects it), Linux sof
 RAID levels:
 
    * **RAID 0**: striping; performance improvement due to parallel disk I/O; less fault tolerance than one disk
-   * **RAID 1**: mirroring; improved fault tolerance, same performance as one disk
+   * **RAID 1**: mirroring; improved fault tolerance, possibly better performance for reading
    * **RAID 5**: 3 or more disks with redundancy (for parity blocks): Good fault tolerance, improved performance (parallel I/O)
    * **RAID 6**: 4 or more disks; more redundancy than RAID 5, thus even better fault tolerance
    * **RAID 10**: striping + mirroring; combination of RAID 1 and RAID 0
@@ -64,7 +63,7 @@ RAID levels:
 Supported actions:
 
    * create RAID 0, 1, 5, 6, 10
-   * create partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already- AI: Arvin - why?)
+   * create partitions on RAID (if there already is a partition table; cannot create a partition table if there is not one already due to design limitation of old libstorage)
 
 Not supported by YaST storage - use dedicated tools instead:
 
@@ -209,7 +208,7 @@ Supported actions (for all filesystems, unless excluded in table above):
    * mount
    * unmount
 
-A file system can be located in a disk partition, in whole disk, on an MD array, on a logical volume
+Local file system can be located in a disk partition, in whole disk, on an MD array, on a logical volume
 
 
 ## Bootloader Constraints
@@ -336,7 +335,7 @@ Not supported by the automated proposal:
 
 ##Misc. Topics to be taken care of
 
-   * Support Systems with >> 800 hard disks
+   * Support Systems with >> 800 hard disks, provide still reasonable performance
    * btrfs subvolume handling
    * btrfs snapshots
    * btrfs rollback: for this we need to install into a btrfs snapshot already
