@@ -2,6 +2,8 @@
 
 This is about *libstorage* and the *yast-storage* Ruby code.
 
+This document was created as a summary of a meeting held in Nuernberg in February 2016
+
 ##AIs summary
 
 * AI Lukas: ML: libstorage-ng@opensuse.org
@@ -199,6 +201,7 @@ File Systems and operations to be supported by new libstorage
 | GFS2       | ?      |      |        | AI storage people                                       |
 | ceph       | ?      |      |        | AI storage people                                       |
 | ocfs2      | ?      |      |        | HA, AI lmb                                              |
+| swap       | X      |      | X      | resize via removing and re-creating                     |
 
 Supported actions (for all filesystems, unless excluded in table above):
 
