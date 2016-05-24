@@ -80,11 +80,6 @@ AC_SUBST(RUBY_SHARED_LIB)
 RUBY_ARCH_NAME=$(RBCONFIG(arch))
 AC_SUBST(RUBY_ARCH_NAME)
 
-PERL5_VERSION=$(perl -e "print substr(\$^V, 1);")
-AC_SUBST(PERL5_VERSION)
-PERL5_INCLUDES=$(perl -e "print '-I', join('/CORE -I', @INC);")
-AC_SUBST(PERL5_INCLUDES)
-
 AC_OUTPUT(
 	Makefile
 	storage/Makefile
@@ -118,8 +113,5 @@ AC_OUTPUT(
 	bindings/ruby/Makefile
 	bindings/ruby/examples/Makefile
 	bindings/ruby/testsuite/Makefile
-	bindings/perl5/Makefile
-	bindings/perl5/examples/Makefile
-	bindings/perl5/testsuite/Makefile
 	package/libstorage-ng.spec:libstorage-ng.spec.in
 )

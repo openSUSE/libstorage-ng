@@ -23,10 +23,6 @@
 // order of includes is crucial
 
 %{
-// workaround for bsc #593954
-#ifdef SWIGPERL
-#undef seed
-#endif
 
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Exception.h"
