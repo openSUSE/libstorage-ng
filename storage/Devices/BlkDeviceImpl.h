@@ -78,7 +78,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	void save(xmlNode* node) const override;
 
