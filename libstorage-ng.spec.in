@@ -45,10 +45,6 @@ BuildRequires:  rubygem-test-unit
 %if 0%{?fedora}
 BuildRequires:  rubypick rubygem-test-unit
 %endif
-BuildRequires:  perl perl-Test-Unit perl-Test-Exception
-%if 0%{?fedora}
-BuildRequires:  perl-devel
-%endif
 
 Summary:        Library for storage management
 Url:            http://github.com/openSUSE/libstorage-ng
@@ -123,7 +119,6 @@ rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage.la
 %if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
 rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage.la
 %endif
-rm -f $RPM_BUILD_ROOT/usr/lib/perl5/vendor_perl/*/storage.la
 
 %clean
 rm -rf "$RPM_BUILD_ROOT"
@@ -253,25 +248,6 @@ Authors:
 %if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
 %{ruby_sitearch}/storage.so
 %endif
-
-%package -n libstorage-ng-perl5
-
-Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
-%{py_requires}
-Summary:        Perl5 bindings for libstorage-ng
-Group:          System/Libraries
-
-%description perl5
-This package contains Perl5 bindings for libstorage-ng.
-
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
-
-%files -n libstorage-ng-perl5
-%defattr(-,root,root)
-/usr/lib/perl5/vendor_perl/*/storage.pm
-/usr/lib/perl5/vendor_perl/*/storage.so
 
 %package -n libstorage-ng-integration-tests
 

@@ -1,6 +1,0 @@
-.deps
-.libs
-storage.pm
-storage.so
-storage.la
-storage_wrap.*
