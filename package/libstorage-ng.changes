@@ -1,4 +1,10 @@
 -------------------------------------------------------------------
+Fri May 27 11:56:53 CEST 2016 - aschnell@suse.com
+
+- call parted with --wipesignatures when creating partitions to
+  avoid auto-assembly of old MD RAIDs (fate#319893, bsc#943623)
+
+-------------------------------------------------------------------
 Fri Apr 19 12:34:56 CEST 2016 - aschnell@suse.com
 
 - switched from cylinder to sector based sized for disks and

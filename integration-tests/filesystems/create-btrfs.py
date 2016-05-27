@@ -17,7 +17,7 @@ print staging
 partition = Partition.find(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
-btrfs = partition.create_filesystem(BTRFS)
+btrfs = partition.create_filesystem(FsType_BTRFS)
 btrfs.set_label("TEST")
 btrfs.add_mountpoint("/test")
 

@@ -17,7 +17,7 @@ print staging
 partition = Partition.find(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
-xfs = partition.create_filesystem(XFS)
+xfs = partition.create_filesystem(FsType_XFS)
 xfs.set_label("TEST")
 xfs.add_mountpoint("/test")
 

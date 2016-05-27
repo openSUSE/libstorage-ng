@@ -17,7 +17,7 @@ print staging
 partition = Partition.find(staging, "/dev/sdb1")
 partition.set_id(ID_SWAP)
 
-swap = partition.create_filesystem(SWAP)
+swap = partition.create_filesystem(FsType_SWAP)
 swap.add_mountpoint("swap")
 
 print staging

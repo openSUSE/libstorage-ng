@@ -17,7 +17,7 @@ print staging
 partition = Partition.find(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
-vfat = partition.create_filesystem(VFAT)
+vfat = partition.create_filesystem(FsType_VFAT)
 vfat.set_label("TEST")
 vfat.add_mountpoint("/test")
 
