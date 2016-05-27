@@ -45,7 +45,7 @@ namespace storage
 
 	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSBTRFSBIN " -f " + quote(blk_device->get_name());
+	string cmd_line = MKFSBTRFSBIN " --force " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
