@@ -16,6 +16,8 @@ namespace storage
     class Holder;
     class Disk;
     class Md;
+    class LvmVg;
+    class Filesystem;
 
 
     struct DeviceNotFound : public Exception
@@ -110,14 +112,18 @@ namespace storage
 
 	void clear();
 
-	// convenient functions, equivalent to Disk::get_all(devicegraph)
-	// TODO add for important and/or "toplevel" types,
-	// e.g. get_all_lvm_vgs, get_all_mds, get_all_filesystems
+	// convenient functions, equivalent to e.g. Disk::get_all(devicegraph)
 	std::vector<Disk*> get_all_disks();
 	std::vector<const Disk*> get_all_disks() const;
 
 	std::vector<Md*> get_all_mds();
 	std::vector<const Md*> get_all_mds() const;
+
+	std::vector<LvmVg*> get_all_lvm_vgs();
+	std::vector<const LvmVg*> get_all_lvm_vgs() const;
+
+	std::vector<Filesystem*> get_all_filesystems();
+	std::vector<const Filesystem*> get_all_filesystems() const;
 
 	void remove_device(sid_t sid);
 	void remove_device(Device* a);

@@ -91,4 +91,11 @@ namespace storage
 	return sformat(_("Create volume group %1$s"), get_displayname().c_str());
     }
 
+
+    bool
+    compare_by_name(const LvmVg* lhs, const LvmVg* rhs)
+    {
+	return lhs->get_name() < rhs->get_name();
+    }
+
 }
