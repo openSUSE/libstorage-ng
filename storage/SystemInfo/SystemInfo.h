@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,7 +77,9 @@ namespace storage
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
 	const CmdBtrfsShow& getCmdBtrfsShow() { return cmdbtrfsshow.get(); }
+	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
+	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
 	const CmdVgdisplay& getCmdVgdisplay(const string& name) { return vgdisplays.get(name); }
 	const MajorMinor& getMajorMinor(const string& device) { return majorminors.get(device); }
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
@@ -164,7 +167,9 @@ namespace storage
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
 	LazyObject<CmdBtrfsShow> cmdbtrfsshow;
+	LazyObject<CmdPvs> cmdpvs;
 	LazyObject<CmdVgs> cmdvgs;
+	LazyObject<CmdLvs> cmdlvs;
 	LazyObjects<CmdVgdisplay> vgdisplays;
 	LazyObjects<MajorMinor> majorminors;
 	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,9 +38,144 @@ namespace storage
     using namespace std;
 
 
+    CmdPvs::CmdPvs()
+    {
+	SystemCmd c(PVSBIN " --noheadings --unbuffered --options pv_name,pv_uuid,vg_name,vg_uuid");
+	if (c.retcode() == 0 && !c.stdout().empty())
+	    parse(c.stdout());
+    }
+
+
+    void
+    CmdPvs::parse(const vector<string>& lines)
+    {
+	pvs.clear();
+
+	for (const string& line : lines)
+	{
+	    std::istringstream data(line);
+	    classic(data);
+
+	    Pv pv;
+	    data >> pv.pv_name >> pv.pv_uuid >> pv.vg_name >> pv.vg_uuid;
+	    pvs.push_back(pv);
+	}
+
+	y2mil(*this);
+    }
+
+
+    const CmdPvs::Pv&
+    CmdPvs::get_pv_by_pv_uuid(const string& pv_uuid) const
+    {
+	for (const Pv& pv : pvs)
+	{
+	    if (pv.pv_uuid == pv_uuid)
+		return pv;
+	}
+
+	ST_THROW(Exception("pv not found by pv-uuid"));
+	__builtin_unreachable();
+    }
+
+
+    vector<CmdPvs::Pv>
+    CmdPvs::get_pvs_by_vg_uuid(const string& vg_uuid) const
+    {
+	vector<Pv> ret;
+
+	for (const Pv& pv : pvs)
+	{
+	    if (pv.vg_uuid == vg_uuid)
+		ret.push_back(pv);
+	}
+
+	return ret;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdPvs& cmd_pvs)
+    {
+	s << "pvs:" << cmd_pvs.pvs;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdPvs::Pv& pv)
+    {
+	s << "pv-name:" << pv.pv_name << " pv-uuid:" << pv.pv_uuid << " vg-name:"
+	  << pv.vg_name << " vg-uuid:" << pv.vg_uuid;
+
+	return s;
+    }
+
+
+    CmdLvs::CmdLvs()
+    {
+	SystemCmd c(LVSBIN " --noheadings --unbuffered --options lv_name,lv_uuid,vg_name,vg_uuid");
+	if (c.retcode() == 0 && !c.stdout().empty())
+	    parse(c.stdout());
+    }
+
+
+    void
+    CmdLvs::parse(const vector<string>& lines)
+    {
+	lvs.clear();
+
+	for (const string& line : lines)
+	{
+	    std::istringstream data(line);
+	    classic(data);
+
+	    Lv lv;
+	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid;
+	    lvs.push_back(lv);
+	}
+
+	y2mil(*this);
+    }
+
+
+    const CmdLvs::Lv&
+    CmdLvs::get_lv_by_lv_uuid(const string& lv_uuid) const
+    {
+	for (const Lv& lv : lvs)
+	{
+	    if (lv.lv_uuid == lv_uuid)
+		return lv;
+	}
+
+	ST_THROW(Exception("lv not found by lv-uuid"));
+	__builtin_unreachable();
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdLvs& cmd_lvs)
+    {
+	s << "lvs:" << cmd_lvs.lvs;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdLvs::Lv& lv)
+    {
+	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
+	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid;
+
+	return s;
+    }
+
+
     CmdVgs::CmdVgs()
     {
-	SystemCmd c(VGSBIN " --noheadings --unbuffered --options vg_name");
+	SystemCmd c(VGSBIN " --noheadings --unbuffered --options vg_name,vg_uuid");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -51,15 +187,32 @@ namespace storage
 	vgs.clear();
 
 	for (const string& line : lines)
-	    vgs.push_back(boost::trim_copy(line, locale::classic()));
+	{
+	    std::istringstream data(line);
+	    classic(data);
+
+	    Vg vg;
+	    data >> vg.vg_name >> vg.vg_uuid;
+	    vgs.push_back(vg);
+	}
 
 	y2mil(*this);
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdVgs& cmdvgs)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdVgs& cmd_vgs)
     {
-	s << "vgs:" << cmdvgs.vgs;
+	s << "vgs:" << cmd_vgs.vgs;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdVgs::Vg& vg)
+    {
+	s << "vg-name:" << vg.vg_name << " vg-uuid:" << vg.vg_uuid;
 
 	return s;
     }
@@ -275,7 +428,8 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdVgdisplay::LvEntry& lv_entry)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdVgdisplay::LvEntry& lv_entry)
     {
 	s << "name:" << lv_entry.name << " uuid:" << lv_entry.uuid
 	  << " status:" << lv_entry.status;
@@ -304,7 +458,8 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdVgdisplay::PvEntry& pv_entry)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdVgdisplay::PvEntry& pv_entry)
     {
 	s << "device:" << pv_entry.device << " uuid:" << pv_entry.uuid
 	  << " status:" << pv_entry.status << " num_pe:" << pv_entry.num_pe

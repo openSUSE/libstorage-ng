@@ -8,17 +8,17 @@ using namespace storage;
 
 
 void
-test_vgs(SystemInfo& systeminfo)
+test_pvs(SystemInfo& systeminfo)
 {
     try
     {
-	const CmdVgs& cmd_vgs = systeminfo.getCmdVgs();
-	cout << "CmdVgs success" << endl;
-	cout << cmd_vgs << endl;
+	const CmdPvs& cmd_pvs = systeminfo.getCmdPvs();
+	cout << "CmdPvs success" << endl;
+	cout << cmd_pvs << endl;
     }
     catch (const exception& e)
     {
-	cerr << "CmdVgs failed" << endl;
+	cerr << "CmdPvs failed" << endl;
     }
 }
 
@@ -30,5 +30,5 @@ main()
 
     SystemInfo systeminfo;
 
-    test_vgs(systeminfo);
+    test_pvs(systeminfo);
 }
