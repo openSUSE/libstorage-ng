@@ -113,3 +113,19 @@ BOOST_AUTO_TEST_CASE(parse4)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse5)
+{
+    vector<string> input = {
+	"/dev/sdb1: UUID=\"db2702b8-7ae4-6bea-1849-341d8ecd7367\" UUID_SUB=\"5b8ceee8-7757-7ce9-d003-a50c09c88b02\" LABEL=\"thalassa:0\" TYPE=\"linux_raid_member\" PARTUUID=\"995ef2e3-cae4-4515-adf0-525729463b0e\"",
+	"/dev/sdb2: UUID=\"db2702b8-7ae4-6bea-1849-341d8ecd7367\" UUID_SUB=\"e1385e7d-40c2-6ec7-f610-ab5bbfb5df8d\" LABEL=\"thalassa:0\" TYPE=\"linux_raid_member\" PARTUUID=\"460714f6-8eed-4ffe-9de0-8dfa2c6fff40\""
+    };
+
+    vector<string> output = {
+	"data[/dev/sdb1] -> is-md:true",
+	"data[/dev/sdb2] -> is-md:true"
+    };
+
+    check(input, output);
+}
