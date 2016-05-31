@@ -88,10 +88,15 @@ namespace storage
 	    disk->get_impl().probe_pass_1(probed, systeminfo);
 	}
 
-	for (const string& name : Md::Impl::probe_mds(systeminfo))
+	if (systeminfo.getBlkid().any_md())
 	{
-	    Md* md = Md::create(probed, name);
-	    md->get_impl().probe_pass_1(probed, systeminfo);
+	    // TODO check whether md tools are installed
+
+	    for (const string& name : Md::Impl::probe_mds(systeminfo))
+	    {
+		Md* md = Md::create(probed, name);
+		md->get_impl().probe_pass_1(probed, systeminfo);
+	    }
 	}
 
 	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
