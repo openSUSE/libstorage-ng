@@ -18,13 +18,13 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(VGSBIN " --noheadings --unbuffered --options vg_name,vg_uuid", input);
+    Mockup::set_command(LVSBIN " --noheadings --unbuffered --options lv_name,lv_uuid,vg_name,vg_uuid", input);
 
-    CmdVgs cmd_vgs;
+    CmdLvs cmd_lvs;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmd_vgs;
+    parsed << cmd_lvs;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n");
@@ -36,11 +36,14 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  system  OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn"
+	"  root 89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn",
+	"  swap KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn"
     };
 
+    // TODO bad output format
+
     vector<string> output = {
-	"vgs:<vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn>"
+	"lvs:<lv-name:root lv-uuid:89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn lv-name:swap lv-uuid:KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn>"
     };
 
     check(input, output);

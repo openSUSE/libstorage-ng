@@ -42,7 +42,7 @@ namespace storage
 
 
     BlkDevice*
-    BlkDevice::find(Devicegraph* devicegraph, const string& name)
+    BlkDevice::find_by_name(Devicegraph* devicegraph, const string& name)
     {
 	for (Devicegraph::Impl::vertex_descriptor v : devicegraph->get_impl().vertices())
 	{
@@ -59,7 +59,7 @@ namespace storage
 
 
     const BlkDevice*
-    BlkDevice::find(const Devicegraph* devicegraph, const string& name)
+    BlkDevice::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
 	for (Devicegraph::Impl::vertex_descriptor v : devicegraph->get_impl().vertices())
 	{

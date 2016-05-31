@@ -18,7 +18,7 @@ probed = storage.get_probed()
 
 print probed
 
-partition = Partition.find(probed, "/dev/sdb1")
+partition = Partition.find_by_name(probed, "/dev/sdb1")
 filesystem = partition.get_filesystem()
 
 content_info = filesystem.detect_content_info()

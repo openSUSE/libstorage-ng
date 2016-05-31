@@ -86,16 +86,16 @@ namespace storage
 
 
     Disk*
-    Disk::find(Devicegraph* devicegraph, const string& name)
+    Disk::find_by_name(Devicegraph* devicegraph, const string& name)
     {
-	return to_disk(BlkDevice::find(devicegraph, name));
+	return to_disk(BlkDevice::find_by_name(devicegraph, name));
     }
 
 
     const Disk*
-    Disk::find(const Devicegraph* devicegraph, const string& name)
+    Disk::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
-	return to_disk(BlkDevice::find(devicegraph, name));
+	return to_disk(BlkDevice::find_by_name(devicegraph, name));
     }
 
 

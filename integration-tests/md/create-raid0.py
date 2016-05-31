@@ -16,8 +16,8 @@ storage = Storage(environment)
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find(staging, "/dev/sdb1")
-sdb2 = Partition.find(staging, "/dev/sdb2")
+sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
+sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
 
 md = Md.create(staging, "/dev/md0")
 md.set_md_level(RAID0)

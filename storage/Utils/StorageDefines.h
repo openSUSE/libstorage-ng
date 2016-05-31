@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +41,7 @@
 #define MDADMBIN "/sbin/mdadm"
 
 #define PVCREATEBIN "/sbin/pvcreate"
+#define PVSBIN "/sbin/pvs"
 
 #define LVCREATEBIN "/sbin/lvcreate"
 #define LVREMOVEBIN "/sbin/lvremove"

@@ -52,8 +52,8 @@ namespace storage
 
 	const PartitionTable* get_partition_table() const;
 
-	static Partition* find(Devicegraph* devicegraph, const std::string& name);
-	static const Partition* find(const Devicegraph* devicegraph, const std::string& name);
+	static Partition* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const Partition* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 

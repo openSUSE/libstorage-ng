@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,24 +37,101 @@ namespace storage
     using std::list;
 
 
+    class CmdPvs
+    {
+    public:
+
+	CmdPvs();
+
+	struct Pv
+	{
+	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid() {}
+
+	    string pv_name;
+	    string pv_uuid;
+	    string vg_name;
+	    string vg_uuid;
+	};
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdPvs& cmd_pvs);
+	friend std::ostream& operator<<(std::ostream& s, const Pv& pv);
+
+	const vector<Pv>& get_pvs() const { return pvs; }
+
+	const Pv& get_pv_by_pv_uuid(const string& pv_uuid) const;
+
+	vector<Pv> get_pvs_by_vg_uuid(const string& vg_uuid) const;
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	vector<Pv> pvs;
+
+    };
+
+
+    class CmdLvs
+    {
+    public:
+
+	CmdLvs();
+
+	struct Lv
+	{
+	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid() {}
+
+	    string lv_name;
+	    string lv_uuid;
+	    string vg_name;
+	    string vg_uuid;
+	};
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdLvs& cmd_lvs);
+	friend std::ostream& operator<<(std::ostream& s, const Lv& lv);
+
+	const vector<Lv>& get_lvs() const { return lvs; }
+
+	const Lv& get_lv_by_lv_uuid(const string& lv_uuid) const;
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	vector<Lv> lvs;
+
+    };
+
+
     class CmdVgs
     {
     public:
 
 	CmdVgs();
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmdvgs);
+	struct Vg
+	{
+	    Vg() : vg_name(), vg_uuid() {}
 
-	const list<string>& getVgs() const { return vgs; }
+	    string vg_name;
+	    string vg_uuid;
+	};
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmd_vgs);
+	friend std::ostream& operator<<(std::ostream& s, const Vg& vg);
+
+	const vector<Vg>& get_vgs() const { return vgs; }
 
     private:
 
 	void parse(const vector<string>& lines);
 
-	list<string> vgs;
+	vector<Vg> vgs;
 
     };
 
+
+    // TODO can CmdVgdisplay be dropped?
 
     class CmdVgdisplay
     {

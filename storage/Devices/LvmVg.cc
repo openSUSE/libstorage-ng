@@ -1,3 +1,23 @@
+/*
+ * Copyright (c) 2016 SUSE LLC
+ *
+ * All Rights Reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of version 2 of the GNU General Public License as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, contact Novell, Inc.
+ *
+ * To contact Novell about this file by physical or electronic mail, you may
+ * find current contact information at www.novell.com.
+ */
 
 
 #include <iostream>
@@ -71,6 +91,20 @@ namespace storage
     LvmVg::set_name(const string& name)
     {
 	get_impl().set_name(name);
+    }
+
+
+    vector<LvmVg*>
+    LvmVg::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<LvmVg>(compare_by_name);
+    }
+
+
+    vector<const LvmVg*>
+    LvmVg::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_name);
     }
 
 

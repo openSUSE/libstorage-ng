@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(modify)
 
     {
 	Devicegraph* staging = storage.get_staging();
-	Partition* partition = Partition::find(staging, "/dev/sdb1");
+	Partition* partition = Partition::find_by_name(staging, "/dev/sdb1");
 
 	Filesystem* filesystem = partition->get_filesystem();
 	filesystem->set_resize_info(ResizeInfo(true, 1500 * KiB, 3000 * MiB));
@@ -52,7 +52,7 @@ BOOST_AUTO_TEST_CASE(modify)
 
     {
 	const Devicegraph* probed = storage.get_probed();
-	const Partition* partition = Partition::find(probed, "/dev/sdb1");
+	const Partition* partition = Partition::find_by_name(probed, "/dev/sdb1");
 	const Filesystem* filesystem = partition->get_filesystem();
 
 	const ResizeInfo& resize_info = filesystem->detect_resize_info();

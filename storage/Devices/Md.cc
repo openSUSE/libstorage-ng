@@ -110,16 +110,16 @@ namespace storage
 
 
     Md*
-    Md::find(Devicegraph* devicegraph, const string& name)
+    Md::find_by_name(Devicegraph* devicegraph, const string& name)
     {
-	return to_md(BlkDevice::find(devicegraph, name));
+	return to_md(BlkDevice::find_by_name(devicegraph, name));
     }
 
 
     const Md*
-    Md::find(const Devicegraph* devicegraph, const string& name)
+    Md::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
-	return to_md(BlkDevice::find(devicegraph, name));
+	return to_md(BlkDevice::find_by_name(devicegraph, name));
     }
 
 

@@ -159,6 +159,34 @@ namespace storage
     }
 
 
+    std::vector<LvmVg*>
+    Devicegraph::get_all_lvm_vgs()
+    {
+	return LvmVg::get_all(this);
+    }
+
+
+    std::vector<const LvmVg*>
+    Devicegraph::get_all_lvm_vgs() const
+    {
+	return LvmVg::get_all(this);
+    }
+
+
+    std::vector<Filesystem*>
+    Devicegraph::get_all_filesystems()
+    {
+	return Filesystem::get_all(this);
+    }
+
+
+    std::vector<const Filesystem*>
+    Devicegraph::get_all_filesystems() const
+    {
+	return Filesystem::get_all(this);
+    }
+
+
     class CloneCopier
     {
 

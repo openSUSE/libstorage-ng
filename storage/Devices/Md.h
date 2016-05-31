@@ -65,8 +65,8 @@ namespace storage
 	 */
 	static std::vector<const Md*> get_all(const Devicegraph* devicegraph);
 
-	static Md* find(Devicegraph* devicegraph, const std::string& name);
-	static const Md* find(const Devicegraph* devicegraph, const std::string& name);
+	static Md* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 

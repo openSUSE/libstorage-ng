@@ -24,9 +24,9 @@ class TestFind(unittest.TestCase):
       self.assertEqual(gpt.get_sid(), 43)
       self.assertEqual(sda1.get_sid(), 44)
 
-      self.assertTrue(storage.Disk.find(devicegraph, "/dev/sda"))
-      self.assertRaises(storage.DeviceNotFound, lambda: storage.Disk.find(devicegraph, "/dev/not-here"))
-      self.assertRaises(storage.DeviceHasWrongType, lambda: storage.Disk.find(devicegraph, "/dev/sda1"))
+      self.assertTrue(storage.Disk.find_by_name(devicegraph, "/dev/sda"))
+      self.assertRaises(storage.DeviceNotFound, lambda: storage.Disk.find_by_name(devicegraph, "/dev/not-here"))
+      self.assertRaises(storage.DeviceHasWrongType, lambda: storage.Disk.find_by_name(devicegraph, "/dev/sda1"))
 
 
 if __name__ == '__main__':

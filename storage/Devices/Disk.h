@@ -53,8 +53,8 @@ namespace storage
 
 	Transport get_transport() const;
 
-	static Disk* find(Devicegraph* devicegraph, const std::string& name);
-	static const Disk* find(const Devicegraph* devicegraph, const std::string& name);
+	static Disk* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const Disk* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 

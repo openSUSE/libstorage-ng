@@ -1,5 +1,27 @@
+/*
+ * Copyright (c) 2016 SUSE LLC
+ *
+ * All Rights Reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of version 2 of the GNU General Public License as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, contact Novell, Inc.
+ *
+ * To contact Novell about this file by physical or electronic mail, you may
+ * find current contact information at www.novell.com.
+ */
 
 
+#include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/XmlFile.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -15,8 +37,9 @@ namespace storage
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node)
+	: BlkDevice::Impl(node), uuid()
     {
+	getChildValue(node, "uuid", uuid);
     }
 
 
@@ -24,6 +47,8 @@ namespace storage
     LvmLv::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	setChildValue(node, "uuid", uuid);
     }
 
 
@@ -35,7 +60,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return true;
+	return uuid == rhs.uuid;
     }
 
 
@@ -45,6 +70,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
 

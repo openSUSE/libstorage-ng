@@ -41,7 +41,7 @@ def doit(level, devices, chunk_size):
     md.set_chunk_size(chunk_size)
 
     for number in range(1, devices + 1):
-        partition = Partition.find(staging, '/dev/sdb%d' % number)
+        partition = Partition.find_by_name(staging, '/dev/sdb%d' % number)
         md.add_device(partition)
 
     expected_size = md.get_size()
@@ -71,7 +71,7 @@ def doit(level, devices, chunk_size):
 def cleanup():
     storage = Storage(environment)
     staging = storage.get_staging()
-    md = Md.find(staging, "/dev/md0")
+    md = Md.find_by_name(staging, "/dev/md0")
     staging.remove_device(md)
     commit(storage)
 

@@ -46,13 +46,13 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"data[/dev/mapper/system-abuild] -> is_fs:true fs_type:ext4 fs_uuid:16337c60-fc2a-4b87-8199-4f511fa06c65 fs_label:ABUILD",
-	"data[/dev/mapper/system-btrfs] -> is_fs:true fs_type:btrfs fs_uuid:946de1e3-ab5a-49d2-8c9d-057f1613d395 fs_label:BTRFS",
-	"data[/dev/mapper/system-giant] -> is_fs:true fs_type:xfs fs_uuid:0857a01f-c58e-464a-b74b-cd46992873e7 fs_label:GIANT",
-	"data[/dev/mapper/system-root] -> is_fs:true fs_type:ext3 fs_uuid:31e381c9-5b35-4045-8d01-9274a30e1298 fs_label:ROOT",
-	"data[/dev/mapper/system-swap] -> is_fs:true fs_type:swap fs_uuid:fd39c3f9-2990-435d-8eed-e56b6dc2e592 fs_label:SWAP",
-	"data[/dev/sda1] -> is_fs:true fs_type:ext3 fs_uuid:14875716-b8e3-4c83-ac86-48c20682b63a fs_label:BOOT",
-	"data[/dev/sda2] -> is_lvm:true"
+	"data[/dev/mapper/system-abuild] -> is-fs:true fs-type:ext4 fs-uuid:16337c60-fc2a-4b87-8199-4f511fa06c65 fs-label:ABUILD",
+	"data[/dev/mapper/system-btrfs] -> is-fs:true fs-type:btrfs fs-uuid:946de1e3-ab5a-49d2-8c9d-057f1613d395 fs-label:BTRFS",
+	"data[/dev/mapper/system-giant] -> is-fs:true fs-type:xfs fs-uuid:0857a01f-c58e-464a-b74b-cd46992873e7 fs-label:GIANT",
+	"data[/dev/mapper/system-root] -> is-fs:true fs-type:ext3 fs-uuid:31e381c9-5b35-4045-8d01-9274a30e1298 fs-label:ROOT",
+	"data[/dev/mapper/system-swap] -> is-fs:true fs-type:swap fs-uuid:fd39c3f9-2990-435d-8eed-e56b6dc2e592 fs-label:SWAP",
+	"data[/dev/sda1] -> is-fs:true fs-type:ext3 fs-uuid:14875716-b8e3-4c83-ac86-48c20682b63a fs-label:BOOT",
+	"data[/dev/sda2] -> is-lvm:true"
     };
 
     check(input, output);
@@ -71,12 +71,12 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"data[/dev/mapper/system-home] -> is_fs:true fs_type:btrfs fs_uuid:7e9e18c3-b743-47d8-9f33-464f466fc517",
-	"data[/dev/mapper/system-root] -> is_fs:true fs_type:btrfs fs_uuid:9fca85ff-4278-4f49-932e-4060726cf0d6",
-	"data[/dev/mapper/system-swap] -> is_fs:true fs_type:swap fs_uuid:d0f020a1-9847-4ee5-a22e-fe0cdd4aa905",
-	"data[/dev/mapper/tmp] -> is_lvm:true",
-	"data[/dev/sda1] -> is_fs:true fs_type:ext4 fs_uuid:fc5985ee-e069-4bb4-a36c-24d8f6022f7a",
-	"data[/dev/sda2] -> is_luks:true luks_uuid:f98def5a-6553-49a1-940d-df55a77d7d28"
+	"data[/dev/mapper/system-home] -> is-fs:true fs-type:btrfs fs-uuid:7e9e18c3-b743-47d8-9f33-464f466fc517",
+	"data[/dev/mapper/system-root] -> is-fs:true fs-type:btrfs fs-uuid:9fca85ff-4278-4f49-932e-4060726cf0d6",
+	"data[/dev/mapper/system-swap] -> is-fs:true fs-type:swap fs-uuid:d0f020a1-9847-4ee5-a22e-fe0cdd4aa905",
+	"data[/dev/mapper/tmp] -> is-lvm:true",
+	"data[/dev/sda1] -> is-fs:true fs-type:ext4 fs-uuid:fc5985ee-e069-4bb4-a36c-24d8f6022f7a",
+	"data[/dev/sda2] -> is-luks:true luks-uuid:f98def5a-6553-49a1-940d-df55a77d7d28"
     };
 
     check(input, output);
@@ -90,7 +90,7 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"data[/dev/dasda1] -> is_fs:true fs_type:ext4 fs_uuid:ab43b144-37e2-4e9c-8369-6df220f055b0"
+	"data[/dev/dasda1] -> is-fs:true fs-type:ext4 fs-uuid:ab43b144-37e2-4e9c-8369-6df220f055b0"
     };
 
     check(input, output);
@@ -106,9 +106,25 @@ BOOST_AUTO_TEST_CASE(parse4)
     };
 
     vector<string> output = {
-	"data[/dev/sdb] -> is_fs:true fs_type:iso9660 fs_uuid:2013-06-14-19-02-28-00 fs_label:SLES-11-SP3-MINI-ISO-x86_640703",
-	"data[/dev/sdc1] -> is_fs:true fs_type:vfat fs_uuid:65CB-FEB0 fs_label:BOOT",
-	"data[/dev/sdc2] -> is_fs:true fs_type:udf fs_uuid:2013-11-06-15-55-09-00 fs_label:openSUSE 13.1 KDE Live"
+	"data[/dev/sdb] -> is-fs:true fs-type:iso9660 fs-uuid:2013-06-14-19-02-28-00 fs-label:SLES-11-SP3-MINI-ISO-x86_640703",
+	"data[/dev/sdc1] -> is-fs:true fs-type:vfat fs-uuid:65CB-FEB0 fs-label:BOOT",
+	"data[/dev/sdc2] -> is-fs:true fs-type:udf fs-uuid:2013-11-06-15-55-09-00 fs-label:openSUSE 13.1 KDE Live"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse5)
+{
+    vector<string> input = {
+	"/dev/sdb1: UUID=\"db2702b8-7ae4-6bea-1849-341d8ecd7367\" UUID_SUB=\"5b8ceee8-7757-7ce9-d003-a50c09c88b02\" LABEL=\"thalassa:0\" TYPE=\"linux_raid_member\" PARTUUID=\"995ef2e3-cae4-4515-adf0-525729463b0e\"",
+	"/dev/sdb2: UUID=\"db2702b8-7ae4-6bea-1849-341d8ecd7367\" UUID_SUB=\"e1385e7d-40c2-6ec7-f610-ab5bbfb5df8d\" LABEL=\"thalassa:0\" TYPE=\"linux_raid_member\" PARTUUID=\"460714f6-8eed-4ffe-9de0-8dfa2c6fff40\""
+    };
+
+    vector<string> output = {
+	"data[/dev/sdb1] -> is-md:true",
+	"data[/dev/sdb2] -> is-md:true"
     };
 
     check(input, output);
