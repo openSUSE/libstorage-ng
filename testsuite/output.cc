@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(test_disk)
     string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:0 transport:SATA";
 
     ostringstream out;
-    out << *(Disk::find(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
+    out << *(Disk::find_by_name(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
 
     BOOST_CHECK_EQUAL(out.str(), expected + "\n");
 }
@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(test_partition)
     string expected = "Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 region:[2048, 2097152, 512 B]";
 
     ostringstream out;
-    out << *(Partition::find(fixture.get_storage()->get_staging(), "/dev/sda1")) << endl;
+    out << *(Partition::find_by_name(fixture.get_storage()->get_staging(), "/dev/sda1")) << endl;
 
     BOOST_CHECK_EQUAL(out.str(), expected + "\n");
 }

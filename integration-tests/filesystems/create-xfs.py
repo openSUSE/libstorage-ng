@@ -14,7 +14,7 @@ staging = storage.get_staging()
 
 print staging
 
-partition = Partition.find(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
 xfs = partition.create_filesystem(FsType_XFS)

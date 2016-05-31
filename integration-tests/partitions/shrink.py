@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 print staging
 
-partition = Partition.find(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdb1")
 
 partition.set_size(partition.get_size() - 512 * MiB)
 

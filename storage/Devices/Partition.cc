@@ -119,16 +119,16 @@ namespace storage
 
 
     Partition*
-    Partition::find(Devicegraph* devicegraph, const string& name)
+    Partition::find_by_name(Devicegraph* devicegraph, const string& name)
     {
-	return to_partition(BlkDevice::find(devicegraph, name));
+	return to_partition(BlkDevice::find_by_name(devicegraph, name));
     }
 
 
     const Partition*
-    Partition::find(const Devicegraph* devicegraph, const string& name)
+    Partition::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
-	return to_partition(BlkDevice::find(devicegraph, name));
+	return to_partition(BlkDevice::find_by_name(devicegraph, name));
     }
 
 

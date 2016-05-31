@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     Devicegraph* rhs = storage.copy_devicegraph("staging", "old");
 
-    Disk* sda = to_disk(BlkDevice::find(rhs, "/dev/sda"));
+    Disk* sda = to_disk(BlkDevice::find_by_name(rhs, "/dev/sda"));
 
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 

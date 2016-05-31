@@ -16,7 +16,7 @@ staging = storage.get_staging()
 
 print staging
 
-disk = Disk.find(staging, "/dev/sdb")
+disk = Disk.find_by_name(staging, "/dev/sdb")
 
 partition_table = disk.get_partition_table()
 

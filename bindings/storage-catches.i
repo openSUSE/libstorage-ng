@@ -81,14 +81,14 @@
 %catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t);
 %catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t) const;
 
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph*, const std::string&);
 
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph*, const std::string&);
 
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find(const Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph*, const std::string&);
 
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;

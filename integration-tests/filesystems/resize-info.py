@@ -18,7 +18,7 @@ probed = storage.get_probed()
 
 print probed
 
-partition = Partition.find(probed, "/dev/sdb1")
+partition = Partition.find_by_name(probed, "/dev/sdb1")
 
 resize_info = partition.detect_resize_info()
 

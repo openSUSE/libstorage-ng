@@ -38,8 +38,8 @@ namespace storage
 
 	ResizeInfo detect_resize_info() const;
 
-	static BlkDevice* find(Devicegraph* devicegraph, const std::string& name);
-	static const BlkDevice* find(const Devicegraph* devicegraph, const std::string& name);
+	static BlkDevice* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	Filesystem* create_filesystem(FsType fs_type);
 
