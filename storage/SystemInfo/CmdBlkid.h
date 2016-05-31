@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,12 +49,14 @@ namespace storage
 	struct Entry
 	{
 	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(),
-		      is_lvm(false), is_luks(false), luks_uuid() {}
+		      is_md(false), is_lvm(false), is_luks(false), luks_uuid() {}
 
 	    bool is_fs;
 	    FsType fs_type;
 	    string fs_uuid;
 	    string fs_label;
+
+	    bool is_md;
 
 	    bool is_lvm;
 
@@ -66,11 +69,16 @@ namespace storage
 
 	bool getEntry(const string& device, Entry& entry) const;
 
+	bool any_md() const;
+	bool any_lvm() const;
+	bool any_luks() const;
+
     private:
 
 	void parse(const vector<string>& lines);
 
 	typedef map<string, Entry>::const_iterator const_iterator;
+	typedef map<string, Entry>::value_type value_type;
 
 	map<string, Entry> data;
 
