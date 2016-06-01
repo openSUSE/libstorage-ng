@@ -19,6 +19,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
@@ -441,6 +442,7 @@ namespace storage
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
 	{ "Partition", &Partition::load },
+	{ "LvmPv", &LvmPv::load },
 	{ "LvmVg", &LvmVg::load },
 	{ "LvmLv", &LvmLv::load },
 	{ "Encryption", &Encryption::load },
@@ -625,6 +627,8 @@ namespace storage
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else if (is_partition(device))
 		    out << ", color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
+		else if (is_lvm_pv(device))
+		    out << ", color=\"#66dd22\", fillcolor=\"#bbff99\"";
 		else if (is_lvm_vg(device))
 		    out << ", color=\"#0000ff\", fillcolor=\"#aaaaff\"";
 		else if (is_lvm_lv(device))

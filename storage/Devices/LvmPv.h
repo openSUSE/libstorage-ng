@@ -20,35 +20,30 @@
  */
 
 
-#ifndef STORAGE_LVM_LV_H
-#define STORAGE_LVM_LV_H
+#ifndef STORAGE_LVM_PV_H
+#define STORAGE_LVM_PV_H
 
 
-#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/Device.h"
 
 
 namespace storage
 {
-    class LvmVg;
 
-
-    //! A Logical Volume of the Logical Volume Manager (LVM).
-    class LvmLv : public BlkDevice
+    class LvmPv : public Device
     {
     public:
 
-	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name, const std::string& lv_name);
-	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
-
-	const std::string& get_lv_name() const;
-	void set_lv_name(const std::string& lv_name);
+	static LvmPv* create(Devicegraph* devicegraph);
+	static LvmPv* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	virtual void check() const override;
 
-	const LvmVg* get_lvm_vg() const;
+	static std::vector<LvmPv*> get_all(Devicegraph* devicegraph);
+	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 
-	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
-	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
+	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
 
     public:
 
@@ -57,19 +52,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual LvmLv* clone() const override;
+	virtual LvmPv* clone() const override;
 
     protected:
 
-	LvmLv(Impl* impl);
+	LvmPv(Impl* impl);
 
     };
 
 
-    bool is_lvm_lv(const Device* device);
+    bool is_lvm_pv(const Device* device);
 
-    LvmLv* to_lvm_lv(Device* device);
-    const LvmLv* to_lvm_lv(const Device* device);
+    LvmPv* to_lvm_pv(Device* device);
+    const LvmPv* to_lvm_pv(const Device* device);
 
 }
 

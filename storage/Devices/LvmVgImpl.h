@@ -41,21 +41,21 @@ namespace storage
     {
     public:
 
-	Impl(const string& name)
-	    : Device::Impl(), name(name), uuid() {}
+	Impl(const string& vg_name)
+	    : Device::Impl(), vg_name(vg_name), uuid() {}
 
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<LvmVg>::classname; }
 
-	virtual string get_displayname() const override { return get_name(); }
+	virtual string get_displayname() const override { return get_vg_name(); }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
 
-	const string& get_name() const { return name; }
-	void set_name(const string& name) { Impl::name = name; }
+	const string& get_vg_name() const { return vg_name; }
+	void set_vg_name(const string& vg_name) { Impl::vg_name = vg_name; }
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
@@ -69,13 +69,13 @@ namespace storage
 
     private:
 
-	string name;
+	string vg_name;
 	string uuid;
 
     };
 
 
-    bool compare_by_name(const LvmVg* lhs, const LvmVg* rhs);
+    bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
 
 }
 

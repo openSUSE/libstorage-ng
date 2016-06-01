@@ -1,15 +1,20 @@
 
 
 #include "config.h"
+#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Mockup.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/MdImpl.h"
+#include "storage/Devices/LvmPvImpl.h"
+#include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
-#include "storage/Utils/AppUtil.h"
-#include "storage/Utils/Mockup.h"
 
 
 namespace storage
@@ -99,6 +104,32 @@ namespace storage
 	    }
 	}
 
+	if (systeminfo.getBlkid().any_lvm())
+	{
+	    // TODO check whether lvm tools are installed
+
+	    for (const CmdVgs::Vg& vg : systeminfo.getCmdVgs().get_vgs())
+	    {
+		LvmVg* lvm_vg = LvmVg::create(probed, vg.vg_name);
+		lvm_vg->get_impl().set_uuid(vg.vg_uuid);
+	    }
+
+	    for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
+	    {
+		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
+		LvmPv* lvm_pv = LvmPv::create(probed);
+		lvm_pv->get_impl().set_uuid(pv.pv_uuid);
+		Subdevice::create(probed, lvm_pv, lvm_vg);
+	    }
+
+	    for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
+	    {
+		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
+		LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name);
+		lvm_lv->get_impl().set_uuid(lv.lv_uuid);
+	    }
+	}
+
 	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
 	// and md2).
@@ -108,12 +139,22 @@ namespace storage
 	    md->get_impl().probe_pass_2(probed, systeminfo);
 	}
 
+	for (LvmPv* lvm_pv : LvmPv::get_all(probed))
+	{
+	    lvm_pv->get_impl().probe_pass_2(probed, systeminfo);
+	}
+
 	// Pass 3: Detect filesystems.
 
 	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
 	{
 	    if (blk_device->num_children() != 0)
 		continue;
+
+	    // TODO
+	    string name = blk_device->get_name();
+	    if (is_lvm_lv(blk_device))
+		name = "/dev/mapper/system-" + to_lvm_lv(blk_device)->get_lv_name();
 
 	    Blkid::Entry entry;
 	    if (systeminfo.getBlkid().getEntry(blk_device->get_name(), entry))

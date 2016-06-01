@@ -42,7 +42,7 @@ main()
     Partition* rhs_sda3 = Partition::create(rhs, "/dev/sda3", Region(2000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda3);
 
-    LvmVg* rhs_system = LvmVg::create(rhs, "/dev/system");
+    LvmVg* rhs_system = LvmVg::create(rhs, "system");
     User::create(rhs, rhs_sda1, rhs_system);
     User::create(rhs, rhs_sda2, rhs_system);
     User::create(rhs, rhs_sda3, rhs_system);

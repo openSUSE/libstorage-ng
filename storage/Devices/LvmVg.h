@@ -31,23 +31,24 @@ namespace storage
 {
     class LvmLv;
 
+
     //! A Volume Group of the Logical Volume Manager (LVM).
     class LvmVg : public Device
     {
     public:
 
-	static LvmVg* create(Devicegraph* devicegraph, const std::string& name);
+	static LvmVg* create(Devicegraph* devicegraph, const std::string& vg_name);
 	static LvmVg* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	const std::string& get_name() const;
-	void set_name(const std::string& name);
+	const std::string& get_vg_name() const;
+	void set_vg_name(const std::string& vg_name);
 
 	virtual void check() const override;
 
-	LvmLv* create_lvm_lv(const std::string& name);
+	LvmLv* create_lvm_lv(const std::string& lv_name);
 
 	/**
-	 * Sorted by name.
+	 * Sorted by vg_name.
 	 */
 	static std::vector<LvmVg*> get_all(Devicegraph* devicegraph);
 

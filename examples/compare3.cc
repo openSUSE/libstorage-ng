@@ -31,13 +31,13 @@ main()
     Partition* lhs_sda1 = Partition::create(lhs, "/dev/sda1", Region(0, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(lhs, lhs_sda, lhs_sda1);
 
-    LvmVg* lhs_system_v1 = LvmVg::create(lhs, "/dev/system-v1");
+    LvmVg* lhs_system_v1 = LvmVg::create(lhs, "system-v1");
     User::create(lhs, lhs_sda1, lhs_system_v1);
 
-    LvmLv* lhs_system_v1_root = LvmLv::create(lhs, "/dev/system-v1/root");
+    LvmLv* lhs_system_v1_root = LvmLv::create(lhs, "system-v1", "root");
     Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_root);
 
-    LvmLv* lhs_system_v1_swap = LvmLv::create(lhs, "/dev/system-v1/swap");
+    LvmLv* lhs_system_v1_swap = LvmLv::create(lhs, "system-v1", "swap");
     Subdevice::create(lhs, lhs_system_v1, lhs_system_v1_swap);
 
     Ext4* lhs_system_v1_root_fs = Ext4::create(lhs);
@@ -54,12 +54,12 @@ main()
     rhs->remove_device(lhs_system_v1_swap->get_sid());
     rhs->remove_device(lhs_system_v1->get_sid());
 
-    LvmVg* rhs_system_v2 = LvmVg::create(rhs, "/dev/system-v2");
+    LvmVg* rhs_system_v2 = LvmVg::create(rhs, "system-v2");
 
-    LvmLv* rhs_system_v2_root = LvmLv::create(rhs, "/dev/system-v2/root");
+    LvmLv* rhs_system_v2_root = LvmLv::create(rhs, "system-v2" ,"root");
     Subdevice::create(rhs, rhs_system_v2, rhs_system_v2_root);
 
-    LvmLv* rhs_system_v2_swap = LvmLv::create(rhs, "/dev/system-v2/swap");
+    LvmLv* rhs_system_v2_swap = LvmLv::create(rhs, "system-v2", "swap");
     Subdevice::create(rhs, rhs_system_v2, rhs_system_v2_swap);
 
     Partition* rhs_sda1 = to_partition(rhs->find_device(lhs_sda1->get_sid()));

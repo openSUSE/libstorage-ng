@@ -48,8 +48,9 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmLv.h"
 
 #include "storage/Holders/Holder.h"
 #include "storage/Holders/Subdevice.h"
@@ -94,8 +95,9 @@
 %include "../../storage/Devices/Md.h"
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
-%include "../../storage/Devices/LvmLv.h"
+%include "../../storage/Devices/LvmPv.h"
 %include "../../storage/Devices/LvmVg.h"
+%include "../../storage/Devices/LvmLv.h"
 
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Holders/Subdevice.h"

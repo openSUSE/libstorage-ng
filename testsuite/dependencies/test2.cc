@@ -30,9 +30,9 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "1 - Create GPT on /dev/sda -> 2a" },
 	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
 	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
-	{ "3 - Create volume group /dev/system -> 4 5" },
-	{ "4 - Create logical volume /dev/system/root (14.00 GiB) ->" },
-	{ "5 - Create logical volume /dev/system/swap (2.00 GiB) ->" }
+	{ "3 - Create volume group system -> 4 5" },
+	{ "4 - Create logical volume root (14.00 GiB) on volume group system ->" },
+	{ "5 - Create logical volume swap (2.00 GiB) on volume group system ->" }
     });
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -55,15 +55,13 @@ BOOST_AUTO_TEST_CASE(dependencies)
     sda1->set_size(16 * GiB);
     sda1->set_id(ID_LVM);
 
-    LvmVg* system = LvmVg::create(rhs, "/dev/system");
+    LvmVg* system = LvmVg::create(rhs, "system");
     User::create(rhs, sda1, system);
 
-    LvmLv* system_root = LvmLv::create(rhs, "/dev/system/root");
-    Subdevice::create(rhs, system, system_root);
+    LvmLv* system_root = system->create_lvm_lv("root");
     system_root->set_size(14 * GiB);
 
-    LvmLv* system_swap = LvmLv::create(rhs, "/dev/system/swap");
-    Subdevice::create(rhs, system, system_swap);
+    LvmLv* system_swap = system->create_lvm_lv("swap");
     system_swap->set_size(2 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);

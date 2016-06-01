@@ -124,17 +124,17 @@ main()
     Partition* sdb2 = Partition::create(&devicegraph, "/dev/sdb2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(&devicegraph, sdb, sdb2);
 
-    LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
+    LvmVg* system = LvmVg::create(&devicegraph, "system");
     User::create(&devicegraph, sda1, system);
     User::create(&devicegraph, sdb1, system);
 
-    LvmLv* system_root = LvmLv::create(&devicegraph, "/dev/system/root");
+    LvmLv* system_root = LvmLv::create(&devicegraph, "system", "root");
     Subdevice::create(&devicegraph, system, system_root);
 
-    LvmLv* system_swap = LvmLv::create(&devicegraph, "/dev/system/swap");
+    LvmLv* system_swap = LvmLv::create(&devicegraph, "system", "swap");
     Subdevice::create(&devicegraph, system, system_swap);
 
-    LvmLv* system_home = LvmLv::create(&devicegraph, "/dev/system/home");
+    LvmLv* system_home = LvmLv::create(&devicegraph, "system", "home");
     Subdevice::create(&devicegraph, system, system_home);
 
     Ext4* system_root_fs = Ext4::create(&devicegraph);
