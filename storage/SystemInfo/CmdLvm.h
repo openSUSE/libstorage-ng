@@ -58,9 +58,7 @@ namespace storage
 
 	const vector<Pv>& get_pvs() const { return pvs; }
 
-	const Pv& get_pv_by_pv_uuid(const string& pv_uuid) const;
-
-	vector<Pv> get_pvs_by_vg_uuid(const string& vg_uuid) const;
+	const Pv& find_by_pv_uuid(const string& pv_uuid) const;
 
     private:
 
@@ -91,8 +89,6 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Lv& lv);
 
 	const vector<Lv>& get_lvs() const { return lvs; }
-
-	const Lv& get_lv_by_lv_uuid(const string& lv_uuid) const;
 
     private:
 

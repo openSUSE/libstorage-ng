@@ -26,20 +26,37 @@ namespace storage
 {
 
 
-    DeviceNotFound::DeviceNotFound(sid_t sid)
-	: Exception(sformat("device not found, sid:%d", sid))
+    DeviceNotFound::DeviceNotFound(const string& msg)
+	: Exception(msg)
     {
     }
 
 
-    DeviceNotFound::DeviceNotFound(const string& name)
-	: Exception(sformat("device not found, name:%s", name.c_str()))
+    DeviceNotFoundBySid::DeviceNotFoundBySid(sid_t sid)
+	: DeviceNotFound(sformat("device not found, sid:%d", sid))
     {
     }
 
 
-    HolderNotFound::HolderNotFound(sid_t source_sid, sid_t target_sid)
-	: Exception(sformat("holder not found, source_sid:%d, target_sid:%d", source_sid, target_sid))
+    DeviceNotFoundByName::DeviceNotFoundByName(const string& name)
+	: DeviceNotFound(sformat("device not found, name:%s", name.c_str()))
+    {
+    }
+
+    DeviceNotFoundByUuid::DeviceNotFoundByUuid(const string& uuid)
+	: DeviceNotFound(sformat("device not found, uuid:%s", uuid.c_str()))
+    {
+    }
+
+
+    HolderNotFound::HolderNotFound(const string& msg)
+	: Exception(msg)
+    {
+    }
+
+
+    HolderNotFoundBySid::HolderNotFoundBySid(sid_t source_sid, sid_t target_sid)
+	: HolderNotFound(sformat("holder not found, source_sid:%d, target_sid:%d", source_sid, target_sid))
     {
     }
 

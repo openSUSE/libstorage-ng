@@ -22,14 +22,37 @@ namespace storage
 
     struct DeviceNotFound : public Exception
     {
-	DeviceNotFound(sid_t sid);
-	DeviceNotFound(const std::string& name);
+	DeviceNotFound(const std::string& msg);
+    };
+
+
+    struct DeviceNotFoundBySid : public DeviceNotFound
+    {
+	DeviceNotFoundBySid(sid_t sid);
+    };
+
+
+    struct DeviceNotFoundByName : public DeviceNotFound
+    {
+	DeviceNotFoundByName(const std::string& name);
+    };
+
+
+    struct DeviceNotFoundByUuid : public DeviceNotFound
+    {
+	DeviceNotFoundByUuid(const std::string& uuid);
     };
 
 
     struct HolderNotFound : public Exception
     {
-	HolderNotFound(sid_t source_sid, sid_t target_sid);
+	HolderNotFound(const std::string& msg);
+    };
+
+
+    struct HolderNotFoundBySid : public HolderNotFound
+    {
+	HolderNotFoundBySid(sid_t source_sid, sid_t target_sid);
     };
 
 
