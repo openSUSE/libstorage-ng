@@ -38,6 +38,9 @@ namespace storage
 
 	ResizeInfo detect_resize_info() const;
 
+	static std::vector<BlkDevice*> get_all(Devicegraph* devicegraph);
+	static std::vector<const BlkDevice*> get_all(const Devicegraph* devicegraph);
+
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 

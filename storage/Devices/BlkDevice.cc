@@ -140,6 +140,20 @@ namespace storage
     }
 
 
+    vector<BlkDevice*>
+    BlkDevice::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<BlkDevice>();
+    }
+
+
+    vector<const BlkDevice*>
+    BlkDevice::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const BlkDevice>();
+    }
+
+
     void
     BlkDevice::check() const
     {
