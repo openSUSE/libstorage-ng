@@ -103,19 +103,15 @@ namespace storage
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
 	// and md2).
 
-	for (Md* md : probed->get_all_mds())
+	for (Md* md : Md::get_all(probed))
 	{
 	    md->get_impl().probe_pass_2(probed, systeminfo);
 	}
 
 	// Pass 3: Detect filesystems.
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
+	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(probed->get_impl()[vertex]);
-	    if (!blk_device)
-		continue;
-
 	    if (blk_device->num_children() != 0)
 		continue;
 
