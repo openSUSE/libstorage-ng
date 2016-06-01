@@ -56,6 +56,9 @@ namespace storage
 	 */
 	static std::vector<const LvmVg*> get_all(const Devicegraph* devicegraph);
 
+	static LvmVg* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
+	static const LvmVg* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+
     public:
 
 	class Impl;

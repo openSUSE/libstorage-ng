@@ -26,6 +26,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
+#include "storage/FindBy.h"
 #include "storage/Action.h"
 
 
@@ -105,6 +106,20 @@ namespace storage
     LvmVg::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_name);
+    }
+
+
+    LvmVg*
+    LvmVg::find_by_uuid(Devicegraph* devicegraph, const std::string& uuid)
+    {
+	return storage::find_by_uuid<LvmVg>(devicegraph, uuid);
+    }
+
+
+    const LvmVg*
+    LvmVg::find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid)
+    {
+	return storage::find_by_uuid<const LvmVg>(devicegraph, uuid);
     }
 
 
