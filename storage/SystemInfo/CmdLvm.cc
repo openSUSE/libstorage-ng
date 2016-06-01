@@ -66,7 +66,7 @@ namespace storage
 
 
     const CmdPvs::Pv&
-    CmdPvs::get_pv_by_pv_uuid(const string& pv_uuid) const
+    CmdPvs::find_by_pv_uuid(const string& pv_uuid) const
     {
 	for (const Pv& pv : pvs)
 	{
@@ -76,21 +76,6 @@ namespace storage
 
 	ST_THROW(Exception("pv not found by pv-uuid"));
 	__builtin_unreachable();
-    }
-
-
-    vector<CmdPvs::Pv>
-    CmdPvs::get_pvs_by_vg_uuid(const string& vg_uuid) const
-    {
-	vector<Pv> ret;
-
-	for (const Pv& pv : pvs)
-	{
-	    if (pv.vg_uuid == vg_uuid)
-		ret.push_back(pv);
-	}
-
-	return ret;
     }
 
 
@@ -140,17 +125,6 @@ namespace storage
     }
 
 
-    const CmdLvs::Lv&
-    CmdLvs::get_lv_by_lv_uuid(const string& lv_uuid) const
-    {
-	for (const Lv& lv : lvs)
-	{
-	    if (lv.lv_uuid == lv_uuid)
-		return lv;
-	}
-
-	ST_THROW(Exception("lv not found by lv-uuid"));
-	__builtin_unreachable();
     }
 
 
