@@ -61,6 +61,8 @@ namespace storage
 	    pvs.push_back(pv);
 	}
 
+	sort(pvs.begin(), pvs.end(), [](const Pv& lhs, const Pv& rhs) { return lhs.pv_name < rhs.pv_name; });
+
 	y2mil(*this);
     }
 
@@ -121,10 +123,9 @@ namespace storage
 	    lvs.push_back(lv);
 	}
 
+	sort(lvs.begin(), lvs.end(), [](const Lv& lhs, const Lv& rhs) { return lhs.lv_name < rhs.lv_name; });
+
 	y2mil(*this);
-    }
-
-
     }
 
 
@@ -169,6 +170,8 @@ namespace storage
 	    data >> vg.vg_name >> vg.vg_uuid;
 	    vgs.push_back(vg);
 	}
+
+	sort(vgs.begin(), vgs.end(), [](const Vg& lhs, const Vg& rhs) { return lhs.vg_name < rhs.vg_name; });
 
 	y2mil(*this);
     }
