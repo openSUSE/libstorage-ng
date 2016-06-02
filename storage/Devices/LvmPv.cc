@@ -115,6 +115,13 @@ namespace storage
     }
 
 
+    const BlkDevice*
+    LvmPv::get_blk_device() const
+    {
+	return get_impl().get_blk_device();
+    }
+
+
     bool
     is_lvm_pv(const Device* device)
     {

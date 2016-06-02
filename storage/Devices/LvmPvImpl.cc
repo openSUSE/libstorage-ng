@@ -25,6 +25,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Devices/LvmPvImpl.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -49,6 +50,13 @@ namespace storage
 	Device::Impl::save(node);
 
 	setChildValue(node, "uuid", uuid);
+    }
+
+
+    const BlkDevice*
+    LvmPv::Impl::get_blk_device() const
+    {
+	return get_single_parent_of_type<const BlkDevice>();
     }
 
 

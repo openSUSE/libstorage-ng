@@ -29,6 +29,8 @@
 
 namespace storage
 {
+    class BlkDevice;
+
 
     class LvmPv : public Device
     {
@@ -44,6 +46,8 @@ namespace storage
 
 	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+
+	const BlkDevice* get_blk_device() const;
 
     public:
 
