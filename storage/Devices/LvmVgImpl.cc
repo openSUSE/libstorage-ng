@@ -67,6 +67,30 @@ namespace storage
     }
 
 
+    vector<LvmPv*>
+    LvmVg::Impl::get_lvm_pvs()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	// TODO sorting
+
+	return devicegraph.filter_devices_of_type<LvmPv>(devicegraph.parents(vertex));
+    }
+
+
+    vector<const LvmPv*>
+    LvmVg::Impl::get_lvm_pvs() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	// TODO sorting
+
+	return devicegraph.filter_devices_of_type<const LvmPv>(devicegraph.parents(vertex));
+    }
+
+
     vector<LvmLv*>
     LvmVg::Impl::get_lvm_lvs()
     {

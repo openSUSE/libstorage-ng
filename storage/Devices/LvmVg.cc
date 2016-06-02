@@ -23,6 +23,7 @@
 #include <iostream>
 
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
@@ -106,6 +107,20 @@ namespace storage
     LvmVg::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_vg_name);
+    }
+
+
+    vector<LvmPv*>
+    LvmVg::get_lvm_pvs()
+    {
+	return get_impl().get_lvm_pvs();
+    }
+
+
+    vector<const LvmPv*>
+    LvmVg::get_lvm_pvs() const
+    {
+	return get_impl().get_lvm_pvs();
     }
 
 

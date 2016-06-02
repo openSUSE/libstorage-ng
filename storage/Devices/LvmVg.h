@@ -29,6 +29,7 @@
 
 namespace storage
 {
+    class LvmPv;
     class LvmLv;
 
 
@@ -62,6 +63,9 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const LvmVg*> get_all(const Devicegraph* devicegraph);
+
+	std::vector<LvmPv*> get_lvm_pvs();
+	std::vector<const LvmPv*> get_lvm_pvs() const;
 
 	std::vector<LvmLv*> get_lvm_lvs();
 	std::vector<const LvmLv*> get_lvm_lvs() const;
