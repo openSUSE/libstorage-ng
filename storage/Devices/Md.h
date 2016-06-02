@@ -38,6 +38,8 @@ namespace storage
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	virtual void check() const override;
+
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 

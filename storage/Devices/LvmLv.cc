@@ -96,6 +96,8 @@ namespace storage
     void
     LvmLv::check() const
     {
+	BlkDevice::check();
+
 	if (get_lv_name().empty())
 	    cerr << "logical volume has no lv-name" << endl;
 

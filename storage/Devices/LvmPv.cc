@@ -83,6 +83,7 @@ namespace storage
     void
     LvmPv::check() const
     {
+	Device::check();
     }
 
 
