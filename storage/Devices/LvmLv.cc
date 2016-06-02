@@ -98,6 +98,9 @@ namespace storage
     {
 	if (get_lv_name().empty())
 	    cerr << "logical volume has no lv-name" << endl;
+
+	if (get_region().get_start() != 0)
+	    cerr << "logical volume region start not zero" << endl;
     }
 
 
