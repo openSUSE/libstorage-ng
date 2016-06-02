@@ -40,11 +40,17 @@ namespace storage
 	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name, const std::string& lv_name);
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get logical volume name. This is different from get_name().
+	 */
 	const std::string& get_lv_name() const;
 	void set_lv_name(const std::string& lv_name);
 
 	virtual void check() const override;
 
+	/**
+	 * Return volume group this logical volume belongs to.
+	 */
 	const LvmVg* get_lvm_vg() const;
 
 	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);

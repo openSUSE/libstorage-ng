@@ -84,8 +84,8 @@ namespace storage
 
 	// TODO
 
-	// Pass 1: Detect all BlkDevices and some Holders, e.g. between
-	// Partitionable, PartitionTable and Partitions.
+	// Pass 1: Detect all Devices except Filesystems and some Holders,
+	// e.g. between Partitionable, PartitionTable and Partitions.
 
 	for (const string& name : Disk::Impl::probe_disks(systeminfo))
 	{
@@ -116,9 +116,11 @@ namespace storage
 
 	    for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
 	    {
-		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
 		LvmPv* lvm_pv = LvmPv::create(probed);
 		lvm_pv->get_impl().set_uuid(pv.pv_uuid);
+
+		// TODO the pv may not be included in any vg
+		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
 		Subdevice::create(probed, lvm_pv, lvm_vg);
 	    }
 
