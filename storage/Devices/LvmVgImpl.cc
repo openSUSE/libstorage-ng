@@ -58,6 +58,15 @@ namespace storage
     }
 
 
+    void
+    LvmVg::Impl::set_vg_name(const string& vg_name)
+    {
+	Impl::vg_name = vg_name;
+
+	// TODO call set_name() for all lvm_lvs
+    }
+
+
     bool
     LvmVg::Impl::equal(const Device::Impl& rhs_base) const
     {

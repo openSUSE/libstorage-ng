@@ -59,6 +59,15 @@ namespace storage
     }
 
 
+    void
+    LvmLv::Impl::set_lv_name(const string& lv_name)
+    {
+	Impl::lv_name = lv_name;
+
+	// TODO call set_name()
+    }
+
+
     const LvmVg*
     LvmLv::Impl::get_lvm_vg() const
     {

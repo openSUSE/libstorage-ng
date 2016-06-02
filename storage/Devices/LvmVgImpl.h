@@ -55,7 +55,7 @@ namespace storage
 	virtual void save(xmlNode* node) const override;
 
 	const string& get_vg_name() const { return vg_name; }
-	void set_vg_name(const string& vg_name) { Impl::vg_name = vg_name; }
+	void set_vg_name(const string& vg_name);
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }

@@ -59,7 +59,7 @@ namespace storage
 	const LvmVg* get_lvm_vg() const;
 
 	const string& get_lv_name() const { return lv_name; }
-	void set_lv_name(const string& lv_name) { Impl::lv_name = lv_name; }
+	void set_lv_name(const string& lv_name);
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
