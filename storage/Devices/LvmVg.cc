@@ -109,6 +109,20 @@ namespace storage
     }
 
 
+    vector<LvmLv*>
+    LvmVg::get_lvm_lvs()
+    {
+	return get_impl().get_lvm_lvs();
+    }
+
+
+    vector<const LvmLv*>
+    LvmVg::get_lvm_lvs() const
+    {
+	return get_impl().get_lvm_lvs();
+    }
+
+
     LvmVg*
     LvmVg::find_by_uuid(Devicegraph* devicegraph, const std::string& uuid)
     {

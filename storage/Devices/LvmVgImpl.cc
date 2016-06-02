@@ -25,7 +25,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmLvImpl.h"
 #include "storage/Holders/Subdevice.h"
 
 
@@ -64,6 +64,28 @@ namespace storage
 	Impl::vg_name = vg_name;
 
 	// TODO call set_name() for all lvm_lvs
+    }
+
+
+    vector<LvmLv*>
+    LvmVg::Impl::get_lvm_lvs()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
+    }
+
+
+    vector<const LvmLv*>
+    LvmVg::Impl::get_lvm_lvs() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
     }
 
 

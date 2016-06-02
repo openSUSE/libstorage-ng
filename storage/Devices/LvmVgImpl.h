@@ -60,6 +60,9 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
+	vector<LvmLv*> get_lvm_lvs();
+	vector<const LvmLv*> get_lvm_lvs() const;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
