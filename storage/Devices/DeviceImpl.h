@@ -171,6 +171,45 @@ namespace storage
 	    return to_device_of_type<Type>(tmp);
 	}
 
+	template<typename Type>
+	bool has_single_parent_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    if (num_parents() != 1)
+		return false;
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+
+	    return is_device_of_type<Type>(tmp);
+	}
+
+	template<typename Type>
+	Type* get_single_parent_of_type()
+	{
+	    static_assert(!is_const<Type>::value, "Type must noy be const");
+
+	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+
+	    return to_device_of_type<Type>(tmp);
+	}
+
+	template<typename Type>
+	const Type* get_single_parent_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
+
+	    return to_device_of_type<Type>(tmp);
+	}
+
     protected:
 
 	Impl();

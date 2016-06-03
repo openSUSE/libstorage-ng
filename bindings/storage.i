@@ -48,8 +48,9 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmLv.h"
 
 #include "storage/Holders/Holder.h"
 #include "storage/Holders/Subdevice.h"
@@ -94,8 +95,9 @@
 %include "../../storage/Devices/Md.h"
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
-%include "../../storage/Devices/LvmLv.h"
+%include "../../storage/Devices/LvmPv.h"
 %include "../../storage/Devices/LvmVg.h"
+%include "../../storage/Devices/LvmLv.h"
 
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Holders/Subdevice.h"
@@ -129,6 +131,15 @@ using namespace storage;
 
 %template(VectorMdPtr) std::vector<Md*>;
 %template(VectorConstMdPtr) std::vector<const Md*>;
+
+%template(VectorLvmPvPtr) std::vector<LvmPv*>;
+%template(VectorConstLvmPvPtr) std::vector<const LvmPv*>;
+
+%template(VectorLvmVgPtr) std::vector<LvmVg*>;
+%template(VectorConstLvmVgPtr) std::vector<const LvmVg*>;
+
+%template(VectorLvmLvPtr) std::vector<LvmLv*>;
+%template(VectorConstLvmLvPtr) std::vector<const LvmLv*>;
 
 %template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;

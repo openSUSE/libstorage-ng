@@ -20,11 +20,11 @@
  */
 
 
-#ifndef STORAGE_LVM_VG_IMPL_H
-#define STORAGE_LVM_VG_IMPL_H
+#ifndef STORAGE_LVM_PV_IMPL_H
+#define STORAGE_LVM_PV_IMPL_H
 
 
-#include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/DeviceImpl.h"
 
 
@@ -34,37 +34,34 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<LvmVg> { static const char* classname; };
+    template <> struct DeviceTraits<LvmPv> { static const char* classname; };
 
 
-    class LvmVg::Impl : public Device::Impl
+    class LvmPv::Impl : public Device::Impl
     {
     public:
 
-	Impl(const string& vg_name)
-	    : Device::Impl(), vg_name(vg_name), uuid() {}
+	Impl()
+	    : Device::Impl(), uuid() {}
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return DeviceTraits<LvmVg>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<LvmPv>::classname; }
 
-	virtual string get_displayname() const override { return get_vg_name(); }
+	virtual string get_displayname() const override { return "lvm pv"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
 
-	const string& get_vg_name() const { return vg_name; }
-	void set_vg_name(const string& vg_name);
-
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
-	vector<LvmPv*> get_lvm_pvs();
-	vector<const LvmPv*> get_lvm_pvs() const;
+	bool has_blk_device() const;
+	BlkDevice* get_blk_device();
+	const BlkDevice* get_blk_device() const;
 
-	vector<LvmLv*> get_lvm_lvs();
-	vector<const LvmLv*> get_lvm_lvs() const;
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -75,13 +72,9 @@ namespace storage
 
     private:
 
-	string vg_name;
 	string uuid;
 
     };
-
-
-    bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
 
 }
 

@@ -1,5 +1,7 @@
 
 
+#include <iostream>
+
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -44,6 +46,16 @@ namespace storage
 	Md* ret = new Md(new Md::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
+    }
+
+
+    void
+    Md::check() const
+    {
+	Partitionable::check();
+
+	if (get_region().get_start() != 0)
+	    cerr << "md region start not zero" << endl;
     }
 
 

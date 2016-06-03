@@ -23,6 +23,8 @@ libdevices_la_SOURCES =					\
 	GptImpl.h		GptImpl.cc		\
 	Partition.h		Partition.cc		\
 	PartitionImpl.h		PartitionImpl.cc	\
+	LvmPv.h			LvmPv.cc		\
+	LvmPvImpl.h		LvmPvImpl.cc		\
 	LvmVg.h			LvmVg.cc		\
 	LvmVgImpl.h		LvmVgImpl.cc		\
 	LvmLv.h			LvmLv.cc		\
@@ -56,6 +58,7 @@ pkginclude_HEADERS =		\
 	Msdos.h			\
 	Gpt.h			\
 	Partition.h		\
+	LvmPv.h			\
 	LvmVg.h			\
 	LvmLv.h			\
 	Encryption.h		\

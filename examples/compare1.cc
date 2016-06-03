@@ -34,16 +34,16 @@ main()
     Partition* sda2 = Partition::create(lhs, "/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(lhs, sda, sda2);
 
-    LvmVg* system = LvmVg::create(lhs, "/dev/system");
+    LvmVg* system = LvmVg::create(lhs, "system");
     User::create(lhs, sda2, system);
 
-    LvmLv* system_oracle = LvmLv::create(lhs, "/dev/system/oracle");
+    LvmLv* system_oracle = LvmLv::create(lhs, "system", "oracle");
     Subdevice::create(lhs, system, system_oracle);
 
     Devicegraph* rhs = storage.copy_devicegraph("lhs", "rhs");
 
     LvmLv* d = to_lvm_lv(rhs->find_device(system_oracle->get_sid()));
-    d->set_name("/dev/system/postgresql");
+    d->set_lv_name("postgresql");
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

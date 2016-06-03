@@ -28,10 +28,10 @@ main()
     gpt->create_partition("/dev/sda1", Region(0, 1000, 262144), PartitionType::PRIMARY);
     Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
 
-    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda2, system);
 
-    LvmLv* system_root = system->create_lvm_lv("/dev/system/root");
+    LvmLv* system_root = system->create_lvm_lv("root");
 
     Filesystem* filesystem = system_root->create_filesystem(FsType::EXT4);
     filesystem->add_mountpoint("/");

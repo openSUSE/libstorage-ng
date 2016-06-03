@@ -29,25 +29,33 @@
 
 namespace storage
 {
+    class LvmPv;
     class LvmLv;
+
 
     //! A Volume Group of the Logical Volume Manager (LVM).
     class LvmVg : public Device
     {
     public:
 
-	static LvmVg* create(Devicegraph* devicegraph, const std::string& name);
+	static LvmVg* create(Devicegraph* devicegraph, const std::string& vg_name);
 	static LvmVg* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	const std::string& get_name() const;
-	void set_name(const std::string& name);
+	/**
+	 * Get volume group name. This is different from get_name().
+	 */
+	const std::string& get_vg_name() const;
+	void set_vg_name(const std::string& vg_name);
 
 	virtual void check() const override;
 
-	LvmLv* create_lvm_lv(const std::string& name);
+	/**
+	 * Create a logical volume with name lv_name in the volume group.
+	 */
+	LvmLv* create_lvm_lv(const std::string& lv_name);
 
 	/**
-	 * Sorted by name.
+	 * Sorted by vg_name.
 	 */
 	static std::vector<LvmVg*> get_all(Devicegraph* devicegraph);
 
@@ -55,6 +63,12 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const LvmVg*> get_all(const Devicegraph* devicegraph);
+
+	std::vector<LvmPv*> get_lvm_pvs();
+	std::vector<const LvmPv*> get_lvm_pvs() const;
+
+	std::vector<LvmLv*> get_lvm_lvs();
+	std::vector<const LvmLv*> get_lvm_lvs() const;
 
 	static LvmVg* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmVg* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);

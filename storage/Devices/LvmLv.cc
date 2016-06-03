@@ -35,9 +35,9 @@ namespace storage
 
 
     LvmLv*
-    LvmLv::create(Devicegraph* devicegraph, const string& name)
+    LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name)
     {
-	LvmLv* ret = new LvmLv(new LvmLv::Impl(name));
+	LvmLv* ret = new LvmLv(new LvmLv::Impl(vg_name, lv_name));
 	ret->Device::create(devicegraph);
 	return ret;
     }
@@ -79,11 +79,37 @@ namespace storage
     }
 
 
+    const string&
+    LvmLv::get_lv_name() const
+    {
+	return get_impl().get_lv_name();
+    }
+
+
+    void
+    LvmLv::set_lv_name(const string& lv_name)
+    {
+	get_impl().set_lv_name(lv_name);
+    }
+
+
     void
     LvmLv::check() const
     {
-	if (get_name().empty())
-	    cerr << "logical volume has no name" << endl;
+	BlkDevice::check();
+
+	if (get_lv_name().empty())
+	    cerr << "logical volume has no lv-name" << endl;
+
+	if (get_region().get_start() != 0)
+	    cerr << "logical volume region start not zero" << endl;
+    }
+
+
+    const LvmVg*
+    LvmLv::get_lvm_vg() const
+    {
+	return get_impl().get_lvm_vg();
     }
 
 

@@ -70,18 +70,13 @@ BOOST_AUTO_TEST_CASE(dependencies)
     Partition* sdb2 = Partition::create(devicegraph, "/dev/sdb2", Region(10, 10, 262144), PartitionType::PRIMARY);
     Subdevice::create(devicegraph, sdb, sdb2);
 
-    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda1, system);
     User::create(devicegraph, sdb1, system);
 
-    LvmLv* system_root = LvmLv::create(devicegraph, "/dev/system/root");
-    Subdevice::create(devicegraph, system, system_root);
-
-    LvmLv* system_swap = LvmLv::create(devicegraph, "/dev/system/swap");
-    Subdevice::create(devicegraph, system, system_swap);
-
-    LvmLv* system_home = LvmLv::create(devicegraph, "/dev/system/home");
-    Subdevice::create(devicegraph, system, system_home);
+    LvmLv* system_root = system->create_lvm_lv("root");
+    LvmLv* system_swap = system->create_lvm_lv("swap");
+    LvmLv* system_home = system->create_lvm_lv("home");
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 10);
     BOOST_CHECK_EQUAL(devicegraph->num_holders(), 9);

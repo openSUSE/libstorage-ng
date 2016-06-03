@@ -24,6 +24,7 @@
 #define STORAGE_LVM_LV_IMPL_H
 
 
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"
@@ -42,16 +43,23 @@ namespace storage
     {
     public:
 
-	Impl(const string& name)
-	    : BlkDevice::Impl(name), uuid() {}
+	Impl(const string& vg_name, const string& lv_name)
+	    : BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), uuid() {}
 
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<LvmLv>::classname; }
 
+	virtual string get_displayname() const override { return get_lv_name(); }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
+
+	const LvmVg* get_lvm_vg() const;
+
+	const string& get_lv_name() const { return lv_name; }
+	void set_lv_name(const string& lv_name);
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
@@ -70,6 +78,9 @@ namespace storage
 
     private:
 
+	static string make_name(const string& vg_name, const string& lv_name);
+
+	string lv_name;
 	string uuid;
 
     };
@@ -90,6 +101,9 @@ namespace storage
 	};
 
     }
+
+
+    bool compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs);
 
 }
 

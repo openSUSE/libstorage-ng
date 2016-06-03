@@ -23,6 +23,7 @@
 #include <iostream>
 
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
@@ -37,9 +38,9 @@ namespace storage
 
 
     LvmVg*
-    LvmVg::create(Devicegraph* devicegraph, const string& name)
+    LvmVg::create(Devicegraph* devicegraph, const string& vg_name)
     {
-	LvmVg* ret = new LvmVg(new LvmVg::Impl(name));
+	LvmVg* ret = new LvmVg(new LvmVg::Impl(vg_name));
 	ret->Device::create(devicegraph);
 	return ret;
     }
@@ -82,30 +83,58 @@ namespace storage
 
 
     const string&
-    LvmVg::get_name() const
+    LvmVg::get_vg_name() const
     {
-	return get_impl().get_name();
+	return get_impl().get_vg_name();
     }
 
 
     void
-    LvmVg::set_name(const string& name)
+    LvmVg::set_vg_name(const string& vg_name)
     {
-	get_impl().set_name(name);
+	get_impl().set_vg_name(vg_name);
     }
 
 
     vector<LvmVg*>
     LvmVg::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<LvmVg>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<LvmVg>(compare_by_vg_name);
     }
 
 
     vector<const LvmVg*>
     LvmVg::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_vg_name);
+    }
+
+
+    vector<LvmPv*>
+    LvmVg::get_lvm_pvs()
+    {
+	return get_impl().get_lvm_pvs();
+    }
+
+
+    vector<const LvmPv*>
+    LvmVg::get_lvm_pvs() const
+    {
+	return get_impl().get_lvm_pvs();
+    }
+
+
+    vector<LvmLv*>
+    LvmVg::get_lvm_lvs()
+    {
+	return get_impl().get_lvm_lvs();
+    }
+
+
+    vector<const LvmLv*>
+    LvmVg::get_lvm_lvs() const
+    {
+	return get_impl().get_lvm_lvs();
     }
 
 
@@ -126,17 +155,19 @@ namespace storage
     void
     LvmVg::check() const
     {
-	if (get_name().empty())
-	    cerr << "volume group has no name" << endl;
+	Device::check();
+
+	if (get_vg_name().empty())
+	    cerr << "volume group has no vg-name" << endl;
     }
 
 
     LvmLv*
-    LvmVg::create_lvm_lv(const string& name)
+    LvmVg::create_lvm_lv(const string& lv_name)
     {
 	Devicegraph* devicegraph = get_impl().get_devicegraph();
 
-	LvmLv* lvm_lv = LvmLv::create(devicegraph, name);
+	LvmLv* lvm_lv = LvmLv::create(devicegraph, get_vg_name(), lv_name);
 	Subdevice::create(devicegraph, this, lvm_lv);
 
 	return lvm_lv;

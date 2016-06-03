@@ -35,11 +35,10 @@ BOOST_AUTO_TEST_CASE(dynamic)
     Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 1024000, 512), PartitionType::PRIMARY);
     Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1026048, 1024000, 512), PartitionType::PRIMARY);
 
-    LvmVg* system = LvmVg::create(devicegraph, "/dev/system");
+    LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda1, system);
 
-    LvmLv* root = LvmLv::create(devicegraph, "/dev/system/root");
-    Subdevice::create(devicegraph, system, root);
+    LvmLv* root = system->create_lvm_lv("root");
 
     Ext4* ext4 = to_ext4(sda2->create_filesystem(FsType::EXT4));
 

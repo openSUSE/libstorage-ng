@@ -22,7 +22,10 @@
 
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
+#include "storage/Devices/LvmVg.h"
+#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
@@ -37,8 +40,11 @@ namespace storage
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), uuid()
+	: BlkDevice::Impl(node), lv_name(), uuid()
     {
+	if (!getChildValue(node, "lv-name", lv_name))
+	    ST_THROW(Exception("no lv-name"));
+
 	getChildValue(node, "uuid", uuid);
     }
 
@@ -48,7 +54,26 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
+	setChildValue(node, "lv-name", lv_name);
 	setChildValue(node, "uuid", uuid);
+    }
+
+
+    void
+    LvmLv::Impl::set_lv_name(const string& lv_name)
+    {
+	Impl::lv_name = lv_name;
+
+	// TODO call set_name()
+    }
+
+
+    const LvmVg*
+    LvmLv::Impl::get_lvm_vg() const
+    {
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
+
+	return to_lvm_vg(get_devicegraph()->get_impl()[vertex]);
     }
 
 
@@ -60,7 +85,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return uuid == rhs.uuid;
+	return lv_name == rhs.lv_name && uuid == rhs.uuid;
     }
 
 
@@ -71,6 +96,7 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
+	storage::log_diff(log, "lv-name", lv_name, rhs.lv_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
@@ -99,8 +125,11 @@ namespace storage
     Text
     LvmLv::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create logical volume %1$s (%2$s)"), get_displayname().c_str(),
-		       get_size_string().c_str());
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	return sformat(_("Create logical volume %1$s (%2$s) on volume group %3$s"),
+		       get_displayname().c_str(), get_size_string().c_str(),
+		       lvm_vg->get_displayname().c_str());
     }
 
 
@@ -137,6 +166,20 @@ namespace storage
 	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
 	}
 
+    }
+
+
+    string
+    LvmLv::Impl::make_name(const string& vg_name, const string& lv_name)
+    {
+	return DEVDIR "/" + vg_name + "/" + lv_name;
+    }
+
+
+    bool
+    compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs)
+    {
+	return lhs->get_lv_name() < rhs->get_lv_name();
     }
 
 }

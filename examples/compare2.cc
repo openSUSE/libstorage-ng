@@ -40,12 +40,11 @@ main()
     Partition* rhs_sda2 = Partition::create(rhs, "/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(rhs, rhs_gpt, rhs_sda2);
 
-    LvmVg* rhs_system = LvmVg::create(rhs, "/dev/system");
+    LvmVg* rhs_system = LvmVg::create(rhs, "system");
     User::create(rhs, rhs_sda1, rhs_system);
     User::create(rhs, rhs_sda2, rhs_system);
 
-    LvmLv* rhs_system_swap = LvmLv::create(rhs, "/dev/system/swap");
-    Subdevice::create(rhs, rhs_system, rhs_system_swap);
+    rhs_system->create_lvm_lv("swap");
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

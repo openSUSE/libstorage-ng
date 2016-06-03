@@ -20,9 +20,13 @@
  */
 
 
-#include "storage/Devices/LvmVgImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmPv.h"
+#include "storage/Devices/LvmLvImpl.h"
+#include "storage/Holders/Subdevice.h"
 
 
 namespace storage
@@ -37,8 +41,8 @@ namespace storage
     LvmVg::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), uuid()
     {
-	if (!getChildValue(node, "name", name))
-	    throw runtime_error("no name");
+	if (!getChildValue(node, "vg-name", vg_name))
+	    ST_THROW(Exception("no vg-name"));
 
 	getChildValue(node, "uuid", uuid);
     }
@@ -49,8 +53,63 @@ namespace storage
     {
 	Device::Impl::save(node);
 
-	setChildValue(node, "name", name);
+	setChildValue(node, "vg-name", vg_name);
 	setChildValue(node, "uuid", uuid);
+    }
+
+
+    void
+    LvmVg::Impl::set_vg_name(const string& vg_name)
+    {
+	Impl::vg_name = vg_name;
+
+	// TODO call set_name() for all lvm_lvs
+    }
+
+
+    vector<LvmPv*>
+    LvmVg::Impl::get_lvm_pvs()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	// TODO sorting
+
+	return devicegraph.filter_devices_of_type<LvmPv>(devicegraph.parents(vertex));
+    }
+
+
+    vector<const LvmPv*>
+    LvmVg::Impl::get_lvm_pvs() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	// TODO sorting
+
+	return devicegraph.filter_devices_of_type<const LvmPv>(devicegraph.parents(vertex));
+    }
+
+
+    vector<LvmLv*>
+    LvmVg::Impl::get_lvm_lvs()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
+    }
+
+
+    vector<const LvmLv*>
+    LvmVg::Impl::get_lvm_lvs() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
     }
 
 
@@ -62,7 +121,7 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return name == rhs.name && uuid == rhs.uuid;
+	return vg_name == rhs.vg_name && uuid == rhs.uuid;
     }
 
 
@@ -73,7 +132,7 @@ namespace storage
 
 	Device::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "name", name, rhs.name);
+	storage::log_diff(log, "vg-name", vg_name, rhs.vg_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
@@ -93,9 +152,9 @@ namespace storage
 
 
     bool
-    compare_by_name(const LvmVg* lhs, const LvmVg* rhs)
+    compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs)
     {
-	return lhs->get_name() < rhs->get_name();
+	return lhs->get_vg_name() < rhs->get_vg_name();
     }
 
 }

@@ -29,14 +29,12 @@ make_devicegraph()
     Partition* sda2 = Partition::create(&devicegraph, "/dev/sda2", Region(1000, 1000, 262144), PartitionType::PRIMARY);
     Subdevice::create(&devicegraph, sda, sda2);
 
-    LvmVg* system = LvmVg::create(&devicegraph, "/dev/system");
+    LvmVg* system = LvmVg::create(&devicegraph, "system");
     User::create(&devicegraph, sda1, system);
 
-    LvmLv* system_root = LvmLv::create(&devicegraph, "/dev/system/root");
-    Subdevice::create(&devicegraph, system, system_root);
+    system->create_lvm_lv("root");
 
-    LvmLv* system_swap = LvmLv::create(&devicegraph, "/dev/system/swap");
-    Subdevice::create(&devicegraph, system, system_swap);
+    LvmLv* system_swap = system->create_lvm_lv("swap");
 
     User::create(&devicegraph, system_swap, sda); // cycle
 
