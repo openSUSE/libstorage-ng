@@ -115,6 +115,20 @@ namespace storage
     }
 
 
+    bool
+    LvmPv::has_blk_device() const
+    {
+	return get_impl().has_blk_device();
+    }
+
+
+    BlkDevice*
+    LvmPv::get_blk_device()
+    {
+	return get_impl().get_blk_device();
+    }
+
+
     const BlkDevice*
     LvmPv::get_blk_device() const
     {

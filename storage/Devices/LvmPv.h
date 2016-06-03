@@ -47,6 +47,8 @@ namespace storage
 	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
 
+	bool has_blk_device() const;
+	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
     public:

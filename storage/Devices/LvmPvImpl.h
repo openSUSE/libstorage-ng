@@ -57,6 +57,8 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
+	bool has_blk_device() const;
+	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;

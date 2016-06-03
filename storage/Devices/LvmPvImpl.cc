@@ -53,6 +53,20 @@ namespace storage
     }
 
 
+    bool
+    LvmPv::Impl::has_blk_device() const
+    {
+	return has_single_parent_of_type<const BlkDevice>();
+    }
+
+
+    BlkDevice*
+    LvmPv::Impl::get_blk_device()
+    {
+	return get_single_parent_of_type<BlkDevice>();
+    }
+
+
     const BlkDevice*
     LvmPv::Impl::get_blk_device() const
     {
