@@ -81,6 +81,9 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     BOOST_CHECK_EQUAL(slots[0].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
+    BOOST_CHECK(slots[0].is_possible(PartitionType::PRIMARY));
+    BOOST_CHECK(!slots[0].is_possible(PartitionType::EXTENDED));
+    BOOST_CHECK(!slots[0].is_possible(PartitionType::LOGICAL));
 
     BOOST_CHECK_EQUAL(slots[1].region.get_start(), 30 * 2048);
     BOOST_CHECK_EQUAL(slots[1].region.get_length(), 1000000 - 30 * 2048);
@@ -92,6 +95,9 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[1].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[1].logical_possible, false);
+    BOOST_CHECK(slots[1].is_possible(PartitionType::PRIMARY));
+    BOOST_CHECK(!slots[1].is_possible(PartitionType::EXTENDED));
+    BOOST_CHECK(!slots[1].is_possible(PartitionType::LOGICAL));
 
     BOOST_CHECK_EQUAL(slots[2].region.get_start(), 21 * 2048);
     BOOST_CHECK_EQUAL(slots[2].region.get_length(), 9 * 2048);
@@ -103,6 +109,9 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
     BOOST_CHECK_EQUAL(slots[2].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[2].logical_slot, true);
     BOOST_CHECK_EQUAL(slots[2].logical_possible, true);
+    BOOST_CHECK(!slots[2].is_possible(PartitionType::PRIMARY));
+    BOOST_CHECK(!slots[2].is_possible(PartitionType::EXTENDED));
+    BOOST_CHECK(slots[2].is_possible(PartitionType::LOGICAL));
 }
 
 
