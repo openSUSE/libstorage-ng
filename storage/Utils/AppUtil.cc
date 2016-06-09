@@ -282,15 +282,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
     }
 
 
-    list<string> normalizeDevices(const list<string>& devs)
-    {
-	list<string> ret;
-	for (list<string>::const_iterator it = devs.begin(); it != devs.end(); ++it)
-	    ret.push_back(normalizeDevice(*it));
-	return ret;
-    }
-
-
 bool isNfsDev( const string& dev )
     {
     return( !dev.empty() && dev[0]!='/' &&

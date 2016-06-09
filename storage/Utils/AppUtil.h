@@ -77,7 +77,6 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string udevDecode(const string&);
 
     string normalizeDevice(const string& dev);
-    list<string> normalizeDevices(const list<string>& devs);
     string undevDevice(const string& dev);
 
 bool isNfsDev( const string& dev );

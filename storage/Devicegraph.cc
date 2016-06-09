@@ -43,6 +43,7 @@ namespace storage
     {
     }
 
+
     DeviceNotFoundByUuid::DeviceNotFoundByUuid(const string& uuid)
 	: DeviceNotFound(sformat("device not found, uuid:%s", uuid.c_str()))
     {
