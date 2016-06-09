@@ -1,6 +1,30 @@
+/*
+ * Copyright (c) 2016 SUSE LLC
+ *
+ * All Rights Reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of version 2 of the GNU General Public License as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, contact Novell, Inc.
+ *
+ * To contact Novell about this file by physical or electronic mail, you may
+ * find current contact information at www.novell.com.
+ */
 
 
+#include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/EncryptionImpl.h"
+#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
@@ -20,8 +44,10 @@ namespace storage
 
 
     Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node)
+	: BlkDevice::Impl(node), dm_name()
     {
+	if (!getChildValue(node, "dm-name", dm_name))
+	    ST_THROW(Exception("no dm-name"));
     }
 
 
@@ -29,6 +55,38 @@ namespace storage
     Encryption::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	setChildValue(node, "dm-name", dm_name);
+    }
+
+
+    const BlkDevice*
+    Encryption::Impl::get_blk_device() const
+    {
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
+
+	return to_blk_device(get_devicegraph()->get_impl()[vertex]);
+    }
+
+
+    void
+    Encryption::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	BlkDevice::Impl::probe_pass_2(probed, systeminfo);
+
+	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
+
+	CmdDmsetupTable::Entry entry;
+	if (!cmd_dmsetup_table.getEntry(dm_name, entry))
+	    ST_THROW(Exception("dmsetup table not found"));
+
+	if (entry.majorminors.size() != 1)
+	    ST_THROW(Exception("crypt with several dm-tables"));
+
+	BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed,
+	  make_dev_block_name(entry.majorminors.front()), systeminfo);
+
+	User::create(probed, blk_device, get_device());
     }
 
 
@@ -52,7 +110,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return true;
+	return dm_name == rhs.dm_name;
     }
 
 
@@ -62,6 +120,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "dm-name", dm_name, rhs.dm_name);
     }
 
 
@@ -69,6 +129,8 @@ namespace storage
     Encryption::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	out << " dm-name:" << dm_name;
     }
 
 
@@ -102,6 +164,13 @@ namespace storage
 	    // TODO
 	}
 
+    }
+
+
+    bool
+    compare_by_dm_name(const Encryption* lhs, const Encryption* rhs)
+    {
+	return lhs->get_dm_name() < rhs->get_dm_name();
     }
 
 }

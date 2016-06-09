@@ -70,6 +70,8 @@ namespace storage
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,
 					     SystemInfo& systeminfo);
 
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+
 	virtual ResizeInfo detect_resize_info() const;
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
@@ -93,8 +95,6 @@ namespace storage
 	Impl(const string& name, const Region& region);
 
 	Impl(const xmlNode* node);
-
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	void save(xmlNode* node) const override;
 

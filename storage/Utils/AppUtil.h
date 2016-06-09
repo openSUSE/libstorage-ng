@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,6 +53,8 @@ bool checkDir(const string& Path_Cv);
 void checkBinPaths(const Arch& arch, bool instsys);
 bool getStatMode(const string& Path_Cv, mode_t& val );
 bool setStatMode(const string& Path_Cv, mode_t val );
+
+    string make_dev_block_name(dev_t majorminor);
 
     vector<string> glob(const string& path, int flags);
 

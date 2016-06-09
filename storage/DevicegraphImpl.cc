@@ -23,6 +23,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
+#include "storage/Devices/Luks.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Ntfs.h"
 #include "storage/Devices/Vfat.h"
@@ -446,6 +447,7 @@ namespace storage
 	{ "LvmVg", &LvmVg::load },
 	{ "LvmLv", &LvmLv::load },
 	{ "Encryption", &Encryption::load },
+	{ "Luks", &Luks::load },
 	{ "Ext4", &Ext4::load },
 	{ "Ntfs", &Ntfs::load },
 	{ "Vfat", &Vfat::load },

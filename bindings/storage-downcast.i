@@ -10,13 +10,15 @@
 // TODO don't repeat list of types, maybe possible with %define.
 
 %factory(storage::Device* storage::downcast, storage::Disk, storage::Md, storage::Partition,
-	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Msdos,
-	 storage::Btrfs, storage::Ext4, storage::Ntfs, storage::Swap, storage::Vfat, storage::Xfs);
+	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Encryption,
+	 storage::Luks, storage::Msdos, storage::Btrfs, storage::Ext4, storage::Ntfs,
+	 storage::Swap, storage::Vfat, storage::Xfs);
 
 %factory(const storage::Device* storage::downcast, const storage::Disk, const storage::Md,
 	 const storage::Partition, const storage::Gpt, const storage::LvmPv, const storage::LvmVg,
-	 const storage::LvmLv, const storage::Msdos, const storage::Btrfs, const storage::Ext4,
-	 const storage::Ntfs, const storage::Swap, const storage::Vfat, const storage::Xfs);
+	 const storage::LvmLv, const storage::Encryption, const storage::Luks, const storage::Msdos,
+	 const storage::Btrfs, const storage::Ext4, const storage::Ntfs, const storage::Swap,
+	 const storage::Vfat, const storage::Xfs);
 
 %inline %{
 

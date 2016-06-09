@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,6 +105,14 @@ checkNormalFile(const string& Path_Cv)
   return (stat(Path_Cv.c_str(), &Stat_ri) >= 0 &&
 	  S_ISREG(Stat_ri.st_mode));
 }
+
+
+    string
+    make_dev_block_name(dev_t majorminor)
+    {
+	return sformat(DEVDIR "/block/%d:%d", gnu_dev_major(majorminor),
+		       gnu_dev_minor(majorminor));
+    }
 
 
     vector<string>
