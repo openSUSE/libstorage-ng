@@ -161,7 +161,7 @@ namespace storage
 
 	for (const ProcMdstat::Device& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::find_by_name(probed, device.name);
+	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, device.name, systeminfo);
 	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
 	    md_user->set_spare(device.spare);
 	    md_user->set_faulty(device.faulty);

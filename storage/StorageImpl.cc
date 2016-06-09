@@ -153,13 +153,8 @@ namespace storage
 	    if (blk_device->num_children() != 0)
 		continue;
 
-	    // TODO
-	    string name = blk_device->get_name();
-	    if (is_lvm_lv(blk_device))
-		name = "/dev/mapper/system-" + to_lvm_lv(blk_device)->get_lv_name();
-
 	    Blkid::Entry entry;
-	    if (systeminfo.getBlkid().getEntry(blk_device->get_name(), entry))
+	    if (systeminfo.getBlkid().find_by_name(blk_device->get_name(), entry, systeminfo))
 	    {
 		if (entry.is_fs)
 		{

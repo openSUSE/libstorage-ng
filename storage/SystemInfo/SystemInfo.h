@@ -81,7 +81,6 @@ namespace storage
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
 	const CmdVgdisplay& getCmdVgdisplay(const string& name) { return vgdisplays.get(name); }
-	const MajorMinor& getMajorMinor(const string& device) { return majorminors.get(device); }
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
 
     private:
@@ -171,7 +170,6 @@ namespace storage
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;
 	LazyObjects<CmdVgdisplay> vgdisplays;
-	LazyObjects<MajorMinor> majorminors;
 	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
 
     };

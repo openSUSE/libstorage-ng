@@ -38,7 +38,7 @@ namespace storage
 	: Device::Impl(node), name(), region(0, 0, 512)
     {
 	if (!getChildValue(node, "name", name))
-	    throw runtime_error("no name");
+	    ST_THROW(Exception("no name"));
 
 	getChildValue(node, "sysfs-name", sysfs_name);
 	getChildValue(node, "sysfs-path", sysfs_path);
@@ -143,6 +143,68 @@ namespace storage
 	ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
 
 	return resize_info;
+    }
+
+
+    BlkDevice*
+    BlkDevice::Impl::find_by_name(Devicegraph* devicegraph, const string& name,
+				  SystemInfo& systeminfo)
+    {
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return blk_device;
+	    }
+	}
+
+	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    return blk_device;
+	    }
+	}
+
+	ST_THROW(DeviceNotFoundByName(name));
+	__builtin_unreachable();
+    }
+
+
+    const BlkDevice*
+    BlkDevice::Impl::find_by_name(const Devicegraph* devicegraph, const string& name,
+				  SystemInfo& systeminfo)
+    {
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return blk_device;
+	    }
+	}
+
+	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    return blk_device;
+	    }
+	}
+
+	ST_THROW(DeviceNotFoundByName(name));
+	__builtin_unreachable();
     }
 
 

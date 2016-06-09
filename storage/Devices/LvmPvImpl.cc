@@ -80,7 +80,7 @@ namespace storage
 	const CmdPvs& cmd_pvs = systeminfo.getCmdPvs();
 	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
-	const BlkDevice* blk_device = BlkDevice::find_by_name(probed, pv.pv_name);
+	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
 	User::create(probed, blk_device, get_device());
     }
 

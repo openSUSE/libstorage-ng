@@ -26,6 +26,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/SystemInfo/CmdBlkid.h"
 #include "storage/Devices/FilesystemImpl.h"
 
@@ -145,6 +146,31 @@ namespace storage
 
 	entry = i->second;
 	return true;
+    }
+
+
+    bool
+    Blkid::find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const
+    {
+	const_iterator it = data.find(device);
+	if (it != data.end())
+	{
+	    entry = it->second;
+	    return true;
+	}
+
+	dev_t majorminor = systeminfo.getCmdUdevadmInfo(device).get_majorminor();
+
+	for (const value_type& value : data)
+	{
+	    if (systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor)
+	    {
+		entry = value.second;
+		return true;
+	    }
+	}
+
+	return false;
     }
 
 
