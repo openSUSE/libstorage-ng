@@ -2,6 +2,7 @@
 test-blkid
 test-cmdbtrfsshow
 test-cmddmsetupinfo
+test-cmddmsetuptable
 test-cmdlvs
 test-cmdpvs
 test-cmdudevadminfo

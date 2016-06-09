@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,7 +27,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 #include <map>
 
 
@@ -34,7 +34,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
     using std::map;
 
 
@@ -47,22 +46,23 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : mjr(0), mnr(0), segments(0), uuid() {}
+	    Entry() : mjr(0), mnr(0), segments(0), subsystem(), uuid() {}
 
 	    unsigned long mjr;
 	    unsigned long mnr;
 	    unsigned segments;
+	    string subsystem;
 	    string uuid;
 	};
 
 	bool getEntry(const string& name, Entry& entry) const;
 
-	list<string> getEntries() const;
+	vector<string> getEntries() const;
 
 	template<class Pred>
-	list<string> getMatchingEntries(Pred pred) const
+	vector<string> getMatchingEntries(Pred pred) const
 	{
-	    list<string> ret;
+	    vector<string> ret;
 	    for (const_iterator i = data.begin(); i != data.end(); ++i)
 		if (pred(i->first))
 		    ret.push_back(i->first);
@@ -75,7 +75,7 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo& cmddmsetupinfo);
+	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:
@@ -86,6 +86,41 @@ namespace storage
 
     };
 
+
+    class CmdDmsetupTable
+    {
+
+    public:
+
+	CmdDmsetupTable();
+
+	// TODO this will likely need to be extended to provide more table-data, e.g. the type
+
+	struct Entry
+	{
+	    Entry() : majorminors() {}
+
+	    vector<dev_t> majorminors;
+	};
+
+	bool getEntry(const string& name, Entry& entry) const;
+
+	typedef map<string, Entry>::value_type value_type;
+	typedef map<string, Entry>::const_iterator const_iterator;
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupTable& cmd_dmsetup_table);
+	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	map<string, Entry> data;
+
+    };
 }
 
 #endif

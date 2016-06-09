@@ -45,7 +45,7 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup);
 
-	EncryptionType encrypt_type;
+	EncryptionType encryption_type;
 
     private:
 

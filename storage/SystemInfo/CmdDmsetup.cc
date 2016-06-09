@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,6 +21,7 @@
  */
 
 
+#include "storage/Utils/Regex.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/CmdDmsetup.h"
 #include "storage/Utils/LoggerImpl.h"
@@ -34,7 +36,8 @@ namespace storage
 
     CmdDmsetupInfo::CmdDmsetupInfo()
     {
-	SystemCmd c(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,segments,uuid info");
+	SystemCmd c(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,"
+		    "segments,subsystem,uuid info");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -43,10 +46,10 @@ namespace storage
     void
     CmdDmsetupInfo::parse(const vector<string>& lines)
     {
-	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
+	for (const string& line : lines)
 	{
-	    list<string> sl = splitString(*it, "/");
-	    if (sl.size() >= 5)
+	    list<string> sl = splitString(line, "/");
+	    if (sl.size() >= 6)
 	    {
 		Entry entry;
 
@@ -55,6 +58,7 @@ namespace storage
 		*ci++ >> entry.mjr;
 		*ci++ >> entry.mnr;
 		*ci++ >> entry.segments;
+		*ci++ >> entry.subsystem;
 		entry.uuid = *ci++;
 
 		data[name] = entry;
@@ -77,29 +81,112 @@ namespace storage
     }
 
 
-    list<string>
+    vector<string>
     CmdDmsetupInfo::getEntries() const
     {
-	list<string> ret;
-	for (const_iterator i = data.begin(); i != data.end(); ++i)
-	    ret.push_back(i->first);
+	vector<string> ret;
+	for (const_iterator it = data.begin(); it != data.end(); ++it)
+	    ret.push_back(it->first);
 	return ret;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo& cmddmsetupinfo)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info)
     {
-	for (const CmdDmsetupInfo::value_type& it : cmddmsetupinfo)
+	for (const CmdDmsetupInfo::value_type& it : cmd_dmsetup_info)
 	    s << "data[" << it.first << "] -> " << it.second << endl;
 
 	return s;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmsetupInfo::Entry& entry)
     {
 	s << "mjr:" << entry.mjr << " mnr:" << entry.mnr << " segments:" << entry.segments
-	  << " uuid:" << entry.uuid;
+	  << " subsystem:" << entry.subsystem << " uuid:" << entry.uuid;
+
+	return s;
+    }
+
+
+    CmdDmsetupTable::CmdDmsetupTable()
+    {
+	SystemCmd c(DMSETUPBIN " table");
+	if (c.retcode() == 0 && !c.stdout().empty())
+	    parse(c.stdout());
+    }
+
+
+    void
+    CmdDmsetupTable::parse(const vector<string>& lines)
+    {
+	static Regex devspec("^([0123456789]+):([0123456789]+)$");
+
+	for (const string& line : lines)
+	{
+	    string::size_type pos = line.find(": ");
+	    if (pos == string::npos)
+		ST_THROW(Exception("failed to parse dmsetup table output"));
+
+	    string name = line.substr(0, pos);
+
+	    Entry& entry = data[name];
+
+	    list<string> params = splitString(line.substr(pos));
+	    for (const string& param : params)
+	    {
+		if (devspec.match(param))
+		{
+		    unsigned int major, minor;
+
+		    devspec.cap(1) >> major;
+		    devspec.cap(2) >> minor;
+
+		    dev_t majorminor = makedev(major, minor);
+		    entry.majorminors.push_back(majorminor);
+		}
+	    }
+	}
+
+	y2mil(*this);
+    }
+
+
+    bool
+    CmdDmsetupTable::getEntry(const string& name, Entry& entry) const
+    {
+	const_iterator it = data.find(name);
+	if (it == data.end())
+	    return false;
+
+	entry = it->second;
+	return true;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmsetupTable& cmd_dmsetup_table)
+    {
+	for (const CmdDmsetupTable::value_type& it : cmd_dmsetup_table)
+	    s << "data[" << it.first << "] -> " << it.second << endl;
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmsetupTable::Entry& entry)
+    {
+	s << "majorminors:<";
+	for (vector<dev_t>::const_iterator it = entry.majorminors.begin(); it != entry.majorminors.end(); ++it)
+	{
+	    if (it != entry.majorminors.begin())
+		s << " ";
+	    s << gnu_dev_major(*it) << ":" << gnu_dev_minor(*it);
+	}
+	s << ">";
 
 	return s;
     }
