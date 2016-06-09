@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,40 +20,54 @@
  */
 
 
-#ifndef STORAGE_CMD_CRYPTSETUP_H
-#define STORAGE_CMD_CRYPTSETUP_H
+#ifndef STORAGE_LUKS_H
+#define STORAGE_LUKS_H
 
-
-#include <string>
-#include <vector>
 
 #include "storage/Devices/Encryption.h"
 
 
 namespace storage
 {
-    using std::string;
-    using std::vector;
 
-
-    class CmdCryptsetup
+    //! An luks encryption layer on a block device
+    class Luks : public Encryption
     {
+    public:
+
+	static Luks* create(Devicegraph* devicegraph, const std::string& dm_name);
+	static Luks* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	/**
+	 * Sorted by dm-name.
+	 */
+	static std::vector<Luks*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
+	static std::vector<const Luks*> get_all(const Devicegraph* devicegraph);
 
     public:
 
-	CmdCryptsetup(const string& name);
+	class Impl;
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup);
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	EncryptionType encryption_type;
+	virtual Luks* clone() const override;
 
-    private:
+    protected:
 
-	void parse(const vector<string>& lines);
-
-	string name;
+	Luks(Impl* impl);
 
     };
+
+
+    bool is_luks(const Device* device);
+
+    Luks* to_luks(Device* device);
+    const Luks* to_luks(const Device* device);
 
 }
 

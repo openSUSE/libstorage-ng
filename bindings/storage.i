@@ -34,6 +34,8 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
+#include "storage/Devices/Encryption.h"
+#include "storage/Devices/Luks.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Ntfs.h"
 #include "storage/Devices/Vfat.h"
@@ -81,6 +83,8 @@
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
+%include "../../storage/Devices/Encryption.h"
+%include "../../storage/Devices/Luks.h"
 %include "../../storage/Devices/Ext4.h"
 %include "../../storage/Devices/Ntfs.h"
 %include "../../storage/Devices/Vfat.h"
@@ -143,6 +147,12 @@ using namespace storage;
 
 %template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
+
+%template(VectorEncryptionPtr) std::vector<Encryption*>;
+%template(VectorConstEncryptionPtr) std::vector<const Encryption*>;
+
+%template(VectorLuksPtr) std::vector<Luks*>;
+%template(VectorConstLuksPtr) std::vector<const Luks*>;
 
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;

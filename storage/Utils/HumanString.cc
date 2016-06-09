@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,10 +41,10 @@ namespace storage
     }
 
 
-    list<Text>
+    vector<Text>
     get_all_suffixes(int i, bool all = false, bool sloppy = false)
     {
-	list<Text> ret;
+	vector<Text> ret;
 
 	switch (i)
 	{
@@ -173,11 +174,11 @@ namespace storage
 
 	for (int i = 0; i < num_suffixes(); ++i)
 	{
-	    list<Text> suffix = get_all_suffixes(i, true, !classic);
+	    vector<Text> suffixes = get_all_suffixes(i, true, !classic);
 
-	    for (list<Text>::const_iterator j = suffix.begin(); j != suffix.end(); ++j)
+	    for (const Text& suffix : suffixes)
 	    {
-		const string& tmp = classic ? j->native : j->text;
+		const string& tmp = classic ? suffix.native : suffix.text;
 
 		if (boost::iends_with(str_trimmed, tmp, loc))
 		{

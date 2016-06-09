@@ -20,14 +20,15 @@
  */
 
 
-#ifndef STORAGE_ENCRYPTION_IMPL_H
-#define STORAGE_ENCRYPTION_IMPL_H
+#ifndef STORAGE_LUKS_IMPL_H
+#define STORAGE_LUKS_IMPL_H
 
 
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/Devices/Encryption.h"
-#include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/Luks.h"
+#include "storage/Devices/EncryptionImpl.h"
 #include "storage/Action.h"
 
 
@@ -37,34 +38,27 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Encryption> { static const char* classname; };
-
-    template <> struct EnumTraits<EncryptionType> { static const vector<string> names; };
+    template <> struct DeviceTraits<Luks> { static const char* classname; };
 
 
-    class Encryption::Impl : public BlkDevice::Impl
+    class Luks::Impl : public Encryption::Impl
     {
     public:
 
 	Impl(const string& dm_name)
-	    : BlkDevice::Impl(DEVDIR "/mapper/" + dm_name), dm_name(dm_name) {}
+	    : Encryption::Impl(dm_name), uuid() {}
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Encryption"; }
+	virtual const char* get_classname() const override { return "Luks"; }
 
-	virtual string get_displayname() const override { return dm_name; }
+	static vector<string> probe_luks(SystemInfo& systeminfo);
 
-	const string& get_dm_name() const { return dm_name; }
-	void set_dm_name(const string& dm_name) { Impl::dm_name = dm_name; }
-
-	const BlkDevice* get_blk_device() const;
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
-
-	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 
@@ -79,10 +73,7 @@ namespace storage
 
     private:
 
-	string dm_name;
-
-	// password
-	// mount-by for crypttab
+	string uuid;
 
     };
 
@@ -90,11 +81,11 @@ namespace storage
     namespace Action
     {
 
-	class OpenEncryption : public Modify
+	class OpenLuks : public Modify
 	{
 	public:
 
-	    OpenEncryption(sid_t sid) : Modify(sid) {}
+	    OpenLuks(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
@@ -103,8 +94,6 @@ namespace storage
 
     }
 
-
-    bool compare_by_dm_name(const Encryption* lhs, const Encryption* rhs);
 
 }
 

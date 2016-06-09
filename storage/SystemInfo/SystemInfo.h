@@ -72,8 +72,9 @@ namespace storage
 	const Lsscsi& getLsscsi() { return lsscsi.get(); }
 	const Parted& getParted(const string& device) { return parteds.get(device); }
 	const Dasdview& getDasdview(const string& device) { return dasdviews.get(device); }
-	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmddmsetupinfo.get(); }
-	const CmdCryptsetup& getCmdCryptsetup(const string& name) { return cmdcryptsetups.get(name); }
+	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
+	const CmdDmsetupTable& getCmdDmsetupTable() { return cmd_dmsetup_table.get(); }
+	const CmdCryptsetup& getCmdCryptsetup(const string& name) { return cmd_cryptsetups.get(name); }
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
 	const CmdBtrfsShow& getCmdBtrfsShow() { return cmdbtrfsshow.get(); }
@@ -161,8 +162,9 @@ namespace storage
 	LazyObject<Lsscsi> lsscsi;
 	LazyObjects<Parted> parteds;
 	LazyObjects<Dasdview> dasdviews;
-	LazyObject<CmdDmsetupInfo> cmddmsetupinfo;
-	LazyObjects<CmdCryptsetup> cmdcryptsetups;
+	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;
+	LazyObject<CmdDmsetupTable> cmd_dmsetup_table;
+	LazyObjects<CmdCryptsetup> cmd_cryptsetups;
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
 	LazyObject<CmdBtrfsShow> cmdbtrfsshow;

@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"name:cr_test encrypt_type:luks"
+	"name:cr_test encryption-type:luks"
     };
 
     check("cr_test", input, output);

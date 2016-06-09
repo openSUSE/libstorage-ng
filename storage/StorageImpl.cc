@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
+ *
+ * All Rights Reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of version 2 of the GNU General Public License as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, contact Novell, Inc.
+ *
+ * To contact Novell about this file by physical or electronic mail, you may
+ * find current contact information at www.novell.com.
+ */
 
 
 #include "config.h"
@@ -11,6 +32,7 @@
 #include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
+#include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -132,6 +154,17 @@ namespace storage
 	    }
 	}
 
+	if (systeminfo.getBlkid().any_luks())
+        {
+            // TODO check whether cryptsetup tools are installed
+
+            for (const string& dm_name : Luks::Impl::probe_luks(systeminfo))
+            {
+                Luks* luks = Luks::create(probed, dm_name);
+                luks->get_impl().probe_pass_1(probed, systeminfo);
+            }
+        }
+
 	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
 	// and md2).
@@ -145,6 +178,11 @@ namespace storage
 	{
 	    lvm_pv->get_impl().probe_pass_2(probed, systeminfo);
 	}
+
+        for (Luks* luks : Luks::get_all(probed))
+        {
+            luks->get_impl().probe_pass_2(probed, systeminfo);
+        }
 
 	// Pass 3: Detect filesystems.
 

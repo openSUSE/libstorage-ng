@@ -33,7 +33,7 @@ namespace storage
 
 
     CmdCryptsetup::CmdCryptsetup(const string& name)
-	: encrypt_type(EncryptionType::UNKNOWN), name(name)
+	: encryption_type(EncryptionType::UNKNOWN), name(name)
     {
 	SystemCmd c(CRYPTSETUPBIN " status " + quote(name));
 	if (c.retcode() == 0 && !c.stdout().empty())
@@ -57,26 +57,27 @@ namespace storage
 	}
 
 	if (type == "LUKS1")
-	    encrypt_type = EncryptionType::LUKS;
+	    encryption_type = EncryptionType::LUKS;
 	else if (cipher == "twofish-cbc-plain")
-	    encrypt_type = EncryptionType::TWOFISH;
+	    encryption_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
-	    encrypt_type = EncryptionType::TWOFISH_OLD;
+	    encryption_type = EncryptionType::TWOFISH_OLD;
 	else if (cipher == "twofish-cbc-null" && keysize == "256")
-	    encrypt_type = EncryptionType::TWOFISH256_OLD;
+	    encryption_type = EncryptionType::TWOFISH256_OLD;
 	else
 	{
-	    encrypt_type = EncryptionType::UNKNOWN;
-	    y2err("unknown encryption-type:" << type << " cipher:" << cipher << " keysize:" <<
+	    encryption_type = EncryptionType::UNKNOWN;
+	    y2err("unknown encryption type:" << type << " cipher:" << cipher << " keysize:" <<
 		  keysize);
 	}
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup)
     {
-	s << "name:" << cmdcryptsetup.name << " encrypt_type:"
-	  << toString(cmdcryptsetup.encrypt_type);
+	s << "name:" << cmdcryptsetup.name << " encryption-type:"
+	  << toString(cmdcryptsetup.encryption_type);
 
 	return s;
     }

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +31,7 @@
 #include <sstream>
 #include <locale>
 #include <string>
+#include <vector>
 #include <list>
 #include <map>
 #include <chrono>
@@ -38,6 +40,7 @@
 namespace storage
 {
     using std::string;
+    using std::vector;
     using std::list;
     using std::map;
 
@@ -51,7 +54,9 @@ void checkBinPaths(const Arch& arch, bool instsys);
 bool getStatMode(const string& Path_Cv, mode_t& val );
 bool setStatMode(const string& Path_Cv, mode_t val );
 
-    list<string> glob(const string& path, int flags);
+    string make_dev_block_name(dev_t majorminor);
+
+    vector<string> glob(const string& path, int flags);
 
     struct StatVfs
     {
@@ -77,7 +82,6 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string udevDecode(const string&);
 
     string normalizeDevice(const string& dev);
-    list<string> normalizeDevices(const list<string>& devs);
     string undevDevice(const string& dev);
 
 bool isNfsDev( const string& dev );

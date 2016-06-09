@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,10 +107,18 @@ checkNormalFile(const string& Path_Cv)
 }
 
 
-    list<string>
+    string
+    make_dev_block_name(dev_t majorminor)
+    {
+	return sformat(DEVDIR "/block/%d:%d", gnu_dev_major(majorminor),
+		       gnu_dev_minor(majorminor));
+    }
+
+
+    vector<string>
     glob(const string& path, int flags)
     {
-	list<string> ret;
+	vector<string> ret;
 
 	glob_t globbuf;
 	if (glob(path.c_str(), flags, 0, &globbuf) == 0)
@@ -279,15 +288,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 	if (!boost::starts_with(dev, "/dev/") && !isNfsDev(dev))
 	    return "/dev/" + dev;
 	return dev;
-    }
-
-
-    list<string> normalizeDevices(const list<string>& devs)
-    {
-	list<string> ret;
-	for (list<string>::const_iterator it = devs.begin(); it != devs.end(); ++it)
-	    ret.push_back(normalizeDevice(*it));
-	return ret;
     }
 
 
