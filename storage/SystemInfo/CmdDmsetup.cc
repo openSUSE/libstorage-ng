@@ -85,8 +85,8 @@ namespace storage
     CmdDmsetupInfo::getEntries() const
     {
 	vector<string> ret;
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
-	    ret.push_back(it->first);
+	for (const value_type& value : data)
+	    ret.push_back(value.first);
 	return ret;
     }
 
