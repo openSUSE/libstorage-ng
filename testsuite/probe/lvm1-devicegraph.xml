@@ -12,10 +12,10 @@
         <block-size>512</block-size>
       </region>
       <udev-path>pci-0000:00:1f.2-ata-1</udev-path>
-      <udev-id>ata-VBOX_HARDDISK_VB09d89637-d9690549</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549</udev-id>
+      <udev-id>ata-VBOX_HARDDISK_VBb49c5b26-db7a99ae</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae</udev-id>
       <topology/>
       <range>256</range>
       <rotational>true</rotational>
@@ -35,11 +35,11 @@
         <block-size>512</block-size>
       </region>
       <udev-path>pci-0000:00:1f.2-ata-1-part1</udev-path>
-      <udev-id>ata-VBOX_HARDDISK_VB09d89637-d9690549-part1</udev-id>
-      <udev-id>lvm-pv-uuid-6tSgS5-YrmC-YI40-obs7-9VOp-WSwv-HU5z4f</udev-id>
-      <udev-id>scsi-0ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</udev-id>
-      <udev-id>scsi-1ATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</udev-id>
-      <udev-id>scsi-SATA_VBOX_HARDDISK_VB09d89637-d9690549-part1</udev-id>
+      <udev-id>ata-VBOX_HARDDISK_VBb49c5b26-db7a99ae-part1</udev-id>
+      <udev-id>lvm-pv-uuid-h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU</udev-id>
+      <udev-id>scsi-0ATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae-part1</udev-id>
+      <udev-id>scsi-1ATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae-part1</udev-id>
+      <udev-id>scsi-SATA_VBOX_HARDDISK_VBb49c5b26-db7a99ae-part1</udev-id>
       <type>primary</type>
       <id>142</id>
       <boot>true</boot>
@@ -47,11 +47,11 @@
     <LvmVg>
       <sid>45</sid>
       <vg-name>system</vg-name>
-      <uuid>cXxl16-Cy3b-jlK6-iUiJ-muwV-1SXC-GGB9Ok</uuid>
+      <uuid>2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL</uuid>
     </LvmVg>
     <LvmPv>
       <sid>46</sid>
-      <uuid>6tSgS5-YrmC-YI40-obs7-9VOp-WSwv-HU5z4f</uuid>
+      <uuid>h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU</uuid>
     </LvmPv>
     <LvmLv>
       <sid>47</sid>
@@ -61,7 +61,7 @@
         <block-size>512</block-size>
       </region>
       <lv-name>home</lv-name>
-      <uuid>q9YIDo-9UMU-B5hR-D2e6-qunS-KUqq-EesmxT</uuid>
+      <uuid>h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S</uuid>
     </LvmLv>
     <LvmLv>
       <sid>48</sid>
@@ -71,7 +71,7 @@
         <block-size>512</block-size>
       </region>
       <lv-name>root</lv-name>
-      <uuid>JoLZxg-JMOB-CcT8-fB7b-uEzq-HX9d-3ry80O</uuid>
+      <uuid>Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5</uuid>
     </LvmLv>
     <LvmLv>
       <sid>49</sid>
@@ -81,8 +81,20 @@
         <block-size>512</block-size>
       </region>
       <lv-name>swap</lv-name>
-      <uuid>eygG73-LEgX-aP8E-p8ys-gqnp-BYPd-YkVi1R</uuid>
+      <uuid>wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y</uuid>
     </LvmLv>
+    <Xfs>
+      <sid>50</sid>
+      <fstab-options>defaults</fstab-options>
+    </Xfs>
+    <Ext4>
+      <sid>51</sid>
+      <fstab-options>acl,user_xattr</fstab-options>
+    </Ext4>
+    <Swap>
+      <sid>52</sid>
+      <fstab-options>defaults</fstab-options>
+    </Swap>
   </Devices>
   <Holders>
     <User>
@@ -112,6 +124,18 @@
     <User>
       <source-sid>44</source-sid>
       <target-sid>46</target-sid>
+    </User>
+    <User>
+      <source-sid>47</source-sid>
+      <target-sid>50</target-sid>
+    </User>
+    <User>
+      <source-sid>48</source-sid>
+      <target-sid>51</target-sid>
+    </User>
+    <User>
+      <source-sid>49</source-sid>
+      <target-sid>52</target-sid>
     </User>
   </Holders>
 </Devicegraph>

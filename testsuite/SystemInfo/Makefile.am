@@ -10,7 +10,7 @@ check_PROGRAMS =								\
 	blkid.test btrfs.test cryptsetup.test dasdview.test dir.test		\
 	dmraid.test								\
 	dmsetup-info.test lsscsi.test lvs.test					\
-	majorminor.test mdadm-detail.test mdadm-examine.test mdlinks.test	\
+	mdadm-detail.test mdadm-examine.test mdlinks.test			\
 	parted.test								\
 	proc-mdstat.test proc-mounts.test proc-parts.test pvs.test		\
 	udevadm-info.test vgdisplay.test vgs.test

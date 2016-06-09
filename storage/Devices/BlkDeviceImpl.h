@@ -54,6 +54,22 @@ namespace storage
 	Filesystem* get_filesystem();
 	const Filesystem* get_filesystem() const;
 
+	/**
+	 * This is a invasive version of BlkDevice::find_by_name(). If no
+	 * block device is found via the name a second search via the major
+	 * and minor number is done. This requires system lookups and is also
+	 * the reason the function needs an SystemInfo object and must be used
+	 * on the probed devicegraph.
+	 *
+	 * Should only be used for and during probing.
+	 *
+	 * TODO disallow on others devicegraphs
+	 */
+	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
+				       SystemInfo& systeminfo);
+	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,
+					     SystemInfo& systeminfo);
+
 	virtual ResizeInfo detect_resize_info() const;
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;

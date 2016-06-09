@@ -42,29 +42,6 @@ namespace storage
     using std::map;
 
 
-    class MajorMinor
-    {
-    public:
-
-	MajorMinor(const string& device);
-
-	friend std::ostream& operator<<(std::ostream& s, const MajorMinor& majorminor);
-
-	dev_t getMajorMinor() const { return majorminor; }
-	unsigned int getMajor() const { return gnu_dev_major(majorminor); }
-	unsigned int getMinor() const { return gnu_dev_minor(majorminor); }
-
-    private:
-
-	void parse(const vector<string>& lines);
-
-	string device;
-
-	dev_t majorminor;
-
-    };
-
-
     class Dir
     {
     public:
