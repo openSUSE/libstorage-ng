@@ -106,10 +106,10 @@ checkNormalFile(const string& Path_Cv)
 }
 
 
-    list<string>
+    vector<string>
     glob(const string& path, int flags)
     {
-	list<string> ret;
+	vector<string> ret;
 
 	glob_t globbuf;
 	if (glob(path.c_str(), flags, 0, &globbuf) == 0)

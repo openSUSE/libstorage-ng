@@ -314,7 +314,7 @@ namespace storage
 
 	unsigned num_homes = 0;
 
-	const list<string> dirs = glob(mountpoint + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
+	const vector<string> dirs = glob(mountpoint + "/*", GLOB_NOSORT | GLOB_ONLYDIR);
 	for (const string& dir : dirs)
 	{
 	    if (!boost::ends_with(dir, "/root") && checkDir(dir))

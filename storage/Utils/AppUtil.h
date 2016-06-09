@@ -30,6 +30,7 @@
 #include <sstream>
 #include <locale>
 #include <string>
+#include <vector>
 #include <list>
 #include <map>
 #include <chrono>
@@ -38,6 +39,7 @@
 namespace storage
 {
     using std::string;
+    using std::vector;
     using std::list;
     using std::map;
 
@@ -51,7 +53,7 @@ void checkBinPaths(const Arch& arch, bool instsys);
 bool getStatMode(const string& Path_Cv, mode_t& val );
 bool setStatMode(const string& Path_Cv, mode_t val );
 
-    list<string> glob(const string& path, int flags);
+    vector<string> glob(const string& path, int flags);
 
     struct StatVfs
     {
