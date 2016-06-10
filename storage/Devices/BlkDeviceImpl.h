@@ -61,6 +61,9 @@ namespace storage
 	 * the reason the function needs an SystemInfo object and must be used
 	 * on the probed devicegraph.
 	 *
+	 * Steffen suggested to use the sysfs name instead of major and minor
+	 * number for the second lookup.
+	 *
 	 * Should only be used for and during probing.
 	 *
 	 * TODO disallow on others devicegraphs
