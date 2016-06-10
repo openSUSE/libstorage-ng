@@ -5,18 +5,22 @@
 // In most cases the downcast is not required since polymorphism is handled in
 // C++. But if you e.g. extend the Device classes in Ruby it is required.
 
+// Order of classes is crucial: The first one wins so the most derived class
+// must be first, e.g. Luks before Encryption. Abstract classes should not be
+// listed.
+
 %include "factory.i"
 
 // TODO don't repeat list of types, maybe possible with %define.
 
 %factory(storage::Device* storage::downcast, storage::Disk, storage::Md, storage::Partition,
-	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Encryption,
-	 storage::Luks, storage::Msdos, storage::Btrfs, storage::Ext4, storage::Ntfs,
+	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Luks,
+	 storage::Encryption, storage::Msdos, storage::Btrfs, storage::Ext4, storage::Ntfs,
 	 storage::Swap, storage::Vfat, storage::Xfs);
 
 %factory(const storage::Device* storage::downcast, const storage::Disk, const storage::Md,
 	 const storage::Partition, const storage::Gpt, const storage::LvmPv, const storage::LvmVg,
-	 const storage::LvmLv, const storage::Encryption, const storage::Luks, const storage::Msdos,
+	 const storage::LvmLv, const storage::Luks, const storage::Encryption, const storage::Msdos,
 	 const storage::Btrfs, const storage::Ext4, const storage::Ntfs, const storage::Swap,
 	 const storage::Vfat, const storage::Xfs);
 

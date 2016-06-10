@@ -20,7 +20,8 @@
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::Logger;
 
-// order of includes is crucial
+// Order of includes is crucial:
+// 1. Devices and Holders in order of derivation.
 
 %{
 
@@ -34,8 +35,6 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Filesystem.h"
-#include "storage/Devices/Encryption.h"
-#include "storage/Devices/Luks.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Ntfs.h"
 #include "storage/Devices/Vfat.h"
@@ -53,6 +52,8 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Encryption.h"
+#include "storage/Devices/Luks.h"
 
 #include "storage/Holders/Holder.h"
 #include "storage/Holders/Subdevice.h"
@@ -83,8 +84,6 @@
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Devices/Filesystem.h"
-%include "../../storage/Devices/Encryption.h"
-%include "../../storage/Devices/Luks.h"
 %include "../../storage/Devices/Ext4.h"
 %include "../../storage/Devices/Ntfs.h"
 %include "../../storage/Devices/Vfat.h"
@@ -102,6 +101,8 @@
 %include "../../storage/Devices/LvmPv.h"
 %include "../../storage/Devices/LvmVg.h"
 %include "../../storage/Devices/LvmLv.h"
+%include "../../storage/Devices/Encryption.h"
+%include "../../storage/Devices/Luks.h"
 
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Holders/Subdevice.h"
