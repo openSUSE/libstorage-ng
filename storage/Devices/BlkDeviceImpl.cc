@@ -359,4 +359,12 @@ namespace storage
 	    ST_THROW(Exception("wipefs failed"));
     }
 
+
+    bool
+    BlkDevice::Impl::is_valid_name(const string& name)
+    {
+	return boost::starts_with(name, DEVDIR "/");
+    }
+
+
 }

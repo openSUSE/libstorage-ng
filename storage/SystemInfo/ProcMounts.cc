@@ -21,11 +21,10 @@
  */
 
 
-#include <boost/algorithm/string.hpp>
-
 #include "storage/Utils/AsciiFile.h"
-#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -102,14 +101,16 @@ namespace storage
     {
 	vector<string> ret;
 
+	// TODO: Lookup with major and minor number only for names of block
+	// devices (starting with '/dev/'). Parameter name will also be
+	// e.g. 'tmpfs' and nfs mounts.
+
 	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
 
 	for (const value_type& value : data)
 	{
-	    // Only look at block devices (starting with '/') in /proc/mounts.
-
 	    if (value.first == name ||
-		(boost::starts_with(value.first, "/") &&
+		(BlkDevice::Impl::is_valid_name(value.first) &&
 		 systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
 		ret.push_back(value.second.mount);
 	}
