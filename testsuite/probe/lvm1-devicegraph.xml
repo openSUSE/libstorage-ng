@@ -87,16 +87,19 @@
       <sid>50</sid>
       <fstab-options>defaults</fstab-options>
       <mountpoint>/home</mountpoint>
+      <uuid>5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7</uuid>
     </Xfs>
     <Ext4>
       <sid>51</sid>
       <fstab-options>acl,user_xattr</fstab-options>
       <mountpoint>/</mountpoint>
+      <uuid>7992b624-af87-446f-896a-b310acd6e082</uuid>
     </Ext4>
     <Swap>
       <sid>52</sid>
       <fstab-options>defaults</fstab-options>
       <mountpoint>swap</mountpoint>
+      <uuid>82afe683-54d7-406f-8c60-d3a32febbac7</uuid>
     </Swap>
   </Devices>
   <Holders>
