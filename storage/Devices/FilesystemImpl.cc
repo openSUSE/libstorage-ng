@@ -162,7 +162,7 @@ namespace storage
 
 	const Blkid& blkid = systeminfo.getBlkid();
 	Blkid::Entry entry;
-	if (blkid.getEntry(blk_device->get_name(), entry))
+	if (blkid.find_by_name(blk_device->get_name(), entry, systeminfo))
 	{
 	    label = entry.fs_label;
 	    uuid = entry.fs_uuid;

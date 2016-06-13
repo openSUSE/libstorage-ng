@@ -70,8 +70,6 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	bool getEntry(const string& device, Entry& entry) const;
-
 	bool find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const;
 
 	bool any_md() const;
