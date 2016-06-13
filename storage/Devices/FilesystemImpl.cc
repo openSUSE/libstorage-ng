@@ -169,8 +169,7 @@ namespace storage
 	}
 
 	const ProcMounts& proc_mounts = systeminfo.getProcMounts();
-	string mountpoint = proc_mounts.getMount(blk_device->get_name());
-	if (!mountpoint.empty())
+	for (const string& mountpoint : proc_mounts.find_by_name(blk_device->get_name(), systeminfo))
 	    mountpoints.push_back(mountpoint);
 
 	fstab.setDevice(blk_device->get_name(), {}, uuid, label, blk_device->get_udev_ids(),
