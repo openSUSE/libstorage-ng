@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,18 +26,20 @@
 
 
 #include <string>
-#include <list>
+#include <vector>
 #include <map>
 
 #include "storage/EtcFstab.h"
 
+
 namespace storage
 {
-    using std::list;
-    using std::map;
+    using std::string;
+    using std::vector;
     using std::multimap;
 
-    class SystemCmd;
+    class SystemInfo;
+
 
     class ProcMounts
     {
@@ -44,15 +47,7 @@ namespace storage
 
 	ProcMounts();
 
-	string getMount(const string& device) const;
-	string getMount(const list<string>& devices) const;
-
-	list<string> getAllMounts(const string& device) const;
-	list<string> getAllMounts(const list<string>& devices) const;
-
-	map<string, string> allMounts() const;
-
-	list<FstabEntry> getEntries() const;
+	vector<string> find_by_name(const string& name, SystemInfo& systeminfo) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 
@@ -61,6 +56,7 @@ namespace storage
 	void parse(const vector<string>& mount_lines, const vector<string>& swap_lines);
 
 	typedef multimap<string, FstabEntry>::const_iterator const_iterator;
+	typedef multimap<string, FstabEntry>::value_type value_type;
 
 	multimap<string, FstabEntry> data;
 

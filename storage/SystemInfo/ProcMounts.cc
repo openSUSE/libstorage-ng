@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,9 +21,10 @@
  */
 
 
-#include "storage/Utils/AppUtil.h"
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/AsciiFile.h"
-#include "storage/SystemInfo/ProcMounts.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
 
 
@@ -85,7 +87,8 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts)
+    std::ostream&
+    operator<<(std::ostream& s, const ProcMounts& procmounts)
     {
 	for (ProcMounts::const_iterator it = procmounts.data.begin(); it != procmounts.data.end(); ++it)
 	    s << "data[" << it->first << "] -> " << it->second << endl;
@@ -94,75 +97,22 @@ namespace storage
     }
 
 
-    string
-    ProcMounts::getMount(const string& device) const
+    vector<string>
+    ProcMounts::find_by_name(const string& name, SystemInfo& systeminfo) const
     {
-	string ret;
-	const_iterator i = data.find(device);
-	if (i != data.end())
-	    ret = i->second.mount;
-	return ret;
-    }
+	vector<string> ret;
 
+	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
 
-    string
-    ProcMounts::getMount(const list<string>& devices) const
-    {
-	string ret;
-	list<string>::const_iterator i = devices.begin();
-	while (ret.empty() && i != devices.end())
+	for (const value_type& value : data)
 	{
-	    ret = getMount( *i );
-	    ++i;
+	    // Only look at block devices (starting with '/') in /proc/mounts.
+
+	    if (value.first == name ||
+		(boost::starts_with(value.first, "/") &&
+		 systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
+		ret.push_back(value.second.mount);
 	}
-	return ret;
-    }
-
-
-    list<string>
-    ProcMounts::getAllMounts(const string& device) const
-    {
-	list<string> ret;
-
-	pair<const_iterator, const_iterator> range = data.equal_range(device);
-	for (const_iterator i = range.first; i != range.second; ++i)
-	    ret.push_back(i->second.mount);
-
-	return ret;
-    }
-
-
-    list<string>
-    ProcMounts::getAllMounts(const list<string>& devices) const
-    {
-	list<string> ret;
-
-	for (list<string>::const_iterator i = devices.begin(); i != devices.end(); ++i)
-	    ret.splice(ret.end(), getAllMounts(*i));
-
-	return ret;
-    }
-
-
-    map<string, string>
-    ProcMounts::allMounts() const
-    {
-	map<string, string> ret;
-
-	for (const_iterator i = data.begin(); i != data.end(); ++i)
-	    ret[i->second.mount] = i->first;
-
-	return ret;
-    }
-
-
-    list<FstabEntry>
-    ProcMounts::getEntries() const
-    {
-	list<FstabEntry> ret;
-
-	for (const_iterator i = data.begin(); i != data.end(); ++i)
-	    ret.push_back(i->second);
 
 	return ret;
     }
