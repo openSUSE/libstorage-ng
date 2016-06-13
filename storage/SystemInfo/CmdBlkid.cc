@@ -138,18 +138,6 @@ namespace storage
 
 
     bool
-    Blkid::getEntry(const string& device, Entry& entry) const
-    {
-	const_iterator i = data.find(device);
-	if (i == data.end())
-	    return false;
-
-	entry = i->second;
-	return true;
-    }
-
-
-    bool
     Blkid::find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const
     {
 	const_iterator it = data.find(device);
