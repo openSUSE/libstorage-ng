@@ -90,6 +90,8 @@ namespace storage
 	void wait_for_device() const;
 	void wipe_device() const;
 
+	static bool is_valid_name(const string& name);
+
     protected:
 
 	// TODO remove this contructor so always require a region?
