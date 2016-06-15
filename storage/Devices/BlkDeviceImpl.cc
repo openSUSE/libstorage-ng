@@ -29,8 +29,8 @@ namespace storage
     BlkDevice::Impl::Impl(const string& name, const Region& region)
 	: Device::Impl(), name(name), region(region)
     {
-	if (!boost::starts_with(name, DEVDIR "/"))
-	    ST_THROW(Exception("invalid blkdevice name"));
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid BlkDevice name"));
     }
 
 

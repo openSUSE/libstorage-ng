@@ -157,8 +157,10 @@ namespace storage
     void
     BlkDevice::check() const
     {
-	if (get_name().empty())
-	    cerr << "blk device has no name" << endl;
+	Device::check();
+
+	if (!BlkDevice::Impl::is_valid_name(get_name()))
+	    cerr << "BlkDevice has invalid name" << endl;
     }
 
 
