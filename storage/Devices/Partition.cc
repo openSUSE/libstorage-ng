@@ -118,6 +118,13 @@ namespace storage
     }
 
 
+    const Partitionable*
+    Partition::get_partitionable() const
+    {
+	return get_impl().get_partitionable();
+    }
+
+
     Partition*
     Partition::find_by_name(Devicegraph* devicegraph, const string& name)
     {
