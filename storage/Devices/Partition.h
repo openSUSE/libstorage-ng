@@ -9,6 +9,7 @@ namespace storage
 {
 
     class PartitionTable;
+    class Partitionable;
 
 
     //! Partition type (primary, extended, logical)
@@ -27,7 +28,7 @@ namespace storage
     };
 
 
-    //! A partition of a Disk.
+    //! A partition of a Partitionable, e.g. Disk or Md.
     class Partition : public BlkDevice
     {
     public:
@@ -51,6 +52,7 @@ namespace storage
 	void set_boot(bool boot);
 
 	const PartitionTable* get_partition_table() const;
+	const Partitionable* get_partitionable() const;
 
 	static Partition* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Partition* find_by_name(const Devicegraph* devicegraph, const std::string& name);
