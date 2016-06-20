@@ -18,7 +18,8 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(VGSBIN " --noheadings --unbuffered --options vg_name,vg_uuid", input);
+    Mockup::set_command(VGSBIN " --noheadings --unbuffered --units b --nosuffix --options vg_name,"
+			"vg_uuid,vg_extent_size,vg_extent_count", input);
 
     CmdVgs cmd_vgs;
 
@@ -36,11 +37,11 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  system  OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn"
+	"  system  OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn 4194304 230400"
     };
 
     vector<string> output = {
-	"vgs:<vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn>"
+	"vgs:<vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn extent-size:4194304 extent-count:230400>"
     };
 
     check(input, output);

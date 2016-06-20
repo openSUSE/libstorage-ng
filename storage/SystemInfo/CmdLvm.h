@@ -77,18 +77,21 @@ namespace storage
 
 	struct Lv
 	{
-	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid() {}
+	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), size(0) {}
 
 	    string lv_name;
 	    string lv_uuid;
 	    string vg_name;
 	    string vg_uuid;
+	    unsigned long long size;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdLvs& cmd_lvs);
 	friend std::ostream& operator<<(std::ostream& s, const Lv& lv);
 
 	const vector<Lv>& get_lvs() const { return lvs; }
+
+	const Lv& find_by_lv_uuid(const string& lv_uuid) const;
 
     private:
 
@@ -107,16 +110,20 @@ namespace storage
 
 	struct Vg
 	{
-	    Vg() : vg_name(), vg_uuid() {}
+	    Vg() : vg_name(), vg_uuid(), extent_size(0), extent_count(0) {}
 
 	    string vg_name;
 	    string vg_uuid;
+	    unsigned long extent_size;
+	    unsigned long extent_count;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmd_vgs);
 	friend std::ostream& operator<<(std::ostream& s, const Vg& vg);
 
 	const vector<Vg>& get_vgs() const { return vgs; }
+
+	const Vg& find_by_vg_uuid(const string& vg_uuid) const;
 
     private:
 
