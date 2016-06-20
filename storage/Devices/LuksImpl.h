@@ -54,6 +54,7 @@ namespace storage
 
 	static vector<string> probe_luks(SystemInfo& systeminfo);
 
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }

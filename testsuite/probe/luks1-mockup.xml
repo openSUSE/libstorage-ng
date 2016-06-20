@@ -527,5 +527,9 @@
       <name>/sys/devices/virtual/block/dm-0/ext_range</name>
       <content>1</content>
     </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-0/size</name>
+      <content>16779264</content>
+    </File>
   </Files>
 </Mockup>
