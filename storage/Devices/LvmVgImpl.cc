@@ -144,7 +144,7 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return vg_name == rhs.vg_name && uuid == rhs.uuid;
+	return vg_name == rhs.vg_name && uuid == rhs.uuid && region == rhs.region;
     }
 
 
@@ -157,6 +157,8 @@ namespace storage
 
 	storage::log_diff(log, "vg-name", vg_name, rhs.vg_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+
+	storage::log_diff(log, "region", region, rhs.region);
     }
 
 
@@ -164,6 +166,9 @@ namespace storage
     LvmVg::Impl::print(std::ostream& out) const
     {
 	Device::Impl::print(out);
+
+	out << " vg-name:" << vg_name << " uuid:" << uuid
+	    << " region:" << region;
     }
 
 

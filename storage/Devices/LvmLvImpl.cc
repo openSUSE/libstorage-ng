@@ -120,6 +120,8 @@ namespace storage
     LvmLv::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	out << " lv-name:" << lv_name << " uuid:" << uuid;
     }
 
 
