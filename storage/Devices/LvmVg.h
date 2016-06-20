@@ -49,6 +49,10 @@ namespace storage
 
 	virtual void check() const override;
 
+	const Region& get_region() const;
+
+	unsigned long long get_size() const;
+
 	/**
 	 * Create a logical volume with name lv_name in the volume group.
 	 */

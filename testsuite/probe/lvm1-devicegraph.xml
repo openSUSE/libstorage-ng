@@ -48,6 +48,10 @@
       <sid>45</sid>
       <vg-name>system</vg-name>
       <uuid>2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL</uuid>
+      <region>
+        <length>4095</length>
+        <block-size>4194304</block-size>
+      </region>
     </LvmVg>
     <LvmPv>
       <sid>46</sid>
@@ -56,50 +60,65 @@
     <LvmLv>
       <sid>47</sid>
       <name>/dev/system/home</name>
+      <sysfs-name>dm-2</sysfs-name>
+      <sysfs-path>/devices/virtual/block/dm-2</sysfs-path>
       <region>
-        <length>0</length>
-        <block-size>512</block-size>
+        <length>2233</length>
+        <block-size>4194304</block-size>
       </region>
+      <udev-id>dm-name-system-home</udev-id>
+      <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLh2EA7Ze564bocL7iFDFpj81GUh5eyc3S</udev-id>
+      <udev-id>raid-system-home</udev-id>
       <lv-name>home</lv-name>
       <uuid>h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S</uuid>
     </LvmLv>
     <LvmLv>
       <sid>48</sid>
       <name>/dev/system/root</name>
+      <sysfs-name>dm-0</sysfs-name>
+      <sysfs-path>/devices/virtual/block/dm-0</sysfs-path>
       <region>
-        <length>0</length>
-        <block-size>512</block-size>
+        <length>1488</length>
+        <block-size>4194304</block-size>
       </region>
+      <udev-id>dm-name-system-root</udev-id>
+      <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLY5Og1SLvHZIvobdoBF0xwBmyYUWzKfq5</udev-id>
+      <udev-id>raid-system-root</udev-id>
       <lv-name>root</lv-name>
       <uuid>Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5</uuid>
     </LvmLv>
     <LvmLv>
       <sid>49</sid>
       <name>/dev/system/swap</name>
+      <sysfs-name>dm-1</sysfs-name>
+      <sysfs-path>/devices/virtual/block/dm-1</sysfs-path>
       <region>
-        <length>0</length>
-        <block-size>512</block-size>
+        <length>372</length>
+        <block-size>4194304</block-size>
       </region>
+      <udev-id>dm-name-system-swap</udev-id>
+      <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLwGZ7UTicrj6iSMgl0FjxmeCW48tOyl8Y</udev-id>
+      <udev-id>raid-system-swap</udev-id>
       <lv-name>swap</lv-name>
       <uuid>wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y</uuid>
     </LvmLv>
     <Xfs>
       <sid>50</sid>
-      <fstab-options>defaults</fstab-options>
-      <mountpoint>/home</mountpoint>
       <uuid>5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7</uuid>
+      <mountpoint>/home</mountpoint>
+      <fstab-options>defaults</fstab-options>
     </Xfs>
     <Ext4>
       <sid>51</sid>
-      <fstab-options>acl,user_xattr</fstab-options>
-      <mountpoint>/</mountpoint>
       <uuid>7992b624-af87-446f-896a-b310acd6e082</uuid>
+      <mountpoint>/</mountpoint>
+      <fstab-options>acl,user_xattr</fstab-options>
     </Ext4>
     <Swap>
       <sid>52</sid>
-      <fstab-options>defaults</fstab-options>
-      <mountpoint>swap</mountpoint>
       <uuid>82afe683-54d7-406f-8c60-d3a32febbac7</uuid>
+      <mountpoint>swap</mountpoint>
+      <fstab-options>defaults</fstab-options>
     </Swap>
   </Devices>
   <Holders>

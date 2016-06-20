@@ -60,6 +60,21 @@ namespace storage
 
 
     void
+    LvmLv::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
+
+	const CmdLvs& cmd_lvs = systeminfo.getCmdLvs();
+	const CmdLvs::Lv& lv = cmd_lvs.find_by_lv_uuid(uuid);
+
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	unsigned long long extent_size = lvm_vg->get_region().get_block_size();
+	set_region(Region(0, lv.size / extent_size, extent_size));
+    }
+
+
+    void
     LvmLv::Impl::set_lv_name(const string& lv_name)
     {
 	Impl::lv_name = lv_name;

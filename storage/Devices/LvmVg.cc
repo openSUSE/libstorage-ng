@@ -82,6 +82,20 @@ namespace storage
     }
 
 
+    const Region&
+    LvmVg::get_region() const
+    {
+	return get_impl().get_region();
+    }
+
+
+    unsigned long long
+    LvmVg::get_size() const
+    {
+	return get_impl().get_size();
+    }
+
+
     const string&
     LvmVg::get_vg_name() const
     {

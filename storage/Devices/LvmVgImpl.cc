@@ -39,12 +39,14 @@ namespace storage
 
 
     LvmVg::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), uuid()
+	: Device::Impl(node), vg_name(), uuid(), region()
     {
 	if (!getChildValue(node, "vg-name", vg_name))
 	    ST_THROW(Exception("no vg-name"));
 
 	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "region", region);
     }
 
 
@@ -55,6 +57,27 @@ namespace storage
 
 	setChildValue(node, "vg-name", vg_name);
 	setChildValue(node, "uuid", uuid);
+
+	setChildValue(node, "region", region);
+    }
+
+
+    void
+    LvmVg::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	Device::Impl::probe_pass_1(probed, systeminfo);
+
+	const CmdVgs& cmd_vgs = systeminfo.getCmdVgs();
+	const CmdVgs::Vg& vg = cmd_vgs.find_by_vg_uuid(uuid);
+
+	region = Region(0, vg.extent_count, vg.extent_size);
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::get_size() const
+    {
+	return region.to_bytes(region.get_length());
     }
 
 

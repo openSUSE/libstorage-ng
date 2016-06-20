@@ -24,6 +24,7 @@
 #define STORAGE_LVM_VG_IMPL_H
 
 
+#include "storage/Utils/Region.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -42,7 +43,7 @@ namespace storage
     public:
 
 	Impl(const string& vg_name)
-	    : Device::Impl(), vg_name(vg_name), uuid() {}
+	    : Device::Impl(), vg_name(vg_name), uuid(), region() {}
 
 	Impl(const xmlNode* node);
 
@@ -50,9 +51,15 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_vg_name(); }
 
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
+
+	const Region& get_region() const { return region; }
+
+	unsigned long long get_size() const;
 
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
@@ -78,6 +85,10 @@ namespace storage
 	string vg_name;
 	string uuid;
 
+	/**
+	 * Holds extent-size and extent-count.
+	 */
+	Region region;
     };
 
 

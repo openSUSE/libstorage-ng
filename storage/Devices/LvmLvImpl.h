@@ -52,6 +52,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_lv_name(); }
 
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
