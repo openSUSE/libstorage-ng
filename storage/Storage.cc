@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
