@@ -94,31 +94,38 @@ namespace storage
 
 	CmdDmsetupTable();
 
-	// TODO this will likely need to be extended to provide more table-data, e.g. the type
-
-	struct Entry
+	struct Table
 	{
-	    Entry() : majorminors() {}
+	    Table(const string& target)
+		: target(target), stripes(0), stripe_size(0), majorminors() {}
+
+	    string target;
+
+	    /**
+	     * stripes and stripe_size are valid iff target == striped.
+	     */
+	    unsigned long stripes;
+	    unsigned long long stripe_size;
 
 	    vector<dev_t> majorminors;
 	};
 
-	bool getEntry(const string& name, Entry& entry) const;
+	bool get_tables(const string& name, vector<Table>& tables) const;
 
-	typedef map<string, Entry>::value_type value_type;
-	typedef map<string, Entry>::const_iterator const_iterator;
+	typedef map<string, vector<Table>>::value_type value_type;
+	typedef map<string, vector<Table>>::const_iterator const_iterator;
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupTable& cmd_dmsetup_table);
-	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+	friend std::ostream& operator<<(std::ostream& s, const Table& table);
 
     private:
 
 	void parse(const vector<string>& lines);
 
-	map<string, Entry> data;
+	map<string, vector<Table>> data;
 
     };
 }
