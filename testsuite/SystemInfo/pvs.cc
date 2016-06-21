@@ -18,7 +18,8 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PVSBIN " --noheadings --unbuffered --options pv_name,pv_uuid,vg_name,vg_uuid", input);
+    Mockup::set_command(PVSBIN " --noheadings --unbuffered --units b --nosuffix --options pv_name,"
+			"pv_uuid,vg_name,vg_uuid", input);
 
     CmdPvs cmd_pvs;
 

@@ -72,6 +72,17 @@ namespace storage
 
 
     void
+    Luks::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	Encryption::Impl::probe_pass_1(probed, systeminfo);
+
+	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
+
+	set_region(Region(0, size_file.get_int(), 512));
+    }
+
+
+    void
     Luks::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	Encryption::Impl::probe_pass_2(probed, systeminfo);

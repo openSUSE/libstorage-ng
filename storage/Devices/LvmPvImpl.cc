@@ -112,6 +112,8 @@ namespace storage
     LvmPv::Impl::print(std::ostream& out) const
     {
 	Device::Impl::print(out);
+
+	out << " uuid:" << uuid;
     }
 
 

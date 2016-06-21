@@ -33,6 +33,11 @@
 #include "storage/Utils/StorageTmpl.h"
 
 
+#define COMMON_LVM_OPTIONS "--noheadings --unbuffered --units b --nosuffix"
+
+// TODO using --nameprefixes should make parsers robust to strange characters
+
+
 namespace storage
 {
     using namespace std;
@@ -40,7 +45,7 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd c(PVSBIN " --noheadings --unbuffered --options pv_name,pv_uuid,vg_name,vg_uuid");
+	SystemCmd c(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -102,7 +107,8 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	SystemCmd c(LVSBIN " --noheadings --unbuffered --options lv_name,lv_uuid,vg_name,vg_uuid");
+	SystemCmd c(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
+		    "lv_size");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -119,13 +125,27 @@ namespace storage
 	    classic(data);
 
 	    Lv lv;
-	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid;
+	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> lv.size;
 	    lvs.push_back(lv);
 	}
 
 	sort(lvs.begin(), lvs.end(), [](const Lv& lhs, const Lv& rhs) { return lhs.lv_name < rhs.lv_name; });
 
 	y2mil(*this);
+    }
+
+
+    const CmdLvs::Lv&
+    CmdLvs::find_by_lv_uuid(const string& lv_uuid) const
+    {
+	for (const Lv& lv : lvs)
+	{
+	    if (lv.lv_uuid == lv_uuid)
+		return lv;
+	}
+
+	ST_THROW(Exception("lv not found by lv-uuid"));
+	__builtin_unreachable();
     }
 
 
@@ -142,7 +162,7 @@ namespace storage
     operator<<(std::ostream& s, const CmdLvs::Lv& lv)
     {
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
-	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid;
+	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " size:" << lv.size;
 
 	return s;
     }
@@ -150,7 +170,8 @@ namespace storage
 
     CmdVgs::CmdVgs()
     {
-	SystemCmd c(VGSBIN " --noheadings --unbuffered --options vg_name,vg_uuid");
+	SystemCmd c(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_extent_size,"
+		    "vg_extent_count");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -167,13 +188,27 @@ namespace storage
 	    classic(data);
 
 	    Vg vg;
-	    data >> vg.vg_name >> vg.vg_uuid;
+	    data >> vg.vg_name >> vg.vg_uuid >> vg.extent_size >> vg.extent_count;
 	    vgs.push_back(vg);
 	}
 
 	sort(vgs.begin(), vgs.end(), [](const Vg& lhs, const Vg& rhs) { return lhs.vg_name < rhs.vg_name; });
 
 	y2mil(*this);
+    }
+
+
+    const CmdVgs::Vg&
+    CmdVgs::find_by_vg_uuid(const string& vg_uuid) const
+    {
+	for (const Vg& vg : vgs)
+	{
+	    if (vg.vg_uuid == vg_uuid)
+		return vg;
+	}
+
+	ST_THROW(Exception("vg not found by vg-uuid"));
+	__builtin_unreachable();
     }
 
 
@@ -189,7 +224,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdVgs::Vg& vg)
     {
-	s << "vg-name:" << vg.vg_name << " vg-uuid:" << vg.vg_uuid;
+	s << "vg-name:" << vg.vg_name << " vg-uuid:" << vg.vg_uuid << " extent-size:"
+	  << vg.extent_size << " extent-count:" << vg.extent_count;
 
 	return s;
     }

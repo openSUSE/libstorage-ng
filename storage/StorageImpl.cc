@@ -134,6 +134,7 @@ namespace storage
 	    {
 		LvmVg* lvm_vg = LvmVg::create(probed, vg.vg_name);
 		lvm_vg->get_impl().set_uuid(vg.vg_uuid);
+		lvm_vg->get_impl().probe_pass_1(probed, systeminfo);
 	    }
 
 	    for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
@@ -151,6 +152,7 @@ namespace storage
 		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
 		LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name);
 		lvm_lv->get_impl().set_uuid(lv.lv_uuid);
+		lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
 	    }
 	}
 
