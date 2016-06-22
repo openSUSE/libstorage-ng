@@ -43,12 +43,25 @@ BOOST_AUTO_TEST_CASE(parse1)
 	"system-root: 33554432 33554432 linear 8:2 897632256"
     };
 
-    // TODO output format
+    vector<string> output = {
+	"data[cr_luks] -> target:crypt majorminors:<254:12>",
+	"data[system-luks] -> target:linear majorminors:<8:2>",
+	"data[system-root] -> target:linear majorminors:<8:2>",
+	"data[system-root] -> target:linear majorminors:<8:2>"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse2)
+{
+    vector<string> input = {
+	"test-fast: 0 409600 striped 2 128 8:17 2048 8:18 2048"
+    };
 
     vector<string> output = {
-	"data[cr_luks] -> majorminors:<254:12>",
-	"data[system-luks] -> majorminors:<8:2>",
-	"data[system-root] -> majorminors:<8:2 8:2>"
+	"data[test-fast] -> target:striped stripes:2 stripe-size:65536 majorminors:<8:17 8:18>"
     };
 
     check(input, output);

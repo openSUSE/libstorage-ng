@@ -76,15 +76,20 @@ namespace storage
 
 	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
 
-	CmdDmsetupTable::Entry entry;
-	if (!cmd_dmsetup_table.getEntry(dm_name, entry))
+	vector<CmdDmsetupTable::Table> tables;
+	if (!cmd_dmsetup_table.get_tables(dm_name, tables))
 	    ST_THROW(Exception("dmsetup table not found"));
 
-	if (entry.majorminors.size() != 1)
+	if (tables.size() != 1)
 	    ST_THROW(Exception("crypt with several dm-tables"));
 
+	const vector<dev_t>& majorminors = tables.front().majorminors;
+
+	if (majorminors.size() != 1)
+	    ST_THROW(Exception("crypt target with several devices"));
+
 	BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed,
-	  make_dev_block_name(entry.majorminors.front()), systeminfo);
+	    make_dev_block_name(majorminors.front()), systeminfo);
 
 	User::create(probed, blk_device, get_device());
     }

@@ -132,9 +132,21 @@ namespace storage
 
 	    string name = line.substr(0, pos);
 
-	    Entry& entry = data[name];
+	    list<string> tmp = splitString(line.substr(pos + 1));
+	    vector<string> params = vector<string>(tmp.begin(), tmp.end());
 
-	    list<string> params = splitString(line.substr(pos));
+	    if (params.size() < 3)
+		ST_THROW(Exception("failed to parse dmsetup table output"));
+
+	    Table table(params[2]);
+
+	    if (table.target == "striped")
+	    {
+		params[3] >> table.stripes;
+		params[4] >> table.stripe_size;
+		table.stripe_size *= 512;
+	    }
+
 	    for (const string& param : params)
 	    {
 		if (devspec.match(param))
@@ -145,9 +157,11 @@ namespace storage
 		    devspec.cap(2) >> minor;
 
 		    dev_t majorminor = makedev(major, minor);
-		    entry.majorminors.push_back(majorminor);
+		    table.majorminors.push_back(majorminor);
 		}
 	    }
+
+	    data[name].push_back(table);
 	}
 
 	y2mil(*this);
@@ -155,13 +169,13 @@ namespace storage
 
 
     bool
-    CmdDmsetupTable::getEntry(const string& name, Entry& entry) const
+    CmdDmsetupTable::get_tables(const string& name, vector<Table>& tables) const
     {
 	const_iterator it = data.find(name);
 	if (it == data.end())
 	    return false;
 
-	entry = it->second;
+	tables = it->second;
 	return true;
     }
 
@@ -170,19 +184,28 @@ namespace storage
     operator<<(std::ostream& s, const CmdDmsetupTable& cmd_dmsetup_table)
     {
 	for (const CmdDmsetupTable::value_type& it : cmd_dmsetup_table)
-	    s << "data[" << it.first << "] -> " << it.second << endl;
+	    for (const CmdDmsetupTable::Table& table : it.second)
+		s << "data[" << it.first << "] -> " << table << endl;
 
 	return s;
     }
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdDmsetupTable::Entry& entry)
+    operator<<(std::ostream& s, const CmdDmsetupTable::Table& table)
     {
-	s << "majorminors:<";
-	for (vector<dev_t>::const_iterator it = entry.majorminors.begin(); it != entry.majorminors.end(); ++it)
+	s << "target:" << table.target;
+
+	if (table.stripes != 0)
+	    s << " stripes:" << table.stripes;
+
+	if (table.stripe_size != 0)
+	    s << " stripe-size:" << table.stripe_size;
+
+	s << " majorminors:<";
+	for (vector<dev_t>::const_iterator it = table.majorminors.begin(); it != table.majorminors.end(); ++it)
 	{
-	    if (it != entry.majorminors.begin())
+	    if (it != table.majorminors.begin())
 		s << " ";
 	    s << gnu_dev_major(*it) << ":" << gnu_dev_minor(*it);
 	}
