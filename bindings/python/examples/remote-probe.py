@@ -5,6 +5,7 @@ from getopt import getopt, GetoptError
 from subprocess import Popen, PIPE
 from storage import Environment, Storage, ProbeMode_STANDARD, ProbeMode_STANDARD_WRITE_MOCKUP, TargetMode_DIRECT
 from storage import RemoteCallbacks, RemoteCommand, RemoteFile, set_remote_callbacks
+from storage import set_logger, get_logfile_logger
 
 
 host = "localhost"
@@ -57,6 +58,9 @@ class MyRemoteCallbacks(RemoteCallbacks):
 
 
 def doit():
+
+    set_logger(get_logfile_logger())
+
     my_remote_callbacks = MyRemoteCallbacks()
 
     set_remote_callbacks(my_remote_callbacks)
