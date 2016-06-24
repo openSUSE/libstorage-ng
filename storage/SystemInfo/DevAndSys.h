@@ -30,7 +30,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 #include <map>
 
 
@@ -38,7 +37,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
     using std::map;
 
 
@@ -48,7 +46,7 @@ namespace storage
 
 	Dir(const string& path);
 
-	typedef list<string>::const_iterator const_iterator;
+	typedef vector<string>::const_iterator const_iterator;
 
 	bool empty() const { return entries.empty(); }
 
@@ -63,7 +61,7 @@ namespace storage
 
 	string path;
 
-	list<string> entries;
+	vector<string> entries;
 
     };
 

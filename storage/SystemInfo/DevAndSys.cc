@@ -52,7 +52,7 @@ namespace storage
     void
     Dir::parse(const vector<string>& lines)
     {
-	entries = list<string>(lines.begin(), lines.end());
+	entries = lines;
     }
 
 
