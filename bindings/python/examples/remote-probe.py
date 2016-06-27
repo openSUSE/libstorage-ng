@@ -67,7 +67,7 @@ def doit():
 
     environment = Environment(True, ProbeMode_STANDARD_WRITE_MOCKUP if save_mockup else ProbeMode_STANDARD, TargetMode_DIRECT)
     if save_mockup:
-        environment.set_mockup_filename("remote-probe-mockup.xml");
+        environment.set_mockup_filename("mockup.xml");
 
     storage = Storage(environment)
 
@@ -78,7 +78,7 @@ def doit():
     print probed
 
     if save_devicegraph:
-        probed.save("remote-probe-devicegraph.xml");
+        probed.save("devicegraph.xml");
 
 
 def usage():
