@@ -171,20 +171,11 @@ namespace storage
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
 	// and md2).
 
-	for (Md* md : Md::get_all(probed))
+	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
-	    md->get_impl().probe_pass_2(probed, systeminfo);
+	    Device* device = probed->get_impl()[vertex];
+	    device->get_impl().probe_pass_2(probed, systeminfo);
 	}
-
-	for (LvmPv* lvm_pv : LvmPv::get_all(probed))
-	{
-	    lvm_pv->get_impl().probe_pass_2(probed, systeminfo);
-	}
-
-        for (Luks* luks : Luks::get_all(probed))
-        {
-            luks->get_impl().probe_pass_2(probed, systeminfo);
-        }
 
 	// Pass 3: Detect filesystems.
 
