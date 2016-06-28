@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,6 +82,7 @@ namespace storage
 
 	// TODO rethink interface
 	int get_int() const;
+	string get_string() const;
 
     private:
 

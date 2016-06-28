@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -111,7 +112,7 @@ namespace storage
     File::get_int() const
     {
 	if (content.empty())
-	    throw;
+	    ST_THROW(Exception("empty file"));
 
 	int ret;
 	content.front() >> ret;
@@ -119,6 +120,16 @@ namespace storage
 	// TODO error checking
 
 	return ret;
+    }
+
+
+    string
+    File::get_string() const
+    {
+	if (content.empty())
+	    ST_THROW(Exception("empty file"));
+
+	return content.front();
     }
 
 
