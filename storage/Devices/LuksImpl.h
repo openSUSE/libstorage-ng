@@ -26,7 +26,6 @@
 
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Action.h"

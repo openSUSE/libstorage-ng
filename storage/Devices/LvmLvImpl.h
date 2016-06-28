@@ -24,7 +24,6 @@
 #define STORAGE_LVM_LV_IMPL_H
 
 
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"

@@ -20,6 +20,7 @@
  */
 
 
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/SystemInfo/SystemInfo.h"
