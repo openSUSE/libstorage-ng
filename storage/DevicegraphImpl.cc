@@ -45,6 +45,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Luks.h"
+#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/Ext4.h"
 #include "storage/Devices/Ntfs.h"
 #include "storage/Devices/Vfat.h"
@@ -469,6 +471,8 @@ namespace storage
 	{ "LvmLv", &LvmLv::load },
 	{ "Encryption", &Encryption::load },
 	{ "Luks", &Luks::load },
+	{ "Bcache", &Bcache::load },
+	{ "BcacheCset", &BcacheCset::load },
 	{ "Ext4", &Ext4::load },
 	{ "Ntfs", &Ntfs::load },
 	{ "Vfat", &Vfat::load },
@@ -662,6 +666,10 @@ namespace storage
 		else if (is_lvm_lv(device))
 		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
 		else if (is_encryption(device))
+		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
+		else if (is_bcache(device))
+		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
+		else if (is_bcache_cset(device))
 		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
 		else if (is_filesystem(device))
 		    out << ", color=\"#008800\", fillcolor=\"#99ee99\"";

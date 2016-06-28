@@ -14,6 +14,8 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Md.h		\
 	${top_srcdir}/storage/Devices/Encryption.h	\
 	${top_srcdir}/storage/Devices/Luks.h		\
+	${top_srcdir}/storage/Devices/Bcache.h		\
+	${top_srcdir}/storage/Devices/BcacheCset.h	\
 	${top_srcdir}/storage/Devices/Ext4.h		\
 	${top_srcdir}/storage/Devices/Ntfs.h		\
 	${top_srcdir}/storage/Devices/Vfat.h		\

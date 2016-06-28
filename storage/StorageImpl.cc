@@ -33,6 +33,8 @@
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
@@ -133,6 +135,13 @@ namespace storage
 	    Luks::Impl::probe_lukses(probed, systeminfo);
 	}
 
+	if (systeminfo.getBlkid().any_bcache())
+	{
+	    // TODO check whether bcache-tools are installed
+
+	    Bcache::Impl::probe_bcaches(probed, systeminfo);
+	    BcacheCset::Impl::probe_bcache_csets(probed, systeminfo);
+	}
 
 	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1

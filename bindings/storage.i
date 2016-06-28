@@ -54,6 +54,8 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Luks.h"
+#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BcacheCset.h"
 
 #include "storage/Holders/Holder.h"
 #include "storage/Holders/Subdevice.h"
@@ -103,6 +105,8 @@
 %include "../../storage/Devices/LvmLv.h"
 %include "../../storage/Devices/Encryption.h"
 %include "../../storage/Devices/Luks.h"
+%include "../../storage/Devices/Bcache.h"
+%include "../../storage/Devices/BcacheCset.h"
 
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Holders/Subdevice.h"
@@ -154,6 +158,12 @@ using namespace storage;
 
 %template(VectorLuksPtr) std::vector<Luks*>;
 %template(VectorConstLuksPtr) std::vector<const Luks*>;
+
+%template(VectorBcachePtr) std::vector<Bcache*>;
+%template(VectorConstBcachePtr) std::vector<const Bcache*>;
+
+%template(VectorBcacheCsetPtr) std::vector<BcacheCset*>;
+%template(VectorConstBcacheCsetPtr) std::vector<const BcacheCset*>;
 
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;

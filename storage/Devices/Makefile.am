@@ -33,6 +33,10 @@ libdevices_la_SOURCES =					\
 	EncryptionImpl.h	EncryptionImpl.cc	\
 	Luks.h			Luks.cc			\
 	LuksImpl.h		LuksImpl.cc		\
+	Bcache.h		Bcache.cc		\
+	BcacheImpl.h		BcacheImpl.cc		\
+	BcacheCset.h		BcacheCset.cc		\
+	BcacheCsetImpl.h	BcacheCsetImpl.cc	\
 	Filesystem.h		Filesystem.cc		\
 	FilesystemImpl.h	FilesystemImpl.cc	\
 	Ext4.h			Ext4.cc			\
@@ -65,6 +69,8 @@ pkginclude_HEADERS =		\
 	LvmLv.h			\
 	Encryption.h		\
 	Luks.h			\
+	Bcache.h		\
+	BcacheCset.h		\
 	Filesystem.h		\
 	Ext4.h			\
 	Swap.h
