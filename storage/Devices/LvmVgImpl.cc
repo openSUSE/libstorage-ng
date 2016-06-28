@@ -63,6 +63,18 @@ namespace storage
 
 
     void
+    LvmVg::Impl::probe_lvm_vgs(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	for (const CmdVgs::Vg& vg : systeminfo.getCmdVgs().get_vgs())
+	{
+	    LvmVg* lvm_vg = LvmVg::create(probed, vg.vg_name);
+	    lvm_vg->get_impl().set_uuid(vg.vg_uuid);
+	    lvm_vg->get_impl().probe_pass_1(probed, systeminfo);
+	}
+    }
+
+
+    void
     LvmVg::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	Device::Impl::probe_pass_1(probed, systeminfo);

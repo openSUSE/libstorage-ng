@@ -24,7 +24,9 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Holders/User.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/Devices/LvmPvImpl.h"
+#include "storage/Devices/LvmVg.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 
 
@@ -71,6 +73,21 @@ namespace storage
     LvmPv::Impl::get_blk_device() const
     {
 	return get_single_parent_of_type<const BlkDevice>();
+    }
+
+
+    void
+    LvmPv::Impl::probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
+	{
+	    LvmPv* lvm_pv = LvmPv::create(probed);
+	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
+
+	    // TODO the pv may not be included in any vg
+	    LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
+	    Subdevice::create(probed, lvm_pv, lvm_vg);
+	}
     }
 
 

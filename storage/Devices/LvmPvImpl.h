@@ -61,6 +61,7 @@ namespace storage
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
+	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;

@@ -60,6 +60,19 @@ namespace storage
 
 
     void
+    LvmLv::Impl::probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
+	{
+	    LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
+	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name);
+	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
+	    lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
+	}
+    }
+
+
+    void
     LvmLv::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	BlkDevice::Impl::probe_pass_1(probed, systeminfo);

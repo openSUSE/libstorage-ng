@@ -34,7 +34,6 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/FilesystemImpl.h"
-#include "storage/Holders/Subdevice.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 
@@ -109,63 +108,31 @@ namespace storage
 	// Pass 1: Detect all Devices except Filesystems and some Holders,
 	// e.g. between Partitionable, PartitionTable and Partitions.
 
-	for (const string& name : Disk::Impl::probe_disks(systeminfo))
-	{
-	    Disk* disk = Disk::create(probed, name);
-	    disk->get_impl().probe_pass_1(probed, systeminfo);
-	}
+	Disk::Impl::probe_disks(probed, systeminfo);
 
 	if (systeminfo.getBlkid().any_md())
 	{
 	    // TODO check whether md tools are installed
 
-	    for (const string& name : Md::Impl::probe_mds(systeminfo))
-	    {
-		Md* md = Md::create(probed, name);
-		md->get_impl().probe_pass_1(probed, systeminfo);
-	    }
+	    Md::Impl::probe_mds(probed, systeminfo);
 	}
 
 	if (systeminfo.getBlkid().any_lvm())
 	{
 	    // TODO check whether lvm tools are installed
 
-	    for (const CmdVgs::Vg& vg : systeminfo.getCmdVgs().get_vgs())
-	    {
-		LvmVg* lvm_vg = LvmVg::create(probed, vg.vg_name);
-		lvm_vg->get_impl().set_uuid(vg.vg_uuid);
-		lvm_vg->get_impl().probe_pass_1(probed, systeminfo);
-	    }
-
-	    for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
-	    {
-		LvmPv* lvm_pv = LvmPv::create(probed);
-		lvm_pv->get_impl().set_uuid(pv.pv_uuid);
-
-		// TODO the pv may not be included in any vg
-		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
-		Subdevice::create(probed, lvm_pv, lvm_vg);
-	    }
-
-	    for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
-	    {
-		LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
-		LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name);
-		lvm_lv->get_impl().set_uuid(lv.lv_uuid);
-		lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
-	    }
+	    LvmVg::Impl::probe_lvm_vgs(probed, systeminfo);
+	    LvmPv::Impl::probe_lvm_pvs(probed, systeminfo);
+	    LvmLv::Impl::probe_lvm_lvs(probed, systeminfo);
 	}
 
 	if (systeminfo.getBlkid().any_luks())
-        {
-            // TODO check whether cryptsetup tools are installed
+	{
+	    // TODO check whether cryptsetup tools are installed
 
-            for (const string& dm_name : Luks::Impl::probe_luks(systeminfo))
-            {
-                Luks* luks = Luks::create(probed, dm_name);
-                luks->get_impl().probe_pass_1(probed, systeminfo);
-            }
-        }
+	    Luks::Impl::probe_lukses(probed, systeminfo);
+	}
+
 
 	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
 	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
