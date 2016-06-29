@@ -30,7 +30,10 @@
 namespace storage
 {
 
-    //! A bcache device.
+    /**
+     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
+     * device.
+     */
     class Bcache : public BlkDevice
     {
     public:

@@ -30,8 +30,10 @@
 namespace storage
 {
 
-
-    //! A Bcache cache set.
+    /**
+     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
+     * cache set.
+     */
     class BcacheCset : public Device
     {
     public:
