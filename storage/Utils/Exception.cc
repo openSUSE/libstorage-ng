@@ -24,6 +24,7 @@
  * Large parts stolen from libyui/YUIException.h
  */
 
+
 #include <sstream>
 #include <string.h>	// strerror()
 #include <stdio.h>
