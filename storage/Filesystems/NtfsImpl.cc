@@ -29,7 +29,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/NtfsImpl.h"
+#include "storage/Filesystems/NtfsImpl.h"
 #include "storage/FreeInfo.h"
 
 

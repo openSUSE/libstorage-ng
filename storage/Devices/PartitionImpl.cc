@@ -30,7 +30,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"

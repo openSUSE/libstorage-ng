@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) [2014-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/Devices/XfsImpl.h"
+#include "storage/Filesystems/SwapImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
@@ -31,69 +31,69 @@ namespace storage
     using namespace std;
 
 
-    Xfs*
-    Xfs::create(Devicegraph* devicegraph)
+    Swap*
+    Swap::create(Devicegraph* devicegraph)
     {
-	Xfs* ret = new Xfs(new Xfs::Impl());
+	Swap* ret = new Swap(new Swap::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Xfs*
-    Xfs::load(Devicegraph* devicegraph, const xmlNode* node)
+    Swap*
+    Swap::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Xfs* ret = new Xfs(new Xfs::Impl(node));
+	Swap* ret = new Swap(new Swap::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Xfs::Xfs(Impl* impl)
+    Swap::Swap(Impl* impl)
 	: Filesystem(impl)
     {
     }
 
 
-    Xfs*
-    Xfs::clone() const
+    Swap*
+    Swap::clone() const
     {
-	return new Xfs(get_impl().clone());
+	return new Swap(get_impl().clone());
     }
 
 
-    Xfs::Impl&
-    Xfs::get_impl()
+    Swap::Impl&
+    Swap::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Xfs::Impl&
-    Xfs::get_impl() const
+    const Swap::Impl&
+    Swap::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_xfs(const Device* device)
+    is_swap(const Device* device)
     {
-	return is_device_of_type<const Xfs>(device);
+	return is_device_of_type<const Swap>(device);
     }
 
 
-    Xfs*
-    to_xfs(Device* device)
+    Swap*
+    to_swap(Device* device)
     {
-	return to_device_of_type<Xfs>(device);
+	return to_device_of_type<Swap>(device);
     }
 
 
-    const Xfs*
-    to_xfs(const Device* device)
+    const Swap*
+    to_swap(const Device* device)
     {
-	return to_device_of_type<const Xfs>(device);
+	return to_device_of_type<const Swap>(device);
     }
 
 }

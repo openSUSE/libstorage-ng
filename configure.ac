@@ -85,6 +85,7 @@ AC_OUTPUT(
 	storage/Makefile
 	storage/StorageVersion.h:storage/StorageVersion.h.in
 	storage/Devices/Makefile
+	storage/Filesystems/Makefile
 	storage/Holders/Makefile
 	storage/Utils/Makefile
 	storage/SystemInfo/Makefile

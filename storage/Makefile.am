@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/storage
 #
 
-SUBDIRS = Devices Holders SystemInfo Utils
+SUBDIRS = Devices Filesystems Holders SystemInfo Utils
 
 lib_LTLIBRARIES = libstorage-ng.la
 
@@ -27,6 +27,7 @@ libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
 libstorage_ng_la_LIBADD =		\
 	Devices/libdevices.la		\
+	Filesystems/libfilesystems.la	\
 	Holders/libholders.la		\
 	Utils/libutils.la 		\
 	SystemInfo/libsysteminfo.la	\

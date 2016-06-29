@@ -20,25 +20,25 @@
  */
 
 
-#ifndef STORAGE_VFAT_H
-#define STORAGE_VFAT_H
+#ifndef STORAGE_NTFS_H
+#define STORAGE_NTFS_H
 
 
-#include "storage/Devices/Filesystem.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Vfat : public Filesystem
+    class Ntfs : public Filesystem
     {
     public:
 
-	static Vfat* create(Devicegraph* devicegraph);
-	static Vfat* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Ntfs* create(Devicegraph* devicegraph);
+	static Ntfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 11; }
+	unsigned int max_labelsize() const override { return 128; }
 
 	bool supports_uuid() const override { return true; }
 
@@ -49,19 +49,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Vfat* clone() const override;
+	virtual Ntfs* clone() const override;
 
     protected:
 
-	Vfat(Impl* impl);
+	Ntfs(Impl* impl);
 
     };
 
 
-    bool is_vfat(const Device* device);
+    bool is_ntfs(const Device* device);
 
-    Vfat* to_vfat(Device* device);
-    const Vfat* to_vfat(const Device* device);
+    Ntfs* to_ntfs(Device* device);
+    const Ntfs* to_ntfs(const Device* device);
 
 }
 

@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/Devices/NtfsImpl.h"
+#include "storage/Filesystems/VfatImpl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -30,69 +30,69 @@ namespace storage
     using namespace std;
 
 
-    Ntfs*
-    Ntfs::create(Devicegraph* devicegraph)
+    Vfat*
+    Vfat::create(Devicegraph* devicegraph)
     {
-	Ntfs* ret = new Ntfs(new Ntfs::Impl());
+	Vfat* ret = new Vfat(new Vfat::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Ntfs*
-    Ntfs::load(Devicegraph* devicegraph, const xmlNode* node)
+    Vfat*
+    Vfat::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ntfs* ret = new Ntfs(new Ntfs::Impl(node));
+	Vfat* ret = new Vfat(new Vfat::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Ntfs::Ntfs(Impl* impl)
+    Vfat::Vfat(Impl* impl)
 	: Filesystem(impl)
     {
     }
 
 
-    Ntfs*
-    Ntfs::clone() const
+    Vfat*
+    Vfat::clone() const
     {
-	return new Ntfs(get_impl().clone());
+	return new Vfat(get_impl().clone());
     }
 
 
-    Ntfs::Impl&
-    Ntfs::get_impl()
+    Vfat::Impl&
+    Vfat::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Ntfs::Impl&
-    Ntfs::get_impl() const
+    const Vfat::Impl&
+    Vfat::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_ntfs(const Device* device)
+    is_vfat(const Device* device)
     {
-	return is_device_of_type<const Ntfs>(device);
+	return is_device_of_type<const Vfat>(device);
     }
 
 
-    Ntfs*
-    to_ntfs(Device* device)
+    Vfat*
+    to_vfat(Device* device)
     {
-	return to_device_of_type<Ntfs>(device);
+	return to_device_of_type<Vfat>(device);
     }
 
 
-    const Ntfs*
-    to_ntfs(const Device* device)
+    const Vfat*
+    to_vfat(const Device* device)
     {
-	return to_device_of_type<const Ntfs>(device);
+	return to_device_of_type<const Vfat>(device);
     }
 
 }

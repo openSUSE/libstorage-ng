@@ -20,25 +20,25 @@
  */
 
 
-#ifndef STORAGE_NTFS_H
-#define STORAGE_NTFS_H
+#ifndef STORAGE_BTRFS_H
+#define STORAGE_BTRFS_H
 
 
-#include "storage/Devices/Filesystem.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Ntfs : public Filesystem
+    class Btrfs : public Filesystem
     {
     public:
 
-	static Ntfs* create(Devicegraph* devicegraph);
-	static Ntfs* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Btrfs* create(Devicegraph* devicegraph);
+	static Btrfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 128; }
+	unsigned int max_labelsize() const override { return 256; }
 
 	bool supports_uuid() const override { return true; }
 
@@ -49,19 +49,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Ntfs* clone() const override;
+	virtual Btrfs* clone() const override;
 
     protected:
 
-	Ntfs(Impl* impl);
+	Btrfs(Impl* impl);
 
     };
 
 
-    bool is_ntfs(const Device* device);
+    bool is_btrfs(const Device* device);
 
-    Ntfs* to_ntfs(Device* device);
-    const Ntfs* to_ntfs(const Device* device);
+    Btrfs* to_btrfs(Device* device);
+    const Btrfs* to_btrfs(const Device* device);
 
 }
 

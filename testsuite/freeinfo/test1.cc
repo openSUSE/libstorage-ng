@@ -9,7 +9,7 @@
 #include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/Devicegraph.h"
-#include "storage/Devices/Filesystem.h"
+#include "storage/Filesystems/Filesystem.h"
 #include "storage/Devices/Partition.h"
 #include "storage/FreeInfo.h"
 

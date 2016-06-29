@@ -35,7 +35,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 

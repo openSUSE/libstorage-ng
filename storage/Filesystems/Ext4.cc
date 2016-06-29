@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) [2014-2015] Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,8 +20,9 @@
  */
 
 
-#include "storage/Devices/VfatImpl.h"
+#include "storage/Filesystems/Ext4Impl.h"
 #include "storage/Devicegraph.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -30,69 +31,69 @@ namespace storage
     using namespace std;
 
 
-    Vfat*
-    Vfat::create(Devicegraph* devicegraph)
+    Ext4*
+    Ext4::create(Devicegraph* devicegraph)
     {
-	Vfat* ret = new Vfat(new Vfat::Impl());
+	Ext4* ret = new Ext4(new Ext4::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Vfat*
-    Vfat::load(Devicegraph* devicegraph, const xmlNode* node)
+    Ext4*
+    Ext4::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Vfat* ret = new Vfat(new Vfat::Impl(node));
+	Ext4* ret = new Ext4(new Ext4::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Vfat::Vfat(Impl* impl)
+    Ext4::Ext4(Impl* impl)
 	: Filesystem(impl)
     {
     }
 
 
-    Vfat*
-    Vfat::clone() const
+    Ext4*
+    Ext4::clone() const
     {
-	return new Vfat(get_impl().clone());
+	return new Ext4(get_impl().clone());
     }
 
 
-    Vfat::Impl&
-    Vfat::get_impl()
+    Ext4::Impl&
+    Ext4::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Vfat::Impl&
-    Vfat::get_impl() const
+    const Ext4::Impl&
+    Ext4::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_vfat(const Device* device)
+    is_ext4(const Device* device)
     {
-	return is_device_of_type<const Vfat>(device);
+	return is_device_of_type<const Ext4>(device);
     }
 
 
-    Vfat*
-    to_vfat(Device* device)
+    Ext4*
+    to_ext4(Device* device)
     {
-	return to_device_of_type<Vfat>(device);
+	return to_device_of_type<Ext4>(device);
     }
 
 
-    const Vfat*
-    to_vfat(const Device* device)
+    const Ext4*
+    to_ext4(const Device* device)
     {
-	return to_device_of_type<const Vfat>(device);
+	return to_device_of_type<const Ext4>(device);
     }
 
 }

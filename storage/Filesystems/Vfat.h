@@ -20,25 +20,25 @@
  */
 
 
-#ifndef STORAGE_BTRFS_H
-#define STORAGE_BTRFS_H
+#ifndef STORAGE_VFAT_H
+#define STORAGE_VFAT_H
 
 
-#include "storage/Devices/Filesystem.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Btrfs : public Filesystem
+    class Vfat : public Filesystem
     {
     public:
 
-	static Btrfs* create(Devicegraph* devicegraph);
-	static Btrfs* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Vfat* create(Devicegraph* devicegraph);
+	static Vfat* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 256; }
+	unsigned int max_labelsize() const override { return 11; }
 
 	bool supports_uuid() const override { return true; }
 
@@ -49,19 +49,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Btrfs* clone() const override;
+	virtual Vfat* clone() const override;
 
     protected:
 
-	Btrfs(Impl* impl);
+	Vfat(Impl* impl);
 
     };
 
 
-    bool is_btrfs(const Device* device);
+    bool is_vfat(const Device* device);
 
-    Btrfs* to_btrfs(Device* device);
-    const Btrfs* to_btrfs(const Device* device);
+    Vfat* to_vfat(Device* device);
+    const Vfat* to_vfat(const Device* device);
 
 }
 

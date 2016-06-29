@@ -22,7 +22,7 @@
 
 
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/FreeInfo.h"

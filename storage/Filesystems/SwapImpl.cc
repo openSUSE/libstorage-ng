@@ -24,7 +24,7 @@
 #include <iostream>
 
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/SwapImpl.h"
+#include "storage/Filesystems/SwapImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"

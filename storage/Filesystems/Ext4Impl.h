@@ -21,12 +21,13 @@
  */
 
 
-#ifndef STORAGE_SWAP_IMPL_H
-#define STORAGE_SWAP_IMPL_H
+#ifndef STORAGE_EXT4_IMPL_H
+#define STORAGE_EXT4_IMPL_H
 
 
-#include "storage/Devices/Swap.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/Ext4.h"
+#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -35,10 +36,10 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Swap> { static const char* classname; };
+    template <> struct DeviceTraits<Ext4> { static const char* classname; };
 
 
-    class Swap::Impl : public Filesystem::Impl
+    class Ext4::Impl : public Filesystem::Impl
     {
     public:
 
@@ -47,29 +48,21 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return FsType::SWAP; }
+	virtual FsType get_type() const override { return FsType::EXT4; }
 
-	virtual const char* get_classname() const override { return DeviceTraits<Swap>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Ext4>::classname; }
 
-	virtual string get_displayname() const override { return "swap"; }
+	virtual string get_displayname() const override { return "ext4"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual ResizeInfo detect_resize_info() const override;
 
-	virtual ContentInfo detect_content_info() const override;
-
 	virtual void do_create() const override;
-
-	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
-
-	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
-
-	virtual void do_resize(ResizeMode resize_mode) const override;
 
 	virtual void do_set_label() const override;
 
-	virtual void do_set_uuid() const override;
+	virtual void do_resize(ResizeMode resize_mode) const override;
 
     };
 

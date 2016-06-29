@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2015 Novell, Inc.
  *
  * All Rights Reserved.
  *
@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/Devices/SwapImpl.h"
+#include "storage/Filesystems/XfsImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 
@@ -31,69 +31,69 @@ namespace storage
     using namespace std;
 
 
-    Swap*
-    Swap::create(Devicegraph* devicegraph)
+    Xfs*
+    Xfs::create(Devicegraph* devicegraph)
     {
-	Swap* ret = new Swap(new Swap::Impl());
+	Xfs* ret = new Xfs(new Xfs::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Swap*
-    Swap::load(Devicegraph* devicegraph, const xmlNode* node)
+    Xfs*
+    Xfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Swap* ret = new Swap(new Swap::Impl(node));
+	Xfs* ret = new Xfs(new Xfs::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Swap::Swap(Impl* impl)
+    Xfs::Xfs(Impl* impl)
 	: Filesystem(impl)
     {
     }
 
 
-    Swap*
-    Swap::clone() const
+    Xfs*
+    Xfs::clone() const
     {
-	return new Swap(get_impl().clone());
+	return new Xfs(get_impl().clone());
     }
 
 
-    Swap::Impl&
-    Swap::get_impl()
+    Xfs::Impl&
+    Xfs::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Swap::Impl&
-    Swap::get_impl() const
+    const Xfs::Impl&
+    Xfs::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_swap(const Device* device)
+    is_xfs(const Device* device)
     {
-	return is_device_of_type<const Swap>(device);
+	return is_device_of_type<const Xfs>(device);
     }
 
 
-    Swap*
-    to_swap(Device* device)
+    Xfs*
+    to_xfs(Device* device)
     {
-	return to_device_of_type<Swap>(device);
+	return to_device_of_type<Xfs>(device);
     }
 
 
-    const Swap*
-    to_swap(const Device* device)
+    const Xfs*
+    to_xfs(const Device* device)
     {
-	return to_device_of_type<const Swap>(device);
+	return to_device_of_type<const Xfs>(device);
     }
 
 }

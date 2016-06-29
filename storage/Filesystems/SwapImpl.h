@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,12 +21,12 @@
  */
 
 
-#ifndef STORAGE_VFAT_IMPL_H
-#define STORAGE_VFAT_IMPL_H
+#ifndef STORAGE_SWAP_IMPL_H
+#define STORAGE_SWAP_IMPL_H
 
 
-#include "storage/Devices/Vfat.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/Swap.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
@@ -35,10 +35,10 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Vfat> { static const char* classname; };
+    template <> struct DeviceTraits<Swap> { static const char* classname; };
 
 
-    class Vfat::Impl : public Filesystem::Impl
+    class Swap::Impl : public Filesystem::Impl
     {
     public:
 
@@ -47,23 +47,29 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return FsType::VFAT; }
+	virtual FsType get_type() const override { return FsType::SWAP; }
 
-	virtual const char* get_classname() const override { return DeviceTraits<Vfat>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Swap>::classname; }
 
-	virtual string get_displayname() const override { return "vfat"; }
+	virtual string get_displayname() const override { return "swap"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual ResizeInfo detect_resize_info() const override;
 
-	virtual ContentInfo detect_content_info_pure() const override;
+	virtual ContentInfo detect_content_info() const override;
 
 	virtual void do_create() const override;
 
-	virtual void do_set_label() const override;
+	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
+
+	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
 
 	virtual void do_resize(ResizeMode resize_mode) const override;
+
+	virtual void do_set_label() const override;
+
+	virtual void do_set_uuid() const override;
 
     };
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2015 Novell, Inc.
  * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
@@ -27,9 +27,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Devices/Ext4Impl.h"
-#include "storage/Devicegraph.h"
-#include "storage/Action.h"
+#include "storage/Filesystems/VfatImpl.h"
 #include "storage/FreeInfo.h"
 
 
@@ -39,71 +37,95 @@ namespace storage
     using namespace std;
 
 
-    const char* DeviceTraits<Ext4>::classname = "Ext4";
+    const char* DeviceTraits<Vfat>::classname = "Vfat";
 
 
-    Ext4::Impl::Impl(const xmlNode* node)
+    Vfat::Impl::Impl(const xmlNode* node)
 	: Filesystem::Impl(node)
     {
     }
 
 
     ResizeInfo
-    Ext4::Impl::detect_resize_info() const
+    Vfat::Impl::detect_resize_info() const
     {
 	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
 
-	resize_info.combine(ResizeInfo(true, 32 * MiB, 16 * TiB));
+	resize_info.combine(ResizeInfo(true, 64 * KiB, 2 * TiB));
 
 	return resize_info;
     }
 
 
-    void
-    Ext4::Impl::do_create() const
+    ContentInfo
+    Vfat::Impl::detect_content_info_pure() const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
 	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = MKFSEXT2BIN " -t ext4 -v -F " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
+	// TODO filesystem must be mounted
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create ext4 failed"));
+	if (get_mountpoints().empty())
+	    throw;
+
+	ContentInfo content_info;
+
+	if (detect_is_efi(get_mountpoints().front()))
+	    content_info.is_efi = true;
+	else
+	    content_info.is_windows = detect_is_windows(get_mountpoints().front());
+
+	return content_info;
     }
 
 
     void
-    Ext4::Impl::do_set_label() const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	string cmd_line = TUNE2FSBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label ext4 failed"));
-    }
-
-
-    void
-    Ext4::Impl::do_resize(ResizeMode resize_mode) const
+    Vfat::Impl::do_create() const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
 	blk_device->get_impl().wait_for_device();
 
-	string cmd_line = EXT2RESIZEBIN " -f " + quote(blk_device->get_name());
+	string cmd_line = MKFSFATBIN " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create vfat failed"));
+    }
+
+
+    void
+    Vfat::Impl::do_set_label() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = FATLABELBIN " " + quote(blk_device->get_name()) + " " +
+	    quote(get_label());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set-label vfat failed"));
+    }
+
+
+    void
+    Vfat::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	string cmd_line = FATRESIZE " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device->get_size() / KiB) + "K";
+	    cmd_line += " " + to_string(blk_device->get_size() / KiB);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize ext4 failed"));
+	    ST_THROW(Exception("resize vfat failed"));
     }
 
 }

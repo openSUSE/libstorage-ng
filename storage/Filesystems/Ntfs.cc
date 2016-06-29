@@ -20,9 +20,8 @@
  */
 
 
-#include "storage/Devices/BtrfsImpl.h"
+#include "storage/Filesystems/NtfsImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -31,69 +30,69 @@ namespace storage
     using namespace std;
 
 
-    Btrfs*
-    Btrfs::create(Devicegraph* devicegraph)
+    Ntfs*
+    Ntfs::create(Devicegraph* devicegraph)
     {
-	Btrfs* ret = new Btrfs(new Btrfs::Impl());
+	Ntfs* ret = new Ntfs(new Ntfs::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Btrfs*
-    Btrfs::load(Devicegraph* devicegraph, const xmlNode* node)
+    Ntfs*
+    Ntfs::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Btrfs* ret = new Btrfs(new Btrfs::Impl(node));
+	Ntfs* ret = new Ntfs(new Ntfs::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Btrfs::Btrfs(Impl* impl)
+    Ntfs::Ntfs(Impl* impl)
 	: Filesystem(impl)
     {
     }
 
 
-    Btrfs*
-    Btrfs::clone() const
+    Ntfs*
+    Ntfs::clone() const
     {
-	return new Btrfs(get_impl().clone());
+	return new Ntfs(get_impl().clone());
     }
 
 
-    Btrfs::Impl&
-    Btrfs::get_impl()
+    Ntfs::Impl&
+    Ntfs::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Btrfs::Impl&
-    Btrfs::get_impl() const
+    const Ntfs::Impl&
+    Ntfs::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_btrfs(const Device* device)
+    is_ntfs(const Device* device)
     {
-	return is_device_of_type<const Btrfs>(device);
+	return is_device_of_type<const Ntfs>(device);
     }
 
 
-    Btrfs*
-    to_btrfs(Device* device)
+    Ntfs*
+    to_ntfs(Device* device)
     {
-	return to_device_of_type<Btrfs>(device);
+	return to_device_of_type<Ntfs>(device);
     }
 
 
-    const Btrfs*
-    to_btrfs(const Device* device)
+    const Ntfs*
+    to_ntfs(const Device* device)
     {
-	return to_device_of_type<const Btrfs>(device);
+	return to_device_of_type<const Ntfs>(device);
     }
 
 }

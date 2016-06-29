@@ -37,7 +37,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
-#include "storage/Devices/Filesystem.h"
+#include "storage/Filesystems/Filesystem.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"

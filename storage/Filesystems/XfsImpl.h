@@ -25,8 +25,8 @@
 #define STORAGE_XFS_IMPL_H
 
 
-#include "storage/Devices/Xfs.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/Xfs.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Action.h"
 
 

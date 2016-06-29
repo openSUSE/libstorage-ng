@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2015 Novell, Inc.
  * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,13 +21,12 @@
  */
 
 
-#ifndef STORAGE_EXT4_IMPL_H
-#define STORAGE_EXT4_IMPL_H
+#ifndef STORAGE_NTFS_IMPL_H
+#define STORAGE_NTFS_IMPL_H
 
 
-#include "storage/Devices/Ext4.h"
-#include "storage/Devices/FilesystemImpl.h"
-#include "storage/Action.h"
+#include "storage/Filesystems/Ntfs.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
@@ -36,10 +35,10 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Ext4> { static const char* classname; };
+    template <> struct DeviceTraits<Ntfs> { static const char* classname; };
 
 
-    class Ext4::Impl : public Filesystem::Impl
+    class Ntfs::Impl : public Filesystem::Impl
     {
     public:
 
@@ -48,15 +47,17 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return FsType::EXT4; }
+	virtual FsType get_type() const override { return FsType::NTFS; }
 
-	virtual const char* get_classname() const override { return DeviceTraits<Ext4>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Ntfs>::classname; }
 
-	virtual string get_displayname() const override { return "ext4"; }
+	virtual string get_displayname() const override { return "ntfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info_pure() const override;
+
+	virtual ContentInfo detect_content_info_pure() const override;
 
 	virtual void do_create() const override;
 

@@ -21,12 +21,13 @@
  */
 
 
-#ifndef STORAGE_NTFS_IMPL_H
-#define STORAGE_NTFS_IMPL_H
+#ifndef STORAGE_BTRFS_IMPL_H
+#define STORAGE_BTRFS_IMPL_H
 
 
-#include "storage/Devices/Ntfs.h"
-#include "storage/Devices/FilesystemImpl.h"
+#include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -35,10 +36,10 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Ntfs> { static const char* classname; };
+    template <> struct DeviceTraits<Btrfs> { static const char* classname; };
 
 
-    class Ntfs::Impl : public Filesystem::Impl
+    class Btrfs::Impl : public Filesystem::Impl
     {
     public:
 
@@ -47,23 +48,19 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return FsType::NTFS; }
+	virtual FsType get_type() const override { return FsType::BTRFS; }
 
-	virtual const char* get_classname() const override { return DeviceTraits<Ntfs>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Btrfs>::classname; }
 
-	virtual string get_displayname() const override { return "ntfs"; }
+	virtual string get_displayname() const override { return "btrfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual ResizeInfo detect_resize_info_pure() const override;
-
-	virtual ContentInfo detect_content_info_pure() const override;
+	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual void do_create() const override;
 
 	virtual void do_set_label() const override;
-
-	virtual void do_resize(ResizeMode resize_mode) const override;
 
     };
 
