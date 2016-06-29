@@ -88,6 +88,9 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
+
 	/**
 	 * Add create actions for the Device.
 	 * @param actiongraph The Actiongraph fow which actions are added.
@@ -215,9 +218,6 @@ namespace storage
 	Impl();
 
 	Impl(const xmlNode* node);
-
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
 
     private:
 

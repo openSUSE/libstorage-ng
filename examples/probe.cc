@@ -28,7 +28,7 @@ doit()
     Environment environment(true, save_mockup ? ProbeMode::STANDARD_WRITE_MOCKUP : ProbeMode::STANDARD,
 			    TargetMode::DIRECT);
 
-    environment.set_mockup_filename("probe1-mockup.xml");
+    environment.set_mockup_filename("mockup.xml");
 
     Storage storage(environment);
 
@@ -39,19 +39,19 @@ doit()
     probed->check();
 
     if (save_devicegraph)
-	probed->save("probe1-devicegraph.xml");
+	probed->save("devicegraph.xml");
 
     if (display_devicegraph)
     {
 	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
-	probed->write_graphviz(tmp_dir.get_fullname() + "/probe1.gv", GraphvizFlags::CLASSNAME |
+	probed->write_graphviz(tmp_dir.get_fullname() + "/probe.gv", GraphvizFlags::CLASSNAME |
 			       GraphvizFlags::SID | GraphvizFlags::SIZE);
-	system(string("dot -Tpng < " + quote(tmp_dir.get_fullname() + "/probe1.gv") + " > " +
-		      quote(tmp_dir.get_fullname() + "/probe1.png")).c_str());
-	unlink(string(tmp_dir.get_fullname() + "/probe1.gv").c_str());
-	system(string("display " + quote(tmp_dir.get_fullname() + "/probe1.png")).c_str());
-	unlink(string(tmp_dir.get_fullname() + "/probe1.png").c_str());
+	system(string("dot -Tpng < " + quote(tmp_dir.get_fullname() + "/probe.gv") + " > " +
+		      quote(tmp_dir.get_fullname() + "/probe.png")).c_str());
+	unlink(string(tmp_dir.get_fullname() + "/probe.gv").c_str());
+	system(string("display " + quote(tmp_dir.get_fullname() + "/probe.png")).c_str());
+	unlink(string(tmp_dir.get_fullname() + "/probe.png").c_str());
     }
 }
 
@@ -61,7 +61,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "probe1 [--display-devicegraph] [--save-devicegraph] [--save-mockup]" << endl;
+    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup]" << endl;
     exit(EXIT_FAILURE);
 }
 

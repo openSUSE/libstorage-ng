@@ -20,11 +20,12 @@
  */
 
 
-#ifndef STORAGE_LVM_PV_IMPL_H
-#define STORAGE_LVM_PV_IMPL_H
+#ifndef STORAGE_BCACHE_CSET_IMPL_H
+#define STORAGE_BCACHE_CSET_IMPL_H
 
 
-#include "storage/Devices/LvmPv.h"
+#include "storage/Utils/Region.h"
+#include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/DeviceImpl.h"
 
 
@@ -34,10 +35,10 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<LvmPv> { static const char* classname; };
+    template <> struct DeviceTraits<BcacheCset> { static const char* classname; };
 
 
-    class LvmPv::Impl : public Device::Impl
+    class BcacheCset::Impl : public Device::Impl
     {
     public:
 
@@ -46,9 +47,14 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return DeviceTraits<LvmPv>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<BcacheCset>::classname; }
 
-	virtual string get_displayname() const override { return "lvm pv"; }
+	virtual string get_displayname() const override { return get_uuid(); }
+
+	static bool is_valid_uuid(const string& uuid);
+
+	static void probe_bcache_csets(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -57,25 +63,18 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
-	bool has_blk_device() const;
-	BlkDevice* get_blk_device();
-	const BlkDevice* get_blk_device() const;
-
-	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
-
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(Tense tense) const override;
-
     private:
 
 	string uuid;
-
     };
+
+
+    bool compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs);
 
 }
 

@@ -26,7 +26,6 @@
 
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Action.h"
@@ -52,8 +51,7 @@ namespace storage
 
 	virtual const char* get_classname() const override { return "Luks"; }
 
-	static vector<string> probe_luks(SystemInfo& systeminfo);
-
+	static void probe_lukses(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 

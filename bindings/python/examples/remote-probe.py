@@ -5,6 +5,7 @@ from getopt import getopt, GetoptError
 from subprocess import Popen, PIPE
 from storage import Environment, Storage, ProbeMode_STANDARD, ProbeMode_STANDARD_WRITE_MOCKUP, TargetMode_DIRECT
 from storage import RemoteCallbacks, RemoteCommand, RemoteFile, set_remote_callbacks
+from storage import set_logger, get_logfile_logger
 
 
 host = "localhost"
@@ -57,13 +58,16 @@ class MyRemoteCallbacks(RemoteCallbacks):
 
 
 def doit():
+
+    set_logger(get_logfile_logger())
+
     my_remote_callbacks = MyRemoteCallbacks()
 
     set_remote_callbacks(my_remote_callbacks)
 
     environment = Environment(True, ProbeMode_STANDARD_WRITE_MOCKUP if save_mockup else ProbeMode_STANDARD, TargetMode_DIRECT)
     if save_mockup:
-        environment.set_mockup_filename("remote-probe-mockup.xml");
+        environment.set_mockup_filename("mockup.xml");
 
     storage = Storage(environment)
 
@@ -74,7 +78,7 @@ def doit():
     print probed
 
     if save_devicegraph:
-        probed.save("remote-probe-devicegraph.xml");
+        probed.save("devicegraph.xml");
 
 
 def usage():

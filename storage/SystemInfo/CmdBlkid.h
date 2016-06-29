@@ -52,7 +52,8 @@ namespace storage
 	struct Entry
 	{
 	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(),
-		      is_md(false), is_lvm(false), is_luks(false), luks_uuid() {}
+		      is_md(false), is_lvm(false), is_luks(false), luks_uuid(),
+		      is_bcache(false), bcache_uuid() {}
 
 	    bool is_fs;
 	    FsType fs_type;
@@ -65,6 +66,9 @@ namespace storage
 
 	    bool is_luks;
 	    string luks_uuid;
+
+	    bool is_bcache;
+	    string bcache_uuid;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
@@ -75,6 +79,7 @@ namespace storage
 	bool any_md() const;
 	bool any_lvm() const;
 	bool any_luks() const;
+	bool any_bcache() const;
 
     private:
 

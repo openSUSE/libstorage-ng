@@ -109,6 +109,10 @@ namespace storage
 		{
 		    entry.is_luks = true;
 		}
+		else if (i->second == "bcache")
+		{
+		    entry.is_bcache = true;
+		}
 	    }
 
 	    if (entry.is_fs)
@@ -129,7 +133,14 @@ namespace storage
 		    entry.luks_uuid = i->second;
 	    }
 
-	    if (entry.is_fs || entry.is_md || entry.is_lvm || entry.is_luks)
+	    if (entry.is_bcache)
+	    {
+		i = m.find("UUID");
+		if (i != m.end())
+		    entry.bcache_uuid = i->second;
+	    }
+
+	    if (entry.is_fs || entry.is_md || entry.is_lvm || entry.is_luks || entry.is_bcache)
 		data[device] = entry;
 	}
 
@@ -183,6 +194,13 @@ namespace storage
     }
 
 
+    bool
+    Blkid::any_bcache() const
+    {
+	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bcache; });
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const Blkid& blkid)
     {
@@ -221,6 +239,13 @@ namespace storage
 	    s << "is-luks:" << entry.is_luks;
 	    if (!entry.luks_uuid.empty())
 		s << " luks-uuid:" << entry.luks_uuid;
+	}
+
+	if (entry.is_bcache)
+	{
+	    s << "is-bcache:" << entry.is_bcache;
+	    if (!entry.bcache_uuid.empty())
+		s << " bcache-uuid:" << entry.bcache_uuid;
 	}
 
 	return s;

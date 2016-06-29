@@ -24,7 +24,6 @@
 #define STORAGE_LVM_LV_IMPL_H
 
 
-#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"
@@ -52,6 +51,7 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_lv_name(); }
 
+	static void probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }

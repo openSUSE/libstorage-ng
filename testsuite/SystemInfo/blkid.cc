@@ -129,3 +129,21 @@ BOOST_AUTO_TEST_CASE(parse5)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse6)
+{
+    vector<string> input = {
+	"/dev/sdb: UUID=\"86fa0e25-c962-4410-9113-cd23bfad08a6\" TYPE=\"bcache\"",
+	"/dev/sdc: UUID=\"5f5da36e-b312-45e5-b86c-059275cfe1de\" TYPE=\"bcache\"",
+	"/dev/bcache0: UUID=\"38986ecf-78d1-450b-8ad4-f071a33a7984\" TYPE=\"xfs\"",
+    };
+
+    vector<string> output = {
+	"data[/dev/bcache0] -> is-fs:true fs-type:xfs fs-uuid:38986ecf-78d1-450b-8ad4-f071a33a7984",
+	"data[/dev/sdb] -> is-bcache:true bcache-uuid:86fa0e25-c962-4410-9113-cd23bfad08a6",
+	"data[/dev/sdc] -> is-bcache:true bcache-uuid:5f5da36e-b312-45e5-b86c-059275cfe1de"
+    };
+
+    check(input, output);
+}

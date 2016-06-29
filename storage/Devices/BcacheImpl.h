@@ -20,12 +20,14 @@
  */
 
 
-#ifndef STORAGE_LVM_PV_IMPL_H
-#define STORAGE_LVM_PV_IMPL_H
+#ifndef STORAGE_BCACHE_IMPL_H
+#define STORAGE_BCACHE_IMPL_H
 
 
-#include "storage/Devices/LvmPv.h"
-#include "storage/Devices/DeviceImpl.h"
+#include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/Enum.h"
+#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -34,48 +36,41 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<LvmPv> { static const char* classname; };
+    template <> struct DeviceTraits<Bcache> { static const char* classname; };
 
 
-    class LvmPv::Impl : public Device::Impl
+    class Bcache::Impl : public BlkDevice::Impl
     {
     public:
 
-	Impl()
-	    : Device::Impl(), uuid() {}
+	Impl(const string& name)
+	    : BlkDevice::Impl(name) {}
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return DeviceTraits<LvmPv>::classname; }
+	virtual const char* get_classname() const override { return "Bcache"; }
 
-	virtual string get_displayname() const override { return "lvm pv"; }
+	static bool is_valid_name(const string& name);
+
+	static void probe_bcaches(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
 
-	const string& get_uuid() const { return uuid; }
-	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
-
-	bool has_blk_device() const;
-	BlkDevice* get_blk_device();
-	const BlkDevice* get_blk_device() const;
-
-	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+	unsigned int get_number() const;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(Tense tense) const override;
-
-    private:
-
-	string uuid;
-
     };
+
+
+    bool compare_by_number(const Bcache* lhs, const Bcache* rhs);
 
 }
 

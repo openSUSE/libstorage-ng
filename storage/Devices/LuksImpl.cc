@@ -52,22 +52,21 @@ namespace storage
     }
 
 
-    vector<string>
-    Luks::Impl::probe_luks(SystemInfo& systeminfo)
+    void
+    Luks::Impl::probe_lukses(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	vector<string> ret;
-
 	for (const CmdDmsetupInfo::value_type& value : systeminfo.getCmdDmsetupInfo())
 	{
-	    if (value.second.subsystem == "CRYPT")
-	    {
-		const CmdCryptsetup& cmd_cryptsetup = systeminfo.getCmdCryptsetup(value.first);
-		if (cmd_cryptsetup.encryption_type == EncryptionType::LUKS)
-		    ret.push_back(value.first);
-	    }
-	}
+	    if (value.second.subsystem != "CRYPT")
+		continue;
 
-	return ret;
+	    const CmdCryptsetup& cmd_cryptsetup = systeminfo.getCmdCryptsetup(value.first);
+	    if (cmd_cryptsetup.encryption_type != EncryptionType::LUKS)
+		continue;
+
+	    Luks* luks = Luks::create(probed, value.first);
+	    luks->get_impl().probe_pass_1(probed, systeminfo);
+	}
     }
 
 

@@ -1,3 +1,24 @@
+/*
+ * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
+ *
+ * All Rights Reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of version 2 of the GNU General Public License as published
+ * by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, contact Novell, Inc.
+ *
+ * To contact Novell about this file by physical or electronic mail, you may
+ * find current contact information at www.novell.com.
+ */
 
 
 #include <ctype.h>
@@ -107,22 +128,18 @@ namespace storage
     }
 
 
-    vector<string>
-    Md::Impl::probe_mds(SystemInfo& systeminfo)
+    void
+    Md::Impl::probe_mds(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	vector<string> ret;
-
 	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
-
 	    if (!is_valid_name(name))
 		continue;
 
-	    ret.push_back(name);
+	    Md* md = Md::create(probed, name);
+	    md->get_impl().probe_pass_1(probed, systeminfo);
 	}
-
-	return ret;
     }
 
 
