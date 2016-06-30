@@ -7,7 +7,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Devices/Ext4.h"
+#include "storage/Filesystems/Ext4.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 

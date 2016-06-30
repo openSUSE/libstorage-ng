@@ -21,7 +21,7 @@
 %feature("director") storage::Logger;
 
 // Order of includes is crucial:
-// 1. Devices and Holders in order of derivation.
+// 1. Devices, Filesystems and Holders in order of derivation.
 
 %{
 
@@ -34,13 +34,13 @@
 #include "storage/FreeInfo.h"
 
 #include "storage/Devices/Device.h"
-#include "storage/Devices/Filesystem.h"
-#include "storage/Devices/Ext4.h"
-#include "storage/Devices/Ntfs.h"
-#include "storage/Devices/Vfat.h"
-#include "storage/Devices/Btrfs.h"
-#include "storage/Devices/Xfs.h"
-#include "storage/Devices/Swap.h"
+#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/Ext4.h"
+#include "storage/Filesystems/Ntfs.h"
+#include "storage/Filesystems/Vfat.h"
+#include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/Xfs.h"
+#include "storage/Filesystems/Swap.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
@@ -85,13 +85,13 @@
 %include "../../storage/FreeInfo.h"
 
 %include "../../storage/Devices/Device.h"
-%include "../../storage/Devices/Filesystem.h"
-%include "../../storage/Devices/Ext4.h"
-%include "../../storage/Devices/Ntfs.h"
-%include "../../storage/Devices/Vfat.h"
-%include "../../storage/Devices/Btrfs.h"
-%include "../../storage/Devices/Xfs.h"
-%include "../../storage/Devices/Swap.h"
+%include "../../storage/Filesystems/Filesystem.h"
+%include "../../storage/Filesystems/Ext4.h"
+%include "../../storage/Filesystems/Ntfs.h"
+%include "../../storage/Filesystems/Vfat.h"
+%include "../../storage/Filesystems/Btrfs.h"
+%include "../../storage/Filesystems/Xfs.h"
+%include "../../storage/Filesystems/Swap.h"
 %include "../../storage/Devices/BlkDevice.h"
 %include "../../storage/Devices/Partition.h"
 %include "../../storage/Devices/PartitionTable.h"

@@ -8,7 +8,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devicegraph.h		\
 	${top_srcdir}/storage/Devices/BlkDevice.h	\
 	${top_srcdir}/storage/Devices/Partitionable.h	\
-	${top_srcdir}/storage/Devices/Btrfs.h		\
+	${top_srcdir}/storage/Filesystems/Btrfs.h	\
 	${top_srcdir}/storage/Devices/Device.h		\
 	${top_srcdir}/storage/Devices/Disk.h		\
 	${top_srcdir}/storage/Devices/Md.h		\
@@ -16,18 +16,18 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Devices/Luks.h		\
 	${top_srcdir}/storage/Devices/Bcache.h		\
 	${top_srcdir}/storage/Devices/BcacheCset.h	\
-	${top_srcdir}/storage/Devices/Ext4.h		\
-	${top_srcdir}/storage/Devices/Ntfs.h		\
-	${top_srcdir}/storage/Devices/Vfat.h		\
-	${top_srcdir}/storage/Devices/Filesystem.h	\
+	${top_srcdir}/storage/Filesystems/Ext4.h	\
+	${top_srcdir}/storage/Filesystems/Ntfs.h	\
+	${top_srcdir}/storage/Filesystems/Vfat.h	\
+	${top_srcdir}/storage/Filesystems/Filesystem.h	\
 	${top_srcdir}/storage/Devices/Gpt.h		\
 	${top_srcdir}/storage/Devices/LvmLv.h		\
 	${top_srcdir}/storage/Devices/LvmVg.h		\
 	${top_srcdir}/storage/Devices/Msdos.h		\
 	${top_srcdir}/storage/Devices/Partition.h	\
 	${top_srcdir}/storage/Devices/PartitionTable.h	\
-	${top_srcdir}/storage/Devices/Swap.h		\
-	${top_srcdir}/storage/Devices/Xfs.h		\
+	${top_srcdir}/storage/Filesystems/Swap.h	\
+	${top_srcdir}/storage/Filesystems/Xfs.h		\
 	${top_srcdir}/storage/Environment.h		\
 	${top_srcdir}/storage/Holders/Holder.h		\
 	${top_srcdir}/storage/Holders/Subdevice.h	\
