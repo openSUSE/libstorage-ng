@@ -16,13 +16,14 @@
 %factory(storage::Device* storage::downcast, storage::Disk, storage::Md, storage::Partition,
 	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Luks,
 	 storage::Encryption, storage::Msdos, storage::Btrfs, storage::Ext4, storage::Ntfs,
-	 storage::Swap, storage::Vfat, storage::Xfs);
+	 storage::Swap, storage::Vfat, storage::Xfs, storage::Bcache, storage::BcacheCset);
 
 %factory(const storage::Device* storage::downcast, const storage::Disk, const storage::Md,
 	 const storage::Partition, const storage::Gpt, const storage::LvmPv, const storage::LvmVg,
 	 const storage::LvmLv, const storage::Luks, const storage::Encryption, const storage::Msdos,
 	 const storage::Btrfs, const storage::Ext4, const storage::Ntfs, const storage::Swap,
-	 const storage::Vfat, const storage::Xfs);
+	 const storage::Vfat, const storage::Xfs, const storage::Bcache,
+	 const storage::BcacheCset);
 
 %inline %{
 
