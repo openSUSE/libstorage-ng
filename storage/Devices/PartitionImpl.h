@@ -103,10 +103,6 @@ namespace storage
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
 	virtual void do_resize(ResizeMode resize_mode) const override;
 
-    protected:
-
-	Region detect_sysfs_blk_region() const;
-
     private:
 
 	PartitionType type;

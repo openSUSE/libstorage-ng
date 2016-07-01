@@ -31,7 +31,6 @@
 #include <vector>
 #include <list>
 #include <map>
-#include <deque>
 #include <set>
 
 #include "storage/Utils/AppUtil.h"
@@ -56,21 +55,6 @@ namespace storage
     {
 	s << "<";
 	for (typename std::list<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
-	{
-	    if (it != l.begin())
-		s << " ";
-	    s << *it;
-	}
-	s << ">";
-	return s;
-    }
-
-
-    template<class Value>
-    std::ostream& operator<<(std::ostream& s, const std::deque<Value>& l)
-    {
-	s << "<";
-	for (typename std::deque<Value>::const_iterator it = l.begin(); it != l.end(); ++it)
 	{
 	    if (it != l.begin())
 		s << " ";
@@ -177,36 +161,6 @@ namespace storage
     }
 
 
-    template<class Type>
-    struct deref_less : public std::binary_function<const Type*, const Type*, bool>
-    {
-	bool operator()(const Type* x, const Type* y) const { return *x < *y; }
-    };
-
-
-    template<class Type>
-    struct deref_equal_to : public std::binary_function<const Type*, const Type*, bool>
-    {
-	bool operator()(const Type* x, const Type* y) const { return *x == *y; }
-    };
-
-
-    template <class Type>
-    void pointerIntoSortedList(list<Type*>& l, Type* e)
-    {
-	l.insert(lower_bound(l.begin(), l.end(), e, deref_less<Type>()), e);
-    }
-
-
-    template <class Type>
-    void clearPointerList(list<Type*>& l)
-    {
-	for (typename list<Type*>::iterator i = l.begin(); i != l.end(); ++i)
-	    delete *i;
-	l.clear();
-    }
-
-
     template <typename ListType, typename Type>
     bool contains(const ListType& l, const Type& value)
     {
@@ -218,46 +172,6 @@ namespace storage
     bool contains_if(const ListType& l, Predicate pred)
     {
 	return find_if(l.begin(), l.end(), pred) != l.end();
-    }
-
-
-    template<typename Map, typename Key, typename Value>
-    typename Map::iterator mapInsertOrReplace(Map& m, const Key& k, const Value& v)
-    {
-	typename Map::iterator pos = m.lower_bound(k);
-	if (pos != m.end() && !typename Map::key_compare()(k, pos->first))
-	    pos->second = v;
-	else
-	    pos = m.insert(pos, typename Map::value_type(k, v));
-	return pos;
-    }
-
-
-    template<typename List, typename Value>
-    typename List::const_iterator addIfNotThere(List& l, const Value& v)
-	{
-	typename List::const_iterator pos = find( l.begin(), l.end(), v );
-	if (pos == l.end() )
-	    pos = l.insert(l.end(), v);
-	return pos;
-	}
-
-
-    template<class Type>
-    Type
-    read_sysfs_property(const string& path)
-    {
-	Type ret;
-
-	std::ifstream file(path);
-	classic(file);
-	file >> ret;
-	file.close();
-
-	if (file.fail())
-	    ST_THROW(Exception(sformat("failed to read %s", path.c_str())));
-
-	return ret;
     }
 
 

@@ -472,19 +472,6 @@ namespace storage
     }
 
 
-    Region
-    Partition::Impl::detect_sysfs_blk_region() const
-    {
-	string start_p = SYSFSDIR + get_sysfs_path() + "/start";
-	string size_p = SYSFSDIR + get_sysfs_path() + "/size";
-
-	unsigned long long start = read_sysfs_property<unsigned long long>(start_p);
-	unsigned long long length = read_sysfs_property<unsigned long long>(size_p);
-
-	return Region(start, length, 512);
-    }
-
-
     namespace Action
     {
 
