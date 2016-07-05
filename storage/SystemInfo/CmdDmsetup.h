@@ -55,20 +55,6 @@ namespace storage
 	    string uuid;
 	};
 
-	bool getEntry(const string& name, Entry& entry) const;
-
-	vector<string> getEntries() const;
-
-	template<class Pred>
-	vector<string> getMatchingEntries(Pred pred) const
-	{
-	    vector<string> ret;
-	    for (const_iterator i = data.begin(); i != data.end(); ++i)
-		if (pred(i->first))
-		    ret.push_back(i->first);
-	    return ret;
-	}
-
 	typedef map<string, Entry>::value_type value_type;
 	typedef map<string, Entry>::const_iterator const_iterator;
 

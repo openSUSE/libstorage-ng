@@ -69,28 +69,6 @@ namespace storage
     }
 
 
-    bool
-    CmdDmsetupInfo::getEntry(const string& name, Entry& entry) const
-    {
-	const_iterator it = data.find(name);
-	if (it == data.end())
-	    return false;
-
-	entry = it->second;
-	return true;
-    }
-
-
-    vector<string>
-    CmdDmsetupInfo::getEntries() const
-    {
-	vector<string> ret;
-	for (const value_type& value : data)
-	    ret.push_back(value.first);
-	return ret;
-    }
-
-
     std::ostream&
     operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info)
     {
