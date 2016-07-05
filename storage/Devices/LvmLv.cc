@@ -93,6 +93,34 @@ namespace storage
     }
 
 
+    unsigned int
+    LvmLv::get_stripes() const
+    {
+	return get_impl().get_stripes();
+    }
+
+
+    void
+    LvmLv::set_stripes(unsigned int stripes)
+    {
+	get_impl().set_stripes(stripes);
+    }
+
+
+    unsigned long
+    LvmLv::get_stripe_size() const
+    {
+	return get_impl().get_stripe_size();
+    }
+
+
+    void
+    LvmLv::set_stripe_size(unsigned long stripe_size)
+    {
+	get_impl().set_stripe_size(stripe_size);
+    }
+
+
     void
     LvmLv::check() const
     {

@@ -40,13 +40,27 @@ namespace storage
     const char* DeviceTraits<LvmLv>::classname = "LvmLv";
 
 
-    LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), uuid()
+    LvmLv::Impl::Impl(const string& vg_name, const string& lv_name)
+	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), uuid(), stripes(0),
+	  stripe_size(0)
     {
+	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
+    }
+
+
+    LvmLv::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node), lv_name(), uuid(), stripes(0), stripe_size(0)
+    {
+	if (get_dm_table_name().empty())
+	    ST_THROW(Exception("no dm-table-name"));
+
 	if (!getChildValue(node, "lv-name", lv_name))
 	    ST_THROW(Exception("no lv-name"));
 
 	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "stripes", stripes);
+	getChildValue(node, "stripe-size", stripe_size);
     }
 
 
@@ -57,6 +71,9 @@ namespace storage
 
 	setChildValue(node, "lv-name", lv_name);
 	setChildValue(node, "uuid", uuid);
+
+	setChildValueIf(node, "stripes", stripes, stripes != 0);
+	setChildValueIf(node, "stripe-size", stripe_size, stripe_size != 0);
     }
 
 
@@ -83,8 +100,18 @@ namespace storage
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
+	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
+
 	unsigned long long extent_size = lvm_vg->get_region().get_block_size();
 	set_region(Region(0, lv.size / extent_size, extent_size));
+
+	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
+	vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
+	if (tables[0].target == "striped")
+	{
+	    stripes = tables[0].stripes;
+	    stripe_size = tables[0].stripe_size;
+	}
     }
 
 
@@ -93,7 +120,11 @@ namespace storage
     {
 	Impl::lv_name = lv_name;
 
-	// TODO call set_name()
+	const LvmVg* lvm_vg = get_lvm_vg();
+	set_name(make_name(lvm_vg->get_vg_name(), lv_name));
+	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
+
+	// TODO clear or update udev-ids; update looks difficult/impossible.
     }
 
 
@@ -114,7 +145,8 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return lv_name == rhs.lv_name && uuid == rhs.uuid;
+	return lv_name == rhs.lv_name && uuid == rhs.uuid && stripes == rhs.stripes &&
+	    stripe_size == rhs.stripe_size;
     }
 
 
@@ -127,6 +159,9 @@ namespace storage
 
 	storage::log_diff(log, "lv-name", lv_name, rhs.lv_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+
+	storage::log_diff(log, "stripes", stripes, rhs.stripes);
+	storage::log_diff(log, "stripe-size", stripe_size, rhs.stripe_size);
     }
 
 
@@ -136,6 +171,11 @@ namespace storage
 	BlkDevice::Impl::print(out);
 
 	out << " lv-name:" << lv_name << " uuid:" << uuid;
+
+	if (stripes != 0)
+	    out << " stripes:" << stripes;
+	if (stripe_size != 0)
+	    out << " stripe-size:" << stripe_size;
     }
 
 
@@ -204,6 +244,14 @@ namespace storage
     LvmLv::Impl::make_name(const string& vg_name, const string& lv_name)
     {
 	return DEVDIR "/" + vg_name + "/" + lv_name;
+    }
+
+
+    string
+    LvmLv::Impl::make_dm_table_name(const string& vg_name, const string& lv_name)
+    {
+	return boost::replace_all_copy(vg_name, "-", "--") + "-" +
+	    boost::replace_all_copy(lv_name, "-", "--");
     }
 
 

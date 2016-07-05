@@ -46,6 +46,12 @@ namespace storage
 	const std::string& get_lv_name() const;
 	void set_lv_name(const std::string& lv_name);
 
+	unsigned int get_stripes() const;
+	void set_stripes(unsigned int stripes);
+
+	unsigned long get_stripe_size() const;
+	void set_stripe_size(unsigned long stripe_size);
+
 	virtual void check() const override;
 
 	/**
