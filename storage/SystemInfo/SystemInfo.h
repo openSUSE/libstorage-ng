@@ -81,7 +81,6 @@ namespace storage
 	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
-	const CmdVgdisplay& getCmdVgdisplay(const string& name) { return vgdisplays.get(name); }
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
 
     private:
@@ -171,7 +170,6 @@ namespace storage
 	LazyObject<CmdPvs> cmdpvs;
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;
-	LazyObjects<CmdVgdisplay> vgdisplays;
 	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
 
     };
