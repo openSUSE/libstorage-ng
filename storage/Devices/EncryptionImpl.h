@@ -46,17 +46,12 @@ namespace storage
     {
     public:
 
-	Impl(const string& dm_name)
-	    : BlkDevice::Impl(DEVDIR "/mapper/" + dm_name), dm_name(dm_name) {}
-
+	Impl(const string& dm_table_name);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return "Encryption"; }
 
-	virtual string get_displayname() const override { return dm_name; }
-
-	const string& get_dm_name() const { return dm_name; }
-	void set_dm_name(const string& dm_name) { Impl::dm_name = dm_name; }
+	virtual string get_displayname() const override { return get_dm_table_name(); }
 
 	const BlkDevice* get_blk_device() const;
 
@@ -79,8 +74,6 @@ namespace storage
 
     private:
 
-	string dm_name;
-
 	// password
 	// mount-by for crypttab
 
@@ -102,9 +95,6 @@ namespace storage
 	};
 
     }
-
-
-    bool compare_by_dm_name(const Encryption* lhs, const Encryption* rhs);
 
 }
 

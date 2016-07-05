@@ -168,15 +168,14 @@ namespace storage
     }
 
 
-    bool
-    CmdDmsetupTable::get_tables(const string& name, vector<Table>& tables) const
+    vector<CmdDmsetupTable::Table>
+    CmdDmsetupTable::get_tables(const string& name) const
     {
 	const_iterator it = data.find(name);
 	if (it == data.end())
-	    return false;
+	    ST_THROW(Exception("dm table not found"));
 
-	tables = it->second;
-	return true;
+	return it->second;
     }
 
 

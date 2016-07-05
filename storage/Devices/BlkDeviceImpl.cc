@@ -48,7 +48,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), region(region)
+	: Device::Impl(), name(name), region(region), dm_table_name()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -56,7 +56,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), region(0, 0, 512)
+	: Device::Impl(node), name(), region(0, 0, 512), dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));
@@ -68,6 +68,8 @@ namespace storage
 
 	getChildValue(node, "udev-path", udev_path);
 	getChildValue(node, "udev-id", udev_ids);
+
+	getChildValue(node, "dm-table-name", dm_table_name);
     }
 
 
@@ -111,6 +113,8 @@ namespace storage
 
 	setChildValueIf(node, "udev-path", udev_path, !udev_path.empty());
 	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
+
+	setChildValueIf(node, "dm-table-name", dm_table_name, !dm_table_name.empty());
     }
 
 
@@ -280,7 +284,7 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    region == rhs.region;
+	    region == rhs.region && dm_table_name == rhs.dm_table_name;
     }
 
 
@@ -297,6 +301,8 @@ namespace storage
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
 	storage::log_diff(log, "region", region, rhs.region);
+
+	storage::log_diff(log, "dm-table-name", dm_table_name, rhs.dm_table_name);
     }
 
 
@@ -320,6 +326,9 @@ namespace storage
 
 	if (!udev_ids.empty())
 	    out << " udev-ids:" << udev_ids;
+
+	if (!dm_table_name.empty())
+	    out << " dm-table-name:" << dm_table_name;
     }
 
 
@@ -385,6 +394,13 @@ namespace storage
     BlkDevice::Impl::is_valid_name(const string& name)
     {
 	return boost::starts_with(name, DEVDIR "/");
+    }
+
+
+    bool
+    compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs)
+    {
+	return lhs->get_dm_table_name() < rhs->get_dm_table_name();
     }
 
 

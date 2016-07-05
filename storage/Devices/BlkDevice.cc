@@ -154,6 +154,20 @@ namespace storage
     }
 
 
+    const string&
+    BlkDevice::get_dm_table_name() const
+    {
+	return get_impl().get_dm_table_name();
+    }
+
+
+    void
+    BlkDevice::set_dm_table_name(const string& dm_table_name)
+    {
+	get_impl().set_dm_table_name(dm_table_name);
+    }
+
+
     ResizeInfo
     BlkDevice::detect_resize_info() const
     {

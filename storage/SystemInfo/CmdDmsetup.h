@@ -110,7 +110,7 @@ namespace storage
 	    vector<dev_t> majorminors;
 	};
 
-	bool get_tables(const string& name, vector<Table>& tables) const;
+	vector<Table> get_tables(const string& name) const;
 
 	typedef map<string, vector<Table>>::value_type value_type;
 	typedef map<string, vector<Table>>::const_iterator const_iterator;
