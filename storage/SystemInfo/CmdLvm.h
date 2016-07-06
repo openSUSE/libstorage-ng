@@ -133,64 +133,6 @@ namespace storage
 
     };
 
-
-    // TODO can CmdVgdisplay be dropped?
-
-    class CmdVgdisplay
-    {
-    public:
-
-	CmdVgdisplay(const string& name);
-
-	struct LvEntry
-	{
-	    void clear();
-
-	    string name;
-	    string uuid;
-	    string status;
-	    string origin;
-	    string used_pool;
-	    unsigned long num_le;
-	    unsigned long num_cow_le;
-	    unsigned long long pool_chunk;
-	    bool read_only;
-	    bool pool;
-	};
-
-	struct PvEntry
-	{
-	    void clear();
-
-	    string device;
-	    string uuid;
-	    string status;
-	    unsigned long num_pe;
-	    unsigned long free_pe;
-	};
-
-	friend std::ostream& operator<<(std::ostream& s, const CmdVgdisplay& cmdvgdisplay);
-	friend std::ostream& operator<<(std::ostream& s, const LvEntry& lv_entry);
-	friend std::ostream& operator<<(std::ostream& s, const PvEntry& pv_entry);
-
-	string name;
-	string uuid;
-	string status;
-	unsigned long long pe_size;
-	unsigned long num_pe;
-	unsigned long free_pe;
-	bool read_only;
-	bool lvm1;
-
-	list<LvEntry> lv_entries;
-	list<PvEntry> pv_entries;
-
-    private:
-
-	void parse(const vector<string>& lines);
-
-    };
-
 }
 
 #endif

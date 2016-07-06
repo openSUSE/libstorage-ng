@@ -42,9 +42,7 @@ namespace storage
     {
     public:
 
-	Impl(const string& vg_name, const string& lv_name)
-	    : BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), uuid() {}
-
+	Impl(const string& vg_name, const string& lv_name);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<LvmLv>::classname; }
@@ -66,6 +64,12 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
+	unsigned int get_stripes() const { return stripes; }
+	void set_stripes(unsigned int stripes) { Impl::stripes = stripes; }
+
+	unsigned long get_stripe_size() const { return stripe_size; }
+	void set_stripe_size(unsigned long stripe_size) { Impl::stripe_size = stripe_size; }
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
@@ -82,8 +86,13 @@ namespace storage
 
 	static string make_name(const string& vg_name, const string& lv_name);
 
+	static string make_dm_table_name(const string& vg_name, const string& lv_name);
+
 	string lv_name;
 	string uuid;
+
+	unsigned int stripes;
+	unsigned long stripe_size;
 
     };
 

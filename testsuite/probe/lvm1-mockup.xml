@@ -22,6 +22,12 @@
       <stdout>/dev/mapper/system-home: UUID="5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7" TYPE="xfs"</stdout>
     </Command>
     <Command>
+      <name>/sbin/dmsetup table</name>
+      <stdout>system-home: 0 18292736 linear 8:1 2048</stdout>
+      <stdout>system-swap: 0 3047424 linear 8:1 30484480</stdout>
+      <stdout>system-root: 0 12189696 linear 8:1 18294784</stdout>
+    </Command>
+    <Command>
       <name>/sbin/lvs --noheadings --unbuffered --units b --nosuffix --options lv_name,lv_uuid,vg_name,vg_uuid,lv_size</name>
       <stdout>  home h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 9365880832</stdout>
       <stdout>  root Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5 system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 6241124352</stdout>

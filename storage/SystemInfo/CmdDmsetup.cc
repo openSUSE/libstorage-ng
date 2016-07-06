@@ -69,28 +69,6 @@ namespace storage
     }
 
 
-    bool
-    CmdDmsetupInfo::getEntry(const string& name, Entry& entry) const
-    {
-	const_iterator it = data.find(name);
-	if (it == data.end())
-	    return false;
-
-	entry = it->second;
-	return true;
-    }
-
-
-    vector<string>
-    CmdDmsetupInfo::getEntries() const
-    {
-	vector<string> ret;
-	for (const value_type& value : data)
-	    ret.push_back(value.first);
-	return ret;
-    }
-
-
     std::ostream&
     operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info)
     {
@@ -168,15 +146,14 @@ namespace storage
     }
 
 
-    bool
-    CmdDmsetupTable::get_tables(const string& name, vector<Table>& tables) const
+    vector<CmdDmsetupTable::Table>
+    CmdDmsetupTable::get_tables(const string& name) const
     {
 	const_iterator it = data.find(name);
 	if (it == data.end())
-	    return false;
+	    ST_THROW(Exception("dm table not found"));
 
-	tables = it->second;
-	return true;
+	return it->second;
     }
 
 

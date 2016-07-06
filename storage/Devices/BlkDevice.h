@@ -59,6 +59,14 @@ namespace storage
 	const std::string& get_udev_path() const;
 	const std::vector<std::string>& get_udev_ids() const;
 
+	/**
+	 * Return device-mapper table name (dm-table-name for short). Empty if
+	 * this is not a device-mapper device.
+	 */
+	const std::string& get_dm_table_name() const;
+
+	void set_dm_table_name(const std::string& dm_table_name);
+
 	ResizeInfo detect_resize_info() const;
 
 	static std::vector<BlkDevice*> get_all(Devicegraph* devicegraph);

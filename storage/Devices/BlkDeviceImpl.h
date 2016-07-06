@@ -72,6 +72,9 @@ namespace storage
 	const string& get_udev_path() const { return udev_path; }
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 
+	const string& get_dm_table_name() const { return dm_table_name; }
+	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
+
 	bool has_filesystem() const;
 
 	Filesystem* get_filesystem();
@@ -142,7 +145,12 @@ namespace storage
 	string udev_path;
 	vector<string> udev_ids;
 
+	string dm_table_name;
+
     };
+
+
+    bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
 
 }
 

@@ -69,6 +69,7 @@
       <udev-id>dm-name-system-home</udev-id>
       <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLh2EA7Ze564bocL7iFDFpj81GUh5eyc3S</udev-id>
       <udev-id>raid-system-home</udev-id>
+      <dm-table-name>system-home</dm-table-name>
       <lv-name>home</lv-name>
       <uuid>h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S</uuid>
     </LvmLv>
@@ -84,6 +85,7 @@
       <udev-id>dm-name-system-root</udev-id>
       <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLY5Og1SLvHZIvobdoBF0xwBmyYUWzKfq5</udev-id>
       <udev-id>raid-system-root</udev-id>
+      <dm-table-name>system-root</dm-table-name>
       <lv-name>root</lv-name>
       <uuid>Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5</uuid>
     </LvmLv>
@@ -99,6 +101,7 @@
       <udev-id>dm-name-system-swap</udev-id>
       <udev-id>dm-uuid-LVM-2honilni5vB8ll23M8tfpQNC963hkLcLwGZ7UTicrj6iSMgl0FjxmeCW48tOyl8Y</udev-id>
       <udev-id>raid-system-swap</udev-id>
+      <dm-table-name>system-swap</dm-table-name>
       <lv-name>swap</lv-name>
       <uuid>wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y</uuid>
     </LvmLv>

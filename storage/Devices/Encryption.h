@@ -48,16 +48,9 @@ namespace storage
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Return device-mapper table name (dm-name for short).
-	 */
-	const std::string& get_dm_name() const;
-
-	/**
 	 * Return underlying blk device.
 	 */
 	const BlkDevice* get_blk_device() const;
-
-	void set_dm_name(const std::string& dm_name);
 
     public:
 

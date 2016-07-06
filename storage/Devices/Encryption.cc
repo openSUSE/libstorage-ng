@@ -83,20 +83,6 @@ namespace storage
     }
 
 
-    const string&
-    Encryption::get_dm_name() const
-    {
-	return get_impl().get_dm_name();
-    }
-
-
-    void
-    Encryption::set_dm_name(const string& dm_name)
-    {
-	get_impl().set_dm_name(dm_name);
-    }
-
-
     bool
     is_encryption(const Device* device)
     {

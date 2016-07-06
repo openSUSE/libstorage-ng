@@ -6,7 +6,6 @@ test-cmddmsetuptable
 test-cmdlvs
 test-cmdpvs
 test-cmdudevadminfo
-test-cmdvgdisplay
 test-cmdvgs
 test-dir
 test-lsscsi

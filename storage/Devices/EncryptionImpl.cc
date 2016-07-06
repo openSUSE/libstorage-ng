@@ -43,11 +43,18 @@ namespace storage
     });
 
 
-    Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), dm_name()
+    Encryption::Impl::Impl(const string& dm_table_name)
+	: BlkDevice::Impl(DEVDIR "/mapper/" + dm_table_name)
     {
-	if (!getChildValue(node, "dm-name", dm_name))
-	    ST_THROW(Exception("no dm-name"));
+	set_dm_table_name(dm_table_name);
+    }
+
+
+    Encryption::Impl::Impl(const xmlNode* node)
+	: BlkDevice::Impl(node)
+    {
+	if (get_dm_table_name().empty())
+	    ST_THROW(Exception("no dm-table-name"));
     }
 
 
@@ -55,8 +62,6 @@ namespace storage
     Encryption::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
-
-	setChildValue(node, "dm-name", dm_name);
     }
 
 
@@ -76,9 +81,7 @@ namespace storage
 
 	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
 
-	vector<CmdDmsetupTable::Table> tables;
-	if (!cmd_dmsetup_table.get_tables(dm_name, tables))
-	    ST_THROW(Exception("dmsetup table not found"));
+	vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
 
 	if (tables.size() != 1)
 	    ST_THROW(Exception("crypt with several dm-tables"));
@@ -115,7 +118,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return dm_name == rhs.dm_name;
+	return true;
     }
 
 
@@ -125,8 +128,6 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
-
-	storage::log_diff(log, "dm-name", dm_name, rhs.dm_name);
     }
 
 
@@ -134,8 +135,6 @@ namespace storage
     Encryption::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
-
-	out << " dm-name:" << dm_name;
     }
 
 
@@ -169,13 +168,6 @@ namespace storage
 	    // TODO
 	}
 
-    }
-
-
-    bool
-    compare_by_dm_name(const Encryption* lhs, const Encryption* rhs)
-    {
-	return lhs->get_dm_name() < rhs->get_dm_name();
     }
 
 }
