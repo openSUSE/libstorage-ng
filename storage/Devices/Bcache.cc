@@ -82,6 +82,27 @@ namespace storage
     }
 
 
+    const BlkDevice*
+    Bcache::get_blk_device() const
+    {
+	return get_impl().get_blk_device();
+    }
+
+
+    bool
+    Bcache::has_bcache_cset() const
+    {
+	return get_impl().has_bcache_cset();
+    }
+
+
+    const BcacheCset*
+    Bcache::get_bcache_cset() const
+    {
+	return get_impl().get_bcache_cset();
+    }
+
+
     vector<Bcache*>
     Bcache::get_all(Devicegraph* devicegraph)
     {

@@ -30,6 +30,9 @@
 namespace storage
 {
 
+    class BcacheCset;
+
+
     /**
      * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
      * device.
@@ -42,6 +45,21 @@ namespace storage
 	static Bcache* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	unsigned int get_number() const;
+
+	/**
+	 * Get the BlkDevice used as backing device.
+	 */
+	const BlkDevice* get_blk_device() const;
+
+	/**
+	 * Returns true if a cache is attached.
+	 */
+	bool has_bcache_cset() const;
+
+	/**
+	 * Get the BcacheCset used as cache.
+	 */
+	const BcacheCset* get_bcache_cset() const;
 
 	/**
 	 * Sorted by number.

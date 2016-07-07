@@ -35,6 +35,10 @@ namespace storage
     using namespace std;
 
 
+    class Bcache;
+    class BlkDevice;
+
+
     template <> struct DeviceTraits<BcacheCset> { static const char* classname; };
 
 
@@ -52,6 +56,10 @@ namespace storage
 	virtual string get_displayname() const override { return get_uuid(); }
 
 	static bool is_valid_uuid(const string& uuid);
+
+	vector<const BlkDevice*> get_blk_devices() const;
+
+	vector<const Bcache*> get_bcaches() const;
 
 	static void probe_bcache_csets(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;

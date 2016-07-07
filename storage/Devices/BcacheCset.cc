@@ -91,6 +91,20 @@ namespace storage
     }
 
 
+    vector<const BlkDevice*>
+    BcacheCset::get_blk_devices() const
+    {
+	return get_impl().get_blk_devices();
+    }
+
+
+    vector<const Bcache*>
+    BcacheCset::get_bcaches() const
+    {
+	return get_impl().get_bcaches();
+    }
+
+
     vector<BcacheCset*>
     BcacheCset::get_all(Devicegraph* devicegraph)
     {

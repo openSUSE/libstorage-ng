@@ -39,7 +39,9 @@ namespace storage
     // can be dropped or be abstract
 
 
-    //! An encryption layer on a device
+    /**
+     * An encryption layer on a blk device
+     */
     class Encryption : public BlkDevice
     {
     public:

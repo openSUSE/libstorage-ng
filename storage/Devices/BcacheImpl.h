@@ -62,6 +62,12 @@ namespace storage
 
 	unsigned int get_number() const;
 
+	const BlkDevice* get_blk_device() const;
+
+	bool has_bcache_cset() const;
+
+	const BcacheCset* get_bcache_cset() const;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
