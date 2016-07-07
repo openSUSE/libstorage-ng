@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    class BlkDevice;
+    class Bcache;
+
+
     /**
      * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
      * cache set.
@@ -45,6 +49,16 @@ namespace storage
 
 	const std::string& get_uuid() const;
 	void set_uuid(const std::string& uuid);
+
+	/**
+	 * Returns the BlkDevices used by this BcacheCset.
+	 */
+	std::vector<const BlkDevice*> get_blk_devices() const;
+
+	/**
+	 * Returns the Bcaches using this BcacheCset.
+	 */
+	std::vector<const Bcache*> get_bcaches() const;
 
 	/**
 	 * Sorted by uuid.

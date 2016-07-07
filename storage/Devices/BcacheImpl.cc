@@ -26,6 +26,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Holders/User.h"
 #include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BcacheCset.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -60,7 +61,7 @@ namespace storage
 	return boost::regex_match(name, name_regex);
     }
 
-    
+
     void
     Bcache::Impl::probe_bcaches(Devicegraph* probed, SystemInfo& systeminfo)
     {
@@ -74,7 +75,7 @@ namespace storage
 	    bcache->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
-    
+
 
     void
     Bcache::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
@@ -108,6 +109,48 @@ namespace storage
 	    ST_THROW(Exception("bcache name has no number"));
 
 	return atoi(get_name().substr(pos + 1).c_str());
+    }
+
+
+    const BlkDevice*
+    Bcache::Impl::get_blk_device() const
+    {
+	// TODO, write some generic helper
+
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	vector<const BlkDevice*> ret = devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
+
+	return ret.front();
+    }
+
+
+    bool
+    Bcache::Impl::has_bcache_cset() const
+    {
+	// TODO, write some generic helper
+
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	vector<const BcacheCset*> ret = devicegraph.filter_devices_of_type<const BcacheCset>(devicegraph.parents(vertex));
+
+	return !ret.empty();
+    }
+
+
+    const BcacheCset*
+    Bcache::Impl::get_bcache_cset() const
+    {
+	// TODO, write some generic helper
+
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	vector<const BcacheCset*> ret = devicegraph.filter_devices_of_type<const BcacheCset>(devicegraph.parents(vertex));
+
+	return ret.front();
     }
 
 

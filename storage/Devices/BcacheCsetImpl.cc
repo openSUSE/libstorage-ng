@@ -27,6 +27,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/BcacheCsetImpl.h"
+#include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/User.h"
 
@@ -111,6 +112,26 @@ namespace storage
 		User::create(probed, blk_device, get_device());
 	    }
 	}
+    }
+
+
+    vector<const BlkDevice*>
+    BcacheCset::Impl::get_blk_devices() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
+    }
+
+
+    vector<const Bcache*>
+    BcacheCset::Impl::get_bcaches() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<const Bcache>(devicegraph.children(vertex));
     }
 
 
