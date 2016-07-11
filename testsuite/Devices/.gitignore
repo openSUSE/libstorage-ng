@@ -1,0 +1,7 @@
+*.log
+*.o
+*.test
+*.trs
+.deps
+.libs
+test-suite.log

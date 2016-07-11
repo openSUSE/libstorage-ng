@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
@@ -73,9 +74,9 @@ BOOST_AUTO_TEST_CASE(dependencies)
     User::create(devicegraph, sda1, system);
     User::create(devicegraph, sdb1, system);
 
-    LvmLv* system_root = system->create_lvm_lv("root");
-    LvmLv* system_swap = system->create_lvm_lv("swap");
-    LvmLv* system_home = system->create_lvm_lv("home");
+    LvmLv* system_root = system->create_lvm_lv("root", 4 * GiB);
+    LvmLv* system_swap = system->create_lvm_lv("swap", 1 * GiB);
+    LvmLv* system_home = system->create_lvm_lv("home", 15 * GiB);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 10);
     BOOST_CHECK_EQUAL(devicegraph->num_holders(), 9);

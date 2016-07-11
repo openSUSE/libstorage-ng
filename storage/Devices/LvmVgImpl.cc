@@ -22,11 +22,14 @@
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/Math.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmVgImpl.h"
-#include "storage/Devices/LvmPv.h"
+#include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/User.h"
 
 
 namespace storage
@@ -39,7 +42,7 @@ namespace storage
 
 
     LvmVg::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), vg_name(), uuid(), region()
+	: Device::Impl(node), vg_name(), uuid(), region(0, 0, default_extent_size)
     {
 	if (!getChildValue(node, "vg-name", vg_name))
 	    ST_THROW(Exception("no vg-name"));
@@ -93,12 +96,101 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmVg::Impl::get_extent_size() const
+    {
+	return region.get_block_size();
+    }
+
+
+    void
+    LvmVg::Impl::set_extent_size(unsigned long long extent_size)
+    {
+	// see vgcreate(8) for valid values
+
+	if (!is_power_of_two(extent_size) || !is_multiple_of(extent_size, 128 * KiB))
+	    ST_THROW(InvalidExtentSize(extent_size));
+
+	region.set_block_size(extent_size);
+
+	// TODO adjust lvm lvs
+    }
+
+
     void
     LvmVg::Impl::set_vg_name(const string& vg_name)
     {
 	Impl::vg_name = vg_name;
 
 	// TODO call set_name() for all lvm_lvs
+    }
+
+
+    void
+    LvmVg::Impl::calculate_region()
+    {
+	unsigned long long extent_size = region.get_block_size();
+
+	unsigned long long extent_count = 0;
+
+	for (const LvmPv* lvm_pv : get_lvm_pvs())
+	{
+	    // TODO 1MiB due to metadata and physical extent alignment, needs more research
+
+	    unsigned long long size = lvm_pv->get_blk_device()->get_size();
+	    if (size >= 1 * MiB)
+		extent_count += (size - 1 * MiB) / extent_size;
+	}
+
+	region.set_length(extent_count);
+    }
+
+
+    LvmPv*
+    LvmVg::Impl::add_pv(BlkDevice* blk_device)
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+
+	LvmPv* lvm_pv = nullptr;
+
+	switch (blk_device->num_children())
+	{
+	    case 0:
+		lvm_pv = LvmPv::create(devicegraph);
+		User::create(devicegraph, blk_device, lvm_pv);
+		break;
+
+	    case 1:
+		lvm_pv = blk_device->get_impl().get_single_child_of_type<LvmPv>();
+		break;
+
+	    default:
+		ST_THROW(Exception("illegal number of children"));
+	}
+
+	Subdevice::create(devicegraph, lvm_pv, get_device());
+
+	calculate_region();
+
+	return lvm_pv;
+    }
+
+
+    void
+    LvmVg::Impl::remove_pv(BlkDevice* blk_device)
+    {
+	LvmPv* lvm_pv = blk_device->get_impl().get_single_child_of_type<LvmPv>();
+
+	LvmVg* lvm_vg = lvm_pv->get_impl().get_single_child_of_type<LvmVg>();
+
+	if (lvm_vg != get_device())
+	    ST_THROW(Exception("not a blk device of volume group"));
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	devicegraph->get_impl().remove_vertex(lvm_pv->get_impl().get_vertex());
+
+	calculate_region();
     }
 
 

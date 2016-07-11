@@ -29,11 +29,20 @@
 
 namespace storage
 {
+    class BlkDevice;
     class LvmPv;
     class LvmLv;
 
 
-    //! A Volume Group of the Logical Volume Manager (LVM).
+    struct InvalidExtentSize : public Exception
+    {
+	InvalidExtentSize(unsigned long long extent_size);
+    };
+
+
+    /**
+     * A Volume Group of the Logical Volume Manager (LVM).
+     */
     class LvmVg : public Device
     {
     public:
@@ -53,10 +62,26 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	unsigned long long get_extent_size() const;
+	void set_extent_size(unsigned long long extent_size);
+
+	/**
+	 * Adds a block device as a physical volume to the volume group. If
+	 * there is not a physical volume on the block device it will be
+	 * created.
+	 */
+	LvmPv* add_pv(BlkDevice* blk_device);
+
+	/**
+	 * Removes a block device from the volume group. The physical volume
+	 * on the block device will the deleted.
+	 */
+	void remove_pv(BlkDevice* blk_device);
+
 	/**
 	 * Create a logical volume with name lv_name in the volume group.
 	 */
-	LvmLv* create_lvm_lv(const std::string& lv_name);
+	LvmLv* create_lvm_lv(const std::string& lv_name, unsigned long long size);
 
 	/**
 	 * Sorted by vg_name.

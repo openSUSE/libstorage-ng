@@ -1,5 +1,6 @@
 
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
@@ -44,7 +45,7 @@ main()
     User::create(rhs, rhs_sda1, rhs_system);
     User::create(rhs, rhs_sda2, rhs_system);
 
-    rhs_system->create_lvm_lv("swap");
+    rhs_system->create_lvm_lv("swap", 1 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);
 

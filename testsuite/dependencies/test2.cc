@@ -58,10 +58,10 @@ BOOST_AUTO_TEST_CASE(dependencies)
     LvmVg* system = LvmVg::create(rhs, "system");
     User::create(rhs, sda1, system);
 
-    LvmLv* system_root = system->create_lvm_lv("root");
+    LvmLv* system_root = system->create_lvm_lv("root", 4 * GiB);
     system_root->set_size(14 * GiB);
 
-    LvmLv* system_swap = system->create_lvm_lv("swap");
+    LvmLv* system_swap = system->create_lvm_lv("swap", 1 * GiB);
     system_swap->set_size(2 * GiB);
 
     Actiongraph actiongraph(storage, lhs, rhs);
