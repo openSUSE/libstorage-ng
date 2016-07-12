@@ -26,6 +26,7 @@
 
 #include <vector>
 
+#include "storage/Utils/Swig.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/Topology.h"
 #include "storage/Devices/Device.h"
@@ -78,7 +79,13 @@ namespace storage
 	 */
 	Partition* create_partition(const std::string& name, const Region& region, PartitionType type);
 
-	void delete_partition(const std::string& name);
+	/**
+	 * Delete a partition in the partition table. Also deletes all
+	 * descendants of the partition.
+	 */
+	void delete_partition(Partition* partition);
+
+	void delete_partition(const std::string& name) DEPRECATED;
 
 	unsigned int max_primary() const;
 	bool extended_possible() const;

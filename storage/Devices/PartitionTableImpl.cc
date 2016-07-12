@@ -117,13 +117,18 @@ namespace storage
 
 
     void
+    PartitionTable::Impl::delete_partition(Partition* partition)
+    {
+	partition->remove_descendants();
+
+	get_devicegraph()->remove_device(partition);
+    }
+
+
+    void
     PartitionTable::Impl::delete_partition(const string& name)
     {
-	Partition* partition = get_partition(name);
-
-	Devicegraph* devicegraph = get_devicegraph();
-
-	devicegraph->remove_device(partition);
+	delete_partition(get_partition(name));
     }
 
 

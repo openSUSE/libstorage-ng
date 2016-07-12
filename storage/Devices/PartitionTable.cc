@@ -102,9 +102,16 @@ namespace storage
 
 
     void
+    PartitionTable::delete_partition(Partition* partition)
+    {
+	get_impl().delete_partition(partition);
+    }
+
+
+    void
     PartitionTable::delete_partition(const string& name)
     {
-	return get_impl().delete_partition(name);
+	get_impl().delete_partition(name);
     }
 
 

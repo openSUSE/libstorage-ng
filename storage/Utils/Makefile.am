@@ -30,6 +30,7 @@ libutils_la_SOURCES =					\
 	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
 	CDgD.h						\
+	Swig.h						\
 	StorageDefines.h
 
 $(srcdir)/gen-pathlist.cc: StorageDefines.h
@@ -40,6 +41,7 @@ BUILT_SOURCES = gen-pathlist.cc
 pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
+	Swig.h			\
 	Logger.h		\
 	Exception.h		\
 	HumanString.h		\
