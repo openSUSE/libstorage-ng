@@ -24,6 +24,7 @@
 #define STORAGE_LVM_VG_IMPL_H
 
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/DeviceImpl.h"
@@ -42,8 +43,10 @@ namespace storage
     {
     public:
 
+	static const unsigned long long default_extent_size = 4 * MiB;
+
 	Impl(const string& vg_name)
-	    : Device::Impl(), vg_name(vg_name), uuid(), region() {}
+	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size) {}
 
 	Impl(const xmlNode* node);
 
@@ -62,14 +65,25 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	unsigned long long get_extent_size() const;
+	void set_extent_size(unsigned long long extent_size);
+
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
+	LvmPv* add_lvm_pv(BlkDevice* blk_device);
+	void remove_lvm_pv(BlkDevice* blk_device);
+
 	vector<LvmPv*> get_lvm_pvs();
 	vector<const LvmPv*> get_lvm_pvs() const;
+
+	LvmLv* create_lvm_lv(const string& lv_name, unsigned long long size);
+	void delete_lvm_lv(LvmLv* lvm_lv);
+
+	LvmLv* get_lvm_lv(const string& lv_name);
 
 	vector<LvmLv*> get_lvm_lvs();
 	vector<const LvmLv*> get_lvm_lvs() const;
@@ -90,6 +104,9 @@ namespace storage
 	 * Holds extent-size and extent-count.
 	 */
 	Region region;
+
+	void calculate_region();
+
     };
 
 

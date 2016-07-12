@@ -37,6 +37,12 @@ namespace storage
     using namespace std;
 
 
+    InvalidExtentSize::InvalidExtentSize(unsigned long long extent_size)
+	: Exception(sformat("invalid extent size '%lld'", extent_size))
+    {
+    }
+
+
     LvmVg*
     LvmVg::create(Devicegraph* devicegraph, const string& vg_name)
     {
@@ -96,6 +102,20 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmVg::get_extent_size() const
+    {
+	return get_impl().get_extent_size();
+    }
+
+
+    void
+    LvmVg::set_extent_size(unsigned long long extent_size)
+    {
+	get_impl().set_extent_size(extent_size);
+    }
+
+
     const string&
     LvmVg::get_vg_name() const
     {
@@ -107,6 +127,20 @@ namespace storage
     LvmVg::set_vg_name(const string& vg_name)
     {
 	get_impl().set_vg_name(vg_name);
+    }
+
+
+    LvmPv*
+    LvmVg::add_lvm_pv(BlkDevice* blk_device)
+    {
+	return get_impl().add_lvm_pv(blk_device);
+    }
+
+
+    void
+    LvmVg::remove_lvm_pv(BlkDevice* blk_device)
+    {
+	get_impl().remove_lvm_pv(blk_device);
     }
 
 
@@ -177,14 +211,23 @@ namespace storage
 
 
     LvmLv*
-    LvmVg::create_lvm_lv(const string& lv_name)
+    LvmVg::create_lvm_lv(const string& lv_name, unsigned long long size)
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	return get_impl().create_lvm_lv(lv_name, size);
+    }
 
-	LvmLv* lvm_lv = LvmLv::create(devicegraph, get_vg_name(), lv_name);
-	Subdevice::create(devicegraph, this, lvm_lv);
 
-	return lvm_lv;
+    void
+    LvmVg::delete_lvm_lv(LvmLv* lvm_lv)
+    {
+	return get_impl().delete_lvm_lv(lvm_lv);
+    }
+
+
+    LvmLv*
+    LvmVg::get_lvm_lv(const string& lv_name)
+    {
+	return get_impl().get_lvm_lv(lv_name);
     }
 
 

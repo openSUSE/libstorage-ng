@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
@@ -31,7 +32,7 @@ main()
     LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda2, system);
 
-    LvmLv* system_root = system->create_lvm_lv("root");
+    LvmLv* system_root = system->create_lvm_lv("root", 4 * GiB);
 
     Filesystem* filesystem = system_root->create_filesystem(FsType::EXT4);
     filesystem->add_mountpoint("/");

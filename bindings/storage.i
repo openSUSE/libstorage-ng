@@ -25,6 +25,7 @@
 
 %{
 
+#include "storage/Utils/Swig.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/HumanString.h"
@@ -76,6 +77,7 @@
 %include "std_list.i"
 %include "std_map.i"
 
+%include "../../storage/Utils/Swig.h"
 %include "../../storage/Utils/Logger.h"
 %include "../../storage/Utils/Exception.h"
 %include "../../storage/Utils/HumanString.h"

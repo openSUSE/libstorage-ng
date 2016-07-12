@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
@@ -38,7 +39,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
     LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda1, system);
 
-    LvmLv* root = system->create_lvm_lv("root");
+    LvmLv* root = system->create_lvm_lv("root", 4 * GiB);
 
     Ext4* ext4 = to_ext4(sda2->create_filesystem(FsType::EXT4));
 

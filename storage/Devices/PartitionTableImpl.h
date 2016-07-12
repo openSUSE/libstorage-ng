@@ -54,6 +54,8 @@ namespace storage
 
 	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
+	void delete_partition(Partition* partition);
+
 	void delete_partition(const string& name);
 
 	virtual PtType get_type() const = 0;

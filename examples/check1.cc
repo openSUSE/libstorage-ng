@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
@@ -32,9 +33,9 @@ make_devicegraph()
     LvmVg* system = LvmVg::create(&devicegraph, "system");
     User::create(&devicegraph, sda1, system);
 
-    system->create_lvm_lv("root");
+    system->create_lvm_lv("root", 4 * GiB);
 
-    LvmLv* system_swap = system->create_lvm_lv("swap");
+    LvmLv* system_swap = system->create_lvm_lv("swap", 1 * GiB);
 
     User::create(&devicegraph, system_swap, sda); // cycle
 

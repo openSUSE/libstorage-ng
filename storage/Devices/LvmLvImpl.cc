@@ -83,7 +83,7 @@ namespace storage
 	for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
 	{
 	    LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
-	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name);
+	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.size);
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
 	}
@@ -95,15 +95,9 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
 
-	const CmdLvs& cmd_lvs = systeminfo.getCmdLvs();
-	const CmdLvs::Lv& lv = cmd_lvs.find_by_lv_uuid(uuid);
-
 	const LvmVg* lvm_vg = get_lvm_vg();
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
-
-	unsigned long long extent_size = lvm_vg->get_region().get_block_size();
-	set_region(Region(0, lv.size / extent_size, extent_size));
 
 	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
 	vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());

@@ -2,3 +2,4 @@
 .deps
 .libs
 libstorage-ng.la
+Version.h

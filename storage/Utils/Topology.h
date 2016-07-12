@@ -87,6 +87,7 @@ namespace storage
 
 	/**
 	 * Aligns a region.
+	 *
 	 * @throw AlignError
 	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;

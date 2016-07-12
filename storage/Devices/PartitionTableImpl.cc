@@ -99,31 +99,33 @@ namespace storage
     Partition*
     PartitionTable::Impl::get_partition(const string& name)
     {
-	Devicegraph* devicegraph = get_devicegraph();
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	// TODO
-
-	for (Partition* partition : devicegraph->get_impl().filter_devices_of_type<Partition>(devicegraph->get_impl().children(vertex)))
+	for (Partition* partition : devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex)))
 	{
 	    if (partition->get_name() == name)
-	    {
 		return partition;
-	    }
 	}
 
-	throw runtime_error("partition not found");
+	ST_THROW(Exception("partition not found"));
+	__builtin_unreachable();
+    }
+
+
+    void
+    PartitionTable::Impl::delete_partition(Partition* partition)
+    {
+	partition->remove_descendants();
+
+	get_devicegraph()->remove_device(partition);
     }
 
 
     void
     PartitionTable::Impl::delete_partition(const string& name)
     {
-	Partition* partition = get_partition(name);
-
-	Devicegraph* devicegraph = get_devicegraph();
-
-	devicegraph->remove_device(partition);
+	delete_partition(get_partition(name));
     }
 
 
