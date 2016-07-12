@@ -95,9 +95,6 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
 
-	const CmdLvs& cmd_lvs = systeminfo.getCmdLvs();
-	const CmdLvs::Lv& lv = cmd_lvs.find_by_lv_uuid(uuid);
-
 	const LvmVg* lvm_vg = get_lvm_vg();
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
