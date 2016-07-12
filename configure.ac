@@ -83,7 +83,7 @@ AC_SUBST(RUBY_ARCH_NAME)
 AC_OUTPUT(
 	Makefile
 	storage/Makefile
-	storage/StorageVersion.h:storage/StorageVersion.h.in
+	storage/Version.h:storage/Version.h.in
 	storage/Devices/Makefile
 	storage/Filesystems/Makefile
 	storage/Holders/Makefile

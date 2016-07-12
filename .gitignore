@@ -15,7 +15,6 @@ libtool
 ltmain.sh
 missing
 stamp-h1
-StorageVersion.h
 test-driver
 py-compile
 cov-int
