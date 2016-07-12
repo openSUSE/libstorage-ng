@@ -62,7 +62,19 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	/**
+	 * Returns the extent size of the volume group.
+	 *
+	 * @return extent size
+	 */
 	unsigned long long get_extent_size() const;
+
+	/**
+	 * Set the extent size of the volume group. This can modify the size
+	 * of the logical volumes.
+	 *
+	 * @throw InvalidExtentSize
+	 */
 	void set_extent_size(unsigned long long extent_size);
 
 	/**
