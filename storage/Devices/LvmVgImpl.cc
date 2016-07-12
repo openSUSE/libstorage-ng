@@ -147,7 +147,7 @@ namespace storage
 
 
     LvmPv*
-    LvmVg::Impl::add_pv(BlkDevice* blk_device)
+    LvmVg::Impl::add_lvm_pv(BlkDevice* blk_device)
     {
 	Devicegraph* devicegraph = get_devicegraph();
 
@@ -177,7 +177,7 @@ namespace storage
 
 
     void
-    LvmVg::Impl::remove_pv(BlkDevice* blk_device)
+    LvmVg::Impl::remove_lvm_pv(BlkDevice* blk_device)
     {
 	LvmPv* lvm_pv = blk_device->get_impl().get_single_child_of_type<LvmPv>();
 

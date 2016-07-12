@@ -131,16 +131,16 @@ namespace storage
 
 
     LvmPv*
-    LvmVg::add_pv(BlkDevice* blk_device)
+    LvmVg::add_lvm_pv(BlkDevice* blk_device)
     {
-	return get_impl().add_pv(blk_device);
+	return get_impl().add_lvm_pv(blk_device);
     }
 
 
     void
-    LvmVg::remove_pv(BlkDevice* blk_device)
+    LvmVg::remove_lvm_pv(BlkDevice* blk_device)
     {
-	get_impl().remove_pv(blk_device);
+	get_impl().remove_lvm_pv(blk_device);
     }
 
 

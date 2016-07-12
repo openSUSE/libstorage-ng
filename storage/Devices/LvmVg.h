@@ -82,13 +82,13 @@ namespace storage
 	 * there is not a physical volume on the block device it will be
 	 * created.
 	 */
-	LvmPv* add_pv(BlkDevice* blk_device);
+	LvmPv* add_lvm_pv(BlkDevice* blk_device);
 
 	/**
 	 * Removes a block device from the volume group. The physical volume
 	 * on the block device will the deleted.
 	 */
-	void remove_pv(BlkDevice* blk_device);
+	void remove_lvm_pv(BlkDevice* blk_device);
 
 	/**
 	 * Create a logical volume with name lv_name in the volume group.

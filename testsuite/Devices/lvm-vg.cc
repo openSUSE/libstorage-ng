@@ -23,7 +23,7 @@ using namespace storage;
 unsigned long long extent_size = 4 * MiB;
 
 
-BOOST_AUTO_TEST_CASE(add_pv_test1)
+BOOST_AUTO_TEST_CASE(add_lvm_pv_test1)
 {
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(add_pv_test1)
     sda->set_size(16 * GiB);
 
     LvmVg* lvm_vg = LvmVg::create(staging, "test");
-    lvm_vg->add_pv(sda);
+    lvm_vg->add_lvm_pv(sda);
 
     BOOST_CHECK_EQUAL(staging->num_devices(), 3);
     BOOST_CHECK_EQUAL(staging->num_holders(), 2);
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(add_pv_test1)
 }
 
 
-BOOST_AUTO_TEST_CASE(add_pv_test2)
+BOOST_AUTO_TEST_CASE(add_lvm_pv_test2)
 {
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(add_pv_test2)
     User::create(staging, sda, lvm_pv);
 
     LvmVg* lvm_vg = LvmVg::create(staging, "test");
-    lvm_vg->add_pv(sda);
+    lvm_vg->add_lvm_pv(sda);
 
     BOOST_CHECK_EQUAL(staging->num_devices(), 3);
     BOOST_CHECK_EQUAL(staging->num_holders(), 2);
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE(add_pv_test2)
 }
 
 
-BOOST_AUTO_TEST_CASE(add_pv_test3)
+BOOST_AUTO_TEST_CASE(add_lvm_pv_test3)
 {
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -90,13 +90,13 @@ BOOST_AUTO_TEST_CASE(add_pv_test3)
     sda->create_partition_table(PtType::GPT);
 
     LvmVg* lvm_vg = LvmVg::create(staging, "test");
-    BOOST_CHECK_EXCEPTION(lvm_vg->add_pv(sda), DeviceHasWrongType,
+    BOOST_CHECK_EXCEPTION(lvm_vg->add_lvm_pv(sda), DeviceHasWrongType,
 	[](const Exception& e) { return e.what() == string("device has wrong type, seen 'Gpt', expected 'LvmPv'"); }
     );
 }
 
 
-BOOST_AUTO_TEST_CASE(remove_pv_test1)
+BOOST_AUTO_TEST_CASE(remove_lvm_pv_test1)
 {
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE(remove_pv_test1)
     sda->set_size(16 * GiB);
 
     LvmVg* lvm_vg = LvmVg::create(staging, "test");
-    lvm_vg->add_pv(sda);
+    lvm_vg->add_lvm_pv(sda);
 
     BOOST_CHECK_EQUAL(staging->num_devices(), 3);
     BOOST_CHECK_EQUAL(staging->num_holders(), 2);
@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE(remove_pv_test1)
     BOOST_CHECK_EQUAL(lvm_vg->get_size(), 16 * GiB - extent_size);
     BOOST_CHECK_EQUAL(lvm_vg->get_extent_size(), extent_size);
 
-    lvm_vg->remove_pv(sda);
+    lvm_vg->remove_lvm_pv(sda);
 
     BOOST_CHECK_EQUAL(staging->num_devices(), 2);
     BOOST_CHECK_EQUAL(staging->num_holders(), 0);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(create_lvm_lv_test1)
     sda->set_size(16 * GiB);
 
     LvmVg* lvm_vg = LvmVg::create(staging, "vg-name");
-    lvm_vg->add_pv(sda);
+    lvm_vg->add_lvm_pv(sda);
 
     LvmLv* lvm_lv = lvm_vg->create_lvm_lv("lv-name", 10 * GiB);
 
