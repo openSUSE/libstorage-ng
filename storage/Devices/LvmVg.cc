@@ -213,15 +213,21 @@ namespace storage
     LvmLv*
     LvmVg::create_lvm_lv(const string& lv_name, unsigned long long size)
     {
-	Devicegraph* devicegraph = get_impl().get_devicegraph();
+	return get_impl().create_lvm_lv(lv_name, size);
+    }
 
-	LvmLv* lvm_lv = LvmLv::create(devicegraph, get_vg_name(), lv_name);
-	Subdevice::create(devicegraph, this, lvm_lv);
 
-	unsigned long long extent_size = get_impl().get_region().get_block_size();
-	lvm_lv->set_region(Region(0, size / extent_size, extent_size));
+    void
+    LvmVg::delete_lvm_lv(LvmLv* lvm_lv)
+    {
+	return get_impl().delete_lvm_lv(lvm_lv);
+    }
 
-	return lvm_lv;
+
+    LvmLv*
+    LvmVg::get_lvm_lv(const string& lv_name)
+    {
+	return get_impl().get_lvm_lv(lv_name);
     }
 
 

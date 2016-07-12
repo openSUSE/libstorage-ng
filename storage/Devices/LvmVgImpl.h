@@ -80,6 +80,11 @@ namespace storage
 	vector<LvmPv*> get_lvm_pvs();
 	vector<const LvmPv*> get_lvm_pvs() const;
 
+	LvmLv* create_lvm_lv(const string& lv_name, unsigned long long size);
+	void delete_lvm_lv(LvmLv* lvm_lv);
+
+	LvmLv* get_lvm_lv(const string& lv_name);
+
 	vector<LvmLv*> get_lvm_lvs();
 	vector<const LvmLv*> get_lvm_lvs() const;
 

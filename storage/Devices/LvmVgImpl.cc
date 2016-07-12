@@ -218,6 +218,47 @@ namespace storage
     }
 
 
+    LvmLv*
+    LvmVg::Impl::create_lvm_lv(const std::string& lv_name, unsigned long long size)
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+
+	LvmLv* lvm_lv = LvmLv::create(devicegraph, vg_name, lv_name);
+	Subdevice::create(devicegraph, get_device(), lvm_lv);
+
+	unsigned long long extent_size = region.get_block_size();
+	lvm_lv->set_region(Region(0, size / extent_size, extent_size));
+
+	return lvm_lv;
+    }
+
+
+    void
+    LvmVg::Impl::delete_lvm_lv(LvmLv* lvm_lv)
+    {
+	lvm_lv->remove_descendants();
+
+	get_devicegraph()->remove_device(lvm_lv);
+    }
+
+
+    LvmLv*
+    LvmVg::Impl::get_lvm_lv(const string& lv_name)
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	for (LvmLv* lvm_lv : devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex)))
+	{
+	    if (lvm_lv->get_lv_name() == lv_name)
+		return lvm_lv;
+	}
+
+	ST_THROW(Exception("lvm lv not found"));
+	__builtin_unreachable();
+    }
+
+
     vector<LvmLv*>
     LvmVg::Impl::get_lvm_lvs()
     {

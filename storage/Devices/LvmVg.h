@@ -84,6 +84,12 @@ namespace storage
 	LvmLv* create_lvm_lv(const std::string& lv_name, unsigned long long size);
 
 	/**
+	 * Delete a logical volume in the volume group. Also deletes all
+	 * descendants of the logical volume.
+	 */
+	void delete_lvm_lv(LvmLv* lvm_lv);
+
+	/**
 	 * Sorted by vg_name.
 	 */
 	static std::vector<LvmVg*> get_all(Devicegraph* devicegraph);
@@ -95,6 +101,8 @@ namespace storage
 
 	std::vector<LvmPv*> get_lvm_pvs();
 	std::vector<const LvmPv*> get_lvm_pvs() const;
+
+	LvmLv* get_lvm_lv(const std::string& lv_name);
 
 	std::vector<LvmLv*> get_lvm_lvs();
 	std::vector<const LvmLv*> get_lvm_lvs() const;
