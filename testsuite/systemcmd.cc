@@ -75,6 +75,21 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 }
 
 
+BOOST_AUTO_TEST_CASE(pipe_stdin)
+{
+    vector<string> stdout = {
+        "Hello, cruel world",
+        "I'm leaving you today"
+    };
+
+    SystemCmd cmd;
+    cmd.setStdinText( "Hello, cruel world\nI'm leaving you today" );
+    cmd.execute( "cat" );
+
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
+}
+
+
 BOOST_AUTO_TEST_CASE(retcode_42)
 {
     SystemCmd cmd("helpers/retcode 42");
