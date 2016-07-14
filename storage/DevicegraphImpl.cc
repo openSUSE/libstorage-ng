@@ -580,8 +580,14 @@ namespace storage
 	for (vertex_descriptor vertex : vertices())
 	{
 	    out << *(graph[vertex].get()) << " -->";
+
+	    vector<sid_t> sids;
 	    for (vertex_descriptor child : boost::make_iterator_range(boost::adjacent_vertices(vertex, graph)))
-		out << " " << graph[child]->get_sid();
+		sids.push_back(graph[child]->get_sid());
+	    sort(sids.begin(), sids.end());
+	    for (sid_t sid : sids)
+		out << " " << sid;
+
 	    out << endl;
 	}
 
