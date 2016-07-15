@@ -25,10 +25,11 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
-#include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmVgImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/FindBy.h"
 
 
 using namespace std;
@@ -82,7 +83,7 @@ namespace storage
     {
 	for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
 	{
-	    LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, lv.vg_uuid);
+	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(probed, lv.vg_uuid);
 	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.size);
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
@@ -128,6 +129,20 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
 	return to_lvm_vg(get_devicegraph()->get_impl()[vertex]);
+    }
+
+
+    LvmLv*
+    LvmLv::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<LvmLv>(devicegraph, uuid);
+    }
+
+
+    const LvmLv*
+    LvmLv::Impl::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<const LvmLv>(devicegraph, uuid);
     }
 
 
