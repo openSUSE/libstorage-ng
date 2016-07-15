@@ -88,6 +88,9 @@ namespace storage
 	vector<LvmLv*> get_lvm_lvs();
 	vector<const LvmLv*> get_lvm_lvs() const;
 
+	static LvmVg* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
+	static const LvmVg* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

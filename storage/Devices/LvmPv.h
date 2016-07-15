@@ -44,9 +44,6 @@ namespace storage
 	static std::vector<LvmPv*> get_all(Devicegraph* devicegraph);
 	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 
-	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
-	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
-
 	bool has_blk_device() const;
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;

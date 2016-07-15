@@ -70,6 +70,9 @@ namespace storage
 	unsigned long get_stripe_size() const { return stripe_size; }
 	void set_stripe_size(unsigned long stripe_size) { Impl::stripe_size = stripe_size; }
 
+	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
+	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

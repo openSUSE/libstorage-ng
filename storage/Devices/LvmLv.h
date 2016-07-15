@@ -61,9 +61,6 @@ namespace storage
 	 */
 	const LvmVg* get_lvm_vg() const;
 
-	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
-	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
-
     public:
 
 	class Impl;

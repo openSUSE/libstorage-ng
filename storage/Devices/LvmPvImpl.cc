@@ -26,8 +26,9 @@
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devices/LvmPvImpl.h"
-#include "storage/Devices/LvmVg.h"
+#include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/FindBy.h"
 
 
 namespace storage
@@ -85,7 +86,7 @@ namespace storage
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
 
 	    // TODO the pv may not be included in any vg
-	    LvmVg* lvm_vg = LvmVg::find_by_uuid(probed, pv.vg_uuid);
+	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(probed, pv.vg_uuid);
 	    Subdevice::create(probed, lvm_pv, lvm_vg);
 	}
     }
@@ -99,6 +100,20 @@ namespace storage
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
 	User::create(probed, blk_device, get_device());
+    }
+
+
+    LvmPv*
+    LvmPv::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<LvmPv>(devicegraph, uuid);
+    }
+
+
+    const LvmPv*
+    LvmPv::Impl::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<const LvmPv>(devicegraph, uuid);
     }
 
 

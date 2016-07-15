@@ -57,7 +57,9 @@ namespace storage
     /// Also some devices do not have a intrinsic device name, e.g. btrfs.  We
     /// could even have objects for unused space, e.g. space between partitions
     /// or unallocated space of a volume group.
-
+    ///
+    /// Whenever possible use the storage id to find objects instead of
+    /// e.g. the name since only the storage id guarantees uniqueness.
     typedef unsigned int sid_t;
 
 
