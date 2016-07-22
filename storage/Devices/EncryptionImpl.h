@@ -59,7 +59,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
+	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 
