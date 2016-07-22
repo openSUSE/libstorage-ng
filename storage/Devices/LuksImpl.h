@@ -68,7 +68,7 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 
-	virtual Text do_open_text(Tense tense) const;
+	virtual Text do_open_text(Tense tense) const override;
 
     private:
 
