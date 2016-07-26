@@ -20,9 +20,12 @@
  */
 
 
+#include <iostream>
+
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
@@ -191,6 +194,8 @@ namespace storage
     void
     LvmLv::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
+	BlkDevice::Impl::add_modify_actions(actiongraph, lhs_base);
+
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
 	if (get_name() != lhs.get_name())
@@ -207,9 +212,45 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	return sformat(_("Create logical volume %1$s (%2$s) on volume group %3$s"),
-		       get_displayname().c_str(), get_size_string().c_str(),
-		       lvm_vg->get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Create logical volume %1$s (%2$s) on volume group %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Creating logical volume %1$s (%2$s) on volume group %3$s"));
+
+	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
+		       lvm_vg->get_vg_name().c_str());
+    }
+
+
+    void
+    LvmLv::Impl::do_create() const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVCREATEBIN " --zero=y --wipesignatures=y --yes --name " + quote(lv_name) +
+	    " --extents " + to_string(get_region().get_length());
+
+	if (stripes > 1)
+	{
+	    cmd_line += " --stripes " + to_string(stripes);
+	    if (stripe_size > 0)
+		cmd_line += " --stripesize " + to_string(stripe_size / KiB);
+	}
+
+	cmd_line += " " + quote(lvm_vg->get_vg_name());
+
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create LvmLv failed"));
     }
 
 
@@ -224,6 +265,116 @@ namespace storage
     void
     LvmLv::Impl::do_rename(const Impl& lhs) const
     {
+    }
+
+
+    Text
+    LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+	const LvmLv* lvm_lv_lhs = to_lvm_lv(lhs);
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by volume group name (e.g. system),
+			      // %3$s is replaced by old size (e.g. 2GiB),
+			      // %4$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by volume group name (e.g. system),
+			      // %3$s is replaced by old size (e.g. 2GiB),
+			      // %4$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+		break;
+
+	    case ResizeMode::GROW:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by volume group name (e.g. system),
+			      // %3$s is replaced by old size (e.g. 1GiB),
+			      // %4$s is replaced by new size (e.g. 2GiB)
+			      _("Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by volume group name (e.g. system),
+			      // %3$s is replaced by old size (e.g. 1GiB),
+			      // %4$s is replaced by new size (e.g. 2GiB)
+			      _("Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, lv_name.c_str(), lvm_vg->get_vg_name().c_str(),
+		       lvm_lv_lhs->get_size_string().c_str(), get_size_string().c_str());
+    }
+
+
+    void
+    LvmLv::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVRESIZEBIN;
+
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " --force";
+
+	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +
+	    to_string(get_region().get_length());
+
+	cout << cmd_line << endl;
+
+	wait_for_device();
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize LvmLV failed"));
+    }
+
+
+    Text
+    LvmLv::Impl::do_delete_text(Tense tense) const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Delete logical volume %1$s (%2$s) on volume group %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Deleting logical volume %1$s (%2$s) on volume group %3$s"));
+
+	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
+		       lvm_vg->get_vg_name().c_str());
+    }
+
+
+    void
+    LvmLv::Impl::do_delete() const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVREMOVEBIN " -f " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete LvmLv failed"));
     }
 
 

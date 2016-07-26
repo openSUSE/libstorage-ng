@@ -97,6 +97,10 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() const override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
 
     private:
 
