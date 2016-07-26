@@ -52,7 +52,6 @@
 #define VGREMOVEBIN "/sbin/vgremove"
 #define VGEXTENDBIN "/sbin/vgextend"
 #define VGREDUCEBIN "/sbin/vgreduce"
-#define VGDISPLAYBIN "/sbin/vgdisplay"
 #define VGSBIN "/sbin/vgs"
 #define VGSCANBIN "/sbin/vgscan"
 #define VGCHANGEBIN "/sbin/vgchange"
