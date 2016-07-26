@@ -41,6 +41,7 @@
 #define MDADMBIN "/sbin/mdadm"
 
 #define PVCREATEBIN "/sbin/pvcreate"
+#define PVREMOVEBIN "/sbin/pvremove"
 #define PVSBIN "/sbin/pvs"
 
 #define LVCREATEBIN "/sbin/lvcreate"
