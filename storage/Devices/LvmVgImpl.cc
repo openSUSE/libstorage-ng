@@ -108,13 +108,6 @@ namespace storage
     }
 
 
-    unsigned long long
-    LvmVg::Impl::get_extent_size() const
-    {
-	return region.get_block_size();
-    }
-
-
     void
     LvmVg::Impl::set_extent_size(unsigned long long extent_size)
     {
@@ -126,6 +119,28 @@ namespace storage
 	region.set_block_size(extent_size);
 
 	// TODO adjust lvm lvs
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::number_of_used_extents() const
+    {
+	unsigned long long ret = 0;
+
+	for (const LvmLv* lvm_lv : get_lvm_lvs())
+	    ret += lvm_lv->get_impl().number_of_extents();
+
+	return ret;
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::number_of_free_extents() const
+    {
+	unsigned long long a = number_of_extents();
+	unsigned long long b = number_of_used_extents();
+
+	return b >= a ? 0 : a - b;
     }
 
 

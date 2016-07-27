@@ -29,6 +29,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -188,6 +189,25 @@ namespace storage
 	    out << " stripes:" << stripes;
 	if (stripe_size != 0)
 	    out << " stripe-size:" << stripe_size;
+    }
+
+
+    ResizeInfo
+    LvmLv::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+
+	// A logical volume must have at least one extent. Maximal size
+	// calculated from free extents in volume group.
+
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	unsigned long long a = lvm_vg->get_extent_size();
+	unsigned long long b = lvm_vg->get_impl().number_of_free_extents() + number_of_extents();
+
+	resize_info.combine(ResizeInfo(true, a, b * a));
+
+	return resize_info;
     }
 
 

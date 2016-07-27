@@ -163,11 +163,16 @@ namespace storage
     {
 	// TODO handle all types of children
 
-	const Filesystem* filesystem = get_filesystem();
+	if (has_filesystem())
+	{
+	    const Filesystem* filesystem = get_filesystem();
 
-	ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
+	    ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
 
-	return resize_info;
+	    return resize_info;
+	}
+
+	return ResizeInfo(true);
     }
 
 

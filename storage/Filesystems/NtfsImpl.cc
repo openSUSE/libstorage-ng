@@ -58,7 +58,7 @@ namespace storage
 
 	blk_device->get_impl().wait_for_device();
 
-	ResizeInfo resize_info;
+	ResizeInfo resize_info(false);
 
 	// TODO filesystem must not be mounted
 

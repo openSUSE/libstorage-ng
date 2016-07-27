@@ -39,14 +39,14 @@ namespace storage
     }
 
 
-    ResizeInfo::ResizeInfo()
-	: resize_ok(false), min_size(0), max_size(1 * EiB)
+    ResizeInfo::ResizeInfo(bool resize_ok)
+	: resize_ok(resize_ok), min_size(0), max_size(1 * EiB)
     {
     }
 
 
     ResizeInfo::ResizeInfo(const xmlNode* node)
-	: ResizeInfo()
+	: ResizeInfo(false)
     {
 	getChildValue(node, "resize-ok", resize_ok);
 	getChildValue(node, "min-size", min_size);

@@ -67,8 +67,24 @@ namespace storage
 
 	string get_size_string() const;
 
-	unsigned long long get_extent_size() const;
+	unsigned long long get_extent_size() const { return region.get_block_size(); }
 	void set_extent_size(unsigned long long extent_size);
+
+	/**
+	 * Calculates the number of extents in the volume group.
+	 */
+	unsigned long long number_of_extents() const { return region.get_length(); }
+
+	/**
+	 * Calculates the number of used extents in the volume group. May
+	 * be larger than the number of extents in the volume group.
+	 */
+	unsigned long long number_of_used_extents() const;
+
+	/**
+	 * Calculates the number of free extents in the volume group.
+	 */
+	unsigned long long number_of_free_extents() const;
 
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
