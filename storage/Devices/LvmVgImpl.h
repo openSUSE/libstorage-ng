@@ -65,6 +65,8 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	string get_size_string() const;
+
 	unsigned long long get_extent_size() const;
 	void set_extent_size(unsigned long long extent_size);
 

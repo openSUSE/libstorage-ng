@@ -101,6 +101,13 @@ namespace storage
     }
 
 
+    string
+    LvmVg::Impl::get_size_string() const
+    {
+	return byte_to_humanstring(get_size(), false, 2, false);
+    }
+
+
     unsigned long long
     LvmVg::Impl::get_extent_size() const
     {
@@ -341,13 +348,15 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by volume group name (e.g. system)
-			   _("Create volume group %1$s"),
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Create volume group %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by volume group name (e.g. system)
-			   _("Creating volume group %1$s"));
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Creating volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str());
+	return sformat(text, vg_name.c_str(), get_size_string().c_str());
     }
 
 
@@ -373,13 +382,15 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by volume group name (e.g. system)
-			   _("Delete volume group %1$s"),
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Delete volume group %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by volume group name (e.g. system)
-			   _("Deleting volume group %1$s"));
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Deleting volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str());
+	return sformat(text, vg_name.c_str(), get_size_string().c_str());
     }
 
 
