@@ -200,14 +200,14 @@ namespace storage
 
 	for (sid_t sid : added_sids)
 	{
-	    const BlkDevice* blk_device = to_blk_device(actiongraph.get_devicegraph(RHS)->find_device(sid));
-	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::EXTEND, blk_device));
+	    const Device* device = actiongraph.get_devicegraph(RHS)->find_device(sid);
+	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::EXTEND, device));
 	}
 
 	for (sid_t sid : removed_sids)
 	{
-	    const BlkDevice* blk_device = to_blk_device(actiongraph.get_devicegraph(LHS)->find_device(sid));
-	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::REDUCE, blk_device));
+	    const Device* device = actiongraph.get_devicegraph(LHS)->find_device(sid);
+	    actiongraph.add_vertex(new Action::Reallot(get_sid(), ReallotMode::REDUCE, device));
 	}
     }
 
@@ -288,14 +288,14 @@ namespace storage
 
 
     Text
-    Device::Impl::do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device, Tense tense) const
+    Device::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
     {
 	return _("error: stub function called");
     }
 
 
     void
-    Device::Impl::do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const
+    Device::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
     {
 	throw std::logic_error("stub function called");
     }
@@ -325,7 +325,7 @@ namespace storage
 	Reallot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Device* device_rhs = get_device_rhs(actiongraph);
-	    return device_rhs->get_impl().do_reallot_text(reallot_mode, blk_device, tense);
+	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, tense);
 	}
 
 
@@ -333,7 +333,7 @@ namespace storage
 	Reallot::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Device* device_rhs = get_device_rhs(actiongraph);
-	    device_rhs->get_impl().do_reallot(reallot_mode, blk_device);
+	    device_rhs->get_impl().do_reallot(reallot_mode, device);
 	}
 
     }

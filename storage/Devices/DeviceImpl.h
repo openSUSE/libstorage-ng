@@ -148,9 +148,9 @@ namespace storage
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
 	virtual void do_resize(ResizeMode resize_mode) const;
 
-	virtual Text do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device,
+	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
 				     Tense tense) const;
-	virtual void do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const;
+	virtual void do_reallot(ReallotMode reallot_mode, const Device* device) const;
 
 	bool has_children() const;
 	size_t num_children() const;
@@ -285,8 +285,8 @@ namespace storage
 	{
 	public:
 
-	    Reallot(sid_t sid, ReallotMode reallot_mode, const BlkDevice* blk_device)
-		: Modify(sid), reallot_mode(reallot_mode), blk_device(blk_device) {}
+	    Reallot(sid_t sid, ReallotMode reallot_mode, const Device* device)
+		: Modify(sid), reallot_mode(reallot_mode), device(device) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
@@ -294,9 +294,9 @@ namespace storage
 	    const ReallotMode reallot_mode;
 
 	    /**
-	     * The block device for addition or removal.
+	     * The device for addition or removal.
 	     */
-	    const BlkDevice* blk_device;
+	    const Device* device;
 
 	};
 
