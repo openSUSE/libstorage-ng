@@ -458,13 +458,13 @@ namespace storage
     void
     Partition::Impl::do_resize(ResizeMode resize_mode) const
     {
-	wait_for_device();
-
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s "
 	    "resize " + to_string(get_number()) + " " + to_string(get_region().get_end());
 	cout << cmd_line << endl;
+
+	wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

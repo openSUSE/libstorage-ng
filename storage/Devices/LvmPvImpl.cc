@@ -20,8 +20,12 @@
  */
 
 
+#include <iostream>
+
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/Subdevice.h"
@@ -152,7 +156,62 @@ namespace storage
     Text
     LvmPv::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create physical volume on %1$s"), "todo");
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Create physical volume on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Creating physical volume on %1$s"));
+
+	return sformat(text, blk_device->get_name().c_str());
+    }
+
+
+    void
+    LvmPv::Impl::do_create() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = PVCREATEBIN " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create LvmPv failed"));
+    }
+
+
+    Text
+    LvmPv::Impl::do_delete_text(Tense tense) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Delete physical volume on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deleting physical volume on %1$s"));
+
+	return sformat(text, blk_device->get_name().c_str());
+    }
+
+
+    void
+    LvmPv::Impl::do_delete() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = PVREMOVEBIN " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete LvmPv failed"));
     }
 
 }

@@ -20,10 +20,14 @@
  */
 
 
+#include <iostream>
+
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Math.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmPvImpl.h"
@@ -94,6 +98,13 @@ namespace storage
     LvmVg::Impl::get_size() const
     {
 	return region.to_bytes(region.get_length());
+    }
+
+
+    string
+    LvmVg::Impl::get_size_string() const
+    {
+	return byte_to_humanstring(get_size(), false, 2, false);
     }
 
 
@@ -335,7 +346,63 @@ namespace storage
     Text
     LvmVg::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create volume group %1$s"), get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Create volume group %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Creating volume group %1$s (%2$s)"));
+
+	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+    }
+
+
+    void
+    LvmVg::Impl::do_create() const
+    {
+	string cmd_line = VGCREATEBIN " --physicalextentsize " + to_string(get_extent_size()) +
+	    "b " + quote(vg_name);
+
+	for (const LvmPv* lvm_pv : get_lvm_pvs())
+	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
+
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create LvmVg failed"));
+    }
+
+
+    Text
+    LvmVg::Impl::do_delete_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Delete volume group %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Deleting volume group %1$s (%2$s)"));
+
+	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+    }
+
+
+    void
+    LvmVg::Impl::do_delete() const
+    {
+	string cmd_line = VGREMOVEBIN " " + quote(vg_name);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete LvmVg failed"));
     }
 
 

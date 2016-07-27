@@ -41,19 +41,18 @@
 #define MDADMBIN "/sbin/mdadm"
 
 #define PVCREATEBIN "/sbin/pvcreate"
+#define PVREMOVEBIN "/sbin/pvremove"
 #define PVSBIN "/sbin/pvs"
 
 #define LVCREATEBIN "/sbin/lvcreate"
 #define LVREMOVEBIN "/sbin/lvremove"
-#define LVEXTENDBIN "/sbin/lvextend"
-#define LVREDUCEBIN "/sbin/lvreduce"
+#define LVRESIZEBIN "/sbin/lvresize"
 #define LVSBIN "/sbin/lvs"
 
 #define VGCREATEBIN "/sbin/vgcreate"
 #define VGREMOVEBIN "/sbin/vgremove"
 #define VGEXTENDBIN "/sbin/vgextend"
 #define VGREDUCEBIN "/sbin/vgreduce"
-#define VGDISPLAYBIN "/sbin/vgdisplay"
 #define VGSBIN "/sbin/vgs"
 #define VGSCANBIN "/sbin/vgscan"
 #define VGCHANGEBIN "/sbin/vgchange"

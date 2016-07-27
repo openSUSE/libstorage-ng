@@ -65,6 +65,8 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	string get_size_string() const;
+
 	unsigned long long get_extent_size() const;
 	void set_extent_size(unsigned long long extent_size);
 
@@ -97,6 +99,10 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() const override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
 
     private:
 

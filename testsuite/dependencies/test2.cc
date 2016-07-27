@@ -30,9 +30,10 @@ BOOST_AUTO_TEST_CASE(dependencies)
 	{ "1 - Create GPT on /dev/sda -> 2a" },
 	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
 	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
-	{ "3 - Create volume group system -> 4 5" },
-	{ "4 - Create logical volume root (14.00 GiB) on volume group system ->" },
-	{ "5 - Create logical volume swap (2.00 GiB) on volume group system ->" }
+	{ "3 - Create physical volume on /dev/sda1 -> 4" },
+	{ "4 - Create volume group system (16.00 GiB) -> 5 6" },
+	{ "5 - Create logical volume root (14.00 GiB) on volume group system ->" },
+	{ "6 - Create logical volume swap (2.00 GiB) on volume group system ->" }
     });
 
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -56,7 +57,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     sda1->set_id(ID_LVM);
 
     LvmVg* system = LvmVg::create(rhs, "system");
-    User::create(rhs, sda1, system);
+    system->add_lvm_pv(sda1);
 
     LvmLv* system_root = system->create_lvm_lv("root", 4 * GiB);
     system_root->set_size(14 * GiB);
