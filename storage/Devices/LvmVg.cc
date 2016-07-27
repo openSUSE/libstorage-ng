@@ -36,6 +36,12 @@ namespace storage
     using namespace std;
 
 
+    LvmVgNotFoundByVgName::LvmVgNotFoundByVgName(const string& vg_name)
+	: DeviceNotFound(sformat("LvmVg not found, vg-name:%s", vg_name.c_str()))
+    {
+    }
+
+
     InvalidExtentSize::InvalidExtentSize(unsigned long long extent_size)
 	: Exception(sformat("invalid extent size '%lld'", extent_size))
     {
@@ -154,6 +160,36 @@ namespace storage
     LvmVg::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_vg_name);
+    }
+
+
+    LvmVg*
+    LvmVg::find_by_vg_name(Devicegraph* devicegraph, const string& vg_name)
+    {
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    LvmVg* lvm_vg = dynamic_cast<LvmVg*>(devicegraph->get_impl()[vertex]);
+	    if (lvm_vg && lvm_vg->get_impl().get_vg_name() == vg_name)
+		return lvm_vg;
+	}
+
+	ST_THROW(LvmVgNotFoundByVgName(vg_name));
+	__builtin_unreachable();
+    }
+
+
+    const LvmVg*
+    LvmVg::find_by_vg_name(const Devicegraph* devicegraph, const string& vg_name)
+    {
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const LvmVg* lvm_vg = dynamic_cast<const LvmVg*>(devicegraph->get_impl()[vertex]);
+	    if (lvm_vg && lvm_vg->get_impl().get_vg_name() == vg_name)
+		return lvm_vg;
+	}
+
+	ST_THROW(LvmVgNotFoundByVgName(vg_name));
+	__builtin_unreachable();
     }
 
 

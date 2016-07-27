@@ -25,6 +25,7 @@
 
 
 #include "storage/Devices/Device.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
@@ -32,6 +33,12 @@ namespace storage
     class BlkDevice;
     class LvmPv;
     class LvmLv;
+
+
+    struct LvmVgNotFoundByVgName : public DeviceNotFound
+    {
+	LvmVgNotFoundByVgName(const std::string& vg_name);
+    };
 
 
     struct InvalidExtentSize : public Exception
@@ -110,6 +117,16 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const LvmVg*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Find a volume group by vg-name.
+	 */
+	static LvmVg* find_by_vg_name(Devicegraph* devicegraph, const std::string& vg_name);
+
+	/**
+	 * @copydoc find_by_vg_name()
+	 */
+	static const LvmVg* find_by_vg_name(const Devicegraph* devicegraph, const std::string& vg_name);
 
 	std::vector<LvmPv*> get_lvm_pvs();
 	std::vector<const LvmPv*> get_lvm_pvs() const;
