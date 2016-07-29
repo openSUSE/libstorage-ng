@@ -161,18 +161,12 @@ namespace storage
     ResizeInfo
     BlkDevice::Impl::detect_resize_info() const
     {
-	// TODO handle all types of children
+	ResizeInfo resize_info(true);
 
-	if (has_filesystem())
-	{
-	    const Filesystem* filesystem = get_filesystem();
+	for (const Device* child : get_device()->get_children())
+	     resize_info.combine(child->detect_resize_info());
 
-	    ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
-
-	    return resize_info;
-	}
-
-	return ResizeInfo(true);
+	return resize_info;
     }
 
 

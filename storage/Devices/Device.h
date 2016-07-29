@@ -40,6 +40,7 @@ namespace storage
 {
     class Devicegraph;
     class Holder;
+    class ResizeInfo;
 
 
     struct DeviceHasWrongType : public Exception
@@ -84,6 +85,8 @@ namespace storage
 	std::string get_displayname() const;
 
 	virtual void check() const;
+
+	virtual ResizeInfo detect_resize_info() const;
 
 	bool has_children() const;
 	size_t num_children() const;

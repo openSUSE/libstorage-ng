@@ -26,6 +26,7 @@
 #include "storage/Action.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -158,6 +159,13 @@ namespace storage
 
 	for (Devicegraph::Impl::vertex_descriptor descendant : devicegraph_impl.descendants(vertex, false))
 	    devicegraph_impl.remove_vertex(descendant);
+    }
+
+
+    ResizeInfo
+    Device::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false);
     }
 
 

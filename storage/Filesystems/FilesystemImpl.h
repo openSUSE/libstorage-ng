@@ -90,7 +90,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual ResizeInfo detect_resize_info() const;
+	virtual ResizeInfo detect_resize_info() const override;
 	virtual ResizeInfo detect_resize_info_pure() const;
 	void set_resize_info(const ResizeInfo& resize_info);
 
