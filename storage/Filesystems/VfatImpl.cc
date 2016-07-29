@@ -85,10 +85,10 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	blk_device->get_impl().wait_for_device();
-
 	string cmd_line = MKFSFATBIN " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -116,12 +116,12 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	blk_device->get_impl().wait_for_device();
-
 	string cmd_line = FATRESIZE " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device->get_size() / KiB);
 	cout << cmd_line << endl;
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
