@@ -30,6 +30,7 @@
 namespace storage
 {
     class BlkDevice;
+    class LvmVg;
 
 
     class LvmPv : public Device
@@ -47,6 +48,10 @@ namespace storage
 	bool has_blk_device() const;
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
+
+	bool has_lvm_vg() const;
+	LvmVg* get_lvm_vg();
+	const LvmVg* get_lvm_vg() const;
 
     public:
 

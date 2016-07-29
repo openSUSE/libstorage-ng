@@ -122,6 +122,27 @@ namespace storage
 
 
     bool
+    LvmPv::has_lvm_vg() const
+    {
+	return get_impl().has_lvm_vg();
+    }
+
+
+    LvmVg*
+    LvmPv::get_lvm_vg()
+    {
+	return get_impl().get_lvm_vg();
+    }
+
+
+    const LvmVg*
+    LvmPv::get_lvm_vg() const
+    {
+	return get_impl().get_lvm_vg();
+    }
+
+
+    bool
     is_lvm_pv(const Device* device)
     {
 	return is_device_of_type<const LvmPv>(device);

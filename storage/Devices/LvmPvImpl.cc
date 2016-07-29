@@ -81,6 +81,27 @@ namespace storage
     }
 
 
+    bool
+    LvmPv::Impl::has_lvm_vg() const
+    {
+	return has_single_child_of_type<const LvmVg>();
+    }
+
+
+    LvmVg*
+    LvmPv::Impl::get_lvm_vg()
+    {
+	return get_single_child_of_type<LvmVg>();
+    }
+
+
+    const LvmVg*
+    LvmPv::Impl::get_lvm_vg() const
+    {
+	return get_single_child_of_type<const LvmVg>();
+    }
+
+
     void
     LvmPv::Impl::probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo)
     {
