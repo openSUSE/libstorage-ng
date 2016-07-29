@@ -101,7 +101,7 @@ namespace storage
 
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
-	virtual ResizeInfo detect_resize_info() const;
+	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 
