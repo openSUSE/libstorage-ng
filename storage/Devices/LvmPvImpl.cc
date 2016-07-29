@@ -33,6 +33,7 @@
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/FindBy.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -125,6 +126,26 @@ namespace storage
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
 	User::create(probed, blk_device, get_device());
+    }
+
+
+    ResizeInfo
+    LvmPv::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info(true);
+
+	// A physical volume must have at least one extent and space for metadata.
+
+	// TODO handle space for metdata
+
+	if (has_lvm_vg())
+	{
+	    const LvmVg* lvm_vg = get_lvm_vg();
+
+	    resize_info.min_size = lvm_vg->get_extent_size();
+	}
+
+	return resize_info;
     }
 
 

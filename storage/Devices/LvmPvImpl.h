@@ -68,6 +68,8 @@ namespace storage
 	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
 
