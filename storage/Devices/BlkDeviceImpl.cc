@@ -255,13 +255,9 @@ namespace storage
 	    // are created must not be resized, encryption between partition
 	    // and filesystem, ...
 
-	    try
+	    for (const Device* child : get_device()->get_children())
 	    {
-		const Filesystem* filesystem = get_filesystem();
-		actions.push_back(new Action::Resize(filesystem->get_sid(), resize_mode));
-	    }
-	    catch (const Exception&)
-	    {
+		actions.push_back(new Action::Resize(child->get_sid(), resize_mode));
 	    }
 
 	    if (resize_mode == ResizeMode::SHRINK)
