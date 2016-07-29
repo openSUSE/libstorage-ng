@@ -572,7 +572,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_reallot_text(ReallotMode reallot_mode, const BlkDevice* blk_device, Tense tense) const
+    Md::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
     {
 	Text text;
 
@@ -606,13 +606,15 @@ namespace storage
 		ST_THROW(LogicException("invalid value for reallot_mode"));
 	}
 
-	return sformat(text, blk_device->get_name().c_str(), get_displayname().c_str());
+	return sformat(text, to_blk_device(device)->get_name().c_str(), get_displayname().c_str());
     }
 
 
     void
-    Md::Impl::do_reallot(ReallotMode reallot_mode, const BlkDevice* blk_device) const
+    Md::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
     {
+	const BlkDevice* blk_device = to_blk_device(device);
+
 	switch (reallot_mode)
 	{
 	    case ReallotMode::REDUCE:

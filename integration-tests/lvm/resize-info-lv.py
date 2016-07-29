@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: partition /dev/sdb1
+# requirements: lvm vg test with lvm lv 1
 
 
 from sys import exit
@@ -18,9 +18,9 @@ probed = storage.get_probed()
 
 print probed
 
-partition = Partition.find_by_name(probed, "/dev/sdb1")
+lvm_lv = to_lvm_lv(BlkDevice.find_by_name(probed, "/dev/test/1"))
 
-resize_info = partition.detect_resize_info()
+resize_info = lvm_lv.detect_resize_info()
 
 print resize_info
 

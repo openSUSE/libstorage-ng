@@ -40,7 +40,7 @@ namespace storage
     public:
 
 	ResizeInfo(bool resize_ok, unsigned long long min_size, unsigned long long max_size);
-	ResizeInfo();
+	ResizeInfo(bool resize_ok);
 
 	void combine(ResizeInfo resize_info);
 

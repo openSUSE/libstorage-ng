@@ -108,13 +108,6 @@ namespace storage
     }
 
 
-    unsigned long long
-    LvmVg::Impl::get_extent_size() const
-    {
-	return region.get_block_size();
-    }
-
-
     void
     LvmVg::Impl::set_extent_size(unsigned long long extent_size)
     {
@@ -126,6 +119,28 @@ namespace storage
 	region.set_block_size(extent_size);
 
 	// TODO adjust lvm lvs
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::number_of_used_extents() const
+    {
+	unsigned long long ret = 0;
+
+	for (const LvmLv* lvm_lv : get_lvm_lvs())
+	    ret += lvm_lv->get_impl().number_of_extents();
+
+	return ret;
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::number_of_free_extents() const
+    {
+	unsigned long long a = number_of_extents();
+	unsigned long long b = number_of_used_extents();
+
+	return b >= a ? 0 : a - b;
     }
 
 
@@ -403,6 +418,92 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("delete LvmVg failed"));
+    }
+
+
+    Text
+    LvmVg::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    {
+	Text text;
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by volume group name (e.g. system)
+			      _("Remove %1$s from %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by volume group name (e.g. system)
+			      _("Removing %1$s from %2$s"));
+		break;
+
+	    case ReallotMode::EXTEND:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by volume group name (e.g. system)
+			      _("Add %1$s to %2$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdd),
+			      // %2$s is replaced by volume group name (e.g. system)
+			      _("Adding %1$s to %2$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for reallot_mode"));
+	}
+
+	const LvmPv* lvm_pv = to_lvm_pv(device);
+	const BlkDevice* blk_device = lvm_pv->get_blk_device();
+
+	return sformat(text, blk_device->get_name().c_str(), vg_name.c_str());
+    }
+
+
+    void
+    LvmVg::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    {
+	const LvmPv* lvm_pv = to_lvm_pv(device);
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		do_reduce(lvm_pv);
+		return;
+
+	    case ReallotMode::EXTEND:
+		do_extend(lvm_pv);
+		return;
+	}
+
+	ST_THROW(LogicException("invalid value for reallot_mode"));
+    }
+
+
+    void
+    LvmVg::Impl::do_reduce(const LvmPv* lvm_pv) const
+    {
+	string cmd_line = VGREDUCEBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("reduce LvmVg failed"));
+    }
+
+
+    void
+    LvmVg::Impl::do_extend(const LvmPv* lvm_pv) const
+    {
+	string cmd_line = VGEXTENDBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("extend LvmVg failed"));
     }
 
 

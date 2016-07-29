@@ -5,6 +5,7 @@
 # TODO can this be made available as storage.itu?
 
 from storage import *
+from os import system
 
 class MyCommitCallbacks(CommitCallbacks):
 
@@ -19,10 +20,24 @@ class MyCommitCallbacks(CommitCallbacks):
         return False
 
 
-def commit(storage):
+def commit(storage, save_graphs = False):
+
+    if save_graphs:
+        storage.get_probed().write_graphviz("probed.gv", GraphvizFlags_CLASSNAME |
+			                    GraphvizFlags_SID | GraphvizFlags_SIZE);
+        system("dot -Tpng < probed.gv > probed.png")
+
+        storage.get_staging().write_graphviz("staging.gv", GraphvizFlags_CLASSNAME |
+			                     GraphvizFlags_SID | GraphvizFlags_SIZE);
+        system("dot -Tpng < staging.gv > staging.png")
 
     my_commit_callbacks = MyCommitCallbacks()
 
-    storage.calculate_actiongraph()
+    actiongraph = storage.calculate_actiongraph()
+
+    if save_graphs:
+        actiongraph.write_graphviz("action.gv", GraphvizFlags_SID)
+        system("dot -Tpng < action.gv > action.png")
+
     storage.commit(my_commit_callbacks)
 

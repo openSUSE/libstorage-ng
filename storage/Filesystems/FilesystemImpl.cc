@@ -233,12 +233,11 @@ namespace storage
 	// TODO filesystem must be mounted
 
 	if (mountpoints.empty())
-	    throw;
+	    ST_THROW(Exception("filesystem must be mounted"));
 
 	StatVfs stat_vfs = detect_stat_vfs(mountpoints.front());
 
-	ResizeInfo resize_info;
-	resize_info.resize_ok = true;
+	ResizeInfo resize_info(true);
 	resize_info.min_size = stat_vfs.size - stat_vfs.free;
 
 	return resize_info;

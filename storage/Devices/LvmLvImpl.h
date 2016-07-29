@@ -64,11 +64,15 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
+	unsigned long long number_of_extents() const { return get_region().get_length(); }
+
 	unsigned int get_stripes() const { return stripes; }
 	void set_stripes(unsigned int stripes) { Impl::stripes = stripes; }
 
 	unsigned long get_stripe_size() const { return stripe_size; }
 	void set_stripe_size(unsigned long stripe_size) { Impl::stripe_size = stripe_size; }
+
+	virtual ResizeInfo detect_resize_info() const override;
 
 	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
