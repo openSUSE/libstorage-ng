@@ -20,7 +20,7 @@ print staging
 
 lvm_vg = LvmVg.find_by_vg_name(staging, "test")
 
-sdb2 = Partition.find_by_name(staging, "/dev/sdb1")
+sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
 
 lvm_vg.remove_lvm_pv(sdb2)
 
