@@ -114,6 +114,10 @@ namespace storage
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
 
+	virtual ResizeInfo detect_resize_info() const;
+
+	virtual void parent_has_new_region(const Device* parent);
+
 	/**
 	 * Add create actions for the Device.
 	 * @param actiongraph The Actiongraph fow which actions are added.

@@ -42,6 +42,7 @@
 
 #define PVCREATEBIN "/sbin/pvcreate"
 #define PVREMOVEBIN "/sbin/pvremove"
+#define PVRESIZEBIN "/sbin/pvresize"
 #define PVSBIN "/sbin/pvs"
 
 #define LVCREATEBIN "/sbin/lvcreate"

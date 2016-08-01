@@ -70,6 +70,8 @@ namespace storage
 	unsigned long long get_extent_size() const { return region.get_block_size(); }
 	void set_extent_size(unsigned long long extent_size);
 
+	virtual void parent_has_new_region(const Device* parent) override;
+
 	/**
 	 * Calculates the number of extents in the volume group.
 	 */

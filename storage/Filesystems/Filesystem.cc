@@ -25,7 +25,6 @@
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -184,13 +183,6 @@ namespace storage
     Filesystem::set_tune_options(const string& tune_options)
     {
 	get_impl().set_tune_options(tune_options);
-    }
-
-
-    ResizeInfo
-    Filesystem::detect_resize_info() const
-    {
-	return get_impl().detect_resize_info();
     }
 
 

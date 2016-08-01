@@ -69,6 +69,8 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	std::string get_size_string() const;
+
 	/**
 	 * Returns the extent size of the volume group.
 	 *

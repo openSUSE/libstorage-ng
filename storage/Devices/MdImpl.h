@@ -62,6 +62,8 @@ namespace storage
 	vector<BlkDevice*> get_devices();
 	vector<const BlkDevice*> get_devices() const;
 
+	virtual void parent_has_new_region(const Device* parent) override;
+
 	unsigned int get_number() const;
 
 	MdLevel get_md_level() const { return md_level; }

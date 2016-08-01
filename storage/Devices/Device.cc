@@ -24,6 +24,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -114,6 +115,13 @@ namespace storage
     void
     Device::check() const
     {
+    }
+
+
+    ResizeInfo
+    Device::detect_resize_info() const
+    {
+	return get_impl().detect_resize_info();
     }
 
 

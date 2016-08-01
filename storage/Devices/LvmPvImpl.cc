@@ -33,6 +33,7 @@
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/FindBy.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -81,6 +82,27 @@ namespace storage
     }
 
 
+    bool
+    LvmPv::Impl::has_lvm_vg() const
+    {
+	return has_single_child_of_type<const LvmVg>();
+    }
+
+
+    LvmVg*
+    LvmPv::Impl::get_lvm_vg()
+    {
+	return get_single_child_of_type<LvmVg>();
+    }
+
+
+    const LvmVg*
+    LvmPv::Impl::get_lvm_vg() const
+    {
+	return get_single_child_of_type<const LvmVg>();
+    }
+
+
     void
     LvmPv::Impl::probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo)
     {
@@ -104,6 +126,38 @@ namespace storage
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
 	User::create(probed, blk_device, get_device());
+    }
+
+
+    ResizeInfo
+    LvmPv::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info(true);
+
+	// A physical volume must have at least one extent and space for metadata.
+
+	// TODO handle space for metdata
+
+	if (has_lvm_vg())
+	{
+	    const LvmVg* lvm_vg = get_lvm_vg();
+
+	    resize_info.min_size = lvm_vg->get_extent_size();
+	}
+
+	return resize_info;
+    }
+
+
+    void
+    LvmPv::Impl::parent_has_new_region(const Device* parent)
+    {
+	if (has_lvm_vg())
+	{
+	    LvmVg* lvm_vg = get_lvm_vg();
+
+	    lvm_vg->get_impl().parent_has_new_region(get_device());
+	}
     }
 
 
@@ -181,6 +235,73 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create LvmPv failed"));
+    }
+
+
+    Text
+    LvmPv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const BlkDevice* blk_device_lhs = to_lvm_pv(lhs)->get_impl().get_blk_device();
+	const BlkDevice* blk_device_rhs = get_blk_device();
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdb1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink physical volume on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdb1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking physical volume on %1$s from %2$s to %3$s"));
+		break;
+
+	    case ResizeMode::GROW:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by device name (e.g. /dev/sdb1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Grow physical volume on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by device name (e.g. /dev/sdb1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Growing physical volume on %1$s from %2$s to %3$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, blk_device_rhs->get_name().c_str(),
+		       blk_device_lhs->get_size_string().c_str(),
+		       blk_device_rhs->get_size_string().c_str());
+    }
+
+
+    void
+    LvmPv::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " --setphysicalvolumesize " + to_string(blk_device->get_size()) + "b";
+
+	cout << cmd_line << endl;
+
+	blk_device->get_impl().wait_for_device();
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize LvmLV failed"));
     }
 
 

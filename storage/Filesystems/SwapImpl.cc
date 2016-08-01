@@ -67,10 +67,10 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	blk_device->get_impl().wait_for_device();
-
 	string cmd_line = MKSWAPBIN " -f " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -111,8 +111,6 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	blk_device->get_impl().wait_for_device();
-
 	string cmd_line = MKSWAPBIN;
 	if (!get_label().empty())
 	    cmd_line += " -L " + quote(get_label());
@@ -120,6 +118,8 @@ namespace storage
 	    cmd_line += " -U " + quote(get_uuid());
 	cmd_line += " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

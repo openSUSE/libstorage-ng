@@ -235,6 +235,7 @@ namespace storage
     {
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
+	// TODO min one sector
 	// TODO check free space behind partition
 	// TODO check limits of partition table
 

@@ -61,8 +61,16 @@ namespace storage
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
+	bool has_lvm_vg() const;
+	LvmVg* get_lvm_vg();
+	const LvmVg* get_lvm_vg() const;
+
 	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+
+	virtual ResizeInfo detect_resize_info() const override;
+
+	virtual void parent_has_new_region(const Device* parent) override;
 
 	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
 	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
@@ -74,6 +82,9 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() const override;
+
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+	virtual void do_resize(ResizeMode resize_mode) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

@@ -35,7 +35,6 @@ namespace storage
 {
 
     class BlkDevice;
-    class ResizeInfo;
     class ContentInfo;
 
 
@@ -91,8 +90,6 @@ namespace storage
 
 	const std::string& get_tune_options() const;
 	void set_tune_options(const std::string& tune_options);
-
-	ResizeInfo detect_resize_info() const;
 
 	/**
 	 * Set the ResizeInfo. Only use for testsuites.

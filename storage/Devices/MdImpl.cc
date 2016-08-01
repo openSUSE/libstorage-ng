@@ -187,6 +187,13 @@ namespace storage
 
 
     void
+    Md::Impl::parent_has_new_region(const Device* parent)
+    {
+	calculate_region_and_topology();
+    }
+
+
+    void
     Md::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;

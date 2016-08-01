@@ -145,6 +145,13 @@ namespace storage
 
 
     void
+    LvmVg::Impl::parent_has_new_region(const Device* parent)
+    {
+	calculate_region();
+    }
+
+
+    void
     LvmVg::Impl::set_vg_name(const string& vg_name)
     {
 	Impl::vg_name = vg_name;

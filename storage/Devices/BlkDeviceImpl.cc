@@ -130,7 +130,8 @@ namespace storage
     {
 	Impl::region = region;
 
-	// TODO inform children, e.g. Md
+	for (Device* child : get_device()->get_children())
+	    child->get_impl().parent_has_new_region(get_device());
     }
 
 
@@ -161,18 +162,12 @@ namespace storage
     ResizeInfo
     BlkDevice::Impl::detect_resize_info() const
     {
-	// TODO handle all types of children
+	ResizeInfo resize_info(true);
 
-	if (has_filesystem())
-	{
-	    const Filesystem* filesystem = get_filesystem();
+	for (const Device* child : get_device()->get_children())
+	     resize_info.combine(child->detect_resize_info());
 
-	    ResizeInfo resize_info = filesystem->get_impl().detect_resize_info();
-
-	    return resize_info;
-	}
-
-	return ResizeInfo(true);
+	return resize_info;
     }
 
 
@@ -261,13 +256,9 @@ namespace storage
 	    // are created must not be resized, encryption between partition
 	    // and filesystem, ...
 
-	    try
+	    for (const Device* child : get_device()->get_children())
 	    {
-		const Filesystem* filesystem = get_filesystem();
-		actions.push_back(new Action::Resize(filesystem->get_sid(), resize_mode));
-	    }
-	    catch (const Exception&)
-	    {
+		actions.push_back(new Action::Resize(child->get_sid(), resize_mode));
 	    }
 
 	    if (resize_mode == ResizeMode::SHRINK)
