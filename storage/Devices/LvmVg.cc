@@ -107,6 +107,13 @@ namespace storage
     }
 
 
+    std::string
+    LvmVg::get_size_string() const
+    {
+	return get_impl().get_size_string();
+    }
+
+
     unsigned long long
     LvmVg::get_extent_size() const
     {
