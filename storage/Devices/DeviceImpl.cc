@@ -170,6 +170,12 @@ namespace storage
 
 
     void
+    Device::Impl::parent_has_new_region(const Device* parent)
+    {
+    }
+
+
+    void
     Device::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;

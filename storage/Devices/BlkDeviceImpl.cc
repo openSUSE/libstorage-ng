@@ -130,7 +130,8 @@ namespace storage
     {
 	Impl::region = region;
 
-	// TODO inform children, e.g. Md
+	for (Device* child : get_device()->get_children())
+	    child->get_impl().parent_has_new_region(get_device());
     }
 
 

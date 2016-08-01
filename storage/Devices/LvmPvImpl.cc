@@ -149,6 +149,18 @@ namespace storage
     }
 
 
+    void
+    LvmPv::Impl::parent_has_new_region(const Device* parent)
+    {
+	if (has_lvm_vg())
+	{
+	    LvmVg* lvm_vg = get_lvm_vg();
+
+	    lvm_vg->get_impl().parent_has_new_region(get_device());
+	}
+    }
+
+
     LvmPv*
     LvmPv::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
     {

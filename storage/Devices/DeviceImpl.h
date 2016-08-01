@@ -116,6 +116,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const;
 
+	virtual void parent_has_new_region(const Device* parent);
+
 	/**
 	 * Add create actions for the Device.
 	 * @param actiongraph The Actiongraph fow which actions are added.
