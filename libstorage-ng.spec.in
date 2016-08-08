@@ -143,8 +143,9 @@ Requires:       s390-tools
 %if 0%{?suse_version}
 PreReq:         %fillup_prereq
 %endif
-Obsoletes:      yast2-storage-lib
-Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
+# Temporarily, we need libstorage-ng to be installable alongside libstorage
+# Obsoletes:      yast2-storage-lib
+# Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
 Obsoletes:      libstorage-ng@LIBVERSION_MAJOR@ < %{version}
 Summary:        Library for storage management
 Group:          System/Libraries
