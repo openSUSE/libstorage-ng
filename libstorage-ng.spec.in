@@ -90,7 +90,7 @@ CXXFLAGS="-I/usr/include/libxml2 -I/usr/include/c++/4.1.1/tr1" \
 make %{?jobs:-j%jobs}
 
 %ifarch s390 s390x
-sed -i -e 's/DEVICE_NAMES=".*"/DEVICE_NAMES="path"/' data/sysconfig.storage-libstorage
+sed -i -e 's/DEVICE_NAMES=".*"/DEVICE_NAMES="path"/' data/sysconfig.storage-libstorage-ng
 %endif
 
 %check
@@ -161,7 +161,7 @@ Authors:
 %defattr(-,root,root)
 %{_libdir}/libstorage-ng.so.*
 %ghost /run/libstorage
-/var/adm/fillup-templates/sysconfig.storage-libstorage
+/var/adm/fillup-templates/sysconfig.storage-libstorage-ng
 %doc %dir %{prefix}/share/doc/packages/libstorage-ng
 %doc %{prefix}/share/doc/packages/libstorage-ng/AUTHORS
 %doc %{prefix}/share/doc/packages/libstorage-ng/LICENSE
