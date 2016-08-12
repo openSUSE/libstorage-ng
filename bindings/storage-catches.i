@@ -25,6 +25,8 @@
 %exceptionclass storage::NotInside;
 
 
+%catches(storage::Exception) storage::Storage::Storage(const Environment&);
+
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
 
 %catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
