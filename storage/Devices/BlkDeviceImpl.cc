@@ -48,7 +48,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), region(region), dm_table_name()
+	: Device::Impl(), name(name), active(true), region(region), dm_table_name()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -56,13 +56,15 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), region(0, 0, 512), dm_table_name()
+	: Device::Impl(node), name(), active(true), region(0, 0, 512), dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));
 
 	getChildValue(node, "sysfs-name", sysfs_name);
 	getChildValue(node, "sysfs-path", sysfs_path);
+
+	getChildValue(node, "active", active);
 
 	getChildValue(node, "region", region);
 
@@ -78,23 +80,26 @@ namespace storage
     {
 	Device::Impl::probe_pass_1(probed, systeminfo);
 
-	const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
-
-	sysfs_name = cmdudevadminfo.get_name();
-	sysfs_path = cmdudevadminfo.get_path();
-
-	// region is probed in subclasses
-
-	if (!cmdudevadminfo.get_by_path_links().empty())
+	if (active)
 	{
-	    udev_path = cmdudevadminfo.get_by_path_links().front();
-	    process_udev_path(udev_path);
-	}
+	    const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
 
-	if (!cmdudevadminfo.get_by_id_links().empty())
-	{
-	    udev_ids = cmdudevadminfo.get_by_id_links();
-	    process_udev_ids(udev_ids);
+	    sysfs_name = cmdudevadminfo.get_name();
+	    sysfs_path = cmdudevadminfo.get_path();
+
+	    // region is probed in subclasses
+
+	    if (!cmdudevadminfo.get_by_path_links().empty())
+	    {
+		udev_path = cmdudevadminfo.get_by_path_links().front();
+		process_udev_path(udev_path);
+	    }
+
+	    if (!cmdudevadminfo.get_by_id_links().empty())
+	    {
+		udev_ids = cmdudevadminfo.get_by_id_links();
+		process_udev_ids(udev_ids);
+	    }
 	}
     }
 
@@ -108,6 +113,8 @@ namespace storage
 
 	setChildValueIf(node, "sysfs-name", sysfs_name, !sysfs_name.empty());
 	setChildValueIf(node, "sysfs-path", sysfs_path, !sysfs_path.empty());
+
+	setChildValueIf(node, "active", active, !active);
 
 	setChildValue(node, "region", region);
 
@@ -296,6 +303,8 @@ namespace storage
 	storage::log_diff(log, "sysfs-name", sysfs_name, rhs.sysfs_name);
 	storage::log_diff(log, "sysfs-path", sysfs_path, rhs.sysfs_path);
 
+	storage::log_diff(log, "active", active, rhs.active);
+
 	storage::log_diff(log, "region", region, rhs.region);
 
 	storage::log_diff(log, "dm-table-name", dm_table_name, rhs.dm_table_name);
@@ -314,6 +323,9 @@ namespace storage
 
 	if (!sysfs_path.empty())
 	    out << " sysfs-path:" << sysfs_path;
+
+	if (!active)
+	    out << " active:" << active;
 
 	out << " region:" << get_region();
 

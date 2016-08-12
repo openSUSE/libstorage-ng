@@ -19,7 +19,7 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PVSBIN " --noheadings --unbuffered --units b --nosuffix --options pv_name,"
-			"pv_uuid,vg_name,vg_uuid", input);
+			"pv_uuid,vg_name,vg_uuid,pv_attr", input);
 
     CmdPvs cmd_pvs;
 
@@ -37,7 +37,7 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  /dev/sda2  qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn"
+	"  /dev/sda2  qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn a--"
     };
 
     vector<string> output = {

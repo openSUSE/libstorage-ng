@@ -90,6 +90,7 @@ namespace storage
 	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(probed, lv.vg_uuid);
 	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.size);
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
+	    lvm_lv->get_impl().set_active(lv.active);
 	    lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
@@ -104,12 +105,15 @@ namespace storage
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
 
-	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
-	vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
-	if (tables[0].target == "striped")
+	if (is_active())
 	{
-	    stripes = tables[0].stripes;
-	    stripe_size = tables[0].stripe_size;
+	    const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
+	    vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
+	    if (tables[0].target == "striped")
+	    {
+		stripes = tables[0].stripes;
+		stripe_size = tables[0].stripe_size;
+	    }
 	}
     }
 
