@@ -102,6 +102,9 @@ namespace storage
     {
 	static Regex devspec("^([0123456789]+):([0123456789]+)$");
 
+	if (lines.size() == 1 && lines[0] == "No devices found")
+	    return;
+
 	for (const string& line : lines)
 	{
 	    string::size_type pos = line.find(": ");
