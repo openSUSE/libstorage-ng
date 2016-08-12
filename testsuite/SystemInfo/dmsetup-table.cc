@@ -28,7 +28,7 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << cmddmsetuptable;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
+    string rhs = output.empty() ? "" : boost::join(output, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
@@ -62,6 +62,19 @@ BOOST_AUTO_TEST_CASE(parse2)
 
     vector<string> output = {
 	"data[test-fast] -> target:striped stripes:2 stripe-size:65536 majorminors:<8:17 8:18>"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_no_devices)
+{
+    vector<string> input = {
+	"No devices found"
+    };
+
+    vector<string> output = {
     };
 
     check(input, output);
