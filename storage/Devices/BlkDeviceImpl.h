@@ -61,6 +61,9 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
+	bool is_active() const { return active; }
+	void set_active(bool active) { Impl::active = active; }
+
 	const Region& get_region() const { return region; }
 	virtual void set_region(const Region& region);
 
@@ -135,6 +138,11 @@ namespace storage
 
 	string sysfs_name;
 	string sysfs_path;
+
+	/**
+	 * Some blk devices can be inactive, e.g. LVM LVs or LUKSes.
+	 */
+	bool active;
 
 	/**
 	 * For most devices region.start is zero. Always used to keep track of
