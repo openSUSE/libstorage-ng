@@ -34,6 +34,9 @@ doit()
 
     const Devicegraph* probed = storage.get_probed();
 
+    cout.setf(ios::boolalpha);
+    cout.setf(ios::showbase);
+
     cout << *probed << endl;
 
     probed->check();
