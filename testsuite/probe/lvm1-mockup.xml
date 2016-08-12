@@ -28,14 +28,14 @@
       <stdout>system-root: 0 12189696 linear 8:1 18294784</stdout>
     </Command>
     <Command>
-      <name>/sbin/lvs --noheadings --unbuffered --units b --nosuffix --options lv_name,lv_uuid,vg_name,vg_uuid,lv_size</name>
-      <stdout>  home h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 9365880832</stdout>
-      <stdout>  root Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5 system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 6241124352</stdout>
-      <stdout>  swap wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 1560281088</stdout>
+      <name>/sbin/lvs --noheadings --unbuffered --units b --nosuffix --options lv_name,lv_uuid,vg_name,vg_uuid,lv_attr,lv_size</name>
+      <stdout>  home h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 9365880832</stdout>
+      <stdout>  root Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5 system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 6241124352</stdout>
+      <stdout>  swap wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 1560281088</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --noheadings --unbuffered --units b --nosuffix --options pv_name,pv_uuid,vg_name,vg_uuid</name>
-      <stdout>  /dev/sda1  h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL</stdout>
+      <name>/sbin/pvs --noheadings --unbuffered --units b --nosuffix --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <stdout>  /dev/sda1  h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL a--</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dm-0'</name>
@@ -628,8 +628,8 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --noheadings --unbuffered --units b --nosuffix --options vg_name,vg_uuid,vg_extent_size,vg_extent_count</name>
-      <stdout>  system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL 4194304 4095</stdout>
+      <name>/sbin/vgs --noheadings --unbuffered --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count</name>
+      <stdout>  system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL wz--n- 4194304 4095</stdout>
     </Command>
     <Command>
       <name>/usr/bin/lsscsi --transport</name>

@@ -77,12 +77,13 @@ namespace storage
 
 	struct Lv
 	{
-	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), size(0) {}
+	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), active(false), size(0) {}
 
 	    string lv_name;
 	    string lv_uuid;
 	    string vg_name;
 	    string vg_uuid;
+	    bool active;
 	    unsigned long long size;
 	};
 

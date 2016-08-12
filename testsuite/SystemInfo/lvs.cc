@@ -19,7 +19,7 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(LVSBIN " --noheadings --unbuffered --units b --nosuffix --options lv_name,"
-			"lv_uuid,vg_name,vg_uuid,lv_size", input);
+			"lv_uuid,vg_name,vg_uuid,lv_attr,lv_size", input);
 
     CmdLvs cmd_lvs;
 
@@ -37,14 +37,14 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  root 89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn 34359738368",
-	"  swap KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn 2147483648"
+	"  root 89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn -wi-ao---- 34359738368",
+	"  swap KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn -wi-ao---- 2147483648"
     };
 
     // TODO bad output format
 
     vector<string> output = {
-	"lvs:<lv-name:root lv-uuid:89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn size:34359738368 lv-name:swap lv-uuid:KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn size:2147483648>"
+	"lvs:<lv-name:root lv-uuid:89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn active:true size:34359738368 lv-name:swap lv-uuid:KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn active:true size:2147483648>"
     };
 
     check(input, output);

@@ -44,7 +44,8 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd c(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid");
+	SystemCmd c(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid,"
+		    "pv_attr");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -61,7 +62,14 @@ namespace storage
 	    classic(data);
 
 	    Pv pv;
-	    data >> pv.pv_name >> pv.pv_uuid >> pv.vg_name >> pv.vg_uuid;
+
+	    string attr;
+
+	    data >> pv.pv_name >> pv.pv_uuid >> pv.vg_name >> pv.vg_uuid >> attr;
+
+	    if (attr.size() < 3)
+		ST_THROW(ParseException("bad pv_attr", attr, "a--"));
+
 	    pvs.push_back(pv);
 	}
 
@@ -107,7 +115,7 @@ namespace storage
     CmdLvs::CmdLvs()
     {
 	SystemCmd c(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
-		    "lv_size");
+		    "lv_attr,lv_size");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -124,7 +132,15 @@ namespace storage
 	    classic(data);
 
 	    Lv lv;
-	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> lv.size;
+
+	    string attr;
+	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> attr >> lv.size;
+
+	    if (attr.size() < 10)
+		ST_THROW(ParseException("bad lv_attr", attr, "-wi-ao----"));
+
+	    lv.active = attr[4] == 'a';
+
 	    lvs.push_back(lv);
 	}
 
@@ -161,7 +177,8 @@ namespace storage
     operator<<(std::ostream& s, const CmdLvs::Lv& lv)
     {
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
-	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " size:" << lv.size;
+	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " active:" << lv.active
+	  << " size:" << lv.size;
 
 	return s;
     }
@@ -169,8 +186,8 @@ namespace storage
 
     CmdVgs::CmdVgs()
     {
-	SystemCmd c(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_extent_size,"
-		    "vg_extent_count");
+	SystemCmd c(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
+		    "vg_extent_size,vg_extent_count");
 	if (c.retcode() == 0 && !c.stdout().empty())
 	    parse(c.stdout());
     }
@@ -187,7 +204,14 @@ namespace storage
 	    classic(data);
 
 	    Vg vg;
-	    data >> vg.vg_name >> vg.vg_uuid >> vg.extent_size >> vg.extent_count;
+
+	    string attr;
+
+	    data >> vg.vg_name >> vg.vg_uuid >> attr >> vg.extent_size >> vg.extent_count;
+
+	    if (attr.size() < 6)
+		ST_THROW(ParseException("bad vg_attr", attr, "wz--n-"));
+
 	    vgs.push_back(vg);
 	}
 
