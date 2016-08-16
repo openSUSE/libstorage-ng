@@ -197,7 +197,7 @@ namespace storage
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device)
+	    if (blk_device && blk_device->get_impl().active)
 	    {
 		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
 		    return blk_device;
