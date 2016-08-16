@@ -56,7 +56,7 @@ namespace storage
 	{
 	public:
 
-	    Expected(const vector<string> lines) : lines(lines) {}
+	    Expected(const vector<string>& lines) : lines(lines) {}
 	    Expected(const string& filename);
 
 	    vector<string> lines;
