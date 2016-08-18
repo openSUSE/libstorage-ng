@@ -26,8 +26,8 @@ main()
     if (false)
     {
 	lhs->get_impl().write_graphviz("compare-probed.gv", GraphvizFlags::SID);
-	system("dot -Tpng < compare-probed.gv > compare-probed.png");
-	system("display compare-probed.png");
+	system("dot -Tsvg < compare-probed.gv > compare-probed.svg");
+	system("display compare-probed.svg");
     }
 
     Devicegraph* rhs = storage.create_devicegraph("rhs");
@@ -36,8 +36,8 @@ main()
     if (false)
     {
 	rhs->get_impl().write_graphviz("compare-staging.gv", GraphvizFlags::SID);
-	system("dot -Tpng < compare-staging.gv > compare-staging.png");
-	system("display compare-staging.png");
+	system("dot -Tsvg < compare-staging.gv > compare-staging.svg");
+	system("display compare-staging.svg");
     }
 
     cout << "calculating actions" << endl;
@@ -45,7 +45,7 @@ main()
     if (true)
     {
 	actiongraph.write_graphviz("compare-action.gv", GraphvizFlags::SID);
-	system("dot -Tpng < compare-action.gv > compare-action.png");
-	system("display compare-action.png");
+	system("dot -Tsvg < compare-action.gv > compare-action.svg");
+	system("display compare-action.svg");
     }
 }
