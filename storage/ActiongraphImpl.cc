@@ -423,6 +423,8 @@ namespace storage
 			extra += "f";
 		    if (action->last)
 			extra += "l";
+		    if (action->only_sync)
+			extra += "s";
 		    extra += "]";
 		}
 
