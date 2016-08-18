@@ -61,7 +61,7 @@ namespace storage
 	cout << "action graph" << endl;
 	print_graph();
 
-	get_order();
+	calculate_order();
     }
 
 
@@ -280,7 +280,7 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::get_order()
+    Actiongraph::Impl::calculate_order()
     {
 	try
 	{
@@ -423,6 +423,8 @@ namespace storage
 			extra += "f";
 		    if (action->last)
 			extra += "l";
+		    if (action->only_sync)
+			extra += "s";
 		    extra += "]";
 		}
 
