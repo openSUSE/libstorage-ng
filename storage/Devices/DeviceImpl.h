@@ -295,6 +295,8 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
+
 	    const ReallotMode reallot_mode;
 
 	    /**

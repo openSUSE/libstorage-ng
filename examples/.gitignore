@@ -2,7 +2,7 @@
 *.xml
 !compare-*.xml
 *.o
-*.png
+*.svg
 .deps
 .libs
 big1

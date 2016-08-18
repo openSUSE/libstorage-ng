@@ -2,11 +2,11 @@
 
 function show
 {
-    dot -Tpng < $1 > ${1%.*}.png
-    display ${1%.*}.png
+    dot -Tsvg < $1 > ${1%.*}.svg
+    display ${1%.*}.svg
 }
 
-rm *.{gv,png}
+rm *.{gv,svg}
 
 ./big1
 

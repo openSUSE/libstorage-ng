@@ -34,11 +34,11 @@ doit()
 
     probed->write_graphviz(tmp_dir.get_fullname() + "/display.gv", GraphvizFlags::CLASSNAME |
 			   GraphvizFlags::SID | GraphvizFlags::SIZE);
-    system(string("dot -Tpng < " + quote(tmp_dir.get_fullname() + "/display.gv") + " > " +
-		  quote(tmp_dir.get_fullname() + "/display.png")).c_str());
+    system(string("dot -Tsvg < " + quote(tmp_dir.get_fullname() + "/display.gv") + " > " +
+		  quote(tmp_dir.get_fullname() + "/display.svg")).c_str());
     unlink(string(tmp_dir.get_fullname() + "/display.gv").c_str());
-    system(string("display " + quote(tmp_dir.get_fullname() + "/display.png")).c_str());
-    unlink(string(tmp_dir.get_fullname() + "/display.png").c_str());
+    system(string("display " + quote(tmp_dir.get_fullname() + "/display.svg")).c_str());
+    unlink(string(tmp_dir.get_fullname() + "/display.svg").c_str());
 }
 
 
