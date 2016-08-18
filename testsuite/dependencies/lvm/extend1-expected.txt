@@ -1,0 +1,2 @@
+1 - Create physical volume on /dev/sdb2 -> 2
+2 - Add /dev/sdb2 to test ->

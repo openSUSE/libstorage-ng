@@ -1,0 +1,2 @@
+1 - Remove /dev/sdb2 from test -> 2
+2 - Delete physical volume on /dev/sdb2 ->
