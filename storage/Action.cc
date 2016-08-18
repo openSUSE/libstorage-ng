@@ -64,6 +64,8 @@ namespace storage
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
+	    Base::add_dependencies(v, actiongraph);
+
 	    sid_t sid = actiongraph[v]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
@@ -104,6 +106,8 @@ namespace storage
 	void
 	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
+	    Base::add_dependencies(v, actiongraph);
+
 	    // all children must be deleted beforehand
 
 	    sid_t sid = actiongraph[v]->sid;
