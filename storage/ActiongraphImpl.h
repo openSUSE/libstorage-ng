@@ -122,7 +122,7 @@ namespace storage
 	void set_special_actions();
 	void add_dependencies();
 	void remove_only_syncs();
-	void get_order();
+	void calculate_order();
 
 	const Storage& storage;
 
