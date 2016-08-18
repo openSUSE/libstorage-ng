@@ -350,6 +350,26 @@ namespace storage
 	    device_rhs->get_impl().do_reallot(reallot_mode, device);
 	}
 
+
+	void
+	Reallot::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
+	{
+	    Modify::add_dependencies(v, actiongraph);
+
+	    if (reallot_mode == ReallotMode::REDUCE)
+	    {
+		for (Actiongraph::Impl::vertex_descriptor tmp :
+			 actiongraph.actions_with_sid(device->get_sid(), ONLY_FIRST))
+		    actiongraph.add_edge(v, tmp);
+	    }
+	    else
+	    {
+		for (Actiongraph::Impl::vertex_descriptor tmp :
+			 actiongraph.actions_with_sid(device->get_sid(), ONLY_LAST))
+		    actiongraph.add_edge(tmp, v);
+	    }
+	}
+
     }
 
 }
