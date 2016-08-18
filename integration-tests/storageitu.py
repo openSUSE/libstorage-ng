@@ -23,9 +23,14 @@ class MyCommitCallbacks(CommitCallbacks):
 def commit(storage, save_graphs = False):
 
     if save_graphs:
+
+        storage.get_probed().save("probed.xml")
+
         storage.get_probed().write_graphviz("probed.gv", GraphvizFlags_CLASSNAME |
 			                    GraphvizFlags_SID | GraphvizFlags_SIZE);
         system("dot -Tpng < probed.gv > probed.png")
+
+        storage.get_staging().save("staging.xml")
 
         storage.get_staging().write_graphviz("staging.gv", GraphvizFlags_CLASSNAME |
 			                     GraphvizFlags_SID | GraphvizFlags_SIZE);
