@@ -51,6 +51,15 @@ namespace storage
     }
 
 
+    /**
+     * Enum to allow filtering of actions in actions_with_sid().
+     */
+    enum ActionsFilter
+    {
+	ONLY_FIRST, ALL, ONLY_LAST
+    };
+
+
     class Actiongraph::Impl : private boost::noncopyable
     {
 
@@ -88,7 +97,7 @@ namespace storage
 
 	void add_chain(vector<Action::Base*>& actions);
 
-	vector<vertex_descriptor> huhu(sid_t sid, bool first, bool last) const; // TODO better concept
+	vector<vertex_descriptor> actions_with_sid(sid_t sid, ActionsFilter actions_filter) const;
 
 	boost::iterator_range<vertex_iterator> vertices() const;
 

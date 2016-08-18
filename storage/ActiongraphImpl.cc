@@ -116,7 +116,7 @@ namespace storage
 
 
     vector<Actiongraph::Impl::vertex_descriptor>
-    Actiongraph::Impl::huhu(sid_t sid, bool first, bool last) const
+    Actiongraph::Impl::actions_with_sid(sid_t sid, ActionsFilter actions_filter) const
     {
 	vector<vertex_descriptor> ret;
 
@@ -124,10 +124,10 @@ namespace storage
 	{
 	    if (graph[tmp]->sid == sid)
 	    {
-		if (first && !graph[tmp]->first)
+		if (actions_filter == ONLY_FIRST && !graph[tmp]->first)
 		    continue;
 
-		if (last && !graph[tmp]->last)
+		if (actions_filter == ONLY_LAST && !graph[tmp]->last)
 		    continue;
 
 		ret.push_back(tmp);
