@@ -244,13 +244,13 @@ namespace storage
     {
 	vector<vertex_descriptor> mounts;
 
-	for (vertex_descriptor v : vertices())
+	for (vertex_descriptor vertex : vertices())
 	{
-	    graph[v]->add_dependencies(v, *this);
+	    graph[vertex]->add_dependencies(vertex, *this);
 
-	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[v].get());
+	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[vertex].get());
 	    if (mount && mount->mountpoint != "swap")
-		mounts.push_back(v);
+		mounts.push_back(vertex);
 	}
 
 	if (mounts.size() > 1)
