@@ -96,11 +96,11 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::add_chain(vector<Action::Base*>& actions)
+    Actiongraph::Impl::add_chain(const vector<Action::Base*>& actions)
     {
 	vertex_descriptor v1 = 0;
 
-	for (vector<Action::Base*>::iterator it = actions.begin(); it != actions.end(); ++it)
+	for (vector<Action::Base*>::const_iterator it = actions.begin(); it != actions.end(); ++it)
 	{
 	    (*it)->first = it == actions.begin();
 	    (*it)->last = it == --actions.end();
