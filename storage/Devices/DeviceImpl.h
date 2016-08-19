@@ -138,6 +138,8 @@ namespace storage
 	 */
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
 
+	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const {}
+
 	virtual bool equal(const Impl& rhs) const = 0;
 	virtual void log_diff(std::ostream& log, const Impl& rhs) const = 0;
 

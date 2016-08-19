@@ -65,7 +65,7 @@ namespace storage
 
     private:
 
-	typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
+	typedef boost::adjacency_list<boost::vecS, boost::listS, boost::bidirectionalS,
 				      std::shared_ptr<Action::Base>> graph_t;
 
     public:
@@ -95,7 +95,9 @@ namespace storage
 
 	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b);
 
-	void add_chain(vector<Action::Base*>& actions);
+	void add_chain(const vector<Action::Base*>& actions);
+
+	void add_chain(const vector<vertex_descriptor>& actions);
 
 	vector<vertex_descriptor> actions_with_sid(sid_t sid, ActionsFilter actions_filter) const;
 
