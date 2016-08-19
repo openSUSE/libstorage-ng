@@ -115,6 +115,21 @@ namespace storage
     }
 
 
+    void
+    Actiongraph::Impl::add_chain(const vector<vertex_descriptor>& actions)
+    {
+	if (actions.size() > 1)
+	{
+	    Actiongraph::Impl::vertex_descriptor vertex = actions[0];
+	    for (size_t i = 1; i < actions.size(); ++i)
+	    {
+		add_edge(vertex, actions[i]);
+		vertex = actions[i];
+	    }
+	}
+    }
+
+
     vector<Actiongraph::Impl::vertex_descriptor>
     Actiongraph::Impl::actions_with_sid(sid_t sid, ActionsFilter actions_filter) const
     {
@@ -238,7 +253,7 @@ namespace storage
 		mounts.push_back(v);
 	}
 
-	if (mounts.size() >= 2)
+	if (mounts.size() > 1)
 	{
 	    // TODO correct sort
 	    sort(mounts.begin(), mounts.end(), [this, &mounts](vertex_descriptor l, vertex_descriptor r) {
@@ -247,12 +262,7 @@ namespace storage
 		return ml->mountpoint <= mr->mountpoint;
 	    });
 
-	    vertex_descriptor v = mounts[0];
-	    for (size_t i = 1; i < mounts.size(); ++i)
-	    {
-		add_edge(v, mounts[i]);
-		v = mounts[i];
-	    }
+	    add_chain(mounts);
 	}
     }
 

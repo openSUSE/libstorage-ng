@@ -97,6 +97,8 @@ namespace storage
 
 	void add_chain(const vector<Action::Base*>& actions);
 
+	void add_chain(const vector<vertex_descriptor>& actions);
+
 	vector<vertex_descriptor> actions_with_sid(sid_t sid, ActionsFilter actions_filter) const;
 
 	boost::iterator_range<vertex_iterator> vertices() const;
