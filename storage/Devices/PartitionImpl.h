@@ -115,17 +115,6 @@ namespace storage
     namespace Action
     {
 
-	class CreatePartition : public Create
-	{
-	public:
-
-	    CreatePartition(sid_t sid) : Create(sid) {}
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const;
-
-	};
-
-
 	class SetPartitionId : public Modify
 	{
 	public:

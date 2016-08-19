@@ -354,6 +354,62 @@ namespace storage
     }
 
 
+    void
+    PartitionTable::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    {
+	// TODO handle also resize and delete actions
+
+	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);
+
+	vector<Actiongraph::Impl::vertex_descriptor> tmp;
+
+	// Frist find all Create actions of partitions belonging to this
+	// partition table.
+
+	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+	{
+	    const Action::Base* action = actiongraph[vertex];
+
+	    const Action::Create* create = dynamic_cast<const Action::Create*>(action);
+	    if (create)
+	    {
+		const Device* device = devicegraph->find_device(create->sid);
+		if (is_partition(device))
+		{
+		    const Partition* partition = to_partition(device);
+		    if (partition->get_partition_table() == get_device())
+			tmp.push_back(vertex);
+		}
+	    }
+	}
+
+	// Second sort the Create actions by corresponding partition numbers
+	// and add the dependencies to the actiongraph.
+
+	if (tmp.size() > 1)
+	{
+	    sort(tmp.begin(), tmp.end(), [&actiongraph, &devicegraph](Actiongraph::Impl::vertex_descriptor lhs1,
+								      Actiongraph::Impl::vertex_descriptor rhs1) {
+
+		// TODO somehow move code outside of compare function.  maybe
+		// place all entries in a map with partition number as key,
+		// the map does the sorting and then just recreate the
+		// vector.  reuseable of course.
+
+		const Action::Base* rhs2 = actiongraph[rhs1];
+		const Partition* rhs3 = to_partition(devicegraph->find_device(rhs2->sid));
+
+		const Action::Base* lhs2 = actiongraph[lhs1];
+		const Partition* lhs3 = to_partition(devicegraph->find_device(lhs2->sid));
+
+		return lhs3->get_number() < rhs3->get_number();
+	    });
+
+	    actiongraph.add_chain(tmp);
+	}
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const PartitionSlot& partition_slot)
     {

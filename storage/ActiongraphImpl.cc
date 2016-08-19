@@ -244,6 +244,17 @@ namespace storage
     {
 	vector<vertex_descriptor> mounts;
 
+	// TODO also for Devices only in LHS?
+
+	const Devicegraph* devicegraph = get_devicegraph(RHS);
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const Device* device = devicegraph->get_impl()[vertex];
+
+	    device->get_impl().add_dependencies(*this);
+	}
+
 	for (vertex_descriptor vertex : vertices())
 	{
 	    graph[vertex]->add_dependencies(vertex, *this);
