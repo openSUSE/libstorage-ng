@@ -65,7 +65,7 @@ namespace storage
 
     private:
 
-	typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::bidirectionalS,
+	typedef boost::adjacency_list<boost::vecS, boost::listS, boost::bidirectionalS,
 				      std::shared_ptr<Action::Base>> graph_t;
 
     public:
