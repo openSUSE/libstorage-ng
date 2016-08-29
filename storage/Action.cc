@@ -64,6 +64,10 @@ namespace storage
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
+	    // Create actions are sometimes used just as sync points, they
+	    // should not generate extra dependencies in those cases
+	    if (only_sync) return;
+
 	    Base::add_dependencies(v, actiongraph);
 
 	    sid_t sid = actiongraph[v]->sid;
@@ -95,11 +99,17 @@ namespace storage
 			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
 
 			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
-			if (!tmp.empty())
-			    actiongraph.add_edge(tmp.front(), v);
+			if (!tmp.empty()) {
+			    // Make sure it's a delete action
+			    const Action::Base* tmp_action = actiongraph[tmp.front()];
+			    if (dynamic_cast<const Action::Delete*>(tmp_action))
+				actiongraph.add_edge(tmp.front(), v);
+			}
 		    }
 		}
 	    }
+
+
 	}
 
 
