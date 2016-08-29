@@ -542,12 +542,12 @@ namespace storage
 
 	    if (action_is_my_reallot(action, actiongraph))
 		reallot_actions.push_back(vertex);
-	    else if (action_is_on_my_lv(action, actiongraph)) {
-		if (action_frees_vg_space(action)) {
+	    else if (action_is_on_my_lv(action, actiongraph))
+	    {
+		if (action_frees_vg_space(action))
 		    decrease_lv_actions.push_back(vertex);
-		} else {
+		else
 		    increase_lv_actions.push_back(vertex);
-		}
 	    }
 	}
 
@@ -558,7 +558,8 @@ namespace storage
 	    actiongraph.add_edge(vertex, sync1);
 
 	Actiongraph::Impl::vertex_descriptor sync2 = actiongraph.add_vertex(reallot_sync);
-	for (const Actiongraph::Impl::vertex_descriptor& vertex : reallot_actions) {
+	for (const Actiongraph::Impl::vertex_descriptor& vertex : reallot_actions)
+	{
 	    actiongraph.add_edge(sync1, vertex);
 	    actiongraph.add_edge(vertex, sync2);
 	}

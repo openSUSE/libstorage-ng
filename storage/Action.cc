@@ -99,7 +99,8 @@ namespace storage
 			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
 
 			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
-			if (!tmp.empty()) {
+			if (!tmp.empty())
+			{
 			    // Make sure it's a delete action
 			    const Action::Base* tmp_action = actiongraph[tmp.front()];
 			    if (dynamic_cast<const Action::Delete*>(tmp_action))
