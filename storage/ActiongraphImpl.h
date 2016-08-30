@@ -112,6 +112,10 @@ namespace storage
 	 * Adds several edges (dependencies) to the graph, linking groups of
 	 * actions in the given order. Thus, every action from the first vector
 	 * will have an edge to every action from the second vector and so on.
+	 *
+	 * By definition, the cost of this function is O(n^3). Although
+	 * creating edges is not an expensive operation, take that cost into
+	 * account when creating edges massively.
 	 */
 	void add_chain(const vector<vector<vertex_descriptor>>& actions);
 
