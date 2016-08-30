@@ -1,0 +1,10 @@
+1 - Shrink logical volume lv1_1 on volume group testvg1 from 20.00 GiB to 10.00 GiB-> 2
+2 - Create logical volume lv1_2 (10.00 GiB) on volume group testvg1 ->
+3 - Create partition /dev/sdb3 (10.00 GiB) -> 4 6
+4 - Set id of partition /dev/sdb3 to Linux LVM (0x8E) -> 5
+5 - Create physical volume on /dev/sdb3 -> 9
+6 - Create partition /dev/sdb4 (5.00 GiB) -> 7
+7 - Set id of partition /dev/sdb4 to Linux LVM (0x8E) -> 8
+8 - Create physical volume on /dev/sdb4 -> 9
+9 - Create volume group testvg2 (15.00 GiB) -> 10
+10 - Create logical volume lv2_1 (15.00 GiB) on volume group testvg2 ->

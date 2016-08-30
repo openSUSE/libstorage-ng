@@ -358,16 +358,38 @@ namespace storage
 
 	    if (reallot_mode == ReallotMode::REDUCE)
 	    {
+		// Make sure the device (PV) is removed before being destroyed
 		for (Actiongraph::Impl::vertex_descriptor tmp :
 			 actiongraph.actions_with_sid(device->get_sid(), ONLY_FIRST))
 		    actiongraph.add_edge(v, tmp);
 	    }
 	    else
 	    {
+		// Make sure the device is created before being added
 		for (Actiongraph::Impl::vertex_descriptor tmp :
 			 actiongraph.actions_with_sid(device->get_sid(), ONLY_LAST))
 		    actiongraph.add_edge(tmp, v);
+
+		// If the device was assigned elsewhere, make sure it's removed
+		// from there before being re-assigned
+		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
+		    if (action_removes_device(actiongraph[tmp]))
+		    {
+			actiongraph.add_edge(tmp, v);
+			break;
+		    }
 	    }
+	}
+
+	bool
+	Reallot::action_removes_device(const Action::Base* action) const
+	{
+	    const Action::Reallot* reallot;
+
+	    reallot = dynamic_cast<const Action::Reallot*>(action);
+	    if (!reallot) return false;
+	    if (reallot->reallot_mode != ReallotMode::REDUCE) return false;
+	    return (reallot->device->get_sid() == device->get_sid());
 	}
 
     }

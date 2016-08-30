@@ -1,0 +1,4 @@
+1 - Shrink logical volume lv1_1 on volume group testvg1 from 20.00 GiB to 10.00 GiB-> 2
+2 - Remove /dev/sdb2 from testvg1 -> 3
+3 - Add /dev/sdb2 to testvg2 -> 4
+4 - Grow logical volume lv2_1 on volume group testvg2 from 15.00 GiB to 25.00 GiB ->

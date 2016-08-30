@@ -1,0 +1,7 @@
+1 - Shrink logical volume secondlv on volume group testvg from 15.00 GiB to 2.50 GiB -> 3 4
+2 - Create physical volume on /dev/sdb4 -> 3
+3 - Add /dev/sdb4 to testvg -> 6 7
+4 - Remove /dev/sdb3 from testvg -> 5 6 7
+5 - Delete physical volume on /dev/sdb3 ->
+6 - Grow logical volume firstlv on volume group testvg from 15.00 GiB to 20.00 GiB ->
+7 - Create logical volume newlv (2.50 GiB) on volume group testvg ->

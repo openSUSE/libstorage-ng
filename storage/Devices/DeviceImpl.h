@@ -306,6 +306,14 @@ namespace storage
 	     */
 	    const Device* device;
 
+	private:
+
+	    /**
+	    * Checks if the given action is a Reallot::REDUCE performed on the
+	    * same device (PV) than this action.
+	    * */
+	    bool action_removes_device(const Action::Base* action) const;
+
 	};
 
     }

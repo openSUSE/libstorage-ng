@@ -129,6 +129,8 @@ namespace storage
 	virtual void do_reduce(const LvmPv* lvm_pv) const;
 	virtual void do_extend(const LvmPv* lvm_pv) const;
 
+	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
+
     private:
 
 	string vg_name;
@@ -141,6 +143,27 @@ namespace storage
 
 	void calculate_region();
 
+	/**
+	 * Checks if the given action is realloting this volume group.
+	 */
+	bool action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Checks if the given action is performed in any of the logical volumes of
+	 * this volume group.
+	 */
+	bool action_is_on_my_lv(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Checks if the action performed in a logical volume increases the free
+	 * space available in the volume group.
+	 */
+	bool action_frees_vg_space(const Action::Base* action) const;
+
+	/**
+	 * Device directly affected by the given action.
+	 */
+	const Device* action_device(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
     };
 
 
