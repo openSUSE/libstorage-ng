@@ -526,12 +526,8 @@ namespace storage
     {
 	// First, all the operations removing or shrinking LVs
 	vector<Actiongraph::Impl::vertex_descriptor> decrease_lv_actions;
-	// Then a sync point
-	Action::Base* decrease_lv_sync = new Action::Create(get_sid(), true);
-	// Afterward, all the operations adding or removing PVs...
+	// Afterward, all the operations adding or removing PVs
 	vector<Actiongraph::Impl::vertex_descriptor> reallot_actions;
-	// ..and the corresponding sync point
-	Action::Base* reallot_sync = new Action::Create(get_sid(), true);
 	// Finally, operations adding and growing LVs
 	vector<Actiongraph::Impl::vertex_descriptor> increase_lv_actions;
 
@@ -552,20 +548,11 @@ namespace storage
 	}
 
 	// Add the dependencies to the action graph
-
-	Actiongraph::Impl::vertex_descriptor sync1 = actiongraph.add_vertex(decrease_lv_sync);
-	for (const Actiongraph::Impl::vertex_descriptor& vertex : decrease_lv_actions)
-	    actiongraph.add_edge(vertex, sync1);
-
-	Actiongraph::Impl::vertex_descriptor sync2 = actiongraph.add_vertex(reallot_sync);
-	for (const Actiongraph::Impl::vertex_descriptor& vertex : reallot_actions)
-	{
-	    actiongraph.add_edge(sync1, vertex);
-	    actiongraph.add_edge(vertex, sync2);
-	}
-
-	for (const Actiongraph::Impl::vertex_descriptor& vertex : increase_lv_actions)
-	    actiongraph.add_edge(sync2, vertex);
+	vector<vector<Actiongraph::Impl::vertex_descriptor>> actions;
+	actions.push_back(decrease_lv_actions);
+	actions.push_back(reallot_actions);
+	actions.push_back(increase_lv_actions);
+	actiongraph.add_chain(actions);
     }
 
 

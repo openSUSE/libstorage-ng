@@ -95,9 +95,25 @@ namespace storage
 
 	edge_descriptor add_edge(vertex_descriptor a, vertex_descriptor b);
 
+	/**
+	 * Adds several actions (with their corresponding vertex_descriptors) to
+	 * the graph, linking each other with edges (dependencies) in the given
+	 * order.
+	 */
 	void add_chain(const vector<Action::Base*>& actions);
 
+	/**
+	 * Adds several edges (dependencies) to the graph, linking the actions
+	 * in the given order.
+	 */
 	void add_chain(const vector<vertex_descriptor>& actions);
+
+	/**
+	 * Adds several edges (dependencies) to the graph, linking groups of
+	 * actions in the given order. Thus, every action from the first vector
+	 * will have an edge to every action from the second vector and so on.
+	 */
+	void add_chain(const vector<vector<vertex_descriptor>>& actions);
 
 	vector<vertex_descriptor> actions_with_sid(sid_t sid, ActionsFilter actions_filter) const;
 
