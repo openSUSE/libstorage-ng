@@ -548,11 +548,7 @@ namespace storage
 	}
 
 	// Add the dependencies to the action graph
-	vector<vector<Actiongraph::Impl::vertex_descriptor>> actions;
-	actions.push_back(decrease_lv_actions);
-	actions.push_back(reallot_actions);
-	actions.push_back(increase_lv_actions);
-	actiongraph.add_chain(actions);
+	actiongraph.add_chain({ decrease_lv_actions, reallot_actions, increase_lv_actions });
     }
 
 
@@ -560,9 +556,8 @@ namespace storage
     LvmVg::Impl::action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
 	const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
-	if (!reallot) return false;
 
-	return (reallot->sid == get_sid());
+	return reallot && reallot->sid == get_sid();
     }
 
 
@@ -573,9 +568,7 @@ namespace storage
 
 	const Action::Resize* resize = dynamic_cast<const Action::Resize*>(action);
 
-	if (!resize) return false;
-
-	return (resize->resize_mode == ResizeMode::SHRINK);
+	return resize && resize->resize_mode == ResizeMode::SHRINK;
     }
 
 

@@ -64,10 +64,6 @@ namespace storage
 	void
 	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
 	{
-	    // Create actions are sometimes used just as sync points, they
-	    // should not generate extra dependencies in those cases
-	    if (only_sync) return;
-
 	    Base::add_dependencies(v, actiongraph);
 
 	    sid_t sid = actiongraph[v]->sid;
@@ -109,8 +105,6 @@ namespace storage
 		    }
 		}
 	    }
-
-
 	}
 
 
