@@ -548,11 +548,7 @@ namespace storage
 	}
 
 	// Add the dependencies to the action graph
-	vector<vector<Actiongraph::Impl::vertex_descriptor>> actions;
-	actions.push_back(decrease_lv_actions);
-	actions.push_back(reallot_actions);
-	actions.push_back(increase_lv_actions);
-	actiongraph.add_chain(actions);
+	actiongraph.add_chain({ decrease_lv_actions, reallot_actions, increase_lv_actions });
     }
 
 
