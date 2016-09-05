@@ -354,6 +354,30 @@ namespace storage
     }
 
 
+    /**
+     * Returns input sorted by the default comparison of the return value of
+     * the key function fnc of each value in input.
+     */
+    template<typename ValueType, typename KeyType>
+    vector<ValueType>
+    sort_by_key(const vector<ValueType>& input, std::function<KeyType(ValueType)> fnc)
+    {
+	typedef typename vector<ValueType>::size_type size_type;
+
+	map<KeyType, size_type> tmp;
+
+	for (size_type i = 0; i < input.size(); ++i)
+	    tmp[fnc(input[i])] = i;
+
+	vector<ValueType> output;
+
+	for (const auto& t : tmp)
+	    output.push_back(input[t.second]);
+
+	return output;
+    }
+
+
     void
     PartitionTable::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
     {
@@ -388,24 +412,14 @@ namespace storage
 
 	if (tmp.size() > 1)
 	{
-	    sort(tmp.begin(), tmp.end(), [&actiongraph, &devicegraph](Actiongraph::Impl::vertex_descriptor lhs1,
-								      Actiongraph::Impl::vertex_descriptor rhs1) {
+	    std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> fnc =
+		[&actiongraph, &devicegraph](Actiongraph::Impl::vertex_descriptor vertex) {
+		const Action::Base* a = actiongraph[vertex];
+		const Partition* p = to_partition(devicegraph->find_device(a->sid));
+		return p->get_number();
+	    };
 
-		// TODO somehow move code outside of compare function.  maybe
-		// place all entries in a map with partition number as key,
-		// the map does the sorting and then just recreate the
-		// vector.  reuseable of course.
-
-		const Action::Base* rhs2 = actiongraph[rhs1];
-		const Partition* rhs3 = to_partition(devicegraph->find_device(rhs2->sid));
-
-		const Action::Base* lhs2 = actiongraph[lhs1];
-		const Partition* lhs3 = to_partition(devicegraph->find_device(lhs2->sid));
-
-		return lhs3->get_number() < rhs3->get_number();
-	    });
-
-	    actiongraph.add_chain(tmp);
+	    actiongraph.add_chain(sort_by_key(tmp, fnc));
 	}
     }
 
