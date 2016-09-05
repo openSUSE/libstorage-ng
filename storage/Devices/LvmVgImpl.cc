@@ -556,9 +556,8 @@ namespace storage
     LvmVg::Impl::action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
 	const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
-	if (!reallot) return false;
 
-	return (reallot->sid == get_sid());
+	return reallot && reallot->sid == get_sid();
     }
 
 
@@ -569,9 +568,7 @@ namespace storage
 
 	const Action::Resize* resize = dynamic_cast<const Action::Resize*>(action);
 
-	if (!resize) return false;
-
-	return (resize->resize_mode == ResizeMode::SHRINK);
+	return resize && resize->resize_mode == ResizeMode::SHRINK;
     }
 
 
