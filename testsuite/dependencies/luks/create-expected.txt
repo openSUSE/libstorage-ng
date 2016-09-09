@@ -1,5 +1,6 @@
-1a - Create LUKS on /dev/sda2 -> 1b
-1b - Activate LUKS on /dev/sda2 -> 2a
+1a - Create encryption on /dev/sda2 -> 1b
+1b - Activate encryption on /dev/sda2 -> 1c
+1c - Add encryption on /dev/sda2 to /etc/crypttab -> 2a
 
 2a - Create xfs on /dev/mapper/cr_home (8.00 GiB) -> 2b
 2b - Mount /dev/mapper/cr_home at /home -> 2c

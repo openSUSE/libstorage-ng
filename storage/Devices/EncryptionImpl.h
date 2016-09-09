@@ -73,6 +73,18 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual Text do_create_text(Tense tense) const override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+
+	virtual Text do_activate_text(Tense tense) const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+
+	virtual Text do_add_etc_crypttab_text(Tense tense) const;
+
+	virtual Text do_remove_etc_crypttab_text(Tense tense) const;
+
     private:
 
 	string password;
@@ -80,6 +92,38 @@ namespace storage
 	// mount-by for crypttab
 
     };
+
+
+    namespace Action
+    {
+
+	class AddEtcCrypttab : public Modify
+	{
+	public:
+
+	    AddEtcCrypttab(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class RemoveEtcCrypttab : public Modify
+	{
+	public:
+
+	    RemoveEtcCrypttab(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+    }
 
 }
 

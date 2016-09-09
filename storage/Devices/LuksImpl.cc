@@ -159,21 +159,6 @@ namespace storage
     }
 
 
-    Text
-    Luks::Impl::do_create_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Create LUKS on %1$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Creating LUKS on %1$s"));
-
-	return sformat(text, get_blk_device()->get_displayname().c_str());
-    }
-
-
     void
     Luks::Impl::do_create() const
     {
@@ -186,21 +171,6 @@ namespace storage
 	cmd.execute(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create Luks failed"));
-    }
-
-
-    Text
-    Luks::Impl::do_delete_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Delete LUKS on %1$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deleting LUKS on %1$s"));
-
-	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
 
 
@@ -223,21 +193,6 @@ namespace storage
     }
 
 
-    Text
-    Luks::Impl::do_activate_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Activate LUKS on %1$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Activating LUKS on %1$s"));
-
-	return sformat(text, get_blk_device()->get_displayname().c_str());
-    }
-
-
     void
     Luks::Impl::do_activate() const
     {
@@ -250,21 +205,6 @@ namespace storage
 	cmd.execute(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("activate Luks failed"));
-    }
-
-
-    Text
-    Luks::Impl::do_deactivate_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deactivate LUKS on %1$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deactivating LUKS on %1$s"));
-
-	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
 
 
