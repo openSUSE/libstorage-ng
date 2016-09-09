@@ -62,6 +62,13 @@ namespace storage
     }
 
 
+    const Storage*
+    Device::Impl::get_storage() const
+    {
+	return get_devicegraph()->get_storage();
+    }
+
+
     void
     Device::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {

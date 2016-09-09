@@ -93,6 +93,8 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
+	const Storage* get_storage() const;
+
 	sid_t get_sid() const { return sid; }
 
 	void set_devicegraph_and_vertex(Devicegraph* devicegraph,
