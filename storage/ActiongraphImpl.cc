@@ -134,14 +134,16 @@ namespace storage
     Actiongraph::Impl::add_chain(const vector<vector<vertex_descriptor>>& vert_vectors)
     {
 	vector<vector<Actiongraph::Impl::vertex_descriptor>> non_empty_vectors;
+
 	for (const vector<vertex_descriptor>& vector : vert_vectors)
-	    if (!vector.empty()) non_empty_vectors.push_back(vector);
+	    if (!vector.empty())
+		non_empty_vectors.push_back(vector);
 
 	if (non_empty_vectors.size() > 1)
 	    for (size_t i = 1; i < non_empty_vectors.size(); ++i)
 		// As an alternative implementation, we could add sync actions
 		// here instead of creating all the edges right away
-		for (vertex_descriptor left : non_empty_vectors[i-1])
+		for (vertex_descriptor left : non_empty_vectors[i - 1])
 		    for (vertex_descriptor right : non_empty_vectors[i])
 			add_edge(left, right);
     }
