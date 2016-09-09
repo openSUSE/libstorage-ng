@@ -276,7 +276,7 @@ namespace storage
     void
     Device::Impl::do_create() const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -290,7 +290,7 @@ namespace storage
     void
     Device::Impl::do_delete() const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -304,7 +304,7 @@ namespace storage
     void
     Device::Impl::do_resize(ResizeMode resize_mode) const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -318,7 +318,7 @@ namespace storage
     void
     Device::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
