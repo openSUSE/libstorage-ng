@@ -73,8 +73,9 @@ namespace storage
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
 
-	protected:
-
+	    /**
+	     * Returns the device of the action on the rhs devicegraph.
+	     */
 	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
@@ -87,11 +88,15 @@ namespace storage
 
 	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
-	protected:
-
+	    /**
+	     * Returns the device of the action on the lhs devicegraph. May not exist.
+	     */
 	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
+	    /**
+	     * Returns the device of the action on the rhs devicegraph. May not exist.
+	     */
 	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
@@ -109,8 +114,9 @@ namespace storage
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
 
-	protected:
-
+	    /**
+	     * Returns the device of the action on the lhs devicegraph.
+	     */
 	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
