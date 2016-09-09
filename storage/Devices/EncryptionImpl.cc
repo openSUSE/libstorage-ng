@@ -27,6 +27,8 @@
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Storage.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -55,6 +57,8 @@ namespace storage
     {
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
+
+	getChildValue(node, "password", password);
     }
 
 
@@ -62,6 +66,9 @@ namespace storage
     Encryption::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    setChildValue(node, "password", password);
     }
 
 
@@ -104,7 +111,19 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::OpenEncryption(get_sid()));
+	actions.push_back(new Action::Activate(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Encryption::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Deactivate(get_sid()));
+	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -118,7 +137,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return true;
+	return password == rhs.password;
     }
 
 
@@ -128,6 +147,9 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    storage::log_diff(log, "password", password, rhs.password);
     }
 
 
@@ -135,39 +157,9 @@ namespace storage
     Encryption::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
-    }
 
-
-    Text
-    Encryption::Impl::do_create_text(Tense tense) const
-    {
-	return sformat(_("Create encryption on %1$s"), get_displayname().c_str());
-    }
-
-
-    Text
-    Encryption::Impl::do_open_text(Tense tense) const
-    {
-	return sformat(_("Open encryption on %1$s"), get_displayname().c_str());
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	OpenEncryption::text(const Actiongraph::Impl& actiongraph, Tense tense) const
-	{
-	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
-	    return encryption->get_impl().do_open_text(tense);
-	}
-
-	void
-	OpenEncryption::commit(const Actiongraph::Impl& actiongraph) const
-	{
-	    // TODO
-	}
-
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    out << " password:" << get_password();
     }
 
 }

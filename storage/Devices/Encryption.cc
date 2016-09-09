@@ -76,6 +76,20 @@ namespace storage
     }
 
 
+    const std::string&
+    Encryption::get_password() const
+    {
+	return get_impl().get_password();
+    }
+
+
+    void
+    Encryption::set_password(const std::string& password)
+    {
+	get_impl().set_password(password);
+    }
+
+
     const BlkDevice*
     Encryption::get_blk_device() const
     {

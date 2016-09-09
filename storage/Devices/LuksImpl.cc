@@ -20,7 +20,11 @@
  */
 
 
+#include <iostream>
+
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -98,14 +102,28 @@ namespace storage
 
 
     void
-    Luks::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    Luks::Impl::parent_has_new_region(const Device* parent)
     {
-	vector<Action::Base*> actions;
+	calculate_region();
+    }
 
-	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::OpenLuks(get_sid()));
 
-	actiongraph.add_chain(actions);
+    void
+    Luks::Impl::calculate_region()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	unsigned long long size = blk_device->get_size();
+
+	// size of luks metadata is explained at
+	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+
+	if (size > 2 * MiB)
+	    size -= 2 * MiB;
+	else
+	    size = 0 * B;
+
+	set_size(size);
     }
 
 
@@ -144,33 +162,121 @@ namespace storage
     Text
     Luks::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create LUKS on %1$s"), get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Create LUKS on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Creating LUKS on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Luks::Impl::do_create() const
+    {
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(get_blk_device()->get_name()) +
+	    " --key-file -";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd;
+	cmd.setStdinText(get_password());
+	cmd.execute(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create Luks failed"));
     }
 
 
     Text
-    Luks::Impl::do_open_text(Tense tense) const
+    Luks::Impl::do_delete_text(Tense tense) const
     {
-	return sformat(_("Open LUKS on %1$s"), get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Delete LUKS on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deleting LUKS on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
 
 
-    namespace Action
+    void
+    Luks::Impl::do_delete() const
     {
+	const BlkDevice* blk_device = get_blk_device();
 
-	Text
-	OpenLuks::text(const Actiongraph::Impl& actiongraph, Tense tense) const
-	{
-	    const Luks* luks = to_luks(get_device_rhs(actiongraph));
-	    return luks->get_impl().do_open_text(tense);
-	}
+	string cmd_line = CRYPTSETUPBIN " --batch-mode erase " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
 
-	void
-	OpenLuks::commit(const Actiongraph::Impl& actiongraph) const
-	{
-	    // TODO
-	}
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete Luks failed"));
 
+	// cryptsetup erase does not remove the signature, thus also use
+	// generic wipefs.
+
+	blk_device->get_impl().wipe_device();
+    }
+
+
+    Text
+    Luks::Impl::do_activate_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Activate LUKS on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Activating LUKS on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Luks::Impl::do_activate() const
+    {
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(get_blk_device()->get_name()) + " " +
+	    quote(get_dm_table_name()) + " --key-file -";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd;
+	cmd.setStdinText(get_password());
+	cmd.execute(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("activate Luks failed"));
+    }
+
+
+    Text
+    Luks::Impl::do_deactivate_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deactivate LUKS on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deactivating LUKS on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Luks::Impl::do_deactivate() const
+    {
+	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("deactivate Luks failed"));
     }
 
 }

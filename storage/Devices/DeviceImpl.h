@@ -153,6 +153,12 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;
 
+	virtual Text do_activate_text(Tense tense) const;
+	virtual void do_activate() const;
+
+	virtual Text do_deactivate_text(Tense tense) const;
+	virtual void do_deactivate() const;
+
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
 	virtual void do_resize(ResizeMode resize_mode) const;
 
@@ -274,6 +280,31 @@ namespace storage
 
     namespace Action
     {
+
+	class Activate : public Modify
+	{
+	public:
+
+	    Activate(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class Deactivate : public Modify
+	{
+
+	public:
+
+	    Deactivate(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
 
 	class Resize : public Modify
 	{

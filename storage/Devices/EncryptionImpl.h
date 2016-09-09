@@ -53,6 +53,10 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_dm_table_name(); }
 
+	const string& get_password() const { return password; }
+
+	void set_password(const string& password) { Impl::password = password; }
+
 	const BlkDevice* get_blk_device() const;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
@@ -62,39 +66,20 @@ namespace storage
 	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(Tense tense) const override;
-
-	virtual Text do_open_text(Tense tense) const;
-
     private:
 
-	// password
+	string password;
+
 	// mount-by for crypttab
 
     };
-
-
-    namespace Action
-    {
-
-	class OpenEncryption : public Modify
-	{
-	public:
-
-	    OpenEncryption(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-    }
 
 }
 

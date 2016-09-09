@@ -295,6 +295,34 @@ namespace storage
 
 
     Text
+    Device::Impl::do_activate_text(Tense tense) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_activate() const
+    {
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
+    Text
+    Device::Impl::do_deactivate_text(Tense tense) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_deactivate() const
+    {
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
+    Text
     Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
     {
 	return _("error: stub function called");
@@ -324,6 +352,38 @@ namespace storage
 
     namespace Action
     {
+
+	Text
+	Activate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Device* device = get_device_rhs(actiongraph);
+	    return device->get_impl().do_activate_text(tense);
+	}
+
+
+	void
+	Activate::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device_rhs(actiongraph);
+	    device->get_impl().do_activate();
+	}
+
+
+	Text
+	Deactivate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Device* device = get_device_lhs(actiongraph);
+	    return device->get_impl().do_deactivate_text(tense);
+	}
+
+
+	void
+	Deactivate::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device_lhs(actiongraph);
+	    device->get_impl().do_deactivate();
+	}
+
 
 	Text
 	Resize::text(const Actiongraph::Impl& actiongraph, Tense tense) const
