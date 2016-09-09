@@ -388,6 +388,7 @@ namespace storage
 	    }
 	}
 
+
 	bool
 	Reallot::action_removes_device(const Action::Base* action) const
 	{
