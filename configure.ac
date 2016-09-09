@@ -110,6 +110,7 @@ AC_OUTPUT(
 	integration-tests/Makefile
 	integration-tests/partitions/Makefile
 	integration-tests/filesystems/Makefile
+	integration-tests/luks/Makefile
 	integration-tests/md/Makefile
 	integration-tests/lvm/Makefile
 	bindings/Makefile
