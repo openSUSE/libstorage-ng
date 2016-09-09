@@ -83,6 +83,13 @@ namespace storage
 	Filesystem* get_filesystem();
 	const Filesystem* get_filesystem() const;
 
+	Encryption* create_encryption(const std::string& dm_name);
+
+	bool has_encryption() const;
+
+	Encryption* get_encryption();
+	const Encryption* get_encryption() const;
+
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the major
