@@ -553,7 +553,15 @@ namespace storage
     Text
     Md::Impl::do_add_etc_mdadm_text(Tense tense) const
     {
-	return sformat(_("Add %1$s to /etc/mdadm.conf"), get_name().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by md name (e.g. /dev/md0)
+			   _("Add %1$s to /etc/mdadm.conf"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by md name (e.g. /dev/md0)
+			   _("Adding %1$s to /etc/mdadm.conf"));
+
+	return sformat(text, get_name().c_str());
     }
 
 
@@ -567,7 +575,15 @@ namespace storage
     Text
     Md::Impl::do_remove_etc_mdadm_text(Tense tense) const
     {
-	return sformat(_("Remove %1$s from /etc/mdadm.conf"), get_name().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by md name (e.g. /dev/md0)
+			   _("Remove %1$s from /etc/mdadm.conf"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by md name (e.g. /dev/md0)
+			   _("Removing %1$s from /etc/mdadm.conf"));
+
+	return sformat(text, get_name().c_str());
     }
 
 
