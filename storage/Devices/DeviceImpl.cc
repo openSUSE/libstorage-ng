@@ -62,6 +62,13 @@ namespace storage
     }
 
 
+    const Storage*
+    Device::Impl::get_storage() const
+    {
+	return get_devicegraph()->get_storage();
+    }
+
+
     void
     Device::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
@@ -269,7 +276,7 @@ namespace storage
     void
     Device::Impl::do_create() const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -283,7 +290,35 @@ namespace storage
     void
     Device::Impl::do_delete() const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
+    Text
+    Device::Impl::do_activate_text(Tense tense) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_activate() const
+    {
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
+    Text
+    Device::Impl::do_deactivate_text(Tense tense) const
+    {
+	return _("error: stub function called");
+    }
+
+
+    void
+    Device::Impl::do_deactivate() const
+    {
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -297,7 +332,7 @@ namespace storage
     void
     Device::Impl::do_resize(ResizeMode resize_mode) const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -311,12 +346,44 @@ namespace storage
     void
     Device::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
     {
-	throw std::logic_error("stub function called");
+	ST_THROW(LogicException("stub function called"));
     }
 
 
     namespace Action
     {
+
+	Text
+	Activate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Device* device = get_device_rhs(actiongraph);
+	    return device->get_impl().do_activate_text(tense);
+	}
+
+
+	void
+	Activate::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device_rhs(actiongraph);
+	    device->get_impl().do_activate();
+	}
+
+
+	Text
+	Deactivate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Device* device = get_device_lhs(actiongraph);
+	    return device->get_impl().do_deactivate_text(tense);
+	}
+
+
+	void
+	Deactivate::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Device* device = get_device_lhs(actiongraph);
+	    device->get_impl().do_deactivate();
+	}
+
 
 	Text
 	Resize::text(const Actiongraph::Impl& actiongraph, Tense tense) const
@@ -380,6 +447,7 @@ namespace storage
 		    }
 	    }
 	}
+
 
 	bool
 	Reallot::action_removes_device(const Action::Base* action) const

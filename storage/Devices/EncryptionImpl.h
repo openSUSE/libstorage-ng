@@ -53,6 +53,10 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_dm_table_name(); }
 
+	const string& get_password() const { return password; }
+
+	void set_password(const string& password) { Impl::password = password; }
+
 	const BlkDevice* get_blk_device() const;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
@@ -62,6 +66,7 @@ namespace storage
 	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -70,11 +75,22 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 
-	virtual Text do_open_text(Tense tense) const;
+	virtual Text do_delete_text(Tense tense) const override;
+
+	virtual Text do_activate_text(Tense tense) const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+
+	virtual Text do_add_etc_crypttab_text(Tense tense) const;
+	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
+
+	virtual Text do_remove_etc_crypttab_text(Tense tense) const;
+	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
 
     private:
 
-	// password
+	string password;
+
 	// mount-by for crypttab
 
     };
@@ -83,11 +99,26 @@ namespace storage
     namespace Action
     {
 
-	class OpenEncryption : public Modify
+	class AddEtcCrypttab : public Modify
 	{
 	public:
 
-	    OpenEncryption(sid_t sid) : Modify(sid) {}
+	    AddEtcCrypttab(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class RemoveEtcCrypttab : public Modify
+	{
+	public:
+
+	    RemoveEtcCrypttab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;

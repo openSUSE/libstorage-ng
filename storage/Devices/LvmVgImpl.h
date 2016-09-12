@@ -149,21 +149,22 @@ namespace storage
 	bool action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
 
 	/**
-	 * Checks if the given action is performed in any of the logical volumes of
-	 * this volume group.
+	 * Checks if the action performed in a logical volume decreases the free
+	 * space available in the volume group.
 	 */
-	bool action_is_on_my_lv(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+	bool action_uses_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
 
 	/**
 	 * Checks if the action performed in a logical volume increases the free
 	 * space available in the volume group.
 	 */
-	bool action_frees_vg_space(const Action::Base* action) const;
+	bool action_frees_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
 
 	/**
-	 * Device directly affected by the given action.
+	 * Checks whether the device is a logical volume of the volume group.
 	 */
-	const Device* action_device(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+	bool is_my_lvm_lv(const Device* device) const;
+
     };
 
 

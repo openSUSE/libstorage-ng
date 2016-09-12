@@ -33,6 +33,7 @@ namespace storage
 {
 
     class Region;
+    class Encryption;
 
 
     //! An abstract Block Device.
@@ -81,6 +82,16 @@ namespace storage
 
 	Filesystem* get_filesystem();
 	const Filesystem* get_filesystem() const;
+
+	/**
+	 * TODO parameter for encryption type? do all encryptions need a dm_name?
+	 */
+	Encryption* create_encryption(const std::string& dm_name);
+
+	bool has_encryption() const;
+
+	Encryption* get_encryption();
+	const Encryption* get_encryption() const;
 
     public:
 

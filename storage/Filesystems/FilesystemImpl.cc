@@ -705,10 +705,17 @@ namespace storage
     Text
     Filesystem::Impl::do_add_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   _("Add mountpoint %1$s of %2$s to /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   _("Adding mountpoint %1$s of %2$s to /etc/fstab"));
 
-	return sformat(_("Add mountpoint %1$s of %2$s to /etc/fstab"), mountpoint.c_str(),
-		       blk_device->get_name().c_str());
+	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
     }
 
 
@@ -739,10 +746,17 @@ namespace storage
     Text
     Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   _("Remove mountpoint %1$s of %2$s from /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   _("Removing mountpoint %1$s of %2$s from /etc/fstab"));
 
-	return sformat(_("Remove mountpoint %1$s of %2$s from /etc/fstab"), mountpoint.c_str(),
-		       blk_device->get_name().c_str());
+	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
     }
 
 
@@ -778,13 +792,13 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by filesystem (e.g. ext4),
-			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by device name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 2GiB),
 			      // %4$s is replaced by new size (e.g. 1GiB)
 			      _("Shrink %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by filesystem (e.g. ext4),
-			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by device name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 2GiB),
 			      // %4$s is replaced by new size (e.g. 1GiB)
 			      _("Shrinking %1$s on %2$s from %3$s to %4$s"));
@@ -794,13 +808,13 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by filesystem (e.g. ext4),
-			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by device name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 1GiB),
 			      // %4$s is replaced by new size (e.g. 2GiB)
 			      _("Grow %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by filesystem (e.g. ext4),
-			      // %2$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by device name (e.g. /dev/sda1),
 			      // %3$s is replaced by old size (e.g. 1GiB),
 			      // %4$s is replaced by new size (e.g. 2GiB)
 			      _("Growing %1$s on %2$s from %3$s to %4$s"));
@@ -900,12 +914,12 @@ namespace storage
 
 
 	void
-	AddEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+	AddEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				      Actiongraph::Impl& actiongraph) const
 	{
 	    if (mountpoint == "swap")
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
-		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, v);
+		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
 	}
 
 

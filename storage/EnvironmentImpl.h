@@ -55,6 +55,8 @@ namespace storage
 	const string& get_mockup_filename() const { return mockup_filename; }
 	void set_mockup_filename(const string& mockup_filename);
 
+	bool is_debug_credentials() const { return false; }
+
 	friend std::ostream& operator<<(std::ostream& out, const Impl& environment);
 
     private:

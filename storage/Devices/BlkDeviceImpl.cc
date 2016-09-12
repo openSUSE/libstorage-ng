@@ -29,6 +29,8 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/LuksImpl.h"
+#include "storage/Holders/User.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
@@ -358,6 +360,44 @@ namespace storage
     BlkDevice::Impl::get_filesystem() const
     {
 	return get_single_child_of_type<const Filesystem>();
+    }
+
+
+    Encryption*
+    BlkDevice::Impl::create_encryption(const std::string& dm_name)
+    {
+	if (num_children() != 0)
+	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
+
+	Luks* luks = Luks::create(get_devicegraph(), dm_name);
+
+	User::create(get_devicegraph(), get_device(), luks);
+
+	// TODO maybe add parent_added() next to parent_has_new_region() for this?
+	luks->get_impl().parent_has_new_region(get_device());
+
+	return luks;
+    }
+
+
+    bool
+    BlkDevice::Impl::has_encryption() const
+    {
+	return has_single_child_of_type<const Encryption>();
+    }
+
+
+    Encryption*
+    BlkDevice::Impl::get_encryption()
+    {
+	return get_single_child_of_type<Encryption>();
+    }
+
+
+    const Encryption*
+    BlkDevice::Impl::get_encryption() const
+    {
+	return get_single_child_of_type<const Encryption>();
     }
 
 

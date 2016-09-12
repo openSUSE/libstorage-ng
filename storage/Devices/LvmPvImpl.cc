@@ -155,7 +155,6 @@ namespace storage
 	if (has_lvm_vg())
 	{
 	    LvmVg* lvm_vg = get_lvm_vg();
-
 	    lvm_vg->get_impl().parent_has_new_region(get_device());
 	}
     }

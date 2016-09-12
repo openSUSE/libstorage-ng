@@ -27,6 +27,8 @@
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/StorageImpl.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -55,6 +57,8 @@ namespace storage
     {
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
+
+	getChildValue(node, "password", password);
     }
 
 
@@ -62,6 +66,9 @@ namespace storage
     Encryption::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    setChildValue(node, "password", password);
     }
 
 
@@ -104,7 +111,21 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::OpenEncryption(get_sid()));
+	actions.push_back(new Action::Activate(get_sid()));
+	actions.push_back(new Action::AddEtcCrypttab(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Encryption::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::RemoveEtcCrypttab(get_sid()));
+	actions.push_back(new Action::Deactivate(get_sid()));
+	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -118,7 +139,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return true;
+	return password == rhs.password;
     }
 
 
@@ -128,6 +149,9 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    storage::log_diff(log, "password", password, rhs.password);
     }
 
 
@@ -135,20 +159,113 @@ namespace storage
     Encryption::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	if (get_storage()->get_environment().get_impl().is_debug_credentials())
+	    out << " password:" << get_password();
     }
 
 
     Text
     Encryption::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create encryption on %1$s"), get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Create encryption on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Creating encryption on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
 
 
     Text
-    Encryption::Impl::do_open_text(Tense tense) const
+    Encryption::Impl::do_delete_text(Tense tense) const
     {
-	return sformat(_("Open encryption on %1$s"), get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Delete encryption on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deleting encryption on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    Text
+    Encryption::Impl::do_activate_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Activate encryption on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Activating encryption on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    Text
+    Encryption::Impl::do_deactivate_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deactivate encryption on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Deactivating encryption on %1$s"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    Text
+    Encryption::Impl::do_add_etc_crypttab_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Add encryption on %1$s to /etc/crypttab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Adding encryption on %1$s to /etc/crypttab"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Encryption::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
+    Text
+    Encryption::Impl::do_remove_etc_crypttab_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Remove encryption on %1$s from /etc/crypttab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Removing encryption on %1$s from /etc/crypttab"));
+
+	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Encryption::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -156,16 +273,43 @@ namespace storage
     {
 
 	Text
-	OpenEncryption::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
-	    return encryption->get_impl().do_open_text(tense);
+	    return encryption->get_impl().do_add_etc_crypttab_text(tense);
 	}
 
+
 	void
-	OpenEncryption::commit(const Actiongraph::Impl& actiongraph) const
+	AddEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    // TODO
+	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
+	    encryption->get_impl().do_add_etc_crypttab(actiongraph);
+	}
+
+
+	void
+	AddEtcCrypttab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					 Actiongraph::Impl& actiongraph) const
+	{
+	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
+		actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
+	}
+
+
+	Text
+	RemoveEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
+	    return encryption->get_impl().do_remove_etc_crypttab_text(tense);
+	}
+
+
+	void
+	RemoveEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
+	    encryption->get_impl().do_remove_etc_crypttab(actiongraph);
 	}
 
     }

@@ -20,10 +20,15 @@
  */
 
 
+#include <iostream>
+
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -98,14 +103,28 @@ namespace storage
 
 
     void
-    Luks::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    Luks::Impl::parent_has_new_region(const Device* parent)
     {
-	vector<Action::Base*> actions;
+	calculate_region();
+    }
 
-	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::OpenLuks(get_sid()));
 
-	actiongraph.add_chain(actions);
+    void
+    Luks::Impl::calculate_region()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	unsigned long long size = blk_device->get_size();
+
+	// size of luks metadata is explained at
+	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
+
+	if (size > 2 * MiB)
+	    size -= 2 * MiB;
+	else
+	    size = 0 * B;
+
+	set_size(size);
     }
 
 
@@ -141,36 +160,99 @@ namespace storage
     }
 
 
-    Text
-    Luks::Impl::do_create_text(Tense tense) const
+    void
+    Luks::Impl::do_create() const
     {
-	return sformat(_("Create LUKS on %1$s"), get_displayname().c_str());
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(get_blk_device()->get_name()) +
+	    " --key-file -";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd;
+	cmd.setStdinText(get_password());
+	cmd.execute(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("create Luks failed"));
     }
 
 
-    Text
-    Luks::Impl::do_open_text(Tense tense) const
+    void
+    Luks::Impl::do_delete() const
     {
-	return sformat(_("Open LUKS on %1$s"), get_displayname().c_str());
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = CRYPTSETUPBIN " --batch-mode erase " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete Luks failed"));
+
+	// cryptsetup erase does not remove the signature, thus also use
+	// generic wipefs.
+
+	blk_device->get_impl().wipe_device();
     }
 
 
-    namespace Action
+    void
+    Luks::Impl::do_activate() const
     {
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(get_blk_device()->get_name()) + " " +
+	    quote(get_dm_table_name()) + " --key-file -";
+	cout << cmd_line << endl;
 
-	Text
-	OpenLuks::text(const Actiongraph::Impl& actiongraph, Tense tense) const
-	{
-	    const Luks* luks = to_luks(get_device_rhs(actiongraph));
-	    return luks->get_impl().do_open_text(tense);
-	}
+	SystemCmd cmd;
+	cmd.setStdinText(get_password());
+	cmd.execute(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("activate Luks failed"));
+    }
 
-	void
-	OpenLuks::commit(const Actiongraph::Impl& actiongraph) const
-	{
-	    // TODO
-	}
 
+    void
+    Luks::Impl::do_deactivate() const
+    {
+	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("deactivate Luks failed"));
+    }
+
+
+    void
+    Luks::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO, error handling and mount-by
+
+	FstabChange entry;
+	entry.device = get_blk_device()->get_name();
+	entry.dentry = get_name();
+	entry.encr = EncryptionType::LUKS;
+
+	fstab.addEntry(entry);
+	fstab.flush();
+    }
+
+
+    void
+    Luks::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO, error handling and mount-by
+
+	FstabKey key(get_blk_device()->get_name(), "");
+
+	fstab.removeEntry(key);
+	fstab.flush();
     }
 
 }

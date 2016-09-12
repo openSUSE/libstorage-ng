@@ -526,8 +526,10 @@ namespace storage
     {
 	// First, all the operations removing or shrinking LVs
 	vector<Actiongraph::Impl::vertex_descriptor> decrease_lv_actions;
+
 	// Afterward, all the operations adding or removing PVs
 	vector<Actiongraph::Impl::vertex_descriptor> reallot_actions;
+
 	// Finally, operations adding and growing LVs
 	vector<Actiongraph::Impl::vertex_descriptor> increase_lv_actions;
 
@@ -538,13 +540,10 @@ namespace storage
 
 	    if (action_is_my_reallot(action, actiongraph))
 		reallot_actions.push_back(vertex);
-	    else if (action_is_on_my_lv(action, actiongraph))
-	    {
-		if (action_frees_vg_space(action))
-		    decrease_lv_actions.push_back(vertex);
-		else
-		    increase_lv_actions.push_back(vertex);
-	    }
+	    else if (action_uses_vg_space(action, actiongraph))
+		increase_lv_actions.push_back(vertex);
+	    else if (action_frees_vg_space(action, actiongraph))
+		decrease_lv_actions.push_back(vertex);
 	}
 
 	// Add the dependencies to the action graph
@@ -556,46 +555,48 @@ namespace storage
     LvmVg::Impl::action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
 	const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
-
 	return reallot && reallot->sid == get_sid();
     }
 
 
     bool
-    LvmVg::Impl::action_frees_vg_space(const Action::Base* action) const
+    LvmVg::Impl::action_uses_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
-	if (dynamic_cast<const Action::Delete*>(action)) return true;
+	const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	if (create_action)
+	    return is_my_lvm_lv(create_action->get_device_rhs(actiongraph));
 
-	const Action::Resize* resize = dynamic_cast<const Action::Resize*>(action);
+	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
+	if (resize_action && resize_action->resize_mode == ResizeMode::GROW)
+	    return is_my_lvm_lv(resize_action->get_device_rhs(actiongraph));
 
-	return resize && resize->resize_mode == ResizeMode::SHRINK;
+	return false;
     }
 
 
     bool
-    LvmVg::Impl::action_is_on_my_lv(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
+    LvmVg::Impl::action_frees_vg_space(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
     {
-	const Device* device = action_device(action, actiongraph);
-	if (!is_lvm_lv(device)) return false;
+	const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+	if (delete_action)
+	    return is_my_lvm_lv(delete_action->get_device_lhs(actiongraph));
 
-	const LvmLv* lv = to_lvm_lv(device);
-	// There is a change we are comparing across devicegraphs (left and
-	// right), so let's use get_sid()
-	return (lv->get_lvm_vg()->get_sid() == get_sid());
+	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
+	if (resize_action && resize_action->resize_mode == ResizeMode::SHRINK)
+	    return is_my_lvm_lv(resize_action->get_device_lhs(actiongraph));
+
+	return false;
     }
 
 
-    const Device*
-    LvmVg::Impl::action_device(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
+    bool
+    LvmVg::Impl::is_my_lvm_lv(const Device* device) const
     {
-	const Devicegraph* devicegraph;
+	if (!is_lvm_lv(device))
+	    return false;
 
-	if (dynamic_cast<const Action::Delete*>(action))
-	    devicegraph = actiongraph.get_devicegraph(LHS);
-	else
-	    devicegraph = actiongraph.get_devicegraph(RHS);
-
-	return devicegraph->find_device(action->sid);
+	const LvmLv* lvm_lv = to_lvm_lv(device);
+	return lvm_lv->get_lvm_vg()->get_sid() == get_sid();
     }
 
 }

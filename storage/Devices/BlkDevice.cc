@@ -264,6 +264,34 @@ namespace storage
     }
 
 
+    Encryption*
+    BlkDevice::create_encryption(const std::string& dm_name)
+    {
+	return get_impl().create_encryption(dm_name);
+    }
+
+
+    bool
+    BlkDevice::has_encryption() const
+    {
+	return get_impl().has_encryption();
+    }
+
+
+    Encryption*
+    BlkDevice::get_encryption()
+    {
+	return get_impl().get_encryption();
+    }
+
+
+    const Encryption*
+    BlkDevice::get_encryption() const
+    {
+	return get_impl().get_encryption();
+    }
+
+
     bool
     is_blk_device(const Device* device)
     {

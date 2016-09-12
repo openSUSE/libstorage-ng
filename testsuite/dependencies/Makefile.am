@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite/dependencies
 #
 
-SUBDIRS = lvm md
+SUBDIRS = luks lvm md
 
 AM_CPPFLAGS = -I$(top_srcdir)
 

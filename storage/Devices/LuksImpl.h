@@ -59,40 +59,32 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void parent_has_new_region(const Device* parent) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() const override;
 
-	virtual Text do_open_text(Tense tense) const override;
+	virtual void do_delete() const override;
+
+	virtual void do_activate() const override;
+
+	virtual void do_deactivate() const override;
+
+	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
+
+	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
 
     private:
+
+	void calculate_region();
 
 	string uuid;
 
     };
-
-
-    namespace Action
-    {
-
-	class OpenLuks : public Modify
-	{
-	public:
-
-	    OpenLuks(sid_t sid) : Modify(sid) {}
-
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
-
-	};
-
-    }
-
 
 }
 
