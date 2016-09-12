@@ -240,6 +240,13 @@ namespace storage
     }
 
 
+    void
+    Encryption::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	ST_THROW(LogicException("stub function called"));
+    }
+
+
     Text
     Encryption::Impl::do_remove_etc_crypttab_text(Tense tense) const
     {
@@ -252,6 +259,13 @@ namespace storage
 			   _("Removing encryption on %1$s from /etc/crypttab"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    void
+    Encryption::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	ST_THROW(LogicException("stub function called"));
     }
 
 
@@ -270,7 +284,7 @@ namespace storage
 	AddEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
-	    // encryption->get_impl().do_add_etc_crypttab(actiongraph);
+	    encryption->get_impl().do_add_etc_crypttab(actiongraph);
 	}
 
 
@@ -295,7 +309,7 @@ namespace storage
 	RemoveEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
-	    // encryption->get_impl().do_remove_etc_crypttab(actiongraph);
+	    encryption->get_impl().do_remove_etc_crypttab(actiongraph);
 	}
 
     }

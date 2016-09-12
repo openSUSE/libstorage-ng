@@ -82,8 +82,10 @@ namespace storage
 	virtual Text do_deactivate_text(Tense tense) const override;
 
 	virtual Text do_add_etc_crypttab_text(Tense tense) const;
+	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
 
 	virtual Text do_remove_etc_crypttab_text(Tense tense) const;
+	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
 
     private:
 

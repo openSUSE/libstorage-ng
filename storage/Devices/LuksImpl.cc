@@ -28,6 +28,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -217,6 +218,41 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("deactivate Luks failed"));
+    }
+
+
+    void
+    Luks::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO, error handling and mount-by
+
+	FstabChange entry;
+	entry.device = get_blk_device()->get_name();
+	entry.dentry = get_name();
+	entry.encr = EncryptionType::LUKS;
+
+	fstab.addEntry(entry);
+	fstab.flush();
+    }
+
+
+    void
+    Luks::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO, error handling and mount-by
+
+	FstabKey key(get_blk_device()->get_name(), "");
+
+	fstab.removeEntry(key);
+	fstab.flush();
     }
 
 }

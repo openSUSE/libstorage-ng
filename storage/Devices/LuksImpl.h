@@ -74,6 +74,10 @@ namespace storage
 
 	virtual void do_deactivate() const override;
 
+	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
+
+	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
+
     private:
 
 	void calculate_region();
