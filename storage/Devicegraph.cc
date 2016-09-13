@@ -279,16 +279,7 @@ namespace storage
     bool
     Devicegraph::device_exists(sid_t sid) const
     {
-	try
-	{
-	    get_impl().find_vertex(sid);
-	    return true;
-	}
-	catch (const DeviceNotFound& e)
-	{
-	    ST_CAUGHT(e);
-	    return false;
-	}
+	return get_impl().device_exists(sid);
     }
 
 

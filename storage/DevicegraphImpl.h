@@ -99,6 +99,8 @@ namespace storage
 	edge_descriptor add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
 				 Holder* holder);
 
+	bool device_exists(sid_t sid) const;
+
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;
 

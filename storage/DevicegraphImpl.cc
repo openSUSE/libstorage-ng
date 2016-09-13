@@ -225,6 +225,19 @@ namespace storage
     }
 
 
+    bool
+    Devicegraph::Impl::device_exists(sid_t sid) const
+    {
+	for (vertex_descriptor vertex : vertices())
+	{
+	    if (graph[vertex]->get_sid() == sid)
+		return true;
+	}
+
+	return false;
+    }
+
+
     Devicegraph::Impl::vertex_descriptor
     Devicegraph::Impl::find_vertex(sid_t sid) const
     {
