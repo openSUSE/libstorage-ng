@@ -40,15 +40,15 @@ namespace storage
      */
     struct Text
     {
-	Text() : native(), text() {}
-	Text(const string& native, const string& text) : native(native), text(text) {}
+	Text() : native(), translated() {}
+	Text(const string& native, const string& translated) : native(native), translated(translated) {}
 
 	void clear();
 
 	const Text& operator+=(const Text& a);
 
 	string native;
-	string text;
+	string translated;
     };
 
 

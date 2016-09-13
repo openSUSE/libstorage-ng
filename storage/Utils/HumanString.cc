@@ -129,7 +129,7 @@ namespace storage
     string
     get_suffix(int i, bool classic)
     {
-	return classic ? get_all_suffixes(i).front().native : get_all_suffixes(i).front().text;
+	return classic ? get_all_suffixes(i).front().native : get_all_suffixes(i).front().translated;
     }
 
 
@@ -178,7 +178,7 @@ namespace storage
 
 	    for (const Text& suffix : suffixes)
 	    {
-		const string& tmp = classic ? suffix.native : suffix.text;
+		const string& tmp = classic ? suffix.native : suffix.translated;
 
 		if (boost::iends_with(str_trimmed, tmp, loc))
 		{

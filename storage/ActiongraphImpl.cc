@@ -375,7 +375,7 @@ namespace storage
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).text;
+	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
 
 	    y2mil("Commit Action " << text);
 	    cout << text << endl;
@@ -417,7 +417,7 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).text;
+	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated;
 
 	    ostringstream tmp;
 	    tmp << "[ " << text << " ]";
@@ -457,8 +457,8 @@ namespace storage
 	    {
 		const Action::Base* action = actiongraph[vertex];
 
-		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
-		string tooltip = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
+		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
+		string tooltip = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
 
 		string& extra = (graphviz_flags && GraphvizFlags::TOOLTIP) ? tooltip : label;
 

@@ -37,7 +37,7 @@ namespace storage
     Text::clear()
     {
 	native.clear();
-	text.clear();
+	translated.clear();
     }
 
 
@@ -45,7 +45,7 @@ namespace storage
     Text::operator+=(const Text& a)
     {
 	native += a.native;
-	text += a.text;
+	translated += a.translated;
 	return *this;
     }
 
@@ -61,7 +61,7 @@ namespace storage
 	va_end(ap);
 
 	va_start(ap, format);
-	text.text = sformat(format.text, ap);
+	text.translated = sformat(format.translated, ap);
 	va_end(ap);
 
 	return text;
