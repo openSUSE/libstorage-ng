@@ -446,30 +446,31 @@ namespace storage
 
 
 	void
-	Reallot::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
+	Reallot::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				  Actiongraph::Impl& actiongraph) const
 	{
-	    Modify::add_dependencies(v, actiongraph);
+	    Modify::add_dependencies(vertex, actiongraph);
 
 	    if (reallot_mode == ReallotMode::REDUCE)
 	    {
 		// Make sure the device (PV) is removed before being destroyed
 		for (Actiongraph::Impl::vertex_descriptor tmp :
 			 actiongraph.actions_with_sid(device->get_sid(), ONLY_FIRST))
-		    actiongraph.add_edge(v, tmp);
+		    actiongraph.add_edge(vertex, tmp);
 	    }
 	    else
 	    {
 		// Make sure the device is created before being added
 		for (Actiongraph::Impl::vertex_descriptor tmp :
 			 actiongraph.actions_with_sid(device->get_sid(), ONLY_LAST))
-		    actiongraph.add_edge(tmp, v);
+		    actiongraph.add_edge(tmp, vertex);
 
 		// If the device was assigned elsewhere, make sure it's removed
 		// from there before being re-assigned
 		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
 		    if (action_removes_device(actiongraph[tmp]))
 		    {
-			actiongraph.add_edge(tmp, v);
+			actiongraph.add_edge(tmp, vertex);
 			break;
 		    }
 	    }

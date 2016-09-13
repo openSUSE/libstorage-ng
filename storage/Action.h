@@ -49,7 +49,8 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const = 0;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const = 0;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const {}
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const {}
 
 	    const sid_t sid;
 
@@ -71,7 +72,8 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
 	     * Returns the device of the action on the rhs devicegraph.
@@ -112,7 +114,8 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
 	     * Returns the device of the action on the lhs devicegraph.

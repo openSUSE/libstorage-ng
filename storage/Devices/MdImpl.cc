@@ -702,11 +702,13 @@ namespace storage
 
 
 	void
-	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				      Actiongraph::Impl& actiongraph) const
 	{
+	    Modify::add_dependencies(vertex, actiongraph);
+
 	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
-		actiongraph.add_edge(*actiongraph.mount_root_filesystem, v);
+		actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
 	}
 
 

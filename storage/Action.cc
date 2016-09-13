@@ -62,11 +62,12 @@ namespace storage
 
 
 	void
-	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
+	Create::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				 Actiongraph::Impl& actiongraph) const
 	{
-	    Base::add_dependencies(v, actiongraph);
+	    Base::add_dependencies(vertex, actiongraph);
 
-	    sid_t sid = actiongraph[v]->sid;
+	    sid_t sid = actiongraph[vertex]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_rhs = actiongraph.get_devicegraph(RHS)->get_impl().find_vertex(sid);
 
@@ -81,7 +82,7 @@ namespace storage
 		    // parents must be created beforehand if not existed
 
 		    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.actions_with_sid(parent_sid, ONLY_LAST).front();
-		    actiongraph.add_edge(tmp, v);
+		    actiongraph.add_edge(tmp, vertex);
 		}
 		else
 		{
@@ -100,7 +101,7 @@ namespace storage
 			    // Make sure it's a delete action
 			    const Action::Base* tmp_action = actiongraph[tmp.front()];
 			    if (dynamic_cast<const Action::Delete*>(tmp_action))
-				actiongraph.add_edge(tmp.front(), v);
+				actiongraph.add_edge(tmp.front(), vertex);
 			}
 		    }
 		}
@@ -109,13 +110,14 @@ namespace storage
 
 
 	void
-	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const
+	Delete::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				 Actiongraph::Impl& actiongraph) const
 	{
-	    Base::add_dependencies(v, actiongraph);
+	    Base::add_dependencies(vertex, actiongraph);
 
 	    // all children must be deleted beforehand
 
-	    sid_t sid = actiongraph[v]->sid;
+	    sid_t sid = actiongraph[vertex]->sid;
 
 	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
 
@@ -126,7 +128,7 @@ namespace storage
 		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
 
 		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(child_sid, ONLY_FIRST))
-		    actiongraph.add_edge(v, tmp);
+		    actiongraph.add_edge(vertex, tmp);
 	    }
 	}
 
