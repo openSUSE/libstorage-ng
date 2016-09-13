@@ -24,7 +24,7 @@
 #include <locale>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Text.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Enum.h"
 

@@ -25,7 +25,6 @@
 #define STORAGE_APP_UTIL_H
 
 
-#include <libintl.h>
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sstream>
@@ -116,42 +115,9 @@ void classic(StreamType& stream)
     };
 
 
+    string sformat(const string& format, va_list ap);
+
     string sformat(const string& format, ...);
-
-
-    struct Text
-    {
-	Text() : native(), text() {}
-	Text(const string& native, const string& text) : native(native), text(text) {}
-
-	void clear();
-
-	const Text& operator+=(const Text& a);
-
-	string native;
-	string text;
-    };
-
-
-    Text sformat(const Text& format, ...);
-
-
-    Text _(const char* msgid);
-    Text _(const char* msgid, const char* msgid_plural, unsigned long int n);
-
-
-    enum class Tense
-    {
-	SIMPLE_PRESENT, PRESENT_CONTINUOUS
-    };
-
-
-    /**
-     * Function to select between tenses. Implemented as macro to avoid all
-     * arguments to be evaluated.
-     */
-#define tenser(tense, msgid_simple_present, msgid_present_continuous)  \
-    (tense == Tense::SIMPLE_PRESENT ? (msgid_simple_present) : (msgid_present_continuous))
 
 
 extern const string app_ws;
