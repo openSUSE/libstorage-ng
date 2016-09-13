@@ -32,6 +32,9 @@
 namespace storage
 {
 
+    /**
+     * Simple class implementing a stop watch.
+     */
     class StopWatch
     {
     public:

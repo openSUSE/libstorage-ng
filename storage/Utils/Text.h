@@ -34,6 +34,10 @@ namespace storage
     using namespace std;
 
 
+    /**
+     * Simple class to keep a native and a translated string in
+     * parallel. Purpose is to be able to log user messages in English.
+     */
     struct Text
     {
 	Text() : native(), text() {}
@@ -48,6 +52,10 @@ namespace storage
     };
 
 
+    /**
+     * Untranslated version of class Text. Useful for fatal logical error
+     * messages that need no translation but where a Text object is required.
+     */
     struct UntranslatedText : public Text
     {
 	UntranslatedText(const string& native) : Text(native, native) {}
