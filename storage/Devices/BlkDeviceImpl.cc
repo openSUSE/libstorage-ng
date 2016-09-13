@@ -30,6 +30,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Holders/User.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -254,28 +255,17 @@ namespace storage
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;
 
-	    vector<Action::Base*> actions;
-
-	    if (resize_mode == ResizeMode::GROW)
-	    {
-		actions.push_back(new Action::Resize(get_sid(), resize_mode));
-	    }
-
-	    // TODO handle children that cannot be resized, filesystems that
-	    // are created must not be resized, encryption between partition
-	    // and filesystem, ...
+	    actiongraph.add_vertex(new Action::Resize(get_sid(), resize_mode));
 
 	    for (const Device* child : get_device()->get_children())
 	    {
-		actions.push_back(new Action::Resize(child->get_sid(), resize_mode));
-	    }
+		// Only add a resize action for children that do not detect
+		// their resize themself and that are new on RHS.
 
-	    if (resize_mode == ResizeMode::SHRINK)
-	    {
-		actions.push_back(new Action::Resize(get_sid(), resize_mode));
+		if (is_filesystem(child) || is_lvm_pv(child))
+		    if (actiongraph.get_devicegraph(LHS)->device_exists(child->get_sid()))
+			actiongraph.add_vertex(new Action::Resize(child->get_sid(), resize_mode));
 	    }
-
-	    actiongraph.add_chain(actions);
 	}
     }
 

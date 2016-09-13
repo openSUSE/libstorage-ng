@@ -28,6 +28,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/FreeInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -119,8 +120,8 @@ namespace storage
 	// size of luks metadata is explained at
 	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
 
-	if (size > 2 * MiB)
-	    size -= 2 * MiB;
+	if (size > metadata_size)
+	    size -= metadata_size;
 	else
 	    size = 0 * B;
 
@@ -160,6 +161,17 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Luks::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+
+	// TODO handle metadata size
+
+	return resize_info;
+    }
+
+
     void
     Luks::Impl::do_create() const
     {
@@ -191,6 +203,22 @@ namespace storage
 	// generic wipefs.
 
 	blk_device->get_impl().wipe_device();
+    }
+
+
+    void
+    Luks::Impl::do_resize(ResizeMode resize_mode) const
+    {
+	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
+
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " --size " + to_string(get_size() / (512 * B));
+
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize Luks failed"));
     }
 
 

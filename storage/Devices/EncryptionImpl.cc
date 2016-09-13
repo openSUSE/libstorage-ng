@@ -196,6 +196,52 @@ namespace storage
 
 
     Text
+    Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const Encryption* encryption_lhs = to_encryption(lhs);
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink encryption on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking encryption on %1$s from %2$s to %3$s"));
+		break;
+
+	    case ResizeMode::GROW:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Grow encryption on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Growing encryption on %1$s from %2$s to %3$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, get_name().c_str(), encryption_lhs->get_size_string().c_str(),
+		       get_size_string().c_str());
+    }
+
+
+    Text
     Encryption::Impl::do_activate_text(Tense tense) const
     {
 	Text text = tenser(tense,

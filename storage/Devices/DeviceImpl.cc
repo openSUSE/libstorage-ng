@@ -402,6 +402,33 @@ namespace storage
 	}
 
 
+	void
+	Resize::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				 Actiongraph::Impl& actiongraph) const
+	{
+	    Modify::add_dependencies(vertex, actiongraph);
+
+	    // Add dependencies to resize actions of children.
+
+	    vector<sid_t> sid_children;
+
+	    for (const Device* child : get_device_rhs(actiongraph)->get_children())
+		sid_children.push_back(child->get_sid());
+
+	    for (Actiongraph::Impl::vertex_descriptor other_vertex : actiongraph.vertices())
+	    {
+		const Action::Resize* other_resize_action = dynamic_cast<const Action::Resize*>(actiongraph[other_vertex]);
+		if (other_resize_action && contains(sid_children, other_resize_action->sid))
+		{
+		    if (resize_mode == ResizeMode::SHRINK)
+			actiongraph.add_edge(other_vertex, vertex);
+		    else
+			actiongraph.add_edge(vertex, other_vertex);
+		}
+	    }
+	}
+
+
 	Text
 	Reallot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
