@@ -755,7 +755,7 @@ namespace storage
 	// detect clicked objects in YaST
 
 	// TODO in the long run a filesystem must support several mount points, so
-	// boost::write_graphviz might not be albe to handle our needs (or the
+	// boost::write_graphviz might not be able to handle our needs (or the
 	// needs of YaST).  Just keep a write_graphviz function here for debugging
 	// and move the thing YaST needs to yast2-storage.
 
