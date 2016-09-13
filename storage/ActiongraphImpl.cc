@@ -28,6 +28,7 @@
 #include <boost/graph/graphviz.hpp>
 
 #include "config.h"
+#include "storage/Utils/StopWatch.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Filesystems/FilesystemImpl.h"
@@ -53,10 +54,14 @@ namespace storage
 	     << *rhs << endl;
 	rhs->check();
 
+	StopWatch stop_watch;
+
 	get_actions();
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
+
+	y2mil("stopwatch " << stop_watch << " for actiongraph generation");
 
 	cout << "action graph" << endl;
 	print_graph();
@@ -370,7 +375,7 @@ namespace storage
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).text;
+	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
 
 	    y2mil("Commit Action " << text);
 	    cout << text << endl;
@@ -412,7 +417,7 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).text;
+	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated;
 
 	    ostringstream tmp;
 	    tmp << "[ " << text << " ]";
@@ -452,8 +457,8 @@ namespace storage
 	    {
 		const Action::Base* action = actiongraph[vertex];
 
-		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
-		string tooltip = action->text(actiongraph, Tense::SIMPLE_PRESENT).text;
+		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
+		string tooltip = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
 
 		string& extra = (graphviz_flags && GraphvizFlags::TOOLTIP) ? tooltip : label;
 

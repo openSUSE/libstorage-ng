@@ -397,52 +397,6 @@ string afterLast(const string& s, const string& pat )
     }
 
 
-    void
-    Text::clear()
-    {
-	native.clear();
-	text.clear();
-    }
-
-
-    const Text&
-    Text::operator+=(const Text& a)
-    {
-	native += a.native;
-	text += a.text;
-	return *this;
-    }
-
-
-    Text
-    sformat(const Text& format, ...)
-    {
-	Text text;
-	va_list ap;
-
-	va_start(ap, format);
-	text.native = sformat(format.native, ap);
-	va_end(ap);
-
-	va_start(ap, format);
-	text.text = sformat(format.text, ap);
-	va_end(ap);
-
-	return text;
-    }
-
-
-    Text _(const char* msgid)
-    {
-	return Text(msgid, dgettext("libstorage-ng", msgid));
-    }
-
-    Text _(const char* msgid, const char* msgid_plural, unsigned long int n)
-    {
-	return Text(n == 1 ? msgid : msgid_plural, dngettext("libstorage-ng", msgid, msgid_plural, n));
-    }
-
-
     string
     hostname()
     {
@@ -465,29 +419,6 @@ string afterLast(const string& s, const string& pat )
 	if (strftime(buf, sizeof(buf), classic ? "%F %T" : "%c", &t2) == 0)
 	    return string("unknown");
 	return string(buf);
-    }
-
-
-    StopWatch::StopWatch()
-	: start_time(chrono::steady_clock::now())
-    {
-    }
-
-
-    double
-    StopWatch::read() const
-    {
-	chrono::steady_clock::time_point stop_time = chrono::steady_clock::now();
-	chrono::steady_clock::duration duration = stop_time - start_time;
-	return chrono::duration<double>(duration).count();
-    }
-
-
-    std::ostream&
-    operator<<(std::ostream& s, const StopWatch& sw)
-    {
-	boost::io::ios_all_saver ias(s);
-	return s << fixed << sw.read() << "s";
     }
 
 

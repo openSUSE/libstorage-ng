@@ -74,7 +74,7 @@ namespace storage
     {
 	vector<string> ret;
 	for (const Action::Base* action : get_commit_actions())
-	    ret.push_back(action->text(this->get_impl(), Tense::SIMPLE_PRESENT).text);
+	    ret.push_back(action->text(this->get_impl(), Tense::SIMPLE_PRESENT).translated);
 	return ret;
     }
 

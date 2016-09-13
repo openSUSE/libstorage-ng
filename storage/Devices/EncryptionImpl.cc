@@ -243,7 +243,7 @@ namespace storage
     void
     Encryption::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
-	ST_THROW(LogicException("stub function called"));
+	ST_THROW(LogicException("stub do_add_etc_crypttab called"));
     }
 
 
@@ -265,7 +265,7 @@ namespace storage
     void
     Encryption::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
-	ST_THROW(LogicException("stub function called"));
+	ST_THROW(LogicException("stub do_remove_etc_crypttab called"));
     }
 
 
