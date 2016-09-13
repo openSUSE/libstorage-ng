@@ -33,7 +33,6 @@
 #include <vector>
 #include <list>
 #include <map>
-#include <chrono>
 
 
 namespace storage
@@ -96,23 +95,6 @@ void classic(StreamType& stream)
 
     string hostname();
     string datetime( time_t t1, bool utc=false, bool classic=true );
-
-
-    class StopWatch
-    {
-    public:
-
-	StopWatch();
-
-	double read() const;
-
-	friend std::ostream& operator<<(std::ostream& s, const StopWatch& sw);
-
-    protected:
-
-	std::chrono::steady_clock::time_point start_time;
-
-    };
 
 
     string sformat(const string& format, va_list ap);

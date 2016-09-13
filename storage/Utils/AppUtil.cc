@@ -422,29 +422,6 @@ string afterLast(const string& s, const string& pat )
     }
 
 
-    StopWatch::StopWatch()
-	: start_time(chrono::steady_clock::now())
-    {
-    }
-
-
-    double
-    StopWatch::read() const
-    {
-	chrono::steady_clock::time_point stop_time = chrono::steady_clock::now();
-	chrono::steady_clock::duration duration = stop_time - start_time;
-	return chrono::duration<double>(duration).count();
-    }
-
-
-    std::ostream&
-    operator<<(std::ostream& s, const StopWatch& sw)
-    {
-	boost::io::ios_all_saver ias(s);
-	return s << fixed << sw.read() << "s";
-    }
-
-
     void
     checkBinPaths(const Arch& arch, bool instsys)
     {
