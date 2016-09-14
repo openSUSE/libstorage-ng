@@ -40,8 +40,6 @@ namespace storage
 	static LvmPv* create(Devicegraph* devicegraph);
 	static LvmPv* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual void check() const override;
-
 	static std::vector<LvmPv*> get_all(Devicegraph* devicegraph);
 	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 

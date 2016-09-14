@@ -228,16 +228,6 @@ namespace storage
     }
 
 
-    void
-    LvmVg::check() const
-    {
-	Device::check();
-
-	if (get_vg_name().empty())
-	    cerr << "volume group has no vg-name" << endl;
-    }
-
-
     LvmLv*
     LvmVg::create_lvm_lv(const string& lv_name, unsigned long long size)
     {

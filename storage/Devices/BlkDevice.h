@@ -41,8 +41,6 @@ namespace storage
     {
     public:
 
-	virtual void check() const override;
-
 	const std::string& get_name() const;
 	void set_name(const std::string& name);
 

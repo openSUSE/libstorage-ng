@@ -141,6 +141,87 @@ namespace storage
     }
 
 
+    void
+    Devicegraph::Impl::check() const
+    {
+	{
+	    // check uniqueness of device and holder object and sid
+	    // check device and holder back reference
+
+	    set<const Device*> devices;
+	    set<const Holder*> holders;
+	    set<sid_t> sids;
+
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		// check uniqueness of device object
+
+		const Device* device = graph[vertex].get();
+		if (!devices.insert(device).second)
+		    ST_THROW(LogicException("device object not unique within graph"));
+
+		// check uniqueness of device sid
+
+		sid_t sid = device->get_sid();
+		if (!sids.insert(sid).second)
+		    ST_THROW(LogicException("sid not unique within graph"));
+
+		// check device back reference
+
+		if (&device->get_impl().get_devicegraph()->get_impl() != this)
+		    ST_THROW(LogicException("wrong graph in back references"));
+
+		if (device->get_impl().get_vertex() != vertex)
+		    ST_THROW(LogicException("wrong vertex in back references"));
+	    }
+
+	    for (edge_descriptor edge : edges())
+	    {
+		// check uniqueness of holder object
+
+		const Holder* holder = graph[edge].get();
+		if (!holders.insert(holder).second)
+		    ST_THROW(LogicException("holder object not unique within graph"));
+
+		// check holder back reference
+
+		if (&holder->get_impl().get_devicegraph()->get_impl() != this)
+		    ST_THROW(LogicException("wrong graph in back references"));
+
+		if (holder->get_impl().get_edge() != edge)
+		    ST_THROW(LogicException("wrong edge in back references"));
+	    }
+	}
+
+	{
+	    // look for cycles
+
+	    VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
+
+	    bool has_cycle = false;
+
+	    CycleDetector cycle_detector(has_cycle);
+	    boost::depth_first_search(graph, visitor(cycle_detector).
+				      vertex_index_map(vertex_index_map_generator.get()));
+
+	    if (has_cycle)
+		ST_THROW(Exception("devicegraph has a cycle"));
+	}
+
+	{
+	    for (vertex_descriptor vertex : vertices())
+	    {
+		const Device* device = graph[vertex].get();
+		device->get_impl().check();
+	    }
+	}
+
+	// TODO check that out-edges are consistent, e.g. of same type, only one per Subdevice
+	// TODO check that in-edges are consistent, e.g. of same type, exactly one for Partition
+	// in general subcheck for each device
+    }
+
+
     bool
     Devicegraph::Impl::is_probed() const
     {

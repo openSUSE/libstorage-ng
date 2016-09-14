@@ -129,6 +129,16 @@ namespace storage
 
 
     void
+    BlkDevice::Impl::check() const
+    {
+	Device::Impl::check();
+
+	if (!is_valid_name(get_name()))
+	    ST_THROW(Exception("BlkDevice has invalid name"));
+    }
+
+
+    void
     BlkDevice::Impl::set_name(const string& name)
     {
 	Impl::name = name;

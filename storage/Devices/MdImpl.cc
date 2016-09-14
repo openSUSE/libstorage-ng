@@ -95,6 +95,19 @@ namespace storage
 
 
     void
+    Md::Impl::check() const
+    {
+	Partitionable::Impl::check();
+
+	if (get_region().get_start() != 0)
+	    cerr << "md region start not zero" << endl;
+
+	if (!is_valid_name(get_name()))
+	    ST_THROW(Exception("invalid name"));
+    }
+
+
+    void
     Md::Impl::set_md_level(MdLevel md_level)
     {
 	Impl::md_level = md_level;

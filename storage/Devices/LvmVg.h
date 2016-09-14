@@ -63,8 +63,6 @@ namespace storage
 	const std::string& get_vg_name() const;
 	void set_vg_name(const std::string& vg_name);
 
-	virtual void check() const override;
-
 	const Region& get_region() const;
 
 	unsigned long long get_size() const;

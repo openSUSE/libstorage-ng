@@ -79,13 +79,6 @@ namespace storage
     }
 
 
-    void
-    LvmPv::check() const
-    {
-	Device::check();
-    }
-
-
     vector<LvmPv*>
     LvmPv::get_all(Devicegraph* devicegraph)
     {

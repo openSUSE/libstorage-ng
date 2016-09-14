@@ -90,6 +90,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const = 0;
 
+	virtual void check() const;
+
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 

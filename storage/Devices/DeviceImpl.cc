@@ -89,6 +89,12 @@ namespace storage
 
 
     void
+    Device::Impl::check() const
+    {
+    }
+
+
+    void
     Device::Impl::set_devicegraph_and_vertex(Devicegraph* devicegraph,
 					     Devicegraph::Impl::vertex_descriptor vertex)
     {

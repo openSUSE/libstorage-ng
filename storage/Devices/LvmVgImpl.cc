@@ -71,6 +71,16 @@ namespace storage
 
 
     void
+    LvmVg::Impl::check() const
+    {
+	Device::Impl::check();
+
+	if (get_vg_name().empty())
+	    ST_THROW(Exception("LvmVg has no vg-name"));
+    }
+
+
+    void
     LvmVg::Impl::probe_lvm_vgs(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	for (const CmdVgs::Vg& vg : systeminfo.getCmdVgs().get_vgs())
