@@ -16,13 +16,13 @@ using namespace storage;
 
 
 void
-doit()
+doit(const string& filename)
 {
     set_logger(get_logfile_logger());
 
     Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
 
-    environment.set_devicegraph_filename("devicegraph.xml");
+    environment.set_devicegraph_filename(filename);
 
     Storage storage(environment);
 
@@ -47,7 +47,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "display" << endl;
+    cerr << "display filename" << endl;
     exit(EXIT_FAILURE);
 }
 
@@ -55,7 +55,10 @@ usage()
 int
 main(int argc, char **argv)
 {
-    doit();
+    if (argc != 2)
+	usage();
+
+    doit(argv[1]);
 
     exit(EXIT_SUCCESS);
 }
