@@ -60,6 +60,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
