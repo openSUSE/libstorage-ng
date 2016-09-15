@@ -1,3 +1,4 @@
+#
 # spec file for package libstorage-ng
 #
 # Copyright (c) 2017 SUSE LINUX GmbH, Nuernberg, Germany.
@@ -15,246 +16,174 @@
 #
 
 
+%define libname %{name}@LIBVERSION_MAJOR@
 Name:           libstorage-ng
 Version:        @VERSION@
 Release:        0
+Summary:        Library for storage management
 License:        GPL-2.0
 Group:          System/Libraries
-BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Url:            http://github.com/openSUSE/libstorage-ng
 Source:         libstorage-ng-%{version}.tar.bz2
-
-Prefix:         /usr
-
-BuildRequires:  boost-devel gcc-c++ libtool libxml2-devel grep
-BuildRequires:  doxygen graphviz
-BuildRequires:  swig >= 3.0.3
-BuildRequires:  python-devel
-
-BuildRequires:  ruby ruby-devel
-%if 0%{?suse_version} <= 1320
-# Using rubygem(test-unit) does not work since ruby2.1-stdlib claims to
-# provide rubygem(test-unit). But that is plain wrong. The version in
-# ruby2.1-stdlib does not provide the function assert_raise_kind_of.
+BuildRequires:  boost-devel
+BuildRequires:  doxygen
+BuildRequires:  fdupes
+BuildRequires:  gcc-c++
+BuildRequires:  graphviz
+BuildRequires:  grep
+BuildRequires:  libtool
+BuildRequires:  pkgconfig
+BuildRequires:  ruby
+BuildRequires:  ruby-devel
+# On SLE/Leap we need specific version/name
 %if 0%{?suse_version} == 1315
 BuildRequires:  ruby2.1-rubygem-test-unit
 %else
 BuildRequires:  rubygem-test-unit
 %endif
-%endif
-
-%if 0%{?fedora}
-BuildRequires:  rubypick rubygem-test-unit
-%endif
-
-Summary:        Library for storage management
-Url:            http://github.com/openSUSE/libstorage-ng
+BuildRequires:  swig >= 3.0.3
+BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  pkgconfig(python)
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 This package contains libstorage-ng, a library for storage management.
 
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-%{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
-%{!?py_requires: %global py_requires Requires: python}
+%package lang
+Summary:        Languages for package %{name}
+Group:          System/Localization
+Supplements:    packageand(bundle-lang-other:%{name})
+Provides:       %{name}-lang-all = %{version}
+BuildArch:      noarch
 
-%if 0%{?ruby_sitelib} == 0
-%if 0%{?fedora_version} || 0%{?centos_version} || 0%{?rhel_version} || 0%{?fedora} || 0%{?rhel}
-%{!?ruby_sitelib: %global ruby_sitelib %(ruby -r rbconfig -e 'vd = Config::CONFIG["vendorlibdir"]; print(vd ? vd : Config::CONFIG["sitelibdir"])')}
-%{!?ruby_sitearch: %global ruby_sitearch %(ruby -r rbconfig -e 'vad = Config::CONFIG["vendorarchdir"]; print(vad ? vad : Config::CONFIG["sitearchdir"])')}
-%{!?ruby_vendor: %global ruby_vendor %(ruby -r rbconfig -e 'vad = Config::CONFIG["vendor"]; print(vad ? vad : Config::CONFIG["vendor"])')}
-%endif
-%endif
+%description lang
+Provides translations to the package %{name}
 
-%prep
-%setup -n libstorage-ng-%{version}
-
-%build
-export CFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
-export CXXFLAGS="$RPM_OPT_FLAGS -DNDEBUG"
-
-aclocal
-libtoolize --force --automake --copy
-autoheader
-automake --add-missing --copy
-autoconf
-
-%{?suse_update_config:%{suse_update_config -f}}
-%if 0%{?fedora_version} || 0%{?centos_version}
-CXXFLAGS="-I/usr/include/libxml2" \
-%else
-%if 0%{?rhel_version} >= 500 && 0%{?rhel_version} < 600
-CXXFLAGS="-I/usr/include/libxml2 -I/usr/include/c++/4.1.1/tr1" \
-%endif
-%endif
-
-./configure --libdir=%{_libdir} --prefix=%{prefix} --mandir=%{_mandir} --disable-silent-rules
-make %{?jobs:-j%jobs}
-
-%check
-make %{?jobs:-j%jobs} check LOCALEDIR=$RPM_BUILD_ROOT/usr/share/locale VERBOSE=1
-
-%install
-make install DESTDIR="$RPM_BUILD_ROOT"
-
-install -d -m 755 $RPM_BUILD_ROOT/run/libstorage
-touch $RPM_BUILD_ROOT/run/libstorage/lock
-
-%{find_lang} libstorage-ng
-
-rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.a
-rm -f $RPM_BUILD_ROOT/%{python_sitearch}/_storage.la
-%if 0%{?suse_version}
-%if "%{?rb_vendorarchdir}" != ""
-rm -f $RPM_BUILD_ROOT/%{rb_vendorarchdir}/storage.la
-%else
-rm -f $RPM_BUILD_ROOT/%{rb_vendorarch}/storage.la
-%endif
-%endif
-%if 0%{?mandriva_version}
-rm $RPM_BUILD_ROOT/%{ruby_sitearchdir}/storage.la
-%endif
-%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
-rm $RPM_BUILD_ROOT/%{ruby_sitearch}/storage.la
-%endif
-
-%clean
-rm -rf "$RPM_BUILD_ROOT"
-
-%package -n libstorage-ng@LIBVERSION_MAJOR@
-
-Requires:	coreutils
-Requires:	cryptsetup
-Requires:	device-mapper
-Requires:	dmraid
-Requires:	lsscsi >= 0.26
-Requires:	lvm2
-Requires:	mdadm >= 3.3
-Requires:	multipath-tools
-Requires:	parted >= 3.1
-Requires:	udev
-Requires:	util-linux >= 2.16
+%package -n %{libname}
+Summary:        Library for storage management
+Group:          System/Libraries
+Requires:       %{name}-lang
+Requires:       coreutils
+Requires:       cryptsetup
+Requires:       device-mapper
+Requires:       dmraid
+Requires:       lsscsi >= 0.26
+Requires:       lvm2
+Requires:       mdadm >= 3.3
+Requires:       multipath-tools
+Requires:       parted >= 3.1
+Requires:       pkgconfig
+Requires:       util-linux >= 2.16
+Requires:       pkgconfig(udev)
+Obsoletes:      %{libname} < %{version}
+Obsoletes:      yast2-storage-lib
+Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
 %ifarch s390 s390x
 Requires:       s390-tools
 %endif
 
-Obsoletes:      yast2-storage-lib
-Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
-Obsoletes:      libstorage-ng@LIBVERSION_MAJOR@ < %{version}
-Summary:        Library for storage management
-Group:          System/Libraries
-
-%description -n libstorage-ng@LIBVERSION_MAJOR@
+%description -n %{libname}
 This package contains libstorage-ng, a library for storage management.
 
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
-    Thomas Fehr <fehr@suse.de>
-
-%files -n libstorage-ng@LIBVERSION_MAJOR@ -f libstorage-ng.lang
-%defattr(-,root,root)
-%{_libdir}/libstorage-ng.so.*
-%ghost /run/libstorage
-%doc %dir %{prefix}/share/doc/packages/libstorage-ng
-%doc %{prefix}/share/doc/packages/libstorage-ng/AUTHORS
-%doc %{prefix}/share/doc/packages/libstorage-ng/LICENSE
-
-%post -n libstorage-ng@LIBVERSION_MAJOR@
-/sbin/ldconfig
-
-%postun -n libstorage-ng@LIBVERSION_MAJOR@
-/sbin/ldconfig
-
 %package -n libstorage-ng-devel
-
-Requires:	gcc-c++
-Requires:	libstdc++-devel
-Requires:	libstorage-ng@LIBVERSION_MAJOR@ = %version
-Requires:	libxml2-devel
 Summary:        Header files and documentation for libstorage-ng
 Group:          Development/Languages/C and C++
+Requires:       %{libname} = %{version}
+Requires:       gcc-c++
+Requires:       libstdc++-devel
+Requires:       pkgconfig
+Requires:       pkgconfig(libxml-2.0)
 
 %description -n libstorage-ng-devel
 This package contains header files and documentation for developing with
 libstorage-ng.
 
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
-    Thomas Fehr <fehr@suse.de>
-
-%files -n libstorage-ng-devel
-%defattr(-,root,root)
-%{_libdir}/libstorage-ng.la
-%{_libdir}/libstorage-ng.so
-%{prefix}/include/storage
-%doc %{prefix}/share/doc/packages/libstorage-ng/autodocs
-
 %package -n libstorage-ng-python
-
-Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
-%{py_requires}
 Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
+Requires:       %{libname} = %{version}
 
 %description python
 This package contains Python bindings for libstorage-ng.
 
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
+%package -n libstorage-ng-ruby
+Summary:        Ruby bindings for libstorage-ng
+Group:          System/Libraries
+Requires:       %{libname} = %{version}
+
+%description ruby
+This package contains Ruby bindings for libstorage-ng.
+
+%package -n libstorage-ng-integration-tests
+Summary:        Integration tests for libstorage-ng
+Group:          Development/Tools/Other
+Requires:       libstorage-ng-python
+
+%description -n libstorage-ng-integration-tests
+This package contains integration tests for libstorage-ng.
+
+%prep
+%setup -q
+
+%build
+export CFLAGS="%{optflags} -DNDEBUG"
+export CXXFLAGS="%{optflags} -DNDEBUG"
+
+autoreconf -fvi
+
+%configure \
+   --disable-static \
+   --disable-silent-rules
+make %{?_smp_mflags}
+
+%check
+make %{?_smp_mflags} check LOCALEDIR=%{buildroot}%{_datadir}/locale
+
+%install
+%make_install
+find %{buildroot} -type f -name "*.la" -delete -print
+
+install -d -m 755 %{buildroot}/run/libstorage
+touch %{buildroot}/run/libstorage/lock
+
+%fdupes -s %{buildroot}
+
+%find_lang libstorage-ng
+
+%post -n %{libname}
+/sbin/ldconfig
+
+%postun -n %{libname} -p /sbin/ldconfig
+
+%files -n %{name}-lang -f libstorage-ng.lang
+%defattr(-,root,root)
+
+%files -n %{libname}
+%defattr(-,root,root)
+%doc AUTHORS LICENSE
+%{_libdir}/libstorage-ng.so.*
+%ghost /run/libstorage
+
+%files -n libstorage-ng-devel
+%defattr(-,root,root)
+%{_libdir}/libstorage-ng.so
+%{_includedir}/storage
+%dir %{_docdir}/%{name}/
+%doc %{_docdir}/%{name}/*
 
 %files -n libstorage-ng-python
 %defattr(-,root,root)
 %{python_sitelib}/storage.py*
 %attr(755,root,root) %{python_sitearch}/_storage.so
 
-%package -n libstorage-ng-ruby
-
-Requires:       libstorage-ng@LIBVERSION_MAJOR@ = %version
-Summary:        Ruby bindings for libstorage-ng
-Group:          System/Libraries
-
-%description ruby
-This package contains Ruby bindings for libstorage-ng.
-
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
-    Thomas Fehr <fehr@suse.de>
-
 %files -n libstorage-ng-ruby
 %defattr(-,root,root)
-%if 0%{?suse_version}
-%if "%{?rb_vendorarchdir}" != ""
-%{rb_vendorarchdir}/storage.so
-%else
 %{rb_vendorarch}/storage.so
-%endif
-%endif
-%if 0%{?mandriva_version}
-%{ruby_sitearchdir}/storage.so
-%endif
-%if 0%{?fedora_version} || 0%{?rhel_version} || 0%{?centos_version}
-%{ruby_sitearch}/storage.so
-%endif
-
-%package -n libstorage-ng-integration-tests
-
-Requires:       libstorage-ng-python
-Summary:        Integration tests for libstorage-ng
-Group:          Development/Tools/Other
-
-%description -n libstorage-ng-integration-tests
-This package contains integration tests for libstorage-ng.
-
-Authors:
---------
-    Arvin Schnell <aschnell@suse.de>
 
 %files integration-tests
 %defattr(-,root,root)
 %{python_sitelib}/storageitu.py*
-%dir /usr/lib/libstorage-ng
-/usr/lib/libstorage-ng/integration-tests
+%dir %{_libexecdir}/libstorage-ng
+%{_libexecdir}/libstorage-ng/integration-tests
 
 %changelog
