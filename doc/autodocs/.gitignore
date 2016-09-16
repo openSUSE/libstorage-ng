@@ -6,4 +6,6 @@
 *.png
 dynsections.js
 jquery.js
+menu.js
+menudata.js
 search/
