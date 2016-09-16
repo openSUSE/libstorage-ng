@@ -120,19 +120,6 @@ namespace storage
     }
 
 
-    void
-    LvmLv::check() const
-    {
-	BlkDevice::check();
-
-	if (get_lv_name().empty())
-	    cerr << "logical volume has no lv-name" << endl;
-
-	if (get_region().get_start() != 0)
-	    cerr << "logical volume region start not zero" << endl;
-    }
-
-
     const LvmVg*
     LvmLv::get_lvm_vg() const
     {

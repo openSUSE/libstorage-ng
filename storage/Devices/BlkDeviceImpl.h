@@ -52,6 +52,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_name(); }
 
+	virtual void check() const override;
+
 	const string& get_name() const { return name; }
 	void set_name(const string& name);
 

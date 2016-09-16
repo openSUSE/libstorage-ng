@@ -95,6 +95,19 @@ namespace storage
 
 
     void
+    Md::Impl::check() const
+    {
+	Partitionable::Impl::check();
+
+	if (get_region().get_start() != 0)
+	    cerr << "md region start not zero" << endl;
+
+	if (!is_valid_name(get_name()))
+	    ST_THROW(Exception("invalid name"));
+    }
+
+
+    void
     Md::Impl::set_md_level(MdLevel md_level)
     {
 	Impl::md_level = md_level;
@@ -702,11 +715,13 @@ namespace storage
 
 
 	void
-	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				      Actiongraph::Impl& actiongraph) const
 	{
+	    Modify::add_dependencies(vertex, actiongraph);
+
 	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
-		actiongraph.add_edge(*actiongraph.mount_root_filesystem, v);
+		actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
 	}
 
 

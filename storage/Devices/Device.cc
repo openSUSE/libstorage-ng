@@ -112,12 +112,6 @@ namespace storage
     }
 
 
-    void
-    Device::check() const
-    {
-    }
-
-
     ResizeInfo
     Device::detect_resize_info() const
     {

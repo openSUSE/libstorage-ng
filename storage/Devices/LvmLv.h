@@ -54,8 +54,6 @@ namespace storage
 	unsigned long get_stripe_size() const;
 	void set_stripe_size(unsigned long stripe_size);
 
-	virtual void check() const override;
-
 	/**
 	 * Return volume group this logical volume belongs to.
 	 */

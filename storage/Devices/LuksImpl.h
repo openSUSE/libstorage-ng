@@ -26,6 +26,7 @@
 
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Action.h"
@@ -59,6 +60,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
@@ -66,9 +69,13 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	virtual void do_create() const override;
 
 	virtual void do_delete() const override;
+
+	virtual void do_resize(ResizeMode resize_mode) const override;
 
 	virtual void do_activate() const override;
 
@@ -79,6 +86,8 @@ namespace storage
 	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
 
     private:
+
+	static const unsigned long long metadata_size = 2 * MiB;
 
 	void calculate_region();
 

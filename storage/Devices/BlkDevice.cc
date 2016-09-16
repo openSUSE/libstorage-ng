@@ -189,16 +189,6 @@ namespace storage
     }
 
 
-    void
-    BlkDevice::check() const
-    {
-	Device::check();
-
-	if (!BlkDevice::Impl::is_valid_name(get_name()))
-	    cerr << "BlkDevice has invalid name" << endl;
-    }
-
-
     Filesystem*
     BlkDevice::create_filesystem(FsType fs_type)
     {

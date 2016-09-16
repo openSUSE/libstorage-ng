@@ -83,6 +83,19 @@ namespace storage
 
 
     void
+    LvmLv::Impl::check() const
+    {
+	BlkDevice::Impl::check();
+
+	if (get_lv_name().empty())
+	    ST_THROW(Exception("LvmLv has no lv-name"));
+
+	if (get_region().get_start() != 0)
+	    ST_THROW(Exception("LvmLv region start not zero"));
+    }
+
+
+    void
     LvmLv::Impl::probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())

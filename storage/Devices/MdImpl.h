@@ -56,6 +56,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
@@ -138,7 +140,7 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v,
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
 
 	};

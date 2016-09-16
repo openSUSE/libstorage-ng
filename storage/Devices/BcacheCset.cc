@@ -119,16 +119,6 @@ namespace storage
     }
 
 
-    void
-    BcacheCset::check() const
-    {
-	Device::check();
-
-	if (!get_uuid().empty() && !BcacheCset::Impl::is_valid_uuid(get_uuid()))
-	    ST_THROW(Exception("invalid uuid"));
-    }
-
-
     bool
     is_bcache_cset(const Device* device)
     {

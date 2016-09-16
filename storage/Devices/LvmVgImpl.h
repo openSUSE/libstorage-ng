@@ -61,6 +61,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	const Region& get_region() const { return region; }
 
 	unsigned long long get_size() const;

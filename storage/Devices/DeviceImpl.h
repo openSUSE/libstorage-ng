@@ -90,6 +90,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const = 0;
 
+	virtual void check() const;
+
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
@@ -315,6 +317,9 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
+
 	    const ResizeMode resize_mode;
 
 	};
@@ -330,7 +335,8 @@ namespace storage
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor v, Actiongraph::Impl& actiongraph) const override;
+	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					  Actiongraph::Impl& actiongraph) const override;
 
 	    const ReallotMode reallot_mode;
 

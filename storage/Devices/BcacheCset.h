@@ -45,8 +45,6 @@ namespace storage
 	static BcacheCset* create(Devicegraph* devicegraph);
 	static BcacheCset* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	virtual void check() const override;
-
 	const std::string& get_uuid() const;
 	void set_uuid(const std::string& uuid);
 

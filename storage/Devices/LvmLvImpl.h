@@ -56,6 +56,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	const LvmVg* get_lvm_vg() const;
 
 	const string& get_lv_name() const { return lv_name; }

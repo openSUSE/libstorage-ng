@@ -80,6 +80,8 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
+	void check() const;
+
 	void log_diff(std::ostream& log, const Impl& rhs) const;
 
 	/**
@@ -98,6 +100,8 @@ namespace storage
 	vertex_descriptor add_vertex(Device* device);
 	edge_descriptor add_edge(vertex_descriptor source_vertex, vertex_descriptor target_vertex,
 				 Holder* holder);
+
+	bool device_exists(sid_t sid) const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;

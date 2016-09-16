@@ -171,10 +171,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Create encryption on %1$s"),
+			   _("Create encryption layer device on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Creating encryption on %1$s"));
+			   _("Creating encryption layer device on %1$s"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
@@ -186,12 +186,58 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Delete encryption on %1$s"),
+			   _("Delete encryption layer device on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deleting encryption on %1$s"));
+			   _("Deleting encryption layer device on %1$s"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
+    }
+
+
+    Text
+    Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    {
+	const Encryption* encryption_lhs = to_encryption(lhs);
+
+	Text text;
+
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrink encryption layer device on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 2GiB),
+			      // %3$s is replaced by new size (e.g. 1GiB)
+			      _("Shrinking encryption layer device on %1$s from %2$s to %3$s"));
+		break;
+
+	    case ResizeMode::GROW:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Grow encryption layer device on %1$s from %2$s to %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by partition name (e.g. /dev/sda1),
+			      // %2$s is replaced by old size (e.g. 1GiB),
+			      // %3$s is replaced by new size (e.g. 2GiB)
+			      _("Growing encryption layer device on %1$s from %2$s to %3$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for resize_mode"));
+	}
+
+	return sformat(text, get_name().c_str(), encryption_lhs->get_size_string().c_str(),
+		       get_size_string().c_str());
     }
 
 
@@ -201,10 +247,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Activate encryption on %1$s"),
+			   _("Activate encryption layer device on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Activating encryption on %1$s"));
+			   _("Activating encryption layer device on %1$s"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
@@ -216,10 +262,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deactivate encryption on %1$s"),
+			   _("Deactivate encryption layer device on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Deactivating encryption on %1$s"));
+			   _("Deactivating encryption layer device on %1$s"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
@@ -231,10 +277,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Add encryption on %1$s to /etc/crypttab"),
+			   _("Add encryption layer device on %1$s to /etc/crypttab"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Adding encryption on %1$s to /etc/crypttab"));
+			   _("Adding encryption layer device on %1$s to /etc/crypttab"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
     }
@@ -253,10 +299,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Remove encryption on %1$s from /etc/crypttab"),
+			   _("Remove encryption layer device on %1$s from /etc/crypttab"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Removing encryption on %1$s from /etc/crypttab"));
+			   _("Removing encryption layer device on %1$s from /etc/crypttab"));
 
 	return sformat(text, get_blk_device()->get_displayname().c_str());
     }

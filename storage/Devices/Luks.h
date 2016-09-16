@@ -30,7 +30,11 @@
 namespace storage
 {
 
-    //! An luks encryption layer on a block device
+    /**
+     * An luks encryption layer on a block device
+     *
+     * Do not resize the Luks object but the underlying BlkDevice object.
+     */
     class Luks : public Encryption
     {
     public:

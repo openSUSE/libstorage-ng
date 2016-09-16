@@ -69,19 +69,6 @@ namespace storage
     }
 
 
-    void
-    Md::check() const
-    {
-	Partitionable::check();
-
-	if (get_region().get_start() != 0)
-	    cerr << "md region start not zero" << endl;
-
-	if (!Md::Impl::is_valid_name(get_name()))
-	    ST_THROW(Exception("invalid name"));
-    }
-
-
     Md::Md(Impl* impl)
 	: Partitionable(impl)
     {

@@ -61,6 +61,16 @@ namespace storage
     }
 
 
+    void
+    LvmPv::Impl::check() const
+    {
+	Device::Impl::check();
+
+	if (!has_single_parent_of_type<const BlkDevice>())
+	    ST_THROW(Exception("LvmPv has no BlkDevice parent"));
+    }
+
+
     bool
     LvmPv::Impl::has_blk_device() const
     {
