@@ -1,3 +1,3 @@
 1 - Shrink physical volume on /dev/mapper/cr_test from 16.00 GiB to 8.00 GiB -> 2
-2 - Shrink encryption on /dev/mapper/cr_test from 16.00 GiB to 8.00 GiB -> 3
+2 - Shrink encryption layer device on /dev/mapper/cr_test from 16.00 GiB to 8.00 GiB -> 3
 3 - Shrink partition /dev/sdb1 from 16.00 GiB to 8.00 GiB ->
