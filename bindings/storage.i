@@ -152,6 +152,9 @@ using namespace storage;
 %template(VectorLvmLvPtr) std::vector<LvmLv*>;
 %template(VectorConstLvmLvPtr) std::vector<const LvmLv*>;
 
+%template(VectorPartitionablePtr) std::vector<Partitionable*>;
+%template(VectorConstPartitionablePtr) std::vector<const Partitionable*>;
+
 %template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 
@@ -169,6 +172,9 @@ using namespace storage;
 
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
+
+%template(VectorNtfsPtr) std::vector<Ntfs*>;
+%template(VectorConstNtfsPtr) std::vector<const Ntfs*>;
 
 %template(VectorHolderPtr) std::vector<Holder*>;
 %template(VectorConstHolderPtr) std::vector<const Holder*>;
