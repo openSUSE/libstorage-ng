@@ -65,6 +65,9 @@ namespace storage
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
 
+	static std::vector<Partitionable*> get_all(Devicegraph* devicegraph);
+	static std::vector<const Partitionable*> get_all(const Devicegraph* devicegraph);
+
     public:
 
 	class Impl;
