@@ -170,6 +170,9 @@ using namespace storage;
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
 
+%template(VectorNtfsPtr) std::vector<Ntfs*>;
+%template(VectorConstNtfsPtr) std::vector<const Ntfs*>;
+
 %template(VectorHolderPtr) std::vector<Holder*>;
 %template(VectorConstHolderPtr) std::vector<const Holder*>;
 

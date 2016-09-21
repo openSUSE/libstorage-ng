@@ -75,6 +75,20 @@ namespace storage
     }
 
 
+    vector<Ntfs*>
+    Ntfs::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<Ntfs>();
+    }
+
+
+    vector<const Ntfs*>
+    Ntfs::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const Ntfs>();
+    }
+
+
     bool
     is_ntfs(const Device* device)
     {
