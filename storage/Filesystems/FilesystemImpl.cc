@@ -287,6 +287,9 @@ namespace storage
     bool
     Filesystem::Impl::detect_is_windows(const string& mountpoint)
     {
+	// The file '$Boot' is special. It is a reserved name of NTFS and from
+	// linux not visible with 'ls /mnt' but with 'ls /mnt/$Boot'.
+
 	const char* files[] = { "boot.ini", "msdos.sys", "io.sys", "config.sys", "MSDOS.SYS",
 				"IO.SYS", "bootmgr", "$Boot" };
 
