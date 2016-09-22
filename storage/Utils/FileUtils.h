@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +26,7 @@
 
 
 #include <string>
+#include <boost/noncopyable.hpp>
 
 
 namespace storage
@@ -33,10 +35,15 @@ namespace storage
     using std::string;
 
 
-    class TmpDir
+    class TmpDir : private boost::noncopyable
     {
 
     public:
+
+	/**
+	 * Creates a temporary directory in path. For details see mkdtemp.
+	 */
+	TmpDir(const string& path, const string& name_template);
 
 	/**
 	 * Creates a temporary directory. For details see mkdtemp.
@@ -54,14 +61,38 @@ namespace storage
 
 	string get_fullname() const { return path + "/" + name; }
 
-    protected:
+    private:
 
-	string path;
+	const string path;
 	string name;
+
+	/**
+	 * Either value of TMPDIR or as a fallback /tmp.
+	 */
+	static string default_path();
+
+    };
+
+
+    class TmpMount : public TmpDir
+    {
+
+    public:
+
+	enum Mode { READ_ONLY, READ_WRITE };
+
+	/**
+	 * Mounts device at TmpDir(path, name_template).
+	 */
+	TmpMount(const string& path, const string& name_template, const string& device, Mode mode);
+
+	/**
+	 * Unmounts the device.
+	 */
+	~TmpMount();
 
     };
 
 }
-
 
 #endif

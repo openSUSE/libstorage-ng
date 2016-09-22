@@ -28,17 +28,16 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
 {
 
-    TmpDir::TmpDir(const string& name_template)
-	: path(), name(name_template)
+    TmpDir::TmpDir(const string& path, const string& name_template)
+	: path(path), name(name_template)
     {
-	const char* tmpdir = getenv("TMPDIR");
-	path = tmpdir ? tmpdir : "/tmp";
-
 	char* t = strdup(get_fullname().c_str());
 	if (!t)
 	{
@@ -58,12 +57,49 @@ namespace storage
     }
 
 
+    TmpDir::TmpDir(const string& name_template)
+	: TmpDir(default_path(), name_template)
+    {
+    }
+
+
     TmpDir::~TmpDir()
     {
 	if (rmdir(get_fullname().c_str()) != 0)
 	{
 	    y2err("rmdir '" << get_fullname() << "' failed, " << strerror(errno));
 	}
+    }
+
+
+    string
+    TmpDir::default_path()
+    {
+	const char* tmpdir = getenv("TMPDIR");
+	return tmpdir ? tmpdir : "/tmp";
+    }
+
+
+    TmpMount::TmpMount(const string& path, const string& name_template, const string& device,
+		       Mode mode)
+	: TmpDir(path, name_template)
+    {
+	string cmd_line = MOUNTBIN;
+	if (mode == READ_ONLY)
+	    cmd_line += " --read-only";
+	cmd_line += " " + quote(device) + " " + quote(get_fullname());
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("tmp mount failed"));
+    }
+
+
+    TmpMount::~TmpMount()
+    {
+	SystemCmd cmd(UMOUNTBIN " " + quote(get_fullname()));
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("tmp umount failed"));
     }
 
 }
