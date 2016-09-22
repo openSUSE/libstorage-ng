@@ -226,16 +226,9 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	const BlkDevice* blk_device = get_blk_device();
+	EnsureMounted ensure_mounted(this, TmpMount::READ_ONLY);
 
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (mountpoints.empty())
-	    ST_THROW(Exception("filesystem must be mounted"));
-
-	StatVfs stat_vfs = detect_stat_vfs(mountpoints.front());
+	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
 	ResizeInfo resize_info(true);
 	resize_info.min_size = stat_vfs.size - stat_vfs.free;
@@ -273,19 +266,12 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	const BlkDevice* blk_device = get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (mountpoints.empty())
-	    throw;
+	EnsureMounted ensure_mounted(this, TmpMount::READ_ONLY);
 
 	ContentInfo content_info;
 	content_info.is_windows = false;
 	content_info.is_efi = false;
-	content_info.num_homes = detect_num_homes(mountpoints.front());
+	content_info.num_homes = detect_num_homes(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
     }
