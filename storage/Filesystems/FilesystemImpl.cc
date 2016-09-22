@@ -940,4 +940,30 @@ namespace storage
 
     }
 
+
+    EnsureMounted::EnsureMounted(const Filesystem::Impl* filesystem, TmpMount::Mode mode)
+	: filesystem(filesystem), tmp_mount()
+    {
+	if (!filesystem->get_mountpoints().empty())
+	    return;
+
+	const Storage* storage = filesystem->get_storage();
+	const BlkDevice* blk_device = filesystem->get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
+				     "tmp-mount-XXXXXX", blk_device->get_name(), mode));
+    }
+
+
+    string
+    EnsureMounted::get_any_mountpoint() const
+    {
+	if (tmp_mount)
+	    return tmp_mount->get_fullname();
+	else
+	    return filesystem->get_mountpoints().front();
+    }
+
 }

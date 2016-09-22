@@ -27,6 +27,7 @@
 
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/CDgD.h"
+#include "storage/Utils/FileUtils.h"
 #include "storage/Filesystems/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/FreeInfo.h"
@@ -251,6 +252,32 @@ namespace storage
 	};
 
     }
+
+
+    class EnsureMounted : boost::noncopyable
+    {
+
+    public:
+
+	/**
+	 * Ensures that the filesystem is mounted somewhere.
+	 *
+	 * The mode is not enforced.
+	 */
+	EnsureMounted(const Filesystem::Impl* filesystem, TmpMount::Mode mode);
+
+	/**
+	 * Returns any mountpoint of the filesystem.
+	 */
+	string get_any_mountpoint() const;
+
+    private:
+
+	const Filesystem::Impl* filesystem;
+
+	unique_ptr<TmpMount> tmp_mount;
+
+    };
 
 }
 
