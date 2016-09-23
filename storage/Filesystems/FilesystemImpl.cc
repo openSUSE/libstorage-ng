@@ -226,16 +226,9 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	const BlkDevice* blk_device = get_blk_device();
+	EnsureMounted ensure_mounted(this);
 
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (mountpoints.empty())
-	    ST_THROW(Exception("filesystem must be mounted"));
-
-	StatVfs stat_vfs = detect_stat_vfs(mountpoints.front());
+	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
 	ResizeInfo resize_info(true);
 	resize_info.min_size = stat_vfs.size - stat_vfs.free;
@@ -273,19 +266,12 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	const BlkDevice* blk_device = get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (mountpoints.empty())
-	    throw;
+	EnsureMounted ensure_mounted(this);
 
 	ContentInfo content_info;
 	content_info.is_windows = false;
 	content_info.is_efi = false;
-	content_info.num_homes = detect_num_homes(mountpoints.front());
+	content_info.num_homes = detect_num_homes(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
     }
@@ -301,6 +287,9 @@ namespace storage
     bool
     Filesystem::Impl::detect_is_windows(const string& mountpoint)
     {
+	// The file '$Boot' is special. It is a reserved name of NTFS and from
+	// linux not visible with 'ls /mnt' but with 'ls /mnt/$Boot'.
+
 	const char* files[] = { "boot.ini", "msdos.sys", "io.sys", "config.sys", "MSDOS.SYS",
 				"IO.SYS", "bootmgr", "$Boot" };
 
@@ -938,6 +927,32 @@ namespace storage
 	    filesystem->get_impl().do_remove_etc_fstab(actiongraph, mountpoint);
 	}
 
+    }
+
+
+    EnsureMounted::EnsureMounted(const Filesystem::Impl* filesystem)
+	: filesystem(filesystem), tmp_mount()
+    {
+	if (!filesystem->get_mountpoints().empty())
+	    return;
+
+	const Storage* storage = filesystem->get_storage();
+	const BlkDevice* blk_device = filesystem->get_blk_device();
+
+	blk_device->get_impl().wait_for_device();
+
+	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
+				     "tmp-mount-XXXXXX", blk_device->get_name()));
+    }
+
+
+    string
+    EnsureMounted::get_any_mountpoint() const
+    {
+	if (tmp_mount)
+	    return tmp_mount->get_fullname();
+	else
+	    return filesystem->get_mountpoints().front();
     }
 
 }

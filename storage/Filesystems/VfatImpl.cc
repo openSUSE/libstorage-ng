@@ -60,21 +60,14 @@ namespace storage
     ContentInfo
     Vfat::Impl::detect_content_info_pure() const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (get_mountpoints().empty())
-	    throw;
+	EnsureMounted ensure_mounted(this);
 
 	ContentInfo content_info;
 
-	if (detect_is_efi(get_mountpoints().front()))
+	if (detect_is_efi(ensure_mounted.get_any_mountpoint()))
 	    content_info.is_efi = true;
 	else
-	    content_info.is_windows = detect_is_windows(get_mountpoints().front());
+	    content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
     }

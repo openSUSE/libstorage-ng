@@ -94,18 +94,11 @@ namespace storage
     ContentInfo
     Ntfs::Impl::detect_content_info_pure() const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	// TODO filesystem must be mounted
-
-	if (get_mountpoints().empty())
-	    throw;
+	EnsureMounted ensure_mounted(this);
 
 	ContentInfo content_info;
 
-	content_info.is_windows = detect_is_windows(get_mountpoints().front());
+	content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
     }
