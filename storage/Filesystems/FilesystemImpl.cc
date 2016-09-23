@@ -226,7 +226,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this, TmpMount::Mode::READ_ONLY);
+	EnsureMounted ensure_mounted(this);
 
 	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
@@ -266,7 +266,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this, TmpMount::Mode::READ_ONLY);
+	EnsureMounted ensure_mounted(this);
 
 	ContentInfo content_info;
 	content_info.is_windows = false;
@@ -930,7 +930,7 @@ namespace storage
     }
 
 
-    EnsureMounted::EnsureMounted(const Filesystem::Impl* filesystem, TmpMount::Mode mode)
+    EnsureMounted::EnsureMounted(const Filesystem::Impl* filesystem)
 	: filesystem(filesystem), tmp_mount()
     {
 	if (!filesystem->get_mountpoints().empty())
@@ -942,7 +942,7 @@ namespace storage
 	blk_device->get_impl().wait_for_device();
 
 	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
-				     "tmp-mount-XXXXXX", blk_device->get_name(), mode));
+				     "tmp-mount-XXXXXX", blk_device->get_name()));
     }
 
 

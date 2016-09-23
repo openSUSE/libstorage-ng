@@ -80,14 +80,10 @@ namespace storage
     }
 
 
-    TmpMount::TmpMount(const string& path, const string& name_template, const string& device,
-		       Mode mode)
+    TmpMount::TmpMount(const string& path, const string& name_template, const string& device)
 	: TmpDir(path, name_template)
     {
-	string cmd_line = MOUNTBIN;
-	if (mode == Mode::READ_ONLY)
-	    cmd_line += " --read-only";
-	cmd_line += " " + quote(device) + " " + quote(get_fullname());
+	string cmd_line = MOUNTBIN " --read-only " + quote(device) + " " + quote(get_fullname());
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

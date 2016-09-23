@@ -264,7 +264,7 @@ namespace storage
 	 *
 	 * The mode is not enforced.
 	 */
-	EnsureMounted(const Filesystem::Impl* filesystem, TmpMount::Mode mode);
+	EnsureMounted(const Filesystem::Impl* filesystem);
 
 	/**
 	 * Returns any mountpoint of the filesystem.

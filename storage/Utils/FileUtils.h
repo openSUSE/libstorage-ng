@@ -79,12 +79,10 @@ namespace storage
 
     public:
 
-	enum class Mode { READ_ONLY, READ_WRITE };
-
 	/**
 	 * Mounts device at TmpDir(path, name_template).
 	 */
-	TmpMount(const string& path, const string& name_template, const string& device, Mode mode);
+	TmpMount(const string& path, const string& name_template, const string& device);
 
 	/**
 	 * Unmounts the device.

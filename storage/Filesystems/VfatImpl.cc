@@ -60,7 +60,7 @@ namespace storage
     ContentInfo
     Vfat::Impl::detect_content_info_pure() const
     {
-	EnsureMounted ensure_mounted(this, TmpMount::Mode::READ_ONLY);
+	EnsureMounted ensure_mounted(this);
 
 	ContentInfo content_info;
 
