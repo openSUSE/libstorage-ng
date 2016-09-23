@@ -226,7 +226,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this, TmpMount::READ_ONLY);
+	EnsureMounted ensure_mounted(this, TmpMount::Mode::READ_ONLY);
 
 	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
@@ -266,7 +266,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this, TmpMount::READ_ONLY);
+	EnsureMounted ensure_mounted(this, TmpMount::Mode::READ_ONLY);
 
 	ContentInfo content_info;
 	content_info.is_windows = false;

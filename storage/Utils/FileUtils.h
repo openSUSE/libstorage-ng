@@ -79,7 +79,7 @@ namespace storage
 
     public:
 
-	enum Mode { READ_ONLY, READ_WRITE };
+	enum class Mode { READ_ONLY, READ_WRITE };
 
 	/**
 	 * Mounts device at TmpDir(path, name_template).

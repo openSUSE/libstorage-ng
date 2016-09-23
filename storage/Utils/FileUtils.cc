@@ -85,7 +85,7 @@ namespace storage
 	: TmpDir(path, name_template)
     {
 	string cmd_line = MOUNTBIN;
-	if (mode == READ_ONLY)
+	if (mode == Mode::READ_ONLY)
 	    cmd_line += " --read-only";
 	cmd_line += " " + quote(device) + " " + quote(get_fullname());
 
