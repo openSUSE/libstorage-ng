@@ -8,7 +8,3 @@ DEVICE_NAMES="uuid"
 # Default filesystem type.
 DEFAULT_FS="btrfs"
 
-## Type: string(optimal,cylinder)
-# Value for partition alignment
-PARTITION_ALIGN="optimal"
-

@@ -108,7 +108,7 @@ namespace storage
      *     \parblock
      *     \code{.cpp}
      *     Gpt* gpt = sda->create_partition_table(GPT);
-     *     Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 100, cylinder-size), PRIMARY)
+     *     Partition* sda1 = gpt->create_partition("/dev/sda1", Region(0, 100, sector-size), PRIMARY)
      *     \endcode
      *
      *     These functions will not only create the Gpt and Partition object but
@@ -121,7 +121,7 @@ namespace storage
      *     Gpt* gpt = Gpt::create(staging);
      *     User::create(staging, sda, gpt);
      *
-     *     Partition* sda1 = Partition::create(staging, "/dev/sda1", Region(0, 100, cylinder-size), PRIMARY);
+     *     Partition* sda1 = Partition::create(staging, "/dev/sda1", Region(0, 100, sector-size), PRIMARY);
      *     Subdevice::create(staging, gpt, sda1);
      *     \endcode
      *
