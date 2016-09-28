@@ -634,7 +634,7 @@ namespace storage
     void
     Filesystem::Impl::do_set_label() const
     {
-	// TODO - stub
+	ST_THROW(LogicException("stub do_set_label called"));
     }
 
     Text
@@ -659,7 +659,7 @@ namespace storage
     void
     Filesystem::Impl::do_set_uuid() const
     {
-	// TODO - stub
+	ST_THROW(LogicException("stub do_set_uuid called"));
     }
 
     Text
