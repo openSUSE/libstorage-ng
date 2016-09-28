@@ -392,8 +392,17 @@ namespace storage
     Text
     Partition::Impl::do_delete_text(Tense tense) const
     {
-	return sformat(_("Delete partition %1$s (%2$s)"), get_name().c_str(),
-		       get_size_string().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Delete partition %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Deleting partition %1$s (%2$s)"));
+
+	return sformat(text, get_name().c_str(), get_size_string().c_str());
     }
 
 
