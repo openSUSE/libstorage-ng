@@ -372,10 +372,11 @@ namespace storage
     Partition::Impl::do_set_id() const
     {
 	const Partitionable* partitionable = get_partitionable();
+	const PartitionTable* partition_table = get_partition_table();
 
 	// TODO
 
-	if (get_id() > 255 || !is_msdos(get_device()))
+	if (get_id() > 255 || !is_msdos(partition_table))
 	    return;
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
