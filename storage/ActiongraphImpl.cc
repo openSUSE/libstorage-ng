@@ -377,7 +377,7 @@ namespace storage
 
 	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
 
-	    y2mil("Commit Action " << text);
+	    y2mil("Commit Action \"" << text << "\"");
 	    cout << text << endl;
 
 	    if (commit_callbacks)
