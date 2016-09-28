@@ -637,6 +637,7 @@ namespace storage
 	ST_THROW(LogicException("stub do_set_label called"));
     }
 
+
     Text
     Filesystem::Impl::do_set_uuid_text(Tense tense) const
     {
@@ -661,6 +662,7 @@ namespace storage
     {
 	ST_THROW(LogicException("stub do_set_uuid called"));
     }
+
 
     Text
     Filesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
@@ -694,8 +696,8 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blk_device->get_name())
-	    + " " + quote(real_mountpoint);
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " +
+	    quote(blk_device->get_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
