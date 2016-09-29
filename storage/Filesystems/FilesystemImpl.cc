@@ -595,8 +595,20 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Create %1$s on %2$s (%3$s)"), get_displayname().c_str(),
-		       blk_device->get_name().c_str(), blk_device->get_size_string().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by filesystem name (e.g. ext4),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Create %1$s on %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by filesystem name (e.g. ext4),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Creating %1$s on %2$s (%3$s)"));
+
+	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
+		       blk_device->get_size_string().c_str());
     }
 
 
@@ -605,40 +617,69 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Set label of %1$s to %2$s"), blk_device->get_name().c_str(),
-		       label.c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by label (e.g. ROOT)
+			   _("Set label of %1$s to %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by label (e.g. ROOT)
+			   _("Setting label of %1$s to %2$s"));
+
+	return sformat(text, blk_device->get_name().c_str(), label.c_str());
     }
 
 
     void
     Filesystem::Impl::do_set_label() const
     {
-	// TODO - stub
+	ST_THROW(LogicException("stub do_set_label called"));
     }
+
 
     Text
     Filesystem::Impl::do_set_uuid_text(Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Set UUID of %1$s to %2$s"), blk_device->get_name().c_str(),
-		       uuid.c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+			   _("Set UUID of %1$s to %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+			   _("Setting UUID of %1$s to %2$s"));
+
+	return sformat(text, blk_device->get_name().c_str(), uuid.c_str());
     }
 
 
     void
     Filesystem::Impl::do_set_uuid() const
     {
-	// TODO - stub
+	ST_THROW(LogicException("stub do_set_uuid called"));
     }
+
 
     Text
     Filesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Mount %1$s at %2$s"), blk_device->get_name().c_str(),
-		       mountpoint.c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Mount %1$s at %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Mounting %1$s at %2$s"));
+
+	return sformat(text, blk_device->get_name().c_str(), mountpoint.c_str());
     }
 
 
@@ -655,8 +696,8 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " + quote(blk_device->get_name())
-	    + " " + quote(real_mountpoint);
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " +
+	    quote(blk_device->get_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -670,8 +711,17 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	return sformat(_("Unmount %1$s at %2$s"), blk_device->get_name().c_str(),
-		       mountpoint.c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Unmount %1$s at %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Unmounting %1$s at %2$s"));
+
+	return sformat(text, blk_device->get_name().c_str(), mountpoint.c_str());
     }
 
 
