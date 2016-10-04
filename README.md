@@ -1,10 +1,14 @@
 libstorage-ng
 =============
 
-Evaluating use of the [boost graph library
-(BGL)](http://www.boost.org/doc/libs/1_56_0/libs/graph/doc/index.html) in
-libstorage. More information is in the
-[libstorage-bgl-wiki](https://github.com/openSUSE/libstorage-bgl-eval/wiki).
+libstorage-ng is the designated successor of
+[libstorage](https://github.com/openSUSE/libstorage), a C++ library used by
+[YaST](https://github.com/yast) to perform most storage related tasks.
+
+The main idea of libstorage-ng compared to libstorage is to keep all
+information about storage devices in a
+[graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)) instead of
+lists. For more information have a look at the [overview](doc/overview.md).
 
 
 Requirements
@@ -12,8 +16,9 @@ Requirements
 
 Some required tools for compiling and testing libstorage-ng are:
 
-gcc-c++ boost-devel libxml2-devel libtool doxygen graphviz python-devel ruby ruby-devel rubygem-test-unit
-swig >= 3.0.3 and != 3.0.8 (from [YaST:storage-ng](https://build.opensuse.org/project/show/YaST:storage-ng))
+gcc-c++ boost-devel libxml2-devel libtool doxygen graphviz python-devel ruby
+ruby-devel rubygem-test-unit swig >= 3.0.3 and != 3.0.8 (from
+[YaST:storage-ng](https://build.opensuse.org/project/show/YaST:storage-ng))
 
 In addition to the previous packages, add these distribution-specific packages as well.
 
@@ -25,6 +30,7 @@ For Fedora:
 
 rubypick
 
+
 Compiling
 ---------
 
@@ -33,6 +39,7 @@ make -f Makefile.repo
 make -j$(nproc)
 ```
 
+
 Running Unit Tests
 ------------------
 
@@ -40,6 +47,7 @@ Running Unit Tests
 make -j$(nproc) install DESTDIR=/tmp/scratch
 make -j$(nproc) check LOCALEDIR=/tmp/scratch/usr/share/locale
 ```
+
 
 Making an RPM
 -------------
@@ -50,6 +58,7 @@ make package
 cd package
 osc build --local-package --alternative-project=openSUSE:Factory
 ```
+
 
 Code Documentation
 ------------------
