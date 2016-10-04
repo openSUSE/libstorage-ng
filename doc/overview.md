@@ -36,7 +36,7 @@ of libstorage:
   all devices using a device is just a plain
   [BFS](https://en.wikipedia.org/wiki/Breadth-first_search).
 
-Together with a redesign of the device objects several features will be
+Together with the redesign of the device objects several features are now
 simple, e.g. using unpartitioned disks for filesystems, renaming LVM volume
 groups and logical volumes, switching between partitioned and unpartitioned MD
 RAID.
@@ -79,8 +79,8 @@ The new approach of libstorage-ng has several advantages:
   ordering can be correct "by luck" while dependencies are explicit.
 
 * The topological sort can also be used to find actions that can be done in
-  parallel. This might be used for filesystem creation (although newer
-  filesystems (e.g. btrfs, xfs, ext4) have fast mkfs commands).
+  parallel. This might be used for filesystem creation (although modern
+  filesystems have fast mkfs commands).
 
 Here is a more complex action graph with dependencies for partition creation
 and mount ordering. One filesystem is mounted twice resulting in cross device
