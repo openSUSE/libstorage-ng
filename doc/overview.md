@@ -107,7 +107,7 @@ The library has several testsuites.
 - Probe: Mocks external commands (SystemInfo) and checks that the probed
   device graph is correct.
 
-- Utils: Checks utulity functions, e.g. parsing sizes and udev encoding names.
+- Utils: Checks utility functions, e.g. parsing sizes and udev encoding names.
 
 - Python and Ruby Bindings: Since these are SWIG generated the scope is to
   test every concept, e.g. exceptions, runtime polymorphism and data types
