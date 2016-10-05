@@ -390,21 +390,12 @@ namespace storage
 	// Frist find all Create actions of partitions belonging to this
 	// partition table.
 
-	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+	for (const Partition* partition : get_partitions())
 	{
-	    const Action::Base* action = actiongraph[vertex];
-
-	    const Action::Create* create = dynamic_cast<const Action::Create*>(action);
-	    if (create)
-	    {
-		const Device* device = devicegraph->find_device(create->sid);
-		if (is_partition(device))
-		{
-		    const Partition* partition = to_partition(device);
-		    if (partition->get_partition_table() == get_device())
-			tmp.push_back(vertex);
-		}
-	    }
+	    sid_t sid = partition->get_sid();
+	    for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.actions_with_sid(sid))
+		if (is_create(actiongraph[vertex]))
+		    tmp.push_back(vertex);
 	}
 
 	// Second sort the Create actions by corresponding partition numbers

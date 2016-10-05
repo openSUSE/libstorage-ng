@@ -26,6 +26,7 @@
 
 
 #include <deque>
+#include <map>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
@@ -38,6 +39,7 @@ namespace storage
     using std::string;
     using std::vector;
     using std::deque;
+    using std::map;
 
 
     class Devicegraph;
@@ -56,7 +58,7 @@ namespace storage
      */
     enum ActionsFilter
     {
-	ONLY_FIRST, ALL, ONLY_LAST
+	ONLY_FIRST, ONLY_LAST
     };
 
 
@@ -119,6 +121,7 @@ namespace storage
 	 */
 	void add_chain(const vector<vector<vertex_descriptor>>& actions);
 
+	const vector<vertex_descriptor>& actions_with_sid(sid_t sid) const;
 	vector<vertex_descriptor> actions_with_sid(sid_t sid, ActionsFilter actions_filter) const;
 
 	boost::iterator_range<vertex_iterator> vertices() const;
@@ -158,6 +161,8 @@ namespace storage
 	Order order;
 
 	graph_t graph;
+
+	map<sid_t, vector<vertex_descriptor>> cache_for_actions_with_sid;
 
     };
 
