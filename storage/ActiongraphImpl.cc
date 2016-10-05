@@ -28,7 +28,7 @@
 #include <boost/graph/graphviz.hpp>
 
 #include "config.h"
-#include "storage/Utils/StopWatch.h"
+#include "storage/Utils/Stopwatch.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Filesystems/FilesystemImpl.h"
@@ -54,19 +54,19 @@ namespace storage
 	     << *rhs << endl;
 	rhs->check();
 
-	StopWatch stop_watch;
+	Stopwatch stopwatch;
 
 	get_actions();
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
 
-	y2mil("stopwatch " << stop_watch << " for actiongraph generation");
-
 	cout << "action graph" << endl;
 	print_graph();
 
 	calculate_order();
+
+	y2mil("stopwatch " << stopwatch << " for actiongraph generation");
     }
 
 

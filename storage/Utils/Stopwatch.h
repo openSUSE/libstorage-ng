@@ -21,8 +21,8 @@
  */
 
 
-#ifndef STORAGE_STOP_WATCH_H
-#define STORAGE_STOP_WAtCH_H
+#ifndef STORAGE_STOPWATCH_H
+#define STORAGE_STOPWAtCH_H
 
 
 #include <chrono>
@@ -33,17 +33,17 @@ namespace storage
 {
 
     /**
-     * Simple class implementing a stop watch.
+     * Simple class implementing a stopwatch.
      */
-    class StopWatch
+    class Stopwatch
     {
     public:
 
-	StopWatch();
+	Stopwatch();
 
 	double read() const;
 
-	friend std::ostream& operator<<(std::ostream& s, const StopWatch& sw);
+	friend std::ostream& operator<<(std::ostream& s, const Stopwatch& stopwatch);
 
     protected:
 
