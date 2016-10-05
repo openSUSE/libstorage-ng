@@ -5,7 +5,6 @@
 *.svg
 .deps
 .libs
-big1
 compare
 compare1
 compare2
