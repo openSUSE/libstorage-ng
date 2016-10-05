@@ -1,17 +1,9 @@
 *.gv
 *.xml
-!compare-*.xml
 *.o
 *.svg
 .deps
 .libs
-compare
-compare1
-compare2
-compare3
-compare4
-compare5
-compare6
 create1
 display
 humanstring
