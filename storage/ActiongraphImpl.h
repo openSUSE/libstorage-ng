@@ -132,6 +132,8 @@ namespace storage
 	void print_graph() const;
 	void write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const;
 
+	void print_order() const;
+
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
 

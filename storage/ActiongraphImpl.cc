@@ -46,12 +46,7 @@ namespace storage
     Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
-	cout << "lhs graph" << endl
-	     << *lhs << endl;
 	lhs->check();
-
-	cout << "rhs graph" << endl
-	     << *rhs << endl;
 	rhs->check();
 
 	Stopwatch stopwatch;
@@ -60,9 +55,6 @@ namespace storage
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
-
-	cout << "action graph" << endl;
-	print_graph();
 
 	calculate_order();
 
@@ -339,13 +331,16 @@ namespace storage
 	{
 	    cerr << "action graph not a DAG" << endl;
 	}
+    }
 
-	cout << "order" << endl;
 
+    void
+    Actiongraph::Impl::print_order() const
+    {
 	for (const vertex_descriptor& vertex : order)
 	{
-	    const Action::Base* action = graph[vertex].get();
-	    cout << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
+	   const Action::Base* action = graph[vertex].get();
+	   cout << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
 	}
 
 	cout << endl;
@@ -378,7 +373,6 @@ namespace storage
 	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
 
 	    y2mil("Commit Action \"" << text << "\"");
-	    cout << text << endl;
 
 	    if (commit_callbacks)
 	    {
@@ -417,12 +411,8 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated;
-
-	    ostringstream tmp;
-	    tmp << "[ " << text << " ]";
-
-	    boost::put(my_vertex_name_map, v, tmp.str());
+	    string text = "[ " + graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated + " ]";
+	    boost::put(my_vertex_name_map, v, text);
 	}
 
 	boost::print_graph(graph, my_vertex_name_map);

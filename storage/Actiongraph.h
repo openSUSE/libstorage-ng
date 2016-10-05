@@ -65,6 +65,8 @@ namespace storage
 	void write_graphviz(const std::string& filename, GraphvizFlags flags =
 			    GraphvizFlags::NONE) const;
 
+	void print_order() const;
+
 	bool empty() const;
 
 	size_t num_actions() const;

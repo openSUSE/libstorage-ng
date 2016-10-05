@@ -92,4 +92,11 @@ namespace storage
 	get_impl().write_graphviz(filename, graphviz_flags);
     }
 
+
+    void
+    Actiongraph::print_order() const
+    {
+	get_impl().print_order();
+    }
+
 }
