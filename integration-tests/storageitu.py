@@ -39,6 +39,8 @@ def commit(storage, save_graphs = False):
 
     actiongraph = storage.calculate_actiongraph()
 
+    actiongraph.print_order()
+
     if save_graphs:
         actiongraph.write_graphviz("action.gv", GraphvizFlags_SID)
         system("dot -Tsvg < action.gv > action.svg")

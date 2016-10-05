@@ -28,7 +28,7 @@
 #include <boost/graph/graphviz.hpp>
 
 #include "config.h"
-#include "storage/Utils/StopWatch.h"
+#include "storage/Utils/Stopwatch.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Filesystems/FilesystemImpl.h"
@@ -46,27 +46,19 @@ namespace storage
     Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
-	cout << "lhs graph" << endl
-	     << *lhs << endl;
 	lhs->check();
-
-	cout << "rhs graph" << endl
-	     << *rhs << endl;
 	rhs->check();
 
-	StopWatch stop_watch;
+	Stopwatch stopwatch;
 
 	get_actions();
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
 
-	y2mil("stopwatch " << stop_watch << " for actiongraph generation");
-
-	cout << "action graph" << endl;
-	print_graph();
-
 	calculate_order();
+
+	y2mil("stopwatch " << stopwatch << " for actiongraph generation");
     }
 
 
@@ -154,23 +146,34 @@ namespace storage
     }
 
 
+    const vector<Actiongraph::Impl::vertex_descriptor>&
+    Actiongraph::Impl::actions_with_sid(sid_t sid) const
+    {
+	map<sid_t, vector<vertex_descriptor>>::const_iterator it = cache_for_actions_with_sid.find(sid);
+	if (it != cache_for_actions_with_sid.end())
+	    return it->second;
+
+	const static vector<vertex_descriptor> empty;
+	return empty;
+    }
+
+
     vector<Actiongraph::Impl::vertex_descriptor>
     Actiongraph::Impl::actions_with_sid(sid_t sid, ActionsFilter actions_filter) const
     {
 	vector<vertex_descriptor> ret;
 
-	for (vertex_descriptor tmp : vertices())
+	for (vertex_descriptor vertex : actions_with_sid(sid))
 	{
-	    if (graph[tmp]->sid == sid)
-	    {
-		if (actions_filter == ONLY_FIRST && !graph[tmp]->first)
-		    continue;
+	    const Action::Base* action = graph[vertex].get();
 
-		if (actions_filter == ONLY_LAST && !graph[tmp]->last)
-		    continue;
+	    if (actions_filter == ONLY_FIRST && !action->first)
+		continue;
 
-		ret.push_back(tmp);
-	    }
+	    if (actions_filter == ONLY_LAST && !action->last)
+		continue;
+
+	    ret.push_back(vertex);
 	}
 
 	return ret;
@@ -259,6 +262,8 @@ namespace storage
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
 	    if (mount && mount->mountpoint == "/")
 		mount_root_filesystem = it;
+
+	    cache_for_actions_with_sid[action->sid].push_back(*it);
 	}
     }
 
@@ -339,13 +344,16 @@ namespace storage
 	{
 	    cerr << "action graph not a DAG" << endl;
 	}
+    }
 
-	cout << "order" << endl;
 
+    void
+    Actiongraph::Impl::print_order() const
+    {
 	for (const vertex_descriptor& vertex : order)
 	{
-	    const Action::Base* action = graph[vertex].get();
-	    cout << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
+	   const Action::Base* action = graph[vertex].get();
+	   cout << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
 	}
 
 	cout << endl;
@@ -378,7 +386,6 @@ namespace storage
 	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
 
 	    y2mil("Commit Action \"" << text << "\"");
-	    cout << text << endl;
 
 	    if (commit_callbacks)
 	    {
@@ -417,12 +424,8 @@ namespace storage
 
 	for (vertex_descriptor v : vertices())
 	{
-	    string text = graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated;
-
-	    ostringstream tmp;
-	    tmp << "[ " << text << " ]";
-
-	    boost::put(my_vertex_name_map, v, tmp.str());
+	    string text = "[ " + graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated + " ]";
+	    boost::put(my_vertex_name_map, v, text);
 	}
 
 	boost::print_graph(graph, my_vertex_name_map);

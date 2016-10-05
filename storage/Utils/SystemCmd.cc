@@ -33,7 +33,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/ExceptionImpl.h"
-#include "storage/Utils/StopWatch.h"
+#include "storage/Utils/Stopwatch.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
@@ -278,7 +278,7 @@ namespace storage
 	}
 	y2deb("Cmd:" << _cmd);
 
-	StopWatch stopwatch;
+	Stopwatch stopwatch;
 
         _childStdin = NULL;
 	_files[IDX_STDERR] = _files[IDX_STDOUT] = NULL;

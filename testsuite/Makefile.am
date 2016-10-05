@@ -2,7 +2,8 @@
 # Makefile.am for libstorage/testsuite
 #
 
-SUBDIRS = helpers Utils SystemInfo probe dependencies sorting freeinfo Devices
+SUBDIRS = helpers Utils SystemInfo probe dependencies sorting freeinfo Devices	\
+	performance
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
