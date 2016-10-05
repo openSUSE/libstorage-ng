@@ -26,7 +26,7 @@ Partition Table
 
 Implemented:
 
-* For MS-DOS and GPT creating and deleting, resizing partitions.
+* For MS-DOS and GPT (creating, deleting and resizing partitions).
 * Topology calculations.
 
 Missing:
