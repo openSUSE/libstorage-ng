@@ -77,7 +77,7 @@ namespace storage
     Region&
     Region::operator=(const Region& region)
     {
-	impl.reset(new Impl(region.get_impl()));
+	*impl = region.get_impl();
 	return *this;
     }
 

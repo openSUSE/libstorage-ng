@@ -58,7 +58,7 @@ namespace storage
     Topology&
     Topology::operator=(const Topology& topology)
     {
-	impl.reset(new Impl(topology.get_impl()));
+	*impl = topology.get_impl();
 	return *this;
     }
 

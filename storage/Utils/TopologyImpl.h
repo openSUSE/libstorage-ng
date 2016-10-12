@@ -74,7 +74,7 @@ namespace storage
 
     private:
 
-	const unsigned long default_minimal_grain = 1 * MiB;
+	static const unsigned long default_minimal_grain = 1 * MiB;
 
 	long alignment_offset;
 	unsigned long optimal_io_size;
