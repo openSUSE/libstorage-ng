@@ -38,6 +38,12 @@ namespace storage
     }
 
 
+    Environment::Environment(const Environment& environment)
+	: impl(new Impl(environment.get_impl()))
+    {
+    }
+
+
     Environment::~Environment()
     {
     }

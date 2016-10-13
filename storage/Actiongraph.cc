@@ -34,6 +34,11 @@ namespace storage
     }
 
 
+    Actiongraph::~Actiongraph()
+    {
+    }
+
+
     const Storage&
     Actiongraph::get_storage() const
     {

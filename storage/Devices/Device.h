@@ -152,7 +152,7 @@ namespace storage
 
 	void add_to_devicegraph(Devicegraph* devicegraph);
 
-	std::shared_ptr<Impl> impl;
+	const std::unique_ptr<Impl> impl;
 
     };
 

@@ -56,6 +56,7 @@ namespace storage
     public:
 
 	Actiongraph(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs);
+	~Actiongraph();
 
 	const Storage& get_storage() const;
 
@@ -88,7 +89,7 @@ namespace storage
 
     private:
 
-        std::shared_ptr<Impl> impl;
+	const std::unique_ptr<Impl> impl;
 
     };
 

@@ -55,7 +55,10 @@ namespace storage
 
 	Environment(bool read_only);
 	Environment(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
+	Environment(const Environment& environment);
 	~Environment();
+
+	Environment& operator=(const Environment& environment) = delete;
 
 	bool get_read_only() const;
 
@@ -83,7 +86,7 @@ namespace storage
 
     private:
 
-	std::shared_ptr<Impl> impl;
+	const std::unique_ptr<Impl> impl;
 
     };
 

@@ -128,7 +128,7 @@ namespace storage
 
     private:
 
-	std::shared_ptr<Impl> impl;
+	const std::unique_ptr<Impl> impl;
 
     };
 
