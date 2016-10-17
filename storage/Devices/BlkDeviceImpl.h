@@ -130,7 +130,7 @@ namespace storage
 
     protected:
 
-	// TODO remove this contructor so always require a region?
+	// TODO remove this constructor so always require a region?
 	Impl(const string& name);
 
 	Impl(const string& name, const Region& region);
