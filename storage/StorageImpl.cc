@@ -48,6 +48,16 @@ namespace storage
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage version " VERSION);
+    }
+
+
+    void
+    Storage::Impl::initialize_standard_devicegraphs()
+    {
+	// This function is not called from the constructor Storage::Impl::Impl() since
+	// code below uses get_storage()->get_impl().xyz(). But Storage::impl, which is
+	// used in Storage::get_impl(), is only initialized in Storage::Storage() after
+	// Storage::Impl::Impl() has finished.
 
 	Devicegraph* probed = create_devicegraph("probed");
 
