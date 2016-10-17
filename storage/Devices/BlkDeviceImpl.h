@@ -103,8 +103,6 @@ namespace storage
 	 * number for the second lookup.
 	 *
 	 * Should only be used for and during probing.
-	 *
-	 * TODO disallow on others devicegraphs
 	 */
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
 				       SystemInfo& systeminfo);
