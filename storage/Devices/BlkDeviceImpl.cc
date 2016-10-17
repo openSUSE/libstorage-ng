@@ -295,7 +295,8 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    region == rhs.region && dm_table_name == rhs.dm_table_name;
+	    region == rhs.region && active == rhs.active && udev_path == rhs.udev_path &&
+	    udev_ids == rhs.udev_ids && dm_table_name == rhs.dm_table_name;
     }
 
 
@@ -314,6 +315,9 @@ namespace storage
 	storage::log_diff(log, "active", active, rhs.active);
 
 	storage::log_diff(log, "region", region, rhs.region);
+
+	storage::log_diff(log, "udev-path", udev_path, rhs.udev_path);
+	storage::log_diff(log, "udev-ids", udev_ids, rhs.udev_ids);
 
 	storage::log_diff(log, "dm-table-name", dm_table_name, rhs.dm_table_name);
     }
