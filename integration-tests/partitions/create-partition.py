@@ -52,9 +52,6 @@ if not good_partition_slot:
 partition = partition_table.create_partition(good_partition_slot.name, good_partition_slot.region,
                                              type)
 
-if type != PartitionType_EXTENDED:
-    partition.set_id(ID_LINUX)
-
 print staging
 
 commit(storage)

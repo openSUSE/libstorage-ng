@@ -53,7 +53,7 @@ namespace storage
 
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
-	: BlkDevice::Impl(name, region), type(type), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type)), boot(false)
     {
     }
 
@@ -147,7 +147,9 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::SetPartitionId(get_sid()));
+
+	if (default_id_for_type(type) != id)
+	    actions.push_back(new Action::SetPartitionId(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -502,6 +504,14 @@ namespace storage
 	}
 
     }
+
+
+    unsigned int
+    Partition::Impl::default_id_for_type(PartitionType type)
+    {
+	return type == PartitionType::EXTENDED ? ID_EXTENDED : ID_LINUX;
+    }
+
 
     string
     id_to_string(unsigned int id)
