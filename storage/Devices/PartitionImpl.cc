@@ -224,6 +224,15 @@ namespace storage
 
 
     void
+    Partition::Impl::process_udev_path(string& udev_path) const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	partitionable->get_impl().process_udev_path(udev_path);
+    }
+
+
+    void
     Partition::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
 	const Partitionable* partitionable = get_partitionable();

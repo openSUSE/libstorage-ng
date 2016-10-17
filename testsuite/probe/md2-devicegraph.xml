@@ -85,7 +85,6 @@
       <sysfs-path>/devices/virtual/block/md0</sysfs-path>
       <size-k>33553408</size-k>
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c</udev-id>
-      <udev-id>md-name-any:0</udev-id>
       <region>
         <length>67106816</length>
         <block-size>512</block-size>
@@ -104,7 +103,6 @@
       <sysfs-path>/devices/virtual/block/md0/md0p1</sysfs-path>
       <size-k>498688</size-k>
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part1</udev-id>
-      <udev-id>md-name-any:0-part1</udev-id>
       <region>
         <start>2048</start>
         <length>997376</length>
@@ -120,7 +118,6 @@
       <sysfs-path>/devices/virtual/block/md0/md0p2</sysfs-path>
       <size-k>33052672</size-k>
       <udev-id>md-uuid-d11cbd17:b4fa9ccd:bb7b9bab:557d863c-part2</udev-id>
-      <udev-id>md-name-any:0-part2</udev-id>
       <region>
         <start>999424</start>
         <length>66105344</length>
@@ -136,7 +133,6 @@
       <sysfs-path>/devices/virtual/block/md1</sysfs-path>
       <size-k>16777088</size-k>
       <udev-id>md-uuid-3e531727:0857f684:cd2e394b:62046b74</udev-id>
-      <udev-id>md-name-any:1</udev-id>
       <region>
         <length>16777088</length>
         <block-size>512</block-size>
@@ -151,7 +147,6 @@
       <sysfs-path>/devices/virtual/block/md2</sysfs-path>
       <size-k>16777088</size-k>
       <udev-id>md-uuid-c8440826:8e55745c:d7e14cdd:ac26716d</udev-id>
-      <udev-id>md-name-any:2</udev-id>
       <region>
         <length>16777088</length>
         <block-size>512</block-size>

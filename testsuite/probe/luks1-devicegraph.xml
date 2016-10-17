@@ -70,9 +70,6 @@
         <length>16779264</length>
         <block-size>512</block-size>
       </region>
-      <udev-id>dm-name-cr_home</udev-id>
-      <udev-id>dm-uuid-CRYPT-LUKS1-90da74540be64b44957a61a05408b8fb-cr_home</udev-id>
-      <udev-id>raid-cr_home</udev-id>
       <dm-table-name>cr_home</dm-table-name>
       <uuid>90da7454-0be6-4b44-957a-61a05408b8fb</uuid>
     </Luks>

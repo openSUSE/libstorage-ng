@@ -89,6 +89,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void process_udev_path(string& udev_path) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
