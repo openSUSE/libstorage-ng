@@ -35,6 +35,7 @@ namespace storage
     Storage::Storage(const Environment& environment)
 	: impl(new Impl(*this, environment))
     {
+	get_impl().initialize_standard_devicegraphs();
     }
 
 

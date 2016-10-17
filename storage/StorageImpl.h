@@ -84,6 +84,8 @@ namespace storage
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 
+	void initialize_standard_devicegraphs();
+
     private:
 
 	void probe(Devicegraph* probed);

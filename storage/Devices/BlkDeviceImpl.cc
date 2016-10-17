@@ -195,6 +195,9 @@ namespace storage
     BlkDevice::Impl::find_by_name(Devicegraph* devicegraph, const string& name,
 				  SystemInfo& systeminfo)
     {
+	if (!devicegraph->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong devicegraph"));
+
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
@@ -226,6 +229,9 @@ namespace storage
     BlkDevice::Impl::find_by_name(const Devicegraph* devicegraph, const string& name,
 				  SystemInfo& systeminfo)
     {
+	if (!devicegraph->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong devicegraph"));
+
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
