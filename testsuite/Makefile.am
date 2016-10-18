@@ -3,7 +3,7 @@
 #
 
 SUBDIRS = helpers Utils SystemInfo probe dependencies sorting freeinfo Devices	\
-	performance
+	performance partitions
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
