@@ -82,7 +82,7 @@ namespace storage
 
     private:
 
-	const unsigned long default_minimal_mbr_gap = 1 * MiB;
+	static const unsigned long default_minimal_mbr_gap = 1 * MiB;
 
 	unsigned long minimal_mbr_gap;
 
