@@ -120,8 +120,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
-	virtual void process_udev_path(string& udev_path) const {}
-	virtual void process_udev_ids(vector<string>& udev_ids) const {}
+	virtual void process_udev_path(string& udev_path) const { udev_path.clear(); }
+	virtual void process_udev_ids(vector<string>& udev_ids) const { udev_ids.clear(); }
 
 	void wait_for_device() const;
 	void wipe_device() const;
@@ -130,7 +130,7 @@ namespace storage
 
     protected:
 
-	// TODO remove this contructor so always require a region?
+	// TODO remove this constructor so always require a region?
 	Impl(const string& name);
 
 	Impl(const string& name, const Region& region);

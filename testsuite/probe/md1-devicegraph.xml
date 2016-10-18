@@ -84,7 +84,6 @@
       <sysfs-path>/devices/virtual/block/md0</sysfs-path>
       <size-k>33521664</size-k>
       <udev-id>md-uuid-2ce25515:3d255c09:a0e91f18:d9c098d3</udev-id>
-      <udev-id>md-name-_none_:0</udev-id>
       <region>
         <length>33521664</length>
         <block-size>512</block-size>
