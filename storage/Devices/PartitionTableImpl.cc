@@ -132,18 +132,18 @@ namespace storage
     Partitionable*
     PartitionTable::Impl::get_partitionable()
     {
-	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partitionable(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
     }
 
 
     const Partitionable*
     PartitionTable::Impl::get_partitionable() const
     {
-	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partitionable(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
     }
 
 
@@ -219,7 +219,8 @@ namespace storage
 		return partition;
 	}
 
-	throw runtime_error("has no extended partition");
+	ST_THROW(Exception("has no extended partition"));
+	__builtin_unreachable();
     }
 
 

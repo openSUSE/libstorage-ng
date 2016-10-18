@@ -319,8 +319,8 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) + " unit s mkpart " +
-	    toString(get_type()) + " ";
+	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) +
+	    " unit s mkpart " + toString(get_type()) + " ";
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
