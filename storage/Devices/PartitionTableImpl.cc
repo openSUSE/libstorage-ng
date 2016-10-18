@@ -99,10 +99,7 @@ namespace storage
     Partition*
     PartitionTable::Impl::get_partition(const string& name)
     {
-	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
-	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
-
-	for (Partition* partition : devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex)))
+	for (Partition* partition : get_partitions())
 	{
 	    if (partition->get_name() == name)
 		return partition;
