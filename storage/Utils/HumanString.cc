@@ -209,7 +209,6 @@ namespace storage
 	}
 
 	ST_THROW(ParseException("failed to parse", str, "something like 1 GiB"));
-	__builtin_unreachable();
     }
 
 }

@@ -106,7 +106,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("partition not found"));
-	__builtin_unreachable();
     }
 
 
@@ -217,7 +216,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("has no extended partition"));
-	__builtin_unreachable();
     }
 
 
