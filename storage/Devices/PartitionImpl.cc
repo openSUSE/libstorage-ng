@@ -134,10 +134,7 @@ namespace storage
     {
 	const PartitionTable* partition_table = get_partition_table();
 
-	Devicegraph::Impl::vertex_descriptor vertex =
-	    get_devicegraph()->get_impl().parent(partition_table->get_impl().get_vertex());
-
-	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
+	return partition_table->get_partitionable();
     }
 
 
