@@ -15,7 +15,7 @@ class TestTypes < Test::Unit::TestCase
 
     sda = Storage::Disk.create(devicegraph, "/dev/sda")
     gpt = sda.create_partition_table(Storage::PtType_GPT)
-    sda1 = gpt.create_partition("/dev/sda", Storage::Region.new(0, 100, 512), Storage::PartitionType_PRIMARY)
+    sda1 = gpt.create_partition("/dev/sda1", Storage::Region.new(0, 100, 512), Storage::PartitionType_PRIMARY)
     ext4 = sda1.create_filesystem(Storage::FsType_EXT4)
 
     assert_equal(devicegraph.empty?, false)
