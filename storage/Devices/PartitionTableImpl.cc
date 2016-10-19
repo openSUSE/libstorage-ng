@@ -92,6 +92,8 @@ namespace storage
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), get_device(), partition);
 
+	partition->get_impl().update_udev_path_and_ids();
+
 	return partition;
     }
 

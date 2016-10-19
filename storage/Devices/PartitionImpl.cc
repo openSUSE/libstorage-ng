@@ -238,6 +238,25 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::update_udev_path_and_ids()
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string postfix = "-part" + to_string(get_number());
+
+	string udev_path;
+	if (!partitionable->get_udev_path().empty())
+	    udev_path = partitionable->get_udev_path() + postfix;
+	set_udev_path(udev_path);
+
+	vector<string> udev_ids;
+	for (const string& udev_id : partitionable->get_udev_ids())
+	    udev_ids.push_back(udev_id + postfix);
+	set_udev_ids(udev_ids);
+    }
+
+
     ResizeInfo
     Partition::Impl::detect_resize_info() const
     {
