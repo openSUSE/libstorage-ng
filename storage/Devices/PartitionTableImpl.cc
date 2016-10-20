@@ -89,8 +89,10 @@ namespace storage
 	if (region.get_block_size() != partitionable_region.get_block_size())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
+	const Device* parent = type == PartitionType::LOGICAL ? get_extended() : get_device();
+
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
-	Subdevice::create(get_devicegraph(), get_device(), partition);
+	Subdevice::create(get_devicegraph(), parent, partition);
 
 	partition->get_impl().update_udev_path_and_ids();
 
@@ -210,13 +212,6 @@ namespace storage
     const Partition*
     PartitionTable::Impl::get_extended() const
     {
-	vector<const Partition*> partitions = get_partitions();
-	for (const Partition* partition : partitions)
-	{
-	    if (partition->get_type() == PartitionType::EXTENDED)
-		return partition;
-	}
-
 	ST_THROW(Exception("has no extended partition"));
     }
 

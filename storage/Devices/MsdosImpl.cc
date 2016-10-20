@@ -25,6 +25,7 @@
 
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/Partitionable.h"
+#include "storage/Devices/PartitionImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Region.h"
@@ -150,7 +151,7 @@ namespace storage
     bool
     Msdos::Impl::has_extended() const
     {
-	vector<const Partition*> partitions = get_partitions();
+	vector<const Partition*> partitions = PartitionTable::Impl::get_partitions();
 	return any_of(partitions.begin(), partitions.end(), [](const Partition* partition) {
 	    return partition->get_type() == PartitionType::EXTENDED;
 	});
@@ -164,6 +165,84 @@ namespace storage
 	return count_if(partitions.begin(), partitions.end(), [](const Partition* partition) {
 	    return partition->get_type() == PartitionType::LOGICAL;
 	});
+    }
+
+
+    const Partition*
+    Msdos::Impl::get_extended() const
+    {
+	vector<const Partition*> partitions = PartitionTable::Impl::get_partitions();
+	for (const Partition* partition : partitions)
+	{
+	    if (partition->get_type() == PartitionType::EXTENDED)
+		return partition;
+	}
+
+	ST_THROW(Exception("has no extended partition"));
+    }
+
+
+    vector<Partition*>
+    Msdos::Impl::get_partitions()
+    {
+	vector<Partition*> partitions = PartitionTable::Impl::get_partitions();
+
+	for (Partition* partition : partitions)
+	{
+	    if (partition->get_type() == PartitionType::EXTENDED)
+	    {
+		vector<Partition*> logicals = get_logical_partitions(partition);
+		partitions.insert(partitions.end(), logicals.begin(), logicals.end());
+		break;
+	    }
+	}
+
+	return partitions;
+    }
+
+
+    vector<const Partition*>
+    Msdos::Impl::get_partitions() const
+    {
+	vector<const Partition*> partitions = PartitionTable::Impl::get_partitions();
+
+	for (const Partition* partition : partitions)
+	{
+	    if (partition->get_type() == PartitionType::EXTENDED)
+	    {
+		vector<const Partition*> logicals = get_logical_partitions(partition);
+		partitions.insert(partitions.end(), logicals.begin(), logicals.end());
+		break;
+	    }
+	}
+
+	return partitions;
+    }
+
+
+    vector<Partition*>
+    Msdos::Impl::get_logical_partitions(Partition* partition)
+    {
+	if (partition->get_type() != PartitionType::EXTENDED)
+	    ST_THROW(Exception("function called on wrong partition"));
+
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+
+	return devicegraph.filter_devices_of_type<Partition>
+	    (devicegraph.children(partition->get_impl().get_vertex()), compare_by_number);
+    }
+
+
+    vector<const Partition*>
+    Msdos::Impl::get_logical_partitions(const Partition* partition) const
+    {
+	if (partition->get_type() != PartitionType::EXTENDED)
+	    ST_THROW(Exception("function called on wrong partition"));
+
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+
+	return devicegraph.filter_devices_of_type<const Partition>
+	    (devicegraph.children(partition->get_impl().get_vertex()), compare_by_number);
     }
 
 

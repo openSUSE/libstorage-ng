@@ -125,6 +125,9 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
+	if (type == PartitionType::LOGICAL)
+	    vertex = get_devicegraph()->get_impl().parent(vertex);
+
 	return to_partition_table(get_devicegraph()->get_impl()[vertex]);
     }
 

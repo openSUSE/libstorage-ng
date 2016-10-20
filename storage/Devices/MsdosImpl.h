@@ -72,6 +72,21 @@ namespace storage
 	virtual bool has_extended() const override;
 	virtual unsigned int num_logical() const override;
 
+	virtual const Partition* get_extended() const override;
+
+	virtual vector<Partition*> get_partitions() override;
+	virtual vector<const Partition*> get_partitions() const override;
+
+	/**
+	 * For an extended partition return logical partitions.
+	 */
+	vector<Partition*> get_logical_partitions(Partition* partition);
+
+	/**
+	 * @copydoc get_logical_partitions()
+	 */
+	vector<const Partition*> get_logical_partitions(const Partition* partition) const;
+
 	unsigned long get_minimal_mbr_gap() const { return minimal_mbr_gap; }
 	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
 
