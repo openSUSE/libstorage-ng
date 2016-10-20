@@ -48,6 +48,8 @@ namespace storage
 
     template <typename Type> struct DeviceTraits {};
 
+    template <> struct DeviceTraits<Device> { static const char* classname; };
+
 
     template <typename Type> bool is_device_of_type(const Device* device);
     template <typename Type> Type* to_device_of_type(Device* device);

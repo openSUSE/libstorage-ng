@@ -98,6 +98,33 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::check() const
+    {
+	BlkDevice::Impl::check();
+
+	const Device* parent = get_single_parent_of_type<const Device>();
+
+	switch (type)
+	{
+	    case PartitionType::PRIMARY:
+		if (!is_partition_table(parent))
+		    ST_THROW(Exception("parent of primary partition is not partition table"));
+		break;
+
+	    case PartitionType::EXTENDED:
+		if (!is_partition_table(parent))
+		    ST_THROW(Exception("parent of extended partition is not partition table"));
+		break;
+
+	    case PartitionType::LOGICAL:
+		if (!is_partition(parent) || to_partition(parent)->get_type() != PartitionType::EXTENDED)
+		    ST_THROW(Exception("parent of logical partition is not extended partition"));
+		break;
+	}
+    }
+
+
     unsigned int
     Partition::Impl::get_number() const
     {

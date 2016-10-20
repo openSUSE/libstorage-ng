@@ -62,6 +62,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check() const override;
+
 	unsigned int get_number() const;
 
 	virtual void set_region(const Region& region) override;

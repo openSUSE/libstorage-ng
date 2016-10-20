@@ -82,6 +82,18 @@ namespace storage
     }
 
 
+    void
+    PartitionTable::Impl::check() const
+    {
+	Device::Impl::check();
+
+	const Device* parent = get_single_parent_of_type<const Device>();
+
+	if (!is_disk(parent) && !is_md(parent))
+	    ST_THROW(Exception("parent of partition table is not a disk or md"));
+    }
+
+
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
