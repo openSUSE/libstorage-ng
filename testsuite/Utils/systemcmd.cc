@@ -33,7 +33,7 @@ BOOST_AUTO_TEST_CASE(hello_stdout)
 	"stdout #2: stdout"
     };
 
-    SystemCmd cmd( "helpers/echoargs hello stdout" );
+    SystemCmd cmd("../helpers/echoargs hello stdout");
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK(cmd.stderr().empty());
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(hello_stderr)
 	"stderr #2: stderr"
     };
 
-    SystemCmd cmd("helpers/echoargs_stderr hello stderr");
+    SystemCmd cmd("../helpers/echoargs_stderr hello stderr");
 
     BOOST_CHECK_EQUAL(join(cmd.stderr()),join(stderr));
     BOOST_CHECK(cmd.stdout().empty());
@@ -68,7 +68,7 @@ BOOST_AUTO_TEST_CASE(hello_mixed)
 	"line #4: stderr #2: and"
     };
 
-    SystemCmd cmd( "helpers/echoargs_mixed mixed to stdout and stderr" );
+    SystemCmd cmd("../helpers/echoargs_mixed mixed to stdout and stderr");
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
     BOOST_CHECK_EQUAL(join(cmd.stderr()), join(stderr));
@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(pipe_stdin)
 
 BOOST_AUTO_TEST_CASE(retcode_42)
 {
-    SystemCmd cmd("helpers/retcode 42");
+    SystemCmd cmd("../helpers/retcode 42");
 
     BOOST_CHECK(cmd.retcode() == 42);
 }
@@ -113,13 +113,13 @@ BOOST_AUTO_TEST_CASE(non_existent_throw)
 
 BOOST_AUTO_TEST_CASE(segfault_no_throw)
 {
-    BOOST_CHECK_NO_THROW({SystemCmd cmd( "helpers/segfaulter", SystemCmd::ThrowBehaviour::NoThrow);});
+    BOOST_CHECK_NO_THROW({SystemCmd cmd("../helpers/segfaulter", SystemCmd::ThrowBehaviour::NoThrow);});
 }
 
 
 BOOST_AUTO_TEST_CASE(segfault_throw)
 {
-    BOOST_CHECK_THROW({SystemCmd cmd( "helpers/segfaulter", SystemCmd::ThrowBehaviour::DoThrow);},
+    BOOST_CHECK_THROW({SystemCmd cmd("../helpers/segfaulter", SystemCmd::ThrowBehaviour::DoThrow);},
 		      SystemCmdException);
 }
 
