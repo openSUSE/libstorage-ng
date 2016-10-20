@@ -171,6 +171,13 @@ namespace storage
 	std::vector<Filesystem*> get_all_filesystems();
 	std::vector<const Filesystem*> get_all_filesystems() const;
 
+	/**
+	 * Removes the device with sid from the devicegraph. Only use this
+	 * function if there is no special function to delete a device,
+	 * e.g. PartitionTable.delete_partition() or LvmVg.delete_lvm_lv().
+	 *
+	 * TODO internally redirect to special delete functions?
+	 */
 	void remove_device(sid_t sid);
 	void remove_device(Device* a);
 
