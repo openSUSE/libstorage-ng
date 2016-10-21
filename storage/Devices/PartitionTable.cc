@@ -63,7 +63,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("invalid partition type"));
-	__builtin_unreachable();
     }
 
 

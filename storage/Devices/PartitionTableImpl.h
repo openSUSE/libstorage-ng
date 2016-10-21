@@ -52,6 +52,8 @@ namespace storage
 
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	void check() const override;
+
 	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
 	void delete_partition(Partition* partition);
@@ -62,8 +64,8 @@ namespace storage
 
 	Partition* get_partition(const string& name);
 
-	vector<Partition*> get_partitions();
-	vector<const Partition*> get_partitions() const;
+	virtual vector<Partition*> get_partitions();
+	virtual vector<const Partition*> get_partitions() const;
 
 	Partitionable* get_partitionable();
 	const Partitionable* get_partitionable() const;
@@ -81,7 +83,7 @@ namespace storage
 	virtual bool has_extended() const { return false; }
 	virtual unsigned int num_logical() const { return 0; }
 
-	const Partition* get_extended() const;
+	virtual const Partition* get_extended() const;
 
 	virtual Region get_usable_region() const = 0;
 

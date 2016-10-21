@@ -299,7 +299,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("lvm lv not found"));
-	__builtin_unreachable();
     }
 
 

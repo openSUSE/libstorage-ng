@@ -329,7 +329,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundBySid(sid));
-	__builtin_unreachable();
      }
 
 
@@ -344,7 +343,6 @@ namespace storage
 	}
 
 	ST_THROW(HolderNotFoundBySid(source_sid, target_sid));
-	__builtin_unreachable();
     }
 
 

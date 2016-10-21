@@ -75,7 +75,10 @@ namespace storage
 	string get_size_string() const;
 
 	const string& get_udev_path() const { return udev_path; }
+	void set_udev_path(const string& udev_path) { Impl::udev_path = udev_path; }
+
 	const vector<string>& get_udev_ids() const { return udev_ids; }
+	void set_udev_ids(const vector<string>& udev_ids) { Impl::udev_ids = udev_ids; }
 
 	const string& get_dm_table_name() const { return dm_table_name; }
 	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }

@@ -89,7 +89,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("pv not found by pv-uuid"));
-	__builtin_unreachable();
     }
 
 
@@ -160,7 +159,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("lv not found by lv-uuid"));
-	__builtin_unreachable();
     }
 
 
@@ -231,7 +229,6 @@ namespace storage
 	}
 
 	ST_THROW(Exception("vg not found by vg-uuid"));
-	__builtin_unreachable();
     }
 
 

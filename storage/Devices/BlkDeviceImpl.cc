@@ -51,7 +51,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), active(true), region(region), dm_table_name()
+	: Device::Impl(), name(name), active(true), region(region), udev_path(), udev_ids(),
+	  dm_table_name()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -59,7 +60,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), active(true), region(0, 0, 512), dm_table_name()
+	: Device::Impl(node), name(), active(true), region(0, 0, 512), udev_path(), udev_ids(),
+	  dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));
@@ -221,7 +223,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
-	__builtin_unreachable();
     }
 
 
@@ -255,7 +256,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
-	__builtin_unreachable();
     }
 
 

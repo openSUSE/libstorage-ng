@@ -39,7 +39,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
-	__builtin_unreachable();
     }
 
 
@@ -55,7 +54,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
-	__builtin_unreachable();
     }
 
 
@@ -71,7 +69,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByUuid(uuid));
-	__builtin_unreachable();
     }
 
 
@@ -87,7 +84,6 @@ namespace storage
 	}
 
 	ST_THROW(DeviceNotFoundByUuid(uuid));
-	__builtin_unreachable();
     }
 
 }

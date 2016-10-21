@@ -140,14 +140,14 @@ namespace storage
     }
 
 
-    const std::string&
+    const string&
     BlkDevice::get_udev_path() const
     {
 	return get_impl().get_udev_path();
     }
 
 
-    const std::vector<std::string>&
+    const vector<string>&
     BlkDevice::get_udev_ids() const
     {
 	return get_impl().get_udev_ids();

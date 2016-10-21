@@ -181,7 +181,6 @@ namespace storage
 	}
 
 	ST_THROW(LvmVgNotFoundByVgName(vg_name));
-	__builtin_unreachable();
     }
 
 
@@ -196,7 +195,6 @@ namespace storage
 	}
 
 	ST_THROW(LvmVgNotFoundByVgName(vg_name));
-	__builtin_unreachable();
     }
 
 

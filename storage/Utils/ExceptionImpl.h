@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -109,7 +110,7 @@ namespace storage
      * if DO_THROW is 'true'.
      **/
 #define ST_MAYBE_THROW( EXCEPTION, DO_THROW )			\
-    _ST_THROW( ( EXCEPTION ), ST_EXCEPTION_CODE_LOCATION, DO_THROW )
+    _ST_MAYBE_THROW( ( EXCEPTION ), ST_EXCEPTION_CODE_LOCATION, DO_THROW )
 
 
     /**
@@ -117,7 +118,7 @@ namespace storage
      * and rethrows if DO_THROW is 'true'.
      **/
 #define ST_MAYBE_RETHROW( EXCEPTION, DO_THROW )			\
-    _ST_RETHROW( ( EXCEPTION ), ST_EXCEPTION_CODE_LOCATION, DO_THROW )
+    _ST_MAYBE_RETHROW( ( EXCEPTION ), ST_EXCEPTION_CODE_LOCATION, DO_THROW )
 
 
     /**
@@ -219,7 +220,23 @@ namespace storage
      * Helper for ST_THROW()
      **/
     template<class _Exception>
-    void _ST_THROW( const _Exception & exception, const CodeLocation & where, bool doThrow = true )
+    void _ST_THROW(const _Exception& exception, const CodeLocation& where) __attribute__ ((__noreturn__));
+
+    template<class _Exception>
+    void _ST_THROW(const _Exception& exception, const CodeLocation& where)
+    {
+	exception.relocate(where);
+	Exception::log(exception, where, "THROW:	");
+
+	throw exception;
+    }
+
+
+    /**
+     * Helper for ST_MAYBE_THROW()
+     **/
+    template<class _Exception>
+    void _ST_MAYBE_THROW(const _Exception& exception, const CodeLocation& where, bool doThrow)
     {
 	exception.relocate( where );
 	Exception::log( exception, where, "THROW:	" );
@@ -243,7 +260,23 @@ namespace storage
      * Helper for ST_RETHROW()
      **/
     template<class _Exception>
-    void _ST_RETHROW( const _Exception & exception, const CodeLocation & where, bool doThrow = true )
+    void _ST_RETHROW(const _Exception& exception, const CodeLocation& where) __attribute__ ((__noreturn__));
+
+    template<class _Exception>
+    void _ST_RETHROW(const _Exception& exception, const CodeLocation& where)
+    {
+	Exception::log(exception, where, "RETHROW: ");
+	exception.relocate(where);
+
+	throw;
+    }
+
+
+    /**
+     * Helper for ST_MAYBE_RETHROW()
+     **/
+    template<class _Exception>
+    void _ST_MAYBE_RETHROW(const _Exception& exception, const CodeLocation& where, bool doThrow)
     {
 	Exception::log( exception, where, "RETHROW: " );
 	exception.relocate( where );

@@ -5,8 +5,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/User.h"
 #include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/DevicegraphImpl.h"
@@ -25,24 +27,27 @@ BOOST_AUTO_TEST_CASE(valid)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
+    Msdos* msdos = Msdos::create(devicegraph);
+    User::create(devicegraph, sda, msdos);
+
     Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
-    Subdevice::create(devicegraph, sda, sda1);
+    Subdevice::create(devicegraph, msdos, sda1);
 
     Partition* sda2 = Partition::create(devicegraph, "/dev/sda2", Region(10, 10, 262144), PartitionType::PRIMARY);
-    Subdevice::create(devicegraph, sda, sda2);
+    Subdevice::create(devicegraph, msdos, sda2);
 
     Devicegraph::Impl::vertex_descriptor v_sda = sda->get_impl().get_vertex();
     Devicegraph::Impl::vertex_descriptor v_sda2 = sda2->get_impl().get_vertex();
 
-    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 3);
-    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 4);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 3);
 
     devicegraph->check();
 
     devicegraph->remove_device(sda1);
 
-    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);
-    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 1);
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 3);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
 
     devicegraph->check();
 

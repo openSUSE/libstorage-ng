@@ -98,6 +98,33 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::check() const
+    {
+	BlkDevice::Impl::check();
+
+	const Device* parent = get_single_parent_of_type<const Device>();
+
+	switch (type)
+	{
+	    case PartitionType::PRIMARY:
+		if (!is_partition_table(parent))
+		    ST_THROW(Exception("parent of primary partition is not partition table"));
+		break;
+
+	    case PartitionType::EXTENDED:
+		if (!is_partition_table(parent))
+		    ST_THROW(Exception("parent of extended partition is not partition table"));
+		break;
+
+	    case PartitionType::LOGICAL:
+		if (!is_partition(parent) || to_partition(parent)->get_type() != PartitionType::EXTENDED)
+		    ST_THROW(Exception("parent of logical partition is not extended partition"));
+		break;
+	}
+    }
+
+
     unsigned int
     Partition::Impl::get_number() const
     {
@@ -125,6 +152,9 @@ namespace storage
     {
 	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
+	if (type == PartitionType::LOGICAL)
+	    vertex = get_devicegraph()->get_impl().parent(vertex);
+
 	return to_partition_table(get_devicegraph()->get_impl()[vertex]);
     }
 
@@ -134,10 +164,7 @@ namespace storage
     {
 	const PartitionTable* partition_table = get_partition_table();
 
-	Devicegraph::Impl::vertex_descriptor vertex =
-	    get_devicegraph()->get_impl().parent(partition_table->get_impl().get_vertex());
-
-	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
+	return partition_table->get_partitionable();
     }
 
 
@@ -241,6 +268,25 @@ namespace storage
     }
 
 
+    void
+    Partition::Impl::update_udev_path_and_ids()
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string postfix = "-part" + to_string(get_number());
+
+	string udev_path;
+	if (!partitionable->get_udev_path().empty())
+	    udev_path = partitionable->get_udev_path() + postfix;
+	set_udev_path(udev_path);
+
+	vector<string> udev_ids;
+	for (const string& udev_id : partitionable->get_udev_ids())
+	    udev_ids.push_back(udev_id + postfix);
+	set_udev_ids(udev_ids);
+    }
+
+
     ResizeInfo
     Partition::Impl::detect_resize_info() const
     {
@@ -322,8 +368,8 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) + " unit s mkpart " +
-	    toString(get_type()) + " ";
+	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) +
+	    " unit s mkpart " + toString(get_type()) + " ";
 
 	if (get_type() != PartitionType::EXTENDED)
 	{

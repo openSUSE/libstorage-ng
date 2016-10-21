@@ -35,6 +35,9 @@ namespace storage
     using namespace std;
 
 
+    const char* DeviceTraits<Device>::classname = "Device";
+
+
     sid_t Device::Impl::global_sid = 42;	// just a random number ;)
 
 

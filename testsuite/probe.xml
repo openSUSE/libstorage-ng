@@ -5,15 +5,22 @@
       <sid>42</sid>
       <name>/dev/sda</name>
     </Disk>
-    <Partition>
+    <Msdos>
       <sid>43</sid>
+    </Msdos>
+    <Partition>
+      <sid>44</sid>
       <name>/dev/sda1</name>
     </Partition>
   </Devices>
   <Holders>
-    <Subdevice>
+    <User>
       <source-sid>42</source-sid>
       <target-sid>43</target-sid>
+    </User>
+    <Subdevice>
+      <source-sid>43</source-sid>
+      <target-sid>44</target-sid>
     </Subdevice>
   </Holders>
 </Devicegraph>

@@ -82,6 +82,18 @@ namespace storage
     }
 
 
+    void
+    PartitionTable::Impl::check() const
+    {
+	Device::Impl::check();
+
+	const Device* parent = get_single_parent_of_type<const Device>();
+
+	if (!is_disk(parent) && !is_md(parent))
+	    ST_THROW(Exception("parent of partition table is not a disk or md"));
+    }
+
+
     Partition*
     PartitionTable::Impl::create_partition(const string& name, const Region& region, PartitionType type)
     {
@@ -89,8 +101,12 @@ namespace storage
 	if (region.get_block_size() != partitionable_region.get_block_size())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
+	const Device* parent = type == PartitionType::LOGICAL ? get_extended() : get_device();
+
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
-	Subdevice::create(get_devicegraph(), get_device(), partition);
+	Subdevice::create(get_devicegraph(), parent, partition);
+
+	partition->get_impl().update_udev_path_and_ids();
 
 	return partition;
     }
@@ -99,17 +115,13 @@ namespace storage
     Partition*
     PartitionTable::Impl::get_partition(const string& name)
     {
-	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
-	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
-
-	for (Partition* partition : devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex)))
+	for (Partition* partition : get_partitions())
 	{
 	    if (partition->get_name() == name)
 		return partition;
 	}
 
 	ST_THROW(Exception("partition not found"));
-	__builtin_unreachable();
     }
 
 
@@ -132,18 +144,18 @@ namespace storage
     Partitionable*
     PartitionTable::Impl::get_partitionable()
     {
-	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partitionable(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
     }
 
 
     const Partitionable*
     PartitionTable::Impl::get_partitionable() const
     {
-	Devicegraph::Impl::vertex_descriptor v = get_devicegraph()->get_impl().parent(get_vertex());
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
 
-	return to_partitionable(get_devicegraph()->get_impl()[v]);
+	return to_partitionable(get_devicegraph()->get_impl()[vertex]);
     }
 
 
@@ -212,14 +224,7 @@ namespace storage
     const Partition*
     PartitionTable::Impl::get_extended() const
     {
-	vector<const Partition*> partitions = get_partitions();
-	for (const Partition* partition : partitions)
-	{
-	    if (partition->get_type() == PartitionType::EXTENDED)
-		return partition;
-	}
-
-	throw runtime_error("has no extended partition");
+	ST_THROW(Exception("has no extended partition"));
     }
 
 

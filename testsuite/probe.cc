@@ -24,11 +24,11 @@ BOOST_AUTO_TEST_CASE(dependencies)
 
     const Devicegraph* probed = storage.get_probed();
 
-    BOOST_CHECK_EQUAL(probed->num_devices(), 2);
-    BOOST_CHECK_EQUAL(probed->num_holders(), 1);
+    BOOST_CHECK_EQUAL(probed->num_devices(), 3);
+    BOOST_CHECK_EQUAL(probed->num_holders(), 2);
 
     Devicegraph* staging = storage.get_staging();
 
-    BOOST_CHECK_EQUAL(staging->num_devices(), 2);
-    BOOST_CHECK_EQUAL(staging->num_holders(), 1);
+    BOOST_CHECK_EQUAL(staging->num_devices(), 3);
+    BOOST_CHECK_EQUAL(staging->num_holders(), 2);
 }
