@@ -42,6 +42,9 @@ namespace storage
 
 	bool supports_uuid() const override { return true; }
 
+	static std::vector<Swap*> get_all(Devicegraph* devicegraph);
+	static std::vector<const Swap*> get_all(const Devicegraph* devicegraph);
+
     public:
 
 	class Impl;

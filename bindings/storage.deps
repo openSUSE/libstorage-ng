@@ -3,6 +3,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/bindings/storage.i		\
 	${top_srcdir}/bindings/storage-catches.i	\
 	${top_srcdir}/bindings/storage-downcast.i	\
+	${top_srcdir}/bindings/storage-template.i	\
 	${top_srcdir}/storage/Graphviz.h		\
 	${top_srcdir}/storage/Actiongraph.h		\
 	${top_srcdir}/storage/Devicegraph.h		\
