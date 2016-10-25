@@ -76,6 +76,20 @@ namespace storage
     }
 
 
+    vector<Swap*>
+    Swap::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<Swap>();
+    }
+
+
+    vector<const Swap*>
+    Swap::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const Swap>();
+    }
+
+
     bool
     is_swap(const Device* device)
     {
