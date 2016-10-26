@@ -163,6 +163,13 @@ namespace storage
     }
 
 
+    string
+    Storage::prepend_rootprefix(const std::string& mountpoint) const
+    {
+	return get_impl().prepend_rootprefix(mountpoint);
+    }
+
+
     const Actiongraph*
     Storage::calculate_actiongraph()
     {
