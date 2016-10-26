@@ -78,6 +78,20 @@ namespace storage
     }
 
 
+    vector<LvmLv*>
+    LvmLv::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<LvmLv>();
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const LvmLv>();
+    }
+
+
     const string&
     LvmLv::get_lv_name() const
     {

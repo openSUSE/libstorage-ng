@@ -42,6 +42,9 @@ namespace storage
 	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name, const std::string& lv_name);
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	static std::vector<LvmLv*> get_all(Devicegraph* devicegraph);
+	static std::vector<const LvmLv*> get_all(const Devicegraph* devicegraph);
+
 	/**
 	 * Get logical volume name. This is different from get_name().
 	 */
