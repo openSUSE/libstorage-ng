@@ -43,7 +43,7 @@ namespace storage
     public:
 
 	Impl()
-	    : PartitionTable::Impl(), enlarge(false) {}
+	    : PartitionTable::Impl(), enlarge(false), pmbr_boot(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -68,8 +68,11 @@ namespace storage
 
 	virtual unsigned int max_primary() const override;
 
-	bool get_enlarge() const { return enlarge; }
+	bool is_enlarge() const { return enlarge; }
 	void set_enlarge(bool enlarge) { Impl::enlarge = enlarge; }
+
+	bool is_pmbr_boot() const { return pmbr_boot; }
+	void set_pmbr_boot(bool pmbr_boot) { Impl::pmbr_boot = pmbr_boot; }
 
 	virtual Region get_usable_region() const override;
 
@@ -79,6 +82,7 @@ namespace storage
     private:
 
 	bool enlarge;
+	bool pmbr_boot;
 
     };
 

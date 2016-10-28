@@ -61,7 +61,7 @@ namespace storage
 
 	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 
-	if (parted.getImplicit())
+	if (parted.is_implicit())
 	    read_only = true;
 
 	for (const Parted::Entry& entry : parted.getEntries())

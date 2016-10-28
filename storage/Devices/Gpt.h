@@ -37,8 +37,11 @@ namespace storage
 	static Gpt* create(Devicegraph* devicegraph);
 	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool get_enlarge() const;
+	bool is_enlarge() const;
 	void set_enlarge(bool enlarge);
+
+	bool is_pmbr_boot() const;
+	void set_pmbr_boot(bool pmbr_boot);
 
     public:
 
