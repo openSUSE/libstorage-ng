@@ -33,6 +33,7 @@ check(const string& device, const vector<string>& input, const vector<string>& o
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
+
 void
 check_parse_exception(const string& device, const vector<string>& input)
 {
@@ -100,6 +101,32 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
 
 
 // TO DO: add test cases "parse_gpt_enlarge_good" and "parse_gpt_fix_backup_good"
+
+
+BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
+{
+    vector<string> input = {
+	"Model: Maxtor 6 Y080L0 (scsi)",
+	"Disk /dev/sdb: 160086528s",
+	"Sector size (logical/physical): 512B/512B",
+	"Partition Table: gpt",
+	"Disk Flags: pmbr_boot",
+	"",
+	"Number  Start      End         Size        File system  Name  Flags",
+	" 1      2048s      32016383s   32014336s",
+	" 2      32016384s  160086015s  128069632s",
+	""
+    };
+
+    vector<string> output = {
+	"device:/dev/sdb label:GPT region:[0, 160086528, 512 B] gpt-pmbr-boot",
+	"num:1 region:[2048, 32014336, 512 B] type:primary id:131",
+	"num:2 region:[32016384, 128069632, 512 B] type:primary id:131"
+    };
+
+    check("/dev/sdb", input, output);
+}
+
 
 BOOST_AUTO_TEST_CASE(parse_dasd_good)
 {
