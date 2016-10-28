@@ -89,7 +89,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
     vector<string> output = {
 	"device:/dev/sda label:GPT region:[0, 976773168, 512 B]",
 	"num:1 region:[2048, 1026048, 512 B] type:primary id:12",
-	"num:2 region:[1028096, 1028096, 512 B] type:primary id:131 boot",
+	"num:2 region:[1028096, 1028096, 512 B] type:primary id:131 legacy-boot",
 	"num:3 region:[2056192, 293042176, 512 B] type:primary id:131",
 	"num:4 region:[295098368, 293042176, 512 B] type:primary id:131",
 	"num:5 region:[588140544, 4208640, 512 B] type:primary id:130",
