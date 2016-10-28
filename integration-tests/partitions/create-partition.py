@@ -52,6 +52,8 @@ if not good_partition_slot:
 partition = partition_table.create_partition(good_partition_slot.name, good_partition_slot.region,
                                              type)
 
+#partition.set_boot(True)
+
 print staging
 
 commit(storage)
