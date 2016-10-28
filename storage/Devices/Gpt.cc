@@ -77,9 +77,9 @@ namespace storage
 
 
     bool
-    Gpt::get_enlarge() const
+    Gpt::is_enlarge() const
     {
-	return get_impl().get_enlarge();
+	return get_impl().is_enlarge();
     }
 
 
@@ -87,6 +87,20 @@ namespace storage
     Gpt::set_enlarge(bool enlarge)
     {
 	get_impl().set_enlarge(enlarge);
+    }
+
+
+    bool
+    Gpt::is_pmbr_boot() const
+    {
+	return get_impl().is_pmbr_boot();
+    }
+
+
+    void
+    Gpt::set_pmbr_boot(bool pmbr_boot)
+    {
+	get_impl().set_pmbr_boot(pmbr_boot);
     }
 
 

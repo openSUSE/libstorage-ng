@@ -40,7 +40,7 @@ namespace storage
 
     Parted::Parted(const string& device)
 	: device(device), label(PtType::PT_UNKNOWN), region(), implicit(false),
-	  gpt_enlarge(false)
+	  gpt_enlarge(false), gpt_pmbr_boot(false)
     {
 	SystemCmd cmd(PARTEDBIN " --script " + quote(device) + " unit s print", SystemCmd::DoThrow);
 
@@ -79,6 +79,7 @@ namespace storage
 	implicit = false;
 	gpt_enlarge = false;
 	gpt_fix_backup = false;
+	gpt_pmbr_boot = false;
 	entries.clear();
 
 	vector<string>::const_iterator pos;
@@ -179,10 +180,13 @@ namespace storage
 	    s << " implicit";
 
 	if (parted.gpt_enlarge)
-	    s << " gpt_enlarge";
+	    s << " gpt-enlarge";
 
 	if (parted.gpt_fix_backup)
-	    s << " gpt_fix_backup";
+	    s << " gpt-fix-backup";
+
+	if (parted.gpt_pmbr_boot)
+	    s << " gpt-pmbr-boot";
 
 	s << endl;
 
@@ -222,6 +226,7 @@ namespace storage
     Parted::scanDiskFlags(const string& line)
     {
 	implicit = boost::contains(line, "implicit_partition_table");
+	gpt_pmbr_boot = boost::contains(line, "pmbr_boot");
     }
 
 

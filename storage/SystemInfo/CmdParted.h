@@ -70,7 +70,7 @@ namespace storage
 	/**
 	 * Get the disk label type as enum PtType.
 	 */
-	PtType getLabel() const { return label; }
+	PtType get_label() const { return label; }
 
 	/**
 	 * Region spanning whole device. Used to report device size in sectors
@@ -83,19 +83,24 @@ namespace storage
 	 * on that disk yet. This function returns if this is the case for this
 	 * device.
 	 */
-	bool getImplicit() const { return implicit; }
+	bool is_implicit() const { return implicit; }
 
 	/**
 	 * Special for GPT disk labels: If disk was enlarged, the backup
 	 * partition table at the end of the disk might need to be moved to the
 	 * new actual end of the disk. This function returns that flag.
 	 */
-	bool getGptEnlarge() const { return gpt_enlarge; }
+	bool is_gpt_enlarge() const { return gpt_enlarge; }
 
 	/**
 	 * Special for GPT disk labels: True if the backup GPT is broken.
 	 */
-	bool getGptFixBackup() const { return gpt_fix_backup; }
+	bool is_gpt_fix_backup() const { return gpt_fix_backup; }
+
+	/**
+	 * Special for GPT disk labels: True if the protective MBR boot flag is set.
+	 */
+	bool is_gpt_pmbr_boot() const { return gpt_pmbr_boot; }
 
 	/**
 	 * Get the partition entries.
@@ -144,6 +149,7 @@ namespace storage
 	bool implicit;
 	bool gpt_enlarge;
 	bool gpt_fix_backup;
+	bool gpt_pmbr_boot;
 	vector<Entry> entries;
 	vector<string> stderr;
 

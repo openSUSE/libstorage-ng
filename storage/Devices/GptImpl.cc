@@ -45,9 +45,10 @@ namespace storage
 
 
     Gpt::Impl::Impl(const xmlNode* node)
-	: PartitionTable::Impl(node), enlarge(false)
+	: PartitionTable::Impl(node), enlarge(false), pmbr_boot(false)
     {
 	getChildValue(node, "enlarge", enlarge);
+	getChildValue(node, "pmbr-boot", pmbr_boot);
     }
 
 
@@ -60,8 +61,8 @@ namespace storage
 
 	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 
-	if (parted.getGptEnlarge())
-	    enlarge = true;
+	enlarge = parted.is_gpt_enlarge();
+	pmbr_boot = parted.is_gpt_pmbr_boot();
     }
 
 
@@ -71,6 +72,7 @@ namespace storage
 	PartitionTable::Impl::save(node);
 
 	setChildValueIf(node, "enlarge", enlarge, enlarge);
+	setChildValueIf(node, "pmbr-boot", pmbr_boot, pmbr_boot);
     }
 
 
@@ -114,7 +116,7 @@ namespace storage
 	if (!PartitionTable::Impl::equal(rhs))
 	    return false;
 
-	return enlarge == rhs.enlarge;
+	return enlarge == rhs.enlarge && pmbr_boot == rhs.pmbr_boot;
     }
 
 
@@ -126,6 +128,7 @@ namespace storage
 	PartitionTable::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "enlarge", enlarge, rhs.enlarge);
+	storage::log_diff(log, "pmbr-boot", pmbr_boot, rhs.pmbr_boot);
     }
 
 
@@ -134,8 +137,11 @@ namespace storage
     {
 	PartitionTable::Impl::print(out);
 
-	if (get_enlarge())
+	if (is_enlarge())
 	    out << " enlarge";
+
+	if (is_pmbr_boot())
+	    out << " pmbr-boot";
     }
 
 
