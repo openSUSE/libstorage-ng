@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2016 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,7 +41,14 @@ namespace storage
 	bool is_enlarge() const;
 	void set_enlarge(bool enlarge);
 
+	/**
+	 * Query the protective MBR boot flag.
+	 */
 	bool is_pmbr_boot() const;
+
+	/**
+	 * Set the protective MBR boot flag.
+	 */
 	void set_pmbr_boot(bool pmbr_boot);
 
     public:

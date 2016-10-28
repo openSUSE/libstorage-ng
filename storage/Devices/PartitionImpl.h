@@ -74,14 +74,19 @@ namespace storage
 	unsigned int get_id() const { return id; }
 	void set_id(unsigned int id) { Impl::id = id; }
 
-	bool get_boot() const { return boot; }
-	void set_boot(bool boot) { Impl::boot = boot; }
+	bool is_boot() const { return boot; }
+	void set_boot(bool boot);
+
+	bool is_legacy_boot() const { return legacy_boot; }
+	void set_legacy_boot(bool legacy_boot);
 
 	void update_udev_path_and_ids();
 
 	virtual ResizeInfo detect_resize_info() const override;
 
+	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
+
 	const Partitionable* get_partitionable() const;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
@@ -102,6 +107,12 @@ namespace storage
 	virtual Text do_set_id_text(Tense tense) const;
 	virtual void do_set_id() const;
 
+	virtual Text do_set_boot_text(Tense tense) const;
+	virtual void do_set_boot() const;
+
+	virtual Text do_set_legacy_boot_text(Tense tense) const;
+	virtual void do_set_legacy_boot() const;
+
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
@@ -115,6 +126,7 @@ namespace storage
 	PartitionType type;
 	unsigned int id;
 	bool boot;
+	bool legacy_boot;
 
     };
 
@@ -127,6 +139,30 @@ namespace storage
 	public:
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class SetBoot : public Modify
+	{
+	public:
+
+	    SetBoot(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class SetLegacyBoot : public Modify
+	{
+	public:
+
+	    SetLegacyBoot(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;

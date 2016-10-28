@@ -59,6 +59,8 @@ namespace storage
 
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
@@ -79,6 +81,9 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() const override;
 
+	virtual Text do_set_pmbr_boot_text(Tense tense) const;
+	virtual void do_set_pmbr_boot() const;
+
     private:
 
 	bool enlarge;
@@ -86,6 +91,22 @@ namespace storage
 
     };
 
+
+    namespace Action
+    {
+
+	class SetPmbrBoot : public Modify
+	{
+	public:
+
+	    SetPmbrBoot(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+    }
 }
 
 #endif

@@ -71,8 +71,27 @@ namespace storage
 	unsigned int get_id() const;
 	void set_id(unsigned int id);
 
-	bool get_boot() const;
+	/**
+	 * Query the boot flag of the partition.
+	 */
+	bool is_boot() const;
+
+	/**
+	 * Set the boot flag of the partition. Only supported on Msdos. Note:
+	 * The boot flag known in parted for Gpt sets the partition id to ESP
+	 * and is not a discrete flag.
+	 */
 	void set_boot(bool boot);
+
+	/**
+	 * Query the legacy boot flag of the partition.
+	 */
+	bool is_legacy_boot() const;
+
+	/**
+	 * Set the legacy boot flag of the partition. Only supported on Gpt.
+	 */
+	void set_legacy_boot(bool legacy_boot);
 
 	const PartitionTable* get_partition_table() const;
 	const Partitionable* get_partitionable() const;
