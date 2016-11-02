@@ -28,6 +28,7 @@ Implemented:
 
 * For MS-DOS and GPT (creating, deleting and resizing partitions).
 * Topology calculations.
+* Support for boot, legacy_boot and pmbr_boot flags.
 
 Missing:
 

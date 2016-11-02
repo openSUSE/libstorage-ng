@@ -206,6 +206,9 @@ namespace storage
 	if (entry.boot)
 	    s << " boot";
 
+	if (entry.legacy_boot)
+	    s << " legacy-boot";
+
 	return s;
     }
 
@@ -335,7 +338,11 @@ namespace storage
 	list<string> flags = splitString(TInfo, ",");
 	y2mil("TInfo:" << TInfo << " flags:" << flags);
 
-	entry.boot = contains(flags, "boot");
+	if (label == PtType::MSDOS)
+	    entry.boot = contains(flags, "boot");
+
+	if (label == PtType::GPT)
+	    entry.legacy_boot = contains(flags, "legacy_boot");
 
 	entry.id = ID_LINUX;
 

@@ -71,8 +71,36 @@ namespace storage
 	unsigned int get_id() const;
 	void set_id(unsigned int id);
 
-	bool get_boot() const;
+	/**
+	 * Query the boot flag of the partition.
+	 */
+	bool is_boot() const;
+
+	/**
+	 * Set the boot flag of the partition. Only supported on Msdos.
+	 *
+	 * Notes:
+	 *
+	 * 1. To be
+	 * [standard-conformant](https://en.wikipedia.org/wiki/Master_boot_record),
+	 * setting the boot flag on a partition clears the boot flag on all
+	 * other partitions of the partition table.
+	 *
+	 * 2. Partitions on GPT have no boot flag, "set <nr> boot on" with
+	 * parted on GPT partitions only sets the partition type to EFI System
+	 * Partition.
+	 */
 	void set_boot(bool boot);
+
+	/**
+	 * Query the legacy boot flag of the partition.
+	 */
+	bool is_legacy_boot() const;
+
+	/**
+	 * Set the legacy boot flag of the partition. Only supported on Gpt.
+	 */
+	void set_legacy_boot(bool legacy_boot);
 
 	const PartitionTable* get_partition_table() const;
 	const Partitionable* get_partitionable() const;

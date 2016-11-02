@@ -98,6 +98,35 @@ namespace storage
 
 
     void
+    Gpt::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Create(get_sid()));
+
+	if (pmbr_boot)
+	    actions.push_back(new Action::SetPmbrBoot(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Gpt::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	PartitionTable::Impl::add_modify_actions(actiongraph, lhs_base);
+
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (pmbr_boot != lhs.pmbr_boot)
+	{
+	    Action::Base* action = new Action::SetPmbrBoot(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+    }
+
+
+    void
     Gpt::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	vector<Action::Base*> actions;
@@ -174,4 +203,67 @@ namespace storage
 	    ST_THROW(Exception("create gpt failed"));
     }
 
+
+    Text
+    Gpt::Impl::do_set_pmbr_boot_text(Tense tense) const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	Text text;
+
+	if (is_pmbr_boot())
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by device name (e.g. /dev/sda)
+			  _("Set protective MBR boot flag of GPT on %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by device name (e.g. /dev/sda)
+			  _("Setting protective MBR boot flag of GPT on %1$s"));
+	else
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by device name (e.g. /dev/sda)
+			  _("Clear protective MBR boot flag of GPT on %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by device name (e.g. /dev/sda)
+			  _("Clearing protective MBR boot flag of GPT on %1$s"));
+
+	return sformat(text, partitionable->get_name().c_str());
+    }
+
+
+    void
+    Gpt::Impl::do_set_pmbr_boot() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
+	    " disk_set pmbr_boot " + (is_pmbr_boot() ? "on" : "off");
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set pmbr boot failed"));
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	SetPmbrBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Gpt* gpt = to_gpt(get_device_rhs(actiongraph));
+	    return gpt->get_impl().do_set_pmbr_boot_text(tense);
+	}
+
+
+	void
+	SetPmbrBoot::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Gpt* gpt = to_gpt(get_device_rhs(actiongraph));
+	    gpt->get_impl().do_set_pmbr_boot();
+	}
+
+    }
 }

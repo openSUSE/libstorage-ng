@@ -119,9 +119,9 @@ namespace storage
 
 
     bool
-    Partition::get_boot() const
+    Partition::is_boot() const
     {
-	return get_impl().get_boot();
+	return get_impl().is_boot();
     }
 
 
@@ -129,6 +129,20 @@ namespace storage
     Partition::set_boot(bool boot)
     {
 	get_impl().set_boot(boot);
+    }
+
+
+    bool
+    Partition::is_legacy_boot() const
+    {
+	return get_impl().is_legacy_boot();
+    }
+
+
+    void
+    Partition::set_legacy_boot(bool boot)
+    {
+	get_impl().set_legacy_boot(boot);
     }
 
 

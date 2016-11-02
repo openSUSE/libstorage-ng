@@ -29,6 +29,7 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
@@ -53,13 +54,15 @@ namespace storage
 
 
     Partition::Impl::Impl(const string& name, const Region& region, PartitionType type)
-	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type)), boot(false)
+	: BlkDevice::Impl(name, region), type(type), id(default_id_for_type(type)), boot(false),
+	  legacy_boot(false)
     {
     }
 
 
     Partition::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false)
+	: BlkDevice::Impl(node), type(PartitionType::PRIMARY), id(ID_LINUX), boot(false),
+	  legacy_boot(false)
     {
 	string tmp;
 
@@ -67,6 +70,7 @@ namespace storage
 	    type = toValueWithFallback(tmp, PartitionType::PRIMARY);
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
+	getChildValue(node, "legacy-boot", legacy_boot);
     }
 
 
@@ -84,6 +88,7 @@ namespace storage
 
 	id = entry.id;
 	boot = entry.boot;
+	legacy_boot = entry.legacy_boot;
     }
 
 
@@ -95,6 +100,7 @@ namespace storage
 	setChildValue(node, "type", toString(type));
 	setChildValueIf(node, "id", id, id != 0);
 	setChildValueIf(node, "boot", boot, boot);
+	setChildValueIf(node, "legacy-boot", legacy_boot, legacy_boot);
     }
 
 
@@ -147,6 +153,18 @@ namespace storage
     }
 
 
+    PartitionTable*
+    Partition::Impl::get_partition_table()
+    {
+	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
+
+	if (type == PartitionType::LOGICAL)
+	    vertex = get_devicegraph()->get_impl().parent(vertex);
+
+	return to_partition_table(get_devicegraph()->get_impl()[vertex]);
+    }
+
+
     const PartitionTable*
     Partition::Impl::get_partition_table() const
     {
@@ -178,6 +196,12 @@ namespace storage
 	if (default_id_for_type(type) != id)
 	    actions.push_back(new Action::SetPartitionId(get_sid()));
 
+	if (boot)
+	    actions.push_back(new Action::SetBoot(get_sid()));
+
+	if (legacy_boot)
+	    actions.push_back(new Action::SetLegacyBoot(get_sid()));
+
 	actiongraph.add_chain(actions);
     }
 
@@ -204,6 +228,18 @@ namespace storage
 	    Action::Base* action = new Action::SetPartitionId(get_sid());
 	    actiongraph.add_vertex(action);
 	}
+
+	if (boot != lhs.boot)
+	{
+	    Action::Base* action = new Action::SetBoot(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+
+	if (legacy_boot != lhs.legacy_boot)
+	{
+	    Action::Base* action = new Action::SetLegacyBoot(get_sid());
+	    actiongraph.add_vertex(action);
+	}
     }
 
 
@@ -226,7 +262,8 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return type == rhs.type && id == rhs.id && boot == rhs.boot;
+	return type == rhs.type && id == rhs.id && boot == rhs.boot &&
+	    legacy_boot == rhs.legacy_boot;
     }
 
 
@@ -240,6 +277,7 @@ namespace storage
 	storage::log_diff_enum(log, "type", type, rhs.type);
 	storage::log_diff_hex(log, "id", id, rhs.id);
 	storage::log_diff(log, "boot", boot, rhs.boot);
+	storage::log_diff(log, "legacy-boot", legacy_boot, rhs.legacy_boot);
     }
 
 
@@ -265,6 +303,34 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	partitionable->get_impl().process_udev_ids(udev_ids);
+    }
+
+
+    void
+    Partition::Impl::set_boot(bool boot)
+    {
+	if (!is_msdos(get_partition_table()))
+	    ST_THROW(Exception("set_boot only supported for Msdos"));
+
+	if (boot && !Impl::boot)
+	{
+	    PartitionTable* partition_table = get_partition_table();
+
+	    for (Partition* partition : partition_table->get_partitions())
+		partition->get_impl().boot = false;
+	}
+
+	Impl::boot = boot;
+    }
+
+
+    void
+    Partition::Impl::set_legacy_boot(bool legacy_boot)
+    {
+	if (!is_gpt(get_partition_table()))
+	    ST_THROW(Exception("set_legacy_boot only supported for Gpt"));
+
+	Impl::legacy_boot = legacy_boot;
     }
 
 
@@ -447,6 +513,88 @@ namespace storage
 
 
     Text
+    Partition::Impl::do_set_boot_text(Tense tense) const
+    {
+	Text text;
+
+	if (is_boot())
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Set boot flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Setting boot flag of partition %1$s"));
+	else
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clear boot flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clearing boot flag of partition %1$s"));
+
+	return sformat(text, get_name().c_str());
+    }
+
+
+    void
+    Partition::Impl::do_set_boot() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	    to_string(get_number()) + " boot " + (is_boot() ? "on" : "off");
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set boot failed"));
+    }
+
+
+    Text
+    Partition::Impl::do_set_legacy_boot_text(Tense tense) const
+    {
+	Text text;
+
+	if (is_legacy_boot())
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Set legacy boot flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Setting legacy boot flag of partition %1$s"));
+	else
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clear legacy boot flag of partition %1$s"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1)
+			  _("Clearing legacy boot flag of partition %1$s"));
+
+	return sformat(text, get_name().c_str());
+    }
+
+
+    void
+    Partition::Impl::do_set_legacy_boot() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set legacy_boot failed"));
+    }
+
+
+    Text
     Partition::Impl::do_delete_text(Tense tense) const
     {
 	Text text = tenser(tense,
@@ -556,6 +704,38 @@ namespace storage
 	{
 	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
 	    partition->get_impl().do_set_id();
+	}
+
+
+	Text
+	SetBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    return partition->get_impl().do_set_boot_text(tense);
+	}
+
+
+	void
+	SetBoot::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    partition->get_impl().do_set_boot();
+	}
+
+
+	Text
+	SetLegacyBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    return partition->get_impl().do_set_legacy_boot_text(tense);
+	}
+
+
+	void
+	SetLegacyBoot::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    partition->get_impl().do_set_legacy_boot();
 	}
 
     }
