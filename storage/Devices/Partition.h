@@ -77,9 +77,18 @@ namespace storage
 	bool is_boot() const;
 
 	/**
-	 * Set the boot flag of the partition. Only supported on Msdos. Note:
-	 * The boot flag known in parted for Gpt sets the partition id to ESP
-	 * and is not a discrete flag.
+	 * Set the boot flag of the partition. Only supported on Msdos.
+	 *
+	 * Notes:
+	 *
+	 * 1. To be
+	 * [standard-conformant](https://en.wikipedia.org/wiki/Master_boot_record),
+	 * setting the boot flag on a partition clears the boot flag on all
+	 * other partitions of the partition table.
+	 *
+	 * 2. Partitions on GPT have no boot flag, "set <nr> boot on" with
+	 * parted on GPT partitions only sets the partition type to EFI System
+	 * Partition.
 	 */
 	void set_boot(bool boot);
 
