@@ -74,20 +74,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
-	/**
-	 * Calculates the number of extents in the volume group.
-	 */
 	unsigned long long number_of_extents() const { return region.get_length(); }
-
-	/**
-	 * Calculates the number of used extents in the volume group. May
-	 * be larger than the number of extents in the volume group.
-	 */
 	unsigned long long number_of_used_extents() const;
-
-	/**
-	 * Calculates the number of free extents in the volume group.
-	 */
 	unsigned long long number_of_free_extents() const;
 
 	const string& get_vg_name() const { return vg_name; }
