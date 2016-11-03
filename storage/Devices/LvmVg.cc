@@ -128,6 +128,27 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmVg::number_of_extents() const
+    {
+	return get_impl().number_of_extents();
+    }
+
+
+    unsigned long long
+    LvmVg::number_of_used_extents() const
+    {
+	return get_impl().number_of_used_extents();
+    }
+
+
+    unsigned long long
+    LvmVg::number_of_free_extents() const
+    {
+	return get_impl().number_of_free_extents();
+    }
+
+
     const string&
     LvmVg::get_vg_name() const
     {

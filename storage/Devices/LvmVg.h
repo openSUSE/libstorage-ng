@@ -85,6 +85,22 @@ namespace storage
 	void set_extent_size(unsigned long long extent_size);
 
 	/**
+	 * Calculates the number of extents in the volume group.
+	 */
+	unsigned long long number_of_extents() const;
+
+	/**
+	 * Calculates the number of used extents in the volume group. May
+	 * be larger than the number of extents in the volume group.
+	 */
+	unsigned long long number_of_used_extents() const;
+
+	/**
+	 * Calculates the number of free extents in the volume group.
+	 */
+	unsigned long long number_of_free_extents() const;
+
+	/**
 	 * Adds a block device as a physical volume to the volume group. If
 	 * there is not a physical volume on the block device it will be
 	 * created.
