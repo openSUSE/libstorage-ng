@@ -230,6 +230,13 @@ namespace storage
 
 
     bool
+    Devicegraph::Impl::is_staging() const
+    {
+	return &(get_storage()->get_staging()->get_impl()) == this;
+    }
+
+
+    bool
     Devicegraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;

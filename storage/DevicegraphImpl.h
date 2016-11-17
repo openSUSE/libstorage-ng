@@ -89,6 +89,11 @@ namespace storage
 	 */
 	bool is_probed() const;
 
+	/**
+	 * Check if this devicegraph is the staging devicegraph.
+	 */
+	bool is_staging() const;
+
 	bool empty() const;
 
 	size_t num_devices() const;

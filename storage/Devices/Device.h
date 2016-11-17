@@ -82,6 +82,21 @@ namespace storage
 	bool operator==(const Device& rhs) const;
 	bool operator!=(const Device& rhs) const;
 
+	/**
+	 * Checks if the device exists in the devicegraph.
+	 */
+	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
+
+	/**
+	 * Checks if the device exists in the probed devicegraph.
+	 */
+	bool exists_in_probed() const;
+
+	/**
+	 * Checks if the device exists in the staging devicegraph.
+	 */
+	bool exists_in_staging() const;
+
 	std::string get_displayname() const;
 
 	virtual ResizeInfo detect_resize_info() const;
