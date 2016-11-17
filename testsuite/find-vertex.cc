@@ -34,4 +34,8 @@ BOOST_AUTO_TEST_CASE(find_vertex)
     BOOST_CHECK_EQUAL(BlkDevice::find_by_name(devicegraph, "/dev/sda"), sda);
     BOOST_CHECK_EQUAL(BlkDevice::find_by_name(devicegraph, "/dev/sda1"), sda1);
     BOOST_CHECK_THROW(BlkDevice::find_by_name(devicegraph, "/dev/sda2"), DeviceNotFound);
+
+    BOOST_CHECK(sda->exists_in_devicegraph(devicegraph));
+    BOOST_CHECK(!sda->exists_in_probed());
+    BOOST_CHECK(sda->exists_in_staging());
 }

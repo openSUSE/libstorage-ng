@@ -73,6 +73,27 @@ namespace storage
     }
 
 
+    bool
+    Device::exists_in_devicegraph(const Devicegraph* devicegraph) const
+    {
+	return get_impl().exists_in_devicegraph(devicegraph);
+    }
+
+
+    bool
+    Device::exists_in_probed() const
+    {
+	return get_impl().exists_in_probed();
+    }
+
+
+    bool
+    Device::exists_in_staging() const
+    {
+	return get_impl().exists_in_staging();
+    }
+
+
     void
     Device::create(Devicegraph* devicegraph)
     {

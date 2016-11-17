@@ -97,6 +97,10 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
+	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
+	bool exists_in_probed() const;
+	bool exists_in_staging() const;
+
 	const Storage* get_storage() const;
 
 	sid_t get_sid() const { return sid; }

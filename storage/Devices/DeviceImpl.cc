@@ -27,6 +27,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -62,6 +63,27 @@ namespace storage
 	    return false;
 
 	return equal(rhs);
+    }
+
+
+    bool
+    Device::Impl::exists_in_devicegraph(const Devicegraph* devicegraph) const
+    {
+	return devicegraph->device_exists(sid);
+    }
+
+
+    bool
+    Device::Impl::exists_in_probed() const
+    {
+	return exists_in_devicegraph(get_storage()->get_probed());
+    }
+
+
+    bool
+    Device::Impl::exists_in_staging() const
+    {
+	return exists_in_devicegraph(get_storage()->get_staging());
     }
 
 
