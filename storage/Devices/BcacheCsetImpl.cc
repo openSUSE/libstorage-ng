@@ -30,6 +30,7 @@
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/User.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -64,6 +65,13 @@ namespace storage
 
 	if (!get_uuid().empty() && !is_valid_uuid(get_uuid()))
 	    ST_THROW(Exception("invalid uuid"));
+    }
+
+
+    uint64_t
+    BcacheCset::Impl::used_features() const
+    {
+	return UF_BCACHE | Device::Impl::used_features();
     }
 
 

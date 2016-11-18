@@ -60,6 +60,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual uint64_t used_features() const override;
+
 	unsigned int get_number() const;
 
 	const BlkDevice* get_blk_device() const;

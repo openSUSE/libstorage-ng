@@ -47,12 +47,13 @@ enum : uint64_t
     UF_MDRAID = 1 << 13,
     UF_DMRAID = 1 << 14,
     UF_DMMULTIPATH = 1 << 15,
+    UF_BCACHE = 1 << 16,
 
-    UF_ISCSI = 1 << 16,
-    UF_FCOE = 1 << 17,
-    UF_FC = 1 << 18,
+    UF_ISCSI = 1 << 17,
+    UF_FCOE = 1 << 18,
+    UF_FC = 1 << 19,
 
-    UF_QUOTA = 1 << 19
+    UF_QUOTA = 1 << 20
 };
 
 

@@ -70,6 +70,8 @@ namespace storage
 
 	virtual void check() const override;
 
+	virtual uint64_t used_features() const override;
+
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
