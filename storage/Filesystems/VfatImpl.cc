@@ -29,6 +29,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/VfatImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -70,6 +71,13 @@ namespace storage
 	    content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
+    }
+
+
+    uint64_t
+    Vfat::Impl::used_features() const
+    {
+	return UF_VFAT | Filesystem::Impl::used_features();
     }
 
 

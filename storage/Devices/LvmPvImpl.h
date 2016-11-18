@@ -72,6 +72,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const override;
 
+	virtual uint64_t used_features() const override;
+
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);

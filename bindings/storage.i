@@ -33,6 +33,7 @@
 #include "storage/Utils/Topology.h"
 #include "storage/Utils/Remote.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 #include "storage/Devices/Device.h"
 #include "storage/Filesystems/Filesystem.h"
@@ -85,6 +86,7 @@
 %include "../../storage/Utils/Topology.h"
 %include "../../storage/Utils/Remote.h"
 %include "../../storage/FreeInfo.h"
+%include "../../storage/UsedFeatures.h"
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Filesystems/Filesystem.h"

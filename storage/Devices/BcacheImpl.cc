@@ -29,6 +29,7 @@
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -98,6 +99,13 @@ namespace storage
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
 	User::create(probed, blk_device, get_device());
+    }
+
+
+    uint64_t
+    Bcache::Impl::used_features() const
+    {
+	return UF_BCACHE | BlkDevice::Impl::used_features();
     }
 
 

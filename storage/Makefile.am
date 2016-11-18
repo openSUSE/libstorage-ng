@@ -21,6 +21,7 @@ libstorage_ng_la_SOURCES =				\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
 	FreeInfo.h		FreeInfo.cc		\
+	UsedFeatures.h					\
 	Version.h
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
@@ -42,5 +43,6 @@ pkginclude_HEADERS =		\
 	Devicegraph.h		\
 	Actiongraph.h		\
 	Graphviz.h		\
-	FreeInfo.h
+	FreeInfo.h		\
+	UsedFeatures.h
 

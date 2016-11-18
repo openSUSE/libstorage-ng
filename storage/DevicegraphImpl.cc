@@ -222,6 +222,21 @@ namespace storage
     }
 
 
+    uint64_t
+    Devicegraph::Impl::used_features() const
+    {
+	uint64_t ret = 0;
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Device* device = graph[vertex].get();
+	    ret |= device->get_impl().used_features();
+	}
+
+	return ret;
+    }
+
+
     bool
     Devicegraph::Impl::is_probed() const
     {

@@ -31,6 +31,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -56,6 +57,13 @@ namespace storage
 	resize_info.combine(ResizeInfo(true, 40 * MiB, 16 * EiB));
 
 	return resize_info;
+    }
+
+
+    uint64_t
+    Xfs::Impl::used_features() const
+    {
+	return UF_XFS | Filesystem::Impl::used_features();
     }
 
 

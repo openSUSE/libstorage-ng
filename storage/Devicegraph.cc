@@ -343,6 +343,13 @@ namespace storage
     }
 
 
+    uint64_t
+    Devicegraph::used_features() const
+    {
+	return get_impl().used_features();
+    }
+
+
     void
     Devicegraph::copy(Devicegraph& dest) const
     {

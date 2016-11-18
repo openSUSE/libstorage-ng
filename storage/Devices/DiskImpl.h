@@ -70,6 +70,8 @@ namespace storage
 	static void probe_disks(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	virtual uint64_t used_features() const override;
+
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 

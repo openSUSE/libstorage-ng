@@ -82,6 +82,8 @@ namespace storage
 
 	void check() const;
 
+	uint64_t used_features() const;
+
 	void log_diff(std::ostream& log, const Impl& rhs) const;
 
 	/**

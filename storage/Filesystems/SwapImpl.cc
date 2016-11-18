@@ -31,6 +31,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -59,6 +60,13 @@ namespace storage
     Swap::Impl::detect_content_info() const
     {
 	return ContentInfo();
+    }
+
+
+    uint64_t
+    Swap::Impl::used_features() const
+    {
+	return UF_SWAP | Filesystem::Impl::used_features();
     }
 
 

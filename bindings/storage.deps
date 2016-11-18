@@ -36,6 +36,7 @@ DEPENDENCIES =						\
 	${top_srcdir}/storage/Holders/MdUser.h		\
 	${top_srcdir}/storage/Storage.h			\
 	${top_srcdir}/storage/FreeInfo.h		\
+	${top_srcdir}/storage/UsedFeatures.h		\
 	${top_srcdir}/storage/SystemInfo/Arch.h		\
 	${top_srcdir}/storage/Utils/Swig.h		\
 	${top_srcdir}/storage/Utils/Logger.h		\

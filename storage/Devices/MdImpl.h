@@ -95,6 +95,8 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
+	virtual uint64_t used_features() const override;
+
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() const override;
 
