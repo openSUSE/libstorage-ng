@@ -41,6 +41,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -301,6 +302,13 @@ namespace storage
 	    ST_THROW(Exception("md name has no number"));
 
 	return atoi(get_name().substr(pos + 1).c_str());
+    }
+
+
+    uint64_t
+    Md::Impl::used_features() const
+    {
+	return UF_MDRAID | Partitionable::Impl::used_features();
     }
 
 

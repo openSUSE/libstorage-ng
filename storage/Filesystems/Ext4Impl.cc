@@ -31,6 +31,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -56,6 +57,13 @@ namespace storage
 	resize_info.combine(ResizeInfo(true, 32 * MiB, 16 * TiB));
 
 	return resize_info;
+    }
+
+
+    uint64_t
+    Ext4::Impl::used_features() const
+    {
+	return UF_EXT4 | Filesystem::Impl::used_features();
     }
 
 

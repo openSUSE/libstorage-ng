@@ -128,6 +128,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent);
 
+	virtual uint64_t used_features() const { return 0; }
+
 	/**
 	 * Add create actions for the Device.
 	 * @param actiongraph The Actiongraph fow which actions are added.

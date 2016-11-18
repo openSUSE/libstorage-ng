@@ -36,6 +36,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -108,6 +109,23 @@ namespace storage
 	Lsscsi::Entry entry;
 	if (systeminfo.getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
+    }
+
+
+    uint64_t
+    Disk::Impl::used_features() const
+    {
+	uint64_t ret = 0;
+
+	switch (transport)
+	{
+	    case Transport::FC: ret = UF_FC; break;
+	    case Transport::FCOE: ret = UF_FCOE; break;
+	    case Transport::ISCSI: ret = UF_ISCSI; break;
+	    default: break;
+	}
+
+	return ret | Partitionable::Impl::used_features();
     }
 
 

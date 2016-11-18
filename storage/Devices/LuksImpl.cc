@@ -31,6 +31,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -182,6 +183,13 @@ namespace storage
 	// TODO handle metadata size
 
 	return resize_info;
+    }
+
+
+    uint64_t
+    Luks::Impl::used_features() const
+    {
+	return UF_LUKS | Encryption::Impl::used_features();
     }
 
 

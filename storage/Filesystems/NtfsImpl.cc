@@ -31,6 +31,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/NtfsImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -101,6 +102,13 @@ namespace storage
 	content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
 
 	return content_info;
+    }
+
+
+    uint64_t
+    Ntfs::Impl::used_features() const
+    {
+	return UF_NTFS | Filesystem::Impl::used_features();
     }
 
 

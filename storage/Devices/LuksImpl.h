@@ -71,6 +71,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const override;
 
+	virtual uint64_t used_features() const override;
+
 	virtual void do_create() const override;
 
 	virtual void do_delete() const override;

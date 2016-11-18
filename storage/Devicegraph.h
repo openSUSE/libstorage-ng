@@ -190,6 +190,11 @@ namespace storage
 
 	void check() const;
 
+	/**
+	 * Calculates a bit-field with the used features of the devicegraph.
+	 */
+	uint64_t used_features() const;
+
 	// TODO move to Impl
 	void copy(Devicegraph& dest) const;
 

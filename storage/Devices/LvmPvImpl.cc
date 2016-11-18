@@ -34,6 +34,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/FindBy.h"
 #include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -156,6 +157,13 @@ namespace storage
 	}
 
 	return resize_info;
+    }
+
+
+    uint64_t
+    LvmPv::Impl::used_features() const
+    {
+	return UF_LVM | Device::Impl::used_features();
     }
 
 
