@@ -20,3 +20,12 @@ February 2016
 Approved as successor for libstorage and renamed from libstorage-bgl-eval to
 libstorage-ng.
 
+
+November 2016
+-------------
+
+Ability to install a simple bootable system without the compatibility
+layer. Instead the most important YaST modules required for the installation
+have been [adapted to the libstorage-ng
+API](https://lists.opensuse.org/yast-devel/2016-11/msg00043.html).
+
