@@ -32,6 +32,7 @@
 #include <list>
 #include <map>
 #include <set>
+#include <boost/io/ios_state.hpp>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
@@ -134,7 +135,10 @@ namespace storage
 	static_assert(std::is_integral<Type>::value, "not integral");
 
 	if (lhs != rhs)
-	    log << " " << text << ":" << std::hex << lhs << "-->" << rhs << std::dec;
+	{
+	    boost::io::ios_all_saver ias(log);
+	    log << " " << text << ":" << std::showbase << std::hex << lhs << "-->" << rhs;
+	}
     }
 
 
