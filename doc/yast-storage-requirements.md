@@ -191,7 +191,7 @@ File Systems and operations to be supported by new libstorage
 | ReiserFS   |        | X    | X      | Support existing partitions, not allowed to create new  |
 | FAT/VFAT   | X      | X    | X      | for EFI system partition, else? AI for PM to clarify    |
 | NTFS       |        |      | X      | AI for PM                                               |
-| tmpFS      |        |      |        | ignore in libstorag (except mounting)                   |
+| tmpFS      |        |      |        | ignore in libstorage (except mounting)                  |
 | HFS        |        |      |        | drop                                                    |
 | HFS+       |        |      |        | drop                                                    |
 | NFS        |        | X    |        | installation on NFS as root is supported                |
