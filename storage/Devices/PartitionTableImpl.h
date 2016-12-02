@@ -90,7 +90,7 @@ namespace storage
 
 	/**
 	 * Returns whether the value of the partition id enum is useful and
-	 * should be include in e.g. action messages.
+	 * should be included in e.g. action messages.
 	 */
 	virtual bool is_partition_id_value_meaningful() const { return false; }
 
