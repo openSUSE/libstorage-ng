@@ -68,6 +68,10 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual bool is_partition_type_supported(PartitionType type) const override;
+	virtual bool is_partition_id_supported(unsigned int id) const override;
+	virtual bool is_partition_legacy_boot_flag_supported() const override { return true; }
+
 	virtual unsigned int max_primary() const override;
 
 	bool is_enlarge() const { return enlarge; }

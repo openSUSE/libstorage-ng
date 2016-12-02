@@ -134,6 +134,13 @@ namespace storage
     }
 
 
+    bool
+    Msdos::Impl::is_partition_id_supported(unsigned int id) const
+    {
+	return id > 0 && id <= 255;
+    }
+
+
     unsigned int
     Msdos::Impl::max_primary() const
     {

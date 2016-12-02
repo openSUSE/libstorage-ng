@@ -174,6 +174,25 @@ namespace storage
     }
 
 
+    bool
+    Gpt::Impl::is_partition_type_supported(PartitionType type) const
+    {
+	return type == PartitionType::PRIMARY;
+    }
+
+
+    bool
+    Gpt::Impl::is_partition_id_supported(unsigned int id) const
+    {
+	static const vector<unsigned int> supported_ids = {
+	    ID_UNKNOWN, ID_LINUX, ID_SWAP, ID_LVM, ID_RAID, ID_ESP, ID_BIOS_BOOT, ID_PREP,
+	    ID_WINDOWS_BASIC_DATA, ID_MICROSOFT_RESERVED
+	};
+
+	return contains(supported_ids, id);
+    }
+
+
     unsigned int
     Gpt::Impl::max_primary() const
     {

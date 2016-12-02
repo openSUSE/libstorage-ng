@@ -338,11 +338,11 @@ namespace storage
 	list<string> flags = splitString(TInfo, ",");
 	y2mil("TInfo:" << TInfo << " flags:" << flags);
 
-	if (label == PtType::MSDOS)
-	    entry.boot = contains(flags, "boot");
-
-	if (label == PtType::GPT)
-	    entry.legacy_boot = contains(flags, "legacy_boot");
+	// TODO parted has a strange interface to represent partition type
+	// ids. E.g. swap is not displayed based on the id but the partition
+	// content. On GPT it is also not possible to distinguish whether the
+	// id is linux or unknown. Work with upsteam parted to improve the
+	// interface. The line below should then be entry.id = ID_UNKNOWN.
 
 	entry.id = ID_LINUX;
 
@@ -378,76 +378,51 @@ namespace storage
 	{
 	    entry.id = ID_LVM;
 	}
-
-	list<string>::const_iterator it1 = find_if(flags.begin(), flags.end(),
-						   string_starts_with("type="));
-	if (it1 != flags.end())
+	else if (contains(flags, "prep"))
 	{
-	    string val = string(*it1, 5);
+	    entry.id = ID_PREP;
+	}
+	else if (contains(flags, "esp"))
+	{
+	    entry.id = ID_ESP;
+	}
 
-	    if (label != PtType::MAC)
+	if (label == PtType::MSDOS)
+	{
+	    entry.boot = contains(flags, "boot");
+
+	    list<string>::const_iterator it1 = find_if(flags.begin(), flags.end(),
+						       string_starts_with("type="));
+	    if (it1 != flags.end())
 	    {
+		string val = string(*it1, 5);
+
 		int tmp_id = 0;
 		std::istringstream Data2(val);
 		classic(Data2);
 		Data2 >> std::hex >> tmp_id;
-		if( tmp_id>0 )
+		if (tmp_id > 0)
 		{
 		    entry.id = tmp_id;
-		}
-	    }
-	    else
-	    {
-		if ( entry.id == ID_LINUX )
-		{
-		    if ( val.find( "apple_hfs" ) != string::npos ||
-			 val.find( "apple_bootstrap" ) != string::npos )
-		    {
-			entry.id = ID_APPLE_HFS;
-		    }
-		    else if ( val.find( "apple_partition" ) != string::npos ||
-			      val.find( "apple_driver" ) != string::npos ||
-			      val.find( "apple_loader" ) != string::npos ||
-			      val.find( "apple_boot" ) != string::npos ||
-			      val.find( "apple_prodos" ) != string::npos ||
-			      val.find( "apple_fwdriver" ) != string::npos ||
-			      val.find( "apple_patches" ) != string::npos )
-		    {
-			entry.id = ID_APPLE_OTHER;
-		    }
-		    else if ( val.find( "apple_ufs" ) != string::npos )
-		    {
-			entry.id = ID_APPLE_UFS;
-		    }
 		}
 	    }
 	}
 
 	if (label == PtType::GPT)
 	{
-	    if (contains(flags, "boot") && contains_if(flags, string_starts_with("fat")))
-	    {
-		entry.id = ID_GPT_BOOT;
-	    }
-	    if (contains(flags, "hp-service"))
-	    {
-		entry.id = ID_GPT_SERVICE;
-	    }
-	    if (contains(flags, "msftres"))
-	    {
-		entry.id = ID_GPT_MSFTRES;
-	    }
-	    if (contains(flags, "hfs+") || contains(flags, "hfs"))
-	    {
-		entry.id = ID_APPLE_HFS;
-	    }
+	    entry.legacy_boot = contains(flags, "legacy_boot");
+
 	    if (contains(flags, "bios_grub"))
 	    {
-		entry.id = ID_GPT_BIOS;
+		entry.id = ID_BIOS_BOOT;
 	    }
-	    if (contains(flags, "prep"))
+	    else if (contains(flags, "msftdata"))
 	    {
-		entry.id = ID_GPT_PREP;
+		entry.id = ID_WINDOWS_BASIC_DATA;
+	    }
+	    else if (contains(flags, "msftres"))
+	    {
+		entry.id = ID_MICROSOFT_RESERVED;
 	    }
 	}
 

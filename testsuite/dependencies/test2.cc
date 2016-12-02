@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     TsCmpActiongraph::Expected expected({
 	{ "1 - Create GPT on /dev/sda -> 2a" },
 	{ "2a - Create partition /dev/sda1 (16.00 GiB) -> 2b" },
-	{ "2b - Set id of partition /dev/sda1 to Linux LVM (0x8E) -> 3" },
+	{ "2b - Set id of partition /dev/sda1 to Linux LVM -> 3" },
 	{ "3 - Create physical volume on /dev/sda1 -> 4" },
 	{ "4 - Create volume group system (16.00 GiB) -> 5 6" },
 	{ "5 - Create logical volume root (14.00 GiB) on volume group system ->" },

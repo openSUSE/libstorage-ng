@@ -41,13 +41,65 @@ namespace storage
     };
 
 
+    /**
+     * Enum with values used as partition ids.
+     *
+     * For MSDOS the value of the enum is equal to the partition type
+     * byte. For GPT and DASD the value has no special meaning.
+     *
+     * For details about the ids see e.g.
+     * https://en.wikipedia.org/wiki/Partition_type and
+     * https://en.wikipedia.org/wiki/GUID_Partition_Table.
+     */
     enum IdNum : unsigned int {
-	ID_DOS12 = 0x01, ID_DOS16 = 0x06, ID_DOS32 = 0x0c, ID_NTFS = 0x07,
-	ID_EXTENDED = 0x0f, ID_PPC_PREP = 0x41, ID_LINUX = 0x83, ID_SWAP = 0x82,
-	ID_LVM = 0x8e, ID_EFI = 0xef, ID_RAID = 0xfd, ID_APPLE_OTHER = 0x101,
-	ID_APPLE_HFS = 0x102, ID_GPT_BOOT = 0x103, ID_GPT_SERVICE = 0x104,
-	ID_GPT_MSFTRES = 0x105, ID_APPLE_UFS = 0x106, ID_GPT_BIOS = 0x107,
-	ID_GPT_PREP = 0x108
+
+	/** Only for MSDOS. */
+	ID_DOS12 = 0x01,
+
+	/** Only for MSDOS. */
+	ID_DOS16 = 0x06,
+
+	/** Only for MSDOS. */
+	ID_DOS32 = 0x0c,
+
+	/** Only for MSDOS. */
+	ID_NTFS = 0x07,
+
+	/** Only for MSDOS. */
+	ID_EXTENDED = 0x0f,
+
+	/** PPC PReP Boot partition, for MSDOS and GPT. */
+	ID_PREP = 0x41,
+
+	/** For MSDOS and GPT. */
+	ID_LINUX = 0x83,
+
+	/** Swap partition, for MSDOS and GPT, but GPT only when the
+	    partition is created. */
+	ID_SWAP = 0x82,
+
+	/** LVM partition, for MSDOS and GPT. */
+	ID_LVM = 0x8e,
+
+	/** RAID partition, for MSDOS and GPT. */
+	ID_RAID = 0xfd,
+
+	/** EFI System Partition, for MSDOS and GPT. */
+	ID_ESP = 0xef,
+
+	/** Only set during probing. For MSDOS and GPT. */
+	ID_UNKNOWN = 0x100,
+
+	/** BIOS boot partition (https://en.wikipedia.org/wiki/BIOS_boot_partition),
+	    only for GPT. */
+	ID_BIOS_BOOT = 0x101,
+
+	/** Windows basic data partition, only for GPT. */
+	ID_WINDOWS_BASIC_DATA = 0x102,
+
+	/** Microsoft reserved partition, only for GPT. */
+	ID_MICROSOFT_RESERVED = 0x103
+
     };
 
 
