@@ -578,8 +578,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	// TODO
-
 	if (is_msdos(partition_table))
 	{
 	    // Note: The type option is not available in upstream parted.
