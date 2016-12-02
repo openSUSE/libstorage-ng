@@ -578,23 +578,17 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
+	    to_string(get_number()) + " ";
+
 	if (is_msdos(partition_table))
 	{
 	    // Note: The type option is not available in upstream parted.
 
-	    string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
-		to_string(get_number()) + " type " + to_string(get_id());
-	    cout << cmd_line << endl;
-
-	    SystemCmd cmd(cmd_line);
-	    if (cmd.retcode() != 0)
-		ST_THROW(Exception("set partition id failed"));
+	    cmd_line += "type " + to_string(get_id());
 	}
 	else
 	{
-	    string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
-		to_string(get_number()) + " ";
-
 	    switch (get_id())
 	    {
 		case ID_LINUX:
@@ -636,13 +630,13 @@ namespace storage
 		    cmd_line += "msftres";
 		    break;
 	    }
-
-	    cout << cmd_line << endl;
-
-	    SystemCmd cmd(cmd_line);
-	    if (cmd.retcode() != 0)
-		ST_THROW(Exception("set partition id failed"));
 	}
+
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set partition id failed"));
     }
 
 
