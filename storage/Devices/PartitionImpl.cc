@@ -522,7 +522,7 @@ namespace storage
 
 	string tmp = id_to_string(get_id());
 
-	if (partition_table->get_impl().is_partition_id_value_meaningful())
+	if (partition_table->get_impl().are_partition_id_values_standardized())
 	{
 	    if (tmp.empty())
 	    {
@@ -880,7 +880,7 @@ namespace storage
     id_to_string(unsigned int id)
     {
 	// For every id used on GPT or DASD (where
-	// is_partition_id_value_meaningful return false) a text is required
+	// is_partition_id_value_standardized returns false) a text is required
 	// since it is used in do_set_id_text().
 
 	switch (id)

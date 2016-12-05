@@ -89,10 +89,19 @@ namespace storage
 	virtual bool is_partition_id_supported(unsigned int id) const = 0;
 
 	/**
-	 * Returns whether the value of the partition id enum is useful and
-	 * should be included in e.g. action messages.
+	 * Returns whether the value of the partition id enum is standardized
+	 * and should be included in e.g. action messages. The values on Msdos
+	 * are standardized, others not.
+	 *
+	 * The intention here is to not display e.g. "Set id to BIOS Boot
+	 * (0x101)" since 0x101 is non-standardized value thus meaningless to
+	 * the user.
+	 *
+	 * On the other hand, displaying e.g. "Set id to EFI System Partition
+	 * (0xEF)" is meaningful since the user can lookup the standardized
+	 * 0xEF.
 	 */
-	virtual bool is_partition_id_value_meaningful() const { return false; }
+	virtual bool are_partition_id_values_standardized() const { return false; }
 
 	/**
 	 * Returns whether the boot flag is supported on partitions on the

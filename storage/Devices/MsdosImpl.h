@@ -67,7 +67,7 @@ namespace storage
 
 	virtual bool is_partition_type_supported(PartitionType type) const override { return true; }
 	virtual bool is_partition_id_supported(unsigned int id) const override;
-	virtual bool is_partition_id_value_meaningful() const override { return true; }
+	virtual bool are_partition_id_values_standardized() const override { return true; }
 	virtual bool is_partition_boot_flag_supported() const override { return true; }
 
 	virtual unsigned int max_primary() const override;
