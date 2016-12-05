@@ -1,7 +1,6 @@
 1 - Create MSDOS partition table on /dev/sda -> 2a 4a 6a
 
-2a - Create primary partition /dev/sda1 (1.46 GiB) -> 2b 4a
-2b - Set id of partition /dev/sda1 to Linux Swap (0x82) -> 3a
+2a - Create primary partition /dev/sda1 (1.46 GiB) -> 3a 4a
 
 3a - Create swap on /dev/sda1 (1.46 GiB) -> 3b
 3b - Mount /dev/sda1 at swap -> 3c

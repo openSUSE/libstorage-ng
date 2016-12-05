@@ -69,10 +69,10 @@ namespace storage
 	virtual void set_region(const Region& region) override;
 
 	PartitionType get_type() const { return type; }
-	void set_type(PartitionType type) { Impl::type = type; }
+	void set_type(PartitionType type);
 
 	unsigned int get_id() const { return id; }
-	void set_id(unsigned int id) { Impl::id = id; }
+	void set_id(unsigned int id);
 
 	bool is_boot() const { return boot; }
 	void set_boot(bool boot);

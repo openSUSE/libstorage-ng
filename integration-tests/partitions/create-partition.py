@@ -52,6 +52,8 @@ if not good_partition_slot:
 partition = partition_table.create_partition(good_partition_slot.name, good_partition_slot.region,
                                              type)
 
+partition.set_id(ID_ESP)
+
 print staging
 
 commit(storage)

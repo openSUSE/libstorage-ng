@@ -2,10 +2,9 @@
 Style Guide
 ===========
 
+* Class names should normally use the CapWords convention.
 
-Class names should normally use the CapWords convention.
-
-Function names should be lowercase with words separated by underscores.
+* Function names should be lowercase with words separated by underscores.
 
   http://www.stroustrup.com/bs_faq2.html#Hungarian
   http://www.boost.org/development/requirements.html
@@ -13,20 +12,16 @@ Function names should be lowercase with words separated by underscores.
   https://www.python.org/dev/peps/pep-0008/
   https://github.com/styleguide/ruby
 
-
-The auto keyword should be avoided.
+* The auto keyword should be avoided.
 
   http://en.wikipedia.org/wiki/C%2B%2B11
 
+* C++11, C++14 and C++17 features can be used when the tool-chain for all
+  supported distributions provides them.
 
-C++11, C++14 and C++17 features can be used when the tool-chain for all
-supported distributions provides them.
-
-
-For API functions it must be avoided to modify parameters and use them as
-return values since this is not always obvious for API users and difficult to
-support in some target languages.
-
+* For API functions it must be avoided to modify parameters and use them as
+  return values since this is not always obvious for API users and difficult
+  to support in some target languages.
 
 
 Conventions
@@ -39,6 +34,6 @@ should have that naming schema.
 
 When variables or values with an underscores in the name are written to XML
 the underscores have to be replaced by dashes. So e.g. chunk_size is saved as
-<chunk-size>16384</chunk-size>. In the logs the names should follow the same
-convention.
+&lt;chunk-size&gt;16384&lt;/chunk-size&gt;. In the logs the names should
+follow the same convention.
 

@@ -29,7 +29,6 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
-#include "storage/Devices/Gpt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
@@ -194,7 +193,17 @@ namespace storage
 	actions.push_back(new Action::Create(get_sid()));
 
 	if (default_id_for_type(type) != id)
-	    actions.push_back(new Action::SetPartitionId(get_sid()));
+	{
+	    // For some partition ids it is fine to skip do_set_id() since
+	    // do_create() already sets the partition id correctly.
+
+	    static const vector<unsigned int> skip_ids = {
+		ID_LINUX, ID_SWAP, ID_DOS16, ID_DOS32, ID_NTFS, ID_WINDOWS_BASIC_DATA
+	    };
+
+	    if (!contains(skip_ids, id))
+		actions.push_back(new Action::SetPartitionId(get_sid()));
+	}
 
 	if (boot)
 	    actions.push_back(new Action::SetBoot(get_sid()));
@@ -307,10 +316,36 @@ namespace storage
 
 
     void
+    Partition::Impl::set_type(PartitionType type)
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!partition_table->get_impl().is_partition_type_supported(type))
+	    ST_THROW(Exception("illegal partition type"));
+
+	Impl::type = type;
+    }
+
+
+    void
+    Partition::Impl::set_id(unsigned int id)
+    {
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!partition_table->get_impl().is_partition_id_supported(id))
+	    ST_THROW(Exception("illegal partition id"));
+
+	Impl::id = id;
+    }
+
+
+    void
     Partition::Impl::set_boot(bool boot)
     {
-	if (!is_msdos(get_partition_table()))
-	    ST_THROW(Exception("set_boot only supported for Msdos"));
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!partition_table->get_impl().is_partition_boot_flag_supported())
+	    ST_THROW(Exception("set_boot not supported"));
 
 	if (boot && !Impl::boot)
 	{
@@ -327,8 +362,10 @@ namespace storage
     void
     Partition::Impl::set_legacy_boot(bool legacy_boot)
     {
-	if (!is_gpt(get_partition_table()))
-	    ST_THROW(Exception("set_legacy_boot only supported for Gpt"));
+	const PartitionTable* partition_table = get_partition_table();
+
+	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
+	    ST_THROW(Exception("set_boot not supported"));
 
 	Impl::legacy_boot = legacy_boot;
     }
@@ -439,6 +476,10 @@ namespace storage
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
+	    // Telling parted the filesystem type sets the correct partition
+	    // id in some cases. Used in add_create_actions() to avoid
+	    // redundant actions.
+
 	    switch (get_id())
 	    {
 		case ID_SWAP:
@@ -449,17 +490,13 @@ namespace storage
 		    cmd_line += "fat16 ";
 		    break;
 
-		case ID_GPT_BOOT:
 		case ID_DOS32:
 		    cmd_line += "fat32 ";
 		    break;
 
 		case ID_NTFS:
+		case ID_WINDOWS_BASIC_DATA:
 		    cmd_line += "ntfs ";
-		    break;
-
-		case ID_APPLE_HFS:
-		    cmd_line += "hfs ";
 		    break;
 
 		default:
@@ -481,13 +518,57 @@ namespace storage
     Text
     Partition::Impl::do_set_id_text(Tense tense) const
     {
+	const PartitionTable* partition_table = get_partition_table();
+
 	string tmp = id_to_string(get_id());
 
-	if (tmp.empty())
-	    return sformat(_("Set id of partition %1$s to 0x%2$02X"), get_name().c_str(), get_id());
+	if (partition_table->get_impl().are_partition_id_values_standardized())
+	{
+	    if (tmp.empty())
+	    {
+		Text text = tenser(tense,
+				   // TRANSLATORS: displayed before action,
+				   // %1$s is replaced by partition name (e.g. /dev/sda1),
+				   // 0x%2$02X is replaced by partition id (e.g. 0x8E)
+				   _("Set id of partition %1$s to 0x%2$02X"),
+				   // TRANSLATORS: displayed during action,
+				   // %1$s is replaced by partition name (e.g. /dev/sda1),
+				   // 0x%2$02X is replaced by partition id (e.g. 0x8E)
+				   _("Setting id of partition %1$s to 0x%2$02X"));
+		return sformat(text, get_name().c_str(), get_id());
+	    }
+	    else
+	    {
+		Text text = tenser(tense,
+				   // TRANSLATORS: displayed before action,
+				   // %1$s is replaced by partition name (e.g. /dev/sda1),
+				   // %2$s is replaced by partition id string (e.g. Linux LVM),
+				   // 0x%3$02X is replaced by partition id (e.g. 0x8E)
+				   _("Set id of partition %1$s to %2$s (0x%3$02X)"),
+				   // TRANSLATORS: displayed during action,
+				   // %1$s is replaced by partition name (e.g. /dev/sda1),
+				   // %2$s is replaced by partition id string (e.g. Linux LVM),
+				   // 0x%3$02X is replaced by partition id (e.g. 0x8E)
+				   _("Setting id of partition %1$s to %2$s (0x%3$02X)"));
+		return sformat(text, get_name().c_str(), tmp.c_str(), get_id());
+	    }
+	}
 	else
-	    return sformat(_("Set id of partition %1$s to %2$s (0x%3$02X)"), get_name().c_str(),
-			   tmp.c_str(), get_id());
+	{
+	    if (tmp.empty())
+		ST_THROW(LogicException("error"));
+
+	    Text text = tenser(tense,
+			       // TRANSLATORS: displayed before action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       // %2$s is replaced by partition id string (e.g. Linux LVM)
+			       _("Set id of partition %1$s to %2$s"),
+			       // TRANSLATORS: displayed during action,
+			       // %1$s is replaced by partition name (e.g. /dev/sda1),
+			       // %2$s is replaced by partition id string (e.g. Linux LVM)
+			       _("Setting id of partition %1$s to %2$s"));
+	    return sformat(text, get_name().c_str(), tmp.c_str());
+	}
     }
 
 
@@ -497,13 +578,60 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	// TODO
-
-	if (get_id() > 255 || !is_msdos(partition_table))
-	    return;
-
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
-	    to_string(get_number()) + " type " + to_string(get_id());
+	    to_string(get_number()) + " ";
+
+	if (is_msdos(partition_table))
+	{
+	    // Note: The type option is not available in upstream parted.
+
+	    cmd_line += "type " + to_string(get_id());
+	}
+	else
+	{
+	    switch (get_id())
+	    {
+		case ID_LINUX:
+		    // this is tricky but parted has no clearer way
+		    cmd_line += "lvm off";
+		    break;
+
+		case ID_SWAP:
+		    cmd_line += "swap on";
+		    // TODO improve parted
+		    ST_THROW(Exception("set swap not supported by parted"));
+		    break;
+
+		case ID_LVM:
+		    cmd_line += "lvm on";
+		    break;
+
+		case ID_RAID:
+		    cmd_line += "raid on";
+		    break;
+
+		case ID_ESP:
+		    cmd_line += "esp on";
+		    break;
+
+		case ID_BIOS_BOOT:
+		    cmd_line += "bios_grub on";
+		    break;
+
+		case ID_PREP:
+		    cmd_line += "prep on";
+		    break;
+
+		case ID_WINDOWS_BASIC_DATA:
+		    cmd_line += "msftdata";
+		    break;
+
+		case ID_MICROSOFT_RESERVED:
+		    cmd_line += "msftres";
+		    break;
+	    }
+	}
+
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -751,13 +879,21 @@ namespace storage
     string
     id_to_string(unsigned int id)
     {
+	// For every id used on GPT or DASD (where
+	// is_partition_id_value_standardized returns false) a text is required
+	// since it is used in do_set_id_text().
+
 	switch (id)
 	{
 	    case ID_SWAP: return "Linux Swap";
 	    case ID_LINUX: return "Linux";
 	    case ID_LVM: return "Linux LVM";
 	    case ID_RAID: return "Linux RAID";
-	    case ID_EFI: return "EFI System Partition";
+	    case ID_ESP: return "EFI System Partition";
+	    case ID_BIOS_BOOT: return "BIOS Boot Partition";
+	    case ID_PREP: return "PReP Boot Partition";
+	    case ID_WINDOWS_BASIC_DATA: return "Windows Data Partition";
+	    case ID_MICROSOFT_RESERVED: return "Microsoft Reserved Partition";
 	}
 
 	return "";
