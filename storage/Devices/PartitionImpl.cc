@@ -298,11 +298,11 @@ namespace storage
 
 
     void
-    Partition::Impl::process_udev_path(string& udev_path) const
+    Partition::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	partitionable->get_impl().process_udev_path(udev_path);
+	partitionable->get_impl().process_udev_paths(udev_paths);
     }
 
 
@@ -372,16 +372,16 @@ namespace storage
 
 
     void
-    Partition::Impl::update_udev_path_and_ids()
+    Partition::Impl::update_udev_paths_and_ids()
     {
 	const Partitionable* partitionable = get_partitionable();
 
 	string postfix = "-part" + to_string(get_number());
 
-	string udev_path;
-	if (!partitionable->get_udev_path().empty())
-	    udev_path = partitionable->get_udev_path() + postfix;
-	set_udev_path(udev_path);
+	vector<string> udev_paths;
+	for (const string& udev_path : partitionable->get_udev_paths())
+	    udev_paths.push_back(udev_path + postfix);
+	set_udev_paths(udev_paths);
 
 	vector<string> udev_ids;
 	for (const string& udev_id : partitionable->get_udev_ids())

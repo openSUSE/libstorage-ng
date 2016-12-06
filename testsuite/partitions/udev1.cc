@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(test_create)
     Devicegraph* devicegraph = storage.get_staging();
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
-    sda->get_impl().set_udev_path( "pci-0000:00:1f.2-ata-1" );
+    sda->get_impl().set_udev_paths({ "pci-0000:00:1f.2-ata-1" });
     sda->get_impl().set_udev_ids({ "ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683", "scsi-350014ee203733bb5" });
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
@@ -42,7 +42,8 @@ BOOST_AUTO_TEST_CASE(test_create)
 
     BOOST_CHECK_EQUAL(partitions[0]->get_name(), "/dev/sda1");
 
-    BOOST_CHECK_EQUAL(partitions[0]->get_udev_path(), "pci-0000:00:1f.2-ata-1-part1");
+    BOOST_REQUIRE_EQUAL(partitions[0]->get_udev_paths().size(), 1);
+    BOOST_CHECK_EQUAL(partitions[0]->get_udev_paths()[0], "pci-0000:00:1f.2-ata-1-part1");
 
     BOOST_REQUIRE_EQUAL(partitions[0]->get_udev_ids().size(), 2);
     BOOST_CHECK_EQUAL(partitions[0]->get_udev_ids()[0], "ata-WDC_WD10EADS-00M2B0_WD-WCAV52321683-part1");

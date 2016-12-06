@@ -51,7 +51,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), active(true), region(region), udev_path(), udev_ids(),
+	: Device::Impl(), name(name), active(true), region(region), udev_paths(), udev_ids(),
 	  dm_table_name()
     {
 	if (!is_valid_name(name))
@@ -60,7 +60,7 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), active(true), region(0, 0, 512), udev_path(), udev_ids(),
+	: Device::Impl(node), name(), active(true), region(0, 0, 512), udev_paths(), udev_ids(),
 	  dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
@@ -73,7 +73,7 @@ namespace storage
 
 	getChildValue(node, "region", region);
 
-	getChildValue(node, "udev-path", udev_path);
+	getChildValue(node, "udev-path", udev_paths);
 	getChildValue(node, "udev-id", udev_ids);
 
 	getChildValue(node, "dm-table-name", dm_table_name);
@@ -96,8 +96,8 @@ namespace storage
 
 	    if (!cmdudevadminfo.get_by_path_links().empty())
 	    {
-		udev_path = cmdudevadminfo.get_by_path_links().front();
-		process_udev_path(udev_path);
+		udev_paths = cmdudevadminfo.get_by_path_links();
+		process_udev_paths(udev_paths);
 	    }
 
 	    if (!cmdudevadminfo.get_by_id_links().empty())
@@ -123,7 +123,7 @@ namespace storage
 
 	setChildValue(node, "region", region);
 
-	setChildValueIf(node, "udev-path", udev_path, !udev_path.empty());
+	setChildValueIf(node, "udev-path", udev_paths, !udev_paths.empty());
 	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
 
 	setChildValueIf(node, "dm-table-name", dm_table_name, !dm_table_name.empty());
@@ -295,7 +295,7 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    region == rhs.region && active == rhs.active && udev_path == rhs.udev_path &&
+	    region == rhs.region && active == rhs.active && udev_paths == rhs.udev_paths &&
 	    udev_ids == rhs.udev_ids && dm_table_name == rhs.dm_table_name;
     }
 
@@ -316,7 +316,7 @@ namespace storage
 
 	storage::log_diff(log, "region", region, rhs.region);
 
-	storage::log_diff(log, "udev-path", udev_path, rhs.udev_path);
+	storage::log_diff(log, "udev-paths", udev_paths, rhs.udev_paths);
 	storage::log_diff(log, "udev-ids", udev_ids, rhs.udev_ids);
 
 	storage::log_diff(log, "dm-table-name", dm_table_name, rhs.dm_table_name);
@@ -341,8 +341,8 @@ namespace storage
 
 	out << " region:" << get_region();
 
-	if (!udev_path.empty())
-	    out << " udev-path:" << udev_path;
+	if (!udev_paths.empty())
+	    out << " udev-paths:" << udev_paths;
 
 	if (!udev_ids.empty())
 	    out << " udev-ids:" << udev_ids;

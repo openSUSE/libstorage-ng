@@ -140,10 +140,10 @@ namespace storage
     }
 
 
-    const string&
-    BlkDevice::get_udev_path() const
+    const vector<string>&
+    BlkDevice::get_udev_paths() const
     {
-	return get_impl().get_udev_path();
+	return get_impl().get_udev_paths();
     }
 
 

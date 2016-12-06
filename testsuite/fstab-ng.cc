@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE(update2)
     });
 
     EtcFstab fstab("/etc");
-    fstab.setDevice("/dev/sdb1", {}, "1234", "", {}, "");
+    fstab.setDevice("/dev/sdb1", {}, "1234", "", {}, {});
 
     FstabKey key("/dev/sdb1", "/test1/sub");
 
@@ -236,7 +236,7 @@ BOOST_AUTO_TEST_CASE(remove3)
 
     EtcFstab fstab("/etc");
 
-    fstab.setDevice("/dev/sdb1", {}, "", "test", {}, "");
+    fstab.setDevice("/dev/sdb1", {}, "", "test", {}, {});
 
     FstabKey key("/dev/sdb1", "/test1/sub1");
 
@@ -261,7 +261,7 @@ BOOST_AUTO_TEST_CASE(remove4)
 
     EtcFstab fstab("/etc");
 
-    fstab.setDevice("/dev/sdb1", {}, "", "test", {}, "");
+    fstab.setDevice("/dev/sdb1", {}, "", "test", {}, {});
 
     FstabKey key1("/dev/sdb1", "/test1");
     FstabKey key2("/dev/sdb1", "/test1/sub1");
