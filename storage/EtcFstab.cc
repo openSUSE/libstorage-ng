@@ -340,7 +340,7 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 
     void
     EtcFstab::setDevice(const string& device, const list<string>& alt_names, const string& uuid,
-			const string& label, const vector<string>& ids, const string& path)
+			const string& label, const vector<string>& ids, const vector<string>& paths)
     {
 	set<string> dentries;
 
@@ -367,9 +367,10 @@ EtcFstab::findMount( const string& mount, FstabEntry& entry ) const
 		dentries.insert("/dev/disk/by-id/" + id);
 	}
 
-	if (!path.empty())
+	if (!paths.empty())
 	{
-	    dentries.insert("/dev/disk/by-path/" + path);
+	    for (const string& path : paths)
+		dentries.insert("/dev/disk/by-path/" + path);
 	}
 
 	y2mil("device:" << device << " dentries:" << dentries);

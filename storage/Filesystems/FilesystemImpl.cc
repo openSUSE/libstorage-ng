@@ -194,7 +194,7 @@ namespace storage
 	    mountpoints.push_back(mountpoint);
 
 	fstab.setDevice(blk_device->get_name(), {}, uuid, label, blk_device->get_udev_ids(),
-			blk_device->get_udev_path());
+			blk_device->get_udev_paths());
 	FstabEntry fstabentry;
 	if (fstab.findDevice(blk_device->get_name(), fstabentry))
 	{
@@ -574,8 +574,8 @@ namespace storage
 		break;
 
 	    case MountByType::PATH:
-		if (!blk_device->get_udev_path().empty())
-		    ret = DEVDIR "/disk/by-path/" + blk_device->get_udev_path();
+		if (!blk_device->get_udev_paths().empty())
+		    ret = DEVDIR "/disk/by-path/" + blk_device->get_udev_paths().front();
 		else
 		    y2err("no udev-path defined");
 		break;

@@ -202,7 +202,7 @@ namespace storage
 
 
     void
-    Disk::Impl::process_udev_path(string& udev_path) const
+    Disk::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
     }
 

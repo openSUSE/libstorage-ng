@@ -74,8 +74,8 @@ namespace storage
 
 	string get_size_string() const;
 
-	const string& get_udev_path() const { return udev_path; }
-	void set_udev_path(const string& udev_path) { Impl::udev_path = udev_path; }
+	const vector<string>& get_udev_paths() const { return udev_paths; }
+	void set_udev_paths(const vector<string>& udev_paths) { Impl::udev_paths = udev_paths; }
 
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 	void set_udev_ids(const vector<string>& udev_ids) { Impl::udev_ids = udev_ids; }
@@ -123,7 +123,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
-	virtual void process_udev_path(string& udev_path) const { udev_path.clear(); }
+	virtual void process_udev_paths(vector<string>& udev_paths) const { udev_paths.clear(); }
 	virtual void process_udev_ids(vector<string>& udev_ids) const { udev_ids.clear(); }
 
 	void wait_for_device() const;
@@ -160,7 +160,7 @@ namespace storage
 	 */
 	Region region;
 
-	string udev_path;
+	vector<string> udev_paths;
 	vector<string> udev_ids;
 
 	string dm_table_name;

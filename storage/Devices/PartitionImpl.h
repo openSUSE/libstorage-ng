@@ -80,7 +80,7 @@ namespace storage
 	bool is_legacy_boot() const { return legacy_boot; }
 	void set_legacy_boot(bool legacy_boot);
 
-	void update_udev_path_and_ids();
+	void update_udev_paths_and_ids();
 
 	virtual ResizeInfo detect_resize_info() const override;
 
@@ -98,7 +98,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual void process_udev_path(string& udev_path) const override;
+	virtual void process_udev_paths(vector<string>& udev_paths) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
 	virtual Text do_create_text(Tense tense) const override;

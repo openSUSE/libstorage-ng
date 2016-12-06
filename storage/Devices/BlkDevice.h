@@ -55,7 +55,7 @@ namespace storage
 	const std::string& get_sysfs_name() const;
 	const std::string& get_sysfs_path() const;
 
-	const std::string& get_udev_path() const;
+	const std::vector<std::string>& get_udev_paths() const;
 	const std::vector<std::string>& get_udev_ids() const;
 
 	/**
