@@ -103,16 +103,8 @@ namespace storage
 	 */
 	virtual bool are_partition_id_values_standardized() const { return false; }
 
-	/**
-	 * Returns whether the boot flag is supported on partitions on the
-	 * partition table.
-	 */
 	virtual bool is_partition_boot_flag_supported() const { return false; }
 
-	/**
-	 * Returns whether the legacy boot flag is supported on partitions on
-	 * the partition table.
-	 */
 	virtual bool is_partition_legacy_boot_flag_supported() const { return false; }
 
 	virtual unsigned int max_primary() const = 0;

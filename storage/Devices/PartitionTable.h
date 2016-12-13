@@ -116,6 +116,18 @@ namespace storage
 	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
+	/**
+	 * Returns whether the boot flag is supported on partitions on the
+	 * partition table.
+	 */
+	bool is_partition_boot_flag_supported() const;
+
+	/**
+	 * Returns whether the legacy boot flag is supported on partitions on
+	 * the partition table.
+	 */
+	bool is_partition_legacy_boot_flag_supported() const;
+
     public:
 
 	class Impl;
