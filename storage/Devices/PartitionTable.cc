@@ -218,4 +218,18 @@ namespace storage
 	return to_device_of_type<const PartitionTable>(device);
     }
 
+
+    bool
+    PartitionTable::is_partition_boot_flag_supported() const
+    {
+	return get_impl().is_partition_boot_flag_supported();
+    }
+
+
+    bool
+    PartitionTable::is_partition_legacy_boot_flag_supported() const
+    {
+	return get_impl().is_partition_legacy_boot_flag_supported();
+    }
+
 }
