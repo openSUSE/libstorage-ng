@@ -75,9 +75,11 @@ namespace storage
 	Region();
 	Region(unsigned long long start, unsigned long long length, unsigned int block_size);
 	Region(const Region& region);
+	Region(Region&& region) = default;
 	~Region();
 
 	Region& operator=(const Region& region);
+	Region& operator=(Region&& region) = default;
 
 	bool empty() const;
 

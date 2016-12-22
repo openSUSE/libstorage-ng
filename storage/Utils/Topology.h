@@ -61,9 +61,11 @@ namespace storage
 	Topology();
 	Topology(long alignment_offset, unsigned long optimal_io_size);
 	Topology(const Topology& topology);
+	Topology(Topology&& topology) = default;
 	~Topology();
 
 	Topology& operator=(const Topology& topology);
+	Topology& operator=(Topology&& topology) = default;
 
 	long get_alignment_offset() const;
 	void set_alignment_offset(long alignment_offset);
