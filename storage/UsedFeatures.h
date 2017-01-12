@@ -30,7 +30,7 @@
 enum : uint64_t
 {
     UF_EXT2 = 1 << 0,
-    US_EXT3 = 1 << 1,
+    UF_EXT3 = 1 << 1,
     UF_EXT4 = 1 << 2,
     UF_BTRFS = 1 << 3,
     UF_XFS = 1 << 4,
