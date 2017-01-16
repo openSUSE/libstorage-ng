@@ -9,7 +9,7 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 
 check_PROGRAMS =								\
 	get1.test size.test slots.test udev1.test attributes.test		\
-	set-number.test
+	set-number.test delete1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
