@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -423,6 +423,14 @@ namespace storage
 	    actions.push_back(new Action::SetUuid(get_sid()));
 	}
 
+	// TODO depends on mount-by, whether there actually is an entry in fstab,
+	// btrfs multiple devices, ...
+	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
+	{
+	    for (const string& mountpoint : get_mountpoints())
+		actions.push_back(new Action::RenameEtcFstab(get_sid(), mountpoint));
+	}
+
 	actiongraph.add_chain(actions);
     }
 
@@ -783,6 +791,38 @@ namespace storage
 
 
     Text
+    Filesystem::Impl::do_rename_etc_fstab_text(const Device* lhs, const string& mountpoint,
+					       Tense tense) const
+    {
+	const BlkDevice* blk_device_lhs = to_filesystem(lhs)->get_impl().get_blk_device();
+	const BlkDevice* blk_device_rhs = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Rename mountpoint %1$s from %2$s to %3$s in /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Renaming mountpoint %1$s from %2$s to %3$s in /etc/fstab"));
+
+	return sformat(text, mountpoint.c_str(), blk_device_lhs->get_name().c_str(),
+		       blk_device_rhs->get_name().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_rename_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs,
+					  const string& mountpoint) const
+    {
+	// TODO
+    }
+
+
+    Text
     Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
 	Text text = tenser(tense,
@@ -959,6 +999,24 @@ namespace storage
 	    if (mountpoint == "swap")
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
 		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
+	}
+
+
+	Text
+	RenameEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	{
+	    const Filesystem* filesystem_lhs = to_filesystem(get_device_lhs(actiongraph));
+	    const Filesystem* filesystem_rhs = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem_rhs->get_impl().do_rename_etc_fstab_text(filesystem_lhs, mountpoint, tense);
+	}
+
+
+	void
+	RenameEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Filesystem* filesystem_lhs = to_filesystem(get_device_lhs(actiongraph));
+	    const Filesystem* filesystem_rhs = to_filesystem(get_device_rhs(actiongraph));
+	    filesystem_rhs->get_impl().do_rename_etc_fstab(actiongraph, filesystem_lhs, mountpoint);
 	}
 
 
