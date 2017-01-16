@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,6 +59,29 @@ namespace storage
 
 	setChildValueIf(node, "minimal-mbr-gap", minimal_mbr_gap, minimal_mbr_gap !=
 			default_minimal_mbr_gap);
+    }
+
+
+    void
+    Msdos::Impl::delete_partition(Partition* partition)
+    {
+	PartitionType old_type = partition->get_type();
+	unsigned int old_number = partition->get_number();
+
+	PartitionTable::Impl::delete_partition(partition);
+
+	// After deleting a logical partition the numbers of partitions with
+	// higher numbers are shifted.
+	if (old_type == PartitionType::LOGICAL)
+	{
+	    vector<Partition*> partitions = get_partitions();
+            for (Partition* tmp : partitions)
+	    {
+		unsigned int number = tmp->get_number();
+		if (number > old_number)
+		    tmp->get_impl().set_number(number - 1);
+	    }
+	}
     }
 
 
