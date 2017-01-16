@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,7 +56,7 @@ namespace storage
 
 	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
-	void delete_partition(Partition* partition);
+	virtual void delete_partition(Partition* partition);
 
 	void delete_partition(const string& name);
 
