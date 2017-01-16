@@ -36,6 +36,9 @@ class TestTypes < Test::Unit::TestCase
     # TODO
     ext4.userdata = Storage::MapStringString.new()
 
+    assert_equal(devicegraph.used_features() & Storage::UF_EXT4, Storage::UF_EXT4)
+    assert_equal(devicegraph.used_features() & Storage::UF_BTRFS, 0)
+
   end
 
 end

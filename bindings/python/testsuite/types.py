@@ -3,7 +3,8 @@
 import unittest
 
 from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage,
-                     Devicegraph, Disk, Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4)
+                     Devicegraph, Disk, Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4,
+                     UF_EXT4, UF_BTRFS)
 
 
 class TestCreate(unittest.TestCase):
@@ -40,6 +41,9 @@ class TestCreate(unittest.TestCase):
         ext4.add_mountpoint("/test1")
         self.assertEqual(ext4.get_mountpoints().size(), 1)
         self.assertEqual(ext4.get_mountpoints()[0], "/test1")
+
+        self.assertTrue(devicegraph.used_features() & UF_EXT4)
+        self.assertFalse(devicegraph.used_features() & UF_BTRFS)
 
 
 if __name__ == '__main__':
