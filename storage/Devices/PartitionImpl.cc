@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -133,11 +133,29 @@ namespace storage
     unsigned int
     Partition::Impl::get_number() const
     {
-	string::size_type pos = get_name().find_last_not_of("0123456789");
-	if (pos == string::npos || pos == get_name().size() - 1)
+	const string& name = get_name();
+
+	string::size_type pos = name.find_last_not_of("0123456789");
+	if (pos == string::npos || pos == name.size() - 1)
 	    ST_THROW(Exception("partition name has no number"));
 
-	return atoi(get_name().substr(pos + 1).c_str());
+	return atoi(name.substr(pos + 1).c_str());
+    }
+
+
+    void
+    Partition::Impl::set_number(unsigned int number)
+    {
+	const string& name = get_name();
+
+	string::size_type pos = name.find_last_not_of("0123456789");
+        if (pos == string::npos || pos == name.size() - 1)
+            ST_THROW(Exception("partition name has no number"));
+
+	set_name(name.substr(0, pos + 1) + to_string(number));
+
+	update_sysfs_name_and_path();
+	update_udev_paths_and_ids();
     }
 
 
@@ -368,6 +386,26 @@ namespace storage
 	    ST_THROW(Exception("set_boot not supported"));
 
 	Impl::legacy_boot = legacy_boot;
+    }
+
+
+    void
+    Partition::Impl::update_sysfs_name_and_path()
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	// TODO different for device-mapper partitions
+
+	if (!partitionable->get_sysfs_name().empty() && !partitionable->get_sysfs_path().empty())
+	{
+	    set_sysfs_name(partitionable->get_sysfs_name() + to_string(get_number()));
+	    set_sysfs_path(partitionable->get_sysfs_path() + "/" + get_sysfs_name());
+	}
+	else
+	{
+	    set_sysfs_name("");
+	    set_sysfs_path("");
+	}
     }
 
 
