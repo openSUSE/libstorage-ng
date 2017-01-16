@@ -73,6 +73,7 @@
 #include "storage/Storage.h"
 %}
 
+%include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_list.i"
