@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -66,6 +66,7 @@ namespace storage
 	void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
@@ -85,6 +86,9 @@ namespace storage
 
 	virtual Text do_add_etc_crypttab_text(Tense tense) const;
 	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
+
+	virtual Text do_rename_etc_crypttab_text(const Device* lhs, Tense tense) const;
+	virtual void do_rename_etc_crypttab(const Actiongraph::Impl& actiongraph, const Device* lhs) const;
 
 	virtual Text do_remove_etc_crypttab_text(Tense tense) const;
 	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
@@ -112,6 +116,18 @@ namespace storage
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
+
+	};
+
+
+	class RenameEtcCrypttab : public Modify
+	{
+	public:
+
+	    RenameEtcCrypttab(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	};
 

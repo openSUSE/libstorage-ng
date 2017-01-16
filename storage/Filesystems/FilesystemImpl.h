@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -118,6 +118,9 @@ namespace storage
 	virtual Text do_add_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_add_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
+	virtual Text do_rename_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
+	virtual void do_rename_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs, const string& mountpoint) const;
+
 	virtual Text do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_remove_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
@@ -231,6 +234,21 @@ namespace storage
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
+
+	    const string mountpoint;
+
+	};
+
+
+	class RenameEtcFstab : public Modify
+	{
+	public:
+
+	    RenameEtcFstab(sid_t sid, const string& mountpoint)
+		: Modify(sid), mountpoint(mountpoint) {}
+
+	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
+	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
 
 	    const string mountpoint;
 
