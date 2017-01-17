@@ -85,6 +85,9 @@ namespace storage
 
 	virtual void do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
 
+	virtual void do_rename_etc_crypttab(const Actiongraph::Impl& actiongraph, const Device* lhs)
+	    const override;
+
 	virtual void do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
 
     private:

@@ -336,7 +336,7 @@ namespace storage
     Encryption::Impl::do_rename_etc_crypttab(const Actiongraph::Impl& actiongraph,
 					     const Device* lhs) const
     {
-        // TODO
+        ST_THROW(LogicException("stub do_rename_etc_crypttab called"));
     }
 
 
