@@ -818,7 +818,23 @@ namespace storage
     Filesystem::Impl::do_rename_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs,
 					  const string& mountpoint) const
     {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	const BlkDevice* blk_device_lhs = to_filesystem(lhs)->get_impl().get_blk_device();
+
 	// TODO
+
+	FstabChange entry;
+	entry.device = blk_device_lhs->get_name();
+	entry.dentry = get_mount_by_string();
+	entry.mount = mountpoint;
+	entry.fs = toString(get_type());
+	entry.opts = fstab_options;
+
+	fstab.addEntry(entry);
+	fstab.flush();
     }
 
 
