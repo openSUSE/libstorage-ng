@@ -20,9 +20,10 @@ class MyCommitCallbacks(CommitCallbacks):
         return False
 
 
-def commit(storage, save_graphs = False):
+def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
+           skip_commit = True):
 
-    if save_graphs:
+    if not skip_save_graphs:
         storage.get_probed().save("probed.xml")
 
         storage.get_probed().write_graphviz("probed.gv", GraphvizFlags_CLASSNAME |
@@ -39,11 +40,14 @@ def commit(storage, save_graphs = False):
 
     actiongraph = storage.calculate_actiongraph()
 
+    if not skip_print_actiongraph:
+        actiongraph.print_graph()
+
     actiongraph.print_order()
 
-    if save_graphs:
+    if not skip_save_graphs:
         actiongraph.write_graphviz("action.gv", GraphvizFlags_SID)
         system("dot -Tsvg < action.gv > action.svg")
 
-    storage.commit(my_commit_callbacks)
-
+    if not skip_commit:
+        storage.commit(my_commit_callbacks)
