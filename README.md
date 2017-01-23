@@ -1,6 +1,8 @@
 libstorage-ng
 =============
 
+[![Build Status](https://travis-ci.org/openSUSE/libstorage-ng.svg?branch=master)](https://travis-ci.org/openSUSE/libstorage-ng)
+
 libstorage-ng is the designated successor of
 [libstorage](https://github.com/openSUSE/libstorage), a C++ library used by
 [YaST](https://github.com/yast) to perform most storage related tasks.
