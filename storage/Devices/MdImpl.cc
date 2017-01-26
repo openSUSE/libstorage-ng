@@ -213,7 +213,7 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::AddEtcMdadm(get_sid()));
+	actions.push_back(new Action::AddToEtcMdadm(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -224,7 +224,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::RemoveEtcMdadm(get_sid()));
+	actions.push_back(new Action::RemoveFromEtcMdadm(get_sid()));
 	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -574,7 +574,7 @@ namespace storage
 
 
     Text
-    Md::Impl::do_add_etc_mdadm_text(Tense tense) const
+    Md::Impl::do_add_to_etc_mdadm_text(Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -589,14 +589,14 @@ namespace storage
 
 
     void
-    Md::Impl::do_add_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_add_to_etc_mdadm(const Actiongraph::Impl& actiongraph) const
     {
 	// TODO
     }
 
 
     Text
-    Md::Impl::do_remove_etc_mdadm_text(Tense tense) const
+    Md::Impl::do_remove_from_etc_mdadm_text(Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -611,7 +611,7 @@ namespace storage
 
 
     void
-    Md::Impl::do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_remove_from_etc_mdadm(const Actiongraph::Impl& actiongraph) const
     {
 	// TODO
     }
@@ -709,23 +709,23 @@ namespace storage
     {
 
 	Text
-	AddEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Md* md = to_md(get_device_rhs(actiongraph));
-	    return md->get_impl().do_add_etc_mdadm_text(tense);
+	    return md->get_impl().do_add_to_etc_mdadm_text(tense);
 	}
 
 
 	void
-	AddEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Md* md = to_md(get_device_rhs(actiongraph));
-	    md->get_impl().do_add_etc_mdadm(actiongraph);
+	    md->get_impl().do_add_to_etc_mdadm(actiongraph);
 	}
 
 
 	void
-	AddEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+	AddToEtcMdadm::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 				      Actiongraph::Impl& actiongraph) const
 	{
 	    Modify::add_dependencies(vertex, actiongraph);
@@ -736,18 +736,18 @@ namespace storage
 
 
 	Text
-	RemoveEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Md* md = to_md(get_device_lhs(actiongraph));
-	    return md->get_impl().do_remove_etc_mdadm_text(tense);
+	    return md->get_impl().do_remove_from_etc_mdadm_text(tense);
 	}
 
 
 	void
-	RemoveEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Md* md = to_md(get_device_lhs(actiongraph));
-	    md->get_impl().do_remove_etc_mdadm(actiongraph);
+	    md->get_impl().do_remove_from_etc_mdadm(actiongraph);
 	}
 
     }

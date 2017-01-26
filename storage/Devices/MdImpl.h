@@ -103,11 +103,11 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
-	virtual Text do_add_etc_mdadm_text(Tense tense) const;
-	virtual void do_add_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+	virtual Text do_add_to_etc_mdadm_text(Tense tense) const;
+	virtual void do_add_to_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
 
-	virtual Text do_remove_etc_mdadm_text(Tense tense) const;
-	virtual void do_remove_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+	virtual Text do_remove_from_etc_mdadm_text(Tense tense) const;
+	virtual void do_remove_from_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
 				     Tense tense) const override;
@@ -132,11 +132,11 @@ namespace storage
     namespace Action
     {
 
-	class AddEtcMdadm : public Modify
+	class AddToEtcMdadm : public Modify
 	{
 	public:
 
-	    AddEtcMdadm(sid_t sid)
+	    AddToEtcMdadm(sid_t sid)
 		: Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
@@ -148,11 +148,11 @@ namespace storage
 	};
 
 
-	class RemoveEtcMdadm : public Modify
+	class RemoveFromEtcMdadm : public Modify
 	{
 	public:
 
-	    RemoveEtcMdadm(sid_t sid)
+	    RemoveFromEtcMdadm(sid_t sid)
 		: Modify(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;

@@ -112,7 +112,7 @@ namespace storage
 
 	actions.push_back(new Action::Create(get_sid()));
 	actions.push_back(new Action::Activate(get_sid()));
-	actions.push_back(new Action::AddEtcCrypttab(get_sid()));
+	actions.push_back(new Action::AddToEtcCrypttab(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -129,7 +129,7 @@ namespace storage
 	// TODO depends on mount-by, whether there actually is an entry in crypttab
 	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
 	{
-	    actions.push_back(new Action::RenameEtcCrypttab(get_sid()));
+	    actions.push_back(new Action::RenameInEtcCrypttab(get_sid()));
 	}
 
 	actiongraph.add_chain(actions);
@@ -141,7 +141,7 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::RemoveEtcCrypttab(get_sid()));
+	actions.push_back(new Action::RemoveFromEtcCrypttab(get_sid()));
 	actions.push_back(new Action::Deactivate(get_sid()));
 	actions.push_back(new Action::Delete(get_sid()));
 
@@ -290,7 +290,7 @@ namespace storage
 
 
     Text
-    Encryption::Impl::do_add_etc_crypttab_text(Tense tense) const
+    Encryption::Impl::do_add_to_etc_crypttab_text(Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -305,14 +305,14 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Encryption::Impl::do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
-	ST_THROW(LogicException("stub do_add_etc_crypttab called"));
+	ST_THROW(LogicException("stub do_add_to_etc_crypttab called"));
     }
 
 
     Text
-    Encryption::Impl::do_rename_etc_crypttab_text(const Device* lhs, Tense tense) const
+    Encryption::Impl::do_rename_in_etc_crypttab_text(const Device* lhs, Tense tense) const
     {
 	const BlkDevice* blk_device_lhs = to_encryption(lhs)->get_impl().get_blk_device();
 	const BlkDevice* blk_device_rhs = get_blk_device();
@@ -333,15 +333,15 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_rename_etc_crypttab(const Actiongraph::Impl& actiongraph,
+    Encryption::Impl::do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph,
 					     const Device* lhs) const
     {
-        ST_THROW(LogicException("stub do_rename_etc_crypttab called"));
+        ST_THROW(LogicException("stub do_rename_in_etc_crypttab called"));
     }
 
 
     Text
-    Encryption::Impl::do_remove_etc_crypttab_text(Tense tense) const
+    Encryption::Impl::do_remove_from_etc_crypttab_text(Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -356,9 +356,9 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Encryption::Impl::do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
-	ST_THROW(LogicException("stub do_remove_etc_crypttab called"));
+	ST_THROW(LogicException("stub do_remove_from_etc_crypttab called"));
     }
 
 
@@ -366,23 +366,23 @@ namespace storage
     {
 
 	Text
-	AddEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
-	    return encryption->get_impl().do_add_etc_crypttab_text(tense);
+	    return encryption->get_impl().do_add_to_etc_crypttab_text(tense);
 	}
 
 
 	void
-	AddEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
-	    encryption->get_impl().do_add_etc_crypttab(actiongraph);
+	    encryption->get_impl().do_add_to_etc_crypttab(actiongraph);
 	}
 
 
 	void
-	AddEtcCrypttab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+	AddToEtcCrypttab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					 Actiongraph::Impl& actiongraph) const
 	{
 	    if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
@@ -391,36 +391,36 @@ namespace storage
 
 
 	Text
-	RenameEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RenameInEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Encryption* encryption_lhs = to_encryption(get_device_lhs(actiongraph));
 	    const Encryption* encryption_rhs = to_encryption(get_device_rhs(actiongraph));
-	    return encryption_rhs->get_impl().do_rename_etc_crypttab_text(encryption_lhs, tense);
+	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, tense);
 	}
 
 
 	void
-	RenameEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	RenameInEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Encryption* encryption_lhs = to_encryption(get_device_lhs(actiongraph));
 	    const Encryption* encryption_rhs = to_encryption(get_device_rhs(actiongraph));
-	    encryption_rhs->get_impl().do_rename_etc_crypttab(actiongraph, encryption_lhs);
+	    encryption_rhs->get_impl().do_rename_in_etc_crypttab(actiongraph, encryption_lhs);
 	}
 
 
 	Text
-	RemoveEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
-	    return encryption->get_impl().do_remove_etc_crypttab_text(tense);
+	    return encryption->get_impl().do_remove_from_etc_crypttab_text(tense);
 	}
 
 
 	void
-	RemoveEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
-	    encryption->get_impl().do_remove_etc_crypttab(actiongraph);
+	    encryption->get_impl().do_remove_from_etc_crypttab(actiongraph);
 	}
 
     }

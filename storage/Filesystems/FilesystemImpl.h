@@ -115,14 +115,14 @@ namespace storage
 	virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
 	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_add_etc_fstab_text(const string& mountpoint, Tense tense) const;
-	virtual void do_add_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_rename_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
-	virtual void do_rename_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs, const string& mountpoint) const;
+	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
+	virtual void do_rename_in_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs, const string& mountpoint) const;
 
-	virtual Text do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const;
-	virtual void do_remove_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
 
@@ -222,11 +222,11 @@ namespace storage
 	};
 
 
-	class AddEtcFstab : public Modify
+	class AddToEtcFstab : public Modify
 	{
 	public:
 
-	    AddEtcFstab(sid_t sid, const string& mountpoint)
+	    AddToEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
@@ -240,11 +240,11 @@ namespace storage
 	};
 
 
-	class RenameEtcFstab : public Modify
+	class RenameInEtcFstab : public Modify
 	{
 	public:
 
-	    RenameEtcFstab(sid_t sid, const string& mountpoint)
+	    RenameInEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
@@ -255,11 +255,11 @@ namespace storage
 	};
 
 
-	class RemoveEtcFstab : public Modify
+	class RemoveFromEtcFstab : public Modify
 	{
 	public:
 
-	    RemoveEtcFstab(sid_t sid, const string& mountpoint)
+	    RemoveFromEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
