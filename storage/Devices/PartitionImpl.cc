@@ -23,6 +23,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -133,26 +134,16 @@ namespace storage
     unsigned int
     Partition::Impl::get_number() const
     {
-	const string& name = get_name();
-
-	string::size_type pos = name.find_last_not_of("0123456789");
-	if (pos == string::npos || pos == name.size() - 1)
-	    ST_THROW(Exception("partition name has no number"));
-
-	return atoi(name.substr(pos + 1).c_str());
+	return device_to_name_and_number(get_name()).second;
     }
 
 
     void
     Partition::Impl::set_number(unsigned int number)
     {
-	const string& name = get_name();
+	std::pair<string, unsigned int> pair = device_to_name_and_number(get_name());
 
-	string::size_type pos = name.find_last_not_of("0123456789");
-        if (pos == string::npos || pos == name.size() - 1)
-            ST_THROW(Exception("partition name has no number"));
-
-	set_name(name.substr(0, pos + 1) + to_string(number));
+	set_name(name_and_number_to_device(pair.first, number));
 
 	update_sysfs_name_and_path();
 	update_udev_paths_and_ids();
