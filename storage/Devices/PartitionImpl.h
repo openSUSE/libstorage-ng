@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -65,6 +65,7 @@ namespace storage
 	virtual void check() const override;
 
 	unsigned int get_number() const;
+	void set_number(unsigned int number);
 
 	virtual void set_region(const Region& region) override;
 
@@ -80,6 +81,7 @@ namespace storage
 	bool is_legacy_boot() const { return legacy_boot; }
 	void set_legacy_boot(bool legacy_boot);
 
+	void update_sysfs_name_and_path();
 	void update_udev_paths_and_ids();
 
 	virtual ResizeInfo detect_resize_info() const override;

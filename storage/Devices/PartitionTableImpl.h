@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,7 +56,7 @@ namespace storage
 
 	Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
-	void delete_partition(Partition* partition);
+	virtual void delete_partition(Partition* partition);
 
 	void delete_partition(const string& name);
 
@@ -123,7 +123,13 @@ namespace storage
 
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
-	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
+	/*
+	 * Add dependencies for all the partition tables
+	 *
+	 * Implemented as a static method because going through the actions for
+	 * every partition table individually would be slow.
+	 */
+	static void add_all_dependencies(Actiongraph::Impl& actiongraph);
 
     protected:
 
@@ -138,6 +144,22 @@ namespace storage
 
 	bool read_only;
 
+	struct ActionsStruct
+	{
+	    vector<Actiongraph::Impl::vertex_descriptor> create_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> resize_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> rename_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> delete_actions;
+	};
+
+	/**
+	 * Finds the actions for all partition tables.
+	 *
+	 * See add_all_dependencies
+	 *
+	 * In the result, sid_t is the sid of the partition table.
+	 */
+	static map<sid_t, ActionsStruct> find_actions(const Actiongraph::Impl& actiongraph);
     };
 
 }

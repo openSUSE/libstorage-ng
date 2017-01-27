@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,6 +51,8 @@ namespace storage
 	virtual const char* get_classname() const override { return DeviceTraits<Msdos>::classname; }
 
 	virtual string get_displayname() const override { return "msdos"; }
+
+	virtual void delete_partition(Partition* partition) override;
 
 	virtual PtType get_type() const override { return PtType::MSDOS; }
 
