@@ -383,42 +383,119 @@ namespace storage
     }
 
 
-    void
-    PartitionTable::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    /**
+     * Finds the actions for all partition tables.
+     *
+     * Going through the actions for every partition table individually
+     * would be slow.
+     *
+     * In the result, sid_t is the sid of the partition table.
+     */
+    map<sid_t, PartitionTable::Impl::ActionsStruct>
+    PartitionTable::Impl::find_actions(const Actiongraph::Impl& actiongraph)
     {
-	// TODO handle also resize and delete actions
 
-	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);
+	map<sid_t, PartitionTable::Impl::ActionsStruct> result;
 
-	vector<Actiongraph::Impl::vertex_descriptor> tmp;
+	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+        {
+            const Action::Base* action = actiongraph[vertex];
 
-	// Frist find all Create actions of partitions belonging to this
-	// partition table.
+	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	    if (create_action)
+	    {
+		const Device* device = create_action->get_device_rhs(actiongraph);
+		if (is_partition(device))
+		{
+		    const Partition* partition = to_partition(device);
+		    sid_t x = partition->get_partition_table()->get_sid();
+		    result[x].create_actions.push_back(vertex);
+		}
+	    }
 
-	for (const Partition* partition : get_partitions())
-	{
-	    sid_t sid = partition->get_sid();
-	    for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.actions_with_sid(sid))
-		if (is_create(actiongraph[vertex]))
-		    tmp.push_back(vertex);
+	    /* TODO: resize actions
+	    const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
+	    if (resize_action)
+	    {
+		const Device* device = resize_action->get_device_rhs(actiongraph);
+		if (is_partition(device))
+		{
+		    const Partition* partition = to_partition(device);
+		    sid_t x = partition->get_partition_table()->get_sid();
+		    result[x].resize_actions.push_back(vertex);
+		}
+	    }
+	    */
+
+	    // TODO find renumber actions
+
+	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+            if (delete_action)
+            {
+                const Device* device = delete_action->get_device_lhs(actiongraph);
+                if (is_partition(device))
+                {
+                    const Partition* partition = to_partition(device);
+                    sid_t x = partition->get_partition_table()->get_sid();
+                    result[x].delete_actions.push_back(vertex);
+                }
+            }
 	}
 
-	// Second sort the Create actions by corresponding partition numbers
-	// and add the dependencies to the actiongraph.
-
-	if (tmp.size() > 1)
-	{
-	    std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> fnc =
-		[&actiongraph, &devicegraph](Actiongraph::Impl::vertex_descriptor vertex) {
-		const Action::Base* a = actiongraph[vertex];
-		const Partition* p = to_partition(devicegraph->find_device(a->sid));
-		return p->get_number();
-	    };
-
-	    actiongraph.add_chain(sort_by_key(tmp, fnc));
-	}
+	return result;
     }
 
+
+    void
+    PartitionTable::Impl::add_all_dependencies(Actiongraph::Impl& actiongraph)
+    {
+	map<sid_t, PartitionTable::Impl::ActionsStruct> actions_by_table = find_actions(actiongraph);
+
+        const Devicegraph* devicegraph_rhs = actiongraph.get_devicegraph(RHS);
+        const Devicegraph* devicegraph_lhs = actiongraph.get_devicegraph(LHS);
+
+	// For each partition table...
+	for (auto& z : actions_by_table)
+	{
+	    ActionsStruct& actions_struct = z.second;
+	    vector<Actiongraph::Impl::vertex_descriptor> actions;
+
+	    // Sort the delete actions by corresponding partition number and add
+	    // them to the list of actions
+	    if (!actions_struct.delete_actions.empty())
+	    {
+		std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> fnc =
+		    [&actiongraph, &devicegraph_lhs](Actiongraph::Impl::vertex_descriptor vertex) {
+		    const Action::Base* a = actiongraph[vertex];
+		    const Partition* p = to_partition(devicegraph_lhs->find_device(a->sid));
+		    return p->get_number();
+		};
+
+		actions_struct.delete_actions = sort_by_key(actions_struct.delete_actions, fnc);
+		actions.insert(actions.end(), actions_struct.delete_actions.rbegin(), actions_struct.delete_actions.rend());
+	    }
+
+	    // TODO insert rename actions, lowest numbers first
+	    // actions.insert(actions.end(), actions_struct.resize_actions.begin(), actions_struct.resize_actions.end());
+
+	    // Add the Create actions to the list (sorted by partition number)
+	    if (!actions_struct.create_actions.empty())
+	    {
+		std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> fnc =
+		    [&actiongraph, &devicegraph_rhs](Actiongraph::Impl::vertex_descriptor vertex) {
+		    const Action::Base* a = actiongraph[vertex];
+		    const Partition* p = to_partition(devicegraph_rhs->find_device(a->sid));
+		    return p->get_number();
+		};
+
+		actions_struct.create_actions = sort_by_key(actions_struct.create_actions, fnc);
+		actions.insert(actions.end(), actions_struct.create_actions.begin(), actions_struct.create_actions.end());
+	    }
+
+	    // Add all the dependencies to the action graph
+	    actiongraph.add_chain(actions);
+	}
+    }
 
     std::ostream&
     operator<<(std::ostream& s, const PartitionSlot& partition_slot)

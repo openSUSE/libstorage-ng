@@ -87,21 +87,24 @@ namespace storage
 		else
 		{
 		    // children of parents must be deleted beforehand
-
-		    Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
-
-		    Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
-		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
+		    if (!is_partition(get_device_rhs(actiongraph)))
 		    {
-			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
 
-			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
-			if (!tmp.empty())
+			Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
+
+			Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
+			for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
 			{
-			    // Make sure it's a delete action
-			    const Action::Base* tmp_action = actiongraph[tmp.front()];
-			    if (dynamic_cast<const Action::Delete*>(tmp_action))
-				actiongraph.add_edge(tmp.front(), vertex);
+			    sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
+
+			    vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
+			    if (!tmp.empty())
+			    {
+				// Make sure it's a delete action
+				const Action::Base* tmp_action = actiongraph[tmp.front()];
+				if (dynamic_cast<const Action::Delete*>(tmp_action))
+				    actiongraph.add_edge(tmp.front(), vertex);
+			    }
 			}
 		    }
 		}
@@ -117,18 +120,21 @@ namespace storage
 
 	    // all children must be deleted beforehand
 
-	    sid_t sid = actiongraph[vertex]->sid;
-
-	    Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
-
-	    // iterate children
-	    Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
-	    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi != vi_end; ++vi)
+	    if (!is_partition(get_device_lhs(actiongraph)))
 	    {
-		sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
+		sid_t sid = actiongraph[vertex]->sid;
 
-		for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(child_sid, ONLY_FIRST))
-		    actiongraph.add_edge(vertex, tmp);
+		Devicegraph::Impl::vertex_descriptor v_in_lhs = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(sid);
+
+		// iterate children
+		Devicegraph::Impl::inv_adjacency_iterator vi, vi_end;
+		    for (boost::tie(vi, vi_end) = inv_adjacent_vertices(v_in_lhs, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi != vi_end; ++vi)
+		    {
+			sid_t child_sid = actiongraph.get_devicegraph(RHS)->get_impl()[*vi]->get_sid();
+
+			for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.actions_with_sid(child_sid, ONLY_FIRST))
+			    actiongraph.add_edge(vertex, tmp);
+		    }
 	    }
 	}
 
