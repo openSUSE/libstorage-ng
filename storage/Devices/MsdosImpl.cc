@@ -78,7 +78,7 @@ namespace storage
             for (Partition* tmp : partitions)
 	    {
 		unsigned int number = tmp->get_number();
-		if (number > old_number)
+		if (number != old_number)
 		    tmp->get_impl().set_number(number - 1);
 	    }
 	}
