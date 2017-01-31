@@ -32,6 +32,7 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -297,11 +298,7 @@ namespace storage
     unsigned int
     Md::Impl::get_number() const
     {
-	string::size_type pos = get_name().find_last_not_of("0123456789");
-	if (pos == string::npos || pos == get_name().size() - 1)
-	    ST_THROW(Exception("md name has no number"));
-
-	return atoi(get_name().substr(pos + 1).c_str());
+	return device_to_name_and_number(get_name()).second;
     }
 
 

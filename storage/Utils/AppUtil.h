@@ -54,6 +54,9 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     string make_dev_block_name(dev_t majorminor);
 
+    std::pair<string, unsigned int> device_to_name_and_number(const string& full_name);
+    string name_and_number_to_device(const string& name, unsigned int number);
+
     vector<string> glob(const string& path, int flags);
 
     struct StatVfs
