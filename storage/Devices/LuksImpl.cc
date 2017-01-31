@@ -271,7 +271,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_add_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Luks::Impl::do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
 	const Storage& storage = actiongraph.get_storage();
 
@@ -290,7 +290,15 @@ namespace storage
 
 
     void
-    Luks::Impl::do_remove_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Luks::Impl::do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph,
+				       const Device* lhs) const
+    {
+	// TODO
+    }
+
+
+    void
+    Luks::Impl::do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const
     {
 	const Storage& storage = actiongraph.get_storage();
 

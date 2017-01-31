@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -388,8 +388,8 @@ namespace storage
 		Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
 		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(mount);
 
-		Action::AddEtcFstab* add_etc_fstab = new Action::AddEtcFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_etc_fstab);
+		Action::AddToEtcFstab* add_to_etc_fstab = new Action::AddToEtcFstab(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_to_etc_fstab);
 
 		actiongraph.add_edge(v1, t1);
 		actiongraph.add_edge(t1, t2);
@@ -423,6 +423,14 @@ namespace storage
 	    actions.push_back(new Action::SetUuid(get_sid()));
 	}
 
+	// TODO depends on mount-by, whether there actually is an entry in fstab,
+	// btrfs multiple devices, ...
+	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
+	{
+	    for (const string& mountpoint : get_mountpoints())
+		actions.push_back(new Action::RenameInEtcFstab(get_sid(), mountpoint));
+	}
+
 	actiongraph.add_chain(actions);
     }
 
@@ -445,8 +453,8 @@ namespace storage
 
 	    for (const string& mountpoint : get_mountpoints())
 	    {
-		Action::RemoveEtcFstab* remove_etc_fstab = new Action::RemoveEtcFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_etc_fstab);
+		Action::RemoveFromEtcFstab* remove_from_etc_fstab = new Action::RemoveFromEtcFstab(get_sid(), mountpoint);
+		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_from_etc_fstab);
 
 		Action::Umount* umount = new Action::Umount(get_sid(), mountpoint);
 		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(umount);
@@ -742,16 +750,16 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_add_etc_fstab_text(const string& mountpoint, Tense tense) const
+    Filesystem::Impl::do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Add mountpoint %1$s of %2$s to /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Adding mountpoint %1$s of %2$s to /etc/fstab"));
 
 	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
@@ -759,7 +767,7 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_add_etc_fstab(const Actiongraph::Impl& actiongraph,
+    Filesystem::Impl::do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph,
 				       const string& mountpoint) const
     {
 	const Storage& storage = actiongraph.get_storage();
@@ -783,16 +791,64 @@ namespace storage
 
 
     Text
-    Filesystem::Impl::do_remove_etc_fstab_text(const string& mountpoint, Tense tense) const
+    Filesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,
+						  Tense tense) const
+    {
+	const BlkDevice* blk_device_lhs = to_filesystem(lhs)->get_impl().get_blk_device();
+	const BlkDevice* blk_device_rhs = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Rename mountpoint %1$s from %2$s to %3$s in /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Renaming mountpoint %1$s from %2$s to %3$s in /etc/fstab"));
+
+	return sformat(text, mountpoint.c_str(), blk_device_lhs->get_name().c_str(),
+		       blk_device_rhs->get_name().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_rename_in_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs,
+					     const string& mountpoint) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	const BlkDevice* blk_device_lhs = to_filesystem(lhs)->get_impl().get_blk_device();
+
+	// TODO
+
+	FstabChange entry;
+	entry.device = blk_device_lhs->get_name();
+	entry.dentry = get_mount_by_string();
+	entry.mount = mountpoint;
+	entry.fs = toString(get_type());
+	entry.opts = fstab_options;
+
+	fstab.addEntry(entry);
+	fstab.flush();
+    }
+
+
+    Text
+    Filesystem::Impl::do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Remove mountpoint %1$s of %2$s from /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Removing mountpoint %1$s of %2$s from /etc/fstab"));
 
 	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
@@ -800,8 +856,8 @@ namespace storage
 
 
     void
-    Filesystem::Impl::do_remove_etc_fstab(const Actiongraph::Impl& actiongraph,
-					  const string& mountpoint) const
+    Filesystem::Impl::do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph,
+					       const string& mountpoint) const
     {
 	const Storage& storage = actiongraph.get_storage();
 
@@ -937,24 +993,24 @@ namespace storage
 
 
 	Text
-	AddEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
-	    return filesystem->get_impl().do_add_etc_fstab_text(mountpoint, tense);
+	    return filesystem->get_impl().do_add_to_etc_fstab_text(mountpoint, tense);
 	}
 
 
 	void
-	AddEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
 	{
 	    const Filesystem* filesystem = to_filesystem(get_device_rhs(actiongraph));
-	    filesystem->get_impl().do_add_etc_fstab(actiongraph, mountpoint);
+	    filesystem->get_impl().do_add_to_etc_fstab(actiongraph, mountpoint);
 	}
 
 
 	void
-	AddEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-				      Actiongraph::Impl& actiongraph) const
+	AddToEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+					Actiongraph::Impl& actiongraph) const
 	{
 	    if (mountpoint == "swap")
 		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
@@ -963,18 +1019,36 @@ namespace storage
 
 
 	Text
-	RemoveEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RenameInEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
-	    return filesystem->get_impl().do_remove_etc_fstab_text(mountpoint, tense);
+	    const Filesystem* filesystem_lhs = to_filesystem(get_device_lhs(actiongraph));
+	    const Filesystem* filesystem_rhs = to_filesystem(get_device_rhs(actiongraph));
+	    return filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(filesystem_lhs, mountpoint, tense);
 	}
 
 
 	void
-	RemoveEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	RenameInEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Filesystem* filesystem_lhs = to_filesystem(get_device_lhs(actiongraph));
+	    const Filesystem* filesystem_rhs = to_filesystem(get_device_rhs(actiongraph));
+	    filesystem_rhs->get_impl().do_rename_in_etc_fstab(actiongraph, filesystem_lhs, mountpoint);
+	}
+
+
+	Text
+	RemoveFromEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
 	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
-	    filesystem->get_impl().do_remove_etc_fstab(actiongraph, mountpoint);
+	    return filesystem->get_impl().do_remove_from_etc_fstab_text(mountpoint, tense);
+	}
+
+
+	void
+	RemoveFromEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	{
+	    const Filesystem* filesystem = to_filesystem(get_device_lhs(actiongraph));
+	    filesystem->get_impl().do_remove_from_etc_fstab(actiongraph, mountpoint);
 	}
 
     }

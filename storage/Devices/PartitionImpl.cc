@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,6 +23,7 @@
 
 #include <iostream>
 
+#include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -133,11 +134,19 @@ namespace storage
     unsigned int
     Partition::Impl::get_number() const
     {
-	string::size_type pos = get_name().find_last_not_of("0123456789");
-	if (pos == string::npos || pos == get_name().size() - 1)
-	    ST_THROW(Exception("partition name has no number"));
+	return device_to_name_and_number(get_name()).second;
+    }
 
-	return atoi(get_name().substr(pos + 1).c_str());
+
+    void
+    Partition::Impl::set_number(unsigned int number)
+    {
+	std::pair<string, unsigned int> pair = device_to_name_and_number(get_name());
+
+	set_name(name_and_number_to_device(pair.first, number));
+
+	update_sysfs_name_and_path();
+	update_udev_paths_and_ids();
     }
 
 
@@ -368,6 +377,26 @@ namespace storage
 	    ST_THROW(Exception("set_boot not supported"));
 
 	Impl::legacy_boot = legacy_boot;
+    }
+
+
+    void
+    Partition::Impl::update_sysfs_name_and_path()
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	// TODO different for device-mapper partitions
+
+	if (!partitionable->get_sysfs_name().empty() && !partitionable->get_sysfs_path().empty())
+	{
+	    set_sysfs_name(partitionable->get_sysfs_name() + to_string(get_number()));
+	    set_sysfs_path(partitionable->get_sysfs_path() + "/" + get_sysfs_name());
+	}
+	else
+	{
+	    set_sysfs_name("");
+	    set_sysfs_path("");
+	}
     }
 
 

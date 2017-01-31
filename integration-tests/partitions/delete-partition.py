@@ -4,6 +4,7 @@
 
 
 from storage import *
+from storageitu import *
 
 
 set_logger(get_logfile_logger())
@@ -24,6 +25,5 @@ partition_table.delete_partition("/dev/sdb1")
 
 print staging
 
-storage.calculate_actiongraph()
-storage.commit()
+commit(storage)
 
