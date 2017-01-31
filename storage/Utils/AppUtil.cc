@@ -452,6 +452,7 @@ string afterLast(const string& s, const string& pat )
 
 const string app_ws = " \t\n";
 
+
     /**
      * Breaks a device name like "/dev/sda2" into "/dev/sda" and 2
      *
@@ -468,12 +469,14 @@ const string app_ws = " \t\n";
 	return std::make_pair(full_name.substr(0, pos + 1), atoi(full_name.substr(pos + 1).c_str()));
     }
 
+
     /**
      * Inverse of device_to_name_and_number
      */
     string
     name_and_number_to_device(const string& name, unsigned int number)
     {
-	return (name + to_string(number));
+	return name + to_string(number);
     }
+
 }
