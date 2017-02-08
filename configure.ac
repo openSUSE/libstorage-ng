@@ -37,6 +37,9 @@ AC_SUBST([XML_LIBS])
 CXXFLAGS="${CXXFLAGS} ${XML_CFLAGS}"
 CFLAGS="${CFLAGS} ${XML_CFLAGS}"
 
+AC_CHECK_HEADER([boost/config.hpp],[],
+		[AC_MSG_ERROR([boost/config.hpp not found, install e.g. boost-devel])])
+
 AC_SUBST(VERSION)
 AC_SUBST(LIBVERSION)
 AC_SUBST(LIBVERSION_MAJOR)
