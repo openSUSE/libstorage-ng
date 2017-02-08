@@ -41,10 +41,13 @@ BuildRequires:  libtool
 BuildRequires:  pkgconfig
 BuildRequires:  ruby
 BuildRequires:  ruby-devel
-# On SLE/Leap we need specific version/name
 %if 0%{?suse_version} == 1315
+# Using rubygem(test-unit) does not work since ruby2.1-stdlib claims to
+# provide rubygem(test-unit). But that is plain wrong. The version in
+# ruby2.1-stdlib does not provide the function assert_raise_kind_of.
 BuildRequires:  ruby2.1-rubygem-test-unit
-%else
+%endif
+%if 0%{?fedora}
 BuildRequires:  rubygem-test-unit
 %endif
 BuildRequires:  swig >= 3.0.3
