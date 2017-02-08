@@ -104,6 +104,7 @@ AC_OUTPUT(
 	testsuite/dependencies/luks/Makefile
 	testsuite/dependencies/lvm/Makefile
 	testsuite/dependencies/md/Makefile
+	testsuite/dependencies/partitions/Makefile
 	testsuite/sorting/Makefile
 	testsuite/partitions/Makefile
 	testsuite/Devices/Makefile
