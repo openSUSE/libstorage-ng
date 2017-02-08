@@ -92,7 +92,8 @@ namespace storage
 	virtual Text do_rename_text(const Impl& lhs, Tense tense) const;
 	virtual void do_rename(const Impl& lhs) const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const override;
 	virtual void do_resize(ResizeMode resize_mode) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;

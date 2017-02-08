@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,9 @@
 
 namespace storage
 {
+
+    class BlkDevice;
+
 
     namespace Action
     {
@@ -76,9 +79,9 @@ namespace storage
 					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
-	     * Returns the device of the action on the rhs devicegraph.
+	     * Returns the device of the action on the RHS devicegraph.
 	     */
-	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
 	};
@@ -91,16 +94,26 @@ namespace storage
 	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    /**
-	     * Returns the device of the action on the lhs devicegraph. May not exist.
+	     * Returns the device of the action on the Lhs or RHS devicegraph. May not exist.
 	     */
-	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
+	    const Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const
+		{ return actiongraph.get_devicegraph(side)->find_device(sid); }
 
-	    /**
-	     * Returns the device of the action on the rhs devicegraph. May not exist.
-	     */
-	    const Device* get_device_rhs(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
+	};
+
+
+	/**
+	 * Base class for renaming a blk device in some file, e.g. /etc/fstab
+	 * or /etc/crypttab.
+	 */
+	class RenameIn : public Modify
+	{
+	public:
+
+	    RenameIn(sid_t sid) : Modify(sid) {}
+
+	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
+							    Side side) const = 0;
 
 	};
 
@@ -118,9 +131,9 @@ namespace storage
 					  Actiongraph::Impl& actiongraph) const override;
 
 	    /**
-	     * Returns the device of the action on the lhs devicegraph.
+	     * Returns the device of the action on the LHS devicegraph.
 	     */
-	    const Device* get_device_lhs(const Actiongraph::Impl& actiongraph) const
+	    const Device* get_device(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
 	};

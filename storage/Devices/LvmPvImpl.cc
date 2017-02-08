@@ -256,10 +256,13 @@ namespace storage
 
 
     Text
-    LvmPv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    LvmPv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				Tense tense) const
     {
+	const BlkDevice* blk_device = get_blk_device();
+
 	const BlkDevice* blk_device_lhs = to_lvm_pv(lhs)->get_impl().get_blk_device();
-	const BlkDevice* blk_device_rhs = get_blk_device();
+	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
 
 	Text text;
 
@@ -297,7 +300,7 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, blk_device_rhs->get_name().c_str(),
+	return sformat(text, blk_device->get_name().c_str(),
 		       blk_device_lhs->get_size_string().c_str(),
 		       blk_device_rhs->get_size_string().c_str());
     }

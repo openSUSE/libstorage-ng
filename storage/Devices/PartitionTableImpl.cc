@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -384,38 +384,137 @@ namespace storage
 
 
     void
-    PartitionTable::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    PartitionTable::Impl::run_dependency_manager(Actiongraph::Impl& actiongraph)
     {
-	// TODO handle also resize and delete actions
+	// To speed up things this fuctions finds the actions for all
+	// partition tables. Going through the actions for every partition
+	// table individually is slow.
 
-	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);
-
-	vector<Actiongraph::Impl::vertex_descriptor> tmp;
-
-	// Frist find all Create actions of partitions belonging to this
-	// partition table.
-
-	for (const Partition* partition : get_partitions())
+	struct AllActions
 	{
-	    sid_t sid = partition->get_sid();
-	    for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.actions_with_sid(sid))
-		if (is_create(actiongraph[vertex]))
-		    tmp.push_back(vertex);
+	    vector<Actiongraph::Impl::vertex_descriptor> shrink_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> delete_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> rename_in_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> create_actions;
+	    vector<Actiongraph::Impl::vertex_descriptor> grow_actions;
+	};
+
+	// Build map with all actions for all partition tables.
+
+	map<sid_t, AllActions> all_actions_per_partition_table;
+
+	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+	{
+	    const Action::Base* action = actiongraph[vertex];
+
+	    const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
+	    if (create_action)
+	    {
+		const Device* device = create_action->get_device(actiongraph);
+		if (is_partition(device))
+		{
+		    const Partition* partition = to_partition(device);
+		    sid_t sid = partition->get_partition_table()->get_sid();
+
+		    all_actions_per_partition_table[sid].create_actions.push_back(vertex);
+		}
+	    }
+
+	    const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
+            if (delete_action)
+            {
+                const Device* device = delete_action->get_device(actiongraph);
+                if (is_partition(device))
+                {
+                    const Partition* partition = to_partition(device);
+                    sid_t sid = partition->get_partition_table()->get_sid();
+
+                    all_actions_per_partition_table[sid].delete_actions.push_back(vertex);
+                }
+            }
+
+	    const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
+	    if (resize_action)
+	    {
+		const Device* device = resize_action->get_device(actiongraph, RHS);
+		if (is_partition(device))
+		{
+		    const Partition* partition = to_partition(device);
+		    sid_t sid = partition->get_partition_table()->get_sid();
+
+		    if (resize_action->resize_mode == ResizeMode::GROW)
+			all_actions_per_partition_table[sid].grow_actions.push_back(vertex);
+		    else
+			all_actions_per_partition_table[sid].shrink_actions.push_back(vertex);
+		}
+	    }
+
+	    const Action::RenameIn* rename_in_action = dynamic_cast<const Action::RenameIn*>(action);
+	    if (rename_in_action)
+	    {
+		const Partition* partition = to_partition(rename_in_action->get_renamed_blk_device(actiongraph, RHS));
+		sid_t sid = partition->get_partition_table()->get_sid();
+
+		all_actions_per_partition_table[sid].rename_in_actions.push_back(vertex);
+	    }
 	}
 
-	// Second sort the Create actions by corresponding partition numbers
-	// and add the dependencies to the actiongraph.
+	// Some functions used for sorting actions by partition number.
 
-	if (tmp.size() > 1)
+        const Devicegraph* devicegraph_rhs = actiongraph.get_devicegraph(RHS);
+        const Devicegraph* devicegraph_lhs = actiongraph.get_devicegraph(LHS);
+
+	std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> key_fnc1 =
+	    [&actiongraph, &devicegraph_lhs](Actiongraph::Impl::vertex_descriptor vertex) {
+	    const Action::Base* action = actiongraph[vertex];
+	    const Partition* partition = to_partition(devicegraph_lhs->find_device(action->sid));
+	    return partition->get_number();
+	};
+
+	std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> key_fnc2 =
+	    [&actiongraph, &devicegraph_lhs](Actiongraph::Impl::vertex_descriptor vertex) {
+	    const Action::RenameIn* action = dynamic_cast<const Action::RenameIn*>(actiongraph[vertex]);
+	    const Partition* partition = to_partition(action->get_renamed_blk_device(actiongraph, RHS));
+	    return partition->get_number();
+	};
+
+	std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> key_fnc3 =
+	    [&actiongraph, &devicegraph_rhs](Actiongraph::Impl::vertex_descriptor vertex) {
+	    const Action::Base* action = actiongraph[vertex];
+	    const Partition* partition = to_partition(devicegraph_rhs->find_device(action->sid));
+	    return partition->get_number();
+	};
+
+	// Iterate over all partition tables with actions and build chain of
+	// dependencies.
+
+	for (auto& tmp : all_actions_per_partition_table)
 	{
-	    std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> fnc =
-		[&actiongraph, &devicegraph](Actiongraph::Impl::vertex_descriptor vertex) {
-		const Action::Base* a = actiongraph[vertex];
-		const Partition* p = to_partition(devicegraph->find_device(a->sid));
-		return p->get_number();
-	    };
+	    AllActions& all_actions = tmp.second;
 
-	    actiongraph.add_chain(sort_by_key(tmp, fnc));
+	    vector<Actiongraph::Impl::vertex_descriptor> actions;
+
+	    all_actions.shrink_actions = sort_by_key(all_actions.shrink_actions, key_fnc1);
+	    actions.insert(actions.end(), all_actions.shrink_actions.begin(),
+			   all_actions.shrink_actions.end());
+
+	    all_actions.delete_actions = sort_by_key(all_actions.delete_actions, key_fnc1);
+	    actions.insert(actions.end(), all_actions.delete_actions.rbegin(),
+			   all_actions.delete_actions.rend());
+
+	    all_actions.rename_in_actions = sort_by_key(all_actions.rename_in_actions, key_fnc2);
+	    actions.insert(actions.end(), all_actions.rename_in_actions.begin(),
+			   all_actions.rename_in_actions.end());
+
+	    all_actions.create_actions = sort_by_key(all_actions.create_actions, key_fnc3);
+	    actions.insert(actions.end(), all_actions.create_actions.begin(),
+			   all_actions.create_actions.end());
+
+	    all_actions.grow_actions = sort_by_key(all_actions.grow_actions, key_fnc3);
+	    actions.insert(actions.end(), all_actions.grow_actions.begin(),
+			   all_actions.grow_actions.end());
+
+	    actiongraph.add_chain(actions);
 	}
     }
 

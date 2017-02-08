@@ -130,6 +130,8 @@ namespace storage
 
 	virtual uint64_t used_features() const { return 0; }
 
+	virtual bool has_dependency_manager() const { return false; }
+
 	/**
 	 * Add create actions for the Device.
 	 * @param actiongraph The Actiongraph fow which actions are added.
@@ -169,7 +171,8 @@ namespace storage
 	virtual Text do_deactivate_text(Tense tense) const;
 	virtual void do_deactivate() const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const;
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const;
 	virtual void do_resize(ResizeMode resize_mode) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
@@ -327,6 +330,8 @@ namespace storage
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
+
+	    Side get_side() const { return resize_mode == ResizeMode::GROW ? RHS : LHS; }
 
 	    const ResizeMode resize_mode;
 

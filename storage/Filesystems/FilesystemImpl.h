@@ -124,7 +124,8 @@ namespace storage
 	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
 	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const override;
 
     protected:
 
@@ -240,15 +241,18 @@ namespace storage
 	};
 
 
-	class RenameInEtcFstab : public Modify
+	class RenameInEtcFstab : public RenameIn
 	{
 	public:
 
 	    RenameInEtcFstab(sid_t sid, const string& mountpoint)
-		: Modify(sid), mountpoint(mountpoint) {}
+		: RenameIn(sid), mountpoint(mountpoint) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
+							    Side side) const override;
 
 	    const string mountpoint;
 

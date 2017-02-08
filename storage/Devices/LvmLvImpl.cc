@@ -306,10 +306,13 @@ namespace storage
 
 
     Text
-    LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				Tense tense) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
+
 	const LvmLv* lvm_lv_lhs = to_lvm_lv(lhs);
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(rhs);
 
 	Text text;
 
@@ -352,7 +355,8 @@ namespace storage
 	}
 
 	return sformat(text, lv_name.c_str(), lvm_vg->get_vg_name().c_str(),
-		       lvm_lv_lhs->get_size_string().c_str(), get_size_string().c_str());
+		       lvm_lv_lhs->get_size_string().c_str(),
+		       lvm_lv_rhs->get_size_string().c_str());
     }
 
 
@@ -421,16 +425,16 @@ namespace storage
 	Text
 	Rename::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device_lhs(actiongraph));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device_rhs(actiongraph));
+	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(actiongraph, LHS));
+	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(actiongraph, RHS));
 	    return rhs_lvm_lv->get_impl().do_rename_text(lhs_lvm_lv->get_impl(), tense);
 	}
 
 	void
 	Rename::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device_lhs(actiongraph));
-	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device_rhs(actiongraph));
+	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(actiongraph, LHS));
+	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(actiongraph, RHS));
 	    return rhs_lvm_lv->get_impl().do_rename(lhs_lvm_lv->get_impl());
 	}
 

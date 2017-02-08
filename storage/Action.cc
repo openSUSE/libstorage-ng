@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,7 +24,6 @@
 #include "storage/Action.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Devices/Partition.h"
 
 
 namespace storage
@@ -36,28 +35,28 @@ namespace storage
 	Text
 	Create::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    return get_device_rhs(actiongraph)->get_impl().do_create_text(tense);
+	    return get_device(actiongraph)->get_impl().do_create_text(tense);
 	}
 
 
 	void
 	Create::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    get_device_rhs(actiongraph)->get_impl().do_create();
+	    get_device(actiongraph)->get_impl().do_create();
 	}
 
 
 	Text
 	Delete::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    return get_device_lhs(actiongraph)->get_impl().do_delete_text(tense);
+	    return get_device(actiongraph)->get_impl().do_delete_text(tense);
 	}
 
 
 	void
 	Delete::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    get_device_lhs(actiongraph)->get_impl().do_delete();
+	    get_device(actiongraph)->get_impl().do_delete();
 	}
 
 
@@ -88,20 +87,23 @@ namespace storage
 		{
 		    // children of parents must be deleted beforehand
 
-		    Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
-
-		    Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
-		    for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
+		    if (!get_device(actiongraph)->get_impl().has_dependency_manager())
 		    {
-			sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
+			Devicegraph::Impl::vertex_descriptor q = actiongraph.get_devicegraph(LHS)->get_impl().find_vertex(parent_sid);
 
-			vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
-			if (!tmp.empty())
+			Devicegraph::Impl::adjacency_iterator vi2, vi2_end;
+			for (boost::tie(vi2, vi2_end) = adjacent_vertices(q, actiongraph.get_devicegraph(LHS)->get_impl().graph); vi2 != vi2_end; ++vi2)
 			{
-			    // Make sure it's a delete action
-			    const Action::Base* tmp_action = actiongraph[tmp.front()];
-			    if (dynamic_cast<const Action::Delete*>(tmp_action))
-				actiongraph.add_edge(tmp.front(), vertex);
+			    sid_t child_sid = actiongraph.get_devicegraph(LHS)->get_impl()[*vi2]->get_sid();
+
+			    vector<Actiongraph::Impl::vertex_descriptor> tmp = actiongraph.actions_with_sid(child_sid, ONLY_LAST);
+			    if (!tmp.empty())
+			    {
+				// Make sure it's a delete action
+				const Action::Base* tmp_action = actiongraph[tmp.front()];
+				if (dynamic_cast<const Action::Delete*>(tmp_action))
+				    actiongraph.add_edge(tmp.front(), vertex);
+			    }
 			}
 		    }
 		}

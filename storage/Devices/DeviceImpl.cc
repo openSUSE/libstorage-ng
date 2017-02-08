@@ -354,7 +354,8 @@ namespace storage
 
 
     Text
-    Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				 Tense tense) const
     {
 	return UntranslatedText("error: stub do_resize_text called");
     }
@@ -387,7 +388,7 @@ namespace storage
 	Text
 	Activate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Device* device = get_device_rhs(actiongraph);
+	    const Device* device = get_device(actiongraph, RHS);
 	    return device->get_impl().do_activate_text(tense);
 	}
 
@@ -395,7 +396,7 @@ namespace storage
 	void
 	Activate::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device = get_device_rhs(actiongraph);
+	    const Device* device = get_device(actiongraph, RHS);
 	    device->get_impl().do_activate();
 	}
 
@@ -403,7 +404,7 @@ namespace storage
 	Text
 	Deactivate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Device* device = get_device_lhs(actiongraph);
+	    const Device* device = get_device(actiongraph, LHS);
 	    return device->get_impl().do_deactivate_text(tense);
 	}
 
@@ -411,7 +412,7 @@ namespace storage
 	void
 	Deactivate::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device = get_device_lhs(actiongraph);
+	    const Device* device = get_device(actiongraph, LHS);
 	    device->get_impl().do_deactivate();
 	}
 
@@ -419,16 +420,18 @@ namespace storage
 	Text
 	Resize::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Device* device_lhs = get_device_lhs(actiongraph);
-	    const Device* device_rhs = get_device_rhs(actiongraph);
-	    return device_rhs->get_impl().do_resize_text(resize_mode, device_lhs, tense);
+	    const Device* device_lhs = get_device(actiongraph, LHS);
+	    const Device* device_rhs = get_device(actiongraph, RHS);
+
+	    const Device* device = get_device(actiongraph, get_side());
+	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, tense);
 	}
 
 
 	void
 	Resize::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device = get_device_rhs(actiongraph);
+	    const Device* device = get_device(actiongraph, get_side());
 	    device->get_impl().do_resize(resize_mode);
 	}
 
@@ -443,7 +446,7 @@ namespace storage
 
 	    vector<sid_t> sid_children;
 
-	    for (const Device* child : get_device_rhs(actiongraph)->get_children())
+	    for (const Device* child : get_device(actiongraph, RHS)->get_children())
 		sid_children.push_back(child->get_sid());
 
 	    for (Actiongraph::Impl::vertex_descriptor other_vertex : actiongraph.vertices())
@@ -463,7 +466,7 @@ namespace storage
 	Text
 	Reallot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Device* device_rhs = get_device_rhs(actiongraph);
+	    const Device* device_rhs = get_device(actiongraph, RHS);
 	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, tense);
 	}
 
@@ -471,7 +474,7 @@ namespace storage
 	void
 	Reallot::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Device* device_rhs = get_device_rhs(actiongraph);
+	    const Device* device_rhs = get_device(actiongraph, RHS);
 	    device_rhs->get_impl().do_reallot(reallot_mode, device);
 	}
 

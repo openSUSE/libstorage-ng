@@ -708,7 +708,7 @@ namespace storage
 	Text
 	AddToEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Md* md = to_md(get_device_rhs(actiongraph));
+	    const Md* md = to_md(get_device(actiongraph, RHS));
 	    return md->get_impl().do_add_to_etc_mdadm_text(tense);
 	}
 
@@ -716,7 +716,7 @@ namespace storage
 	void
 	AddToEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Md* md = to_md(get_device_rhs(actiongraph));
+	    const Md* md = to_md(get_device(actiongraph, RHS));
 	    md->get_impl().do_add_to_etc_mdadm(actiongraph);
 	}
 
@@ -735,7 +735,7 @@ namespace storage
 	Text
 	RemoveFromEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Md* md = to_md(get_device_lhs(actiongraph));
+	    const Md* md = to_md(get_device(actiongraph, LHS));
 	    return md->get_impl().do_remove_from_etc_mdadm_text(tense);
 	}
 
@@ -743,7 +743,7 @@ namespace storage
 	void
 	RemoveFromEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Md* md = to_md(get_device_lhs(actiongraph));
+	    const Md* md = to_md(get_device(actiongraph, LHS));
 	    md->get_impl().do_remove_from_etc_mdadm(actiongraph);
 	}
 

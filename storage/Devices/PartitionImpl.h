@@ -62,6 +62,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual bool has_dependency_manager() const override { return true; }
+
 	virtual void check() const override;
 
 	unsigned int get_number() const;
@@ -118,7 +120,8 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const override;
 	virtual void do_resize(ResizeMode resize_mode) const override;
 
 	static unsigned int default_id_for_type(PartitionType type);
