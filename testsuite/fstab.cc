@@ -355,6 +355,38 @@ BOOST_AUTO_TEST_CASE(update6)
 }
 
 
+BOOST_AUTO_TEST_CASE(update7)
+{
+    setup({
+	""
+    }, {
+	"cr_test  /dev/sdb6  none  none"
+    });
+
+    EtcFstab fstab("/etc");
+
+    // TODO figure out how the rename can be done in one step. or even better
+    // rewrite EtcFstab
+
+    FstabKey key("/dev/sdb6", "");
+
+    FstabChange entry;
+    entry.device = "/dev/sdb5";
+    entry.dentry = "cr_test";
+    entry.encr = EncryptionType::LUKS;
+
+    fstab.removeEntry(key);
+    fstab.addEntry(entry);
+    fstab.flush();
+
+    check({
+	""
+    }, {
+	"cr_test         /dev/sdb5            none       none"
+    });
+}
+
+
 BOOST_AUTO_TEST_CASE(remove1)
 {
     setup({
