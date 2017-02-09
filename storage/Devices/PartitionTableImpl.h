@@ -123,7 +123,7 @@ namespace storage
 
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
 
-	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
+	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
 
     protected:
 

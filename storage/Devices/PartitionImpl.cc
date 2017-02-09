@@ -783,9 +783,11 @@ namespace storage
 
 
     Text
-    Partition::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    Partition::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const
     {
 	const Partition* partition_lhs = to_partition(lhs);
+	const Partition* partition_rhs = to_partition(rhs);
 
 	Text text;
 
@@ -824,7 +826,7 @@ namespace storage
 	}
 
 	return sformat(text, get_name().c_str(), partition_lhs->get_size_string().c_str(),
-		       get_size_string().c_str());
+		       partition_rhs->get_size_string().c_str());
     }
 
 
@@ -851,7 +853,7 @@ namespace storage
 	Text
 	SetPartitionId::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    return partition->get_impl().do_set_id_text(tense);
 	}
 
@@ -859,7 +861,7 @@ namespace storage
 	void
 	SetPartitionId::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    partition->get_impl().do_set_id();
 	}
 
@@ -867,7 +869,7 @@ namespace storage
 	Text
 	SetBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    return partition->get_impl().do_set_boot_text(tense);
 	}
 
@@ -875,7 +877,7 @@ namespace storage
 	void
 	SetBoot::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    partition->get_impl().do_set_boot();
 	}
 
@@ -883,7 +885,7 @@ namespace storage
 	Text
 	SetLegacyBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    return partition->get_impl().do_set_legacy_boot_text(tense);
 	}
 
@@ -891,7 +893,7 @@ namespace storage
 	void
 	SetLegacyBoot::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Partition* partition = to_partition(get_device_rhs(actiongraph));
+	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
 	    partition->get_impl().do_set_legacy_boot();
 	}
 

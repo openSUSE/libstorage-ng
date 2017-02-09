@@ -68,10 +68,10 @@ namespace storage
 
 	if (access("/usr/bin/dot", X_OK) == 0)
 	{
-	    storage.get_probed()->write_graphviz(name + "-probed.gv");
+	    storage.get_probed()->write_graphviz(name + "-probed.gv", GraphvizFlags::SID);
 	    system(("dot -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
 
-	    storage.get_staging()->write_graphviz(name + "-staging.gv");
+	    storage.get_staging()->write_graphviz(name + "-staging.gv", GraphvizFlags::SID);
 	    system(("dot -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
 
 	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID);

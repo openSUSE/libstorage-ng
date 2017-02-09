@@ -78,7 +78,8 @@ namespace storage
 
 	virtual Text do_delete_text(Tense tense) const override;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const override;
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    Tense tense) const override;
 
 	virtual Text do_activate_text(Tense tense) const override;
 
@@ -120,14 +121,17 @@ namespace storage
 	};
 
 
-	class RenameInEtcCrypttab : public Modify
+	class RenameInEtcCrypttab : public RenameIn
 	{
 	public:
 
-	    RenameInEtcCrypttab(sid_t sid) : Modify(sid) {}
+	    RenameInEtcCrypttab(sid_t sid) : RenameIn(sid) {}
 
 	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
 	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+
+	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
+							    Side side) const override;
 
 	};
 

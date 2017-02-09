@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/Utils/Stopwatch.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
@@ -283,6 +284,8 @@ namespace storage
 
 	    device->get_impl().add_dependencies(*this);
 	}
+
+	PartitionTable::Impl::run_dependency_manager(*this);
 
 	for (vertex_descriptor vertex : vertices())
 	{

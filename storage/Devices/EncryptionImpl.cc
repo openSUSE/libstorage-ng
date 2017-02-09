@@ -214,9 +214,11 @@ namespace storage
 
 
     Text
-    Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, Tense tense) const
+    Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				     Tense tense) const
     {
 	const Encryption* encryption_lhs = to_encryption(lhs);
+	const Encryption* encryption_rhs = to_encryption(rhs);
 
 	Text text;
 
@@ -255,7 +257,7 @@ namespace storage
 	}
 
 	return sformat(text, get_name().c_str(), encryption_lhs->get_size_string().c_str(),
-		       get_size_string().c_str());
+		       encryption_rhs->get_size_string().c_str());
     }
 
 
@@ -368,7 +370,7 @@ namespace storage
 	Text
 	AddToEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
+	    const Encryption* encryption = to_encryption(get_device(actiongraph, RHS));
 	    return encryption->get_impl().do_add_to_etc_crypttab_text(tense);
 	}
 
@@ -376,7 +378,7 @@ namespace storage
 	void
 	AddToEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Encryption* encryption = to_encryption(get_device_rhs(actiongraph));
+	    const Encryption* encryption = to_encryption(get_device(actiongraph, RHS));
 	    encryption->get_impl().do_add_to_etc_crypttab(actiongraph);
 	}
 
@@ -393,8 +395,8 @@ namespace storage
 	Text
 	RenameInEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Encryption* encryption_lhs = to_encryption(get_device_lhs(actiongraph));
-	    const Encryption* encryption_rhs = to_encryption(get_device_rhs(actiongraph));
+	    const Encryption* encryption_lhs = to_encryption(get_device(actiongraph, LHS));
+	    const Encryption* encryption_rhs = to_encryption(get_device(actiongraph, RHS));
 	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, tense);
 	}
 
@@ -402,16 +404,25 @@ namespace storage
 	void
 	RenameInEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Encryption* encryption_lhs = to_encryption(get_device_lhs(actiongraph));
-	    const Encryption* encryption_rhs = to_encryption(get_device_rhs(actiongraph));
+	    const Encryption* encryption_lhs = to_encryption(get_device(actiongraph, LHS));
+	    const Encryption* encryption_rhs = to_encryption(get_device(actiongraph, RHS));
 	    encryption_rhs->get_impl().do_rename_in_etc_crypttab(actiongraph, encryption_lhs);
+	}
+
+
+	const BlkDevice*
+	RenameInEtcCrypttab::get_renamed_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
+	{
+	    const Encryption* encryption = to_encryption(get_device(actiongraph, side));
+	    const BlkDevice* blk_device = encryption->get_blk_device();
+	    return blk_device;
 	}
 
 
 	Text
 	RemoveFromEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
+	    const Encryption* encryption = to_encryption(get_device(actiongraph, LHS));
 	    return encryption->get_impl().do_remove_from_etc_crypttab_text(tense);
 	}
 
@@ -419,7 +430,7 @@ namespace storage
 	void
 	RemoveFromEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Encryption* encryption = to_encryption(get_device_lhs(actiongraph));
+	    const Encryption* encryption = to_encryption(get_device(actiongraph, LHS));
 	    encryption->get_impl().do_remove_from_etc_crypttab(actiongraph);
 	}
 

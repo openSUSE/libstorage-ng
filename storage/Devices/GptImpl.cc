@@ -272,7 +272,7 @@ namespace storage
 	Text
 	SetPmbrBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
 	{
-	    const Gpt* gpt = to_gpt(get_device_rhs(actiongraph));
+	    const Gpt* gpt = to_gpt(get_device(actiongraph, RHS));
 	    return gpt->get_impl().do_set_pmbr_boot_text(tense);
 	}
 
@@ -280,7 +280,7 @@ namespace storage
 	void
 	SetPmbrBoot::commit(const Actiongraph::Impl& actiongraph) const
 	{
-	    const Gpt* gpt = to_gpt(get_device_rhs(actiongraph));
+	    const Gpt* gpt = to_gpt(get_device(actiongraph, RHS));
 	    gpt->get_impl().do_set_pmbr_boot();
 	}
 

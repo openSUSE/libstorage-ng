@@ -573,11 +573,11 @@ namespace storage
     {
 	const Action::Create* create_action = dynamic_cast<const Action::Create*>(action);
 	if (create_action)
-	    return is_my_lvm_lv(create_action->get_device_rhs(actiongraph));
+	    return is_my_lvm_lv(create_action->get_device(actiongraph));
 
 	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
 	if (resize_action && resize_action->resize_mode == ResizeMode::GROW)
-	    return is_my_lvm_lv(resize_action->get_device_rhs(actiongraph));
+	    return is_my_lvm_lv(resize_action->get_device(actiongraph, RHS));
 
 	return false;
     }
@@ -588,11 +588,11 @@ namespace storage
     {
 	const Action::Delete* delete_action = dynamic_cast<const Action::Delete*>(action);
 	if (delete_action)
-	    return is_my_lvm_lv(delete_action->get_device_lhs(actiongraph));
+	    return is_my_lvm_lv(delete_action->get_device(actiongraph));
 
 	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
 	if (resize_action && resize_action->resize_mode == ResizeMode::SHRINK)
-	    return is_my_lvm_lv(resize_action->get_device_lhs(actiongraph));
+	    return is_my_lvm_lv(resize_action->get_device(actiongraph, LHS));
 
 	return false;
     }
