@@ -101,7 +101,7 @@ namespace storage
 			    {
 				// Make sure it's a delete action
 				const Action::Base* tmp_action = actiongraph[tmp.front()];
-				if (dynamic_cast<const Action::Delete*>(tmp_action))
+				if (is_delete(tmp_action))
 				    actiongraph.add_edge(tmp.front(), vertex);
 			    }
 			}
