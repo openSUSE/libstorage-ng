@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -291,9 +291,25 @@ namespace storage
 
     void
     Luks::Impl::do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph,
-				       const Device* lhs) const
+					  const Device* lhs) const
     {
-	// TODO
+	const Storage& storage = actiongraph.get_storage();
+
+	const Luks* luks_lhs = to_luks(lhs);
+
+	// TODO, error handling and mount-by
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	FstabKey key(luks_lhs->get_blk_device()->get_name(), "");
+	FstabChange entry;
+	entry.device = get_blk_device()->get_name();
+	entry.dentry = get_name();
+	entry.encr = EncryptionType::LUKS;
+
+	fstab.removeEntry(key);
+	fstab.addEntry(entry);
+	fstab.flush();
     }
 
 
