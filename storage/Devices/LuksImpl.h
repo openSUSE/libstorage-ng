@@ -58,6 +58,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual EncryptionType get_type() const override { return EncryptionType::LUKS; }
+
 	virtual void save(xmlNode* node) const override;
 
 	virtual void check() const override;
