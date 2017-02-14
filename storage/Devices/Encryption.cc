@@ -76,6 +76,13 @@ namespace storage
     }
 
 
+    EncryptionType
+    Encryption::get_type() const
+    {
+	return get_impl().get_type();
+    }
+
+
     const std::string&
     Encryption::get_password() const
     {

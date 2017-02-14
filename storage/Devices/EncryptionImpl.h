@@ -53,6 +53,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_dm_table_name(); }
 
+	virtual EncryptionType get_type() const { return EncryptionType::UNKNOWN; }
+
 	const string& get_password() const { return password; }
 
 	void set_password(const string& password) { Impl::password = password; }

@@ -49,6 +49,8 @@ namespace storage
 	static Encryption* create(Devicegraph* devicegraph, const std::string& name);
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	EncryptionType get_type() const;
+
 	const std::string& get_password() const;
 
 	void set_password(const std::string& password);
