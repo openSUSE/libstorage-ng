@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -173,7 +173,7 @@ namespace storage
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const;
-	virtual void do_resize(ResizeMode resize_mode) const;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
 				     Tense tense) const;

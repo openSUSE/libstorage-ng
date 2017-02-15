@@ -228,12 +228,14 @@ namespace storage
 
 
     void
-    Luks::Impl::do_resize(ResizeMode resize_mode) const
+    Luks::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
+	const Luks* luks_rhs = to_luks(rhs);
+
 	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
 
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --size " + to_string(get_size() / (512 * B));
+	    cmd_line += " --size " + to_string(luks_rhs->get_impl().get_size() / (512 * B));
 
 	cout << cmd_line << endl;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -307,13 +307,14 @@ namespace storage
 
 
     void
-    LvmPv::Impl::do_resize(ResizeMode resize_mode) const
+    LvmPv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();
+	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --setphysicalvolumesize " + to_string(blk_device->get_size()) + "b";
+	    cmd_line += " --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
 	cout << cmd_line << endl;
 
