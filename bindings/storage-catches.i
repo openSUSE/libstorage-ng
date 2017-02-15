@@ -103,6 +103,9 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
 
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption() const;
+
 %catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
 
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
