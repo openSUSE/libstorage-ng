@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -362,7 +362,7 @@ namespace storage
 
 
     void
-    Device::Impl::do_resize(ResizeMode resize_mode) const
+    Device::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	ST_THROW(LogicException("stub do_resize called"));
     }
@@ -431,8 +431,10 @@ namespace storage
 	void
 	Resize::commit(const Actiongraph::Impl& actiongraph) const
 	{
+	    const Device* device_rhs = get_device(actiongraph, RHS);
+
 	    const Device* device = get_device(actiongraph, get_side());
-	    device->get_impl().do_resize(resize_mode);
+	    device->get_impl().do_resize(resize_mode, device_rhs);
 	}
 
 

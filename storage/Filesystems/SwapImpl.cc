@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -115,9 +115,10 @@ namespace storage
 
 
     void
-    Swap::Impl::do_resize(ResizeMode resize_mode) const
+    Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();
+	const BlkDevice* blk_device_rhs = to_swap(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = MKSWAPBIN;
 	if (!get_label().empty())
@@ -125,6 +126,8 @@ namespace storage
 	if (!get_uuid().empty())
 	    cmd_line += " -U " + quote(get_uuid());
 	cmd_line += " " + quote(blk_device->get_name());
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 	cout << cmd_line << endl;
 
 	blk_device->get_impl().wait_for_device();
@@ -133,6 +136,7 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("resize swap failed"));
     }
+
 
     void
     Swap::Impl::do_set_label() const
@@ -146,6 +150,7 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("set-label swap failed"));
     }
+
 
     void
     Swap::Impl::do_set_uuid() const

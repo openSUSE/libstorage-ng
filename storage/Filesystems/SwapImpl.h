@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -67,7 +67,7 @@ namespace storage
 
 	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
 
-	virtual void do_resize(ResizeMode resize_mode) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
 	virtual void do_set_label() const override;
 

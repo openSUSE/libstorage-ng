@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -98,13 +98,14 @@ namespace storage
 
 
     void
-    Ext4::Impl::do_resize(ResizeMode resize_mode) const
+    Ext4::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();
+	const BlkDevice* blk_device_rhs = to_ext4(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = EXT2RESIZEBIN " -f " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device->get_size() / KiB) + "K";
+	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB) + "K";
 	cout << cmd_line << endl;
 
 	blk_device->get_impl().wait_for_device();

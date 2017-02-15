@@ -122,7 +122,7 @@ namespace storage
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;
-	virtual void do_resize(ResizeMode resize_mode) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
 	static unsigned int default_id_for_type(PartitionType type);
 

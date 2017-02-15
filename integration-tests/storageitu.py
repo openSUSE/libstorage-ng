@@ -21,7 +21,7 @@ class MyCommitCallbacks(CommitCallbacks):
 
 
 def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
-           skip_commit = True):
+           skip_commit = False):
 
     if not skip_save_graphs:
         storage.get_probed().save("probed.xml")

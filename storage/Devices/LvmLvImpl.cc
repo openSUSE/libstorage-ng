@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -361,9 +361,11 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_resize(ResizeMode resize_mode) const
+    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
+
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(rhs);
 
 	string cmd_line = LVRESIZEBIN;
 
@@ -371,7 +373,7 @@ namespace storage
 	    cmd_line += " --force";
 
 	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +
-	    to_string(get_region().get_length());
+	    to_string(lvm_lv_rhs->get_region().get_length());
 
 	cout << cmd_line << endl;
 
