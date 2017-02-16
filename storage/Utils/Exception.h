@@ -228,7 +228,7 @@ namespace storage
      * Exception class for generic null pointer exceptions.
      * When available, a more specialized exception class should be used.
      **/
-    class NullPointerException: public Exception
+    class NullPointerException : public Exception
     {
     public:
 	NullPointerException()
@@ -268,7 +268,7 @@ namespace storage
      * Exception class for "out of memory".
      * Typically used if operator new returned 0.
      **/
-    class OutOfMemoryException: public Exception
+    class OutOfMemoryException : public Exception
     {
     public:
 	OutOfMemoryException()
@@ -284,7 +284,7 @@ namespace storage
     /**
      * Exception class for "index out of range"
      **/
-    class IndexOutOfRangeException: public Exception
+    class IndexOutOfRangeException : public Exception
     {
     public:
 	/**
@@ -366,7 +366,7 @@ namespace storage
      * Exception class for parse errors, e.g. when parsing the output of
      * external commands like "parted".
      */
-    class ParseException: public Exception
+    class ParseException : public Exception
     {
     public:
 
