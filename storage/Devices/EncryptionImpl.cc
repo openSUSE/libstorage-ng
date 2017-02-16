@@ -115,6 +115,17 @@ namespace storage
 	actions.push_back(new Action::AddToEtcCrypttab(get_sid()));
 
 	actiongraph.add_chain(actions);
+
+	// Normally last means that the action is the last for the object. But
+	// this fails for LUKS encryption sind adding to /etc/crypttab must
+	// happen after the root filesystem is mounted. If the root filesystem
+	// in somehow located on the LUKS this results in a cycle in the
+	// actiongraph. So set last to the activate action.
+
+	// TODO rename last and first? or better define the meaning somewhere?
+
+	actions[1]->last = true;
+	actions[2]->last = false;
     }
 
 

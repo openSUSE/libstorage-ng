@@ -1,0 +1,29 @@
+1 - Create GPT on /dev/sda -> 2a 3a
+
+2a - Create partition /dev/sda1 (1.00 MiB) -> 2b 3a
+2b - Set id of partition /dev/sda1 to BIOS Boot Partition ->
+
+3a - Create partition /dev/sda2 (50.00 GiB) -> 4a
+
+4a - Create encryption layer device on /dev/sda2 -> 4b
+4b - Activate encryption layer device on /dev/sda2 -> 4c 5
+4c - Add encryption layer device on /dev/sda2 to /etc/crypttab ->
+
+5 - Create physical volume on /dev/mapper/cr_sda2 -> 6
+
+6 - Create volume group system (49.99 GiB) -> 7a 8a 9a
+
+7a - Create logical volume root (22.40 GiB) on volume group system -> 7b
+7b - Create btrfs on /dev/system/root (22.40 GiB) -> 7c
+7c - Mount /dev/system/root at / -> 4c 7d 8d 9c
+7d - Add mountpoint / of /dev/system/root to /etc/fstab ->
+
+8a - Create logical volume swap (2.00 GiB) on volume group system -> 8b
+8b - Create swap on /dev/system/swap (2.00 GiB) -> 8c
+8c - Mount /dev/system/swap at swap -> 8d
+8d - Add mountpoint swap of /dev/system/swap to /etc/fstab ->
+
+9a - Create logical volume home (25.59 GiB) on volume group system -> 9b
+9b - Create xfs on /dev/system/home (25.59 GiB) -> 9c
+9c - Mount /dev/system/home at /home -> 9d
+9d - Add mountpoint /home of /dev/system/home to /etc/fstab ->
