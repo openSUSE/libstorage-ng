@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,22 +20,31 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_ISO9660_H
+#define STORAGE_ISO9660_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    /**
+     * Class for ISO9660 filesystem. The library cannot create an ISO9660
+     * filesystem on disk.
+     */
+    class Iso9660 : public Filesystem
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Iso9660* create(Devicegraph* devicegraph);
+	static Iso9660* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	bool supports_label() const override { return true; }
+	unsigned int max_labelsize() const override { return 30; }
+
+	bool supports_uuid() const override { return true; }
 
     public:
 
@@ -45,19 +53,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Ext4* clone() const override;
+	virtual Iso9660* clone() const override;
 
     protected:
 
-	Ext4(Impl* impl);
+	Iso9660(Impl* impl);
 
     };
 
 
-    bool is_ext4(const Device* device);
+    bool is_iso9660(const Device* device);
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+    Iso9660* to_iso9660(Device* device);
+    const Iso9660* to_iso9660(const Device* device);
 
 }
 

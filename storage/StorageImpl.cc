@@ -175,11 +175,17 @@ namespace storage
 	    {
 		if (entry.is_fs)
 		{
-		    // TODO temporary until all fs are implemented
-		    if (entry.fs_type != FsType::EXT4 && entry.fs_type != FsType::BTRFS &&
-			entry.fs_type != FsType::XFS && entry.fs_type != FsType::SWAP &&
-			entry.fs_type != FsType::NTFS && entry.fs_type != FsType::VFAT)
+		    if (entry.fs_type != FsType::EXT2 && entry.fs_type != FsType::EXT3 &&
+			entry.fs_type != FsType::EXT4 && entry.fs_type != FsType::BTRFS &&
+			entry.fs_type != FsType::REISERFS && entry.fs_type != FsType::XFS &&
+			entry.fs_type != FsType::SWAP && entry.fs_type != FsType::NTFS &&
+			entry.fs_type != FsType::VFAT && entry.fs_type != FsType::ISO9660 &&
+			entry.fs_type != FsType::UDF)
+		    {
+			y2war("detected unsupported filesystem " << toString(entry.fs_type) << " on " <<
+			      blk_device->get_name());
 			continue;
+		    }
 
 		    Filesystem* filesystem = blk_device->create_filesystem(entry.fs_type);
 		    filesystem->get_impl().probe_pass_3(probed, systeminfo, fstab);

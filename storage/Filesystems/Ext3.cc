@@ -21,7 +21,7 @@
  */
 
 
-#include "storage/Filesystems/Ext4Impl.h"
+#include "storage/Filesystems/Ext3Impl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -31,69 +31,69 @@ namespace storage
     using namespace std;
 
 
-    Ext4*
-    Ext4::create(Devicegraph* devicegraph)
+    Ext3*
+    Ext3::create(Devicegraph* devicegraph)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl());
+	Ext3* ret = new Ext3(new Ext3::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Ext4*
-    Ext4::load(Devicegraph* devicegraph, const xmlNode* node)
+    Ext3*
+    Ext3::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl(node));
+	Ext3* ret = new Ext3(new Ext3::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Ext4::Ext4(Impl* impl)
+    Ext3::Ext3(Impl* impl)
 	: Ext(impl)
     {
     }
 
 
-    Ext4*
-    Ext4::clone() const
+    Ext3*
+    Ext3::clone() const
     {
-	return new Ext4(get_impl().clone());
+	return new Ext3(get_impl().clone());
     }
 
 
-    Ext4::Impl&
-    Ext4::get_impl()
+    Ext3::Impl&
+    Ext3::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Ext4::Impl&
-    Ext4::get_impl() const
+    const Ext3::Impl&
+    Ext3::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_ext4(const Device* device)
+    is_ext3(const Device* device)
     {
-	return is_device_of_type<const Ext4>(device);
+	return is_device_of_type<const Ext3>(device);
     }
 
 
-    Ext4*
-    to_ext4(Device* device)
+    Ext3*
+    to_ext3(Device* device)
     {
-	return to_device_of_type<Ext4>(device);
+	return to_device_of_type<Ext3>(device);
     }
 
 
-    const Ext4*
-    to_ext4(const Device* device)
+    const Ext3*
+    to_ext3(const Device* device)
     {
-	return to_device_of_type<const Ext4>(device);
+	return to_device_of_type<const Ext3>(device);
     }
 
 }

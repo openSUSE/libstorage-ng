@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,44 +21,42 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
-
-
-#include "storage/Filesystems/Ext.h"
+#include "storage/Utils/HumanString.h"
+#include "storage/Filesystems/Ext3Impl.h"
+#include "storage/FreeInfo.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    using namespace std;
+
+
+    const char* DeviceTraits<Ext3>::classname = "Ext3";
+
+
+    Ext3::Impl::Impl(const xmlNode* node)
+	: Ext::Impl(node)
     {
-    public:
-
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
-
-    public:
-
-	class Impl;
-
-	Impl& get_impl();
-	const Impl& get_impl() const;
-
-	virtual Ext4* clone() const override;
-
-    protected:
-
-	Ext4(Impl* impl);
-
-    };
+    }
 
 
-    bool is_ext4(const Device* device);
+    ResizeInfo
+    Ext3::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+	resize_info.combine(ResizeInfo(true, 10 * MiB, 4 * TiB));
+
+	return resize_info;
+    }
+
+
+    uint64_t
+    Ext3::Impl::used_features() const
+    {
+	return UF_EXT3 | Filesystem::Impl::used_features();
+    }
 
 }
-
-#endif

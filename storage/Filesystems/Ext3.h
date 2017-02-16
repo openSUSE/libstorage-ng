@@ -21,8 +21,8 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_EXT3_H
+#define STORAGE_EXT3_H
 
 
 #include "storage/Filesystems/Ext.h"
@@ -31,12 +31,12 @@
 namespace storage
 {
 
-    class Ext4 : public Ext
+    class Ext3 : public Ext
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Ext3* create(Devicegraph* devicegraph);
+	static Ext3* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:
 
@@ -45,19 +45,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Ext4* clone() const override;
+	virtual Ext3* clone() const override;
 
     protected:
 
-	Ext4(Impl* impl);
+	Ext3(Impl* impl);
 
     };
 
 
-    bool is_ext4(const Device* device);
+    bool is_ext3(const Device* device);
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+    Ext3* to_ext3(Device* device);
+    const Ext3* to_ext3(const Device* device);
 
 }
 

@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,43 +20,43 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_UDF_IMPL_H
+#define STORAGE_UDF_IMPL_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/Udf.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    using namespace std;
+
+
+    template <> struct DeviceTraits<Udf> { static const char* classname; };
+
+
+    class Udf::Impl : public Filesystem::Impl
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	Impl()
+	    : Filesystem::Impl() {}
 
-    public:
+	Impl(const xmlNode* node);
 
-	class Impl;
+	virtual FsType get_type() const override { return FsType::UDF; }
 
-	Impl& get_impl();
-	const Impl& get_impl() const;
+	virtual const char* get_classname() const override { return DeviceTraits<Udf>::classname; }
 
-	virtual Ext4* clone() const override;
+	virtual string get_displayname() const override { return "udf"; }
 
-    protected:
+	virtual Impl* clone() const override { return new Impl(*this); }
 
-	Ext4(Impl* impl);
+	virtual ResizeInfo detect_resize_info() const override;
 
     };
-
-
-    bool is_ext4(const Device* device);
-
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
 
 }
 

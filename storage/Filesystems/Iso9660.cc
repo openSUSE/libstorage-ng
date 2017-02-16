@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,7 +20,7 @@
  */
 
 
-#include "storage/Filesystems/Ext4Impl.h"
+#include "storage/Filesystems/Iso9660Impl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -31,69 +30,69 @@ namespace storage
     using namespace std;
 
 
-    Ext4*
-    Ext4::create(Devicegraph* devicegraph)
+    Iso9660*
+    Iso9660::create(Devicegraph* devicegraph)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl());
+	Iso9660* ret = new Iso9660(new Iso9660::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Ext4*
-    Ext4::load(Devicegraph* devicegraph, const xmlNode* node)
+    Iso9660*
+    Iso9660::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl(node));
+	Iso9660* ret = new Iso9660(new Iso9660::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Ext4::Ext4(Impl* impl)
-	: Ext(impl)
+    Iso9660::Iso9660(Impl* impl)
+	: Filesystem(impl)
     {
     }
 
 
-    Ext4*
-    Ext4::clone() const
+    Iso9660*
+    Iso9660::clone() const
     {
-	return new Ext4(get_impl().clone());
+	return new Iso9660(get_impl().clone());
     }
 
 
-    Ext4::Impl&
-    Ext4::get_impl()
+    Iso9660::Impl&
+    Iso9660::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Ext4::Impl&
-    Ext4::get_impl() const
+    const Iso9660::Impl&
+    Iso9660::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_ext4(const Device* device)
+    is_iso9660(const Device* device)
     {
-	return is_device_of_type<const Ext4>(device);
+	return is_device_of_type<const Iso9660>(device);
     }
 
 
-    Ext4*
-    to_ext4(Device* device)
+    Iso9660*
+    to_iso9660(Device* device)
     {
-	return to_device_of_type<Ext4>(device);
+	return to_device_of_type<Iso9660>(device);
     }
 
 
-    const Ext4*
-    to_ext4(const Device* device)
+    const Iso9660*
+    to_iso9660(const Device* device)
     {
-	return to_device_of_type<const Ext4>(device);
+	return to_device_of_type<const Iso9660>(device);
     }
 
 }

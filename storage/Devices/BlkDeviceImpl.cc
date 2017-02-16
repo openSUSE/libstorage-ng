@@ -33,12 +33,17 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/User.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/Ext2.h"
+#include "storage/Filesystems/Ext3.h"
 #include "storage/Filesystems/Ext4.h"
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
+#include "storage/Filesystems/Iso9660.h"
+#include "storage/Filesystems/Udf.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 
@@ -362,9 +367,14 @@ namespace storage
 
     const map<FsType, filesystem_create_fnc> filesystem_create_registry = {
 	{ FsType::BTRFS, &Btrfs::create },
+	{ FsType::EXT2, &Ext2::create },
+	{ FsType::EXT3, &Ext3::create },
 	{ FsType::EXT4, &Ext4::create },
+	{ FsType::ISO9660, &Iso9660::create },
 	{ FsType::NTFS, &Ntfs::create },
+	{ FsType::REISERFS, &Reiserfs::create },
 	{ FsType::SWAP, &Swap::create },
+	{ FsType::UDF, &Udf::create },
 	{ FsType::VFAT, &Vfat::create },
 	{ FsType::XFS, &Xfs::create }
     };

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,12 +47,17 @@
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
+#include "storage/Filesystems/Ext2.h"
+#include "storage/Filesystems/Ext3.h"
 #include "storage/Filesystems/Ext4.h"
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Swap.h"
+#include "storage/Filesystems/Iso9660.h"
+#include "storage/Filesystems/Udf.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
@@ -587,12 +592,17 @@ namespace storage
 	{ "Luks", &Luks::load },
 	{ "Bcache", &Bcache::load },
 	{ "BcacheCset", &BcacheCset::load },
+	{ "Ext2", &Ext2::load },
+	{ "Ext3", &Ext3::load },
 	{ "Ext4", &Ext4::load },
 	{ "Ntfs", &Ntfs::load },
 	{ "Vfat", &Vfat::load },
 	{ "Btrfs", &Btrfs::load },
+	{ "Reiserfs", &Reiserfs::load },
 	{ "Xfs", &Xfs::load },
 	{ "Swap", &Swap::load },
+	{ "Iso9660", &Iso9660::load },
+	{ "Udf", &Udf::load }
     };
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,43 +21,41 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_EXT_IMPL_H
+#define STORAGE_EXT_IMPL_H
 
 
 #include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    using namespace std;
+
+
+    template <> struct DeviceTraits<Ext> { static const char* classname; };
+
+
+    class Ext::Impl : public Filesystem::Impl
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	Impl()
+	    : Filesystem::Impl() {}
 
-    public:
+	Impl(const xmlNode* node);
 
-	class Impl;
+	virtual const char* get_classname() const override { return DeviceTraits<Ext>::classname; }
 
-	Impl& get_impl();
-	const Impl& get_impl() const;
+	virtual void do_create() const override;
 
-	virtual Ext4* clone() const override;
+	virtual void do_set_label() const override;
 
-    protected:
-
-	Ext4(Impl* impl);
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
     };
-
-
-    bool is_ext4(const Device* device);
-
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
 
 }
 
