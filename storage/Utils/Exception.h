@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -241,14 +241,14 @@ namespace storage
 
 
     /**
-     * Exception class for features not implemented.
+     * Exception class for unsupported features and operations.
      * When available, a more specialized exception class should be used.
      **/
-    class NotImplementedException : public Exception
+    class UnsupportedException : public Exception
     {
     public:
-	NotImplementedException(const std::string& msg) : Exception(msg) {}
-	virtual ~NotImplementedException() noexcept {}
+	UnsupportedException(const std::string& msg) : Exception(msg) {}
+	virtual ~UnsupportedException() noexcept {}
     };
 
 

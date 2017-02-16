@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,12 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/User.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/Ext4.h"
+#include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/Xfs.h"
+#include "storage/Filesystems/Swap.h"
+#include "storage/Filesystems/Ntfs.h"
+#include "storage/Filesystems/Vfat.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 
@@ -349,6 +355,43 @@ namespace storage
 
 	if (!dm_table_name.empty())
 	    out << " dm-table-name:" << dm_table_name;
+    }
+
+
+    typedef std::function<Filesystem* (Devicegraph* devicegraph)> filesystem_create_fnc;
+
+    const map<FsType, filesystem_create_fnc> filesystem_create_registry = {
+	{ FsType::BTRFS, &Btrfs::create },
+	{ FsType::EXT4, &Ext4::create },
+	{ FsType::NTFS, &Ntfs::create },
+	{ FsType::SWAP, &Swap::create },
+	{ FsType::VFAT, &Vfat::create },
+	{ FsType::XFS, &Xfs::create }
+    };
+
+
+    Filesystem*
+    BlkDevice::Impl::create_filesystem(FsType fs_type)
+    {
+	if (num_children() != 0)
+	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
+
+	map<FsType, filesystem_create_fnc>::const_iterator it = filesystem_create_registry.find(fs_type);
+	if (it == filesystem_create_registry.end())
+	{
+	    if (fs_type == FsType::NFS || fs_type == FsType::NFS4)
+		ST_THROW(UnsupportedException("cannot create Nfs on BlkDevice"));
+
+	    ST_THROW(UnsupportedException("unsupported filesystem type " + toString(fs_type)));
+	}
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	Filesystem* filesystem = it->second(devicegraph);
+
+	User::create(devicegraph, get_device(), filesystem);
+
+	return filesystem;
     }
 
 

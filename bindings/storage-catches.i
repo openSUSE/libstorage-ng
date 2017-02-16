@@ -95,7 +95,7 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 
-%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::Partitionable::create_partition_table(PtType);
+%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType);
 
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots() const;
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy) const;
@@ -106,7 +106,7 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption() const;
 
-%catches(storage::WrongNumberOfChildren, storage::NotImplementedException) storage::BlkDevice::create_filesystem(FsType);
+%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType);
 
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
 
