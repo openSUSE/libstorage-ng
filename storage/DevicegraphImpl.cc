@@ -601,7 +601,7 @@ namespace storage
     const map<string, holder_load_fnc> holder_load_registry = {
 	{ "User", &User::load },
 	{ "MdUser", &MdUser::load },
-	{ "Subdevice", &Subdevice::load },
+	{ "Subdevice", &Subdevice::load }
     };
 
 
