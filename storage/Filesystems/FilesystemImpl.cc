@@ -49,7 +49,7 @@ namespace storage
     // strings must match /etc/fstab
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
-	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf"
+	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2"
     });
 
 
