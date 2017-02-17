@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,12 +20,13 @@
  */
 
 
-#ifndef STORAGE_EXT4_IMPL_H
-#define STORAGE_EXT4_IMPL_H
+#ifndef STORAGE_REISERFS_IMPL_H
+#define STORAGE_REISERFS_IMPL_H
 
 
-#include "storage/Filesystems/Ext4.h"
-#include "storage/Filesystems/ExtImpl.h"
+#include "storage/Filesystems/Reiserfs.h"
+#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Action.h"
 
 
 namespace storage
@@ -35,29 +35,35 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Ext4> { static const char* classname; };
+    template <> struct DeviceTraits<Reiserfs> { static const char* classname; };
 
 
-    class Ext4::Impl : public Ext::Impl
+    class Reiserfs::Impl : public Filesystem::Impl
     {
     public:
 
 	Impl()
-	    : Ext::Impl() {}
+	    : Filesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 
-	virtual FsType get_type() const override { return FsType::EXT4; }
+	virtual FsType get_type() const override { return FsType::REISERFS; }
 
-	virtual const char* get_classname() const override { return DeviceTraits<Ext4>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Reiserfs>::classname; }
 
-	virtual string get_displayname() const override { return "ext4"; }
+	virtual string get_displayname() const override { return "reiserfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual uint64_t used_features() const override;
+
+	virtual void do_create() const override;
+
+	virtual void do_set_label() const override;
+
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
     };
 

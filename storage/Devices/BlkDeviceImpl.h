@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -82,6 +82,8 @@ namespace storage
 
 	const string& get_dm_table_name() const { return dm_table_name; }
 	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
+
+	Filesystem* create_filesystem(FsType fs_type);
 
 	bool has_filesystem() const;
 

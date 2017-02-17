@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,18 +21,7 @@
  */
 
 
-#include <iostream>
-
-#include "storage/Utils/AppUtil.h"
 #include "storage/Devices/BlkDeviceImpl.h"
-#include "storage/Filesystems/FilesystemImpl.h"
-#include "storage/Filesystems/Ext4.h"
-#include "storage/Filesystems/Btrfs.h"
-#include "storage/Filesystems/Xfs.h"
-#include "storage/Filesystems/Swap.h"
-#include "storage/Filesystems/Ntfs.h"
-#include "storage/Filesystems/Vfat.h"
-#include "storage/Holders/User.h"
 #include "storage/FreeInfo.h"
 #include "storage/FindBy.h"
 
@@ -192,44 +181,7 @@ namespace storage
     Filesystem*
     BlkDevice::create_filesystem(FsType fs_type)
     {
-	if (num_children() != 0)
-	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
-
-	Filesystem* ret = nullptr;
-
-	switch (fs_type)
-	{
-	    case FsType::EXT4:
-		ret = Ext4::create(get_impl().get_devicegraph());
-		break;
-
-	    case FsType::BTRFS:
-		ret = Btrfs::create(get_impl().get_devicegraph());
-		break;
-
-	    case FsType::XFS:
-		ret = Xfs::create(get_impl().get_devicegraph());
-		break;
-
-	    case FsType::SWAP:
-		ret = Swap::create(get_impl().get_devicegraph());
-		break;
-
-	    case FsType::NTFS:
-		ret = Ntfs::create(get_impl().get_devicegraph());
-		break;
-
-	    case FsType::VFAT:
-		ret = Vfat::create(get_impl().get_devicegraph());
-		break;
-
-	    default:
-		ST_THROW(NotImplementedException("unimplemented filesystem type " + toString(fs_type)));
-	}
-
-	User::create(get_impl().get_devicegraph(), this, ret);
-
-	return ret;
+	return get_impl().create_filesystem(fs_type);
     }
 
 

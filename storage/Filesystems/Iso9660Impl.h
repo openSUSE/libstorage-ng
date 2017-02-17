@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,43 +20,43 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_ISO9660_IMPL_H
+#define STORAGE_ISO9660_IMPL_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/Iso9660.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    using namespace std;
+
+
+    template <> struct DeviceTraits<Iso9660> { static const char* classname; };
+
+
+    class Iso9660::Impl : public Filesystem::Impl
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	Impl()
+	    : Filesystem::Impl() {}
 
-    public:
+	Impl(const xmlNode* node);
 
-	class Impl;
+	virtual FsType get_type() const override { return FsType::ISO9660; }
 
-	Impl& get_impl();
-	const Impl& get_impl() const;
+	virtual const char* get_classname() const override { return DeviceTraits<Iso9660>::classname; }
 
-	virtual Ext4* clone() const override;
+	virtual string get_displayname() const override { return "iso9660"; }
 
-    protected:
+	virtual Impl* clone() const override { return new Impl(*this); }
 
-	Ext4(Impl* impl);
+	virtual ResizeInfo detect_resize_info() const override;
 
     };
-
-
-    bool is_ext4(const Device* device);
-
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
 
 }
 

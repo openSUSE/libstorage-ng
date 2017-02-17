@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,7 @@
  */
 
 
-#include "storage/Filesystems/Ext4Impl.h"
+#include "storage/Filesystems/Ext2Impl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -31,69 +31,69 @@ namespace storage
     using namespace std;
 
 
-    Ext4*
-    Ext4::create(Devicegraph* devicegraph)
+    Ext2*
+    Ext2::create(Devicegraph* devicegraph)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl());
+	Ext2* ret = new Ext2(new Ext2::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Ext4*
-    Ext4::load(Devicegraph* devicegraph, const xmlNode* node)
+    Ext2*
+    Ext2::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl(node));
+	Ext2* ret = new Ext2(new Ext2::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Ext4::Ext4(Impl* impl)
+    Ext2::Ext2(Impl* impl)
 	: Ext(impl)
     {
     }
 
 
-    Ext4*
-    Ext4::clone() const
+    Ext2*
+    Ext2::clone() const
     {
-	return new Ext4(get_impl().clone());
+	return new Ext2(get_impl().clone());
     }
 
 
-    Ext4::Impl&
-    Ext4::get_impl()
+    Ext2::Impl&
+    Ext2::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Ext4::Impl&
-    Ext4::get_impl() const
+    const Ext2::Impl&
+    Ext2::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_ext4(const Device* device)
+    is_ext2(const Device* device)
     {
-	return is_device_of_type<const Ext4>(device);
+	return is_device_of_type<const Ext2>(device);
     }
 
 
-    Ext4*
-    to_ext4(Device* device)
+    Ext2*
+    to_ext2(Device* device)
     {
-	return to_device_of_type<Ext4>(device);
+	return to_device_of_type<Ext2>(device);
     }
 
 
-    const Ext4*
-    to_ext4(const Device* device)
+    const Ext2*
+    to_ext2(const Device* device)
     {
-	return to_device_of_type<const Ext4>(device);
+	return to_device_of_type<const Ext2>(device);
     }
 
 }

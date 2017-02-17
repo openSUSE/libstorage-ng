@@ -171,7 +171,7 @@ namespace storage
 		break;
 
 	    default:
-		ST_THROW(NotImplementedException("unimplemented partition table type " + toString(pt_type)));
+		ST_THROW(UnsupportedException("unsupported partition table type " + toString(pt_type)));
 	}
 
 	User::create(get_devicegraph(), get_device(), ret);

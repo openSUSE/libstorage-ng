@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,7 +20,7 @@
  */
 
 
-#include "storage/Filesystems/Ext4Impl.h"
+#include "storage/Filesystems/UdfImpl.h"
 #include "storage/Devicegraph.h"
 
 
@@ -31,69 +30,69 @@ namespace storage
     using namespace std;
 
 
-    Ext4*
-    Ext4::create(Devicegraph* devicegraph)
+    Udf*
+    Udf::create(Devicegraph* devicegraph)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl());
+	Udf* ret = new Udf(new Udf::Impl());
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
-    Ext4*
-    Ext4::load(Devicegraph* devicegraph, const xmlNode* node)
+    Udf*
+    Udf::load(Devicegraph* devicegraph, const xmlNode* node)
     {
-	Ext4* ret = new Ext4(new Ext4::Impl(node));
+	Udf* ret = new Udf(new Udf::Impl(node));
 	ret->Device::load(devicegraph);
 	return ret;
     }
 
 
-    Ext4::Ext4(Impl* impl)
-	: Ext(impl)
+    Udf::Udf(Impl* impl)
+	: Filesystem(impl)
     {
     }
 
 
-    Ext4*
-    Ext4::clone() const
+    Udf*
+    Udf::clone() const
     {
-	return new Ext4(get_impl().clone());
+	return new Udf(get_impl().clone());
     }
 
 
-    Ext4::Impl&
-    Ext4::get_impl()
+    Udf::Impl&
+    Udf::get_impl()
     {
 	return dynamic_cast<Impl&>(Device::get_impl());
     }
 
 
-    const Ext4::Impl&
-    Ext4::get_impl() const
+    const Udf::Impl&
+    Udf::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
 
     bool
-    is_ext4(const Device* device)
+    is_udf(const Device* device)
     {
-	return is_device_of_type<const Ext4>(device);
+	return is_device_of_type<const Udf>(device);
     }
 
 
-    Ext4*
-    to_ext4(Device* device)
+    Udf*
+    to_udf(Device* device)
     {
-	return to_device_of_type<Ext4>(device);
+	return to_device_of_type<Udf>(device);
     }
 
 
-    const Ext4*
-    to_ext4(const Device* device)
+    const Udf*
+    to_udf(const Device* device)
     {
-	return to_device_of_type<const Ext4>(device);
+	return to_device_of_type<const Udf>(device);
     }
 
 }

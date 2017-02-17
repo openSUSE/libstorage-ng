@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,6 +64,7 @@ namespace storage
 	    { "hfsplus", FsType::HFSPLUS },
 	    { "jfs", FsType::JFS },
 	    { "msdos", FsType::VFAT },
+	    { "nilfs2", FsType::NILFS2 },
 	    { "ntfs", FsType::NTFS },
 	    { "reiserfs", FsType::REISERFS },
 	    { "swap", FsType::SWAP },

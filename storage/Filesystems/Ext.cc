@@ -21,44 +21,54 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
-
-
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/ExtImpl.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    using namespace std;
+
+
+    Ext::Ext(Impl* impl)
+	: Filesystem(impl)
     {
-    public:
-
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
-
-    public:
-
-	class Impl;
-
-	Impl& get_impl();
-	const Impl& get_impl() const;
-
-	virtual Ext4* clone() const override;
-
-    protected:
-
-	Ext4(Impl* impl);
-
-    };
+    }
 
 
-    bool is_ext4(const Device* device);
+    Ext::Impl&
+    Ext::get_impl()
+    {
+	return dynamic_cast<Impl&>(Device::get_impl());
+    }
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+
+    const Ext::Impl&
+    Ext::get_impl() const
+    {
+	return dynamic_cast<const Impl&>(Device::get_impl());
+    }
+
+
+    bool
+    is_ext(const Device* device)
+    {
+	return is_device_of_type<const Ext>(device);
+    }
+
+
+    Ext*
+    to_ext(Device* device)
+    {
+	return to_device_of_type<Ext>(device);
+    }
+
+
+    const Ext*
+    to_ext(const Device* device)
+    {
+	return to_device_of_type<const Ext>(device);
+    }
 
 }
-
-#endif

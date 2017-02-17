@@ -432,7 +432,6 @@ string afterLast(const string& s, const string& pat )
 	};
 
 	paths.erase(PORTMAPBIN);
-	paths.erase(HFORMATBIN);
 
 	if (!arch.is_s390())
 	{

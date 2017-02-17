@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,22 +20,30 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_UDF_H
+#define STORAGE_UDF_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    /**                                                                                                                                        * Class for UDF filesystem. The library cannot create an UDF filesystem
+     * on disk.
+     */
+    class Udf : public Filesystem
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Udf* create(Devicegraph* devicegraph);
+	static Udf* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	bool supports_label() const override { return true; }
+	unsigned int max_labelsize() const override { return 30; }
+
+	bool supports_uuid() const override { return true; }
 
     public:
 
@@ -45,19 +52,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Ext4* clone() const override;
+	virtual Udf* clone() const override;
 
     protected:
 
-	Ext4(Impl* impl);
+	Udf(Impl* impl);
 
     };
 
 
-    bool is_ext4(const Device* device);
+    bool is_udf(const Device* device);
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+    Udf* to_udf(Device* device);
+    const Udf* to_udf(const Device* device);
 
 }
 

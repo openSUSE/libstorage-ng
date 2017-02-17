@@ -21,22 +21,27 @@
  */
 
 
-#ifndef STORAGE_EXT4_H
-#define STORAGE_EXT4_H
+#ifndef STORAGE_EXT_H
+#define STORAGE_EXT_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/Filesystem.h"
 
 
 namespace storage
 {
 
-    class Ext4 : public Ext
+    /**
+     * Abstract base class for Ext2, Ext3 and Ext4.
+     */
+    class Ext : public Filesystem
     {
     public:
 
-	static Ext4* create(Devicegraph* devicegraph);
-	static Ext4* load(Devicegraph* devicegraph, const xmlNode* node);
+	bool supports_label() const override { return true; }
+	unsigned int max_labelsize() const override { return 16; }
+
+	bool supports_uuid() const override { return true; }
 
     public:
 
@@ -45,19 +50,17 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Ext4* clone() const override;
-
     protected:
 
-	Ext4(Impl* impl);
+	Ext(Impl* impl);
 
     };
 
 
-    bool is_ext4(const Device* device);
+    bool is_ext(const Device* device);
 
-    Ext4* to_ext4(Device* device);
-    const Ext4* to_ext4(const Device* device);
+    Ext* to_ext(Device* device);
+    const Ext* to_ext(const Device* device);
 
 }
 

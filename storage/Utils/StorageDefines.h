@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,13 +93,12 @@
 
 #define NTFSRESIZEBIN "/usr/sbin/ntfsresize"
 #define XFSGROWFSBIN  "/usr/sbin/xfs_growfs"
-#define REISERRESBIN  "/sbin/resize_reiserfs"
+#define REISERFSRESIZEBIN "/sbin/resize_reiserfs"
 #define EXT2RESIZEBIN "/sbin/resize2fs"
 #define FATRESIZE     "/usr/sbin/fatresize"
 
 #define TUNE2FSBIN     "/sbin/tune2fs"
-#define TUNEREISERBIN  "/sbin/reiserfstune"
-#define TUNEJFSBIN     "/sbin/jfs_tune"
+#define TUNEREISERFSBIN "/sbin/reiserfstune"
 #define XFSADMINBIN    "/usr/sbin/xfs_admin"
 #define NTFSLABELBIN   "/usr/sbin/ntfslabel"
 #define FATLABELBIN	"/usr/sbin/fatlabel"
@@ -109,17 +108,14 @@
 #define FSCKEXT2BIN    "/sbin/fsck.ext2"
 #define FSCKEXT3BIN    "/sbin/fsck.ext3"
 #define FSCKEXT4BIN    "/sbin/fsck.ext4"
-#define FSCKJFSBIN     "/sbin/fsck.jfs"
 #define XFSREPAIRBIN   "/usr/sbin/xfs_repair"
 #define FSCKREISERBIN  "/sbin/reiserfsck"
 
 #define MKSWAPBIN      "/sbin/mkswap"
-#define HFORMATBIN     "/usr/bin/hformat"
 #define MKFSXFSBIN     "/sbin/mkfs.xfs"
 #define MKFSFATBIN	"/sbin/mkfs.fat"
 #define MKFSNTFSBIN	"/sbin/mkfs.ntfs"
-#define MKFSJFSBIN     "/sbin/mkfs.jfs"
-#define MKFSREISERBIN  "/sbin/mkreiserfs"
+#define MKFSREISERFSBIN "/sbin/mkreiserfs"
 #define MKFSEXT2BIN    "/sbin/mke2fs"
 #define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
 
