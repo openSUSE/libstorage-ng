@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
     LvmLv* root = system->create_lvm_lv("root", 4 * GiB);
 
-    Ext4* ext4 = to_ext4(sda2->create_filesystem(FsType::EXT4));
+    Ext4* ext4 = to_ext4(sda2->create_blk_filesystem(FsType::EXT4));
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 7);
     BOOST_CHECK_EQUAL(devicegraph->num_holders(), 6);
@@ -65,10 +65,10 @@ BOOST_AUTO_TEST_CASE(dynamic)
 
     BOOST_CHECK(sda->has_partition_table());
 
-    BOOST_CHECK(!sda->has_filesystem());
-    BOOST_CHECK(!sda1->has_filesystem());
-    BOOST_CHECK(sda2->has_filesystem());
-    BOOST_CHECK(!root->has_filesystem());
+    BOOST_CHECK(!sda->has_blk_filesystem());
+    BOOST_CHECK(!sda1->has_blk_filesystem());
+    BOOST_CHECK(sda2->has_blk_filesystem());
+    BOOST_CHECK(!root->has_blk_filesystem());
 
     {
 	Device* tmp = sda;
