@@ -25,7 +25,7 @@
 
 
 #include "storage/Filesystems/Iso9660.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -37,12 +37,12 @@ namespace storage
     template <> struct DeviceTraits<Iso9660> { static const char* classname; };
 
 
-    class Iso9660::Impl : public Filesystem::Impl
+    class Iso9660::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

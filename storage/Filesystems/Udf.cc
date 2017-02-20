@@ -49,7 +49,7 @@ namespace storage
 
 
     Udf::Udf(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

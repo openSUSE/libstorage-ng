@@ -44,7 +44,7 @@ namespace storage
 
 
     Ntfs::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -108,7 +108,7 @@ namespace storage
     uint64_t
     Ntfs::Impl::used_features() const
     {
-	return UF_NTFS | Filesystem::Impl::used_features();
+	return UF_NTFS | BlkFilesystem::Impl::used_features();
     }
 
 

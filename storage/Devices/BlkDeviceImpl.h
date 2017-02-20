@@ -83,12 +83,12 @@ namespace storage
 	const string& get_dm_table_name() const { return dm_table_name; }
 	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
 
-	Filesystem* create_filesystem(FsType fs_type);
+	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 
-	bool has_filesystem() const;
+	bool has_blk_filesystem() const;
 
-	Filesystem* get_filesystem();
-	const Filesystem* get_filesystem() const;
+	BlkFilesystem* get_blk_filesystem();
+	const BlkFilesystem* get_blk_filesystem() const;
 
 	Encryption* create_encryption(const std::string& dm_name);
 

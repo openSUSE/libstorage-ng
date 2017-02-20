@@ -24,7 +24,7 @@
 #define STORAGE_UDF_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
@@ -34,7 +34,7 @@ namespace storage
      * Class for UDF filesystem. The library cannot create an UDF filesystem
      * on disk.
      */
-    class Udf : public Filesystem
+    class Udf : public BlkFilesystem
     {
     public:
 

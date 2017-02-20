@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Ext.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -38,12 +38,12 @@ namespace storage
     template <> struct DeviceTraits<Ext> { static const char* classname; };
 
 
-    class Ext::Impl : public Filesystem::Impl
+    class Ext::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

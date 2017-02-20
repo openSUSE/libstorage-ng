@@ -44,7 +44,7 @@ namespace storage
 
 
     Xfs::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -52,7 +52,7 @@ namespace storage
     ResizeInfo
     Xfs::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
 
 	resize_info.combine(ResizeInfo(true, 40 * MiB, 16 * EiB));
 
@@ -63,7 +63,7 @@ namespace storage
     uint64_t
     Xfs::Impl::used_features() const
     {
-	return UF_XFS | Filesystem::Impl::used_features();
+	return UF_XFS | BlkFilesystem::Impl::used_features();
     }
 
 

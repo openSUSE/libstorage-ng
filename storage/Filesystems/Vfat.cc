@@ -49,7 +49,7 @@ namespace storage
 
 
     Vfat::Vfat(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

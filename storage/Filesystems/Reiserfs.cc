@@ -49,7 +49,7 @@ namespace storage
 
 
     Reiserfs::Reiserfs(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

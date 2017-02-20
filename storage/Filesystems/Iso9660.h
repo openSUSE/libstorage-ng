@@ -24,7 +24,7 @@
 #define STORAGE_ISO9660_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
@@ -34,7 +34,7 @@ namespace storage
      * Class for ISO9660 filesystem. The library cannot create an ISO9660
      * filesystem on disk.
      */
-    class Iso9660 : public Filesystem
+    class Iso9660 : public BlkFilesystem
     {
     public:
 

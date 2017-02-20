@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,7 +24,6 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -81,34 +80,6 @@ namespace storage
     }
 
 
-    const string&
-    Filesystem::get_label() const
-    {
-	return get_impl().get_label();
-    }
-
-
-    void
-    Filesystem::set_label(const string& label)
-    {
-	get_impl().set_label(label);
-    }
-
-
-    const string&
-    Filesystem::get_uuid() const
-    {
-	return get_impl().get_uuid();
-    }
-
-
-    void
-    Filesystem::set_uuid(const string& uuid)
-    {
-	get_impl().set_uuid(uuid);
-    }
-
-
     const vector<string>&
     Filesystem::get_mountpoints() const
     {
@@ -158,66 +129,6 @@ namespace storage
     }
 
 
-    const string&
-    Filesystem::get_mkfs_options() const
-    {
-	return get_impl().get_mkfs_options();
-    }
-
-
-    void
-    Filesystem::set_mkfs_options(const string& mkfs_options)
-    {
-	get_impl().set_mkfs_options(mkfs_options);
-    }
-
-
-    const string&
-    Filesystem::get_tune_options() const
-    {
-	return get_impl().get_tune_options();
-    }
-
-
-    void
-    Filesystem::set_tune_options(const string& tune_options)
-    {
-	get_impl().set_tune_options(tune_options);
-    }
-
-
-    void
-    Filesystem::set_resize_info(const ResizeInfo& resize_info)
-    {
-	get_impl().set_resize_info(resize_info);
-    }
-
-
-    ContentInfo
-    Filesystem::detect_content_info() const
-    {
-	return get_impl().detect_content_info();
-    }
-
-
-    void
-    Filesystem::set_content_info(const ContentInfo& content_info)
-    {
-	get_impl().set_content_info(content_info);
-    }
-
-
-    vector<Filesystem*>
-    Filesystem::find_by_label(const Devicegraph* devicegraph, const string& label)
-    {
-	auto pred = [&label](const Filesystem* filesystem) {
-	    return filesystem->get_label() == label;
-	};
-
-	return devicegraph->get_impl().get_devices_of_type_if<Filesystem>(pred);
-    }
-
-
     vector<Filesystem*>
     Filesystem::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
     {
@@ -226,13 +137,6 @@ namespace storage
 	};
 
 	return devicegraph->get_impl().get_devices_of_type_if<Filesystem>(pred);
-    }
-
-
-    vector<const BlkDevice*>
-    Filesystem::get_blk_devices() const
-    {
-	return get_impl().get_blk_devices();
     }
 
 

@@ -24,13 +24,13 @@
 #define STORAGE_XFS_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Xfs : public Filesystem
+    class Xfs : public BlkFilesystem
     {
     public:
 

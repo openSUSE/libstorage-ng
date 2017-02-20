@@ -32,7 +32,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/User.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/Ext3.h"
 #include "storage/Filesystems/Ext4.h"
@@ -363,9 +363,9 @@ namespace storage
     }
 
 
-    typedef std::function<Filesystem* (Devicegraph* devicegraph)> filesystem_create_fnc;
+    typedef std::function<BlkFilesystem* (Devicegraph* devicegraph)> blk_filesystem_create_fnc;
 
-    const map<FsType, filesystem_create_fnc> filesystem_create_registry = {
+    const map<FsType, blk_filesystem_create_fnc> blk_filesystem_create_registry = {
 	{ FsType::BTRFS, &Btrfs::create },
 	{ FsType::EXT2, &Ext2::create },
 	{ FsType::EXT3, &Ext3::create },
@@ -380,14 +380,14 @@ namespace storage
     };
 
 
-    Filesystem*
-    BlkDevice::Impl::create_filesystem(FsType fs_type)
+    BlkFilesystem*
+    BlkDevice::Impl::create_blk_filesystem(FsType fs_type)
     {
 	if (num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
 
-	map<FsType, filesystem_create_fnc>::const_iterator it = filesystem_create_registry.find(fs_type);
-	if (it == filesystem_create_registry.end())
+	map<FsType, blk_filesystem_create_fnc>::const_iterator it = blk_filesystem_create_registry.find(fs_type);
+	if (it == blk_filesystem_create_registry.end())
 	{
 	    if (fs_type == FsType::NFS || fs_type == FsType::NFS4)
 		ST_THROW(UnsupportedException("cannot create Nfs on BlkDevice"));
@@ -397,32 +397,32 @@ namespace storage
 
 	Devicegraph* devicegraph = get_devicegraph();
 
-	Filesystem* filesystem = it->second(devicegraph);
+	BlkFilesystem* blk_filesystem = it->second(devicegraph);
 
-	User::create(devicegraph, get_device(), filesystem);
+	User::create(devicegraph, get_device(), blk_filesystem);
 
-	return filesystem;
+	return blk_filesystem;
     }
 
 
     bool
-    BlkDevice::Impl::has_filesystem() const
+    BlkDevice::Impl::has_blk_filesystem() const
     {
-	return has_single_child_of_type<const Filesystem>();
+	return has_single_child_of_type<const BlkFilesystem>();
     }
 
 
-    Filesystem*
-    BlkDevice::Impl::get_filesystem()
+    BlkFilesystem*
+    BlkDevice::Impl::get_blk_filesystem()
     {
-	return get_single_child_of_type<Filesystem>();
+	return get_single_child_of_type<BlkFilesystem>();
     }
 
 
-    const Filesystem*
-    BlkDevice::Impl::get_filesystem() const
+    const BlkFilesystem*
+    BlkDevice::Impl::get_blk_filesystem() const
     {
-	return get_single_child_of_type<const Filesystem>();
+	return get_single_child_of_type<const BlkFilesystem>();
     }
 
 

@@ -25,7 +25,7 @@
 #define STORAGE_EXT_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
@@ -34,7 +34,7 @@ namespace storage
     /**
      * Abstract base class for Ext2, Ext3 and Ext4.
      */
-    class Ext : public Filesystem
+    class Ext : public BlkFilesystem
     {
     public:
 

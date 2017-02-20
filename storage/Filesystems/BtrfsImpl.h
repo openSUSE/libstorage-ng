@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Btrfs.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Action.h"
 
 
@@ -39,12 +39,12 @@ namespace storage
     template <> struct DeviceTraits<Btrfs> { static const char* classname; };
 
 
-    class Btrfs::Impl : public Filesystem::Impl
+    class Btrfs::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

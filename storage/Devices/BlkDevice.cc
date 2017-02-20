@@ -178,31 +178,31 @@ namespace storage
     }
 
 
-    Filesystem*
-    BlkDevice::create_filesystem(FsType fs_type)
+    BlkFilesystem*
+    BlkDevice::create_blk_filesystem(FsType fs_type)
     {
-	return get_impl().create_filesystem(fs_type);
+	return get_impl().create_blk_filesystem(fs_type);
     }
 
 
     bool
-    BlkDevice::has_filesystem() const
+    BlkDevice::has_blk_filesystem() const
     {
-	return get_impl().has_filesystem();
+	return get_impl().has_blk_filesystem();
     }
 
 
-    Filesystem*
-    BlkDevice::get_filesystem()
+    BlkFilesystem*
+    BlkDevice::get_blk_filesystem()
     {
-	return get_impl().get_filesystem();
+	return get_impl().get_blk_filesystem();
     }
 
 
-    const Filesystem*
-    BlkDevice::get_filesystem() const
+    const BlkFilesystem*
+    BlkDevice::get_blk_filesystem() const
     {
-	return get_impl().get_filesystem();
+	return get_impl().get_blk_filesystem();
     }
 
 

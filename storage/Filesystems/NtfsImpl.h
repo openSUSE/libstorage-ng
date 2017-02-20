@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Ntfs.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -38,12 +38,12 @@ namespace storage
     template <> struct DeviceTraits<Ntfs> { static const char* classname; };
 
 
-    class Ntfs::Impl : public Filesystem::Impl
+    class Ntfs::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

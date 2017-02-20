@@ -32,7 +32,7 @@ namespace storage
 
 
     Ext::Ext(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

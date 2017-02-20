@@ -24,13 +24,13 @@
 #define STORAGE_SWAP_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Swap : public Filesystem
+    class Swap : public BlkFilesystem
     {
     public:
 

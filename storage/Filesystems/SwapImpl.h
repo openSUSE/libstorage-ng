@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Swap.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -38,12 +38,12 @@ namespace storage
     template <> struct DeviceTraits<Swap> { static const char* classname; };
 
 
-    class Swap::Impl : public Filesystem::Impl
+    class Swap::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 
