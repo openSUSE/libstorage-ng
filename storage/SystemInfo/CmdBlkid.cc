@@ -206,7 +206,7 @@ namespace storage
     operator<<(std::ostream& s, const Blkid& blkid)
     {
 	for (Blkid::const_iterator it = blkid.data.begin(); it != blkid.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }

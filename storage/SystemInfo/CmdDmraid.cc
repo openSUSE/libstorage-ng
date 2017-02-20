@@ -109,7 +109,7 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const CmdDmraid& cmddmraid)
     {
 	for (CmdDmraid::const_iterator it = cmddmraid.begin(); it != cmddmraid.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }

@@ -73,7 +73,7 @@ namespace storage
     operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info)
     {
 	for (const CmdDmsetupInfo::value_type& it : cmd_dmsetup_info)
-	    s << "data[" << it.first << "] -> " << it.second << endl;
+	    s << "data[" << it.first << "] -> " << it.second << '\n';
 
 	return s;
     }
@@ -165,7 +165,7 @@ namespace storage
     {
 	for (const CmdDmsetupTable::value_type& it : cmd_dmsetup_table)
 	    for (const CmdDmsetupTable::Table& table : it.second)
-		s << "data[" << it.first << "] -> " << table << endl;
+		s << "data[" << it.first << "] -> " << table << '\n';
 
 	return s;
     }

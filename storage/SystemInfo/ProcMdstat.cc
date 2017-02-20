@@ -270,7 +270,7 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const ProcMdstat& procmdstat)
     {
 	for (ProcMdstat::const_iterator it = procmdstat.data.begin(); it != procmdstat.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }
@@ -354,7 +354,7 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadmdetail)
     {
 	s << "device:" << mdadmdetail.device << " uuid:" << mdadmdetail.uuid << " devname:"
-	  << mdadmdetail.devname << " metadata:" << mdadmdetail.metadata << endl;
+	  << mdadmdetail.devname << " metadata:" << mdadmdetail.metadata << '\n';
 
 	return s;
     }
@@ -432,10 +432,10 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadmexamine)
     {
 	s << "devices:" << mdadmexamine.devices << " metadata:" << mdadmexamine.metadata
-	  << " uuid:" << mdadmexamine.uuid << endl;
+	  << " uuid:" << mdadmexamine.uuid << '\n';
 
 	for (MdadmExamine::const_iterator it = mdadmexamine.begin(); it != mdadmexamine.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }

@@ -188,10 +188,10 @@ namespace storage
 	if (parted.gpt_pmbr_boot)
 	    s << " gpt-pmbr-boot";
 
-	s << endl;
+	s << '\n';
 
 	for (Parted::const_iterator it = parted.entries.begin(); it != parted.entries.end(); ++it)
-	    s << *it << endl;
+	    s << *it << '\n';
 
 	return s;
     }
