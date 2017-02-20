@@ -24,13 +24,13 @@
 #define STORAGE_NTFS_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Ntfs : public Filesystem
+    class Ntfs : public BlkFilesystem
     {
     public:
 

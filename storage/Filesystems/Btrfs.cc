@@ -50,7 +50,7 @@ namespace storage
 
 
     Btrfs::Btrfs(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

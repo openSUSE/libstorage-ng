@@ -22,7 +22,7 @@ luks = sdb1.create_encryption("cr_test")
 
 luks.set_password("12345678")
 
-ext4 = luks.create_filesystem(FsType_EXT4)
+ext4 = luks.create_blk_filesystem(FsType_EXT4)
 
 print staging
 

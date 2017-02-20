@@ -40,7 +40,7 @@ namespace storage
 
 
     Ext::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 

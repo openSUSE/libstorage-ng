@@ -38,6 +38,7 @@
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
@@ -223,6 +224,20 @@ namespace storage
     Devicegraph::get_all_filesystems() const
     {
 	return Filesystem::get_all(this);
+    }
+
+
+    std::vector<BlkFilesystem*>
+    Devicegraph::get_all_blk_filesystems()
+    {
+	return BlkFilesystem::get_all(this);
+    }
+
+
+    std::vector<const BlkFilesystem*>
+    Devicegraph::get_all_blk_filesystems() const
+    {
+	return BlkFilesystem::get_all(this);
     }
 
 

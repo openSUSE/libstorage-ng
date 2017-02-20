@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Xfs.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Action.h"
 
 
@@ -39,12 +39,12 @@ namespace storage
     template <> struct DeviceTraits<Xfs> { static const char* classname; };
 
 
-    class Xfs::Impl : public Filesystem::Impl
+    class Xfs::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

@@ -44,7 +44,7 @@ namespace storage
 
 
     Swap::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -66,7 +66,7 @@ namespace storage
     uint64_t
     Swap::Impl::used_features() const
     {
-	return UF_SWAP | Filesystem::Impl::used_features();
+	return UF_SWAP | BlkFilesystem::Impl::used_features();
     }
 
 

@@ -41,7 +41,7 @@ namespace storage
 
 
     Reiserfs::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -49,7 +49,7 @@ namespace storage
     ResizeInfo
     Reiserfs::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
 
 	resize_info.combine(ResizeInfo(true, 64 * MiB, 16 * TiB));
 
@@ -60,7 +60,7 @@ namespace storage
     uint64_t
     Reiserfs::Impl::used_features() const
     {
-	return UF_REISERFS | Filesystem::Impl::used_features();
+	return UF_REISERFS | BlkFilesystem::Impl::used_features();
     }
 
 

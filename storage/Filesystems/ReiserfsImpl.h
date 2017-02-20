@@ -25,7 +25,7 @@
 
 
 #include "storage/Filesystems/Reiserfs.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Action.h"
 
 
@@ -38,12 +38,12 @@ namespace storage
     template <> struct DeviceTraits<Reiserfs> { static const char* classname; };
 
 
-    class Reiserfs::Impl : public Filesystem::Impl
+    class Reiserfs::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

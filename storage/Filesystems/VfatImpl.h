@@ -26,7 +26,7 @@
 
 
 #include "storage/Filesystems/Vfat.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -38,12 +38,12 @@ namespace storage
     template <> struct DeviceTraits<Vfat> { static const char* classname; };
 
 
-    class Vfat::Impl : public Filesystem::Impl
+    class Vfat::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

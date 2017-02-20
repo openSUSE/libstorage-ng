@@ -24,13 +24,13 @@
 #define STORAGE_BTRFS_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Btrfs : public Filesystem
+    class Btrfs : public BlkFilesystem
     {
     public:
 

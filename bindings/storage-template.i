@@ -45,6 +45,9 @@
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
 
+%template(VectorBlkFilesystemPtr) std::vector<BlkFilesystem*>;
+%template(VectorConstBlkFilesystemPtr) std::vector<const BlkFilesystem*>;
+
 %template(VectorNtfsPtr) std::vector<Ntfs*>;
 %template(VectorConstNtfsPtr) std::vector<const Ntfs*>;
 

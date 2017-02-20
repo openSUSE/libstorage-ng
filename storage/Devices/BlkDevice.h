@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,8 +25,9 @@
 #define STORAGE_BLK_DEVICE_H
 
 
+#include "storage/Utils/Swig.h"
 #include "storage/Devices/Device.h"
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
@@ -74,12 +75,19 @@ namespace storage
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
-	Filesystem* create_filesystem(FsType fs_type);
+	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 
-	bool has_filesystem() const;
+	bool has_blk_filesystem() const;
 
-	Filesystem* get_filesystem();
-	const Filesystem* get_filesystem() const;
+	BlkFilesystem* get_blk_filesystem();
+	const BlkFilesystem* get_blk_filesystem() const;
+
+	BlkFilesystem* create_filesystem(FsType fs_type) DEPRECATED { return create_blk_filesystem(fs_type);}
+
+	bool has_filesystem() const DEPRECATED { return has_blk_filesystem(); }
+
+	BlkFilesystem* get_filesystem() DEPRECATED { return get_blk_filesystem(); }
+	const BlkFilesystem* get_filesystem() const DEPRECATED { return get_blk_filesystem(); }
 
 	/**
 	 * TODO parameter for encryption type? do all encryptions need a dm_name?

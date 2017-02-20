@@ -50,7 +50,7 @@ namespace storage
 
 
     Xfs::Xfs(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

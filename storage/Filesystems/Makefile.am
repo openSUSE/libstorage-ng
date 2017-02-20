@@ -7,6 +7,8 @@ noinst_LTLIBRARIES = libfilesystems.la
 libfilesystems_la_SOURCES =				\
 	Filesystem.h		Filesystem.cc		\
 	FilesystemImpl.h	FilesystemImpl.cc	\
+	BlkFilesystem.h		BlkFilesystem.cc	\
+	BlkFilesystemImpl.h	BlkFilesystemImpl.cc	\
 	Ext.h			Ext.cc			\
 	ExtImpl.h		ExtImpl.cc		\
 	Ext2.h			Ext2.cc			\
@@ -36,6 +38,7 @@ pkgincludedir = $(includedir)/storage/Filesystems
 
 pkginclude_HEADERS =		\
 	Filesystem.h		\
+	BlkFilesystem.h		\
 	Ext.h			\
 	Ext2.h			\
 	Ext3.h			\

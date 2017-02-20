@@ -21,7 +21,7 @@ class TestCreate(unittest.TestCase):
 
         gpt = sda.create_partition_table(PtType_GPT)
         sda1 = gpt.create_partition("/dev/sda1", Region(2048, 4096, 512), PartitionType_PRIMARY)
-        ext4 = sda1.create_filesystem(FsType_EXT4)
+        ext4 = sda1.create_blk_filesystem(FsType_EXT4)
 
         self.assertEqual(devicegraph.empty(), False)
         self.assertEqual(devicegraph.num_devices(), 4)

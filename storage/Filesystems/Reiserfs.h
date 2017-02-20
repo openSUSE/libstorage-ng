@@ -24,13 +24,13 @@
 #define STORAGE_REISERFS_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Reiserfs : public Filesystem
+    class Reiserfs : public BlkFilesystem
     {
     public:
 

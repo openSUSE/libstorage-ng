@@ -49,7 +49,7 @@ namespace storage
 
 
     Iso9660::Iso9660(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

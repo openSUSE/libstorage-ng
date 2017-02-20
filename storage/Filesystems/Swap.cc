@@ -50,7 +50,7 @@ namespace storage
 
 
     Swap::Swap(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

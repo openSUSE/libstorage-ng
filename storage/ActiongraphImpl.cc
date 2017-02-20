@@ -32,7 +32,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"

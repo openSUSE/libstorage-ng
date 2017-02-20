@@ -25,7 +25,7 @@
 
 
 #include "storage/Filesystems/Udf.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 
 
 namespace storage
@@ -37,12 +37,12 @@ namespace storage
     template <> struct DeviceTraits<Udf> { static const char* classname; };
 
 
-    class Udf::Impl : public Filesystem::Impl
+    class Udf::Impl : public BlkFilesystem::Impl
     {
     public:
 
 	Impl()
-	    : Filesystem::Impl() {}
+	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
 

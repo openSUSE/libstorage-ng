@@ -35,7 +35,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
-#include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 
@@ -187,8 +187,8 @@ namespace storage
 			continue;
 		    }
 
-		    Filesystem* filesystem = blk_device->create_filesystem(entry.fs_type);
-		    filesystem->get_impl().probe_pass_3(probed, systeminfo, fstab);
+		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(entry.fs_type);
+		    blk_filesystem->get_impl().probe_pass_3(probed, systeminfo, fstab);
 		}
 	    }
 	}

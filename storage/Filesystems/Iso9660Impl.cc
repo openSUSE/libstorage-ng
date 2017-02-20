@@ -34,7 +34,7 @@ namespace storage
 
 
     Iso9660::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 

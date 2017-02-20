@@ -42,7 +42,7 @@ namespace storage
 
 
     Vfat::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -50,7 +50,7 @@ namespace storage
     ResizeInfo
     Vfat::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
 
 	resize_info.combine(ResizeInfo(true, 64 * KiB, 2 * TiB));
 
@@ -77,7 +77,7 @@ namespace storage
     uint64_t
     Vfat::Impl::used_features() const
     {
-	return UF_VFAT | Filesystem::Impl::used_features();
+	return UF_VFAT | BlkFilesystem::Impl::used_features();
     }
 
 

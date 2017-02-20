@@ -49,7 +49,7 @@ namespace storage
 
 
     Ntfs::Ntfs(Impl* impl)
-	: Filesystem(impl)
+	: BlkFilesystem(impl)
     {
     }
 

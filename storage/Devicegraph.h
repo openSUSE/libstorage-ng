@@ -41,6 +41,7 @@ namespace storage
     class Md;
     class LvmVg;
     class Filesystem;
+    class BlkFilesystem;
 
 
     struct DeviceNotFound : public Exception
@@ -170,6 +171,9 @@ namespace storage
 
 	std::vector<Filesystem*> get_all_filesystems();
 	std::vector<const Filesystem*> get_all_filesystems() const;
+
+	std::vector<BlkFilesystem*> get_all_blk_filesystems();
+	std::vector<const BlkFilesystem*> get_all_blk_filesystems() const;
 
 	/**
 	 * Removes the device with sid from the devicegraph. Only use this

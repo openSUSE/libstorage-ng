@@ -44,7 +44,7 @@ namespace storage
 
 
     Btrfs::Impl::Impl(const xmlNode* node)
-	: Filesystem::Impl(node)
+	: BlkFilesystem::Impl(node)
     {
     }
 
@@ -52,7 +52,7 @@ namespace storage
     ResizeInfo
     Btrfs::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
 
 	resize_info.combine(ResizeInfo(true, 256 * MiB, 16 * EiB));
 
@@ -63,7 +63,7 @@ namespace storage
     uint64_t
     Btrfs::Impl::used_features() const
     {
-	return UF_BTRFS | Filesystem::Impl::used_features();
+	return UF_BTRFS | BlkFilesystem::Impl::used_features();
     }
 
 
@@ -90,7 +90,7 @@ namespace storage
 
 	// TODO handle mounted
 
-        string cmd_line = BTRFSBIN " filesystem label " + quote(blk_device->get_name()) + " " +
+	string cmd_line = BTRFSBIN " filesystem label " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 	cout << cmd_line << endl;
 

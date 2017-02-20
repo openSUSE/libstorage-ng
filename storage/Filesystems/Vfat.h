@@ -24,13 +24,13 @@
 #define STORAGE_VFAT_H
 
 
-#include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class Vfat : public Filesystem
+    class Vfat : public BlkFilesystem
     {
     public:
 
