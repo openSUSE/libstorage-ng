@@ -14,10 +14,10 @@ using Storage::Partition;
 typedef std::vector<Disk *> DiskVector;
 
 
-#define EFI_BOOT_SIZE  64*MB
-#define SWAP_SIZE       2*GB
-#define ROOT_SIZE      20*GB
-#define HOME_MIN_SIZE   5*GB
+#define EFI_BOOT_SIZE  64*MiB
+#define SWAP_SIZE       2*GiB
+#define ROOT_SIZE      20*GiB
+#define HOME_MIN_SIZE   5*GiB
 
 
 void bare_metal_pc() // this handles both modern and legacy bare metal PC
@@ -36,7 +36,7 @@ void bare_metal_pc() // this handles both modern and legacy bare metal PC
 	    partition_table = disk->create_partition_table( Disk::GPT );
 
 	    Partition *efi_boot_part = partition_table->create_partition( EFI_BOOT_SIZE, ID_GPT_BOOT );
-	    Filesystem *efi_boot_fs = efi_boot_part->create_filesystem( VFAT );
+	    BlkFilesystem *efi_boot_fs = efi_boot_part->create_blk_filesystem( VFAT );
 	    efi_boot_fs->set_mount_point( "/boot/efi" );
 	}
 	else
@@ -45,7 +45,7 @@ void bare_metal_pc() // this handles both modern and legacy bare metal PC
 	}
 
 	Partition *swap_part = partition_table->create_partition( SWAP_SIZE, ID_SWAP );
-	Filesystem *swap_fs = swap_part->create_filesystem( SWAP );
+	BlkFilesystem *swap_fs = swap_part->create_blk_filesystem( SWAP );
 	swap_fs->set_mount_point( "swap" );
 
 
@@ -59,13 +59,13 @@ void bare_metal_pc() // this handles both modern and legacy bare metal PC
 	}
 
 	Partition *root_part = partition_table->create_partition( root_size, ID_LINUX );
-	Filesystem *root_fs = root_part->create_filesystem( BTRFS );
+	BlkFilesystem *root_fs = root_part->create_blk_filesystem( BTRFS );
 	root_fs->set_mount_point( "/" );
 
 	if ( home_size > 0 )
 	{
 	    Partition *home_part = partition_table->create_partition( home_size );
-	    Filesystem *home_fs = home_part->create_filesystem( XFS );
+	    BlkFilesystem *home_fs = home_part->create_blk_filesystem( XFS );
 	    home_fs->set_mount_point( "/home" );
 	}
 
@@ -132,7 +132,7 @@ void multi_boot_pc_with_windows()
     // Create Linux partitions
 
     Partition *swap_part = partition_table->create_partition( SWAP_SIZE, ID_SWAP ); // primary partition
-    Filesystem *swap_fs = swap_part->create_filesystem( SWAP );
+    BlkFilesystem *swap_fs = swap_part->create_blk_filesystem( SWAP );
     swap_fs->set_mount_point( "swap" );
 
     Region free_space = partition_table->largest_free_region();
@@ -147,13 +147,13 @@ void multi_boot_pc_with_windows()
     }
 
     Partition *root_part = extended_part->create_partition( root_size, ID_LINUX ); // logical partition
-    Filesystem *root_fs = root_part->create_filesystem( BTRFS );
+    BlkFilesystem *root_fs = root_part->create_blk_filesystem( BTRFS );
     root_fs->set_mount_point( "/" );
 
     if ( home_size > 0 )
     {
 	Partition *home_part = extended_part->create_partition( home_size ); // logical partition
-	Filesystem *home_fs = home_part->create_filesystem( XFS );
+	BlkFilesystem *home_fs = home_part->create_blk_filesystem( XFS );
 	home_fs->set_mount_point( "/home" );
     }
 
