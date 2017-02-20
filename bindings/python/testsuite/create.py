@@ -22,8 +22,8 @@ class TestCreate(unittest.TestCase):
         sda1 = gpt.create_partition("/dev/sda1", Region(0, 100, 512), PartitionType_PRIMARY)
         sda2 = gpt.create_partition("/dev/sda2", Region(100, 100, 512), PartitionType_PRIMARY)
 
-        ext4 = sda1.create_filesystem(FsType_EXT4)
-        swap = sda2.create_filesystem(FsType_SWAP)
+        ext4 = sda1.create_blk_filesystem(FsType_EXT4)
+        swap = sda2.create_blk_filesystem(FsType_SWAP)
 
         self.assertEqual(devicegraph.num_devices(), 6)
         self.assertEqual(devicegraph.num_holders(), 5)
