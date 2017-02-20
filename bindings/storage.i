@@ -37,6 +37,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Filesystems/Filesystem.h"
+#include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/Ext.h"
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/Ext3.h"
@@ -97,6 +98,7 @@
 
 %include "../../storage/Devices/Device.h"
 %include "../../storage/Filesystems/Filesystem.h"
+%include "../../storage/Filesystems/BlkFilesystem.h"
 %include "../../storage/Filesystems/Ext.h"
 %include "../../storage/Filesystems/Ext2.h"
 %include "../../storage/Filesystems/Ext3.h"
