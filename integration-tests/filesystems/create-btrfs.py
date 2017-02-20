@@ -4,6 +4,7 @@
 
 
 from storage import *
+from storageitu import *
 
 
 environment = Environment(False)
@@ -17,12 +18,11 @@ print staging
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
-btrfs = partition.create_filesystem(FsType_BTRFS)
+btrfs = partition.create_blk_filesystem(FsType_BTRFS)
 btrfs.set_label("TEST")
 btrfs.add_mountpoint("/test")
 
 print staging
 
-storage.calculate_actiongraph()
-storage.commit()
+commit(storage)
 

@@ -4,6 +4,7 @@
 
 
 from storage import *
+from storageitu import *
 
 
 environment = Environment(False)
@@ -17,12 +18,11 @@ print staging
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
 
-vfat = partition.create_filesystem(FsType_VFAT)
+vfat = partition.create_blk_filesystem(FsType_VFAT)
 vfat.set_label("TEST")
 vfat.add_mountpoint("/test")
 
 print staging
 
-storage.calculate_actiongraph()
-storage.commit()
+commit(storage)
 
