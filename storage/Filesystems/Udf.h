@@ -30,7 +30,8 @@
 namespace storage
 {
 
-    /**                                                                                                                                        * Class for UDF filesystem. The library cannot create an UDF filesystem
+    /**
+     * Class for UDF filesystem. The library cannot create an UDF filesystem
      * on disk.
      */
     class Udf : public Filesystem
