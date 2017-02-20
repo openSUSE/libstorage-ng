@@ -45,7 +45,7 @@ namespace storage
     ResizeInfo
     Ext3::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = Filesystem::Impl::detect_resize_info();
+	ResizeInfo resize_info = Ext::Impl::detect_resize_info();
 
 	resize_info.combine(ResizeInfo(true, 10 * MiB, 4 * TiB));
 
@@ -56,7 +56,7 @@ namespace storage
     uint64_t
     Ext3::Impl::used_features() const
     {
-	return UF_EXT3 | Filesystem::Impl::used_features();
+	return UF_EXT3 | Ext::Impl::used_features();
     }
 
 }

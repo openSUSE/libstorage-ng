@@ -60,7 +60,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Dir& dir)
     {
-	s << "path:" << dir.path << " entries:" << dir.entries << endl;
+	s << "path:" << dir.path << " entries:" << dir.entries << '\n';
 
 	return s;
     }
@@ -136,7 +136,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const File& file)
     {
-	s << "path:" << file.path << " content:" << file.content << endl;
+	s << "path:" << file.path << " content:" << file.content << '\n';
 
 	return s;
     }
@@ -187,7 +187,7 @@ namespace storage
     operator<<(std::ostream& s, const DevLinks& devlinks)
     {
 	for (const DevLinks::value_type& it : devlinks)
-	    s << "data[" << it.first << "] -> " << boost::join(it.second, " ") << endl;
+	    s << "data[" << it.first << "] -> " << boost::join(it.second, " ") << '\n';
 
 	return s;
     }

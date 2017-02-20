@@ -99,7 +99,7 @@ namespace storage
 	if (!cmdudevadminfo.by_id_links.empty())
 	    s << " by-id-links:" << cmdudevadminfo.by_id_links;
 
-	s << endl;
+	s << '\n';
 
 	return s;
     }

@@ -90,7 +90,7 @@ namespace storage
     operator<<(std::ostream& s, const ProcMounts& procmounts)
     {
 	for (ProcMounts::const_iterator it = procmounts.data.begin(); it != procmounts.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }

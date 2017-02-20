@@ -132,7 +132,7 @@ namespace storage
     operator<<(std::ostream& s, const CmdBtrfsShow& cmdbtrfsshow)
     {
 	for (CmdBtrfsShow::const_iterator it = cmdbtrfsshow.data.begin(); it != cmdbtrfsshow.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }
@@ -197,7 +197,7 @@ namespace storage
     operator<<(std::ostream& s, const CmdBtrfsSubvolumes& cmdbtrfssubvolumes)
     {
 	for (const CmdBtrfsSubvolumes::Entry& entry : cmdbtrfssubvolumes)
-	    s << "data " << entry.path << endl;
+	    s << "data " << entry.path << '\n';
 
 	return s;
     }

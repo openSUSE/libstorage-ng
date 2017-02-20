@@ -110,7 +110,7 @@ namespace storage
     std::ostream& operator<<(std::ostream& s, const Lsscsi& lsscsi)
     {
 	for (Lsscsi::const_iterator it = lsscsi.data.begin(); it != lsscsi.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << endl;
+	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
     }
