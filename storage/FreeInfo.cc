@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -116,6 +116,42 @@ namespace storage
     {
 	return out << "is-windows:" << content_info.is_windows << " is-efi:" << content_info.is_efi
 		   << " num-homes:" << content_info.num_homes;
+    }
+
+
+    SpaceInfo::SpaceInfo(unsigned long long size, unsigned long long used)
+	: size(size), used(used)
+    {
+    }
+
+
+    SpaceInfo::SpaceInfo(const xmlNode* node)
+	: size(0), used(0)
+    {
+	getChildValue(node, "size", size);
+	getChildValue(node, "used", used);
+    }
+
+
+    string
+    SpaceInfo::get_size_string() const
+    {
+	return byte_to_humanstring(size, false, 2, false);
+    }
+
+
+    void
+    SpaceInfo::save(xmlNode* node) const
+    {
+	setChildValue(node, "size", size);
+	setChildValue(node, "used", used);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& out, const SpaceInfo& space_info)
+    {
+	return out << "size:" << space_info.size << " used:" << space_info.used;
     }
 
 }
