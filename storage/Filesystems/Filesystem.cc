@@ -129,6 +129,27 @@ namespace storage
     }
 
 
+    bool
+    Filesystem::has_space_info() const
+    {
+	return get_impl().has_space_info();
+    }
+
+
+    SpaceInfo
+    Filesystem::detect_space_info() const
+    {
+	return get_impl().detect_space_info();
+    }
+
+
+    void
+    Filesystem::set_space_info(const SpaceInfo& space_info)
+    {
+	get_impl().set_space_info(space_info);
+    }
+
+
     vector<Filesystem*>
     Filesystem::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
     {

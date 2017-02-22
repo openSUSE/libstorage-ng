@@ -26,9 +26,11 @@
 
 
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/CDgD.h"
 #include "storage/Utils/FileUtils.h"
 #include "storage/Filesystems/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -80,6 +82,9 @@ namespace storage
 	 */
 	virtual string get_mount_by_string() const = 0;
 
+	virtual SpaceInfo detect_space_info() const;
+	void set_space_info(const SpaceInfo& space_info);
+	bool has_space_info() const { return space_info.has_value(); }
 
 	const Filesystem* get_filesystem() const { return to_filesystem(get_device()); }
 
@@ -111,6 +116,13 @@ namespace storage
 	vector<string> mountpoints;
 	MountByType mount_by;
 	list<string> fstab_options;
+
+	/**
+	 * mutable to allow updating cache from const functions. Otherwise
+	 * caching would not be possible when working with the probed
+	 * devicegraph.
+	 */
+	mutable CDgD<SpaceInfo> space_info;
 
     };
 

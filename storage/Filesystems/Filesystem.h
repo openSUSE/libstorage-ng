@@ -33,6 +33,7 @@
 
 namespace storage
 {
+    class SpaceInfo;
 
 
     enum class FsType {
@@ -70,6 +71,18 @@ namespace storage
 
 	const std::list<std::string>& get_fstab_options() const;
 	void set_fstab_options(const std::list<std::string>& fstab_options);
+
+	virtual bool has_space_info() const;
+
+	/**
+	 * So far only supported for Nfs.
+	 */
+	virtual SpaceInfo detect_space_info() const;
+
+	/**
+	 * Set the SpaceInfo. Only use for testsuites.
+	 */
+	void set_space_info(const SpaceInfo& space_info);
 
 	static std::vector<Filesystem*> find_by_mountpoint(const Devicegraph* devicegraph,
 							   const std::string& mountpoint);

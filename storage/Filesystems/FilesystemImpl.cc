@@ -71,6 +71,10 @@ namespace storage
 
 	if (getChildValue(node, "fstab-options", tmp))
 	    fstab_options = splitString(tmp, ",");
+
+	const xmlNode* space_info_node = getChildNode(node, "SpaceInfo");
+	if (space_info_node)
+	    space_info.set_value(SpaceInfo(space_info_node));
     }
 
 
@@ -85,6 +89,12 @@ namespace storage
 
 	if (!fstab_options.empty())
 	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
+
+	if (space_info.has_value())
+	{
+	    xmlNode* space_info_node = xmlNewChild(node, "SpaceInfo");
+	    space_info.get_value().save(space_info_node);
+	}
     }
 
 
@@ -141,6 +151,29 @@ namespace storage
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
 	storage::log_diff(log, "fstab-options", fstab_options, rhs.fstab_options);
+    }
+
+
+    SpaceInfo
+    Filesystem::Impl::detect_space_info() const
+    {
+	if (!space_info.has_value())
+	{
+	    EnsureMounted ensure_mounted(get_filesystem());
+
+	    SystemInfo systeminfo;
+	    const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mountpoint());
+	    space_info.set_value(cmd_df.get_space_info());
+	}
+
+	return space_info.get_value();
+    }
+
+
+    void
+    Filesystem::Impl::set_space_info(const SpaceInfo& tmp)
+    {
+	space_info.set_value(tmp);
     }
 
 
