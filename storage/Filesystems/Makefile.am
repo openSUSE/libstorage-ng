@@ -32,7 +32,9 @@ libfilesystems_la_SOURCES =				\
 	Udf.h			Udf.cc			\
 	UdfImpl.h		UdfImpl.cc		\
 	Swap.h			Swap.cc			\
-	SwapImpl.h		SwapImpl.cc
+	SwapImpl.h		SwapImpl.cc		\
+	Nfs.h			Nfs.cc			\
+	NfsImpl.h		NfsImpl.cc
 
 pkgincludedir = $(includedir)/storage/Filesystems
 
@@ -50,5 +52,6 @@ pkginclude_HEADERS =		\
 	Vfat.h			\
 	Iso9660.h		\
 	Udf.h			\
-	Swap.h
+	Swap.h			\
+	Nfs.h
 

@@ -58,11 +58,13 @@
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
+#include "storage/Filesystems/Nfs.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Storage.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -602,7 +604,8 @@ namespace storage
 	{ "Xfs", &Xfs::load },
 	{ "Swap", &Swap::load },
 	{ "Iso9660", &Iso9660::load },
-	{ "Udf", &Udf::load }
+	{ "Udf", &Udf::load },
+	{ "Nfs", &Nfs::load }
     };
 
 
@@ -775,6 +778,12 @@ namespace storage
 		    {
 			const LvmVg* lvm_vg = to_lvm_vg(device);
 			extra += "\\n" + lvm_vg->get_size_string();
+		    }
+		    else if (is_filesystem(device))
+		    {
+			const Filesystem* filesystem = to_filesystem(device);
+			if (filesystem->has_space_info())
+			    extra += "\\n" + filesystem->detect_space_info().get_size_string();
 		    }
 		}
 
