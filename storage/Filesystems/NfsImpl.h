@@ -55,10 +55,8 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	const string& get_server() const { return server; }
-	void set_server(const string& server);
 
 	const string& get_path() const { return path; }
-	void set_path(const string& path);
 
 	static bool is_valid_name(const string& name);
 	static pair<string, string> split_name(const string& name);

@@ -64,20 +64,6 @@ namespace storage
     }
 
 
-    void
-    Nfs::Impl::set_server(const string& server)
-    {
-	Impl::server = server;
-    }
-
-
-    void
-    Nfs::Impl::set_path(const string& path)
-    {
-	Impl::path = path;
-    }
-
-
     bool
     Nfs::Impl::is_valid_name(const string& name)
     {

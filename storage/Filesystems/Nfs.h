@@ -40,6 +40,11 @@ namespace storage
     /**
      * Class to represent a NFS mount.
      *
+     * The class does not provide functions to change the server or path since
+     * that would create a completely different filesystem. (Internally that
+     * would invalidate the SpaceInfo object which is shared across
+     * devicegraphs.)
+     *
      * TODO NFS4.
      */
     class Nfs : public Filesystem
@@ -50,10 +55,8 @@ namespace storage
 	static Nfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	const std::string& get_server() const;
-	void set_server(const std::string& server);
 
 	const std::string& get_path() const;
-	void set_path(const std::string& path);
 
 	static std::vector<Nfs*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Nfs*> get_all(const Devicegraph* devicegraph);

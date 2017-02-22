@@ -67,24 +67,10 @@ namespace storage
     }
 
 
-    void
-    Nfs::set_server(const string& server)
-    {
-	get_impl().set_server(server);
-    }
-
-
     const string&
     Nfs::get_path() const
     {
 	return get_impl().get_path();
-    }
-
-
-    void
-    Nfs::set_path(const string& path)
-    {
-	get_impl().set_path(path);
     }
 
 
