@@ -769,13 +769,12 @@ namespace storage
 		    if (is_blk_device(device))
 		    {
 			const BlkDevice* blk_device = to_blk_device(device);
-			extra += "\\n" + byte_to_humanstring(blk_device->get_size(), false, 2,
-							     false);
+			extra += "\\n" + blk_device->get_size_string();
 		    }
 		    else if (is_lvm_vg(device))
 		    {
 			const LvmVg* lvm_vg = to_lvm_vg(device);
-			extra += "\\n" + byte_to_humanstring(lvm_vg->get_size(), false, 2, false);
+			extra += "\\n" + lvm_vg->get_size_string();
 		    }
 		}
 
