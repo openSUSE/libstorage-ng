@@ -85,9 +85,6 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string normalizeDevice(const string& dev);
     string undevDevice(const string& dev);
 
-// TODO move to NfsImpl.h
-bool isNfsDev( const string& dev );
-
 
 template<class StreamType>
 void classic(StreamType& stream)
