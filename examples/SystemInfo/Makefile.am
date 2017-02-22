@@ -10,7 +10,7 @@ noinst_PROGRAMS = test-blkid test-cmdbtrfsshow test-cmddmsetupinfo		\
 	test-cmddmsetuptable test-cmdlvs test-cmdpvs 				\
 	test-cmdvgs test-cmdudevadminfo test-dir test-lsscsi			\
 	test-mdadmdetail test-mdadmexamine test-mdlinks test-parted		\
-	test-procmdstat test-procmounts test-procparts
+	test-procmdstat test-procmounts test-procparts test-cmddf
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

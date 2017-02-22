@@ -11,6 +11,7 @@ libsysteminfo_la_SOURCES =				\
 	CmdBtrfs.cc		CmdBtrfs.h		\
 	CmdCryptsetup.cc	CmdCryptsetup.h		\
 	CmdDasdview.cc		CmdDasdview.h		\
+	CmdDf.cc		CmdDf.h			\
 	CmdDmraid.cc		CmdDmraid.h		\
 	CmdDmsetup.cc		CmdDmsetup.h		\
 	CmdLsscsi.cc		CmdLsscsi.h		\
