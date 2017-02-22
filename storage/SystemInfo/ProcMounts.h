@@ -49,6 +49,11 @@ namespace storage
 
 	vector<string> find_by_name(const string& name, SystemInfo& systeminfo) const;
 
+	/**
+	 * Return all NFS and NFS4 entries.
+	 */
+	vector<FstabEntry> get_all_nfs() const;
+
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 
     protected:

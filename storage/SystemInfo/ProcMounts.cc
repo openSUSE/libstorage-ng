@@ -118,4 +118,19 @@ namespace storage
 	return ret;
     }
 
+
+    vector<FstabEntry>
+    ProcMounts::get_all_nfs() const
+    {
+	vector<FstabEntry> ret;
+
+	for (const value_type& value : data)
+	{
+	    if (value.second.fs == "nfs" || value.second.fs == "nfs4")
+		ret.push_back(value.second);
+	}
+
+	return ret;
+    }
+
 }
