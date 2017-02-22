@@ -27,7 +27,6 @@
 
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/CDgD.h"
-#include "storage/Utils/FileUtils.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/FreeInfo.h"
@@ -86,7 +85,8 @@ namespace storage
 	virtual ContentInfo detect_content_info_pure() const;
 	void set_content_info(const ContentInfo& content_info);
 
-	string get_mount_by_string() const;
+	virtual string get_mount_string() const override;
+	virtual string get_mount_by_string() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 
@@ -193,32 +193,6 @@ namespace storage
 	};
 
     }
-
-
-    class EnsureMounted : boost::noncopyable
-    {
-
-    public:
-
-	/**
-	 * Ensures that the blk filesystem is mounted somewhere.
-	 *
-	 * The mode is not enforced.
-	 */
-	EnsureMounted(const BlkFilesystem::Impl* blk_filesystem);
-
-	/**
-	 * Returns any mountpoint of the blk_filesystem.
-	 */
-	string get_any_mountpoint() const;
-
-    private:
-
-	const BlkFilesystem::Impl* blk_filesystem;
-
-	unique_ptr<TmpMount> tmp_mount;
-
-    };
 
 }
 

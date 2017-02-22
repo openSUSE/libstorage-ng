@@ -171,7 +171,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this);
+	EnsureMounted ensure_mounted(get_filesystem());
 
 	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
@@ -211,7 +211,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this);
+	EnsureMounted ensure_mounted(get_filesystem());
 
 	ContentInfo content_info;
 	content_info.is_windows = false;
@@ -480,6 +480,15 @@ namespace storage
 
 	if (!tune_options.empty())
 	    out << " tune-options:" << tune_options;
+    }
+
+
+    string
+    BlkFilesystem::Impl::get_mount_string() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	return blk_device->get_name();
     }
 
 
@@ -921,32 +930,6 @@ namespace storage
 	    return blk_devices[0]; // TODO, filesystems with multiple devices
 	}
 
-    }
-
-
-    EnsureMounted::EnsureMounted(const BlkFilesystem::Impl* blk_filesystem)
-	: blk_filesystem(blk_filesystem), tmp_mount()
-    {
-	if (!blk_filesystem->get_mountpoints().empty())
-	    return;
-
-	const Storage* storage = blk_filesystem->get_storage();
-	const BlkDevice* blk_device = blk_filesystem->get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
-				     "tmp-mount-XXXXXX", blk_device->get_name()));
-    }
-
-
-    string
-    EnsureMounted::get_any_mountpoint() const
-    {
-	if (tmp_mount)
-	    return tmp_mount->get_fullname();
-	else
-	    return blk_filesystem->get_mountpoints().front();
     }
 
 }

@@ -95,7 +95,7 @@ namespace storage
     ContentInfo
     Ntfs::Impl::detect_content_info_pure() const
     {
-	EnsureMounted ensure_mounted(this);
+	EnsureMounted ensure_mounted(get_filesystem());
 
 	ContentInfo content_info;
 
