@@ -24,8 +24,16 @@
 #define STORAGE_FIND_BY_H
 
 
+#include <string>
+
+#include "storage/DevicegraphImpl.h"
+#include "storage/Utils/ExceptionImpl.h"
+
+
 namespace storage
 {
+    using std::string;
+
 
     template<typename Type>
     Type*
