@@ -80,18 +80,20 @@ namespace storage
 	 */
 	virtual string get_mount_by_string() const = 0;
 
-	virtual Text do_mount_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
 
 	const Filesystem* get_filesystem() const { return to_filesystem(get_device()); }
-	virtual Text do_umount_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
 
-	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
+	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
-	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
+	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+
+	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+
+	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
     protected:
 

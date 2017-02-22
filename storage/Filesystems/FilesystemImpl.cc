@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -153,6 +154,147 @@ namespace storage
 
 	if (!fstab_options.empty())
 	    out << " fstab-options:" << fstab_options;
+    }
+
+
+    Text
+    Filesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Mount %1$s at %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Mounting %1$s at %2$s"));
+
+	return sformat(text, get_mount_string().c_str(), mountpoint.c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
+	if (access(real_mountpoint.c_str(), R_OK ) != 0)
+	{
+	    createPath(real_mountpoint);
+	}
+
+	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " +
+	    quote(get_mount_string()) + " " + quote(real_mountpoint);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("mount failed"));
+    }
+
+
+    Text
+    Filesystem::Impl::do_umount_text(const string& mountpoint, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Unmount %1$s at %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Unmounting %1$s at %2$s"));
+
+	return sformat(text, get_mount_string().c_str(), mountpoint.c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
+
+	string cmd_line = UMOUNTBIN " " + quote(real_mountpoint);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("umount failed"));
+    }
+
+
+    Text
+    Filesystem::Impl::do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Add mountpoint %1$s of %2$s to /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Adding mountpoint %1$s of %2$s to /etc/fstab"));
+
+	return sformat(text, mountpoint.c_str(), get_mount_string().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO
+
+	FstabChange entry;
+	entry.device = get_mount_string();
+	entry.dentry = get_mount_by_string();
+	entry.mount = mountpoint;
+	entry.fs = toString(get_type());
+	entry.opts = get_fstab_options();
+
+	fstab.addEntry(entry);
+	fstab.flush();
+    }
+
+
+    Text
+    Filesystem::Impl::do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Remove mountpoint %1$s of %2$s from /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Removing mountpoint %1$s of %2$s from /etc/fstab"));
+
+	return sformat(text, mountpoint.c_str(), get_mount_string().c_str());
+    }
+
+
+    void
+    Filesystem::Impl::do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    {
+	const Storage& storage = actiongraph.get_storage();
+
+	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+
+	// TODO error handling
+
+	FstabKey entry(get_mount_string(), mountpoint);
+	fstab.removeEntry(entry);
+	fstab.flush();
     }
 
 

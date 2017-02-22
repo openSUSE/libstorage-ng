@@ -96,20 +96,8 @@ namespace storage
 	virtual Text do_set_uuid_text(Tense tense) const;
 	virtual void do_set_uuid() const;
 
-	virtual Text do_mount_text(const string& mountpoint, Tense tense) const override;
-	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
-
-	virtual Text do_umount_text(const string& mountpoint, Tense tense) const override;
-	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
-
-	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const override;
-	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
-
 	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
 	virtual void do_rename_in_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs, const string& mountpoint) const;
-
-	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const override;
-	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const override;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;
