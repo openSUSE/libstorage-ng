@@ -106,7 +106,7 @@ namespace storage
 
 	Impl()
 	    : Filesystem::Impl(), label(), uuid(), mkfs_options(), tune_options(),
-	    resize_info(), content_info()
+	      resize_info(), content_info()
 	    {}
 
 	Impl(const xmlNode* node);
