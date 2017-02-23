@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,6 +76,28 @@ namespace storage
     public:
 
 	ContentInfo(const xmlNode* node);
+
+	void save(xmlNode* node) const;
+
+    };
+
+
+    class SpaceInfo
+    {
+    public:
+
+	SpaceInfo(unsigned long long size, unsigned long long used);
+
+	unsigned long long size;
+	unsigned long long used;
+
+	std::string get_size_string() const;
+
+	friend std::ostream& operator<<(std::ostream& out, const SpaceInfo& space_info);
+
+    public:
+
+	SpaceInfo(const xmlNode* node);
 
 	void save(xmlNode* node) const;
 

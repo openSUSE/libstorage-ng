@@ -26,8 +26,11 @@
 
 
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/CDgD.h"
+#include "storage/Utils/FileUtils.h"
 #include "storage/Filesystems/Filesystem.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -65,17 +68,37 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual Text do_mount_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	/**
+	 * A string useable for mounting the filesystem. E.g. for
+	 * BlkFilesystems the name of a device and for Nfs server plus
+	 * path. Used for messages and mount command.
+	 */
+	virtual string get_mount_string() const = 0;
 
-	virtual Text do_umount_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	/**
+	 * A string useable for mounting the filesystem. E.g. for
+	 * BlkFilesystems the name of a device and for Nfs server plus
+	 * path. Used for entries in /etc/fstab.
+	 */
+	virtual string get_mount_by_string() const = 0;
 
-	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	virtual SpaceInfo detect_space_info() const;
+	void set_space_info(const SpaceInfo& space_info);
+	bool has_space_info() const { return space_info.has_value(); }
 
-	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const = 0;
-	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const = 0;
+	const Filesystem* get_filesystem() const { return to_filesystem(get_device()); }
+
+	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
+	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+
+	virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
+	virtual void do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+
+	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
+
+	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual void do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
 
     protected:
 
@@ -93,6 +116,13 @@ namespace storage
 	vector<string> mountpoints;
 	MountByType mount_by;
 	list<string> fstab_options;
+
+	/**
+	 * mutable to allow updating cache from const functions. Otherwise
+	 * caching would not be possible when working with the probed
+	 * devicegraph.
+	 */
+	mutable CDgD<SpaceInfo> space_info;
 
     };
 
@@ -163,6 +193,32 @@ namespace storage
 	};
 
     }
+
+
+    class EnsureMounted : boost::noncopyable
+    {
+
+    public:
+
+	/**
+	 * Ensures that the blk filesystem is mounted somewhere.
+	 *
+	 * The mode is not enforced.
+	 */
+	EnsureMounted(const Filesystem* filesystem);
+
+	/**
+	 * Returns any mountpoint of the filesystem.
+	 */
+	string get_any_mountpoint() const;
+
+    private:
+
+	const Filesystem* filesystem;
+
+	unique_ptr<TmpMount> tmp_mount;
+
+    };
 
 }
 

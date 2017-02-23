@@ -197,7 +197,7 @@ namespace storage
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    LvmVg* lvm_vg = dynamic_cast<LvmVg*>(devicegraph->get_impl()[vertex]);
-	    if (lvm_vg && lvm_vg->get_impl().get_vg_name() == vg_name)
+	    if (lvm_vg && lvm_vg->get_vg_name() == vg_name)
 		return lvm_vg;
 	}
 
@@ -211,7 +211,7 @@ namespace storage
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    const LvmVg* lvm_vg = dynamic_cast<const LvmVg*>(devicegraph->get_impl()[vertex]);
-	    if (lvm_vg && lvm_vg->get_impl().get_vg_name() == vg_name)
+	    if (lvm_vg && lvm_vg->get_vg_name() == vg_name)
 		return lvm_vg;
 	}
 

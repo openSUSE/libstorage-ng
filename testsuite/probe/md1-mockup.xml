@@ -491,6 +491,17 @@
       <content>unused devices: &lt;none&gt;</content>
     </File>
     <File>
+      <name>/proc/mounts</name>
+      <content>rootfs / rootfs rw,size=480832k,nr_inodes=120208 0 0</content>
+      <content>tmpfs / tmpfs rw,relatime,size=1020200k 0 0</content>
+      <content>tmpfs / tmpfs rw,relatime,size=1020200k 0 0</content>
+      <content>proc /proc proc rw,relatime 0 0</content>
+      <content>sysfs /sys sysfs rw,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,relatime,size=480844k,nr_inodes=120211,mode=755 0 0</content>
+      <content>devpts /dev/pts devpts rw,relatime,mode=600,ptmxmode=000 0 0</content>
+      <content>rpc_pipefs /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0</content>
+    </File>
+    <File>
       <name>/proc/partitions</name>
       <content>major minor  #blocks  name</content>
       <content></content>
@@ -507,6 +518,10 @@
       <content>   7        6        128 loop6</content>
       <content>   9        0   33521664 md0</content>
       <content>  11        0    4569088 sr0</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename                         Type            Size    Used    Priority</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.1/ata10/host9/target9:0:0/9:0:0:0/block/sr0/ext_range</name>

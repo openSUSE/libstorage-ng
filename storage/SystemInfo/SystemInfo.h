@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,7 @@
 #include "storage/SystemInfo/CmdLsscsi.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/SystemInfo/CmdDasdview.h"
+#include "storage/SystemInfo/CmdDf.h"
 #include "storage/SystemInfo/CmdDmsetup.h"
 #include "storage/SystemInfo/CmdCryptsetup.h"
 #include "storage/SystemInfo/CmdDmraid.h"
@@ -82,6 +83,7 @@ namespace storage
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
+	const CmdDf& getCmdDf(const string& path) { return cmddfs.get(path); }
 
     private:
 
@@ -171,6 +173,7 @@ namespace storage
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;
 	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
+	LazyObjects<CmdDf> cmddfs;
 
     };
 

@@ -1,6 +1,7 @@
 *.o
 test-blkid
 test-cmdbtrfsshow
+test-cmddf
 test-cmddmsetupinfo
 test-cmddmsetuptable
 test-cmdlvs

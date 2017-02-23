@@ -30,6 +30,7 @@
 
 namespace storage
 {
+    class Region;
     class BlkDevice;
     class LvmPv;
     class LvmLv;

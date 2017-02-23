@@ -59,6 +59,8 @@ namespace storage
 
 	virtual ContentInfo detect_content_info() const override;
 
+	virtual SpaceInfo detect_space_info() const override;
+
 	virtual uint64_t used_features() const override;
 
 	virtual void do_create() const override;

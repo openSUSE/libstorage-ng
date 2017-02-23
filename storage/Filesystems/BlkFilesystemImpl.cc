@@ -171,7 +171,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this);
+	EnsureMounted ensure_mounted(get_filesystem());
 
 	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
 
@@ -211,7 +211,7 @@ namespace storage
 
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(this);
+	EnsureMounted ensure_mounted(get_filesystem());
 
 	ContentInfo content_info;
 	content_info.is_windows = false;
@@ -484,6 +484,15 @@ namespace storage
 
 
     string
+    BlkFilesystem::Impl::get_mount_string() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	return blk_device->get_name();
+    }
+
+
+    string
     BlkFilesystem::Impl::get_mount_by_string() const
     {
 	const BlkDevice* blk_device = get_blk_device();
@@ -605,124 +614,6 @@ namespace storage
 
 
     Text
-    BlkFilesystem::Impl::do_mount_text(const string& mountpoint, Tense tense) const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Mount %1$s at %2$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Mounting %1$s at %2$s"));
-
-	return sformat(text, blk_device->get_name().c_str(), mountpoint.c_str());
-    }
-
-
-    void
-    BlkFilesystem::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	const Storage& storage = actiongraph.get_storage();
-
-	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
-	if (access(real_mountpoint.c_str(), R_OK ) != 0)
-	{
-	    createPath(real_mountpoint);
-	}
-
-	string cmd_line = MOUNTBIN " -t " + toString(get_type()) + " " +
-	    quote(blk_device->get_name()) + " " + quote(real_mountpoint);
-	cout << cmd_line << endl;
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("mount failed"));
-    }
-
-
-    Text
-    BlkFilesystem::Impl::do_umount_text(const string& mountpoint, Tense tense) const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Unmount %1$s at %2$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Unmounting %1$s at %2$s"));
-
-	return sformat(text, blk_device->get_name().c_str(), mountpoint.c_str());
-    }
-
-
-    void
-    BlkFilesystem::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
-    {
-	const Storage& storage = actiongraph.get_storage();
-
-	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
-
-	string cmd_line = UMOUNTBIN " " + quote(real_mountpoint);
-	cout << cmd_line << endl;
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("umount failed"));
-    }
-
-
-    Text
-    BlkFilesystem::Impl::do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Add mountpoint %1$s of %2$s to /etc/fstab"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Adding mountpoint %1$s of %2$s to /etc/fstab"));
-
-	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
-    }
-
-
-    void
-    BlkFilesystem::Impl::do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph,
-					     const string& mountpoint) const
-    {
-	const Storage& storage = actiongraph.get_storage();
-
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
-
-	const BlkDevice* blk_device = get_blk_device();
-
-	// TODO
-
-	FstabChange entry;
-	entry.device = blk_device->get_name();
-	entry.dentry = get_mount_by_string();
-	entry.mount = mountpoint;
-	entry.fs = toString(get_type());
-	entry.opts = get_fstab_options();
-
-	fstab.addEntry(entry);
-	fstab.flush();
-    }
-
-
-    Text
     BlkFilesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,
 						     Tense tense) const
     {
@@ -766,41 +657,6 @@ namespace storage
 	entry.opts = get_fstab_options();
 
 	fstab.addEntry(entry);
-	fstab.flush();
-    }
-
-
-    Text
-    BlkFilesystem::Impl::do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Remove mountpoint %1$s of %2$s from /etc/fstab"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Removing mountpoint %1$s of %2$s from /etc/fstab"));
-
-	return sformat(text, mountpoint.c_str(), get_blk_device()->get_name().c_str());
-    }
-
-
-    void
-    BlkFilesystem::Impl::do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph,
-						  const string& mountpoint) const
-    {
-	const Storage& storage = actiongraph.get_storage();
-
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
-
-	const BlkDevice* blk_device = get_blk_device();
-
-	// TODO error handling
-
-	FstabKey entry(blk_device->get_name(), mountpoint);
-	fstab.removeEntry(entry);
 	fstab.flush();
     }
 
@@ -921,32 +777,6 @@ namespace storage
 	    return blk_devices[0]; // TODO, filesystems with multiple devices
 	}
 
-    }
-
-
-    EnsureMounted::EnsureMounted(const BlkFilesystem::Impl* blk_filesystem)
-	: blk_filesystem(blk_filesystem), tmp_mount()
-    {
-	if (!blk_filesystem->get_mountpoints().empty())
-	    return;
-
-	const Storage* storage = blk_filesystem->get_storage();
-	const BlkDevice* blk_device = blk_filesystem->get_blk_device();
-
-	blk_device->get_impl().wait_for_device();
-
-	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
-				     "tmp-mount-XXXXXX", blk_device->get_name()));
-    }
-
-
-    string
-    EnsureMounted::get_any_mountpoint() const
-    {
-	if (tmp_mount)
-	    return tmp_mount->get_fullname();
-	else
-	    return blk_filesystem->get_mountpoints().front();
     }
 
 }

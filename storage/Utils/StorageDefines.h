@@ -78,6 +78,7 @@
 #define LSSCSIBIN "/usr/bin/lsscsi"
 
 #define LSBIN "/bin/ls"
+#define DFBIN "/usr/bin/df"
 #define TESTBIN "/usr/bin/test"
 
 #define DASDFMTBIN "/sbin/dasdfmt"

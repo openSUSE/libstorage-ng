@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,6 +36,7 @@
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 
@@ -192,6 +193,8 @@ namespace storage
 		}
 	    }
 	}
+
+	Nfs::Impl::probe_nfses(probed, systeminfo);
     }
 
 

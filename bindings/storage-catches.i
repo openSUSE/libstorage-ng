@@ -95,6 +95,9 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 
+%catches(storage::DeviceNotFound) storage::Nfs::find_by_server_and_path(Devicegraph*, const std::string&, const std::string&);
+%catches(storage::DeviceNotFound) storage::Nfs::find_by_server_and_path(const Devicegraph*, const std::string&, const std::string&);
+
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType);
 
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots() const;

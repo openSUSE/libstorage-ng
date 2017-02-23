@@ -54,6 +54,9 @@
 %template(VectorSwapPtr) std::vector<Swap*>;
 %template(VectorConstSwapPtr) std::vector<const Swap*>;
 
+%template(VectorNfsPtr) std::vector<Nfs*>;
+%template(VectorConstNfsPtr) std::vector<const Nfs*>;
+
 %template(VectorHolderPtr) std::vector<Holder*>;
 %template(VectorConstHolderPtr) std::vector<const Holder*>;
 

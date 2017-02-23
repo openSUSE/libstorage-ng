@@ -285,16 +285,9 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
     string normalizeDevice(const string& dev)
     {
-	if (!boost::starts_with(dev, "/dev/") && !isNfsDev(dev))
+	if (!boost::starts_with(dev, "/dev/"))
 	    return "/dev/" + dev;
 	return dev;
-    }
-
-
-bool isNfsDev( const string& dev )
-    {
-    return( !dev.empty() && dev[0]!='/' &&
-            dev.find( ':' )!=string::npos );
     }
 
 

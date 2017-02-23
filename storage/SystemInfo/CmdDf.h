@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,52 +20,47 @@
  */
 
 
-#ifndef STORAGE_PROC_MOUNTS_H
-#define STORAGE_PROC_MOUNTS_H
+#ifndef STORAGE_CMD_DF_H
+#define STORAGE_CMD_DF_H
 
 
 #include <string>
 #include <vector>
-#include <map>
 
-#include "storage/EtcFstab.h"
+#include "storage/FreeInfo.h"
 
 
 namespace storage
 {
     using std::string;
     using std::vector;
-    using std::multimap;
-
-    class SystemInfo;
 
 
-    class ProcMounts
+    class CmdDf
     {
     public:
 
-	ProcMounts();
+	CmdDf(const string& path);
 
-	vector<string> find_by_name(const string& name, SystemInfo& systeminfo) const;
+	unsigned long long get_size() const { return size; }
+	unsigned long long get_used() const { return used; }
 
-	/**
-	 * Return all NFS and NFS4 entries.
-	 */
-	vector<FstabEntry> get_all_nfs() const;
+	SpaceInfo get_space_info() const { return SpaceInfo(size, used); }
+	
+	friend std::ostream& operator<<(std::ostream& s, const CmdDf& cmd_df);
 
-	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
+    private:
 
-    protected:
+	void parse(const vector<string>& lines);
 
-	void parse(const vector<string>& mount_lines, const vector<string>& swap_lines);
+	string path;
 
-	typedef multimap<string, FstabEntry>::const_iterator const_iterator;
-	typedef multimap<string, FstabEntry>::value_type value_type;
-
-	multimap<string, FstabEntry> data;
+	unsigned long long size;
+	unsigned long long used;
 
     };
 
 }
+
 
 #endif
