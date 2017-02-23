@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/ExceptionImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 
@@ -60,6 +61,13 @@ namespace storage
     Swap::Impl::detect_content_info() const
     {
 	return ContentInfo();
+    }
+
+
+    SpaceInfo
+    Swap::Impl::detect_space_info() const
+    {
+	ST_THROW(UnsupportedException("SpaceInfo unsupported for Swap"));
     }
 
 
