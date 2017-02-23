@@ -67,6 +67,8 @@ namespace storage
 	virtual string get_mount_string() const override;
 	virtual string get_mount_by_string() const override;
 
+	virtual uint64_t used_features() const override;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

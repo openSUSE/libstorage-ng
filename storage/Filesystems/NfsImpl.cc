@@ -32,6 +32,7 @@
 #include "storage/EtcFstab.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -129,6 +130,13 @@ namespace storage
     Nfs::Impl::get_mount_by_string() const
     {
 	return get_mount_string();
+    }
+
+
+    uint64_t
+    Nfs::Impl::used_features() const
+    {
+	return UF_NFS | Filesystem::Impl::used_features();
     }
 
 
