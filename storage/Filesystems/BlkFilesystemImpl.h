@@ -49,6 +49,8 @@ namespace storage
     {
     public:
 
+	typedef BlkFilesystem non_impl_type;
+
 	virtual FsType get_type() const = 0;
 
 	const string& get_label() const { return label; }

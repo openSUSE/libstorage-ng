@@ -36,6 +36,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -159,14 +160,35 @@ namespace storage
     {
 	if (!space_info.has_value())
 	{
-	    EnsureMounted ensure_mounted(get_filesystem());
+	    // For BlkFilesystems redirect to object in probed devicegraph
+	    // since e.g. the name may have changed. For others, currently
+	    // only Nfs, do not redirect since detecting the space info is
+	    // also possible for newly created objects.
 
-	    SystemInfo systeminfo;
-	    const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mountpoint());
-	    space_info.set_value(cmd_df.get_space_info());
+	    if (dynamic_cast<const BlkFilesystem::Impl*>(this))
+	    {
+		const Filesystem::Impl& redirected = redirect_to_probed(*this);
+		space_info.set_value(redirected.detect_space_info_pure());
+	    }
+	    else
+	    {
+		space_info.set_value(detect_space_info_pure());
+	    }
 	}
 
 	return space_info.get_value();
+    }
+
+
+    SpaceInfo
+    Filesystem::Impl::detect_space_info_pure() const
+    {
+	EnsureMounted ensure_mounted(get_filesystem());
+
+	SystemInfo systeminfo;
+	const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mountpoint());
+
+	return cmd_df.get_space_info();
     }
 
 

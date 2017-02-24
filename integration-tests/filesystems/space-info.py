@@ -14,11 +14,11 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-probed = storage.get_probed()
+staging = storage.get_staging()
 
-print probed
+print staging
 
-filesystems = Filesystem.find_by_mountpoint(probed, "/test")
+filesystems = Filesystem.find_by_mountpoint(staging, "/test")
 
 if not filesystems.empty():
 
