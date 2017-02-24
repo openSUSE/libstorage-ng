@@ -65,7 +65,7 @@ namespace storage
 
 
     SpaceInfo
-    Swap::Impl::detect_space_info() const
+    Swap::Impl::detect_space_info_pure() const
     {
 	ST_THROW(UnsupportedException("SpaceInfo unsupported for Swap"));
     }

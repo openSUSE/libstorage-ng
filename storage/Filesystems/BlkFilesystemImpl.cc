@@ -35,6 +35,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -154,9 +155,11 @@ namespace storage
     {
 	if (!resize_info.has_value())
 	{
-	    // TODO redirect to probed devicegraph
+	    // Redirect to object in probed devicegraph since e.g. the name may have
+	    // changed.
 
-	    resize_info.set_value(detect_resize_info_pure());
+	    const BlkFilesystem::Impl& redirected = redirect_to_probed(*this);
+	    resize_info.set_value(redirected.detect_resize_info_pure());
 	}
 
 	return resize_info.get_value();
@@ -166,9 +169,6 @@ namespace storage
     ResizeInfo
     BlkFilesystem::Impl::detect_resize_info_pure() const
     {
-	if (!get_devicegraph()->get_impl().is_probed())
-	    ST_THROW(Exception("function called on wrong device"));
-
 	// TODO only in real probe mode allowed
 
 	EnsureMounted ensure_mounted(get_filesystem());
@@ -194,9 +194,11 @@ namespace storage
     {
 	if (!content_info.has_value())
 	{
-	    // TODO redirect to probed devicegraph
+	    // Redirect to object in probed devicegraph since e.g. the name may have
+	    // changed.
 
-	    content_info.set_value(detect_content_info_pure());
+	    const BlkFilesystem::Impl& redirected = redirect_to_probed(*this);
+	    content_info.set_value(redirected.detect_content_info_pure());
 	}
 
 	return content_info.get_value();
@@ -206,9 +208,6 @@ namespace storage
     ContentInfo
     BlkFilesystem::Impl::detect_content_info_pure() const
     {
-	if (!get_devicegraph()->get_impl().is_probed())
-	    ST_THROW(Exception("function called on wrong device"));
-
 	// TODO only in real probe mode allowed
 
 	EnsureMounted ensure_mounted(get_filesystem());
