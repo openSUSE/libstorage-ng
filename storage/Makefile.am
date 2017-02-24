@@ -17,6 +17,7 @@ libstorage_ng_la_SOURCES =				\
 	Actiongraph.h		Actiongraph.cc		\
 	ActiongraphImpl.h	ActiongraphImpl.cc	\
 	FindBy.h					\
+	Redirect.h					\
 	Graphviz.h		Graphviz.cc		\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\

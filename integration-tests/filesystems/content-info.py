@@ -14,11 +14,11 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-probed = storage.get_probed()
+staging = storage.get_staging()
 
-print probed
+print staging
 
-partition = Partition.find_by_name(probed, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdb1")
 blk_filesystem = partition.get_blk_filesystem()
 
 content_info = blk_filesystem.detect_content_info()
