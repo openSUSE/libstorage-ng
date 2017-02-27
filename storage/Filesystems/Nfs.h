@@ -45,7 +45,9 @@ namespace storage
      * would invalidate the SpaceInfo object which is shared across
      * devicegraphs.)
      *
-     * TODO NFS4.
+     * TODO NFS4. Likely by adding version attribute (e.g. auto, v3, v4_0,
+     * v4_1, v4_2) but not by an additional class since the version is in
+     * general unknown until actually mounted.
      */
     class Nfs : public Filesystem
     {
