@@ -83,6 +83,7 @@ namespace storage
 	virtual string get_mount_by_string() const = 0;
 
 	virtual SpaceInfo detect_space_info() const;
+	virtual SpaceInfo detect_space_info_pure() const;
 	void set_space_info(const SpaceInfo& space_info);
 	bool has_space_info() const { return space_info.has_value(); }
 

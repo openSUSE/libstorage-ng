@@ -36,6 +36,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -159,14 +160,22 @@ namespace storage
     {
 	if (!space_info.has_value())
 	{
-	    EnsureMounted ensure_mounted(get_filesystem());
-
-	    SystemInfo systeminfo;
-	    const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mountpoint());
-	    space_info.set_value(cmd_df.get_space_info());
+	    space_info.set_value(detect_space_info_pure());
 	}
 
 	return space_info.get_value();
+    }
+
+
+    SpaceInfo
+    Filesystem::Impl::detect_space_info_pure() const
+    {
+	EnsureMounted ensure_mounted(get_filesystem());
+
+	SystemInfo systeminfo;
+	const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mountpoint());
+
+	return cmd_df.get_space_info();
     }
 
 
@@ -413,7 +422,50 @@ namespace storage
     EnsureMounted::EnsureMounted(const Filesystem* filesystem)
 	: filesystem(filesystem), tmp_mount()
     {
-	if (!filesystem->get_mountpoints().empty())
+	y2mil("EnsureMounted " << *filesystem);
+
+	bool need_mount = false;
+
+	if (filesystem->get_impl().get_devicegraph()->get_impl().is_probed())
+	{
+	    // Called on probed devicegraph.
+
+	    need_mount = filesystem->get_mountpoints().empty();
+	}
+	else
+	{
+	    // Not called on probed devicegraph.
+
+	    if (is_blk_filesystem(filesystem))
+	    {
+		// The names of BlkDevices may have changed so redirect to the
+		// Filesystem in the probed devicegraph.
+
+		filesystem = redirect_to_probed(filesystem);
+		need_mount = filesystem->get_mountpoints().empty();
+	    }
+	    else
+	    {
+		// Nfs can be temporarily mounted on any devicegraph. But the
+		// list of mountpoints is only useful for the probed
+		// devicegraph, so redirect if the filesystem exists there to
+		// avoid unnecessary temporary mounts.
+
+		if (filesystem->exists_in_probed())
+		{
+		    filesystem = redirect_to_probed(filesystem);
+		    need_mount = filesystem->get_mountpoints().empty();
+		}
+		else
+		{
+		    need_mount = true;
+		}
+	    }
+	}
+
+	y2mil("EnsureMounted need_mount:" << need_mount);
+
+	if (!need_mount)
 	    return;
 
 	const Storage* storage = filesystem->get_impl().get_storage();
