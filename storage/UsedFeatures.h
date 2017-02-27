@@ -39,7 +39,6 @@ enum : uint64_t
     UF_NTFS = 1 << 7,
     UF_VFAT = 1 << 8,
     UF_NFS = 1 << 9,
-    UF_NFS4 = 1 << 10,
 
     UF_LUKS = 1 << 11,
 
