@@ -61,6 +61,10 @@ namespace storage
 
     };
 
+
+    static_assert(!std::is_abstract<Ext4>(), "Ext4 ought not to be abstract.");
+    static_assert(!std::is_abstract<Ext4::Impl>(), "Ext4::Impl ought not to be abstract.");
+
 }
 
 #endif

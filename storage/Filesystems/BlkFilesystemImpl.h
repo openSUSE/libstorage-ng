@@ -141,6 +141,10 @@ namespace storage
     };
 
 
+    static_assert(std::is_abstract<BlkFilesystem>(), "BlkFilesystem ought to be abstract.");
+    static_assert(std::is_abstract<BlkFilesystem::Impl>(), "BlkFilesystem::Impl ought to be abstract.");
+
+
     namespace Action
     {
 
