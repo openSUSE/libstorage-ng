@@ -157,13 +157,6 @@ namespace storage
     }
 
 
-    ResizeInfo
-    BlkDevice::detect_resize_info() const
-    {
-	return get_impl().detect_resize_info();
-    }
-
-
     vector<BlkDevice*>
     BlkDevice::get_all(Devicegraph* devicegraph)
     {

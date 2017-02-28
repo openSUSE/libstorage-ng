@@ -72,12 +72,12 @@ namespace storage
 	const std::list<std::string>& get_fstab_options() const;
 	void set_fstab_options(const std::list<std::string>& fstab_options);
 
-	virtual bool has_space_info() const;
+	bool has_space_info() const;
 
 	/**
 	 * So far only supported for Nfs.
 	 */
-	virtual SpaceInfo detect_space_info() const;
+	SpaceInfo detect_space_info() const;
 
 	/**
 	 * Set the SpaceInfo. Only use for testsuites.

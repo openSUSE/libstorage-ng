@@ -99,7 +99,7 @@ namespace storage
 
 	std::string get_displayname() const;
 
-	virtual ResizeInfo detect_resize_info() const;
+	ResizeInfo detect_resize_info() const;
 
 	bool has_children() const;
 	size_t num_children() const;
