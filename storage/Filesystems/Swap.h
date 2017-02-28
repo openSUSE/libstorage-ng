@@ -37,11 +37,6 @@ namespace storage
 	static Swap* create(Devicegraph* devicegraph);
 	static Swap* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 15; }
-
-	bool supports_uuid() const override { return true; }
-
 	static std::vector<Swap*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Swap*> get_all(const Devicegraph* devicegraph);
 

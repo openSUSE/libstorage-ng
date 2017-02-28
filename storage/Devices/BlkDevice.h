@@ -67,8 +67,6 @@ namespace storage
 
 	void set_dm_table_name(const std::string& dm_table_name);
 
-	ResizeInfo detect_resize_info() const override;
-
 	static std::vector<BlkDevice*> get_all(Devicegraph* devicegraph);
 	static std::vector<const BlkDevice*> get_all(const Devicegraph* devicegraph);
 

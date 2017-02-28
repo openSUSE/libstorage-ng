@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,6 +59,9 @@ namespace storage
 	 * Return underlying blk device.
 	 */
 	const BlkDevice* get_blk_device() const;
+
+	static std::vector<Encryption*> get_all(Devicegraph* devicegraph);
+	static std::vector<const Encryption*> get_all(const Devicegraph* devicegraph);
 
     public:
 

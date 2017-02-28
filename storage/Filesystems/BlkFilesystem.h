@@ -46,13 +46,13 @@ namespace storage
 	static std::vector<BlkFilesystem*> get_all(Devicegraph* devicegraph);
 	static std::vector<const BlkFilesystem*> get_all(const Devicegraph* devicegraph);
 
-	virtual bool supports_label() const = 0;
-	virtual unsigned int max_labelsize() const = 0;
+	bool supports_label() const;
+	unsigned int max_labelsize() const;
 
 	const std::string& get_label() const;
 	void set_label(const std::string& label);
 
-	virtual bool supports_uuid() const = 0;
+	bool supports_uuid() const;
 
 	const std::string& get_uuid() const;
 	void set_uuid(const std::string& uuid);

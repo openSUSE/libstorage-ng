@@ -67,6 +67,20 @@ namespace storage
     }
 
 
+    bool
+    BlkFilesystem::supports_label() const
+    {
+	return get_impl().supports_label();
+    }
+
+
+    unsigned int
+    BlkFilesystem::max_labelsize() const
+    {
+	return get_impl().max_labelsize();
+    }
+
+
     const string&
     BlkFilesystem::get_label() const
     {
@@ -78,6 +92,13 @@ namespace storage
     BlkFilesystem::set_label(const string& label)
     {
 	get_impl().set_label(label);
+    }
+
+
+    bool
+    BlkFilesystem::supports_uuid() const
+    {
+	return get_impl().supports_uuid();
     }
 
 

@@ -40,6 +40,14 @@ namespace storage
 
     class Vfat::Impl : public BlkFilesystem::Impl
     {
+
+    public:
+
+	virtual bool supports_label() const { return true; }
+	virtual unsigned int max_labelsize() const override { return 11; }
+
+	virtual bool supports_uuid() const override { return true; }
+
     public:
 
 	Impl()

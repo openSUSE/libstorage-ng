@@ -37,11 +37,6 @@ namespace storage
 	static Ntfs* create(Devicegraph* devicegraph);
 	static Ntfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 128; }
-
-	bool supports_uuid() const override { return true; }
-
 	static std::vector<Ntfs*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Ntfs*> get_all(const Devicegraph* devicegraph);
 
