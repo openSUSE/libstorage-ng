@@ -51,8 +51,13 @@ namespace storage
 
 	virtual FsType get_type() const = 0;
 
+	virtual bool supports_label() const = 0;
+	virtual unsigned int max_labelsize() const = 0;
+
 	const string& get_label() const { return label; }
 	void set_label(const string& label);
+
+	virtual bool supports_uuid() const = 0;
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid);

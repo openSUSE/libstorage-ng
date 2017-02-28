@@ -37,11 +37,6 @@ namespace storage
 	static Reiserfs* create(Devicegraph* devicegraph);
 	static Reiserfs* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 16; }
-
-	bool supports_uuid() const override { return true; }
-
     public:
 
 	class Impl;

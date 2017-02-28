@@ -41,11 +41,6 @@ namespace storage
 	static Iso9660* create(Devicegraph* devicegraph);
 	static Iso9660* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool supports_label() const override { return true; }
-	unsigned int max_labelsize() const override { return 30; }
-
-	bool supports_uuid() const override { return true; }
-
     public:
 
 	class Impl;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,14 @@ namespace storage
 
     class Btrfs::Impl : public BlkFilesystem::Impl
     {
+
+    public:
+
+	virtual bool supports_label() const override { return true; }
+	virtual unsigned int max_labelsize() const override { return 256; }
+
+	virtual bool supports_uuid() const override { return true; }
+
     public:
 
 	Impl()
