@@ -85,7 +85,7 @@ namespace storage
 	 */
 	void delete_partition(Partition* partition);
 
-	void delete_partition(const std::string& name) DEPRECATED;
+	void delete_partition(const std::string& name) ST_DEPRECATED;
 
 	unsigned int max_primary() const;
 	bool extended_possible() const;
