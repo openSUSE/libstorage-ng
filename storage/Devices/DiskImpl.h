@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -92,6 +92,10 @@ namespace storage
 	Transport transport;
 
     };
+
+
+    static_assert(!std::is_abstract<Disk>(), "Disk ought not to be abstract.");
+    static_assert(!std::is_abstract<Disk::Impl>(), "Disk::Impl ought not to be abstract.");
 
 
     bool compare_by_name(const Disk* lhs, const Disk* rhs);

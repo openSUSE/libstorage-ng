@@ -25,9 +25,9 @@
 
 
 #ifndef SWIG
-#define DEPRECATED __attribute__((deprecated))
+#define ST_DEPRECATED __attribute__((deprecated))
 #else
-#define DEPRECATED
+#define ST_DEPRECATED
 #endif
 
 

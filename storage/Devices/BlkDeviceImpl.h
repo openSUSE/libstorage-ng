@@ -170,6 +170,10 @@ namespace storage
     };
 
 
+    static_assert(std::is_abstract<BlkDevice>(), "BlkDevice ought to be abstract.");
+    static_assert(std::is_abstract<BlkDevice::Impl>(), "BlkDevice::Impl ought to be abstract.");
+
+
     bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
 
 }

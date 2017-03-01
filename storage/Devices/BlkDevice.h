@@ -80,12 +80,12 @@ namespace storage
 	BlkFilesystem* get_blk_filesystem();
 	const BlkFilesystem* get_blk_filesystem() const;
 
-	BlkFilesystem* create_filesystem(FsType fs_type) DEPRECATED { return create_blk_filesystem(fs_type);}
+	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type);}
 
-	bool has_filesystem() const DEPRECATED { return has_blk_filesystem(); }
+	bool has_filesystem() const ST_DEPRECATED { return has_blk_filesystem(); }
 
-	BlkFilesystem* get_filesystem() DEPRECATED { return get_blk_filesystem(); }
-	const BlkFilesystem* get_filesystem() const DEPRECATED { return get_blk_filesystem(); }
+	BlkFilesystem* get_filesystem() ST_DEPRECATED { return get_blk_filesystem(); }
+	const BlkFilesystem* get_filesystem() const ST_DEPRECATED { return get_blk_filesystem(); }
 
 	/**
 	 * TODO parameter for encryption type? do all encryptions need a dm_name?
