@@ -65,8 +65,10 @@ string ColumnConfigFile::Entry::format()
 }
 
 
-bool ColumnConfigFile::Entry::parse( const string & line )
+bool ColumnConfigFile::Entry::parse( const string & line, int line_no )
 {
+    (void) line_no;
+
     set_content( line );
     columns = split( line );
 
@@ -157,7 +159,10 @@ void ColumnConfigFile::calc_column_widths()
             dynamic_cast<ColumnConfigFile::Entry*>( get_entry( i ) );
 
         if ( entry )
+        {
+            entry->populate_columns();
             columns = std::max( entry->get_column_count(), columns );
+        }
     }
 
     column_widths.resize( columns );
@@ -193,4 +198,12 @@ void ColumnConfigFile::calc_column_widths()
     for ( int col=0; col < columns; ++col )
         std::cout << "Col " << col << " width: " << column_widths[col] << std::endl;
 #endif
+}
+
+
+ColumnConfigFile::Entry * ColumnConfigFile::get_entry( int index ) const
+{
+    CommentedConfigFile::Entry * entry = get_entry( index );
+
+    return entry ? dynamic_cast<ColumnConfigFile::Entry *>( entry ) : 0;
 }

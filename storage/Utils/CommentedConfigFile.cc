@@ -200,7 +200,7 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
             split_off_comment( line, content, line_comment );
             append( entry );
             entry->set_line_comment( line_comment );
-            bool success = entry->parse( content );
+            bool success = entry->parse( content, i+1 );
 
             if ( ! success )
                 return false;

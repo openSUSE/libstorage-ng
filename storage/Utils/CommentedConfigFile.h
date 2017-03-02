@@ -137,9 +137,12 @@ public:
 
 	/**
 	 * Parse a content line. Return 'true' on success, 'false' on error.
+         * 'line_no' (if >0) is the line number in the current file. This can
+         * be used for error reporting.
+         *
 	 * Derived classes might choose to override this.
 	 **/
-	virtual bool parse( const string & line )
+	virtual bool parse( const string & line, int line_no = -1 )
 	    { content = line; return true; }
 
         /**
