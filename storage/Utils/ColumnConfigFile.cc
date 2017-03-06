@@ -117,7 +117,7 @@ int ColumnConfigFile::get_column_width( int column )
     if ( column_widths.empty() )
         calc_column_widths();
 
-    if ( column >= (int) column_widths.size() )
+    if ( column < 0 || column >= (int) column_widths.size() )
         return 0;
     else
         return column_widths[ column ];
@@ -126,7 +126,7 @@ int ColumnConfigFile::get_column_width( int column )
 
 int ColumnConfigFile::get_max_column_width( int column )
 {
-    if ( column >= (int) max_column_widths.size() )
+    if ( column < 0 || column >= (int) max_column_widths.size() )
         return max_column_width;
     else
         return max_column_widths[ column ];
