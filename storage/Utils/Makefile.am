@@ -8,6 +8,8 @@ libutils_la_SOURCES =					\
 	Logger.h		Logger.cc		\
 	LoggerImpl.h		LoggerImpl.cc		\
 	AppUtil.cc		AppUtil.h		\
+	CommentedConfigFile.cc  CommentedConfigFile.h	\
+	ColumnConfigFile.cc	ColumnConfigFile.h	\
 	Text.cc			Text.h			\
 	Stopwatch.cc		Stopwatch.h		\
 	Math.cc			Math.h			\

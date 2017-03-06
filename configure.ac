@@ -110,6 +110,7 @@ AC_OUTPUT(
 	testsuite/Devices/Makefile
 	testsuite/freeinfo/Makefile
 	testsuite/performance/Makefile
+	testsuite/commented-config-file/Makefile
 	integration-tests/Makefile
 	integration-tests/partition-tables/Makefile
 	integration-tests/partitions/Makefile
