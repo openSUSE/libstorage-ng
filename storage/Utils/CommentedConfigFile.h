@@ -282,7 +282,7 @@ public:
     bool empty() const { return entries.empty(); }
 
     /**
-     * Return an interator that points to the first entry.
+     * Return an iterator that points to the first entry.
      **/
     vector<Entry *>::const_iterator begin() const { return entries.begin(); }
 
