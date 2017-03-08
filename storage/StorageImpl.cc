@@ -39,6 +39,7 @@
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
+#include "storage/EtcFstab.h"
 
 
 namespace storage

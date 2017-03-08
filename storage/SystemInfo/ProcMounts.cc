@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
