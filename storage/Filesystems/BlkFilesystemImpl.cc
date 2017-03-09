@@ -50,8 +50,6 @@ namespace storage
 	: Filesystem::Impl(node), label(), uuid(), mkfs_options(), tune_options(), resize_info(),
 	  content_info()
     {
-	string tmp;
-
 	getChildValue(node, "label", label);
 	getChildValue(node, "uuid", uuid);
 
