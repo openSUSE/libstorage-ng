@@ -123,6 +123,11 @@ namespace storage
 	 **/
 	void append( const string & opt );
 
+        /**
+         * Clear all mount options.
+         **/
+        void clear() { opts.clear(); }
+
 	/**
 	 * Very much like append(), but also return a reference to this object
 	 * so options can be chained:
