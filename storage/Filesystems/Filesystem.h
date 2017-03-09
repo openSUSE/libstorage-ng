@@ -28,7 +28,7 @@
 #include <vector>
 #include <list>
 
-#include "storage/Devices/Device.h"
+#include "storage/Filesystems/Mountable.h"
 
 
 namespace storage
@@ -42,18 +42,9 @@ namespace storage
     };
 
 
-    //! The key by which the mount program identifies a filesystem
-    enum class MountByType {
-	DEVICE, UUID, LABEL, ID, PATH
-    };
-
-
-    std::string get_mount_by_name(MountByType mount_by_type);
-
-
     // abstract class
 
-    class Filesystem : public Device
+    class Filesystem : public Mountable
     {
     public:
 
@@ -61,16 +52,6 @@ namespace storage
 	static std::vector<const Filesystem*> get_all(const Devicegraph* devicegraph);
 
 	FsType get_type() const;
-
-	const std::vector<std::string>& get_mountpoints() const;
-	void set_mountpoints(const std::vector<std::string>& mountpoints);
-	void add_mountpoint(const std::string& mountpoint);
-
-	MountByType get_mount_by() const;
-	void set_mount_by(MountByType mount_by);
-
-	const std::list<std::string>& get_fstab_options() const;
-	void set_fstab_options(const std::list<std::string>& fstab_options);
 
 	bool has_space_info() const;
 

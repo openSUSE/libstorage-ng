@@ -64,8 +64,8 @@ namespace storage
 
 	static void probe_nfses(Devicegraph* probed, SystemInfo& systeminfo);
 
-	virtual string get_mount_string() const override;
-	virtual string get_mount_by_string() const override;
+	virtual string get_mount_name() const override;
+	virtual string get_mount_by_name() const override;
 
 	virtual uint64_t used_features() const override;
 
