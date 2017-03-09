@@ -21,6 +21,7 @@
  */
 
 #include <stdlib.h>
+#include <iostream>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -319,7 +320,8 @@ namespace storage
 
     FstabEntry * EtcFstab::get_entry( int index ) const
     {
-        CommentedConfigFile::Entry * entry = get_entry( index );
+        CommentedConfigFile::Entry * entry =
+            CommentedConfigFile::get_entry( index );
 
         return entry ? dynamic_cast<FstabEntry *>( entry ) : 0;
     }

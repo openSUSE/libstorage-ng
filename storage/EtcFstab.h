@@ -277,6 +277,14 @@ namespace storage
          **/
         FstabEntry * get_entry( int index ) const;
 
+        /**
+         * Factory method to create one entry.
+         *
+         * Reimplemented from CommentedConfigFile.
+         **/
+        virtual Entry * create_entry() { return new FstabEntry(); }
+
+
 	/**
 	 * Get the "mount by" type from a device specification. This might include:
 	 *
