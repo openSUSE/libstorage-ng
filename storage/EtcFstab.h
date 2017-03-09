@@ -254,6 +254,22 @@ namespace storage
 	FstabEntry * find_mount_point( const string & mount_point, int & index_ret ) const;
 
         /**
+         * Add an entry at the correct place to maintain the mount order.
+         **/
+        void add( FstabEntry * entry );
+
+        /**
+         * Check the mount order in the current entries. Return 'true' if ok,
+         * 'false' if not.
+         **/
+        bool check_mount_order() const;
+
+        /**
+         * Fix the mount order in the current entries.
+         **/
+        void fix_mount_order();
+
+        /**
          * Return entry no. 'index' or 0 if 'index' is out of range.
          *
          * This is a covariant of the (non-virtual) base class method to reduce
@@ -285,6 +301,37 @@ namespace storage
 	 * Decode an fstab-encoded string: Change back \040 a blank etc.
 	 **/
 	static string fstab_decode( const string & encoded );
+
+
+    protected:
+
+        /**
+         * Find the entry index before which 'entry' should be inserted into
+         * the sort order or -1 if it should become the last entry
+         * (i.e. appended).
+         **/
+        int find_sort_index( FstabEntry * entry ) const;
+
+        /**
+         * Return the entry index with the next problem in the mount order or
+         * -1 if there is none (i.e. everything is ok). Start checking from
+         * 'start_index' onwards.
+         **/
+        int next_mount_order_problem( int start_index = 0 ) const;
+
+
+        // Change privacy of some inherited methods.
+        //
+        // Use add() instead which takes care of the correct insertion order.
+
+        void insert( int before, CommentedConfigFile::Entry * entry )
+            { CommentedConfigFile::insert( before, entry ); }
+
+        void append( CommentedConfigFile::Entry * entry )
+            { CommentedConfigFile::append( entry ); }
+
+        CommentedConfigFile & operator<<( CommentedConfigFile::Entry * entry )
+            { return CommentedConfigFile::operator<<( entry ); }
     };
 
 }

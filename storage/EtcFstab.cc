@@ -325,6 +325,95 @@ namespace storage
     }
 
 
+    void EtcFstab::add( FstabEntry * entry )
+    {
+        int index = find_sort_index( entry );
+
+        if ( index < 0 )
+            append( entry );
+        else
+            insert( index, entry );
+    }
+
+
+    int EtcFstab::find_sort_index( FstabEntry * entry ) const
+    {
+        ST_CHECK_PTR( entry );
+
+        string mount_point = entry->get_mount_point();
+
+        for ( int i=0; i < get_entry_count(); ++i )
+        {
+            // Insert 'entry' before anything that is mounted into its mount tree
+
+            if ( boost::starts_with( get_entry(i)->get_mount_point(), mount_point ) &&
+                 entry != get_entry(i) )
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+
+    int EtcFstab::next_mount_order_problem( int start_index ) const
+    {
+        for ( int i=start_index; i < get_entry_count(); ++i )
+        {
+            int index = find_sort_index( get_entry(i) );
+
+            if ( index != -1 && index < i )
+                return i;
+        }
+
+        return -1;
+    }
+
+
+    bool EtcFstab::check_mount_order() const
+    {
+        int index = next_mount_order_problem();
+
+        return index == -1;
+    }
+
+
+    void EtcFstab::fix_mount_order()
+    {
+        int start_index = 0;
+
+        while ( start_index < get_entry_count() )
+        {
+            int problem_index = next_mount_order_problem( start_index );
+
+            if ( problem_index == -1 )
+                return;
+
+            // Take this entry out of the entries vector and put it back in at
+            // the correct place.
+
+            FstabEntry * entry = dynamic_cast<FstabEntry *>( take( problem_index ) );
+            add( entry );
+
+            // By definition, the entries vector is now fixed up to this index,
+            // so continue fixing at the next index.
+
+            start_index = problem_index + 1;
+
+            // There is one pathological case, though:
+            //
+            // When two or more entries have the same mount point (which is
+            // illegal, but somebody might write such an fstab manuallly),
+            // there is no correct mount order; this algorithm would get into
+            // an endless loop if we now checked the same index again. But by
+            // just proceeding with the next one (and silently assuming that
+            // the one we just changed is well and truly fixed), we can avoid
+            // that endless loop.
+        }
+    }
+
+
     string EtcFstab::fstab_encode( const string & unencoded )
     {
 	return boost::replace_all_copy( unencoded, " ", "\\040" );
