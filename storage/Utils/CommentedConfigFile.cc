@@ -50,7 +50,7 @@ CommentedConfigFile::~CommentedConfigFile()
 }
 
 
-CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index )
+CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index ) const
 {
     if ( index < 0 || index >= (int) entries.size() )
         return 0;
@@ -59,7 +59,7 @@ CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index )
 }
 
 
-int CommentedConfigFile::get_index_of( const Entry * wanted_entry )
+int CommentedConfigFile::get_index_of( const Entry * wanted_entry ) const
 {
     for ( size_t i=0; i < entries.size(); ++i )
     {
