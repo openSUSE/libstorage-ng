@@ -32,15 +32,8 @@ namespace storage
     using namespace std;
 
 
-    string
-    get_mount_by_name(MountByType mount_by_type)
-    {
-	return toString(mount_by_type);
-    }
-
-
     Filesystem::Filesystem(Impl* impl)
-	: Device(impl)
+	: Mountable(impl)
     {
     }
 
@@ -77,55 +70,6 @@ namespace storage
     Filesystem::get_type() const
     {
 	return get_impl().get_type();
-    }
-
-
-    const vector<string>&
-    Filesystem::get_mountpoints() const
-    {
-	return get_impl().get_mountpoints();
-    }
-
-
-    void
-    Filesystem::set_mountpoints(const vector<string>& mountpoints)
-    {
-	get_impl().set_mountpoints(mountpoints);
-    }
-
-
-    void
-    Filesystem::add_mountpoint(const string& mountpoint)
-    {
-	return get_impl().add_mountpoint(mountpoint);
-    }
-
-
-    MountByType
-    Filesystem::get_mount_by() const
-    {
-	return get_impl().get_mount_by();
-    }
-
-
-    void
-    Filesystem::set_mount_by(MountByType mount_by)
-    {
-	get_impl().set_mount_by(mount_by);
-    }
-
-
-    const list<string>&
-    Filesystem::get_fstab_options() const
-    {
-	return get_impl().get_fstab_options();
-    }
-
-
-    void
-    Filesystem::set_fstab_options(const list<string>& fstab_options)
-    {
-	get_impl().set_fstab_options(fstab_options);
     }
 
 

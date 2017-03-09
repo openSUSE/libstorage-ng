@@ -42,6 +42,9 @@
 %template(VectorBcacheCsetPtr) std::vector<BcacheCset*>;
 %template(VectorConstBcacheCsetPtr) std::vector<const BcacheCset*>;
 
+%template(VectorMountablePtr) std::vector<Mountable*>;
+%template(VectorConstMountablePtr) std::vector<const Mountable*>;
+
 %template(VectorFilesystemPtr) std::vector<Filesystem*>;
 %template(VectorConstFilesystemPtr) std::vector<const Filesystem*>;
 

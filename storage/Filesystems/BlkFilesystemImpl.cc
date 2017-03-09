@@ -474,7 +474,7 @@ namespace storage
 
 
     string
-    BlkFilesystem::Impl::get_mount_string() const
+    BlkFilesystem::Impl::get_mount_name() const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -483,7 +483,7 @@ namespace storage
 
 
     string
-    BlkFilesystem::Impl::get_mount_by_string() const
+    BlkFilesystem::Impl::get_mount_by_name() const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -641,7 +641,7 @@ namespace storage
 
 	FstabChange entry;
 	entry.device = blk_device_lhs->get_name();
-	entry.dentry = get_mount_by_string();
+	entry.dentry = get_mount_by_name();
 	entry.mount = mountpoint;
 	entry.fs = toString(get_type());
 	entry.opts = get_fstab_options();

@@ -120,16 +120,16 @@ namespace storage
 
 
     string
-    Nfs::Impl::get_mount_string() const
+    Nfs::Impl::get_mount_name() const
     {
 	return get_server() + ":" + get_path();
     }
 
 
     string
-    Nfs::Impl::get_mount_by_string() const
+    Nfs::Impl::get_mount_by_name() const
     {
-	return get_mount_string();
+	return get_mount_name();
     }
 
 

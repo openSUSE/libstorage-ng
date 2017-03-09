@@ -90,8 +90,8 @@ namespace storage
 	virtual ContentInfo detect_content_info_pure() const;
 	void set_content_info(const ContentInfo& content_info);
 
-	virtual string get_mount_string() const override;
-	virtual string get_mount_by_string() const override;
+	virtual string get_mount_name() const override;
+	virtual string get_mount_by_name() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 
