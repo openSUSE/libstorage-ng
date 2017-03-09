@@ -320,10 +320,14 @@ namespace storage
 
     FstabEntry * EtcFstab::get_entry( int index ) const
     {
+        ST_CHECK_INDEX( index, 0, get_entry_count() - 1 );
+
         CommentedConfigFile::Entry * entry =
             CommentedConfigFile::get_entry( index );
 
-        return entry ? dynamic_cast<FstabEntry *>( entry ) : 0;
+        ST_CHECK_PTR( entry );
+
+        return dynamic_cast<FstabEntry *>( entry );
     }
 
 
