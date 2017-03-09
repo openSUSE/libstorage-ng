@@ -100,3 +100,83 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_fsck_pass(), 2 );
 }
 
+
+BOOST_AUTO_TEST_CASE( mount_order )
+{
+    // Wrong mount order by intention
+    string_vec input = {
+        /** 00 **/ "LABEL=var-log  /var/log     ext4   defaults     1  2",
+        /** 01 **/ "LABEL=var      /var         ext4   defaults     1  2",
+        /** 02 **/ "LABEL=walk     /space/walk  xfs    noauto,user  1  2",
+        /** 03 **/ "LABEL=space    /space       xfs    noauto,user  1  2",
+        /** 04 **/ "LABEL=root     /            ext4   defaults     1  1"
+    };
+
+    EtcFstab fstab;
+    fstab.parse( input );
+
+    //
+    // Check and fix mount order
+    //
+
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
+
+    fstab.fix_mount_order();
+
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), true );
+
+    int i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var"        );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var/log"    );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+
+
+    //
+    // Take out /var and re-insert it
+    //
+
+    FstabEntry * var_entry = fstab.find_mount_point( "/var" );
+    BOOST_CHECK_EQUAL( var_entry != 0, true );
+    BOOST_CHECK_EQUAL( var_entry->get_device(), "LABEL=var" );
+
+    int index = fstab.get_index_of( var_entry );
+    BOOST_CHECK_EQUAL( index, 1 );
+    CommentedConfigFile::Entry * entry = fstab.take( index );
+    BOOST_CHECK_EQUAL( entry == var_entry, true );
+
+    BOOST_CHECK_EQUAL( fstab.get_entry( 1 )->get_mount_point(), "/var/log" );
+    fstab.add( var_entry );
+    BOOST_CHECK_EQUAL( fstab.get_entry( 1 )->get_mount_point(), "/var"     );
+    BOOST_CHECK_EQUAL( fstab.get_entry( 2 )->get_mount_point(), "/var/log" );
+
+
+    //
+    // Take out /var and /var/log and reinsert them (they go to the end now)
+    //
+
+    var_entry                  = fstab.find_mount_point( "/var" );
+    FstabEntry * var_log_entry = fstab.find_mount_point( "/var/log" );
+
+    fstab.take( fstab.get_index_of( var_log_entry ) );
+    fstab.take( fstab.get_index_of( var_entry     ) );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 3 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+
+    fstab.add( var_entry     );
+    fstab.add( var_log_entry );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var"        );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var/log"    );
+}
