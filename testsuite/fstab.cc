@@ -17,6 +17,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE( parse_and_format )
 {
+    // This needs to be formatted exactly like the expected output
+
     string_vec input = {
         /** 00 **/ "LABEL=swap        swap         swap   defaults     0  0",
         /** 01 **/ "LABEL=xfs-root    /            xfs    defaults     0  0",
@@ -27,12 +29,22 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     EtcFstab fstab;
     fstab.parse( input );
 
+
+    //
+    // Check formatting
+    //
+
     string_vec output = fstab.format_lines();
 
     BOOST_CHECK_EQUAL( fstab.get_entry_count(), input.size() );
 
     for ( int i=0; i < fstab.get_entry_count(); ++i )
         BOOST_CHECK_EQUAL( output[i], input[i] );
+
+
+    //
+    // Check all fields
+    //
 
     int i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"       );
@@ -58,25 +70,35 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), false );
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), false );
 
+
+    //
+    // Check mount options
+    //
+
     const MountOpts & opts_ref = fstab.get_entry( 1 )->get_mount_opts(); // xfs-root
     BOOST_CHECK_EQUAL( opts_ref.contains( "defaults" ), false );
 
-    MountOpts opts = fstab.get_entry( 2 )->get_mount_opts(); // btrfs-root
+    MountOpts opts = fstab.get_entry( 2 )->get_mount_opts(); // btrfs-root partition
     BOOST_CHECK_EQUAL( opts.size(), 1 );
     BOOST_CHECK_EQUAL( opts.get_opt( 0 ), "ro" );
     BOOST_CHECK_EQUAL( opts.contains( "ro" ), true );
     BOOST_CHECK_EQUAL( opts.contains( "wrglbrmpf" ), false );
     BOOST_CHECK_EQUAL( opts.contains( "defaults"  ), false );
 
-    opts = fstab.get_entry( 3 )->get_mount_opts(); // space
+    opts = fstab.get_entry( 3 )->get_mount_opts(); // space partition
     BOOST_CHECK_EQUAL( opts.size(), 2 );
     BOOST_CHECK_EQUAL( opts.contains( "user"   ), true );
     BOOST_CHECK_EQUAL( opts.contains( "noauto" ), true  );
     BOOST_CHECK_EQUAL( opts.contains( "auto"   ), false );
 
+
+    //
+    // Check setting mount options
+    //
+
     opts << "umask=007" << "gid=42";
     fstab.get_entry( 3 )->set_mount_opts( opts );
-    opts.clear();
+    opts.clear(); // just making sure there are no leftovers
     opts = fstab.get_entry( 3 )->get_mount_opts();
 
     BOOST_CHECK_EQUAL( opts.size(), 4 );
@@ -86,6 +108,10 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
 
     BOOST_CHECK_EQUAL( opts.format(), "noauto,user,umask=007,gid=42" );
 
+
+    //
+    // Check (historic) dump pass and fsck pass
+    //
 
     i=0;
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_dump_pass(), 0 );
@@ -179,4 +205,73 @@ BOOST_AUTO_TEST_CASE( mount_order )
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var"        );
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var/log"    );
+}
+
+
+BOOST_AUTO_TEST_CASE( duplicate_mount_points )
+{
+    string_vec input = {
+        /** 00 **/  "LABEL=root   /      ext4  defaults     1  1",
+        /** 01 **/  "LABEL=data1  /data  ext4  noauto,user  1  2",
+        /** 02 **/  "LABEL=data2  /data  xfs   noauto,user  1  2",
+        /** 03 **/  "LABEL=swap   swap   swap  defaults     0  0"
+    };
+
+    EtcFstab fstab;
+    fstab.parse( input );
+
+
+    //
+    // Check initial entries
+    //
+
+    int i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
+
+
+    //
+    // Check and fix mount order
+    //
+
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
+
+    fstab.fix_mount_order();
+
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
+
+    // Reordering the /data entries is expected after trying to fix the mount
+    // order. The critical thing to test here is that the algorithm actually
+    // terminates and does not get into an endless loop.
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
+
+
+    //
+    // Add yet another entry for the same mount point /data
+    //
+
+    FstabEntry * entry = new FstabEntry();
+    entry->parse( "LABEL=data3  /data  xfs  noauto,user  1  2", 0 );
+
+    BOOST_CHECK_EQUAL( entry->get_device(),      "LABEL=data3" );
+    BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data"       );
+
+    fstab.add( entry );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data3" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
 }
