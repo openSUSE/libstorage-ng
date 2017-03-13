@@ -40,8 +40,6 @@ namespace storage
     using std::string;
     using std::vector;
 
-    class AsciiFile;
-
 
     /**
      * Helper class for the mount options of one /etc/fstab entry.
@@ -151,7 +149,7 @@ namespace storage
 	 **/
 	bool parse( const string & opt_string, int line_no = -1 );
 
-    private:
+    protected:
 
 	string_vec opts;
     };
