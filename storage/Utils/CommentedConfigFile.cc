@@ -129,7 +129,15 @@ bool CommentedConfigFile::read( const string & filename )
 
 bool CommentedConfigFile::write( const string & new_filename )
 {
-    string name = new_filename.empty() ? this->filename : new_filename;
+    string name = new_filename;
+
+    if ( new_filename.empty() )
+        name = this->filename;
+    else
+        this->filename = name;
+
+    if ( name.empty() ) // Support for mocking:
+        return true;    // Pretend everything worked just fine.
 
     std::ofstream file( name, std::ofstream::out | std::ofstream::trunc );
 
