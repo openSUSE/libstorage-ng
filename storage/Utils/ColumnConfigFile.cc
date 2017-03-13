@@ -56,8 +56,11 @@ string ColumnConfigFile::Entry::format()
             {
                 size_t field_width = col_parent->get_column_width( i );
 
-                if ( col.size() < field_width ) // Pad to desired width
+                if ( col.size() < field_width && i < columns.size() - 1 )
+                {
+                    // Pad to desired width
                     col += string( field_width - col.size(), ' ' );
+                }
             }
         }
 
