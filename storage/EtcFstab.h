@@ -149,7 +149,7 @@ namespace storage
 	 *
 	 * This returns 'true' on success, 'false' on error.
 	 **/
-	bool parse( const string & opt_string, int line_no );
+	bool parse( const string & opt_string, int line_no = -1 );
 
     private:
 
@@ -187,7 +187,7 @@ namespace storage
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual bool parse( const string & line, int line_no );
+	virtual bool parse( const string & line, int line_no = -1 );
 
 
 	// Getters; see man fstab(5)

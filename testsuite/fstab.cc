@@ -260,7 +260,7 @@ BOOST_AUTO_TEST_CASE( duplicate_mount_points )
     //
 
     FstabEntry * entry = new FstabEntry();
-    entry->parse( "LABEL=data3  /data  xfs  noauto,user  1  2", 0 );
+    entry->parse( "LABEL=data3  /data  xfs  noauto,user  1  2" );
 
     BOOST_CHECK_EQUAL( entry->get_device(),      "LABEL=data3" );
     BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data"       );

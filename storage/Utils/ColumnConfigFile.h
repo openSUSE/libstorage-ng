@@ -77,7 +77,7 @@ public:
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual bool parse( const string & line, int line_no );
+	virtual bool parse( const string & line, int line_no = -1 );
 
 	/**
 	 * Return the number of columns for this entry.
