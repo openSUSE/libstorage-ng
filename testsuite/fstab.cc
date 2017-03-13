@@ -5,9 +5,6 @@
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 
-// Enable testing of private and protected methods, too
-// #define protected public
-// #define private   public
 #include "storage/EtcFstab.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 
