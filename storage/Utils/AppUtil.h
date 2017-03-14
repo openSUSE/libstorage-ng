@@ -96,6 +96,7 @@ void classic(StreamType& stream)
     string hostname();
     string datetime( time_t t1, bool utc=false, bool classic=true );
 
+    string generated_string();
 
     string sformat(const string& format, va_list ap);
 

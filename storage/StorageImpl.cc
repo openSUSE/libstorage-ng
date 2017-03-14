@@ -48,7 +48,7 @@ namespace storage
 	: storage(storage), environment(environment), arch(false), tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
-	y2mil("libstorage version " VERSION);
+	y2mil("libstorage-ng version " VERSION);
     }
 
 
