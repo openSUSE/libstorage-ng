@@ -1,6 +1,6 @@
 *.o
 test-blkid
-test-cmdbtrfsshow
+test-cmd-btrfs-filesystem-show
 test-cmddf
 test-cmddmsetupinfo
 test-cmddmsetuptable

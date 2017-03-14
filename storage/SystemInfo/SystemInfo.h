@@ -78,7 +78,7 @@ namespace storage
 	const CmdCryptsetup& getCmdCryptsetup(const string& name) { return cmd_cryptsetups.get(name); }
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
-	const CmdBtrfsShow& getCmdBtrfsShow() { return cmdbtrfsshow.get(); }
+	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmdbtrfsfilesystemshow.get(); }
 	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
@@ -168,7 +168,7 @@ namespace storage
 	LazyObjects<CmdCryptsetup> cmd_cryptsetups;
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
-	LazyObject<CmdBtrfsShow> cmdbtrfsshow;
+	LazyObject<CmdBtrfsFilesystemShow> cmdbtrfsfilesystemshow;
 	LazyObject<CmdPvs> cmdpvs;
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;

@@ -81,6 +81,9 @@
 #define DFBIN "/usr/bin/df"
 #define TESTBIN "/usr/bin/test"
 
+#define LSATTRBIN "/usr/bin/lsattr"
+#define CHATTRBIN "/usr/bin/chattr"
+
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"
 
