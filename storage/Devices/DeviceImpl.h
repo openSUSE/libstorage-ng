@@ -242,7 +242,7 @@ namespace storage
 	template<typename Type>
 	Type* get_single_parent_of_type()
 	{
-	    static_assert(!is_const<Type>::value, "Type must noy be const");
+	    static_assert(!is_const<Type>::value, "Type must not be const");
 
 	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 

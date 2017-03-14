@@ -24,11 +24,11 @@ check(const vector<string>& input, const vector<string>& output)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(BTRFSBIN " filesystem show", input);
 
-    CmdBtrfsShow cmdbtrfsshow;
+    CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow;
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmdbtrfsshow;
+    parsed << cmdbtrfsfilesystemshow;
 
     string lhs = parsed.str();
     string rhs;
@@ -39,14 +39,16 @@ check(const vector<string>& input, const vector<string>& output)
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
+
 void
 check_parse_exception(const vector<string>& input)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(BTRFSBIN " filesystem show", input);
 
-    BOOST_CHECK_THROW({ CmdBtrfsShow cmdbtrfsshow; }, ParseException);
+    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, ParseException);
 }
+
 
 void
 check_systemcmd_exception(const vector<string>& input, const vector<string>& stderr)
@@ -56,13 +58,12 @@ check_systemcmd_exception(const vector<string>& input, const vector<string>& std
     Mockup::Command command(input, stderr, 1);
     Mockup::set_command(BTRFSBIN " filesystem show", command);
 
-    BOOST_CHECK_THROW({ CmdBtrfsShow cmdbtrfsshow; }, SystemCmdException);
+    BOOST_CHECK_THROW({ CmdBtrfsFilesystemShow cmdbtrfsfilesystemshow; }, SystemCmdException);
 }
 
 
 BOOST_AUTO_TEST_CASE(parse_good)
 {
-
     vector<string> input = {
 	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
 	"        Total devices 1 FS bytes used 28.00KiB",
@@ -88,9 +89,9 @@ BOOST_AUTO_TEST_CASE(parse_good)
     check(input, output);
 }
 
+
 BOOST_AUTO_TEST_CASE(parse_empty)
 {
-
     // Sample output if there is no btrfs filesystem at all on the system
     vector<string> input = {
 	"Btrfs v3.12+20131125"
@@ -101,9 +102,9 @@ BOOST_AUTO_TEST_CASE(parse_empty)
     check(input, output);
 }
 
+
 BOOST_AUTO_TEST_CASE(parse_bad_device_name)
 {
-
     vector<string> input = {
 	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
 	"        Total devices 1 FS bytes used 28.00KiB",
@@ -115,9 +116,9 @@ BOOST_AUTO_TEST_CASE(parse_bad_device_name)
     check_parse_exception(input);
 }
 
+
 BOOST_AUTO_TEST_CASE(parse_no_devices)
 {
-
     vector<string> input = {
 	"Label: none  uuid: ea108250-d02c-41dd-b4d8-d4a707a5c649",
 	"        Total devices 1 FS bytes used 28.00KiB",
@@ -127,6 +128,7 @@ BOOST_AUTO_TEST_CASE(parse_no_devices)
 
     check_parse_exception(input);
 }
+
 
 BOOST_AUTO_TEST_CASE(systemcmd_error)
 {

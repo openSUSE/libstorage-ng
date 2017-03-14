@@ -79,13 +79,11 @@ std::map<string,string> makeMap( const std::list<string>& l,
 				 const string& removeSur = " \t\n" );
 
     string udevAppendPart(const string&, unsigned num);
-    string afterLast(const string& s, const string& pat );
 
     string udevEncode(const string&);
     string udevDecode(const string&);
 
     string normalizeDevice(const string& dev);
-    string undevDevice(const string& dev);
 
 
 template<class StreamType>
@@ -98,6 +96,7 @@ void classic(StreamType& stream)
     string hostname();
     string datetime( time_t t1, bool utc=false, bool classic=true );
 
+    string generated_string();
 
     string sformat(const string& format, va_list ap);
 

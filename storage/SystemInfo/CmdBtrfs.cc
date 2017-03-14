@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,7 +36,7 @@ namespace storage
     using namespace std;
 
 
-    CmdBtrfsShow::CmdBtrfsShow()
+    CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
     {
 	SystemCmd cmd( BTRFSBIN " filesystem show", SystemCmd::DoThrow );
 
@@ -60,7 +61,7 @@ namespace storage
 
 
     void
-    CmdBtrfsShow::parse(const vector<string>& lines)
+    CmdBtrfsFilesystemShow::parse(const vector<string>& lines)
     {
 	vector<string>::const_iterator it = lines.begin();
 
@@ -106,19 +107,19 @@ namespace storage
 
 
     bool
-    CmdBtrfsShow::getEntry(const string& uuid, Entry& entry) const
+    CmdBtrfsFilesystemShow::get_entry(const string& uuid, Entry& entry) const
     {
 	const_iterator it = data.find(uuid);
-	if (it!=data.end())
+	if (it != data.end())
 	    entry = it->second;
 	return it != data.end();
     }
 
 
-    list<string>
-    CmdBtrfsShow::getUuids() const
+    vector<string>
+    CmdBtrfsFilesystemShow::get_uuids() const
     {
-	list<string> ret;
+	vector<string> ret;
 
 	for (const_iterator it = data.begin(); it != data.end(); ++it)
 	    ret.push_back(it->first);
@@ -129,9 +130,10 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsShow& cmdbtrfsshow)
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow)
     {
-	for (CmdBtrfsShow::const_iterator it = cmdbtrfsshow.data.begin(); it != cmdbtrfsshow.data.end(); ++it)
+	for (CmdBtrfsFilesystemShow::const_iterator it = cmdbtrfsfilesystemshow.data.begin();
+	     it != cmdbtrfsfilesystemshow.data.end(); ++it)
 	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
@@ -139,7 +141,7 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsShow::Entry& entry)
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow::Entry& entry)
     {
 	s << entry.devices;
 
@@ -147,7 +149,7 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumes::CmdBtrfsSubvolumes(const string& mount_point)
+    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const string& mount_point)
     {
 	SystemCmd cmd(BTRFSBIN " subvolume list -a -p " + quote(mount_point), SystemCmd::DoThrow);
 
@@ -160,29 +162,25 @@ namespace storage
 
 
     void
-    CmdBtrfsSubvolumes::parse(const vector<string>& lines)
+    CmdBtrfsSubvolumeList::parse(const vector<string>& lines)
     {
 	for (const string& line : lines)
 	{
 	    Entry entry;
 
-	    string parent;
-	    string::size_type pos1 = line.find(" parent ");
-	    if (pos1 != string::npos)
-		pos1 = line.find_first_not_of(app_ws, pos1 + 6);
-	    if (pos1 != string::npos)
-		parent = line.substr(pos1, line.find_last_not_of(app_ws));
+	    string::size_type pos1 = line.find("ID ");
+	    line.substr(pos1 + 3) >> entry.id;
+
+	    string::size_type pos2 = line.find(" parent ");
+	    line.substr(pos2 + 8) >> entry.parent_id;
 
 	    // Subvolume can already be deleted, in which case parent is "0"
 	    // (and path "DELETED"). That is a temporary state.
-	    if (parent == "0")
+	    if (entry.parent_id == 0)
 		continue;
 
-	    string::size_type pos2 = line.find(" path ");
-	    if (pos2 != string::npos)
-		pos2 = line.find_first_not_of(app_ws, pos2 + 5);
-	    if (pos2 != string::npos)
-		entry.path = line.substr(pos2, line.find_last_not_of(app_ws));
+	    string::size_type pos3 = line.find(" path ");
+	    entry.path = line.substr(pos3 + 6);
 	    if (boost::starts_with(entry.path, "<FS_TREE>/"))
 		entry.path.erase(0, 10);
 
@@ -194,19 +192,59 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumes& cmdbtrfssubvolumes)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist)
     {
-	for (const CmdBtrfsSubvolumes::Entry& entry : cmdbtrfssubvolumes)
-	    s << "data " << entry.path << '\n';
+	for (const CmdBtrfsSubvolumeList::Entry& entry : cmdbtrfssubvolumelist)
+	    s << entry;
 
 	return s;
     }
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumes::Entry& entry)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList::Entry& entry)
     {
-	s << entry.path;
+	s << "id:" << entry.id << " parent-id:" << entry.parent_id
+	  << " path:" << entry.path << '\n';
+
+	return s;
+    }
+
+
+    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const string& mount_point)
+	: id(-1 /* BtrfsSubvolume::Impl::unknown_id */)
+    {
+	SystemCmd cmd(BTRFSBIN " subvolume get-default " + quote(mount_point), SystemCmd::DoThrow);
+
+	if (cmd.retcode() == 0)
+	    parse(cmd.stdout());
+	else
+	    ST_THROW(SystemCmdException(&cmd, "'btrfs subvolume get-default' failed, ret: " +
+					to_string(cmd.retcode())));
+    }
+
+
+    void
+    CmdBtrfsSubvolumeGetDefault::parse(const vector<string>& lines)
+    {
+	if (lines.size() != 1)
+	    ST_THROW(Exception("output has wrong number of lines"));
+
+	const string& line = lines[0];
+
+	if (!boost::starts_with(line, "ID "))
+	    ST_THROW(Exception("output does not start with ID"));
+
+	line.substr(3) >> id;
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmdbtrfssubvolumegetdefault)
+    {
+	s << "id:" << cmdbtrfssubvolumegetdefault.id;
 
 	return s;
     }

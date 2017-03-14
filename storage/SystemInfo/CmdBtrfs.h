@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,7 +27,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 #include <map>
 
 
@@ -34,16 +34,15 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
     using std::map;
 
-    
+
     /**
      * Class to probe for btrfs filesystems: Call "btrfs filesystem show"
      * (globally, not restricted to any disk or partition) and parse its
      * output.
      */
-    class CmdBtrfsShow
+    class CmdBtrfsFilesystemShow
     {
     public:
 
@@ -53,7 +52,7 @@ namespace storage
 	 *
 	 * This may throw a SystemCmdException or a ParseException.
 	 */
-	CmdBtrfsShow();
+	CmdBtrfsFilesystemShow();
 
 	/**
 	 * Entry for one btrfs filesystem. Since btrfs includes a volume
@@ -62,10 +61,10 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    list<string> devices;
+	    vector<string> devices;
 	};
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsShow& cmdbtrfsshow);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
@@ -73,12 +72,12 @@ namespace storage
 	 * corresponding entry in 'entry'. Return 'true' upon success, 'false'
 	 * if there is no btrfs filesystem with that UUID.
 	 */
-	bool getEntry(const string& uuid, Entry& entry) const;
+	bool get_entry(const string& uuid, Entry& entry) const;
 
 	/**
-	 * Return a list of all filesystem UUIDs with btrfs.
+	 * Return a vector of all filesystem UUIDs with btrfs.
 	 */
-	list<string> getUuids() const;
+	vector<string> get_uuids() const;
 
     private:
 
@@ -95,26 +94,26 @@ namespace storage
 
     };
 
+
     /**
-     * Class to probe for btrfs subvolumes: Call "btrfs subvolume list <mount-point>"
+     * Class to probe for btrfs subvolumes: Call "btrfs subvolume list
+     * <mount-point>".
      */
-    class CmdBtrfsSubvolumes
+    class CmdBtrfsSubvolumeList
     {
     public:
 
-	/**
-	 * Constructor. Probe for btrfs subvolumes with the "btrfs subvolume
-	 * list <mount-point>" command and parse its output.
-	 *
-	 * This may throw a SystemCmdException or a ParseException.
-	 */
-	CmdBtrfsSubvolumes(const string& mount_point);
+	CmdBtrfsSubvolumeList(const string& mount_point);
 
-	/**
-	 * Entry for one btrfs subvolume.
-	 */
 	struct Entry
 	{
+	    Entry()
+		: id(-1 /* BtrfsSubvolume::Impl::unknown_id */),
+		  parent_id(-1 /*BtrfsSubvolume::Impl::unknown_id */),
+		  path() {}
+
+	    long id;
+	    long parent_id;
 	    string path;
 	};
 
@@ -124,23 +123,40 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumes& cmdbtrfssubvolumes);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:
 
-	/**
-	 * Parse the output of "btrfs subvolume list <mount-point>" passed in
-	 * 'lines'.
-	 *
-	 * This may throw a ParseException.
-	 */
 	void parse(const vector<string>& lines);
 
 	vector<Entry> data;
 
     };
-    
+
+
+    /**
+     * Class to probe for btrfs default subvolume: Call "btrfs subvolume
+     * get-default <mount-point>".
+     */
+    class CmdBtrfsSubvolumeGetDefault
+    {
+    public:
+
+	CmdBtrfsSubvolumeGetDefault(const string& mount_point);
+
+	long get_id() const { return id; }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault&
+					cmdbtrfssubvolumegetdefault);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	long id;
+
+    };
 }
 
 #endif
