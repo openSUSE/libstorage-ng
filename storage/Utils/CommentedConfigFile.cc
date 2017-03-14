@@ -93,6 +93,18 @@ void CommentedConfigFile::remove( int index )
 }
 
 
+void CommentedConfigFile::remove( Entry * entry )
+{
+    if ( ! entry )
+        return;
+
+    int index = get_index_of( entry );
+
+    if ( index != -1 )
+        remove( index );
+}
+
+
 void CommentedConfigFile::insert( int before, Entry * entry )
 {
     entries.insert( entries.begin() + before, entry );
