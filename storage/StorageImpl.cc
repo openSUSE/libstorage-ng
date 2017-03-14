@@ -66,15 +66,18 @@ namespace storage
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
+	    LvmVg::Impl::activate();
 		probe(probed);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
+	    LvmVg::Impl::activate();
 		probe(probed);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
+	    LvmVg::Impl::activate();
 		Mockup::set_mode(Mockup::Mode::RECORD);
 		probe(probed);
 		Mockup::save(environment.get_mockup_filename());
