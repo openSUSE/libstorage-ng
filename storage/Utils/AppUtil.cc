@@ -291,23 +291,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
     }
 
 
-    string undevDevice(const string& dev)
-    {
-	if (boost::starts_with(dev, "/dev/"))
-	    return string(dev, 5);
-	return dev;
-    }
-
-
-string afterLast(const string& s, const string& pat )
-    {
-    string ret(s);
-    string::size_type pos = s.find_last_of(pat);
-    if( pos!=string::npos )
-	ret.erase( 0, pos+pat.length() );
-    return( ret );
-    }
-
     string
     udevAppendPart(const string& s, unsigned num)
     {
