@@ -115,7 +115,8 @@ namespace storage
 
 	arch = systeminfo.getArch();
 
-	EtcFstab fstab("/etc");
+	EtcFstab fstab;
+	fstab.read( ETC_FSTAB );
 
 	// TODO
 
