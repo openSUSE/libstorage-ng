@@ -8,7 +8,7 @@
 
 4a - Create primary partition /dev/sda2 (10.00 GiB) -> 5a 6a
 
-5a - Create btrfs on /dev/sda2 (10.00 GiB) -> 5b
+5a - Create ext4 on /dev/sda2 (10.00 GiB) -> 5b
 5b - Mount /dev/sda2 at / -> 3c 5c 7b
 5c - Add mountpoint / of /dev/sda2 to /etc/fstab ->
 

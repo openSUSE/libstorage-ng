@@ -14,7 +14,7 @@
 6 - Create volume group system (49.99 GiB) -> 7a 8a 9a
 
 7a - Create logical volume root (22.40 GiB) on volume group system -> 7b
-7b - Create btrfs on /dev/system/root (22.40 GiB) -> 7c
+7b - Create ext4 on /dev/system/root (22.40 GiB) -> 7c
 7c - Mount /dev/system/root at / -> 4c 7d 8d 9c
 7d - Add mountpoint / of /dev/system/root to /etc/fstab ->
 

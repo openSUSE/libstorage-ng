@@ -48,11 +48,11 @@
       <type>primary</type>
       <id>131</id>
     </Partition>
-    <Btrfs>
+    <Ext4>
       <sid>49</sid>
       <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
-    </Btrfs>
+    </Ext4>
     <Partition>
       <sid>50</sid>
       <name>/dev/sda3</name>
