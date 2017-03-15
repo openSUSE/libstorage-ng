@@ -1,6 +1,8 @@
 *.o
 test-blkid
 test-cmd-btrfs-filesystem-show
+test-cmd-btrfs-subvolume-list
+test-cmd-btrfs-subvolume-get-default
 test-cmddf
 test-cmddmsetupinfo
 test-cmddmsetuptable
@@ -9,6 +11,7 @@ test-cmdpvs
 test-cmdudevadminfo
 test-cmdvgs
 test-dir
+test-lsattr
 test-lsscsi
 test-mdadmdetail
 test-mdadmexamine

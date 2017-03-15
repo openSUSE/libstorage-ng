@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -179,6 +179,11 @@ namespace storage
 	void setThrowBehaviour( ThrowBehaviour val );
 
 	/**
+	 * Set the key used for mockup. If empty the command is used as the key.
+	 */
+	void setMockupKey(const string& mockup_key);
+
+	/**
 	 * Set test mode, i.e. don't actually invoke the command.
 	 */
 	static void setTestmode(bool testmode = true);
@@ -234,10 +239,12 @@ namespace storage
 	bool _doThrow;
 	OutputProcessor* _outputProc;
 	struct pollfd _pfds[3];
+	string mockup_key;
 
 	static bool _testmode;
 
 	static const unsigned LINE_LIMIT = 50;
+
     };
 
 

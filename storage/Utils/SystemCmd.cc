@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,7 +60,8 @@ namespace storage
     SystemCmd::SystemCmd( const string& command, ThrowBehaviour throwBehaviour ):
 	_combineOutput( false ),
 	_doThrow( throwBehaviour == DoThrow ),
-	_outputProc( NULL )
+	_outputProc( NULL ),
+	mockup_key()
     {
 	y2mil("constructor SystemCmd( \"" << command << "\" ) doThrow: " << _doThrow );
 	init();
@@ -81,7 +82,8 @@ namespace storage
     SystemCmd::SystemCmd()
 	: _combineOutput( false ),
 	  _doThrow( false ),
-	  _outputProc( NULL )
+	  _outputProc( NULL ),
+	  mockup_key()
     {
 	y2mil("constructor SystemCmd()");
 	init();
@@ -145,7 +147,7 @@ namespace storage
     {
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
-	    const Mockup::Command& mockup_command = Mockup::get_command(command);
+	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key.empty() ? command : mockup_key);
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
@@ -171,7 +173,8 @@ namespace storage
 
 	if (Mockup::get_mode() == Mockup::Mode::RECORD)
 	{
-	    Mockup::set_command(command, Mockup::Command(_outputLines[IDX_STDOUT], _outputLines[IDX_STDERR], _cmdRet));
+	    Mockup::set_command(mockup_key.empty() ? command : mockup_key,
+				Mockup::Command(_outputLines[IDX_STDOUT], _outputLines[IDX_STDERR], _cmdRet));
 	}
 
 	return ret;
@@ -525,6 +528,13 @@ namespace storage
     SystemCmd::setThrowBehaviour(ThrowBehaviour value)
     {
 	_doThrow = value == DoThrow;
+    }
+
+
+    void
+    SystemCmd::setMockupKey(const string& mockup_key)
+    {
+	SystemCmd::mockup_key = mockup_key;
     }
 
 
