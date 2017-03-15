@@ -121,7 +121,7 @@
       <stdout>/dev/md2: UUID="d11cbd17-b4fa-9ccd-bb7b-9bab557d863c" UUID_SUB="3ed18246-99c6-a49a-36ef-fe7c90029c93" LABEL="any:0" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/md0: PTUUID="b99887d0-1a71-494d-ad5c-38e7e78fd433" PTTYPE="gpt" </stdout>
       <stdout>/dev/md0p1: UUID="bdf87a88-d1b0-4724-8437-d52e493b9c0d" TYPE="ext4" PARTUUID="6149fb93-9e92-4be3-9798-639244fe27d2" </stdout>
-      <stdout>/dev/md0p2: UUID="178825b0-311f-4914-b4d9-5a60e322150c" UUID_SUB="c5ead4b3-b7e1-419f-8298-df4157251d35" TYPE="btrfs" PARTUUID="8bd64fbc-17e6-4de6-998f-f7027fa3b049"</stdout>
+      <stdout>/dev/md0p2: UUID="178825b0-311f-4914-b4d9-5a60e322150c" TYPE="ext4" PARTUUID="8bd64fbc-17e6-4de6-998f-f7027fa3b049"</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/md0'</name>
@@ -205,12 +205,10 @@
       <stdout>E: DEVNAME=/dev/md0p2</stdout>
       <stdout>E: DEVPATH=/devices/virtual/block/md0/md0p2</stdout>
       <stdout>E: DEVTYPE=partition</stdout>
-      <stdout>E: ID_FS_TYPE=btrfs</stdout>
+      <stdout>E: ID_FS_TYPE=ext4</stdout>
       <stdout>E: ID_FS_USAGE=filesystem</stdout>
       <stdout>E: ID_FS_UUID=178825b0-311f-4914-b4d9-5a60e322150c</stdout>
       <stdout>E: ID_FS_UUID_ENC=178825b0-311f-4914-b4d9-5a60e322150c</stdout>
-      <stdout>E: ID_FS_UUID_SUB=c5ead4b3-b7e1-419f-8298-df4157251d35</stdout>
-      <stdout>E: ID_FS_UUID_SUB_ENC=c5ead4b3-b7e1-419f-8298-df4157251d35</stdout>
       <stdout>E: ID_PART_ENTRY_DISK=9:0</stdout>
       <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
       <stdout>E: ID_PART_ENTRY_OFFSET=999424</stdout>
@@ -623,7 +621,7 @@
       <stdout></stdout>
       <stdout>Number  Start    End        Size       File system  Name  Flags</stdout>
       <stdout> 1      2048s    999423s    997376s    ext4</stdout>
-      <stdout> 2      999424s  67104767s  66105344s  btrfs</stdout>
+      <stdout> 2      999424s  67104767s  66105344s  ext4</stdout>
     </Command>
     <Command>
       <name>/usr/sbin/parted --script '/dev/md1' unit s print</name>

@@ -38,5 +38,5 @@ BOOST_AUTO_TEST_CASE(dependencies)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_BTRFS | UF_EXT4 | UF_MDRAID);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT4 | UF_MDRAID);
 }

@@ -71,10 +71,10 @@
       <lv-name>root</lv-name>
       <uuid></uuid>
     </LvmLv>
-    <Btrfs>
+    <Ext4>
       <sid>188</sid>
       <mountpoint>/</mountpoint>
-    </Btrfs>
+    </Ext4>
     <LvmLv>
       <sid>189</sid>
       <name>/dev/system/swap</name>

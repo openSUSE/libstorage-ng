@@ -158,10 +158,10 @@
       <sid>52</sid>
       <uuid>bdf87a88-d1b0-4724-8437-d52e493b9c0d</uuid>
     </Ext4>
-    <Btrfs>
+    <Ext4>
       <sid>53</sid>
       <uuid>178825b0-311f-4914-b4d9-5a60e322150c</uuid>
-    </Btrfs>
+    </Ext4>
   </Devices>
   <Holders>
     <User>
