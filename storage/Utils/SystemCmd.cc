@@ -522,6 +522,13 @@ namespace storage
 
 
     void
+    SystemCmd::setThrowBehaviour(ThrowBehaviour value)
+    {
+	_doThrow = value == DoThrow;
+    }
+
+
+    void
     SystemCmd::setTestmode(bool val)
     {
 	_testmode = val;
