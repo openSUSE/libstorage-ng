@@ -169,6 +169,11 @@ namespace storage
 	 * Reimplemented from CommentedConfigFile.
 	 **/
 	virtual Entry * create_entry() { return new CrypttabEntry(); }
+
+        /**
+         * Dump the current contents to the log.
+         **/
+        void log();
     };
 
 }

@@ -429,4 +429,15 @@ namespace storage
 	return boost::replace_all_copy( encoded, "\\040", " " );
     }
 
+
+    void EtcFstab::log()
+    {
+        string_vec lines = format_lines();
+
+        if ( ! get_filename().empty() )
+            y2mil( get_filename() );
+            
+        for ( size_t i=0; i < lines.size(); ++i )
+            y2mil( lines[i] );
+    }
 }

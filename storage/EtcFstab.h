@@ -313,6 +313,11 @@ namespace storage
 	 **/
 	static string fstab_decode( const string & encoded );
 
+        /**
+         * Dump the current contents to the log.
+         **/
+        void log();
+
 
     protected:
 
