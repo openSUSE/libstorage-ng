@@ -149,9 +149,13 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const string& mount_point)
+    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint)
     {
-	SystemCmd cmd(BTRFSBIN " subvolume list -a -p " + quote(mount_point), SystemCmd::DoThrow);
+	SystemCmd cmd;
+	cmd.setCmd(BTRFSBIN " subvolume list -a -p " + quote(mountpoint));
+	cmd.setMockupKey(BTRFSBIN " subvolume list -a -p (device:" + key + ")");
+	cmd.setThrowBehaviour(SystemCmd::DoThrow);
+	cmd.execute();
 
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
@@ -211,10 +215,14 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const string& mount_point)
+    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint)
 	: id(-1 /* BtrfsSubvolume::Impl::unknown_id */)
     {
-	SystemCmd cmd(BTRFSBIN " subvolume get-default " + quote(mount_point), SystemCmd::DoThrow);
+	SystemCmd cmd;
+	cmd.setCmd(BTRFSBIN " subvolume get-default " + quote(mountpoint));
+	cmd.setMockupKey(BTRFSBIN " subvolume get-default (device:" + key + ")");
+	cmd.setThrowBehaviour(SystemCmd::DoThrow);
+	cmd.execute();
 
 	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());

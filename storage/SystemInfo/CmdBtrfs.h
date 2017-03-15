@@ -97,13 +97,15 @@ namespace storage
 
     /**
      * Class to probe for btrfs subvolumes: Call "btrfs subvolume list
-     * <mount-point>".
+     * <mountpoint>".
      */
     class CmdBtrfsSubvolumeList
     {
     public:
 
-	CmdBtrfsSubvolumeList(const string& mount_point);
+	typedef string key_t;
+
+	CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint);
 
 	struct Entry
 	{
@@ -137,13 +139,15 @@ namespace storage
 
     /**
      * Class to probe for btrfs default subvolume: Call "btrfs subvolume
-     * get-default <mount-point>".
+     * get-default <mountpoint>".
      */
     class CmdBtrfsSubvolumeGetDefault
     {
     public:
 
-	CmdBtrfsSubvolumeGetDefault(const string& mount_point);
+	typedef string key_t;
+
+	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint);
 
 	long get_id() const { return id; }
 

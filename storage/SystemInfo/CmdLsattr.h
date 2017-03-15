@@ -26,10 +26,12 @@
 
 #include <string>
 #include <vector>
+#include <tuple>
 
 
 namespace storage
 {
+    using std::string;
     using std::vector;
 
 
@@ -37,7 +39,9 @@ namespace storage
     {
     public:
 
-	CmdLsattr(const string& mount_point, const string& path);
+	typedef std::tuple<string, string> key_t;
+
+	CmdLsattr(const key_t& key, const string& mountpoint, const string& path);
 
 	bool is_nocow() const { return nocow; }
 
@@ -47,6 +51,7 @@ namespace storage
 
     private:
 
+	string mountpoint;
 	string path;
 
 	bool nocow;

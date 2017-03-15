@@ -32,6 +32,7 @@
 #include "storage/SystemInfo/ProcMounts.h"
 #include "storage/SystemInfo/ProcMdstat.h"
 #include "storage/SystemInfo/CmdBlkid.h"
+#include "storage/SystemInfo/CmdLsattr.h"
 #include "storage/SystemInfo/CmdLsscsi.h"
 #include "storage/SystemInfo/CmdParted.h"
 #include "storage/SystemInfo/CmdDasdview.h"
@@ -57,6 +58,17 @@ namespace storage
 
     public:
 
+	/* For most commands the command-line can be used as the key for a
+	   cache. For some commands this does not work since the command-line
+	   is not stable, e.g. when a temporary mountpoint is used.
+	   E.g. 'parted /dev/sda' is fine but 'btrfs subvolume list
+	   /tmp/libstorage-H6lvbw' is not.
+
+	   If the command-line is not stable a key is introduced, e.g. the
+	   device name. So for getCmdBtrfsSubvolumeList() the device name and
+	   the mountpoint have to be specified while the device is only used
+	   as key and the mountpoint only for the command. */
+
 	SystemInfo();
 	~SystemInfo();
 
@@ -78,18 +90,32 @@ namespace storage
 	const CmdCryptsetup& getCmdCryptsetup(const string& name) { return cmd_cryptsetups.get(name); }
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
+
 	const CmdBtrfsFilesystemShow& getCmdBtrfsFilesystemShow() { return cmdbtrfsfilesystemshow.get(); }
+
+	// The device is only used for the cache-key.
+	const CmdBtrfsSubvolumeList& getCmdBtrfsSubvolumeList(const string& device, const string& mountpoint)
+	    { return cmdbtrfssubvolumelists.get(CmdBtrfsSubvolumeList::key_t(device), mountpoint); }
+
+	// The device is only used for the cache-key.
+	const CmdBtrfsSubvolumeGetDefault& getCmdBtrfsSubvolumeGetDefault(const string& device, const string& mountpoint)
+	    { return cmdbtrfssubvolumegetdefaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mountpoint); }
+
 	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
 	const CmdLvs& getCmdLvs() { return cmdlvs.get(); }
 	const CmdUdevadmInfo& getCmdUdevadmInfo(const string& file) { return cmdudevadminfos.get(file); }
-	const CmdDf& getCmdDf(const string& path) { return cmddfs.get(path); }
+	const CmdDf& getCmdDf(const string& mountpoint) { return cmddfs.get(mountpoint); }
+
+	// The device is only used for the cache-key.
+	const CmdLsattr& getCmdLsattr(const string& device, const string& mountpoint, const string& path)
+	    { return cmdlsattr.get(CmdLsattr::key_t(device, path), mountpoint, path); }
 
     private:
 
-	/* LazyObject and LazyObjects cache the object and a potential
-	   exception during object construction. HelperBase does the common
-	   part. */
+	/* LazyObject, LazyObjects and LazyObjectsWithKey cache the object and
+	   a potential exception during object construction. HelperBase does
+	   the common part. */
 
 	template <class Object, typename... Args>
 	class HelperBase
@@ -124,24 +150,56 @@ namespace storage
 
 	};
 
+
 	template <class Object>
 	class LazyObject : public HelperBase<Object>, private boost::noncopyable
 	{
 	};
 
-	template <class Object, class Key = string>
+
+	template <class Object, class Arg = string>
 	class LazyObjects : private boost::noncopyable
 	{
 	public:
 
-	    typedef HelperBase<Object, Key> Helper;
+	    typedef HelperBase<Object, Arg> Helper;
 
-	    const Object& get(const Key& k)
+	    const Object& get(const Arg& arg)
 	    {
-		typename map<Key, Helper>::iterator pos = data.lower_bound(k);
-		if (pos == data.end() || typename map<Key, Helper>::key_compare()(k, pos->first))
-		    pos = data.insert(pos, typename map<Key, Helper>::value_type(k, Helper()));
-		return pos->second.get(k);
+		typename map<Arg, Helper>::iterator pos = data.lower_bound(arg);
+		if (pos == data.end() || typename map<Arg, Helper>::key_compare()(arg, pos->first))
+		    pos = data.insert(pos, typename map<Arg, Helper>::value_type(arg, Helper()));
+		return pos->second.get(arg);
+	    }
+
+	private:
+
+	    map<Arg, Helper> data;
+
+	};
+
+
+	template <class Object, typename... Args>
+	class LazyObjectsWithKey : private boost::noncopyable
+	{
+	public:
+
+	    typedef typename Object::key_t Key;
+
+	    typedef HelperBase<Object, Key, Args...> Helper;
+
+	    bool includes(const Key& key) const
+	    {
+		typename map<Key, Helper>::const_iterator pos = data.lower_bound(key);
+		return pos != data.end() && !typename map<Key, Helper>::key_compare()(key, pos->first);
+	    }
+
+	    const Object& get(const Key& key, Args... args)
+	    {
+		typename map<Key, Helper>::iterator pos = data.lower_bound(key);
+		if (pos == data.end() || typename map<Key, Helper>::key_compare()(key, pos->first))
+		    pos = data.insert(pos, typename map<Key, Helper>::value_type(key, Helper()));
+		return pos->second.get(key, args...);
 	    }
 
 	private:
@@ -168,12 +226,19 @@ namespace storage
 	LazyObjects<CmdCryptsetup> cmd_cryptsetups;
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
+
 	LazyObject<CmdBtrfsFilesystemShow> cmdbtrfsfilesystemshow;
+	LazyObjectsWithKey<CmdBtrfsSubvolumeList, string> cmdbtrfssubvolumelists;
+	LazyObjectsWithKey<CmdBtrfsSubvolumeGetDefault, string> cmdbtrfssubvolumegetdefaults;
+
 	LazyObject<CmdPvs> cmdpvs;
 	LazyObject<CmdVgs> cmdvgs;
 	LazyObject<CmdLvs> cmdlvs;
+
 	LazyObjects<CmdUdevadmInfo> cmdudevadminfos;
 	LazyObjects<CmdDf> cmddfs;
+
+	LazyObjectsWithKey<CmdLsattr, string, string> cmdlsattr;
 
     };
 
