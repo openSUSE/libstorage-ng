@@ -101,20 +101,22 @@ namespace storage
     {
 	// TODO also read /etc/fstab
 
-	vector<FstabEntry> tmp1 = systeminfo.getProcMounts().get_all_nfs();
-	for (const FstabEntry& tmp2 : tmp1)
+	vector<FstabEntry *> nfs_entries = systeminfo.getProcMounts().get_all_nfs();
+	for (FstabEntry * entry : nfs_entries)
 	{
-	    if (!is_valid_name(tmp2.device))
+            string device = entry->get_device();
+
+	    if (!is_valid_name(device))
 	    {
-		y2war("invalid name for Nfs device");
+		y2war("invalid name for Nfs device: " << device );
 		continue;
 	    }
 
-	    pair<string, string> tmp3 = Nfs::Impl::split_name(tmp2.device);
-	    Nfs* nfs = Nfs::create(probed, tmp3.first, canonical_path(tmp3.second));
-	    nfs->add_mountpoint(tmp2.mount);
+	    pair<string, string> name_parts = Nfs::Impl::split_name(device);
+	    Nfs* nfs = Nfs::create(probed, name_parts.first, canonical_path(name_parts.second));
+	    nfs->add_mountpoint(entry->get_mount_point());
 
-	    const CmdDf& cmd_df = systeminfo.getCmdDf(tmp2.mount);
+	    const CmdDf& cmd_df = systeminfo.getCmdDf(entry->get_mount_point());
 	    nfs->set_space_info(cmd_df.get_space_info());
 	}
     }
