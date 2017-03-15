@@ -85,3 +85,31 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
     BOOST_CHECK_EQUAL( opts.contains( "timeout=20s" ), true  );
 }
 
+
+BOOST_AUTO_TEST_CASE( create_new )
+{
+    EtcCrypttab crypttab;
+    crypttab.read( "/tmp/wrglbrmpf/crypttab" );
+
+    BOOST_CHECK_EQUAL( crypttab.get_entry_count(), 0 );
+
+    CrypttabEntry * entry = new CrypttabEntry();
+    entry->set_crypt_device( "cr_data" );
+    entry->set_block_device( "/dev/sda1" );
+    crypttab.add( entry );
+
+    string filename = "./test-crypttab";
+    crypttab.write( filename );
+
+    EtcCrypttab crypttab2;
+    crypttab2.read( filename );
+
+    BOOST_CHECK_EQUAL( crypttab2.get_entry_count(), 1 );
+    
+    BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_crypt_device(), "cr_data" );
+    BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_block_device(), "/dev/sda1" );
+    BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_password(), ""  );
+    BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_crypt_opts().empty(), true  );
+
+    remove( filename.c_str() );
+}
