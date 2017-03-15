@@ -149,6 +149,18 @@ namespace storage
 	 **/
 	bool parse( const string & opt_string, int line_no = -1 );
 
+        /**
+         * Return the options as string vector. If there are no options, this
+         * is empty; it will not return "defaults" in that case.
+         **/
+        const string_vec & get_opts() const { return opts; }
+
+        /**
+         * Set the options as string vector. If there are no options, this
+         * should be empty, not contain a string "defaults".
+         **/
+        void set_opts( const string_vec & new_opts ) { opts = new_opts; }
+
     protected:
 
 	string_vec opts;
