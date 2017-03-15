@@ -23,6 +23,10 @@ Style Guide
   return values since this is not always obvious for API users and difficult
   to support in some target languages.
 
+* Tabs are eight spaces wide. Use them for indentation.
+
+* An indentation level is four spaces wide.
+
 
 Conventions
 ===========
