@@ -137,14 +137,51 @@ namespace storage
 	for (const string& mountpoint : proc_mounts.find_by_name(blk_device->get_name(), systeminfo))
 	    add_mountpoint(mountpoint);
 
-	fstab.setDevice(blk_device->get_name(), {}, uuid, label, blk_device->get_udev_ids(),
-			blk_device->get_udev_paths());
-	FstabEntry fstabentry;
-	if (fstab.findDevice(blk_device->get_name(), fstabentry))
-	{
-	    set_mount_by(fstabentry.mount_by);
-	    set_fstab_options(fstabentry.opts);
-	}
+
+        // Collect all aliases for this device
+
+        string_vec device_aliases;
+        device_aliases.push_back( blk_device->get_name() );
+
+        if ( ! uuid.empty() )
+        {
+            // Add UUID aliases
+            device_aliases.push_back( string( "UUID=" ) + uuid );
+            device_aliases.push_back( string( "/dev/disk/by-uuid/" ) + uuid );
+        }
+
+        if ( ! label.empty() )
+        {
+            // Add label aliases
+            device_aliases.push_back( string( "LABEL=" ) + label );
+            device_aliases.push_back( string( "/dev/disk/by-label/" ) + label );
+        }
+
+
+        // Add udev IDs
+
+        const vector<string> & udev_ids = blk_device->get_udev_ids();
+
+        for (size_t i=0; i < udev_ids.size(); ++i)
+            device_aliases.push_back(string("/dev/disk/by-id/") + udev_ids[i]);
+
+
+        // Add udev paths
+
+        const vector<string> & udev_paths = blk_device->get_udev_paths();
+
+        for (size_t i=0; i < udev_paths.size(); ++i)
+            device_aliases.push_back(string("/dev/disk/by-path/") + udev_paths[i]);
+
+        // Find the corresponding /etc/fstab entry by any of those aliases
+        FstabEntry * fstab_entry = fstab.find_device(device_aliases);
+
+        if (fstab_entry)
+        {
+            set_fstab_device_name(fstab_entry->get_device());
+	    set_mount_by(EtcFstab::get_mount_by(fstab_entry->get_device()));
+	    set_mount_opts(fstab_entry->get_mount_opts());
+        }
     }
 
 
@@ -632,21 +669,18 @@ namespace storage
     {
 	const Storage& storage = actiongraph.get_storage();
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcFstab fstab;
+        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
+	const BlkFilesystem * blk_filesystem_lhs = to_blk_filesystem(lhs);
+        FstabEntry * entry = fstab.find_device(blk_filesystem_lhs->get_impl().get_fstab_device_name());
 
-	// TODO
-
-	FstabChange entry;
-	entry.device = blk_device_lhs->get_name();
-	entry.dentry = get_mount_by_name();
-	entry.mount = mountpoint;
-	entry.fs = toString(get_type());
-	entry.opts = get_fstab_options();
-
-	fstab.addEntry(entry);
-	fstab.flush();
+        if (entry)
+        {
+            entry->set_device(get_mount_by_name());
+            fstab.log();
+            fstab.write();
+        }
     }
 
 
