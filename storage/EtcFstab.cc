@@ -191,6 +191,7 @@ namespace storage
 
 	if ( get_column_count() != FSTAB_COLUMN_COUNT )
 	{
+	    cerr << "fstab:" << line_no << " Error: wrong number of fields: \"" << line << "\"" << endl;
 	    y2err( "fstab:" << line_no << " Error: wrong number of fields: \"" << line << "\"" );
 	    return false;
 	}
@@ -202,10 +203,7 @@ namespace storage
 	bool ok = toValue( get_column( col++ ), fs_type );
 
 	if ( ! ok )
-	{
-	    y2err( "fstab:" << line_no << " Error: wrong filesystem type: \"" << line << "\"" );
-	    return false;
-	}
+            fs_type = FsType::UNKNOWN;
 
 	mount_opts.parse( EtcFstab::fstab_decode( get_column( col++ ) ), line_no );
 	dump_pass = atoi( get_column( col++ ).c_str() );
