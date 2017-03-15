@@ -20,6 +20,7 @@
  */
 
 
+#include <sys/sysmacros.h>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/LoggerImpl.h"

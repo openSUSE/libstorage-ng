@@ -21,6 +21,8 @@
  */
 
 
+#include <sys/sysmacros.h>
+
 #include "storage/Utils/Regex.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/CmdDmsetup.h"
