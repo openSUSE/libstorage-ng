@@ -63,6 +63,9 @@ namespace storage
 
 	Devicegraph* probed = create_devicegraph("probed");
 
+    // FIXME
+    // This approach for vgs activation does not work in combination with activating
+    // LUKS. Managing lvm with LUKS, raid, etc is pending to implement.
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
