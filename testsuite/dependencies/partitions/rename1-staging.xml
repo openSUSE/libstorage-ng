@@ -70,13 +70,13 @@
       <sid>66</sid>
       <uuid>9c690ff3-618f-4143-ade3-0c4971beeae5</uuid>
       <mountpoint>/test1</mountpoint>
-      <fstab-options>defaults</fstab-options>
+      <mount-opts>defaults</mount-opts>
     </Ext4>
     <Ext4>
       <sid>67</sid>
       <uuid>6b95de25-8302-4e6c-b2c6-3a4dcfd21b6a</uuid>
       <mountpoint>/test2</mountpoint>
-      <fstab-options>defaults</fstab-options>
+      <mount-opts>defaults</mount-opts>
     </Ext4>
     <Partition>
       <sid>74</sid>

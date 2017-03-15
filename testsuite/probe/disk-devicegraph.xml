@@ -86,14 +86,14 @@
       <uuid>86b64dbc-0530-4a4b-bca7-72e2c8b4e317</uuid>
       <mountpoint>swap</mountpoint>
       <mount-by>uuid</mount-by>
-      <fstab-options>defaults</fstab-options>
+      <mount-opts>defaults</mount-opts>
     </Swap>
     <Ext4>
       <sid>48</sid>
       <uuid>9f0f12c5-4d18-494b-b234-7342c953e99a</uuid>
       <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
-      <fstab-options>acl,user_xattr</fstab-options>
+      <mount-opts>acl,user_xattr</mount-opts>
     </Ext4>
     <Ext4>
       <sid>49</sid>
@@ -101,7 +101,7 @@
       <uuid>49516005-5d9d-4e00-87b5-516f16de7e6f</uuid>
       <mountpoint>/home</mountpoint>
       <mount-by>label</mount-by>
-      <fstab-options>defaults</fstab-options>
+      <mount-opts>defaults</mount-opts>
     </Ext4>
   </Devices>
   <Holders>
