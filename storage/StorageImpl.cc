@@ -63,24 +63,24 @@ namespace storage
 
 	Devicegraph* probed = create_devicegraph("probed");
 
-    // FIXME
-    // This approach for vgs activation does not work in combination with activating
-    // LUKS. Managing lvm with LUKS, raid, etc is pending to implement.
+	// FIXME
+	// This approach for vgs activation does not work in combination with activating
+	// LUKS. Managing lvm with LUKS, raid, etc is pending to implement.
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
-	    LvmVg::Impl::activate();
+		LvmVg::Impl::activate();
 		probe(probed);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
-	    LvmVg::Impl::activate();
+		LvmVg::Impl::activate();
 		probe(probed);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
-	    LvmVg::Impl::activate();
+		LvmVg::Impl::activate();
 		Mockup::set_mode(Mockup::Mode::RECORD);
 		probe(probed);
 		Mockup::save(environment.get_mockup_filename());

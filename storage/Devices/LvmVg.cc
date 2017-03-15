@@ -69,7 +69,7 @@ namespace storage
     void
     LvmVg::activate()
     {
-    return LvmVg::Impl::activate();
+	return LvmVg::Impl::activate();
     }
 
 

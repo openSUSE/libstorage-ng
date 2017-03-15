@@ -341,8 +341,8 @@ namespace storage
     void
     LvmVg::Impl::activate()
     {
-    string cmd_line = VGCHANGEBIN " -a y";
-	
+	string cmd_line = VGCHANGEBIN " -a y";
+
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
