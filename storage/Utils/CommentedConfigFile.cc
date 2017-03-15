@@ -201,6 +201,7 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
                                          int end )
 {
     string_vec comment_before;
+    bool success;
 
     for ( int i = from; i <= end; ++i )
     {
@@ -218,16 +219,20 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
             string content;
             string line_comment;
             split_off_comment( line, content, line_comment );
-            append( entry );
             entry->set_line_comment( line_comment );
-            bool success = entry->parse( content, i+1 );
+            bool ok = entry->parse( content, i+1 );
 
-            if ( ! success )
-                return false;
+            if ( ok )
+                append( entry );
+            else
+            {
+                success = false;
+                delete entry;
+            }
         }
     }
 
-    return true;
+    return success;
 }
 
 
