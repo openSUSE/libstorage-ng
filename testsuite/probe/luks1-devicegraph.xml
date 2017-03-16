@@ -84,6 +84,7 @@
       <sid>48</sid>
       <uuid>30032cea-a1f0-4891-8396-28a8d97491d4</uuid>
       <mountpoint>/home</mountpoint>
+      <mount-opts>nofail</mount-opts>
     </Xfs>
   </Devices>
   <Holders>
