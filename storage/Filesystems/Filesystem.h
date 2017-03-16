@@ -35,12 +35,6 @@ namespace storage
     class SpaceInfo;
 
 
-    enum class FsType {
-	UNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
-	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2
-    };
-
-
     // abstract class
 
     class Filesystem : public Mountable

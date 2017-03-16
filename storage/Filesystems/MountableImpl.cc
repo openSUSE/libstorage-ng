@@ -47,6 +47,13 @@ namespace storage
     const char* DeviceTraits<Mountable>::classname = "Mountable";
 
 
+    // strings must match /etc/fstab
+    const vector<string> EnumTraits<FsType>::names({
+	"unknown", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
+	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2"
+    });
+
+
     const vector<string> EnumTraits<MountByType>::names({
 	"device", "uuid", "label", "id", "path"
     });
@@ -185,7 +192,7 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + get_mount_type() + " " +
+	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) +
 	    quote(get_mount_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
@@ -257,14 +264,7 @@ namespace storage
         entry->set_device(get_mount_by_name());
         entry->set_mount_point(mountpoint);
         entry->set_mount_opts(get_mount_opts());
-
-        // FIXME: Why is this not a FsType in the first place?
-        // It does not make any sense to convert it back and forth between string ans FsType.
-        FsType fs_type;
-	bool ok = toValue(get_mount_type(), fs_type);
-
-	if ( ok )
-            entry->set_fs_type(fs_type);
+	entry->set_fs_type(get_mount_type());
 
         // TODO: entry->set_fsck_pass( ?? );
 

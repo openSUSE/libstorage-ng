@@ -33,6 +33,12 @@
 namespace storage
 {
 
+    enum class FsType {
+	UNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
+	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2
+    };
+
+
     /**
      * The key by which the mount program identifies a mountable
      */

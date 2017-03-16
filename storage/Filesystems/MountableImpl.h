@@ -42,6 +42,8 @@ namespace storage
 
     template <> struct DeviceTraits<Mountable> { static const char* classname; };
 
+    template <> struct EnumTraits<FsType> { static const vector<string> names; };
+
     template <> struct EnumTraits<MountByType> { static const vector<string> names; };
 
 
@@ -88,7 +90,7 @@ namespace storage
 	 */
 	virtual string get_mount_by_name() const = 0;
 
-	virtual string get_mount_type() const = 0;
+	virtual FsType get_mount_type() const = 0;
 
 	const Mountable* get_mountable() const { return to_mountable(get_device()); }
 
