@@ -39,7 +39,8 @@ namespace storage
 
     MountOpts::MountOpts( const string & opt_string )
     {
-
+        if ( ! opt_string.empty() )
+            parse( opt_string );
     }
 
 

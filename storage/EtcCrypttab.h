@@ -46,10 +46,11 @@ namespace storage
     class CryptOpts: public MountOpts
     {
     public:
-
-	CryptOpts( const string & opt_string = "" ):
-	    MountOpts( opt_string )
-	    {}
+	/**
+	 * Constructor. Parse 'opt_string' if non-empty, create empty mount
+	 * options otherwise.
+	 **/
+	CryptOpts( const string & opt_string = "" );
 
 	/**
 	 * Format the contents for use in /etc/crypttab
@@ -126,7 +127,7 @@ namespace storage
 
 
     /**
-     * Class representing /etc/fstab.
+     * Class representing /etc/crypttab.
      **/
     class EtcCrypttab: public ColumnConfigFile
     {

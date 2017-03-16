@@ -81,7 +81,7 @@ namespace storage
                      device == "rootfs" ||
                      device == "/dev/root" )
                 {
-                    // Get rid of all the usesless stuff that clutters /proc/mounts
+                    // Get rid of all the useless stuff that clutters /proc/mounts
                     delete entry;
                 }
                 else

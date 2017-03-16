@@ -35,6 +35,14 @@
 
 namespace storage
 {
+    CryptOpts::CryptOpts( const string & opt_string ):
+        MountOpts() // Don't let the base class parse the string!
+    {
+        if ( ! opt_string.empty() )
+            parse( opt_string );
+    }
+
+
     string CryptOpts::format() const
     {
 	string result;
