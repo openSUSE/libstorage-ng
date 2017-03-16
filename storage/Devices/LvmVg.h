@@ -58,6 +58,8 @@ namespace storage
 	static LvmVg* create(Devicegraph* devicegraph, const std::string& vg_name);
 	static LvmVg* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	static void activate();
+
 	/**
 	 * Get volume group name. This is different from get_name().
 	 */
