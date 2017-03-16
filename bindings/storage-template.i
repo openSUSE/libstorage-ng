@@ -1,6 +1,5 @@
 
 %template(VectorString) std::vector<std::string>;
-%template(ListString) std::list<std::string>;
 %template(MapStringString) std::map<std::string, std::string>;
 
 %template(VectorDevicePtr) std::vector<Device*>;
