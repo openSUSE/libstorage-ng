@@ -108,17 +108,17 @@ namespace storage
     }
 
 
-    const list<string>&
-    Mountable::get_fstab_options() const
+    const vector<string>&
+    Mountable::get_mount_opts() const
     {
-	return get_impl().get_fstab_options();
+	return get_impl().get_mount_opts().get_opts();
     }
 
 
     void
-    Mountable::set_fstab_options(const list<string>& fstab_options)
+    Mountable::set_mount_opts(const vector<string>& mount_opts)
     {
-	get_impl().set_fstab_options(fstab_options);
+	get_impl().set_mount_opts(mount_opts);
     }
 
 

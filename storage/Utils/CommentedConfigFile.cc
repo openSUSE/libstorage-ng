@@ -50,7 +50,7 @@ CommentedConfigFile::~CommentedConfigFile()
 }
 
 
-CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index )
+CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index ) const
 {
     if ( index < 0 || index >= (int) entries.size() )
         return 0;
@@ -59,7 +59,7 @@ CommentedConfigFile::Entry * CommentedConfigFile::get_entry( int index )
 }
 
 
-int CommentedConfigFile::get_index_of( const Entry * wanted_entry )
+int CommentedConfigFile::get_index_of( const Entry * wanted_entry ) const
 {
     for ( size_t i=0; i < entries.size(); ++i )
     {
@@ -90,6 +90,18 @@ void CommentedConfigFile::remove( int index )
 
     if ( entry )
         delete entry;
+}
+
+
+void CommentedConfigFile::remove( Entry * entry )
+{
+    if ( ! entry )
+        return;
+
+    int index = get_index_of( entry );
+
+    if ( index != -1 )
+        remove( index );
 }
 
 
@@ -129,7 +141,15 @@ bool CommentedConfigFile::read( const string & filename )
 
 bool CommentedConfigFile::write( const string & new_filename )
 {
-    string name = new_filename.empty() ? this->filename : new_filename;
+    string name = new_filename;
+
+    if ( new_filename.empty() )
+        name = this->filename;
+    else
+        this->filename = name;
+
+    if ( name.empty() ) // Support for mocking:
+        return true;    // Pretend everything worked just fine.
 
     std::ofstream file( name, std::ofstream::out | std::ofstream::trunc );
 
@@ -181,6 +201,7 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
                                          int end )
 {
     string_vec comment_before;
+    bool success;
 
     for ( int i = from; i <= end; ++i )
     {
@@ -198,16 +219,20 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
             string content;
             string line_comment;
             split_off_comment( line, content, line_comment );
-            append( entry );
             entry->set_line_comment( line_comment );
-            bool success = entry->parse( content );
+            bool ok = entry->parse( content, i+1 );
 
-            if ( ! success )
-                return false;
+            if ( ok )
+                append( entry );
+            else
+            {
+                success = false;
+                delete entry;
+            }
         }
     }
 
-    return true;
+    return success;
 }
 
 

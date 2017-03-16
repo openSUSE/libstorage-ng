@@ -39,6 +39,7 @@
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
+#include "storage/EtcFstab.h"
 
 
 namespace storage
@@ -114,7 +115,12 @@ namespace storage
 
 	arch = systeminfo.getArch();
 
-	EtcFstab fstab("/etc");
+	EtcFstab fstab;
+
+        if ( environment.get_probe_mode() ==  ProbeMode::READ_MOCKUP )
+            fstab.parse( Mockup::get_file( ETC_FSTAB ).content );
+        else
+            fstab.read( ETC_FSTAB );
 
 	// TODO
 

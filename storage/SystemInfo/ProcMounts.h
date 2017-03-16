@@ -46,25 +46,28 @@ namespace storage
     public:
 
 	ProcMounts();
+        ~ProcMounts();
 
 	vector<string> find_by_name(const string& name, SystemInfo& systeminfo) const;
 
 	/**
-	 * Return all NFS and NFS4 entries.
+	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
+         * do not delete them.
 	 */
-	vector<FstabEntry> get_all_nfs() const;
+	vector<FstabEntry *> get_all_nfs() const;
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 
     protected:
 
-	void parse(const vector<string>& mount_lines, const vector<string>& swap_lines);
+        void clear();
+	void parse_proc_mounts_lines(const vector<string>& lines);
+	void parse_proc_swaps_lines (const vector<string>& lines);
 
-	typedef multimap<string, FstabEntry>::const_iterator const_iterator;
-	typedef multimap<string, FstabEntry>::value_type value_type;
+	typedef multimap<string, FstabEntry *>::const_iterator const_iterator;
+	typedef multimap<string, FstabEntry *>::value_type value_type;
 
-	multimap<string, FstabEntry> data;
-
+	multimap<string, FstabEntry *> data;
     };
 
 }

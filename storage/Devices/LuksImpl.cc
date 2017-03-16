@@ -32,6 +32,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/EtcCrypttab.h"
 
 
 namespace storage
@@ -277,17 +278,18 @@ namespace storage
     {
 	const Storage& storage = actiongraph.get_storage();
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcCrypttab crypttab;
+        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
 	// TODO, error handling and mount-by
 
-	FstabChange entry;
-	entry.device = get_blk_device()->get_name();
-	entry.dentry = get_name();
-	entry.encr = EncryptionType::LUKS;
+        CrypttabEntry * entry = new CrypttabEntry();
+        entry->set_crypt_device( get_name() );
+        entry->set_block_device( get_blk_device()->get_name() );
 
-	fstab.addEntry(entry);
-	fstab.flush();
+        crypttab.add( entry );
+        crypttab.log();
+        crypttab.write();
     }
 
 
@@ -296,22 +298,22 @@ namespace storage
 					  const Device* lhs) const
     {
 	const Storage& storage = actiongraph.get_storage();
-
 	const Luks* luks_lhs = to_luks(lhs);
 
 	// TODO, error handling and mount-by
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcCrypttab crypttab;
+        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	FstabKey key(luks_lhs->get_blk_device()->get_name(), "");
-	FstabChange entry;
-	entry.device = get_blk_device()->get_name();
-	entry.dentry = get_name();
-	entry.encr = EncryptionType::LUKS;
+        string old_block_device = luks_lhs->get_blk_device()->get_name();
+        CrypttabEntry * entry = crypttab.find_block_device(old_block_device);
 
-	fstab.removeEntry(key);
-	fstab.addEntry(entry);
-	fstab.flush();
+        if (entry)
+        {
+            entry->set_block_device(get_blk_device()->get_name());
+            crypttab.log();
+            crypttab.write();
+        }
     }
 
 
@@ -320,14 +322,17 @@ namespace storage
     {
 	const Storage& storage = actiongraph.get_storage();
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcCrypttab crypttab;
+        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	// TODO, error handling and mount-by
+        CrypttabEntry * entry = crypttab.find_block_device(get_blk_device()->get_name());
 
-	FstabKey key(get_blk_device()->get_name(), "");
-
-	fstab.removeEntry(key);
-	fstab.flush();
+        if (entry)
+        {
+            crypttab.remove(entry);
+            crypttab.log();
+            crypttab.write();
+        }
     }
 
 }

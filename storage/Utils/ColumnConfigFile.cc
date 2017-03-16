@@ -26,6 +26,9 @@
 
 #include "storage/Utils/ColumnConfigFile.h"
 
+using std::cout;
+using std::endl;
+
 
 #define WHITESPACE                      " \t"
 #define DEFAULT_MAX_COLUMN_WIDTH        40
@@ -53,8 +56,11 @@ string ColumnConfigFile::Entry::format()
             {
                 size_t field_width = col_parent->get_column_width( i );
 
-                if ( col.size() < field_width ) // Pad to desired width
+                if ( col.size() < field_width && i < columns.size() - 1 )
+                {
+                    // Pad to desired width
                     col += string( field_width - col.size(), ' ' );
+                }
             }
         }
 
@@ -65,8 +71,10 @@ string ColumnConfigFile::Entry::format()
 }
 
 
-bool ColumnConfigFile::Entry::parse( const string & line )
+bool ColumnConfigFile::Entry::parse( const string & line, int line_no )
 {
+    (void) line_no;
+
     set_content( line );
     columns = split( line );
 
@@ -157,7 +165,10 @@ void ColumnConfigFile::calc_column_widths()
             dynamic_cast<ColumnConfigFile::Entry*>( get_entry( i ) );
 
         if ( entry )
+        {
+            entry->populate_columns();
             columns = std::max( entry->get_column_count(), columns );
+        }
     }
 
     column_widths.resize( columns );
@@ -191,6 +202,15 @@ void ColumnConfigFile::calc_column_widths()
 
 #if 0
     for ( int col=0; col < columns; ++col )
-        std::cout << "Col " << col << " width: " << column_widths[col] << std::endl;
+        cout << "Col " << col << " width: " << column_widths[col] << endl;
 #endif
+}
+
+
+ColumnConfigFile::Entry * ColumnConfigFile::get_entry( int index ) const
+{
+    CommentedConfigFile::Entry * entry =
+        CommentedConfigFile::get_entry( index );
+
+    return entry ? dynamic_cast<ColumnConfigFile::Entry *>( entry ) : 0;
 }
