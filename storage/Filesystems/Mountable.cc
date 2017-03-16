@@ -122,6 +122,20 @@ namespace storage
     }
 
 
+    const vector<string>&
+    Mountable::get_fstab_options() const
+    {
+	return get_mount_opts();
+    }
+
+
+    void
+    Mountable::set_fstab_options(const vector<string>& mount_opts)
+    {
+	set_mount_opts(mount_opts);
+    }
+
+
     vector<Mountable*>
     Mountable::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
     {
