@@ -116,7 +116,11 @@ namespace storage
 	arch = systeminfo.getArch();
 
 	EtcFstab fstab;
-	fstab.read( ETC_FSTAB );
+
+        if ( environment.get_probe_mode() ==  ProbeMode::READ_MOCKUP )
+            fstab.parse( Mockup::get_file( ETC_FSTAB ).content );
+        else
+            fstab.read( ETC_FSTAB );
 
 	// TODO
 
