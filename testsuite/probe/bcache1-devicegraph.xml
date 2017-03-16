@@ -166,7 +166,6 @@
       <uuid>6990d6be-8fa8-4be7-8cf3-66ad1448864e</uuid>
       <mountpoint>swap</mountpoint>
       <mount-by>uuid</mount-by>
-      <mount-opts>defaults</mount-opts>
     </Swap>
     <Ext4>
       <sid>55</sid>

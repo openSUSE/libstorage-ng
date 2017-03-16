@@ -99,7 +99,6 @@
       <sid>50</sid>
       <uuid>5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7</uuid>
       <mountpoint>/home</mountpoint>
-      <mount-opts>defaults</mount-opts>
     </Xfs>
     <Ext4>
       <sid>51</sid>
@@ -111,7 +110,6 @@
       <sid>52</sid>
       <uuid>82afe683-54d7-406f-8c60-d3a32febbac7</uuid>
       <mountpoint>swap</mountpoint>
-      <mount-opts>defaults</mount-opts>
     </Swap>
   </Devices>
   <Holders>
