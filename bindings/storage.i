@@ -85,7 +85,6 @@
 %include "stdint.i"
 %include "std_string.i"
 %include "std_vector.i"
-%include "std_list.i"
 %include "std_map.i"
 
 %include "../../storage/Utils/Swig.h"
