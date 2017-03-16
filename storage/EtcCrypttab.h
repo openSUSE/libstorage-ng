@@ -157,7 +157,8 @@ namespace storage
 	void add( CrypttabEntry * entry ) { append( entry ); }
 
 	/**
-	 * Return entry no. 'index' or 0 if 'index' is out of range.
+	 * Return entry no. 'index'. Unlike the inherited method, this throws
+	 * an IndexOutOfRangeException if the index is out of range.
 	 *
 	 * This is a covariant of the (non-virtual) base class method to reduce
 	 * the number of dynamic_casts.
