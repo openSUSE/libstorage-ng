@@ -61,8 +61,8 @@ namespace storage
 	MountByType get_mount_by() const;
 	void set_mount_by(MountByType mount_by);
 
-	const std::list<std::string>& get_fstab_options() const;
-	void set_fstab_options(const std::list<std::string>& fstab_options);
+	const std::vector<std::string>& get_mount_opts() const;
+	void set_mount_opts(const std::vector<std::string>& mount_opts);
 
 	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,
 							  const std::string& mountpoint);

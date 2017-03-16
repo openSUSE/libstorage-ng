@@ -19,6 +19,7 @@ libstorage_ng_la_SOURCES =				\
 	FindBy.h					\
 	Redirect.h					\
 	Graphviz.h		Graphviz.cc		\
+	EtcCrypttab.h		EtcCrypttab.cc		\
 	EtcFstab.h		EtcFstab.cc		\
 	EtcMdadm.h		EtcMdadm.cc		\
 	FreeInfo.h		FreeInfo.cc		\

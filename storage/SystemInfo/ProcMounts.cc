@@ -21,10 +21,14 @@
  */
 
 
+#include <iostream>
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
@@ -37,48 +41,69 @@ namespace storage
 	AsciiFile mounts("/proc/mounts");
 	AsciiFile swaps("/proc/swaps");
 
-	parse(mounts.lines(), swaps.lines());
+	parse_proc_mounts_lines(mounts.lines());
+	parse_proc_swaps_lines(swaps.lines());
+    }
+
+
+    ProcMounts::~ProcMounts()
+    {
+        clear();
     }
 
 
     void
-    ProcMounts::parse(const vector<string>& mount_lines, const vector<string>& swap_lines)
+    ProcMounts::clear()
     {
-	data.clear();
+	for (value_type& value : data)
+            delete value.second;
 
-	for (vector<string>::const_iterator it = mount_lines.begin(); it != mount_lines.end(); ++it)
+        data.clear();
+    }
+
+
+    void
+    ProcMounts::parse_proc_mounts_lines(const vector<string>& lines)
+    {
+        EtcFstab fstab;
+        fstab.parse( lines );
+        cout << "Parsed " << fstab.get_entry_count() << " entries in " << lines.size() << " lines" << endl;
+
+        while ( ! fstab.empty())
+        {
+            FstabEntry * entry = dynamic_cast<FstabEntry *>( fstab.take(0) );
+
+            if ( entry )
+            {
+                const string & device = entry->get_device();
+
+                if ( entry->get_fs_type() == FsType::UNKNOWN ||
+                     device == "rootfs" ||
+                     device == "/dev/root" )
+                {
+                    // Get rid of all the useless stuff that clutters /proc/mounts
+                    delete entry;
+                }
+                else
+                {
+                    data.insert( make_pair( device, entry ) );
+                }
+            }
+        }
+    }
+
+
+    void
+    ProcMounts::parse_proc_swaps_lines(const vector<string>& lines)
+    {
+	for (size_t i=1; i < lines.size(); ++i)
 	{
-	    string dev = boost::replace_all_copy(extractNthWord(0, *it), "\\040", " ");
-	    string dir = boost::replace_all_copy(extractNthWord(1, *it), "\\040", " ");
-
-	    if (dev == "rootfs" || dev == "/dev/root")
-	    {
-		y2mil("skipping line:" << *it);
-		continue;
-	    }
-
-	    FstabEntry entry;
-	    entry.device = dev;
-	    entry.mount = dir;
-	    entry.fs = extractNthWord(2, *it);
-	    entry.opts = splitString(extractNthWord(3, *it), ",");
-	    data.insert(make_pair(dev, entry));
-	}
-
-	for (vector<string>::const_iterator it = swap_lines.begin(); it != swap_lines.end(); ++it)
-	{
-	    if (it == swap_lines.begin())
-		continue;
-
-	    string dev = boost::replace_all_copy(extractNthWord(0, *it), "\\040", " ");
+	    string dev = EtcFstab::fstab_decode(extractNthWord(0, lines[i]));
 	    string::size_type pos = dev.find(" (deleted)");
 	    if (pos != string::npos)
 		dev.erase(pos);
 
-	    FstabEntry entry;
-	    entry.device = dev;
-	    entry.mount = "swap";
-	    entry.fs = "swap";
+            FstabEntry * entry = new FstabEntry(dev, "swap", FsType::SWAP);
 	    data.insert(make_pair(dev, entry));
 	}
 
@@ -90,7 +115,11 @@ namespace storage
     operator<<(std::ostream& s, const ProcMounts& procmounts)
     {
 	for (ProcMounts::const_iterator it = procmounts.data.begin(); it != procmounts.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+        {
+            FstabEntry * entry = it->second;
+            entry->populate_columns();
+	    s << "data[" << it->first << "] -> " << entry->format() << '\n';
+        }
 
 	return s;
     }
@@ -112,22 +141,25 @@ namespace storage
 	    if (value.first == name ||
 		(BlkDevice::Impl::is_valid_name(value.first) &&
 		 systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
-		ret.push_back(value.second.mount);
+		ret.push_back(value.second->get_mount_point());
 	}
 
 	return ret;
     }
 
 
-    vector<FstabEntry>
+    vector<FstabEntry *>
     ProcMounts::get_all_nfs() const
     {
-	vector<FstabEntry> ret;
+	vector<FstabEntry *> ret;
 
 	for (const value_type& value : data)
 	{
-	    if (value.second.fs == "nfs" || value.second.fs == "nfs4")
+	    if (value.second->get_fs_type() == FsType::NFS ||
+                value.second->get_fs_type() == FsType::NFS4  )
+            {
 		ret.push_back(value.second);
+            }
 	}
 
 	return ret;

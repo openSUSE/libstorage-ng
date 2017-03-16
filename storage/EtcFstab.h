@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) [2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,178 +26,342 @@
 
 
 #include <string>
-#include <list>
-#include <boost/algorithm/string.hpp>
+#include <vector>
 
+#include "storage/Utils/ColumnConfigFile.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Devices/Encryption.h"
+#include "storage/Filesystems/Filesystem.h"
+
+#define ETC_FSTAB "/etc/fstab"
 
 
 namespace storage
 {
     using std::string;
-    using std::list;
+    using std::vector;
 
 
-    class AsciiFile;
-    struct FstabEntry;
-
-
-    /*
-     * Get data mode ("journal", "ordered" or "writeback") for ext filesystems
-     * from fstab mount options.
-     */
-    string getExtDataMode(const string& fstab_options);
-
-
-    /*
-     * Unique key to identify entries in fstab.
-     */
-    struct FstabKey
-    {
-	FstabKey(const string& device, const string& mount)
-	    : device(device), mount(mount) {}
-
-	string device;
-	string mount;
-    };
-
-
-    struct FstabChange
-    {
-	FstabChange() : freq(0), passno(0), encr(EncryptionType::NONE), tmpcrypt(false) {}
-
-	explicit FstabChange(const FstabEntry& entry) : FstabChange()
-	    { *this = entry; }
-
-	FstabChange& operator=(const FstabEntry& rhs);
-
-	friend std::ostream& operator<< (std::ostream& s, const FstabChange &v);
-
-	string device;
-	string dentry;
-	string mount;
-	string fs;
-	list<string> opts;
-	int freq;
-	int passno;
-	string loop_dev;
-	EncryptionType encr;
-	bool tmpcrypt;
-    };
-
-
-    struct FstabEntry : public FstabChange
-    {
-	FstabEntry() : loop(false), dmcrypt(false), noauto(false), cryptotab(false),
-		       crypttab(false), mount_by(MountByType::DEVICE) {}
-
-	explicit FstabEntry(const FstabChange& change) : FstabEntry()
-	    { *this = change; }
-
-	FstabEntry& operator=(const FstabChange& rhs);
-
-	friend std::ostream& operator<< (std::ostream& s, const FstabEntry &v);
-
-	bool loop;
-	bool dmcrypt;
-	bool noauto;
-	bool cryptotab;
-	bool crypttab;
-	string cr_opts;
-	string cr_key;
-	MountByType mount_by;
-
-	void calcDependent();
-	bool optUser() const;
-    };
-
-
-    class EtcFstab
+    /**
+     * Helper class for the mount options of one /etc/fstab entry.
+     * In /etc/fstab, the mount options are a comma-separated list.
+     * This class keeps them as separate options.
+     *
+     * "defaults" is not stored in this class; this class reports itself as
+     * empty in that case.
+     **/
+    class MountOpts
     {
     public:
+	/**
+	 * Constructor. Parse 'opt_string' if non-empty, create empty mount
+	 * options otherwise.
+	 **/
+	MountOpts( const string & opt_string = "" );
 
-	EtcFstab(const string& prefix = "", bool rootMounted = true);
+	/**
+	 * Return the number of mount options.
+	 **/
+	size_t size() const { return opts.size(); }
 
-	// find first entry for a device
-	bool findDevice( const string& dev, FstabEntry& entry ) const;
+	/**
+	 * Return 'true' if the mount options are empty, i.e. the corresponding
+	 * field in the /etc/fstab entry would be "defaults".
+	 **/
+	bool empty() const { return opts.empty(); }
 
-	// find first entry for a list of devices
-	bool findDevice( const list<string>& dl, FstabEntry& entry ) const;
+	/**
+	 * Return a const_iterator referring to the first mount option.
+	 **/
+	string_vec::const_iterator begin() const { return opts.begin(); }
 
-	bool findMount( const string& mount, FstabEntry& entry ) const;
-	bool findMount( const string& mount ) const
-	    { FstabEntry e; return( findMount( mount,e )); }
+	/**
+	 * Return a const_iterator referring one element behind the last mount
+	 * option.
+	 **/
+	string_vec::const_iterator end()   const { return opts.end();	}
 
-	void setDevice(const string& device, const list<string>& alt_names, const string& uuid,
-		       const string& label, const vector<string>& ids, const vector<string>& paths);
+	/**
+	 * Return the mount option with the specified index or an empty string
+	 * if 'index' is out of bounds.
+	 **/
+	string get_opt( int index ) const;
 
-	bool addEntry(const FstabChange& entry);
-	bool updateEntry(const FstabKey& key, const FstabChange& entry);
-	bool removeEntry(const FstabKey& key);
+	/**
+	 * Set the mount option with the specified index to a new value.
+	 **/
 
-	bool changeRootPrefix(const string& new_prefix);
+	void set_opt( int index, const string & new_val );
 
-	void getFileBasedLoops( const string& prefix, list<FstabEntry>& l ) const;
+	/**
+	 * Return 'true' if any of the mount options is exactly the content of
+	 * 'opt'. Notice that "defaults" is not stored here; use empty()
+	 * instead.
+	 **/
+	bool contains( const string & opt ) const;
 
-	list<FstabEntry> getEntries() const;
+	/**
+	 * Find the position of a mount option: Return the index of the mount
+	 * option matching exactly 'opt' or -1 if there is no match.
+	 **/
+	int get_index_of( const string & opt ) const;
 
-	bool flush();
+	/**
+	 * Remove a mount option by index (starting with 0).
+	 **/
+	void remove( int index );
+
+	/**
+	 * Remove a mount option that matches exactly the contents of 'opt'.
+	 **/
+	void remove( const string & opt );
+
+	/**
+	 * Add a mount option to the end of the existing ones.
+	 * See also operator<<().
+	 **/
+	void append( const string & opt );
+
+        /**
+         * Clear all mount options.
+         **/
+        void clear() { opts.clear(); }
+
+	/**
+	 * Very much like append(), but also return a reference to this object
+	 * so options can be chained:
+	 *
+	 *     opts << "noauto" << "user";
+	 **/
+	MountOpts & operator<<( const string & opt ) { append( opt ); return *this; }
+
+	/**
+	 * Format the contents for use in /etc/fstab; if there are no mount
+	 * options, return "defaults".
+	 **/
+	string format() const;
+
+	/**
+	 * Parse mount options from the fourth field of an /etc/fstab entry.
+	 * "defaults" is treated as empty options (i.e. for the purpose of this
+	 * class, "defaults" is simply ignored).
+	 *
+	 * This returns 'true' on success, 'false' on error.
+	 **/
+	bool parse( const string & opt_string, int line_no = -1 );
+
+        /**
+         * Return the options as string vector. If there are no options, this
+         * is empty; it will not return "defaults" in that case.
+         **/
+        const string_vec & get_opts() const { return opts; }
+
+        /**
+         * Set the options as string vector. If there are no options, this
+         * should be empty, not contain a string "defaults".
+         **/
+        void set_opts( const string_vec & new_opts ) { opts = new_opts; }
 
     protected:
 
-	struct Entry
-	{
-	    enum Operation { NONE, ADD, UPDATE, REMOVE };
-	    Entry(Operation op = NONE) : op(op) {}
-	    Operation op;
-	    FstabEntry nnew;
-	    FstabEntry old;
-	};
-
-	friend EnumTraits<Entry::Operation>;
-
-	void readFiles();
-
-	int findPrefix( const AsciiFile& tab, const string& mount ) const;
-
-	AsciiFile* findFile( const FstabEntry& e, AsciiFile*& fstab,
-			     AsciiFile*& cryptotab, int& lineno ) const;
-
-	bool findCrtab( const FstabEntry& e, const AsciiFile& crtab,
-			int& lineno ) const;
-	bool findCrtab( const string& device, const AsciiFile& crtab,
-			int& lineno ) const;
-
-	string updateLine(const list<string>& ol, const list<string>& nl,
-			  const string& line) const;
-	string createLine(const list<string>& ls, unsigned fields,
-			  const unsigned* flen) const;
-
-	string createTabLine( const FstabEntry& e ) const;
-	string createCrtabLine( const FstabEntry& e ) const;
-	void updateTabLine( list<string>(*fnc)(const FstabEntry& e),
-	                    const FstabEntry& old, const FstabEntry& nnew, 
-	                    string& line ) const;
-
-	static list<string> makeStringList(const FstabEntry& e);
-	static list<string> makeCrStringList(const FstabEntry& e);
-
-	static string fstabEncode(const string&);
-	static string fstabDecode(const string&);
-
-	void dump() const;
-
-	static const unsigned fstabFields[6];
-	static const unsigned cryptotabFields[6];
-	static const unsigned crypttabFields[6];
-
-	string prefix;
-	list<Entry> co;
+	string_vec opts;
     };
 
 
-    template <> struct EnumTraits<EtcFstab::Entry::Operation> { static const vector<string> names; };
+    /**
+     * Class representing one /etc/fstab entry.
+     **/
+    class FstabEntry: public ColumnConfigFile::Entry
+    {
+    public:
+
+	/**
+	 * Constructor.
+	 **/
+	FstabEntry();
+
+	FstabEntry( const string & device,
+		    const string & mount_point,
+		    FsType	   fs_type );
+
+	virtual ~FstabEntry();
+
+	/**
+	 * Populate the columns with content from the member variables.
+	 *
+	 * Reimplemented from CommentedConfigFile.
+	 **/
+	virtual void populate_columns();
+
+	/**
+	 * Parse a content line. Return 'true' on success, 'false' on error.
+	 *
+	 * Reimplemented from CommentedConfigFile.
+	 **/
+	virtual bool parse( const string & line, int line_no = -1 );
+
+
+	// Getters; see man fstab(5)
+
+	const string &	  get_device()	    const { return device;	}
+	const string &	  get_mount_point() const { return mount_point; }
+	FsType		  get_fs_type()	    const { return fs_type;	}
+	const MountOpts & get_mount_opts()  const { return mount_opts;	}
+	int		  get_dump_pass()   const { return dump_pass;	}
+	int		  get_fsck_pass()   const { return fsck_pass;	}
+
+	// Setters
+
+	void set_device	    ( const string &	new_val ) { device	= new_val; }
+	void set_mount_point( const string &	new_val ) { mount_point = new_val; }
+	void set_fs_type    ( FsType		new_val ) { fs_type	= new_val; }
+	void set_mount_opts ( const MountOpts & new_val ) { mount_opts	= new_val; }
+	void set_dump_pass  ( int		new_val ) { dump_pass	= new_val; }
+	void set_fsck_pass  ( int		new_val ) { fsck_pass	= new_val; }
+
+
+    private:
+
+	string	  device;	// including UUID= or LABEL=
+	string	  mount_point;
+	FsType	  fs_type;	// see Filesystems/Filesystem.h
+	MountOpts mount_opts;
+	int	  dump_pass;	// historic
+	int	  fsck_pass;
+    };
+
+
+    /**
+     * Class representing /etc/fstab.
+     **/
+    class EtcFstab: public ColumnConfigFile
+    {
+    public:
+
+	EtcFstab();
+	virtual ~EtcFstab();
+
+	// using inherited read() and write() unchanged
+
+	/**
+	 * Return the first entry for device name 'device' or 0 if there is no
+	 * matching entry.
+	 **/
+	FstabEntry * find_device( const string & device	 ) const;
+
+	/**
+	 * Find the first entry for any of the device names in 'devices' 0 if
+	 * there is no matching entry.
+	 **/
+	FstabEntry * find_device( const string_vec & devices ) const;
+
+	/**
+	 * Return the first entry for mount point 'mount_point' or 0 if there
+	 * is no matching entry.
+	 **/
+	FstabEntry * find_mount_point( const string & mount_point ) const
+	    { int dummy; return find_mount_point( mount_point, dummy ); }
+
+	/**
+	 * Return the first entry for mount point 'mount_point' or 0 if there
+	 * is no matching entry. 'index_ret' returns its index in the entries
+	 * or -1 if there was no match.
+	 **/
+	FstabEntry * find_mount_point( const string & mount_point, int & index_ret ) const;
+
+        /**
+         * Add an entry at the correct place to maintain the mount order.
+         **/
+        void add( FstabEntry * entry );
+
+        /**
+         * Check the mount order in the current entries. Return 'true' if ok,
+         * 'false' if not.
+         **/
+        bool check_mount_order() const;
+
+        /**
+         * Fix the mount order in the current entries.
+         **/
+        void fix_mount_order();
+
+        /**
+         * Return entry no. 'index'. Unlike the inherited method, this throws
+	 * an IndexOutOfRangeException if the index is out of range.
+         *
+         * This is a covariant of the (non-virtual) base class method to reduce
+         * the number of dynamic_casts.
+         **/
+        FstabEntry * get_entry( int index ) const;
+
+        /**
+         * Factory method to create one entry.
+         *
+         * Reimplemented from CommentedConfigFile.
+         **/
+        virtual Entry * create_entry() { return new FstabEntry(); }
+
+
+	/**
+	 * Get the "mount by" type from a device specification. This might include:
+	 *
+	 *   - "UUID="		      => UUID
+	 *   - "LABEL="		      => LABEL
+	 *   - "/dev/disk/by-uuid/"   => UUID
+	 *   - "/dev/disk/by-label/"  => LABEL
+	 *   - "/dev/disk/by-id/"     => ID
+	 *   - "/dev/disk/by-path/"   => PATH
+	 *
+	 * Everything else is DEVICE.
+	 **/
+	static MountByType get_mount_by( const string & device );
+
+	/**
+	 * Encode a string that might contain whitespace for use in /etc/fstab:
+	 * Use the corresponding octal sequence instead (\040 for blank etc.).
+	 **/
+	static string fstab_encode( const string & unencoded );
+
+	/**
+	 * Decode an fstab-encoded string: Change back \040 a blank etc.
+	 **/
+	static string fstab_decode( const string & encoded );
+
+        /**
+         * Dump the current contents to the log.
+         **/
+        void log();
+
+
+    protected:
+
+        /**
+         * Find the entry index before which 'entry' should be inserted into
+         * the sort order or -1 if it should become the last entry
+         * (i.e. appended).
+         **/
+        int find_sort_index( FstabEntry * entry ) const;
+
+        /**
+         * Return the entry index with the next problem in the mount order or
+         * -1 if there is none (i.e. everything is ok). Start checking from
+         * 'start_index' onwards.
+         **/
+        int next_mount_order_problem( int start_index = 0 ) const;
+
+
+        // Change privacy of some inherited methods.
+        //
+        // Use add() instead which takes care of the correct insertion order.
+
+        void insert( int before, CommentedConfigFile::Entry * entry )
+            { CommentedConfigFile::insert( before, entry ); }
+
+        void append( CommentedConfigFile::Entry * entry )
+            { CommentedConfigFile::append( entry ); }
+
+        CommentedConfigFile & operator<<( CommentedConfigFile::Entry * entry )
+            { return CommentedConfigFile::operator<<( entry ); }
+    };
 
 }
 

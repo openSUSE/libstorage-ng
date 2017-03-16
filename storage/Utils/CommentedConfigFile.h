@@ -137,9 +137,12 @@ public:
 
 	/**
 	 * Parse a content line. Return 'true' on success, 'false' on error.
+         * 'line_no' (if >0) is the line number in the current file. This can
+         * be used for error reporting.
+         *
 	 * Derived classes might choose to override this.
 	 **/
-	virtual bool parse( const string & line )
+	virtual bool parse( const string & line, int line_no = -1 )
 	    { content = line; return true; }
 
         /**
@@ -294,7 +297,7 @@ public:
     /**
      * Return entry no. 'index' or 0 if 'index' is out of range.
      **/
-    Entry * get_entry( int index );
+    Entry * get_entry( int index ) const;
 
     /**
      * Convenience method because it is probably the most used:
@@ -316,7 +319,7 @@ public:
     /**
      * Return the index of 'entry' or -1 if there is no such entry.
      **/
-    int get_index_of( const Entry * entry );
+    int get_index_of( const Entry * entry ) const;
 
     /**
      * Take the entry with the specified index out of the entries and return
@@ -333,6 +336,11 @@ public:
      * Remove the entry with the specified index from the entries and delete it.
      **/
     void remove( int index );
+
+    /**
+     * Remove an entry and delete it.
+     **/
+    void remove( Entry * entry );
 
     /**
      * Insert 'entry' before index 'before'.
@@ -454,5 +462,5 @@ private:
 };
 
 } // namespace storage
-    
+
 #endif // CommentedConfigFile_h

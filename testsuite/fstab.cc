@@ -3,497 +3,272 @@
 #define BOOST_TEST_MODULE libstorage
 
 #include <boost/test/unit_test.hpp>
+#include <iostream>
 
 #include "storage/EtcFstab.h"
-#include "storage/Utils/Mockup.h"
-
+#include "storage/Filesystems/FilesystemImpl.h"
 
 using namespace std;
 using namespace storage;
 
 
-void
-setup(const vector<string>& fstab, const vector<string>& crypttab = {})
+BOOST_AUTO_TEST_CASE( parse_and_format )
 {
-    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    // This needs to be formatted exactly like the expected output
 
-    Mockup::set_file("/etc/fstab", fstab);
-    Mockup::set_file("/etc/crypttab", crypttab);
-    Mockup::set_file("/etc/cryptotab", {});
+    string_vec input = {
+        /** 00 **/ "LABEL=swap        swap         swap   defaults     0  0",
+        /** 01 **/ "LABEL=xfs-root    /            xfs    defaults     0  0",
+        /** 02 **/ "LABEL=btrfs-root  /btrfs-root  btrfs  ro           1  2",
+        /** 03 **/ "LABEL=space       /space       xfs    noauto,user  1  2"
+    };
+
+    EtcFstab fstab;
+    fstab.parse( input );
+
+
+    //
+    // Check formatting
+    //
+
+    string_vec output = fstab.format_lines();
+
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), input.size() );
+
+    for ( int i=0; i < fstab.get_entry_count(); ++i )
+        BOOST_CHECK_EQUAL( output[i], input[i] );
+
+
+    //
+    // Check all fields
+    //
+
+    int i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"       );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=xfs-root"   );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=btrfs-root" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=space"      );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "swap"        );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/btrfs-root" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+
+    i=0;
+    BOOST_CHECK_EQUAL( toString( fstab.get_entry( i++ )->get_fs_type() ), "swap"  );
+    BOOST_CHECK_EQUAL( toString( fstab.get_entry( i++ )->get_fs_type() ), "xfs"   );
+    BOOST_CHECK_EQUAL( toString( fstab.get_entry( i++ )->get_fs_type() ), "btrfs" );
+    BOOST_CHECK_EQUAL( toString( fstab.get_entry( i++ )->get_fs_type() ), "xfs"   );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), true  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), true  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), false );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_opts().empty(), false );
+
+
+    //
+    // Check mount options
+    //
+
+    const MountOpts & opts_ref = fstab.get_entry( 1 )->get_mount_opts(); // xfs-root
+    BOOST_CHECK_EQUAL( opts_ref.contains( "defaults" ), false );
+
+    MountOpts opts = fstab.get_entry( 2 )->get_mount_opts(); // btrfs-root partition
+    BOOST_CHECK_EQUAL( opts.size(), 1 );
+    BOOST_CHECK_EQUAL( opts.get_opt( 0 ), "ro" );
+    BOOST_CHECK_EQUAL( opts.contains( "ro" ), true );
+    BOOST_CHECK_EQUAL( opts.contains( "wrglbrmpf" ), false );
+    BOOST_CHECK_EQUAL( opts.contains( "defaults"  ), false );
+
+    opts = fstab.get_entry( 3 )->get_mount_opts(); // space partition
+    BOOST_CHECK_EQUAL( opts.size(), 2 );
+    BOOST_CHECK_EQUAL( opts.contains( "user"   ), true );
+    BOOST_CHECK_EQUAL( opts.contains( "noauto" ), true  );
+    BOOST_CHECK_EQUAL( opts.contains( "auto"   ), false );
+
+
+    //
+    // Check setting mount options
+    //
+
+    opts << "umask=007" << "gid=42";
+    fstab.get_entry( 3 )->set_mount_opts( opts );
+    opts.clear(); // just making sure there are no leftovers
+    opts = fstab.get_entry( 3 )->get_mount_opts();
+
+    BOOST_CHECK_EQUAL( opts.size(), 4 );
+    BOOST_CHECK_EQUAL( opts.contains( "umask=007" ), true  );
+    BOOST_CHECK_EQUAL( opts.contains( "umask"     ), false );
+    BOOST_CHECK_EQUAL( opts.contains( "gid=42"    ), true  );
+
+    BOOST_CHECK_EQUAL( opts.format(), "noauto,user,umask=007,gid=42" );
+
+
+    //
+    // Check (historic) dump pass and fsck pass
+    //
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_dump_pass(), 0 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_dump_pass(), 0 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_dump_pass(), 1 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_dump_pass(), 1 );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_fsck_pass(), 0 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_fsck_pass(), 0 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_fsck_pass(), 2 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_fsck_pass(), 2 );
 }
 
 
-void
-check(const vector<string>& fstab, const vector<string>& crypttab = {})
+BOOST_AUTO_TEST_CASE( mount_order )
 {
-    Mockup::File file_fstab = Mockup::get_file("/etc/fstab");
+    // Wrong mount order by intention
+    string_vec input = {
+        /** 00 **/ "LABEL=var-log  /var/log     ext4   defaults     1  2",
+        /** 01 **/ "LABEL=var      /var         ext4   defaults     1  2",
+        /** 02 **/ "LABEL=walk     /space/walk  xfs    noauto,user  1  2",
+        /** 03 **/ "LABEL=space    /space       xfs    noauto,user  1  2",
+        /** 04 **/ "LABEL=root     /            ext4   defaults     1  1"
+    };
 
-    string lhs_fstab = boost::join(file_fstab.content, "\n");
-    string rhs_fstab = boost::join(fstab, "\n");
+    EtcFstab fstab;
+    fstab.parse( input );
 
-    BOOST_CHECK_EQUAL(lhs_fstab, rhs_fstab);
+    //
+    // Check and fix mount order
+    //
 
-    Mockup::File file_crypttab = Mockup::get_file("/etc/crypttab");
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
 
-    string lhs_crypttab = boost::join(file_crypttab.content, "\n");
-    string rhs_crypttab = boost::join(crypttab, "\n");
+    fstab.fix_mount_order();
 
-    BOOST_CHECK_EQUAL(lhs_crypttab, rhs_crypttab);
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), true );
+
+    int i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var"        );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var/log"    );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+
+
+    //
+    // Take out /var and re-insert it
+    //
+
+    FstabEntry * var_entry = fstab.find_mount_point( "/var" );
+    BOOST_CHECK_EQUAL( var_entry != 0, true );
+    BOOST_CHECK_EQUAL( var_entry->get_device(), "LABEL=var" );
+
+    int index = fstab.get_index_of( var_entry );
+    BOOST_CHECK_EQUAL( index, 1 );
+    CommentedConfigFile::Entry * entry = fstab.take( index );
+    BOOST_CHECK_EQUAL( entry == var_entry, true );
+
+    BOOST_CHECK_EQUAL( fstab.get_entry( 1 )->get_mount_point(), "/var/log" );
+    fstab.add( var_entry );
+    BOOST_CHECK_EQUAL( fstab.get_entry( 1 )->get_mount_point(), "/var"     );
+    BOOST_CHECK_EQUAL( fstab.get_entry( 2 )->get_mount_point(), "/var/log" );
+
+
+    //
+    // Take out /var and /var/log and reinsert them (they go to the end now)
+    //
+
+    var_entry                  = fstab.find_mount_point( "/var" );
+    FstabEntry * var_log_entry = fstab.find_mount_point( "/var/log" );
+
+    fstab.take( fstab.get_index_of( var_log_entry ) );
+    fstab.take( fstab.get_index_of( var_entry     ) );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 3 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+
+    fstab.add( var_entry     );
+    fstab.add( var_log_entry );
+
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/"           );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space"      );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/space/walk" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var"        );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_mount_point(), "/var/log"    );
 }
 
 
-BOOST_AUTO_TEST_CASE(add1)
+BOOST_AUTO_TEST_CASE( duplicate_mount_points )
 {
-    setup({});
+    string_vec input = {
+        /** 00 **/  "LABEL=root   /      ext4  defaults     1  1",
+        /** 01 **/  "LABEL=data1  /data  ext4  noauto,user  1  2",
+        /** 02 **/  "LABEL=data2  /data  xfs   noauto,user  1  2",
+        /** 03 **/  "LABEL=swap   swap   swap  defaults     0  0"
+    };
 
-    EtcFstab fstab("/etc");
+    EtcFstab fstab;
+    fstab.parse( input );
 
-    FstabChange entry;
-    entry.device = entry.dentry = "/dev/sdb1";
-    entry.mount = "/test1";
-    entry.fs = "ext4";
-    entry.opts = {};
 
-    fstab.addEntry(entry);
-    fstab.flush();
+    //
+    // Check initial entries
+    //
 
-    check({
-	"/dev/sdb1            /test1               ext4       defaults              0 0"
-    });
-}
+    int i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
 
 
-BOOST_AUTO_TEST_CASE(add2)
-{
-    setup({});
+    //
+    // Check and fix mount order
+    //
 
-    EtcFstab fstab("/etc");
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
 
-    FstabChange entry;
-    entry.device = entry.dentry = "/dev/sdb1";
-    entry.mount = "swap";
-    entry.fs = "swap";
-    entry.opts = { "defaults" };
+    fstab.fix_mount_order();
 
-    fstab.addEntry(entry);
-    fstab.flush();
+    BOOST_CHECK_EQUAL( fstab.check_mount_order(), false );
 
-    check({
-	"/dev/sdb1            swap                 swap       defaults              0 0"
-    });
-}
+    // Reordering the /data entries is expected after trying to fix the mount
+    // order. The critical thing to test here is that the algorithm actually
+    // terminates and does not get into an endless loop.
 
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 4 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
 
-BOOST_AUTO_TEST_CASE(add3)
-{
-    setup({});
 
-    EtcFstab fstab("/etc");
+    //
+    // Add yet another entry for the same mount point /data
+    //
 
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "/dev/mapper/cr_sdb1";
-    entry.mount = "/test1";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-    entry.encr = EncryptionType::LUKS;
+    FstabEntry * entry = new FstabEntry();
+    entry->parse( "LABEL=data3  /data  xfs  noauto,user  1  2" );
 
-    fstab.addEntry(entry);
-    fstab.flush();
+    BOOST_CHECK_EQUAL( entry->get_device(),      "LABEL=data3" );
+    BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data"       );
 
-    check({
-	"/dev/mapper/cr_sdb1  /test1               ext4       nofail                0 0"
-    }, {
-	"cr_sdb1         /dev/sdb1            none       none"
-    });
-}
+    fstab.add( entry );
 
-
-BOOST_AUTO_TEST_CASE(add4)
-{
-    setup({});
-
-    EtcFstab fstab("/etc");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "/dev/mapper/cr_sdb1";
-    entry.mount = "/test1";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-    entry.encr = EncryptionType::LUKS;
-    entry.tmpcrypt = true;
-
-    fstab.addEntry(entry);
-    fstab.flush();
-
-    check({
-	"/dev/mapper/cr_sdb1  /test1               ext4       nofail                0 0"
-    }, {
-	"cr_sdb1         /dev/sdb1            /dev/urandom tmp"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(add5)
-{
-    setup({});
-
-    EtcFstab fstab("/etc");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "UUID=1234";
-    entry.mount = "/test1";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-
-    fstab.addEntry(entry);
-    fstab.flush();
-
-    check({
-	"UUID=1234            /test1               ext4       defaults              0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(add6)
-{
-    setup({});
-
-    EtcFstab fstab("/etc");
-
-    FstabChange entry1;
-    entry1.device = "/dev/sda1";
-    entry1.dentry = "UUID=1234";
-    entry1.mount = "swap";
-    entry1.fs = "swap";
-    entry1.opts = { "defaults" };
-
-    FstabChange entry2;
-    entry2.device = "/dev/sdb1";
-    entry2.dentry = "UUID=5678";
-    entry2.mount = "swap";
-    entry2.fs = "swap";
-    entry2.opts = { "defaults" };
-
-    fstab.addEntry(entry1);
-    fstab.addEntry(entry2);
-    fstab.flush();
-
-    check({
-	"UUID=1234            swap                 swap       defaults              0 0",
-	"UUID=5678            swap                 swap       defaults              0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update1)
-{
-    setup({
-	"/dev/sdb1  /test1  ext4  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    FstabChange entry;
-    entry.device = entry.dentry = "/dev/sdb1";
-    entry.mount = "/test2";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-        "/dev/sdb1  /test2  ext4  defaults  0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update2)
-{
-    setup({
-	"/dev/sdb1  swap  swap  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "swap");
-
-    FstabChange entry;
-    entry.device = entry.dentry = "/dev/sdb1";
-    entry.mount = "swap";
-    entry.fs = "swap";
-    entry.opts = { "noauto" };
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-	"/dev/sdb1  swap  swap  noauto    0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update3)
-{
-    setup({
-	"/dev/mapper/cr_sdb1  /test1  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  none  none"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "/dev/mapper/cr_sdb1";
-    entry.mount = "/test2";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-    entry.encr = EncryptionType::LUKS;
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-	"/dev/mapper/cr_sdb1  /test2  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  none  none"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update4)
-{
-    setup( {
-	"/dev/mapper/cr_sdb1  /test1  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  /dev/urandom tmp"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "/dev/mapper/cr_sdb1";
-    entry.mount = "/test2";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-    entry.encr = EncryptionType::LUKS;
-    entry.tmpcrypt = true;
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-	"/dev/mapper/cr_sdb1  /test2  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  /dev/urandom tmp"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update5)
-{
-    setup({
-	"UUID=1234  /test1  ext4  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-    fstab.setDevice("/dev/sdb1", {}, "1234", "", {}, {});
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb1";
-    entry.dentry = "UUID=5678";
-    entry.mount = "/test2";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-	"UUID=5678  /test2  ext4  defaults  0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update6)
-{
-    setup({
-	"/dev/mapper/cr_sdb1  /test1  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  /dev/urandom  tmp"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    FstabChange entry;
-    entry.device = entry.dentry = "/dev/sdb1";
-    entry.mount = "/test2";
-    entry.fs = "ext4";
-    entry.opts = { "defaults" };
-
-    fstab.updateEntry(key, entry);
-    fstab.flush();
-
-    check({
-	"/dev/sdb1            /test2  ext4  defaults 0 0"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(update7)
-{
-    setup({
-	""
-    }, {
-	"cr_test  /dev/sdb6  none  none"
-    });
-
-    EtcFstab fstab("/etc");
-
-    // TODO figure out how the rename can be done in one step. or even better
-    // rewrite EtcFstab
-
-    FstabKey key("/dev/sdb6", "");
-
-    FstabChange entry;
-    entry.device = "/dev/sdb5";
-    entry.dentry = "cr_test";
-    entry.encr = EncryptionType::LUKS;
-
-    fstab.removeEntry(key);
-    fstab.addEntry(entry);
-    fstab.flush();
-
-    check({
-	""
-    }, {
-	"cr_test         /dev/sdb5            none       none"
-    });
-}
-
-
-BOOST_AUTO_TEST_CASE(remove1)
-{
-    setup({
-	"/dev/sdb1  /test1  ext4  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    fstab.removeEntry(key);
-    fstab.flush();
-
-    check({});
-}
-
-
-BOOST_AUTO_TEST_CASE(remove2)
-{
-    setup({
-	"/dev/sdb1  swap  swap  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "swap");
-
-    fstab.removeEntry(key);
-    fstab.flush();
-
-    check({});
-}
-
-
-BOOST_AUTO_TEST_CASE(remove3)
-{
-    setup({
-	"/dev/mapper/cr_sdb1  /test1  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  none  none"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    fstab.removeEntry(key);
-    fstab.flush();
-
-    check({});
-}
-
-
-BOOST_AUTO_TEST_CASE(remove4)
-{
-    setup({
-	"/dev/mapper/cr_sdb1  /test1  ext4  nofail  0 0"
-    }, {
-	"cr_sdb1  /dev/sdb1  /dev/urandom  tmp"
-    });
-
-    EtcFstab fstab("/etc");
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    fstab.removeEntry(key);
-    fstab.flush();
-
-    check({});
-}
-
-
-BOOST_AUTO_TEST_CASE(remove5)
-{
-    setup({
-	"UUID=1234  /test1  ext4  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-    fstab.setDevice("/dev/sdb1", {}, "1234", "", {}, {});
-
-    FstabKey key("/dev/sdb1", "/test1");
-
-    fstab.removeEntry(key);
-    fstab.flush();
-
-    check({});
-}
-
-
-BOOST_AUTO_TEST_CASE(remove6)
-{
-    setup({
-	"UUID=1234  swap  swap  defaults  0 0",
-	"UUID=5678  swap  swap  defaults  0 0"
-    });
-
-    EtcFstab fstab("/etc");
-    fstab.setDevice("/dev/sda1", {}, "1234", "", {}, {});
-    fstab.setDevice("/dev/sdb1", {}, "5678", "", {}, {});
-
-    FstabKey key1("/dev/sda1", "swap");
-    FstabKey key2("/dev/sdb1", "swap");
-
-    fstab.removeEntry(key1);
-    fstab.removeEntry(key2);
-    fstab.flush();
-
-    check({});
+    i=0;
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=root"  );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data3" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data2" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
+    BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
 }

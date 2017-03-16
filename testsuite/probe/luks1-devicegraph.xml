@@ -78,12 +78,13 @@
       <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
       <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
-      <fstab-options>acl,user_xattr</fstab-options>
+      <mount-opts>acl,user_xattr</mount-opts>
     </Ext4>
     <Xfs>
       <sid>48</sid>
       <uuid>30032cea-a1f0-4891-8396-28a8d97491d4</uuid>
       <mountpoint>/home</mountpoint>
+      <mount-opts>nofail</mount-opts>
     </Xfs>
   </Devices>
   <Holders>

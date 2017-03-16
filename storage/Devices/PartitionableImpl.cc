@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"

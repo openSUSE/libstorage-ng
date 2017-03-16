@@ -30,6 +30,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Filesystems/MountableImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -52,7 +53,7 @@ namespace storage
 
 
     Mountable::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), mountpoints({}), mount_by(MountByType::DEVICE), fstab_options({})
+	: Device::Impl(node), mountpoints({}), mount_by(MountByType::DEVICE)
     {
 	string tmp;
 
@@ -61,8 +62,8 @@ namespace storage
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
 
-	if (getChildValue(node, "fstab-options", tmp))
-	    fstab_options = splitString(tmp, ",");
+	if (getChildValue(node, "mount-opts", tmp))
+	    mount_opts.parse(tmp);
     }
 
 
@@ -75,8 +76,8 @@ namespace storage
 
 	setChildValueIf(node, "mount-by", toString(mount_by), mount_by != MountByType::DEVICE);
 
-	if (!fstab_options.empty())
-	    setChildValue(node, "fstab-options", boost::join(fstab_options, ","));
+	if (!mount_opts.empty())
+	    setChildValue(node, "mount-opts", mount_opts.format());
     }
 
 
@@ -102,9 +103,16 @@ namespace storage
 
 
     void
-    Mountable::Impl::set_fstab_options(const list<string>& fstab_options)
+    Mountable::Impl::set_mount_opts(const MountOpts & new_mount_opts)
     {
-	Impl::fstab_options = fstab_options;
+	Impl::mount_opts = new_mount_opts;
+    }
+
+
+    void
+    Mountable::Impl::set_mount_opts(const vector<string>& new_mount_opts)
+    {
+	Impl::mount_opts.set_opts(new_mount_opts);
     }
 
 
@@ -117,7 +125,7 @@ namespace storage
 	    return false;
 
 	return mountpoints == rhs.mountpoints && mount_by == rhs.mount_by &&
-	    fstab_options == rhs.fstab_options;
+	    mount_opts.get_opts() == rhs.mount_opts.get_opts();
     }
 
 
@@ -132,7 +140,7 @@ namespace storage
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
-	storage::log_diff(log, "fstab-options", fstab_options, rhs.fstab_options);
+	storage::log_diff(log, "mount-opts", mount_opts.get_opts(), rhs.mount_opts.get_opts());
     }
 
 
@@ -144,8 +152,8 @@ namespace storage
 	if (!mountpoints.empty())
 	    out << " mountpoints:" << mountpoints;
 
-	if (!fstab_options.empty())
-	    out << " fstab-options:" << fstab_options;
+	if (!mount_opts.empty())
+	    out << " mount-opts:" << mount_opts.format();
     }
 
 
@@ -242,19 +250,27 @@ namespace storage
     {
 	const Storage& storage = actiongraph.get_storage();
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcFstab fstab;
+        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	// TODO
+        FstabEntry * entry = new FstabEntry();
+        entry->set_device(get_mount_by_name());
+        entry->set_mount_point(mountpoint);
+        entry->set_mount_opts(get_mount_opts());
 
-	FstabChange entry;
-	entry.device = get_mount_name();
-	entry.dentry = get_mount_by_name();
-	entry.mount = mountpoint;
-	entry.fs = get_mount_type();
-	entry.opts = get_fstab_options();
+        // FIXME: Why is this not a FsType in the first place?
+        // It does not make any sense to convert it back and forth between string ans FsType.
+        FsType fs_type;
+	bool ok = toValue(get_mount_type(), fs_type);
 
-	fstab.addEntry(entry);
-	fstab.flush();
+	if ( ok )
+            entry->set_fs_type(fs_type);
+
+        // TODO: entry->set_fsck_pass( ?? );
+
+        fstab.add(entry);
+        fstab.log();
+        fstab.write();
     }
 
 
@@ -280,13 +296,17 @@ namespace storage
     {
 	const Storage& storage = actiongraph.get_storage();
 
-	EtcFstab fstab(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+	EtcFstab fstab;
+        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
 
-	// TODO error handling
+        FstabEntry * entry = fstab.find_device(get_fstab_device_name());
 
-	FstabKey entry(get_mount_name(), mountpoint);
-	fstab.removeEntry(entry);
-	fstab.flush();
+        if ( entry )
+        {
+            fstab.remove( entry );
+            fstab.log();
+            fstab.write();
+        }
     }
 
 

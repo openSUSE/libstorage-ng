@@ -11,7 +11,7 @@ LDADD = ../storage/libstorage-ng.la -lboost_unit_test_framework
 
 check_PROGRAMS =								\
 	copy.test coverage-tests.test default-partition-table.test disk.test	\
-	dynamic.test environment.test find-vertex.test fstab.test fstab-ng.test \
+	dynamic.test environment.test find-vertex.test fstab.test crypttab.test \
 	output.test probe.test range.test stable.test relatives.test
 
 AM_DEFAULT_SOURCE_EXT = .cc

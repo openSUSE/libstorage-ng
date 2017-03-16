@@ -30,6 +30,7 @@
 #include "storage/Utils/FileUtils.h"
 #include "storage/Filesystems/Mountable.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/EtcFstab.h"
 #include "storage/FreeInfo.h"
 
 
@@ -57,8 +58,16 @@ namespace storage
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by);
 
-	const list<string>& get_fstab_options() const { return fstab_options; }
-	void set_fstab_options(const list<string>& fstab_options);
+	const MountOpts & get_mount_opts() const { return mount_opts; }
+        void set_mount_opts( const MountOpts & new_mount_opts );
+        void set_mount_opts( const vector<string> & new_mount_opts );
+
+        /**
+         * Get the device name that was used in /etc/fstab.
+         * This is empty if this filesystem was not in /etc/fstab during probing.
+         **/
+        const string & get_fstab_device_name() const { return fstab_device_name; }
+        void set_fstab_device_name( const string & new_name ) { fstab_device_name = new_name; }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -98,7 +107,7 @@ namespace storage
     protected:
 
 	Impl()
-	    : Device::Impl(), mountpoints({}), mount_by(MountByType::DEVICE), fstab_options({})
+	    : Device::Impl(), mountpoints({}), mount_by(MountByType::DEVICE)
 	    {}
 
 	Impl(const xmlNode* node);
@@ -108,10 +117,11 @@ namespace storage
     private:
 
 	// TODO this should be a list of a struct with mountpoint, mount-by
-	// and fstab-options. or add a mountpoint object to the devicegraph?
+	// and mount-opts. or add a mountpoint object to the devicegraph?
 	vector<string> mountpoints;
 	MountByType mount_by;
-	list<string> fstab_options;
+        MountOpts mount_opts;
+        string fstab_device_name; // device name as found in /etc/fstab
 
     };
 

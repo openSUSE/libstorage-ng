@@ -22,6 +22,7 @@
 
 
 #include <iostream>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
