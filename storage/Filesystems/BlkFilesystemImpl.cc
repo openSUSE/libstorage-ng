@@ -670,7 +670,7 @@ namespace storage
 	const Storage& storage = actiongraph.get_storage();
 
 	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
 
 	const BlkFilesystem * blk_filesystem_lhs = to_blk_filesystem(lhs);
         FstabEntry * entry = fstab.find_device(blk_filesystem_lhs->get_impl().get_fstab_device_name());
