@@ -192,7 +192,7 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) +
+	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) + " " +
 	    quote(get_mount_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
@@ -258,7 +258,7 @@ namespace storage
 	const Storage& storage = actiongraph.get_storage();
 
 	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
 
         FstabEntry * entry = new FstabEntry();
         entry->set_device(get_mount_by_name());
@@ -297,7 +297,7 @@ namespace storage
 	const Storage& storage = actiongraph.get_storage();
 
 	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
 
         FstabEntry * entry = fstab.find_device(get_fstab_device_name());
 

@@ -279,7 +279,7 @@ namespace storage
 	const Storage& storage = actiongraph.get_storage();
 
 	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
 
 	// TODO, error handling and mount-by
 
@@ -303,7 +303,7 @@ namespace storage
 	// TODO, error handling and mount-by
 
 	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
 
         string old_block_device = luks_lhs->get_blk_device()->get_name();
         CrypttabEntry * entry = crypttab.find_block_device(old_block_device);
@@ -323,7 +323,7 @@ namespace storage
 	const Storage& storage = actiongraph.get_storage();
 
 	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix("/etc"));	// TODO pass as parameter
+        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
 
         CrypttabEntry * entry = crypttab.find_block_device(get_blk_device()->get_name());
 
