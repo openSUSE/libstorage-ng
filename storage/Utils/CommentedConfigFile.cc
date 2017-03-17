@@ -28,6 +28,7 @@
 #include "storage/Utils/CommentedConfigFile.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/AsciiFile.h"
 
 using std::cout;
 using std::endl;
@@ -121,19 +122,10 @@ void CommentedConfigFile::append( Entry * entry )
 
 bool CommentedConfigFile::read( const string & filename )
 {
-    this->filename = filename;
+    // reading is done via AsciiFile to the mockup playback and recording
 
-    if ( filename.empty() )
-        return false;
-
-    string     line;
-    string_vec lines;
-    std::ifstream file( filename );
-
-    while ( std::getline( file, line ) )
-        lines.push_back( line );
-
-    bool success = parse( lines );
+    AsciiFile ascii_file(filename);
+    bool success = parse(ascii_file.get_lines());
 
     return success;
 }
