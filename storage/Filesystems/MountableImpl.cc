@@ -192,7 +192,7 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) +
+	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) + " " +
 	    quote(get_mount_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
