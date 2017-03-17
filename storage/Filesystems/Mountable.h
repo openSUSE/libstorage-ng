@@ -28,10 +28,17 @@
 #include <vector>
 
 #include "storage/Devices/Device.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
 {
+
+    enum class FsType {
+	UNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
+	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2
+    };
+
 
     /**
      * The key by which the mount program identifies a mountable
@@ -62,6 +69,9 @@ namespace storage
 
 	const std::vector<std::string>& get_mount_opts() const;
 	void set_mount_opts(const std::vector<std::string>& mount_opts);
+
+	const std::vector<std::string>& get_fstab_options() const ST_DEPRECATED;
+	void set_fstab_options(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
 
 	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,
 							  const std::string& mountpoint);

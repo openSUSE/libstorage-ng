@@ -41,8 +41,6 @@ namespace storage
 
     template <> struct DeviceTraits<Filesystem> { static const char* classname; };
 
-    template <> struct EnumTraits<FsType> { static const vector<string> names; };
-
 
     // abstract class
 
@@ -57,7 +55,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual string get_mount_type() const override { return toString(get_type()); }
+	virtual FsType get_mount_type() const override { return get_type(); }
 
 	virtual SpaceInfo detect_space_info() const;
 	virtual SpaceInfo detect_space_info_pure() const;
