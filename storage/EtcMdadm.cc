@@ -84,7 +84,7 @@ namespace storage
 	    return false;
 	}
 
-	vector<string>& lines = mdadm.lines();
+	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = findArray(uuid);
 	if (it == lines.end())
 	{
@@ -103,7 +103,7 @@ namespace storage
     void
     EtcMdadm::setDeviceLine(const string& line)
     {
-	vector<string>& lines = mdadm.lines();
+	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = find_if(lines, string_starts_with("DEVICE"));
 	if (it == lines.end())
 	    lines.insert(lines.begin(), line);
@@ -115,7 +115,7 @@ namespace storage
     void
     EtcMdadm::setAutoLine(const string& line)
     {
-	vector<string>& lines = mdadm.lines();
+	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = find_if(lines, string_starts_with("AUTO"));
 	if (it == lines.end())
 	    lines.insert(lines.begin(), line);
@@ -127,7 +127,7 @@ namespace storage
     void
     EtcMdadm::setArrayLine(const string& line, const string& uuid)
     {
-	vector<string>& lines = mdadm.lines();
+	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = findArray(uuid);
 	if (it == lines.end())
 	    lines.push_back(line);
@@ -163,7 +163,7 @@ namespace storage
     vector<string>::iterator
     EtcMdadm::findArray(const string& uuid)
     {
-	vector<string>& lines = mdadm.lines();
+	vector<string>& lines = mdadm.get_lines();
 	for (vector<string>::iterator it = lines.begin(); it != lines.end(); ++it)
 	{
 	    if (boost::starts_with(*it, "ARRAY"))

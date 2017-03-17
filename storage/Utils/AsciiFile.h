@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,7 +27,6 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
 
 
 namespace storage
@@ -39,51 +39,28 @@ namespace storage
     {
     public:
 
-	explicit AsciiFile(const char* name, bool remove_empty = false);
 	explicit AsciiFile(const string& name, bool remove_empty = false);
 
-	string name() const { return Name_C; }
+	const string& get_name() const { return name; }
 
 	bool reload();
 	bool save();
 
-	void logContent() const;
+	void log_content() const;
 
-	void append( const string& Line_Cv );
-	void append( const vector<string>& Lines_Cv );
-	void insert( unsigned int Before_iv, const string& Line_Cv );
-	void clear();
-	void remove( unsigned int Start_iv, unsigned int Cnt_iv );
-	void replace( unsigned int Start_iv, unsigned int Cnt_iv,
-		      const string& Line_Cv );
-	void replace( unsigned int Start_iv, unsigned int Cnt_iv,
-		      const vector<string>& Line_Cv );
+	bool empty() const { return lines.empty(); }
 
-	const string& operator []( unsigned int Index_iv ) const;
-	string& operator []( unsigned int Index_iv );
+	void clear() { lines.clear(); }
 
-	template <class Pred>
-	int find_if_idx(Pred pred) const
-	{
-	    vector<string>::const_iterator it = std::find_if(Lines_C.begin(), Lines_C.end(), pred);
-	    if (it == Lines_C.end())
-		return -1;
-	    return std::distance(Lines_C.begin(), it);
-	}
-
-	unsigned numLines() const { return Lines_C.size(); }
-
-	vector<string>& lines() { return Lines_C; }
-	const vector<string>& lines() const { return Lines_C; }
+	vector<string>& get_lines() { return lines; }
+	const vector<string>& get_lines() const { return lines; }
 
     protected:
 
-	void removeLastIf(string& Text_Cr, char Char_cv) const;
-
-	const string Name_C;
+	const string name;
 	const bool remove_empty;
 
-	vector<string> Lines_C;
+	vector<string> lines;
 
     };
 
