@@ -41,8 +41,8 @@ namespace storage
 	AsciiFile mounts("/proc/mounts");
 	AsciiFile swaps("/proc/swaps");
 
-	parse_proc_mounts_lines(mounts.lines());
-	parse_proc_swaps_lines(swaps.lines());
+	parse_proc_mounts_lines(mounts.get_lines());
+	parse_proc_swaps_lines(swaps.get_lines());
     }
 
 

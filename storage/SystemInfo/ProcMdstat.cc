@@ -40,9 +40,9 @@ namespace storage
     ProcMdstat::ProcMdstat()
     {
 	AsciiFile mdstat("/proc/mdstat");
-	mdstat.logContent();
+	mdstat.log_content();
 
-	parse(mdstat.lines());
+	parse(mdstat.get_lines());
     }
 
 

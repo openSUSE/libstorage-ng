@@ -35,7 +35,7 @@ namespace storage
     {
 	AsciiFile parts("/proc/partitions");
 
-	parse(parts.lines());
+	parse(parts.get_lines());
     }
 
 
