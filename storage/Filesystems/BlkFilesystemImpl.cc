@@ -121,7 +121,7 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, EtcFstab& fstab)
+    BlkFilesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& etc_fstab)
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -133,55 +133,16 @@ namespace storage
 	    uuid = entry.fs_uuid;
 	}
 
-	const ProcMounts& proc_mounts = systeminfo.getProcMounts();
-	for (const string& mountpoint : proc_mounts.find_by_name(blk_device->get_name(), systeminfo))
-	    add_mountpoint(mountpoint);
+	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, to_blk_filesystem(get_device()));
 
-
-        // Collect all aliases for this device
-
-        string_vec device_aliases;
-        device_aliases.push_back( blk_device->get_name() );
-
-        if ( ! uuid.empty() )
-        {
-            // Add UUID aliases
-            device_aliases.push_back( string( "UUID=" ) + uuid );
-            device_aliases.push_back( string( "/dev/disk/by-uuid/" ) + uuid );
-        }
-
-        if ( ! label.empty() )
-        {
-            // Add label aliases
-            device_aliases.push_back( string( "LABEL=" ) + label );
-            device_aliases.push_back( string( "/dev/disk/by-label/" ) + label );
-        }
-
-
-        // Add udev IDs
-
-        const vector<string> & udev_ids = blk_device->get_udev_ids();
-
-        for (size_t i=0; i < udev_ids.size(); ++i)
-            device_aliases.push_back(string("/dev/disk/by-id/") + udev_ids[i]);
-
-
-        // Add udev paths
-
-        const vector<string> & udev_paths = blk_device->get_udev_paths();
-
-        for (size_t i=0; i < udev_paths.size(); ++i)
-            device_aliases.push_back(string("/dev/disk/by-path/") + udev_paths[i]);
-
-        // Find the corresponding /etc/fstab entry by any of those aliases
-        FstabEntry * fstab_entry = fstab.find_device(device_aliases);
-
+	const FstabEntry* fstab_entry = find_etc_fstab_entry(etc_fstab, aliases);
         if (fstab_entry)
         {
-            set_fstab_device_name(fstab_entry->get_device());
+	    add_mountpoint(fstab_entry->get_mount_point());
+	    set_fstab_device_name(fstab_entry->get_device());
 	    set_mount_by(EtcFstab::get_mount_by(fstab_entry->get_device()));
 	    set_mount_opts(fstab_entry->get_mount_opts());
-        }
+	}
     }
 
 
@@ -377,6 +338,7 @@ namespace storage
     BlkFilesystem::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
 	vector<Action::Base*> actions;
 
 	if (get_type() != lhs.get_type())
@@ -673,9 +635,9 @@ namespace storage
         fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
 
 	const BlkFilesystem * blk_filesystem_lhs = to_blk_filesystem(lhs);
-        FstabEntry * entry = fstab.find_device(blk_filesystem_lhs->get_impl().get_fstab_device_name());
 
-        if (entry)
+	FstabEntry* entry = find_etc_fstab_entry(fstab, { blk_filesystem_lhs->get_impl().get_fstab_device_name() });
+	if (entry)
         {
             entry->set_device(get_mount_by_name());
             fstab.log();

@@ -50,6 +50,9 @@
 %template(VectorBlkFilesystemPtr) std::vector<BlkFilesystem*>;
 %template(VectorConstBlkFilesystemPtr) std::vector<const BlkFilesystem*>;
 
+%template(VectorBtrfsSubvolumePtr) std::vector<BtrfsSubvolume*>;
+%template(VectorConstBtrfsSubvolumePtr) std::vector<const BtrfsSubvolume*>;
+
 %template(VectorNtfsPtr) std::vector<Ntfs*>;
 %template(VectorConstNtfsPtr) std::vector<const Ntfs*>;
 

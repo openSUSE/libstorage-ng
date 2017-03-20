@@ -22,6 +22,7 @@
 
 
 #include <iostream>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Enum.h"
@@ -164,6 +165,20 @@ namespace storage
     }
 
 
+    FstabEntry*
+    Mountable::Impl::find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const
+    {
+	return etc_fstab.find_device(names);
+    }
+
+
+    const FstabEntry*
+    Mountable::Impl::find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const
+    {
+	return etc_fstab.find_device(names);
+    }
+
+
     Text
     Mountable::Impl::do_mount_text(const string& mountpoint, Tense tense) const
     {
@@ -192,8 +207,10 @@ namespace storage
 	    createPath(real_mountpoint);
 	}
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type()) + " " +
-	    quote(get_mount_name()) + " " + quote(real_mountpoint);
+	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
+	if (!mount_opts.empty())
+	    cmd_line += " -o " + boost::join(mount_opts.get_opts(), ",");
+	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -299,9 +316,8 @@ namespace storage
 	EtcFstab fstab;
         fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
 
-        FstabEntry * entry = fstab.find_device(get_fstab_device_name());
-
-        if ( entry )
+	FstabEntry* entry = find_etc_fstab_entry(fstab, { get_fstab_device_name() });
+	if (entry)
         {
             fstab.remove( entry );
             fstab.log();
@@ -389,8 +405,8 @@ namespace storage
     }
 
 
-    EnsureMounted::EnsureMounted(const Mountable* mountable)
-	: mountable(mountable), tmp_mount()
+    EnsureMounted::EnsureMounted(const Mountable* mountable, bool read_only)
+	: mountable(mountable), read_only(read_only), tmp_mount()
     {
 	y2mil("EnsureMounted " << *mountable);
 
@@ -448,7 +464,8 @@ namespace storage
 	}
 
         tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
-                                     "tmp-mount-XXXXXX", mountable->get_impl().get_mount_name()));
+				     "tmp-mount-XXXXXX", mountable->get_impl().get_mount_name(),
+				     read_only, mountable->get_impl().get_mount_options()));
     }
 
 

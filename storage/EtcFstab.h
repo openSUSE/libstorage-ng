@@ -40,6 +40,9 @@ namespace storage
     using std::string;
     using std::vector;
 
+    class BlkDevice;
+    class BlkFilesystem;
+
 
     /**
      * Helper class for the mount options of one /etc/fstab entry.
@@ -89,7 +92,6 @@ namespace storage
 	/**
 	 * Set the mount option with the specified index to a new value.
 	 **/
-
 	void set_opt( int index, const string & new_val );
 
 	/**
@@ -98,6 +100,17 @@ namespace storage
 	 * instead.
 	 **/
 	bool contains( const string & opt ) const;
+
+	/**
+	 * Return true iff the options include 'subvol=' or 'subvolid='.
+	 */
+	bool has_subvol() const;
+
+	/**
+	 * Return true iff the options include 'subvol=id' or 'subvolid=path'.
+	 * Fuzzy concerning leading zeros for ids and leading slashes for paths.
+	 */
+	bool has_subvol(long id, const string& path) const;
 
 	/**
 	 * Find the position of a mount option: Return the index of the mount
@@ -249,10 +262,20 @@ namespace storage
 	FstabEntry * find_device( const string & device	 ) const;
 
 	/**
-	 * Find the first entry for any of the device names in 'devices' 0 if
+	 * Find the first entry for any of the device names in 'devices' or 0 if
 	 * there is no matching entry.
 	 **/
 	FstabEntry * find_device( const string_vec & devices ) const;
+
+	/**
+	 * Find all entries for any of the device names in 'devices'.
+	 */
+	vector<FstabEntry*> find_all_devices(const vector<string>& devices);
+
+	/**
+	 * Find all entries for any of the device names in 'devices'.
+	 */
+	vector<const FstabEntry*> find_all_devices(const vector<string>& devices) const;
 
 	/**
 	 * Return the first entry for mount point 'mount_point' or 0 if there
@@ -331,6 +354,15 @@ namespace storage
          **/
         void log();
 
+	/**
+	 * Construct all aliases usable in /etc/fstab based on information of
+	 * blk_device and blk_filesystem, that is block device name, block
+	 * device udev paths, block device udev ids, filesystem label and
+	 * filesystem uuid. Unfortunately in /dev can be even more aliases not
+	 * included here.
+	 */
+	static vector<string> construct_device_aliases(const BlkDevice* blk_device,
+						       const BlkFilesystem* blk_filesystem);
 
     protected:
 

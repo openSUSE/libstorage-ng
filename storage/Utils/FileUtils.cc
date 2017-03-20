@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,6 +23,7 @@
 
 #include <string.h>
 #include <unistd.h>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/FileUtils.h"
 #include "storage/Utils/AppUtil.h"
@@ -80,10 +81,21 @@ namespace storage
     }
 
 
-    TmpMount::TmpMount(const string& path, const string& name_template, const string& device)
+    TmpMount::TmpMount(const string& path, const string& name_template, const string& device,
+		       bool read_only, const vector<string>& options)
 	: TmpDir(path, name_template)
     {
-	string cmd_line = MOUNTBIN " --read-only " + quote(device) + " " + quote(get_fullname());
+	string cmd_line = MOUNTBIN;
+
+	// TODO also check options for 'ro' and 'rw'?
+
+	if (read_only)
+	    cmd_line += " --read-only";
+
+	cmd_line += " " + quote(device) + " " + quote(get_fullname());
+
+	if (!options.empty())
+	    cmd_line += " -o " + boost::join(options, ",");
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
