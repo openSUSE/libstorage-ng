@@ -286,7 +286,7 @@ namespace storage
         // TODO: entry->set_fsck_pass( ?? );
 
         fstab.add(entry);
-        fstab.log();
+        fstab.log_diff();
         fstab.write();
     }
 
@@ -320,7 +320,7 @@ namespace storage
 	if (entry)
         {
             fstab.remove( entry );
-            fstab.log();
+            fstab.log_diff();
             fstab.write();
         }
     }
