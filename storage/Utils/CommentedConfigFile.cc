@@ -122,6 +122,8 @@ void CommentedConfigFile::append( Entry * entry )
 
 bool CommentedConfigFile::read( const string & filename )
 {
+    this->filename = filename;
+
     // reading is done via AsciiFile to the mockup playback and recording
 
     AsciiFile ascii_file(filename);

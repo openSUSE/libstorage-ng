@@ -143,6 +143,7 @@ namespace storage
 
 
     FstabEntry::FstabEntry()
+	: fs_type(FsType::UNKNOWN), dump_pass(0), fsck_pass(0)
     {
 
     }
