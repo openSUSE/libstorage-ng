@@ -272,3 +272,60 @@ BOOST_AUTO_TEST_CASE( duplicate_mount_points )
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=data1" );
     BOOST_CHECK_EQUAL( fstab.get_entry( i++ )->get_device(), "LABEL=swap"  );
 }
+
+
+BOOST_AUTO_TEST_CASE( unknown_fs_type )
+{
+    // This needs to be formatted exactly like the expected output
+
+    string_vec input = {
+        /** 00 **/ "LABEL=swap      swap     swap    defaults     0  0",
+        /** 01 **/ "LABEL=xfs-root  /        xfs     defaults     0  0",
+        /** 02 **/ "LABEL=coolfs    /coolfs  coolfs  ro           1  2",
+        /** 03 **/ "LABEL=space     /space   xfs     noauto,user  1  2"
+    };
+
+    EtcFstab fstab;
+    fstab.parse( input );
+
+    FstabEntry * coolfs = fstab.find_mount_point( "/coolfs" );
+
+    BOOST_CHECK_EQUAL( coolfs == 0, false );
+    BOOST_CHECK_EQUAL( coolfs->get_device(),      "LABEL=coolfs" );
+    BOOST_CHECK_EQUAL( coolfs->get_mount_point(), "/coolfs"      );
+    BOOST_CHECK_EQUAL( coolfs->get_fs_type() == FsType::UNKNOWN, true );
+
+    MountOpts opts = coolfs->get_mount_opts();
+    BOOST_CHECK_EQUAL( opts.size(), 1 );
+    BOOST_CHECK_EQUAL( opts.get_opt( 0 ), "ro" );
+
+    coolfs->set_mount_point( "/data" );
+
+    string_vec output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), 4 );
+
+    // Check if the fs type is still "coolfs" and not "unknown",
+    // i.e. if it left the unknown fs type unchanged
+
+    string expected = "LABEL=coolfs    /data   coolfs  ro           1  2";
+    BOOST_CHECK_EQUAL( output[2], expected );
+
+
+    FstabEntry * coolfs2 = new FstabEntry( "UUID=4711", "/data2", FsType::UNKNOWN );
+    fstab.add( coolfs2 );
+
+    FstabEntry * entry = fstab.find_device( "UUID=4711" );
+
+    BOOST_CHECK_EQUAL( entry == 0, false );
+    BOOST_CHECK_EQUAL( entry->get_device(),      "UUID=4711" );
+    BOOST_CHECK_EQUAL( entry->get_mount_point(), "/data2"    );
+    BOOST_CHECK_EQUAL( entry->get_fs_type() == FsType::UNKNOWN, true );
+    BOOST_CHECK_EQUAL( entry->get_mount_opts().empty(), true );
+
+    output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), 5 );
+
+    expected = "UUID=4711       /data2  unknown  defaults     0  0";
+    BOOST_CHECK_EQUAL( output[4], expected );
+}
+
