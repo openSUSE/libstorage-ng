@@ -640,7 +640,7 @@ namespace storage
 	if (entry)
         {
             entry->set_device(get_mount_by_name());
-            fstab.log();
+            fstab.log_diff();
             fstab.write();
         }
     }
