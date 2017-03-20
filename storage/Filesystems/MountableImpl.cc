@@ -209,7 +209,7 @@ namespace storage
 
 	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
 	if (!mount_opts.empty())
-	    cmd_line += " -o " + boost::join(mount_opts.get_opts(), ",");
+	    cmd_line += " -o " + quote(mount_opts.format());
 	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
 
