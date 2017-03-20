@@ -174,7 +174,20 @@ namespace storage
 	int col = 0;
 	set_column( col++, EtcFstab::fstab_encode( device      ) );
 	set_column( col++, EtcFstab::fstab_encode( mount_point ) );
-	set_column( col++, toString( fs_type ) );
+
+        if ( fs_type != FsType::UNKNOWN )
+            set_column( col++, toString( fs_type ) );
+        else
+        {
+            if ( ! get_column( col ).empty() )
+                col++; // just leave the old content
+            else
+            {
+                y2err( "File system type unknown for " << device << " at " << mount_point );
+                set_column( col++, "unknown" );
+            }
+        }
+        
 	set_column( col++, mount_opts.format() );
 	set_column( col++, std::to_string( dump_pass ) );
 	set_column( col++, std::to_string( fsck_pass ) );
@@ -192,7 +205,6 @@ namespace storage
 
 	if ( get_column_count() != FSTAB_COLUMN_COUNT )
 	{
-	    cerr << "fstab:" << line_no << " Error: wrong number of fields: \"" << line << "\"" << endl;
 	    y2err( "fstab:" << line_no << " Error: wrong number of fields: \"" << line << "\"" );
 	    return false;
 	}
@@ -224,7 +236,7 @@ namespace storage
 	int col = 0;
 	set_max_column_width( col++, 45 ); // device; just enough for UUID=...
 	set_max_column_width( col++, 25 ); // mount point
-	set_max_column_width( col++,  6 ); // fs type
+	set_max_column_width( col++,  7 ); // fs type
 	set_max_column_width( col++, 30 ); // mount options
 	set_max_column_width( col++,  1 ); // dump pass
 	set_max_column_width( col++,  1 ); // fsck pass
