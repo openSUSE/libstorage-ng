@@ -265,6 +265,7 @@ namespace storage
 	set_max_column_width( col++,  1 ); // fsck pass
 
 	set_pad_columns( true );
+        set_diff_enabled();
     }
 
 
@@ -504,6 +505,18 @@ namespace storage
 
         if ( ! get_filename().empty() )
             y2mil( get_filename() );
+
+        for ( size_t i=0; i < lines.size(); ++i )
+            y2mil( lines[i] );
+    }
+
+
+    void EtcFstab::log_diff()
+    {
+        string_vec lines = diff();
+
+        if ( ! get_filename().empty() )
+            y2mil( get_filename() << " diff: " );
 
         for ( size_t i=0; i < lines.size(); ++i )
             y2mil( lines[i] );
