@@ -22,6 +22,7 @@
 
 #include <stdlib.h>
 #include <iostream>
+#include <regex>
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include <boost/algorithm/string/split.hpp>
@@ -29,6 +30,7 @@
 #include "storage/EtcFstab.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 #define FSTAB_COLUMN_COUNT	6
@@ -69,6 +71,27 @@ namespace storage
 	}
 
 	return false;
+    }
+
+
+    bool
+    MountOpts::has_subvol() const
+    {
+	return any_of(opts.begin(), opts.end(), [](const string& opt) {
+	    return boost::starts_with(opt, "subvolid=") || boost::starts_with(opt, "subvol=");
+	});
+    }
+
+
+    bool
+    MountOpts::has_subvol(long id, const string& path) const
+    {
+	regex re_id("subvolid=[0-9]*" + to_string(id), regex_constants::extended);
+	regex re_path("subvol=/*" + path, regex_constants::extended);
+
+	return any_of(opts.begin(), opts.end(), [re_id, re_path](const string& opt) {
+	    return regex_match(opt, re_id) || regex_match(opt, re_path);
+	});
     }
 
 
@@ -145,7 +168,6 @@ namespace storage
     FstabEntry::FstabEntry()
 	: fs_type(FsType::UNKNOWN), dump_pass(0), fsck_pass(0)
     {
-
     }
 
 
@@ -273,6 +295,38 @@ namespace storage
 	}
 
 	return 0;
+    }
+
+
+    vector<FstabEntry*>
+    EtcFstab::find_all_devices(const vector<string>& devices)
+    {
+	vector<FstabEntry*> ret;
+
+	for (int i = 0; i < get_entry_count(); ++i)
+	{
+	    FstabEntry* entry = get_entry(i);
+	    if (entry && contains(devices, entry->get_device()))
+		ret.push_back(entry);
+	}
+
+	return ret;
+    }
+
+
+    vector<const FstabEntry*>
+    EtcFstab::find_all_devices(const vector<string>& devices) const
+    {
+	vector<const FstabEntry*> ret;
+
+	for (int i = 0; i < get_entry_count(); ++i)
+	{
+	    FstabEntry* entry = get_entry(i);
+	    if (entry && contains(devices, entry->get_device()))
+		ret.push_back(entry);
+	}
+
+	return ret;
     }
 
 
@@ -438,8 +492,37 @@ namespace storage
 
         if ( ! get_filename().empty() )
             y2mil( get_filename() );
-            
+
         for ( size_t i=0; i < lines.size(); ++i )
             y2mil( lines[i] );
     }
+
+
+    vector<string>
+    EtcFstab::construct_device_aliases(const BlkDevice* blk_device, const BlkFilesystem* blk_filesystem)
+    {
+	vector<string> device_aliases = { blk_device->get_name() };
+
+	for (const string& udev_path : blk_device->get_udev_paths())
+	    device_aliases.push_back("/dev/disk/by-path/" + udev_path);
+
+	for (const string& udev_id : blk_device->get_udev_ids())
+	    device_aliases.push_back("/dev/disk/by-id/" + udev_id);
+
+        if (!blk_filesystem->get_label().empty())
+        {
+            device_aliases.push_back("LABEL=" + blk_filesystem->get_label());
+            device_aliases.push_back("/dev/disk/by-label/" + blk_filesystem->get_label());
+        }
+
+        if (!blk_filesystem->get_uuid().empty())
+        {
+            device_aliases.push_back("UUID=" + blk_filesystem->get_uuid());
+            device_aliases.push_back("/dev/disk/by-uuid/" + blk_filesystem->get_uuid());
+        }
+
+	return device_aliases;
+    }
+
+
 }

@@ -10,6 +10,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Devices/BlkDevice.h		\
 	${top_srcdir}/storage/Devices/Partitionable.h		\
 	${top_srcdir}/storage/Filesystems/Btrfs.h		\
+	${top_srcdir}/storage/Filesystems/BtrfsSubvolume.h	\
 	${top_srcdir}/storage/Filesystems/Reiserfs.h		\
 	${top_srcdir}/storage/Devices/Device.h			\
 	${top_srcdir}/storage/Devices/Disk.h			\

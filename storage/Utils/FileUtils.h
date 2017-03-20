@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,6 +26,7 @@
 
 
 #include <string>
+#include <vector>
 #include <boost/noncopyable.hpp>
 
 
@@ -33,6 +34,7 @@ namespace storage
 {
 
     using std::string;
+    using std::vector;
 
 
     class TmpDir : private boost::noncopyable
@@ -82,7 +84,8 @@ namespace storage
 	/**
 	 * Mounts device at TmpDir(path, name_template).
 	 */
-	TmpMount(const string& path, const string& name_template, const string& device);
+	TmpMount(const string& path, const string& name_template, const string& device,
+		 bool read_only, const vector<string>& options = vector<string>());
 
 	/**
 	 * Unmounts the device.

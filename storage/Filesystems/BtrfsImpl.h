@@ -49,12 +49,26 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
+	BtrfsSubvolume* get_top_level_btrfs_subvolume();
+	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
+
+	vector<BtrfsSubvolume*> get_btrfs_subvolumes();
+	vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
+
+	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+
+	BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path);
+	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path) const;
+
     public:
 
 	Impl()
 	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
+
+	virtual void check() const;
 
 	virtual FsType get_type() const override { return FsType::BTRFS; }
 
@@ -63,6 +77,8 @@ namespace storage
 	virtual string get_displayname() const override { return "btrfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
+
+	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& fstab) override;
 
 	virtual ResizeInfo detect_resize_info() const override;
 

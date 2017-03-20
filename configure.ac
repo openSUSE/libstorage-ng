@@ -105,6 +105,7 @@ AC_OUTPUT(
 	testsuite/dependencies/lvm/Makefile
 	testsuite/dependencies/md/Makefile
 	testsuite/dependencies/partitions/Makefile
+	testsuite/dependencies/btrfs/Makefile
 	testsuite/sorting/Makefile
 	testsuite/partitions/Makefile
 	testsuite/Devices/Makefile
@@ -115,6 +116,7 @@ AC_OUTPUT(
 	integration-tests/partition-tables/Makefile
 	integration-tests/partitions/Makefile
 	integration-tests/filesystems/Makefile
+	integration-tests/filesystems/btrfs/Makefile
 	integration-tests/luks/Makefile
 	integration-tests/md/Makefile
 	integration-tests/lvm/Makefile

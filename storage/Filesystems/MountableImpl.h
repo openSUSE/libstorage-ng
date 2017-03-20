@@ -92,7 +92,20 @@ namespace storage
 
 	virtual FsType get_mount_type() const = 0;
 
+	virtual vector<string> get_mount_options() const { return vector<string>(); }
+
 	const Mountable* get_mountable() const { return to_mountable(get_device()); }
+
+	/**
+	 * Find the fstab entry for the Mountable. Normally just looks for the
+	 * device but for Btrfs and BtrfsSubvolume also the subvol option has
+	 * to fit.
+	 *
+	 * During probing names should be the device aliases, during commit
+	 * actions only the 'fstab device name'.
+	 */
+	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const;
+	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const;
 
 	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
 	virtual void do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const;
@@ -206,7 +219,7 @@ namespace storage
 	 *
 	 * The mode is not enforced.
 	 */
-	EnsureMounted(const Mountable* mountable);
+	EnsureMounted(const Mountable* mountable, bool read_only = true);
 
 	/**
 	 * Returns any mountpoint of the mountable.
@@ -216,6 +229,7 @@ namespace storage
     private:
 
 	const Mountable* mountable;
+	bool read_only;
 
 	unique_ptr<TmpMount> tmp_mount;
 

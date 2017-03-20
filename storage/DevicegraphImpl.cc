@@ -52,6 +52,7 @@
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Swap.h"
@@ -599,6 +600,7 @@ namespace storage
 	{ "Ntfs", &Ntfs::load },
 	{ "Vfat", &Vfat::load },
 	{ "Btrfs", &Btrfs::load },
+	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
 	{ "Reiserfs", &Reiserfs::load },
 	{ "Xfs", &Xfs::load },
 	{ "Swap", &Swap::load },
@@ -808,7 +810,7 @@ namespace storage
 		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
 		else if (is_bcache_cset(device))
 		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-		else if (is_filesystem(device))
+		else if (is_mountable(device))
 		    out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
 		else
 		    ST_THROW(LogicException("unknown Device subclass"));

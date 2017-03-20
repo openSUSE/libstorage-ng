@@ -1,5 +1,4 @@
 /*
- * Copyright (c) 2015 Novell, Inc.
  * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
@@ -21,41 +20,49 @@
  */
 
 
-#ifndef STORAGE_BTRFS_H
-#define STORAGE_BTRFS_H
+#ifndef STORAGE_BTRFS_SUBVOLUME_H
+#define STORAGE_BTRFS_SUBVOLUME_H
 
 
+#include "storage/Filesystems/Mountable.h"
 #include "storage/Devicegraph.h"
-#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class BtrfsSubvolume;
+    class Btrfs;
 
 
-    struct BtrfsSubvolumeNotFoundByPath : public DeviceNotFound
-    {
-	BtrfsSubvolumeNotFoundByPath(const std::string& path);
-    };
-
-
-    class Btrfs : public BlkFilesystem
+    /**
+     * Class to represent a btrfs subvolume.
+     */
+    class BtrfsSubvolume : public Mountable
     {
     public:
 
-	static Btrfs* create(Devicegraph* devicegraph);
-	static Btrfs* load(Devicegraph* devicegraph, const xmlNode* node);
+	static BtrfsSubvolume* create(Devicegraph* devicegraph, const std::string& path);
+	static BtrfsSubvolume* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	long get_id() const;
+
+	bool is_top_level() const;
+
+	const std::string& get_path() const;
+
+	bool is_nocow() const;
+	void set_nocow(bool nocow);
+
+	bool is_default_btrfs_subvolume() const;
+	void set_default_btrfs_subvolume();
+
+	Btrfs* get_btrfs();
+	const Btrfs* get_btrfs() const;
 
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
-	std::vector<BtrfsSubvolume*> get_btrfs_subvolumes();
-	std::vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
-
-	BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path);
-	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path) const;
+	BtrfsSubvolume* create_btrfs_subvolume(const std::string& path);
 
     public:
 
@@ -64,19 +71,19 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Btrfs* clone() const override;
+	virtual BtrfsSubvolume* clone() const override;
 
     protected:
 
-	Btrfs(Impl* impl);
+	BtrfsSubvolume(Impl* impl);
 
     };
 
 
-    bool is_btrfs(const Device* device);
+    bool is_btrfs_subvolume(const Device* device);
 
-    Btrfs* to_btrfs(Device* device);
-    const Btrfs* to_btrfs(const Device* device);
+    BtrfsSubvolume* to_btrfs_subvolume(Device* device);
+    const BtrfsSubvolume* to_btrfs_subvolume(const Device* device);
 
 }
 

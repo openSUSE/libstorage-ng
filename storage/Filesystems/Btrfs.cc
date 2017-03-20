@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,7 +23,8 @@
 
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
+#include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Holders/Subdevice.h"
 
 
 namespace storage
@@ -31,11 +33,24 @@ namespace storage
     using namespace std;
 
 
+    BtrfsSubvolumeNotFoundByPath::BtrfsSubvolumeNotFoundByPath(const string& path)
+	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path.c_str()))
+    {
+    }
+
+
     Btrfs*
     Btrfs::create(Devicegraph* devicegraph)
     {
 	Btrfs* ret = new Btrfs(new Btrfs::Impl());
 	ret->Device::create(devicegraph);
+
+	// create BtrfsSubvolume for the top-level subvolume
+	BtrfsSubvolume* top_level = BtrfsSubvolume::create(devicegraph, "");
+	Subdevice::create(devicegraph, ret, top_level);
+	top_level->get_impl().set_id(BtrfsSubvolume::Impl::top_level_id);
+	top_level->set_default_btrfs_subvolume();
+
 	return ret;
     }
 
@@ -52,6 +67,48 @@ namespace storage
     Btrfs::Btrfs(Impl* impl)
 	: BlkFilesystem(impl)
     {
+    }
+
+
+    BtrfsSubvolume*
+    Btrfs::get_top_level_btrfs_subvolume()
+    {
+	return get_impl().get_top_level_btrfs_subvolume();
+    }
+
+
+    const BtrfsSubvolume*
+    Btrfs::get_top_level_btrfs_subvolume() const
+    {
+	return get_impl().get_top_level_btrfs_subvolume();
+    }
+
+
+    vector<BtrfsSubvolume*>
+    Btrfs::get_btrfs_subvolumes()
+    {
+	return get_impl().get_btrfs_subvolumes();
+    }
+
+
+    vector<const BtrfsSubvolume*>
+    Btrfs::get_btrfs_subvolumes() const
+    {
+	return get_impl().get_btrfs_subvolumes();
+    }
+
+
+    BtrfsSubvolume*
+    Btrfs::find_btrfs_subvolume_by_path(const std::string& path)
+    {
+	return get_impl().find_btrfs_subvolume_by_path(path);
+    }
+
+
+    const BtrfsSubvolume*
+    Btrfs::find_btrfs_subvolume_by_path(const std::string& path) const
+    {
+	return get_impl().find_btrfs_subvolume_by_path(path);
     }
 
 

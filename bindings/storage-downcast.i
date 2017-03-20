@@ -15,18 +15,18 @@
 
 %factory(storage::Device* storage::downcast, storage::Disk, storage::Md, storage::Partition,
 	 storage::Gpt, storage::LvmPv, storage::LvmVg, storage::LvmLv, storage::Luks,
-	 storage::Encryption, storage::Msdos, storage::Btrfs, storage::Reiserfs, storage::Ext2,
-	 storage::Ext3, storage::Ext4, storage::Ntfs, storage::Swap, storage::Vfat,
-	 storage::Xfs, storage::Iso9660, storage::Udf, storage::Bcache, storage::BcacheCset,
-	 storage::Nfs);
+	 storage::Encryption, storage::Msdos, storage::Btrfs, storage::BtrfsSubvolume,
+	 storage::Reiserfs, storage::Ext2, storage::Ext3, storage::Ext4, storage::Ntfs,
+	 storage::Swap, storage::Vfat, storage::Xfs, storage::Iso9660, storage::Udf,
+	 storage::Bcache, storage::BcacheCset, storage::Nfs);
 
 %factory(const storage::Device* storage::downcast, const storage::Disk, const storage::Md,
 	 const storage::Partition, const storage::Gpt, const storage::LvmPv, const storage::LvmVg,
 	 const storage::LvmLv, const storage::Luks, const storage::Encryption, const storage::Msdos,
-	 const storage::Btrfs, const storage::Reiserfs, const storage::Ext2, const storage::Ext3,
-	 const storage::Ext4, const storage::Ntfs, const storage::Swap, const storage::Vfat,
-	 const storage::Xfs, const storage::Iso9660, const storage::Udf, const storage::Bcache,
-	 const storage::BcacheCset, const storage::Nfs);
+	 const storage::Btrfs, const storage::BtrfsSubvolume, const storage::Reiserfs,
+	 const storage::Ext2, const storage::Ext3, const storage::Ext4, const storage::Ntfs,
+	 const storage::Swap, const storage::Vfat, const storage::Xfs, const storage::Iso9660,
+	 const storage::Udf, const storage::Bcache, const storage::BcacheCset, const storage::Nfs);
 
 %inline %{
 
