@@ -402,6 +402,60 @@ public:
      **/
     void set_comment_marker( const string & marker ) { comment_marker = marker; }
 
+    /**
+     * Return 'true' if diffs are enabled. Diffs are not enabled by default.
+     **/
+    bool get_diff_enabled() const { return diff_enabled; }
+
+    /**
+     * Enable or disable diffs. This saves a copy of the formatted text lines
+     * at certain points, i.e. this comes at a memory and performance cost.
+     **/
+    void set_diff_enabled( bool enabled = true ) { diff_enabled = enabled; }
+
+    /**
+     * Diff the current status against the last one saved with save_orig().
+     **/
+    string_vec diff();
+
+    /**
+     * Diff 'formatted_lines' against the last status saved with save_orig().
+     **/
+    string_vec diff( const string_vec & formatted_lines );
+
+    /**
+     * Save the current status as the original reference for future diffs.
+     * This calls format_lines() internally which is a pretty expensive
+     * operation, so if you call format_lines() anyway, consider using the
+     * overloaded version of this that takes a string_vec.
+     *
+     * Notice that this is called automatically when the file is loaded, when
+     * lines are parsed and when the file is written.
+     **/
+    void save_orig();
+
+    /**
+     * Save the 'orig_lines' as the original reference for future
+     * diffs. 'orig_lines' should be the result of a previous format_lines()
+     * call.
+     **/
+    void save_orig( const string_vec & orig_lines );
+
+    /**
+     * Get the orig_lines as saved with the last save_orig().
+     **/
+    const string_vec & get_orig_lines() const { return orig_lines; }
+
+    /**
+     * Generic static diff method: Diff the lines in 'new_lines' against the
+     * lines in 'old_lines'.
+     *
+     * The result is similar to the Linux/Unix "diff -u" command.
+     **/
+    static string_vec diff( const string_vec & old_lines,
+                            const string_vec & new_lines );
+
+
 protected:
 
     /**
@@ -449,15 +503,36 @@ protected:
      **/
     bool parse_entries( const string_vec & lines, int from, int end );
 
+    /**
+     * Diff helper: Diff lines betwen start and end.
+     **/
+    static string_vec diff( const string_vec & old_lines,
+                            int old_start, int old_end,
+                            const string_vec & new_lines,
+                            int new_start, int new_end );
+
+    /**
+     * Diff helper: find longest common subsequence between start and
+     * end. Return the length of the sequence. Set the _ret parameters to the
+     * respective position where the sequence was found.
+     **/
+    static int find_common_subsequence( const string_vec old_lines,
+                                        int old_start, int old_end,
+                                        const string_vec & new_lines,
+                                        int new_start, int new_end,
+                                        int & common_pos_old_ret,
+                                        int & common_pos_new_ret );
 
 private:
 
     string	    filename;
     string	    comment_marker;
+    bool            diff_enabled;
 
     string_vec	    header_comments;
     vector<Entry *> entries;
     string_vec	    footer_comments;
+    string_vec      orig_lines;
 
 };
 
