@@ -195,7 +195,7 @@ bool CommentedConfigFile::parse_entries( const string_vec & lines,
                                          int end )
 {
     string_vec comment_before;
-    bool success;
+    bool success = true;
 
     for ( int i = from; i <= end; ++i )
     {
