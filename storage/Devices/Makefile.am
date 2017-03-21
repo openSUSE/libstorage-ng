@@ -11,6 +11,8 @@ libdevices_la_SOURCES =					\
 	BlkDeviceImpl.h		BlkDeviceImpl.cc	\
 	Disk.h			Disk.cc			\
 	DiskImpl.h		DiskImpl.cc		\
+	Dasd.h			Dasd.cc			\
+	DasdImpl.h		DasdImpl.cc		\
 	Md.h			Md.cc			\
 	MdImpl.h		MdImpl.cc		\
 	Partitionable.h		Partitionable.cc	\

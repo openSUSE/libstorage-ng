@@ -11,6 +11,9 @@
 %template(VectorDiskPtr) std::vector<Disk*>;
 %template(VectorConstDiskPtr) std::vector<const Disk*>;
 
+%template(VectorDasdPtr) std::vector<Dasd*>;
+%template(VectorConstDasdPtr) std::vector<const Dasd*>;
+
 %template(VectorMdPtr) std::vector<Md*>;
 %template(VectorConstMdPtr) std::vector<const Md*>;
 

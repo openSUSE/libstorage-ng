@@ -28,6 +28,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
+#include "storage/Devices/DasdImpl.h"
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
@@ -130,6 +131,8 @@ namespace storage
 	// e.g. between Partitionable, PartitionTable and Partitions.
 
 	Disk::Impl::probe_disks(probed, systeminfo);
+
+	Dasd::Impl::probe_dasds(probed, systeminfo);
 
 	if (systeminfo.getBlkid().any_md())
 	{

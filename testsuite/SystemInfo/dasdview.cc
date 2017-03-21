@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"device:/dev/dasda dasd_format:CDL dasd_type:ECKD"
+	"device:/dev/dasda dasd-type:ECKD dasd-format:CDL"
     };
 
     check("/dev/dasda", input, output);
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"device:/dev/dasdb dasd_format:NONE dasd_type:ECKD"
+	"device:/dev/dasdb dasd-type:ECKD dasd-format:NONE"
     };
 
     check("/dev/dasdb", input, output);
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"device:/dev/dasdc dasd_format:LDL dasd_type:FBA"
+	"device:/dev/dasdc dasd-type:FBA dasd-format:LDL"
     };
 
     check("/dev/dasdc", input, output);
