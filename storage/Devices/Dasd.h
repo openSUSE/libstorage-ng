@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,8 +21,8 @@
  */
 
 
-#ifndef STORAGE_DISK_H
-#define STORAGE_DISK_H
+#ifndef STORAGE_DASD_H
+#define STORAGE_DASD_H
 
 
 #include "storage/Devices/Partitionable.h"
@@ -31,43 +31,49 @@
 namespace storage
 {
 
-    //! Data Transport Layer
-    enum class Transport {
-	UNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE
+    enum class DasdType {
+	UNKNOWN, ECKD, FBA
     };
 
-    std::string get_transport_name(Transport transport);
+
+    enum class DasdFormat {
+	NONE, LDL, CDL
+    };
 
 
-    //! A physical disk device
-    class Disk : public Partitionable
+    /**
+     * A physical DASD device.
+     */
+    class Dasd : public Partitionable
     {
     public:
 
-	static Disk* create(Devicegraph* devicegraph, const std::string& name);
-	static Disk* create(Devicegraph* devicegraph, const std::string& name,
+	static Dasd* create(Devicegraph* devicegraph, const std::string& name);
+	static Dasd* create(Devicegraph* devicegraph, const std::string& name,
 			    const Region& region);
-	static Disk* create(Devicegraph* devicegraph, const std::string& name,
+	static Dasd* create(Devicegraph* devicegraph, const std::string& name,
 			    unsigned long long size);
 
-	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Dasd* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
 	 * Sorted by name.
 	 */
-	static std::vector<Disk*> get_all(Devicegraph* devicegraph);
+	static std::vector<Dasd*> get_all(Devicegraph* devicegraph);
 
 	/**
 	 * @copydoc get_all()
 	 */
-	static std::vector<const Disk*> get_all(const Devicegraph* devicegraph);
+	static std::vector<const Dasd*> get_all(const Devicegraph* devicegraph);
 
 	bool get_rotational() const;
 
-	Transport get_transport() const;
+	DasdType get_dasd_type() const;
 
-	static Disk* find_by_name(Devicegraph* devicegraph, const std::string& name);
-	static const Disk* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+	DasdFormat get_dasd_format() const;
+
+	static Dasd* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const Dasd* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:
 
@@ -76,29 +82,29 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Disk* clone() const override;
+	virtual Dasd* clone() const override;
 
     protected:
 
-	Disk(Impl* impl);
+	Dasd(Impl* impl);
 
     };
 
 
-    bool is_disk(const Device* device);
+    bool is_dasd(const Device* device);
 
     /**
-     * Converts pointer to Device to pointer to Disk.
+     * Converts pointer to Device to pointer to Dasd.
      *
-     * @return Pointer to Disk.
+     * @return Pointer to Dasd.
      * @throw DeviceHasWrongType, NullPointerException
      */
-    Disk* to_disk(Device* device);
+    Dasd* to_dasd(Device* device);
 
     /**
-     * @copydoc to_disk(Device*)
+     * @copydoc to_dasd(Device*)
      */
-    const Disk* to_disk(const Device* device);
+    const Dasd* to_dasd(const Device* device);
 
 }
 

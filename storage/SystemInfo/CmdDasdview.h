@@ -24,7 +24,7 @@
 #define STORAGE_CMD_DASDVIEW_H
 
 
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
 
 
 namespace storage
@@ -43,16 +43,17 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
 
-	DasdFormat getDasdFormat() const { return dasd_format; }
-	DasdType getDasdType() const { return dasd_type; }
+	DasdType get_dasd_type() const { return dasd_type; }
+	DasdFormat get_dasd_format() const { return dasd_format; }
 
     private:
 
 	void parse(const std::vector<string>& lines);
 
 	string device;
-	DasdFormat dasd_format;
+
 	DasdType dasd_type;
+	DasdFormat dasd_format;
 
     };
 

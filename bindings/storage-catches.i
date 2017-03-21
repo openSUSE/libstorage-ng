@@ -38,6 +38,9 @@
 %catches(storage::DeviceHasWrongType) storage::to_disk(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_disk(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_dasd(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_dasd(const Device*);
+
 %catches(storage::DeviceHasWrongType) storage::to_md(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_md(const Device*);
 
@@ -88,6 +91,9 @@
 
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph*, const std::string&);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph*, const std::string&);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph*, const std::string&);
 
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph*, const std::string&);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph*, const std::string&);

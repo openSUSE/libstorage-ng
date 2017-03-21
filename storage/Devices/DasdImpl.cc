@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,22 +21,16 @@
  */
 
 
-#include <ctype.h>
-
-#include "storage/Devices/DiskImpl.h"
-#include "storage/Devices/MdImpl.h"
+#include "storage/Devices/DasdImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/Enum.h"
-#include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
-#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -45,35 +39,42 @@ namespace storage
     using namespace std;
 
 
-    const char* DeviceTraits<Disk>::classname = "Disk";
+    const char* DeviceTraits<Dasd>::classname = "Dasd";
 
 
-    const vector<string> EnumTraits<Transport>::names({
-	"UNKNOWN", "SBP", "ATA", "FC", "iSCSI", "SAS", "SATA", "SPI", "USB", "FCoE"
+    const vector<string> EnumTraits<DasdType>::names({
+	"UNKNOWN", "ECKD", "FBA"
     });
 
 
-    Disk::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN)
+    const vector<string> EnumTraits<DasdFormat>::names({
+	"NONE", "LDL", "CDL"
+    });
+
+
+    Dasd::Impl::Impl(const xmlNode* node)
+	: Partitionable::Impl(node), rotational(false)
     {
 	string tmp;
 
 	getChildValue(node, "rotational", rotational);
 
-	if (getChildValue(node, "transport", tmp))
-	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
+	if (getChildValue(node, "dasd-type", tmp))
+	    dasd_type = toValueWithFallback(tmp, DasdType::UNKNOWN);
+
+	if (getChildValue(node, "dasd-format", tmp))
+	    dasd_format = toValueWithFallback(tmp, DasdFormat::NONE);
     }
 
 
     void
-    Disk::Impl::probe_disks(Devicegraph* probed, SystemInfo& systeminfo)
+    Dasd::Impl::probe_dasds(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 
-	    if (Md::Impl::is_valid_name(name) || boost::starts_with(name, DEVDIR "/loop") ||
-		boost::starts_with(name, DEVDIR "/dasd"))
+	    if (!boost::starts_with(name, DEVDIR "/dasd"))
 		continue;
 
 	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo(name);
@@ -83,92 +84,53 @@ namespace storage
 	    if (range_file.get_int() <= 1)
 		continue;
 
-	    Disk* disk = Disk::create(probed, name);
-	    disk->get_impl().probe_pass_1(probed, systeminfo);
+	    Dasd* dasd = Dasd::create(probed, name);
+	    dasd->get_impl().probe_pass_1(probed, systeminfo);
 	}
     }
 
 
     void
-    Disk::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Dasd::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	Partitionable::Impl::probe_pass_1(probed, systeminfo);
 
 	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
 
-	Lsscsi::Entry entry;
-	if (systeminfo.getLsscsi().getEntry(get_name(), entry))
-	    transport = entry.transport;
-    }
-
-
-    uint64_t
-    Disk::Impl::used_features() const
-    {
-	uint64_t ret = 0;
-
-	switch (transport)
-	{
-	    case Transport::FC: ret = UF_FC; break;
-	    case Transport::FCOE: ret = UF_FCOE; break;
-	    case Transport::ISCSI: ret = UF_ISCSI; break;
-	    default: break;
-	}
-
-	return ret | Partitionable::Impl::used_features();
+	const Dasdview dasd_view = systeminfo.getDasdview(get_name());
+	dasd_type = dasd_view.get_dasd_type();
+	dasd_format = dasd_view.get_dasd_format();
     }
 
 
     void
-    Disk::Impl::save(xmlNode* node) const
+    Dasd::Impl::save(xmlNode* node) const
     {
 	Partitionable::Impl::save(node);
 
 	setChildValueIf(node, "rotational", rotational, rotational);
 
-	setChildValueIf(node, "transport", toString(transport), transport != Transport::UNKNOWN);
-    }
-
-
-    void
-    Disk::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
-    {
-	const Environment& environment = actiongraph.get_storage().get_environment();
-	if (environment.get_target_mode() == TargetMode::IMAGE)
-	{
-	    vector<Action::Base*> actions;
-	    actions.push_back(new Action::Create(get_sid()));
-	    actiongraph.add_chain(actions);
-	}
-	else
-	{
-	    throw runtime_error("cannot create disk");
-	}
-    }
-
-
-    void
-    Disk::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
-    {
-	throw runtime_error("cannot delete disk");
+	setChildValueIf(node, "dasd-type", toString(dasd_type), dasd_type != DasdType::UNKNOWN);
+	setChildValueIf(node, "dasd-format", toString(dasd_format), dasd_format != DasdFormat::NONE);
     }
 
 
     bool
-    Disk::Impl::equal(const Device::Impl& rhs_base) const
+    Dasd::Impl::equal(const Device::Impl& rhs_base) const
     {
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && transport == rhs.transport;
+	return rotational == rhs.rotational && dasd_type == rhs.dasd_type &&
+	    dasd_format == rhs.dasd_format;
     }
 
 
     void
-    Disk::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    Dasd::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
     {
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
@@ -176,58 +138,50 @@ namespace storage
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
-	storage::log_diff_enum(log, "transport", transport, rhs.transport);
+	storage::log_diff_enum(log, "dasd-type", dasd_type, rhs.dasd_type);
+	storage::log_diff_enum(log, "dasd-format", dasd_format, rhs.dasd_format);
     }
 
 
     void
-    Disk::Impl::print(std::ostream& out) const
+    Dasd::Impl::print(std::ostream& out) const
     {
 	Partitionable::Impl::print(out);
 
 	if (rotational)
 	    out << " rotational";
 
-	out << " transport:" << toString(get_transport());
+	out << " dasd-type:" << toString(dasd_type);
+	out << " dasd-format:" << toString(dasd_format);
     }
 
 
     void
-    Disk::Impl::process_udev_paths(vector<string>& udev_paths) const
+    Dasd::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
     }
 
 
     void
-    Disk::Impl::process_udev_ids(vector<string>& udev_ids) const
+    Dasd::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	// Only keep udev-ids known to represent the disk, not its
+	// Only keep udev-ids known to represent the dasd, not its
 	// content. E.g. ignore lvm-pv-<pv-uuid> since it vanishes when the
 	// lvm physical volume is removed. Since udev may come up with new
 	// udev-ids any time a whitelist looks more future-proof than a
 	// blacklist.
 
-	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-" };
+	static const vector<string> allowed_prefixes = { "ccw-" };
 
 	udev_ids.erase(remove_if(udev_ids.begin(), udev_ids.end(), [](const string& udev_id) {
 	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
 			   { return boost::starts_with(udev_id, prefix); });
 	}), udev_ids.end());
-
-	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("ata-"));
-    }
-
-
-    Text
-    Disk::Impl::do_create_text(Tense tense) const
-    {
-	return sformat(_("Create hard disk %1$s (%2$s)"), get_displayname().c_str(),
-		       get_size_string().c_str());
     }
 
 
     bool
-    compare_by_name(const Disk* lhs, const Disk* rhs)
+    compare_by_name(const Dasd* lhs, const Dasd* rhs)
     {
 	const string& string_lhs = lhs->get_name();
 	const string& string_rhs = rhs->get_name();
@@ -235,7 +189,7 @@ namespace storage
 	string::size_type size_lhs = string_lhs.size();
 	string::size_type size_rhs = string_rhs.size();
 
-	for (const string& tmp : { DEVDIR "/sd", DEVDIR "/vd", DEVDIR "/dasd" })
+	for (const string& tmp : { DEVDIR "/dasd", DEVDIR "/vd" })
 	{
 	    if (boost::starts_with(string_lhs, tmp) && boost::starts_with(string_rhs, tmp))
 	    {
@@ -245,8 +199,6 @@ namespace storage
 		    return string_lhs < string_rhs;
 	    }
 	}
-
-	// TODO mmcblk, nvme, ...
 
 	return string_lhs < string_rhs;
     }

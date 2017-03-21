@@ -21,12 +21,12 @@
  */
 
 
-#ifndef STORAGE_DISK_IMPL_H
-#define STORAGE_DISK_IMPL_H
+#ifndef STORAGE_DASD_IMPL_H
+#define STORAGE_DASD_IMPL_H
 
 
 #include "storage/Utils/Enum.h"
-#include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
 #include "storage/Devices/PartitionableImpl.h"
 
 
@@ -36,24 +36,27 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Disk> { static const char* classname; };
+    template <> struct DeviceTraits<Dasd> { static const char* classname; };
 
-    template <> struct EnumTraits<Transport> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdType> { static const vector<string> names; };
+    template <> struct EnumTraits<DasdFormat> { static const vector<string> names; };
 
 
-    class Disk::Impl : public Partitionable::Impl
+    class Dasd::Impl : public Partitionable::Impl
     {
     public:
 
 	Impl(const string& name)
-	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name), rotational(false), dasd_type(DasdType::UNKNOWN),
+	      dasd_format(DasdFormat::NONE) {}
 
 	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region, 256), rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name, region, 4), rotational(false), dasd_type(DasdType::UNKNOWN),
+	      dasd_format(DasdFormat::NONE) {}
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return DeviceTraits<Disk>::classname; }
+	virtual const char* get_classname() const override { return DeviceTraits<Dasd>::classname; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -62,16 +65,12 @@ namespace storage
 	bool get_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
-	Transport get_transport() const { return transport; }
-	void set_transport(Transport transport) { Impl::transport = transport; }
+	DasdType get_dasd_type() const { return dasd_type; }
 
-	static void probe_disks(Devicegraph* probed, SystemInfo& systeminfo);
+	DasdFormat get_dasd_format() const { return dasd_format; }
+
+	static void probe_dasds(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
-
-	virtual uint64_t used_features() const override;
-
-	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
-	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -81,22 +80,21 @@ namespace storage
 	virtual void process_udev_paths(vector<string>& udev_paths) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
-	Text do_create_text(Tense tense) const override;
-
     private:
 
 	bool rotational;
 
-	Transport transport;
+	DasdType dasd_type;
+	DasdFormat dasd_format;
 
     };
 
 
-    static_assert(!std::is_abstract<Disk>(), "Disk ought not to be abstract.");
-    static_assert(!std::is_abstract<Disk::Impl>(), "Disk::Impl ought not to be abstract.");
+    static_assert(!std::is_abstract<Dasd>(), "Dasd ought not to be abstract.");
+    static_assert(!std::is_abstract<Dasd::Impl>(), "Dasd::Impl ought not to be abstract.");
 
 
-    bool compare_by_name(const Disk* lhs, const Disk* rhs);
+    bool compare_by_name(const Dasd* lhs, const Dasd* rhs);
 
 }
 
