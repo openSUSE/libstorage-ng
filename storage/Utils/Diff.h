@@ -91,6 +91,11 @@ class Diff
         string_vec context_lines_before;
         string_vec context_lines_after;
 
+        Hunk():
+            removed_start_pos(0),
+            added_start_pos(0)
+            {}
+
         /**
          * Format this hunk just like a 'diff -u' output, including the '@@'
          * header.

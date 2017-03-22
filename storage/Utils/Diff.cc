@@ -368,8 +368,10 @@ string Diff::Hunk::format_header( const Range & a, const Range & b )
 
     snprintf( hunk_header, sizeof( hunk_header ),
 	      "@@ -%d,%d +%d,%d @@",
-	      a.start + 1, a.length(),
-	      b.start + 1, b.length() );
+	      a.empty() ? 0 : a.start + 1,
+              a.length(),
+	      b.empty() ? 0 : b.start + 1,
+              b.length() );
 
     return string( hunk_header );
 }
