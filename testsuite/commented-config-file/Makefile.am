@@ -10,7 +10,8 @@ check_PROGRAMS =		\
 	simple_string_ops.test	\
 	container_ops.test	\
 	parser.test		\
-	formatter.test
+	formatter.test		\
+	diff.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
