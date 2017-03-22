@@ -212,7 +212,7 @@ void Diff::add_lines( string_vec &	 lines,
 		      const string_vec & lines_to_add,
 		      const Range &	 range )
 {
-    for ( int i = range.start; i <= range.end; ++i )
+    for ( int i = range.start; i <= range.end && i < (int) lines_to_add.size(); ++i )
 	lines.push_back( lines_to_add[i] );
 }
 
