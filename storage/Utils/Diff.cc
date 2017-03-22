@@ -137,13 +137,20 @@ void Diff::diff( Range a, Range b )
 	    if ( context_lines > 0 )
 	    {
 		Range context;
-		context.start = std::max( 0, a.start - context_lines );
-		context.end   = std::max( 0, a.start - 1 );
-		add_lines( hunk.context_lines_before, lines_a, context );
 
-		context.start = std::min( (int) lines_a.size(), a.end + 1 );
-		context.end   = std::min( (int) lines_a.size(), a.end + context_lines );
-		add_lines( hunk.context_lines_after, lines_a, context );
+                if ( a.start > 0 )
+                {
+                    context.start = std::max( 0, a.start - context_lines );
+                    context.end   = std::max( 0, a.start - 1 );
+                    add_lines( hunk.context_lines_before, lines_a, context );
+                }
+
+                if ( a.end < (int) lines_a.size() -1 )
+                {
+                    context.start = std::min( (int) lines_a.size() - 1, a.end + 1 );
+                    context.end   = std::min( (int) lines_a.size() - 1, a.end + context_lines );
+                    add_lines( hunk.context_lines_after, lines_a, context );
+                }
 	    }
 
 	    hunks.push_back( hunk );
