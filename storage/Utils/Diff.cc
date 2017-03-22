@@ -194,7 +194,7 @@ Diff::find_common_subsequence( const Range & a, const Range & b )
 
 #if VERBOSE
     for ( int i =0; i < best_len; ++i )
-        cout << "  common seq> " << lines_a[ common_pos_a_ret + i ] << endl;
+        cout << "  common seq> " << lines_a[ seq.pos_a + i ] << endl;
 #endif
 
     return seq;
