@@ -85,12 +85,12 @@ namespace storage
 
 	virtual void do_deactivate() const override;
 
-	virtual void do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
+	virtual void do_add_to_etc_crypttab(CommitData& commit_data) const override;
 
-	virtual void do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph, const Device* lhs)
+	virtual void do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs)
 	    const override;
 
-	virtual void do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const override;
+	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const override;
 
     private:
 

@@ -852,49 +852,49 @@ namespace storage
     {
 
 	Text
-	SetPartitionId::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	SetPartitionId::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    return partition->get_impl().do_set_id_text(tense);
 	}
 
 
 	void
-	SetPartitionId::commit(const Actiongraph::Impl& actiongraph) const
+	SetPartitionId::commit(CommitData& commit_data) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_id();
 	}
 
 
 	Text
-	SetBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	SetBoot::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    return partition->get_impl().do_set_boot_text(tense);
 	}
 
 
 	void
-	SetBoot::commit(const Actiongraph::Impl& actiongraph) const
+	SetBoot::commit(CommitData& commit_data) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_boot();
 	}
 
 
 	Text
-	SetLegacyBoot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	SetLegacyBoot::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    return partition->get_impl().do_set_legacy_boot_text(tense);
 	}
 
 
 	void
-	SetLegacyBoot::commit(const Actiongraph::Impl& actiongraph) const
+	SetLegacyBoot::commit(CommitData& commit_data) const
 	{
-	    const Partition* partition = to_partition(get_device(actiongraph, RHS));
+	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_legacy_boot();
 	}
 

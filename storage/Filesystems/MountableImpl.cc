@@ -197,9 +197,9 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Mountable::Impl::do_mount(CommitData& commit_data, const string& mountpoint) const
     {
-	const Storage& storage = actiongraph.get_storage();
+	const Storage& storage = commit_data.actiongraph.get_storage();
 
 	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
 	if (access(real_mountpoint.c_str(), R_OK ) != 0)
@@ -237,9 +237,9 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Mountable::Impl::do_umount(CommitData& commit_data, const string& mountpoint) const
     {
-	const Storage& storage = actiongraph.get_storage();
+	const Storage& storage = commit_data.actiongraph.get_storage();
 
 	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
 
@@ -270,12 +270,9 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_add_to_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Mountable::Impl::do_add_to_etc_fstab(CommitData& commit_data, const string& mountpoint) const
     {
-	const Storage& storage = actiongraph.get_storage();
-
-	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
+	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
         FstabEntry * entry = new FstabEntry();
         entry->set_device(get_mount_by_name());
@@ -285,9 +282,9 @@ namespace storage
 
         // TODO: entry->set_fsck_pass( ?? );
 
-        fstab.add(entry);
-        fstab.log_diff();
-        fstab.write();
+        etc_fstab.add(entry);
+        etc_fstab.log_diff();
+        etc_fstab.write();
     }
 
 
@@ -309,19 +306,16 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_remove_from_etc_fstab(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Mountable::Impl::do_remove_from_etc_fstab(CommitData& commit_data, const string& mountpoint) const
     {
-	const Storage& storage = actiongraph.get_storage();
+	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
-
-	FstabEntry* entry = find_etc_fstab_entry(fstab, { get_fstab_device_name() });
+	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { get_fstab_device_name() });
 	if (entry)
         {
-            fstab.remove( entry );
-            fstab.log_diff();
-            fstab.write();
+            etc_fstab.remove(entry);
+            etc_fstab.log_diff();
+            etc_fstab.write();
         }
     }
 
@@ -330,50 +324,50 @@ namespace storage
     {
 
 	Text
-	Mount::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Mount::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, RHS));
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
 	    return mountable->get_impl().do_mount_text(mountpoint, tense);
 	}
 
 
 	void
-	Mount::commit(const Actiongraph::Impl& actiongraph) const
+	Mount::commit(CommitData& commit_data) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, RHS));
-	    mountable->get_impl().do_mount(actiongraph, mountpoint);
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
+	    mountable->get_impl().do_mount(commit_data, mountpoint);
 	}
 
 
 	Text
-	Umount::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Umount::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, LHS));
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
 	    return mountable->get_impl().do_umount_text(mountpoint, tense);
 	}
 
 
 	void
-	Umount::commit(const Actiongraph::Impl& actiongraph) const
+	Umount::commit(CommitData& commit_data) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, LHS));
-	    mountable->get_impl().do_umount(actiongraph, mountpoint);
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
+	    mountable->get_impl().do_umount(commit_data, mountpoint);
 	}
 
 
 	Text
-	AddToEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcFstab::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, RHS));
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
 	    return mountable->get_impl().do_add_to_etc_fstab_text(mountpoint, tense);
 	}
 
 
 	void
-	AddToEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcFstab::commit(CommitData& commit_data) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, RHS));
-	    mountable->get_impl().do_add_to_etc_fstab(actiongraph, mountpoint);
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
+	    mountable->get_impl().do_add_to_etc_fstab(commit_data, mountpoint);
 	}
 
 
@@ -388,18 +382,18 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcFstab::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, LHS));
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
 	    return mountable->get_impl().do_remove_from_etc_fstab_text(mountpoint, tense);
 	}
 
 
 	void
-	RemoveFromEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcFstab::commit(CommitData& commit_data) const
 	{
-	    const Mountable* mountable = to_mountable(get_device(actiongraph, LHS));
-	    mountable->get_impl().do_remove_from_etc_fstab(actiongraph, mountpoint);
+	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
+	    mountable->get_impl().do_remove_from_etc_fstab(commit_data, mountpoint);
 	}
 
     }

@@ -36,12 +36,73 @@
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"
 #include "storage/Actiongraph.h"
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/EtcFstab.h"
+#include "storage/EtcCrypttab.h"
+#include "storage/EtcMdadm.h"
 
 
 namespace storage
 {
+
+    CommitData::CommitData(const Actiongraph::Impl& actiongraph)
+	: actiongraph(actiongraph)
+    {
+    }
+
+
+    CommitData::~CommitData()
+    {
+    }
+
+
+    EtcFstab&
+    CommitData::get_etc_fstab()
+    {
+	if (!etc_fstab)
+	{
+	    const Storage& storage = actiongraph.get_storage();
+	    string filename = storage.get_impl().prepend_rootprefix(ETC_FSTAB);
+
+	    etc_fstab.reset(new EtcFstab());
+	    etc_fstab->read(filename);
+	}
+
+	return *etc_fstab.get();
+    }
+
+
+    EtcCrypttab&
+    CommitData::get_etc_crypttab()
+    {
+	if (!etc_crypttab)
+	{
+	    const Storage& storage = actiongraph.get_storage();
+	    string filename = storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB);
+
+	    etc_crypttab.reset(new EtcCrypttab());
+	    etc_crypttab->read(filename);
+	}
+
+	return *etc_crypttab.get();
+    }
+
+
+    EtcMdadm&
+    CommitData::get_etc_mdadm()
+    {
+	if (!etc_mdadm)
+	{
+	    const Storage& storage = actiongraph.get_storage();
+	    string filename = storage.get_impl().prepend_rootprefix(ETC_MDADM);
+
+	    etc_mdadm.reset(new EtcMdadm(&storage, filename));
+	}
+
+	return *etc_mdadm.get();
+    }
+
 
     Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
@@ -381,11 +442,13 @@ namespace storage
     void
     Actiongraph::Impl::commit(const CommitCallbacks* commit_callbacks) const
     {
+	CommitData commit_data(*this);
+
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(*this, Tense::PRESENT_CONTINUOUS).translated;
+	    string text = action->text(commit_data, Tense::PRESENT_CONTINUOUS).translated;
 
 	    y2mil("Commit Action \"" << text << "\"");
 
@@ -397,7 +460,7 @@ namespace storage
 
 	    try
 	    {
-		action->commit(*this);
+		action->commit(commit_data);
 	    }
 	    catch (const Exception& e)
 	    {

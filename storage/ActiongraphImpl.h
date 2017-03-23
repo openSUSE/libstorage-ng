@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 
 #include <deque>
 #include <map>
+#include <memory>
 #include <boost/noncopyable.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
@@ -45,6 +46,9 @@ namespace storage
     class Devicegraph;
     class Storage;
     class CommitCallbacks;
+    class EtcFstab;
+    class EtcCrypttab;
+    class EtcMdadm;
 
 
     namespace Action
@@ -59,6 +63,28 @@ namespace storage
     enum ActionsFilter
     {
 	ONLY_FIRST, ONLY_LAST
+    };
+
+
+    class CommitData
+    {
+    public:
+
+	CommitData(const Actiongraph::Impl& actiongraph);
+	~CommitData();
+
+	const Actiongraph::Impl& actiongraph;
+
+	EtcFstab& get_etc_fstab();
+	EtcCrypttab& get_etc_crypttab();
+	EtcMdadm& get_etc_mdadm();
+
+    private:
+
+	std::unique_ptr<EtcFstab> etc_fstab;
+	std::unique_ptr<EtcCrypttab> etc_crypttab;
+	std::unique_ptr<EtcMdadm> etc_mdadm;
+
     };
 
 

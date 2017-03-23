@@ -104,10 +104,10 @@ namespace storage
 	virtual void do_delete() const override;
 
 	virtual Text do_add_to_etc_mdadm_text(Tense tense) const;
-	virtual void do_add_to_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+	virtual void do_add_to_etc_mdadm(CommitData& commit_data) const;
 
 	virtual Text do_remove_from_etc_mdadm_text(Tense tense) const;
-	virtual void do_remove_from_etc_mdadm(const Actiongraph::Impl& actiongraph) const;
+	virtual void do_remove_from_etc_mdadm(CommitData& commit_data) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
 				     Tense tense) const override;
@@ -139,8 +139,8 @@ namespace storage
 	    AddToEtcMdadm(sid_t sid)
 		: Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -155,8 +155,8 @@ namespace storage
 	    RemoveFromEtcMdadm(sid_t sid)
 		: Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 

@@ -77,9 +77,11 @@ namespace storage
     vector<string>
     Actiongraph::get_commit_actions_as_strings() const
     {
+	CommitData commit_data(get_impl());
+
 	vector<string> ret;
 	for (const Action::Base* action : get_commit_actions())
-	    ret.push_back(action->text(this->get_impl(), Tense::SIMPLE_PRESENT).translated);
+	    ret.push_back(action->text(commit_data, Tense::SIMPLE_PRESENT).translated);
 	return ret;
     }
 

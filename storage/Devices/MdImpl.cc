@@ -586,7 +586,7 @@ namespace storage
 
 
     void
-    Md::Impl::do_add_to_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_add_to_etc_mdadm(CommitData& commit_data) const
     {
 	// TODO
     }
@@ -608,7 +608,7 @@ namespace storage
 
 
     void
-    Md::Impl::do_remove_from_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_remove_from_etc_mdadm(CommitData& commit_data) const
     {
 	// TODO
     }
@@ -706,18 +706,18 @@ namespace storage
     {
 
 	Text
-	AddToEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcMdadm::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, RHS));
+	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
 	    return md->get_impl().do_add_to_etc_mdadm_text(tense);
 	}
 
 
 	void
-	AddToEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcMdadm::commit(CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, RHS));
-	    md->get_impl().do_add_to_etc_mdadm(actiongraph);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
+	    md->get_impl().do_add_to_etc_mdadm(commit_data);
 	}
 
 
@@ -733,18 +733,18 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcMdadm::text(const CommitData& commit_data, Tense tense) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, LHS));
+	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
 	    return md->get_impl().do_remove_from_etc_mdadm_text(tense);
 	}
 
 
 	void
-	RemoveFromEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcMdadm::commit(CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, LHS));
-	    md->get_impl().do_remove_from_etc_mdadm(actiongraph);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
+	    md->get_impl().do_remove_from_etc_mdadm(commit_data);
 	}
 
     }

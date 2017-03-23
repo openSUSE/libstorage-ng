@@ -49,8 +49,8 @@ namespace storage
 
 	    virtual ~Base() {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const = 0;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const = 0;
+	    virtual Text text(const CommitData& commit_data, Tense tense) const = 0;
+	    virtual void commit(CommitData& commit_data) const = 0;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const {}
@@ -72,8 +72,8 @@ namespace storage
 
 	    Create(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -124,8 +124,8 @@ namespace storage
 
 	    Delete(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
