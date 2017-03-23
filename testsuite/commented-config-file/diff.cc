@@ -8,7 +8,10 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/algorithm/string.hpp>
 
-#include "Diff.h"
+#include "storage/Utils/Diff.h"
+
+using namespace storage;
+
 
 using std::cout;
 using std::endl;
