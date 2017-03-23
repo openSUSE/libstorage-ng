@@ -187,6 +187,10 @@ namespace storage
 	chunk_size = entry.chunk_size;
 
 	superblock_version = entry.super;
+
+	MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(get_name());
+	md_name = mdadm_detail.devname;
+	uuid = mdadm_detail.uuid;
     }
 
 

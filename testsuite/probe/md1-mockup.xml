@@ -470,6 +470,11 @@
       <stdout>Disk Flags:</stdout>
       <stderr>Error: /dev/md0: unrecognised disk label</stderr>
     </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <!-- output faked -->
+      <stdout>MD_UUID=2ce25515:3d255c09:a0e91f18:d9c098d3</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>
