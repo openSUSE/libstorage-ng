@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -183,6 +183,27 @@ namespace storage
     Md::set_chunk_size(unsigned long chunk_size)
     {
 	get_impl().set_chunk_size(chunk_size);
+    }
+
+
+    const string&
+    Md::get_md_name() const
+    {
+	return get_impl().get_md_name();
+    }
+
+
+    const string&
+    Md::get_uuid() const
+    {
+	return get_impl().get_uuid();
+    }
+
+
+    const string&
+    Md::get_superblock_version() const
+    {
+	return get_impl().get_superblock_version();
     }
 
 

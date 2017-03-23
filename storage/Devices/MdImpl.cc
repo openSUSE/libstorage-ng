@@ -29,7 +29,7 @@
 #include "storage/Holders/MdUser.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/AppUtil.h"
@@ -43,6 +43,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/UsedFeatures.h"
+#include "storage/EtcMdadm.h"
 
 
 namespace storage
@@ -70,7 +71,8 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
+	  uuid(), superblock_version()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -82,7 +84,8 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
+	  uuid(), superblock_version()
     {
 	string tmp;
 
@@ -93,6 +96,12 @@ namespace storage
 	    md_parity = toValueWithFallback(tmp, DEFAULT);
 
 	getChildValue(node, "chunk-size", chunk_size);
+
+	getChildValue(node, "md-name", md_name);
+
+	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "superblock-version", superblock_version);
     }
 
 
@@ -176,6 +185,8 @@ namespace storage
 	md_parity = entry.md_parity;
 
 	chunk_size = entry.chunk_size;
+
+	superblock_version = entry.super;
     }
 
 
@@ -241,6 +252,12 @@ namespace storage
 	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
 	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
+
+	setChildValueIf(node, "md-name", md_name, !md_name.empty());
+
+	setChildValueIf(node, "uuid", uuid, !uuid.empty());
+
+	setChildValueIf(node, "superblock-version", superblock_version, !superblock_version.empty());
     }
 
 
@@ -588,7 +605,20 @@ namespace storage
     void
     Md::Impl::do_add_to_etc_mdadm(CommitData& commit_data) const
     {
-	// TODO
+	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
+
+	// TODO containers
+
+	EtcMdadm::mdconf_info info;
+
+	if (!md_name.empty())
+	    info.device = DEVDIR "/md/" + md_name;
+	else
+	    info.device = get_name();
+
+	info.uuid = uuid;
+
+	etc_mdadm.update_entry(info);
     }
 
 
@@ -610,7 +640,11 @@ namespace storage
     void
     Md::Impl::do_remove_from_etc_mdadm(CommitData& commit_data) const
     {
-	// TODO
+	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
+
+	// TODO containers?
+
+	etc_mdadm.remove_entry(uuid);
     }
 
 

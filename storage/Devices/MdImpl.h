@@ -79,6 +79,12 @@ namespace storage
 
 	unsigned long get_default_chunk_size() const;
 
+	const string& get_md_name() const { return md_name; }
+
+	const string& get_uuid() const { return uuid; }
+
+	const string& get_superblock_version() const { return superblock_version; }
+
 	static bool is_valid_name(const string& name);
 
 	static void probe_mds(Devicegraph* probed, SystemInfo& systeminfo);
@@ -125,6 +131,11 @@ namespace storage
 	MdParity md_parity;
 
 	unsigned long chunk_size;
+
+	string md_name;
+	string uuid;
+
+	string superblock_version;
 
     };
 

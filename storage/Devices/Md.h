@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,6 +76,12 @@ namespace storage
 
 	unsigned long get_chunk_size() const;
 	void set_chunk_size(unsigned long chunk_size);
+
+	const std::string& get_md_name() const;
+
+	const std::string& get_uuid() const;
+
+	const std::string& get_superblock_version() const;
 
 	/**
 	 * Sorted by number.
