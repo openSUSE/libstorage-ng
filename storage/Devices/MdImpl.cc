@@ -267,8 +267,6 @@ namespace storage
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
-	// TODO set partition id?
-
 	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_device());
 
 	calculate_region_and_topology();
