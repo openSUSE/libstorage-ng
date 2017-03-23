@@ -26,6 +26,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/CommentedConfigFile.h"
+#include "storage/Utils/Diff.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AsciiFile.h"
@@ -40,7 +41,8 @@ using namespace storage;
 
 
 CommentedConfigFile::CommentedConfigFile():
-    comment_marker( "#" )
+    comment_marker( "#" ),
+    diff_enabled( false )
 {
 }
 
@@ -185,6 +187,9 @@ bool CommentedConfigFile::parse( const string_vec & lines )
     }
 
     bool success = parse_entries( lines, content_start, content_end );
+
+    if ( diff_enabled )
+        save_orig();
 
     return success;
 }
@@ -381,3 +386,28 @@ void CommentedConfigFile::strip_trailing_whitespace( string & line )
     else
         line.clear();
 }
+
+
+string_vec CommentedConfigFile::diff()
+{
+    return Diff::diff( orig_lines, format_lines() );
+}
+
+
+string_vec CommentedConfigFile::diff( const string_vec & formatted_lines )
+{
+    return Diff::diff( orig_lines, formatted_lines );
+}
+
+
+void CommentedConfigFile::save_orig()
+{
+    save_orig( format_lines() );
+}
+
+
+void CommentedConfigFile::save_orig( const string_vec & new_orig_lines )
+{
+    orig_lines = new_orig_lines;
+}
+

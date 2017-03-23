@@ -10,6 +10,7 @@ libutils_la_SOURCES =					\
 	AppUtil.cc		AppUtil.h		\
 	CommentedConfigFile.cc  CommentedConfigFile.h	\
 	ColumnConfigFile.cc	ColumnConfigFile.h	\
+	Diff.cc			Diff.h			\
 	Text.cc			Text.h			\
 	Stopwatch.cc		Stopwatch.h		\
 	Math.cc			Math.h			\

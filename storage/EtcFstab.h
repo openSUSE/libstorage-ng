@@ -354,6 +354,12 @@ namespace storage
          **/
         void log();
 
+        /**
+         * Dump a diff to the previous state before the last read() / parse() /
+         * write().
+         **/
+        void log_diff();
+
 	/**
 	 * Construct all aliases usable in /etc/fstab based on information of
 	 * blk_device and blk_filesystem, that is block device name, block
