@@ -333,7 +333,8 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size == rhs.chunk_size;
+	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
+	    md_name == rhs.md_name && uuid == rhs.uuid;
     }
 
 
@@ -348,6 +349,11 @@ namespace storage
 	storage::log_diff_enum(log, "md-parity", md_parity, rhs.md_parity);
 
 	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
+
+	storage::log_diff(log, "superblock-version", superblock_version, rhs.superblock_version);
+
+	storage::log_diff(log, "md-name", md_name, rhs.md_name);
+	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
 
@@ -360,6 +366,11 @@ namespace storage
 	out << " md-parity:" << toString(get_md_parity());
 
 	out << " chunk-size:" << get_chunk_size();
+
+	out << " superblock-version:" << superblock_version;
+
+	out << " md-name:" << md_name;
+	out << " uuid:" << uuid;
     }
 
 

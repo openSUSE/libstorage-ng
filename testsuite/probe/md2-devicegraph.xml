@@ -92,6 +92,7 @@
       <range>256</range>
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
+      <superblock-version>1.0</superblock-version>
     </Md>
     <Gpt>
       <sid>47</sid>
@@ -139,6 +140,7 @@
       </region>
       <range>256</range>
       <md-level>RAID1</md-level>
+      <superblock-version>1.0</superblock-version>
     </Md>
     <Md>
       <sid>51</sid>
@@ -153,6 +155,7 @@
       </region>
       <range>256</range>
       <md-level>RAID1</md-level>
+      <superblock-version>1.0</superblock-version>
     </Md>
     <Ext4>
       <sid>52</sid>

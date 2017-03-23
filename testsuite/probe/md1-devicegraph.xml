@@ -92,6 +92,7 @@
       <md-level>RAID5</md-level>
       <md-parity>left-symmetric</md-parity>
       <chunk-size>524288</chunk-size>
+      <superblock-version>1.2</superblock-version>
     </Md>
   </Devices>
   <Holders>
