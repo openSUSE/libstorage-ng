@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +25,9 @@
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/EtcMdadm.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Storage.h"
+#include "storage/DevicegraphImpl.h"
 
 
 namespace storage
@@ -31,14 +35,14 @@ namespace storage
     using namespace std;
 
 
-    EtcMdadm::EtcMdadm(const Storage* sto, const string& prefix)
-	: sto(sto), mdadm(prefix + "/etc/mdadm.conf")
+    EtcMdadm::EtcMdadm(const Storage* storage, const string& filename)
+	: storage(storage), mdadm(filename)
     {
     }
 
 
     bool
-    EtcMdadm::updateEntry(const mdconf_info& info)
+    EtcMdadm::update_entry(const mdconf_info& info)
     {
 	y2mil("uuid:" << info.uuid << " device:" << info.device);
 
@@ -55,17 +59,14 @@ namespace storage
 	}
 
 	if (info.container_present)
-	    setArrayLine(ContLine(info), info.container_uuid);
+	    set_array_line(cont_line(info), info.container_uuid);
 
-	setArrayLine(ArrayLine(info), info.uuid);
+	set_array_line(array_line(info), info.uuid);
 
-	setDeviceLine("DEVICE containers partitions");
+	set_device_line("DEVICE containers partitions");
 
-	/*
-	  TODO
-	if (sto->hasIScsiDisks())
-	    setAutoLine("AUTO -all");
-	*/
+	if (has_iscsi())
+	    set_auto_line("AUTO -all");
 
 	mdadm.save();
 
@@ -74,7 +75,7 @@ namespace storage
 
 
     bool
-    EtcMdadm::removeEntry(const string& uuid)
+    EtcMdadm::remove_entry(const string& uuid)
     {
 	y2mil("uuid:" << uuid);
 
@@ -85,7 +86,7 @@ namespace storage
 	}
 
 	vector<string>& lines = mdadm.get_lines();
-	vector<string>::iterator it = findArray(uuid);
+	vector<string>::iterator it = find_array(uuid);
 	if (it == lines.end())
 	{
 	    y2war("line not found");
@@ -101,7 +102,7 @@ namespace storage
 
 
     void
-    EtcMdadm::setDeviceLine(const string& line)
+    EtcMdadm::set_device_line(const string& line)
     {
 	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = find_if(lines, string_starts_with("DEVICE"));
@@ -113,7 +114,7 @@ namespace storage
 
 
     void
-    EtcMdadm::setAutoLine(const string& line)
+    EtcMdadm::set_auto_line(const string& line)
     {
 	vector<string>& lines = mdadm.get_lines();
 	vector<string>::iterator it = find_if(lines, string_starts_with("AUTO"));
@@ -125,10 +126,10 @@ namespace storage
 
 
     void
-    EtcMdadm::setArrayLine(const string& line, const string& uuid)
+    EtcMdadm::set_array_line(const string& line, const string& uuid)
     {
 	vector<string>& lines = mdadm.get_lines();
-	vector<string>::iterator it = findArray(uuid);
+	vector<string>::iterator it = find_array(uuid);
 	if (it == lines.end())
 	    lines.push_back(line);
 	else
@@ -137,7 +138,7 @@ namespace storage
 
 
     string
-    EtcMdadm::ContLine(const mdconf_info& info) const
+    EtcMdadm::cont_line(const mdconf_info& info) const
     {
 	string line = "ARRAY";
 	line += " metadata=" + info.container_metadata;
@@ -147,7 +148,7 @@ namespace storage
 
 
     string
-    EtcMdadm::ArrayLine(const mdconf_info& info) const
+    EtcMdadm::array_line(const mdconf_info& info) const
     {
 	string line = "ARRAY " + info.device;
 	if (info.container_present)
@@ -161,14 +162,14 @@ namespace storage
 
 
     vector<string>::iterator
-    EtcMdadm::findArray(const string& uuid)
+    EtcMdadm::find_array(const string& uuid)
     {
 	vector<string>& lines = mdadm.get_lines();
 	for (vector<string>::iterator it = lines.begin(); it != lines.end(); ++it)
 	{
 	    if (boost::starts_with(*it, "ARRAY"))
 	    {
-		string tmp = getUuid(*it);
+		string tmp = get_uuid(*it);
 		if (!tmp.empty() && tmp == uuid)
 		    return it;
 	    }
@@ -179,7 +180,7 @@ namespace storage
 
 
     string
-    EtcMdadm::getUuid(const string& line) const
+    EtcMdadm::get_uuid(const string& line) const
     {
 	string::size_type pos1 = line.find("UUID=");
 	if (pos1 == string::npos)
@@ -191,7 +192,21 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const EtcMdadm::mdconf_info& info)
+    bool
+    EtcMdadm::has_iscsi() const
+    {
+	for (const Disk* disk : Disk::get_all(storage->get_probed()))
+	{
+	    if (disk->get_transport() == Transport::ISCSI)
+		return true;
+	}
+
+	return false;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const EtcMdadm::mdconf_info& info)
     {
 	s << "device:" << info.device << " uuid:" << info.uuid;
 

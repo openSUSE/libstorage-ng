@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,13 +85,13 @@ namespace storage
 	    string container_member;
 	};
 
-	friend std::ostream& operator<<(std::ostream& s, const ProcMdstat& procmdstat);
+	friend std::ostream& operator<<(std::ostream& s, const ProcMdstat& proc_mdstat);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 	friend std::ostream& operator<<(std::ostream& s, const Device& device);
 
-	list<string> getEntries() const;
+	list<string> get_entries() const;
 
-	bool getEntry(const string& name, Entry& entry) const;
+	bool get_entry(const string& name, Entry& entry) const;
 
 	typedef map<string, Entry>::const_iterator const_iterator;
 
@@ -118,7 +119,7 @@ namespace storage
 	string devname;
 	string metadata;
 
-	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadmdetail);
+	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadm_detail);
 
     private:
 
@@ -153,7 +154,7 @@ namespace storage
 
 	const_iterator find(const string& name) const { return data.find(name); }
 
-	friend std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadmexamine);
+	friend std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadm_examine);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:

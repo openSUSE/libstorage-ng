@@ -166,7 +166,7 @@ namespace storage
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
 	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
+	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
 	{
 	    // TODO
 	    throw;
@@ -185,7 +185,7 @@ namespace storage
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
 	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
+	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
 	{
 	    // TODO
 	    throw;
