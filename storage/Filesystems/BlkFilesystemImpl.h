@@ -152,7 +152,7 @@ namespace storage
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};
@@ -164,7 +164,7 @@ namespace storage
 
 	    SetUuid(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};
@@ -177,7 +177,7 @@ namespace storage
 	    RenameInEtcFstab(sid_t sid, const string& mountpoint)
 		: RenameIn(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,

@@ -270,10 +270,10 @@ namespace storage
     {
 
 	Text
-	SetPmbrBoot::text(const CommitData& commit_data, Tense tense) const
+	SetPmbrBoot::text(const CommitData& commit_data) const
 	{
 	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
-	    return gpt->get_impl().do_set_pmbr_boot_text(tense);
+	    return gpt->get_impl().do_set_pmbr_boot_text(commit_data.tense);
 	}
 
 

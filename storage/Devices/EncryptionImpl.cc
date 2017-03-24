@@ -378,10 +378,10 @@ namespace storage
     {
 
 	Text
-	AddToEtcCrypttab::text(const CommitData& commit_data, Tense tense) const
+	AddToEtcCrypttab::text(const CommitData& commit_data) const
 	{
 	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
-	    return encryption->get_impl().do_add_to_etc_crypttab_text(tense);
+	    return encryption->get_impl().do_add_to_etc_crypttab_text(commit_data.tense);
 	}
 
 
@@ -403,11 +403,11 @@ namespace storage
 
 
 	Text
-	RenameInEtcCrypttab::text(const CommitData& commit_data, Tense tense) const
+	RenameInEtcCrypttab::text(const CommitData& commit_data) const
 	{
 	    const Encryption* encryption_lhs = to_encryption(get_device(commit_data.actiongraph, LHS));
 	    const Encryption* encryption_rhs = to_encryption(get_device(commit_data.actiongraph, RHS));
-	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, tense);
+	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, commit_data.tense);
 	}
 
 
@@ -430,10 +430,10 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcCrypttab::text(const CommitData& commit_data, Tense tense) const
+	RemoveFromEtcCrypttab::text(const CommitData& commit_data) const
 	{
 	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, LHS));
-	    return encryption->get_impl().do_remove_from_etc_crypttab_text(tense);
+	    return encryption->get_impl().do_remove_from_etc_crypttab_text(commit_data.tense);
 	}
 
 

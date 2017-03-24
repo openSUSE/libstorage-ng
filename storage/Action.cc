@@ -33,9 +33,9 @@ namespace storage
     {
 
 	Text
-	Create::text(const CommitData& commit_data, Tense tense) const
+	Create::text(const CommitData& commit_data) const
 	{
-	    return get_device(commit_data.actiongraph)->get_impl().do_create_text(tense);
+	    return get_device(commit_data.actiongraph)->get_impl().do_create_text(commit_data.tense);
 	}
 
 
@@ -47,9 +47,9 @@ namespace storage
 
 
 	Text
-	Delete::text(const CommitData& commit_data, Tense tense) const
+	Delete::text(const CommitData& commit_data) const
 	{
-	    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(tense);
+	    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
 	}
 
 

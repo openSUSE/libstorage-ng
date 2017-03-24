@@ -386,10 +386,10 @@ namespace storage
     {
 
 	Text
-	Activate::text(const CommitData& commit_data, Tense tense) const
+	Activate::text(const CommitData& commit_data) const
 	{
 	    const Device* device = get_device(commit_data.actiongraph, RHS);
-	    return device->get_impl().do_activate_text(tense);
+	    return device->get_impl().do_activate_text(commit_data.tense);
 	}
 
 
@@ -402,10 +402,10 @@ namespace storage
 
 
 	Text
-	Deactivate::text(const CommitData& commit_data, Tense tense) const
+	Deactivate::text(const CommitData& commit_data) const
 	{
 	    const Device* device = get_device(commit_data.actiongraph, LHS);
-	    return device->get_impl().do_deactivate_text(tense);
+	    return device->get_impl().do_deactivate_text(commit_data.tense);
 	}
 
 
@@ -418,13 +418,13 @@ namespace storage
 
 
 	Text
-	Resize::text(const CommitData& commit_data, Tense tense) const
+	Resize::text(const CommitData& commit_data) const
 	{
 	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, tense);
+	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, commit_data.tense);
 	}
 
 
@@ -466,10 +466,10 @@ namespace storage
 
 
 	Text
-	Reallot::text(const CommitData& commit_data, Tense tense) const
+	Reallot::text(const CommitData& commit_data) const
 	{
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, tense);
+	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, commit_data.tense);
 	}
 
 

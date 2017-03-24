@@ -641,10 +641,10 @@ namespace storage
     {
 
 	Text
-	SetNocow::text(const CommitData& commit_data, Tense tense) const
+	SetNocow::text(const CommitData& commit_data) const
 	{
 	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_nocow_text(tense);
+	    return btrfs_subvolume->get_impl().do_set_nocow_text(commit_data.tense);
 	}
 
 
@@ -657,10 +657,10 @@ namespace storage
 
 
 	Text
-	SetDefaultBtrfsSubvolume::text(const CommitData& commit_data, Tense tense) const
+	SetDefaultBtrfsSubvolume::text(const CommitData& commit_data) const
 	{
 	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
-	    return btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume_text(tense);
+	    return btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume_text(commit_data.tense);
 	}
 
 

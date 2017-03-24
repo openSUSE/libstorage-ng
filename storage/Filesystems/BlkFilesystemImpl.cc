@@ -702,10 +702,10 @@ namespace storage
     {
 
 	Text
-	SetLabel::text(const CommitData& commit_data, Tense tense) const
+	SetLabel::text(const CommitData& commit_data) const
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_text(tense);
+	    return blk_filesystem->get_impl().do_set_label_text(commit_data.tense);
 	}
 
 
@@ -718,10 +718,10 @@ namespace storage
 
 
 	Text
-	SetUuid::text(const CommitData& commit_data, Tense tense) const
+	SetUuid::text(const CommitData& commit_data) const
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_uuid_text(tense);
+	    return blk_filesystem->get_impl().do_set_uuid_text(commit_data.tense);
 	}
 
 
@@ -734,11 +734,11 @@ namespace storage
 
 
 	Text
-	RenameInEtcFstab::text(const CommitData& commit_data, Tense tense) const
+	RenameInEtcFstab::text(const CommitData& commit_data) const
 	{
 	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
 	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, mountpoint, tense);
+	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, mountpoint, commit_data.tense);
 	}
 
 

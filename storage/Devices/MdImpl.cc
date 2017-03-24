@@ -753,10 +753,10 @@ namespace storage
     {
 
 	Text
-	AddToEtcMdadm::text(const CommitData& commit_data, Tense tense) const
+	AddToEtcMdadm::text(const CommitData& commit_data) const
 	{
 	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
-	    return md->get_impl().do_add_to_etc_mdadm_text(tense);
+	    return md->get_impl().do_add_to_etc_mdadm_text(commit_data.tense);
 	}
 
 
@@ -780,10 +780,10 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcMdadm::text(const CommitData& commit_data, Tense tense) const
+	RemoveFromEtcMdadm::text(const CommitData& commit_data) const
 	{
 	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
-	    return md->get_impl().do_remove_from_etc_mdadm_text(tense);
+	    return md->get_impl().do_remove_from_etc_mdadm_text(commit_data.tense);
 	}
 
 

@@ -300,7 +300,7 @@ namespace storage
 
 	    Activate(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};
@@ -313,7 +313,7 @@ namespace storage
 
 	    Deactivate(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};
@@ -325,7 +325,7 @@ namespace storage
 
 	    Resize(sid_t sid, ResizeMode resize_mode) : Modify(sid), resize_mode(resize_mode) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
@@ -345,7 +345,7 @@ namespace storage
 	    Reallot(sid_t sid, ReallotMode reallot_mode, const Device* device)
 		: Modify(sid), reallot_mode(reallot_mode), device(device) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,

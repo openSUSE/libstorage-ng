@@ -145,7 +145,7 @@ namespace storage
 
 	    SetNocow(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};
@@ -157,7 +157,7 @@ namespace storage
 
 	    SetDefaultBtrfsSubvolume(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	};

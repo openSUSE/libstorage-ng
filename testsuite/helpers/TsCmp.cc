@@ -80,30 +80,34 @@ namespace storage
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");
 
-	cmp(actiongraph, expected);
+	const CommitData commit_data(actiongraph.get_impl(), Tense::SIMPLE_PRESENT);
+
+	cmp(commit_data, expected);
     }
 
 
     TsCmpActiongraph::TsCmpActiongraph(const Actiongraph& actiongraph, const Expected& expected)
     {
-	cmp(actiongraph, expected);
+	const CommitData commit_data(actiongraph.get_impl(), Tense::SIMPLE_PRESENT);
+
+	cmp(commit_data, expected);
     }
 
 
     void
-    TsCmpActiongraph::cmp(const Actiongraph& actiongraph, const Expected& expected)
+    TsCmpActiongraph::cmp(const CommitData& commit_data, const Expected& expected)
     {
 	for (const string& line : expected.lines)
 	    entries.push_back(Entry(line));
 
 	check();
 
-	cmp_texts(actiongraph.get_impl());
+	cmp_texts(commit_data);
 
 	if (!ok())
 	    return;
 
-	cmp_dependencies(actiongraph.get_impl());
+	cmp_dependencies(commit_data);
     }
 
 
@@ -153,11 +157,11 @@ namespace storage
 
 
     void
-    TsCmpActiongraph::cmp_texts(const Actiongraph::Impl& actiongraph)
+    TsCmpActiongraph::cmp_texts(const CommitData& commit_data)
     {
 	set<string> tmp1;
-	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    tmp1.insert(actiongraph[v]->text(actiongraph, Tense::SIMPLE_PRESENT).native);
+	for (Actiongraph::Impl::vertex_descriptor v : commit_data.actiongraph.vertices())
+	    tmp1.insert(commit_data.actiongraph[v]->text(commit_data).native);
 
 	set<string> tmp2;
 	for (const Entry& entry : entries)
@@ -181,24 +185,24 @@ namespace storage
 
 
     void
-    TsCmpActiongraph::cmp_dependencies(const Actiongraph::Impl& actiongraph)
+    TsCmpActiongraph::cmp_dependencies(const CommitData& commit_data)
     {
 	map<string, string> text_to_id;
 	for (const Entry& entry : entries)
 	    text_to_id[entry.text] = entry.id;
 
 	map<string, Actiongraph::Impl::vertex_descriptor> text_to_v;
-	for (Actiongraph::Impl::vertex_descriptor v : actiongraph.vertices())
-	    text_to_v[actiongraph[v]->text(actiongraph, Tense::SIMPLE_PRESENT).native] = v;
+	for (Actiongraph::Impl::vertex_descriptor v : commit_data.actiongraph.vertices())
+	    text_to_v[commit_data.actiongraph[v]->text(commit_data).native] = v;
 
 	for (const Entry& entry : entries)
 	{
 	    Actiongraph::Impl::vertex_descriptor v = text_to_v[entry.text];
 
 	    set<string> tmp;
-	    for (Actiongraph::Impl::vertex_descriptor child : actiongraph.children(v))
+	    for (Actiongraph::Impl::vertex_descriptor child : commit_data.actiongraph.children(v))
 	    {
-		string text = actiongraph[child]->text(actiongraph, Tense::SIMPLE_PRESENT).native;
+		string text = commit_data.actiongraph[child]->text(commit_data).native;
 		tmp.insert(text_to_id[text]);
 	    }
 

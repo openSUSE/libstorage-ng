@@ -324,10 +324,10 @@ namespace storage
     {
 
 	Text
-	Mount::text(const CommitData& commit_data, Tense tense) const
+	Mount::text(const CommitData& commit_data) const
 	{
 	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    return mountable->get_impl().do_mount_text(mountpoint, tense);
+	    return mountable->get_impl().do_mount_text(mountpoint, commit_data.tense);
 	}
 
 
@@ -340,10 +340,10 @@ namespace storage
 
 
 	Text
-	Umount::text(const CommitData& commit_data, Tense tense) const
+	Umount::text(const CommitData& commit_data) const
 	{
 	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    return mountable->get_impl().do_umount_text(mountpoint, tense);
+	    return mountable->get_impl().do_umount_text(mountpoint, commit_data.tense);
 	}
 
 
@@ -356,10 +356,10 @@ namespace storage
 
 
 	Text
-	AddToEtcFstab::text(const CommitData& commit_data, Tense tense) const
+	AddToEtcFstab::text(const CommitData& commit_data) const
 	{
 	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    return mountable->get_impl().do_add_to_etc_fstab_text(mountpoint, tense);
+	    return mountable->get_impl().do_add_to_etc_fstab_text(mountpoint, commit_data.tense);
 	}
 
 
@@ -382,10 +382,10 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcFstab::text(const CommitData& commit_data, Tense tense) const
+	RemoveFromEtcFstab::text(const CommitData& commit_data) const
 	{
 	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    return mountable->get_impl().do_remove_from_etc_fstab_text(mountpoint, tense);
+	    return mountable->get_impl().do_remove_from_etc_fstab_text(mountpoint, commit_data.tense);
 	}
 
 

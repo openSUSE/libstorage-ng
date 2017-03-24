@@ -46,8 +46,8 @@
 namespace storage
 {
 
-    CommitData::CommitData(const Actiongraph::Impl& actiongraph)
-	: actiongraph(actiongraph)
+    CommitData::CommitData(const Actiongraph::Impl& actiongraph, Tense tense)
+	: actiongraph(actiongraph), tense(tense)
     {
     }
 
@@ -413,10 +413,12 @@ namespace storage
     void
     Actiongraph::Impl::print_order() const
     {
+	const CommitData commit_data(*this, Tense::SIMPLE_PRESENT);
+
 	for (const vertex_descriptor& vertex : order)
 	{
 	   const Action::Base* action = graph[vertex].get();
-	   cout << action->text(*this, Tense::SIMPLE_PRESENT).native << endl;
+	   cout << action->text(commit_data).native << endl;
 	}
 
 	cout << endl;
@@ -442,13 +444,13 @@ namespace storage
     void
     Actiongraph::Impl::commit(const CommitCallbacks* commit_callbacks) const
     {
-	CommitData commit_data(*this);
+	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 
 	for (const vertex_descriptor& vertex : order)
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(commit_data, Tense::PRESENT_CONTINUOUS).translated;
+	    string text = action->text(commit_data).translated;
 
 	    y2mil("Commit Action \"" << text << "\"");
 
@@ -487,9 +489,11 @@ namespace storage
 	vertex_name_map_t vertex_name_map;
 	boost::associative_property_map<vertex_name_map_t> my_vertex_name_map(vertex_name_map);
 
+	const CommitData commit_data(*this, Tense::SIMPLE_PRESENT);
+
 	for (vertex_descriptor v : vertices())
 	{
-	    string text = "[ " + graph[v]->text(*this, Tense::SIMPLE_PRESENT).translated + " ]";
+	    string text = "[ " + graph[v]->text(commit_data).translated + " ]";
 	    boost::put(my_vertex_name_map, v, text);
 	}
 
@@ -504,7 +508,7 @@ namespace storage
 
 	struct write_graph
 	{
-	    write_graph(const Actiongraph::Impl&) {}
+	    write_graph(const CommitData& commit_data) {}
 
 	    void operator()(ostream& out) const
 	    {
@@ -515,18 +519,18 @@ namespace storage
 
 	struct write_vertex
 	{
-	    write_vertex(const Actiongraph::Impl& actiongraph, GraphvizFlags graphviz_flags)
-		: actiongraph(actiongraph), graphviz_flags(graphviz_flags) {}
+	    write_vertex(const CommitData& commit_data, GraphvizFlags graphviz_flags)
+		: commit_data(commit_data), graphviz_flags(graphviz_flags) {}
 
-	    const Actiongraph::Impl& actiongraph;
+	    const CommitData& commit_data;
 	    const GraphvizFlags graphviz_flags;
 
 	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& vertex) const
 	    {
-		const Action::Base* action = actiongraph[vertex];
+		const Action::Base* action = commit_data.actiongraph[vertex];
 
-		string label = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
-		string tooltip = action->text(actiongraph, Tense::SIMPLE_PRESENT).translated;
+		string label = action->text(commit_data).translated;
+		string tooltip = action->text(commit_data).translated;
 
 		string& extra = (graphviz_flags && GraphvizFlags::TOOLTIP) ? tooltip : label;
 
@@ -577,8 +581,10 @@ namespace storage
 
 	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
 
-	boost::write_graphviz(fout, graph, write_vertex(*this, graphviz_flags),
-			      boost::default_writer(), write_graph(*this),
+	const CommitData commit_data(*this, Tense:: SIMPLE_PRESENT);
+
+	boost::write_graphviz(fout, graph, write_vertex(commit_data, graphviz_flags),
+			      boost::default_writer(), write_graph(commit_data),
 			      vertex_index_map_generator.get());
 
 	fout.close();

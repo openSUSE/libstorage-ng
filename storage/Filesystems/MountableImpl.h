@@ -151,7 +151,7 @@ namespace storage
 	    Mount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    const string mountpoint;
@@ -166,7 +166,7 @@ namespace storage
 	    Umount(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    const string mountpoint;
@@ -181,7 +181,7 @@ namespace storage
 	    AddToEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
@@ -199,7 +199,7 @@ namespace storage
 	    RemoveFromEtcFstab(sid_t sid, const string& mountpoint)
 		: Modify(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const CommitData& commit_data, Tense tense) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    const string mountpoint;

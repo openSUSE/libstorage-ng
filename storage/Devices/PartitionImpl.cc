@@ -852,10 +852,10 @@ namespace storage
     {
 
 	Text
-	SetPartitionId::text(const CommitData& commit_data, Tense tense) const
+	SetPartitionId::text(const CommitData& commit_data) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
-	    return partition->get_impl().do_set_id_text(tense);
+	    return partition->get_impl().do_set_id_text(commit_data.tense);
 	}
 
 
@@ -868,10 +868,10 @@ namespace storage
 
 
 	Text
-	SetBoot::text(const CommitData& commit_data, Tense tense) const
+	SetBoot::text(const CommitData& commit_data) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
-	    return partition->get_impl().do_set_boot_text(tense);
+	    return partition->get_impl().do_set_boot_text(commit_data.tense);
 	}
 
 
@@ -884,10 +884,10 @@ namespace storage
 
 
 	Text
-	SetLegacyBoot::text(const CommitData& commit_data, Tense tense) const
+	SetLegacyBoot::text(const CommitData& commit_data) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
-	    return partition->get_impl().do_set_legacy_boot_text(tense);
+	    return partition->get_impl().do_set_legacy_boot_text(commit_data.tense);
 	}
 
 

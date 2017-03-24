@@ -33,6 +33,7 @@
 
 #include "storage/Devices/Device.h"
 #include "storage/Actiongraph.h"
+#include "storage/Utils/Text.h"
 
 
 namespace storage
@@ -70,10 +71,11 @@ namespace storage
     {
     public:
 
-	CommitData(const Actiongraph::Impl& actiongraph);
+	CommitData(const Actiongraph::Impl& actiongraph, Tense tense);
 	~CommitData();
 
 	const Actiongraph::Impl& actiongraph;
+	const Tense tense;
 
 	EtcFstab& get_etc_fstab();
 	EtcCrypttab& get_etc_crypttab();
