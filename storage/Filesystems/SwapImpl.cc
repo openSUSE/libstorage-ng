@@ -95,7 +95,7 @@ namespace storage
 
 
     void
-    Swap::Impl::do_mount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Swap::Impl::do_mount(CommitData& commit_data, const string& mountpoint) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -109,7 +109,7 @@ namespace storage
 
 
     void
-    Swap::Impl::do_umount(const Actiongraph::Impl& actiongraph, const string& mountpoint) const
+    Swap::Impl::do_umount(CommitData& commit_data, const string& mountpoint) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 

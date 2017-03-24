@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,22 +24,27 @@
 #ifndef STORAGE_ETC_MDADM_H
 #define STORAGE_ETC_MDADM_H
 
+
 #include <string>
-#include <map>
 
 #include "storage/Utils/AsciiFile.h"
-#include "storage/Storage.h"
+
+
+#define ETC_MDADM "/etc/mdadm.conf"
 
 
 namespace storage
 {
+
+    class Storage;
+
 
     class EtcMdadm
     {
 
     public:
 
-	EtcMdadm(const Storage* sto, const string& prefix = "");
+	EtcMdadm(const Storage* storage, const string& filename);
 
 	// From this structure line 'ARRAY' will be build in config file.
 	// Not all fields are mandatory
@@ -61,24 +67,26 @@ namespace storage
 	    friend std::ostream& operator<<(std::ostream& s, const mdconf_info& info);
 	};
 
-	bool updateEntry(const mdconf_info& info);
+	bool update_entry(const mdconf_info& info);
 
-	bool removeEntry(const string& uuid);
+	bool remove_entry(const string& uuid);
 
     protected:
 
-	void setDeviceLine(const string& line);
-	void setAutoLine(const string& line);
-	void setArrayLine(const string& line, const string& uuid);
+	void set_device_line(const string& line);
+	void set_auto_line(const string& line);
+	void set_array_line(const string& line, const string& uuid);
 
-	string ContLine(const mdconf_info& info) const;
-	string ArrayLine(const mdconf_info& info) const;
+	string cont_line(const mdconf_info& info) const;
+	string array_line(const mdconf_info& info) const;
 
-	vector<string>::iterator findArray(const string& uuid);
+	vector<string>::iterator find_array(const string& uuid);
 
-	string getUuid(const string& line) const;
+	string get_uuid(const string& line) const;
 
-	const Storage* sto;
+	const Storage* storage;
+
+	bool has_iscsi() const;
 
 	AsciiFile mdadm;
 

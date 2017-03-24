@@ -88,13 +88,13 @@ namespace storage
 	virtual Text do_deactivate_text(Tense tense) const override;
 
 	virtual Text do_add_to_etc_crypttab_text(Tense tense) const;
-	virtual void do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
+	virtual void do_add_to_etc_crypttab(CommitData& commit_data) const;
 
 	virtual Text do_rename_in_etc_crypttab_text(const Device* lhs, Tense tense) const;
-	virtual void do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph, const Device* lhs) const;
+	virtual void do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const;
 
 	virtual Text do_remove_from_etc_crypttab_text(Tense tense) const;
-	virtual void do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const;
+	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const;
 
     private:
 
@@ -114,8 +114,8 @@ namespace storage
 
 	    AddToEtcCrypttab(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -129,8 +129,8 @@ namespace storage
 
 	    RenameInEtcCrypttab(sid_t sid) : RenameIn(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
 							    Side side) const override;
@@ -144,8 +144,8 @@ namespace storage
 
 	    RemoveFromEtcCrypttab(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 

@@ -145,8 +145,8 @@ namespace storage
 
 	    SetPartitionId(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 
@@ -157,8 +157,8 @@ namespace storage
 
 	    SetBoot(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 
@@ -169,8 +169,8 @@ namespace storage
 
 	    SetLegacyBoot(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 

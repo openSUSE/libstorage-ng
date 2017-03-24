@@ -318,7 +318,7 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Encryption::Impl::do_add_to_etc_crypttab(CommitData& commit_data) const
     {
 	ST_THROW(LogicException("stub do_add_to_etc_crypttab called"));
     }
@@ -346,8 +346,7 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph,
-					     const Device* lhs) const
+    Encryption::Impl::do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const
     {
         ST_THROW(LogicException("stub do_rename_in_etc_crypttab called"));
     }
@@ -369,7 +368,7 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Encryption::Impl::do_remove_from_etc_crypttab(CommitData& commit_data) const
     {
 	ST_THROW(LogicException("stub do_remove_from_etc_crypttab called"));
     }
@@ -379,18 +378,18 @@ namespace storage
     {
 
 	Text
-	AddToEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcCrypttab::text(const CommitData& commit_data) const
 	{
-	    const Encryption* encryption = to_encryption(get_device(actiongraph, RHS));
-	    return encryption->get_impl().do_add_to_etc_crypttab_text(tense);
+	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
+	    return encryption->get_impl().do_add_to_etc_crypttab_text(commit_data.tense);
 	}
 
 
 	void
-	AddToEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcCrypttab::commit(CommitData& commit_data) const
 	{
-	    const Encryption* encryption = to_encryption(get_device(actiongraph, RHS));
-	    encryption->get_impl().do_add_to_etc_crypttab(actiongraph);
+	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
+	    encryption->get_impl().do_add_to_etc_crypttab(commit_data);
 	}
 
 
@@ -404,20 +403,20 @@ namespace storage
 
 
 	Text
-	RenameInEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RenameInEtcCrypttab::text(const CommitData& commit_data) const
 	{
-	    const Encryption* encryption_lhs = to_encryption(get_device(actiongraph, LHS));
-	    const Encryption* encryption_rhs = to_encryption(get_device(actiongraph, RHS));
-	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, tense);
+	    const Encryption* encryption_lhs = to_encryption(get_device(commit_data.actiongraph, LHS));
+	    const Encryption* encryption_rhs = to_encryption(get_device(commit_data.actiongraph, RHS));
+	    return encryption_rhs->get_impl().do_rename_in_etc_crypttab_text(encryption_lhs, commit_data.tense);
 	}
 
 
 	void
-	RenameInEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	RenameInEtcCrypttab::commit(CommitData& commit_data) const
 	{
-	    const Encryption* encryption_lhs = to_encryption(get_device(actiongraph, LHS));
-	    const Encryption* encryption_rhs = to_encryption(get_device(actiongraph, RHS));
-	    encryption_rhs->get_impl().do_rename_in_etc_crypttab(actiongraph, encryption_lhs);
+	    const Encryption* encryption_lhs = to_encryption(get_device(commit_data.actiongraph, LHS));
+	    const Encryption* encryption_rhs = to_encryption(get_device(commit_data.actiongraph, RHS));
+	    encryption_rhs->get_impl().do_rename_in_etc_crypttab(commit_data, encryption_lhs);
 	}
 
 
@@ -431,18 +430,18 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcCrypttab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcCrypttab::text(const CommitData& commit_data) const
 	{
-	    const Encryption* encryption = to_encryption(get_device(actiongraph, LHS));
-	    return encryption->get_impl().do_remove_from_etc_crypttab_text(tense);
+	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, LHS));
+	    return encryption->get_impl().do_remove_from_etc_crypttab_text(commit_data.tense);
 	}
 
 
 	void
-	RemoveFromEtcCrypttab::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcCrypttab::commit(CommitData& commit_data) const
 	{
-	    const Encryption* encryption = to_encryption(get_device(actiongraph, LHS));
-	    encryption->get_impl().do_remove_from_etc_crypttab(actiongraph);
+	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, LHS));
+	    encryption->get_impl().do_remove_from_etc_crypttab(commit_data);
 	}
 
     }

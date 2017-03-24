@@ -33,30 +33,30 @@ namespace storage
     {
 
 	Text
-	Create::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Create::text(const CommitData& commit_data) const
 	{
-	    return get_device(actiongraph)->get_impl().do_create_text(tense);
+	    return get_device(commit_data.actiongraph)->get_impl().do_create_text(commit_data.tense);
 	}
 
 
 	void
-	Create::commit(const Actiongraph::Impl& actiongraph) const
+	Create::commit(CommitData& commit_data) const
 	{
-	    get_device(actiongraph)->get_impl().do_create();
+	    get_device(commit_data.actiongraph)->get_impl().do_create();
 	}
 
 
 	Text
-	Delete::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Delete::text(const CommitData& commit_data) const
 	{
-	    return get_device(actiongraph)->get_impl().do_delete_text(tense);
+	    return get_device(commit_data.actiongraph)->get_impl().do_delete_text(commit_data.tense);
 	}
 
 
 	void
-	Delete::commit(const Actiongraph::Impl& actiongraph) const
+	Delete::commit(CommitData& commit_data) const
 	{
-	    get_device(actiongraph)->get_impl().do_delete();
+	    get_device(commit_data.actiongraph)->get_impl().do_delete();
 	}
 
 

@@ -274,12 +274,9 @@ namespace storage
 
 
     void
-    Luks::Impl::do_add_to_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Luks::Impl::do_add_to_etc_crypttab(CommitData& commit_data) const
     {
-	const Storage& storage = actiongraph.get_storage();
-
-	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
 	// TODO, error handling and mount-by
 
@@ -287,51 +284,45 @@ namespace storage
         entry->set_crypt_device( get_name() );
         entry->set_block_device( get_blk_device()->get_name() );
 
-        crypttab.add( entry );
-        crypttab.log();
-        crypttab.write();
+        etc_crypttab.add(entry);
+        etc_crypttab.log();
+        etc_crypttab.write();
     }
 
 
     void
-    Luks::Impl::do_rename_in_etc_crypttab(const Actiongraph::Impl& actiongraph,
-					  const Device* lhs) const
+    Luks::Impl::do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const
     {
-	const Storage& storage = actiongraph.get_storage();
 	const Luks* luks_lhs = to_luks(lhs);
+
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
 	// TODO, error handling and mount-by
 
-	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
-
         string old_block_device = luks_lhs->get_blk_device()->get_name();
-        CrypttabEntry * entry = crypttab.find_block_device(old_block_device);
+        CrypttabEntry* entry = etc_crypttab.find_block_device(old_block_device);
 
         if (entry)
         {
             entry->set_block_device(get_blk_device()->get_name());
-            crypttab.log();
-            crypttab.write();
+            etc_crypttab.log();
+            etc_crypttab.write();
         }
     }
 
 
     void
-    Luks::Impl::do_remove_from_etc_crypttab(const Actiongraph::Impl& actiongraph) const
+    Luks::Impl::do_remove_from_etc_crypttab(CommitData& commit_data) const
     {
-	const Storage& storage = actiongraph.get_storage();
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-	EtcCrypttab crypttab;
-        crypttab.read(storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB));	// TODO pass as parameter
-
-        CrypttabEntry * entry = crypttab.find_block_device(get_blk_device()->get_name());
+        CrypttabEntry* entry = etc_crypttab.find_block_device(get_blk_device()->get_name());
 
         if (entry)
         {
-            crypttab.remove(entry);
-            crypttab.log();
-            crypttab.write();
+            etc_crypttab.remove(entry);
+            etc_crypttab.log();
+            etc_crypttab.write();
         }
     }
 

@@ -386,54 +386,54 @@ namespace storage
     {
 
 	Text
-	Activate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Activate::text(const CommitData& commit_data) const
 	{
-	    const Device* device = get_device(actiongraph, RHS);
-	    return device->get_impl().do_activate_text(tense);
+	    const Device* device = get_device(commit_data.actiongraph, RHS);
+	    return device->get_impl().do_activate_text(commit_data.tense);
 	}
 
 
 	void
-	Activate::commit(const Actiongraph::Impl& actiongraph) const
+	Activate::commit(CommitData& commit_data) const
 	{
-	    const Device* device = get_device(actiongraph, RHS);
+	    const Device* device = get_device(commit_data.actiongraph, RHS);
 	    device->get_impl().do_activate();
 	}
 
 
 	Text
-	Deactivate::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Deactivate::text(const CommitData& commit_data) const
 	{
-	    const Device* device = get_device(actiongraph, LHS);
-	    return device->get_impl().do_deactivate_text(tense);
+	    const Device* device = get_device(commit_data.actiongraph, LHS);
+	    return device->get_impl().do_deactivate_text(commit_data.tense);
 	}
 
 
 	void
-	Deactivate::commit(const Actiongraph::Impl& actiongraph) const
+	Deactivate::commit(CommitData& commit_data) const
 	{
-	    const Device* device = get_device(actiongraph, LHS);
+	    const Device* device = get_device(commit_data.actiongraph, LHS);
 	    device->get_impl().do_deactivate();
 	}
 
 
 	Text
-	Resize::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Resize::text(const CommitData& commit_data) const
 	{
-	    const Device* device_lhs = get_device(actiongraph, LHS);
-	    const Device* device_rhs = get_device(actiongraph, RHS);
+	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
-	    const Device* device = get_device(actiongraph, get_side());
-	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, tense);
+	    const Device* device = get_device(commit_data.actiongraph, get_side());
+	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, commit_data.tense);
 	}
 
 
 	void
-	Resize::commit(const Actiongraph::Impl& actiongraph) const
+	Resize::commit(CommitData& commit_data) const
 	{
-	    const Device* device_rhs = get_device(actiongraph, RHS);
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
-	    const Device* device = get_device(actiongraph, get_side());
+	    const Device* device = get_device(commit_data.actiongraph, get_side());
 	    device->get_impl().do_resize(resize_mode, device_rhs);
 	}
 
@@ -466,17 +466,17 @@ namespace storage
 
 
 	Text
-	Reallot::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	Reallot::text(const CommitData& commit_data) const
 	{
-	    const Device* device_rhs = get_device(actiongraph, RHS);
-	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, tense);
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
+	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, commit_data.tense);
 	}
 
 
 	void
-	Reallot::commit(const Actiongraph::Impl& actiongraph) const
+	Reallot::commit(CommitData& commit_data) const
 	{
-	    const Device* device_rhs = get_device(actiongraph, RHS);
+	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 	    device_rhs->get_impl().do_reallot(reallot_mode, device);
 	}
 

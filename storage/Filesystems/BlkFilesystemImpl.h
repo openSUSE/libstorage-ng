@@ -100,7 +100,7 @@ namespace storage
 	virtual void do_set_uuid() const;
 
 	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
-	virtual void do_rename_in_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs, const string& mountpoint) const;
+	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs, const string& mountpoint) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;
@@ -152,8 +152,8 @@ namespace storage
 
 	    SetLabel(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 
@@ -164,8 +164,8 @@ namespace storage
 
 	    SetUuid(sid_t sid) : Modify(sid) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	};
 
@@ -177,8 +177,8 @@ namespace storage
 	    RenameInEtcFstab(sid_t sid, const string& mountpoint)
 		: RenameIn(sid), mountpoint(mountpoint) {}
 
-	    virtual Text text(const Actiongraph::Impl& actiongraph, Tense tense) const override;
-	    virtual void commit(const Actiongraph::Impl& actiongraph) const override;
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
 							    Side side) const override;

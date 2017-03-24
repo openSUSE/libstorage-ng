@@ -29,7 +29,7 @@
 #include "storage/Holders/MdUser.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/Storage.h"
+#include "storage/StorageImpl.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/AppUtil.h"
@@ -43,6 +43,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/UsedFeatures.h"
+#include "storage/EtcMdadm.h"
 
 
 namespace storage
@@ -70,7 +71,8 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
+	  uuid(), superblock_version()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -82,7 +84,8 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
+	  uuid(), superblock_version()
     {
 	string tmp;
 
@@ -93,6 +96,12 @@ namespace storage
 	    md_parity = toValueWithFallback(tmp, DEFAULT);
 
 	getChildValue(node, "chunk-size", chunk_size);
+
+	getChildValue(node, "md-name", md_name);
+
+	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "superblock-version", superblock_version);
     }
 
 
@@ -166,7 +175,7 @@ namespace storage
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
 	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
+	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
 	{
 	    // TODO
 	    throw;
@@ -176,6 +185,12 @@ namespace storage
 	md_parity = entry.md_parity;
 
 	chunk_size = entry.chunk_size;
+
+	superblock_version = entry.super;
+
+	MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(get_name());
+	md_name = mdadm_detail.devname;
+	uuid = mdadm_detail.uuid;
     }
 
 
@@ -185,7 +200,7 @@ namespace storage
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
 	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().getEntry(tmp, entry))
+	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
 	{
 	    // TODO
 	    throw;
@@ -241,6 +256,12 @@ namespace storage
 	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
 	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
+
+	setChildValueIf(node, "md-name", md_name, !md_name.empty());
+
+	setChildValueIf(node, "uuid", uuid, !uuid.empty());
+
+	setChildValueIf(node, "superblock-version", superblock_version, !superblock_version.empty());
     }
 
 
@@ -249,8 +270,6 @@ namespace storage
     {
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
-
-	// TODO set partition id?
 
 	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_device());
 
@@ -318,7 +337,8 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size == rhs.chunk_size;
+	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
+	    md_name == rhs.md_name && uuid == rhs.uuid;
     }
 
 
@@ -333,6 +353,11 @@ namespace storage
 	storage::log_diff_enum(log, "md-parity", md_parity, rhs.md_parity);
 
 	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
+
+	storage::log_diff(log, "superblock-version", superblock_version, rhs.superblock_version);
+
+	storage::log_diff(log, "md-name", md_name, rhs.md_name);
+	storage::log_diff(log, "uuid", uuid, rhs.uuid);
     }
 
 
@@ -345,6 +370,11 @@ namespace storage
 	out << " md-parity:" << toString(get_md_parity());
 
 	out << " chunk-size:" << get_chunk_size();
+
+	out << " superblock-version:" << superblock_version;
+
+	out << " md-name:" << md_name;
+	out << " uuid:" << uuid;
     }
 
 
@@ -586,9 +616,22 @@ namespace storage
 
 
     void
-    Md::Impl::do_add_to_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_add_to_etc_mdadm(CommitData& commit_data) const
     {
-	// TODO
+	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
+
+	// TODO containers
+
+	EtcMdadm::mdconf_info info;
+
+	if (!md_name.empty())
+	    info.device = DEVDIR "/md/" + md_name;
+	else
+	    info.device = get_name();
+
+	info.uuid = uuid;
+
+	etc_mdadm.update_entry(info);
     }
 
 
@@ -608,9 +651,13 @@ namespace storage
 
 
     void
-    Md::Impl::do_remove_from_etc_mdadm(const Actiongraph::Impl& actiongraph) const
+    Md::Impl::do_remove_from_etc_mdadm(CommitData& commit_data) const
     {
-	// TODO
+	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
+
+	// TODO containers?
+
+	etc_mdadm.remove_entry(uuid);
     }
 
 
@@ -706,18 +753,18 @@ namespace storage
     {
 
 	Text
-	AddToEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	AddToEtcMdadm::text(const CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, RHS));
-	    return md->get_impl().do_add_to_etc_mdadm_text(tense);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
+	    return md->get_impl().do_add_to_etc_mdadm_text(commit_data.tense);
 	}
 
 
 	void
-	AddToEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	AddToEtcMdadm::commit(CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, RHS));
-	    md->get_impl().do_add_to_etc_mdadm(actiongraph);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
+	    md->get_impl().do_add_to_etc_mdadm(commit_data);
 	}
 
 
@@ -733,18 +780,18 @@ namespace storage
 
 
 	Text
-	RemoveFromEtcMdadm::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RemoveFromEtcMdadm::text(const CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, LHS));
-	    return md->get_impl().do_remove_from_etc_mdadm_text(tense);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
+	    return md->get_impl().do_remove_from_etc_mdadm_text(commit_data.tense);
 	}
 
 
 	void
-	RemoveFromEtcMdadm::commit(const Actiongraph::Impl& actiongraph) const
+	RemoveFromEtcMdadm::commit(CommitData& commit_data) const
 	{
-	    const Md* md = to_md(get_device(actiongraph, LHS));
-	    md->get_impl().do_remove_from_etc_mdadm(actiongraph);
+	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
+	    md->get_impl().do_remove_from_etc_mdadm(commit_data);
 	}
 
     }

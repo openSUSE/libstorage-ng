@@ -643,6 +643,21 @@
       <stdout>Disk Flags:</stdout>
       <stderr>Error: /dev/md2: unrecognised disk label</stderr>
     </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md0' --export</name>
+      <!-- output faked -->
+      <stdout>MD_UUID=d11cbd17:b4fa9ccd:bb7b9bab:557d863c</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md1' --export</name>
+      <!-- output faked -->
+      <stdout>MD_UUID=3e531727:0857f684:cd2e394b:62046b74</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md2' --export</name>
+      <!-- output faked -->
+      <stdout>MD_UUID=c8440826:8e55745c:d7e14cdd:ac26716d</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>

@@ -82,7 +82,7 @@ namespace storage
 	 * Main function of class that compares the actiongraph with the
 	 * expected actiongraph.
 	 */
-	void cmp(const Actiongraph& actiongraph, const Expected& expected);
+	void cmp(const CommitData& commit_data, const Expected& expected);
 
 	struct Entry
 	{
@@ -97,8 +97,8 @@ namespace storage
 
 	void check() const;
 
-	void cmp_texts(const Actiongraph::Impl& actiongraph);
-	void cmp_dependencies(const Actiongraph::Impl& actiongraph);
+	void cmp_texts(const CommitData& commit_data);
+	void cmp_dependencies(const CommitData& commit_data);
 
     };
 

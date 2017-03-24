@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -246,7 +247,7 @@ namespace storage
 
 
     list<string>
-    ProcMdstat::getEntries() const
+    ProcMdstat::get_entries() const
     {
 	list<string> ret;
 	for (const_iterator i = data.begin(); i != data.end(); ++i)
@@ -256,7 +257,7 @@ namespace storage
 
 
     bool
-    ProcMdstat::getEntry(const string& name, Entry& entry) const
+    ProcMdstat::get_entry(const string& name, Entry& entry) const
     {
 	const_iterator i = data.find(name);
 	if (i == data.end())
@@ -267,9 +268,9 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ProcMdstat& procmdstat)
+    std::ostream& operator<<(std::ostream& s, const ProcMdstat& proc_mdstat)
     {
-	for (ProcMdstat::const_iterator it = procmdstat.data.begin(); it != procmdstat.data.end(); ++it)
+	for (ProcMdstat::const_iterator it = proc_mdstat.data.begin(); it != proc_mdstat.data.end(); ++it)
 	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;
@@ -336,14 +337,14 @@ namespace storage
     void
     MdadmDetail::parse(const vector<string>& lines)
     {
-	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
+	for (const string& line : lines)
 	{
-	    if (boost::starts_with(*it, "MD_UUID="))
-		uuid = string(*it, 8);
-	    else if (boost::starts_with(*it, "MD_DEVNAME="))
-		devname = string(*it, 11);
-	    else if (boost::starts_with(*it, "MD_METADATA="))
-		metadata = string(*it, 12);
+	    if (boost::starts_with(line, "MD_UUID="))
+		uuid = string(line, 8);
+	    else if (boost::starts_with(line, "MD_DEVNAME="))
+		devname = string(line, 11);
+	    else if (boost::starts_with(line, "MD_METADATA="))
+		metadata = string(line, 12);
 	}
 
 	y2mil("device:" << device << " uuid:" << uuid << " devname:" << devname << " metadata:"
@@ -351,10 +352,11 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadmdetail)
+    std::ostream&
+    operator<<(std::ostream& s, const MdadmDetail& mdadm_detail)
     {
-	s << "device:" << mdadmdetail.device << " uuid:" << mdadmdetail.uuid << " devname:"
-	  << mdadmdetail.devname << " metadata:" << mdadmdetail.metadata << '\n';
+	s << "device:" << mdadm_detail.device << " uuid:" << mdadm_detail.uuid << " devname:"
+	  << mdadm_detail.devname << " metadata:" << mdadm_detail.metadata << '\n';
 
 	return s;
     }
@@ -429,12 +431,12 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadmexamine)
+    std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadm_examine)
     {
-	s << "devices:" << mdadmexamine.devices << " metadata:" << mdadmexamine.metadata
-	  << " uuid:" << mdadmexamine.uuid << '\n';
+	s << "devices:" << mdadm_examine.devices << " metadata:" << mdadm_examine.metadata
+	  << " uuid:" << mdadm_examine.uuid << '\n';
 
-	for (MdadmExamine::const_iterator it = mdadmexamine.begin(); it != mdadmexamine.end(); ++it)
+	for (MdadmExamine::const_iterator it = mdadm_examine.begin(); it != mdadm_examine.end(); ++it)
 	    s << "data[" << it->first << "] -> " << it->second << '\n';
 
 	return s;

@@ -626,22 +626,19 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::do_rename_in_etc_fstab(const Actiongraph::Impl& actiongraph, const Device* lhs,
+    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs,
 						const string& mountpoint) const
     {
-	const Storage& storage = actiongraph.get_storage();
-
-	EtcFstab fstab;
-        fstab.read(storage.get_impl().prepend_rootprefix(ETC_FSTAB));	// TODO pass as parameter
+	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
 	const BlkFilesystem * blk_filesystem_lhs = to_blk_filesystem(lhs);
 
-	FstabEntry* entry = find_etc_fstab_entry(fstab, { blk_filesystem_lhs->get_impl().get_fstab_device_name() });
+	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { blk_filesystem_lhs->get_impl().get_fstab_device_name() });
 	if (entry)
         {
             entry->set_device(get_mount_by_name());
-            fstab.log_diff();
-            fstab.write();
+            etc_fstab.log_diff();
+            etc_fstab.write();
         }
     }
 
@@ -705,52 +702,52 @@ namespace storage
     {
 
 	Text
-	SetLabel::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	SetLabel::text(const CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_label_text(tense);
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_label_text(commit_data.tense);
 	}
 
 
 	void
-	SetLabel::commit(const Actiongraph::Impl& actiongraph) const
+	SetLabel::commit(CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_label();
 	}
 
 
 	Text
-	SetUuid::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	SetUuid::text(const CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem->get_impl().do_set_uuid_text(tense);
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_uuid_text(commit_data.tense);
 	}
 
 
 	void
-	SetUuid::commit(const Actiongraph::Impl& actiongraph) const
+	SetUuid::commit(CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, RHS));
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_uuid();
 	}
 
 
 	Text
-	RenameInEtcFstab::text(const Actiongraph::Impl& actiongraph, Tense tense) const
+	RenameInEtcFstab::text(const CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(actiongraph, LHS));
-	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(actiongraph, RHS));
-	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, mountpoint, tense);
+	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
+	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, mountpoint, commit_data.tense);
 	}
 
 
 	void
-	RenameInEtcFstab::commit(const Actiongraph::Impl& actiongraph) const
+	RenameInEtcFstab::commit(CommitData& commit_data) const
 	{
-	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(actiongraph, LHS));
-	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(actiongraph, RHS));
-	    blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab(actiongraph, blk_filesystem_lhs, mountpoint);
+	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
+	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab(commit_data, blk_filesystem_lhs, mountpoint);
 	}
 
 
