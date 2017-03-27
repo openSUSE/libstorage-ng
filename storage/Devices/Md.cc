@@ -207,6 +207,20 @@ namespace storage
     }
 
 
+    bool
+    Md::is_in_etc_mdadm() const
+    {
+	return get_impl().is_in_etc_mdadm();
+    }
+
+
+    void
+    Md::set_in_etc_mdadm(bool in_etc_mdadm)
+    {
+	get_impl().set_in_etc_mdadm(in_etc_mdadm);
+    }
+
+
     vector<Md*>
     Md::get_all(Devicegraph* devicegraph)
     {

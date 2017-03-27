@@ -72,7 +72,7 @@ namespace storage
 
     Md::Impl::Impl(const string& name)
 	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
-	  uuid(), superblock_version()
+	  uuid(), superblock_version(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -85,7 +85,7 @@ namespace storage
 
     Md::Impl::Impl(const xmlNode* node)
 	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
-	  uuid(), superblock_version()
+	  uuid(), superblock_version(), in_etc_mdadm(true)
     {
 	string tmp;
 
@@ -102,6 +102,8 @@ namespace storage
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "superblock-version", superblock_version);
+
+	getChildValue(node, "in-etc-mdadm", in_etc_mdadm);
     }
 
 
@@ -191,6 +193,9 @@ namespace storage
 	MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(get_name());
 	md_name = mdadm_detail.devname;
 	uuid = mdadm_detail.uuid;
+
+	const EtcMdadm& etc_mdadm = systeminfo.getEtcMdadm();
+	in_etc_mdadm = etc_mdadm.has_entry(uuid);
     }
 
 
@@ -237,9 +242,31 @@ namespace storage
 	vector<Action::Base*> actions;
 
 	actions.push_back(new Action::Create(get_sid()));
-	actions.push_back(new Action::AddToEtcMdadm(get_sid()));
+
+	if (in_etc_mdadm)
+	    actions.push_back(new Action::AddToEtcMdadm(get_sid()));
 
 	actiongraph.add_chain(actions);
+    }
+
+
+    void
+    Md::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
+    {
+	BlkDevice::Impl::add_modify_actions(actiongraph, lhs_base);
+
+	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (!lhs.in_etc_mdadm && in_etc_mdadm)
+	{
+	    Action::Base* action = new Action::AddToEtcMdadm(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+	else if (lhs.in_etc_mdadm && !in_etc_mdadm)
+	{
+	    Action::Base* action = new Action::RemoveFromEtcMdadm(get_sid());
+	    actiongraph.add_vertex(action);
+	}
     }
 
 
@@ -248,7 +275,9 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::RemoveFromEtcMdadm(get_sid()));
+	if (in_etc_mdadm)
+	    actions.push_back(new Action::RemoveFromEtcMdadm(get_sid()));
+
 	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -270,6 +299,8 @@ namespace storage
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
 	setChildValueIf(node, "superblock-version", superblock_version, !superblock_version.empty());
+
+	setChildValueIf(node, "in-etc-mdadm", in_etc_mdadm, !in_etc_mdadm);
     }
 
 
@@ -346,7 +377,7 @@ namespace storage
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
 	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
-	    md_name == rhs.md_name && uuid == rhs.uuid;
+	    md_name == rhs.md_name && uuid == rhs.uuid && in_etc_mdadm == rhs.in_etc_mdadm;
     }
 
 
@@ -366,6 +397,8 @@ namespace storage
 
 	storage::log_diff(log, "md-name", md_name, rhs.md_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+
+	storage::log_diff(log, "in-etc-mdadm", in_etc_mdadm, rhs.in_etc_mdadm);
     }
 
 
@@ -383,6 +416,8 @@ namespace storage
 
 	out << " md-name:" << md_name;
 	out << " uuid:" << uuid;
+
+	out << " in-etc-mdadm:" << in_etc_mdadm;
     }
 
 
@@ -641,7 +676,7 @@ namespace storage
 
 	info.uuid = uuid;
 
-	etc_mdadm.update_entry(info);
+	etc_mdadm.update_entry(get_storage(), info);
     }
 
 

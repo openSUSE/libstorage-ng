@@ -84,6 +84,17 @@ namespace storage
 	const std::string& get_superblock_version() const;
 
 	/**
+	 * Query whether the MD RAID is present (probed devicegraph) or will
+	 * be present (staging devicegraph) in /etc/mdadm.conf.
+	 */
+	bool is_in_etc_mdadm() const;
+
+	/**
+	 * Set whether the MD RAID will be present in /etc/mdadm.conf.
+	 */
+	void set_in_etc_mdadm(bool in_etc_mdadm);
+
+	/**
 	 * Sorted by number.
 	 */
 	static std::vector<Md*> get_all(Devicegraph* devicegraph);

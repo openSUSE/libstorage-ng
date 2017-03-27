@@ -44,7 +44,7 @@ namespace storage
 
     public:
 
-	EtcMdadm(const Storage* storage, const string& filename);
+	EtcMdadm(const string& filename = ETC_MDADM);
 
 	// From this structure line 'ARRAY' will be build in config file.
 	// Not all fields are mandatory
@@ -67,7 +67,9 @@ namespace storage
 	    friend std::ostream& operator<<(std::ostream& s, const mdconf_info& info);
 	};
 
-	bool update_entry(const mdconf_info& info);
+	bool has_entry(const string& uuid) const;
+
+	bool update_entry(const Storage* storage, const mdconf_info& info);
 
 	bool remove_entry(const string& uuid);
 
@@ -81,12 +83,11 @@ namespace storage
 	string array_line(const mdconf_info& info) const;
 
 	vector<string>::iterator find_array(const string& uuid);
+	vector<string>::const_iterator find_array(const string& uuid) const;
 
 	string get_uuid(const string& line) const;
 
-	const Storage* storage;
-
-	bool has_iscsi() const;
+	bool has_iscsi(const Storage* storage) const;
 
 	AsciiFile mdadm;
 
