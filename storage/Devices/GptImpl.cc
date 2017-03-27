@@ -210,7 +210,7 @@ namespace storage
 
 
     void
-    Gpt::Impl::do_create() const
+    Gpt::Impl::do_create()
     {
 	const Partitionable* partitionable = get_partitionable();
 

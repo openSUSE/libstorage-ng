@@ -146,6 +146,18 @@ namespace storage
     }
 
 
+    void
+    BlkFilesystem::Impl::probe_uuid()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Blkid blkid(blk_device->get_name());
+	Blkid::Entry entry;
+	if (blkid.get_sole_entry(entry))
+	    uuid = entry.fs_uuid;
+    }
+
+
     ResizeInfo
     BlkFilesystem::Impl::detect_resize_info() const
     {

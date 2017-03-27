@@ -28,7 +28,7 @@
 namespace storage
 {
 
-    Actiongraph::Actiongraph(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs)
+    Actiongraph::Actiongraph(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
 	: impl(new Impl(storage, lhs, rhs))
     {
     }

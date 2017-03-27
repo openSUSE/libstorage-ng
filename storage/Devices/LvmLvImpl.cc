@@ -268,7 +268,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_create() const
+    LvmLv::Impl::do_create()
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 

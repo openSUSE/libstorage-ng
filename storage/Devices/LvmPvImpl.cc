@@ -242,7 +242,7 @@ namespace storage
 
 
     void
-    LvmPv::Impl::do_create() const
+    LvmPv::Impl::do_create()
     {
 	const BlkDevice* blk_device = get_blk_device();
 

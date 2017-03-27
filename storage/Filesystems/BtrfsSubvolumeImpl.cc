@@ -418,7 +418,7 @@ namespace storage
 
 
     void
-    BtrfsSubvolume::Impl::do_create() const
+    BtrfsSubvolume::Impl::do_create()
     {
 	const BtrfsSubvolume* top_level = get_top_level_btrfs_subvolume();
 

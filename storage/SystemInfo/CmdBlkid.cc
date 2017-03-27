@@ -175,6 +175,19 @@ namespace storage
 
 
     bool
+    Blkid::get_sole_entry(Entry& entry) const
+    {
+	if (data.size() == 1)
+	{
+	    entry = data.begin()->second;
+	    return true;
+	}
+
+	return false;
+    }
+
+
+    bool
     Blkid::any_md() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_md; });

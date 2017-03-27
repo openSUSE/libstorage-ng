@@ -119,6 +119,18 @@ namespace storage
 
 
     void
+    Luks::Impl::probe_uuid()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Blkid blkid(blk_device->get_name());
+	Blkid::Entry entry;
+	if (blkid.get_sole_entry(entry))
+	    uuid = entry.luks_uuid;
+    }
+
+
+    void
     Luks::Impl::parent_has_new_region(const Device* parent)
     {
 	calculate_region();
@@ -195,7 +207,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_create() const
+    Luks::Impl::do_create()
     {
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(get_blk_device()->get_name()) +
 	    " --key-file -";
@@ -206,6 +218,8 @@ namespace storage
 	cmd.execute(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create Luks failed"));
+
+	probe_uuid();
     }
 
 

@@ -405,7 +405,7 @@ namespace storage
 
 
     void
-    LvmVg::Impl::do_create() const
+    LvmVg::Impl::do_create()
     {
 	string cmd_line = VGCREATEBIN " --physicalextentsize " + to_string(get_extent_size()) +
 	    "b " + quote(vg_name);

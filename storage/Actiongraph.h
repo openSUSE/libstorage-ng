@@ -55,7 +55,7 @@ namespace storage
     {
     public:
 
-	Actiongraph(const Storage& storage, const Devicegraph* lhs, const Devicegraph* rhs);
+	Actiongraph(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs);
 	~Actiongraph();
 
 	const Storage& get_storage() const;

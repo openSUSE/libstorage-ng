@@ -76,6 +76,12 @@ namespace storage
 
 	bool find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const;
 
+	/**
+	 * Get the sole entry. Useful when constructor with device parameter
+	 * was used.
+	 */
+	bool get_sole_entry(Entry& entry) const;
+
 	bool any_md() const;
 	bool any_lvm() const;
 	bool any_luks() const;

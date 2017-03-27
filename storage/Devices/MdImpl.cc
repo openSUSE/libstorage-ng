@@ -217,6 +217,14 @@ namespace storage
 
 
     void
+    Md::Impl::probe_uuid()
+    {
+	MdadmDetail mdadm_detail(get_name());
+	uuid = mdadm_detail.uuid;
+    }
+
+
+    void
     Md::Impl::parent_has_new_region(const Device* parent)
     {
 	calculate_region_and_topology();
@@ -503,7 +511,7 @@ namespace storage
 
 
     void
-    Md::Impl::do_create() const
+    Md::Impl::do_create()
     {
 	// Note: Changing any parameter to "mdadm --create' requires the
 	// function calculate_region_and_topology() to be checked!
@@ -557,6 +565,8 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create md raid failed"));
+
+	probe_uuid();
     }
 
 

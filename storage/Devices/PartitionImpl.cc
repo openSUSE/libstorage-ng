@@ -496,7 +496,7 @@ namespace storage
 
 
     void
-    Partition::Impl::do_create() const
+    Partition::Impl::do_create()
     {
 	const Partitionable* partitionable = get_partitionable();
 

@@ -72,6 +72,8 @@ namespace storage
 
 	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& etc_fstab);
 
+	virtual void probe_uuid();
+
 	vector<const BlkDevice*> get_blk_devices() const;
 	const BlkDevice* get_blk_device() const;
 
