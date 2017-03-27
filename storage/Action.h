@@ -80,8 +80,8 @@ namespace storage
 	    /**
 	     * Returns the device of the action on the RHS devicegraph.
 	     */
-	    const Device* get_device(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
+	    Device* get_device(const Actiongraph::Impl& actiongraph) const
+		{ return actiongraph.get_devicegraph_rhs()->find_device(sid); }
 
 	};
 

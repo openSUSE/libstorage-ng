@@ -160,7 +160,7 @@ namespace storage
 	virtual void print(std::ostream& out) const = 0;
 
 	virtual Text do_create_text(Tense tense) const;
-	virtual void do_create() const;
+	virtual void do_create();
 
 	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;

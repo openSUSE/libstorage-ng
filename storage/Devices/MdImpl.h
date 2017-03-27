@@ -91,6 +91,8 @@ namespace storage
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
+	void probe_uuid();
+
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
@@ -104,7 +106,7 @@ namespace storage
 	virtual uint64_t used_features() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

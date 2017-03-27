@@ -82,11 +82,11 @@ namespace storage
 
 
     void
-    Vfat::Impl::do_create() const
+    Vfat::Impl::do_create()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSFATBIN " " + quote(blk_device->get_name());
+	string cmd_line = MKFSFATBIN " -v " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	blk_device->get_impl().wait_for_device();
@@ -94,6 +94,10 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create vfat failed"));
+
+	// uuid is included in mkfs output
+
+	probe_uuid();
     }
 
 

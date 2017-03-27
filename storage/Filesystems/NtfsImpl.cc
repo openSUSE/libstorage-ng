@@ -113,7 +113,7 @@ namespace storage
 
 
     void
-    Ntfs::Impl::do_create() const
+    Ntfs::Impl::do_create()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -125,6 +125,8 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create ntfs failed"));
+
+	probe_uuid();
     }
 
 

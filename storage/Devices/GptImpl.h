@@ -83,7 +83,7 @@ namespace storage
 	virtual Region get_usable_region() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual Text do_set_pmbr_boot_text(Tense tense) const;
 	virtual void do_set_pmbr_boot() const;

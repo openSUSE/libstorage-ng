@@ -85,7 +85,7 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;

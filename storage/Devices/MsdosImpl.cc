@@ -286,7 +286,7 @@ namespace storage
 
 
     void
-    Msdos::Impl::do_create() const
+    Msdos::Impl::do_create()
     {
 	const Partitionable* partitionable = get_partitionable();
 

@@ -106,7 +106,7 @@ namespace storage
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual Text do_set_id_text(Tense tense) const;
 	virtual void do_set_id() const;

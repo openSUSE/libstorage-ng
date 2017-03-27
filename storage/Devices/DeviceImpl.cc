@@ -305,7 +305,7 @@ namespace storage
 
 
     void
-    Device::Impl::do_create() const
+    Device::Impl::do_create()
     {
 	ST_THROW(LogicException("stub do_create called"));
     }

@@ -67,7 +67,7 @@ namespace storage
 
 	virtual uint64_t used_features() const override;
 
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual void do_set_label() const override;
 

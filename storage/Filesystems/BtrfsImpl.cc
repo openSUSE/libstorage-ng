@@ -227,7 +227,7 @@ namespace storage
 
 
     void
-    Btrfs::Impl::do_create() const
+    Btrfs::Impl::do_create()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -239,6 +239,10 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create btrfs failed"));
+
+	// TODO uuid is included in mkfs output
+
+	probe_uuid();
     }
 
 

@@ -68,7 +68,7 @@ namespace storage
 
 
     void
-    Xfs::Impl::do_create() const
+    Xfs::Impl::do_create()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -80,6 +80,8 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create xfs failed"));
+
+	probe_uuid();
     }
 
 

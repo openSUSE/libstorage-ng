@@ -102,7 +102,7 @@ namespace storage
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
-	virtual void do_create() const override;
+	virtual void do_create() override;
 
 	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
 
