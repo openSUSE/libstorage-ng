@@ -27,6 +27,8 @@
 
 #include <boost/noncopyable.hpp>
 
+#include "storage/EtcMdadm.h"
+
 #include "storage/SystemInfo/Arch.h"
 #include "storage/SystemInfo/ProcParts.h"
 #include "storage/SystemInfo/ProcMounts.h"
@@ -71,6 +73,8 @@ namespace storage
 
 	SystemInfo();
 	~SystemInfo();
+
+	const EtcMdadm& getEtcMdadm() { return etc_mdadm.get(); }
 
 	const Arch& getArch() { return arch.get(); }
 	const Dir& getDir(const string& path) { return dirs.get(path); }
@@ -207,6 +211,8 @@ namespace storage
 	    map<Key, Helper> data;
 
 	};
+
+	LazyObject<EtcMdadm> etc_mdadm;
 
 	LazyObject<Arch> arch;
 	LazyObjects<Dir> dirs;

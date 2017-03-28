@@ -97,7 +97,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_MDADM);
 
-	    etc_mdadm.reset(new EtcMdadm(&storage, filename));
+	    etc_mdadm.reset(new EtcMdadm(filename));
 	}
 
 	return *etc_mdadm.get();

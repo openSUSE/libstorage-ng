@@ -488,6 +488,11 @@
       <content>usbfs /proc/bus/usb usbfs  noauto  0 0</content>
     </File>
     <File>
+      <name>/etc/mdadm.conf</name>
+      <content>DEVICE containers partitions</content>
+      <content>ARRAY /dev/md0 UUID=2ce25515:3d255c09:a0e91f18:d9c098d3</content>
+    </File>
+    <File>
       <name>/proc/mdstat</name>
       <content>Personalities : [raid6] [raid5] [raid4] </content>
       <content>md0 : active raid5 sdc[4] sdd[3](S) sda[0] sdb[1]</content>

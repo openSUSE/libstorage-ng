@@ -85,6 +85,9 @@ namespace storage
 
 	const string& get_superblock_version() const { return superblock_version; }
 
+	bool is_in_etc_mdadm() const { return in_etc_mdadm; }
+	void set_in_etc_mdadm(bool in_etc_mdadm) { Impl::in_etc_mdadm = in_etc_mdadm; }
+
 	static bool is_valid_name(const string& name);
 
 	static void probe_mds(Devicegraph* probed, SystemInfo& systeminfo);
@@ -94,6 +97,7 @@ namespace storage
 	void probe_uuid();
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
@@ -138,6 +142,8 @@ namespace storage
 	string uuid;
 
 	string superblock_version;
+
+	bool in_etc_mdadm;
 
     };
 

@@ -35,14 +35,21 @@ namespace storage
     using namespace std;
 
 
-    EtcMdadm::EtcMdadm(const Storage* storage, const string& filename)
-	: storage(storage), mdadm(filename)
+    EtcMdadm::EtcMdadm(const string& filename)
+	: mdadm(filename)
     {
     }
 
 
     bool
-    EtcMdadm::update_entry(const mdconf_info& info)
+    EtcMdadm::has_entry(const string& uuid) const
+    {
+	return find_array(uuid) != mdadm.get_lines().end();
+    }
+
+
+    bool
+    EtcMdadm::update_entry(const Storage* storage, const mdconf_info& info)
     {
 	y2mil("uuid:" << info.uuid << " device:" << info.device);
 
@@ -65,7 +72,7 @@ namespace storage
 
 	set_device_line("DEVICE containers partitions");
 
-	if (has_iscsi())
+	if (has_iscsi(storage))
 	    set_auto_line("AUTO -all");
 
 	mdadm.save();
@@ -179,6 +186,24 @@ namespace storage
     }
 
 
+    vector<string>::const_iterator
+    EtcMdadm::find_array(const string& uuid) const
+    {
+	const vector<string>& lines = mdadm.get_lines();
+	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
+	{
+	    if (boost::starts_with(*it, "ARRAY"))
+	    {
+		string tmp = get_uuid(*it);
+		if (!tmp.empty() && tmp == uuid)
+		    return it;
+	    }
+	}
+
+	return lines.end();
+    }
+
+
     string
     EtcMdadm::get_uuid(const string& line) const
     {
@@ -193,7 +218,7 @@ namespace storage
 
 
     bool
-    EtcMdadm::has_iscsi() const
+    EtcMdadm::has_iscsi(const Storage* storage) const
     {
 	for (const Disk* disk : Disk::get_all(storage->get_probed()))
 	{
