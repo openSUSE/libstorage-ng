@@ -26,7 +26,7 @@
 #include <boost/regex.hpp>
 
 #include "storage/Devices/MdImpl.h"
-#include "storage/Holders/MdUser.h"
+#include "storage/Holders/MdUserImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/StorageImpl.h"
@@ -564,28 +564,19 @@ namespace storage
 	if (md_parity != DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
 
-	vector<string> devices;
-	vector<string> spares;
+	// place devices in multimaps to sort them according to the sort-key
+
+	multimap<unsigned int, string> devices;
+	multimap<unsigned int, string> spares;
 
 	for (const BlkDevice* blk_device : get_devices())
 	{
-	    bool spare = false;
+	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
 
-	    // TODO add get_out_holder that throws if num_children != 1, like get_single_child_of_type
-
-	    for (const Holder* out_holder : blk_device->get_out_holders())
-	    {
-		if (to_md_user(out_holder)->is_spare())
-		{
-		    spare = true;
-		    break;
-		}
-	    }
-
-	    if (!spare)
-		devices.push_back(blk_device->get_name());
+	    if (!md_user->is_spare())
+		devices.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
 	    else
-		spares.push_back(blk_device->get_name());
+		spares.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
 	}
 
 	cmd_line += " --raid-devices=" + to_string(devices.size());
@@ -593,7 +584,11 @@ namespace storage
 	if (!spares.empty())
 	    cmd_line += " --spare-devices=" + to_string(spares.size());
 
-	cmd_line += " " + quote(devices) + " " + quote(spares);
+	for (const pair<unsigned int, string>& value : devices)
+	    cmd_line += " " + quote(value.second);
+
+	for (const pair<unsigned int, string>& value : spares)
+	    cmd_line += " " + quote(value.second);
 
 	cout << cmd_line << endl;
 

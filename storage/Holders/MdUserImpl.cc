@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,10 +32,12 @@ namespace storage
 
 
     MdUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), spare(false), faulty(false)
+	: User::Impl(node), spare(false), faulty(false), sort_key(0)
     {
 	getChildValue(node, "spare", spare);
 	getChildValue(node, "faulty", faulty);
+
+	getChildValue(node, "sort-key", sort_key);
     }
 
 
@@ -46,6 +48,8 @@ namespace storage
 
 	setChildValueIf(node, "spare", spare, spare);
 	setChildValueIf(node, "faulty", faulty, faulty);
+
+	setChildValueIf(node, "sort-key", sort_key, sort_key != 0);
     }
 
 
@@ -57,7 +61,7 @@ namespace storage
 	if (!User::Impl::equal(rhs))
 	    return false;
 
-	return spare == rhs.spare && faulty == rhs.faulty;
+	return spare == rhs.spare && faulty == rhs.faulty && sort_key == rhs.sort_key;
     }
 
 
@@ -70,6 +74,8 @@ namespace storage
 
 	storage::log_diff(log, "spare", spare, rhs.spare);
 	storage::log_diff(log, "faulty", faulty, rhs.faulty);
+
+	storage::log_diff(log, "sort-key", sort_key, rhs.sort_key);
     }
 
 
@@ -83,6 +89,9 @@ namespace storage
 
 	if (faulty)
 	    out << " faulty";
+
+	if (sort_key != 0)
+	    out << " sort-key:" << sort_key;
     }
 
 }

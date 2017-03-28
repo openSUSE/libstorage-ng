@@ -155,6 +155,9 @@ namespace storage
 	vector<vertex_descriptor> leaves(vertex_descriptor vertex, bool itself) const;
 	vector<vertex_descriptor> roots(vertex_descriptor vertex, bool itself) const;
 
+	edge_descriptor in_edge(vertex_descriptor vertex) const;
+	edge_descriptor out_edge(vertex_descriptor vertex) const;
+
 	vector<edge_descriptor> in_edges(vertex_descriptor vertex) const;
 	vector<edge_descriptor> out_edges(vertex_descriptor vertex) const;
 

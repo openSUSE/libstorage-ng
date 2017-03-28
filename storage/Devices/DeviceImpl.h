@@ -31,6 +31,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Devices/Device.h"
+#include "storage/Holders/HolderImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/DevicegraphImpl.h"
@@ -261,6 +262,18 @@ namespace storage
 	    const Device* tmp = devicegraph_impl[devicegraph_impl.parent(get_vertex())];
 
 	    return to_device_of_type<Type>(tmp);
+	}
+
+	template<typename Type>
+	const Type* get_single_out_holder_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    const Holder* tmp = devicegraph_impl[devicegraph_impl.out_edge(get_vertex())];
+
+	    return to_holder_of_type<Type>(tmp);
 	}
 
     protected:

@@ -562,6 +562,26 @@ namespace storage
     }
 
 
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::in_edge(vertex_descriptor vertex) const
+    {
+	if (num_children(vertex) != 1)
+	    ST_THROW(WrongNumberOfChildren(num_children(vertex), 1));
+
+	return *boost::make_iterator_range(boost::in_edges(vertex, graph)).begin();
+    }
+
+
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::out_edge(vertex_descriptor vertex) const
+    {
+	if (num_parents(vertex) != 1)
+	    ST_THROW(WrongNumberOfParents(num_parents(vertex), 1));
+
+	return *boost::make_iterator_range(boost::out_edges(vertex, graph)).begin();
+    }
+
+
     vector<Devicegraph::Impl::edge_descriptor>
     Devicegraph::Impl::in_edges(vertex_descriptor vertex) const
     {

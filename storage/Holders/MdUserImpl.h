@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,7 @@ namespace storage
     public:
 
 	Impl()
-	    : User::Impl(), spare(false), faulty(false) {}
+	    : User::Impl(), spare(false), faulty(false), sort_key(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -60,10 +60,15 @@ namespace storage
 	bool is_faulty() const { return faulty; }
 	void set_faulty(bool faulty) { Impl::faulty = faulty; }
 
+	unsigned int get_sort_key() const { return sort_key; }
+	void set_sort_key(unsigned int sort_key) { Impl::sort_key = sort_key; }
+
     private:
 
 	bool spare;
 	bool faulty;
+
+	unsigned int sort_key;
 
     };
 
