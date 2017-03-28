@@ -46,5 +46,5 @@ md2.add_device(md1)
 
 print staging
 
-commit(storage, skip_save_graphs = False)
+commit(storage)
 
