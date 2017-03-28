@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -97,6 +97,20 @@ namespace storage
     MdUser::set_faulty(bool faulty)
     {
 	get_impl().set_faulty(faulty);
+    }
+
+
+    unsigned int
+    MdUser::get_sort_key() const
+    {
+	return get_impl().get_sort_key();
+    }
+
+
+    void
+    MdUser::set_sort_key(unsigned int sort_key)
+    {
+	get_impl().set_sort_key(sort_key);
     }
 
 
