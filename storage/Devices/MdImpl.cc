@@ -438,6 +438,12 @@ namespace storage
     void
     Md::Impl::calculate_region_and_topology()
     {
+	// Calculating the exact size of a MD is difficult. Since a size too
+	// big can lead to severe problems later on, e.g. a partition not
+	// fitting anymore, we make a conservative calculation.
+
+	const bool conservative = true;
+
 	vector<BlkDevice*> devices = get_devices();
 
 	long real_chunk_size = chunk_size;
@@ -453,11 +459,12 @@ namespace storage
 	unsigned long long sum = 0;
 	unsigned long long smallest = std::numeric_limits<unsigned long long>::max();
 
-	for (const BlkDevice* device : devices)
+	for (const BlkDevice* blk_device : devices)
 	{
-	    // TODO handle spare
+	    unsigned long long size = blk_device->get_size();
 
-	    unsigned long long size = device->get_size();
+	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
+	    bool spare = md_user->is_spare();
 
 	    // metadata for version 1.0 is 4 KiB block at end aligned to 4 KiB,
 	    // https://raid.wiki.kernel.org/index.php/RAID_superblock_formats
@@ -465,12 +472,22 @@ namespace storage
 
 	    // size used for bitmap depends on device size
 
+	    if (conservative)
+	    {
+		// trim device size by 128 MiB but not more than roughly 1%
+		size -= min(128 * MiB, size / 64);
+	    }
+
 	    long rest = size % real_chunk_size;
 	    if (rest > 0)
 		size -= rest;
 
-	    number++;
-	    sum += size;
+	    if (!spare)
+	    {
+		number++;
+		sum += size;
+	    }
+
 	    smallest = min(smallest, size);
 	}
 
