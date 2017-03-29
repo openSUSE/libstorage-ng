@@ -62,7 +62,10 @@ def doit(level, devices, chunk_size):
     if size_ok:
         results.write(", size %d" % (expected_size))
     else:
-        results.write(", size %d != %d" % (expected_size, seen_size))
+        if expected_size < seen_size:
+            results.write(", size %d < %d" % (expected_size, seen_size))
+        else:
+            results.write(", size %d > %d" % (expected_size, seen_size))
     if io_size_ok:
         results.write(", io-size %d" % (expected_io_size))
     else:
