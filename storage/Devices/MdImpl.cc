@@ -438,6 +438,12 @@ namespace storage
     void
     Md::Impl::calculate_region_and_topology()
     {
+	// Calculating the exact size of a MD is difficult. Since a size to
+	// big can lead to severe problems later on, e.g. a partition not
+	// fitting anymore, we make a conservative calculation.
+
+	const bool conservative = true;
+
 	vector<BlkDevice*> devices = get_devices();
 
 	long real_chunk_size = chunk_size;
@@ -465,6 +471,12 @@ namespace storage
 	    size = (size & ~(0x1000ULL - 1)) - 0x2000;
 
 	    // size used for bitmap depends on device size
+
+	    if (conservative)
+	    {
+		// trim device size by 128 MiB but not more than roughly 1%
+		size -= min(128 * MiB, size / 64);
+	    }
 
 	    long rest = size % real_chunk_size;
 	    if (rest > 0)
