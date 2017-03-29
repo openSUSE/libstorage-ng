@@ -6,6 +6,8 @@
 # TODO create the partitions in the program so that tests are run several
 # times with partitions of different sizes
 
+# TODO add spare devices
+
 
 from sys import exit
 from os import system
@@ -66,6 +68,7 @@ def doit(level, devices, chunk_size):
     else:
         results.write(", io-size %d != %d" % (expected_io_size, seen_io_size))
     results.write("\n")
+    results.flush()
 
 
 def cleanup():
