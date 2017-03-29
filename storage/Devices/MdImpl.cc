@@ -438,7 +438,7 @@ namespace storage
     void
     Md::Impl::calculate_region_and_topology()
     {
-	// Calculating the exact size of a MD is difficult. Since a size to
+	// Calculating the exact size of a MD is difficult. Since a size too
 	// big can lead to severe problems later on, e.g. a partition not
 	// fitting anymore, we make a conservative calculation.
 
