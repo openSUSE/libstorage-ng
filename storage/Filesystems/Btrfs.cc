@@ -84,6 +84,20 @@ namespace storage
     }
 
 
+    BtrfsSubvolume*
+    Btrfs::get_default_btrfs_subvolume()
+    {
+        return get_impl().get_default_btrfs_subvolume();
+    }
+
+
+    const BtrfsSubvolume*
+    Btrfs::get_default_btrfs_subvolume() const
+    {
+        return get_impl().get_default_btrfs_subvolume();
+    }
+
+
     vector<BtrfsSubvolume*>
     Btrfs::get_btrfs_subvolumes()
     {
