@@ -163,6 +163,11 @@ namespace storage
 	    if (!is_valid_name(name))
 		continue;
 
+	    // workaround for https://bugzilla.suse.com/show_bug.cgi?id=1030896
+	    const ProcMdstat& proc_mdstat = systeminfo.getProcMdstat();
+	    if (!proc_mdstat.has_entry(short_name))
+		continue;
+
 	    Md* md = Md::create(probed, name);
 	    md->get_impl().probe_pass_1(probed, systeminfo);
 	}
