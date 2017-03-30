@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,7 +64,14 @@ namespace storage
 
 	Devicegraph::Impl::edge_descriptor get_edge() const { return edge; }
 
+	Device* get_source();
+	const Device* get_source() const;
+
 	sid_t get_source_sid() const;
+
+	Device* get_target();
+	const Device* get_target() const;
+
 	sid_t get_target_sid() const;
 
 	virtual bool equal(const Impl& rhs) const = 0;
