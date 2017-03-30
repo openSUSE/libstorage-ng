@@ -19,7 +19,6 @@ staging = storage.get_staging()
 sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
 
 md = Md.find_by_name(staging, "/dev/md0")
-md.set_md_level(RAID0)
 
 md.remove_device(sdb5)
 
