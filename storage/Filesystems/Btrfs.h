@@ -51,6 +51,11 @@ namespace storage
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
+	BtrfsSubvolume* get_default_btrfs_subvolume();
+	const BtrfsSubvolume* get_default_btrfs_subvolume() const;
+
+	void set_default_btrfs_subvolume(BtrfsSubvolume* btrfs_subvolume) const;
+
 	std::vector<BtrfsSubvolume*> get_btrfs_subvolumes();
 	std::vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
 

@@ -41,6 +41,16 @@ namespace storage
     }
 
 
+    void
+    EtcMdadm::init(const Storage* storage)
+    {
+	set_device_line("DEVICE containers partitions");
+
+        if (has_iscsi(storage))
+            set_auto_line("AUTO -all");
+    }
+
+
     bool
     EtcMdadm::has_entry(const string& uuid) const
     {
@@ -49,31 +59,26 @@ namespace storage
 
 
     bool
-    EtcMdadm::update_entry(const Storage* storage, const mdconf_info& info)
+    EtcMdadm::update_entry(const Entry& entry)
     {
-	y2mil("uuid:" << info.uuid << " device:" << info.device);
+	y2mil("uuid:" << entry.uuid << " device:" << entry.device);
 
-	if (info.uuid.empty())
+	if (entry.uuid.empty())
 	{
-	    y2err("empty UUID " << info);
+	    y2err("empty UUID " << entry);
 	    return false;
 	}
 
-	if (info.container_present && info.container_uuid.empty())
+	if (entry.container_present && entry.container_uuid.empty())
 	{
-	    y2err("empty UUID for container " << info);
+	    y2err("empty UUID for container " << entry);
 	    return false;
 	}
 
-	if (info.container_present)
-	    set_array_line(cont_line(info), info.container_uuid);
+	if (entry.container_present)
+	    set_array_line(cont_line(entry), entry.container_uuid);
 
-	set_array_line(array_line(info), info.uuid);
-
-	set_device_line("DEVICE containers partitions");
-
-	if (has_iscsi(storage))
-	    set_auto_line("AUTO -all");
+	set_array_line(array_line(entry), entry.uuid);
 
 	mdadm.save();
 
@@ -145,25 +150,25 @@ namespace storage
 
 
     string
-    EtcMdadm::cont_line(const mdconf_info& info) const
+    EtcMdadm::cont_line(const Entry& entry) const
     {
 	string line = "ARRAY";
-	line += " metadata=" + info.container_metadata;
-	line += " UUID=" + info.container_uuid;
+	line += " metadata=" + entry.container_metadata;
+	line += " UUID=" + entry.container_uuid;
 	return line;
     }
 
 
     string
-    EtcMdadm::array_line(const mdconf_info& info) const
+    EtcMdadm::array_line(const Entry& entry) const
     {
-	string line = "ARRAY " + info.device;
-	if (info.container_present)
+	string line = "ARRAY " + entry.device;
+	if (entry.container_present)
 	{
-	    line += " container=" + info.container_uuid;
-	    line += " member=" + info.container_member;
+	    line += " container=" + entry.container_uuid;
+	    line += " member=" + entry.container_member;
 	}
-	line += " UUID=" + info.uuid;
+	line += " UUID=" + entry.uuid;
 	return line;
     }
 
@@ -231,14 +236,14 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const EtcMdadm::mdconf_info& info)
+    operator<<(std::ostream& s, const EtcMdadm::Entry& entry)
     {
-	s << "device:" << info.device << " uuid:" << info.uuid;
+	s << "device:" << entry.device << " uuid:" << entry.uuid;
 
-	if (info.container_present)
+	if (entry.container_present)
 	{
-	    s << " container_present container_uuid:" << info.container_uuid << " container_member:"
-	      << info.container_member << " container_metadata:" << info.container_metadata;
+	    s << " container_present container_uuid:" << entry.container_uuid << " container_member:"
+	      << entry.container_member << " container_metadata:" << entry.container_metadata;
 	}
 
 	return s;

@@ -78,6 +78,39 @@ namespace storage
     }
 
 
+    BtrfsSubvolume*
+    Btrfs::Impl::get_default_btrfs_subvolume()
+    {
+	for (BtrfsSubvolume* btrfs_subvolume : get_btrfs_subvolumes())
+	{
+	    if (btrfs_subvolume->is_default_btrfs_subvolume())
+		return btrfs_subvolume;
+	}
+
+	ST_THROW(Exception("no default btrfs subvolume found"));
+    }
+
+
+    const BtrfsSubvolume*
+    Btrfs::Impl::get_default_btrfs_subvolume() const
+    {
+	for (const BtrfsSubvolume* btrfs_subvolume : get_btrfs_subvolumes())
+	{
+	    if (btrfs_subvolume->is_default_btrfs_subvolume())
+		return btrfs_subvolume;
+	}
+
+	ST_THROW(Exception("no default btrfs subvolume found"));
+    }
+
+
+    void
+    Btrfs::Impl::set_default_btrfs_subvolume(BtrfsSubvolume* btrfs_subvolume) const
+    {
+	btrfs_subvolume->set_default_btrfs_subvolume();
+    }
+
+
     vector<BtrfsSubvolume*>
     Btrfs::Impl::get_btrfs_subvolumes()
     {

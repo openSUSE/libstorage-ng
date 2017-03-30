@@ -50,9 +50,9 @@ namespace storage
 	// Not all fields are mandatory
 	// If container is present then container line will be build
 	// before volume line.
-	struct mdconf_info
+	struct Entry
 	{
-	    mdconf_info() : container_present(false) {}
+	    Entry() : container_present(false) {}
 
 	    string device;
 	    string uuid;
@@ -64,12 +64,14 @@ namespace storage
 	    string container_metadata;
 	    string container_uuid;
 
-	    friend std::ostream& operator<<(std::ostream& s, const mdconf_info& info);
+	    friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 	};
+
+	void init(const Storage* storage);
 
 	bool has_entry(const string& uuid) const;
 
-	bool update_entry(const Storage* storage, const mdconf_info& info);
+	bool update_entry(const Entry& entry);
 
 	bool remove_entry(const string& uuid);
 
@@ -79,8 +81,8 @@ namespace storage
 	void set_auto_line(const string& line);
 	void set_array_line(const string& line, const string& uuid);
 
-	string cont_line(const mdconf_info& info) const;
-	string array_line(const mdconf_info& info) const;
+	string cont_line(const Entry& entry) const;
+	string array_line(const Entry& entry) const;
 
 	vector<string>::iterator find_array(const string& uuid);
 	vector<string>::const_iterator find_array(const string& uuid) const;

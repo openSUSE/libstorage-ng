@@ -682,18 +682,20 @@ namespace storage
     {
 	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
 
+	etc_mdadm.init(get_storage());
+
 	// TODO containers
 
-	EtcMdadm::mdconf_info info;
+	EtcMdadm::Entry entry;
 
 	if (!md_name.empty())
-	    info.device = DEVDIR "/md/" + md_name;
+	    entry.device = DEVDIR "/md/" + md_name;
 	else
-	    info.device = get_name();
+	    entry.device = get_name();
 
-	info.uuid = uuid;
+	entry.uuid = uuid;
 
-	etc_mdadm.update_entry(get_storage(), info);
+	etc_mdadm.update_entry(entry);
     }
 
 
