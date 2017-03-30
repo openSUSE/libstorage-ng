@@ -104,6 +104,13 @@ namespace storage
     }
 
 
+    void
+    Btrfs::Impl::set_default_btrfs_subvolume(BtrfsSubvolume* btrfs_subvolume) const
+    {
+	btrfs_subvolume->set_default_btrfs_subvolume();
+    }
+
+
     vector<BtrfsSubvolume*>
     Btrfs::Impl::get_btrfs_subvolumes()
     {
