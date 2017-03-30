@@ -18,6 +18,7 @@ staging = storage.get_staging()
 
 md0 = Md.find_by_name(staging, "/dev/md0")
 
+md0.remove_descendants()
 staging.remove_device(md0)
 
 print staging
