@@ -232,6 +232,21 @@ namespace storage
     }
 
 
+    void
+    BtrfsSubvolume::Impl::probe_id(const string& mountpoint)
+    {
+	const Btrfs* btrfs = get_btrfs();
+	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
+
+	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
+	    CmdBtrfsSubvolumeList(blk_device->get_name(), mountpoint);
+
+	CmdBtrfsSubvolumeList::const_iterator it = cmd_btrfs_subvolume_list.find_entry_by_path(path);
+	if (it != cmd_btrfs_subvolume_list.end())
+	    id = it->id;
+    }
+
+
     bool
     BtrfsSubvolume::Impl::equal(const Device::Impl& rhs_base) const
     {
@@ -437,6 +452,8 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create BtrfsSubvolume failed"));
+
+	probe_id(ensure_mounted.get_any_mountpoint());
     }
 
 

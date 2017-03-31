@@ -195,6 +195,19 @@ namespace storage
     }
 
 
+    CmdBtrfsSubvolumeList::const_iterator
+    CmdBtrfsSubvolumeList::find_entry_by_path(const string& path) const
+    {
+	for (const_iterator it = data.begin(); it != data.end(); ++it)
+	{
+	    if (it->path == path)
+		return it;
+	}
+
+	return data.end();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist)
     {
@@ -216,7 +229,7 @@ namespace storage
 
 
     CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint)
-	: id(-1 /* BtrfsSubvolume::Impl::unknown_id */)
+	: id(BtrfsSubvolume::Impl::unknown_id)
     {
 	SystemCmd cmd;
 	cmd.setCmd(BTRFSBIN " subvolume get-default " + quote(mountpoint));

@@ -29,6 +29,8 @@
 #include <vector>
 #include <map>
 
+#include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+
 
 namespace storage
 {
@@ -110,8 +112,8 @@ namespace storage
 	struct Entry
 	{
 	    Entry()
-		: id(-1 /* BtrfsSubvolume::Impl::unknown_id */),
-		  parent_id(-1 /*BtrfsSubvolume::Impl::unknown_id */),
+		: id(BtrfsSubvolume::Impl::unknown_id),
+		  parent_id(BtrfsSubvolume::Impl::unknown_id),
 		  path() {}
 
 	    long id;
@@ -124,6 +126,8 @@ namespace storage
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
+
+	const_iterator find_entry_by_path(const string& path) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);

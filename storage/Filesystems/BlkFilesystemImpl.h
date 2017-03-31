@@ -72,8 +72,6 @@ namespace storage
 
 	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& etc_fstab);
 
-	virtual void probe_uuid();
-
 	vector<const BlkDevice*> get_blk_devices() const;
 	const BlkDevice* get_blk_device() const;
 
@@ -117,6 +115,8 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
+
+	virtual void probe_uuid();
 
 	static bool detect_is_windows(const string& mountpoint);
 	static bool detect_is_efi(const string& mountpoint);

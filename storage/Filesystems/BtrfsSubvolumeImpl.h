@@ -125,6 +125,8 @@ namespace storage
 
 	void save(xmlNode* node) const override;
 
+	void probe_id(const string& mountpoint);
+
     private:
 
 	long id;
