@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,7 +52,14 @@ namespace storage
 
 	virtual ~Holder();
 
+	Device* get_source();
+	const Device* get_source() const;
+
 	sid_t get_source_sid() const;
+
+	Device* get_target();
+	const Device* get_target() const;
+
 	sid_t get_target_sid() const;
 
 	bool operator==(const Holder& rhs) const;

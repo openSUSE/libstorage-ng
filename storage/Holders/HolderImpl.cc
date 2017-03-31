@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,19 +64,49 @@ namespace storage
     }
 
 
+    Device*
+    Holder::Impl::get_source()
+    {
+	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().source(edge);
+	return devicegraph->get_impl()[source];
+    }
+
+
+    const Device*
+    Holder::Impl::get_source() const
+    {
+	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().source(edge);
+	return devicegraph->get_impl()[source];
+    }
+
+
     sid_t
     Holder::Impl::get_source_sid() const
     {
-	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().source(edge);
-	return devicegraph->get_impl()[source]->get_sid();
+	return get_source()->get_sid();
+    }
+
+
+    Device*
+    Holder::Impl::get_target()
+    {
+	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().target(edge);
+	return devicegraph->get_impl()[target];
+    }
+
+
+    const Device*
+    Holder::Impl::get_target() const
+    {
+	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().target(edge);
+	return devicegraph->get_impl()[target];
     }
 
 
     sid_t
     Holder::Impl::get_target_sid() const
     {
-	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().target(edge);
-	return devicegraph->get_impl()[target]->get_sid();
+	return get_target()->get_sid();
     }
 
 

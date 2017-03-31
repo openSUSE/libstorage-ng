@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,10 +88,38 @@ namespace storage
     }
 
 
+    Device*
+    Holder::get_source()
+    {
+	return get_impl().get_source();
+    }
+
+
+    const Device*
+    Holder::get_source() const
+    {
+	return get_impl().get_source();
+    }
+
+
     sid_t
     Holder::get_source_sid() const
     {
 	return get_impl().get_source_sid();
+    }
+
+
+    Device*
+    Holder::get_target()
+    {
+	return get_impl().get_target();
+    }
+
+
+    const Device*
+    Holder::get_target() const
+    {
+	return get_impl().get_target();
     }
 
 
