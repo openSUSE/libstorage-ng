@@ -21,7 +21,6 @@
  */
 
 
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AsciiFile.h"
@@ -67,7 +66,6 @@ namespace storage
     {
         EtcFstab fstab;
         fstab.parse( lines );
-        cout << "Parsed " << fstab.get_entry_count() << " entries in " << lines.size() << " lines" << endl;
 
         while ( ! fstab.empty())
         {
