@@ -263,15 +263,14 @@ namespace storage
     }
 
 
-    bool
-    ProcMdstat::get_entry(const string& name, Entry& entry) const
+    const ProcMdstat::Entry&
+    ProcMdstat::get_entry(const string& name) const
     {
-	const_iterator i = data.find(name);
-	if (i == data.end())
-	    return false;
+	const_iterator it = data.find(name);
+	if (it == data.end())
+	    ST_THROW(Exception("entry not found"));
 
-	entry = i->second;
-	return true;
+	return it->second;
     }
 
 

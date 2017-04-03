@@ -95,18 +95,6 @@ namespace storage
     }
 
 
-    bool
-    CmdDmraid::get_entry(const string& name, Entry& entry) const
-    {
-	const_iterator it = data.find(name);
-	if (it == data.end())
-	    return false;
-
-	entry = it->second;
-	return true;
-    }
-
-
     std::ostream&
     operator<<(std::ostream& s, const CmdDmraid& cmd_dmraid)
     {

@@ -106,16 +106,6 @@ namespace storage
     }
 
 
-    bool
-    CmdBtrfsFilesystemShow::get_entry(const string& uuid, Entry& entry) const
-    {
-	const_iterator it = data.find(uuid);
-	if (it != data.end())
-	    entry = it->second;
-	return it != data.end();
-    }
-
-
     vector<string>
     CmdBtrfsFilesystemShow::get_uuids() const
     {

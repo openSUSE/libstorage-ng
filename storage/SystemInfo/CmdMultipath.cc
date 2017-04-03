@@ -115,15 +115,14 @@ namespace storage
     }
 
 
-    bool
-    CmdMultipath::get_entry(const string& name, Entry& entry) const
+    const CmdMultipath::Entry&
+    CmdMultipath::get_entry(const string& name) const
     {
 	const_iterator it = data.find(name);
 	if (it == data.end())
-	    return false;
+	    ST_THROW(Exception("entry not found"));
 
-	entry = it->second;
-	return true;
+	return it->second;
     }
 
 

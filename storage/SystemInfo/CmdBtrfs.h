@@ -70,13 +70,6 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
-	 * Find the btrfs filesystem with UUID 'uuid' and return the
-	 * corresponding entry in 'entry'. Return 'true' upon success, 'false'
-	 * if there is no btrfs filesystem with that UUID.
-	 */
-	bool get_entry(const string& uuid, Entry& entry) const;
-
-	/**
 	 * Return a vector of all filesystem UUIDs with btrfs.
 	 */
 	vector<string> get_uuids() const;

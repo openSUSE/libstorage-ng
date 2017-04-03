@@ -53,7 +53,7 @@ namespace storage
 
 	vector<string> get_entries() const;
 
-	bool get_entry(const string& name, Entry& entry) const;
+	const Entry& get_entry(const string& name) const;
 
 	bool looks_like_real_multipath() const;
 
