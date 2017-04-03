@@ -46,6 +46,7 @@ pkginclude_HEADERS =		\
 	Device.h		\
 	BlkDevice.h		\
 	Disk.h			\
+	Dasd.h			\
 	Md.h			\
 	Partitionable.h		\
 	PartitionTable.h	\
