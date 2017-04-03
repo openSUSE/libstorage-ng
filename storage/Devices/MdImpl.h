@@ -94,8 +94,6 @@ namespace storage
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
-	void probe_uuid();
-
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
@@ -131,6 +129,12 @@ namespace storage
     private:
 
 	void calculate_region_and_topology();
+
+    protected:
+
+	void probe_uuid();
+
+    private:
 
 	MdLevel md_level;
 

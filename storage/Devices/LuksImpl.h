@@ -56,8 +56,6 @@ namespace storage
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
 
-	void probe_uuid();
-
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual EncryptionType get_type() const override { return EncryptionType::LUKS; }
@@ -93,6 +91,10 @@ namespace storage
 	    const override;
 
 	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const override;
+
+    protected:
+
+	void probe_uuid();
 
     private:
 
