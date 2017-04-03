@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2009] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,14 +26,14 @@
 
 
 #include <string>
-#include <list>
+#include <vector>
 #include <map>
 
 
 namespace storage
 {
     using std::string;
-    using std::list;
+    using std::vector;
     using std::map;
 
 
@@ -47,18 +48,24 @@ namespace storage
 	{
 	    string vendor;
 	    string model;
-	    list<string> devices;
+	    vector<string> devices;
 	};
 
-	list<string> getEntries() const;
+	vector<string> get_entries() const;
 
-	bool getEntry(const string& name, Entry& entry) const;
+	bool get_entry(const string& name, Entry& entry) const;
 
-	bool looksLikeRealMultipath() const;
-
-    private:
+	bool looks_like_real_multipath() const;
 
 	typedef map<string, Entry>::const_iterator const_iterator;
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdMultipath& cmd_multipath);
+	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+
+    private:
 
 	map<string, Entry> data;
 

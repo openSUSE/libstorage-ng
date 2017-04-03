@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"data[isw_bfhghbahji_foo] -> raidtype:mirror controller:isw devices:</dev/sda /dev/sdb>"
+	"data[isw_bfhghbahji_foo] -> raid-type:mirror controller:isw devices:</dev/sda /dev/sdb>"
     };
 
     check(input, output);

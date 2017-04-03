@@ -35,7 +35,6 @@ namespace storage
 {
     using std::string;
     using std::map;
-    using std::list;
     using std::vector;
 
 
@@ -89,7 +88,7 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 	friend std::ostream& operator<<(std::ostream& s, const Device& device);
 
-	list<string> get_entries() const;
+	vector<string> get_entries() const;
 
 	bool has_entry(const string& name) const;
 
@@ -136,7 +135,7 @@ namespace storage
     {
     public:
 
-	MdadmExamine(const list<string>& devices);
+	MdadmExamine(const vector<string>& devices);
 
 	string metadata;
 	string uuid;
@@ -163,7 +162,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 
-	list<string> devices;
+	vector<string> devices;
 
 	map<string, Entry> data;
 

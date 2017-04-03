@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2009] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,18 +105,18 @@ namespace storage
     }
 
 
-    list<string>
-    CmdMultipath::getEntries() const
+    vector<string>
+    CmdMultipath::get_entries() const
     {
-	list<string> ret;
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
+	vector<string> ret;
+	for (const_iterator it = begin(); it != end(); ++it)
 	    ret.push_back(it->first);
 	return ret;
     }
 
 
     bool
-    CmdMultipath::getEntry(const string& name, Entry& entry) const
+    CmdMultipath::get_entry(const string& name, Entry& entry) const
     {
 	const_iterator it = data.find(name);
 	if (it == data.end())
@@ -127,13 +128,31 @@ namespace storage
 
 
     bool
-    CmdMultipath::looksLikeRealMultipath() const
+    CmdMultipath::looks_like_real_multipath() const
     {
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
+	for (const_iterator it = begin(); it != end(); ++it)
 	    if (it->second.devices.size() > 1)
 		return true;
 
 	return false;
     }
 
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdMultipath& cmd_multipath)
+    {
+	for (const pair<string, CmdMultipath::Entry>& entry : cmd_multipath)
+	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
+
+	return s;
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdMultipath::Entry& entry)
+    {
+	s << "vendor:" << entry.vendor << " model:" << entry.model << " devices:" << entry.devices;
+
+	return s;
+    }
 }
