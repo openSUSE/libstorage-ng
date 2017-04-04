@@ -126,8 +126,6 @@ namespace storage
 	virtual void do_reduce(const BlkDevice* blk_device) const;
 	virtual void do_extend(const BlkDevice* blk_device) const;
 
-    private:
-
 	void calculate_region_and_topology();
 
     protected:

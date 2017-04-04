@@ -123,6 +123,9 @@ namespace storage
     void
     Md::Impl::set_md_level(MdLevel md_level)
     {
+	if (Impl::md_level == md_level)
+	    return;
+
 	Impl::md_level = md_level;
 
 	calculate_region_and_topology();
@@ -132,6 +135,9 @@ namespace storage
     void
     Md::Impl::set_chunk_size(unsigned long chunk_size)
     {
+	if (Impl::chunk_size == chunk_size)
+	    return;
+
 	Impl::chunk_size = chunk_size;
 
 	calculate_region_and_topology();
@@ -251,6 +257,15 @@ namespace storage
 	BlkDevice::Impl::add_modify_actions(actiongraph, lhs_base);
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
+
+	if (lhs.md_level != md_level)
+	    ST_THROW(Exception("cannot change raid level"));
+
+	if (lhs.chunk_size != chunk_size)
+	    ST_THROW(Exception("cannot change chunk size"));
+
+	if (lhs.get_region() != get_region())
+	    ST_THROW(Exception("cannot change size"));
 
 	if (!lhs.in_etc_mdadm && in_etc_mdadm)
 	{
@@ -433,6 +448,14 @@ namespace storage
 	// fitting anymore, we make a conservative calculation.
 
 	const bool conservative = true;
+
+	// Since our size calculation is not accurate we must not recalculate
+	// the size of an RAID existing on disk. That would cause a resize
+	// action to be generated. Operations changing the RAID size are not
+	// supported.
+
+	if (exists_in_probed())
+	    return;
 
 	vector<BlkDevice*> devices = get_devices();
 
@@ -794,7 +817,11 @@ namespace storage
     void
     Md::Impl::do_extend(const BlkDevice* blk_device) const
     {
-	string cmd_line = MDADMBIN " --add " + quote(get_name()) + " " + quote(blk_device->get_name());
+	const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
+
+	string cmd_line = MDADMBIN;
+	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
+	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

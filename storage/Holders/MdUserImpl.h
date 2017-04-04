@@ -55,10 +55,10 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	bool is_spare() const { return spare; }
-	void set_spare(bool spare) { Impl::spare = spare; }
+	void set_spare(bool spare);
 
 	bool is_faulty() const { return faulty; }
-	void set_faulty(bool faulty) { Impl::faulty = faulty; }
+	void set_faulty(bool faulty);
 
 	unsigned int get_sort_key() const { return sort_key; }
 	void set_sort_key(unsigned int sort_key) { Impl::sort_key = sort_key; }
