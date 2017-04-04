@@ -1,6 +1,6 @@
 
 MD RAIDs with non-numeric names are not supported. E.g. /dev/md_test (see
-CRETAE names=yes in mdadm.conf).
+CREATE names=yes in mdadm.conf).
 
 
 For MD RAIDs already on disk only a few operations are supported:
