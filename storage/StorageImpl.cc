@@ -47,7 +47,8 @@ namespace storage
 {
 
     Storage::Impl::Impl(const Storage& storage, const Environment& environment)
-	: storage(storage), environment(environment), arch(false), tmp_dir("libstorage-XXXXXX")
+	: storage(storage), environment(environment), arch(false),
+	  default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);

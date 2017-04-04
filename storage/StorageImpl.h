@@ -73,6 +73,9 @@ namespace storage
 
 	void check() const;
 
+	MountByType get_default_mount_by() const { return default_mount_by; }
+	void set_default_mount_by(MountByType default_mount_by) { Impl::default_mount_by = default_mount_by; }
+
 	const string& get_rootprefix() const { return rootprefix; }
 	void set_rootprefix(const string& rootprefix) { Impl::rootprefix = rootprefix; }
 
@@ -97,6 +100,8 @@ namespace storage
 	Arch arch;
 
 	map<string, Devicegraph> devicegraphs;
+
+	MountByType default_mount_by;
 
 	string rootprefix;
 

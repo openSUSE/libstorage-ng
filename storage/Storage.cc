@@ -149,6 +149,20 @@ namespace storage
     }
 
 
+    MountByType
+    Storage::get_default_mount_by() const
+    {
+	return get_impl().get_default_mount_by();
+    }
+
+
+    void
+    Storage::set_default_mount_by(MountByType default_mount_by)
+    {
+	get_impl().set_default_mount_by(default_mount_by);
+    }
+
+
     const string&
     Storage::get_rootprefix() const
     {
