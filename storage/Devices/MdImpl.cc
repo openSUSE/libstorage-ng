@@ -185,9 +185,8 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1(probed, systeminfo);
 
-	string tmp = get_name().substr(strlen(DEVDIR "/"));
-
-	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(tmp);
+	string short_name = get_name().substr(strlen(DEVDIR "/"));
+	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(short_name);
 
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
