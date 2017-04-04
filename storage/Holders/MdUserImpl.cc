@@ -23,6 +23,7 @@
 #include "storage/Holders/MdUserImpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Devices/MdImpl.h"
 
 
 namespace storage
@@ -92,6 +93,32 @@ namespace storage
 
 	if (sort_key != 0)
 	    out << " sort-key:" << sort_key;
+    }
+
+
+    void
+    MdUser::Impl::set_spare(bool spare)
+    {
+        if (Impl::spare == spare)
+	    return;
+
+	Impl::spare = spare;
+
+	Md* md = to_md(get_target());
+	md->get_impl().calculate_region_and_topology();
+    }
+
+
+    void
+    MdUser::Impl::set_faulty(bool faulty)
+    {
+	if (Impl::faulty == faulty)
+	    return;
+
+	Impl::faulty = faulty;
+
+	Md* md = to_md(get_target());
+	md->get_impl().calculate_region_and_topology();
     }
 
 }
