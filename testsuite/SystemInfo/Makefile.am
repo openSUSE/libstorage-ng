@@ -14,7 +14,7 @@ check_PROGRAMS =								\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\
 	parted.test 								\
 	proc-mdstat.test proc-mounts.test proc-parts.test pvs.test		\
-	udevadm-info.test vgs.test
+	udevadm-info.test vgs.test multipath.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

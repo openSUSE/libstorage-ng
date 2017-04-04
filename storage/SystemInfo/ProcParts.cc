@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,6 +24,8 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/AsciiFile.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/SystemInfo/ProcParts.h"
 
 
@@ -49,52 +52,53 @@ namespace storage
 	    if (it == lines.begin() || it->empty())
 		continue;
 
-	    string device = "/dev/" + extractNthWord(3, *it);
-	    unsigned long long sizeK;
-	    extractNthWord(2, *it) >> sizeK;
-	    data[device] = sizeK;
+	    string device = DEVDIR "/" + extractNthWord(3, *it);
+	    unsigned long long size_k;
+	    extractNthWord(2, *it) >> size_k;
+	    data[device] = size_k * KiB;
 	}
 
 	y2mil(*this);
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ProcParts& procparts)
+    std::ostream&
+    operator<<(std::ostream& s, const ProcParts& proc_parts)
     {
-	for (ProcParts::const_iterator it = procparts.data.begin(); it != procparts.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const pair<string, unsigned long long>& entry : proc_parts)
+	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;
     }
 
 
     bool
-    ProcParts::findDevice(const string& device) const
+    ProcParts::find_device(const string& device) const
     {
-    return( findEntry(device)!=data.end() );
+	return find_entry(device) != data.end();
     }
 
 
     bool
-    ProcParts::getSize(const string& device, unsigned long long& sizeK) const
+    ProcParts::get_size(const string& device, unsigned long long& size) const
     {
-	const_iterator i = findEntry(device);
+	const_iterator i = find_entry(device);
 	if (i == data.end())
 	{
 	    y2err("dev:" << device << " not found");
 	    return false;
 	}
 
-	sizeK = i->second;
-	y2mil("dev:" << device << " sizeK:" << sizeK);
+	size = i->second;
+	y2mil("dev:" << device << " size:" << size);
 	return true;
     }
 
 
-    list<string>
-    ProcParts::getEntries() const
+    vector<string>
+    ProcParts::get_entries() const
     {
-	list<string> ret;
+	vector<string> ret;
 	for (const_iterator i = data.begin(); i != data.end(); ++i)
 	    ret.push_back(i->first);
 	return ret;
@@ -102,9 +106,9 @@ namespace storage
 
 
     ProcParts::const_iterator
-    ProcParts::findEntry(const string& device) const
+    ProcParts::find_entry(const string& device) const
     {
-	return( data.find(normalizeDevice(device)) );
+	return data.find(normalizeDevice(device));
     }
 
 }

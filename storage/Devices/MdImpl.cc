@@ -181,12 +181,7 @@ namespace storage
 
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
-	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
-	{
-	    // TODO
-	    throw;
-	}
+	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(tmp);
 
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
@@ -209,12 +204,7 @@ namespace storage
     {
 	string tmp = get_name().substr(strlen(DEVDIR "/"));
 
-	ProcMdstat::Entry entry;
-	if (!systeminfo.getProcMdstat().get_entry(tmp, entry))
-	{
-	    // TODO
-	    throw;
-	}
+	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(tmp);
 
 	for (const ProcMdstat::Device& device : entry.devices)
 	{

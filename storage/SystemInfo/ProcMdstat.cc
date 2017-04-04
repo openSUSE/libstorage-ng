@@ -246,10 +246,10 @@ namespace storage
     }
 
 
-    list<string>
+    vector<string>
     ProcMdstat::get_entries() const
     {
-	list<string> ret;
+	vector<string> ret;
 	for (const_iterator i = data.begin(); i != data.end(); ++i)
 	    ret.push_back(i->first);
 	return ret;
@@ -263,28 +263,29 @@ namespace storage
     }
 
 
-    bool
-    ProcMdstat::get_entry(const string& name, Entry& entry) const
+    const ProcMdstat::Entry&
+    ProcMdstat::get_entry(const string& name) const
     {
-	const_iterator i = data.find(name);
-	if (i == data.end())
-	    return false;
+	const_iterator it = data.find(name);
+	if (it == data.end())
+	    ST_THROW(Exception("entry not found"));
 
-	entry = i->second;
-	return true;
+	return it->second;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ProcMdstat& proc_mdstat)
+    std::ostream&
+    operator<<(std::ostream& s, const ProcMdstat& proc_mdstat)
     {
-	for (ProcMdstat::const_iterator it = proc_mdstat.data.begin(); it != proc_mdstat.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const pair<string, ProcMdstat::Entry>& entry : proc_mdstat.data)
+	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const ProcMdstat::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const ProcMdstat::Entry& entry)
     {
 	s << "md-level:" << toString(entry.md_level);
 
@@ -369,7 +370,7 @@ namespace storage
     }
 
 
-    MdadmExamine::MdadmExamine(const list<string>& devices)
+    MdadmExamine::MdadmExamine(const vector<string>& devices)
 	: devices(devices)
     {
 	SystemCmd cmd(MDADMBIN " --examine " + quote(devices) + " --brief");
@@ -438,19 +439,21 @@ namespace storage
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const MdadmExamine& mdadm_examine)
+    std::ostream&
+    operator<<(std::ostream& s, const MdadmExamine& mdadm_examine)
     {
 	s << "devices:" << mdadm_examine.devices << " metadata:" << mdadm_examine.metadata
 	  << " uuid:" << mdadm_examine.uuid << '\n';
 
-	for (MdadmExamine::const_iterator it = mdadm_examine.begin(); it != mdadm_examine.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const pair<string, MdadmExamine::Entry>& entry : mdadm_examine)
+	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const MdadmExamine::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const MdadmExamine::Entry& entry)
     {
 	s << "member:" << entry.member << " uuid:" << entry.uuid;
 

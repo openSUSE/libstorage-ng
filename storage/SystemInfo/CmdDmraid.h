@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -26,7 +27,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 #include <map>
 
 
@@ -34,7 +34,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-    using std::list;
     using std::map;
 
 
@@ -47,21 +46,19 @@ namespace storage
 
 	struct Entry
 	{
-	    string raidtype;
+	    string raid_type;
 	    string controller;
-	    list<string> devices;
+	    vector<string> devices;
 	};
 
-	list<string> getEntries() const;
-
-	bool getEntry(const string& name, Entry& entry) const;
+	vector<string> get_entries() const;
 
 	typedef map<string, Entry>::const_iterator const_iterator;
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdDmraid& cmddmraid);
+	friend std::ostream& operator<<(std::ostream& s, const CmdDmraid& cmd_dmraid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:

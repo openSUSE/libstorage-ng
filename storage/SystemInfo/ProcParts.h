@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,7 +26,6 @@
 
 
 #include <string>
-#include <list>
 #include <map>
 #include <vector>
 
@@ -33,7 +33,6 @@
 namespace storage
 {
     using std::string;
-    using std::list;
     using std::map;
     using std::vector;
 
@@ -44,30 +43,33 @@ namespace storage
 
 	ProcParts();
 
-	bool getSize(const string& device, unsigned long long& sizeK) const;
-	bool findDevice(const string& device) const;
+	bool get_size(const string& device, unsigned long long& size) const;
+	bool find_device(const string& device) const;
 
-	list<string> getEntries() const;
+	vector<string> get_entries() const;
 
 	template<class Pred>
-	list<string> getMatchingEntries(Pred pred) const
+	vector<string> get_matching_entries(Pred pred) const
 	{
-	    list<string> ret;
+	    vector<string> ret;
 	    for (const_iterator i = data.begin(); i != data.end(); ++i)
 		if (pred(i->first))
 		    ret.push_back(i->first);
 	    return ret;
 	}
 
-	friend std::ostream& operator<<(std::ostream& s, const ProcParts& procparts);
+	typedef map<string, unsigned long long>::const_iterator const_iterator;
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const ProcParts& proc_parts);
 
     private:
 
 	void parse(const vector<string>& lines);
 
-	typedef map<string, unsigned long long>::const_iterator const_iterator;
-
-	const_iterator findEntry(const string& device) const;
+	const_iterator find_entry(const string& device) const;
 
 	map<string, unsigned long long> data;
 

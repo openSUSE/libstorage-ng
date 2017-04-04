@@ -8,7 +8,7 @@ using namespace storage;
 
 
 void
-test_mdadmexamine(SystemInfo& systeminfo, const list<string>& devices)
+test_mdadmexamine(SystemInfo& systeminfo, const vector<string>& devices)
 {
     try
     {

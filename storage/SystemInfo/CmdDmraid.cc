@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,7 +59,7 @@ namespace storage
 		list<string>::const_iterator ci = sl.begin();
 		string name = *ci;
 		advance(ci, 3);
-		entry.raidtype = *ci;
+		entry.raid_type = *ci;
 
 		while (it != lines.end() && boost::starts_with(*it, "/dev/"))
 		{
@@ -80,44 +81,34 @@ namespace storage
 
 	for (const_iterator it = data.begin(); it != data.end(); ++it)
 	    y2mil("data[" << it->first << "] -> controller:" << it->second.controller <<
-		  " raidtype:" << it->second.raidtype << " devices:" << it->second.devices);
+		  " raid-type:" << it->second.raid_type << " devices:" << it->second.devices);
     }
 
 
-    list<string>
-    CmdDmraid::getEntries() const
+    vector<string>
+    CmdDmraid::get_entries() const
     {
-	list<string> ret;
+	vector<string> ret;
 	for (const_iterator it = data.begin(); it != data.end(); ++it)
 	    ret.push_back(it->first);
 	return ret;
     }
 
 
-    bool
-    CmdDmraid::getEntry(const string& name, Entry& entry) const
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmraid& cmd_dmraid)
     {
-	const_iterator it = data.find(name);
-	if (it == data.end())
-	    return false;
-
-	entry = it->second;
-	return true;
-    }
-
-
-    std::ostream& operator<<(std::ostream& s, const CmdDmraid& cmddmraid)
-    {
-	for (CmdDmraid::const_iterator it = cmddmraid.begin(); it != cmddmraid.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const pair<string, CmdDmraid::Entry>& entry : cmd_dmraid)
+	    s << "data[" << entry.first << "] -> " << entry.second << '\n';
 
 	return s;
     }
 
 
-    std::ostream& operator<<(std::ostream& s, const CmdDmraid::Entry& entry)
+    std::ostream&
+    operator<<(std::ostream& s, const CmdDmraid::Entry& entry)
     {
-	s << "raidtype:" << entry.raidtype << " controller:" << entry.controller
+	s << "raid-type:" << entry.raid_type << " controller:" << entry.controller
 	  << " devices:" << entry.devices;
 
 	return s;

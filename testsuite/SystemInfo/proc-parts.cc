@@ -52,18 +52,18 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"data[/dev/dm-0] -> 31457280",
-	"data[/dev/dm-1] -> 52428800",
-	"data[/dev/dm-2] -> 16777216",
-	"data[/dev/dm-3] -> 2097152",
-	"data[/dev/dm-4] -> 314572800",
-	"data[/dev/dm-5] -> 5242880",
-	"data[/dev/dm-6] -> 2097152",
-	"data[/dev/dm-7] -> 1048576",
-	"data[/dev/sda] -> 976762584",
-	"data[/dev/sda1] -> 1051648",
-	"data[/dev/sda2] -> 943721472",
-	"data[/dev/sr0] -> 1048575"
+	"data[/dev/dm-0] -> 32212254720",
+	"data[/dev/dm-1] -> 53687091200",
+	"data[/dev/dm-2] -> 17179869184",
+	"data[/dev/dm-3] -> 2147483648",
+	"data[/dev/dm-4] -> 322122547200",
+	"data[/dev/dm-5] -> 5368709120",
+	"data[/dev/dm-6] -> 2147483648",
+	"data[/dev/dm-7] -> 1073741824",
+	"data[/dev/sda] -> 1000204886016",
+	"data[/dev/sda1] -> 1076887552",
+	"data[/dev/sda2] -> 966370787328",
+	"data[/dev/sr0] -> 1073740800"
     };
 
     check(input, output);
