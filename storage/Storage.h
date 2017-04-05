@@ -30,6 +30,8 @@
 #include <memory>
 #include <boost/noncopyable.hpp>
 
+#include "storage/Filesystems/Mountable.h"
+
 
 namespace storage
 {
@@ -144,6 +146,16 @@ namespace storage
 	const Devicegraph* get_probed() const;
 
 	void check() const;
+
+	/**
+	 * Query the default mount-by method.
+	 */
+	MountByType get_default_mount_by() const;
+
+	/**
+	 * Set the default mount-by method.
+	 */
+	void set_default_mount_by(MountByType default_mount_by);
 
 	const std::string& get_rootprefix() const;
 	void set_rootprefix(const std::string& rootprefix);
