@@ -107,6 +107,23 @@ checkNormalFile(const string& Path_Cv)
 	  S_ISREG(Stat_ri.st_mode));
 }
 
+    string
+    dirname(const string& name)
+    {
+	string::size_type pos = name.find_last_of('/');
+	if (pos == string::npos)
+	    return string(".");
+	return string(name, 0, pos == 0 ? 1 : pos);
+    }
+
+
+    string
+    basename(const string& name)
+    {
+	string::size_type pos = name.find_last_of('/');
+	return string(name, pos + 1);
+    }
+
 
     string
     make_dev_block_name(dev_t majorminor)
