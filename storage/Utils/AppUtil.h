@@ -52,6 +52,9 @@ void checkBinPaths(const Arch& arch, bool instsys);
 bool getStatMode(const string& Path_Cv, mode_t& val );
 bool setStatMode(const string& Path_Cv, mode_t val );
 
+    string dirname(const string& name);
+    string basename(const string& name);
+
     string make_dev_block_name(dev_t majorminor);
 
     std::pair<string, unsigned int> device_to_name_and_number(const string& full_name);

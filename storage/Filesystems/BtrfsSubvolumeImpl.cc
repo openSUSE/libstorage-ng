@@ -445,8 +445,13 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string cmd_line = BTRFSBIN " subvolume create " +
-	    quote(ensure_mounted.get_any_mountpoint() + "/" + path);
+	string full_path = ensure_mounted.get_any_mountpoint() + "/" + path;
+	string full_dirname = dirname(full_path);
+
+	if (access(full_dirname.c_str(), R_OK ) != 0)
+	    createPath(full_dirname);
+
+	string cmd_line = BTRFSBIN " subvolume create " + quote(full_path);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
