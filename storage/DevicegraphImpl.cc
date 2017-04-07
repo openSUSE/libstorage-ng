@@ -117,7 +117,7 @@ namespace storage
 	const set<sid_t> rhs_device_sids = rhs.get_device_sids();
 
 	if (lhs_device_sids != rhs_device_sids)
-	    log << "device sids differ" << endl;
+	    log << "device sids differ\n";
 
 	for (sid_t sid : lhs_device_sids)
 	{
@@ -125,16 +125,19 @@ namespace storage
 	    vertex_descriptor rhs_vertex = rhs.find_vertex(sid);
 
 	    if (*graph[lhs_vertex].get() != *rhs.graph[rhs_vertex].get())
-		log << "sid " << sid << " device differ" << endl;
+		log << "sid " << sid << " device differ\n";
 
-	    graph[lhs_vertex]->get_impl().log_diff(log, rhs.graph[rhs_vertex]->get_impl());
+	    if (graph[lhs_vertex]->get_impl().get_classname() != graph[rhs_vertex]->get_impl().get_classname())
+		log << "devices with sid " << sid << " have different types\n";
+	    else
+		graph[lhs_vertex]->get_impl().log_diff(log, rhs.graph[rhs_vertex]->get_impl());
 	}
 
 	const set<pair<sid_t, sid_t>> lhs_holder_sids = get_holder_sids();
 	const set<pair<sid_t, sid_t>> rhs_holder_sids = rhs.get_holder_sids();
 
 	if (lhs_holder_sids != rhs_holder_sids)
-	    log << "holder sids differ" << endl;
+	    log << "holder sids differ\n";
 
 	for (pair<sid_t, sid_t> sid : lhs_holder_sids)
 	{
@@ -142,9 +145,12 @@ namespace storage
 	    edge_descriptor rhs_edge = rhs.find_edge(sid.first, sid.second);
 
 	    if (*graph[lhs_edge].get() != *rhs.graph[rhs_edge].get())
-		log << "sid " << sid.first << " " << sid.second << " holder differ" << endl;
+		log << "sid " << sid.first << " " << sid.second << " holder differ\n";
 
-	    graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
+	    if (graph[lhs_edge]->get_impl().get_classname() != graph[rhs_edge]->get_impl().get_classname())
+		log << "holders with sids " << sid.first << " " << sid.second << " have different types\n";
+	    else
+		graph[lhs_edge]->get_impl().log_diff(log, rhs.graph[rhs_edge]->get_impl());
 	}
     }
 
