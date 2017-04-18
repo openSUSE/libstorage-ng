@@ -300,7 +300,7 @@ namespace storage
     Text
     Device::Impl::do_create_text(Tense tense) const
     {
-	return UntranslatedText("error: stub do_create_text called");
+	return UntranslatedText(sformat("error: stub do_create_text called for %s", get_classname()));
     }
 
 
@@ -314,7 +314,7 @@ namespace storage
     Text
     Device::Impl::do_delete_text(Tense tense) const
     {
-	return UntranslatedText("error: stub do_delete_text called");
+	return UntranslatedText(sformat("error: stub do_delete_text called for %s", get_classname()));
     }
 
 
@@ -328,7 +328,7 @@ namespace storage
     Text
     Device::Impl::do_activate_text(Tense tense) const
     {
-	return UntranslatedText("error: stub do_activate_text called");
+	return UntranslatedText(sformat("error: stub do_activate_text called for %s", get_classname()));
     }
 
 
@@ -342,7 +342,7 @@ namespace storage
     Text
     Device::Impl::do_deactivate_text(Tense tense) const
     {
-	return UntranslatedText("error: stub do_deactivate_text called");
+	return UntranslatedText(sformat("error: stub do_deactivate_text called for %s", get_classname()));
     }
 
 
@@ -357,7 +357,7 @@ namespace storage
     Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				 Tense tense) const
     {
-	return UntranslatedText("error: stub do_resize_text called");
+	return UntranslatedText(sformat("error: stub do_resize_text called for %s", get_classname()));
     }
 
 
@@ -371,7 +371,7 @@ namespace storage
     Text
     Device::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
     {
-	return UntranslatedText("error: stub do_reallot_text called");
+	return UntranslatedText(sformat("error: stub do_reallot_text called for %s", get_classname()));
     }
 
 

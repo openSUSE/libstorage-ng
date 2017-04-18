@@ -73,6 +73,16 @@ namespace storage
 	bool empty() const { return opts.empty(); }
 
 	/**
+	 * Check whether two MountOpts objects are equal.
+	 */
+	bool operator==(const MountOpts& rhs) const { return opts == rhs.opts; }
+
+	/**
+	 * Check whether two MountOpts objects are unequal.
+	 */
+	bool operator!=(const MountOpts& rhs) const { return !(*this == rhs); }
+
+	/**
 	 * Return a const_iterator referring to the first mount option.
 	 **/
 	string_vec::const_iterator begin() const { return opts.begin(); }
