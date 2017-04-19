@@ -178,7 +178,7 @@ namespace storage
 
 		sid_t sid = device->get_sid();
 		if (!sids.insert(sid).second)
-		    ST_THROW(LogicException("sid not unique within graph"));
+		    ST_THROW(LogicException(sformat("sid %d not unique within graph", sid)));
 
 		// check device back reference
 
