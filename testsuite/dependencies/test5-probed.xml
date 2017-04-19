@@ -15,6 +15,7 @@
       <udev-id>scsi-0ATA_VBOX_HARDDISK_VBade2d318-f2b8767f</udev-id>
       <udev-id>scsi-1ATA_VBOX_HARDDISK_VBade2d318-f2b8767f</udev-id>
       <udev-id>scsi-SATA_VBOX_HARDDISK_VBade2d318-f2b8767f</udev-id>
+      <topology/>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -28,7 +29,7 @@
       <region>
         <start>2048</start>
         <length>3068414</length>
-	<block-size>512</block-size>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>130</id>
