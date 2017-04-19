@@ -28,7 +28,7 @@
       <region>
         <start>2048</start>
         <length>3068414</length>
-	<block-size>512</block-size>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>130</id>
@@ -43,7 +43,7 @@
       <region>
         <start>3070462</start>
         <length>20980890</length>
-	<block-size>512</block-size>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>131</id>
@@ -59,7 +59,7 @@
       <region>
         <start>24051352</start>
         <length>9494414</length>
-	<block-size>512</block-size>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>131</id>
