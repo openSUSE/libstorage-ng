@@ -84,7 +84,7 @@ namespace storage
 	void set_fstab_options(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
 
 	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,
-							  const std::string& mountpoint);
+							  const std::string& mountpoint) ST_DEPRECATED;
 
     public:
 
