@@ -53,28 +53,16 @@ namespace storage
     {
     public:
 
-	const vector<string>& get_mountpoints() const { return mountpoints; }
-	void set_mountpoints(const std::vector<std::string>& mountpoints);
-	void add_mountpoint(const string& mountpoint);
+	MountPoint* create_mount_point(const string& path);
 
-	MountByType get_mount_by() const { return mount_by; }
-	void set_mount_by(MountByType mount_by);
+	bool has_mount_point() const;
 
-	const MountOpts & get_mount_opts() const { return mount_opts; }
-        void set_mount_opts( const MountOpts & new_mount_opts );
-        void set_mount_opts( const vector<string> & new_mount_opts );
+	MountPoint* get_mount_point();
+	const MountPoint* get_mount_point() const;
 
-        /**
-         * Get the device name that was used in /etc/fstab.
-         * This is empty if this filesystem was not in /etc/fstab during probing.
-         **/
-        const string & get_fstab_device_name() const { return fstab_device_name; }
-        void set_fstab_device_name( const string & new_name ) { fstab_device_name = new_name; }
+	virtual MountByType get_default_mount_by() const = 0;
 
-	virtual bool equal(const Device::Impl& rhs) const override;
-	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
-
-	virtual void print(std::ostream& out) const override;
+	virtual MountOpts get_default_mount_options() const;
 
 	/**
 	 * A name useable for mounting the mountable. E.g. for BlkFilesystems
@@ -107,106 +95,32 @@ namespace storage
 	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const;
 	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const;
 
-	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
-	virtual void do_mount(CommitData& commit_data, const string& mountpoint) const;
+	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
+	virtual void do_mount(CommitData& commit_data, const MountPoint* mount_point) const;
 
-	virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
-	virtual void do_umount(CommitData& commit_data, const string& mountpoint) const;
+	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const;
+	virtual void do_umount(CommitData& commit_data, const MountPoint* mount_point) const;
 
-	virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const;
-	virtual void do_add_to_etc_fstab(CommitData& commit_data, const string& mountpoint) const;
+	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
+	virtual void do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
 
-	virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
-	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const string& mountpoint) const;
+	virtual Text do_update_in_etc_fstab_text(const MountPoint* mount_point, const Device* lhs, Tense tense) const;
+	virtual void do_update_in_etc_fstab(CommitData& commit_data, const Device* lhs, const MountPoint* mount_point) const;
+
+	virtual Text do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
+	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
 
     protected:
 
 	Impl()
-	    : Device::Impl(), mountpoints({}), mount_by(MountByType::DEVICE)
+	    : Device::Impl()
 	    {}
 
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
 
-    private:
-
-	// TODO this should be a list of a struct with mountpoint, mount-by
-	// and mount-opts. or add a mountpoint object to the devicegraph?
-	vector<string> mountpoints;
-	MountByType mount_by;
-        MountOpts mount_opts;
-        string fstab_device_name; // device name as found in /etc/fstab
-
     };
-
-
-    namespace Action
-    {
-
-	class Mount : public Modify
-	{
-	public:
-
-	    Mount(sid_t sid, const string& mountpoint)
-		: Modify(sid), mountpoint(mountpoint) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
-
-	    const string mountpoint;
-
-	};
-
-
-	class Umount : public Modify
-	{
-	public:
-
-	    Umount(sid_t sid, const string& mountpoint)
-		: Modify(sid), mountpoint(mountpoint) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
-
-	    const string mountpoint;
-
-	};
-
-
-	class AddToEtcFstab : public Modify
-	{
-	public:
-
-	    AddToEtcFstab(sid_t sid, const string& mountpoint)
-		: Modify(sid), mountpoint(mountpoint) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
-
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
-	    const string mountpoint;
-
-	};
-
-
-	class RemoveFromEtcFstab : public Modify
-	{
-	public:
-
-	    RemoveFromEtcFstab(sid_t sid, const string& mountpoint)
-		: Modify(sid), mountpoint(mountpoint) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
-
-	    const string mountpoint;
-
-	};
-
-    }
 
 
     class EnsureMounted : boost::noncopyable
@@ -227,6 +141,8 @@ namespace storage
 	string get_any_mountpoint() const;
 
     private:
+
+	bool mountable_has_active_mount_point() const;
 
 	const Mountable* mountable;
 	bool read_only;

@@ -34,6 +34,9 @@
 namespace storage
 {
 
+    class MountPoint;
+
+
     enum class FsType {
 	UNKNOWN, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
 	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2
@@ -60,17 +63,24 @@ namespace storage
 	static std::vector<Mountable*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Mountable*> get_all(const Devicegraph* devicegraph);
 
-	const std::vector<std::string>& get_mountpoints() const;
-	void set_mountpoints(const std::vector<std::string>& mountpoints);
-	void add_mountpoint(const std::string& mountpoint);
+	MountPoint* create_mount_point(const std::string& path);
 
-	MountByType get_mount_by() const;
-	void set_mount_by(MountByType mount_by);
+	bool has_mount_point() const;
 
-	const std::vector<std::string>& get_mount_opts() const;
-	void set_mount_opts(const std::vector<std::string>& mount_opts);
+	MountPoint* get_mount_point();
+	const MountPoint* get_mount_point() const;
 
-	const std::vector<std::string>& get_fstab_options() const ST_DEPRECATED;
+	std::vector<std::string> get_mountpoints() const ST_DEPRECATED;
+	void set_mountpoints(const std::vector<std::string>& mountpoints) ST_DEPRECATED;
+	void add_mountpoint(const std::string& mountpoint) ST_DEPRECATED;
+
+	MountByType get_mount_by() const ST_DEPRECATED;
+	void set_mount_by(MountByType mount_by) ST_DEPRECATED;
+
+	std::vector<std::string> get_mount_opts() const ST_DEPRECATED;
+	void set_mount_opts(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
+
+	std::vector<std::string> get_fstab_options() const ST_DEPRECATED;
 	void set_fstab_options(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
 
 	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,

@@ -32,6 +32,7 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Action.h"
@@ -321,7 +322,7 @@ namespace storage
 	    const Action::Base* action = graph[*it].get();
 
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(action);
-	    if (mount && mount->mountpoint == "/")
+	    if (mount && mount->get_path(*this) == "/")
 		mount_root_filesystem = it;
 
 	    cache_for_actions_with_sid[action->sid].push_back(*it);
@@ -352,7 +353,7 @@ namespace storage
 	    graph[vertex]->add_dependencies(vertex, *this);
 
 	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[vertex].get());
-	    if (mount && mount->mountpoint != "swap")
+	    if (mount && mount->get_path(*this) != "swap")
 		mounts.push_back(vertex);
 	}
 
@@ -362,7 +363,7 @@ namespace storage
 	    sort(mounts.begin(), mounts.end(), [this, &mounts](vertex_descriptor l, vertex_descriptor r) {
 		const Action::Mount* ml = dynamic_cast<const Action::Mount*>(graph[l].get());
 		const Action::Mount* mr = dynamic_cast<const Action::Mount*>(graph[r].get());
-		return ml->mountpoint <= mr->mountpoint;
+		return ml->get_path(*this) <= mr->get_path(*this);
 	    });
 
 	    add_chain(mounts);

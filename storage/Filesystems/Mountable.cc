@@ -24,6 +24,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Filesystems/MountableImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/Filesystems/MountPoint.h"
 
 
 namespace storage
@@ -73,56 +74,108 @@ namespace storage
     }
 
 
-    const vector<string>&
+    MountPoint*
+    Mountable::create_mount_point(const string& path)
+    {
+	return get_impl().create_mount_point(path);
+    }
+
+
+    bool
+    Mountable::has_mount_point() const
+    {
+	return get_impl().has_mount_point();
+    }
+
+
+    MountPoint*
+    Mountable::get_mount_point()
+    {
+	return get_impl().get_mount_point();
+    }
+
+
+    const MountPoint*
+    Mountable::get_mount_point() const
+    {
+	return get_impl().get_mount_point();
+    }
+
+
+    vector<string>
     Mountable::get_mountpoints() const
     {
-	return get_impl().get_mountpoints();
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    return vector<string>({ mount_point->get_path() });
+	}
+
+	return vector<string>();
     }
 
 
     void
     Mountable::set_mountpoints(const vector<string>& mountpoints)
     {
-	get_impl().set_mountpoints(mountpoints);
+	if (!mountpoints.empty())
+	    add_mountpoint(mountpoints.front());
     }
 
 
     void
     Mountable::add_mountpoint(const string& mountpoint)
     {
-	return get_impl().add_mountpoint(mountpoint);
+	if (has_mount_point())
+	    get_mount_point()->set_path(mountpoint);
+	else
+	    create_mount_point(mountpoint);
     }
 
 
     MountByType
     Mountable::get_mount_by() const
     {
-	return get_impl().get_mount_by();
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    return mount_point->get_mount_by();
+	}
+
+	return MountByType::DEVICE;
     }
 
 
     void
     Mountable::set_mount_by(MountByType mount_by)
     {
-	get_impl().set_mount_by(mount_by);
+	MountPoint* mount_point = has_mount_point() ? get_mount_point() : create_mount_point("");
+	mount_point->set_mount_by(mount_by);
     }
 
 
-    const vector<string>&
+    vector<string>
     Mountable::get_mount_opts() const
     {
-	return get_impl().get_mount_opts().get_opts();
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    return mount_point->get_mount_options();
+	}
+
+	return vector<string>();
     }
 
 
     void
     Mountable::set_mount_opts(const vector<string>& mount_opts)
     {
-	get_impl().set_mount_opts(mount_opts);
+	MountPoint* mount_point = has_mount_point() ? get_mount_point() : create_mount_point("");
+	mount_point->set_mount_options(mount_opts);
     }
 
 
-    const vector<string>&
+    vector<string>
     Mountable::get_fstab_options() const
     {
 	return get_mount_opts();

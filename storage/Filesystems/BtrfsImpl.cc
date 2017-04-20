@@ -59,7 +59,7 @@ namespace storage
     {
 	BlkFilesystem::Impl::check();
 
-	if (!has_single_child_of_type<const BtrfsSubvolume>())
+	if (num_children_of_type<const BtrfsSubvolume>() != 1)
 	    ST_THROW(Exception("top-level subvolume missing"));
     }
 
@@ -67,14 +67,22 @@ namespace storage
     BtrfsSubvolume*
     Btrfs::Impl::get_top_level_btrfs_subvolume()
     {
-	return get_single_child_of_type<BtrfsSubvolume>();
+	vector<BtrfsSubvolume*> tmp = get_children_of_type<BtrfsSubvolume>();
+	if (tmp.size() != 1)
+	    ST_THROW(Exception("no top-level subvolume found"));
+
+	return tmp.front();
     }
 
 
     const BtrfsSubvolume*
     Btrfs::Impl::get_top_level_btrfs_subvolume() const
     {
-	return get_single_child_of_type<const BtrfsSubvolume>();
+	vector<const BtrfsSubvolume*> tmp = get_children_of_type<const BtrfsSubvolume>();
+	if (tmp.size() != 1)
+	    ST_THROW(Exception("no top-level subvolume found"));
+
+	return tmp.front();
     }
 
 

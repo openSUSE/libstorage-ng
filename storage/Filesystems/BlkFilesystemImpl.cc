@@ -31,7 +31,9 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/LvmLv.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
@@ -95,6 +97,18 @@ namespace storage
     }
 
 
+    MountByType
+    BlkFilesystem::Impl::get_default_mount_by() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	if (is_lvm_lv(blk_device))
+	    return MountByType::DEVICE;
+	else
+	    return get_storage()->get_default_mount_by();
+    }
+
+
     void
     BlkFilesystem::Impl::save(xmlNode* node) const
     {
@@ -138,10 +152,10 @@ namespace storage
 	const FstabEntry* fstab_entry = find_etc_fstab_entry(etc_fstab, aliases);
         if (fstab_entry)
         {
-	    add_mountpoint(fstab_entry->get_mount_point());
-	    set_fstab_device_name(fstab_entry->get_device());
-	    set_mount_by(EtcFstab::get_mount_by(fstab_entry->get_device()));
-	    set_mount_opts(fstab_entry->get_mount_opts());
+	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
+	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
+	    mount_point->set_mount_by(fstab_entry->get_mount_by());
+	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 	}
     }
 
@@ -294,55 +308,17 @@ namespace storage
     void
     BlkFilesystem::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	Action::Base* first = nullptr;
-	Action::Base* last = nullptr;
+	vector<Action::Base*> actions;
 
-	Action::Create* format = new Action::Create(get_sid());
-	Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(format);
-	first = last = format;
+	actions.push_back(new Action::Create(get_sid()));
 
 	if (!get_label().empty())
-	{
-	    Action::SetLabel* set_label = new Action::SetLabel(get_sid());
-	    Actiongraph::Impl::vertex_descriptor tmp = actiongraph.add_vertex(set_label);
-	    actiongraph.add_edge(v1, tmp);
-	    v1 = tmp;
-
-	    last = set_label;
-	}
+	    actions.push_back(new Action::SetLabel(get_sid()));
 
 	if (!get_uuid().empty())
-	{
-	    Action::SetUuid* set_uuid = new Action::SetUuid(get_sid());
-	    Actiongraph::Impl::vertex_descriptor tmp2 = actiongraph.add_vertex(set_uuid);
-	    actiongraph.add_edge(v1, tmp2);
-	    v1 = tmp2;
+	    actions.push_back(new Action::SetUuid(get_sid()));
 
-	    last = set_uuid;
-	}
-
-	if (!get_mountpoints().empty())
-	{
-	    Action::Base* sync = new Action::Create(get_sid(), true);
-	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync);
-	    last = sync;
-
-	    for (const string& mountpoint : get_mountpoints())
-	    {
-		Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(mount);
-
-		Action::AddToEtcFstab* add_to_etc_fstab = new Action::AddToEtcFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_to_etc_fstab);
-
-		actiongraph.add_edge(v1, t1);
-		actiongraph.add_edge(t1, t2);
-		actiongraph.add_edge(t2, v2);
-	    }
-	}
-
-	first->first = true;
-	last->last = true;
+	actiongraph.add_chain(actions);
     }
 
 
@@ -372,8 +348,8 @@ namespace storage
 	// btrfs multiple devices, ...
 	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
 	{
-	    for (const string& mountpoint : get_mountpoints())
-		actions.push_back(new Action::RenameInEtcFstab(get_sid(), mountpoint));
+	    if (has_mount_point())
+		actions.push_back(new Action::RenameInEtcFstab(get_sid()));
 	}
 
 	actiongraph.add_chain(actions);
@@ -383,35 +359,11 @@ namespace storage
     void
     BlkFilesystem::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	Action::Base* first = nullptr;
-	Action::Base* last = nullptr;
+	vector<Action::Base*> actions;
 
-	Action::Base* sync1 = new Action::Delete(get_sid(), true);
-	Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(sync1);
-	first = last = sync1;
+	actions.push_back(new Action::Delete(get_sid(), true));
 
-	if (!get_mountpoints().empty())
-	{
-	    Action::Base* sync2 = new Action::Delete(get_sid(), true);
-	    Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync2);
-	    first = sync2;
-
-	    for (const string& mountpoint : get_mountpoints())
-	    {
-		Action::RemoveFromEtcFstab* remove_from_etc_fstab = new Action::RemoveFromEtcFstab(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_from_etc_fstab);
-
-		Action::Umount* umount = new Action::Umount(get_sid(), mountpoint);
-		Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(umount);
-
-		actiongraph.add_edge(v2, t1);
-		actiongraph.add_edge(t1, t2);
-		actiongraph.add_edge(t2, v1);
-	    }
-	}
-
-	first->first = true;
-	last->last = true;
+	actiongraph.add_chain(actions);
     }
 
 
@@ -496,10 +448,11 @@ namespace storage
     BlkFilesystem::Impl::get_mount_by_name() const
     {
 	const BlkDevice* blk_device = get_blk_device();
+	const MountPoint* mount_point = get_mount_point();
 
 	string ret = blk_device->get_name();
 
-	switch (get_mount_by())
+	switch (mount_point->get_mount_by())
 	{
 	    case MountByType::UUID:
 		if (!uuid.empty())
@@ -614,38 +567,38 @@ namespace storage
 
 
     Text
-    BlkFilesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,
-						     Tense tense) const
+    BlkFilesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const
     {
 	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
 	const BlkDevice* blk_device_rhs = get_blk_device();
 
+	const MountPoint* mount_point = get_mount_point();
+
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda6),
 			   // %3$s is replaced by device name (e.g. /dev/sda5)
-			   _("Rename mountpoint %1$s from %2$s to %3$s in /etc/fstab"),
+			   _("Rename mount point %1$s from %2$s to %3$s in /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda6),
 			   // %3$s is replaced by device name (e.g. /dev/sda5)
-			   _("Renaming mountpoint %1$s from %2$s to %3$s in /etc/fstab"));
+			   _("Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"));
 
-	return sformat(text, mountpoint.c_str(), blk_device_lhs->get_name().c_str(),
+	return sformat(text, mount_point->get_path().c_str(), blk_device_lhs->get_name().c_str(),
 		       blk_device_rhs->get_name().c_str());
     }
 
 
     void
-    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs,
-						const string& mountpoint) const
+    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs) const
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	const BlkFilesystem * blk_filesystem_lhs = to_blk_filesystem(lhs);
+	const MountPoint* mount_point = get_mount_point();
 
-	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { blk_filesystem_lhs->get_impl().get_fstab_device_name() });
+	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
 	if (entry)
         {
             entry->set_device(get_mount_by_name());
@@ -750,7 +703,7 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
 	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, mountpoint, commit_data.tense);
+	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, commit_data.tense);
 	}
 
 
@@ -759,7 +712,7 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
 	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab(commit_data, blk_filesystem_lhs, mountpoint);
+	    blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab(commit_data, blk_filesystem_lhs);
 	}
 
 
