@@ -107,6 +107,7 @@ namespace storage
     Devicegraph::Devicegraph(const Storage* storage)
 	: impl(new Impl(storage))
     {
+	ST_CHECK_PTR(storage);
     }
 
 

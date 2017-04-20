@@ -136,7 +136,7 @@ namespace storage
 
     public:
 
-	Devicegraph(const Storage* storage = nullptr); // TODO
+	Devicegraph(const Storage* storage);
 	~Devicegraph();
 
 	bool operator==(const Devicegraph& rhs) const;
