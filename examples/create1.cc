@@ -50,12 +50,16 @@ create(Storage& storage)
     // Create logical volume "data" with ext4 on it.
     LvmLv* data_lv = test_vg->create_lvm_lv("data", 8 * GiB);
     Ext4* ext4_fs = to_ext4(data_lv->create_blk_filesystem(FsType::EXT4));
-    ext4_fs->add_mountpoint("/test");
+
+    // Create mount point for ext4.
+    ext4_fs->create_mount_point("/test");
 
     // Create logical volume "swap" with swap on it.
     LvmLv* swap_lv = test_vg->create_lvm_lv("swap", 1 * GiB);
     Swap* swap_fs = to_swap(swap_lv->create_blk_filesystem(FsType::SWAP));
-    swap_fs->add_mountpoint("swap");
+
+    // Create mount point for swap.
+    swap_fs->create_mount_point("swap");
 
     // Check the staging devicegraph.
     staging->check();
