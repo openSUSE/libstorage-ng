@@ -22,7 +22,8 @@ partition.set_id(ID_LINUX)
 
 btrfs = partition.create_blk_filesystem(FsType_BTRFS)
 btrfs.set_label("TEST")
-btrfs.add_mountpoint("/test")
+
+mount_point = btrfs.create_mount_point("/test")
 
 print staging
 

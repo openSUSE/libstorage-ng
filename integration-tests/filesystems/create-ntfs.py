@@ -20,7 +20,8 @@ partition.set_id(ID_LINUX)
 
 ntfs = partition.create_blk_filesystem(FsType_NTFS)
 ntfs.set_label("TEST")
-ntfs.add_mountpoint("/test")
+
+mount_point = ntfs.create_mount_point("/test")
 
 print staging
 

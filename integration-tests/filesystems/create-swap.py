@@ -19,7 +19,8 @@ partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_SWAP)
 
 swap = partition.create_blk_filesystem(FsType_SWAP)
-swap.add_mountpoint("swap")
+
+mount_point = swap.create_mount_point("swap")
 
 print staging
 
