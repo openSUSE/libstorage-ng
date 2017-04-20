@@ -22,13 +22,21 @@
     </Disk>
     <Xfs>
       <sid>44</sid>
-      <mountpoint>/test2</mountpoint>
     </Xfs>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/test2</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
       <source-sid>42</source-sid>
       <target-sid>44</target-sid>
+    </User>
+    <User>
+      <source-sid>44</source-sid>
+      <target-sid>1001</target-sid>
     </User>
   </Holders>
 </Devicegraph>

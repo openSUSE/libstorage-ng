@@ -76,16 +76,23 @@
     <Ext4>
       <sid>47</sid>
       <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
-      <mountpoint>/</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>acl,user_xattr</mount-opts>
     </Ext4>
-    <Xfs>
+    <MountPoint>
       <sid>48</sid>
+      <path>/</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>acl,user_xattr</mount-options>
+    </MountPoint>
+    <Xfs>
+      <sid>49</sid>
       <uuid>30032cea-a1f0-4891-8396-28a8d97491d4</uuid>
-      <mountpoint>/home</mountpoint>
-      <mount-opts>nofail</mount-opts>
     </Xfs>
+    <MountPoint>
+      <sid>50</sid>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+      <mount-options>nofail</mount-options>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -109,8 +116,16 @@
       <target-sid>47</target-sid>
     </User>
     <User>
-      <source-sid>46</source-sid>
+      <source-sid>47</source-sid>
       <target-sid>48</target-sid>
+    </User>
+    <User>
+      <source-sid>46</source-sid>
+      <target-sid>49</target-sid>
+    </User>
+    <User>
+      <source-sid>49</source-sid>
+      <target-sid>50</target-sid>
     </User>
   </Holders>
 </Devicegraph>

@@ -161,9 +161,9 @@ namespace storage
 	void set_rootprefix(const std::string& rootprefix);
 
 	/**
-	 * Prepends the root prefix to a mountpoint if necessary.
+	 * Prepends the root prefix to a mount point if necessary.
 	 */
-	std::string prepend_rootprefix(const std::string& mountpoint) const;
+	std::string prepend_rootprefix(const std::string& mount_point) const;
 
 	/**
 	 * The actiongraph is only valid until either the probed or staging

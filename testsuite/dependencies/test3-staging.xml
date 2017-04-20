@@ -35,7 +35,6 @@
     </Partition>
     <Swap>
       <sid>46</sid>
-      <mountpoint>swap</mountpoint>
     </Swap>
     <Partition>
       <sid>47</sid>
@@ -50,7 +49,6 @@
     </Partition>
     <Ext4>
       <sid>49</sid>
-      <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
     </Ext4>
     <Partition>
@@ -66,8 +64,22 @@
     </Partition>
     <Xfs>
       <sid>52</sid>
-      <mountpoint>/home</mountpoint>
     </Xfs>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>swap</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/</path>
+      <mount-by>uuid</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1002</sid>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -97,6 +109,18 @@
     <User>
       <source-sid>50</source-sid>
       <target-sid>52</target-sid>
+    </User>
+    <User>
+      <source-sid>46</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>49</source-sid>
+      <target-sid>1001</target-sid>
+    </User>
+    <User>
+      <source-sid>52</source-sid>
+      <target-sid>1002</target-sid>
     </User>
   </Holders>
 </Devicegraph>

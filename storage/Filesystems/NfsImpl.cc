@@ -25,6 +25,7 @@
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Filesystems/NfsImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -100,11 +101,12 @@ namespace storage
     Nfs::Impl::probe_nfses(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	// TODO also read /etc/fstab
+	// TODO the old library filters the mount options
 
-	vector<FstabEntry *> nfs_entries = systeminfo.getProcMounts().get_all_nfs();
-	for (FstabEntry * entry : nfs_entries)
+	vector<const FstabEntry*> nfs_entries = systeminfo.getProcMounts().get_all_nfs();
+	for (const FstabEntry* fstab_entry : nfs_entries)
 	{
-            string device = entry->get_device();
+            string device = fstab_entry->get_device();
 
 	    if (!is_valid_name(device))
 	    {
@@ -114,9 +116,13 @@ namespace storage
 
 	    pair<string, string> name_parts = Nfs::Impl::split_name(device);
 	    Nfs* nfs = Nfs::create(probed, name_parts.first, canonical_path(name_parts.second));
-	    nfs->add_mountpoint(entry->get_mount_point());
 
-	    const CmdDf& cmd_df = systeminfo.getCmdDf(entry->get_mount_point());
+	    MountPoint* mount_point = nfs->create_mount_point(fstab_entry->get_mount_point());
+	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
+	    mount_point->set_mount_by(fstab_entry->get_mount_by());
+	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
+
+	    const CmdDf& cmd_df = systeminfo.getCmdDf(fstab_entry->get_mount_point());
 	    nfs->set_space_info(cmd_df.get_space_info());
 	}
     }
@@ -133,6 +139,13 @@ namespace storage
     Nfs::Impl::get_mount_by_name() const
     {
 	return get_mount_name();
+    }
+
+
+    MountByType
+    Nfs::Impl::get_default_mount_by() const
+    {
+	return MountByType::DEVICE;
     }
 
 
@@ -180,30 +193,22 @@ namespace storage
     void
     Nfs::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	for (const string& mountpoint : get_mountpoints())
-	{
-	    vector<Action::Base*> actions;
+	vector<Action::Base*> actions;
 
-	    actions.push_back(new Action::Mount(get_sid(), mountpoint));
-	    actions.push_back(new Action::AddToEtcFstab(get_sid(), mountpoint));
+	actions.push_back(new Action::Create(get_sid(), true));
 
-	    actiongraph.add_chain(actions);
-	}
+	actiongraph.add_chain(actions);
     }
 
 
     void
     Nfs::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	for (const string& mountpoint : get_mountpoints())
-	{
-	    vector<Action::Base*> actions;
+	vector<Action::Base*> actions;
 
-	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid(), mountpoint));
-	    actions.push_back(new Action::Umount(get_sid(), mountpoint));
+	actions.push_back(new Action::Delete(get_sid(), true));
 
-	    actiongraph.add_chain(actions);
-	}
+	actiongraph.add_chain(actions);
     }
 
 }

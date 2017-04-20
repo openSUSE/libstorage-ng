@@ -87,6 +87,9 @@ namespace storage
 	virtual string get_mount_by_name() const override;
 	virtual vector<string> get_mount_options() const override;
 
+	virtual MountByType get_default_mount_by() const override;
+	virtual MountOpts get_default_mount_options() const override;
+
 	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const override;
 	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const override;
 
@@ -104,13 +107,13 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 
-	virtual Text do_mount_text(const string& mountpoint, Tense tense) const;
+	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const override;
 
-        virtual Text do_umount_text(const string& mountpoint, Tense tense) const;
+	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const override;
 
-        virtual Text do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const override;
 
-        virtual Text do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const;
+	virtual Text do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const override;
 
 	virtual Text do_set_nocow_text(Tense tense) const;
 	virtual void do_set_nocow() const;
@@ -125,7 +128,7 @@ namespace storage
 
 	void save(xmlNode* node) const override;
 
-	void probe_id(const string& mountpoint);
+	void probe_id(const string& mount_point);
 
     private:
 

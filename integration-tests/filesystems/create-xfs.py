@@ -20,7 +20,8 @@ partition.set_id(ID_LINUX)
 
 xfs = partition.create_blk_filesystem(FsType_XFS)
 xfs.set_label("TEST")
-xfs.add_mountpoint("/test")
+
+mount_point = xfs.create_mount_point("/test")
 
 print staging
 

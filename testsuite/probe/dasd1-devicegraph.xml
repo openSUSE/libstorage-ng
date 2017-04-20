@@ -21,16 +21,6 @@
       <dasd-type>ECKD</dasd-type>
       <dasd-format>CDL</dasd-format>
     </Dasd>
-    <Nfs>
-      <sid>43</sid>
-      <mountpoint>/var/adm/mount</mountpoint>
-      <SpaceInfo>
-        <size>16492506644480</size>
-        <used>15822072315904</used>
-      </SpaceInfo>
-      <server>10.160.0.100</server>
-      <path>/dist/install/SLP/SLE-12-Server-GM/s390x/DVD1</path>
-    </Nfs>
   </Devices>
   <Holders/>
 </Devicegraph>

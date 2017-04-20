@@ -98,19 +98,31 @@
     <Xfs>
       <sid>50</sid>
       <uuid>5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7</uuid>
-      <mountpoint>/home</mountpoint>
     </Xfs>
-    <Ext4>
+    <MountPoint>
       <sid>51</sid>
-      <uuid>7992b624-af87-446f-896a-b310acd6e082</uuid>
-      <mountpoint>/</mountpoint>
-      <mount-opts>acl,user_xattr</mount-opts>
-    </Ext4>
-    <Swap>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <Ext4>
       <sid>52</sid>
+      <uuid>7992b624-af87-446f-896a-b310acd6e082</uuid>
+    </Ext4>
+    <MountPoint>
+      <sid>53</sid>
+      <path>/</path>
+      <mount-by>device</mount-by>
+      <mount-options>acl,user_xattr</mount-options>
+    </MountPoint>
+    <Swap>
+      <sid>54</sid>
       <uuid>82afe683-54d7-406f-8c60-d3a32febbac7</uuid>
-      <mountpoint>swap</mountpoint>
     </Swap>
+    <MountPoint>
+      <sid>55</sid>
+      <path>swap</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -146,12 +158,24 @@
       <target-sid>50</target-sid>
     </User>
     <User>
-      <source-sid>48</source-sid>
+      <source-sid>50</source-sid>
       <target-sid>51</target-sid>
     </User>
     <User>
-      <source-sid>49</source-sid>
+      <source-sid>48</source-sid>
       <target-sid>52</target-sid>
+    </User>
+    <User>
+      <source-sid>52</source-sid>
+      <target-sid>53</target-sid>
+    </User>
+    <User>
+      <source-sid>49</source-sid>
+      <target-sid>54</target-sid>
+    </User>
+    <User>
+      <source-sid>54</source-sid>
+      <target-sid>55</target-sid>
     </User>
   </Holders>
 </Devicegraph>

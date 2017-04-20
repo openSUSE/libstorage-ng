@@ -1,4 +1,4 @@
-1a - Remove mountpoint /home of /dev/mapper/cr_home from /etc/fstab -> 1b
+1a - Remove mount point /home of /dev/mapper/cr_home from /etc/fstab -> 1b
 1b - Unmount /dev/mapper/cr_home at /home -> 2a
 
 2a - Remove encryption layer device on /dev/sda2 from /etc/crypttab -> 2b

@@ -25,6 +25,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -160,6 +161,20 @@ namespace storage
     }
 
 
+    MountByType
+    BtrfsSubvolume::Impl::get_default_mount_by() const
+    {
+	return get_btrfs()->get_impl().get_default_mount_by();
+    }
+
+
+    MountOpts
+    BtrfsSubvolume::Impl::get_default_mount_options() const
+    {
+	return MountOpts({ "subvol=/" + path });
+    }
+
+
     vector<string>
     BtrfsSubvolume::Impl::get_mount_options() const
     {
@@ -201,7 +216,6 @@ namespace storage
 	Devicegraph* devicegraph = get_devicegraph();
 
 	BtrfsSubvolume* btrfs_subvolume = create(devicegraph, path);
-	btrfs_subvolume->set_mount_opts(vector<string>({ "subvol=/" + path }));
 
 	Subdevice::create(devicegraph, get_device(), btrfs_subvolume);
 
@@ -221,10 +235,10 @@ namespace storage
 	const FstabEntry* fstab_entry = find_etc_fstab_entry(etc_fstab, aliases);
 	if (fstab_entry)
         {
-	    add_mountpoint(fstab_entry->get_mount_point());
-	    set_fstab_device_name(fstab_entry->get_device());
-	    set_mount_by(EtcFstab::get_mount_by(fstab_entry->get_device()));
-	    set_mount_opts(fstab_entry->get_mount_opts());
+	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
+	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
+	    mount_point->set_mount_by(fstab_entry->get_mount_by());
+	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 	}
 
 	const CmdLsattr& cmdlsattr = systeminfo.getCmdLsattr(blk_device->get_name(), mountpoint, path);
@@ -233,13 +247,13 @@ namespace storage
 
 
     void
-    BtrfsSubvolume::Impl::probe_id(const string& mountpoint)
+    BtrfsSubvolume::Impl::probe_id(const string& mount_point)
     {
 	const Btrfs* btrfs = get_btrfs();
 	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
 
 	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
-	    CmdBtrfsSubvolumeList(blk_device->get_name(), mountpoint);
+	    CmdBtrfsSubvolumeList(blk_device->get_name(), mount_point);
 
 	CmdBtrfsSubvolumeList::const_iterator it = cmd_btrfs_subvolume_list.find_entry_by_path(path);
 	if (it != cmd_btrfs_subvolume_list.end())
@@ -294,61 +308,17 @@ namespace storage
     void
     BtrfsSubvolume::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-        Action::Base* first = nullptr;
-        Action::Base* last = nullptr;
+	vector<Action::Base*> actions;
 
-        Action::Create* format = new Action::Create(get_sid(), is_top_level());
-        Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(format);
-        first = last = format;
-
-	// TODO complicated code. maybe it would be better to have mountpoints
-	// as separate objects in the devicegraph to avoid the "non-linear"
-	// dependency flows here.
+	actions.push_back(new Action::Create(get_sid(), is_top_level()));
 
 	if (nocow)
-	{
-	    Action::Base* action = new Action::SetNocow(get_sid());
-	    Actiongraph::Impl::vertex_descriptor t = actiongraph.add_vertex(action);
-
-	    actiongraph.add_edge(v1, t);
-
-	    v1 = t;
-	    last = action;
-	}
+	    actions.push_back(new Action::SetNocow(get_sid()));
 
 	if (default_btrfs_subvolume && !is_top_level())
-	{
-	    Action::Base* action = new Action::SetDefaultBtrfsSubvolume(get_sid());
-	    Actiongraph::Impl::vertex_descriptor t = actiongraph.add_vertex(action);
+	    actions.push_back(new Action::SetDefaultBtrfsSubvolume(get_sid()));
 
-	    actiongraph.add_edge(v1, t);
-
-	    v1 = t;
-	    last = action;
-	}
-
-        if (!get_mountpoints().empty())
-        {
-            Action::Base* sync = new Action::Create(get_sid(), true);
-            Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync);
-            last = sync;
-
-            for (const string& mountpoint : get_mountpoints())
-            {
-                Action::Mount* mount = new Action::Mount(get_sid(), mountpoint);
-                Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(mount);
-
-                Action::AddToEtcFstab* add_to_etc_fstab = new Action::AddToEtcFstab(get_sid(), mountpoint);
-                Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(add_to_etc_fstab);
-
-                actiongraph.add_edge(v1, t1);
-                actiongraph.add_edge(t1, t2);
-                actiongraph.add_edge(t2, v2);
-            }
-        }
-
-        first->first = true;
-        last->last = true;
+	actiongraph.add_chain(actions);
     }
 
 
@@ -381,35 +351,11 @@ namespace storage
     void
     BtrfsSubvolume::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-        Action::Base* first = nullptr;
-        Action::Base* last = nullptr;
+	vector<Action::Base*> actions;
 
-        Action::Base* sync1 = new Action::Delete(get_sid(), is_top_level());
-        Actiongraph::Impl::vertex_descriptor v1 = actiongraph.add_vertex(sync1);
-        first = last = sync1;
+	actions.push_back(new Action::Delete(get_sid(), is_top_level()));
 
-        if (!get_mountpoints().empty())
-        {
-            Action::Base* sync2 = new Action::Delete(get_sid(), true);
-            Actiongraph::Impl::vertex_descriptor v2 = actiongraph.add_vertex(sync2);
-            first = sync2;
-
-            for (const string& mountpoint : get_mountpoints())
-            {
-                Action::RemoveFromEtcFstab* remove_from_etc_fstab = new Action::RemoveFromEtcFstab(get_sid(), mountpoint);
-                Actiongraph::Impl::vertex_descriptor t1 = actiongraph.add_vertex(remove_from_etc_fstab);
-
-                Action::Umount* umount = new Action::Umount(get_sid(), mountpoint);
-                Actiongraph::Impl::vertex_descriptor t2 = actiongraph.add_vertex(umount);
-
-                actiongraph.add_edge(v2, t1);
-                actiongraph.add_edge(t1, t2);
-                actiongraph.add_edge(t2, v1);
-            }
-        }
-
-        first->first = true;
-        last->last = true;
+	actiongraph.add_chain(actions);
     }
 
 
@@ -445,7 +391,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string full_path = ensure_mounted.get_any_mountpoint() + "/" + path;
+	string full_path = ensure_mounted.get_any_mount_point() + "/" + path;
 	string full_dirname = dirname(full_path);
 
 	if (access(full_dirname.c_str(), R_OK ) != 0)
@@ -458,83 +404,83 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create BtrfsSubvolume failed"));
 
-	probe_id(ensure_mounted.get_any_mountpoint());
+	probe_id(ensure_mounted.get_any_mount_point());
     }
 
 
     Text
-    BtrfsSubvolume::Impl::do_mount_text(const string& mountpoint, Tense tense) const
+    BtrfsSubvolume::Impl::do_mount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by subvolume path (e.g. home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by mountpoint (e.g. /home)
+			   // %3$s is replaced by mount point (e.g. /home)
 			   _("Mount subvolume %1$s on %2$s at %3$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by subvolume path (e.g. home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by mountpoint (e.g. /home)
+			   // %3$s is replaced by mount point (e.g. /home)
 			   _("Mounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path.c_str(), get_mount_name().c_str(), mountpoint.c_str());
+	return sformat(text, path.c_str(), get_mount_name().c_str(), mount_point->get_path().c_str());
     }
 
 
     Text
-    BtrfsSubvolume::Impl::do_umount_text(const string& mountpoint, Tense tense) const
+    BtrfsSubvolume::Impl::do_umount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
 			  // %1$s is replaced by subvolume path (e.g. home),
 			  // %2$s is replaced by device name (e.g. /dev/sda1),
-			  // %3$s is replaced by mountpoint (e.g. /home)
+			  // %3$s is replaced by mount point (e.g. /home)
 			  _("Unmount subvolume %1$s on %2$s at %3$s"),
 			  // TRANSLATORS: displayed during action,
 			  // %1$s is replaced by subvolume path (e.g. home),
 			  // %2$s is replaced by device name (e.g. /dev/sda1),
-			  // %3$s is replaced by mountpoint (e.g. /home)
+			  // %3$s is replaced by mount point (e.g. /home)
 			  _("Unmounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path.c_str(), get_mount_name().c_str(), mountpoint.c_str());
+	return sformat(text, path.c_str(), get_mount_name().c_str(), mount_point->get_path().c_str());
     }
 
 
     Text
-    BtrfsSubvolume::Impl::do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const
+    BtrfsSubvolume::Impl::do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by subvolume path (e.g. home),
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
-			   _("Add mountpoint %1$s of subvolume %2$s on %3$s to /etc/fstab"),
+			   _("Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by subvolume path (e.g. home),
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
-			   _("Adding mountpoint %1$s of subvolume %2$s on %3$s to /etc/fstab"));
+			   _("Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"));
 
-	return sformat(text, mountpoint.c_str(), path.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path().c_str(), path.c_str(), get_mount_name().c_str());
     }
 
 
     Text
-    BtrfsSubvolume::Impl::do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const
+    BtrfsSubvolume::Impl::do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by subvolume path (e.g. home),
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
-			   _("Remove mountpoint %1$s of subvolume %2$s on %3$s from /etc/fstab"),
+			   _("Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by subvolume path (e.g. home),
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
-			   _("Removing mountpoint %1$s of subvolume %2$s on %3$s from /etc/fstab"));
+			   _("Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"));
 
-	return sformat(text, mountpoint.c_str(), path.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path().c_str(), path.c_str(), get_mount_name().c_str());
     }
 
 
@@ -578,7 +524,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = CHATTRBIN " " + string(nocow ? "+" : "-") + "C " +
-	    quote(ensure_mounted.get_any_mountpoint() + "/" + path);
+	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -614,7 +560,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = BTRFSBIN " subvolume set-default " + to_string(id) + " " +
-	    quote(ensure_mounted.get_any_mountpoint());
+	    quote(ensure_mounted.get_any_mount_point());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -650,7 +596,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = BTRFSBIN " subvolume delete " +
-	    quote(ensure_mounted.get_any_mountpoint() + "/" + path);
+	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

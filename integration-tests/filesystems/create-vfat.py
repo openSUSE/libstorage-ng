@@ -20,7 +20,8 @@ partition.set_id(ID_LINUX)
 
 vfat = partition.create_blk_filesystem(FsType_VFAT)
 vfat.set_label("TEST")
-vfat.add_mountpoint("/test")
+
+mount_point = vfat.create_mount_point("/test")
 
 print staging
 

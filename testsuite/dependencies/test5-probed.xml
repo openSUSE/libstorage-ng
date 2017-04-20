@@ -36,9 +36,17 @@
     </Partition>
     <Xfs>
       <sid>45</sid>
-      <mountpoint>/test1</mountpoint>
-      <mountpoint>/test2</mountpoint>
     </Xfs>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/test1</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/test2</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -52,6 +60,14 @@
     <User>
       <source-sid>44</source-sid>
       <target-sid>45</target-sid>
+    </User>
+    <User>
+      <source-sid>45</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>45</source-sid>
+      <target-sid>1001</target-sid>
     </User>
   </Holders>
 </Devicegraph>

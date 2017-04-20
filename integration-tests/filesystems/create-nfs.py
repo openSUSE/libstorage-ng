@@ -16,7 +16,8 @@ staging = storage.get_staging()
 print staging
 
 nfs = Nfs.create(staging, "dist", "/dist")
-nfs.add_mountpoint("/test")
+
+mount_point = nfs.create_mount_point("/test")
 
 print staging
 

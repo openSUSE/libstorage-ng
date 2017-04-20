@@ -67,6 +67,8 @@ namespace storage
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name() const override;
 
+	virtual MountByType get_default_mount_by() const override;
+
 	virtual uint64_t used_features() const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
@@ -76,7 +78,7 @@ namespace storage
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
-	
+
     protected:
 
 	void save(xmlNode* node) const override;

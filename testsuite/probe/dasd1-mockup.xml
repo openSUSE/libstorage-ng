@@ -276,7 +276,6 @@
       <content>devtmpfs /dev devtmpfs rw,relatime,size=494680k,nr_inodes=123670,mode=755 0 0</content>
       <content>devpts /dev/pts devpts rw,relatime,mode=600,ptmxmode=000 0 0</content>
       <content>rpc_pipefs /var/lib/nfs/rpc_pipefs rpc_pipefs rw,relatime 0 0</content>
-      <content>10.160.0.100:/dist/install/SLP/SLE-12-Server-GM/s390x/DVD1 /var/adm/mount nfs4 rw,relatime,vers=4.0,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,clientaddr=10.161.157.184,local_lock=none,addr=10.160.0.100 0 0</content>
       <content>/dev/loop0 /mounts/mp_0000 squashfs ro,relatime 0 0</content>
       <content>/dev/loop1 /mounts/mp_0001 squashfs ro,relatime 0 0</content>
       <content>/dev/loop2 /mounts/mp_0002 squashfs ro,relatime 0 0</content>

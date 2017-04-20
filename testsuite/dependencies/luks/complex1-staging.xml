@@ -73,7 +73,6 @@
     </LvmLv>
     <Ext4>
       <sid>188</sid>
-      <mountpoint>/</mountpoint>
     </Ext4>
     <LvmLv>
       <sid>189</sid>
@@ -88,7 +87,6 @@
     </LvmLv>
     <Swap>
       <sid>190</sid>
-      <mountpoint>swap</mountpoint>
     </Swap>
     <LvmLv>
       <sid>191</sid>
@@ -103,8 +101,22 @@
     </LvmLv>
     <Xfs>
       <sid>192</sid>
-      <mountpoint>/home</mountpoint>
     </Xfs>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>swap</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1002</sid>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -154,6 +166,18 @@
     <User>
       <source-sid>191</source-sid>
       <target-sid>192</target-sid>
+    </User>
+    <User>
+      <source-sid>188</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>190</source-sid>
+      <target-sid>1001</target-sid>
+    </User>
+    <User>
+      <source-sid>192</source-sid>
+      <target-sid>1002</target-sid>
     </User>
   </Holders>
 </Devicegraph>

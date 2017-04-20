@@ -66,6 +66,8 @@ namespace storage
 	const string& get_tune_options() const { return tune_options; }
 	void set_tune_options(const string& tune_options);
 
+	virtual MountByType get_default_mount_by() const override;
+
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
@@ -99,8 +101,8 @@ namespace storage
 	virtual Text do_set_uuid_text(Tense tense) const;
 	virtual void do_set_uuid() const;
 
-	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, const string& mountpoint,Tense tense) const;
-	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs, const string& mountpoint) const;
+	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const;
+	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;
@@ -176,16 +178,13 @@ namespace storage
 	{
 	public:
 
-	    RenameInEtcFstab(sid_t sid, const string& mountpoint)
-		: RenameIn(sid), mountpoint(mountpoint) {}
+	    RenameInEtcFstab(sid_t sid)	: RenameIn(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
 
 	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
 							    Side side) const override;
-
-	    const string mountpoint;
 
 	};
 

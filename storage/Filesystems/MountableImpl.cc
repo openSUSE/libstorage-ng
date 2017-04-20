@@ -32,7 +32,9 @@
 #include "storage/Filesystems/MountableImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
@@ -61,17 +63,8 @@ namespace storage
 
 
     Mountable::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), mountpoints({}), mount_by(MountByType::DEVICE)
+	: Device::Impl(node)
     {
-	string tmp;
-
-	getChildValue(node, "mountpoint", mountpoints);
-
-	if (getChildValue(node, "mount-by", tmp))
-	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
-
-	if (getChildValue(node, "mount-opts", tmp))
-	    mount_opts.parse(tmp);
     }
 
 
@@ -79,89 +72,58 @@ namespace storage
     Mountable::Impl::save(xmlNode* node) const
     {
 	Device::Impl::save(node);
-
-	setChildValue(node, "mountpoint", mountpoints);
-
-	setChildValueIf(node, "mount-by", toString(mount_by), mount_by != MountByType::DEVICE);
-
-	if (!mount_opts.empty())
-	    setChildValue(node, "mount-opts", mount_opts.format());
     }
 
 
-    void
-    Mountable::Impl::set_mountpoints(const vector<string>& mountpoints)
+    MountPoint*
+    Mountable::Impl::create_mount_point(const string& path)
     {
-	Impl::mountpoints = mountpoints;
-    }
+	Devicegraph* devicegraph = get_devicegraph();
 
+	MountPoint* mount_point = MountPoint::create(devicegraph, path);
 
-    void
-    Mountable::Impl::add_mountpoint(const string& mountpoint)
-    {
-	Impl::mountpoints.push_back(mountpoint);
-    }
+	User::create(devicegraph, get_device(), mount_point);
 
+	mount_point->set_default_mount_by();
+	mount_point->set_default_mount_options();
 
-    void
-    Mountable::Impl::set_mount_by(MountByType mount_by)
-    {
-	Impl::mount_by = mount_by;
-    }
-
-
-    void
-    Mountable::Impl::set_mount_opts(const MountOpts & new_mount_opts)
-    {
-	Impl::mount_opts = new_mount_opts;
-    }
-
-
-    void
-    Mountable::Impl::set_mount_opts(const vector<string>& new_mount_opts)
-    {
-	Impl::mount_opts.set_opts(new_mount_opts);
+	return mount_point;
     }
 
 
     bool
-    Mountable::Impl::equal(const Device::Impl& rhs_base) const
+    Mountable::Impl::has_mount_point() const
     {
-	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
-
-	if (!Device::Impl::equal(rhs))
-	    return false;
-
-	return mountpoints == rhs.mountpoints && mount_by == rhs.mount_by &&
-	    mount_opts.get_opts() == rhs.mount_opts.get_opts();
+	return num_children_of_type<const MountPoint>() > 0;
     }
 
 
-    void
-    Mountable::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
+    MountPoint*
+    Mountable::Impl::get_mount_point()
     {
-	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
+	vector<MountPoint*> tmp = get_children_of_type<MountPoint>();
+	if (tmp.empty())
+	    ST_THROW(Exception("no mount point"));
 
-	Device::Impl::log_diff(log, rhs);
-
-	storage::log_diff(log, "mountpoints", mountpoints, rhs.mountpoints);
-
-	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
-
-	storage::log_diff(log, "mount-opts", mount_opts.get_opts(), rhs.mount_opts.get_opts());
+	return tmp.front();
     }
 
 
-    void
-    Mountable::Impl::print(std::ostream& out) const
+    const MountPoint*
+    Mountable::Impl::get_mount_point() const
     {
-	Device::Impl::print(out);
+	vector<const MountPoint*> tmp = get_children_of_type<const MountPoint>();
+	if (tmp.empty())
+	    ST_THROW(Exception("no mount point"));
 
-	if (!mountpoints.empty())
-	    out << " mountpoints:" << mountpoints;
+	return tmp.front();
+    }
 
-	if (!mount_opts.empty())
-	    out << " mount-opts:" << mount_opts.format();
+
+    MountOpts
+    Mountable::Impl::get_default_mount_options() const
+    {
+	return MountOpts();
     }
 
 
@@ -180,7 +142,7 @@ namespace storage
 
 
     Text
-    Mountable::Impl::do_mount_text(const string& mountpoint, Tense tense) const
+    Mountable::Impl::do_mount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -192,32 +154,32 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Mounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name().c_str(), mountpoint.c_str());
+	return sformat(text, get_mount_name().c_str(), mount_point->get_path().c_str());
     }
 
 
     void
-    Mountable::Impl::do_mount(CommitData& commit_data, const string& mountpoint) const
+    Mountable::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
     {
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
-	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
-	if (access(real_mountpoint.c_str(), R_OK ) != 0)
+	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
+	if (access(real_mount_point.c_str(), R_OK ) != 0)
 	{
-	    createPath(real_mountpoint);
+	    createPath(real_mount_point);
 	}
 
 	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
-	if (!mount_opts.empty())
-	    cmd_line += " -o " + quote(mount_opts.format());
-	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mountpoint);
+	if (!mount_point->get_mount_options().empty())
+	    cmd_line += " -o " + quote(mount_point->get_impl().get_mount_options().format());
+	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("mount failed"));
 
-	if (mountpoint == "/")
+	if (mount_point->get_path() == "/")
 	{
 	    string path = get_storage()->prepend_rootprefix("/etc");
 	    if (access(path.c_str(), R_OK) != 0)
@@ -227,7 +189,7 @@ namespace storage
 
 
     Text
-    Mountable::Impl::do_umount_text(const string& mountpoint, Tense tense) const
+    Mountable::Impl::do_umount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -239,16 +201,16 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Unmounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name().c_str(), mountpoint.c_str());
+	return sformat(text, get_mount_name().c_str(), mount_point->get_path().c_str());
     }
 
 
     void
-    Mountable::Impl::do_umount(CommitData& commit_data, const string& mountpoint) const
+    Mountable::Impl::do_umount(CommitData& commit_data, const MountPoint* mount_point) const
     {
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
-	string real_mountpoint = storage.get_impl().prepend_rootprefix(mountpoint);
+	string real_mountpoint = storage.get_impl().prepend_rootprefix(mount_point->get_path());
 
 	string cmd_line = UMOUNTBIN " " + quote(real_mountpoint);
 	cout << cmd_line << endl;
@@ -260,149 +222,108 @@ namespace storage
 
 
     Text
-    Mountable::Impl::do_add_to_etc_fstab_text(const string& mountpoint, Tense tense) const
+    Mountable::Impl::do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Add mountpoint %1$s of %2$s to /etc/fstab"),
+			   _("Add mount point %1$s of %2$s to /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Adding mountpoint %1$s of %2$s to /etc/fstab"));
+			   _("Adding mount point %1$s of %2$s to /etc/fstab"));
 
-	return sformat(text, mountpoint.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
     }
 
 
     void
-    Mountable::Impl::do_add_to_etc_fstab(CommitData& commit_data, const string& mountpoint) const
+    Mountable::Impl::do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-        FstabEntry * entry = new FstabEntry();
-        entry->set_device(get_mount_by_name());
-        entry->set_mount_point(mountpoint);
-        entry->set_mount_opts(get_mount_opts());
+	FstabEntry* entry = new FstabEntry();
+	entry->set_device(get_mount_by_name());
+	entry->set_mount_point(mount_point->get_path());
+	entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	entry->set_fs_type(get_mount_type());
+	entry->set_fsck_pass(mount_point->get_passno());
+	entry->set_dump_pass(mount_point->get_freq());
 
-        // TODO: entry->set_fsck_pass( ?? );
-
-        etc_fstab.add(entry);
-        etc_fstab.log_diff();
-        etc_fstab.write();
+	etc_fstab.add(entry);
+	etc_fstab.log_diff();
+	etc_fstab.write();
     }
 
 
     Text
-    Mountable::Impl::do_remove_from_etc_fstab_text(const string& mountpoint, Tense tense) const
+    Mountable::Impl::do_update_in_etc_fstab_text(const MountPoint* mount_point, const Device* lhs, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Remove mountpoint %1$s of %2$s from /etc/fstab"),
+			   _("Update mount point %1$s of %2$s in /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mountpoint (e.g. /home),
+			   // %1$s is replaced by mount point (e.g. /home),
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
-			   _("Removing mountpoint %1$s of %2$s from /etc/fstab"));
+			   _("Updating mount point %1$s of %2$s in /etc/fstab"));
 
-	return sformat(text, mountpoint.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
     }
 
 
     void
-    Mountable::Impl::do_remove_from_etc_fstab(CommitData& commit_data, const string& mountpoint) const
+    Mountable::Impl::do_update_in_etc_fstab(CommitData& commit_data, const Device* lhs, const MountPoint* mount_point) const
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { get_fstab_device_name() });
+	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
 	if (entry)
-        {
-            etc_fstab.remove(entry);
-            etc_fstab.log_diff();
-            etc_fstab.write();
-        }
+	{
+	    entry->set_device(get_mount_by_name());
+	    entry->set_mount_point(mount_point->get_path());
+	    entry->set_mount_opts(mount_point->get_impl().get_mount_options());
+	    entry->set_fs_type(get_mount_type());
+	    entry->set_fsck_pass(mount_point->get_passno());
+	    entry->set_dump_pass(mount_point->get_freq());
+
+	    etc_fstab.log_diff();
+	    etc_fstab.write();
+	}
     }
 
 
-    namespace Action
+    Text
+    Mountable::Impl::do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const
     {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mount point (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Remove mount point %1$s of %2$s from /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mount point (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   _("Removing mount point %1$s of %2$s from /etc/fstab"));
 
-	Text
-	Mount::text(const CommitData& commit_data) const
+	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
+    }
+
+
+    void
+    Mountable::Impl::do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
+    {
+	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
+
+	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
+	if (entry)
 	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    return mountable->get_impl().do_mount_text(mountpoint, commit_data.tense);
+	    etc_fstab.remove(entry);
+	    etc_fstab.log_diff();
+	    etc_fstab.write();
 	}
-
-
-	void
-	Mount::commit(CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    mountable->get_impl().do_mount(commit_data, mountpoint);
-	}
-
-
-	Text
-	Umount::text(const CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    return mountable->get_impl().do_umount_text(mountpoint, commit_data.tense);
-	}
-
-
-	void
-	Umount::commit(CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    mountable->get_impl().do_umount(commit_data, mountpoint);
-	}
-
-
-	Text
-	AddToEtcFstab::text(const CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    return mountable->get_impl().do_add_to_etc_fstab_text(mountpoint, commit_data.tense);
-	}
-
-
-	void
-	AddToEtcFstab::commit(CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, RHS));
-	    mountable->get_impl().do_add_to_etc_fstab(commit_data, mountpoint);
-	}
-
-
-	void
-	AddToEtcFstab::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					Actiongraph::Impl& actiongraph) const
-	{
-	    if (mountpoint == "swap")
-		if (actiongraph.mount_root_filesystem != actiongraph.vertices().end())
-		    actiongraph.add_edge(*actiongraph.mount_root_filesystem, vertex);
-	}
-
-
-	Text
-	RemoveFromEtcFstab::text(const CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    return mountable->get_impl().do_remove_from_etc_fstab_text(mountpoint, commit_data.tense);
-	}
-
-
-	void
-	RemoveFromEtcFstab::commit(CommitData& commit_data) const
-	{
-	    const Mountable* mountable = to_mountable(get_device(commit_data.actiongraph, LHS));
-	    mountable->get_impl().do_remove_from_etc_fstab(commit_data, mountpoint);
-	}
-
     }
 
 
@@ -417,7 +338,7 @@ namespace storage
 	{
 	    // Called on probed devicegraph.
 
-	    need_mount = mountable->get_mountpoints().empty();
+	    need_mount = !mountable_has_active_mount_point();
 	}
 	else
 	{
@@ -429,7 +350,7 @@ namespace storage
 		// Mountable in the probed devicegraph.
 
 		mountable = redirect_to_probed(mountable);
-		need_mount = mountable->get_mountpoints().empty();
+		need_mount = !mountable_has_active_mount_point();
 	    }
 	    else
 	    {
@@ -441,7 +362,7 @@ namespace storage
 		if (mountable->exists_in_probed())
 		{
 		    mountable = redirect_to_probed(mountable);
-		    need_mount = mountable->get_mountpoints().empty();
+		    need_mount = !mountable_has_active_mount_point();
 		}
 		else
 		{
@@ -471,12 +392,22 @@ namespace storage
 
 
     string
-    EnsureMounted::get_any_mountpoint() const
+    EnsureMounted::get_any_mount_point() const
     {
 	if (tmp_mount)
 	    return tmp_mount->get_fullname();
 	else
-	    return mountable->get_mountpoints().front();
+	    return mountable->get_mount_point()->get_path();
+    }
+
+
+    bool
+    EnsureMounted::mountable_has_active_mount_point() const
+    {
+	if (!mountable->has_mount_point())
+	    return false;
+
+	return mountable->get_mount_point()->is_active();
     }
 
 }

@@ -25,7 +25,8 @@ top_level = btrfs.get_top_level_btrfs_subvolume()
 btrfs_subvolume = top_level.create_btrfs_subvolume("test")
 btrfs_subvolume.set_nocow(True)
 btrfs_subvolume.set_default_btrfs_subvolume()
-btrfs_subvolume.add_mountpoint("/test")
+
+mount_point = btrfs_subvolume.create_mount_point("/test")
 
 print staging
 

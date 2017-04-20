@@ -66,239 +66,308 @@
     </Partition>
     <Swap>
       <sid>46</sid>
-      <mountpoint>swap</mountpoint>
-      <mount-by>uuid</mount-by>
       <uuid>97919fd7-6e7a-4f1c-bcf4-112b06de569a</uuid>
     </Swap>
-    <Btrfs>
+    <MountPoint>
       <sid>47</sid>
-      <mountpoint>/</mountpoint>
+      <path>swap</path>
       <mount-by>uuid</mount-by>
+    </MountPoint>
+    <Btrfs>
+      <sid>48</sid>
       <uuid>03b3f314-8d2f-4617-95a0-626812aba79e</uuid>
     </Btrfs>
     <BtrfsSubvolume>
-      <sid>48</sid>
+      <sid>49</sid>
       <id>5</id>
       <path></path>
     </BtrfsSubvolume>
+    <MountPoint>
+      <sid>50</sid>
+      <path>/</path>
+      <mount-by>uuid</mount-by>
+    </MountPoint>
     <BtrfsSubvolume>
-      <sid>49</sid>
+      <sid>51</sid>
       <id>257</id>
       <path>@</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>50</sid>
-      <mountpoint>/.snapshots</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/.snapshots</mount-opts>
+      <sid>52</sid>
       <id>258</id>
       <path>@/.snapshots</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>51</sid>
+      <sid>53</sid>
       <id>259</id>
       <path>@/.snapshots/1/snapshot</path>
       <default-btrfs-subvolume>true</default-btrfs-subvolume>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>52</sid>
-      <mountpoint>/boot/grub2/i386-pc</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/boot/grub2/i386-pc</mount-opts>
+      <sid>54</sid>
       <id>260</id>
       <path>@/boot/grub2/i386-pc</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>53</sid>
-      <mountpoint>/boot/grub2/x86_64-efi</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/boot/grub2/x86_64-efi</mount-opts>
+      <sid>55</sid>
       <id>261</id>
       <path>@/boot/grub2/x86_64-efi</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>54</sid>
-      <mountpoint>/home</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/home</mount-opts>
+      <sid>56</sid>
       <id>262</id>
       <path>@/home</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>55</sid>
-      <mountpoint>/opt</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/opt</mount-opts>
+      <sid>57</sid>
       <id>263</id>
       <path>@/opt</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>56</sid>
-      <mountpoint>/srv</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/srv</mount-opts>
+      <sid>58</sid>
       <id>264</id>
       <path>@/srv</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>57</sid>
-      <mountpoint>/tmp</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/tmp</mount-opts>
+      <sid>59</sid>
       <id>265</id>
       <path>@/tmp</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>58</sid>
-      <mountpoint>/usr/local</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/usr/local</mount-opts>
+      <sid>60</sid>
       <id>266</id>
       <path>@/usr/local</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>59</sid>
-      <mountpoint>/var/cache</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/cache</mount-opts>
+      <sid>61</sid>
       <id>267</id>
       <path>@/var/cache</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>60</sid>
-      <mountpoint>/var/crash</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/crash</mount-opts>
+      <sid>62</sid>
       <id>268</id>
       <path>@/var/crash</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>61</sid>
-      <mountpoint>/var/lib/libvirt/images</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/libvirt/images</mount-opts>
+      <sid>63</sid>
       <id>269</id>
       <path>@/var/lib/libvirt/images</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>62</sid>
-      <mountpoint>/var/lib/machines</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/machines</mount-opts>
+      <sid>64</sid>
       <id>270</id>
       <path>@/var/lib/machines</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>63</sid>
-      <mountpoint>/var/lib/mailman</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/mailman</mount-opts>
+      <sid>65</sid>
       <id>271</id>
       <path>@/var/lib/mailman</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>64</sid>
-      <mountpoint>/var/lib/mariadb</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/mariadb</mount-opts>
+      <sid>66</sid>
       <id>272</id>
       <path>@/var/lib/mariadb</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>65</sid>
-      <mountpoint>/var/lib/mysql</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/mysql</mount-opts>
+      <sid>67</sid>
       <id>273</id>
       <path>@/var/lib/mysql</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>66</sid>
-      <mountpoint>/var/lib/named</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/named</mount-opts>
+      <sid>68</sid>
       <id>274</id>
       <path>@/var/lib/named</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>67</sid>
-      <mountpoint>/var/lib/pgsql</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/lib/pgsql</mount-opts>
+      <sid>69</sid>
       <id>275</id>
       <path>@/var/lib/pgsql</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>68</sid>
-      <mountpoint>/var/log</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/log</mount-opts>
+      <sid>70</sid>
       <id>276</id>
       <path>@/var/log</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>69</sid>
-      <mountpoint>/var/opt</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/opt</mount-opts>
+      <sid>71</sid>
       <id>277</id>
       <path>@/var/opt</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>70</sid>
-      <mountpoint>/var/spool</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/spool</mount-opts>
+      <sid>72</sid>
       <id>278</id>
       <path>@/var/spool</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>71</sid>
-      <mountpoint>/var/tmp</mountpoint>
-      <mount-by>uuid</mount-by>
-      <mount-opts>subvol=@/var/tmp</mount-opts>
+      <sid>73</sid>
       <id>279</id>
       <path>@/var/tmp</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>72</sid>
+      <sid>74</sid>
       <id>285</id>
       <path>@/.snapshots/2/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>73</sid>
+      <sid>75</sid>
       <id>289</id>
       <path>@/.snapshots/3/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>74</sid>
+      <sid>76</sid>
       <id>290</id>
       <path>@/.snapshots/4/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>75</sid>
+      <sid>77</sid>
       <id>291</id>
       <path>@/.snapshots/5/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>76</sid>
+      <sid>78</sid>
       <id>292</id>
       <path>@/.snapshots/6/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>77</sid>
+      <sid>79</sid>
       <id>293</id>
       <path>@/.snapshots/7/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>78</sid>
+      <sid>80</sid>
       <id>294</id>
       <path>@/.snapshots/8/snapshot</path>
     </BtrfsSubvolume>
+    <MountPoint>
+      <sid>81</sid>
+      <path>/.snapshots</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/.snapshots</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>82</sid>
+      <path>/boot/grub2/i386-pc</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/boot/grub2/i386-pc</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>83</sid>
+      <path>/boot/grub2/x86_64-efi</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/boot/grub2/x86_64-efi</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>84</sid>
+      <path>/home</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/home</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>85</sid>
+      <path>/opt</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/opt</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>86</sid>
+      <path>/srv</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/srv</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>87</sid>
+      <path>/tmp</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/tmp</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>88</sid>
+      <path>/usr/local</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/usr/local</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>89</sid>
+      <path>/var/cache</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/cache</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>90</sid>
+      <path>/var/crash</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/crash</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>91</sid>
+      <path>/var/lib/libvirt/images</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/libvirt/images</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>92</sid>
+      <path>/var/lib/machines</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/machines</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>93</sid>
+      <path>/var/lib/mailman</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/mailman</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>94</sid>
+      <path>/var/lib/mariadb</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/mariadb</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>95</sid>
+      <path>/var/lib/mysql</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/mysql</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>96</sid>
+      <path>/var/lib/named</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/named</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>97</sid>
+      <path>/var/lib/pgsql</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/lib/pgsql</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>98</sid>
+      <path>/var/log</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/log</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>99</sid>
+      <path>/var/opt</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/opt</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>100</sid>
+      <path>/var/spool</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/spool</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>101</sid>
+      <path>/var/tmp</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>subvol=@/var/tmp</mount-options>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -317,133 +386,225 @@
       <source-sid>44</source-sid>
       <target-sid>46</target-sid>
     </User>
-    <Subdevice>
-      <source-sid>47</source-sid>
-      <target-sid>48</target-sid>
-    </Subdevice>
     <User>
-      <source-sid>45</source-sid>
+      <source-sid>46</source-sid>
       <target-sid>47</target-sid>
     </User>
     <Subdevice>
       <source-sid>48</source-sid>
       <target-sid>49</target-sid>
     </Subdevice>
+    <User>
+      <source-sid>45</source-sid>
+      <target-sid>48</target-sid>
+    </User>
+    <User>
+      <source-sid>48</source-sid>
+      <target-sid>50</target-sid>
+    </User>
     <Subdevice>
       <source-sid>49</source-sid>
-      <target-sid>50</target-sid>
-    </Subdevice>
-    <Subdevice>
-      <source-sid>50</source-sid>
       <target-sid>51</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>52</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>53</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>54</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>55</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>56</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>57</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>58</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>59</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>60</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>61</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>62</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>63</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>64</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>65</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>66</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>67</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>68</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>69</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>70</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>49</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>71</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>72</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>51</source-sid>
       <target-sid>73</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>74</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>75</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>76</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>77</target-sid>
     </Subdevice>
     <Subdevice>
-      <source-sid>50</source-sid>
+      <source-sid>52</source-sid>
       <target-sid>78</target-sid>
     </Subdevice>
+    <Subdevice>
+      <source-sid>52</source-sid>
+      <target-sid>79</target-sid>
+    </Subdevice>
+    <Subdevice>
+      <source-sid>52</source-sid>
+      <target-sid>80</target-sid>
+    </Subdevice>
+    <User>
+      <source-sid>52</source-sid>
+      <target-sid>81</target-sid>
+    </User>
+    <User>
+      <source-sid>54</source-sid>
+      <target-sid>82</target-sid>
+    </User>
+    <User>
+      <source-sid>55</source-sid>
+      <target-sid>83</target-sid>
+    </User>
+    <User>
+      <source-sid>56</source-sid>
+      <target-sid>84</target-sid>
+    </User>
+    <User>
+      <source-sid>57</source-sid>
+      <target-sid>85</target-sid>
+    </User>
+    <User>
+      <source-sid>58</source-sid>
+      <target-sid>86</target-sid>
+    </User>
+    <User>
+      <source-sid>59</source-sid>
+      <target-sid>87</target-sid>
+    </User>
+    <User>
+      <source-sid>60</source-sid>
+      <target-sid>88</target-sid>
+    </User>
+    <User>
+      <source-sid>61</source-sid>
+      <target-sid>89</target-sid>
+    </User>
+    <User>
+      <source-sid>62</source-sid>
+      <target-sid>90</target-sid>
+    </User>
+    <User>
+      <source-sid>63</source-sid>
+      <target-sid>91</target-sid>
+    </User>
+    <User>
+      <source-sid>64</source-sid>
+      <target-sid>92</target-sid>
+    </User>
+    <User>
+      <source-sid>65</source-sid>
+      <target-sid>93</target-sid>
+    </User>
+    <User>
+      <source-sid>66</source-sid>
+      <target-sid>94</target-sid>
+    </User>
+    <User>
+      <source-sid>67</source-sid>
+      <target-sid>95</target-sid>
+    </User>
+    <User>
+      <source-sid>68</source-sid>
+      <target-sid>96</target-sid>
+    </User>
+    <User>
+      <source-sid>69</source-sid>
+      <target-sid>97</target-sid>
+    </User>
+    <User>
+      <source-sid>70</source-sid>
+      <target-sid>98</target-sid>
+    </User>
+    <User>
+      <source-sid>71</source-sid>
+      <target-sid>99</target-sid>
+    </User>
+    <User>
+      <source-sid>72</source-sid>
+      <target-sid>100</target-sid>
+    </User>
+    <User>
+      <source-sid>73</source-sid>
+      <target-sid>101</target-sid>
+    </User>
   </Holders>
 </Devicegraph>

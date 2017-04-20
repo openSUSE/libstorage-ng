@@ -60,6 +60,7 @@
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
 #include "storage/Filesystems/Nfs.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
@@ -634,7 +635,8 @@ namespace storage
 	{ "Swap", &Swap::load },
 	{ "Iso9660", &Iso9660::load },
 	{ "Udf", &Udf::load },
-	{ "Nfs", &Nfs::load }
+	{ "Nfs", &Nfs::load },
+	{ "MountPoint", &MountPoint::load }
     };
 
 
@@ -840,6 +842,8 @@ namespace storage
 		    out << ", color=\"#6622dd\", fillcolor=\"#bb99ff\"";
 		else if (is_mountable(device))
 		    out << ", color=\"#008800\", fillcolor=\"#99ee99\"";
+		else if (is_mount_point(device))
+		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else
 		    ST_THROW(LogicException("unknown Device subclass"));
 

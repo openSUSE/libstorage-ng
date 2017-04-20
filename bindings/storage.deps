@@ -32,6 +32,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/Mountable.h		\
 	${top_srcdir}/storage/Filesystems/Filesystem.h		\
 	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
+	${top_srcdir}/storage/Filesystems/MountPoint.h		\
 	${top_srcdir}/storage/Devices/Gpt.h			\
 	${top_srcdir}/storage/Devices/LvmLv.h			\
 	${top_srcdir}/storage/Devices/LvmVg.h			\

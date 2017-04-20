@@ -5,6 +5,8 @@
 noinst_LTLIBRARIES = libfilesystems.la
 
 libfilesystems_la_SOURCES =				\
+	MountPoint.h		MountPoint.cc		\
+	MountPointImpl.h	MountPointImpl.cc	\
 	Mountable.h		Mountable.cc		\
 	MountableImpl.h		MountableImpl.cc	\
 	Filesystem.h		Filesystem.cc		\
@@ -43,6 +45,7 @@ libfilesystems_la_SOURCES =				\
 pkgincludedir = $(includedir)/storage/Filesystems
 
 pkginclude_HEADERS =		\
+	MountPoint.h		\
 	Mountable.h		\
 	Filesystem.h		\
 	BlkFilesystem.h		\

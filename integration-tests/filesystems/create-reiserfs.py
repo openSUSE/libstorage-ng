@@ -20,7 +20,8 @@ partition.set_id(ID_LINUX)
 
 reiserfs = partition.create_blk_filesystem(FsType_REISERFS)
 reiserfs.set_label("TEST")
-reiserfs.add_mountpoint("/test")
+
+mount_point = reiserfs.create_mount_point("/test")
 
 print staging
 
