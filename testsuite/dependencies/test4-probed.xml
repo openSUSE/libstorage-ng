@@ -24,13 +24,21 @@
       <sid>43</sid>
       <label>hello</label>
       <uuid>20c3019f-457a-43dd-b623-a608b4770b20</uuid>
-      <mountpoint>/mnt</mountpoint>
     </Ext4>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/mnt</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
       <source-sid>42</source-sid>
       <target-sid>43</target-sid>
+    </User>
+    <User>
+      <source-sid>43</source-sid>
+      <target-sid>1000</target-sid>
     </User>
   </Holders>
 </Devicegraph>

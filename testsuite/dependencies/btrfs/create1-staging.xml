@@ -38,7 +38,6 @@
     </Partition>
     <Btrfs>
       <sid>129</sid>
-      <mountpoint>/</mountpoint>
     </Btrfs>
     <BtrfsSubvolume>
       <sid>130</sid>
@@ -48,12 +47,20 @@
     </BtrfsSubvolume>
     <BtrfsSubvolume>
       <sid>131</sid>
-      <mountpoint>/home</mountpoint>
-      <fstab-options>subvol=home</fstab-options>
       <id>-1</id>
       <path>home</path>
       <nocow>true</nocow>
     </BtrfsSubvolume>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -76,5 +83,13 @@
       <source-sid>130</source-sid>
       <target-sid>131</target-sid>
     </Subdevice>
+    <User>
+      <source-sid>129</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>131</source-sid>
+      <target-sid>1001</target-sid>
+    </User>
   </Holders>
 </Devicegraph>

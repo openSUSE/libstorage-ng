@@ -107,15 +107,21 @@
     <Ext4>
       <sid>66</sid>
       <uuid>9c690ff3-618f-4143-ade3-0c4971beeae5</uuid>
-      <mountpoint>/test1</mountpoint>
-      <mount-opts>defaults</mount-opts>
     </Ext4>
     <Ext4>
       <sid>67</sid>
       <uuid>6b95de25-8302-4e6c-b2c6-3a4dcfd21b6a</uuid>
-      <mountpoint>/test2</mountpoint>
-      <mount-opts>defaults</mount-opts>
     </Ext4>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/test1</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/test2</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -157,6 +163,14 @@
     <User>
       <source-sid>48</source-sid>
       <target-sid>67</target-sid>
+    </User>
+    <User>
+      <source-sid>66</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>67</source-sid>
+      <target-sid>1001</target-sid>
     </User>
   </Holders>
 </Devicegraph>

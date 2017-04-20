@@ -48,11 +48,16 @@
     </Partition>
     <Ext4>
       <sid>47</sid>
-      <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
-      <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
       <mount-opts>acl,user_xattr</mount-opts>
+      <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
     </Ext4>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>acl,user_xattr</mount-options>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -70,6 +75,10 @@
     <User>
       <source-sid>44</source-sid>
       <target-sid>47</target-sid>
+    </User>
+    <User>
+      <source-sid>47</source-sid>
+      <target-sid>1000</target-sid>
     </User>
   </Holders>
 </Devicegraph>

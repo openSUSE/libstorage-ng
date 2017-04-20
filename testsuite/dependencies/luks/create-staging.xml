@@ -54,19 +54,29 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr_home</dm-table-name>
+      <uuid></uuid>
       <password>12345678</password>
     </Luks>
     <Ext4>
       <sid>47</sid>
-      <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
-      <mountpoint>/</mountpoint>
       <mount-by>uuid</mount-by>
       <mount-opts>acl,user_xattr</mount-opts>
+      <uuid>2c724d55-2b15-4cf4-afa6-2b8abe968ffb</uuid>
     </Ext4>
     <Xfs>
       <sid>48</sid>
-      <mountpoint>/home</mountpoint>
     </Xfs>
+    <MountPoint>
+      <sid>1000</sid>
+      <path>/</path>
+      <mount-by>uuid</mount-by>
+      <mount-options>acl,user_xattr</mount-options>
+    </MountPoint>
+    <MountPoint>
+      <sid>1001</sid>
+      <path>/home</path>
+      <mount-by>device</mount-by>
+    </MountPoint>
   </Devices>
   <Holders>
     <User>
@@ -92,6 +102,14 @@
     <User>
       <source-sid>46</source-sid>
       <target-sid>48</target-sid>
+    </User>
+    <User>
+      <source-sid>47</source-sid>
+      <target-sid>1000</target-sid>
+    </User>
+    <User>
+      <source-sid>48</source-sid>
+      <target-sid>1001</target-sid>
     </User>
   </Holders>
 </Devicegraph>

@@ -2,8 +2,8 @@
 1b - Shrink partition /dev/sdb7 from 2.00 GiB to 1.00 GiB -> 2
 2 - Delete partition /dev/sdb6 (2.00 GiB) -> 3
 3 - Delete partition /dev/sdb5 (2.00 GiB) -> 4
-4 - Rename mountpoint /test1 from /dev/sdb7 to /dev/sdb5 in /etc/fstab -> 5
-5 - Rename mountpoint /test2 from /dev/sdb8 to /dev/sdb6 in /etc/fstab -> 6
+4 - Rename mount point /test1 from /dev/sdb7 to /dev/sdb5 in /etc/fstab -> 5
+5 - Rename mount point /test2 from /dev/sdb8 to /dev/sdb6 in /etc/fstab -> 6
 6 - Create logical partition /dev/sdb7 (2.00 GiB) -> 7
 7 - Create logical partition /dev/sdb8 (2.00 GiB) -> 8a
 8a - Grow partition /dev/sdb6 from 2.00 GiB to 3.00 GiB -> 8b

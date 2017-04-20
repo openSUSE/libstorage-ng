@@ -1,7 +1,7 @@
-1a - Remove mountpoint /test1 of /dev/sda1 from /etc/fstab -> 1b
+1a - Remove mount point /test1 of /dev/sda1 from /etc/fstab -> 1b
 1b - Unmount /dev/sda1 at /test1 -> 3
 
-2a - Remove mountpoint /test2 of /dev/sda1 from /etc/fstab -> 2b
+2a - Remove mount point /test2 of /dev/sda1 from /etc/fstab -> 2b
 2b - Unmount /dev/sda1 at /test2 -> 3
 
 3 - Delete partition /dev/sda1 (1.46 GiB) ->

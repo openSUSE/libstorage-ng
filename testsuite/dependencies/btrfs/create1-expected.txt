@@ -1,9 +1,9 @@
-1a - Create btrfs on /dev/sdb1 (7.63 GiB) -> 1b
+1a - Create btrfs on /dev/sdb1 (7.63 GiB) -> 1b 2a
 1b - Mount /dev/sdb1 at / -> 1c 2c
-1c - Add mountpoint / of /dev/sdb1 to /etc/fstab -> 2a
+1c - Add mount point / of /dev/sdb1 to /etc/fstab ->
 
 2a - Create subvolume home on /dev/sdb1 -> 2b
 2b - Set option 'no copy on write' for subvolume home on /dev/sdb1 -> 2c
 2c - Mount subvolume home on /dev/sdb1 at /home -> 2d
-2d - Add mountpoint /home of subvolume home on /dev/sdb1 to /etc/fstab ->
+2d - Add mount point /home of subvolume home on /dev/sdb1 to /etc/fstab ->
 
