@@ -241,6 +241,10 @@ namespace storage
 	void set_dump_pass  ( int		new_val ) { dump_pass	= new_val; }
 	void set_fsck_pass  ( int		new_val ) { fsck_pass	= new_val; }
 
+	/**
+	 * Convenience function calling EtcFstab::get_mount_by(get_device()).
+	 */
+	MountByType get_mount_by() const;
 
     private:
 

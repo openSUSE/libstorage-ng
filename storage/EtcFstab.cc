@@ -210,7 +210,7 @@ namespace storage
                 set_column( col++, "unknown" );
             }
         }
-        
+
 	set_column( col++, mount_opts.format() );
 	set_column( col++, std::to_string( dump_pass ) );
 	set_column( col++, std::to_string( fsck_pass ) );
@@ -248,6 +248,12 @@ namespace storage
 	return true; // success
     }
 
+
+    MountByType
+    FstabEntry::get_mount_by() const
+    {
+	return EtcFstab::get_mount_by(device);
+    }
 
 
 
