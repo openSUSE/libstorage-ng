@@ -139,10 +139,10 @@ namespace storage
 	storage::log_diff(log, "mount-options", mount_options.get_opts(), rhs.mount_options.get_opts());
 
 	storage::log_diff(log, "freq", freq, rhs.freq);
- 	storage::log_diff(log, "passno", passno, rhs.passno);
+	storage::log_diff(log, "passno", passno, rhs.passno);
 
 	storage::log_diff(log, "active", active, rhs.active);
- 	storage::log_diff(log, "in-etc-fstab", in_etc_fstab, rhs.in_etc_fstab);
+	storage::log_diff(log, "in-etc-fstab", in_etc_fstab, rhs.in_etc_fstab);
     }
 
 

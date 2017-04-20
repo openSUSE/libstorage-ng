@@ -64,8 +64,8 @@ namespace storage
 	void set_default_mount_by();
 
 	const MountOpts& get_mount_options() const { return mount_options; }
-        void set_mount_options(const MountOpts& mount_options);
-        void set_mount_options(const vector<string>& mount_options);
+	void set_mount_options(const MountOpts& mount_options);
+	void set_mount_options(const vector<string>& mount_options);
 
 	void set_default_mount_options();
 
@@ -93,11 +93,11 @@ namespace storage
 	const MountPoint* get_mount_point() const { return to_mount_point(get_device()); }
 
 	/**
-         * Get the device name that was used in /etc/fstab.
-         * This is empty if this filesystem was not in /etc/fstab during probing.
-         **/
-        const string& get_fstab_device_name() const { return fstab_device_name; }
-        void set_fstab_device_name(const string& name) { Impl::fstab_device_name = name; }
+	 * Get the device name that was used in /etc/fstab.
+	 * This is empty if this filesystem was not in /etc/fstab during probing.
+	 **/
+	const string& get_fstab_device_name() const { return fstab_device_name; }
+	void set_fstab_device_name(const string& name) { Impl::fstab_device_name = name; }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
