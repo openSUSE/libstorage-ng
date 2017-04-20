@@ -18,11 +18,11 @@ staging = storage.get_staging()
 
 print staging
 
-filesystems = Filesystem.find_by_mountpoint(staging, "/test")
+mount_points = MountPoint.find_by_path(staging, "/test")
 
-if not filesystems.empty():
+if not mount_points.empty():
 
-    filesystem = filesystems[0]
+    filesystem = to_filesystem(mount_points[0].get_mountable())
 
     space_info = filesystem.detect_space_info()
 
