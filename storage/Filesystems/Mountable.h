@@ -77,10 +77,10 @@ namespace storage
 	MountByType get_mount_by() const ST_DEPRECATED;
 	void set_mount_by(MountByType mount_by) ST_DEPRECATED;
 
-	std::vector<std::string> get_mount_opts() const ST_DEPRECATED;
+	const std::vector<std::string>& get_mount_opts() const ST_DEPRECATED;
 	void set_mount_opts(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
 
-	std::vector<std::string> get_fstab_options() const ST_DEPRECATED;
+	const std::vector<std::string>& get_fstab_options() const ST_DEPRECATED;
 	void set_fstab_options(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
 
 	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,

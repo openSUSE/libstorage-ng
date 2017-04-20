@@ -154,7 +154,7 @@ namespace storage
     }
 
 
-    vector<string>
+    const vector<string>&
     Mountable::get_mount_opts() const
     {
 	if (has_mount_point())
@@ -163,7 +163,8 @@ namespace storage
 	    return mount_point->get_mount_options();
 	}
 
-	return vector<string>();
+	static const vector<string> empty;
+	return empty;
     }
 
 
@@ -175,7 +176,7 @@ namespace storage
     }
 
 
-    vector<string>
+    const vector<string>&
     Mountable::get_fstab_options() const
     {
 	return get_mount_opts();
