@@ -391,7 +391,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(top_level, false);
 
-	string full_path = ensure_mounted.get_any_mountpoint() + "/" + path;
+	string full_path = ensure_mounted.get_any_mount_point() + "/" + path;
 	string full_dirname = dirname(full_path);
 
 	if (access(full_dirname.c_str(), R_OK ) != 0)
@@ -404,7 +404,7 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create BtrfsSubvolume failed"));
 
-	probe_id(ensure_mounted.get_any_mountpoint());
+	probe_id(ensure_mounted.get_any_mount_point());
     }
 
 
@@ -524,7 +524,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = CHATTRBIN " " + string(nocow ? "+" : "-") + "C " +
-	    quote(ensure_mounted.get_any_mountpoint() + "/" + path);
+	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -560,7 +560,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = BTRFSBIN " subvolume set-default " + to_string(id) + " " +
-	    quote(ensure_mounted.get_any_mountpoint());
+	    quote(ensure_mounted.get_any_mount_point());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -596,7 +596,7 @@ namespace storage
 	EnsureMounted ensure_mounted(top_level, false);
 
 	string cmd_line = BTRFSBIN " subvolume delete " +
-	    quote(ensure_mounted.get_any_mountpoint() + "/" + path);
+	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

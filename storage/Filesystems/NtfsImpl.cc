@@ -99,7 +99,7 @@ namespace storage
 
 	ContentInfo content_info;
 
-	content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
+	content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mount_point());
 
 	return content_info;
     }

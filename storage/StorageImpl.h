@@ -79,7 +79,7 @@ namespace storage
 	const string& get_rootprefix() const { return rootprefix; }
 	void set_rootprefix(const string& rootprefix) { Impl::rootprefix = rootprefix; }
 
-	string prepend_rootprefix(const string& mountpoint) const;
+	string prepend_rootprefix(const string& mount_point) const;
 
 	const Actiongraph* calculate_actiongraph();
 

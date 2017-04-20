@@ -138,7 +138,7 @@ namespace storage
 	/**
 	 * Returns any mountpoint of the mountable.
 	 */
-	string get_any_mountpoint() const;
+	string get_any_mount_point() const;
 
     private:
 

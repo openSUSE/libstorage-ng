@@ -350,15 +350,15 @@ namespace storage
 
 
     string
-    Storage::Impl::prepend_rootprefix(const string& mountpoint) const
+    Storage::Impl::prepend_rootprefix(const string& mount_point) const
     {
-	if (mountpoint == "swap" || rootprefix.empty())
-	    return mountpoint;
+	if (mount_point == "swap" || rootprefix.empty())
+	    return mount_point;
 
-	if (mountpoint == "/")
+	if (mount_point == "/")
 	    return rootprefix;
 	else
-	    return rootprefix + mountpoint;
+	    return rootprefix + mount_point;
     }
 
 

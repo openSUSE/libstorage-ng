@@ -178,9 +178,9 @@ namespace storage
 
 
     string
-    Storage::prepend_rootprefix(const std::string& mountpoint) const
+    Storage::prepend_rootprefix(const std::string& mount_point) const
     {
-	return get_impl().prepend_rootprefix(mountpoint);
+	return get_impl().prepend_rootprefix(mount_point);
     }
 
 

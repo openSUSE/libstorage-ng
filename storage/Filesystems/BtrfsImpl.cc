@@ -206,15 +206,15 @@ namespace storage
 	subvolumes_by_id[top_level->get_id()] = top_level;
 
 	unique_ptr<EnsureMounted> ensure_mounted;
-	string mountpoint = "/tmp/does-not-matter";
+	string mount_point = "/tmp/does-not-matter";
 	if (Mockup::get_mode() != Mockup::Mode::PLAYBACK)
 	{
 	    ensure_mounted.reset(new EnsureMounted(top_level));
-	    mountpoint = ensure_mounted->get_any_mountpoint();
+	    mount_point = ensure_mounted->get_any_mount_point();
 	}
 
 	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
-	    systeminfo.getCmdBtrfsSubvolumeList(blk_device->get_name(), mountpoint);
+	    systeminfo.getCmdBtrfsSubvolumeList(blk_device->get_name(), mount_point);
 
 	// Children can be listed after parents in output of 'btrfs subvolume
 	// list ...' so several passes over the list of subvolumes are needed.
@@ -237,13 +237,13 @@ namespace storage
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
 	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[subvolume.id];
-	    btrfs_subvolume->get_impl().probe_pass_3(probed, systeminfo, fstab, mountpoint);
+	    btrfs_subvolume->get_impl().probe_pass_3(probed, systeminfo, fstab, mount_point);
 	}
 
 	if (subvolumes_by_id.size() > 1)
 	{
 	    const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default =
-		systeminfo.getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mountpoint);
+		systeminfo.getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mount_point);
 	    subvolumes_by_id[cmd_btrfs_subvolume_get_default.get_id()]->get_impl().set_default_btrfs_subvolume();
 	}
     }

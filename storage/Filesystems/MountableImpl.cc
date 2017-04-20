@@ -392,7 +392,7 @@ namespace storage
 
 
     string
-    EnsureMounted::get_any_mountpoint() const
+    EnsureMounted::get_any_mount_point() const
     {
 	if (tmp_mount)
 	    return tmp_mount->get_fullname();

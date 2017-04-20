@@ -191,7 +191,7 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem());
 
-	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mountpoint());
+	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
 
 	ResizeInfo resize_info(true);
 	resize_info.min_size = stat_vfs.size - stat_vfs.free;
@@ -229,7 +229,7 @@ namespace storage
 	ContentInfo content_info;
 	content_info.is_windows = false;
 	content_info.is_efi = false;
-	content_info.num_homes = detect_num_homes(ensure_mounted.get_any_mountpoint());
+	content_info.num_homes = detect_num_homes(ensure_mounted.get_any_mount_point());
 
 	return content_info;
     }

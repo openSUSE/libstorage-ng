@@ -65,10 +65,10 @@ namespace storage
 
 	ContentInfo content_info;
 
-	if (detect_is_efi(ensure_mounted.get_any_mountpoint()))
+	if (detect_is_efi(ensure_mounted.get_any_mount_point()))
 	    content_info.is_efi = true;
 	else
-	    content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mountpoint());
+	    content_info.is_windows = detect_is_windows(ensure_mounted.get_any_mount_point());
 
 	return content_info;
     }
