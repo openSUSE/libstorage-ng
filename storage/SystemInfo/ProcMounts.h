@@ -54,7 +54,7 @@ namespace storage
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
          * do not delete them.
 	 */
-	vector<FstabEntry *> get_all_nfs() const;
+	vector<const FstabEntry*> get_all_nfs() const;
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 

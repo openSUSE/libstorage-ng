@@ -146,15 +146,15 @@ namespace storage
     }
 
 
-    vector<FstabEntry *>
+    vector<const FstabEntry*>
     ProcMounts::get_all_nfs() const
     {
-	vector<FstabEntry *> ret;
+	vector<const FstabEntry*> ret;
 
 	for (const value_type& value : data)
 	{
 	    if (value.second->get_fs_type() == FsType::NFS ||
-                value.second->get_fs_type() == FsType::NFS4  )
+                value.second->get_fs_type() == FsType::NFS4)
             {
 		ret.push_back(value.second);
             }
