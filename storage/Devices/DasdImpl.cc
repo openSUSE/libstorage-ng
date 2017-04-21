@@ -53,7 +53,8 @@ namespace storage
 
 
     Dasd::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false)
+	: Partitionable::Impl(node), rotational(false), dasd_type(DasdType::UNKNOWN),
+	  dasd_format(DasdFormat::NONE)
     {
 	string tmp;
 
