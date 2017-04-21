@@ -35,6 +35,7 @@ namespace storage
 {
 
     class MountPoint;
+    class Filesystem;
 
 
     enum class FsType {
@@ -83,6 +84,22 @@ namespace storage
 	 * @copydoc get_mount_point()
 	 */
 	const MountPoint* get_mount_point() const;
+
+	/**
+	 * Checks whether the mountable has a filesystem. Currently always true.
+	 */
+	bool has_filesystem() const;
+
+	/**
+	 * Return the filesystem of the mountable. Normally this is the same
+	 * object but for btrfs subvolumes the btrfs filesystem is returned.
+	 */
+	Filesystem* get_filesystem();
+
+	/**
+	 * @copydoc get_filesystem()
+	 */
+	const Filesystem* get_filesystem() const;
 
 	std::vector<std::string> get_mountpoints() const ST_DEPRECATED;
 	void set_mountpoints(const std::vector<std::string>& mountpoints) ST_DEPRECATED;

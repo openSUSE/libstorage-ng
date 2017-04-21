@@ -60,6 +60,11 @@ namespace storage
 	MountPoint* get_mount_point();
 	const MountPoint* get_mount_point() const;
 
+	virtual bool has_filesystem() const;
+
+	virtual Filesystem* get_filesystem();
+	virtual const Filesystem* get_filesystem() const;
+
 	virtual MountByType get_default_mount_by() const = 0;
 
 	virtual MountOpts get_default_mount_options() const;

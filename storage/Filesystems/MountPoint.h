@@ -51,10 +51,11 @@ namespace storage
 	void set_mount_by(const MountByType mount_by);
 
 	void set_default_mount_by();
-	void set_default_mount_options();
 
 	const std::vector<std::string>& get_mount_options() const;
 	void set_mount_options(const std::vector<std::string>& mount_options);
+
+	void set_default_mount_options();
 
 	int get_freq() const;
 

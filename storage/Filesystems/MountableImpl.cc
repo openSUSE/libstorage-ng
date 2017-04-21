@@ -120,6 +120,27 @@ namespace storage
     }
 
 
+    bool
+    Mountable::Impl::has_filesystem() const
+    {
+	return true;
+    }
+
+
+    Filesystem*
+    Mountable::Impl::get_filesystem()
+    {
+	return to_filesystem(get_device());
+    }
+
+
+    const Filesystem*
+    Mountable::Impl::get_filesystem() const
+    {
+	return to_filesystem(get_device());
+    }
+
+
     MountOpts
     Mountable::Impl::get_default_mount_options() const
     {

@@ -102,6 +102,27 @@ namespace storage
     }
 
 
+    bool
+    Mountable::has_filesystem() const
+    {
+	return get_impl().has_filesystem();
+    }
+
+
+    Filesystem*
+    Mountable::get_filesystem()
+    {
+	return get_impl().get_filesystem();
+    }
+
+
+    const Filesystem*
+    Mountable::get_filesystem() const
+    {
+	return get_impl().get_filesystem();
+    }
+
+
     vector<string>
     Mountable::get_mountpoints() const
     {
