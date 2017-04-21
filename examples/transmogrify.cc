@@ -1,7 +1,7 @@
 
 #include <iostream>
 
-#include "storage/StorageImpl.h"
+#include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/Logger.h"
