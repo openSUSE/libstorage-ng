@@ -78,7 +78,7 @@ So far there is no global find function. There have been some proposals, e.g.
 
 ```
 f = Storage.find(device_graph, "filesystem");
-f.add_filter("mountpoint", "/");
+f.add_filter("mount_point", "/");
 f.first();
 ```
 
