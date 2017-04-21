@@ -63,11 +63,25 @@ namespace storage
 	static std::vector<Mountable*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Mountable*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Create a new mount point for the mountable with path. It will also
+	 * set the default mount-by method and the default mount options.
+	 */
 	MountPoint* create_mount_point(const std::string& path);
 
+	/**
+	 * Checks whether the mountable has a mount point.
+	 */
 	bool has_mount_point() const;
 
+	/**
+	 * Returns the mount point of the mountable.
+	 */
 	MountPoint* get_mount_point();
+
+	/**
+	 * @copydoc get_mount_point()
+	 */
 	const MountPoint* get_mount_point() const;
 
 	std::vector<std::string> get_mountpoints() const ST_DEPRECATED;
