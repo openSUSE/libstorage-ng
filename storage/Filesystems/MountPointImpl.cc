@@ -90,6 +90,16 @@ namespace storage
     }
 
 
+    void
+    MountPoint::Impl::check() const
+    {
+        Device::Impl::check();
+
+        if (!has_single_parent_of_type<const Mountable>())
+            ST_THROW(Exception("Mountable parent missing"));
+    }
+
+
     bool
     MountPoint::Impl::valid_path(const string& path)
     {

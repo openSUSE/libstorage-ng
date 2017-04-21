@@ -81,6 +81,9 @@ namespace storage
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
+	virtual Filesystem* get_filesystem() override;
+	virtual const Filesystem* get_filesystem() const override;
+
 	virtual FsType get_mount_type() const override { return FsType::BTRFS; }
 
 	virtual string get_mount_name() const override;

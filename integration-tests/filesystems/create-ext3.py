@@ -20,7 +20,8 @@ partition.set_id(ID_LINUX)
 
 ext3 = partition.create_blk_filesystem(FsType_EXT3)
 ext3.set_label("TEST")
-ext3.add_mountpoint("/test")
+
+mount_point = ext3.create_mount_point("/test")
 
 print staging
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: filesystem mounted at /test
+# requirements: something mounted at /test
 
 
 from sys import exit
@@ -18,11 +18,11 @@ staging = storage.get_staging()
 
 print staging
 
-filesystems = Filesystem.find_by_mountpoint(staging, "/test")
+mount_points = MountPoint.find_by_path(staging, "/test")
 
-if not filesystems.empty():
+if not mount_points.empty():
 
-    filesystem = filesystems[0]
+    filesystem = mount_points[0].get_mountable().get_filesystem()
 
     space_info = filesystem.detect_space_info()
 
@@ -30,5 +30,4 @@ if not filesystems.empty():
 
     print byte_to_humanstring(space_info.size, False, 2, True)
     print byte_to_humanstring(space_info.used, False, 2, True)
-
 

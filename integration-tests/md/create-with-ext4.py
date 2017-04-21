@@ -30,8 +30,8 @@ sdb2.set_id(ID_RAID)
 
 ext4 = md.create_blk_filesystem(FsType_EXT4)
 ext4.set_label("TEST")
-ext4.add_mountpoint("/test")
-ext4.set_mount_by(MountByType_UUID)
+
+mount_point = ext4.create_mount_point("/test")
 
 print staging
 

@@ -120,6 +120,27 @@ namespace storage
     }
 
 
+    bool
+    Mountable::Impl::has_filesystem() const
+    {
+	return true;
+    }
+
+
+    Filesystem*
+    Mountable::Impl::get_filesystem()
+    {
+	return to_filesystem(get_device());
+    }
+
+
+    const Filesystem*
+    Mountable::Impl::get_filesystem() const
+    {
+	return to_filesystem(get_device());
+    }
+
+
     MountOpts
     Mountable::Impl::get_default_mount_options() const
     {
@@ -210,9 +231,9 @@ namespace storage
     {
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
-	string real_mountpoint = storage.get_impl().prepend_rootprefix(mount_point->get_path());
+	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
 
-	string cmd_line = UMOUNTBIN " " + quote(real_mountpoint);
+	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);

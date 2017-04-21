@@ -51,10 +51,11 @@ namespace storage
 	void set_mount_by(const MountByType mount_by);
 
 	void set_default_mount_by();
-	void set_default_mount_options();
 
 	const std::vector<std::string>& get_mount_options() const;
 	void set_mount_options(const std::vector<std::string>& mount_options);
+
+	void set_default_mount_options();
 
 	int get_freq() const;
 
@@ -66,9 +67,20 @@ namespace storage
 	bool is_in_etc_fstab() const;
 	void set_in_etc_fstab(bool in_etc_fstab);
 
+	/**
+	 * Checks whether the mount point has a mountable. This is usally true
+	 * unless the devicegraph is broken.
+	 */
 	bool has_mountable() const;
 
+	/**
+	 * Return the mountable of the mount point.
+	 */
 	Mountable* get_mountable();
+
+	/**
+	 * @copydoc get_mountable()
+	 */
 	const Mountable* get_mountable() const;
 
 	static std::vector<MountPoint*> find_by_path(const Devicegraph* devicegraph,

@@ -147,6 +147,20 @@ namespace storage
     }
 
 
+    Filesystem*
+    BtrfsSubvolume::Impl::get_filesystem()
+    {
+	return get_btrfs();
+    }
+
+
+    const Filesystem*
+    BtrfsSubvolume::Impl::get_filesystem() const
+    {
+	return get_btrfs();
+    }
+
+
     string
     BtrfsSubvolume::Impl::get_mount_name() const
     {

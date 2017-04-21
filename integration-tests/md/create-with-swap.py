@@ -29,8 +29,8 @@ md.add_device(sdb2)
 sdb2.set_id(ID_RAID)
 
 swap = md.create_blk_filesystem(FsType_SWAP)
-swap.add_mountpoint("swap")
-swap.set_mount_by(MountByType_UUID)
+
+mount_point = swap.create_mount_point("swap")
 
 print staging
 

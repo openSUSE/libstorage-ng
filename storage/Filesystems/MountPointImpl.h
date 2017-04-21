@@ -127,6 +127,8 @@ namespace storage
 
 	void save(xmlNode* node) const override;
 
+	virtual void check() const;
+
     private:
 
 	string path;
