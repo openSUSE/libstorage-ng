@@ -108,8 +108,7 @@ namespace storage
     Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
-	lhs->check();
-	rhs->check();
+	storage.check();
 
 	Stopwatch stopwatch;
 

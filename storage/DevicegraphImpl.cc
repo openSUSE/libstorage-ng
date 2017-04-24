@@ -161,6 +161,7 @@ namespace storage
     {
 	{
 	    // check uniqueness of device and holder object and sid
+
 	    // check device and holder back reference
 
 	    set<const Device*> devices;
