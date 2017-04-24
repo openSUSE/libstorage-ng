@@ -340,12 +340,37 @@ namespace storage
     void
     Storage::Impl::check() const
     {
+	// check all devicegraphs
+
+	// check that all objects with the same sid have the same type in all
+	// devicegraphs
+
+	map<sid_t, set<string>> all_sids_with_types;
+
 	for (const map<string, Devicegraph>::value_type& key_value : devicegraphs)
 	{
-	    key_value.second.check();
+	    const Devicegraph& devicegraph = key_value.second;
+
+	    devicegraph.check();
+
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph.get_impl().vertices())
+	    {
+		const Device* device = devicegraph.get_impl()[vertex];
+		all_sids_with_types[device->get_sid()].insert(device->get_impl().get_classname());
+	    }
 	}
 
-	// TODO check that a object has the same type in every devicegraph
+	for (const map<sid_t, set<string>>::value_type& key_value : all_sids_with_types)
+	{
+	    if (key_value.second.size() != 1)
+	    {
+		stringstream tmp;
+		tmp << key_value.second;
+
+		ST_THROW(Exception(sformat("objects with sid %d have different types %s", key_value.first,
+					   tmp.str().c_str())));
+	    }
+	}
     }
 
 
