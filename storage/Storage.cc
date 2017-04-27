@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,9 +32,10 @@ namespace storage
     using std::vector;
 
 
-    Storage::Storage(const Environment& environment)
-	: impl(new Impl(*this, environment))
+    Storage::Storage(const Environment& environment, const ActivationCallbacks* activation_callbacks)
+	: impl(new Impl(*this, environment, activation_callbacks))
     {
+	get_impl().activation();
 	get_impl().initialize_standard_devicegraphs();
     }
 

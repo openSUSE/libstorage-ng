@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
@@ -74,7 +75,25 @@ namespace storage
     class Actiongraph;
 
 
+    /**
+     *
+     *
+     * Other storage subsystems are activated automatically, e.g. LVM and MD
+     * RAID. This cannot be controlled since it is partly done by udev. This
+     * also means that the callbacks may change anytime when e.g. udev
+     * changes.
+     */
+    class ActivationCallbacks
     {
+    public:
+
+	virtual ~ActivationCallbacks() {}
+
+	virtual bool multipath() const = 0;
+
+	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
+
+    };
 
 
     class CommitCallbacks
@@ -94,7 +113,7 @@ namespace storage
     {
     public:
 
-	Storage(const Environment& environment);
+	Storage(const Environment& environment, const ActivationCallbacks* activation_callbacks = nullptr);
 	~Storage();
 
     public:

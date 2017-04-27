@@ -46,12 +46,43 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(const Storage& storage, const Environment& environment)
-	: storage(storage), environment(environment), arch(false),
-	  default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
+    Storage::Impl::Impl(const Storage& storage, const Environment& environment,
+			const ActivationCallbacks* activation_callbacks)
+	: storage(storage), environment(environment), activation_callbacks(activation_callbacks),
+	  arch(false), default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
+    }
+
+
+    void
+    Storage::Impl::activation()
+    {
+	if (!activation_callbacks)
+	    return;
+
+	y2mil("activation begin");
+
+	// TODO Multipath
+
+	while (true)
+	{
+	    bool again = false;
+
+	    // TODO Md
+
+	    if (LvmLv::Impl::activate_lvm_lvs(activation_callbacks))
+		again = true;
+
+	    if (Luks::Impl::activate_lukses(activation_callbacks))
+		again = true;
+
+	    if (!again)
+		break;
+	}
+
+	y2mil("activation end");
     }
 
 
