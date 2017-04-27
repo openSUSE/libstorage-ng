@@ -25,6 +25,7 @@
 
 
 #include <functional>
+#include <algorithm>
 #include <ostream>
 #include <fstream>
 #include <sstream>
