@@ -59,8 +59,7 @@ namespace storage
     void
     Storage::Impl::activate(const ActivateCallbacks* activate_callbacks) const
     {
-	if (!activate_callbacks)
-	    return;
+	ST_CHECK_PTR(activate_callbacks);
 
 	y2mil("activate begin");
 

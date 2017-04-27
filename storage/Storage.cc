@@ -35,7 +35,9 @@ namespace storage
     Storage::Storage(const Environment& environment, const ActivateCallbacks* activate_callbacks)
 	: impl(new Impl(*this, environment, activate_callbacks))
     {
-	get_impl().activate(activate_callbacks);
+	if (activate_callbacks)
+	    get_impl().activate(activate_callbacks);
+
 	get_impl().initialize_standard_devicegraphs();
     }
 
