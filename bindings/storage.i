@@ -16,8 +16,8 @@
 
 %include "storage-catches.i"
 
+%feature("director") storage::ActivateCallbacks;
 %feature("director") storage::CommitCallbacks;
-%feature("director") storage::ActivationCallbacks;
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::Logger;
 

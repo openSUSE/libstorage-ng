@@ -9,10 +9,10 @@ from storageitu import *
 set_logger(get_logfile_logger())
 
 
-class MyActivationCallbacks(ActivationCallbacks):
+class MyActivateCallbacks(ActivateCallbacks):
 
     def __init__(self):
-        super(MyActivationCallbacks, self).__init__()
+        super(MyActivateCallbacks, self).__init__()
 
     def multipath(self):
         print "multipath callback"
@@ -25,9 +25,9 @@ class MyActivationCallbacks(ActivationCallbacks):
         else:
             return PairBoolString(True, "wrong")
 
-my_activation_callbacks = MyActivationCallbacks()
+my_activate_callbacks = MyActivateCallbacks()
 
 environment = Environment(False)
 
-storage = Storage(environment, my_activation_callbacks)
+storage = Storage(environment, my_activate_callbacks)
 

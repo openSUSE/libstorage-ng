@@ -83,11 +83,11 @@ namespace storage
      * also means that the callbacks may change anytime when e.g. udev
      * changes.
      */
-    class ActivationCallbacks
+    class ActivateCallbacks
     {
     public:
 
-	virtual ~ActivationCallbacks() {}
+	virtual ~ActivateCallbacks() {}
 
 	virtual bool multipath() const = 0;
 
@@ -113,7 +113,12 @@ namespace storage
     {
     public:
 
-	Storage(const Environment& environment, const ActivationCallbacks* activation_callbacks = nullptr);
+	// TODO Controlling activation via the callback pointer is not
+	// nice. It would be better to just use the activate() function but
+	// then the constructor cannot do the probing. Maybe add a probe()
+	// function.
+	Storage(const Environment& environment, const ActivateCallbacks* activate_callbacks = nullptr);
+
 	~Storage();
 
     public:
@@ -181,6 +186,11 @@ namespace storage
 	 * devicegraph is modified.
 	 */
 	const Actiongraph* calculate_actiongraph();
+
+	/**
+	 * Activate devices like multipath, MD RAID, LVM and LUKS.
+	 */
+	void activate(const ActivateCallbacks* activate_callbacks);
 
 	/**
 	 * The actiongraph must be valid.

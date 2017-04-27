@@ -89,7 +89,7 @@ namespace storage
 
 
     bool
-    Luks::Impl::activate_luks(const ActivationCallbacks* activation_callbacks, SystemInfo& systeminfo,
+    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& systeminfo,
 			      const string& name, const string& uuid)
     {
 	int attempt = 1;
@@ -97,7 +97,7 @@ namespace storage
 
 	while (true)
 	{
-	    pair<bool, string> tmp = activation_callbacks->luks(uuid, attempt);
+	    pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
 	    if (!tmp.first)
 		return false;
 
@@ -128,7 +128,7 @@ namespace storage
 
 
     bool
-    Luks::Impl::activate_lukses(const ActivationCallbacks* activation_callbacks)
+    Luks::Impl::activate_lukses(const ActivateCallbacks* activate_callbacks)
     {
 	y2mil("activate_lukses");
 
@@ -159,7 +159,7 @@ namespace storage
 	    // case the activation is run again, e.g. after deactivation and
 	    // reprobe.
 
-	    if (activate_luks(activation_callbacks, systeminfo, key_value1.first,
+	    if (activate_luks(activate_callbacks, systeminfo, key_value1.first,
 			      key_value1.second.luks_uuid))
 		ret = true;
 	}

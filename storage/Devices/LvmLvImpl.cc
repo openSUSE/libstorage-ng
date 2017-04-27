@@ -97,7 +97,7 @@ namespace storage
 
 
     bool
-    LvmLv::Impl::activate_lvm_lvs(const ActivationCallbacks* activation_callbacks)
+    LvmLv::Impl::activate_lvm_lvs(const ActivateCallbacks* activate_callbacks)
     {
 	y2mil("activate_lvm_lvs");
 

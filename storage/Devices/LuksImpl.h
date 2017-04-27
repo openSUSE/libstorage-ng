@@ -37,7 +37,7 @@ namespace storage
 
     using namespace std;
 
-    class ActivationCallbacks;
+    class ActivateCallbacks;
 
 
     template <> struct DeviceTraits<Luks> { static const char* classname; };
@@ -61,10 +61,10 @@ namespace storage
 	 */
 	static string next_free_cr_auto_name(SystemInfo& systeminfo);
 
-	static bool activate_luks(const ActivationCallbacks* activation_callbacks,
+	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
 				  SystemInfo& systeminfo, const string& name, const string& uuid);
 
-	static bool activate_lukses(const ActivationCallbacks* activation_callbacks);
+	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);
 
 	static void probe_lukses(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;

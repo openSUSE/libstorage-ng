@@ -34,7 +34,7 @@ namespace storage
 
     using namespace std;
 
-    class ActivationCallbacks;
+    class ActivateCallbacks;
 
 
     template <> struct DeviceTraits<LvmLv> { static const char* classname; };
@@ -51,7 +51,7 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_lv_name(); }
 
-	static bool activate_lvm_lvs(const ActivationCallbacks* activation_callbacks);
+	static bool activate_lvm_lvs(const ActivateCallbacks* activate_callbacks);
 
 	static void probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
