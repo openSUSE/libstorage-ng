@@ -129,3 +129,7 @@
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string&);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string&);
 
+%catches(storage::DifferentBlockSizes) storage::Region::operator==(const Region&) const;
+%catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region&) const;
+%catches(storage::DifferentBlockSizes) storage::Region::operator<(const Region&) const;
+%catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region&) const;
