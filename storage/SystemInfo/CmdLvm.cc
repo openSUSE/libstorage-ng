@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -159,6 +159,13 @@ namespace storage
 	}
 
 	ST_THROW(Exception("lv not found by lv-uuid"));
+    }
+
+
+    size_t
+    CmdLvs::number_of_inactive() const
+    {
+	return count_if(lvs.begin(), lvs.end(), [](const Lv& lv) { return !lv.active; });
     }
 
 

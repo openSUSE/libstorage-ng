@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -91,6 +91,8 @@ namespace storage
 	const vector<Lv>& get_lvs() const { return lvs; }
 
 	const Lv& find_by_lv_uuid(const string& lv_uuid) const;
+
+	size_t number_of_inactive() const;
 
     private:
 
