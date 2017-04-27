@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -68,6 +68,13 @@ namespace storage
 	}
 
 	y2mil(*this);
+    }
+
+
+    bool
+    CmdDmsetupInfo::exists(const string& name) const
+    {
+	return data.find(name) != data.end();
     }
 
 
@@ -159,6 +166,22 @@ namespace storage
 	    ST_THROW(Exception("dm table not found"));
 
 	return it->second;
+    }
+
+
+    CmdDmsetupTable::const_iterator
+    CmdDmsetupTable::find_using(dev_t majorminor) const
+    {
+	for (const_iterator it = begin(); it != end(); ++it)
+	{
+	    for (const Table& table : it->second)
+	    {
+		if (contains(table.majorminors, majorminor))
+		    return it;
+	    }
+	}
+
+	return data.end();
     }
 
 

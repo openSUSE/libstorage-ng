@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,6 +61,8 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
+	bool exists(const string& name) const;
+
 	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupInfo& cmd_dmsetup_info);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
@@ -103,6 +105,11 @@ namespace storage
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
+
+	/**
+	 * Find table using the device with major and minor number.
+	 */
+	const_iterator find_using(dev_t majorminor) const;
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdDmsetupTable& cmd_dmsetup_table);
 	friend std::ostream& operator<<(std::ostream& s, const Table& table);
