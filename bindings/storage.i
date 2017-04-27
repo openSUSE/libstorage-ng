@@ -17,6 +17,7 @@
 %include "storage-catches.i"
 
 %feature("director") storage::CommitCallbacks;
+%feature("director") storage::ActivationCallbacks;
 %feature("director") storage::RemoteCallbacks;
 %feature("director") storage::Logger;
 
@@ -89,6 +90,7 @@
 %include "std_string.i"
 %include "std_vector.i"
 %include "std_map.i"
+%include "std_pair.i"
 
 %include "../../storage/Utils/Swig.h"
 %include "../../storage/Utils/Logger.h"
