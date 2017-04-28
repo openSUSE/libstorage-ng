@@ -113,11 +113,10 @@ namespace storage
     {
     public:
 
-	// TODO Controlling activation via the callback pointer is not
-	// nice. It would be better to just use the activate() function but
-	// then the constructor cannot do the probing. Maybe add a probe()
-	// function.
-	Storage(const Environment& environment, const ActivateCallbacks* activate_callbacks = nullptr);
+	/**
+	 * Construct Storage object. Does not call activate() nor probe().
+	 */
+	Storage(const Environment& environment);
 
 	~Storage();
 
@@ -188,9 +187,16 @@ namespace storage
 	const Actiongraph* calculate_actiongraph();
 
 	/**
-	 * Activate devices like multipath, MD RAID, LVM and LUKS.
+	 * Activate devices like multipath, MD RAID, LVM and LUKS. It is not
+	 * required to have probed the system to call this function. On the
+	 * other hand after calling this function the system should be probed.
 	 */
-	void activate(const ActivateCallbacks* activate_callbacks);
+	void activate(const ActivateCallbacks* activate_callbacks) const;
+
+	/**
+	 * Probe the system and replace the probed and staging devicegraphs.
+	 */
+	void probe();
 
 	/**
 	 * The actiongraph must be valid.

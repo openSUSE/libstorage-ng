@@ -32,13 +32,9 @@ namespace storage
     using std::vector;
 
 
-    Storage::Storage(const Environment& environment, const ActivateCallbacks* activate_callbacks)
-	: impl(new Impl(*this, environment, activate_callbacks))
+    Storage::Storage(const Environment& environment)
+	: impl(new Impl(*this, environment))
     {
-	if (activate_callbacks)
-	    get_impl().activate(activate_callbacks);
-
-	get_impl().initialize_standard_devicegraphs();
     }
 
 
@@ -195,9 +191,16 @@ namespace storage
 
 
     void
-    Storage::activate(const ActivateCallbacks* activate_callbacks)
+    Storage::activate(const ActivateCallbacks* activate_callbacks) const
     {
 	get_impl().activate(activate_callbacks);
+    }
+
+
+    void
+    Storage::probe()
+    {
+	get_impl().probe();
     }
 
 

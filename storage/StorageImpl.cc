@@ -46,13 +46,21 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(const Storage& storage, const Environment& environment,
-			const ActivateCallbacks* activate_callbacks)
-	: storage(storage), environment(environment), activate_callbacks(activate_callbacks),
-	  arch(false), default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
+    Storage::Impl::Impl(const Storage& storage, const Environment& environment)
+	: storage(storage), environment(environment), arch(false), default_mount_by(MountByType::UUID),
+	  tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
+
+	create_devicegraph("probed");
+	copy_devicegraph("probed", "staging");
+    }
+
+
+    Storage::Impl::~Impl()
+    {
+	// TODO: Make sure logger is destroyed after this object
     }
 
 
@@ -86,29 +94,27 @@ namespace storage
 
 
     void
-    Storage::Impl::initialize_standard_devicegraphs()
+    Storage::Impl::probe()
     {
-	// This function is not called from the constructor Storage::Impl::Impl() since
-	// code below uses get_storage()->get_impl().xyz(). But Storage::impl, which is
-	// used in Storage::get_impl(), is only initialized in Storage::Storage() after
-	// Storage::Impl::Impl() has finished.
+	remove_devicegraph("probed");
+	remove_devicegraph("staging");
 
 	Devicegraph* probed = create_devicegraph("probed");
 
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
-		probe(probed);
+		probe_helper(probed);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
-		probe(probed);
+		probe_helper(probed);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::RECORD);
-		probe(probed);
+		probe_helper(probed);
 		Mockup::save(environment.get_mockup_filename());
 	    } break;
 
@@ -122,7 +128,7 @@ namespace storage
 	    case ProbeMode::READ_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::PLAYBACK);
 		Mockup::load(environment.get_mockup_filename());
-		probe(probed);
+		probe_helper(probed);
 	    } break;
 	}
 
@@ -134,14 +140,8 @@ namespace storage
     }
 
 
-    Storage::Impl::~Impl()
-    {
-	// TODO: Make sure logger is destroyed after this object
-    }
-
-
     void
-    Storage::Impl::probe(Devicegraph* probed)
+    Storage::Impl::probe_helper(Devicegraph* probed)
     {
 	SystemInfo systeminfo;
 
