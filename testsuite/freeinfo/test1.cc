@@ -29,6 +29,7 @@ BOOST_AUTO_TEST_CASE(load)
     environment.set_devicegraph_filename("test1-devicegraph.xml");
 
     Storage storage(environment);
+    storage.probe();
     storage.check();
 
     {

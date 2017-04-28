@@ -18,6 +18,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     environment.set_devicegraph_filename("probe.xml");
 
     Storage storage(environment);
+    storage.probe();
     storage.check();
 
     BOOST_CHECK_EQUAL(storage.get_devicegraph_names().size(), 2);

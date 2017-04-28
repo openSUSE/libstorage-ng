@@ -25,6 +25,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     environment.set_mockup_filename("bcache1-mockup.xml");
 
     Storage storage(environment);
+    storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
 
