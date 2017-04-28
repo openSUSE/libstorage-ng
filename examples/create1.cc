@@ -113,9 +113,10 @@ main()
     // Log into file (/var/log/libstorage-ng.log).
     set_logger(get_logfile_logger());
 
-    // Create storage object. This also does probing of all devices.
+    // Create storage object and probe system.
     Environment environment(false, ProbeMode::STANDARD, TargetMode::DIRECT);
     Storage storage(environment);
+    storage.probe();
 
     create(storage);
 

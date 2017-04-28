@@ -70,6 +70,7 @@ def doit():
         environment.set_mockup_filename("mockup.xml");
 
     storage = Storage(environment)
+    storage.probe
 
     print
 
