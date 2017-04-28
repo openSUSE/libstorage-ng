@@ -29,5 +29,6 @@ my_activate_callbacks = MyActivateCallbacks()
 
 environment = Environment(False)
 
-storage = Storage(environment, my_activate_callbacks)
+storage = Storage(environment)
+storage.activate(my_activate_callbacks)
 

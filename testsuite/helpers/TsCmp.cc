@@ -62,6 +62,7 @@ namespace storage
 	environment.set_devicegraph_filename(name + "-probed.xml");
 
 	Storage storage(environment);
+	storage.probe();
 	storage.get_staging()->load(name + "-staging.xml");
 
 	Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());

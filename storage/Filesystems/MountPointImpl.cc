@@ -68,6 +68,8 @@ namespace storage
 	if (getChildValue(node, "mount-options", tmp))
 	    mount_options.parse(tmp);
 
+	getChildValue(node, "in-etc-fstab", in_etc_fstab);
+
 	getChildValue(node, "freq", freq);
 	getChildValue(node, "passno", passno);
     }
@@ -84,6 +86,8 @@ namespace storage
 
 	if (!mount_options.empty())
 	    setChildValue(node, "mount-options", mount_options.format());
+
+	setChildValue(node, "in-etc-fstab", in_etc_fstab);
 
 	setChildValue(node, "freq", freq);
 	setChildValue(node, "passno", passno);

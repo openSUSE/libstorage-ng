@@ -31,6 +31,7 @@ doit()
     environment.set_mockup_filename("mockup.xml");
 
     Storage storage(environment);
+    storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
 

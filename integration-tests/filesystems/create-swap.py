@@ -10,6 +10,7 @@ from storageitu import *
 environment = Environment(False)
 
 storage = Storage(environment)
+storage.probe()
 
 staging = storage.get_staging()
 

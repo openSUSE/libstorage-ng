@@ -15,6 +15,7 @@ set_logger(get_logfile_logger())
 environment = Environment(False)
 
 storage = Storage(environment)
+storage.probe()
 
 staging = storage.get_staging()
 

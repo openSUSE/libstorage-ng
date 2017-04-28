@@ -25,6 +25,7 @@ doit(const string& filename)
     environment.set_devicegraph_filename(filename);
 
     Storage storage(environment);
+    storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
 

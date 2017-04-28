@@ -43,7 +43,7 @@ namespace storage
     {
     public:
 
-	Impl(const Storage& storage, const Environment& environment, const ActivateCallbacks* activate_callbacks);
+	Impl(const Storage& storage, const Environment& environment);
 	~Impl();
 
     public:
@@ -85,21 +85,19 @@ namespace storage
 
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
+	void probe();
+
 	void commit(const CommitCallbacks* commit_callbacks);
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 
-	void initialize_standard_devicegraphs();
-
     private:
 
-	void probe(Devicegraph* probed);
+	void probe_helper(Devicegraph* probed);
 
 	const Storage& storage;
 
 	const Environment environment;
-
-	const ActivateCallbacks* activate_callbacks;
 
 	Arch arch;
 

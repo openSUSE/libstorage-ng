@@ -21,6 +21,7 @@ doit(const string& filename, const vector<string>& commands)
     environment.set_devicegraph_filename(filename);
 
     Storage storage(environment);
+    storage.probe();
 
     Devicegraph* staging = storage.get_staging();
 
