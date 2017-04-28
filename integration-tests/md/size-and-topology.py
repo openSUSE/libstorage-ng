@@ -76,6 +76,7 @@ def doit(level, devices, chunk_size):
 
 def cleanup():
     storage = Storage(environment)
+    storage.probe()
     staging = storage.get_staging()
     md = Md.find_by_name(staging, "/dev/md0")
     staging.remove_device(md)
