@@ -66,13 +66,6 @@ namespace storage
     }
 
 
-    void
-    LvmVg::activate()
-    {
-	return LvmVg::Impl::activate();
-    }
-
-
     LvmVg::LvmVg(Impl* impl)
 	: Device(impl)
     {

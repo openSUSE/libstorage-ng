@@ -1,6 +1,7 @@
 
 %template(VectorString) std::vector<std::string>;
 %template(MapStringString) std::map<std::string, std::string>;
+%template(PairBoolString) std::pair<bool, std::string>;
 
 %template(VectorDevicePtr) std::vector<Device*>;
 %template(VectorConstDevicePtr) std::vector<const Device*>;

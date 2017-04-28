@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,7 +43,7 @@ namespace storage
     {
     public:
 
-	Impl(const Storage& storage, const Environment& environment);
+	Impl(const Storage& storage, const Environment& environment, const ActivateCallbacks* activate_callbacks);
 	~Impl();
 
     public:
@@ -83,6 +83,8 @@ namespace storage
 
 	const Actiongraph* calculate_actiongraph();
 
+	void activate(const ActivateCallbacks* activate_callbacks) const;
+
 	void commit(const CommitCallbacks* commit_callbacks);
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
@@ -96,6 +98,8 @@ namespace storage
 	const Storage& storage;
 
 	const Environment environment;
+
+	const ActivateCallbacks* activate_callbacks;
 
 	Arch arch;
 

@@ -71,6 +71,12 @@ namespace storage
 	    string bcache_uuid;
 	};
 
+	typedef map<string, Entry>::const_iterator const_iterator;
+	typedef map<string, Entry>::value_type value_type;
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
@@ -90,9 +96,6 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
-
-	typedef map<string, Entry>::const_iterator const_iterator;
-	typedef map<string, Entry>::value_type value_type;
 
 	map<string, Entry> data;
 

@@ -50,9 +50,10 @@ namespace storage
 
     /**
      * A class to calculate partition alignment based on hardware
-     * topology. The starting sector of a partition must obey the form "sector
-     * = offset + X * grain". Alignment may fail is the start of the aligned
-     * partition region is after the end of the aligned partition region.
+     * topology. The starting sector of an aligned partition must obey the
+     * form "sector = offset + X * grain". Alignment may fail if the start of
+     * the aligned partition region is after the end of the aligned partition
+     * region.
      */
     class Topology
     {

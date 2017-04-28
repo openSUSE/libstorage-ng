@@ -457,7 +457,6 @@ namespace storage
 	    if (commit_callbacks)
 	    {
 		commit_callbacks->message(text);
-		commit_callbacks->pre(action);
 	    }
 
 	    try
@@ -472,11 +471,6 @@ namespace storage
 		    ST_RETHROW(e);
 
 		y2mil("user decides to continue after error");
-	    }
-
-	    if (commit_callbacks)
-	    {
-		commit_callbacks->post(action);
 	    }
 	}
     }

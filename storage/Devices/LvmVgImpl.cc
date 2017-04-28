@@ -338,19 +338,6 @@ namespace storage
     }
 
 
-    void
-    LvmVg::Impl::activate()
-    {
-	string cmd_line = VGCHANGEBIN " -a y";
-
-	cout << cmd_line << endl;
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0) 
-	    ST_THROW(Exception("activate LvmVg failed"));
-    }
-
-
     bool
     LvmVg::Impl::equal(const Device::Impl& rhs_base) const
     {

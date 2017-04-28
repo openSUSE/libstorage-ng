@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 
 #include <string>
 #include <vector>
+#include <utility>
 #include <memory>
 #include <boost/noncopyable.hpp>
 
@@ -74,10 +75,25 @@ namespace storage
     class Actiongraph;
 
 
-    namespace Action
+    /**
+     *
+     *
+     * Other storage subsystems are activated automatically, e.g. LVM and MD
+     * RAID. This cannot be controlled since it is partly done by udev. This
+     * also means that the callbacks may change anytime when e.g. udev
+     * changes.
+     */
+    class ActivateCallbacks
     {
-	class Base;
-    }
+    public:
+
+	virtual ~ActivateCallbacks() {}
+
+	virtual bool multipath() const = 0;
+
+	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
+
+    };
 
 
     class CommitCallbacks
@@ -89,11 +105,6 @@ namespace storage
 	virtual void message(const std::string& message) const = 0;
 	virtual bool error(const std::string& message, const std::string& what) const = 0;
 
-	// TODO to make pre and post generally usable the Action classes must
-	// be included in the public libstorage interface
-	virtual void pre(const Action::Base* action) const {}
-	virtual void post(const Action::Base* action) const {}
-
     };
 
 
@@ -102,7 +113,12 @@ namespace storage
     {
     public:
 
-	Storage(const Environment& environment);
+	// TODO Controlling activation via the callback pointer is not
+	// nice. It would be better to just use the activate() function but
+	// then the constructor cannot do the probing. Maybe add a probe()
+	// function.
+	Storage(const Environment& environment, const ActivateCallbacks* activate_callbacks = nullptr);
+
 	~Storage();
 
     public:
@@ -170,6 +186,11 @@ namespace storage
 	 * devicegraph is modified.
 	 */
 	const Actiongraph* calculate_actiongraph();
+
+	/**
+	 * Activate devices like multipath, MD RAID, LVM and LUKS.
+	 */
+	void activate(const ActivateCallbacks* activate_callbacks);
 
 	/**
 	 * The actiongraph must be valid.

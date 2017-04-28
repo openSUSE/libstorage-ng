@@ -46,12 +46,42 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(const Storage& storage, const Environment& environment)
-	: storage(storage), environment(environment), arch(false),
-	  default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
+    Storage::Impl::Impl(const Storage& storage, const Environment& environment,
+			const ActivateCallbacks* activate_callbacks)
+	: storage(storage), environment(environment), activate_callbacks(activate_callbacks),
+	  arch(false), default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
+    }
+
+
+    void
+    Storage::Impl::activate(const ActivateCallbacks* activate_callbacks) const
+    {
+	ST_CHECK_PTR(activate_callbacks);
+
+	y2mil("activate begin");
+
+	// TODO Multipath
+
+	while (true)
+	{
+	    bool again = false;
+
+	    // TODO Md
+
+	    if (LvmLv::Impl::activate_lvm_lvs(activate_callbacks))
+		again = true;
+
+	    if (Luks::Impl::activate_lukses(activate_callbacks))
+		again = true;
+
+	    if (!again)
+		break;
+	}
+
+	y2mil("activate end");
     }
 
 
@@ -65,24 +95,18 @@ namespace storage
 
 	Devicegraph* probed = create_devicegraph("probed");
 
-	// FIXME
-	// This approach for vgs activation does not work in combination with activating
-	// LUKS. Managing lvm with LUKS, raid, etc is pending to implement.
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
-		LvmVg::Impl::activate();
 		probe(probed);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
-		LvmVg::Impl::activate();
 		probe(probed);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
-		LvmVg::Impl::activate();
 		Mockup::set_mode(Mockup::Mode::RECORD);
 		probe(probed);
 		Mockup::save(environment.get_mockup_filename());

@@ -73,6 +73,104 @@ namespace storage
     }
 
 
+    string
+    Luks::Impl::next_free_cr_auto_name(SystemInfo& systeminfo)
+    {
+	static int nr = 1;
+
+	while (true)
+	{
+	    string name = "cr-auto-" + to_string(nr++);
+
+	    if (!systeminfo.getCmdDmsetupInfo().exists(name))
+		return name;
+	}
+    }
+
+
+    bool
+    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& systeminfo,
+			      const string& name, const string& uuid)
+    {
+	int attempt = 1;
+	string dm_name;
+
+	while (true)
+	{
+	    pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
+	    if (!tmp.first)
+		return false;
+
+	    if (attempt == 1)
+		dm_name = next_free_cr_auto_name(systeminfo);
+
+	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
+		quote(dm_name) + " --key-file -";
+	    cout << cmd_line << endl;
+
+	    SystemCmd cmd;
+	    cmd.setStdinText(tmp.second);
+	    cmd.execute(cmd_line);
+
+	    // check for wrong password
+	    if (cmd.retcode() == 2)
+	    {
+		attempt++;
+		continue;
+	    }
+
+	    if (cmd.retcode() != 0)
+		ST_THROW(Exception("activate Luks failed"));
+
+	    return true;
+	}
+    }
+
+
+    bool
+    Luks::Impl::activate_lukses(const ActivateCallbacks* activate_callbacks)
+    {
+	y2mil("activate_lukses");
+
+	SystemInfo systeminfo;
+
+	bool ret = false;
+
+	for (const Blkid::value_type& key_value1 : systeminfo.getBlkid())
+	{
+	    if (!key_value1.second.is_luks)
+		continue;
+
+	    // major and minor of the device holding the luks
+	    dev_t majorminor = systeminfo.getCmdUdevadmInfo(key_value1.first).get_majorminor();
+
+	    const CmdDmsetupTable& dmsetup_table = systeminfo.getCmdDmsetupTable();
+	    CmdDmsetupTable::const_iterator it = dmsetup_table.find_using(majorminor);
+	    if (it != dmsetup_table.end())
+		continue;
+
+	    y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
+		  key_value1.second.luks_uuid);
+
+	    // TODO During a second loop of Storage::Impl::activation() the
+	    // library should not bother the user with popups to lukses where
+	    // an activation was canceled by the user. Maybe the library
+	    // should also remember the passwords (map<uuid, password>) in
+	    // case the activation is run again, e.g. after deactivation and
+	    // reprobe.
+
+	    if (activate_luks(activate_callbacks, systeminfo, key_value1.first,
+			      key_value1.second.luks_uuid))
+		ret = true;
+	}
+
+	if (ret)
+	    SystemCmd(UDEVADMBIN_SETTLE);
+
+	return ret;
+    }
+
+
     void
     Luks::Impl::probe_lukses(Devicegraph* probed, SystemInfo& systeminfo)
     {

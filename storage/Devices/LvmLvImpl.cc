@@ -96,6 +96,31 @@ namespace storage
     }
 
 
+    bool
+    LvmLv::Impl::activate_lvm_lvs(const ActivateCallbacks* activate_callbacks)
+    {
+	y2mil("activate_lvm_lvs");
+
+	size_t number_of_inactive = CmdLvs().number_of_inactive();
+	if (number_of_inactive == 0)
+	    return false;
+
+	string cmd_line = VGCHANGEBIN " -a y";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("activate LvmVg failed"));
+
+	bool ret = number_of_inactive != CmdLvs().number_of_inactive();
+
+	if (ret)
+	    SystemCmd(UDEVADMBIN_SETTLE);
+
+	return ret;
+    }
+
+
     void
     LvmLv::Impl::probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo)
     {
