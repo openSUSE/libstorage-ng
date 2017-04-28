@@ -150,7 +150,7 @@ namespace storage
     EtcCrypttab::EtcCrypttab():
 	ColumnConfigFile()
     {
-	// Set reasonable field widths for /etc/fstab
+	// Set reasonable field widths for /etc/crypttab
 
 	int col = 0;
 	set_max_column_width( col++, 15 ); // crypt device
