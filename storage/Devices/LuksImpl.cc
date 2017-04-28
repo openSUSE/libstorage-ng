@@ -155,7 +155,7 @@ namespace storage
 	    // TODO During a second loop of Storage::Impl::activation() the
 	    // library should not bother the user with popups to lukses where
 	    // an activation was canceled by the user. Maybe the library
-	    // should also remember the passwards (map<uuid, password>) in
+	    // should also remember the passwords (map<uuid, password>) in
 	    // case the activation is run again, e.g. after deactivation and
 	    // reprobe.
 
