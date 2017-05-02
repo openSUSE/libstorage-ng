@@ -26,6 +26,7 @@
 
 %{
 
+#include "storage/Version.h"
 #include "storage/Utils/Swig.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Exception.h"
@@ -92,6 +93,7 @@
 %include "std_map.i"
 %include "std_pair.i"
 
+%include "../../storage/Version.h"
 %include "../../storage/Utils/Swig.h"
 %include "../../storage/Utils/Logger.h"
 %include "../../storage/Utils/Exception.h"
