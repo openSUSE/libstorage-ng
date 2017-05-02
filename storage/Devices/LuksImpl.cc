@@ -396,7 +396,7 @@ namespace storage
 	// TODO, error handling and mount-by
 
         CrypttabEntry * entry = new CrypttabEntry();
-        entry->set_crypt_device( get_name() );
+        entry->set_crypt_device(get_dm_table_name());
         entry->set_block_device( get_blk_device()->get_name() );
 
         etc_crypttab.add(entry);
