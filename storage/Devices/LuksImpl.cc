@@ -152,7 +152,7 @@ namespace storage
 	    y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
 		  key_value1.second.luks_uuid);
 
-	    // TODO During a second loop of Storage::Impl::activation() the
+	    // TODO During a second loop of Storage::Impl::activate() the
 	    // library should not bother the user with popups to lukses where
 	    // an activation was canceled by the user. Maybe the library
 	    // should also remember the passwords (map<uuid, password>) in
