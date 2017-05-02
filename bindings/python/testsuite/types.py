@@ -4,7 +4,7 @@ import unittest
 
 from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage,
                      Devicegraph, Disk, Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4,
-                     UF_EXT4, UF_BTRFS)
+                     UF_EXT4, UF_BTRFS, LIBSTORAGE_NG_VERSION_STRING)
 
 
 class TestCreate(unittest.TestCase):
@@ -44,6 +44,8 @@ class TestCreate(unittest.TestCase):
 
         self.assertTrue(devicegraph.used_features() & UF_EXT4)
         self.assertFalse(devicegraph.used_features() & UF_BTRFS)
+
+        self.assertTrue(LIBSTORAGE_NG_VERSION_STRING)
 
 
 if __name__ == '__main__':

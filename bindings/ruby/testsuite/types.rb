@@ -39,6 +39,8 @@ class TestTypes < Test::Unit::TestCase
     assert_equal(devicegraph.used_features() & Storage::UF_EXT4, Storage::UF_EXT4)
     assert_equal(devicegraph.used_features() & Storage::UF_BTRFS, 0)
 
+    assert_not_equal(Storage::LIBSTORAGE_NG_VERSION_STRING, "")
+
   end
 
 end
