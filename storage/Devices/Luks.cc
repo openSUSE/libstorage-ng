@@ -75,7 +75,7 @@ namespace storage
 	return dynamic_cast<const Impl&>(Device::get_impl());
     }
 
-    
+
     vector<Luks*>
     Luks::get_all(Devicegraph* devicegraph)
     {
