@@ -64,7 +64,15 @@ namespace storage
 	bool is_active() const;
 	void set_active(bool active);
 
+	/**
+	 * Query whether the mount point is present (probed devicegraph) or
+	 * will be present (staging devicegraph) in /etc/fstab.
+	 */
 	bool is_in_etc_fstab() const;
+
+	/**
+	 * Set whether the mount point will be present in /etc/fstab.
+	 */
 	void set_in_etc_fstab(bool in_etc_fstab);
 
 	/**

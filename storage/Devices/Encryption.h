@@ -55,7 +55,15 @@ namespace storage
 
 	void set_password(const std::string& password);
 
+	/**
+	 * Query whether the LUKS device is present (probed devicegraph) or
+	 * will be present (staging devicegraph) in /etc/crypttab.
+	 */
 	bool is_in_etc_crypttab() const;
+
+	/**
+	 * Set whether the LUKS device will be present in /etc/crypttab.
+	 */
 	void set_in_etc_crypttab(bool in_etc_crypttab);
 
 	/**
