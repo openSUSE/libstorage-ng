@@ -171,6 +171,13 @@ namespace storage
     }
 
 
+    bool
+    EtcCrypttab::has_crypt_device(const string & crypt_device) const
+    {
+	return find_crypt_device(crypt_device) != nullptr;
+    }
+
+
     CrypttabEntry * EtcCrypttab::find_crypt_device( const string & crypt_device ) const
     {
 	for ( int i=0; i < get_entry_count(); ++i )
