@@ -59,6 +59,9 @@ namespace storage
 
 	void set_password(const string& password) { Impl::password = password; }
 
+	bool is_in_etc_crypttab() const { return in_etc_crypttab; }
+	void set_in_etc_crypttab(bool in_etc_crypttab) { Impl::in_etc_crypttab = in_etc_crypttab; }
+
 	const BlkDevice* get_blk_device() const;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
@@ -99,6 +102,8 @@ namespace storage
     private:
 
 	string password;
+
+	bool in_etc_crypttab;
 
 	// mount-by for crypttab
 

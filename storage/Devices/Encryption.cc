@@ -55,6 +55,20 @@ namespace storage
     }
 
 
+    bool
+    Encryption::is_in_etc_crypttab() const
+    {
+	return get_impl().is_in_etc_crypttab();
+    }
+
+
+    void
+    Encryption::set_in_etc_crypttab(bool in_etc_crypttab)
+    {
+	get_impl().set_in_etc_crypttab(in_etc_crypttab);
+    }
+
+
     Encryption*
     Encryption::clone() const
     {

@@ -55,6 +55,9 @@ namespace storage
 
 	void set_password(const std::string& password);
 
+	bool is_in_etc_crypttab() const;
+	void set_in_etc_crypttab(bool in_etc_crypttab);
+
 	/**
 	 * Return underlying blk device.
 	 */

@@ -46,19 +46,21 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEVDIR "/mapper/" + dm_table_name)
+	: BlkDevice::Impl(DEVMAPPERDIR "/" + dm_table_name), password(), in_etc_crypttab(true)
     {
 	set_dm_table_name(dm_table_name);
     }
 
 
     Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node)
+	: BlkDevice::Impl(node), password(), in_etc_crypttab(true)
     {
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
 
 	getChildValue(node, "password", password);
+
+	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
     }
 
 
@@ -69,6 +71,8 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    setChildValue(node, "password", password);
+
+	setChildValue(node, "in-etc-crypttab", in_etc_crypttab);
     }
 
 
@@ -112,7 +116,9 @@ namespace storage
 
 	actions.push_back(new Action::Create(get_sid()));
 	actions.push_back(new Action::Activate(get_sid()));
-	actions.push_back(new Action::AddToEtcCrypttab(get_sid()));
+
+	if (in_etc_crypttab)
+	    actions.push_back(new Action::AddToEtcCrypttab(get_sid()));
 
 	actiongraph.add_chain(actions);
 
@@ -135,15 +141,27 @@ namespace storage
 	BlkDevice::Impl::add_modify_actions(actiongraph, lhs_base);
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
-	vector<Action::Base*> actions;
 
-	// TODO depends on mount-by, whether there actually is an entry in crypttab
-	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
+	if (!lhs.in_etc_crypttab && in_etc_crypttab)
 	{
-	    actions.push_back(new Action::RenameInEtcCrypttab(get_sid()));
+	    Action::Base* action = new Action::AddToEtcCrypttab(get_sid());
+	    actiongraph.add_vertex(action);
 	}
+	else if (lhs.in_etc_crypttab && !in_etc_crypttab)
+	{
+	    Action::Base* action = new Action::RemoveFromEtcCrypttab(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+	else if (lhs.in_etc_crypttab && in_etc_crypttab)
+	{
+	    // TODO depends on mount-by
 
-	actiongraph.add_chain(actions);
+	    if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
+	    {
+		Action::Base* action = new Action::RenameInEtcCrypttab(get_sid());
+		actiongraph.add_vertex(action);
+	    }
+	}
     }
 
 
@@ -152,7 +170,9 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::RemoveFromEtcCrypttab(get_sid()));
+	if (in_etc_crypttab)
+	    actions.push_back(new Action::RemoveFromEtcCrypttab(get_sid()));
+
 	actions.push_back(new Action::Deactivate(get_sid()));
 	actions.push_back(new Action::Delete(get_sid()));
 
@@ -168,7 +188,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return password == rhs.password;
+	return password == rhs.password && in_etc_crypttab == rhs.in_etc_crypttab;
     }
 
 
@@ -181,6 +201,8 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    storage::log_diff(log, "password", password, rhs.password);
+
+	storage::log_diff(log, "in-etc-crypttab", in_etc_crypttab, rhs.in_etc_crypttab);
     }
 
 
@@ -191,6 +213,9 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    out << " password:" << get_password();
+
+	if (in_etc_crypttab)
+	    out << " in-etc-crypttab";
     }
 
 
