@@ -66,8 +66,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_FSTAB);
 
-	    etc_fstab.reset(new EtcFstab());
-	    etc_fstab->read(filename);
+	    etc_fstab.reset(new EtcFstab(filename));
 	}
 
 	return *etc_fstab.get();
@@ -82,8 +81,7 @@ namespace storage
 	    const Storage& storage = actiongraph.get_storage();
 	    string filename = storage.get_impl().prepend_rootprefix(ETC_CRYPTTAB);
 
-	    etc_crypttab.reset(new EtcCrypttab());
-	    etc_crypttab->read(filename);
+	    etc_crypttab.reset(new EtcCrypttab(filename));
 	}
 
 	return *etc_crypttab.get();

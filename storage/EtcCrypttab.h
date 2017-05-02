@@ -133,7 +133,7 @@ namespace storage
     {
     public:
 
-	EtcCrypttab();
+	EtcCrypttab(const string& filename = ETC_CRYPTTAB);
 	virtual ~EtcCrypttab();
 
 	// using inherited read() and write() unchanged

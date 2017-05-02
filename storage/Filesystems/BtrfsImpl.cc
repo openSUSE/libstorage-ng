@@ -194,9 +194,9 @@ namespace storage
 
 
     void
-    Btrfs::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& fstab)
+    Btrfs::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo, fstab);
+	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -237,7 +237,7 @@ namespace storage
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
 	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[subvolume.id];
-	    btrfs_subvolume->get_impl().probe_pass_3(probed, systeminfo, fstab, mount_point);
+	    btrfs_subvolume->get_impl().probe_pass_3(probed, systeminfo, mount_point);
 	}
 
 	if (subvolumes_by_id.size() > 1)

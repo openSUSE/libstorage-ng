@@ -257,7 +257,7 @@ namespace storage
 
 
 
-    EtcFstab::EtcFstab():
+    EtcFstab::EtcFstab(const string& filename) :
 	ColumnConfigFile()
     {
 	// Set reasonable field widths for /etc/fstab
@@ -272,6 +272,9 @@ namespace storage
 
 	set_pad_columns( true );
         set_diff_enabled();
+
+	if (!filename.empty())
+	    read(filename);
     }
 
 

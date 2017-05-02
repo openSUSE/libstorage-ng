@@ -135,7 +135,7 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& etc_fstab)
+    BlkFilesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -149,7 +149,7 @@ namespace storage
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, to_blk_filesystem(get_device()));
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(etc_fstab, aliases);
+	const FstabEntry* fstab_entry = find_etc_fstab_entry(systeminfo.getEtcFstab(), aliases);
         if (fstab_entry)
         {
 	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
