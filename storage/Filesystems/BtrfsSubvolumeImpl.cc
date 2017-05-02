@@ -238,15 +238,14 @@ namespace storage
 
 
     void
-    BtrfsSubvolume::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& etc_fstab,
-				       const string& mountpoint)
+    BtrfsSubvolume::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const string& mount_point)
     {
 	const Btrfs* btrfs = get_btrfs();
 	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, btrfs);
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(etc_fstab, aliases);
+	const FstabEntry* fstab_entry = find_etc_fstab_entry(systeminfo.getEtcFstab(), aliases);
 	if (fstab_entry)
         {
 	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
@@ -255,7 +254,7 @@ namespace storage
 	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 	}
 
-	const CmdLsattr& cmdlsattr = systeminfo.getCmdLsattr(blk_device->get_name(), mountpoint, path);
+	const CmdLsattr& cmdlsattr = systeminfo.getCmdLsattr(blk_device->get_name(), mount_point, path);
 	nocow = cmdlsattr.is_nocow();
     }
 

@@ -197,6 +197,9 @@ namespace storage
 	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get_int(), 512));
+
+	const EtcCrypttab& etc_crypttab = systeminfo.getEtcCrypttab();
+	set_in_etc_crypttab(etc_crypttab.has_crypt_device(get_dm_table_name()));
     }
 
 
@@ -393,7 +396,7 @@ namespace storage
 	// TODO, error handling and mount-by
 
         CrypttabEntry * entry = new CrypttabEntry();
-        entry->set_crypt_device( get_name() );
+        entry->set_crypt_device(get_dm_table_name());
         entry->set_block_device( get_blk_device()->get_name() );
 
         etc_crypttab.add(entry);

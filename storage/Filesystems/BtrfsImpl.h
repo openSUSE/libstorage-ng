@@ -83,7 +83,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const EtcFstab& fstab) override;
+	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual ResizeInfo detect_resize_info() const override;
 

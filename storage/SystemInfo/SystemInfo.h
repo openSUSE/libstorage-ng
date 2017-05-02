@@ -27,6 +27,8 @@
 
 #include <boost/noncopyable.hpp>
 
+#include "storage/EtcFstab.h"
+#include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
 
 #include "storage/SystemInfo/Arch.h"
@@ -73,6 +75,8 @@ namespace storage
 	SystemInfo();
 	~SystemInfo();
 
+	const EtcFstab& getEtcFstab() { return etc_fstab.get(); }
+	const EtcCrypttab& getEtcCrypttab() { return etc_crypttab.get(); }
 	const EtcMdadm& getEtcMdadm() { return etc_mdadm.get(); }
 
 	const Arch& getArch() { return arch.get(); }
@@ -211,6 +215,8 @@ namespace storage
 
 	};
 
+	LazyObject<EtcFstab> etc_fstab;
+	LazyObject<EtcCrypttab> etc_crypttab;
 	LazyObject<EtcMdadm> etc_mdadm;
 
 	LazyObject<Arch> arch;

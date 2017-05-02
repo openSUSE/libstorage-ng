@@ -264,7 +264,7 @@ namespace storage
     {
     public:
 
-	EtcFstab();
+	EtcFstab(const string& filename = ETC_FSTAB);
 	virtual ~EtcFstab();
 
 	// using inherited read() and write() unchanged

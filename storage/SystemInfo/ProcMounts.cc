@@ -64,7 +64,7 @@ namespace storage
     void
     ProcMounts::parse_proc_mounts_lines(const vector<string>& lines)
     {
-        EtcFstab fstab;
+        EtcFstab fstab("");
         fstab.parse( lines );
 
         while ( ! fstab.empty())

@@ -147,7 +147,7 @@ namespace storage
 
 
 
-    EtcCrypttab::EtcCrypttab():
+    EtcCrypttab::EtcCrypttab(const string& filename) :
 	ColumnConfigFile()
     {
 	// Set reasonable field widths for /etc/crypttab
@@ -159,12 +159,22 @@ namespace storage
 	set_max_column_width( col++, 30 ); // crypt options
 
 	set_pad_columns( true );
+
+	if (!filename.empty())
+	    read(filename);
     }
 
 
     EtcCrypttab::~EtcCrypttab()
     {
 
+    }
+
+
+    bool
+    EtcCrypttab::has_crypt_device(const string & crypt_device) const
+    {
+	return find_crypt_device(crypt_device) != nullptr;
     }
 
 

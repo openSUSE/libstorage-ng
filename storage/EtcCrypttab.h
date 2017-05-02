@@ -133,10 +133,15 @@ namespace storage
     {
     public:
 
-	EtcCrypttab();
+	EtcCrypttab(const string& filename = ETC_CRYPTTAB);
 	virtual ~EtcCrypttab();
 
 	// using inherited read() and write() unchanged
+
+	/**
+	 * Return true iff there is an entry for 'crypt_device'.
+	 **/
+	bool has_crypt_device(const string & crypt_device) const;
 
 	/**
 	 * Return the first entry for 'crypt_device' or 0 if there is no

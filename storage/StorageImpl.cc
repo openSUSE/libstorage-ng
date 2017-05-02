@@ -147,9 +147,6 @@ namespace storage
 
 	arch = systeminfo.getArch();
 
-	EtcFstab fstab;
-	fstab.read(ETC_FSTAB);
-
 	// TODO
 
 	// Pass 1: Detect all Devices except Filesystems and some Holders,
@@ -225,7 +222,7 @@ namespace storage
 		    }
 
 		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(entry.fs_type);
-		    blk_filesystem->get_impl().probe_pass_3(probed, systeminfo, fstab);
+		    blk_filesystem->get_impl().probe_pass_3(probed, systeminfo);
 		}
 	    }
 	}
