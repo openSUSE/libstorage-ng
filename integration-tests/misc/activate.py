@@ -6,8 +6,8 @@
 from storage import *
 from storageitu import *
 
-set_logger(get_logfile_logger())
 
+set_logger(get_logfile_logger())
 
 class MyActivateCallbacks(ActivateCallbacks):
 
