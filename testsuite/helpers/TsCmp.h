@@ -100,6 +100,9 @@ namespace storage
 	void cmp_texts(const CommitData& commit_data);
 	void cmp_dependencies(const CommitData& commit_data);
 
+	string text(const CommitData& commit_data,
+		    Actiongraph::Impl::vertex_descriptor vertex) const;
+
     };
 
 }

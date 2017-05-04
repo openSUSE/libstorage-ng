@@ -157,12 +157,26 @@ namespace storage
     }
 
 
+    string
+    TsCmpActiongraph::text(const CommitData& commit_data, Actiongraph::Impl::vertex_descriptor vertex) const
+    {
+	const Action::Base* action = commit_data.actiongraph[vertex];
+
+	string text = action->text(commit_data).native;
+
+	if (action->nop)
+	    text += " [nop]";
+
+	return text;
+    }
+
+
     void
     TsCmpActiongraph::cmp_texts(const CommitData& commit_data)
     {
 	set<string> tmp1;
-	for (Actiongraph::Impl::vertex_descriptor v : commit_data.actiongraph.vertices())
-	    tmp1.insert(commit_data.actiongraph[v]->text(commit_data).native);
+	for (Actiongraph::Impl::vertex_descriptor vertex : commit_data.actiongraph.vertices())
+	    tmp1.insert(text(commit_data, vertex));
 
 	set<string> tmp2;
 	for (const Entry& entry : entries)
@@ -192,20 +206,17 @@ namespace storage
 	for (const Entry& entry : entries)
 	    text_to_id[entry.text] = entry.id;
 
-	map<string, Actiongraph::Impl::vertex_descriptor> text_to_v;
-	for (Actiongraph::Impl::vertex_descriptor v : commit_data.actiongraph.vertices())
-	    text_to_v[commit_data.actiongraph[v]->text(commit_data).native] = v;
+	map<string, Actiongraph::Impl::vertex_descriptor> text_to_vertex;
+	for (Actiongraph::Impl::vertex_descriptor vertex : commit_data.actiongraph.vertices())
+	    text_to_vertex[text(commit_data, vertex)] = vertex;
 
 	for (const Entry& entry : entries)
 	{
-	    Actiongraph::Impl::vertex_descriptor v = text_to_v[entry.text];
+	    Actiongraph::Impl::vertex_descriptor vertex = text_to_vertex[entry.text];
 
 	    set<string> tmp;
-	    for (Actiongraph::Impl::vertex_descriptor child : commit_data.actiongraph.children(v))
-	    {
-		string text = commit_data.actiongraph[child]->text(commit_data).native;
-		tmp.insert(text_to_id[text]);
-	    }
+	    for (Actiongraph::Impl::vertex_descriptor child : commit_data.actiongraph.children(vertex))
+		tmp.insert(text_to_id[text(commit_data, child)]);
 
 	    if (tmp != entry.dep_ids)
 	    {

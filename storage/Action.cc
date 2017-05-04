@@ -32,6 +32,27 @@ namespace storage
     namespace Action
     {
 
+	string
+	Base::details() const
+	{
+	    string ret = "sid:" + to_string(sid);
+
+	    if (first)
+		ret += ", first";
+
+	    if (last)
+		ret += ", last";
+
+	    if (only_sync)
+		ret += ", only-sync";
+
+	    if (nop)
+		ret += ", nop";
+
+	    return ret;
+	}
+
+
 	Text
 	Create::text(const CommitData& commit_data) const
 	{
