@@ -82,6 +82,7 @@ namespace storage
 	vector<string> ret;
 	for (const Action::Base* action : get_commit_actions())
 	    ret.push_back(action->text(commit_data).translated);
+
 	return ret;
     }
 
