@@ -281,7 +281,15 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	return sformat(_("Create MSDOS partition table on %1$s"), partitionable->get_displayname().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Create MSDOS partition table on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Creating MSDOS partition table on %1$s"));
+
+	return sformat(text, partitionable->get_displayname().c_str());
     }
 
 
