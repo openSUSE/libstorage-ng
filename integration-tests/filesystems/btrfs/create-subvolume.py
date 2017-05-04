@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: btrfs on /dev/system/btrfs without test subvolume
+# requirements: btrfs on /dev/sdb1 without test subvolume
 
 
 from storage import *
@@ -18,7 +18,7 @@ staging = storage.get_staging()
 
 print staging
 
-blk_device = BlkDevice.find_by_name(staging, "/dev/system/btrfs")
+blk_device = BlkDevice.find_by_name(staging, "/dev/sdb1")
 
 btrfs = to_btrfs(blk_device.get_blk_filesystem())
 top_level = btrfs.get_top_level_btrfs_subvolume()
@@ -27,7 +27,7 @@ btrfs_subvolume = top_level.create_btrfs_subvolume("test")
 btrfs_subvolume.set_nocow(True)
 btrfs_subvolume.set_default_btrfs_subvolume()
 
-mount_point = btrfs_subvolume.create_mount_point("/test")
+mount_point = btrfs_subvolume.create_mount_point("/test/test")
 
 print staging
 
