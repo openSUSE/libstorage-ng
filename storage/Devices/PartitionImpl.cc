@@ -261,17 +261,6 @@ namespace storage
     }
 
 
-    void
-    Partition::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Delete(get_sid()));
-
-	actiongraph.add_chain(actions);
-    }
-
-
     bool
     Partition::Impl::equal(const Device::Impl& rhs_base) const
     {

@@ -20,7 +20,7 @@ print staging
 
 disk = Disk.find_by_name(staging, "/dev/sdb")
 
-disk.create_partition_table(PtType_GPT)
+disk.create_partition_table(PtType_MSDOS)
 
 print staging
 
