@@ -519,6 +519,15 @@ namespace storage
     }
 
 
+    void
+    PartitionTable::Impl::do_delete() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	partitionable->get_impl().wipe_device();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const PartitionSlot& partition_slot)
     {

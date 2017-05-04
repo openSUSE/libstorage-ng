@@ -126,17 +126,6 @@ namespace storage
     }
 
 
-    void
-    Gpt::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Delete(get_sid(), true));
-
-	actiongraph.add_chain(actions);
-    }
-
-
     bool
     Gpt::Impl::equal(const Device::Impl& rhs_base) const
     {
@@ -271,6 +260,23 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("set pmbr boot failed"));
+    }
+
+
+    Text
+    Gpt::Impl::do_delete_text(Tense tense) const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Delete GPT on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Deleting GPT on %1$s"));
+
+	return sformat(text, partitionable->get_displayname().c_str());
     }
 
 

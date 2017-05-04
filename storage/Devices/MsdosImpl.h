@@ -60,8 +60,6 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
-
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
@@ -101,6 +99,8 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
+
+	virtual Text do_delete_text(Tense tense) const override;
 
     private:
 

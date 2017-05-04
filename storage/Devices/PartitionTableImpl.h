@@ -125,6 +125,8 @@ namespace storage
 
 	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
 
+	virtual void do_delete() const override;
+
     protected:
 
 	Impl()

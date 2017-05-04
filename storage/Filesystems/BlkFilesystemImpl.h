@@ -70,7 +70,6 @@ namespace storage
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
-	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo);
 
@@ -106,6 +105,9 @@ namespace storage
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
 
     protected:
 
