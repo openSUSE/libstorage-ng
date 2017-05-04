@@ -122,6 +122,13 @@ namespace storage
 
 
     bool
+    Actiongraph::Impl::exists_in(const Device* device, Side side) const
+    {
+	return device->exists_in_devicegraph(get_devicegraph(side));
+    }
+
+
+    bool
     Actiongraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;

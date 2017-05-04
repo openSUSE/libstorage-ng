@@ -120,6 +120,8 @@ namespace storage
 	Devicegraph* get_devicegraph_rhs() const { return rhs; }
 	const Devicegraph* get_devicegraph_lhs() const { return lhs; }
 
+	bool exists_in(const Device* device, Side side) const;
+
 	bool empty() const;
 
 	size_t num_actions() const;
