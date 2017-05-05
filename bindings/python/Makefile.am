@@ -32,6 +32,6 @@ nodist__storage_la_SOURCES = storage_wrap.cxx
 storage.py storage_wrap.cxx: storage-python.i $(DEPENDENCIES)
 	swig -o storage_wrap.cxx -c++ -python ${AM_CPPFLAGS} storage-python.i
 
-CLEANFILES = storage.py storage_wrap.cxx
+CLEANFILES = storage.py storage.pyc storage_wrap.cxx storage_wrap.h
 
 endif
