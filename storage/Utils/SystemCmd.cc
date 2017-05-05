@@ -210,7 +210,7 @@ namespace storage
 	    }
 	    if ( maxLineOut>0 )
 	    {
-		ls = numLines()+numLines(false,IDX_STDERR);
+		ls = numLines()+numLines(IDX_STDERR);
 		y2mil( "lines out:" << ls );
 	    }
 	    timeExceeded_ret = maxTimeSec>0 && ts>maxTimeSec;
@@ -546,7 +546,7 @@ namespace storage
 
 
     unsigned
-    SystemCmd::numLines( bool selected, OutputStream streamIndex ) const
+    SystemCmd::numLines(OutputStream streamIndex) const
     {
 	unsigned lineCount;
 
@@ -554,21 +554,16 @@ namespace storage
 	{
 	    y2err("invalid index " << streamIndex);
 	}
-	if ( selected )
-	{
-	    lineCount = _selectedOutputLines[streamIndex].size();
-	}
-	else
-	{
-	    lineCount = _outputLines[streamIndex].size();
-	}
+
+	lineCount = _outputLines[streamIndex].size();
+
 	y2deb("ret:" << lineCount);
 	return lineCount;
     }
 
 
     string
-    SystemCmd::getLine( unsigned lineNo, bool selected, OutputStream streamIndex ) const
+    SystemCmd::getLine(unsigned lineNo, OutputStream streamIndex) const
     {
 	string ret;
 
@@ -576,69 +571,13 @@ namespace storage
 	{
 	    y2err("invalid index " << streamIndex);
 	}
-	if ( selected )
+
+	if ( lineNo < _outputLines[streamIndex].size() )
 	{
-	    if ( lineNo < _selectedOutputLines[streamIndex].capacity() )
-	    {
-		ret = *_selectedOutputLines[streamIndex][lineNo];
-	    }
+	    ret = _outputLines[streamIndex][lineNo];
 	}
-	else
-	{
-	    if ( lineNo < _outputLines[streamIndex].size() )
-	    {
-		ret = _outputLines[streamIndex][lineNo];
-	    }
-	}
+
 	return ret;
-    }
-
-
-    int
-    SystemCmd::select( const string& pattern, OutputStream streamIndex )
-    {
-	if ( streamIndex > 1 )
-	{
-	    y2err("invalid index " << streamIndex);
-	}
-	string text( pattern );
-	bool findAtStartOfLine = text.length()>0 && text[0]=='^';
-	bool findAtEndOfLine = text.length()>0 && text[text.length()-1]=='$';
-	if ( findAtStartOfLine )
-	{
-	    text.erase( 0, 1 );
-	}
-	if ( findAtEndOfLine )
-	{
-	    text.erase( text.length()-1, 1 );
-	}
-	_selectedOutputLines[streamIndex].resize(0);
-	int hitCount = 0;
-	int lineCount = _outputLines[streamIndex].size();
-
-	for ( int i=0; i<lineCount; i++ )
-	{
-	    string::size_type pos = _outputLines[streamIndex][i].find( text );
-	    if ( pos>0 && findAtStartOfLine )
-	    {
-		pos = string::npos;
-	    }
-	    if ( findAtEndOfLine &&
-		pos!=(_outputLines[streamIndex][i].length()-text.length()) )
-	    {
-		pos = string::npos;
-	    }
-	    if (pos != string::npos)
-	    {
-		_selectedOutputLines[streamIndex].resize( hitCount+1 );
-		_selectedOutputLines[streamIndex][hitCount] = &_outputLines[streamIndex][i];
-		y2deb("Select Added Line " << hitCount << " \"" << *_selectedOutputLines[streamIndex][hitCount] << "\"");
-		hitCount++;
-	    }
-	}
-
-	y2mil("Pid:" << _cmdPid << " Idx:" << streamIndex << " SearchText:\"" << pattern << "\" Lines:" << hitCount);
-	return hitCount;
     }
 
 
@@ -647,7 +586,6 @@ namespace storage
     {
 	for (int streamIndex = 0; streamIndex < 2; streamIndex++)
 	{
-	    _selectedOutputLines[streamIndex].resize(0);
 	    _outputLines[streamIndex].clear();
 	    _newLineSeen[streamIndex] = true;
 	}
@@ -800,36 +738,36 @@ namespace storage
     void
     SystemCmd::logOutput() const
     {
-	unsigned lineCount = numLines(false, IDX_STDERR);
+	unsigned lineCount = numLines(IDX_STDERR);
 	if (lineCount <= LINE_LIMIT)
 	{
 	    for (unsigned i = 0; i < lineCount; ++i)
-		y2mil("stderr:" << getLine(i, false, IDX_STDERR));
+		y2mil("stderr:" << getLine(i, IDX_STDERR));
 	}
 	else
 	{
 	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
-		y2mil("stderr:" << getLine(i, false, IDX_STDERR));
+		y2mil("stderr:" << getLine(i, IDX_STDERR));
 	    y2mil("stderr omitting lines");
 
 	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
-		y2mil("stderr:" << getLine(i, false, IDX_STDERR));
+		y2mil("stderr:" << getLine(i, IDX_STDERR));
 	}
 
-	lineCount = numLines(false, IDX_STDOUT);
+	lineCount = numLines(IDX_STDOUT);
 	if (lineCount <= LINE_LIMIT)
 	{
 	    for (unsigned i = 0; i < lineCount; ++i)
-		y2mil("stdout:" << getLine(i, false, IDX_STDOUT));
+		y2mil("stdout:" << getLine(i, IDX_STDOUT));
 	}
 	else
 	{
 	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
-		y2mil("stdout:" << getLine(i, false, IDX_STDOUT));
+		y2mil("stdout:" << getLine(i, IDX_STDOUT));
 	    y2mil("stdout omitting lines");
 
 	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
-		y2mil("stdout:" << getLine(i, false, IDX_STDOUT));
+		y2mil("stdout:" << getLine(i, IDX_STDOUT));
 	}
     }
 
