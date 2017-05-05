@@ -44,15 +44,23 @@ namespace storage
 	{
 	public:
 
-	    Base(sid_t sid, bool only_sync) : sid(sid), first(false), last(false), only_sync(only_sync) {}
+	    Base(sid_t sid, bool only_sync, bool nop = false)
+		: sid(sid), first(false), last(false), only_sync(only_sync), nop(nop) {}
 
 	    virtual ~Base() {}
 
 	    virtual Text text(const CommitData& commit_data) const = 0;
+
 	    virtual void commit(CommitData& commit_data) const = 0;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const {}
+
+	    /**
+	     * Returns a string representing some information, sid and some
+	     * flags, of the action.
+	     */
+	    string details() const;
 
 	    const sid_t sid;
 
@@ -61,6 +69,9 @@ namespace storage
 
 	    // Action is only used as interim synchronization point and will be removed.
 	    bool only_sync;
+
+	    // Action is only used to inform user but does no operation.
+	    bool nop;
 
 	};
 
@@ -121,7 +132,8 @@ namespace storage
 	{
 	public:
 
-	    Delete(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
+	    Delete(sid_t sid, bool only_sync = false, bool nop = false)
+		: Base(sid, only_sync, nop) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;
@@ -141,7 +153,8 @@ namespace storage
 
 
     template <typename Type>
-    bool is_action_of_type(const Action::Base* action)
+    bool
+    is_action_of_type(const Action::Base* action)
     {
 	static_assert(std::is_const<Type>::value, "Type must be const");
 

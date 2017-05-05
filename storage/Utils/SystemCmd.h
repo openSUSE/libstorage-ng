@@ -146,27 +146,16 @@ namespace storage
 	int retcode() const { return _cmdRet; }
 
 	/**
-	 * Select which output lines to use in the specified output stream (stdout or stderr).
-	 * 'pattern' is a fixed string with minimal regexp functionality:
-	 * '^' start of line
-	 * '$' end of line
-	 * Returns how many lines matched.
-	 */
-	int select(const string& pattern, OutputStream streamIndex = IDX_STDOUT);
-
-	/**
 	 * Return the number of lines collected so far in the specified output
-	 * stream (stdout or stderr). If 'selected' is 'true', return only the
-	 * ones matched by the last 'select()' call.
+	 * stream (stdout or stderr).
 	 */
-	unsigned numLines(bool selected = false, OutputStream streamIndex = IDX_STDOUT) const;
+	unsigned numLines(OutputStream streamIndex = IDX_STDOUT) const;
 
 	/**
 	 * Return the output line number 'lineNo' from the specified output stream
-	 * (stdout or stderr). If 'selected' is 'true', restrict this to the
-	 * lines matched by the last 'select()' call.
+	 * (stdout or stderr).
 	 */
-	string getLine(unsigned lineNo, bool selected = false, OutputStream streamIndex = IDX_STDOUT) const;
+	string getLine(unsigned lineNo, OutputStream streamIndex = IDX_STDOUT) const;
 
 	/**
 	 * Combine stdout and stderr in output lines?
@@ -228,7 +217,6 @@ namespace storage
 	FILE* _files[2];
         FILE* _childStdin;
 	std::vector<string> _outputLines[2];
-	std::vector<string*> _selectedOutputLines[2];
         string _stdinText;
 	bool _newLineSeen[2];
 	bool _combineOutput;

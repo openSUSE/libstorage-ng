@@ -122,6 +122,13 @@ namespace storage
 
 
     bool
+    Actiongraph::Impl::exists_in(const Device* device, Side side) const
+    {
+	return device->exists_in_devicegraph(get_devicegraph(side));
+    }
+
+
+    bool
     Actiongraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;
@@ -448,14 +455,17 @@ namespace storage
 	{
 	    const Action::Base* action = graph[vertex].get();
 
-	    string text = action->text(commit_data).translated;
+	    Text text = action->text(commit_data);
 
-	    y2mil("Commit Action \"" << text << "\"");
+	    y2mil("Commit Action \"" << text.native << "\" [" << action->details() << "]");
 
 	    if (commit_callbacks)
 	    {
-		commit_callbacks->message(text);
+		commit_callbacks->message(text.translated);
 	    }
+
+	    if (action->nop)
+		continue;
 
 	    try
 	    {
@@ -465,7 +475,7 @@ namespace storage
 	    {
 		ST_CAUGHT(e);
 
-		if (!commit_callbacks || !commit_callbacks->error(text, e.what()))
+		if (!commit_callbacks || !commit_callbacks->error(text.translated, e.what()))
 		    ST_RETHROW(e);
 
 		y2mil("user decides to continue after error");

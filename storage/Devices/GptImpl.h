@@ -61,7 +61,6 @@ namespace storage
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const override;
-	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -87,6 +86,8 @@ namespace storage
 
 	virtual Text do_set_pmbr_boot_text(Tense tense) const;
 	virtual void do_set_pmbr_boot() const;
+
+	virtual Text do_delete_text(Tense tense) const override;
 
     private:
 

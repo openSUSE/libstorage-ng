@@ -356,17 +356,6 @@ namespace storage
     }
 
 
-    void
-    BlkFilesystem::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Delete(get_sid(), true));
-
-	actiongraph.add_chain(actions);
-    }
-
-
     vector<const BlkDevice*>
     BlkFilesystem::Impl::get_blk_devices() const
     {
@@ -660,6 +649,40 @@ namespace storage
 	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
 		       blk_device_lhs->get_size_string().c_str(),
 		       blk_device_rhs->get_size_string().c_str());
+    }
+
+
+    Text
+    BlkFilesystem::Impl::do_delete_text(Tense tense) const
+    {
+	// TODO handle multiple BlkDevices
+
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by filesystem name (e.g. ext4),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Delete %1$s on %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by filesystem name (e.g. ext4),
+			   // %2$s is replaced by device name (e.g. /dev/sda1),
+			   // %3$s is replaced by size (e.g. 2GiB)
+			   _("Deleting %1$s on %2$s (%3$s)"));
+
+	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
+		       blk_device->get_size_string().c_str());
+    }
+
+
+    void
+    BlkFilesystem::Impl::do_delete() const
+    {
+	for (const BlkDevice* blk_device : get_blk_devices())
+	{
+	    blk_device->get_impl().wipe_device();
+	}
     }
 
 

@@ -1,6 +1,7 @@
 1a - Remove mount point /btrfs/test of subvolume test on /dev/sdb1 from /etc/fstab -> 1b
 1b - Unmount subvolume test on /dev/sdb1 at /btrfs/test -> 1c
-1c - Delete subvolume test on /dev/sdb1 ->
+1c - Delete subvolume test on /dev/sdb1 [nop] -> 2c
 
 2a - Remove mount point /btrfs of /dev/sdb1 from /etc/fstab -> 2b
-2b - Unmount /dev/sdb1 at /btrfs ->
+2b - Unmount /dev/sdb1 at /btrfs -> 2c
+2c - Delete btrfs on /dev/sdb1 (7.63 GiB) ->

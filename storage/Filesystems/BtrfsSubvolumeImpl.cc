@@ -366,7 +366,13 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Delete(get_sid(), is_top_level()));
+	// set sync_only if this is the top-level subvolume
+	bool sync_only = is_top_level();
+
+	// set nop if the btrfs filesystem is also deleted
+	bool nop = !actiongraph.exists_in(get_btrfs(), RHS);
+
+	actions.push_back(new Action::Delete(get_sid(), sync_only, nop));
 
 	actiongraph.add_chain(actions);
     }
