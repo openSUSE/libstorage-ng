@@ -23,3 +23,6 @@ btrfs->get_top_level_subvolume->create_mount_point("/test")
 
   /dev/system/btrfs  /test  btrfs  subvol=/  0 0
 
+When deleting the default btrfs subvolume without deleting the btrfs
+filesystem itself a new default btrfs subvolume has to be set.
+
