@@ -112,7 +112,15 @@ main(int argc, char **argv)
     if (optind < argc)
 	usage();
 
-    doit();
+    try
+    {
+	doit();
+    }
+    catch (const exception& e)
+    {
+	cerr << "exception occured: " << e.what() << endl;
+	exit(EXIT_FAILURE);
+    }
 
     exit(EXIT_SUCCESS);
 }

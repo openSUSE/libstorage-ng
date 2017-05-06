@@ -75,7 +75,15 @@ main(int argc, char **argv)
     if (argc < 2)
 	usage();
 
-    doit(argv[1], vector<string>(argv + 2, argv + argc));
+    try
+    {
+	doit(argv[1], vector<string>(argv + 2, argv + argc));
+    }
+    catch (const exception& e)
+    {
+	cerr << "exception occured: " << e.what() << endl;
+	exit(EXIT_FAILURE);
+    }
 
     exit(EXIT_SUCCESS);
 }

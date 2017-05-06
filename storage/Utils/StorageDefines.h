@@ -32,6 +32,8 @@
 
 #define SYSCONFIGFILE "/etc/sysconfig/storage"
 
+#define SHBIN "/bin/sh"
+
 #define UNAMEBIN "/usr/bin/uname"
 
 #define PARTEDBIN "/usr/sbin/parted"

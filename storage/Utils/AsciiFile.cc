@@ -106,10 +106,7 @@ namespace storage
 	{
 	    y2mil("deleting file " << name);
 
-	    if (access(name.c_str(), F_OK) != 0)
-		return true;
-
-	    return unlink(name.c_str()) == 0;
+	    return unlink(name.c_str()) == 0 || errno == ENOENT;
 	}
 	else
 	{
