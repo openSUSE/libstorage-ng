@@ -38,6 +38,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/OutputProcessor.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 #define SYSCALL_FAILED( SYSCALL_MSG ) \
@@ -57,11 +58,9 @@ namespace storage
     using namespace std;
 
 
-    SystemCmd::SystemCmd( const string& command, ThrowBehaviour throwBehaviour ):
-	_combineOutput( false ),
-	_doThrow( throwBehaviour == DoThrow ),
-	_outputProc( NULL ),
-	mockup_key()
+    SystemCmd::SystemCmd(const string& command, ThrowBehaviour throwBehaviour)
+	: _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0),
+	  _doThrow(throwBehaviour == DoThrow), _outputProc(nullptr), mockup_key()
     {
 	y2mil("constructor SystemCmd( \"" << command << "\" ) doThrow: " << _doThrow );
 	init();
@@ -80,10 +79,8 @@ namespace storage
 
 
     SystemCmd::SystemCmd()
-	: _combineOutput( false ),
-	  _doThrow( false ),
-	  _outputProc( NULL ),
-	  mockup_key()
+	: _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0), _doThrow(false),
+	  _outputProc(nullptr), mockup_key()
     {
 	y2mil("constructor SystemCmd()");
 	init();
@@ -210,7 +207,7 @@ namespace storage
 	    }
 	    if ( maxLineOut>0 )
 	    {
-		ls = numLines()+numLines(IDX_STDERR);
+		ls = stdout().size() + stderr().size();
 		y2mil( "lines out:" << ls );
 	    }
 	    timeExceeded_ret = maxTimeSec>0 && ts>maxTimeSec;
@@ -254,18 +251,9 @@ namespace storage
     }
 
 
-#define PRIMARY_SHELL "/bin/sh"
-#define ALTERNATE_SHELL "/bin/bash"
-
     int
     SystemCmd::doExecute( const string& command )
     {
-	string shell = PRIMARY_SHELL;
-	if ( access( shell.c_str(), X_OK ) != 0 )
-	{
-	    shell = ALTERNATE_SHELL;
-	}
-
         if ( ! command.empty() )
             _cmd = command;
 
@@ -361,15 +349,14 @@ namespace storage
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
 		    closeOpenFds();
-		    _cmdRet = execl( shell.c_str(), shell.c_str(), "-c",
-				     _cmd.c_str(), NULL );
+		    _cmdRet = execl(SHBIN, SHBIN, "-c", _cmd.c_str(), nullptr);
 
 		    // execl() should not return. If we get here, it failed.
 		    // Throwing an exception here would not make any sense, however:
 		    // We are in the forked child process, and there is nothing
 		    // to return to that could make use of an exception.
-		    y2err( "execl() failed: THIS SHOULD NOT HAPPEN \"" << shell
-			   << "\" Ret:" << _cmdRet << " errno: " << errno );
+		    y2err("execl() failed: THIS SHOULD NOT HAPPEN \"SHBIN\" Ret:" <<
+			  _cmdRet << " errno: " << errno);
 		    y2err( "Exiting child process" );
 		    exit(127); // same as "command not found" in the shell
 		    break;
@@ -545,42 +532,6 @@ namespace storage
     }
 
 
-    unsigned
-    SystemCmd::numLines(OutputStream streamIndex) const
-    {
-	unsigned lineCount;
-
-	if ( streamIndex > 1 )
-	{
-	    y2err("invalid index " << streamIndex);
-	}
-
-	lineCount = _outputLines[streamIndex].size();
-
-	y2deb("ret:" << lineCount);
-	return lineCount;
-    }
-
-
-    string
-    SystemCmd::getLine(unsigned lineNo, OutputStream streamIndex) const
-    {
-	string ret;
-
-	if ( streamIndex > 1 )
-	{
-	    y2err("invalid index " << streamIndex);
-	}
-
-	if ( lineNo < _outputLines[streamIndex].size() )
-	{
-	    ret = _outputLines[streamIndex][lineNo];
-	}
-
-	return ret;
-    }
-
-
     void
     SystemCmd::invalidate()
     {
@@ -738,36 +689,38 @@ namespace storage
     void
     SystemCmd::logOutput() const
     {
-	unsigned lineCount = numLines(IDX_STDERR);
+	unsigned lineCount = stderr().size();
 	if (lineCount <= LINE_LIMIT)
 	{
-	    for (unsigned i = 0; i < lineCount; ++i)
-		y2mil("stderr:" << getLine(i, IDX_STDERR));
+	    for (const string& line : stderr())
+		y2mil("stderr:" << line);
 	}
 	else
 	{
 	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
-		y2mil("stderr:" << getLine(i, IDX_STDERR));
+		y2mil("stderr:" << stderr()[i]);
+
 	    y2mil("stderr omitting lines");
 
 	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
-		y2mil("stderr:" << getLine(i, IDX_STDERR));
+		y2mil("stderr:" << stderr()[i]);
 	}
 
-	lineCount = numLines(IDX_STDOUT);
+	lineCount = stdout().size();
 	if (lineCount <= LINE_LIMIT)
 	{
-	    for (unsigned i = 0; i < lineCount; ++i)
-		y2mil("stdout:" << getLine(i, IDX_STDOUT));
+	    for (const string& line : stdout())
+                y2mil("stdout:" << line);
 	}
 	else
 	{
 	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
-		y2mil("stdout:" << getLine(i, IDX_STDOUT));
+		y2mil("stdout:" << stdout()[i]);
+
 	    y2mil("stdout omitting lines");
 
 	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
-		y2mil("stdout:" << getLine(i, IDX_STDOUT));
+		y2mil("stdout:" << stdout()[i]);
 	}
     }
 

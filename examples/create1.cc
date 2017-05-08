@@ -113,12 +113,23 @@ main()
     // Log into file (/var/log/libstorage-ng.log).
     set_logger(get_logfile_logger());
 
-    // Create storage object and probe system.
-    Environment environment(false, ProbeMode::STANDARD, TargetMode::DIRECT);
-    Storage storage(environment);
-    storage.probe();
+    try
+    {
+	// Create storage object and probe system.
+	Environment environment(false, ProbeMode::STANDARD, TargetMode::DIRECT);
+	Storage storage(environment);
+	storage.probe();
 
-    create(storage);
+	create(storage);
 
-    commit(storage);
+	commit(storage);
+
+	return EXIT_SUCCESS;
+    }
+    catch (const exception& e)
+    {
+	cerr << "exception occured: " << e.what() << endl;
+
+	return EXIT_FAILURE;
+    }
 }

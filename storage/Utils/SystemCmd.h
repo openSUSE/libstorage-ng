@@ -52,7 +52,6 @@ namespace storage
     {
     public:
 
-	enum OutputStream { IDX_STDOUT, IDX_STDERR };
 	enum ThrowBehaviour { DoThrow, NoThrow };
 
 	/**
@@ -146,18 +145,6 @@ namespace storage
 	int retcode() const { return _cmdRet; }
 
 	/**
-	 * Return the number of lines collected so far in the specified output
-	 * stream (stdout or stderr).
-	 */
-	unsigned numLines(OutputStream streamIndex = IDX_STDOUT) const;
-
-	/**
-	 * Return the output line number 'lineNo' from the specified output stream
-	 * (stdout or stderr).
-	 */
-	string getLine(unsigned lineNo, OutputStream streamIndex = IDX_STDOUT) const;
-
-	/**
 	 * Combine stdout and stderr in output lines?
 	 */
 	void setCombine(bool combine = true);
@@ -193,6 +180,8 @@ namespace storage
 	static string quote(const std::list<string>& strs);
 
     protected:
+
+	enum OutputStream { IDX_STDOUT, IDX_STDERR };
 
 	void init();
 	void cleanup();

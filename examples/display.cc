@@ -59,7 +59,15 @@ main(int argc, char **argv)
     if (argc != 2)
 	usage();
 
-    doit(argv[1]);
+    try
+    {
+	doit(argv[1]);
+    }
+    catch (const exception& e)
+    {
+	cerr << "exception occured: " << e.what() << endl;
+	exit(EXIT_FAILURE);
+    }
 
     exit(EXIT_SUCCESS);
 }

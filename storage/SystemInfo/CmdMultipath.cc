@@ -43,7 +43,7 @@ namespace storage
 	    cmd += " -ll";
 
 	SystemCmd c(cmd);
-	if (c.retcode() != 0 || c.numLines() == 0)
+	if (c.retcode() != 0 || c.stdout().empty())
 	    return;
 
 	Regex lun("[[:digit:]]+:[[:digit:]]+:[[:digit:]]+:[[:digit:]]+");
