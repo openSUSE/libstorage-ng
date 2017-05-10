@@ -6,24 +6,28 @@ SUBDIRS = Devices Filesystems Holders SystemInfo Utils
 
 lib_LTLIBRARIES = libstorage-ng.la
 
-libstorage_ng_la_SOURCES =				\
-	Environment.h		Environment.cc		\
-	EnvironmentImpl.h	EnvironmentImpl.cc	\
-	Storage.h		Storage.cc		\
-	StorageImpl.h		StorageImpl.cc		\
-	Devicegraph.h		Devicegraph.cc		\
-	DevicegraphImpl.h	DevicegraphImpl.cc	\
-	Action.h		Action.cc		\
-	Actiongraph.h		Actiongraph.cc		\
-	ActiongraphImpl.h	ActiongraphImpl.cc	\
-	FindBy.h					\
-	Redirect.h					\
-	Graphviz.h		Graphviz.cc		\
-	EtcCrypttab.h		EtcCrypttab.cc		\
-	EtcFstab.h		EtcFstab.cc		\
-	EtcMdadm.h		EtcMdadm.cc		\
-	FreeInfo.h		FreeInfo.cc		\
-	UsedFeatures.h					\
+libstorage_ng_la_SOURCES =						\
+	Environment.h			Environment.cc			\
+	EnvironmentImpl.h		EnvironmentImpl.cc		\
+	Storage.h			Storage.cc			\
+	StorageImpl.h			StorageImpl.cc			\
+	Devicegraph.h			Devicegraph.cc			\
+	DevicegraphImpl.h		DevicegraphImpl.cc		\
+	Action.h			Action.cc			\
+	Actiongraph.h			Actiongraph.cc			\
+	ActiongraphImpl.h		ActiongraphImpl.cc		\
+	CompoundAction.h		CompoundAction.cc		\
+	CompoundActionImpl.h		CompoundActionImpl.cc		\
+	CompoundActionCreator.h		CompoundActionCreator.cc	\
+	CompoundActionCreatorImpl.h	CompoundActionCreatorImpl.cc	\
+	FindBy.h							\
+	Redirect.h							\
+	Graphviz.h			Graphviz.cc			\
+	EtcCrypttab.h			EtcCrypttab.cc			\
+	EtcFstab.h			EtcFstab.cc			\
+	EtcMdadm.h			EtcMdadm.cc			\
+	FreeInfo.h			FreeInfo.cc			\
+	UsedFeatures.h							\
 	Version.h
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
@@ -44,6 +48,8 @@ pkginclude_HEADERS =		\
 	Version.h		\
 	Devicegraph.h		\
 	Actiongraph.h		\
+	CompoundAction.h	\
+	CompoundActionCreator.h	\
 	Graphviz.h		\
 	FreeInfo.h		\
 	UsedFeatures.h

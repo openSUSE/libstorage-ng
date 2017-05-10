@@ -1,0 +1,72 @@
+#include <iostream>
+
+#include "storage/Utils/Logger.h"
+#include "storage/Environment.h"
+#include "storage/Storage.h"
+//#include "storage/DevicegraphImpl.h"
+#include "storage/Devicegraph.h"
+#include "storage/Actiongraph.h"
+#include "storage/Action.h"
+#include "storage/CompoundAction.h"
+#include "storage/CompoundActionImpl.h"
+#include "storage/CompoundActionCreator.h"
+#include "storage/CompoundActionCreatorImpl.h"
+#include "storage/UsedFeatures.h"
+
+using namespace std;
+using namespace storage;
+
+
+int
+main()
+{
+    // Log into file (/var/log/libstorage-ng.log).
+    set_logger(get_logfile_logger());
+
+    try
+    {
+	// Create storage object and probe system.
+	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+	environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
+
+	Storage storage(environment);
+	storage.probe();
+
+	const Devicegraph* probed = storage.get_probed();
+
+	probed->check();
+
+	Devicegraph* staging = storage.get_staging();
+
+	staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
+	staging->check();
+
+	// Calculate the actiongraph.
+	const Actiongraph* actiongraph = storage.calculate_actiongraph();
+
+	cout << "Number of commit actions:" << actiongraph->get_commit_actions().size() << endl;
+
+	CompoundActionCreator creator(actiongraph);
+
+	creator.group_commit_actions();
+
+	auto compound_actions = creator.get_compound_actions();
+
+	cout << "Number of compound actions:" << compound_actions.size() << endl;
+
+	for (auto& compound_action : compound_actions)
+	{
+	    cout << "--> Compound action" << endl;
+	    cout << compound_action->to_string() << endl;
+	}
+
+	return EXIT_SUCCESS;
+    }
+    catch (const exception& e)
+    {
+	cerr << "exception occured: " << e.what() << endl;
+
+	return EXIT_FAILURE;
+    }
+}
+
