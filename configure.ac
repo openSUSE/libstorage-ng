@@ -91,7 +91,6 @@ AC_OUTPUT(
 	storage/SystemInfo/Makefile
 	doc/Makefile
 	doc/autodocs/Makefile
-	data/Makefile
 	po/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile
