@@ -311,6 +311,11 @@ namespace storage
 
 	entry.region = Region(start_sector, size_sector, region.get_block_size());
 
+	// TODO the parser simply adds the filesystem, name and flags to one
+	// list and then does string matching. This cannot work reliable, just
+	// think of a partition named "esp" containing swap. Use 'parted
+	// --machine'.
+
 	char c;
 	string TInfo;
 	Data.unsetf(ifstream::skipws);
@@ -382,7 +387,8 @@ namespace storage
 	{
 	    entry.id = ID_PREP;
 	}
-	else if (contains(flags, "esp"))
+
+	if (contains(flags, "esp"))
 	{
 	    entry.id = ID_ESP;
 	}
