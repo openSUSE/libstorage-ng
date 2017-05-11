@@ -2,7 +2,7 @@
 # Makefile.am for libstorage
 #
 
-SUBDIRS = storage doc data po examples testsuite bindings integration-tests
+SUBDIRS = storage doc po examples testsuite bindings integration-tests
 
 AUTOMAKE_OPTIONS = foreign dist-bzip2 no-dist-gzip
 
