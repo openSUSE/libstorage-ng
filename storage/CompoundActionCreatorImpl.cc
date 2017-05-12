@@ -30,6 +30,7 @@
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/Encryption.h"
+#include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
 
@@ -77,26 +78,31 @@ namespace storage
 	{
 	    auto target = target_device(commit_action);
 	    
-	    auto compound_action = find_with_target_device(target);
+	    auto compound_action = find_by_target_device(target);
 
 	    if (compound_action == compound_actions.end())
-		add_compound_action_for(commit_action);
+		add_compound_action(commit_action);
 	    else
 		(*compound_action)->add_commit_action(commit_action);
 	}
     }
 
-    
-    const Device*
-    CompoundActionCreator::Impl::target_device(const Action::Base* action) const
+
+    void
+    CompoundActionCreator::Impl::add_compound_action(const Action::Base* commit_action)
     {
-	auto device = this->device(action);
-	return target_device_for(device);
+	auto target = target_device(commit_action);
+	
+	CompoundAction* compound_action = new CompoundAction(actiongraph);
+
+	compound_action->set_target_device(target);
+	compound_action->add_commit_action(commit_action);
+	compound_actions.push_back(compound_action);
     }
 
-
+    
     const_iterator
-    CompoundActionCreator::Impl::find_with_target_device(const Device* device) const
+    CompoundActionCreator::Impl::find_by_target_device(const Device* device) const
     {
 	auto begin = compound_actions.begin();
 	auto end = compound_actions.end();
@@ -111,16 +117,73 @@ namespace storage
     }
 
 
-    void
-    CompoundActionCreator::Impl::add_compound_action_for(const Action::Base* commit_action)
+    const Device*
+    CompoundActionCreator::Impl::target_device(const Action::Base* action) const
     {
-	auto target = target_device(commit_action);
-	
-	CompoundAction* compound_action = new CompoundAction(actiongraph);
+	return target_device(device(action));
+    }
 
-	compound_action->set_target_device(target);
-	compound_action->add_commit_action(commit_action);
-	compound_actions.push_back(compound_action);
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const Device* device) const
+    {
+	if (is_partition_table(device))
+	    return target_device(to_partition_table(device));
+
+	if (is_encryption(device))
+	    return target_device(to_encryption(device));
+
+	if (is_lvm_pv(device))
+	    return target_device(to_lvm_pv(device));
+
+	if (is_blk_filesystem(device))
+	    return target_device(to_blk_filesystem(device));
+
+	if (is_mount_point(device))
+	    return target_device(to_mount_point(device));
+
+	return device;
+    }
+    
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const PartitionTable* partition_table) const
+    {
+	return partition_table->get_partitionable();
+    }
+
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const Encryption* encryption) const
+    {
+	return encryption->get_blk_device();
+    }
+
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const LvmPv* pv) const
+    {
+	return target_device(pv->get_blk_device());
+    }
+
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const BlkFilesystem* blk_filesystem) const
+    {
+	auto blk_devices = blk_filesystem->get_blk_devices(); 
+
+	if (blk_devices.size() > 1)
+	    // BtrFS with several devices
+	    return blk_filesystem;
+	    
+	return target_device(blk_devices.front());
+    }
+
+
+    const Device*
+    CompoundActionCreator::Impl::target_device(const MountPoint* mount_point) const
+    {
+	return target_device(mount_point->get_mountable());
     }
 
 
@@ -128,68 +191,43 @@ namespace storage
     CompoundActionCreator::Impl::device(const Action::Base* action) const
     {
 	if (is_create(action))
-	    return dynamic_cast<const Action::Create*>(action)->get_device(actiongraph->get_impl());
+	    return device(dynamic_cast<const Action::Create*>(action));
 
 	if (is_modify(action))
-	    return dynamic_cast<const Action::Modify*>(action)->get_device(actiongraph->get_impl(), RHS);
+	    return device(dynamic_cast<const Action::Modify*>(action)); 
 
 	if (is_delete(action))
-	    return dynamic_cast<const Action::Delete*>(action)->get_device(actiongraph->get_impl());
-
-	//TODO raise exception
+	    return device(dynamic_cast<const Action::Delete*>(action));
     }
 
 
     const Device*
-    CompoundActionCreator::Impl::target_device_for(const Device* device) const
+    CompoundActionCreator::Impl::device(const Action::Create* action) const
     {
-	if (is_partition_table(device))
-	    return target_device_for_partition_table(device);
-
-	if (is_encryption(device))
-	    return target_device_for_encryption(device);
-
-	if (is_blk_filesystem(device))
-	    return target_device_for_blk_filesystem(device);
-
-	if (is_mount_point(device))
-	    return target_device_for_mount_point(device);
-
-	return device;
+	return action->get_device(actiongraph->get_impl());
     }
+
+
+    const Device*
+    CompoundActionCreator::Impl::device(const Action::Modify* action) const
+    {
+	try
+	{
+	    return action->get_device(actiongraph->get_impl(), RHS);
+	
+	}
+	catch(const DeviceNotFound& e)
+	{
+	
+	    return action->get_device(actiongraph->get_impl(), LHS);
+	}
+    }
+
     
-
     const Device*
-    CompoundActionCreator::Impl::target_device_for_partition_table(const Device* device) const
+    CompoundActionCreator::Impl::device(const Action::Delete* action) const
     {
-	return to_partition_table(device)->get_partitionable();
-    }
-
-
-    const Device*
-    CompoundActionCreator::Impl::target_device_for_encryption(const Device* device) const
-    {
-	return to_encryption(device)->get_blk_device();
-    }
-
-
-    const Device*
-    CompoundActionCreator::Impl::target_device_for_blk_filesystem(const Device* device) const
-    {
-	auto blk_devices = to_blk_filesystem(device)->get_blk_devices(); 
-
-	if (blk_devices.size() > 1)
-	    // BtrFS with several devices
-	    return device;
-	    
-	return target_device_for(blk_devices.front());
-    }
-
-
-    const Device*
-    CompoundActionCreator::Impl::target_device_for_mount_point(const Device* device) const
-    {
-	return target_device_for(to_mount_point(device)->get_mountable());
+	return action->get_device(actiongraph->get_impl());
     }
 
 }

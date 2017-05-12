@@ -36,6 +36,12 @@ namespace storage
 
     using std::vector;
 
+    class PartitionTable;
+    class Encryption;
+    class LvmPv;
+    class BlkFilesystem;
+    class MountPoint;
+
     class CompoundActionCreator::Impl
     {
 
@@ -51,24 +57,23 @@ namespace storage
 	vector<CompoundAction*> get_compound_actions() const;
 
 	void group_commit_actions();
+	
+	void add_compound_action(const Action::Base* action);
+
+	const_iterator find_by_target_device(const Device* device) const;
 
 	const Device* target_device(const Action::Base* action) const;
+	const Device* target_device(const Device* device) const;
+	const Device* target_device(const PartitionTable* partition_table) const;
+	const Device* target_device(const Encryption* encryption) const;
+	const Device* target_device(const LvmPv* pv) const;
+	const Device* target_device(const BlkFilesystem* blk_filesystem) const;
+	const Device* target_device(const MountPoint* mount_point) const;
 
-	const_iterator find_with_target_device(const Device* device) const;
-
-	void add_compound_action_for(const Action::Base* action);
-	
 	const Device* device(const Action::Base* action) const;
-
-	const Device* target_device_for(const Device* device) const;
-
-	const Device* target_device_for_partition_table(const Device* device) const;
-
-	const Device* target_device_for_blk_filesystem(const Device* device) const;
-	
-	const Device* target_device_for_encryption(const Device* device) const;
-
-	const Device* target_device_for_mount_point(const Device* device) const;
+	const Device* device(const Action::Create* action) const;
+	const Device* device(const Action::Modify* action) const;
+	const Device* device(const Action::Delete* action) const;
 
     private:
 

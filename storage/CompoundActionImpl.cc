@@ -24,6 +24,11 @@
 
 #include "storage/CompoundActionImpl.h"
 #include "storage/ActiongraphImpl.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmVg.h"
+#include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Filesystems/MountPoint.h"
 
 
 namespace storage
@@ -79,11 +84,153 @@ namespace storage
     }
 
 
+    bool
+    CompoundAction::Impl::is_delete() const
+    {
+	for(auto action : commit_actions)
+	{
+	    if (storage::is_delete(action))
+		return true;
+	}
+
+	return false;
+    }
+
+
     //TODO Generate text depending on the set of commit actions.
     string
     CompoundAction::Impl::to_string() const
     {
-	return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
+	if (is_partition(target_device))
+	    return to_string(to_partition(target_device));
+
+	else if (is_lvm_lv(target_device))
+	    return to_string(to_lvm_lv(target_device));
+
+	else
+	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
+    }
+
+
+    string
+    CompoundAction::Impl::to_string(const Partition* partition) const
+    {
+	if (is_delete())
+	    return delete_partition_text(partition, Tense::SIMPLE_PRESENT).translated;
+	else
+	    return create_partition_text(partition, Tense::SIMPLE_PRESENT).translated;
+    }
+
+
+    Text
+    CompoundAction::Impl::delete_partition_text(const Partition* partition, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   _("Delete partition %1$s (%2$s)"),
+			   _("Deleting partition %1$s (%2$s)"));
+
+	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+
+    Text
+    CompoundAction::Impl::create_partition_text(const Partition* partition, Tense tense) const
+    {
+	if (has_encryption() && has_pv())
+	    return create_encrypted_pv_partition_text(partition, Tense::SIMPLE_PRESENT);
+
+	else if (has_pv())
+	    return create_pv_partition_text(partition, Tense::SIMPLE_PRESENT);
+
+	else if (has_encryption())
+	    return create_encrypted_plane_partition_text(partition, Tense::SIMPLE_PRESENT);
+
+	else
+	    return create_plane_partition_text(partition, Tense::SIMPLE_PRESENT);
+    }
+
+
+    Text
+    CompoundAction::Impl::create_encrypted_pv_partition_text(const Partition* partition, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   _("Create encrypted partition %1$s (%2$s) for PV"),
+			   _("Creating encrypted partition %1$s (%2$s) for PV"));
+
+	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+    
+    Text
+    CompoundAction::Impl::create_pv_partition_text(const Partition* partition, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   _("Create partition %1$s (%2$s) for PV"),
+			   _("Creating partition %1$s (%2$s) for PV"));
+
+	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+
+    Text
+    CompoundAction::Impl::create_encrypted_plane_partition_text(const Partition* partition, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   _("Create encrypted partition %1$s (%2$s) with fs for path"),
+			   _("Creating encrypted partition %1$s (%2$s) with fs for path"));
+
+	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+
+    Text
+    CompoundAction::Impl::create_plane_partition_text(const Partition* partition, Tense tense) const
+    {
+	Text text = tenser(tense,
+			   _("Create partition %1$s (%2$s) with fs for path"),
+			   _("Creating partition %1$s (%2$s) with fs for path"));
+
+	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+
+    bool
+    CompoundAction::Impl::has_encryption() const
+    {
+	return false;
+    }
+
+
+    bool
+    CompoundAction::Impl::has_pv() const
+    {
+	return false;
+    }
+
+
+    string
+    CompoundAction::Impl::to_string(const LvmLv* lv) const
+    {
+	return create_lvm_lv_text(lv, Tense::SIMPLE_PRESENT).translated;
+    }
+
+
+    Text
+    CompoundAction::Impl::create_lvm_lv_text(const LvmLv* lv, Tense tense) const
+    {
+	auto vg = lv->get_lvm_vg();
+	auto filesystem = lv->get_blk_filesystem();
+
+	Text text = tenser(tense,
+			   _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
+			   _("Creating LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
+
+	return sformat(text, 
+		       lv->get_name().c_str(), 
+		       lv->get_size_string().c_str(),
+		       vg->get_vg_name().c_str(),
+		       filesystem->get_mount_point()->get_path().c_str(),
+		       filesystem->get_displayname().c_str());
     }
 
 }

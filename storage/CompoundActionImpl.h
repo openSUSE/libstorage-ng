@@ -25,6 +25,7 @@
 
 
 #include "storage/CompoundAction.h"
+#include "storage/Utils/Text.h"
 
 
 namespace storage
@@ -32,6 +33,9 @@ namespace storage
     
     using std::vector;
     using std::string;
+
+    class Partition;
+    class LvmLv;
 
     class CompoundAction::Impl
     {
@@ -52,7 +56,23 @@ namespace storage
     
 	vector<string> get_commit_actions_as_strings() const;
 
+	bool is_delete() const;
+
 	string to_string() const;
+	
+	string to_string(const Partition* partition) const;
+	Text delete_partition_text(const Partition* partition, Tense tense) const;
+	Text create_partition_text(const Partition* partition, Tense tense) const;
+	Text create_encrypted_pv_partition_text(const Partition* partition, Tense tense) const;
+	Text create_pv_partition_text(const Partition* partition, Tense tense) const;
+	Text create_encrypted_plane_partition_text(const Partition* partition, Tense tense) const;
+	Text create_plane_partition_text(const Partition* partition, Tense tense) const;
+	
+	bool has_encryption() const;
+	bool has_pv() const;
+
+	string to_string(const LvmLv* lv) const;
+	Text create_lvm_lv_text(const LvmLv* lv, Tense tense) const;
 
     private:
 	
