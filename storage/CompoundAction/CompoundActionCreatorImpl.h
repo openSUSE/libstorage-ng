@@ -26,7 +26,7 @@
 
 #include <iterator>
 
-#include "storage/CompoundActionCreator.h"
+#include "storage/CompoundAction/CompoundActionCreator.h"
 #include "storage/Action.h"
 #include "storage/Devices/Device.h"
 

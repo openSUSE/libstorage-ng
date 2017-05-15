@@ -20,40 +20,46 @@
  */
 
 
-#ifndef STORAGE_COMPOUND_ACTION_CREATOR_H
-#define STORAGE_COMPOUND_ACTION_CREATOR_H
+#ifndef STORAGE_COMPOUND_ACTION_H
+#define STORAGE_COMPOUND_ACTION_H
 
 
 #include <memory>
+#include <string>
 #include <vector>
 #include <boost/noncopyable.hpp>
 
-#include "storage/CompoundAction.h"
+#include "storage/Action.h"
+#include "storage/Devices/Device.h"
 
 
 namespace storage
 {
 
-    namespace Action
-    {
-	class Base;
-    }
+    class Actiongraph;
 
-    class Actiongraph; 
-
-    class CompoundActionCreator : private boost::noncopyable
+    class CompoundAction : private boost::noncopyable
     {
 
     public:
 
-	CompoundActionCreator(const Actiongraph* actiongraph);
-	~CompoundActionCreator();
+	CompoundAction(const Actiongraph* actiongraph);
+	CompoundAction(const Actiongraph* actiongraph, const Action::Base* action);
+	~CompoundAction();
 
-	std::vector<const Action::Base*> get_commit_actions() const;
+	void set_target_device(const Device* device);
 
-	std::vector<CompoundAction*> get_compound_actions() const;
+	const Device* get_target_device() const;
 
-	void group_commit_actions();
+	void set_commit_actions(std::vector<const Action::Base*> actions);
+
+	std::vector<const Action::Base*> get_commit_actions() const; 
+
+	void add_commit_action(const Action::Base* action);
+	
+	std::string to_string() const;
+
+	static std::vector<CompoundAction*> generate(const Actiongraph* actiongraph);
 
     public:
 

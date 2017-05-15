@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundActionImpl.h"
+#include "storage/CompoundAction/CompoundActionImpl.h"
 
 
 namespace storage
@@ -28,6 +28,10 @@ namespace storage
 
     CompoundAction::CompoundAction(const Actiongraph* actiongraph)
     : impl(new Impl(actiongraph)) {}
+
+
+    CompoundAction::CompoundAction(const Actiongraph* actiongraph, const Action::Base* action)
+    : impl(new Impl(actiongraph, action)) {}
 
 
     CompoundAction::~CompoundAction() {}
@@ -72,6 +76,13 @@ namespace storage
     CompoundAction::to_string() const
     {
 	return get_impl().to_string();
+    }
+
+
+    vector<CompoundAction*> 
+    CompoundAction::generate(const Actiongraph* actiongraph)
+    {
+	return CompoundAction::Impl::generate(actiongraph);    
     }
 
 }

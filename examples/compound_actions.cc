@@ -7,10 +7,9 @@
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Action.h"
-#include "storage/CompoundAction.h"
-#include "storage/CompoundActionImpl.h"
-#include "storage/CompoundActionCreator.h"
-#include "storage/CompoundActionCreatorImpl.h"
+#include "storage/CompoundAction/CompoundAction.h"
+#include "storage/CompoundAction/CompoundActionImpl.h"
+//#include "storage/CompoundAction/CompoundActionGenerator.h"
 #include "storage/UsedFeatures.h"
 
 using namespace std;
@@ -27,8 +26,8 @@ main()
     {
 	// Create storage object and probe system.
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-	//environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
-	environment.set_devicegraph_filename("examples/data/mydisk_probed.xml");
+	environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
+	//environment.set_devicegraph_filename("examples/data/mydisk_probed.xml");
 
 	Storage storage(environment);
 	storage.probe();
@@ -39,7 +38,8 @@ main()
 
 	Devicegraph* staging = storage.get_staging();
 
-	staging->load("examples/data/mydisk_staging.xml");
+	staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
+	//staging->load("examples/data/mydisk_staging.xml");
 	staging->check();
 
 	// Calculate the actiongraph.
@@ -51,11 +51,15 @@ main()
 	    cout << text << endl;
 
 
-	CompoundActionCreator creator(actiongraph);
 
-	creator.group_commit_actions();
+//	for (auto action : actiongraph->get_commit_actions())
+//	{
+//	    cout << action->sid << "/" << CompoundAction::Impl::get_target_device(actiongraph, action)->get_sid() << endl;
+//	}
 
-	auto compound_actions = creator.get_compound_actions();
+	//CompoundActionGenerator generator(actiongraph);
+
+	auto compound_actions = CompoundAction::generate(actiongraph);
 
 	cout << "Number of compound actions:" << compound_actions.size() << endl;
 
@@ -63,7 +67,13 @@ main()
 	{
 	    cout << "--> Compound action" << endl;
 	    cout << compound_action->to_string() << endl;
+	    //for (auto action : compound_action->get_impl().get_commit_actions_as_strings())
+	    //	cout << action << endl;
 	}
+	
+
+	for (auto& compound_action : compound_actions)
+	    delete compound_action;
 
 	return EXIT_SUCCESS;
     }

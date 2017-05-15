@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/storage
 #
 
-SUBDIRS = Devices Filesystems Holders SystemInfo Utils
+SUBDIRS = CompoundAction Devices Filesystems Holders SystemInfo Utils
 
 lib_LTLIBRARIES = libstorage-ng.la
 
@@ -16,10 +16,6 @@ libstorage_ng_la_SOURCES =						\
 	Action.h			Action.cc			\
 	Actiongraph.h			Actiongraph.cc			\
 	ActiongraphImpl.h		ActiongraphImpl.cc		\
-	CompoundAction.h		CompoundAction.cc		\
-	CompoundActionImpl.h		CompoundActionImpl.cc		\
-	CompoundActionCreator.h		CompoundActionCreator.cc	\
-	CompoundActionCreatorImpl.h	CompoundActionCreatorImpl.cc	\
 	FindBy.h							\
 	Redirect.h							\
 	Graphviz.h			Graphviz.cc			\
@@ -32,12 +28,13 @@ libstorage_ng_la_SOURCES =						\
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
-libstorage_ng_la_LIBADD =		\
-	Devices/libdevices.la		\
-	Filesystems/libfilesystems.la	\
-	Holders/libholders.la		\
-	Utils/libutils.la 		\
-	SystemInfo/libsysteminfo.la	\
+libstorage_ng_la_LIBADD =			\
+	CompoundAction/libcompoundaction.la	\
+	Devices/libdevices.la			\
+	Filesystems/libfilesystems.la		\
+	Holders/libholders.la			\
+	Utils/libutils.la			\
+	SystemInfo/libsysteminfo.la		\
 	-lxml2
 
 pkgincludedir = $(includedir)/storage
@@ -48,8 +45,6 @@ pkginclude_HEADERS =		\
 	Version.h		\
 	Devicegraph.h		\
 	Actiongraph.h		\
-	CompoundAction.h	\
-	CompoundActionCreator.h	\
 	Graphviz.h		\
 	FreeInfo.h		\
 	UsedFeatures.h

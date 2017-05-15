@@ -23,7 +23,7 @@
 #include <iostream>
 #include <algorithm>
 
-#include "storage/CompoundActionCreatorImpl.h"
+#include "storage/CompoundAction/CompoundActionCreatorImpl.h"
 #include "storage/Actiongraph.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Md.h"

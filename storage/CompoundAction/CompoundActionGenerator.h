@@ -20,7 +20,12 @@
  */
 
 
-#include "storage/CompoundActionCreatorImpl.h"
+#ifndef STORAGE_COMPOUND_ACTION_GENERATOR_H
+#define STORAGE_COMPOUND_ACTION_GENERATOR_H
+
+
+#include <iterator>
+#include <vector>
 
 
 namespace storage
@@ -28,32 +33,32 @@ namespace storage
 
     using std::vector;
 
+    class Actiongraph;
+    class CompoundAction;
+    class Device;
 
-    CompoundActionCreator::CompoundActionCreator(const Actiongraph* actiongraph)
-    : impl(new Impl(actiongraph)) {}
+    class CompoundActionGenerator
+    {
 
+    public:
 
-    CompoundActionCreator::~CompoundActionCreator() {}
+	using const_iterator = vector<CompoundAction*>::const_iterator;
+
+	CompoundActionGenerator(const Actiongraph* actiongraph);
+	~CompoundActionGenerator();
+
+	vector<CompoundAction*> generate() const;
+
+    private:
+
+	static const_iterator find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
+
+    private:
+
+	const Actiongraph* actiongraph;
     
-
-    vector<const Action::Base*>
-    CompoundActionCreator::get_commit_actions() const
-    {
-	return get_impl().get_commit_actions();
-    }
-
-
-    vector<CompoundAction*>
-    CompoundActionCreator::get_compound_actions() const
-    {
-	return get_impl().get_compound_actions();
-    }
-
-
-    void
-    CompoundActionCreator::group_commit_actions()
-    {
-	return get_impl().group_commit_actions();
-    }
+    };
 
 }
+
+#endif
