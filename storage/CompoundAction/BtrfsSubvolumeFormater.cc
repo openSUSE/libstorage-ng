@@ -31,7 +31,7 @@ namespace storage
     BtrfsSubvolumeFormater::BtrfsSubvolumeFormater(const CompoundAction::Impl* compound_action)
     : CompoundActionFormater(compound_action) 
     {
-	this->subvolume= to_btrfs_subvolume(compound_action->get_target_device());
+	this->subvolume = to_btrfs_subvolume(compound_action->get_target_device());
     }
 
 

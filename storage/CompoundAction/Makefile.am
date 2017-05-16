@@ -10,7 +10,8 @@ libcompoundaction_la_SOURCES =						\
 	CompoundActionGenerator.h	CompoundActionGenerator.cc	\
 	CompoundActionFormater.h	CompoundActionFormater.cc	\
 	PartitionFormater.h		PartitionFormater.cc		\
-	BtrfsSubvolumeFormater.h	BtrfsSubvolumeFormater.cc
+	BtrfsSubvolumeFormater.h	BtrfsSubvolumeFormater.cc	\
+	NfsFormater.h			NfsFormater.cc
 
 pkgincludedir = $(includedir)/storage/CompoundAction
 
