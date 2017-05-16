@@ -26,6 +26,7 @@
 #include "storage/CompoundAction/CompoundActionGenerator.h"
 #include "storage/CompoundAction/PartitionFormater.h"
 #include "storage/CompoundAction/BtrfsSubvolumeFormater.h"
+#include "storage/CompoundAction/BtrfsFormater.h"
 #include "storage/CompoundAction/NfsFormater.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Devices/PartitionTable.h"
@@ -37,6 +38,7 @@
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/Nfs.h"
 
 
@@ -115,10 +117,13 @@ namespace storage
 	if (is_partition(target_device))
 	    return PartitionFormater(this).string_representation();
 
-	if (is_btrfs_subvolume(target_device))
+	else if (is_btrfs(target_device))
+	    return BtrfsFormater(this).string_representation();
+
+	else if (is_btrfs_subvolume(target_device))
 	    return BtrfsSubvolumeFormater(this).string_representation();
 
-	if (is_nfs(target_device))
+	else if (is_nfs(target_device))
 	    return NfsFormater(this).string_representation();
 
 	//else if (is_lvm_lv(target_device))

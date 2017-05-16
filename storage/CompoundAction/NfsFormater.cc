@@ -22,7 +22,6 @@
 
 #include "storage/CompoundAction/NfsFormater.h"
 #include "storage/Filesystems/MountPoint.h"
-#include "storage/Filesystems/FilesystemImpl.h"
 
 
 namespace storage
@@ -31,7 +30,7 @@ namespace storage
     NfsFormater::NfsFormater(const CompoundAction::Impl* compound_action)
     : CompoundActionFormater(compound_action) 
     {
-	this->nfs= to_nfs(compound_action->get_target_device());
+	this->nfs = to_nfs(compound_action->get_target_device());
     }
 
 
