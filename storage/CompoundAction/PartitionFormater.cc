@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/CompoundAction/PartitionFormater.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/Encryption.h"
@@ -35,20 +33,13 @@ namespace storage
     using std::string;
 
     PartitionFormater::PartitionFormater(const CompoundAction::Impl* compound_action)
-    : compound_action(compound_action), tense(Tense::SIMPLE_PRESENT) 
+    : CompoundActionFormater(compound_action) 
     {
 	this->partition = to_partition(compound_action->get_target_device());
     }
 
 
     PartitionFormater::~PartitionFormater() {}
-
-
-    string
-    PartitionFormater::string_representation() const
-    {
-	return text().translated;
-    }
 
 
     const BlkFilesystem*
@@ -124,6 +115,9 @@ namespace storage
 
 	    else if (has_create<MountPoint>())
 		return mount_point_text();
+
+	    else
+		return default_text();
 	}
     }
 

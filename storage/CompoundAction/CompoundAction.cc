@@ -73,9 +73,9 @@ namespace storage
 
 
     string
-    CompoundAction::to_string() const
+    CompoundAction::string_representation() const
     {
-	return get_impl().to_string();
+	return get_impl().string_representation();
     }
 
 

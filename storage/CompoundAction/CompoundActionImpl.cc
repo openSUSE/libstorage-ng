@@ -104,6 +104,21 @@ namespace storage
     }
 
 
+    //TODO Generate text depending on the set of commit actions.
+    string
+    CompoundAction::Impl::string_representation() const
+    {
+	if (is_partition(target_device))
+	    return PartitionFormater(this).string_representation();
+
+	//else if (is_lvm_lv(target_device))
+	//    return to_string(to_lvm_lv(target_device));
+
+	else
+	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
+    }
+
+
     // static methods
     
     vector<CompoundAction*> 
@@ -229,42 +244,6 @@ namespace storage
 
 
 
-
-
-//    bool
-//    CompoundAction::Impl::is_delete() const
-//    {
-//	for(auto action : commit_actions)
-//	{
-//	    if (storage::is_delete(action))
-//		return true;
-//	}
-//
-//	return false;
-//    }
-//
-
-    //TODO Generate text depending on the set of commit actions.
-    string
-    CompoundAction::Impl::to_string() const
-    {
-	if (is_partition(target_device))
-	    return PartitionFormater(this).string_representation();
-
-	//else if (is_lvm_lv(target_device))
-	//    return to_string(to_lvm_lv(target_device));
-
-	else
-	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
-    }
-
-
-
-//    string
-//    CompoundAction::Impl::to_string() const
-//    {
-//	return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
-//    }
 
 
 }

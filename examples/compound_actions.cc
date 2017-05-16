@@ -66,7 +66,7 @@ main()
 	for (auto& compound_action : compound_actions)
 	{
 	    cout << "--> Compound action" << endl;
-	    cout << compound_action->to_string() << endl;
+	    cout << compound_action->string_representation() << endl;
 	    //for (auto action : compound_action->get_impl().get_commit_actions_as_strings())
 	    //	cout << action << endl;
 	}

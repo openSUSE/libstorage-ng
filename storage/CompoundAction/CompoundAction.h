@@ -57,7 +57,7 @@ namespace storage
 
 	void add_commit_action(const Action::Base* action);
 	
-	std::string to_string() const;
+	std::string string_representation() const;
 
 	static std::vector<CompoundAction*> generate(const Actiongraph* actiongraph);
 
