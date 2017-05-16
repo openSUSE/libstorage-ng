@@ -25,6 +25,7 @@
 #include "storage/CompoundAction/CompoundActionImpl.h"
 #include "storage/CompoundAction/CompoundActionGenerator.h"
 #include "storage/CompoundAction/PartitionFormater.h"
+#include "storage/CompoundAction/BtrfsSubvolumeFormater.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partitionable.h"
@@ -33,6 +34,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
 
 
@@ -110,6 +112,9 @@ namespace storage
     {
 	if (is_partition(target_device))
 	    return PartitionFormater(this).string_representation();
+
+	if (is_btrfs_subvolume(target_device))
+	    return BtrfsSubvolumeFormater(this).string_representation();
 
 	//else if (is_lvm_lv(target_device))
 	//    return to_string(to_lvm_lv(target_device));
@@ -241,10 +246,6 @@ namespace storage
     {
 	return action->get_device(actiongraph->get_impl());
     }
-
-
-
-
 
 }
 

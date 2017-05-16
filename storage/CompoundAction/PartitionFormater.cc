@@ -30,8 +30,6 @@
 namespace storage
 {
 
-    using std::string;
-
     PartitionFormater::PartitionFormater(const CompoundAction::Impl* compound_action)
     : CompoundActionFormater(compound_action) 
     {

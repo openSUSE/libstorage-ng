@@ -20,55 +20,40 @@
  */
 
 
-#ifndef STORAGE_PARTITION_FORMATER_H
-#define STORAGE_PARTITION_FORMATER_H
+#ifndef STORAGE_BTRFS_SUBVOLUME_FORMATER_H
+#define STORAGE_BTRFS_SUBVOLUME_FORMATER_H
 
 
 #include "storage/CompoundAction/CompoundActionFormater.h"
-#include "storage/Devices/Partition.h"
-#include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/Filesystems/BtrfsSubvolume.h"
 
 
 namespace storage
 {
 
-    class PartitionFormater : public CompoundActionFormater
+    class BtrfsSubvolumeFormater : public CompoundActionFormater
     {
 
     public:
 
-	PartitionFormater(const CompoundAction::Impl* compound_action);
-	~PartitionFormater();
+	BtrfsSubvolumeFormater(const CompoundAction::Impl* compound_action);
+	~BtrfsSubvolumeFormater();
 
     private:
 
-	const BlkFilesystem* get_created_filesystem() const;
+	const BlkDevice* get_blk_device() const;
 
 	Text text() const;
 
 	Text delete_text() const;
 
-	Text create_encrypted_pv_text() const;
-	Text create_pv_text() const;
-	Text encrypted_pv_text() const;
-	Text pv_text() const;
-	
-	Text create_encrypted_with_fs_and_mount_point_text() const;
-	Text create_encrypted_with_fs_text() const;
-	Text create_encrypted_text() const;
-	Text create_with_fs_and_mount_point_text() const;
-	Text create_with_fs_text() const;
+	Text create_with_no_copy_text() const;
 	Text create_text() const;
-	Text encrypted_with_fs_and_mount_point_text() const;
-	Text encrypted_with_fs_text() const;
-	Text encrypted_text() const;
-	Text fs_and_mount_point_text() const;
-	Text fs_text() const;
-	Text mount_point_text() const;
 
     private:
 
-	const Partition* partition;
+	const BtrfsSubvolume* subvolume;
 
     };
 
