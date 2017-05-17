@@ -10,6 +10,8 @@ libcompoundaction_la_SOURCES =						\
 	CompoundActionGenerator.h	CompoundActionGenerator.cc	\
 	CompoundActionFormater.h	CompoundActionFormater.cc	\
 	PartitionFormater.h		PartitionFormater.cc		\
+	LvmLvFormater.h			LvmLvFormater.cc		\
+	LvmVgFormater.h			LvmVgFormater.cc		\
 	BtrfsSubvolumeFormater.h	BtrfsSubvolumeFormater.cc	\
 	BtrfsFormater.h			BtrfsFormater.cc		\
 	NfsFormater.h			NfsFormater.cc

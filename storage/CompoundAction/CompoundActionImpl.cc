@@ -25,6 +25,8 @@
 #include "storage/CompoundAction/CompoundActionImpl.h"
 #include "storage/CompoundAction/CompoundActionGenerator.h"
 #include "storage/CompoundAction/PartitionFormater.h"
+#include "storage/CompoundAction/LvmLvFormater.h"
+#include "storage/CompoundAction/LvmVgFormater.h"
 #include "storage/CompoundAction/BtrfsSubvolumeFormater.h"
 #include "storage/CompoundAction/BtrfsFormater.h"
 #include "storage/CompoundAction/NfsFormater.h"
@@ -32,14 +34,9 @@
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partitionable.h"
 #include "storage/Devices/Encryption.h"
-#include "storage/Devices/LvmLv.h"
-#include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/BlkFilesystem.h"
-#include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
-#include "storage/Filesystems/Btrfs.h"
-#include "storage/Filesystems/Nfs.h"
 
 
 namespace storage
@@ -117,6 +114,12 @@ namespace storage
 	if (is_partition(target_device))
 	    return PartitionFormater(this).string_representation();
 
+	else if (is_lvm_lv(target_device))
+	    return LvmLvFormater(this).string_representation();
+
+	else if (is_lvm_vg(target_device))
+	    return LvmVgFormater(this).string_representation();
+
 	else if (is_btrfs(target_device))
 	    return BtrfsFormater(this).string_representation();
 
@@ -125,9 +128,6 @@ namespace storage
 
 	else if (is_nfs(target_device))
 	    return NfsFormater(this).string_representation();
-
-	//else if (is_lvm_lv(target_device))
-	//    return to_string(to_lvm_lv(target_device));
 
 	else
 	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	

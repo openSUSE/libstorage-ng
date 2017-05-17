@@ -359,28 +359,5 @@ namespace storage
 		       filesystem->get_mount_point()->get_path().c_str());
     }
 
-
-//
-//    Text
-//    CompoundAction::Impl::create_lvm_lv_text(const LvmLv* lv, Tense tense) const
-//    {
-//	auto vg = lv->get_lvm_vg();
-//	auto filesystem = lv->get_blk_filesystem();
-//
-//	Text text = tenser(tense,
-//			   _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
-//			   _("Creating LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
-//
-//	return sformat(text, 
-//		       lv->get_name().c_str(), 
-//		       lv->get_size_string().c_str(),
-//		       vg->get_vg_name().c_str(),
-//		       filesystem->get_mount_point()->get_path().c_str(),
-//		       filesystem->get_displayname().c_str());
-//    }
-//
-
-
-
 }
 
