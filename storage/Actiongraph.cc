@@ -29,7 +29,7 @@ namespace storage
 {
 
     Actiongraph::Actiongraph(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
-	: impl(new Impl(storage, this, lhs, rhs))
+	: impl(new Impl(storage, lhs, rhs))
     {
     }
 
@@ -84,6 +84,20 @@ namespace storage
 	    ret.push_back(action->text(commit_data).translated);
 
 	return ret;
+    }
+
+
+    void
+    Actiongraph::set_compound_actions()
+    {
+	get_impl().set_compound_actions(this);
+    }
+
+
+    std::vector<CompoundAction*>
+    Actiongraph::get_compound_actions() const
+    {
+	return get_impl().get_compound_actions();
     }
 
 

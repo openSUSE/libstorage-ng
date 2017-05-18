@@ -111,7 +111,7 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	Impl(const Storage& storage, const Actiongraph* actiongraph, const Devicegraph* lhs, Devicegraph* rhs);
+	Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs);
 
 	const Storage& get_storage() const { return storage; }
 
@@ -173,6 +173,7 @@ namespace storage
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
 
+	void set_compound_actions(const Actiongraph* actiongraph);
 	vector<CompoundAction*> get_compound_actions() const;
 
 	// special actions, TODO make private and provide interface
@@ -200,6 +201,8 @@ namespace storage
 	graph_t graph;
 
 	map<sid_t, vector<vertex_descriptor>> cache_for_actions_with_sid;
+
+	vector<shared_ptr<CompoundAction>> compound_actions; 
 
     };
 
