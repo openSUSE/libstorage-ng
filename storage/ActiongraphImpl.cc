@@ -103,8 +103,8 @@ namespace storage
     }
 
 
-    Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
-	: storage(storage), lhs(lhs), rhs(rhs)
+    Actiongraph::Impl::Impl(const Storage& storage, const Actiongraph* actiongraph, const Devicegraph* lhs, Devicegraph* rhs)
+	: storage(storage), actiongraph(actiongraph), lhs(lhs), rhs(rhs)
     {
 	storage.check();
 
@@ -483,6 +483,13 @@ namespace storage
 	}
     }
 
+
+    vector<CompoundAction*>
+    Actiongraph::Impl::get_compound_actions() const
+    {
+	return CompoundAction::generate(actiongraph);
+    }
+    
 
     void
     Actiongraph::Impl::print_graph() const

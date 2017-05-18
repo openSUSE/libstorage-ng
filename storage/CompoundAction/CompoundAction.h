@@ -29,14 +29,20 @@
 #include <vector>
 #include <boost/noncopyable.hpp>
 
-#include "storage/Action.h"
-#include "storage/Devices/Device.h"
+//#include "storage/Action.h"
+//#include "storage/Devices/Device.h"
 
 
 namespace storage
 {
 
+    namespace Action
+    {
+	class Base;
+    }
+
     class Actiongraph;
+    class Device;
 
     class CompoundAction : private boost::noncopyable
     {

@@ -5,7 +5,7 @@
 #include "storage/Storage.h"
 //#include "storage/DevicegraphImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Actiongraph.h"
+#include "storage/ActiongraphImpl.h"
 #include "storage/Action.h"
 #include "storage/CompoundAction/CompoundAction.h"
 #include "storage/CompoundAction/CompoundActionImpl.h"
@@ -59,7 +59,9 @@ main()
 
 	//CompoundActionGenerator generator(actiongraph);
 
-	auto compound_actions = CompoundAction::generate(actiongraph);
+	//auto compound_actions = CompoundAction::generate(actiongraph);
+	
+	auto compound_actions = actiongraph->get_impl().get_compound_actions(); 
 
 	cout << "Number of compound actions:" << compound_actions.size() << endl;
 

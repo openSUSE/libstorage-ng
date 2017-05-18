@@ -25,7 +25,8 @@
 
 
 #include "storage/CompoundAction/CompoundAction.h"
-
+#include "storage/Action.h"
+#include "storage/Devices/Device.h"
 
 namespace storage
 {
