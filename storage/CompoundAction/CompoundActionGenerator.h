@@ -24,7 +24,6 @@
 #define STORAGE_COMPOUND_ACTION_GENERATOR_H
 
 
-#include <iterator>
 #include <vector>
 
 
@@ -42,8 +41,6 @@ namespace storage
 
     public:
 
-	using const_iterator = vector<CompoundAction*>::const_iterator;
-
 	CompoundActionGenerator(const Actiongraph* actiongraph);
 	~CompoundActionGenerator();
 
@@ -51,7 +48,7 @@ namespace storage
 
     private:
 
-	static const_iterator find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
+	static CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
 
     private:
 

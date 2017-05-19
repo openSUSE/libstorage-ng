@@ -20,7 +20,6 @@
  */
 
 
-#include <iostream>
 #include <algorithm>
 
 #include "storage/CompoundAction/CompoundActionGenerator.h"
@@ -29,11 +28,6 @@
 
 namespace storage
 {
-
-    using namespace std;
-
-    using const_iterator = vector<CompoundAction*>::const_iterator;
-
 
     CompoundActionGenerator::CompoundActionGenerator(const Actiongraph* actiongraph)
     : actiongraph(actiongraph) {}
@@ -53,17 +47,17 @@ namespace storage
 	    
 	    auto compound_action = find_by_target_device(compound_actions, target);
 
-	    if (compound_action == compound_actions.end())
-		compound_actions.push_back(new CompoundAction(actiongraph, commit_action));
+	    if (compound_action)
+		compound_action->add_commit_action(commit_action);
 	    else
-		(*compound_action)->add_commit_action(commit_action);
+		compound_actions.push_back(new CompoundAction(actiongraph, commit_action));
 	}
 	
 	return compound_actions;
     }
 
     
-    const_iterator
+    CompoundAction*
     CompoundActionGenerator::find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device)
     {
 	auto begin = compound_actions.begin();
@@ -75,7 +69,10 @@ namespace storage
 		    return a->get_target_device() == device;
 		});
 
-	return it;
+	if (it != end)
+	    return *it;
+	else
+	    return nullptr;
     }
 
 }
