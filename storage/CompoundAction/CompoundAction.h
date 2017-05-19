@@ -29,9 +29,6 @@
 #include <vector>
 #include <boost/noncopyable.hpp>
 
-//#include "storage/Action.h"
-//#include "storage/Devices/Device.h"
-
 
 namespace storage
 {
@@ -54,16 +51,16 @@ namespace storage
 	~CompoundAction();
 
 	void set_target_device(const Device* device);
-
 	const Device* get_target_device() const;
 
 	void set_commit_actions(std::vector<const Action::Base*> actions);
-
 	std::vector<const Action::Base*> get_commit_actions() const; 
 
 	void add_commit_action(const Action::Base* action);
 	
 	std::string string_representation() const;
+	
+	bool is_delete() const;
 
 	static std::vector<CompoundAction*> generate(const Actiongraph* actiongraph);
 

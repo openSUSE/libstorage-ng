@@ -79,6 +79,13 @@ namespace storage
     }
 
 
+    bool
+    CompoundAction::is_delete() const
+    {
+	return get_impl().is_delete();
+    }
+
+
     vector<CompoundAction*> 
     CompoundAction::generate(const Actiongraph* actiongraph)
     {

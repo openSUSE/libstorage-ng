@@ -62,6 +62,8 @@ namespace storage
 
 	string string_representation() const;
 
+	bool is_delete() const;
+
 	static vector<CompoundAction*> generate(const Actiongraph* actiongraph);
 
 	static const Device* get_target_device(const Actiongraph* actiongraph, const Action::Base* action);

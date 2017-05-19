@@ -132,6 +132,19 @@ namespace storage
 	else
 	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
     }
+	
+    
+    bool
+    CompoundAction::Impl::is_delete() const
+    {
+	for (auto action : commit_actions)
+	{
+	    if (storage::is_delete(action) && get_target_device(actiongraph, action) == target_device)
+		return true;
+	}
+
+	return false;
+    }
 
 
     // static methods
@@ -217,13 +230,13 @@ namespace storage
     const Device*
     CompoundAction::Impl::device(const Actiongraph* actiongraph, const Action::Base* action)
     {
-	if (is_create(action))
+	if (storage::is_create(action))
 	    return device(actiongraph, dynamic_cast<const Action::Create*>(action));
 
-	if (is_modify(action))
+	if (storage::is_modify(action))
 	    return device(actiongraph, dynamic_cast<const Action::Modify*>(action)); 
 
-	if (is_delete(action))
+	if (storage::is_delete(action))
 	    return device(actiongraph, dynamic_cast<const Action::Delete*>(action));
     }
 
