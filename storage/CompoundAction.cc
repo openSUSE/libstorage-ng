@@ -85,12 +85,5 @@ namespace storage
 	return get_impl().is_delete();
     }
 
-
-    vector<CompoundAction*> 
-    CompoundAction::generate(const Actiongraph* actiongraph)
-    {
-	return CompoundAction::Impl::generate(actiongraph);    
-    }
-
 }
 

@@ -64,8 +64,6 @@ namespace storage
 
 	bool is_delete() const;
 
-	static vector<CompoundAction*> generate(const Actiongraph* actiongraph);
-
 	static const Device* get_target_device(const Actiongraph* actiongraph, const Action::Base* action);
 	static const Device* get_target_device(const Device* device);
 	static const Device* get_target_device(const PartitionTable* partition_table);

@@ -62,8 +62,6 @@ namespace storage
 	
 	bool is_delete() const;
 
-	static std::vector<CompoundAction*> generate(const Actiongraph* actiongraph);
-
     public:
 
 	class Generator;

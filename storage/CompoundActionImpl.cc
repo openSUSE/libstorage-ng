@@ -149,13 +149,6 @@ namespace storage
 
     // static methods
     
-    vector<CompoundAction*> 
-    CompoundAction::Impl::generate(const Actiongraph* actiongraph)
-    {
-	return CompoundAction::Generator(actiongraph).generate();	 
-    
-    }
-
 
     const Device*
     CompoundAction::Impl::get_target_device(const Actiongraph* actiongraph, const Action::Base* action)

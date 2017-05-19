@@ -42,6 +42,7 @@
 #include "storage/EtcFstab.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
+#include "storage/CompoundAction/Generator.h"
 
 
 namespace storage
@@ -489,7 +490,8 @@ namespace storage
     {
 	Impl::compound_actions.clear();
 
-	for (auto action : CompoundAction::generate(actiongraph))
+	auto compound_actions = CompoundAction::Generator(actiongraph).generate();
+	for (auto action : compound_actions)
 	    Impl::compound_actions.push_back(shared_ptr<CompoundAction>(action));
     }
 
