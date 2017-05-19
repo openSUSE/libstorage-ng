@@ -21,4 +21,3 @@ cov-int
 /.obsdir/
 /obs-package-from-git
 compile
-*.swp
