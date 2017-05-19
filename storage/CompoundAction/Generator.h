@@ -20,35 +20,42 @@
  */
 
 
-#include "storage/CompoundAction/CompoundActionFormater.h"
+#ifndef STORAGE_COMPOUND_ACTION_GENERATOR_H
+#define STORAGE_COMPOUND_ACTION_GENERATOR_H
 
+
+#include <vector>
+
+#include "storage/CompoundAction.h"
 
 namespace storage
 {
 
-    using std::string;
+    using std::vector;
 
-    CompoundActionFormater::CompoundActionFormater(const CompoundAction::Impl* compound_action)
-    : compound_action(compound_action), tense(Tense::SIMPLE_PRESENT) {}
+    class Actiongraph;
+    class Device;
 
-
-    CompoundActionFormater::~CompoundActionFormater() {}
-
-
-    string
-    CompoundActionFormater::string_representation() const
+    class CompoundAction::Generator
     {
-	return text().translated;
-    }
 
+    public:
 
-    Text
-    CompoundActionFormater::default_text() const
-    {
-	const CommitData commit_data(compound_action->get_actiongraph()->get_impl(), tense);
-	auto first_action = compound_action->get_commit_actions().front();
-	return first_action->text(commit_data);
-    }
+	Generator(const Actiongraph* actiongraph);
+	~Generator();
+
+	vector<CompoundAction*> generate() const;
+
+    private:
+
+	static CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
+
+    private:
+
+	const Actiongraph* actiongraph;
+    
+    };
 
 }
 
+#endif

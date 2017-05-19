@@ -31,7 +31,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Graphviz.h"
-#include "storage/CompoundAction/CompoundAction.h"
+#include "storage/CompoundAction.h"
 
 
 namespace storage

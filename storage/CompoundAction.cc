@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundAction/CompoundActionImpl.h"
+#include "storage/CompoundActionImpl.h"
 
 
 namespace storage

@@ -20,30 +20,30 @@
  */
 
 
-#include "storage/CompoundAction/NfsFormater.h"
+#include "storage/CompoundAction/Formater/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
 
 
 namespace storage
 {
 
-    NfsFormater::NfsFormater(const CompoundAction::Impl* compound_action)
-    : CompoundActionFormater(compound_action) 
+    CompoundAction::Formater::Nfs::Nfs(const CompoundAction::Impl* compound_action)
+    : CompoundAction::Formater(compound_action) 
     {
 	this->nfs = to_nfs(compound_action->get_target_device());
     }
 
 
-    NfsFormater::~NfsFormater() {}
+    CompoundAction::Formater::Nfs::~Nfs() {}
 
     
     Text
-    NfsFormater::text() const
+    CompoundAction::Formater::Nfs::text() const
     {
-	if (has_create<MountPoint>())
+	if (has_create<storage::MountPoint>())
 	    return mount_text();
 
-	else if (has_delete<MountPoint>())
+	else if (has_delete<storage::MountPoint>())
 	    return unmount_text();
 
 	else
@@ -52,7 +52,7 @@ namespace storage
 
     
     Text
-    NfsFormater::mount_text() const
+    CompoundAction::Formater::Nfs::mount_text() const
     {
         Text text = tenser(tense,
                            _("Mount NFS %1$s on %2$s"),
@@ -65,7 +65,7 @@ namespace storage
 
 
     Text
-    NfsFormater::unmount_text() const
+    CompoundAction::Formater::Nfs::unmount_text() const
     {
         Text text = tenser(tense,
                            _("Unmount NFS %1$s at %2$s"),

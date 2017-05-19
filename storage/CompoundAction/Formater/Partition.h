@@ -20,11 +20,11 @@
  */
 
 
-#ifndef STORAGE_PARTITION_FORMATER_H
-#define STORAGE_PARTITION_FORMATER_H
+#ifndef STORAGE_FORMATER_PARTITION_H
+#define STORAGE_FORMATER_PARTITION_H
 
 
-#include "storage/CompoundAction/CompoundActionFormater.h"
+#include "storage/CompoundAction/Formater.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 
@@ -32,13 +32,13 @@
 namespace storage
 {
 
-    class PartitionFormater : public CompoundActionFormater
+    class CompoundAction::Formater::Partition : public CompoundAction::Formater
     {
 
     public:
 
-	PartitionFormater(const CompoundAction::Impl* compound_action);
-	~PartitionFormater();
+	Partition(const CompoundAction::Impl* compound_action);
+	~Partition();
 
     private:
 
@@ -68,7 +68,7 @@ namespace storage
 
     private:
 
-	const Partition* partition;
+	const storage::Partition* partition;
 
     };
 

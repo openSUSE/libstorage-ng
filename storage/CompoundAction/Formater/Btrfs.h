@@ -20,32 +20,40 @@
  */
 
 
-#ifndef STORAGE_LVM_LV_FORMATER_H
-#define STORAGE_LVM_LV_FORMATER_H
+#ifndef STORAGE_FORMATER_BTRFS_H
+#define STORAGE_FORMATER_BTRFS_H
 
 
-#include "storage/CompoundAction/CompoundActionFormater.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/CompoundAction/Formater.h"
+#include "storage/Filesystems/Btrfs.h"
 
 
 namespace storage
 {
 
-    class LvmLvFormater : public CompoundActionFormater
+    class CompoundAction::Formater::Btrfs : public CompoundAction::Formater
     {
 
     public:
 
-	LvmLvFormater(const CompoundAction::Impl* compound_action);
-	~LvmLvFormater();
+	Btrfs(const CompoundAction::Impl* compound_action);
+	~Btrfs();
 
     private:
+
+	string blk_devices_string_representation() const;
 
 	Text text() const;
 
+	Text delete_text() const;
+	Text create_and_mount_text() const;
+	Text create_text() const;
+	Text mount_text() const;
+	Text unmount_text() const;
+
     private:
 
-	const LvmLv* lv;
+	const storage::Btrfs* btrfs;
 
     };
 

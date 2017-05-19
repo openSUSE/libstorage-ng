@@ -22,25 +22,25 @@
 
 #include <boost/algorithm/string/join.hpp>
 
-#include "storage/CompoundAction/BtrfsFormater.h"
+#include "storage/CompoundAction/Formater/Btrfs.h"
 #include "storage/Filesystems/MountPoint.h"
 
 
 namespace storage
 {
 
-    BtrfsFormater::BtrfsFormater(const CompoundAction::Impl* compound_action)
-    : CompoundActionFormater(compound_action) 
+    CompoundAction::Formater::Btrfs::Btrfs(const CompoundAction::Impl* compound_action)
+    : CompoundAction::Formater(compound_action) 
     {
 	this->btrfs = to_btrfs(compound_action->get_target_device());
     }
 
 
-    BtrfsFormater::~BtrfsFormater() {}
+    CompoundAction::Formater::Btrfs::~Btrfs() {}
 
     
     string
-    BtrfsFormater::blk_devices_string_representation() const
+    CompoundAction::Formater::Btrfs::blk_devices_string_representation() const
     {
 	vector<string> names;
 	for (auto device : btrfs->get_blk_devices())
@@ -51,24 +51,24 @@ namespace storage
     
     
     Text
-    BtrfsFormater::text() const
+    CompoundAction::Formater::Btrfs::text() const
     {
-	if (has_delete<Btrfs>())
+	if (has_delete<storage::Btrfs>())
 	    return delete_text();
 
-	else if (has_create<Btrfs>())
+	else if (has_create<storage::Btrfs>())
 	{
-	    if (has_create<MountPoint>())
+	    if (has_create<storage::MountPoint>())
 		return create_and_mount_text();
 
 	    else
 		return create_text();
 	}
 
-	else if (has_create<MountPoint>())
+	else if (has_create<storage::MountPoint>())
 	    return mount_text();
 
-	else if (has_delete<MountPoint>())
+	else if (has_delete<storage::MountPoint>())
 	    return unmount_text();
 
 	else
@@ -77,7 +77,7 @@ namespace storage
 
     
     Text
-    BtrfsFormater::delete_text() const
+    CompoundAction::Formater::Btrfs::delete_text() const
     {
         Text text = tenser(tense,
                            _("Delete filesystem %1$s on %2$s"),
@@ -90,7 +90,7 @@ namespace storage
 
 
     Text
-    BtrfsFormater::create_and_mount_text() const
+    CompoundAction::Formater::Btrfs::create_and_mount_text() const
     {
         Text text = tenser(tense,
                            _("Create filesystem %1$s at %3$s and mount on %2$s"),
@@ -104,7 +104,7 @@ namespace storage
 
 
     Text
-    BtrfsFormater::create_text() const
+    CompoundAction::Formater::Btrfs::create_text() const
     {
         Text text = tenser(tense,
                            _("Create filesystem %1$s at %2$s"),
@@ -117,7 +117,7 @@ namespace storage
 
 
     Text
-    BtrfsFormater::mount_text() const
+    CompoundAction::Formater::Btrfs::mount_text() const
     {
         Text text = tenser(tense,
                            _("Mount filesystem %1$s on %2$s at %3$s"),
@@ -131,7 +131,7 @@ namespace storage
 
 
     Text
-    BtrfsFormater::unmount_text() const
+    CompoundAction::Formater::Btrfs::unmount_text() const
     {
         Text text = tenser(tense,
                            _("Unmount filesystem %1$s on %2$s at %3$s"),

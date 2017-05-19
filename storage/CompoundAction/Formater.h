@@ -26,7 +26,7 @@
 
 #include <string>
 
-#include "storage/CompoundAction/CompoundActionImpl.h"
+#include "storage/CompoundActionImpl.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Utils/Text.h"
 
@@ -34,13 +34,21 @@
 namespace storage
 {
 
-    class CompoundActionFormater
+    class CompoundAction::Formater
     {
 
     public:
 
-	CompoundActionFormater(const CompoundAction::Impl* compound_action);
-	virtual ~CompoundActionFormater();
+	class Btrfs;
+	class BtrfsSubvolume;
+	class BtrfsSubvolume;
+	class LvmLv;
+	class LvmVg;
+	class Nfs;
+	class Partition;
+
+	Formater(const CompoundAction::Impl* compound_action);
+	virtual ~Formater();
 
 	std::string string_representation() const;
 
@@ -106,7 +114,7 @@ namespace storage
 	    for(auto action : compound_action->get_commit_actions())
 	    {
 		auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
-		if (is_delete(action) && is_device_of_type<const Type>(device))
+		if (storage::is_delete(action) && is_device_of_type<const Type>(device))
 		    return action;
 	    }
 

@@ -20,35 +20,32 @@
  */
 
 
-#ifndef STORAGE_NFS_FORMATER_H
-#define STORAGE_NFS_FORMATER_H
+#ifndef STORAGE_FORMATER_LVM_VG_H
+#define STORAGE_FORMATER_LVM_VG_H
 
 
-#include "storage/CompoundAction/CompoundActionFormater.h"
-#include "storage/Filesystems/Nfs.h"
+#include "storage/CompoundAction/Formater.h"
+#include "storage/Devices/LvmVg.h"
 
 
 namespace storage
 {
 
-    class NfsFormater : public CompoundActionFormater
+    class CompoundAction::Formater::LvmVg : public CompoundAction::Formater
     {
 
     public:
 
-	NfsFormater(const CompoundAction::Impl* compound_action);
-	~NfsFormater();
+	LvmVg(const CompoundAction::Impl* compound_action);
+	~LvmVg();
 
     private:
 
 	Text text() const;
 
-	Text mount_text() const;
-	Text unmount_text() const;
-
     private:
 
-	const Nfs* nfs;
+	const storage::LvmVg* vg;
 
     };
 

@@ -20,24 +20,24 @@
  */
 
 
-#include "storage/CompoundAction/LvmLvFormater.h"
+#include "storage/CompoundAction/Formater/LvmLv.h"
 
 
 namespace storage
 {
 
-    LvmLvFormater::LvmLvFormater(const CompoundAction::Impl* compound_action)
-    : CompoundActionFormater(compound_action) 
+    CompoundAction::Formater::LvmLv::LvmLv(const CompoundAction::Impl* compound_action)
+    : CompoundAction::Formater(compound_action) 
     {
 	this->lv = to_lvm_lv(compound_action->get_target_device());
     }
 
 
-    LvmLvFormater::~LvmLvFormater() {}
+    CompoundAction::Formater::LvmLv::~LvmLv() {}
 
     
     Text
-    LvmLvFormater::text() const
+    CompoundAction::Formater::LvmLv::text() const
     {
         Text text = tenser(tense,
                            _("String representation for a LvmLv target (pending)"),

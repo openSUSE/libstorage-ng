@@ -24,7 +24,10 @@ libstorage_ng_la_SOURCES =						\
 	EtcMdadm.h			EtcMdadm.cc			\
 	FreeInfo.h			FreeInfo.cc			\
 	UsedFeatures.h							\
-	Version.h
+	Version.h							\
+	CompoundAction.h		CompoundAction.cc		\
+	CompoundActionImpl.h		CompoundActionImpl.cc
+	
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
@@ -47,5 +50,6 @@ pkginclude_HEADERS =		\
 	Actiongraph.h		\
 	Graphviz.h		\
 	FreeInfo.h		\
-	UsedFeatures.h
+	UsedFeatures.h		\
+	CompoundAction.h
 

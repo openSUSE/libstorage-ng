@@ -22,22 +22,22 @@
 
 #include <algorithm>
 
-#include "storage/CompoundAction/CompoundActionGenerator.h"
-#include "storage/CompoundAction/CompoundActionImpl.h"
+#include "storage/CompoundAction/Generator.h"
+#include "storage/CompoundActionImpl.h"
 
 
 namespace storage
 {
 
-    CompoundActionGenerator::CompoundActionGenerator(const Actiongraph* actiongraph)
+    CompoundAction::Generator::Generator(const Actiongraph* actiongraph)
     : actiongraph(actiongraph) {}
 
 
-    CompoundActionGenerator::~CompoundActionGenerator() {}
+    CompoundAction::Generator::~Generator() {}
 
 
     vector<CompoundAction*>
-    CompoundActionGenerator::generate() const
+    CompoundAction::Generator::generate() const
     {
 	vector<CompoundAction*> compound_actions;
 
@@ -58,7 +58,7 @@ namespace storage
 
     
     CompoundAction*
-    CompoundActionGenerator::find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device)
+    CompoundAction::Generator::find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device)
     {
 	auto begin = compound_actions.begin();
 	auto end = compound_actions.end();

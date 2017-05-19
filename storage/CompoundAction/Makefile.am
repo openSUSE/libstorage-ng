@@ -5,19 +5,14 @@
 noinst_LTLIBRARIES = libcompoundaction.la
 
 libcompoundaction_la_SOURCES =						\
-	CompoundAction.h		CompoundAction.cc		\
-	CompoundActionImpl.h		CompoundActionImpl.cc		\
-	CompoundActionGenerator.h	CompoundActionGenerator.cc	\
-	CompoundActionFormater.h	CompoundActionFormater.cc	\
-	PartitionFormater.h		PartitionFormater.cc		\
-	LvmLvFormater.h			LvmLvFormater.cc		\
-	LvmVgFormater.h			LvmVgFormater.cc		\
-	BtrfsSubvolumeFormater.h	BtrfsSubvolumeFormater.cc	\
-	BtrfsFormater.h			BtrfsFormater.cc		\
-	NfsFormater.h			NfsFormater.cc
+	Generator.h			Generator.cc			\
+	Formater.h			Formater.cc			\
+	Formater/Partition.h		Formater/Partition.cc		\
+	Formater/LvmLv.h		Formater/LvmLv.cc		\
+	Formater/LvmVg.h		Formater/LvmVg.cc		\
+	Formater/BtrfsSubvolume.h	Formater/BtrfsSubvolume.cc	\
+	Formater/Btrfs.h		Formater/Btrfs.cc		\
+	Formater/Nfs.h			Formater/Nfs.cc
 
 pkgincludedir = $(includedir)/storage/CompoundAction
 
-pkginclude_HEADERS =		\
-	CompoundAction.h	\
-	CompoundActionGenerator.h

@@ -66,6 +66,9 @@ namespace storage
 
     public:
 
+	class Generator;
+	class Formater;
+
 	class Impl;
 
 	Impl& get_impl() { return *impl; }

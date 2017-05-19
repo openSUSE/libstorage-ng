@@ -24,7 +24,7 @@
 #define STORAGE_COMPOUND_ACTION_IMPL_H
 
 
-#include "storage/CompoundAction/CompoundAction.h"
+#include "storage/CompoundAction.h"
 #include "storage/Action.h"
 #include "storage/Devices/Device.h"
 

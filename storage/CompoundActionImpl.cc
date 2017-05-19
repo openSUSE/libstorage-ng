@@ -22,14 +22,14 @@
 
 #include <boost/algorithm/string/join.hpp>
 
-#include "storage/CompoundAction/CompoundActionImpl.h"
-#include "storage/CompoundAction/CompoundActionGenerator.h"
-#include "storage/CompoundAction/PartitionFormater.h"
-#include "storage/CompoundAction/LvmLvFormater.h"
-#include "storage/CompoundAction/LvmVgFormater.h"
-#include "storage/CompoundAction/BtrfsSubvolumeFormater.h"
-#include "storage/CompoundAction/BtrfsFormater.h"
-#include "storage/CompoundAction/NfsFormater.h"
+#include "storage/CompoundActionImpl.h"
+#include "storage/CompoundAction/Generator.h"
+#include "storage/CompoundAction/Formater/Partition.h"
+#include "storage/CompoundAction/Formater/LvmLv.h"
+#include "storage/CompoundAction/Formater/LvmVg.h"
+#include "storage/CompoundAction/Formater/BtrfsSubvolume.h"
+#include "storage/CompoundAction/Formater/Btrfs.h"
+#include "storage/CompoundAction/Formater/Nfs.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partitionable.h"
@@ -112,22 +112,22 @@ namespace storage
     CompoundAction::Impl::string_representation() const
     {
 	if (is_partition(target_device))
-	    return PartitionFormater(this).string_representation();
+	    return CompoundAction::Formater::Partition(this).string_representation();
 
 	else if (is_lvm_lv(target_device))
-	    return LvmLvFormater(this).string_representation();
+	    return CompoundAction::Formater::LvmLv(this).string_representation();
 
 	else if (is_lvm_vg(target_device))
-	    return LvmVgFormater(this).string_representation();
+	    return CompoundAction::Formater::LvmVg(this).string_representation();
 
 	else if (is_btrfs(target_device))
-	    return BtrfsFormater(this).string_representation();
+	    return CompoundAction::Formater::Btrfs(this).string_representation();
 
 	else if (is_btrfs_subvolume(target_device))
-	    return BtrfsSubvolumeFormater(this).string_representation();
+	    return CompoundAction::Formater::BtrfsSubvolume(this).string_representation();
 
 	else if (is_nfs(target_device))
-	    return NfsFormater(this).string_representation();
+	    return CompoundAction::Formater::Nfs(this).string_representation();
 
 	else
 	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
@@ -152,7 +152,7 @@ namespace storage
     vector<CompoundAction*> 
     CompoundAction::Impl::generate(const Actiongraph* actiongraph)
     {
-	return CompoundActionGenerator(actiongraph).generate();	 
+	return CompoundAction::Generator(actiongraph).generate();	 
     
     }
 

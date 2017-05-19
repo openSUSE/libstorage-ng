@@ -20,42 +20,39 @@
  */
 
 
-#ifndef STORAGE_COMPOUND_ACTION_GENERATOR_H
-#define STORAGE_COMPOUND_ACTION_GENERATOR_H
+#ifndef STORAGE_FORMATER_NFS_H
+#define STORAGE_FORMATER_NFS_H
 
 
-#include <vector>
+#include "storage/CompoundAction/Formater.h"
+#include "storage/Filesystems/Nfs.h"
 
 
 namespace storage
 {
 
-    using std::vector;
-
-    class Actiongraph;
-    class CompoundAction;
-    class Device;
-
-    class CompoundActionGenerator
+    class CompoundAction::Formater::Nfs : public CompoundAction::Formater
     {
 
     public:
 
-	CompoundActionGenerator(const Actiongraph* actiongraph);
-	~CompoundActionGenerator();
-
-	vector<CompoundAction*> generate() const;
+	Nfs(const CompoundAction::Impl* compound_action);
+	~Nfs();
 
     private:
 
-	static CompoundAction* find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device);
+	Text text() const;
+
+	Text mount_text() const;
+	Text unmount_text() const;
 
     private:
 
-	const Actiongraph* actiongraph;
-    
+	const storage::Nfs* nfs;
+
     };
 
 }
 
 #endif
+

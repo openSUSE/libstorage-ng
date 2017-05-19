@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundAction/BtrfsSubvolumeFormater.h"
+#include "storage/CompoundAction/Formater/BtrfsSubvolume.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 
@@ -28,30 +28,30 @@
 namespace storage
 {
 
-    BtrfsSubvolumeFormater::BtrfsSubvolumeFormater(const CompoundAction::Impl* compound_action)
-    : CompoundActionFormater(compound_action) 
+    CompoundAction::Formater::BtrfsSubvolume::BtrfsSubvolume(const CompoundAction::Impl* compound_action)
+    : CompoundAction::Formater(compound_action) 
     {
 	this->subvolume = to_btrfs_subvolume(compound_action->get_target_device());
     }
 
 
-    BtrfsSubvolumeFormater::~BtrfsSubvolumeFormater() {}
+    CompoundAction::Formater::BtrfsSubvolume::~BtrfsSubvolume() {}
 
     
     const BlkDevice*
-    BtrfsSubvolumeFormater::get_blk_device() const
+    CompoundAction::Formater::BtrfsSubvolume::get_blk_device() const
     {
 	return subvolume->get_btrfs()->get_impl().get_blk_device(); 
     }
 
     
     Text
-    BtrfsSubvolumeFormater::text() const
+    CompoundAction::Formater::BtrfsSubvolume::text() const
     {
-	if (has_delete<BtrfsSubvolume>())
+	if (has_delete<storage::BtrfsSubvolume>())
 	    return delete_text();
 
-	else if (has_create<BtrfsSubvolume>())
+	else if (has_create<storage::BtrfsSubvolume>())
 	{
 	    if (has_action<Action::SetNocow>())
 		return create_with_no_copy_text();
@@ -66,7 +66,7 @@ namespace storage
 
     
     Text
-    BtrfsSubvolumeFormater::delete_text() const
+    CompoundAction::Formater::BtrfsSubvolume::delete_text() const
     {
         Text text = tenser(tense,
                            _("Delete subvolume %1$s on %2$s"),
@@ -77,7 +77,7 @@ namespace storage
 
 
     Text
-    BtrfsSubvolumeFormater::create_with_no_copy_text() const
+    CompoundAction::Formater::BtrfsSubvolume::create_with_no_copy_text() const
     {
         Text text = tenser(tense,
                            _("Create subvolume subvolume %1$s on %2$s with option 'no copy on write'"),
@@ -88,7 +88,7 @@ namespace storage
 
 
     Text
-    BtrfsSubvolumeFormater::create_text() const
+    CompoundAction::Formater::BtrfsSubvolume::create_text() const
     {
         Text text = tenser(tense,
                            _("Create subvolume subvolume %1$s on %2$s"),

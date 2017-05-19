@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundAction/PartitionFormater.h"
+#include "storage/CompoundAction/Formater/Partition.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/PartitionImpl.h"
@@ -30,20 +30,20 @@
 namespace storage
 {
 
-    PartitionFormater::PartitionFormater(const CompoundAction::Impl* compound_action)
-    : CompoundActionFormater(compound_action) 
+    CompoundAction::Formater::Partition::Partition(const CompoundAction::Impl* compound_action)
+    : CompoundAction::Formater(compound_action) 
     {
 	this->partition = to_partition(compound_action->get_target_device());
     }
 
 
-    PartitionFormater::~PartitionFormater() {}
+    CompoundAction::Formater::Partition::~Partition() {}
 
 
     const BlkFilesystem*
-    PartitionFormater::get_created_filesystem() const
+    CompoundAction::Formater::Partition::get_created_filesystem() const
     {
-	auto action = get_create<BlkFilesystem>();
+	auto action = get_create<storage::BlkFilesystem>();
 
 	if (action)
 	{
@@ -56,20 +56,20 @@ namespace storage
     
     
     Text
-    PartitionFormater::text() const
+    CompoundAction::Formater::Partition::text() const
     {
-	if (has_delete<Partition>())
+	if (has_delete<storage::Partition>())
 	    return delete_text();
 
 	else if (has_create<LvmPv>())
 	{
-	    if (has_create<Partition>() && has_create<Encryption>())
+	    if (has_create<storage::Partition>() && has_create<storage::Encryption>())
 		return create_encrypted_pv_text();
 
-	    else if (has_create<Partition>()) 
+	    else if (has_create<storage::Partition>()) 
 		return create_pv_text();
 
-	    else if (has_create<Encryption>())
+	    else if (has_create<storage::Encryption>())
 		return encrypted_pv_text();
 
 	    else
@@ -78,40 +78,40 @@ namespace storage
 
 	else
 	{
-	    if (has_create<Partition>() && has_create<Encryption>() && has_create<BlkFilesystem>() && has_create<MountPoint>())
+	    if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
 		return create_encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<Partition>() && has_create<Encryption>() && has_create<BlkFilesystem>())
+	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
 		return create_encrypted_with_fs_text();
 
-	    else if (has_create<Partition>() && has_create<Encryption>())
+	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>())
 		return create_encrypted_text();
 
-	    else if (has_create<Partition>() && has_create<BlkFilesystem>() && has_create<MountPoint>())
+	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
 		return create_with_fs_and_mount_point_text();
 
-	    else if (has_create<Partition>() && has_create<BlkFilesystem>())
+	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>())
 		return create_with_fs_text();
 
-	    else if (has_create<Partition>())
+	    else if (has_create<storage::Partition>())
 		return create_text();
 
-	    else if (has_create<Encryption>() && has_create<BlkFilesystem>() && has_create<MountPoint>())
+	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
 		return encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<Encryption>() && has_create<BlkFilesystem>())
+	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
 		return encrypted_with_fs_text();
 
-	    else if (has_create<Encryption>())
+	    else if (has_create<storage::Encryption>())
 		return encrypted_text();
 
-	    else if (has_create<BlkFilesystem>() && has_create<MountPoint>())
+	    else if (has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
 		return fs_and_mount_point_text();
 
-	    else if (has_create<BlkFilesystem>())
+	    else if (has_create<storage::BlkFilesystem>())
 		return fs_text();
 
-	    else if (has_create<MountPoint>())
+	    else if (has_create<storage::MountPoint>())
 		return mount_point_text();
 
 	    else
@@ -121,7 +121,7 @@ namespace storage
 
     
     Text
-    PartitionFormater::delete_text() const
+    CompoundAction::Formater::Partition::delete_text() const
     {
 	Text text = tenser(tense,
 			   _("Delete partition %1$s (%2$s)"),
@@ -132,7 +132,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_encrypted_pv_text() const
+    CompoundAction::Formater::Partition::create_encrypted_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted partition %1$s (%2$s) as LVM physical device"),
@@ -143,7 +143,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_pv_text() const
+    CompoundAction::Formater::Partition::create_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create partition %1$s (%2$s) as LVM physical device"),
@@ -154,7 +154,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::encrypted_pv_text() const
+    CompoundAction::Formater::Partition::encrypted_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted LVM physical device over %1$s (%2$s)"),
@@ -165,7 +165,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::pv_text() const
+    CompoundAction::Formater::Partition::pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create LVM physical device over %1$s (%2$s)"),
@@ -176,7 +176,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_encrypted_with_fs_and_mount_point_text() const
+    CompoundAction::Formater::Partition::create_encrypted_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -193,7 +193,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_encrypted_with_fs_text() const
+    CompoundAction::Formater::Partition::create_encrypted_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -209,7 +209,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_encrypted_text() const
+    CompoundAction::Formater::Partition::create_encrypted_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted partition %1$s (%2$s)"),
@@ -220,7 +220,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_with_fs_and_mount_point_text() const
+    CompoundAction::Formater::Partition::create_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -237,7 +237,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_with_fs_text() const
+    CompoundAction::Formater::Partition::create_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -253,7 +253,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::create_text() const
+    CompoundAction::Formater::Partition::create_text() const
     {
 	Text text = tenser(tense,
 			   _("Create partition %1$s (%2$s) as %3$s"),
@@ -267,7 +267,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::encrypted_with_fs_and_mount_point_text() const
+    CompoundAction::Formater::Partition::encrypted_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -284,7 +284,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::encrypted_with_fs_text() const
+    CompoundAction::Formater::Partition::encrypted_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -301,7 +301,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::encrypted_text() const
+    CompoundAction::Formater::Partition::encrypted_text() const
     {
 	Text text = tenser(tense,
 			   _("Encrypt partition %1$s (%2$s)"),
@@ -312,7 +312,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::fs_and_mount_point_text() const
+    CompoundAction::Formater::Partition::fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -329,7 +329,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::fs_text() const
+    CompoundAction::Formater::Partition::fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -345,7 +345,7 @@ namespace storage
 
 
     Text
-    PartitionFormater::mount_point_text() const
+    CompoundAction::Formater::Partition::mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
