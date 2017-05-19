@@ -174,7 +174,7 @@ namespace storage
 	void commit(const CommitCallbacks* commit_callbacks) const;
 
 	void generate_compound_actions(const Actiongraph* actiongraph);
-	vector<CompoundAction*> get_compound_actions() const;
+	vector<const CompoundAction*> get_compound_actions() const;
 
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;

@@ -94,7 +94,7 @@ namespace storage
     }
 
 
-    std::vector<CompoundAction*>
+    std::vector<const CompoundAction*>
     Actiongraph::get_compound_actions() const
     {
 	return get_impl().get_compound_actions();

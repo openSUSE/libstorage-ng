@@ -82,7 +82,7 @@ namespace storage
 	std::vector<std::string> get_commit_actions_as_strings() const;
 
 	void generate_compound_actions();
-	std::vector<CompoundAction*> get_compound_actions() const;
+	std::vector<const CompoundAction*> get_compound_actions() const;
 
     public:
 

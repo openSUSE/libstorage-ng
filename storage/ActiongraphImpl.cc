@@ -496,10 +496,10 @@ namespace storage
     }
 
 
-    vector<CompoundAction*>
+    vector<const CompoundAction*>
     Actiongraph::Impl::get_compound_actions() const
     {
-	vector<CompoundAction*> actions;
+	vector<const CompoundAction*> actions;
 	for (auto action : compound_actions)
 	    actions.push_back(action.get());
 
