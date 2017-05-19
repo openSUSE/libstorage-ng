@@ -48,12 +48,12 @@ namespace storage
 	    auto compound_action = find_by_target_device(compound_actions, target);
 
 	    if (compound_action)
-		compound_action->add_commit_action(commit_action);
+		compound_action->get_impl().add_commit_action(commit_action);
 	    else
 	    {
 		compound_action = new CompoundAction(actiongraph);
-		compound_action->set_target_device(target);
-		compound_action->add_commit_action(commit_action);
+		compound_action->get_impl().set_target_device(target);
+		compound_action->get_impl().add_commit_action(commit_action);
 		compound_actions.push_back(compound_action);
 	    }
 	}

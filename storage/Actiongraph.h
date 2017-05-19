@@ -81,7 +81,7 @@ namespace storage
 	// TODO add Action to the public interface and use get_commit_actions instead
 	std::vector<std::string> get_commit_actions_as_strings() const;
 
-	void set_compound_actions();
+	void generate_compound_actions();
 	std::vector<CompoundAction*> get_compound_actions() const;
 
     public:

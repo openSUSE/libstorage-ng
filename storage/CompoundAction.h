@@ -49,15 +49,9 @@ namespace storage
 	CompoundAction(const Actiongraph* actiongraph);
 	~CompoundAction();
 
-	void set_target_device(const Device* device);
 	const Device* get_target_device() const;
 
-	void set_commit_actions(std::vector<const Action::Base*> actions);
-	std::vector<const Action::Base*> get_commit_actions() const; 
-
-	void add_commit_action(const Action::Base* action);
-	
-	std::string string_representation() const;
+	std::string sentence() const;
 	
 	bool is_delete() const;
 

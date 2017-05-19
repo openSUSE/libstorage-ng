@@ -59,7 +59,7 @@ namespace storage
     
 	vector<string> get_commit_actions_as_strings() const;
 
-	string string_representation() const;
+	string sentence() const;
 
 	bool is_delete() const;
 

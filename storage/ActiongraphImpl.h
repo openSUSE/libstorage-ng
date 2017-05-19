@@ -173,7 +173,7 @@ namespace storage
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
 
-	void set_compound_actions(const Actiongraph* actiongraph);
+	void generate_compound_actions(const Actiongraph* actiongraph);
 	vector<CompoundAction*> get_compound_actions() const;
 
 	// special actions, TODO make private and provide interface

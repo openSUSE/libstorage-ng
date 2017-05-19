@@ -412,7 +412,7 @@ namespace storage
     Storage::Impl::calculate_actiongraph()
     {
 	auto new_actiongraph = new Actiongraph(storage, get_probed(), get_staging());
-	new_actiongraph->set_compound_actions();
+	new_actiongraph->generate_compound_actions();
 
 	actiongraph.reset(new_actiongraph);
 

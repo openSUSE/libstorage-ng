@@ -101,7 +101,7 @@ namespace storage
 
     //TODO Generate text depending on the set of commit actions.
     string
-    CompoundAction::Impl::string_representation() const
+    CompoundAction::Impl::sentence() const
     {
 	if (is_partition(target_device))
 	    return CompoundAction::Formater::Partition(this).string_representation();

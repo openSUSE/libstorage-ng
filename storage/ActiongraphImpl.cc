@@ -486,7 +486,7 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::set_compound_actions(const Actiongraph* actiongraph)
+    Actiongraph::Impl::generate_compound_actions(const Actiongraph* actiongraph)
     {
 	Impl::compound_actions.clear();
 

@@ -88,9 +88,9 @@ namespace storage
 
 
     void
-    Actiongraph::set_compound_actions()
+    Actiongraph::generate_compound_actions()
     {
-	get_impl().set_compound_actions(this);
+	get_impl().generate_compound_actions(this);
     }
 
 
