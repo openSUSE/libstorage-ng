@@ -47,7 +47,6 @@ namespace storage
     public:
 
 	CompoundAction(const Actiongraph* actiongraph);
-	CompoundAction(const Actiongraph* actiongraph, const Action::Base* action);
 	~CompoundAction();
 
 	void set_target_device(const Device* device);

@@ -50,7 +50,12 @@ namespace storage
 	    if (compound_action)
 		compound_action->add_commit_action(commit_action);
 	    else
-		compound_actions.push_back(new CompoundAction(actiongraph, commit_action));
+	    {
+		compound_action = new CompoundAction(actiongraph);
+		compound_action->set_target_device(target);
+		compound_action->add_commit_action(commit_action);
+		compound_actions.push_back(compound_action);
+	    }
 	}
 	
 	return compound_actions;

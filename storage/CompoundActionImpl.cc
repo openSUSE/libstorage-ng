@@ -47,14 +47,6 @@ namespace storage
     {}
 
     
-    CompoundAction::Impl::Impl(const Actiongraph* actiongraph, const Action::Base* action)
-    : actiongraph(actiongraph), target_device(nullptr), commit_actions(0) 
-    {
-	set_target_device(get_target_device(actiongraph, action));
-	add_commit_action(action);
-    }
-
-    
     CompoundAction::Impl::~Impl() {}
 
     

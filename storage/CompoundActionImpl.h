@@ -45,7 +45,6 @@ namespace storage
     public:
 
 	Impl(const Actiongraph* actiongraph);
-	Impl(const Actiongraph* actiongraph, const Action::Base* action);
 	~Impl();
 
 	const Actiongraph* get_actiongraph() const;

@@ -30,10 +30,6 @@ namespace storage
     : impl(new Impl(actiongraph)) {}
 
 
-    CompoundAction::CompoundAction(const Actiongraph* actiongraph, const Action::Base* action)
-    : impl(new Impl(actiongraph, action)) {}
-
-
     CompoundAction::~CompoundAction() {}
 
 
