@@ -10,7 +10,7 @@ Implemented:
 
 * Probing.
 
-Missing:
+Not planned:
 
 * BIOS-ID handling.
 
@@ -29,10 +29,10 @@ Implemented:
 * For MS-DOS and GPT (creating, deleting and resizing partitions).
 * Topology calculations.
 * Support for boot, legacy_boot and pmbr_boot flags.
+* Renumbering of logical partition.
 
 Missing:
 
-* Renumbering of logical partition.
 * Query resize information.
 * DASD partition table.
 
@@ -59,10 +59,11 @@ LUKS
 Implemented:
 
 * Probing, creating, deleting, resizing.
+* Activation during installation and upgrade.
+* Handling of /etc/crypttab.
 
 Missing:
 
-* Probing of inactive devices and activation during installation.
 * Handling different mount-by options.
 
 
@@ -79,11 +80,11 @@ Implemented:
 
 * Probing, creating and deleting.
 * Adding and removing devices.
+* Calculation of RAID size.
+* Handling of /etc/mdadm.conf.
 
 Missing:
 
-* Correct calculation of RAID size.
-* Handling of /etc/mdadm.conf.
 * IMSM and DDF.
 
 
@@ -112,14 +113,17 @@ Filesystem
 
 Implemented:
 
-* For btrfs, ext4, NTFS, VFat, XFS and swap the most important operations
-  (probing, creating, deleting, resizing, mounting and unmounting).
+* For btrfs, ext2, ext3, ext4, reiserfs, NTFS, VFat, XFS, swap, ISO9660, UDF
+  and NFS the most important operations (probing, creating, deleting,
+  resizing, mounting and unmounting).
+* Handling of /etc/fstab.
+* Handling different mount-by options.
+* btrfs subvolumes.
 
 Missing:
 
-* Handling different mount-by options.
-* NFS, tmpfs, ext2, ext3, reiserfs, ISO9660, UDF.
-* Subvolumes for btrfs, multi-device support for btrfs.
+* tmpfs
+* btrfs multi-device support.
 * On demand unmounting.
 
 
