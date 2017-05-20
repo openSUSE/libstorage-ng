@@ -3,13 +3,11 @@
 #include "storage/Utils/Logger.h"
 #include "storage/Environment.h"
 #include "storage/Storage.h"
-//#include "storage/DevicegraphImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Action.h"
-#include "storage/CompoundAction/CompoundAction.h"
-#include "storage/CompoundAction/CompoundActionImpl.h"
-//#include "storage/CompoundAction/CompoundActionGenerator.h"
+#include "storage/CompoundAction.h"
+#include "storage/CompoundActionImpl.h"
 #include "storage/UsedFeatures.h"
 
 using namespace std;
@@ -26,8 +24,8 @@ main()
     {
 	// Create storage object and probe system.
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-	environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
-	//environment.set_devicegraph_filename("examples/data/mydisk_probed.xml");
+	//environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
+	environment.set_devicegraph_filename("examples/data/mydisk_probed.xml");
 
 	Storage storage(environment);
 	storage.probe();
@@ -38,8 +36,8 @@ main()
 
 	Devicegraph* staging = storage.get_staging();
 
-	staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
-	//staging->load("examples/data/mydisk_staging.xml");
+	//staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
+	staging->load("examples/data/mydisk_staging.xml");
 	staging->check();
 
 	// Calculate the actiongraph.
@@ -50,33 +48,16 @@ main()
 	for(auto text : actiongraph->get_commit_actions_as_strings())
 	    cout << text << endl;
 
-
-
-//	for (auto action : actiongraph->get_commit_actions())
-//	{
-//	    cout << action->sid << "/" << CompoundAction::Impl::get_target_device(actiongraph, action)->get_sid() << endl;
-//	}
-
-	//CompoundActionGenerator generator(actiongraph);
-
-	//auto compound_actions = CompoundAction::generate(actiongraph);
-	
-	auto compound_actions = actiongraph->get_impl().get_compound_actions(); 
+	auto compound_actions = actiongraph->get_compound_actions(); 
 
 	cout << "Number of compound actions:" << compound_actions.size() << endl;
 
 	for (auto& compound_action : compound_actions)
 	{
-	    cout << "--> Compound action" << endl;
-	    cout << compound_action->string_representation() << endl;
-	    //for (auto action : compound_action->get_impl().get_commit_actions_as_strings())
-	    //	cout << action << endl;
+	    cout << "--> Compound action (" << compound_action->get_impl().get_commit_actions().size() << ")" << endl;
+	    cout << "# " << compound_action->sentence() << endl;
 	}
 	
-
-	for (auto& compound_action : compound_actions)
-	    delete compound_action;
-
 	return EXIT_SUCCESS;
     }
     catch (const exception& e)
