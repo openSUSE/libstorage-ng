@@ -26,16 +26,12 @@
 namespace storage
 {
 
-    CompoundAction::Formater::LvmVg::LvmVg(const CompoundAction::Impl* compound_action)
-    : CompoundAction::Formater(compound_action) 
-    {
-	this->vg = to_lvm_vg(compound_action->get_target_device());
-    }
+    CompoundAction::Formater::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formater(compound_action),
+	vg(to_lvm_vg(compound_action->get_target_device()))
+    {}
 
 
-    CompoundAction::Formater::LvmVg::~LvmVg() {}
-
-    
     Text
     CompoundAction::Formater::LvmVg::text() const
     {

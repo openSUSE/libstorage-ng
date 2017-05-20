@@ -41,7 +41,6 @@ namespace storage
 
 	class Btrfs;
 	class BtrfsSubvolume;
-	class BtrfsSubvolume;
 	class LvmLv;
 	class LvmVg;
 	class Nfs;

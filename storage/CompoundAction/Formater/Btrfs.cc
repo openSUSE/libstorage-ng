@@ -29,14 +29,10 @@
 namespace storage
 {
 
-    CompoundAction::Formater::Btrfs::Btrfs(const CompoundAction::Impl* compound_action)
-    : CompoundAction::Formater(compound_action) 
-    {
-	this->btrfs = to_btrfs(compound_action->get_target_device());
-    }
-
-
-    CompoundAction::Formater::Btrfs::~Btrfs() {}
+    CompoundAction::Formater::Btrfs::Btrfs(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formater(compound_action), 
+	btrfs(to_btrfs(compound_action->get_target_device()))
+    {}
 
     
     string

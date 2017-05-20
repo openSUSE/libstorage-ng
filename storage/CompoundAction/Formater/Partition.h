@@ -38,7 +38,6 @@ namespace storage
     public:
 
 	Partition(const CompoundAction::Impl* compound_action);
-	~Partition();
 
     private:
 

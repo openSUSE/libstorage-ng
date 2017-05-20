@@ -37,7 +37,6 @@ namespace storage
     public:
 
 	LvmLv(const CompoundAction::Impl* compound_action);
-	~LvmLv();
 
     private:
 

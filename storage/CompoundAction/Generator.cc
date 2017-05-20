@@ -33,9 +33,6 @@ namespace storage
     : actiongraph(actiongraph) {}
 
 
-    CompoundAction::Generator::~Generator() {}
-
-
     vector<CompoundAction*>
     CompoundAction::Generator::generate() const
     {

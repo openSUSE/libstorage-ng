@@ -30,14 +30,10 @@
 namespace storage
 {
 
-    CompoundAction::Formater::Partition::Partition(const CompoundAction::Impl* compound_action)
-    : CompoundAction::Formater(compound_action) 
-    {
-	this->partition = to_partition(compound_action->get_target_device());
-    }
-
-
-    CompoundAction::Formater::Partition::~Partition() {}
+    CompoundAction::Formater::Partition::Partition(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formater(compound_action),
+	partition(to_partition(compound_action->get_target_device()))
+    {}
 
 
     const BlkFilesystem*

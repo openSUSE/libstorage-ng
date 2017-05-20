@@ -37,7 +37,6 @@ namespace storage
     public:
 
 	Nfs(const CompoundAction::Impl* compound_action);
-	~Nfs();
 
     private:
 

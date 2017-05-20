@@ -37,7 +37,6 @@ namespace storage
     public:
 
 	LvmVg(const CompoundAction::Impl* compound_action);
-	~LvmVg();
 
     private:
 

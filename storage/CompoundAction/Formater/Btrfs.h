@@ -37,7 +37,6 @@ namespace storage
     public:
 
 	Btrfs(const CompoundAction::Impl* compound_action);
-	~Btrfs();
 
     private:
 

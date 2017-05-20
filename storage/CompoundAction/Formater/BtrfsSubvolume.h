@@ -38,7 +38,6 @@ namespace storage
     public:
 
 	BtrfsSubvolume(const CompoundAction::Impl* compound_action);
-	~BtrfsSubvolume();
 
     private:
 

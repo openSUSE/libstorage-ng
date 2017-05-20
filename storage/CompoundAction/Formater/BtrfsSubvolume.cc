@@ -28,14 +28,10 @@
 namespace storage
 {
 
-    CompoundAction::Formater::BtrfsSubvolume::BtrfsSubvolume(const CompoundAction::Impl* compound_action)
-    : CompoundAction::Formater(compound_action) 
-    {
-	this->subvolume = to_btrfs_subvolume(compound_action->get_target_device());
-    }
-
-
-    CompoundAction::Formater::BtrfsSubvolume::~BtrfsSubvolume() {}
+    CompoundAction::Formater::BtrfsSubvolume::BtrfsSubvolume(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formater(compound_action),
+	subvolume(to_btrfs_subvolume(compound_action->get_target_device()))
+    {}
 
     
     const BlkDevice*

@@ -42,7 +42,6 @@ namespace storage
     public:
 
 	Generator(const Actiongraph* actiongraph);
-	~Generator();
 
 	vector<CompoundAction*> generate() const;
 

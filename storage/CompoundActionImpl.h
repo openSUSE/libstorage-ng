@@ -24,9 +24,12 @@
 #define STORAGE_COMPOUND_ACTION_IMPL_H
 
 
+#include <vector>
+
 #include "storage/CompoundAction.h"
 #include "storage/Action.h"
 #include "storage/Devices/Device.h"
+
 
 namespace storage
 {
