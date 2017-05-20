@@ -20,35 +20,35 @@
  */
 
 
-#ifndef STORAGE_FORMATER_LVM_LV_H
-#define STORAGE_FORMATER_LVM_LV_H
-
-
-#include "storage/CompoundAction/Formater.h"
-#include "storage/Devices/LvmLv.h"
+#include "storage/CompoundAction/Formatter.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formater::LvmLv : public CompoundAction::Formater
+    using std::string;
+
+    CompoundAction::Formatter::Formatter(const CompoundAction::Impl* compound_action)
+    : compound_action(compound_action), tense(Tense::SIMPLE_PRESENT) {}
+
+
+    CompoundAction::Formatter::~Formatter() {}
+
+
+    string
+    CompoundAction::Formatter::string_representation() const
     {
+	return text().translated;
+    }
 
-    public:
 
-	LvmLv(const CompoundAction::Impl* compound_action);
-
-    private:
-
-	Text text() const;
-
-    private:
-
-	const storage::LvmLv* lv;
-
-    };
+    Text
+    CompoundAction::Formatter::default_text() const
+    {
+	const CommitData commit_data(compound_action->get_actiongraph()->get_impl(), tense);
+	auto first_action = compound_action->get_commit_actions().front();
+	return first_action->text(commit_data);
+    }
 
 }
-
-#endif
 

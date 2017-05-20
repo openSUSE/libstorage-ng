@@ -20,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_COMPOUND_ACTION_FORMATER_H
-#define STORAGE_COMPOUND_ACTION_FORMATER_H
+#ifndef STORAGE_COMPOUND_ACTION_FORMATTER_H
+#define STORAGE_COMPOUND_ACTION_FORMATTER_H
 
 
 #include <string>
@@ -34,7 +34,7 @@
 namespace storage
 {
 
-    class CompoundAction::Formater
+    class CompoundAction::Formatter
     {
 
     public:
@@ -46,8 +46,8 @@ namespace storage
 	class Nfs;
 	class Partition;
 
-	Formater(const CompoundAction::Impl* compound_action);
-	virtual ~Formater();
+	Formatter(const CompoundAction::Impl* compound_action);
+	virtual ~Formatter();
 
 	std::string string_representation() const;
 

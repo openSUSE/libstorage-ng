@@ -20,34 +20,39 @@
  */
 
 
-#ifndef STORAGE_FORMATER_NFS_H
-#define STORAGE_FORMATER_NFS_H
+#ifndef STORAGE_FORMATTER_BTRFS_SUBVOLUME_H
+#define STORAGE_FORMATTER_BTRFS_SUBVOLUME_H
 
 
-#include "storage/CompoundAction/Formater.h"
-#include "storage/Filesystems/Nfs.h"
+#include "storage/CompoundAction/Formatter.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/Filesystems/BtrfsSubvolume.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formater::Nfs : public CompoundAction::Formater
+    class CompoundAction::Formatter::BtrfsSubvolume : public CompoundAction::Formatter
     {
 
     public:
 
-	Nfs(const CompoundAction::Impl* compound_action);
+	BtrfsSubvolume(const CompoundAction::Impl* compound_action);
 
     private:
+
+	const BlkDevice* get_blk_device() const;
 
 	Text text() const;
 
-	Text mount_text() const;
-	Text unmount_text() const;
+	Text delete_text() const;
+
+	Text create_with_no_copy_text() const;
+	Text create_text() const;
 
     private:
 
-	const storage::Nfs* nfs;
+	const storage::BtrfsSubvolume* subvolume;
 
     };
 

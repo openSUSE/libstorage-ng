@@ -20,27 +20,38 @@
  */
 
 
-#include "storage/CompoundAction/Formater/LvmVg.h"
+#ifndef STORAGE_FORMATTER_NFS_H
+#define STORAGE_FORMATTER_NFS_H
+
+
+#include "storage/CompoundAction/Formatter.h"
+#include "storage/Filesystems/Nfs.h"
 
 
 namespace storage
 {
 
-    CompoundAction::Formater::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formater(compound_action),
-	vg(to_lvm_vg(compound_action->get_target_device()))
-    {}
-
-
-    Text
-    CompoundAction::Formater::LvmVg::text() const
+    class CompoundAction::Formatter::Nfs : public CompoundAction::Formatter
     {
-        Text text = tenser(tense,
-                           _("String representation for a LvmVg target (pending)"),
-                           _("String representation for a LvmVg target (pending)"));
 
-        return sformat(text);
-    }
+    public:
+
+	Nfs(const CompoundAction::Impl* compound_action);
+
+    private:
+
+	Text text() const;
+
+	Text mount_text() const;
+	Text unmount_text() const;
+
+    private:
+
+	const storage::Nfs* nfs;
+
+    };
 
 }
+
+#endif
 

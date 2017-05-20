@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundAction/Formater/Partition.h"
+#include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/PartitionImpl.h"
@@ -30,14 +30,14 @@
 namespace storage
 {
 
-    CompoundAction::Formater::Partition::Partition(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formater(compound_action),
+    CompoundAction::Formatter::Partition::Partition(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formatter(compound_action),
 	partition(to_partition(compound_action->get_target_device()))
     {}
 
 
     const BlkFilesystem*
-    CompoundAction::Formater::Partition::get_created_filesystem() const
+    CompoundAction::Formatter::Partition::get_created_filesystem() const
     {
 	auto action = get_create<storage::BlkFilesystem>();
 
@@ -52,7 +52,7 @@ namespace storage
     
     
     Text
-    CompoundAction::Formater::Partition::text() const
+    CompoundAction::Formatter::Partition::text() const
     {
 	if (has_delete<storage::Partition>())
 	    return delete_text();
@@ -117,7 +117,7 @@ namespace storage
 
     
     Text
-    CompoundAction::Formater::Partition::delete_text() const
+    CompoundAction::Formatter::Partition::delete_text() const
     {
 	Text text = tenser(tense,
 			   _("Delete partition %1$s (%2$s)"),
@@ -128,7 +128,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_encrypted_pv_text() const
+    CompoundAction::Formatter::Partition::create_encrypted_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted partition %1$s (%2$s) as LVM physical device"),
@@ -139,7 +139,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_pv_text() const
+    CompoundAction::Formatter::Partition::create_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create partition %1$s (%2$s) as LVM physical device"),
@@ -150,7 +150,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::encrypted_pv_text() const
+    CompoundAction::Formatter::Partition::encrypted_pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted LVM physical device over %1$s (%2$s)"),
@@ -161,7 +161,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::pv_text() const
+    CompoundAction::Formatter::Partition::pv_text() const
     {
 	Text text = tenser(tense,
 			   _("Create LVM physical device over %1$s (%2$s)"),
@@ -172,7 +172,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_encrypted_with_fs_and_mount_point_text() const
+    CompoundAction::Formatter::Partition::create_encrypted_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -189,7 +189,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_encrypted_with_fs_text() const
+    CompoundAction::Formatter::Partition::create_encrypted_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -205,7 +205,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_encrypted_text() const
+    CompoundAction::Formatter::Partition::create_encrypted_text() const
     {
 	Text text = tenser(tense,
 			   _("Create encrypted partition %1$s (%2$s)"),
@@ -216,7 +216,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_with_fs_and_mount_point_text() const
+    CompoundAction::Formatter::Partition::create_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -233,7 +233,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_with_fs_text() const
+    CompoundAction::Formatter::Partition::create_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -249,7 +249,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::create_text() const
+    CompoundAction::Formatter::Partition::create_text() const
     {
 	Text text = tenser(tense,
 			   _("Create partition %1$s (%2$s) as %3$s"),
@@ -263,7 +263,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::encrypted_with_fs_and_mount_point_text() const
+    CompoundAction::Formatter::Partition::encrypted_with_fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -280,7 +280,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::encrypted_with_fs_text() const
+    CompoundAction::Formatter::Partition::encrypted_with_fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -297,7 +297,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::encrypted_text() const
+    CompoundAction::Formatter::Partition::encrypted_text() const
     {
 	Text text = tenser(tense,
 			   _("Encrypt partition %1$s (%2$s)"),
@@ -308,7 +308,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::fs_and_mount_point_text() const
+    CompoundAction::Formatter::Partition::fs_and_mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -325,7 +325,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::fs_text() const
+    CompoundAction::Formatter::Partition::fs_text() const
     {
 	auto filesystem = get_created_filesystem();
 
@@ -341,7 +341,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::Partition::mount_point_text() const
+    CompoundAction::Formatter::Partition::mount_point_text() const
     {
 	auto filesystem = get_created_filesystem();
 

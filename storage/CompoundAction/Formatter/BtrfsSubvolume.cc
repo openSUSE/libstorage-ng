@@ -20,7 +20,7 @@
  */
 
 
-#include "storage/CompoundAction/Formater/BtrfsSubvolume.h"
+#include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 
@@ -28,21 +28,21 @@
 namespace storage
 {
 
-    CompoundAction::Formater::BtrfsSubvolume::BtrfsSubvolume(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formater(compound_action),
+    CompoundAction::Formatter::BtrfsSubvolume::BtrfsSubvolume(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formatter(compound_action),
 	subvolume(to_btrfs_subvolume(compound_action->get_target_device()))
     {}
 
     
     const BlkDevice*
-    CompoundAction::Formater::BtrfsSubvolume::get_blk_device() const
+    CompoundAction::Formatter::BtrfsSubvolume::get_blk_device() const
     {
 	return subvolume->get_btrfs()->get_impl().get_blk_device(); 
     }
 
     
     Text
-    CompoundAction::Formater::BtrfsSubvolume::text() const
+    CompoundAction::Formatter::BtrfsSubvolume::text() const
     {
 	if (has_delete<storage::BtrfsSubvolume>())
 	    return delete_text();
@@ -62,7 +62,7 @@ namespace storage
 
     
     Text
-    CompoundAction::Formater::BtrfsSubvolume::delete_text() const
+    CompoundAction::Formatter::BtrfsSubvolume::delete_text() const
     {
         Text text = tenser(tense,
                            _("Delete subvolume %1$s on %2$s"),
@@ -73,7 +73,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::BtrfsSubvolume::create_with_no_copy_text() const
+    CompoundAction::Formatter::BtrfsSubvolume::create_with_no_copy_text() const
     {
         Text text = tenser(tense,
                            _("Create subvolume subvolume %1$s on %2$s with option 'no copy on write'"),
@@ -84,7 +84,7 @@ namespace storage
 
 
     Text
-    CompoundAction::Formater::BtrfsSubvolume::create_text() const
+    CompoundAction::Formatter::BtrfsSubvolume::create_text() const
     {
         Text text = tenser(tense,
                            _("Create subvolume subvolume %1$s on %2$s"),

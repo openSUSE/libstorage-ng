@@ -20,23 +20,23 @@
  */
 
 
-#ifndef STORAGE_FORMATER_LVM_VG_H
-#define STORAGE_FORMATER_LVM_VG_H
+#ifndef STORAGE_FORMATTER_LVM_LV_H
+#define STORAGE_FORMATTER_LVM_LV_H
 
 
-#include "storage/CompoundAction/Formater.h"
-#include "storage/Devices/LvmVg.h"
+#include "storage/CompoundAction/Formatter.h"
+#include "storage/Devices/LvmLv.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formater::LvmVg : public CompoundAction::Formater
+    class CompoundAction::Formatter::LvmLv : public CompoundAction::Formatter
     {
 
     public:
 
-	LvmVg(const CompoundAction::Impl* compound_action);
+	LvmLv(const CompoundAction::Impl* compound_action);
 
     private:
 
@@ -44,7 +44,7 @@ namespace storage
 
     private:
 
-	const storage::LvmVg* vg;
+	const storage::LvmLv* lv;
 
     };
 

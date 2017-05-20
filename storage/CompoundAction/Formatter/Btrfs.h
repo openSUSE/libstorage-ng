@@ -20,18 +20,18 @@
  */
 
 
-#ifndef STORAGE_FORMATER_BTRFS_H
-#define STORAGE_FORMATER_BTRFS_H
+#ifndef STORAGE_FORMATTER_BTRFS_H
+#define STORAGE_FORMATTER_BTRFS_H
 
 
-#include "storage/CompoundAction/Formater.h"
+#include "storage/CompoundAction/Formatter.h"
 #include "storage/Filesystems/Btrfs.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formater::Btrfs : public CompoundAction::Formater
+    class CompoundAction::Formatter::Btrfs : public CompoundAction::Formatter
     {
 
     public:

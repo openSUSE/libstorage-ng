@@ -57,7 +57,7 @@ namespace storage
     public:
 
 	class Generator;
-	class Formater;
+	class Formatter;
 
 	class Impl;
 

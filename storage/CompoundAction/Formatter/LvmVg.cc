@@ -20,43 +20,27 @@
  */
 
 
-#ifndef STORAGE_FORMATER_BTRFS_SUBVOLUME_H
-#define STORAGE_FORMATER_BTRFS_SUBVOLUME_H
-
-
-#include "storage/CompoundAction/Formater.h"
-#include "storage/Devices/BlkDevice.h"
-#include "storage/Filesystems/BtrfsSubvolume.h"
+#include "storage/CompoundAction/Formatter/LvmVg.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formater::BtrfsSubvolume : public CompoundAction::Formater
+    CompoundAction::Formatter::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
+	CompoundAction::Formatter(compound_action),
+	vg(to_lvm_vg(compound_action->get_target_device()))
+    {}
+
+
+    Text
+    CompoundAction::Formatter::LvmVg::text() const
     {
+        Text text = tenser(tense,
+                           _("String representation for a LvmVg target (pending)"),
+                           _("String representation for a LvmVg target (pending)"));
 
-    public:
-
-	BtrfsSubvolume(const CompoundAction::Impl* compound_action);
-
-    private:
-
-	const BlkDevice* get_blk_device() const;
-
-	Text text() const;
-
-	Text delete_text() const;
-
-	Text create_with_no_copy_text() const;
-	Text create_text() const;
-
-    private:
-
-	const storage::BtrfsSubvolume* subvolume;
-
-    };
+        return sformat(text);
+    }
 
 }
-
-#endif
 
