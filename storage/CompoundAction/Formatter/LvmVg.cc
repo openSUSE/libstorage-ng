@@ -20,11 +20,20 @@
  */
 
 
+#include <vector>
+
+#include <boost/algorithm/string/join.hpp>
+
 #include "storage/CompoundAction/Formatter/LvmVg.h"
+#include "storage/Devices/LvmPv.h"
 
 
 namespace storage
 {
+
+    using std::vector;
+    using std::string;
+
 
     CompoundAction::Formatter::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
 	CompoundAction::Formatter(compound_action),
@@ -32,14 +41,76 @@ namespace storage
     {}
 
 
+    string
+    CompoundAction::Formatter::LvmVg::name_of_devices() const
+    {
+	auto pvs = vg->get_lvm_pvs();
+
+	vector<string> names;
+	for (auto pv : pvs)
+	    names.push_back(pv->get_blk_device()->get_displayname());
+
+	return boost::algorithm::join(names, ", ");
+    }
+
+
     Text
     CompoundAction::Formatter::LvmVg::text() const
     {
-        Text text = tenser(tense,
-                           _("String representation for a LvmVg target (pending)"),
-                           _("String representation for a LvmVg target (pending)"));
+	if (has_create<storage::LvmVg>())
+	{
+	    if (vg->get_lvm_pvs().size() > 0)
+		return create_with_pvs_text();
+	    
+	    else
+		return create_text();
+	}
 
-        return sformat(text);
+	else
+	    return default_text();
+    }
+
+
+    Text
+    CompoundAction::Formatter::LvmVg::create_with_pvs_text() const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by name of devices (e.g. sda1, sda2)
+			   _("Create volume group %1$s (%2$s) with %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by name of devices (e.g. sda1, sda2)
+			   _("Creating volume group %1$s (%2$s) with %3$s"));
+
+
+	return sformat(text,
+		       vg->get_vg_name().c_str(),
+		       vg->get_size_string().c_str(),
+		       name_of_devices().c_str());
+    }
+
+
+    Text
+    CompoundAction::Formatter::LvmVg::create_text() const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Create volume group %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by volume group name (e.g. system),
+			   // %2$s is replaced by size (e.g. 2GiB)
+			   _("Creating volume group %1$s (%2$s)"));
+
+
+	return sformat(text,
+		       vg->get_vg_name().c_str(),
+		       vg->get_size_string().c_str());
     }
 
 }

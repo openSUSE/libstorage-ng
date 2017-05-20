@@ -24,6 +24,8 @@
 #define STORAGE_FORMATTER_LVM_VG_H
 
 
+#include <string>
+
 #include "storage/CompoundAction/Formatter.h"
 #include "storage/Devices/LvmVg.h"
 
@@ -40,7 +42,12 @@ namespace storage
 
     private:
 
+	std::string name_of_devices() const;
+	
 	Text text() const;
+
+	Text create_with_pvs_text() const;
+	Text create_text() const;
 
     private:
 
