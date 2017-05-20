@@ -42,6 +42,19 @@ namespace storage
 
 	Text text() const;
 
+	Text create_encrypted_with_fs_and_mount_point_text() const;
+	Text create_encrypted_with_fs_text() const;
+	Text create_encrypted_text() const;
+	Text create_with_fs_and_mount_point_text() const;
+	Text create_with_fs_text() const;
+	Text create_text() const;
+	Text encrypted_with_fs_and_mount_point_text() const;
+	Text encrypted_with_fs_text() const;
+	Text encrypted_text() const;
+	Text fs_and_mount_point_text() const;
+	Text fs_text() const;
+	Text mount_point_text() const;
+
     private:
 
 	const storage::LvmLv* lv;
