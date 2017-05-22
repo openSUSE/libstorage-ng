@@ -24,8 +24,7 @@ main()
     {
 	// Create storage object and probe system.
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-	//environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
-	environment.set_devicegraph_filename("examples/data/mydisk_probed.xml");
+	environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
 
 	Storage storage(environment);
 	storage.probe();
@@ -36,8 +35,7 @@ main()
 
 	Devicegraph* staging = storage.get_staging();
 
-	//staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
-	staging->load("examples/data/mydisk_staging.xml");
+	staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
 	staging->check();
 
 	// Calculate the actiongraph.
