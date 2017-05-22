@@ -37,6 +37,7 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Utils/Exception.h"
 
 
 namespace storage
@@ -218,11 +219,14 @@ namespace storage
 	if (storage::is_create(action))
 	    return device(actiongraph, dynamic_cast<const Action::Create*>(action));
 
-	if (storage::is_modify(action))
+	else if (storage::is_modify(action))
 	    return device(actiongraph, dynamic_cast<const Action::Modify*>(action)); 
 
-	if (storage::is_delete(action))
+	else if (storage::is_delete(action))
 	    return device(actiongraph, dynamic_cast<const Action::Delete*>(action));
+
+	else
+	    ST_THROW(Exception("unknown commit action"));
     }
 
 
