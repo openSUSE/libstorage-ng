@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 
 #include <locale>
+#include <cmath>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/Text.h"
@@ -31,7 +32,7 @@
 
 namespace storage
 {
-    using namespace std;
+    using std::string;
 
 
     int
@@ -138,7 +139,7 @@ namespace storage
     {
 	const locale loc = classic ? locale::classic() : locale();
 
-	double f = size;
+	long double f = size;
 	int i = 0;
 
 	while (f >= 1024.0 && i + 1 < num_suffixes())
@@ -170,7 +171,7 @@ namespace storage
 
 	const string str_trimmed = boost::trim_copy(str, loc);
 
-	double f = 1.0;
+	long double f = 1.0;
 
 	for (int i = 0; i < num_suffixes(); ++i)
 	{
@@ -187,7 +188,7 @@ namespace storage
 		    istringstream s(boost::trim_copy(number, loc));
 		    s.imbue(loc);
 
-		    double g;
+		    long double g;
 		    s >> g;
 
 		    if (!s.fail() && s.eof())
@@ -195,7 +196,7 @@ namespace storage
 			if (g < 0.0)
 			    ST_THROW(OverflowException());
 
-			double r = g * f;
+			long double r = std::round(g * f);
 
 			if (r > std::numeric_limits<unsigned long long>::max())
 			    ST_THROW(OverflowException());

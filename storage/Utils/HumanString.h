@@ -61,7 +61,8 @@ namespace storage
 
     /**
      * Return a pretty description of a size with required precision and using
-     * B, KiB, MiB, GiB, TiB, PiB or EiB as unit as appropriate.
+     * B, KiB, MiB, GiB, TiB, PiB or EiB as unit as appropriate. Supported
+     * range is 0 B to (16 EiB - 1 B).
      *
      * @param size size in bytes
      * @param classic use classic locale instead of global C++ locale
@@ -75,7 +76,7 @@ namespace storage
     /**
      * Converts a size description using B, KiB, KB, MiB, MB, GiB, GB, TiB,
      * TB, PiB, PB, EiB or EB into an integer. Decimal suffixes are treated as
-     * binary.
+     * binary. Supported range is 0 B to (16 EiB - 1 B).
      *
      * @param str size string
      * @param classic use classic locale instead of global C++ locale

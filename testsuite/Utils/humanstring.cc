@@ -86,28 +86,28 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42b", false), 42);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "42 B", false), 42);
 
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4GB", true), 13314398617);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 GB", true), 13314398617);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4GB", true), 13314398618);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 GB", true), 13314398618);
 
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4GB", false), 13314398617);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 gb", false), 13314398617);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4g", false), 13314398617);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 G", false), 13314398617);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4GB", false), 13314398618);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 gb", false), 13314398618);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4g", false), 13314398618);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12.4 G", false), 13314398618);
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456 kB", false), 126418944);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456 kB", false), 126418944);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456 kB", false), 126418944);
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456 ko", false), 126418944);
 
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789ko", false), 126419751);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789ko", false), 126419752);
 
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789 kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789 kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789 kB", false), 126419751);
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789 ko", false), 126419751);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789 kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789 kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789 kB", false), 126419752);
+    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789 ko", false), 126419752);
 
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5Go", false), 5368709120);
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5 Go", false), 5368709120);
@@ -130,20 +130,22 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
-    unsigned long long EiB = 1ULL << (10 * 6);
-
+    // 1 EiB
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", EiB, true, 2, false), "1.00 EiB");
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 15 * EiB, true, 2, true), "15 EiB");
-
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1 EiB", true), EiB);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), EiB);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "15 EiB", true), 15 * EiB);
+
+    // 16 EiB - 1 B
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 16 * EiB - 1 * B, true, 2, true), "16.00 EiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "18446744073709551615 B", true), 16 * EiB - 1 * B);
+
+    // 16 EiB
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "16 EiB", true), OverflowException);
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "18446744073709551616 B", true), OverflowException);
 }
 
 
-BOOST_AUTO_TEST_CASE(test_overflow)
+BOOST_AUTO_TEST_CASE(test_negative_numbers)
 {
-    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1B", false), OverflowException);
-
-    BOOST_CHECK_THROW(test("en_GB.UTF-8", "16.5 EiB", true), OverflowException);
-    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-16.5 EiB", false), OverflowException);
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1 B", false), OverflowException);
 }
