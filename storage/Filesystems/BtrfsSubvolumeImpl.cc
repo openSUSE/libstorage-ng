@@ -185,7 +185,7 @@ namespace storage
     MountOpts
     BtrfsSubvolume::Impl::get_default_mount_options() const
     {
-	return MountOpts({ "subvol=/" + path });
+	return MountOpts(vector<string>({ "subvol=/" + path }));
     }
 
 

@@ -62,6 +62,11 @@ namespace storage
 	MountOpts( const string & opt_string = "" );
 
 	/**
+	 * Constructor. Sets options to 'opts'.
+	 */
+	MountOpts(const vector<string>& opts);
+
+	/**
 	 * Return the number of mount options.
 	 **/
 	size_t size() const { return opts.size(); }
