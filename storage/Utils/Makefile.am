@@ -23,7 +23,6 @@ libutils_la_SOURCES =					\
 	HumanString.h		HumanString.cc		\
 	Lock.cc 		Lock.h			\
 	OutputProcessor.cc	OutputProcessor.h	\
-	Regex.cc 		Regex.h			\
 	Region.cc 		Region.h		\
 	RegionImpl.cc 		RegionImpl.h		\
 	Topology.cc		Topology.h		\

@@ -21,11 +21,11 @@
  */
 
 
+#include <regex>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/LoggerImpl.h"
-#include "storage/Utils/Regex.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/SystemInfo/CmdMultipath.h"
@@ -46,7 +46,7 @@ namespace storage
 	if (c.retcode() != 0 || c.stdout().empty())
 	    return;
 
-	Regex lun("[[:digit:]]+:[[:digit:]]+:[[:digit:]]+:[[:digit:]]+");
+	regex lun("[0-9]+:[0-9]+:[0-9]+:[0-9]+", regex_constants::extended);
 
 	const vector<string>& lines = c.stdout();
 	vector<string>::const_iterator it1 = lines.begin();
@@ -84,7 +84,7 @@ namespace storage
 		if (it1->empty() || isalnum((*it1)[0]))
 		    break;
 
-		if (lun.match(*it1))
+		if (regex_search(*it1, lun))
 		{
 		    string tmp = it1->substr(5);
 		    y2mil("mp element:" << tmp);

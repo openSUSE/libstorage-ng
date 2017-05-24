@@ -22,8 +22,8 @@
 
 
 #include <sys/sysmacros.h>
+#include <regex>
 
-#include "storage/Utils/Regex.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/CmdDmsetup.h"
 #include "storage/Utils/LoggerImpl.h"
@@ -109,7 +109,7 @@ namespace storage
     void
     CmdDmsetupTable::parse(const vector<string>& lines)
     {
-	static Regex devspec("^([0123456789]+):([0123456789]+)$");
+	static regex devspec("([0-9]+):([0-9]+)", regex_constants::extended);
 
 	if (lines.size() == 1 && lines[0] == "No devices found")
 	    return;
@@ -139,12 +139,14 @@ namespace storage
 
 	    for (const string& param : params)
 	    {
-		if (devspec.match(param))
+		smatch match;
+
+		if (regex_match(param, match, devspec) && match.size() == 3)
 		{
 		    unsigned int major, minor;
 
-		    devspec.cap(1) >> major;
-		    devspec.cap(2) >> minor;
+		    match[1] >> major;
+		    match[2] >> minor;
 
 		    dev_t majorminor = makedev(major, minor);
 		    table.majorminors.push_back(majorminor);
