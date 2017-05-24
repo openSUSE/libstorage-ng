@@ -24,7 +24,7 @@ main()
     {
 	// Create storage object and probe system.
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-	environment.set_devicegraph_filename("examples/data/empty_hard_disk_50GiB.xml");
+	environment.set_devicegraph_filename("examples/data/compound-actions-probed1.xml");
 
 	Storage storage(environment);
 	storage.probe();
@@ -35,7 +35,7 @@ main()
 
 	Devicegraph* staging = storage.get_staging();
 
-	staging->load("examples/data/proposal_from_empty_hard_disk_50GiB.xml");
+	staging->load("examples/data/compound-actions-staging1.xml");
 	staging->check();
 
 	// Calculate the actiongraph.
@@ -53,7 +53,7 @@ main()
 	for (auto& compound_action : compound_actions)
 	{
 	    cout << "--> Compound action (" << compound_action->get_impl().get_commit_actions().size() << ")" << endl;
-	    cout << "# " << compound_action->sentence() << endl;
+	    cout << compound_action->sentence() << endl;
 	}
 	
 	return EXIT_SUCCESS;
