@@ -20,7 +20,7 @@
  */
 
 
-#include <boost/regex.hpp>
+#include <regex>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -78,10 +78,10 @@ namespace storage
     bool
     BcacheCset::Impl::is_valid_uuid(const string& uuid)
     {
-	static boost::regex uuid_regex("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
-				       boost::regex_constants::extended);
+	static regex uuid_regex("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
+				regex_constants::extended);
 
-	return boost::regex_match(uuid, uuid_regex);
+	return regex_match(uuid, uuid_regex);
     }
 
 
@@ -102,8 +102,8 @@ namespace storage
     void
     BcacheCset::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	static boost::regex bdev_regex("bdev[0-9]+", boost::regex_constants::extended);
-	static boost::regex cache_regex("cache[0-9]+", boost::regex_constants::extended);
+	static regex bdev_regex("bdev[0-9]+", regex_constants::extended);
+	static regex cache_regex("cache[0-9]+", regex_constants::extended);
 
 	Device::Impl::probe_pass_2(probed, systeminfo);
 
@@ -112,7 +112,7 @@ namespace storage
 	const Dir& dir = systeminfo.getDir(path);
 	for (const string& name : dir)
 	{
-	    if (boost::regex_match(name, bdev_regex))
+	    if (regex_match(name, bdev_regex))
 	    {
 		const File dev_file = systeminfo.getFile(path + "/" + name + "/dev/dev");
 		string dev = "/dev/block/" + dev_file.get_string();
@@ -121,7 +121,7 @@ namespace storage
 		User::create(probed, get_device(), blk_device);
 	    }
 
-	    if (boost::regex_match(name, cache_regex))
+	    if (regex_match(name, cache_regex))
 	    {
 		const File dev_file = systeminfo.getFile(path + "/" + name + "/../dev");
 		string dev = "/dev/block/" + dev_file.get_string();

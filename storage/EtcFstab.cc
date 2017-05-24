@@ -46,6 +46,14 @@ namespace storage
     }
 
 
+    MountOpts::MountOpts(const vector<string> & opts)
+	: opts(opts)
+    {
+	while (contains("defaults"))
+	    remove("defaults");
+    }
+
+
     string MountOpts::get_opt( int index ) const
     {
 	if ( index >= 0 && index < (int) opts.size() )

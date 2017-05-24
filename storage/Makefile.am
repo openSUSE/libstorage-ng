@@ -34,7 +34,7 @@ libstorage_ng_la_LIBADD =		\
 	Holders/libholders.la		\
 	Utils/libutils.la 		\
 	SystemInfo/libsysteminfo.la	\
-	-lxml2 -lboost_regex
+	-lxml2
 
 pkgincludedir = $(includedir)/storage
 

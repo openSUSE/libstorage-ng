@@ -23,7 +23,7 @@
 
 #include <ctype.h>
 #include <iostream>
-#include <boost/regex.hpp>
+#include <regex>
 
 #include "storage/Devices/MdImpl.h"
 #include "storage/Holders/MdUserImpl.h"
@@ -154,9 +154,9 @@ namespace storage
     bool
     Md::Impl::is_valid_name(const string& name)
     {
-	static boost::regex name_regex(DEVDIR "/md[0-9]+", boost::regex_constants::extended);
+	static regex name_regex(DEVDIR "/md[0-9]+", regex_constants::extended);
 
-	return boost::regex_match(name, name_regex);
+	return regex_match(name, name_regex);
     }
 
 

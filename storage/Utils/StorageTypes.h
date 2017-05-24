@@ -28,7 +28,6 @@
 #include <vector>
 #include <boost/algorithm/string.hpp>
 
-#include "storage/Utils/Regex.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTmpl.h"
 
@@ -37,14 +36,6 @@ namespace storage
 {
     using std::string;
     using std::vector;
-
-
-    struct regex_matches
-    {
-	regex_matches(const Regex& t) : val(t) {}
-	bool operator()(const string& s) const { return val.match(s); }
-	const Regex& val;
-    };
 
 
     struct string_starts_with
