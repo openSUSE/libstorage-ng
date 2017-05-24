@@ -20,7 +20,7 @@
  */
 
 
-#include <boost/regex.hpp>
+#include <regex>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageDefines.h"
@@ -58,9 +58,9 @@ namespace storage
     bool
     Bcache::Impl::is_valid_name(const string& name)
     {
-	static boost::regex name_regex(DEVDIR "/bcache[0-9]+", boost::regex_constants::extended);
+	static regex name_regex(DEVDIR "/bcache[0-9]+", regex_constants::extended);
 
-	return boost::regex_match(name, name_regex);
+	return regex_match(name, name_regex);
     }
 
 
