@@ -64,9 +64,10 @@ namespace storage
     Text
     CompoundAction::Formatter::BtrfsSubvolume::delete_text() const
     {
-        Text text = tenser(tense,
-                           _("Delete subvolume %1$s on %2$s"),
-                           _("Deleting subvolume %1$s on %2$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by subvolume path (e.g. var/log),
+	// %2$s is replaced by block device name (e.g. /dev/sda1)
+        Text text = _("Delete subvolume %1$s on %2$s");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
     }
@@ -75,9 +76,10 @@ namespace storage
     Text
     CompoundAction::Formatter::BtrfsSubvolume::create_with_no_copy_text() const
     {
-        Text text = tenser(tense,
-                           _("Create subvolume subvolume %1$s on %2$s with option 'no copy on write'"),
-                           _("Creating subvolume subvolume %1$s on %2$s with option 'no copy on write'"));
+	// TRANSLATORS:
+	// %1$s is replaced by subvolume path (e.g. var/log),
+	// %2$s is replaced by block device name (e.g. /dev/sda1)
+        Text text = _("Create subvolume subvolume %1$s on %2$s with option 'no copy on write'");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
     }
@@ -86,9 +88,10 @@ namespace storage
     Text
     CompoundAction::Formatter::BtrfsSubvolume::create_text() const
     {
-        Text text = tenser(tense,
-                           _("Create subvolume subvolume %1$s on %2$s"),
-                           _("Creating subvolume subvolume %1$s on %2$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by subvolume path (e.g. var/log),
+	// %2$s is replaced by block device name (e.g. /dev/sda1)
+        Text text = _("Create subvolume subvolume %1$s on %2$s");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
     }

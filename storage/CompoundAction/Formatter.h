@@ -125,8 +125,6 @@ namespace storage
     
 	const CompoundAction::Impl* compound_action;
 
-	Tense tense;
-    
     };
 
 }

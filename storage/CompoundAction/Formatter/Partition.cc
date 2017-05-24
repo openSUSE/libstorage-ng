@@ -119,9 +119,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::delete_text() const
     {
-	Text text = tenser(tense,
-			   _("Delete partition %1$s (%2$s)"),
-			   _("Deleting partition %1$s (%2$s)"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Delete partition %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -130,9 +131,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_encrypted_pv_text() const
     {
-	Text text = tenser(tense,
-			   _("Create encrypted partition %1$s (%2$s) as LVM physical device"),
-			   _("Creating encrypted partition %1$s (%2$s) as LVM physical device"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical device");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -141,9 +143,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_pv_text() const
     {
-	Text text = tenser(tense,
-			   _("Create partition %1$s (%2$s) as LVM physical device"),
-			   _("Creating partition %1$s (%2$s) as LVM physical device"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create partition %1$s (%2$s) as LVM physical device");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -152,9 +155,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::encrypted_pv_text() const
     {
-	Text text = tenser(tense,
-			   _("Create encrypted LVM physical device over %1$s (%2$s)"),
-			   _("Creating encrypted LVM physical device over %1$s (%2$s)"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create encrypted LVM physical device over %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -163,9 +167,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::pv_text() const
     {
-	Text text = tenser(tense,
-			   _("Create LVM physical device over %1$s (%2$s)"),
-			   _("Creating LVM physical device over %1$s (%2$s)"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create LVM physical device over %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -176,9 +181,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s"),
-			   _("Creating encrypted partition %1$s (%2$s) for %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by mount point (e.g. /home),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -193,9 +201,11 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create encrypted partition %1$s (%2$s) with %3$s"),
-			   _("Creating encrypted partition %1$s (%2$s) with %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -207,9 +217,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_encrypted_text() const
     {
-	Text text = tenser(tense,
-			   _("Create encrypted partition %1$s (%2$s)"),
-			   _("Creating encrypted partition %1$s (%2$s)"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create encrypted partition %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -220,9 +231,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create partition %1$s (%2$s) for %3$s with %4$s"),
-			   _("Creating partition %1$s (%2$s) for %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by mount point (e.g. /home),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -237,9 +251,11 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create partition %1$s (%2$s) with %3$s"),
-			   _("Creating partition %1$s (%2$s) with %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -251,9 +267,11 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_text() const
     {
-	Text text = tenser(tense,
-			   _("Create partition %1$s (%2$s) as %3$s"),
-			   _("Creating partition %1$s (%2$s) as %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by partition id string (e.g. Linux LVM)
+	Text text = _("Create partition %1$s (%2$s) as %3$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -267,9 +285,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Encrypt partition %1$s (%2$s) for %3$s with %4$s"),
-			   _("Encrypting partition %1$s (%2$s) for %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by mount point (e.g. /home),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -284,9 +305,11 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Encrypt partition %1$s (%2$s) with %3$s"),
-			   _("Encrypting partition %1$s (%2$s) with %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -299,9 +322,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::encrypted_text() const
     {
-	Text text = tenser(tense,
-			   _("Encrypt partition %1$s (%2$s)"),
-			   _("Encrypting partition %1$s (%2$s)"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	Text text = _("Encrypt partition %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -312,9 +336,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Format partition %1$s (%2$s) for %3$s with %4$s"),
-			   _("Formating partition %1$s (%2$s) for %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by mount point (e.g. /home),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 
@@ -329,10 +356,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Format partition %1$s (%2$s) with %3$s"),
-			   _("Formating partition %1$s (%2$s) with %3$s"));
+	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by filesystem name (e.g. ext4)
 	return sformat(text, 
 		       partition->get_name().c_str(), 
 		       partition->get_size_string().c_str(),
@@ -345,9 +374,11 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = tenser(tense,
-			   _("Mount partition %1$s (%2$s) at %3$s"),
-			   _("Mounting partition %1$s (%2$s) at %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by mount point (e.g. /home)
+	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
 	return sformat(text, 
 		       partition->get_name().c_str(), 

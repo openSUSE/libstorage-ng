@@ -74,18 +74,11 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmVg::create_with_pvs_text() const
     {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by name of devices (e.g. sda1, sda2)
-			   _("Create volume group %1$s (%2$s) with %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by name of devices (e.g. sda1, sda2)
-			   _("Creating volume group %1$s (%2$s) with %3$s"));
-
+	// TRANSLATORS: displayed before action,
+	// %1$s is replaced by volume group name (e.g. system),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by name of devices (e.g. sda1, sda2)
+	Text text = _("Create volume group %1$s (%2$s) with %3$s");
 
 	return sformat(text,
 		       vg->get_vg_name().c_str(),
@@ -97,16 +90,10 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmVg::create_text() const
     {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Create volume group %1$s (%2$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Creating volume group %1$s (%2$s)"));
-
+	// TRANSLATORS: displayed before action,
+	// %1$s is replaced by volume group name (e.g. system),
+	// %2$s is replaced by size (e.g. 2GiB),
+	Text text = _("Create volume group %1$s (%2$s)");
 
 	return sformat(text,
 		       vg->get_vg_name().c_str(),

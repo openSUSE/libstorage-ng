@@ -29,7 +29,7 @@ namespace storage
     using std::string;
 
     CompoundAction::Formatter::Formatter(const CompoundAction::Impl* compound_action)
-    : compound_action(compound_action), tense(Tense::SIMPLE_PRESENT) {}
+    : compound_action(compound_action) {}
 
 
     CompoundAction::Formatter::~Formatter() {}
@@ -45,7 +45,7 @@ namespace storage
     Text
     CompoundAction::Formatter::default_text() const
     {
-	const CommitData commit_data(compound_action->get_actiongraph()->get_impl(), tense);
+	const CommitData commit_data(compound_action->get_actiongraph()->get_impl(), Tense::SIMPLE_PRESENT);
 	auto first_action = compound_action->get_commit_actions().front();
 	return first_action->text(commit_data);
     }

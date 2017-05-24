@@ -50,9 +50,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Nfs::mount_text() const
     {
-        Text text = tenser(tense,
-                           _("Mount NFS %1$s on %2$s"),
-                           _("Mounting NFS %1$s on %2$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by filesystem name (e.g. ext4),
+	// %2$s is replaced by mount point (e.g. /home)
+        Text text = _("Mount NFS %1$s on %2$s");
 
         return sformat(text,
 		       nfs->get_displayname().c_str(),
@@ -63,9 +64,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Nfs::unmount_text() const
     {
-        Text text = tenser(tense,
-                           _("Unmount NFS %1$s at %2$s"),
-                           _("Unmounting NFS %1$s at %2$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by filesystem name (e.g. ext4),
+	// %2$s is replaced by mount point (e.g. /home)
+        Text text = _("Unmount NFS %1$s at %2$s");
 
         return sformat(text,
 		       nfs->get_displayname().c_str(),

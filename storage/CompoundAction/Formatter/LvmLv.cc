@@ -84,9 +84,13 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
-			   _("Creating encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by mount point (e.g. /home),
+	// %5$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -102,9 +106,12 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"),
-			   _("Creating encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -117,9 +124,11 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_encrypted_text() const
     {
-	Text text = tenser(tense,
-			   _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"),
-			   _("Creating encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system)
+	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -133,9 +142,13 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
-			   _("Creating LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by mount point (e.g. /home),
+	// %5$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -151,9 +164,12 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"),
-			   _("Creating LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -166,9 +182,11 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_text() const
     {
-	Text text = tenser(tense,
-			   _("Create LVM logical volume %1$s (%2$s) on volume group %3$s"),
-			   _("Creating LVM logical volume %1$s (%2$s) on volume group %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system)
+	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -182,9 +200,13 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
-			   _("Encrypting LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by mount point (e.g. /home),
+	// %5$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -200,9 +222,12 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"),
-			   _("Encrypting LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -215,9 +240,11 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::encrypted_text() const
     {
-	Text text = tenser(tense,
-			   _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"),
-			   _("Encrypting LVM logical volume %1$s (%2$s) on volume group %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system)
+	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -231,9 +258,13 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"),
-			   _("Formating LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by mount point (e.g. /home),
+	// %5$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -249,9 +280,12 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"),
-			   _("Formating LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
@@ -266,9 +300,12 @@ namespace storage
     {
 	auto filesystem = lv->get_blk_filesystem();
 
-	Text text = tenser(tense,
-			   _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"),
-			   _("Mounting LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system),
+	// %4$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 

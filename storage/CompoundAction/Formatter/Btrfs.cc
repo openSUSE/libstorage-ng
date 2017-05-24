@@ -75,9 +75,11 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::delete_text() const
     {
-        Text text = tenser(tense,
-                           _("Delete filesystem %1$s on %2$s"),
-                           _("Deleting filesystem %1$s on %2$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by filesystem name (e.g. btrfs),
+	// %2$s is replaced by name of devices separated by
+	// comma (e.g. /dev/sda1, /dev/sda)
+        Text text = _("Delete filesystem %1$s on %2$s");
 
         return sformat(text,
 		       btrfs->get_displayname().c_str(),
@@ -88,23 +90,29 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::create_and_mount_text() const
     {
-        Text text = tenser(tense,
-                           _("Create filesystem %1$s at %3$s and mount on %2$s"),
-                           _("Creating filesystem %1$s at %3$s and mounting on %2$s"));
+	// TRANSLATORS: 
+	// %1$s is replaced by filesystem name (e.g. btrfs),
+	// %2$s is replaced by name of devices separated by
+	// comma (e.g. /dev/sda1, /dev/sda),
+	// %3$s is replaced by mount point (e.g. /home)
+        Text text = _("Create filesystem %1$s on %2$s and mount at %3$s");
 
         return sformat(text,
 		       btrfs->get_displayname().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str(),
-		       blk_devices_string_representation().c_str());
+		       blk_devices_string_representation().c_str(),
+		       btrfs->get_mount_point()->get_path().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Btrfs::create_text() const
     {
-        Text text = tenser(tense,
-                           _("Create filesystem %1$s at %2$s"),
-                           _("Creating filesystem %1$s at %2$s"));
+	// TRANSLATORS: 
+	// %1$s is replaced by filesystem name (e.g. btrfs),
+	// %2$s is replaced by name of devices separated by
+	// comma (e.g. /dev/sda1, /dev/sda),
+	// %3$s is replaced by mount point (e.g. /home)
+        Text text = _("Create filesystem %1$s on %2$s");
 
         return sformat(text,
 		       btrfs->get_displayname().c_str(),
@@ -115,28 +123,34 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::mount_text() const
     {
-        Text text = tenser(tense,
-                           _("Mount filesystem %1$s on %2$s at %3$s"),
-                           _("Mounting filesystem %1$s on %2$s at %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by filesystem name (e.g. btrfs),
+	// %2$s is replaced by name of devices separated by
+	// comma (e.g. /dev/sda1, /dev/sda),
+	// %3$s is replaced by mount point (e.g. /home)
+        Text text = _("Mount filesystem %1$s on %2$s at %3$s");
 
         return sformat(text,
 		       btrfs->get_displayname().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str(),
-		       blk_devices_string_representation().c_str());
+		       blk_devices_string_representation().c_str(),
+		       btrfs->get_mount_point()->get_path().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Btrfs::unmount_text() const
     {
-        Text text = tenser(tense,
-                           _("Unmount filesystem %1$s on %2$s at %3$s"),
-                           _("Unmounting filesystem %1$s on %2$s at %3$s"));
+	// TRANSLATORS:
+	// %1$s is replaced by filesystem name (e.g. btrfs),
+	// %2$s is replaced by name of devices separated by
+	// comma (e.g. /dev/sda1, /dev/sda),
+	// %3$s is replaced by mount point (e.g. /home)
+        Text text = _("Unmount filesystem %1$s on %2$s at %3$s");
 
         return sformat(text,
 		       btrfs->get_displayname().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str(),
-		       blk_devices_string_representation().c_str());
+		       blk_devices_string_representation().c_str(),
+		       btrfs->get_mount_point()->get_path().c_str());
     }
 
 }
