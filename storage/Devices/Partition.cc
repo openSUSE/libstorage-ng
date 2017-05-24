@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,13 @@ namespace storage
 {
 
     using namespace std;
+
+
+    string
+    get_partition_type_name(PartitionType partition_type)
+    {
+	return toString(partition_type);
+    }
 
 
     Partition*
