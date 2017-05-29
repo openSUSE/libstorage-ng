@@ -38,6 +38,7 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
+#include "storage/Devices/DasdPt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/LvmPv.h"
@@ -616,6 +617,7 @@ namespace storage
 	{ "Md", &Md::load },
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
+	{ "DasdPt", &DasdPt::load },
 	{ "Partition", &Partition::load },
 	{ "LvmPv", &LvmPv::load },
 	{ "LvmVg", &LvmVg::load },

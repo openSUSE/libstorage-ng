@@ -53,6 +53,9 @@
 %catches(storage::DeviceHasWrongType) storage::to_gpt(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_gpt(const Device*);
 
+%catches(storage::DeviceHasWrongType) storage::to_dasd_pt(Device*);
+%catches(storage::DeviceHasWrongType) storage::to_dasd_pt(const Device*);
+
 %catches(storage::DeviceHasWrongType) storage::to_partition(Device*);
 %catches(storage::DeviceHasWrongType) storage::to_partition(const Device*);
 

@@ -27,6 +27,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
+#include "storage/Devices/DasdPt.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -98,13 +99,14 @@ namespace storage
 	if (dir.empty())
 	{
 	    const Parted& parted = systeminfo.getParted(get_name());
-	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT)
+	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
+		parted.get_label() == PtType::DASD)
 	    {
-		if (get_region().get_length() != parted.get_region().get_length())
-		    ST_THROW(Exception("different size reported by kernel and parted"));
-
 		if (get_region().get_block_size() != parted.get_region().get_block_size())
 		    ST_THROW(Exception("different block size reported by kernel and parted"));
+
+		if (get_region().get_length() != parted.get_region().get_length())
+		    ST_THROW(Exception("different size reported by kernel and parted"));
 
 		PartitionTable* pt = create_partition_table(parted.get_label());
 		pt->get_impl().probe_pass_1(probed, systeminfo);
@@ -170,6 +172,10 @@ namespace storage
 
 	    case PtType::GPT:
 		ret = Gpt::create(get_devicegraph());
+		break;
+
+	    case PtType::DASD:
+		ret = DasdPt::create(get_devicegraph());
 		break;
 
 	    default:

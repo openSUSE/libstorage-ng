@@ -89,8 +89,8 @@ namespace storage
 
 	const Device* parent = get_single_parent_of_type<const Device>();
 
-	if (!is_disk(parent) && !is_md(parent))
-	    ST_THROW(Exception("parent of partition table is not a disk or md"));
+	if (!is_disk(parent) && !is_dasd(parent) && !is_md(parent))
+	    ST_THROW(Exception("parent of partition table is not a disk, dasd or md"));
     }
 
 
