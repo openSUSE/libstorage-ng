@@ -28,6 +28,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
+    // probed->save("dasd1-devicegraph.xml");
 
     probed->check();
 
