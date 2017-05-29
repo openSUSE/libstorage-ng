@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include <fstream>
 
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/CmdParted.h"
@@ -40,9 +41,15 @@ namespace storage
 
     Parted::Parted(const string& device)
 	: device(device), label(PtType::PT_UNKNOWN), region(), implicit(false),
-	  gpt_enlarge(false), gpt_pmbr_boot(false)
+	  gpt_enlarge(false), gpt_pmbr_boot(false), logical_sector_size(0), physical_sector_size(0)
     {
-	SystemCmd cmd(PARTEDBIN " --script " + quote(device) + " unit s print", SystemCmd::DoThrow);
+	// TODO only use parted with --machine; requires adaption of unit-tests
+
+	bool old = Mockup::get_mode() == Mockup::Mode::PLAYBACK &&
+	    !Mockup::has_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print");
+
+	SystemCmd cmd(PARTEDBIN " --script " + string(old ? "" : "--machine ") +
+		      quote(device) + " unit s print", SystemCmd::DoThrow);
 
 	// No check for exit status since parted 3.1 exits with 1 if no
 	// partition table is found.
@@ -69,12 +76,226 @@ namespace storage
 	    }
 	}
 
-	parse(cmd.stdout(), cmd.stderr());
+	if (!old)
+	    parse(cmd.stdout(), cmd.stderr());
+	else
+	    parse_old(cmd.stdout(), cmd.stderr());
     }
 
 
     void
     Parted::parse(const vector<string>& stdout, const vector<string>& stderr)
+    {
+	implicit = false;
+	gpt_enlarge = false;
+	gpt_fix_backup = false;
+	gpt_pmbr_boot = false;
+	entries.clear();
+
+	if (stdout.size() < 2)
+	    ST_THROW(Exception("wrong number of lines"));
+
+	if (stdout[0] != "BYT;")
+	    ST_THROW(ParseException("Bad first line", stdout[0], "BYT;"));
+
+	scan_device_line(stdout[1]);
+
+	if (label != PtType::PT_UNKNOWN && label != PtType::PT_LOOP)
+        {
+	    for (size_t i = 2; i < stdout.size(); ++i)
+		scan_entry_line(stdout[i]);
+	}
+
+	scan_stderr(stderr);
+
+	fix_dasd_sector_size();
+
+	y2mil(*this);
+    }
+
+
+    void
+    Parted::scan_device_line(const string& line)
+    {
+	if (!boost::ends_with(line, ";"))
+	    ST_THROW(Exception("missing ;"));
+
+	string line_without_semicolon = line.substr(0, line.size() - 1);
+
+	vector<string> tmp;
+	boost::split(tmp, line_without_semicolon, boost::is_any_of(":"));
+
+	unsigned long long num_sectors = 0;
+	tmp[1] >> num_sectors;
+
+	region.set_length(num_sectors);
+
+	tmp[3] >> logical_sector_size;
+	tmp[4] >> physical_sector_size;
+
+	region.set_block_size(logical_sector_size);
+
+	label = scan_partition_table_type(tmp[5]);
+
+	scan_device_flags(tmp[7]);
+    }
+
+
+    void
+    Parted::scan_device_flags(const string& s)
+    {
+	implicit = boost::contains(s, "implicit_partition_table");
+
+	gpt_pmbr_boot = boost::contains(s, "pmbr_boot");
+    }
+
+
+    PtType
+    Parted::scan_partition_table_type(const string& s) const
+    {
+	PtType partition_type = PtType::PT_UNKNOWN;
+
+	if (s == "msdos")
+	    partition_type = PtType::MSDOS;
+	else if (s == "gpt" || s == "gpt_sync_mbr")
+	    partition_type = PtType::GPT;
+	else if (s == "dasd")
+	    partition_type = PtType::DASD;
+	else if (s == "loop")
+	    partition_type = PtType::PT_LOOP;
+	else if (s == "unknown")
+	    partition_type = PtType::PT_UNKNOWN;
+	else
+	    ST_THROW(Exception("unknown partition table type reported by parted"));
+
+	return partition_type;
+    }
+
+
+    void
+    Parted::scan_entry_line(const string& line)
+    {
+	if (!boost::ends_with(line, ";"))
+	    ST_THROW(Exception("missing ;"));
+
+	string line_without_semicolon = line.substr(0, line.size() - 1);
+
+	vector<string> tmp;
+	boost::split(tmp, line_without_semicolon, boost::is_any_of(":"));
+
+	Entry entry;
+
+	tmp[0] >> entry.number;
+
+	if (entry.number == 0)
+            ST_THROW(ParseException("Illegal partition number 0", line, ""));
+
+	unsigned long long start_sector = 0;
+	unsigned long long size_sector = 0;
+
+	tmp[1] >> start_sector;
+	tmp[3] >> size_sector;
+
+	entry.region = Region(start_sector, size_sector, region.get_block_size());
+
+	scan_flags(tmp[6], entry);
+
+	entries.push_back(entry);
+    }
+
+
+    void
+    Parted::scan_flags(const string& s, Entry& entry) const
+    {
+	entry.id = ID_LINUX;
+	entry.boot = false;
+	entry.legacy_boot = false;
+
+	vector<string> flags;
+	boost::split(flags, s, boost::is_any_of(", "), boost::token_compress_on);
+
+	if (contains(flags, "raid"))
+	    entry.id = ID_RAID;
+	else if (contains(flags, "lvm"))
+	    entry.id = ID_LVM;
+	else if (contains(flags, "prep"))
+	    entry.id = ID_PREP;
+	else if (contains(flags, "esp"))
+	    entry.id = ID_ESP;
+	else if (contains(flags, "swap"))
+	    entry.id = ID_SWAP;
+	else if (contains(flags, "bios_grub"))
+	    entry.id = ID_BIOS_BOOT;
+	else if (contains(flags, "msftdata"))
+	    entry.id = ID_WINDOWS_BASIC_DATA;
+	else if (contains(flags, "msftres"))
+	    entry.id = ID_MICROSOFT_RESERVED;
+
+	if (label == PtType::MSDOS)
+	{
+	    if (entry.number > 4)
+		entry.type = PartitionType::LOGICAL;
+	    else
+		entry.type = contains(flags, "lba") ? PartitionType::EXTENDED : PartitionType::PRIMARY;
+
+	    entry.boot = contains(flags, "boot");
+
+	    vector<string>::const_iterator it1 = find_if(flags.begin(), flags.end(),
+							 string_starts_with("type="));
+	    if (it1 != flags.end())
+	    {
+		string val = string(*it1, 5);
+
+		int id = 0;
+		std::istringstream data(val);
+		classic(data);
+		data >> std::hex >> id;
+		if (id > 0)
+		    entry.id = id;
+	    }
+	}
+
+	if (label == PtType::GPT)
+	{
+	    entry.legacy_boot = contains(flags, "legacy_boot");
+	}
+    }
+
+
+    void
+    Parted::scan_stderr(const vector<string>& stderr)
+    {
+	gpt_enlarge = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
+
+	gpt_fix_backup = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
+							 "primary appears OK")) != stderr.end();
+    }
+
+
+    void
+    Parted::fix_dasd_sector_size()
+    {
+	if (label == PtType::DASD && logical_sector_size == 512 && physical_sector_size == 4096)
+	{
+	    y2mil("fixing sector size reported by parted");
+
+	    region.set_length(region.get_length() / 8);
+	    region.set_block_size(region.get_block_size() * 8);
+
+	    for (Entry& entry : entries)
+	    {
+		Region& region = entry.region;
+
+		region.set_start(region.get_start() / 8);
+		region.set_length(region.get_length() / 8);
+		region.set_block_size(region.get_block_size() * 8);
+	    }
+	}
+    }
+
+
+    void
+    Parted::parse_old(const vector<string>& stdout, const vector<string>& stderr)
     {
 	implicit = false;
 	gpt_enlarge = false;
@@ -150,16 +371,18 @@ namespace storage
 	    }
 	}
 
+	fix_dasd_sector_size();
+
 	y2mil(*this);
     }
 
 
     bool
-    Parted::getEntry(unsigned num, Entry& entry) const
+    Parted::get_entry(unsigned number, Entry& entry) const
     {
 	for (const_iterator it = entries.begin(); it != entries.end(); ++it)
 	{
-	    if (it->num == num)
+	    if (it->number == number)
 	    {
 		entry = *it;
 		return true;
@@ -190,8 +413,8 @@ namespace storage
 
 	s << '\n';
 
-	for (Parted::const_iterator it = parted.entries.begin(); it != parted.entries.end(); ++it)
-	    s << *it << '\n';
+	for (const Parted::Entry& entry : parted.entries)
+	    s << entry << '\n';
 
 	return s;
     }
@@ -200,8 +423,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Parted::Entry& entry)
     {
-	s << "num:" << entry.num << " region:"
-	  << entry.region << " type:" << toString(entry.type) << " id:" << entry.id;
+	s << "number:" << entry.number << " region:" << entry.region << " type:"
+	  << toString(entry.type) << " id:" << entry.id;
 
 	if (entry.boot)
 	    s << " boot";
@@ -221,6 +444,7 @@ namespace storage
 
 	int num_sectors = 0;
 	tmp >> num_sectors;
+
 	region.set_length(num_sectors);
     }
 
@@ -250,8 +474,10 @@ namespace storage
 	if (l.size() == 2)
 	{
 	    list<string>::const_iterator i = l.begin();
-	    int logical_sector_size = 0;
 	    *i >> logical_sector_size;
+	    i++;
+	    *i >> physical_sector_size;
+
 	    region.set_block_size(logical_sector_size);
 	}
 	else
@@ -288,12 +514,12 @@ namespace storage
 
 	if (label == PtType::MSDOS)
 	{
-	    Data >> entry.num >> start_sector >> skip >> end_sector >> skip >> size_sector
+	    Data >> entry.number >> start_sector >> skip >> end_sector >> skip >> size_sector
 		 >> skip >> PartitionTypeStr;
 	}
 	else
 	{
-	    Data >> entry.num >> start_sector >> skip >> end_sector >> skip >> size_sector
+	    Data >> entry.number >> start_sector >> skip >> end_sector >> skip >> size_sector
 		 >> skip;
 	}
 
@@ -303,10 +529,10 @@ namespace storage
 				    "2  4208640s  88100863s  83892224s  primary  btrfs boot, type=83"));
 	}
 
-	y2mil("num:" << entry.num << " start-sector:" << start_sector << " end-sector:" <<
+	y2mil("number:" << entry.number << " start-sector:" << start_sector << " end-sector:" <<
 	      end_sector << " size-sector:" << size_sector);
 
-	if (entry.num == 0)
+	if (entry.number == 0)
 	    ST_THROW(ParseException("Illegal partition number 0", line, ""));
 
 	entry.region = Region(start_sector, size_sector, region.get_block_size());
@@ -358,7 +584,7 @@ namespace storage
 		entry.type = PartitionType::EXTENDED;
 		entry.id = ID_EXTENDED;
 	    }
-	    else if (entry.num >= 5)
+	    else if (entry.number >= 5)
 	    {
 		entry.type = PartitionType::LOGICAL;
 	    }
@@ -432,9 +658,10 @@ namespace storage
 	    }
 	}
 
-	y2mil("num:" << entry.num << " region:" << entry.region << " id:" << entry.id <<
+	y2mil("number:" << entry.number << " region:" << entry.region << " id:" << entry.id <<
 	      " type:" << toString(entry.type));
 
 	entries.push_back(entry);
     }
+
 }

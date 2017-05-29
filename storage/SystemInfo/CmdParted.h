@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -55,13 +55,13 @@ namespace storage
 	 */
 	struct Entry
 	{
-	    Entry() : num(0), type(PartitionType::PRIMARY), id(0), boot(false),
+	    Entry() : number(0), type(PartitionType::PRIMARY), id(0), boot(false),
 		      legacy_boot(false) {}
 
-	    unsigned num;	// Partition number (1..n)
+	    unsigned int number; // Partition number (1..n)
 	    Region region;	// Partition region in sectors
 	    PartitionType type;	// primary / extended / logical
-	    unsigned id;	// Numeric partition ID (Linux: 0x83 etc.)
+	    unsigned int id;	// Numeric partition ID (Linux: 0x83 etc.)
 	    bool boot;		// Boot flag of the partition (only MSDOS)
 	    bool legacy_boot;	// Legacy boot flag of the partition (only GPT)
 	};
@@ -107,26 +107,50 @@ namespace storage
 	/**
 	 * Get the partition entries.
 	 */
-	typedef vector<Entry>::const_iterator const_iterator;
+	const vector<Entry>& get_entries() const { return entries; }
 
 	/**
 	 * Get the partition entry with the specified number (1..n) and return
 	 * it in 'entry'. Return 'true' upon success, 'false' if there is no
 	 * entry with that number.
 	 */
-	const vector<Entry>& getEntries() const { return entries; }
+	bool get_entry(unsigned int number, Entry& entry) const;
+
+    private:
+
+	typedef vector<Entry>::const_iterator const_iterator;
+
+	string device;
+	PtType label;
+	Region region;
+	bool implicit;
+	bool gpt_enlarge;
+	bool gpt_fix_backup;
+	bool gpt_pmbr_boot;
+	vector<Entry> entries;
+	vector<string> stderr;
+
+	int logical_sector_size;
+	int physical_sector_size;
 
 	/**
 	 * Parse the output of the 'parted' command in 'lines'.
 	 * This may throw a ParseException.
 	 */
-	bool getEntry(unsigned num, Entry& entry) const;
+	void parse(const vector<string>& stdout, const vector<string>& stderr);
 
-       /**
+	/**
+	 * parted reports wrong sector sizes on DASDs, see
+	 * https://bugzilla.suse.com/show_bug.cgi?id=866535 and
+	 * http://lists.alioth.debian.org/pipermail/parted-devel/2014-March/004443.html.
+	 */
+	void fix_dasd_sector_size();
+
+	/**
 	 * Parse the output of the 'parted' command in 'lines'.
 	 * This may throw a ParseException.
 	 */
-	void parse(const vector<string>& stdout, const vector<string>& stderr);
+	void parse_old(const vector<string>& stdout, const vector<string>& stderr);
 
 	/**
 	 * Return the stderr output of parted command.
@@ -139,21 +163,16 @@ namespace storage
 	 *
 	 * Any stderr messages are written to the log, though.
 	 */
-	const vector<string> & getStderr() const { return stderr; }
+	const vector<string>& get_stderr() const { return stderr; }
 
-    private:
+	void scan_device_line(const string& line);
+	void scan_device_flags(const string& s);
+	PtType scan_partition_table_type(const string& s) const;
 
-	typedef vector<Entry>::iterator iterator;
+	void scan_entry_line(const string& line);
+	void scan_flags(const string& s, Entry& entry) const;
 
-	string device;
-	PtType label;
-	Region region;
-	bool implicit;
-	bool gpt_enlarge;
-	bool gpt_fix_backup;
-	bool gpt_pmbr_boot;
-	vector<Entry> entries;
-	vector<string> stderr;
+	void scan_stderr(const vector<string>& stderr);
 
 	void scanDiskSize(const string& line);
 	void scanDiskFlags(const string& line);

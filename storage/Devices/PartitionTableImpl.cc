@@ -64,9 +64,9 @@ namespace storage
 	if (parted.is_implicit())
 	    read_only = true;
 
-	for (const Parted::Entry& entry : parted.getEntries())
+	for (const Parted::Entry& entry : parted.get_entries())
 	{
-	    string name = partitionable->get_impl().partition_name(entry.num);
+	    string name = partitionable->get_impl().partition_name(entry.number);
 	    Partition* p = create_partition(name, entry.region, entry.type);
 	    p->get_impl().probe_pass_1(probed, systeminfo);
 	}

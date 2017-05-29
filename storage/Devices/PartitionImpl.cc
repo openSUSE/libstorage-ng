@@ -83,7 +83,7 @@ namespace storage
 
 	const Parted& parted = systeminfo.getParted(partitionable->get_name());
 	Parted::Entry entry;
-	if (!parted.getEntry(get_number(), entry))
+	if (!parted.get_entry(get_number(), entry))
 	    throw;
 
 	id = entry.id;
