@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -113,6 +113,13 @@ namespace storage
     }
 
 
+    bool
+    Mockup::has_command(const string& name)
+    {
+	return commands.find(name) != commands.end();
+    }
+
+
     const Mockup::Command&
     Mockup::get_command(const string& name)
     {
@@ -131,6 +138,20 @@ namespace storage
     }
 
 
+    void
+    Mockup::erase_command(const string& name)
+    {
+	commands.erase(name);
+    }
+
+
+    bool
+    Mockup::has_file(const string& name)
+    {
+	return files.find(name) != files.end();
+    }
+
+
     const Mockup::File&
     Mockup::get_file(const string& name)
     {
@@ -146,6 +167,13 @@ namespace storage
     Mockup::set_file(const string& name, const File& file)
     {
 	files[name] = file;
+    }
+
+
+    void
+    Mockup::erase_file(const string& name)
+    {
+	files.erase(name);
     }
 
 
