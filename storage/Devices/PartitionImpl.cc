@@ -30,6 +30,7 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
@@ -488,9 +489,17 @@ namespace storage
     Partition::Impl::do_create()
     {
 	const Partitionable* partitionable = get_partitionable();
+	const PartitionTable* partition_table = get_partition_table();
 
 	string cmd_line = PARTEDBIN " --script --wipesignatures " + quote(partitionable->get_name()) +
-	    " unit s mkpart " + toString(get_type()) + " ";
+	    " unit s mkpart ";
+
+	if (is_msdos(partition_table))
+	    cmd_line += toString(get_type()) + " ";
+
+	if (is_gpt(partition_table))
+	    // see https://bugzilla.suse.com/show_bug.cgi?id=1023818
+	    cmd_line += "primary ";
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
