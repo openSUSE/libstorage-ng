@@ -23,6 +23,8 @@ libdevices_la_SOURCES =					\
 	MsdosImpl.h		MsdosImpl.cc		\
 	Gpt.h			Gpt.cc			\
 	GptImpl.h		GptImpl.cc		\
+	DasdPt.h		DasdPt.cc		\
+	DasdPtImpl.h		DasdPtImpl.cc		\
 	Partition.h		Partition.cc		\
 	PartitionImpl.h		PartitionImpl.cc	\
 	LvmPv.h			LvmPv.cc		\
@@ -52,6 +54,7 @@ pkginclude_HEADERS =		\
 	PartitionTable.h	\
 	Msdos.h			\
 	Gpt.h			\
+	DasdPt.h		\
 	Partition.h		\
 	LvmPv.h			\
 	LvmVg.h			\

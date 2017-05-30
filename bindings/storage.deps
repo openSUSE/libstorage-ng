@@ -35,6 +35,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/BlkFilesystem.h	\
 	${top_srcdir}/storage/Filesystems/MountPoint.h		\
 	${top_srcdir}/storage/Devices/Gpt.h			\
+	${top_srcdir}/storage/Devices/DasdPt.h			\
 	${top_srcdir}/storage/Devices/LvmLv.h			\
 	${top_srcdir}/storage/Devices/LvmVg.h			\
 	${top_srcdir}/storage/Devices/Msdos.h			\

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,7 +26,6 @@
 
 
 #include <string>
-#include <vector>
 #include <map>
 
 #include "storage/Utils/Remote.h"
@@ -34,7 +34,6 @@
 namespace storage
 {
     using std::string;
-    using std::vector;
     using std::map;
 
 
@@ -56,11 +55,15 @@ namespace storage
 	static void load(const string& filename);
 	static void save(const string& filename);
 
+	static bool has_command(const string& name);
 	static const Command& get_command(const string& name);
 	static void set_command(const string& name, const Command& command);
+	static void erase_command(const string& name);
 
+	static bool has_file(const string& name);
 	static const File& get_file(const string& name);
 	static void set_file(const string& name, const File& file);
+	static void erase_file(const string& name);
 
     private:
 

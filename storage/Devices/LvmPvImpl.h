@@ -76,8 +76,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
-	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
-	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+	static LvmPv* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
+	static const LvmPv* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;

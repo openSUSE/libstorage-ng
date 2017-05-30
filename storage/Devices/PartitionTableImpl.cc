@@ -64,9 +64,9 @@ namespace storage
 	if (parted.is_implicit())
 	    read_only = true;
 
-	for (const Parted::Entry& entry : parted.getEntries())
+	for (const Parted::Entry& entry : parted.get_entries())
 	{
-	    string name = partitionable->get_impl().partition_name(entry.num);
+	    string name = partitionable->get_impl().partition_name(entry.number);
 	    Partition* p = create_partition(name, entry.region, entry.type);
 	    p->get_impl().probe_pass_1(probed, systeminfo);
 	}
@@ -89,8 +89,8 @@ namespace storage
 
 	const Device* parent = get_single_parent_of_type<const Device>();
 
-	if (!is_disk(parent) && !is_md(parent))
-	    ST_THROW(Exception("parent of partition table is not a disk or md"));
+	if (!is_disk(parent) && !is_dasd(parent) && !is_md(parent))
+	    ST_THROW(Exception("parent of partition table is not a disk, dasd or md"));
     }
 
 

@@ -61,7 +61,7 @@ namespace storage
 	bool equal_devicegraph(const string& lhs, const string& rhs) const;
 
 	bool exist_devicegraph(const string& name) const;
-	std::vector<std::string> get_devicegraph_names() const;
+	vector<string> get_devicegraph_names() const;
 
 	Devicegraph* get_devicegraph(const string& name);
 	const Devicegraph* get_devicegraph(const string& name) const;
