@@ -90,7 +90,7 @@ namespace storage
 	BlkFilesystem* get_blk_filesystem();
 	const BlkFilesystem* get_blk_filesystem() const;
 
-	Encryption* create_encryption(const std::string& dm_name);
+	Encryption* create_encryption(const string& dm_name);
 
 	bool has_encryption() const;
 

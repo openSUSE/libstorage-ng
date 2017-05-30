@@ -80,8 +80,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const override;
 
-	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
-	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
+	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
+	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
