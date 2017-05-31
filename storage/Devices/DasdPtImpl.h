@@ -71,6 +71,8 @@ namespace storage
 
 	virtual Region get_usable_region() const override;
 
+	virtual Alignment get_alignment() const override;
+
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 

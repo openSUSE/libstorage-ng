@@ -32,6 +32,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/AlignmentImpl.h"
 
 
 namespace storage
@@ -66,16 +67,31 @@ namespace storage
     Region
     DasdPt::Impl::get_usable_region() const
     {
+	const unsigned long sectors_per_track = 12; // TODO
+
 	Region device_region = get_partitionable()->get_region();
 
-	// TODO
+	// The first two tracks are unusable for partitions.
 
-	unsigned long long first_usable_sector = 24;
+	unsigned long long first_usable_sector = 2 * sectors_per_track;
 	unsigned long long last_usable_sector = device_region.get_end();
 	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
 			     device_region.get_block_size());
 
 	return device_region.intersection(usable_region);
+    }
+
+
+    Alignment
+    DasdPt::Impl::get_alignment() const
+    {
+	const unsigned long sectors_per_track = 12; // TODO
+
+	// Also align to tracks.
+
+	Alignment alignment(PartitionTable::Impl::get_alignment());
+	alignment.get_impl().set_extra_grain(sectors_per_track * 4 * KiB); // TODO
+	return alignment;
     }
 
 
