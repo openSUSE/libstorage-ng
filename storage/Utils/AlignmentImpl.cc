@@ -37,7 +37,7 @@ namespace storage
 	while (grain < topology.get_minimal_grain())
 	    grain *= 2;
 
-	if (extra_grain != 0)
+	if (extra_grain > 0)
 	    grain = boost::math::lcm(grain, extra_grain);
 
 	return grain;
