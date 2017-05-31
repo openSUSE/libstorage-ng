@@ -87,10 +87,12 @@ namespace storage
     {
 	const unsigned long sectors_per_track = 12; // TODO
 
+	Region device_region = get_partitionable()->get_region();
+
 	// Also align to tracks.
 
 	Alignment alignment(PartitionTable::Impl::get_alignment());
-	alignment.get_impl().set_extra_grain(sectors_per_track * 4 * KiB); // TODO
+	alignment.get_impl().set_extra_grain(sectors_per_track * device_region.get_block_size());
 	return alignment;
     }
 
