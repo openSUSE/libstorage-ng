@@ -68,6 +68,9 @@ namespace storage
 	static std::vector<Partitionable*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Partitionable*> get_all(const Devicegraph* devicegraph);
 
+	static Partitionable* find_by_name(Devicegraph* devicegraph, const std::string& name);
+	static const Partitionable* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
     public:
 
 	class Impl;
