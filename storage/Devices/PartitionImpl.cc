@@ -31,6 +31,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
+#include "storage/Devices/DasdPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
@@ -532,7 +533,11 @@ namespace storage
 	    }
 	}
 
-	cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
+	// See fix_dasd_sector_size() in class Parted.
+	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
+	    cmd_line += to_string(get_region().get_start() * 8) + " " + to_string(get_region().get_end() * 8 + 7);
+	else
+	    cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
 
 	cout << cmd_line << endl;
 
