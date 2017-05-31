@@ -28,7 +28,7 @@
 
 #include "storage/Utils/Swig.h"
 #include "storage/Utils/Region.h"
-#include "storage/Utils/Topology.h"
+#include "storage/Utils/Alignment.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Partition.h"
 

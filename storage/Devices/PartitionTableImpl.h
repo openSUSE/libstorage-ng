@@ -28,6 +28,7 @@
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/Alignment.h"
 
 
 namespace storage
@@ -118,6 +119,8 @@ namespace storage
 	virtual const Partition* get_extended() const;
 
 	virtual Region get_usable_region() const = 0;
+
+	virtual Alignment get_alignment() const;
 
 	vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
 

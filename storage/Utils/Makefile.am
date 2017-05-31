@@ -27,6 +27,8 @@ libutils_la_SOURCES =					\
 	RegionImpl.cc 		RegionImpl.h		\
 	Topology.cc		Topology.h		\
 	TopologyImpl.cc		TopologyImpl.h		\
+	Alignment.cc		Alignment.h		\
+	AlignmentImpl.cc	AlignmentImpl.h		\
 	StorageTmpl.h					\
 	StorageTypes.h					\
 	SystemCmd.cc		SystemCmd.h		\
@@ -51,5 +53,6 @@ pkginclude_HEADERS =		\
 	HumanString.h		\
 	Region.h		\
 	Topology.h		\
+	Alignment.h		\
 	Remote.h
 

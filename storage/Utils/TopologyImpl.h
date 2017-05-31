@@ -25,7 +25,6 @@
 
 
 #include "storage/Utils/Topology.h"
-#include "storage/Utils/Region.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 
@@ -43,26 +42,16 @@ namespace storage
 	    minimal_grain(default_minimal_grain) {}
 
 	long get_alignment_offset() const { return alignment_offset; }
-	void set_alignment_offset(long alignment_offset);
+	void set_alignment_offset(long alignment_offset)
+	    { Impl::alignment_offset = alignment_offset; }
 
 	unsigned long get_optimal_io_size() const { return optimal_io_size; }
-	void set_optimal_io_size(unsigned long optimal_io_size);
+	void set_optimal_io_size(unsigned long optimal_io_size)
+	    { Impl::optimal_io_size = optimal_io_size; }
 
 	unsigned long get_minimal_grain() const { return minimal_grain; }
-	void set_minimal_grain(unsigned long minimal_grain);
-
-	unsigned long calculate_grain() const;
-
-	bool can_be_aligned(const Region& region, AlignPolicy align_policy) const;
-
-	Region align(const Region& region, AlignPolicy align_policy) const;
-
-	enum class Location { START, END };
-
-	bool align_block_in_place(unsigned long long& block, unsigned long block_size,
-				  Location location) const;
-
-	bool align_region_in_place(Region& region, AlignPolicy align_policy) const;
+	void set_minimal_grain(unsigned long minimal_grain)
+	    { Impl::minimal_grain = minimal_grain; }
 
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
