@@ -41,8 +41,6 @@ namespace storage
 
     private:
 
-	const BlkFilesystem* get_created_filesystem() const;
-
 	Text text() const;
 
 	Text delete_text() const;

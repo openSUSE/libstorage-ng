@@ -77,7 +77,7 @@ namespace storage
 	// TRANSLATORS: displayed before action,
 	// %1$s is replaced by volume group name (e.g. system),
 	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by name of devices (e.g. sda1, sda2)
+	// %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
 	Text text = _("Create volume group %1$s (%2$s) with %3$s");
 
 	return sformat(text,

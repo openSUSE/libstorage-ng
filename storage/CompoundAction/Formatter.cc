@@ -41,6 +41,20 @@ namespace storage
 	return text().translated;
     }
 
+    const BlkFilesystem*
+    CompoundAction::Formatter::get_created_filesystem() const
+    {
+	auto action = get_create<storage::BlkFilesystem>();
+
+	if (action)
+	{
+	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+	    return to_blk_filesystem(device);
+	}
+
+	return nullptr;
+    }
+
 
     Text
     CompoundAction::Formatter::default_text() const

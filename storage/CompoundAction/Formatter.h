@@ -57,6 +57,8 @@ namespace storage
 
     protected:
 
+	const BlkFilesystem* get_created_filesystem() const;
+
 	Text default_text() const;
 
 	template <typename Type>

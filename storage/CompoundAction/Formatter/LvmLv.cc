@@ -82,7 +82,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -104,7 +104,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -140,7 +140,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_with_fs_and_mount_point_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -162,7 +162,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::create_with_fs_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -198,7 +198,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -220,7 +220,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -256,7 +256,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::fs_and_mount_point_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -278,7 +278,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::fs_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -298,7 +298,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::mount_point_text() const
     {
-	auto filesystem = lv->get_blk_filesystem();
+	auto filesystem = get_created_filesystem();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),

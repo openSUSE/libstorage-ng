@@ -36,21 +36,6 @@ namespace storage
     {}
 
 
-    const BlkFilesystem*
-    CompoundAction::Formatter::Partition::get_created_filesystem() const
-    {
-	auto action = get_create<storage::BlkFilesystem>();
-
-	if (action)
-	{
-	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
-	    return to_blk_filesystem(device);
-	}
-
-	return nullptr;
-    }
-    
-    
     Text
     CompoundAction::Formatter::Partition::text() const
     {
@@ -158,7 +143,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create encrypted LVM physical device over %1$s (%2$s)");
+	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical device");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
