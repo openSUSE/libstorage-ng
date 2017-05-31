@@ -535,12 +535,12 @@
         <size>57995689984</size>
         <used>49337597952</used>
       </SpaceInfo>
-      <server>192.168.56.1</server>
-      <path>/home/jilopez/projects</path>
+      <server>192.168.0.1</server>
+      <path>/dir</path>
     </Nfs>
     <MountPoint>
       <sid>119</sid>
-      <path>/home/ivan/projects</path>
+      <path>/test</path>
       <mount-by>device</mount-by>
       <mount-options>rw,relatime,vers=4.2,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,port=0,timeo=600,retrans=2,sec=sys,clientaddr=0.0.0.0,local_lock=none,addr=192.168.56.1</mount-options>
       <in-etc-fstab>true</in-etc-fstab>
