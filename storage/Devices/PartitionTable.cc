@@ -191,6 +191,13 @@ namespace storage
     }
 
 
+    Alignment
+    PartitionTable::get_alignment() const
+    {
+	return get_impl().get_alignment();
+    }
+
+
     Region
     PartitionTable::align(const Region& region, AlignPolicy align_policy) const
     {

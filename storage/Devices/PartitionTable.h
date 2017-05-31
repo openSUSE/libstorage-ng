@@ -111,6 +111,8 @@ namespace storage
 
 	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
 
+	Alignment get_alignment() const;
+
 	/**
 	 * region is sector-based.
 	 */
