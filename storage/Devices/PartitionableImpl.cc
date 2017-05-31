@@ -85,9 +85,11 @@ namespace storage
 
 	const File alignment_offset_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
 							      "/alignment_offset");
+	topology.set_alignment_offset(alignment_offset_file.get_int());
+
 	const File optimal_io_size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
 							     "/queue/optimal_io_size");
-	topology = Topology(alignment_offset_file.get_int(), optimal_io_size_file.get_int());
+	topology.set_optimal_io_size(optimal_io_size_file.get_int());
 
 	const File range_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
 	range = range_file.get_int();

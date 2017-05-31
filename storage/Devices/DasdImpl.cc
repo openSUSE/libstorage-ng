@@ -31,6 +31,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -50,6 +51,26 @@ namespace storage
     const vector<string> EnumTraits<DasdFormat>::names({
 	"NONE", "LDL", "CDL"
     });
+
+
+    Dasd::Impl::Impl(const string& name)
+	: Partitionable::Impl(name), rotational(false), dasd_type(DasdType::UNKNOWN),
+	  dasd_format(DasdFormat::NONE)
+    {
+	Topology topology = get_topology();
+	topology.set_minimal_grain(0 * B);
+	set_topology(topology);
+    }
+
+
+    Dasd::Impl::Impl(const string& name, const Region& region)
+	: Partitionable::Impl(name, region, 4), rotational(false), dasd_type(DasdType::UNKNOWN),
+	  dasd_format(DasdFormat::NONE)
+    {
+	Topology topology = get_topology();
+	topology.set_minimal_grain(0 * B);
+	set_topology(topology);
+    }
 
 
     Dasd::Impl::Impl(const xmlNode* node)
