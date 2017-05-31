@@ -57,9 +57,6 @@ namespace storage
 	: Partitionable::Impl(name), rotational(false), dasd_type(DasdType::UNKNOWN),
 	  dasd_format(DasdFormat::NONE)
     {
-	Topology topology = get_topology();
-	topology.set_minimal_grain(0 * B);
-	set_topology(topology);
     }
 
 
@@ -67,9 +64,6 @@ namespace storage
 	: Partitionable::Impl(name, region, 4), rotational(false), dasd_type(DasdType::UNKNOWN),
 	  dasd_format(DasdFormat::NONE)
     {
-	Topology topology = get_topology();
-	topology.set_minimal_grain(0 * B);
-	set_topology(topology);
     }
 
 
