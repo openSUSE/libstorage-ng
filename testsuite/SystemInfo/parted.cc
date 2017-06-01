@@ -16,10 +16,12 @@ using namespace storage;
 
 
 void
-check(const string& device, const vector<string>& input, const vector<string>& output)
+check(const string& device, const vector<string>& stdout, const vector<string>& stderr,
+      const vector<string>& result)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print", input);
+    Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print",
+			RemoteCommand(stdout, stderr, 0));
     Mockup::erase_command(PARTEDBIN " --script " + quote(device) + " unit s print");
 
     Parted parted(device);
@@ -29,9 +31,16 @@ check(const string& device, const vector<string>& input, const vector<string>& o
     parsed << parted;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
+    string rhs = boost::join(result, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
+}
+
+
+void
+check(const string& device, const vector<string>& stdout, const vector<string>& result)
+{
+    check(device, stdout, vector<string>(), result);
 }
 
 
@@ -120,9 +129,6 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
 
     check_old("/dev/sda", input, output);
 }
-
-
-// TO DO: add test cases "parse_gpt_enlarge_good" and "parse_gpt_fix_backup_good"
 
 
 BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
@@ -301,4 +307,42 @@ BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
     };
 
     check("/dev/vda", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_gpt_enlarge)
+{
+    vector<string> stdout = {
+	"BYT;",
+	"/dev/sdc:160086528s:scsi:512:512:gpt_sync_mbr:Maxtor 6 Y080L0:;"
+    };
+
+    vector<string> stderr = {
+	"Warning: Not all of the space available to /dev/sdc appears to be used, you can fix the GPT to use all of the space (an extra 562240 blocks) or continue with the current setting? "
+    };
+
+    vector<string> output = {
+	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-enlarge"
+    };
+
+    check("/dev/sdc", stdout, stderr, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
+{
+    vector<string> stdout = {
+	"BYT;",
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;"
+    };
+
+    vector<string> stderr = {
+	"Error: The backup GPT table is corrupt, but the primary appears OK, so that will be used."
+    };
+
+    vector<string> output = {
+	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-fix-backup"
+    };
+
+    check("/dev/sdc", stdout, stderr, output);
 }
