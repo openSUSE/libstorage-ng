@@ -102,48 +102,37 @@ BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
 BOOST_AUTO_TEST_CASE(parse_gpt_good)
 {
     vector<string> input = {
-	"Model: ATA ST3500320NS (scsi)",
-	"Disk /dev/sda: 976773168s",
-	"Sector size (logical/physical): 512B/512B",
-	"Partition Table: gpt_sync_mbr",
-	"",
-	"Number	 Start	     End	 Size	     File system     Name     Flags",
-	" 1	 2048s	     1028095s	 1026048s    fat16	     primary",
-	" 2	 1028096s    2056191s	 1028096s    ext3	     primary  boot, legacy_boot",
-	" 3	 2056192s    295098367s	 293042176s  ext3	     primary",
-	" 4	 295098368s  588140543s	 293042176s		     primary",
-	" 5	 588140544s  592349183s	 4208640s    linux-swap(v1)  primary",
-	" 6	 592349184s  976773119s	 384423936s  ext3	     primary",
-	""
+	"BYT;",
+        "/dev/sda:976773168s:scsi:512:512:gpt_sync_mbr:ATA ST3500320NS:;",
+	"1:2048s:1028095s:1026048s:fat32::msftdata;",
+	"2:1028096s:2056191s:1028096s:ext3::legacy_boot;",
+	"3:2056192s:295098367s:293042176s:ext3::;",
+	"4:295098368s:588140543s:293042176s:::;",
+	"5:588140544s:592349183s:4208640s:linux-swap(v1)::;",
+	"6:592349184s:976773119s:384423936s:ext3::;"
     };
 
     vector<string> output = {
 	"device:/dev/sda label:GPT region:[0, 976773168, 512 B]",
-	"number:1 region:[2048, 1026048, 512 B] type:primary id:0x0C",
+	"number:1 region:[2048, 1026048, 512 B] type:primary id:0x102",
 	"number:2 region:[1028096, 1028096, 512 B] type:primary id:0x83 legacy-boot",
 	"number:3 region:[2056192, 293042176, 512 B] type:primary id:0x83",
 	"number:4 region:[295098368, 293042176, 512 B] type:primary id:0x83",
-	"number:5 region:[588140544, 4208640, 512 B] type:primary id:0x82",
+	"number:5 region:[588140544, 4208640, 512 B] type:primary id:0x83",
 	"number:6 region:[592349184, 384423936, 512 B] type:primary id:0x83"
     };
 
-    check_old("/dev/sda", input, output);
+    check("/dev/sda", input, output);
 }
 
 
 BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
 {
     vector<string> input = {
-	"Model: Maxtor 6 Y080L0 (scsi)",
-	"Disk /dev/sdb: 160086528s",
-	"Sector size (logical/physical): 512B/512B",
-	"Partition Table: gpt",
-	"Disk Flags: pmbr_boot",
-	"",
-	"Number	 Start	    End		Size	    File system	 Name  Flags",
-	" 1	 2048s	    32016383s	32014336s",
-	" 2	 32016384s  160086015s	128069632s",
-	""
+	"BYT;",
+	"/dev/sdb:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:pmbr_boot;",
+	"1:2048s:32016383s:32014336s:::;",
+	"2:32016384s:160086015s:128069632s:::;"
     };
 
     vector<string> output = {
@@ -152,7 +141,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
 	"number:2 region:[32016384, 128069632, 512 B] type:primary id:0x83"
     };
 
-    check_old("/dev/sdb", input, output);
+    check("/dev/sdb", input, output);
 }
 
 
