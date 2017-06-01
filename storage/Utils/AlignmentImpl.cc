@@ -32,10 +32,15 @@ namespace storage
     unsigned long
     Alignment::Impl::calculate_grain() const
     {
-	unsigned long grain = std::max(topology.get_optimal_io_size(), 1UL);
+	unsigned long grain = 1;
 
-	while (grain < topology.get_minimal_grain())
-	    grain *= 2;
+	if (align_type == AlignType::OPTIMAL)
+	{
+	    grain = std::max(topology.get_optimal_io_size(), grain);
+
+	    while (grain < topology.get_minimal_grain())
+		grain *= 2;
+	}
 
 	if (extra_grain > 0)
 	    grain = boost::math::lcm(grain, extra_grain);

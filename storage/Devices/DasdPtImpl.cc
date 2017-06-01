@@ -83,7 +83,7 @@ namespace storage
 
 
     Alignment
-    DasdPt::Impl::get_alignment() const
+    DasdPt::Impl::get_alignment(AlignType align_type) const
     {
 	const unsigned long sectors_per_track = 12; // TODO
 
@@ -91,7 +91,7 @@ namespace storage
 
 	// Also align to tracks.
 
-	Alignment alignment(PartitionTable::Impl::get_alignment());
+	Alignment alignment(PartitionTable::Impl::get_alignment(align_type));
 	alignment.get_impl().set_extra_grain(sectors_per_track * device_region.get_block_size());
 	return alignment;
     }

@@ -30,15 +30,22 @@
 namespace storage
 {
 
+    /**
+     * Impl of Alignment class.
+     *
+     * Note: This class has no functions to query the topology or extra-grain.
+     * This is on purpose since the implemnentation might change if further
+     * alignment contraints are required. In that case a better
+     * implemnentation might be to only keep one offset and one grain (of
+     * sector = offset + X * grain). See parted sources for the background.
+     */
     class Alignment::Impl
     {
     public:
 
-	Impl(const Topology& topology) : topology(topology), extra_grain(0) {}
+	Impl(const Topology& topology, AlignType align_type)
+	    : align_type(align_type), topology(topology), extra_grain(0) {}
 
-	Topology get_topology() const { return topology; }
-
-	unsigned long get_extra_grain() const { return extra_grain; }
 	void set_extra_grain(unsigned long extra_grain) { Impl::extra_grain = extra_grain; }
 
 	unsigned long calculate_grain() const;
@@ -57,6 +64,8 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Impl& impl);
 
     private:
+
+	AlignType align_type;
 
 	Topology topology;
 	unsigned long extra_grain;

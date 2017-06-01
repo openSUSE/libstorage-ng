@@ -32,6 +32,20 @@
 namespace storage
 {
 
+    enum class AlignType
+    {
+	/**
+	 * Only align to hard requirements.
+	 */
+	REQUIRED,
+
+	/**
+	 * Align to topology information.
+	 */
+	OPTIMAL
+    };
+
+
     enum class AlignPolicy
     {
 	ALIGN_END, KEEP_END, KEEP_SIZE
@@ -57,20 +71,13 @@ namespace storage
 
     public:
 
-	Alignment(const Topology& topology);
+	Alignment(const Topology& topology, AlignType align_type = AlignType::OPTIMAL);
 	Alignment(const Alignment& alignment);
 	Alignment(Alignment&& alignment) = default;
 	~Alignment();
 
 	Alignment& operator=(const Alignment& alignment);
 	Alignment& operator=(Alignment&& alignment) = default;
-
-	Topology get_topology() const;
-
-	/**
-	 * Calculates the grain.
-	 */
-	unsigned long calculate_grain() const;
 
 	/**
 	 * Checks whether a region can be aligned. Alignment may fail if the

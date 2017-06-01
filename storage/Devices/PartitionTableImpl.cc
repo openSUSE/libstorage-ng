@@ -229,17 +229,18 @@ namespace storage
 
 
     Alignment
-    PartitionTable::Impl::get_alignment() const
+    PartitionTable::Impl::get_alignment(AlignType align_type) const
     {
-	return Alignment(get_partitionable()->get_topology());
+	return Alignment(get_partitionable()->get_topology(), align_type);
     }
 
 
     vector<PartitionSlot>
-    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy) const
+    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy,
+						     AlignType align_type) const
     {
 	const Partitionable* partitionable = get_partitionable();
-	const Alignment alignment = get_alignment();
+	const Alignment alignment = get_alignment(align_type);
 
 	bool is_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool is_extended_possible = is_primary_possible && extended_possible() && !has_extended();
@@ -360,9 +361,10 @@ namespace storage
 
 
     Region
-    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy) const
+    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy,
+				AlignType align_type) const
     {
-	return get_alignment().align(region, align_policy);
+	return get_alignment(align_type).align(region, align_policy);
     }
 
 

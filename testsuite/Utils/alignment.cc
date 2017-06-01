@@ -14,14 +14,14 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(test_grain)
 {
-    BOOST_CHECK_EQUAL(Alignment(Topology(0, 0 * B)).calculate_grain(), 1 * MiB);
-    BOOST_CHECK_EQUAL(Alignment(Topology(-512, 4 * KiB)).calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(0, 0 * B)).get_impl().calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(-512, 4 * KiB)).get_impl().calculate_grain(), 1 * MiB);
 
-    BOOST_CHECK_EQUAL(Alignment(Topology(0, 32 * KiB)).calculate_grain(), 1 * MiB);
-    BOOST_CHECK_EQUAL(Alignment(Topology(0, 1 * MiB)).calculate_grain(), 1 * MiB);
-    BOOST_CHECK_EQUAL(Alignment(Topology(0, 8 * MiB)).calculate_grain(), 8 * MiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(0, 32 * KiB)).get_impl().calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(0, 1 * MiB)).get_impl().calculate_grain(), 1 * MiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(0, 8 * MiB)).get_impl().calculate_grain(), 8 * MiB);
 
-    BOOST_CHECK_EQUAL(Alignment(Topology(0, 768 * KiB)).calculate_grain(), 1536 * KiB);
+    BOOST_CHECK_EQUAL(Alignment(Topology(0, 768 * KiB)).get_impl().calculate_grain(), 1536 * KiB);
 }
 
 

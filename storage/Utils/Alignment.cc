@@ -32,8 +32,8 @@ namespace storage
     }
 
 
-    Alignment::Alignment(const Topology& topology)
-	: impl(new Impl(topology))
+    Alignment::Alignment(const Topology& topology, AlignType align_type)
+	: impl(new Impl(topology, align_type))
     {
     }
 
@@ -57,13 +57,6 @@ namespace storage
     }
 
 
-    Topology
-    Alignment::get_topology() const
-    {
-	return get_impl().get_topology();
-    }
-
-
     Alignment::Impl&
     Alignment::get_impl()
     {
@@ -75,13 +68,6 @@ namespace storage
     Alignment::get_impl() const
     {
         return *impl;
-    }
-
-
-    unsigned long
-    Alignment::calculate_grain() const
-    {
-	return get_impl().calculate_grain();
     }
 
 
