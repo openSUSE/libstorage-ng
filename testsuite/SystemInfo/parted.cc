@@ -45,6 +45,16 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
 
 
 void
+check_exception(const string& device, const vector<string>& input)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print", input);
+
+    BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
+}
+
+
+void
 check_old(const string& device, const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
@@ -61,16 +71,6 @@ check_old(const string& device, const vector<string>& input, const vector<string
     string rhs = boost::join(output, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
-}
-
-
-void
-check_old_parse_exception(const string& device, const vector<string>& input)
-{
-    Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script " + quote(device) + " unit s print", input);
-
-    BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
 }
 
 
@@ -225,68 +225,6 @@ BOOST_AUTO_TEST_CASE(parse_wiped_disk_good)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse_bad_sector_size_line)
-{
-    vector<string> input = {
-	"Sector size (logical/physical): 512B, 4096B",
-	"Partition Table: msdos",
-	"",
-	"Number	 Start	   End		Size	     Type     File system  Flags",
-	" 1	 2048s	   2105343s	2103296s     primary  ext3	   boot, type=83",
-	" 2	 2105344s  1889548287s	1887442944s  primary		   lvm, type=8e",
-	""
-    };
-
-    check_old_parse_exception("/dev/sda", input);
-}
-
-
-BOOST_AUTO_TEST_CASE(parse_bad_msdos_part_entry_2)
-{
-    vector<string> input = {
-	"Model: ATA WDC WD10EADS-00M (scsi)",
-	"Disk /dev/sda: 1953525168s",
-	"Sector size (logical/physical): 512B/4096B",
-	"Partition Table: msdos",
-	"",
-	"Number	 Start	  End	      Size	  Type	   File system	Flags",
-	" 1	 2048	  2105343     2103296	  primary  ext3		boot, type=83", // no "s" units
-	" 2	 2105344  1889548287  1887442944  primary		lvm, type=8e",	// no "s" units
-	""
-    };
-
-    check_old_parse_exception("/dev/sda", input);
-}
-
-
-BOOST_AUTO_TEST_CASE(parse_two_partition_table)
-{
-    vector<string> input = {
-	"Model: ATA WDC WD10EADS-00M (scsi)",
-	"Disk /dev/sda: 121601cyl",
-	"Sector size (logical/physical): 512B/4096B",
-	"BIOS cylinder,head,sector geometry: 121601,255,63.  Each cylinder is 8225kB.",
-	"Partition Table: msdos",
-	"",
-	"Number	 Start	 End	    Size       Type	File system  Flags",
-	" 1	 0cyl	 131cyl	    130cyl     primary	ext3	     boot, type=83",
-	" 2	 131cyl	 117618cyl  117487cyl  primary		     lvm, type=8e",
-	"",
-	"Model: ATA WDC WD10EADS-00M (scsi)",
-	"Disk /dev/sda: 1953525168s",
-	"Sector size (logical/physical): 512B/4096B",
-	"Partition Table: msdos",
-	"",
-	"Number	 Start	   End		Size	     Type     File system  Flags",
-	" 1	 2048s	   2105343s	2103296s     primary  ext3	   boot, type=83",
-	" 2	 2105344s  1889548287s	1887442944s  primary		   lvm, type=8e",
-	""
-    };
-
-    check_old_parse_exception("/dev/sda", input);
-}
-
-
 BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
 {
     vector<string> input = {
@@ -345,4 +283,28 @@ BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
     };
 
     check("/dev/sdc", stdout, stderr, output);
+}
+
+
+
+BOOST_AUTO_TEST_CASE(parse_missing_byt)
+{
+    vector<string> input = {
+	"/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;",
+	"1:2048s:923647s:921600s:ext4::;"
+    };
+
+    check_exception("/dev/sdc", input);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_missing_semicolon)
+{
+    vector<string> input = {
+	"BYT;",
+        "/dev/sdc:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;"
+	"1:2048s:923647s:921600s:ext4::",
+    };
+
+    check_exception("/dev/sdc", input);
 }

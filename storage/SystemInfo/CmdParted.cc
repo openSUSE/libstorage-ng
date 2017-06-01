@@ -118,7 +118,7 @@ namespace storage
     Parted::scan_device_line(const string& line)
     {
 	if (!boost::ends_with(line, ";"))
-	    ST_THROW(Exception("missing ;"));
+	    ST_THROW(ParseException("missing semicolon", "", ";"));
 
 	string line_without_semicolon = line.substr(0, line.size() - 1);
 
@@ -176,7 +176,7 @@ namespace storage
     Parted::scan_entry_line(const string& line)
     {
 	if (!boost::ends_with(line, ";"))
-	    ST_THROW(Exception("missing ;"));
+	    ST_THROW(ParseException("missing semicolon", "", ";"));
 
 	string line_without_semicolon = line.substr(0, line.size() - 1);
 
