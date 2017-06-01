@@ -24,7 +24,7 @@ main()
     {
 	// Create storage object and probe system.
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
-	environment.set_devicegraph_filename("examples/data/compound-actions-probed1.xml");
+	environment.set_devicegraph_filename("examples/data/compound-actions-probed.xml");
 
 	Storage storage(environment);
 	storage.probe();
@@ -35,7 +35,7 @@ main()
 
 	Devicegraph* staging = storage.get_staging();
 
-	staging->load("examples/data/compound-actions-staging1.xml");
+	staging->load("examples/data/compound-actions-staging.xml");
 	staging->check();
 
 	// Calculate the actiongraph.
