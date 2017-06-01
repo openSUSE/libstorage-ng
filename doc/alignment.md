@@ -7,6 +7,9 @@ partitions are properly aligned to avoid excessive read-modify-write cycles.
 For details please refer to https://en.wikipedia.org/wiki/Partition_alignment,
 esp. "4 KB sector alignment" and "SSD page partition alignment".
 
+Additional some partition tables require alignment, e.g. DASD partition tables
+need alignment to tracks (usually 12 sectors).
+
 
 Goals:
 ------
@@ -27,8 +30,7 @@ General Workflow:
 
 - Optionally set the start and/or size of the region.
 
-- Optionally call align(), always call align() if you changed the start of the
-  region.
+- Call align().
 
   Per default this will align the start and end of the region. The start is
   rounded up and the end is rounded down. This way it is assured that the
@@ -50,21 +52,22 @@ Use Cases:
 
 - Create small (just a few grains) partition:
 
-  Do not call align or call it with KEEP_SIZE.
+  Call align() with align_type = AlignType::REQUIRED.
 
 - Create partition using rest of slot:
 
-  Do not call align or call it with KEEP_END.
+  Call align() with align_type = AlignType::REQUIRED.
 
 
 Following these workflows ensures that new partitions are aligned and that
 there are no gaps unless technical inevitable. Usually gaps will appear before
 the first partition and before logical partitions.
 
-On the other hand by not using the align() function still unaligned partitions
-can be created. Gaps can also be created when exact sizes are preferred over
-no gaps.
+On the other hand by using the align() function with align_type =
+AlignType::REQUIRED still unoptional unaligned partitions can be created. Gaps
+can also be created when exact sizes are preferred over no gaps.
 
 It should be obviously that "exact sizes" are only possible within the
-possibility of the hardware, usually multiples of 512 B or 4 KiB.
+possibility of the hardware, usually multiples of 512 B or 4 KiB, and
+requirements of the partition table.
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: disk /dev/sdb with msdos partition table
+# requirements: partitionable /dev/sdb with msdos partition table
 
 
 from sys import exit
@@ -21,9 +21,9 @@ staging = storage.get_staging()
 
 print staging
 
-disk = Disk.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
-partition_table = disk.get_partition_table()
+partition_table = partitionable.get_partition_table()
 
 partition_slots = partition_table.get_unused_partition_slots()
 
@@ -48,12 +48,15 @@ if not good_partition_slot:
     print "no good partition slot found"
     exit()
 
-# good_partition_slot.region.set_length(10 * GiB / 512)
+region = good_partition_slot.region
 
-partition = partition_table.create_partition(good_partition_slot.name, good_partition_slot.region,
-                                             type)
+region.set_length(1 * GiB / region.get_block_size())
 
-partition.set_id(ID_ESP)
+region = partition_table.align(region)
+
+partition = partition_table.create_partition(good_partition_slot.name, region, type)
+
+partition.set_id(ID_RAID)
 
 print staging
 

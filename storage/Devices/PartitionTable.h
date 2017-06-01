@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2016] SUSE LLC
+ * Copyright (c) [2015-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,7 +28,7 @@
 
 #include "storage/Utils/Swig.h"
 #include "storage/Utils/Region.h"
-#include "storage/Utils/Topology.h"
+#include "storage/Utils/Alignment.h"
 #include "storage/Devices/Device.h"
 #include "storage/Devices/Partition.h"
 
@@ -109,12 +109,16 @@ namespace storage
 
 	const Partitionable* get_partitionable() const;
 
-	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
+	Alignment get_alignment(AlignType align_type = AlignType::OPTIMAL) const;
+
+	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END,
+							      AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**
 	 * region is sector-based.
 	 */
-	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END,
+		     AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**
 	 * Returns whether the boot flag is supported on partitions on the

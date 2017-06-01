@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2016] SUSE LLC
+ * Copyright (c) [2015-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -184,17 +184,24 @@ namespace storage
     }
 
 
-    vector<PartitionSlot>
-    PartitionTable::get_unused_partition_slots(AlignPolicy align_policy) const
+    Alignment
+    PartitionTable::get_alignment(AlignType align_type) const
     {
-	return get_impl().get_unused_partition_slots(align_policy);
+	return get_impl().get_alignment(align_type);
+    }
+
+
+    vector<PartitionSlot>
+    PartitionTable::get_unused_partition_slots(AlignPolicy align_policy, AlignType align_type) const
+    {
+	return get_impl().get_unused_partition_slots(align_policy, align_type);
     }
 
 
     Region
-    PartitionTable::align(const Region& region, AlignPolicy align_policy) const
+    PartitionTable::align(const Region& region, AlignPolicy align_policy, AlignType align_type) const
     {
-	return get_impl().align(region, align_policy);
+	return get_impl().align(region, align_policy, align_type);
     }
 
 

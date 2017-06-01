@@ -46,13 +46,9 @@ namespace storage
     {
     public:
 
-	Impl(const string& name)
-	    : Partitionable::Impl(name), rotational(false), dasd_type(DasdType::UNKNOWN),
-	      dasd_format(DasdFormat::NONE) {}
+	Impl(const string& name);
 
-	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region, 4), rotational(false), dasd_type(DasdType::UNKNOWN),
-	      dasd_format(DasdFormat::NONE) {}
+	Impl(const string& name, const Region& region);
 
 	Impl(const xmlNode* node);
 

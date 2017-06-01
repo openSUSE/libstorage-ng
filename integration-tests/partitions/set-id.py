@@ -20,7 +20,7 @@ print staging
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 
-partition.set_id(ID_ESP)
+partition.set_id(ID_RAID)
 
 print staging
 

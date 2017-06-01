@@ -137,6 +137,20 @@ namespace storage
     }
 
 
+    Partitionable*
+    Partitionable::find_by_name(Devicegraph* devicegraph, const string& name)
+    {
+	return to_partitionable(BlkDevice::find_by_name(devicegraph, name));
+    }
+
+
+    const Partitionable*
+    Partitionable::find_by_name(const Devicegraph* devicegraph, const string& name)
+    {
+	return to_partitionable(BlkDevice::find_by_name(devicegraph, name));
+    }
+
+
     bool
     is_partitionable(const Device* device)
     {

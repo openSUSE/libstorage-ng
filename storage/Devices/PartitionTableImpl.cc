@@ -29,7 +29,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
-#include "storage/Utils/TopologyImpl.h"
+#include "storage/Utils/AlignmentImpl.h"
 
 
 namespace storage
@@ -228,11 +228,19 @@ namespace storage
     }
 
 
+    Alignment
+    PartitionTable::Impl::get_alignment(AlignType align_type) const
+    {
+	return Alignment(get_partitionable()->get_topology(), align_type);
+    }
+
+
     vector<PartitionSlot>
-    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy) const
+    PartitionTable::Impl::get_unused_partition_slots(AlignPolicy align_policy,
+						     AlignType align_type) const
     {
 	const Partitionable* partitionable = get_partitionable();
-	const Topology& topology = partitionable->get_topology();
+	const Alignment alignment = get_alignment(align_type);
 
 	bool is_primary_possible = num_primary() + (has_extended() ? 1 : 0) < max_primary();
 	bool is_extended_possible = is_primary_possible && extended_possible() && !has_extended();
@@ -289,7 +297,7 @@ namespace storage
 	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
 		slot.region = unused_region;
-		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
+		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))
 		{
 		    slots.push_back(slot);
 
@@ -339,7 +347,7 @@ namespace storage
 		adjusted_region.adjust_length(-1);
 
 		slot.region = adjusted_region;
-		if (topology.get_impl().align_region_in_place(slot.region, align_policy))
+		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))
 		{
 		    slots.push_back(slot);
 		}
@@ -353,9 +361,10 @@ namespace storage
 
 
     Region
-    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy) const
+    PartitionTable::Impl::align(const Region& region, AlignPolicy align_policy,
+				AlignType align_type) const
     {
-	return get_partitionable()->get_topology().align(region, align_policy);
+	return get_alignment(align_type).align(region, align_policy);
     }
 
 

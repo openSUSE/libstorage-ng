@@ -28,6 +28,7 @@
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/Alignment.h"
 
 
 namespace storage
@@ -119,9 +120,12 @@ namespace storage
 
 	virtual Region get_usable_region() const = 0;
 
-	vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END) const;
+	virtual Alignment get_alignment(AlignType align_type) const;
 
-	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
+	vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
+							 AlignType align_type) const;
+
+	Region align(const Region& region, AlignPolicy align_policy, AlignType align_type) const;
 
 	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
 
