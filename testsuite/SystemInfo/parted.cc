@@ -284,28 +284,21 @@ BOOST_AUTO_TEST_CASE(parse_two_partition_table)
 BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
 {
     vector<string> input = {
-	"Model: Virtio Block Device (virtblk)",
-	"Disk /dev/vda: 104857600s",
-	"Sector size (logical/physical): 512B/512B",
-	"Partition Table: gpt",
-	"Disk Flags: ",
-	"",
-	"Number	 Start	   End	       Size	   File system	Name			      Flags",
-	"",
-	" 1	 2048s	   923647s     921600s	   ntfs		Basic data partition	      hidden, diag",
-	" 2	 923648s   1126399s    202752s	   fat32	EFI system partition	      boot, esp",
-	" 3	 1126400s  1159167s    32768s			Microsoft reserved partition  msftres",
-	" 4	 1159168s  104855551s  103696384s  ntfs		Basic data partition	      msftdata",
-	""
+	"BYT;",
+	"/dev/vda:104857600s:virtblk:512:512:gpt:Virtio Block Device:;",
+	"1:2048s:923647s:921600s:ntfs:Basic data partition:hidden, diag;",
+	"2:923648s:1126399s:202752s:fat32:EFI system partition:boot, esp;",
+	"3:1126400s:1159167s:32768s::Microsoft reserved partition:msftres;",
+	"4:1159168s:104855551s:103696384s:ntfs:Basic data partition:msftdata;"
     };
 
     vector<string> output = {
 	"device:/dev/vda label:GPT region:[0, 104857600, 512 B]",
-	"number:1 region:[2048, 921600, 512 B] type:primary id:7",
+	"number:1 region:[2048, 921600, 512 B] type:primary id:18",
 	"number:2 region:[923648, 202752, 512 B] type:primary id:239",
 	"number:3 region:[1126400, 32768, 512 B] type:primary id:259",
 	"number:4 region:[1159168, 103696384, 512 B] type:primary id:258"
     };
 
-    check_old("/dev/vda", input, output);
+    check("/dev/vda", input, output);
 }

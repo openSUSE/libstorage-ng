@@ -661,6 +661,10 @@ namespace storage
 		case ID_MICROSOFT_RESERVED:
 		    cmd_line += "msftres";
 		    break;
+
+		case ID_DIAG:
+		    cmd_line += "diag";
+		    break;
 	    }
 	}
 
@@ -929,6 +933,7 @@ namespace storage
 	    case ID_PREP: return "PReP Boot Partition";
 	    case ID_WINDOWS_BASIC_DATA: return "Windows Data Partition";
 	    case ID_MICROSOFT_RESERVED: return "Microsoft Reserved Partition";
+	    case ID_DIAG: return "Diagnostics Partition";
 	}
 
 	return "";

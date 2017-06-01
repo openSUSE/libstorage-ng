@@ -230,6 +230,8 @@ namespace storage
 	    entry.id = ID_WINDOWS_BASIC_DATA;
 	else if (contains(flags, "msftres"))
 	    entry.id = ID_MICROSOFT_RESERVED;
+	else if (contains(flags, "diag"))
+	    entry.id = ID_DIAG;
 
 	if (label == PtType::MSDOS)
 	{
