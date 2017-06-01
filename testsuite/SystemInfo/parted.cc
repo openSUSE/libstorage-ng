@@ -22,7 +22,6 @@ check(const string& device, const vector<string>& stdout, const vector<string>& 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print",
 			RemoteCommand(stdout, stderr, 0));
-    Mockup::erase_command(PARTEDBIN " --script " + quote(device) + " unit s print");
 
     Parted parted(device);
 
@@ -51,26 +50,6 @@ check_exception(const string& device, const vector<string>& input)
     Mockup::set_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print", input);
 
     BOOST_CHECK_THROW({ Parted parted(device); }, ParseException);
-}
-
-
-void
-check_old(const string& device, const vector<string>& input, const vector<string>& output)
-{
-    Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PARTEDBIN " --script " + quote(device) + " unit s print", input);
-    Mockup::erase_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print");
-
-    Parted parted(device);
-
-    ostringstream parsed;
-    parsed.setf(std::ios::boolalpha);
-    parsed << parted;
-
-    string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
-
-    BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
 
