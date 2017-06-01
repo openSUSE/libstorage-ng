@@ -24,6 +24,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Filesystems/Swap.h"
 
 
 namespace storage
@@ -38,7 +39,16 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::text() const
     {
-	if (has_create<storage::LvmLv>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	if (has_create<storage::BlkFilesystem>() && is_swap(get_created_filesystem()))
+	{
+	    if (has_create<storage::Encryption>())
+		return create_encrypted_with_swap_text();
+
+	    else
+		return create_with_swap_text();
+	}
+
+	else if (has_create<storage::LvmLv>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
 	    return create_encrypted_with_fs_and_mount_point_text();
 
 	else if (has_create<storage::LvmLv>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
@@ -76,6 +86,38 @@ namespace storage
 
 	else
 	    return default_text();
+    }
+
+
+    Text
+    CompoundAction::Formatter::LvmLv::create_encrypted_with_swap_text() const
+    {
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system)
+	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
+
+	return sformat(text, 
+		       lv->get_name().c_str(), 
+		       lv->get_size_string().c_str(),
+		       lv->get_lvm_vg()->get_vg_name().c_str());
+    }
+
+
+    Text
+    CompoundAction::Formatter::LvmLv::create_with_swap_text() const
+    {
+	// TRANSLATORS:
+	// %1$s is replaced by logical volume name (e.g. root),
+	// %2$s is replaced by size (e.g. 2GiB),
+	// %3$s is replaced by volume group name (e.g. system)
+	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
+
+	return sformat(text, 
+		       lv->get_name().c_str(), 
+		       lv->get_size_string().c_str(),
+		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
 
 

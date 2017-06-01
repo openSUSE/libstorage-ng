@@ -89,6 +89,22 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
+{
+    initialize_staging_with_two_partitions();
+
+    sda2->create_blk_filesystem(FsType::SWAP);
+
+    auto actiongraph = storage->calculate_actiongraph();
+    
+    auto compound_action = find_compound_action_by_target(actiongraph, sda2);
+    
+    BOOST_REQUIRE(compound_action);
+
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) for swap");
+}
+
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_bios)
 {
     initialize_staging_with_two_partitions();

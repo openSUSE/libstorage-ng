@@ -25,6 +25,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Filesystems/Swap.h"
 
 
 namespace storage
@@ -42,7 +43,7 @@ namespace storage
 	if (has_delete<storage::Partition>())
 	    return delete_text();
 
-	else if (has_create<LvmPv>())
+	else if (has_create<storage::LvmPv>())
 	{
 	    if (has_create<storage::Partition>() && has_create<storage::Encryption>())
 		return create_encrypted_pv_text();
@@ -55,6 +56,15 @@ namespace storage
 
 	    else
 		return pv_text();
+	}
+
+	else if (has_create<storage::BlkFilesystem>() && is_swap(get_created_filesystem()))
+	{
+	    if (has_create<storage::Encryption>())
+		return create_encrypted_with_swap_text();
+
+	    else
+		return create_with_swap_text();
 	}
 
 	else
@@ -158,6 +168,34 @@ namespace storage
 	Text text = _("Create LVM physical device over %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+    }
+
+
+    Text
+    CompoundAction::Formatter::Partition::create_encrypted_with_swap_text() const
+    {
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create encrypted partition %1$s (%2$s) for swap");
+
+	return sformat(text, 
+		       partition->get_name().c_str(), 
+		       partition->get_size_string().c_str());
+    }
+
+
+    Text
+    CompoundAction::Formatter::Partition::create_with_swap_text() const
+    {
+	// TRANSLATORS:
+	// %1$s is replaced by partition name (e.g. /dev/sda1),
+	// %2$s is replaced by size (e.g. 2GiB)
+	Text text = _("Create partition %1$s (%2$s) for swap");
+
+	return sformat(text, 
+		       partition->get_name().c_str(), 
+		       partition->get_size_string().c_str());
     }
 
 

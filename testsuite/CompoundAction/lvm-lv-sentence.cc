@@ -60,5 +60,24 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted LVM logical volume /dev/vg-name/lv-name (10.00 GiB) on volume group vg-name for /test with ext4");
 }
 
+
+BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
+{
+    initialize_staging_with_two_partitions();
+
+    auto vg = LvmVg::create(staging, "vg-name");
+    vg->add_lvm_pv(sda2);
+    auto lv = vg->create_lvm_lv("lv-name", 2 * GiB);
+    lv->create_blk_filesystem(FsType::SWAP);
+
+    auto actiongraph = storage->calculate_actiongraph();
+    
+    auto compound_action = find_compound_action_by_target(actiongraph, lv);
+    
+    BOOST_REQUIRE(compound_action);
+
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create LVM logical volume /dev/vg-name/lv-name (2.00 GiB) on volume group vg-name for swap");
+}
+
 BOOST_AUTO_TEST_SUITE_END()
 

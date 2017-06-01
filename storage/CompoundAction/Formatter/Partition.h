@@ -50,6 +50,9 @@ namespace storage
 	Text encrypted_pv_text() const;
 	Text pv_text() const;
 	
+	Text create_encrypted_with_swap_text() const;
+	Text create_with_swap_text() const;
+
 	Text create_encrypted_with_fs_and_mount_point_text() const;
 	Text create_encrypted_with_fs_text() const;
 	Text create_encrypted_text() const;
