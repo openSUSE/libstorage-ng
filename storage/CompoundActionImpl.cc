@@ -100,7 +100,6 @@ namespace storage
     }
 
 
-    //TODO Generate text depending on the set of commit actions.
     string
     CompoundAction::Impl::sentence() const
     {

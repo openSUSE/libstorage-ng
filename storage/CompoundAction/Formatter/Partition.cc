@@ -153,7 +153,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical device");
+	Text text = _("Create LVM physical device over encrypted %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }

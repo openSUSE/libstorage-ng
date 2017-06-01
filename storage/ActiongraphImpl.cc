@@ -488,7 +488,7 @@ namespace storage
     void
     Actiongraph::Impl::generate_compound_actions(const Actiongraph* actiongraph)
     {
-	Impl::compound_actions.clear();
+	compound_actions.clear();
 
 	auto compound_actions = CompoundAction::Generator(actiongraph).generate();
 	for (auto action : compound_actions)

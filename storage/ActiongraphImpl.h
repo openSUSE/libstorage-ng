@@ -187,8 +187,6 @@ namespace storage
 	void remove_only_syncs();
 	void calculate_order();
 
-	const Actiongraph* actiongraph;
-
 	const Storage& storage;
 
 	const Devicegraph* lhs;
