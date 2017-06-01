@@ -426,7 +426,7 @@ namespace storage
     operator<<(std::ostream& s, const Parted::Entry& entry)
     {
 	s << "number:" << entry.number << " region:" << entry.region << " type:"
-	  << toString(entry.type) << " id:" << entry.id;
+	  << toString(entry.type) << " id:" << sformat("0x%02X", entry.id);
 
 	if (entry.boot)
 	    s << " boot";
