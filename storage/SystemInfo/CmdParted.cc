@@ -198,16 +198,22 @@ namespace storage
 
 	entry.region = Region(start_sector, size_sector, region.get_block_size());
 
-	scan_flags(tmp[6], entry);
+	scan_entry_flags(tmp[6], entry);
 
 	entries.push_back(entry);
     }
 
 
     void
-    Parted::scan_flags(const string& s, Entry& entry) const
+    Parted::scan_entry_flags(const string& s, Entry& entry) const
     {
+	// TODO parted has a strange interface to represent partition type
+	// ids. On GPT it is not possible to distinguish whether the id is
+	// linux or unknown. Work with upsteam parted to improve the
+	// interface. The line below should then be entry.id = ID_UNKNOWN
+
 	entry.id = ID_LINUX;
+
 	entry.boot = false;
 	entry.legacy_boot = false;
 

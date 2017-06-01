@@ -170,7 +170,7 @@ namespace storage
 	PtType scan_partition_table_type(const string& s) const;
 
 	void scan_entry_line(const string& line);
-	void scan_flags(const string& s, Entry& entry) const;
+	void scan_entry_flags(const string& s, Entry& entry) const;
 
 	void scan_stderr(const vector<string>& stderr);
 
