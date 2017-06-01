@@ -230,6 +230,8 @@ namespace storage
 	    entry.id = ID_WINDOWS_BASIC_DATA;
 	else if (contains(flags, "msftres"))
 	    entry.id = ID_MICROSOFT_RESERVED;
+	else if (contains(flags, "diag"))
+	    entry.id = ID_DIAG;
 
 	if (label == PtType::MSDOS)
 	{
@@ -424,7 +426,7 @@ namespace storage
     operator<<(std::ostream& s, const Parted::Entry& entry)
     {
 	s << "number:" << entry.number << " region:" << entry.region << " type:"
-	  << toString(entry.type) << " id:" << entry.id;
+	  << toString(entry.type) << " id:" << sformat("0x%02X", entry.id);
 
 	if (entry.boot)
 	    s << " boot";

@@ -70,6 +70,9 @@ namespace storage
 	/** Only for MSDOS. */
 	ID_EXTENDED = 0x0f,
 
+	/** For MSDOS and GPT. */
+	ID_DIAG = 0x12,
+
 	/** PPC PReP Boot partition, for MSDOS and GPT. */
 	ID_PREP = 0x41,
 

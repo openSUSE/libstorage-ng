@@ -79,11 +79,11 @@ BOOST_AUTO_TEST_CASE(parse_msdos_disk_label_good)
 
     vector<string> output = {
 	"device:/dev/sdb label:MS-DOS region:[0, 160086528, 512 B]",
-	"number:1 region:[2048, 32014336, 512 B] type:primary id:131",
-	"number:2 region:[32016384, 96053248, 512 B] type:extended id:15",
-	"number:5 region:[32018432, 32016384, 512 B] type:logical id:130",
-	"number:6 region:[64036864, 32014336, 512 B] type:logical id:253",
-	"number:7 region:[96053248, 32016384, 512 B] type:logical id:142"
+	"number:1 region:[2048, 32014336, 512 B] type:primary id:0x83",
+	"number:2 region:[32016384, 96053248, 512 B] type:extended id:0x0F",
+	"number:5 region:[32018432, 32016384, 512 B] type:logical id:0x82",
+	"number:6 region:[64036864, 32014336, 512 B] type:logical id:0xFD",
+	"number:7 region:[96053248, 32016384, 512 B] type:logical id:0x8E"
     };
 
     check("/dev/sdb", input, output);
@@ -110,12 +110,12 @@ BOOST_AUTO_TEST_CASE(parse_gpt_good)
 
     vector<string> output = {
 	"device:/dev/sda label:GPT region:[0, 976773168, 512 B]",
-	"number:1 region:[2048, 1026048, 512 B] type:primary id:12",
-	"number:2 region:[1028096, 1028096, 512 B] type:primary id:131 legacy-boot",
-	"number:3 region:[2056192, 293042176, 512 B] type:primary id:131",
-	"number:4 region:[295098368, 293042176, 512 B] type:primary id:131",
-	"number:5 region:[588140544, 4208640, 512 B] type:primary id:130",
-	"number:6 region:[592349184, 384423936, 512 B] type:primary id:131"
+	"number:1 region:[2048, 1026048, 512 B] type:primary id:0x0C",
+	"number:2 region:[1028096, 1028096, 512 B] type:primary id:0x83 legacy-boot",
+	"number:3 region:[2056192, 293042176, 512 B] type:primary id:0x83",
+	"number:4 region:[295098368, 293042176, 512 B] type:primary id:0x83",
+	"number:5 region:[588140544, 4208640, 512 B] type:primary id:0x82",
+	"number:6 region:[592349184, 384423936, 512 B] type:primary id:0x83"
     };
 
     check_old("/dev/sda", input, output);
@@ -142,8 +142,8 @@ BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
 
     vector<string> output = {
 	"device:/dev/sdb label:GPT region:[0, 160086528, 512 B] gpt-pmbr-boot",
-	"number:1 region:[2048, 32014336, 512 B] type:primary id:131",
-	"number:2 region:[32016384, 128069632, 512 B] type:primary id:131"
+	"number:1 region:[2048, 32014336, 512 B] type:primary id:0x83",
+	"number:2 region:[32016384, 128069632, 512 B] type:primary id:0x83"
     };
 
     check_old("/dev/sdb", input, output);
@@ -162,9 +162,9 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good)
 
     vector<string> output = {
 	"device:/dev/dasda label:DASD region:[0, 1803060, 4096 B]",
-	"number:1 region:[24, 51192, 4096 B] type:primary id:131",
-	"number:2 region:[51216, 253440, 4096 B] type:primary id:131",
-	"number:3 region:[304656, 1498404, 4096 B] type:primary id:131"
+	"number:1 region:[24, 51192, 4096 B] type:primary id:0x83",
+	"number:2 region:[51216, 253440, 4096 B] type:primary id:0x83",
+	"number:3 region:[304656, 1498404, 4096 B] type:primary id:0x83"
     };
 
     check("/dev/dasda", input, output);
@@ -197,7 +197,7 @@ BOOST_AUTO_TEST_CASE(parse_dasd_implicit_good)
 
     vector<string> output = {
 	"device:/dev/dasdc label:DASD region:[0, 20000, 512 B] implicit",
-	"number:1 region:[2, 19998, 512 B] type:primary id:131"
+	"number:1 region:[2, 19998, 512 B] type:primary id:0x83"
     };
 
     check("/dev/dasdc", input, output);
@@ -284,28 +284,21 @@ BOOST_AUTO_TEST_CASE(parse_two_partition_table)
 BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
 {
     vector<string> input = {
-	"Model: Virtio Block Device (virtblk)",
-	"Disk /dev/vda: 104857600s",
-	"Sector size (logical/physical): 512B/512B",
-	"Partition Table: gpt",
-	"Disk Flags: ",
-	"",
-	"Number	 Start	   End	       Size	   File system	Name			      Flags",
-	"",
-	" 1	 2048s	   923647s     921600s	   ntfs		Basic data partition	      hidden, diag",
-	" 2	 923648s   1126399s    202752s	   fat32	EFI system partition	      boot, esp",
-	" 3	 1126400s  1159167s    32768s			Microsoft reserved partition  msftres",
-	" 4	 1159168s  104855551s  103696384s  ntfs		Basic data partition	      msftdata",
-	""
+	"BYT;",
+	"/dev/vda:104857600s:virtblk:512:512:gpt:Virtio Block Device:;",
+	"1:2048s:923647s:921600s:ntfs:Basic data partition:hidden, diag;",
+	"2:923648s:1126399s:202752s:fat32:EFI system partition:boot, esp;",
+	"3:1126400s:1159167s:32768s::Microsoft reserved partition:msftres;",
+	"4:1159168s:104855551s:103696384s:ntfs:Basic data partition:msftdata;"
     };
 
     vector<string> output = {
 	"device:/dev/vda label:GPT region:[0, 104857600, 512 B]",
-	"number:1 region:[2048, 921600, 512 B] type:primary id:7",
-	"number:2 region:[923648, 202752, 512 B] type:primary id:239",
-	"number:3 region:[1126400, 32768, 512 B] type:primary id:259",
-	"number:4 region:[1159168, 103696384, 512 B] type:primary id:258"
+	"number:1 region:[2048, 921600, 512 B] type:primary id:0x12",
+	"number:2 region:[923648, 202752, 512 B] type:primary id:0xEF",
+	"number:3 region:[1126400, 32768, 512 B] type:primary id:0x103",
+	"number:4 region:[1159168, 103696384, 512 B] type:primary id:0x102"
     };
 
-    check_old("/dev/vda", input, output);
+    check("/dev/vda", input, output);
 }
