@@ -6,7 +6,10 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
 #include "storage/Devices/Msdos.h"
+#include "storage/Devices/Gpt.h"
+#include "storage/Devices/DasdPt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -229,4 +232,53 @@ BOOST_AUTO_TEST_CASE(test_small_grain_and_mbr_gap)
     BOOST_CHECK_EQUAL(slots[0].extended_possible, true);
     BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_dasd1)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    // 601020 sectors * 4 KiB = 2347.734375 MiB
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", Region(0, 601020, 4096));
+
+    PartitionTable* dasd_pt = dasda->create_partition_table(PtType::DASD);
+
+    // 1 MiB = 256 sectors
+
+    dasd_pt->create_partition("/dev/dasda1", Region(3 * 256, 510 * 256, 4096), PartitionType::PRIMARY);
+    dasd_pt->create_partition("/dev/dasda2", Region(1023 * 256, 510 * 256, 4096), PartitionType::PRIMARY);
+
+    vector<PartitionSlot> slots = dasd_pt->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 2);
+
+    BOOST_CHECK_EQUAL(slots[0].region.get_start(), 513 * 256);
+    BOOST_CHECK_EQUAL(slots[0].region.get_length(), 510 * 256);
+    BOOST_CHECK_EQUAL(slots[0].number, 2);
+    BOOST_CHECK_EQUAL(slots[0].name, "/dev/dasda2");
+    BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
+    BOOST_CHECK_EQUAL(slots[0].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
+
+    BOOST_CHECK_EQUAL(slots[1].region.get_start(), 1533 * 256);
+    BOOST_CHECK_EQUAL(slots[1].region.get_length(), 814.734375 * 256);
+    BOOST_CHECK_EQUAL(slots[1].number, 3);
+    BOOST_CHECK_EQUAL(slots[1].name, "/dev/dasda3");
+    BOOST_CHECK_EQUAL(slots[1].primary_slot, true);
+    BOOST_CHECK_EQUAL(slots[1].primary_possible, true);
+    BOOST_CHECK_EQUAL(slots[1].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[1].logical_slot, false);
+    BOOST_CHECK_EQUAL(slots[1].logical_possible, false);
 }
