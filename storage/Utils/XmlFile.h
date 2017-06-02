@@ -83,6 +83,8 @@ namespace storage
     template<typename Type>
     bool getChildValue(const xmlNode* node, const char* name, Type& value)
     {
+	static_assert(std::is_integral<Type>::value, "not integral");
+
 	string tmp;
 	if (!getChildValue(node, name, tmp))
 	    return false;
