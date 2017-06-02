@@ -127,12 +127,6 @@ namespace storage
 	    setChildValue(node, name, *it);
     }
 
-    template<typename Type>
-    void setChildValue(xmlNode* node, const char* name, const list<Type>& values)
-    {
-	for (typename list<Type>::const_iterator it = values.begin(); it != values.end(); ++it)
-	    setChildValue(node, name, *it);
-    }
 
     template<typename Type>
     void setChildValueIf(xmlNode* node, const char* name, const Type& value, bool pred)
