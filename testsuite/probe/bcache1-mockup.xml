@@ -794,28 +794,18 @@
       <stdout>x86_64</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' unit s print</name>
-      <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
-      <stdout>Disk /dev/sda: 33554432s</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: msdos</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start     End        Size       Type     File system     Flags</stdout>
-      <stdout> 1      2048s     3051519s   3049472s   primary  linux-swap(v1)  type=82</stdout>
-      <stdout> 2      3051520s  33554431s  30502912s  primary  ext4            boot, type=83</stdout>
+      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
+      <stdout>1:2048s:3051519s:3049472s:linux-swap(v1)::type=82;</stdout>
+      <stdout>2:3051520s:33554431s:30502912s:ext4::boot, type=83;</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sdb' unit s print</name>
-      <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
-      <stdout>Disk /dev/sdb: 33554432s</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: gpt</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start      End        Size       File system  Name  Flags</stdout>
-      <stdout> 1      2048s      16777215s  16775168s</stdout>
-      <stdout> 2      16777216s  33552383s  16775168s</stdout>
+      <name>/usr/sbin/parted --script --machine '/dev/sdb' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sdb:33554432s:scsi:512:512:gpt:ATA VBOX HARDDISK:;</stdout>
+      <stdout>1:2048s:16777215s:16775168s:::;</stdout>
+      <stdout>2:16777216s:33552383s:16775168s:::;</stdout>
     </Command>
   </Commands>
   <Files>

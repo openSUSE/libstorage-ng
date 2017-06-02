@@ -438,16 +438,11 @@
       <stdout>x86_64</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/sda' unit s print</name>
-      <stdout>Model: ATA VBOX HARDDISK (scsi)</stdout>
-      <stdout>Disk /dev/sda: 33554432s</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: msdos</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start      End        Size       Type     File system  Flags</stdout>
-      <stdout> 1      2048s      16771071s  16769024s  primary  ext4         boot, type=83</stdout>
-      <stdout> 2      16771072s  33554431s  16783360s  primary               type=83</stdout>
+      <name>/usr/sbin/parted --script --machine '/dev/sda' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
+      <stdout>1:2048s:16771071s:16769024s:ext4::boot, type=83;</stdout>
+      <stdout>2:16771072s:33554431s:16783360s:::type=83;</stdout>
     </Command>
   </Commands>
   <Files>
