@@ -40,7 +40,7 @@ namespace storage
 
 
     PartitionSlot::PartitionSlot()
-	: region(), nr(0), name(), primary_slot(false), primary_possible(false),
+	: region(), number(0), name(), primary_slot(false), primary_possible(false),
 	  extended_slot(false), extended_possible(false), logical_slot(false),
 	  logical_possible(false)
     {

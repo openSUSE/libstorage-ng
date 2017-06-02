@@ -40,7 +40,7 @@ namespace storage
 
 
     Parted::Parted(const string& device)
-	: device(device), label(PtType::PT_UNKNOWN), region(), implicit(false),
+	: device(device), label(PtType::UNKNOWN), region(), implicit(false),
 	  gpt_enlarge(false), gpt_pmbr_boot(false), logical_sector_size(0), physical_sector_size(0)
     {
 	// TODO only use parted with --machine; requires adaption of unit-tests
@@ -100,7 +100,7 @@ namespace storage
 
 	scan_device_line(stdout[1]);
 
-	if (label != PtType::PT_UNKNOWN && label != PtType::PT_LOOP)
+	if (label != PtType::UNKNOWN && label != PtType::LOOP)
         {
 	    for (size_t i = 2; i < stdout.size(); ++i)
 		scan_entry_line(stdout[i]);
@@ -153,7 +153,7 @@ namespace storage
     PtType
     Parted::scan_partition_table_type(const string& s) const
     {
-	PtType partition_type = PtType::PT_UNKNOWN;
+	PtType partition_type = PtType::UNKNOWN;
 
 	if (s == "msdos")
 	    partition_type = PtType::MSDOS;
@@ -162,9 +162,9 @@ namespace storage
 	else if (s == "dasd")
 	    partition_type = PtType::DASD;
 	else if (s == "loop")
-	    partition_type = PtType::PT_LOOP;
+	    partition_type = PtType::LOOP;
 	else if (s == "unknown")
-	    partition_type = PtType::PT_UNKNOWN;
+	    partition_type = PtType::UNKNOWN;
 	else
 	    ST_THROW(Exception("unknown partition table type reported by parted"));
 
@@ -324,9 +324,9 @@ namespace storage
 	    else if (label_str == "dasd")
 		label = PtType::DASD;
 	    else if (label_str == "loop")
-		label = PtType::PT_LOOP;
+		label = PtType::LOOP;
 	    else if (label_str == "unknown")
-		label = PtType::PT_UNKNOWN;
+		label = PtType::UNKNOWN;
 	    else
 		throw runtime_error("unknown partition table type");
 	}
@@ -356,7 +356,7 @@ namespace storage
 	gpt_fix_backup = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
 							 "primary appears OK")) != stderr.end();
 
-	if (label != PtType::PT_UNKNOWN && label != PtType::PT_LOOP)
+	if (label != PtType::UNKNOWN && label != PtType::LOOP)
 	{
 	    int n = 0;
 

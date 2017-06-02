@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
     BOOST_CHECK_EQUAL(slots[0].region.get_start(), 2048);
     BOOST_CHECK_EQUAL(slots[0].region.get_length(), 1000000 - 2048);
-    BOOST_CHECK_EQUAL(slots[0].nr, 1);
+    BOOST_CHECK_EQUAL(slots[0].number, 1);
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda1");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     BOOST_CHECK_EQUAL(slots[0].region.get_start(), 11 * 2048);
     BOOST_CHECK_EQUAL(slots[0].region.get_length(), 9 * 2048);
-    BOOST_CHECK_EQUAL(slots[0].nr, 3);
+    BOOST_CHECK_EQUAL(slots[0].number, 3);
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     BOOST_CHECK_EQUAL(slots[1].region.get_start(), 30 * 2048);
     BOOST_CHECK_EQUAL(slots[1].region.get_length(), 1000000 - 30 * 2048);
-    BOOST_CHECK_EQUAL(slots[1].nr, 3);
+    BOOST_CHECK_EQUAL(slots[1].number, 3);
     BOOST_CHECK_EQUAL(slots[1].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[1].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[1].primary_possible, true);
@@ -101,7 +101,7 @@ BOOST_AUTO_TEST_CASE(test_msdos2)
 
     BOOST_CHECK_EQUAL(slots[2].region.get_start(), 21 * 2048);
     BOOST_CHECK_EQUAL(slots[2].region.get_length(), 9 * 2048);
-    BOOST_CHECK_EQUAL(slots[2].nr, 5);
+    BOOST_CHECK_EQUAL(slots[2].number, 5);
     BOOST_CHECK_EQUAL(slots[2].name, "/dev/sda5");
     BOOST_CHECK_EQUAL(slots[2].primary_slot, false);
     BOOST_CHECK_EQUAL(slots[2].primary_possible, false);
@@ -138,7 +138,7 @@ BOOST_AUTO_TEST_CASE(test_msdos3)
 
     BOOST_CHECK_EQUAL(slots[0].region.get_start(), 256);
     BOOST_CHECK_EQUAL(slots[0].region.get_length(), 20000000 - 256);
-    BOOST_CHECK_EQUAL(slots[0].nr, 1);
+    BOOST_CHECK_EQUAL(slots[0].number, 1);
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda1");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     BOOST_CHECK_EQUAL(slots[0].region.get_start(), 11 * 2048);
     BOOST_CHECK_EQUAL(slots[0].region.get_length(), 9 * 2048);
-    BOOST_CHECK_EQUAL(slots[0].nr, 3);
+    BOOST_CHECK_EQUAL(slots[0].number, 3);
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
@@ -185,7 +185,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     BOOST_CHECK_EQUAL(slots[1].region.get_start(), 50 * 2048);
     BOOST_CHECK_EQUAL(slots[1].region.get_length(), 1000000 - 50 * 2048 - 33);
-    BOOST_CHECK_EQUAL(slots[1].nr, 3);
+    BOOST_CHECK_EQUAL(slots[1].number, 3);
     BOOST_CHECK_EQUAL(slots[1].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[1].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[1].primary_possible, true);
@@ -221,7 +221,7 @@ BOOST_AUTO_TEST_CASE(test_small_grain_and_mbr_gap)
 
     BOOST_CHECK_EQUAL(slots[0].region.get_start(), 16);
     BOOST_CHECK_EQUAL(slots[0].region.get_length(), 1000000 - 16);
-    BOOST_CHECK_EQUAL(slots[0].nr, 1);
+    BOOST_CHECK_EQUAL(slots[0].number, 1);
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda1");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
