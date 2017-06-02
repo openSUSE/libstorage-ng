@@ -101,7 +101,15 @@ namespace storage
 
 	bool operator==(const Region& rhs) const;
 	bool operator!=(const Region& rhs) const;
+
+	/**
+	 * Compare start of two regions.
+	 */
 	bool operator<(const Region& rhs) const;
+
+	/**
+	 * Compare start of two regions.
+	 */
 	bool operator>(const Region& rhs) const;
 
 	bool inside(const Region& rhs) const;
