@@ -289,17 +289,23 @@ namespace storage
 	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
 		slot.region = unused_region;
+
 		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    slots.push_back(slot);
+		    // For DASDs the slot number is the number of partitions/used regions
+		    // before the slot.
 
-		    /*
-		      if (label == "dasd")
-		      {
-		      slot.nr++;
-		      slot.device = getPartDevice(slot.nr);
-		      }
-		    */
+		    if (get_type() == PtType::DASD)
+		    {
+			slot.number = count_if(used_regions.begin(), used_regions.end(),
+					       [&slot](const Region& used_region) {
+						   return used_region < slot.region;
+					       }) + 1;
+
+			slot.name = partitionable->get_impl().partition_name(slot.number);
+		    }
+
+		    slots.push_back(slot);
 		}
 	    }
 	}
