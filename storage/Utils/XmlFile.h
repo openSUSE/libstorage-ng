@@ -27,7 +27,6 @@
 #include <libxml/tree.h>
 #include <string>
 #include <vector>
-#include <list>
 #include <sstream>
 #include <boost/noncopyable.hpp>
 
@@ -72,13 +71,14 @@ namespace storage
 
 
     const xmlNode* getChildNode(const xmlNode* node, const char* name);
-    list<const xmlNode*> getChildNodes(const xmlNode* node, const char* name);
+    vector<const xmlNode*> getChildNodes(const xmlNode* node, const char* name);
 
-    list<const xmlNode*> getChildNodes(const xmlNode* node);
+    vector<const xmlNode*> getChildNodes(const xmlNode* node);
 
 
     bool getChildValue(const xmlNode* node, const char* name, string& value);
     bool getChildValue(const xmlNode* node, const char* name, bool& value);
+
 
     template<typename Type>
     bool getChildValue(const xmlNode* node, const char* name, Type& value)
@@ -93,10 +93,11 @@ namespace storage
 	return true;
     }
 
+
     template<typename Type>
     bool getChildValue(const xmlNode* node, const char* name, vector<Type>& values)
     {
-	list<const xmlNode*> children = getChildNodes(node, name);
+	vector<const xmlNode*> children = getChildNodes(node, name);
 
 	for (const xmlNode*& child : children)
 	    values.push_back((const char*) child->content);
@@ -109,6 +110,7 @@ namespace storage
     void setChildValue(xmlNode* node, const char* name, const string& value);
     void setChildValue(xmlNode* node, const char* name, bool value);
 
+
     template<typename Num>
     void setChildValue(xmlNode* node, const char* name, const Num& value)
     {
@@ -120,11 +122,12 @@ namespace storage
 	setChildValue(node, name, ostr.str());
     }
 
+
     template<typename Type>
     void setChildValue(xmlNode* node, const char* name, const vector<Type>& values)
     {
-	for (typename vector<Type>::const_iterator it = values.begin(); it != values.end(); ++it)
-	    setChildValue(node, name, *it);
+	for (const Type& value : values)
+	    setChildValue(node, name, value);
     }
 
 

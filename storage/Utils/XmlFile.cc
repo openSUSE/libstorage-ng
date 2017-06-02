@@ -88,10 +88,10 @@ namespace storage
     }
 
 
-    list<const xmlNode*>
+    vector<const xmlNode*>
     getChildNodes(const xmlNode* node, const char* name)
     {
-	list<const xmlNode*> ret;
+	vector<const xmlNode*> ret;
 
 	for (const xmlNode* cur_node = node; cur_node; cur_node = cur_node->next)
 	{
@@ -107,10 +107,10 @@ namespace storage
     }
 
 
-    list<const xmlNode*>
+    vector<const xmlNode*>
     getChildNodes(const xmlNode* node)
     {
-	list<const xmlNode*> ret;
+	vector<const xmlNode*> ret;
 
 	for (const xmlNode* cur_node = node; cur_node; cur_node = cur_node->next)
 	{
