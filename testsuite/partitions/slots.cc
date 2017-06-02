@@ -176,7 +176,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     BOOST_CHECK_EQUAL(slots[0].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[0].primary_possible, true);
-    BOOST_CHECK_EQUAL(slots[0].extended_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].extended_slot, false);
     BOOST_CHECK_EQUAL(slots[0].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
@@ -189,7 +189,7 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
     BOOST_CHECK_EQUAL(slots[1].name, "/dev/sda3");
     BOOST_CHECK_EQUAL(slots[1].primary_slot, true);
     BOOST_CHECK_EQUAL(slots[1].primary_possible, true);
-    BOOST_CHECK_EQUAL(slots[1].extended_slot, true);
+    BOOST_CHECK_EQUAL(slots[1].extended_slot, false);
     BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[1].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[1].logical_possible, false);

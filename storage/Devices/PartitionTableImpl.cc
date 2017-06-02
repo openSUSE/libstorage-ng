@@ -273,7 +273,7 @@ namespace storage
 
 	    slot.primary_slot = true;
 	    slot.primary_possible = is_primary_possible;
-	    slot.extended_slot = true;
+	    slot.extended_slot = extended_possible();
 	    slot.extended_possible = is_extended_possible;
 	    slot.logical_slot = false;
 	    slot.logical_possible = false;
