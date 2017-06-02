@@ -113,10 +113,10 @@ namespace storage
     void setChildValue(xmlNode* node, const char* name, bool value);
 
 
-    template<typename Num>
-    void setChildValue(xmlNode* node, const char* name, const Num& value)
+    template<typename Type>
+    void setChildValue(xmlNode* node, const char* name, const Type& value)
     {
-	static_assert(std::is_integral<Num>::value, "not integral");
+	static_assert(std::is_integral<Type>::value, "not integral");
 
 	std::ostringstream ostr;
 	classic(ostr);
