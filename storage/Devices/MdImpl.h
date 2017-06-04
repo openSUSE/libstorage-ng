@@ -90,6 +90,8 @@ namespace storage
 
 	static bool is_valid_name(const string& name);
 
+	static string find_free_name(const Devicegraph* devicegraph);
+
 	static void probe_mds(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;

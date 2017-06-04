@@ -107,6 +107,11 @@ namespace storage
 	static Md* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
+	/**
+	 * Find a free name for a MD.
+	 */
+	static std::string find_free_name(const Devicegraph* devicegraph);
+
     public:
 
 	class Impl;

@@ -235,6 +235,13 @@ namespace storage
     }
 
 
+    string
+    Md::find_free_name(const Devicegraph* devicegraph)
+    {
+	return Md::Impl::find_free_name(devicegraph);
+    }
+
+
     bool
     is_md(const Device* device)
     {
