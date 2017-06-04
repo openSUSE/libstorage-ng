@@ -14,6 +14,7 @@ libutils_la_SOURCES =					\
 	Text.cc			Text.h			\
 	Stopwatch.cc		Stopwatch.h		\
 	Math.cc			Math.h			\
+	Algorithm.h					\
 	FileUtils.cc		FileUtils.h		\
 	Exception.h		Exception.cc		\
 	ExceptionImpl.h					\
