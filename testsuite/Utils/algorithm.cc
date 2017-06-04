@@ -23,12 +23,12 @@ BOOST_AUTO_TEST_CASE(test_first_missing_number)
 
 	static
 	vector<shared_ptr<Tmp>>
-	make_vector(const vector<unsigned int>& x)
+	make_vector(const vector<unsigned int>& numbers)
 	{
 	    vector<shared_ptr<Tmp>> ret;
 
-	    for (unsigned int i : x)
-		ret.push_back(make_shared<Tmp>(i));
+	    for (unsigned int number : numbers)
+		ret.push_back(make_shared<Tmp>(number));
 
 	    return ret;
 	}
