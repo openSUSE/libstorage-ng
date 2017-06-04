@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AlignmentImpl.h"
+#include "storage/Utils/Algorithm.h"
 
 
 namespace storage
@@ -249,7 +250,6 @@ namespace storage
 	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
-	sort(partitions.begin(), partitions.end(), compare_by_number);
 
 	if (true)
 	{
@@ -257,16 +257,7 @@ namespace storage
 
 	    if (get_type() != PtType::DASD)
 	    {
-		vector<const Partition*>::const_iterator it = partitions.begin();
-		unsigned start = 1;
-		while (it != partitions.end() && (*it)->get_number() <= start &&
-		       (*it)->get_number() <= max_primary())
-		{
-		    if ((*it)->get_number() == start)
-			++start;
-		    ++it;
-		}
-		slot.number = start;
+		slot.number = first_missing_number(partitions, 1);
 
 		slot.name = partitionable->get_impl().partition_name(slot.number);
 	    }
