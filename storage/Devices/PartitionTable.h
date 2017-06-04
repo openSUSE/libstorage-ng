@@ -46,6 +46,9 @@ namespace storage
     std::string get_pt_type_name(PtType pt_type);
 
 
+    /**
+     * Number and name are only valid if one of the possible flags is true.
+     */
     class PartitionSlot
     {
     public:
