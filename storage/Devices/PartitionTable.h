@@ -40,12 +40,15 @@ namespace storage
 
     //! Partition Table Type.
     enum class PtType {
-	PT_UNKNOWN, PT_LOOP, MSDOS, GPT, DASD, MAC
+	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC
     };
 
     std::string get_pt_type_name(PtType pt_type);
 
 
+    /**
+     * Number and name are only valid if one of the possible flags is true.
+     */
     class PartitionSlot
     {
     public:
@@ -53,8 +56,12 @@ namespace storage
 	PartitionSlot();
 
 	Region region;
-	unsigned nr;
+
+	unsigned int number;
+	unsigned nr() const ST_DEPRECATED { return number; }
+
 	std::string name;
+
 	bool primary_slot;
 	bool primary_possible;
 	bool extended_slot;

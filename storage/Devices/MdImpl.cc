@@ -42,6 +42,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/Algorithm.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcMdadm.h"
 
@@ -104,6 +105,15 @@ namespace storage
 	getChildValue(node, "superblock-version", superblock_version);
 
 	getChildValue(node, "in-etc-mdadm", in_etc_mdadm);
+    }
+
+
+    string
+    Md::Impl::find_free_name(const Devicegraph* devicegraph)
+    {
+	unsigned int number = first_missing_number(get_all(devicegraph), 0);
+
+	return DEVDIR "/md" + to_string(number);
     }
 
 

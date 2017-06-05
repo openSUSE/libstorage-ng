@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AlignmentImpl.h"
+#include "storage/Utils/Algorithm.h"
 
 
 namespace storage
@@ -249,39 +250,21 @@ namespace storage
 	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
-	sort(partitions.begin(), partitions.end(), compare_by_number);
 
 	if (true)
 	{
 	    PartitionSlot slot;
 
-	    if (true /* label != "dasd" */)
+	    if (get_type() != PtType::DASD)
 	    {
-		vector<const Partition*>::const_iterator it = partitions.begin();
-		unsigned start = 1; // label != "mac" ? 1 : 2;
-		while (it != partitions.end() && (*it)->get_number() <= start &&
-		       (*it)->get_number() <= max_primary())
-		{
-		    if ((*it)->get_number() == start)
-			++start;
-		    /*
-		    if (label == "sun" && start == 3)
-		        ++start;
-		    */
-		    ++it;
-		}
-		slot.nr = start;
-	    }
-	    else
-	    {
-		slot.nr = 1;
-	    }
+		slot.number = first_missing_number(partitions, 1);
 
-	    slot.name = partitionable->get_impl().partition_name(slot.nr);
+		slot.name = partitionable->get_impl().partition_name(slot.number);
+	    }
 
 	    slot.primary_slot = true;
 	    slot.primary_possible = is_primary_possible;
-	    slot.extended_slot = true;
+	    slot.extended_slot = extended_possible();
 	    slot.extended_possible = is_extended_possible;
 	    slot.logical_slot = false;
 	    slot.logical_possible = false;
@@ -297,17 +280,23 @@ namespace storage
 	    for (const Region& unused_region : usable_region.unused_regions(used_regions))
 	    {
 		slot.region = unused_region;
+
 		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))
 		{
-		    slots.push_back(slot);
+		    // For DASDs the slot number is the number of partitions/used regions
+		    // before the slot.
 
-		    /*
-		      if (label == "dasd")
-		      {
-		      slot.nr++;
-		      slot.device = getPartDevice(slot.nr);
-		      }
-		    */
+		    if (get_type() == PtType::DASD)
+		    {
+			slot.number = count_if(used_regions.begin(), used_regions.end(),
+					       [&slot](const Region& used_region) {
+						   return used_region < slot.region;
+					       }) + 1;
+
+			slot.name = partitionable->get_impl().partition_name(slot.number);
+		    }
+
+		    slots.push_back(slot);
 		}
 	    }
 	}
@@ -316,8 +305,8 @@ namespace storage
 	{
 	    PartitionSlot slot;
 
-	    slot.nr = max_primary() + num_logical() + 1;
-	    slot.name = partitionable->get_impl().partition_name(slot.nr);
+	    slot.number = max_primary() + num_logical() + 1;
+	    slot.name = partitionable->get_impl().partition_name(slot.number);
 
 	    slot.primary_slot = false;
 	    slot.primary_possible = false;
@@ -540,14 +529,26 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const PartitionSlot& partition_slot)
     {
-	s << "region:" << partition_slot.region << " nr:" << partition_slot.nr
-	  << " name:" << partition_slot.name
-	  << " primary_slot:" << partition_slot.primary_slot
-	  << " primary_possible:" << partition_slot.primary_possible
-	  << " extended_slot:" << partition_slot.extended_slot
-	  << " extended_possible:" << partition_slot.extended_possible
-	  << " logical_slot:" << partition_slot.logical_slot
-	  << " logical_possible:" << partition_slot.logical_possible;
+	s << "region:" << partition_slot.region << " number:" << partition_slot.number
+	  << " name:" << partition_slot.name;
+
+	if (partition_slot.primary_slot)
+	    s << " primary-slot";
+
+	if (partition_slot.primary_possible)
+	    s << " primary-possible";
+
+	if (partition_slot.extended_slot)
+	    s << " extended-slot";
+
+	if (partition_slot.extended_possible)
+	    s << " extended-possible";
+
+	if (partition_slot.logical_slot)
+	    s << " logical-slot";
+
+	if (partition_slot.logical_possible)
+	    s << " logical-possible";
 
 	return s;
     }
