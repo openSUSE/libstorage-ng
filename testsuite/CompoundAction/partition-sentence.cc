@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_pv)
     
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) as LVM physical device");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) as LVM physical volume");
 }
 
 
@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
     
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted partition /dev/sda2 (500.00 MiB) as LVM physical device");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted partition /dev/sda2 (500.00 MiB) as LVM physical volume");
 }
 
 

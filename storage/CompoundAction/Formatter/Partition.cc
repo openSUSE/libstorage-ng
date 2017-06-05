@@ -129,7 +129,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical device");
+	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical volume");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -141,7 +141,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create partition %1$s (%2$s) as LVM physical device");
+	Text text = _("Create partition %1$s (%2$s) as LVM physical volume");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -153,7 +153,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create LVM physical device over encrypted %1$s (%2$s)");
+	Text text = _("Create LVM physical volume over encrypted %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -165,7 +165,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB)
-	Text text = _("Create LVM physical device over %1$s (%2$s)");
+	Text text = _("Create LVM volume device over %1$s (%2$s)");
 
 	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
     }
@@ -379,12 +379,12 @@ namespace storage
     {
 	auto filesystem = get_created_filesystem();
 
-	Text text = _("Format partition %1$s (%2$s) with %3$s");
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by filesystem name (e.g. ext4)
+	Text text = _("Format partition %1$s (%2$s) with %3$s");
+
 	return sformat(text, 
 		       partition->get_name().c_str(), 
 		       partition->get_size_string().c_str(),
