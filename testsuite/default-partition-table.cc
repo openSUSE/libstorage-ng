@@ -38,8 +38,7 @@ BOOST_AUTO_TEST_CASE(test1)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(320 * GiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 320 * GiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::MSDOS);
 
@@ -56,8 +55,7 @@ BOOST_AUTO_TEST_CASE(test2)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(3 * TiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 3 * TiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
@@ -74,8 +72,7 @@ BOOST_AUTO_TEST_CASE(test3)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(320 * GiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 320 * GiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
