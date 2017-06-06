@@ -8,6 +8,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
@@ -37,8 +38,7 @@ BOOST_AUTO_TEST_CASE(test1)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(320 * GiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 320 * GiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::MSDOS);
 
@@ -55,8 +55,7 @@ BOOST_AUTO_TEST_CASE(test2)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(3 * TiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 3 * TiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
@@ -73,11 +72,27 @@ BOOST_AUTO_TEST_CASE(test3)
 
     Devicegraph* devicegraph = storage.get_staging();
 
-    Disk* sda = Disk::create(devicegraph, "/dev/sda");
-    sda->set_size(320 * GiB);
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", 320 * GiB);
 
     BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
     BOOST_CHECK_EQUAL(sda->get_possible_partition_table_types(),
 		      vector<PtType>({ PtType::GPT, PtType::MSDOS }));
+}
+
+
+BOOST_AUTO_TEST_CASE(test4)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
+
+    BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::DASD);
+
+    BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
+		      vector<PtType>({ PtType::DASD }));
 }
