@@ -131,7 +131,10 @@ namespace storage
     std::vector<PtType>
     Partitionable::Impl::get_possible_partition_table_types() const
     {
-	// TODO other archs
+	// TODO other archs, other DASD types (e.g. FBA)
+
+	if (is_dasd(get_device()))
+	    return { PtType::DASD };
 
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
 
