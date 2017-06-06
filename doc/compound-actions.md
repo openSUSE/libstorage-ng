@@ -4,7 +4,7 @@
 ## Introduction
 
 The main idea behind the compound actions is to group the huge amount of 
-actions, resulting from an actiongraph, in different sets of actions related in 
+actions, resulting from an actiongraph, in different sets of actions related 
 somehow. For example, when a partition is created and then formatted and mounted,
 we can consider all these actions sufficiently related as to group them in only 
 one high order action.
@@ -16,8 +16,8 @@ Let consider the following commit actions:
 *  Mount /dev/sda1 at /
 *  Add mount point / of /dev/sda1 to /etc/fstab
 
-Instead of this four commit actions, we can summarize them in an unique compact 
-action easier to read for the final user:
+Instead of these four commit actions, we can summarize them in an unique compact 
+action easier to read for the end-user:
 
 * Create primary partition /dev/sda1 (20.00 GiB) for / with ext4
 
@@ -33,7 +33,7 @@ action easier to read for the final user:
 * The target device is obtained from the device of a commit action (see next 
   section **Obtaining target device**).
 
-The class `CompoundAction` is accessible via SWIG bindings. This allows to the 
+The class `CompoundAction` is accessible via SWIG bindings. This allows the 
 client (ruby or python) to obtain a list of compound actions objects from an 
 actiongraph instead of a list of strings, as it is actually done with the commit 
 actions.
