@@ -3,6 +3,9 @@
 %template(MapStringString) std::map<std::string, std::string>;
 %template(PairBoolString) std::pair<bool, std::string>;
 
+%template(VectorCompoundActionPtr) std::vector<CompoundAction*>;
+%template(VectorConstCompoundActionPtr) std::vector<const CompoundAction*>;
+
 %template(VectorDevicePtr) std::vector<Device*>;
 %template(VectorConstDevicePtr) std::vector<const Device*>;
 

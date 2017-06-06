@@ -42,6 +42,7 @@
 #include "storage/EtcFstab.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
+#include "storage/CompoundAction/Generator.h"
 
 
 namespace storage
@@ -483,6 +484,28 @@ namespace storage
 	}
     }
 
+
+    void
+    Actiongraph::Impl::generate_compound_actions(const Actiongraph* actiongraph)
+    {
+	compound_actions.clear();
+
+	auto compound_actions = CompoundAction::Generator(actiongraph).generate();
+	for (auto action : compound_actions)
+	    Impl::compound_actions.push_back(shared_ptr<CompoundAction>(action));
+    }
+
+
+    vector<const CompoundAction*>
+    Actiongraph::Impl::get_compound_actions() const
+    {
+	vector<const CompoundAction*> ret;
+	for (auto compound_action : compound_actions)
+	    ret.push_back(compound_action.get());
+
+	return ret;
+    }
+    
 
     void
     Actiongraph::Impl::print_graph() const

@@ -31,6 +31,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Graphviz.h"
+#include "storage/CompoundAction.h"
 
 
 namespace storage
@@ -79,6 +80,9 @@ namespace storage
 
 	// TODO add Action to the public interface and use get_commit_actions instead
 	std::vector<std::string> get_commit_actions_as_strings() const;
+
+	void generate_compound_actions();
+	std::vector<const CompoundAction*> get_compound_actions() const;
 
     public:
 

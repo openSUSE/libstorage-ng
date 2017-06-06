@@ -88,6 +88,20 @@ namespace storage
 
 
     void
+    Actiongraph::generate_compound_actions()
+    {
+	get_impl().generate_compound_actions(this);
+    }
+
+
+    std::vector<const CompoundAction*>
+    Actiongraph::get_compound_actions() const
+    {
+	return get_impl().get_compound_actions();
+    }
+
+
+    void
     Actiongraph::print_graph() const
     {
 	get_impl().print_graph();

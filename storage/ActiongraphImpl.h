@@ -173,6 +173,9 @@ namespace storage
 	vector<const Action::Base*> get_commit_actions() const;
 	void commit(const CommitCallbacks* commit_callbacks) const;
 
+	void generate_compound_actions(const Actiongraph* actiongraph);
+	vector<const CompoundAction*> get_compound_actions() const;
+
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;
 
@@ -196,6 +199,8 @@ namespace storage
 	graph_t graph;
 
 	map<sid_t, vector<vertex_descriptor>> cache_for_actions_with_sid;
+
+	vector<shared_ptr<CompoundAction>> compound_actions; 
 
     };
 

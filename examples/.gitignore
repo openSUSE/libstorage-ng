@@ -9,3 +9,5 @@ display
 humanstring
 probe
 transmogrify
+compound_actions
+!data/*

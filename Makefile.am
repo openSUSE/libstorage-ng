@@ -4,7 +4,7 @@
 
 SUBDIRS = storage doc po examples testsuite bindings integration-tests
 
-AUTOMAKE_OPTIONS = foreign dist-bzip2 no-dist-gzip
+AUTOMAKE_OPTIONS = foreign dist-bzip2 no-dist-gzip subdir-objects
 
 doc_DATA = AUTHORS LICENSE
 

@@ -25,6 +25,7 @@
 // 1. Devices, Filesystems and Holders in order of derivation.
 
 %{
+#include "storage/CompoundAction.h"
 
 #include "storage/Version.h"
 #include "storage/Utils/Swig.h"
@@ -94,6 +95,8 @@
 %include "std_vector.i"
 %include "std_map.i"
 %include "std_pair.i"
+
+%include "../../storage/CompoundAction.h"
 
 %include "../../storage/Version.h"
 %include "../../storage/Utils/Swig.h"
