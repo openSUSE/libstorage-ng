@@ -2,6 +2,8 @@
 # Makefile.am for libstorage/bindings/ruby
 #
 
+if ENABLE_RUBY
+
 SUBDIRS = . examples testsuite
 
 EXTRA_DIST = storage-ruby.i
@@ -34,3 +36,4 @@ storage_wrap.cxx: storage-ruby.i $(DEPENDENCIES)
 
 CLEANFILES = storage.so storage_wrap.cxx storage_wrap.h
 
+endif

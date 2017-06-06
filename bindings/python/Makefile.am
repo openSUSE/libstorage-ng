@@ -2,6 +2,8 @@
 # Makefile.am for libstorage/bindings/python
 #
 
+if ENABLE_PYTHON
+
 SUBDIRS = . examples testsuite
 
 EXTRA_DIST = storage-python.i
@@ -32,3 +34,4 @@ storage.py storage_wrap.cxx: storage-python.i $(DEPENDENCIES)
 
 CLEANFILES = storage.py storage.pyc storage_wrap.cxx storage_wrap.h
 
+endif

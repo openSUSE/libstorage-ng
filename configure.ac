@@ -44,6 +44,14 @@ fillupdir=/var/adm/fillup-templates
 AC_SUBST(docdir)
 AC_SUBST(fillupdir)
 
+AC_ARG_ENABLE([python], AC_HELP_STRING([--disable-python],[Disable Python bindings]),
+	      [enable_python=$enableval],[enable_python=yes])
+AM_CONDITIONAL(ENABLE_PYTHON, [test "x$enable_python" = "xyes"])
+
+AC_ARG_ENABLE([ruby], AC_HELP_STRING([--disable-ruby],[Disable Ruby bindings]),
+	      [enable_ruby=$enableval],[enable_ruby=yes])
+AM_CONDITIONAL(ENABLE_RUBY, [test "x$enable_ruby" = "xyes"])
+
 PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
 PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
 PYTHON_LIBS=$($PYTHON_CONFIG --libs)
