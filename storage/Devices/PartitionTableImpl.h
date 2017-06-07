@@ -55,7 +55,7 @@ namespace storage
 
 	virtual void check() const override;
 
-	Partition* create_partition(const string& name, const Region& region, PartitionType type);
+	virtual Partition* create_partition(const string& name, const Region& region, PartitionType type);
 
 	virtual void delete_partition(Partition* partition);
 

@@ -26,6 +26,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/DasdPtImpl.h"
 #include "storage/Devices/Partitionable.h"
+#include "storage/Devices/PartitionImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
@@ -75,6 +76,42 @@ namespace storage
 				   return lhs->get_region() >= rhs->get_region();
 			       }) != partitions.end())
 	    ST_THROW(Exception("partitions not ordered on DASD partition table"));
+    }
+
+
+    Partition*
+    DasdPt::Impl::create_partition(const string& name, const Region& region, PartitionType type)
+    {
+	Partition* partition = PartitionTable::Impl::create_partition(name, region, type);
+
+	// After creating a partition the numbers of partitions with higher starting sector
+	// are shifted.
+
+	for (Partition* tmp : get_partitions())
+	{
+	    if (tmp->get_region() > region)
+		tmp->get_impl().set_number(tmp->get_impl().get_number() + 1);
+	}
+
+	return partition;
+    }
+
+
+    void
+    DasdPt::Impl::delete_partition(Partition* partition)
+    {
+	Region region = partition->get_region();
+
+	PartitionTable::Impl::delete_partition(partition);
+
+	// After deleting a partition the numbers of partitions with higher starting sector
+	// are shifted.
+
+	for (Partition* tmp : get_partitions())
+	{
+	    if (tmp->get_region() > region)
+		tmp->get_impl().set_number(tmp->get_impl().get_number() - 1);
+	}
     }
 
 
