@@ -27,7 +27,6 @@ libstorage_ng_la_SOURCES =						\
 	Version.h							\
 	CompoundAction.h		CompoundAction.cc		\
 	CompoundActionImpl.h		CompoundActionImpl.cc
-	
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
