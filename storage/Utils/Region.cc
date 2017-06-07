@@ -209,6 +209,20 @@ namespace storage
 
 
     bool
+    Region::operator<=(const Region& rhs) const
+    {
+	return get_impl().operator<=(rhs.get_impl());
+    }
+
+
+    bool
+    Region::operator>=(const Region& rhs) const
+    {
+	return get_impl().operator>=(rhs.get_impl());
+    }
+
+
+    bool
     Region::inside(const Region& rhs) const
     {
 	return get_impl().inside(rhs.get_impl());
