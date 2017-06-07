@@ -64,6 +64,20 @@ namespace storage
     }
 
 
+    void
+    DasdPt::Impl::check() const
+    {
+	// partitions must be ordered according to start sector on DASD partition tables
+
+	vector<const Partition*> partitions = get_partitions();
+	if (std::adjacent_find(partitions.begin(), partitions.end(),
+			       [](const Partition* lhs, const Partition* rhs) {
+				   return lhs->get_region() >= rhs->get_region();
+			       }) != partitions.end())
+	    ST_THROW(Exception("partitions not ordered on DASD partition table"));
+    }
+
+
     Region
     DasdPt::Impl::get_usable_region() const
     {
