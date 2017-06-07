@@ -15,11 +15,10 @@
       <udev-id>scsi-SATA_WDC_WD10EADS-00M_WD-WCAV52321683</udev-id>
       <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683</udev-id>
       <udev-id>wwn-0x50014ee203733bb5</udev-id>
-      <geometry>
-        <cylinders>121601</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>1953525168</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>SATA</transport>
@@ -42,9 +41,9 @@
       <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part1</udev-id>
       <udev-id>wwn-0x50014ee203733bb5-part1</udev-id>
       <region>
-        <start>0</start>
-        <length>132</length>
-        <block-size>8225280</block-size>
+        <start>2048</start>
+        <length>2103296</length>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>131</id>
@@ -65,9 +64,9 @@
       <udev-id>scsi-SATA_WDC_WD10EADS-00_WD-WCAV52321683-part2</udev-id>
       <udev-id>wwn-0x50014ee203733bb5-part2</udev-id>
       <region>
-        <start>131</start>
-        <length>117488</length>
-        <block-size>8225280</block-size>
+        <start>2105344</start>
+        <length>1887442944</length>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>142</id>
@@ -80,11 +79,10 @@
       <size-k>80043264</size-k>
       <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0</udev-id>
-      <geometry>
-        <cylinders>9964</cylinders>
-        <heads>255</heads>
-        <sectors>63</sectors>
-      </geometry>
+      <region>
+        <length>160086528</length>
+        <block-size>512</block-size>
+      </region>
       <range>256</range>
       <rotational>true</rotational>
       <transport>USB</transport>
@@ -101,9 +99,9 @@
       <udev-path>pci-0000:00:1d.0-usb-0:1.6:1.0-scsi-0:0:0:0-part1</udev-path>
       <udev-id>usb-Maxtor_6_Y080L0_411010004145-0:0-part1</udev-id>
       <region>
-        <start>130</start>
-        <length>327</length>
-        <block-size>8225280</block-size>
+        <start>2088960</start>
+        <length>5253120</length>
+        <block-size>512</block-size>
       </region>
       <type>primary</type>
       <id>7</id>
