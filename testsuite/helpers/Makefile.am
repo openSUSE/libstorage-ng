@@ -14,8 +14,5 @@ noinst_PROGRAMS =	\
 	retcode		\
 	segfaulter
 
-echoargs_SOURCES		= echoargs.cc
-echoargs_stderr_SOURCES		= echoargs_stderr.cc
-echoargs_mixed_SOURCES		= echoargs_mixed.cc
-retcode_SOURCES			= retcode.cc
-segfaulter_SOURCES		= segfaulter.cc
+AM_DEFAULT_SOURCE_EXT = .cc
+
