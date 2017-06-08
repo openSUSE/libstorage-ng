@@ -89,28 +89,28 @@ namespace storage
 
 	    const map<string, string> m = makeMap(l, "=", "\"");
 
-	    map<string, string>::const_iterator i = m.find("TYPE");
-	    if (i != m.end())
+	    map<string, string>::const_iterator it1 = m.find("TYPE");
+	    if (it1 != m.end())
 	    {
-		map<string, FsType>::const_iterator it2 = fs_table.find(i->second);
+		map<string, FsType>::const_iterator it2 = fs_table.find(it1->second);
 		if (it2 != fs_table.end())
 		{
 		    entry.is_fs = true;
 		    entry.fs_type = it2->second;
 		}
-		else if (i->second == "linux_raid_member")
+		else if (it1->second == "linux_raid_member")
 		{
 		    entry.is_md = true;
 		}
-		else if (i->second == "LVM2_member")
+		else if (it1->second == "LVM2_member")
 		{
 		    entry.is_lvm = true;
 		}
-		else if (i->second == "crypto_LUKS")
+		else if (it1->second == "crypto_LUKS")
 		{
 		    entry.is_luks = true;
 		}
-		else if (i->second == "bcache")
+		else if (it1->second == "bcache")
 		{
 		    entry.is_bcache = true;
 		}
@@ -118,27 +118,27 @@ namespace storage
 
 	    if (entry.is_fs)
 	    {
-		i = m.find("UUID");
-		if (i != m.end())
-		    entry.fs_uuid = i->second;
+		it1 = m.find("UUID");
+		if (it1 != m.end())
+		    entry.fs_uuid = it1->second;
 
-		i = m.find("LABEL");
-		if (i != m.end())
-		    entry.fs_label = i->second;
+		it1 = m.find("LABEL");
+		if (it1 != m.end())
+		    entry.fs_label = it1->second;
 	    }
 
 	    if (entry.is_luks)
 	    {
-		i = m.find("UUID");
-		if (i != m.end())
-		    entry.luks_uuid = i->second;
+		it1 = m.find("UUID");
+		if (it1 != m.end())
+		    entry.luks_uuid = it1->second;
 	    }
 
 	    if (entry.is_bcache)
 	    {
-		i = m.find("UUID");
-		if (i != m.end())
-		    entry.bcache_uuid = i->second;
+		it1 = m.find("UUID");
+		if (it1 != m.end())
+		    entry.bcache_uuid = it1->second;
 	    }
 
 	    if (entry.is_fs || entry.is_md || entry.is_lvm || entry.is_luks || entry.is_bcache)
