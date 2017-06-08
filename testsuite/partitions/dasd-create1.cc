@@ -19,7 +19,7 @@ using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(test_delete_logical)
+BOOST_AUTO_TEST_CASE(test_create)
 {
     set_logger(get_stdout_logger());
 

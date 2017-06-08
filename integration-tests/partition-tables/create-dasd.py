@@ -2,7 +2,7 @@
 
 # requirements: dasd /dev/dasdb
 
-# Since parted reports a DASD parition table even if there is none this test
+# Since parted reports a DASD partition table even if there is none this test
 # first removed the partition table (which does not work on disk since wipefs
 # does not know about DASD partition tables) and then creates a new. As a
 # result the "volume serial" as displayed by fdasd is reset.
