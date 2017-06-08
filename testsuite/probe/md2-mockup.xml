@@ -612,36 +612,11 @@
       <stdout>x86_64</stdout>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/md0' unit s print</name>
-      <stdout>Model: Linux Software RAID Array (md)</stdout>
-      <stdout>Disk /dev/md0: 67106816s</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>Partition Table: gpt</stdout>
-      <stdout>Disk Flags: </stdout>
-      <stdout></stdout>
-      <stdout>Number  Start    End        Size       File system  Name  Flags</stdout>
-      <stdout> 1      2048s    999423s    997376s    ext4</stdout>
-      <stdout> 2      999424s  67104767s  66105344s  ext4</stdout>
-    </Command>
-    <Command>
-      <name>/usr/sbin/parted --script '/dev/md1' unit s print</name>
-      <stdout>Model: Linux Software RAID Array (md)</stdout>
-      <stdout>Disk /dev/md1: 2088cyl</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
-      <stdout>Partition Table: unknown</stdout>
-      <stdout>Disk Flags:</stdout>
-      <stderr>Error: Invalid argument during seek for read on /dev/md1</stderr>
-    </Command>
-    <Command>
-      <name>/usr/sbin/parted --script '/dev/md2' unit s print</name>
-      <stdout>Model: Linux Software RAID Array (md)</stdout>
-      <stdout>Disk /dev/md2: 2088cyl</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>BIOS cylinder,head,sector geometry: 2088,255,63.  Each cylinder is 8225kB.</stdout>
-      <stdout>Partition Table: unknown</stdout>
-      <stdout>Disk Flags:</stdout>
-      <stderr>Error: /dev/md2: unrecognised disk label</stderr>
+      <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/md0:67106816s:md:512:512:gpt:Linux Software RAID Array:;</stdout>
+      <stdout>1:2048s:999423s:997376s:ext4::;</stdout>
+      <stdout>2:999424s:67104767s:66105344s:ext4::;</stdout>
     </Command>
     <Command>
       <name>/sbin/mdadm --detail '/dev/md0' --export</name>
