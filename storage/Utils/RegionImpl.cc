@@ -132,15 +132,6 @@ namespace storage
 
 
     bool
-    Region::Impl::operator>(const Impl& rhs) const
-    {
-	assert_equal_block_size(rhs);
-
-	return start > rhs.get_start();
-    }
-
-
-    bool
     Region::Impl::inside(const Impl& rhs) const
     {
 	assert_equal_block_size(rhs);

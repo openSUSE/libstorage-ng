@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: partition /dev/sdb1 with size at least 1GiB
+# requirements: partition /dev/sdb1 with size at least 1 GiB
 
 
 from sys import exit
@@ -21,7 +21,13 @@ print staging
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 
-partition.set_size(partition.get_size() - 512 * MiB)
+region = partition.get_region()
+
+region.set_length(region.get_length() - 512 * MiB / region.get_block_size())
+
+region = partition.get_partition_table().align(region)
+
+partition.set_region(region)
 
 print staging
 

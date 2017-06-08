@@ -61,8 +61,11 @@ namespace storage
 
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
+
 	bool operator<(const Impl& rhs) const;
-	bool operator>(const Impl& rhs) const;
+	bool operator>(const Impl& rhs) const { return rhs < *this; }
+	bool operator<=(const Impl& rhs) const { return !(*this > rhs); }
+	bool operator>=(const Impl& rhs) const { return !(*this < rhs); }
 
 	bool inside(const Impl& rhs) const;
 

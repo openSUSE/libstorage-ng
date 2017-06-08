@@ -147,6 +147,9 @@ namespace storage
     {
 	Device::Impl::check();
 
+	if (region.get_block_size() == 0)
+	    ST_THROW(Exception(sformat("block size is zero for %s", get_name().c_str())));
+
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("BlkDevice has invalid name"));
     }

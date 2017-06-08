@@ -411,12 +411,14 @@ namespace storage
     const Actiongraph*
     Storage::Impl::calculate_actiongraph()
     {
-	auto new_actiongraph = new Actiongraph(storage, get_probed(), get_staging());
-	new_actiongraph->generate_compound_actions();
+	actiongraph.reset();	// free old actiongraph
 
-	actiongraph.reset(new_actiongraph);
+	Actiongraph* tmp = new Actiongraph(storage, get_probed(), get_staging());
+	tmp->generate_compound_actions();
 
-	return actiongraph.get();
+	actiongraph.reset(tmp);
+
+	return tmp;
     }
 
 

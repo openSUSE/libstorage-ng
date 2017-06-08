@@ -42,6 +42,8 @@ BOOST_AUTO_TEST_CASE(test_delete_logical)
     msdos->delete_partition(sda5);
     msdos->delete_partition(sda7);
 
+    storage.check();
+
     vector<Partition*> partitions = msdos->get_partitions();
 
     BOOST_REQUIRE_EQUAL(partitions.size(), 3);

@@ -55,7 +55,13 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual void check() const override;
+
 	virtual void save(xmlNode* node) const override;
+
+	virtual Partition* create_partition(const string& name, const Region& region, PartitionType type) override;
+
+	virtual void delete_partition(Partition* partition) override;
 
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
 

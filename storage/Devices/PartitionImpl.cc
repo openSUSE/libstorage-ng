@@ -842,9 +842,17 @@ namespace storage
     {
 	const Partition* partition_rhs = to_partition(rhs);
 	const Partitionable* partitionable = get_partitionable();
+	const PartitionTable* partition_table = get_partition_table();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s "
-	    "resize " + to_string(get_number()) + " " + to_string(partition_rhs->get_region().get_end());
+	    "resize " + to_string(get_number()) + " ";
+
+	// See fix_dasd_sector_size() in class Parted.
+	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
+	    cmd_line += to_string(partition_rhs->get_region().get_end() * 8 + 7);
+	else
+	    cmd_line += to_string(partition_rhs->get_region().get_end());
+
 	cout << cmd_line << endl;
 
 	wait_for_device();

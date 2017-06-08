@@ -30,10 +30,10 @@ BOOST_AUTO_TEST_CASE(valid)
     Msdos* msdos = Msdos::create(devicegraph);
     User::create(devicegraph, sda, msdos);
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
+    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 512), PartitionType::PRIMARY);
     Subdevice::create(devicegraph, msdos, sda1);
 
-    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2", Region(10, 10, 262144), PartitionType::PRIMARY);
+    Partition* sda2 = Partition::create(devicegraph, "/dev/sda2", Region(10, 10, 512), PartitionType::PRIMARY);
     Subdevice::create(devicegraph, msdos, sda2);
 
     Devicegraph::Impl::vertex_descriptor v_sda = sda->get_impl().get_vertex();
