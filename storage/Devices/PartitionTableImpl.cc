@@ -525,6 +525,9 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
+	// TODO does not work for DASD partition table, see
+	// https://bugzilla.suse.com/show_bug.cgi?id=896485
+
 	partitionable->get_impl().wipe_device();
     }
 
