@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <algorithm>
 
 #include "storage/Storage.h"
 #include "storage/Environment.h"
@@ -31,24 +32,34 @@ doit(const string& filename, const vector<string>& commands)
 	string command = commands[index++];
 
 	// remove device with sid
-	if (command == "rm")
+	if (command == "remove")
 	{
 	    Device* device = staging->find_device(std::stoi(commands[index++]));
 	    staging->remove_device(device);
 	}
 	// remove device with sid and its descendants
-	else if (command == "rm+")
+	else if (command == "remove+")
         {
 	    Device* device = staging->find_device(std::stoi(commands[index++]));
 	    device->remove_descendants();
 	    staging->remove_device(device);
         }
 	// only remove descendants of device with sid
-	else if (command == "rm+-")
+	else if (command == "remove+-")
         {
 	    Device* device = staging->find_device(std::stoi(commands[index++]));
 	    device->remove_descendants();
         }
+	// keep device with sid and its descendants
+	else if (command == "keep+")
+	{
+	    Device* device = staging->find_device(std::stoi(commands[index++]));
+	    vector<Device*> devices_to_keep = device->get_descendants(true);
+
+	    for (Device* tmp : Device::get_all(staging))
+		if (find(devices_to_keep.begin(), devices_to_keep.end(), tmp) == devices_to_keep.end())
+		    staging->remove_device(tmp);
+	}
 	else
 	{
 	    cerr << "unknown command" << endl;
