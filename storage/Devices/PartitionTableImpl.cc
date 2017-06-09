@@ -469,11 +469,14 @@ namespace storage
 	    return partition->get_number();
 	};
 
-	std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> key_fnc2 =
+	std::function<int(Actiongraph::Impl::vertex_descriptor)> key_fnc2 =
 	    [&actiongraph, &devicegraph_lhs](Actiongraph::Impl::vertex_descriptor vertex) {
 	    const Action::RenameIn* action = dynamic_cast<const Action::RenameIn*>(actiongraph[vertex]);
-	    const Partition* partition = to_partition(action->get_renamed_blk_device(actiongraph, RHS));
-	    return partition->get_number();
+	    const Partition* partition_lhs = to_partition(action->get_renamed_blk_device(actiongraph, LHS));
+	    const Partition* partition_rhs = to_partition(action->get_renamed_blk_device(actiongraph, RHS));
+	    unsigned int number_lhs = partition_lhs->get_number();
+	    unsigned int number_rhs = partition_rhs->get_number();
+	    return number_lhs > number_rhs ? number_rhs : - number_lhs;
 	};
 
 	std::function<unsigned int(Actiongraph::Impl::vertex_descriptor)> key_fnc3 =
@@ -521,6 +524,9 @@ namespace storage
     PartitionTable::Impl::do_delete() const
     {
 	const Partitionable* partitionable = get_partitionable();
+
+	// TODO does not work for DASD partition table, see
+	// https://bugzilla.suse.com/show_bug.cgi?id=896485
 
 	partitionable->get_impl().wipe_device();
     }

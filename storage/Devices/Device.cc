@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -137,6 +137,20 @@ namespace storage
     Device::detect_resize_info() const
     {
 	return get_impl().detect_resize_info();
+    }
+
+
+    vector<Device*>
+    Device::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<Device>();
+    }
+
+
+    vector<const Device*>
+    Device::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const Device>();
     }
 
 

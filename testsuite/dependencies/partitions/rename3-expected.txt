@@ -1,0 +1,3 @@
+1 - Delete partition /dev/dasdb1 (510.00 MiB) -> 2
+2 - Rename mount point /test2 from /dev/dasdb2 to /dev/dasdb1 in /etc/fstab -> 3
+3 - Rename mount point /test3 from /dev/dasdb3 to /dev/dasdb2 in /etc/fstab ->
