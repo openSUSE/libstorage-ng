@@ -43,13 +43,8 @@ namespace storage
 	: device(device), label(PtType::UNKNOWN), region(), implicit(false),
 	  gpt_enlarge(false), gpt_pmbr_boot(false), logical_sector_size(0), physical_sector_size(0)
     {
-	// TODO only use parted with --machine; requires adaption of unit-tests
-
-	bool old = Mockup::get_mode() == Mockup::Mode::PLAYBACK &&
-	    !Mockup::has_command(PARTEDBIN " --script --machine " + quote(device) + " unit s print");
-
-	SystemCmd cmd(PARTEDBIN " --script " + string(old ? "" : "--machine ") +
-		      quote(device) + " unit s print", SystemCmd::DoThrow);
+	SystemCmd cmd(PARTEDBIN " --script --machine " + quote(device) + " unit s print",
+		      SystemCmd::DoThrow);
 
 	// No check for exit status since parted 3.1 exits with 1 if no
 	// partition table is found.
@@ -76,10 +71,7 @@ namespace storage
 	    }
 	}
 
-	if (!old)
-	    parse(cmd.stdout(), cmd.stderr());
-	else
-	    parse_old(cmd.stdout(), cmd.stderr());
+	parse(cmd.stdout(), cmd.stderr());
     }
 
 
@@ -207,6 +199,8 @@ namespace storage
     void
     Parted::scan_entry_flags(const string& s, Entry& entry) const
     {
+	entry.type = PartitionType::PRIMARY;
+
 	// TODO parted has a strange interface to represent partition type
 	// ids. On GPT it is not possible to distinguish whether the id is
 	// linux or unknown. Work with upsteam parted to improve the
@@ -241,11 +235,6 @@ namespace storage
 
 	if (label == PtType::MSDOS)
 	{
-	    if (entry.number > 4)
-		entry.type = PartitionType::LOGICAL;
-	    else
-		entry.type = contains(flags, "lba") ? PartitionType::EXTENDED : PartitionType::PRIMARY;
-
 	    entry.boot = contains(flags, "boot");
 
 	    vector<string>::const_iterator it1 = find_if(flags.begin(), flags.end(),
@@ -261,6 +250,11 @@ namespace storage
 		if (id > 0)
 		    entry.id = id;
 	    }
+
+	    if (entry.number > 4)
+		entry.type = PartitionType::LOGICAL;
+	    else if (contains(vector<unsigned int>({ 0x05, 0x0f, 0x1f }), entry.id))
+		entry.type = PartitionType::EXTENDED;
 	}
 
 	if (label == PtType::GPT)
@@ -299,89 +293,6 @@ namespace storage
 		region.set_block_size(region.get_block_size() * 8);
 	    }
 	}
-    }
-
-
-    void
-    Parted::parse_old(const vector<string>& stdout, const vector<string>& stderr)
-    {
-	implicit = false;
-	gpt_enlarge = false;
-	gpt_fix_backup = false;
-	gpt_pmbr_boot = false;
-	entries.clear();
-
-	vector<string>::const_iterator pos;
-
-	pos = find_if(stdout, string_starts_with("Partition Table:"));
-	if (pos != stdout.end())
-	{
-	    string label_str = extractNthWord(2, *pos);
-	    if (label_str == "msdos")
-		label = PtType::MSDOS;
-	    else if (label_str == "gpt" || label_str == "gpt_sync_mbr")
-		label = PtType::GPT;
-	    else if (label_str == "dasd")
-		label = PtType::DASD;
-	    else if (label_str == "loop")
-		label = PtType::LOOP;
-	    else if (label_str == "unknown")
-		label = PtType::UNKNOWN;
-	    else
-		throw runtime_error("unknown partition table type");
-	}
-	else
-	    y2war("could not find partition table");
-
-	pos = find_if(stdout, string_starts_with("Disk " + device + ":"));
-	if (pos != stdout.end())
-	    scanDiskSize(*pos);
-	else
-	    y2war("could not find disk size");
-
-	// not present for unrecognised disk label
-	pos = find_if(stdout, string_starts_with("Sector size (logical/physical):"));
-	if (pos != stdout.end())
-	    scanSectorSizeLine(*pos);
-	else
-	    y2war("could not find sector size");
-
-	pos = find_if(stdout, string_starts_with("Disk Flags:"));
-	if (pos != stdout.end())
-	    scanDiskFlags(*pos);
-	else
-	    y2war("could not find disk flags");
-
-	gpt_enlarge = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
-	gpt_fix_backup = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
-							 "primary appears OK")) != stderr.end();
-
-	if (label != PtType::UNKNOWN && label != PtType::LOOP)
-	{
-	    int n = 0;
-
-	    // Parse partition tables: One with cylinder sizes, one with sector sizes
-
-	    for (const string& line : stdout)
-	    {
-		if (boost::starts_with(line, "Number"))
-		    n++;
-
-		string tmp = extractNthWord(0, line);
-		if (!tmp.empty() && isdigit(tmp[0]))
-		{
-		    if (n == 1)
-			scanSectorEntryLine(line);
-		    else
-			ST_THROW( ParseException( string( "Unexpected partition table #" )
-						  + std::to_string(n), "", "" ) );
-		}
-	    }
-	}
-
-	fix_dasd_sector_size();
-
-	y2mil(*this);
     }
 
 
@@ -441,235 +352,6 @@ namespace storage
 	    s << " legacy-boot";
 
 	return s;
-    }
-
-
-    void
-    Parted::scanDiskSize(const string& line)
-    {
-	string tmp(line);
-	tmp.erase(0, tmp.find(':') + 1);
-
-	int num_sectors = 0;
-	tmp >> num_sectors;
-
-	region.set_length(num_sectors);
-    }
-
-
-    void
-    Parted::scanDiskFlags(const string& line)
-    {
-	implicit = boost::contains(line, "implicit_partition_table");
-	gpt_pmbr_boot = boost::contains(line, "pmbr_boot");
-    }
-
-
-    void
-    Parted::scanSectorSizeLine(const string& line)
-    {
-	// FIXME: This parser is too minimalistic and allows too much illegal input.
-	// It turned out to be near impossible to come up with any test case that
-	// actually made it throw an exception and not just silently do something random.
-	// -- shundhammer 2015-05-13
-
-	string tmp(line);
-	tmp.erase(0, tmp.find(':') + 1);
-	tmp = extractNthWord(0, tmp);
-
-	list<string> l = splitString(extractNthWord(0, tmp), "/");
-
-	if (l.size() == 2)
-	{
-	    list<string>::const_iterator i = l.begin();
-	    *i >> logical_sector_size;
-	    i++;
-	    *i >> physical_sector_size;
-
-	    region.set_block_size(logical_sector_size);
-	}
-	else
-	{
-	    ST_THROW( ParseException( "Bad sector size line", line,
-				      "Sector size (logical/physical): 512B/4096B" ) );
-	}
-    }
-
-
-    void
-    Parted::scanSectorEntryLine(const string& line)
-    {
-	// Sample input:
-	//
-	//  1      2048s       4208639s     4206592s     primary   linux-swap(v1)  type=82
-	//  2      4208640s    88100863s    83892224s    primary   btrfs           boot, type=83
-	//  3      88100864s   171991039s   83890176s    primary   btrfs           type=83
-	//  4      171991040s  3907028991s  3735037952s  extended                  lba, type=0f
-	//  5      171993088s  3907008511s  3735015424s  logical   xfs             type=83
-	//
-	// (Number) (Start)    (End)        (Size)       (Type)    (File system)   (Flags)
-
-	Entry entry;
-
-	std::istringstream Data(line);
-	classic(Data);
-
-	unsigned long start_sector = 0;
-	unsigned long end_sector = 0;
-	unsigned long size_sector = 0;
-	string PartitionTypeStr;
-	string skip;
-
-	if (label == PtType::MSDOS)
-	{
-	    Data >> entry.number >> start_sector >> skip >> end_sector >> skip >> size_sector
-		 >> skip >> PartitionTypeStr;
-	}
-	else
-	{
-	    Data >> entry.number >> start_sector >> skip >> end_sector >> skip >> size_sector
-		 >> skip;
-	}
-
-	if ( Data.fail() )	// parse error?
-	{
-	    ST_THROW(ParseException("Bad sector-based partition entry", line,
-				    "2  4208640s  88100863s  83892224s  primary  btrfs boot, type=83"));
-	}
-
-	y2mil("number:" << entry.number << " start-sector:" << start_sector << " end-sector:" <<
-	      end_sector << " size-sector:" << size_sector);
-
-	if (entry.number == 0)
-	    ST_THROW(ParseException("Illegal partition number 0", line, ""));
-
-	entry.region = Region(start_sector, size_sector, region.get_block_size());
-
-	// TODO the parser simply adds the filesystem, name and flags to one
-	// list and then does string matching. This cannot work reliable, just
-	// think of a partition named "esp" containing swap. Use 'parted
-	// --machine'.
-
-	char c;
-	string TInfo;
-	Data.unsetf(ifstream::skipws);
-	Data >> c;
-	char last_char = ',';
-	while( Data.good() && !Data.eof() )
-	{
-	    if ( !isspace(c) )
-	    {
-		TInfo += c;
-		last_char = c;
-	    }
-	    else
-	    {
-		if ( last_char != ',' )
-		{
-		    TInfo += ",";
-		    last_char = ',';
-		}
-	    }
-	    Data >> c;
-	}
-
-	boost::to_lower(TInfo, locale::classic());
-	list<string> flags = splitString(TInfo, ",");
-	y2mil("TInfo:" << TInfo << " flags:" << flags);
-
-	// TODO parted has a strange interface to represent partition type
-	// ids. E.g. swap is not displayed based on the id but the partition
-	// content. On GPT it is also not possible to distinguish whether the
-	// id is linux or unknown. Work with upsteam parted to improve the
-	// interface. The line below should then be entry.id = ID_UNKNOWN.
-
-	entry.id = ID_LINUX;
-
-	if (label == PtType::MSDOS)
-	{
-	    if (PartitionTypeStr == "extended")
-	    {
-		entry.type = PartitionType::EXTENDED;
-		entry.id = ID_EXTENDED;
-	    }
-	    else if (entry.number >= 5)
-	    {
-		entry.type = PartitionType::LOGICAL;
-	    }
-	}
-	else if (contains_if(flags, string_starts_with("fat")))
-	{
-	    entry.id = ID_DOS32;
-	}
-	else if (contains(flags, "ntfs"))
-	{
-	    entry.id = ID_NTFS;
-	}
-	else if (contains_if(flags, string_contains("swap")))
-	{
-	    entry.id = ID_SWAP;
-	}
-	else if (contains(flags, "raid"))
-	{
-	    entry.id = ID_RAID;
-	}
-	else if (contains(flags, "lvm"))
-	{
-	    entry.id = ID_LVM;
-	}
-	else if (contains(flags, "prep"))
-	{
-	    entry.id = ID_PREP;
-	}
-
-	if (contains(flags, "esp"))
-	{
-	    entry.id = ID_ESP;
-	}
-
-	if (label == PtType::MSDOS)
-	{
-	    entry.boot = contains(flags, "boot");
-
-	    list<string>::const_iterator it1 = find_if(flags.begin(), flags.end(),
-						       string_starts_with("type="));
-	    if (it1 != flags.end())
-	    {
-		string val = string(*it1, 5);
-
-		int tmp_id = 0;
-		std::istringstream Data2(val);
-		classic(Data2);
-		Data2 >> std::hex >> tmp_id;
-		if (tmp_id > 0)
-		{
-		    entry.id = tmp_id;
-		}
-	    }
-	}
-
-	if (label == PtType::GPT)
-	{
-	    entry.legacy_boot = contains(flags, "legacy_boot");
-
-	    if (contains(flags, "bios_grub"))
-	    {
-		entry.id = ID_BIOS_BOOT;
-	    }
-	    else if (contains(flags, "msftdata"))
-	    {
-		entry.id = ID_WINDOWS_BASIC_DATA;
-	    }
-	    else if (contains(flags, "msftres"))
-	    {
-		entry.id = ID_MICROSOFT_RESERVED;
-	    }
-	}
-
-	y2mil("number:" << entry.number << " region:" << entry.region << " id:" << entry.id <<
-	      " type:" << toString(entry.type));
-
-	entries.push_back(entry);
     }
 
 }

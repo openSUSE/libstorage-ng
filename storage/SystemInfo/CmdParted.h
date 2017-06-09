@@ -147,12 +147,6 @@ namespace storage
 	void fix_dasd_sector_size();
 
 	/**
-	 * Parse the output of the 'parted' command in 'lines'.
-	 * This may throw a ParseException.
-	 */
-	void parse_old(const vector<string>& stdout, const vector<string>& stderr);
-
-	/**
 	 * Return the stderr output of parted command.
 	 *
 	 * Unlike many similar classes in the SystemInfo/ directory, This class
@@ -173,11 +167,6 @@ namespace storage
 	void scan_entry_flags(const string& s, Entry& entry) const;
 
 	void scan_stderr(const vector<string>& stderr);
-
-	void scanDiskSize(const string& line);
-	void scanDiskFlags(const string& line);
-	void scanSectorSizeLine(const string& line);
-	void scanSectorEntryLine(const string& line);
 
     };
 

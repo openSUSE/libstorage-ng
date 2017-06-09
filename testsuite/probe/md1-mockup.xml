@@ -461,13 +461,9 @@
       <stderr></stderr>
     </Command>
     <Command>
-      <name>/usr/sbin/parted --script '/dev/md0' unit s print</name>
-      <stdout>Model: Linux Software RAID Array (md)</stdout>
-      <stdout>Disk /dev/md0: 4173cyl</stdout>
-      <stdout>Sector size (logical/physical): 512B/512B</stdout>
-      <stdout>BIOS cylinder,head,sector geometry: 4173,255,63.  Each cylinder is 8225kB.</stdout>
-      <stdout>Partition Table: unknown</stdout>
-      <stdout>Disk Flags:</stdout>
+      <name>/usr/sbin/parted --script --machine '/dev/md0' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/md0:4173s:md:512:512:unknown:Linux Software RAID Array:;</stdout>
       <stderr>Error: /dev/md0: unrecognised disk label</stderr>
     </Command>
     <Command>
