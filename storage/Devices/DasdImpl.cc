@@ -32,6 +32,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -117,6 +118,13 @@ namespace storage
 	const Dasdview dasd_view = systeminfo.getDasdview(get_name());
 	dasd_type = dasd_view.get_dasd_type();
 	dasd_format = dasd_view.get_dasd_format();
+    }
+
+
+    uint64_t
+    Dasd::Impl::used_features() const
+    {
+	return UF_DASD | Partitionable::Impl::used_features();
     }
 
 
