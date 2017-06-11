@@ -59,6 +59,8 @@ namespace storage
 
 	const BlkFilesystem* get_created_filesystem() const;
 
+	const MountPoint* get_created_mount_point() const;
+
 	Text default_text() const;
 
 	template <typename Type>

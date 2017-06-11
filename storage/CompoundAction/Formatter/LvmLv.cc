@@ -340,20 +340,20 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
+	auto mount_point = get_created_mount_point();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by mount point (e.g. /home)
 	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
 	return sformat(text, 
 		       lv->get_name().c_str(), 
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str());
+		       mount_point->get_path().c_str());
     }
 
 }

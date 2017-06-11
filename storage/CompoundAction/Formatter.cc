@@ -21,6 +21,7 @@
 
 
 #include "storage/CompoundAction/Formatter.h"
+#include "storage/Filesystems/MountPoint.h"
 
 
 namespace storage
@@ -50,6 +51,21 @@ namespace storage
 	{
 	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
 	    return to_blk_filesystem(device);
+	}
+
+	return nullptr;
+    }
+
+
+    const MountPoint*
+    CompoundAction::Formatter::get_created_mount_point() const
+    {
+	auto action = get_create<storage::MountPoint>();
+
+	if (action)
+	{
+	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+	    return to_mount_point(device);
 	}
 
 	return nullptr;

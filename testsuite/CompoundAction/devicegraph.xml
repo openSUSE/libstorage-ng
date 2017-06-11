@@ -243,11 +243,6 @@
       <path>@/.snapshots/4/snapshot</path>
     </BtrfsSubvolume>
     <BtrfsSubvolume>
-      <sid>77</sid>
-      <id>285</id>
-      <path>@/.snapshots/5/snapshot</path>
-    </BtrfsSubvolume>
-    <BtrfsSubvolume>
       <sid>78</sid>
       <id>343</id>
       <path>@/.snapshots/52/snapshot</path>
@@ -684,10 +679,6 @@
     <Subdevice>
       <source-sid>53</source-sid>
       <target-sid>76</target-sid>
-    </Subdevice>
-    <Subdevice>
-      <source-sid>53</source-sid>
-      <target-sid>77</target-sid>
     </Subdevice>
     <Subdevice>
       <source-sid>53</source-sid>

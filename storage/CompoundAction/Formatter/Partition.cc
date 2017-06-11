@@ -395,7 +395,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
+	auto mount_point = get_created_mount_point();
 
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -406,7 +406,7 @@ namespace storage
 	return sformat(text, 
 		       partition->get_name().c_str(), 
 		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str());
+		       mount_point->get_path().c_str());
     }
 
 }
