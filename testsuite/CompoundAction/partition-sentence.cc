@@ -121,6 +121,25 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_bios)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_sentence_on_mounting)
+{
+    initialize_with_devicegraph("devicegraph.xml");
+
+    auto partition = Partition::find_by_name(staging, "/dev/sda3");
+
+    auto fs = partition->get_blk_filesystem();
+    fs->create_mount_point("/home");
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    
+    auto compound_action = find_compound_action_by_target(actiongraph, partition);
+    
+    BOOST_REQUIRE(compound_action);
+
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Mount partition /dev/sda3 (42.27 GiB) at /home");
+}
+
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
 {
     initialize_with_devicegraph("devicegraph.xml");
