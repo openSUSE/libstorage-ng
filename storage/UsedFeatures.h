@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,8 +51,9 @@ enum : uint64_t
     UF_ISCSI = 1 << 17,
     UF_FCOE = 1 << 18,
     UF_FC = 1 << 19,
+    UF_DASD = 1 << 20,
 
-    UF_QUOTA = 1 << 20
+    UF_QUOTA = 1 << 21
 };
 
 
