@@ -27,7 +27,6 @@ Url:            http://github.com/openSUSE/libstorage-ng
 Source:         libstorage-ng-%{version}.tar.bz2
 %if 0%{?suse_version} >= 1330
 BuildRequires:  libboost_headers-devel
-BuildRequires:  libboost_regex-devel
 BuildRequires:  libboost_test-devel
 %else
 BuildRequires:  boost-devel
