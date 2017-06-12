@@ -93,6 +93,7 @@ AC_OUTPUT(
 	doc/Makefile
 	doc/autodocs/Makefile
 	po/Makefile
+	utils/Makefile
 	examples/Makefile
 	examples/SystemInfo/Makefile
 	testsuite/Makefile

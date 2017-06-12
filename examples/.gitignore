@@ -5,9 +5,5 @@
 .deps
 .libs
 create1
-display
-humanstring
-probe
-transmogrify
 compound_actions
 !data/*

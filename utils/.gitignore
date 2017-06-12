@@ -1,0 +1,10 @@
+*.gv
+*.xml
+*.o
+*.svg
+.deps
+.libs
+display
+humanstring
+probe
+transmogrify
