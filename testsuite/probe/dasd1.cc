@@ -28,7 +28,6 @@ BOOST_AUTO_TEST_CASE(probe)
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
-    // probed->save("dasd1-devicegraph.xml");
 
     probed->check();
 
@@ -39,4 +38,6 @@ BOOST_AUTO_TEST_CASE(probe)
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT2 | UF_EXT4 | UF_SWAP | UF_NFS | UF_DASD);
 }
