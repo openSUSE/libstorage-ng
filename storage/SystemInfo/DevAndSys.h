@@ -80,8 +80,9 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const File& file);
 
-	// TODO rethink interface
+	// TODO rethink interface, maybe template based
 	int get_int() const;
+	unsigned long long get_unsigned_long_long() const;
 	string get_string() const;
 
     private:

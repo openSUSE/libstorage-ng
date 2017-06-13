@@ -123,6 +123,21 @@ namespace storage
     }
 
 
+    unsigned long long
+    File::get_unsigned_long_long() const
+    {
+	if (content.empty())
+	    ST_THROW(Exception("empty file"));
+
+	unsigned long long ret;
+	content.front() >> ret;
+
+	// TODO error checking
+
+	return ret;
+    }
+
+
     string
     File::get_string() const
     {
