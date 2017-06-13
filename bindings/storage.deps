@@ -16,6 +16,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Devices/Device.h			\
 	${top_srcdir}/storage/Devices/Disk.h			\
 	${top_srcdir}/storage/Devices/Dasd.h			\
+	${top_srcdir}/storage/Devices/Multipath.h		\
 	${top_srcdir}/storage/Devices/Md.h			\
 	${top_srcdir}/storage/Devices/Encryption.h		\
 	${top_srcdir}/storage/Devices/Luks.h			\

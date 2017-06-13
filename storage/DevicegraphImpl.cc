@@ -35,6 +35,7 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
+#include "storage/Devices/Multipath.h"
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
@@ -614,6 +615,7 @@ namespace storage
     const map<string, device_load_fnc> device_load_registry = {
 	{ "Disk", &Disk::load },
 	{ "Dasd", &Dasd::load },
+	{ "Multipath", &Multipath::load },
 	{ "Md", &Md::load },
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
@@ -823,7 +825,7 @@ namespace storage
 
 		out << "[ label=" << boost::escape_dot_string(label);
 
-		if (is_disk(device) || is_dasd(device))
+		if (is_disk(device) || is_dasd(device) || is_multipath(device))
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else if (is_md(device))
 		    out << ", color=\"#aaaa00\", fillcolor=\"#ffffaa\"";

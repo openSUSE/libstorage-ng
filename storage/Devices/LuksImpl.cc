@@ -99,7 +99,14 @@ namespace storage
 	{
 	    pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
 	    if (!tmp.first)
+	    {
+		y2mil("user canceled activation of luks " << uuid);
 		return false;
+	    }
+	    else
+	    {
+		y2mil("user allowed activation of luks " << uuid);
+	    }
 
 	    if (attempt == 1)
 		dm_name = next_free_cr_auto_name(systeminfo);

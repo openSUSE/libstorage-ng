@@ -355,6 +355,9 @@
       <stdout>/dev/sdb:33554432s:scsi:512:512:loop:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:0s:33554431s:33554432s:ext4::;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

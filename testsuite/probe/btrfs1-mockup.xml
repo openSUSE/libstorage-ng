@@ -457,6 +457,9 @@
       <stdout>1:2048s:3051519s:3049472s:linux-swap(v1)::type=82;</stdout>
       <stdout>2:3051520s:33554431s:30502912s:btrfs::boot, type=83;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

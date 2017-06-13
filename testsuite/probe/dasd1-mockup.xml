@@ -224,6 +224,9 @@
       <stdout>2:409728s:2437247s:2027520s:linux-swap(v1)::;</stdout>
       <stdout>3:2437248s:14424479s:11987232s:ext4::;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>
