@@ -40,7 +40,7 @@ namespace storage
 	Impl(bool read_only, ProbeMode probe_mode, TargetMode target_mode);
 	~Impl();
 
-	bool get_read_only() const { return read_only; }
+	bool is_read_only() const { return read_only; }
 
 	ProbeMode get_probe_mode() const { return probe_mode; }
 

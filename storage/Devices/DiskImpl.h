@@ -59,7 +59,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	bool get_rotational() const { return rotational; }
+	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
 	Transport get_transport() const { return transport; }

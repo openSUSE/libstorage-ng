@@ -50,9 +50,9 @@ namespace storage
 
 
     bool
-    Environment::get_read_only() const
+    Environment::is_read_only() const
     {
-	return get_impl().get_read_only();
+	return get_impl().is_read_only();
     }
 
 

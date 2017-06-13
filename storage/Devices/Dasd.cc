@@ -113,9 +113,9 @@ namespace storage
 
 
     bool
-    Dasd::get_rotational() const
+    Dasd::is_rotational() const
     {
-	return get_impl().get_rotational();
+	return get_impl().is_rotational();
     }
 
 
