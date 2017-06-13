@@ -345,7 +345,7 @@ namespace storage
 	}
 
 	// TODO depends on mount-by, whether there actually is an entry in fstab,
-	// btrfs multiple devices, ...
+	// multiple devices, ...
 	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
 	{
 	    if (has_mount_point())

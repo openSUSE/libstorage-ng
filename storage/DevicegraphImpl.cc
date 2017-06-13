@@ -66,6 +66,7 @@
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
+#include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
@@ -650,6 +651,7 @@ namespace storage
     const map<string, holder_load_fnc> holder_load_registry = {
 	{ "User", &User::load },
 	{ "MdUser", &MdUser::load },
+	{ "FilesystemUser", &FilesystemUser::load },
 	{ "Subdevice", &Subdevice::load }
     };
 
@@ -880,6 +882,14 @@ namespace storage
 		{
 		    const MdUser* md_user = to_md_user(holder);
 		    if (md_user->is_spare() || md_user->is_faulty())
+			out << "[ style=dotted ]";
+		    else
+			out << "[ style=dashed ]";
+		}
+		else if (is_filesystem_user(holder))
+		{
+		    const FilesystemUser* filesystem_user = to_filesystem_user(holder);
+		    if (filesystem_user->is_journal())
 			out << "[ style=dotted ]";
 		    else
 			out << "[ style=dashed ]";

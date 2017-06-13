@@ -49,12 +49,16 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
+	virtual bool supports_external_journal() const { return true; }
+
     public:
 
 	Impl()
 	    : BlkFilesystem::Impl() {}
 
 	Impl(const xmlNode* node);
+
+	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo) override;
 
 	virtual FsType get_type() const override { return FsType::XFS; }
 

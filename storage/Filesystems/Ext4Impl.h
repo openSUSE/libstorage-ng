@@ -47,6 +47,8 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual bool supports_external_journal() const { return true; }
+
 	virtual FsType get_type() const override { return FsType::EXT4; }
 
 	virtual const char* get_classname() const override { return DeviceTraits<Ext4>::classname; }

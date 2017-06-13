@@ -111,18 +111,18 @@
       <source-sid>45</source-sid>
       <target-sid>46</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>44</source-sid>
       <target-sid>47</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>47</source-sid>
       <target-sid>48</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>46</source-sid>
       <target-sid>49</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>49</source-sid>
       <target-sid>50</target-sid>

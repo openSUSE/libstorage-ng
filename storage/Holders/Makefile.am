@@ -11,6 +11,8 @@ libholders_la_SOURCES =					\
 	UserImpl.h		UserImpl.cc		\
 	MdUser.h		MdUser.cc		\
 	MdUserImpl.h		MdUserImpl.cc		\
+	FilesystemUser.h	FilesystemUser.cc		\
+	FilesystemUserImpl.h	FilesystemUserImpl.cc		\
 	Subdevice.h		Subdevice.cc		\
 	SubdeviceImpl.h		SubdeviceImpl.cc
 
@@ -20,5 +22,6 @@ pkginclude_HEADERS =		\
 	Holder.h		\
 	User.h			\
 	MdUser.h		\
+	FilesystemUser.h	\
 	Subdevice.h
 

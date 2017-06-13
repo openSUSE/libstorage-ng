@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include <iostream>
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/XfsImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -32,6 +33,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -46,6 +48,25 @@ namespace storage
     Xfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    void
+    Xfs::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
+
+	if (!get_uuid().empty())
+	{
+	    const Blkid& blkid = systeminfo.getBlkid();
+	    Blkid::const_iterator it = blkid.find_by_journal_uuid(get_uuid());
+	    if (it != blkid.end())
+	    {
+		BlkDevice* jbd = BlkDevice::Impl::find_by_name(probed, it->first, systeminfo);
+		FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_device());
+		filesystem_user->set_journal(true);
+	    }
+	}
     }
 
 

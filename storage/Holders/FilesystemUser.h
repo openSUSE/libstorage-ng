@@ -1,5 +1,4 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
  * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
@@ -21,47 +20,50 @@
  */
 
 
-#ifndef STORAGE_EXT3_IMPL_H
-#define STORAGE_EXT3_IMPL_H
+#ifndef STORAGE_FILESYSTEM_USER_H
+#define STORAGE_FILESYSTEM_USER_H
 
 
-#include "storage/Filesystems/Ext3.h"
-#include "storage/Filesystems/ExtImpl.h"
+#include "storage/Holders/User.h"
 
 
 namespace storage
 {
 
-    using namespace std;
-
-
-    template <> struct DeviceTraits<Ext3> { static const char* classname; };
-
-
-    class Ext3::Impl : public Ext::Impl
+    class FilesystemUser : public User
     {
     public:
 
-	Impl()
-	    : Ext::Impl() {}
+	static FilesystemUser* create(Devicegraph* devicegraph, const Device* source, const Device* target);
+	static FilesystemUser* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	Impl(const xmlNode* node);
+	virtual FilesystemUser* clone() const override;
 
-	virtual bool supports_external_journal() const { return true; }
+	/**
+	 * Indicates whether the block device is used as an external journal device.
+	 */
+	bool is_journal() const;
 
-	virtual FsType get_type() const override { return FsType::EXT3; }
+	void set_journal(bool journal);
 
-	virtual const char* get_classname() const override { return DeviceTraits<Ext3>::classname; }
+    public:
 
-	virtual string get_displayname() const override { return "ext3"; }
+	class Impl;
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	Impl& get_impl();
+	const Impl& get_impl() const;
 
-	virtual ResizeInfo detect_resize_info() const override;
+    protected:
 
-	virtual uint64_t used_features() const override;
+	FilesystemUser(Impl* impl);
 
     };
+
+
+    bool is_filesystem_user(const Holder* holder);
+
+    FilesystemUser* to_filesystem_user(Holder* device);
+    const FilesystemUser* to_filesystem_user(const Holder* device);
 
 }
 

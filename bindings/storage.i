@@ -81,6 +81,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
+#include "storage/Holders/FilesystemUser.h"
 
 #include "storage/SystemInfo/Arch.h"
 
@@ -153,6 +154,7 @@
 %include "../../storage/Holders/Subdevice.h"
 %include "../../storage/Holders/User.h"
 %include "../../storage/Holders/MdUser.h"
+%include "../../storage/Holders/FilesystemUser.h"
 
 %include "../../storage/SystemInfo/Arch.h"
 

@@ -49,6 +49,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Holders/Subdevice.h		\
 	${top_srcdir}/storage/Holders/User.h			\
 	${top_srcdir}/storage/Holders/MdUser.h			\
+	${top_srcdir}/storage/Holders/FilesystemUser.h		\
 	${top_srcdir}/storage/Storage.h				\
 	${top_srcdir}/storage/FreeInfo.h			\
 	${top_srcdir}/storage/UsedFeatures.h			\

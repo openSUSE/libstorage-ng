@@ -153,26 +153,26 @@
       <source-sid>44</source-sid>
       <target-sid>46</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>47</source-sid>
       <target-sid>50</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>50</source-sid>
       <target-sid>51</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>48</source-sid>
       <target-sid>52</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>52</source-sid>
       <target-sid>53</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>49</source-sid>
       <target-sid>54</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>54</source-sid>
       <target-sid>55</target-sid>

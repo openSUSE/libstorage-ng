@@ -60,6 +60,8 @@ namespace storage
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid);
 
+	virtual bool supports_external_journal() const { return false; }
+
 	const string& get_mkfs_options() const { return mkfs_options; }
 	void set_mkfs_options(const string& mkfs_options);
 
