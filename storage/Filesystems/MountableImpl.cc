@@ -50,7 +50,8 @@ namespace storage
     const char* DeviceTraits<Mountable>::classname = "Mountable";
 
 
-    // strings must match /etc/fstab
+    // Strings must match /etc/fstab and output of blkid - hopefully they are
+    // always the same.
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
 	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2"
