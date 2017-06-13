@@ -17,7 +17,7 @@ using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(dependencies)
+BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());
 
