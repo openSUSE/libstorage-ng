@@ -55,25 +55,6 @@ namespace storage
     void
     Blkid::parse(const vector<string>& lines)
     {
-	static const map<string, FsType> fs_table = {
-	    { "btrfs", FsType::BTRFS },
-	    { "ext2", FsType::EXT2 },
-	    { "ext3", FsType::EXT3 },
-	    { "ext4", FsType::EXT4 },
-	    { "hfs", FsType::HFS },
-	    { "hfsplus", FsType::HFSPLUS },
-	    { "jfs", FsType::JFS },
-	    { "msdos", FsType::VFAT },
-	    { "nilfs2", FsType::NILFS2 },
-	    { "ntfs", FsType::NTFS },
-	    { "reiserfs", FsType::REISERFS },
-	    { "swap", FsType::SWAP },
-	    { "vfat", FsType::VFAT },
-	    { "xfs", FsType::XFS },
-	    { "iso9660", FsType::ISO9660 },
-	    { "udf", FsType::UDF }
-	};
-
 	data.clear();
 
 	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
@@ -92,11 +73,9 @@ namespace storage
 	    map<string, string>::const_iterator it1 = m.find("TYPE");
 	    if (it1 != m.end())
 	    {
-		map<string, FsType>::const_iterator it2 = fs_table.find(it1->second);
-		if (it2 != fs_table.end())
+		if (toValue(it1->second, entry.fs_type, false))
 		{
 		    entry.is_fs = true;
-		    entry.fs_type = it2->second;
 		}
 		else if (it1->second == "linux_raid_member")
 		{
