@@ -62,7 +62,7 @@ namespace storage
 	 */
 	static std::vector<const Disk*> get_all(const Devicegraph* devicegraph);
 
-	bool get_rotational() const;
+	bool is_rotational() const;
 
 	Transport get_transport() const;
 

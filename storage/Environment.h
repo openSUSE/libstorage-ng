@@ -60,7 +60,7 @@ namespace storage
 
 	Environment& operator=(const Environment& environment) = delete;
 
-	bool get_read_only() const;
+	bool is_read_only() const;
 
 	ProbeMode get_probe_mode() const;
 

@@ -58,7 +58,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	bool get_rotational() const { return rotational; }
+	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
 	DasdType get_dasd_type() const { return dasd_type; }

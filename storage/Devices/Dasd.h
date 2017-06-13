@@ -66,7 +66,7 @@ namespace storage
 	 */
 	static std::vector<const Dasd*> get_all(const Devicegraph* devicegraph);
 
-	bool get_rotational() const;
+	bool is_rotational() const;
 
 	DasdType get_dasd_type() const;
 

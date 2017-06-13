@@ -121,9 +121,9 @@ namespace storage
 
 
     bool
-    Disk::get_rotational() const
+    Disk::is_rotational() const
     {
-	return get_impl().get_rotational();
+	return get_impl().is_rotational();
     }
 
 
