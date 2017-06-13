@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,13 +80,13 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	bool find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const;
+	const_iterator find_by_name(const string& device, SystemInfo& systeminfo) const;
 
 	/**
 	 * Get the sole entry. Useful when constructor with device parameter
 	 * was used.
 	 */
-	bool get_sole_entry(Entry& entry) const;
+	const_iterator get_sole_entry() const;
 
 	bool any_md() const;
 	bool any_lvm() const;

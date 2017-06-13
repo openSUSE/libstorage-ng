@@ -218,11 +218,11 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	const Blkid& blkid = systeminfo.getBlkid();
-	Blkid::Entry entry2;
-	if (!blkid.find_by_name(blk_device->get_name(), entry2, systeminfo))
+	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	if (it == blkid.end())
 	    ST_THROW(Exception("failed to probe luks uuid"));
 
-	uuid = entry2.luks_uuid;
+	uuid = it->second.luks_uuid;
     }
 
 
@@ -231,10 +231,10 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	Blkid blkid(blk_device->get_name());
-	Blkid::Entry entry;
-	if (blkid.get_sole_entry(entry))
-	    uuid = entry.luks_uuid;
+	const Blkid& blkid(blk_device->get_name());
+	Blkid::const_iterator it = blkid.get_sole_entry();
+	if (it != blkid.end())
+	    uuid = it->second.luks_uuid;
     }
 
 

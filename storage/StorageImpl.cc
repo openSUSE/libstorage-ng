@@ -207,24 +207,25 @@ namespace storage
 	    if (blk_device->num_children() != 0)
 		continue;
 
-	    Blkid::Entry entry;
-	    if (systeminfo.getBlkid().find_by_name(blk_device->get_name(), entry, systeminfo))
+	    const Blkid& blkid = systeminfo.getBlkid();
+	    Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	    if (it != blkid.end())
 	    {
-		if (entry.is_fs)
+		if (it->second.is_fs)
 		{
-		    if (entry.fs_type != FsType::EXT2 && entry.fs_type != FsType::EXT3 &&
-			entry.fs_type != FsType::EXT4 && entry.fs_type != FsType::BTRFS &&
-			entry.fs_type != FsType::REISERFS && entry.fs_type != FsType::XFS &&
-			entry.fs_type != FsType::SWAP && entry.fs_type != FsType::NTFS &&
-			entry.fs_type != FsType::VFAT && entry.fs_type != FsType::ISO9660 &&
-			entry.fs_type != FsType::UDF)
+		    if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
+			it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
+			it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
+			it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
+			it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
+			it->second.fs_type != FsType::UDF)
 		    {
-			y2war("detected unsupported filesystem " << toString(entry.fs_type) << " on " <<
+			y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
 			      blk_device->get_name());
 			continue;
 		    }
 
-		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(entry.fs_type);
+		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
 		    blk_filesystem->get_impl().probe_pass_3(probed, systeminfo);
 		}
 	    }

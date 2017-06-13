@@ -128,41 +128,26 @@ namespace storage
     }
 
 
-    bool
-    Blkid::find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const
+    Blkid::const_iterator
+    Blkid::find_by_name(const string& device, SystemInfo& systeminfo) const
     {
 	const_iterator it = data.find(device);
-	if (it != data.end())
-	{
-	    entry = it->second;
-	    return true;
-	}
+	if (it != end())
+	    return it;
 
 	dev_t majorminor = systeminfo.getCmdUdevadmInfo(device).get_majorminor();
+	return find_if(begin(), end(), [&systeminfo, &majorminor](const value_type& tmp) {
+	    return systeminfo.getCmdUdevadmInfo(tmp.first).get_majorminor() == majorminor;
+	});
 
-	for (const value_type& value : data)
-	{
-	    if (systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor)
-	    {
-		entry = value.second;
-		return true;
-	    }
-	}
 
-	return false;
     }
 
 
-    bool
-    Blkid::get_sole_entry(Entry& entry) const
+    Blkid::const_iterator
+    Blkid::get_sole_entry() const
     {
-	if (data.size() == 1)
-	{
-	    entry = data.begin()->second;
-	    return true;
-	}
-
-	return false;
+	return data.size() == 1 ? begin() : end();
     }
 
 

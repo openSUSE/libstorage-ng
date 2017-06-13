@@ -140,11 +140,11 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	const Blkid& blkid = systeminfo.getBlkid();
-	Blkid::Entry entry;
-	if (blkid.find_by_name(blk_device->get_name(), entry, systeminfo))
+	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	if (it != blkid.end())
 	{
-	    label = entry.fs_label;
-	    uuid = entry.fs_uuid;
+	    label = it->second.fs_label;
+	    uuid = it->second.fs_uuid;
 	}
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, to_blk_filesystem(get_device()));
@@ -165,10 +165,10 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	Blkid blkid(blk_device->get_name());
-	Blkid::Entry entry;
-	if (blkid.get_sole_entry(entry))
-	    uuid = entry.fs_uuid;
+	const Blkid& blkid(blk_device->get_name());
+	Blkid::const_iterator it = blkid.get_sole_entry();
+	if (it != blkid.end())
+	    uuid = it->second.fs_uuid;
     }
 
 
