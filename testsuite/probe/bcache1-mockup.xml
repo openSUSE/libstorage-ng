@@ -807,6 +807,9 @@
       <stdout>1:2048s:16777215s:16775168s:::;</stdout>
       <stdout>2:16777216s:33552383s:16775168s:::;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

@@ -471,6 +471,9 @@
       <!-- output faked -->
       <stdout>MD_UUID=2ce25515:3d255c09:a0e91f18:d9c098d3</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

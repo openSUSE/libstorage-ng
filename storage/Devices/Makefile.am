@@ -13,6 +13,8 @@ libdevices_la_SOURCES =					\
 	DiskImpl.h		DiskImpl.cc		\
 	Dasd.h			Dasd.cc			\
 	DasdImpl.h		DasdImpl.cc		\
+	Multipath.h		Multipath.cc		\
+	MultipathImpl.h		MultipathImpl.cc	\
 	Md.h			Md.cc			\
 	MdImpl.h		MdImpl.cc		\
 	Partitionable.h		Partitionable.cc	\
@@ -49,6 +51,7 @@ pkginclude_HEADERS =		\
 	BlkDevice.h		\
 	Disk.h			\
 	Dasd.h			\
+	Multipath.h		\
 	Md.h			\
 	Partitionable.h		\
 	PartitionTable.h	\

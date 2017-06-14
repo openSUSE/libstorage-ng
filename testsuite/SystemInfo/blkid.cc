@@ -147,3 +147,23 @@ BOOST_AUTO_TEST_CASE(parse6)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_external_journal)
+{
+    vector<string> input = {
+	"/dev/sdc1: UUID=\"6ed5af86-99f7-4ffc-aeef-1e9da94c8f10\" EXT_JOURNAL=\"d1cdcace-86b4-4f36-aaf3-38897c95108d\" TYPE=\"ext4\"",
+	"/dev/sdc2: UUID=\"d1cdcace-86b4-4f36-aaf3-38897c95108d\" LOGUUID=\"d1cdcace-86b4-4f36-aaf3-38897c95108d\" TYPE=\"jbd\"",
+	"/dev/sdc3: UUID=\"3937b487-0ea8-4605-a2b1-69504a79ad02\" TYPE=\"xfs\"",
+	"/dev/sdc4: LOGUUID=\"3937b487-0ea8-4605-a2b1-69504a79ad02\" TYPE=\"xfs_external_log\""
+    };
+
+    vector<string> output = {
+	"data[/dev/sdc1] -> is-fs:true fs-type:ext4 fs-uuid:6ed5af86-99f7-4ffc-aeef-1e9da94c8f10 fs-journal-uuid:d1cdcace-86b4-4f36-aaf3-38897c95108d",
+	"data[/dev/sdc2] -> is-journal:true journal-uuid:d1cdcace-86b4-4f36-aaf3-38897c95108d",
+	"data[/dev/sdc3] -> is-fs:true fs-type:xfs fs-uuid:3937b487-0ea8-4605-a2b1-69504a79ad02",
+	"data[/dev/sdc4] -> is-journal:true journal-uuid:3937b487-0ea8-4605-a2b1-69504a79ad02"
+    };
+
+    check(input, output);
+}

@@ -64,6 +64,7 @@
 #include "storage/Devices/Partitionable.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
+#include "storage/Devices/Multipath.h"
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
@@ -80,6 +81,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
+#include "storage/Holders/FilesystemUser.h"
 
 #include "storage/SystemInfo/Arch.h"
 
@@ -135,6 +137,7 @@
 %include "../../storage/Devices/Partitionable.h"
 %include "../../storage/Devices/Disk.h"
 %include "../../storage/Devices/Dasd.h"
+%include "../../storage/Devices/Multipath.h"
 %include "../../storage/Devices/Md.h"
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
@@ -151,6 +154,7 @@
 %include "../../storage/Holders/Subdevice.h"
 %include "../../storage/Holders/User.h"
 %include "../../storage/Holders/MdUser.h"
+%include "../../storage/Holders/FilesystemUser.h"
 
 %include "../../storage/SystemInfo/Arch.h"
 

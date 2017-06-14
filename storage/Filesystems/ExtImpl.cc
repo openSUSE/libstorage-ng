@@ -27,7 +27,9 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/ExtImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 namespace storage
@@ -42,6 +44,32 @@ namespace storage
     Ext::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    void
+    Ext::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    {
+	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
+
+	if (supports_external_journal())
+	{
+	    const BlkDevice* blk_device = get_blk_device();
+
+	    const Blkid& blkid = systeminfo.getBlkid();
+
+	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	    if (it1 != blkid.end() && !it1->second.fs_journal_uuid.empty())
+	    {
+		Blkid::const_iterator it2 = blkid.find_by_journal_uuid(it1->second.fs_journal_uuid);
+		if (it2 != blkid.end())
+		{
+		    BlkDevice* jbd = BlkDevice::Impl::find_by_name(probed, it2->first, systeminfo);
+		    FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_device());
+		    filesystem_user->set_journal(true);
+		}
+	    }
+	}
     }
 
 

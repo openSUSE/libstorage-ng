@@ -32,7 +32,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Holders/User.h"
+#include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/Ext3.h"
@@ -403,7 +403,7 @@ namespace storage
 
 	BlkFilesystem* blk_filesystem = it->second(devicegraph);
 
-	User::create(devicegraph, get_device(), blk_filesystem);
+	FilesystemUser::create(devicegraph, get_device(), blk_filesystem);
 
 	return blk_filesystem;
     }

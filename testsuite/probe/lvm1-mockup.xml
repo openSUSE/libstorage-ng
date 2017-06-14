@@ -649,6 +649,9 @@
       <stdout>/dev/sda:33554432s:scsi:512:512:msdos:ATA VBOX HARDDISK:;</stdout>
       <stdout>1:2048s:33554431s:33552384s:::boot, lvm, type=8e;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

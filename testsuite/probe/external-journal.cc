@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(probe)
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("dasd1-mockup.xml");
+    environment.set_mockup_filename("external-journal-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -33,11 +33,11 @@ BOOST_AUTO_TEST_CASE(probe)
 
     Devicegraph* staging = storage.get_staging();
 
-    staging->load("dasd1-devicegraph.xml");
+    staging->load("external-journal-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT2 | UF_EXT4 | UF_SWAP | UF_NFS | UF_DASD);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT4 | UF_XFS | UF_SWAP);
 }

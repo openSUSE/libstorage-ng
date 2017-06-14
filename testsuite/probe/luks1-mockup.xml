@@ -444,6 +444,9 @@
       <stdout>1:2048s:16771071s:16769024s:ext4::boot, type=83;</stdout>
       <stdout>2:16771072s:33554431s:16783360s:::type=83;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2+ -ll</name>
+    </Command>
   </Commands>
   <Files>
     <File>

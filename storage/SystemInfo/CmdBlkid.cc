@@ -77,6 +77,10 @@ namespace storage
 		{
 		    entry.is_fs = true;
 		}
+		else if (it1->second == "jbd" || it1->second == "xfs_external_log")
+		{
+		    entry.is_journal = true;
+		}
 		else if (it1->second == "linux_raid_member")
 		{
 		    entry.is_md = true;
@@ -104,6 +108,17 @@ namespace storage
 		it1 = m.find("LABEL");
 		if (it1 != m.end())
 		    entry.fs_label = it1->second;
+
+		it1 = m.find("EXT_JOURNAL");
+		if (it1 != m.end())
+		    entry.fs_journal_uuid = it1->second;
+	    }
+
+	    if (entry.is_journal)
+	    {
+		it1 = m.find("LOGUUID");
+		if (it1 != m.end())
+		    entry.journal_uuid = it1->second;
 	    }
 
 	    if (entry.is_luks)
@@ -120,7 +135,8 @@ namespace storage
 		    entry.bcache_uuid = it1->second;
 	    }
 
-	    if (entry.is_fs || entry.is_md || entry.is_lvm || entry.is_luks || entry.is_bcache)
+	    if (entry.is_fs || entry.is_journal || entry.is_md || entry.is_lvm || entry.is_luks ||
+		entry.is_bcache)
 		data[device] = entry;
 	}
 
@@ -128,41 +144,33 @@ namespace storage
     }
 
 
-    bool
-    Blkid::find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const
+    Blkid::const_iterator
+    Blkid::find_by_name(const string& device, SystemInfo& systeminfo) const
     {
 	const_iterator it = data.find(device);
-	if (it != data.end())
-	{
-	    entry = it->second;
-	    return true;
-	}
+	if (it != end())
+	    return it;
 
 	dev_t majorminor = systeminfo.getCmdUdevadmInfo(device).get_majorminor();
-
-	for (const value_type& value : data)
-	{
-	    if (systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor)
-	    {
-		entry = value.second;
-		return true;
-	    }
-	}
-
-	return false;
+	return find_if(begin(), end(), [&systeminfo, &majorminor](const value_type& tmp) {
+	    return systeminfo.getCmdUdevadmInfo(tmp.first).get_majorminor() == majorminor;
+	});
     }
 
 
-    bool
-    Blkid::get_sole_entry(Entry& entry) const
+    Blkid::const_iterator
+    Blkid::find_by_journal_uuid(const string& journal_uuid) const
     {
-	if (data.size() == 1)
-	{
-	    entry = data.begin()->second;
-	    return true;
-	}
+	return find_if(begin(), end(), [&journal_uuid](const value_type& tmp) {
+	    return tmp.second.is_journal && tmp.second.journal_uuid == journal_uuid;
+	});
+    }
 
-	return false;
+
+    Blkid::const_iterator
+    Blkid::get_sole_entry() const
+    {
+	return data.size() == 1 ? begin() : end();
     }
 
 
@@ -215,6 +223,15 @@ namespace storage
 		s << " fs-uuid:" << entry.fs_uuid;
 	    if (!entry.fs_label.empty())
 		s << " fs-label:" << entry.fs_label;
+	    if (!entry.fs_journal_uuid.empty())
+		s << " fs-journal-uuid:" << entry.fs_journal_uuid;
+	}
+
+	if (entry.is_journal)
+	{
+	    s << "is-journal:" << entry.is_journal;
+	    if (!entry.journal_uuid.empty())
+		s << " journal-uuid:" << entry.journal_uuid;
 	}
 
 	if (entry.is_md)

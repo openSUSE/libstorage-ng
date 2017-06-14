@@ -209,13 +209,13 @@
       <source-sid>45</source-sid>
       <target-sid>51</target-sid>
     </MdUser>
-    <User>
+    <FilesystemUser>
       <source-sid>48</source-sid>
       <target-sid>52</target-sid>
-    </User>
-    <User>
+    </FilesystemUser>
+    <FilesystemUser>
       <source-sid>49</source-sid>
       <target-sid>53</target-sid>
-    </User>
+    </FilesystemUser>
   </Holders>
 </Devicegraph>

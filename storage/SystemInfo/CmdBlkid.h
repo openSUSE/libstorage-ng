@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,14 +51,18 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(),
-		      is_md(false), is_lvm(false), is_luks(false), luks_uuid(),
-		      is_bcache(false), bcache_uuid() {}
+	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(), fs_journal_uuid(),
+		      is_journal(false), journal_uuid(), is_md(false), is_lvm(false),
+		      is_luks(false), luks_uuid(), is_bcache(false), bcache_uuid() {}
 
 	    bool is_fs;
 	    FsType fs_type;
 	    string fs_uuid;
 	    string fs_label;
+	    string fs_journal_uuid;
+
+	    bool is_journal;
+	    string journal_uuid;
 
 	    bool is_md;
 
@@ -80,13 +84,15 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	bool find_by_name(const string& device, Entry& entry, SystemInfo& systeminfo) const;
+	const_iterator find_by_name(const string& device, SystemInfo& systeminfo) const;
+
+	const_iterator find_by_journal_uuid(const string& journal_uuid) const;
 
 	/**
 	 * Get the sole entry. Useful when constructor with device parameter
 	 * was used.
 	 */
-	bool get_sole_entry(Entry& entry) const;
+	const_iterator get_sole_entry() const;
 
 	bool any_md() const;
 	bool any_lvm() const;

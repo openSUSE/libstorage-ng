@@ -86,7 +86,7 @@ namespace storage
 
 	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
-	set_region(Region(0, size_file.get_int(), 512));
+	set_region(Region(0, size_file.get_unsigned_long_long(), 512));
     }
 
 

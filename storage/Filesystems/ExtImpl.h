@@ -48,6 +48,8 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
+	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo) override;
+
     public:
 
 	Impl()

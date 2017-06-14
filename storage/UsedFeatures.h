@@ -45,7 +45,7 @@ enum : uint64_t
     UF_LVM = 1 << 12,
     UF_MDRAID = 1 << 13,
     UF_DMRAID = 1 << 14,
-    UF_DMMULTIPATH = 1 << 15,
+    UF_MULTIPATH = 1 << 15,
     UF_BCACHE = 1 << 16,
 
     UF_ISCSI = 1 << 17,

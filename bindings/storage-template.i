@@ -18,6 +18,9 @@
 %template(VectorDasdPtr) std::vector<Dasd*>;
 %template(VectorConstDasdPtr) std::vector<const Dasd*>;
 
+%template(VectorMultipathPtr) std::vector<Multipath*>;
+%template(VectorConstMultipathPtr) std::vector<const Multipath*>;
+
 %template(VectorMdPtr) std::vector<Md*>;
 %template(VectorConstMdPtr) std::vector<const Md*>;
 
