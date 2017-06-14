@@ -49,7 +49,7 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
-	virtual bool supports_external_journal() const { return true; }
+	virtual bool supports_external_journal() const override { return true; }
 
     public:
 
