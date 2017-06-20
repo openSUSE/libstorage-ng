@@ -147,8 +147,7 @@ namespace storage
 	 * Note: This is not neccessarily the complete error message.
 	 * The whole error message is provided by asString or dumpOn.
 	 **/
-	const std::string & msg() const
-	    { return _msg; }
+	const std::string& msg() const { return _msg; }
 
 	/**
 	 *
@@ -158,8 +157,7 @@ namespace storage
 	/**
 	 * Set a new message string.
 	 **/
-	void setMsg( const std::string & msg )
-	    { _msg = msg; }
+	void setMsg(const std::string& msg) { _msg = msg; }
 
 	/**
 	 * Error message provided by dumpOn as string.
@@ -189,20 +187,18 @@ namespace storage
 	 *
 	 * Reimplemented from std::exception.
 	 **/
-	virtual const char * what() const noexcept
-	    { return _msg.c_str(); }
+	virtual const char* what() const noexcept override { return _msg.c_str(); }
 
     protected:
 
 	/**
 	 * Overload this to print a proper error message.
 	 **/
-	virtual std::ostream & dumpOn( std::ostream & str ) const;
+	virtual std::ostream& dumpOn(std::ostream& str) const;
 
 
     private:
-	friend std::ostream & operator<<( std::ostream & str,
-					  const Exception & obj );
+	friend std::ostream& operator<<(std::ostream& str, const Exception& obj);
 
 
 	mutable CodeLocation	_where;
@@ -329,7 +325,7 @@ namespace storage
 	 * Write proper error message with all relevant data.
 	 * Reimplemented from Exception.
 	 **/
-	virtual std::ostream & dumpOn( std::ostream & str ) const
+	virtual std::ostream& dumpOn(std::ostream& str) const override
 	{
 	    std::string prefix = msg();
 
@@ -405,7 +401,7 @@ namespace storage
 	 * Write proper error message with all relevant data.
 	 * Reimplemented from Exception.
 	 **/
-	virtual std::ostream & dumpOn( std::ostream & str ) const
+	virtual std::ostream& dumpOn(std::ostream& str) const override
 	{
 	    std::string prefix = "Parse error";
 

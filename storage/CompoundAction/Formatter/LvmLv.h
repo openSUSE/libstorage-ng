@@ -40,7 +40,7 @@ namespace storage
 
     private:
 
-	Text text() const;
+	Text text() const override;
 
 	Text create_encrypted_with_swap_text() const;
 	Text create_with_swap_text() const;

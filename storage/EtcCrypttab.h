@@ -43,7 +43,7 @@ namespace storage
     /**
      * This is really just an alias for MountOpts which work just the same way.
      **/
-    class CryptOpts: public MountOpts
+    class CryptOpts : public MountOpts
     {
     public:
 	/**
@@ -69,7 +69,7 @@ namespace storage
     /**
      * Class representing one /etc/crypttab entry.
      **/
-    class CrypttabEntry: public ColumnConfigFile::Entry
+    class CrypttabEntry : public ColumnConfigFile::Entry
     {
     public:
 
@@ -88,14 +88,14 @@ namespace storage
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual void populate_columns();
+	virtual void populate_columns() override;
 
 	/**
 	 * Parse a content line. Return 'true' on success, 'false' on error.
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual bool parse( const string & line, int line_no = -1 );
+	virtual bool parse(const string& line, int line_no = -1) override;
 
 
 	// Getters; see man crypttab(5)
@@ -129,7 +129,7 @@ namespace storage
     /**
      * Class representing /etc/crypttab.
      **/
-    class EtcCrypttab: public ColumnConfigFile
+    class EtcCrypttab : public ColumnConfigFile
     {
     public:
 
@@ -175,7 +175,7 @@ namespace storage
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual Entry * create_entry() { return new CrypttabEntry(); }
+	virtual Entry* create_entry() override { return new CrypttabEntry(); }
 
         /**
          * Dump the current contents to the log.

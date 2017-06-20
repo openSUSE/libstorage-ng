@@ -43,7 +43,7 @@ namespace storage
 
 	const BlkDevice* get_blk_device() const;
 
-	Text text() const;
+	Text text() const override;
 
 	Text delete_text() const;
 

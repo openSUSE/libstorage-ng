@@ -46,11 +46,11 @@ namespace storage
  * There are 6 columns, separated by whitespace. This class is a refinement of
  * the more generic CommentedConfigFile class to handle such cases.
  **/
-class ColumnConfigFile: public CommentedConfigFile
+class ColumnConfigFile : public CommentedConfigFile
 {
 public:
 
-    class Entry: public CommentedConfigFile::Entry
+    class Entry : public CommentedConfigFile::Entry
     {
     public:
 	Entry() {}
@@ -61,7 +61,7 @@ public:
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual string format();
+	virtual string format() override;
 
         /**
          * Populate the columns. This is called just prior to calculating the
@@ -77,7 +77,7 @@ public:
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual bool parse( const string & line, int line_no = -1 );
+	virtual bool parse(const string& line, int line_no = -1) override;
 
 	/**
 	 * Return the number of columns for this entry.
@@ -125,7 +125,7 @@ public:
      *
      * Reimplemented from CommentedConfigFile.
      **/
-    virtual Entry * create_entry() { return new ColumnConfigFile::Entry(); }
+    virtual Entry* create_entry() override { return new ColumnConfigFile::Entry(); }
 
     /**
      * Format the entire file as string lines, including header, footer and all
@@ -133,7 +133,7 @@ public:
      *
      * Reimplemented from CommentedConfigFile.
      **/
-    virtual string_vec format_lines();
+    virtual string_vec format_lines() override;
 
     /**
      * Return 'true' if columns should be padded upon output, i.e. they should
