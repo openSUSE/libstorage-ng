@@ -16,5 +16,5 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print Md.find_free_name(staging)
+print Md.find_free_numeric_name(staging)
 
