@@ -66,8 +66,14 @@ namespace storage
 	std::vector<BlkDevice*> get_devices();
 	std::vector<const BlkDevice*> get_devices() const;
 
+	/**
+	 * Returns true if the name of the MD is numeric.
+	 */
 	bool is_numeric() const;
 
+	/**
+	 * Returns the number of the MD. Throws if the MD is not numeric.
+	 */
 	unsigned int get_number() const;
 
 	MdLevel get_md_level() const;
