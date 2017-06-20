@@ -150,7 +150,6 @@ namespace storage
 	bool mountable_has_active_mount_point() const;
 
 	const Mountable* mountable;
-	bool read_only;
 
 	unique_ptr<TmpMount> tmp_mount;
 

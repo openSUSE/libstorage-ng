@@ -350,7 +350,7 @@ namespace storage
 
 
     EnsureMounted::EnsureMounted(const Mountable* mountable, bool read_only)
-	: mountable(mountable), read_only(read_only), tmp_mount()
+	: mountable(mountable), tmp_mount()
     {
 	y2mil("EnsureMounted " << *mountable);
 
