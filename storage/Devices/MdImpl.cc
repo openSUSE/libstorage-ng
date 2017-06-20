@@ -23,7 +23,6 @@
 
 #include <ctype.h>
 #include <iostream>
-#include <regex>
 
 #include "storage/Devices/MdImpl.h"
 #include "storage/Holders/MdUserImpl.h"
@@ -71,22 +70,38 @@ namespace storage
     });
 
 
+    const regex Md::Impl::numeric_name_regex(DEVDIR "/md([0-9]+)", regex_constants::extended);
+
+
+    // mdadm(8) states that any string for the names is allowed. That is
+    // not correct: A '/' is reported as invalid by mdadm itself. A ' '
+    // does not work, e.g. the links in /dev/md/ are broken.
+
+    const regex Md::Impl::format1_name_regex(DEVMDDIR "/([^/ ]+)", regex_constants::extended);
+    const regex Md::Impl::format2_name_regex(DEVMDDIR "_([^/ ]+)", regex_constants::extended);
+
+
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
-	  uuid(), superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), uuid(),
+	  superblock_version(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	string::size_type pos = string(DEVDIR).size() + 1;
-	set_sysfs_name(name.substr(pos));
-	set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
+	set_range(256);
+
+	if (is_numeric())
+	{
+	    string::size_type pos = string(DEVDIR).size() + 1;
+	    set_sysfs_name(name.substr(pos));
+	    set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
+	}
     }
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), md_name(),
-	  uuid(), superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), uuid(),
+	  superblock_version(), in_etc_mdadm(true)
     {
 	string tmp;
 
@@ -98,8 +113,6 @@ namespace storage
 
 	getChildValue(node, "chunk-size", chunk_size);
 
-	getChildValue(node, "md-name", md_name);
-
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "superblock-version", superblock_version);
@@ -109,11 +122,15 @@ namespace storage
 
 
     string
-    Md::Impl::find_free_name(const Devicegraph* devicegraph)
+    Md::Impl::find_free_numeric_name(const Devicegraph* devicegraph)
     {
-	unsigned int number = first_missing_number(get_all(devicegraph), 0);
+	vector<const Md*> mds = get_all(devicegraph);
 
-	return DEVDIR "/md" + to_string(number);
+	erase_if(mds, [](const Md* md) { return !md->is_numeric(); });
+
+	unsigned int free_number = first_missing_number(mds, 0);
+
+	return DEVDIR "/md" + to_string(free_number);
     }
 
 
@@ -164,9 +181,15 @@ namespace storage
     bool
     Md::Impl::is_valid_name(const string& name)
     {
-	static regex name_regex(DEVDIR "/md[0-9]+", regex_constants::extended);
+	return regex_match(name, numeric_name_regex) || regex_match(name, format1_name_regex);
+    }
 
-	return regex_match(name, name_regex);
+
+
+    bool
+    Md::Impl::is_valid_sysfs_name(const string& name)
+    {
+	return regex_match(name, numeric_name_regex) || regex_match(name, format2_name_regex);
     }
 
 
@@ -176,13 +199,17 @@ namespace storage
 	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
-	    if (!is_valid_name(name))
+	    if (!is_valid_sysfs_name(name))
 		continue;
 
 	    // workaround for https://bugzilla.suse.com/show_bug.cgi?id=1030896
 	    const ProcMdstat& proc_mdstat = systeminfo.getProcMdstat();
 	    if (!proc_mdstat.has_entry(short_name))
 		continue;
+
+	    MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(name);
+	    if (!mdadm_detail.devname.empty())
+		name = DEVMDDIR "/" + mdadm_detail.devname;
 
 	    Md* md = Md::create(probed, name);
 	    md->get_impl().probe_pass_1(probed, systeminfo);
@@ -195,8 +222,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1(probed, systeminfo);
 
-	string short_name = get_name().substr(strlen(DEVDIR "/"));
-	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(short_name);
+	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(get_sysfs_name());
 
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
@@ -206,7 +232,6 @@ namespace storage
 	superblock_version = entry.super;
 
 	MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(get_name());
-	md_name = mdadm_detail.devname;
 	uuid = mdadm_detail.uuid;
 
 	const EtcMdadm& etc_mdadm = systeminfo.getEtcMdadm();
@@ -217,9 +242,7 @@ namespace storage
     void
     Md::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
     {
-	string tmp = get_name().substr(strlen(DEVDIR "/"));
-
-	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(tmp);
+	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(get_sysfs_name());
 
 	for (const ProcMdstat::Device& device : entry.devices)
 	{
@@ -267,6 +290,9 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
+	if (lhs.get_name() != get_name())
+	    ST_THROW(Exception("cannot rename raid"));
+
 	if (lhs.md_level != md_level)
 	    ST_THROW(Exception("cannot change raid level"));
 
@@ -312,8 +338,6 @@ namespace storage
 	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
 
 	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
-
-	setChildValueIf(node, "md-name", md_name, !md_name.empty());
 
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
@@ -372,10 +396,22 @@ namespace storage
     }
 
 
+    bool
+    Md::Impl::is_numeric() const
+    {
+	return regex_match(get_name(), numeric_name_regex);
+    }
+
+
     unsigned int
     Md::Impl::get_number() const
     {
-	return device_to_name_and_number(get_name()).second;
+	smatch match;
+
+	if (!regex_match(get_name(), match, numeric_name_regex) || match.size() != 2)
+	    ST_THROW(Exception("not a numeric Md"));
+
+	return atoi(match[1].str().c_str());
     }
 
 
@@ -396,7 +432,7 @@ namespace storage
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
 	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
-	    md_name == rhs.md_name && uuid == rhs.uuid && in_etc_mdadm == rhs.in_etc_mdadm;
+	    uuid == rhs.uuid && in_etc_mdadm == rhs.in_etc_mdadm;
     }
 
 
@@ -414,7 +450,6 @@ namespace storage
 
 	storage::log_diff(log, "superblock-version", superblock_version, rhs.superblock_version);
 
-	storage::log_diff(log, "md-name", md_name, rhs.md_name);
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "in-etc-mdadm", in_etc_mdadm, rhs.in_etc_mdadm);
@@ -433,7 +468,6 @@ namespace storage
 
 	out << " superblock-version:" << superblock_version;
 
-	out << " md-name:" << md_name;
 	out << " uuid:" << uuid;
 
 	out << " in-etc-mdadm:" << in_etc_mdadm;
@@ -710,11 +744,7 @@ namespace storage
 
 	EtcMdadm::Entry entry;
 
-	if (!md_name.empty())
-	    entry.device = DEVDIR "/md/" + md_name;
-	else
-	    entry.device = get_name();
-
+	entry.device = get_name();
 	entry.uuid = uuid;
 
 	etc_mdadm.update_entry(entry);
@@ -888,9 +918,17 @@ namespace storage
 
 
     bool
-    compare_by_number(const Md* lhs, const Md* rhs)
+    compare_by_name_and_number(const Md* lhs, const Md* rhs)
     {
-	return lhs->get_number() < rhs->get_number();
+	bool numeric_lhs = lhs->is_numeric();
+	bool numeric_rhs = rhs->is_numeric();
+
+	if (!numeric_lhs && !numeric_rhs)
+	    return lhs->get_name() < rhs->get_name();
+	else if (numeric_lhs && numeric_rhs)
+	    return lhs->get_number() < rhs->get_number();
+	else
+	    return numeric_lhs < numeric_rhs;
     }
 
 }

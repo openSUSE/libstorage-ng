@@ -26,6 +26,7 @@
 
 
 #define DEVDIR "/dev"
+#define DEVMDDIR "/dev/md"
 #define DEVMAPPERDIR "/dev/mapper"
 
 #define SYSFSDIR "/sys"

@@ -411,7 +411,7 @@ namespace storage
 	    else
 	    {
 		string device = *(++items.begin());
-		if (!boost::starts_with(device, "/dev/md/"))
+		if (!boost::starts_with(device, DEVMDDIR "/"))
 		{
 		    y2err("unexpected input");
 		    continue;

@@ -124,6 +124,13 @@ namespace storage
     }
 
 
+    bool
+    Md::is_numeric() const
+    {
+	return get_impl().is_numeric();
+    }
+
+
     unsigned int
     Md::get_number() const
     {
@@ -187,13 +194,6 @@ namespace storage
 
 
     const string&
-    Md::get_md_name() const
-    {
-	return get_impl().get_md_name();
-    }
-
-
-    const string&
     Md::get_uuid() const
     {
 	return get_impl().get_uuid();
@@ -224,21 +224,21 @@ namespace storage
     vector<Md*>
     Md::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Md>(compare_by_number);
+	return devicegraph->get_impl().get_devices_of_type<Md>(compare_by_name_and_number);
     }
 
 
     vector<const Md*>
     Md::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Md>(compare_by_number);
+	return devicegraph->get_impl().get_devices_of_type<const Md>(compare_by_name_and_number);
     }
 
 
     string
-    Md::find_free_name(const Devicegraph* devicegraph)
+    Md::find_free_numeric_name(const Devicegraph* devicegraph)
     {
-	return Md::Impl::find_free_name(devicegraph);
+	return Md::Impl::find_free_numeric_name(devicegraph);
     }
 
 
