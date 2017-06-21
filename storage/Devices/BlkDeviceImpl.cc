@@ -167,8 +167,8 @@ namespace storage
     {
 	Impl::region = region;
 
-	for (Device* child : get_device()->get_children())
-	    child->get_impl().parent_has_new_region(get_device());
+	for (Device* child : get_non_impl()->get_children())
+	    child->get_impl().parent_has_new_region(get_non_impl());
     }
 
 
@@ -201,7 +201,7 @@ namespace storage
     {
 	ResizeInfo resize_info(true);
 
-	for (const Device* child : get_device()->get_children())
+	for (const Device* child : get_non_impl()->get_children())
 	     resize_info.combine(child->detect_resize_info());
 
 	return resize_info;
@@ -288,7 +288,7 @@ namespace storage
 
 	    actiongraph.add_vertex(new Action::Resize(get_sid(), resize_mode));
 
-	    for (const Device* child : get_device()->get_children())
+	    for (const Device* child : get_non_impl()->get_children())
 	    {
 		// Only add a resize action for children that do not detect
 		// their resize themself and that are new on RHS.
@@ -403,7 +403,7 @@ namespace storage
 
 	BlkFilesystem* blk_filesystem = it->second(devicegraph);
 
-	FilesystemUser::create(devicegraph, get_device(), blk_filesystem);
+	FilesystemUser::create(devicegraph, get_non_impl(), blk_filesystem);
 
 	return blk_filesystem;
     }
@@ -438,10 +438,10 @@ namespace storage
 
 	Luks* luks = Luks::create(get_devicegraph(), dm_name);
 
-	User::create(get_devicegraph(), get_device(), luks);
+	User::create(get_devicegraph(), get_non_impl(), luks);
 
 	// TODO maybe add parent_added() next to parent_has_new_region() for this?
-	luks->get_impl().parent_has_new_region(get_device());
+	luks->get_impl().parent_has_new_region(get_non_impl());
 
 	return luks;
     }

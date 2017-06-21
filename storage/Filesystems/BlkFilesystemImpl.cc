@@ -147,7 +147,7 @@ namespace storage
 	    uuid = it->second.fs_uuid;
 	}
 
-	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, to_blk_filesystem(get_device()));
+	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
 	const FstabEntry* fstab_entry = find_etc_fstab_entry(systeminfo.getEtcFstab(), aliases);
         if (fstab_entry)

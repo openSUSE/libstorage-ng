@@ -324,70 +324,70 @@ namespace storage
     Text
     MountPoint::Impl::do_mount_text(Tense tense) const
     {
-	return get_mountable()->get_impl().do_mount_text(get_mount_point(), tense);
+	return get_mountable()->get_impl().do_mount_text(get_non_impl(), tense);
     }
 
 
     void
     MountPoint::Impl::do_mount(CommitData& commit_data) const
     {
-	get_mountable()->get_impl().do_mount(commit_data, get_mount_point());
+	get_mountable()->get_impl().do_mount(commit_data, get_non_impl());
     }
 
 
     Text
     MountPoint::Impl::do_umount_text(Tense tense) const
     {
-	return get_mountable()->get_impl().do_umount_text(get_mount_point(), tense);
+	return get_mountable()->get_impl().do_umount_text(get_non_impl(), tense);
     }
 
 
     void
     MountPoint::Impl::do_umount(CommitData& commit_data) const
     {
-	get_mountable()->get_impl().do_umount(commit_data, get_mount_point());
+	get_mountable()->get_impl().do_umount(commit_data, get_non_impl());
     }
 
 
     Text
     MountPoint::Impl::do_add_to_etc_fstab_text(Tense tense) const
     {
-	return get_mountable()->get_impl().do_add_to_etc_fstab_text(get_mount_point(), tense);
+	return get_mountable()->get_impl().do_add_to_etc_fstab_text(get_non_impl(), tense);
     }
 
 
     void
     MountPoint::Impl::do_add_to_etc_fstab(CommitData& commit_data) const
     {
-	get_mountable()->get_impl().do_add_to_etc_fstab(commit_data, get_mount_point());
+	get_mountable()->get_impl().do_add_to_etc_fstab(commit_data, get_non_impl());
     }
 
 
     Text
     MountPoint::Impl::do_update_in_etc_fstab_text(const Device* lhs, Tense tense) const
     {
-	return get_mountable()->get_impl().do_update_in_etc_fstab_text(get_mount_point(), lhs, tense);
+	return get_mountable()->get_impl().do_update_in_etc_fstab_text(get_non_impl(), lhs, tense);
     }
 
 
     void
     MountPoint::Impl::do_update_in_etc_fstab(CommitData& commit_data, const Device* lhs) const
     {
-	get_mountable()->get_impl().do_update_in_etc_fstab(commit_data, lhs, get_mount_point());
+	get_mountable()->get_impl().do_update_in_etc_fstab(commit_data, lhs, get_non_impl());
     }
 
 
     Text
     MountPoint::Impl::do_remove_from_etc_fstab_text(Tense tense) const
     {
-	return get_mountable()->get_impl().do_remove_from_etc_fstab_text(get_mount_point(), tense);
+	return get_mountable()->get_impl().do_remove_from_etc_fstab_text(get_non_impl(), tense);
     }
 
 
     void
     MountPoint::Impl::do_remove_from_etc_fstab(CommitData& commit_data) const
     {
-	get_mountable()->get_impl().do_remove_from_etc_fstab(commit_data, get_mount_point());
+	get_mountable()->get_impl().do_remove_from_etc_fstab(commit_data, get_non_impl());
     }
 
 

@@ -62,7 +62,8 @@ namespace storage
 	void set_space_info(const SpaceInfo& space_info);
 	bool has_space_info() const { return space_info.has_value(); }
 
-	const Filesystem* get_filesystem() const { return to_filesystem(get_device()); }
+	virtual Filesystem* get_non_impl() override { return to_filesystem(Device::Impl::get_non_impl()); }
+	virtual const Filesystem* get_non_impl() const override { return to_filesystem(Device::Impl::get_non_impl()); }
 
     protected:
 

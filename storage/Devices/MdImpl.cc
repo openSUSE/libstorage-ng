@@ -247,7 +247,7 @@ namespace storage
 	for (const ProcMdstat::Device& device : entry.devices)
 	{
 	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, device.name, systeminfo);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_device());
+	    MdUser* md_user = MdUser::create(probed, blk_device, get_non_impl());
 	    md_user->set_spare(device.spare);
 	    md_user->set_faulty(device.faulty);
 	}
@@ -353,7 +353,7 @@ namespace storage
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
-	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_device());
+	MdUser* md_user = MdUser::create(get_devicegraph(), blk_device, get_non_impl());
 
 	calculate_region_and_topology();
 

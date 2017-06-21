@@ -90,7 +90,8 @@ namespace storage
 
 	FsType get_mount_type() const;
 
-	const MountPoint* get_mount_point() const { return to_mount_point(get_device()); }
+	virtual MountPoint* get_non_impl() override { return to_mount_point(Device::Impl::get_non_impl()); }
+	virtual const MountPoint* get_non_impl() const override { return to_mount_point(Device::Impl::get_non_impl()); }
 
 	/**
 	 * Get the device name that was used in /etc/fstab.

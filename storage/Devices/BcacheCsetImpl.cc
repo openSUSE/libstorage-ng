@@ -118,7 +118,7 @@ namespace storage
 		string dev = "/dev/block/" + dev_file.get_string();
 
 		const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-		User::create(probed, get_device(), blk_device);
+		User::create(probed, get_non_impl(), blk_device);
 	    }
 
 	    if (regex_match(name, cache_regex))
@@ -127,7 +127,7 @@ namespace storage
 		string dev = "/dev/block/" + dev_file.get_string();
 
 		const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-		User::create(probed, blk_device, get_device());
+		User::create(probed, blk_device, get_non_impl());
 	    }
 	}
     }

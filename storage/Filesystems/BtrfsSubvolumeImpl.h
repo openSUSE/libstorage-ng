@@ -97,6 +97,9 @@ namespace storage
 
 	BtrfsSubvolume* create_btrfs_subvolume(const string& path);
 
+	virtual BtrfsSubvolume* get_non_impl() override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
+	virtual const BtrfsSubvolume* get_non_impl() const override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

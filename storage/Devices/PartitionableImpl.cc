@@ -133,7 +133,7 @@ namespace storage
     {
 	// TODO other archs, other DASD types (e.g. FBA)
 
-	if (is_dasd(get_device()))
+	if (is_dasd(get_non_impl()))
 	    return { PtType::DASD };
 
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
@@ -187,7 +187,7 @@ namespace storage
 		ST_THROW(UnsupportedException("unsupported partition table type " + toString(pt_type)));
 	}
 
-	User::create(get_devicegraph(), get_device(), ret);
+	User::create(get_devicegraph(), get_non_impl(), ret);
 	return ret;
     }
 

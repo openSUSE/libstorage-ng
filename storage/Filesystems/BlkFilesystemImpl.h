@@ -94,6 +94,9 @@ namespace storage
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name() const override;
 
+	virtual BlkFilesystem* get_non_impl() override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
+	virtual const BlkFilesystem* get_non_impl() const override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
+
 	virtual Text do_create_text(Tense tense) const override;
 
 	virtual Text do_set_label_text(Tense tense) const;

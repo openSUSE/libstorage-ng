@@ -83,7 +83,7 @@ namespace storage
 
 	MountPoint* mount_point = MountPoint::create(devicegraph, path);
 
-	User::create(devicegraph, get_device(), mount_point);
+	User::create(devicegraph, get_non_impl(), mount_point);
 
 	mount_point->set_default_mount_by();
 	mount_point->set_default_mount_options();
@@ -131,14 +131,14 @@ namespace storage
     Filesystem*
     Mountable::Impl::get_filesystem()
     {
-	return to_filesystem(get_device());
+	return to_filesystem(get_non_impl());
     }
 
 
     const Filesystem*
     Mountable::Impl::get_filesystem() const
     {
-	return to_filesystem(get_device());
+	return to_filesystem(get_non_impl());
     }
 
 

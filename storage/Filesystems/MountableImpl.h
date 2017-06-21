@@ -87,7 +87,8 @@ namespace storage
 
 	virtual vector<string> get_mount_options() const { return vector<string>(); }
 
-	const Mountable* get_mountable() const { return to_mountable(get_device()); }
+	virtual Mountable* get_non_impl() override { return to_mountable(Device::Impl::get_non_impl()); }
+	virtual const Mountable* get_non_impl() const override { return to_mountable(Device::Impl::get_non_impl()); }
 
 	/**
 	 * Find the fstab entry for the Mountable. Normally just looks for the
