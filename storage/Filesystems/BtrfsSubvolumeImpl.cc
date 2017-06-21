@@ -169,9 +169,9 @@ namespace storage
 
 
     string
-    BtrfsSubvolume::Impl::get_mount_by_name() const
+    BtrfsSubvolume::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
-	return get_btrfs()->get_impl().get_mount_by_name();
+	return get_btrfs()->get_impl().get_mount_by_name(mount_by_type);
     }
 
 

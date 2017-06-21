@@ -86,7 +86,7 @@ namespace storage
 	virtual FsType get_mount_type() const override { return FsType::BTRFS; }
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name() const override;
+	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 	virtual vector<string> get_mount_options() const override;
 
 	virtual MountByType get_default_mount_by() const override;

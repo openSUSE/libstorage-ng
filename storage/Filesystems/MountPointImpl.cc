@@ -212,7 +212,7 @@ namespace storage
     string
     MountPoint::Impl::get_mount_by_name() const
     {
-	return get_mountable()->get_impl().get_mount_by_name();
+	return get_mountable()->get_impl().get_mount_by_name(get_mount_by());
     }
 
 

@@ -434,14 +434,13 @@ namespace storage
 
 
     string
-    BlkFilesystem::Impl::get_mount_by_name() const
+    BlkFilesystem::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
 	const BlkDevice* blk_device = get_blk_device();
-	const MountPoint* mount_point = get_mount_point();
 
 	string ret = blk_device->get_name();
 
-	switch (mount_point->get_mount_by())
+	switch (mount_by_type)
 	{
 	    case MountByType::UUID:
 		if (!uuid.empty())
@@ -590,7 +589,7 @@ namespace storage
 	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
 	if (entry)
         {
-            entry->set_device(get_mount_by_name());
+            entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
             etc_fstab.log_diff();
             etc_fstab.write();
         }

@@ -81,7 +81,7 @@ namespace storage
 	 * the name of a device and for Nfs the server plus the path. Used for
 	 * entries in /etc/fstab.
 	 */
-	virtual string get_mount_by_name() const = 0;
+	virtual string get_mount_by_name(MountByType mount_by_type) const = 0;
 
 	virtual FsType get_mount_type() const = 0;
 

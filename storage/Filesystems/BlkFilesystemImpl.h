@@ -92,7 +92,7 @@ namespace storage
 	void set_content_info(const ContentInfo& content_info);
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name() const override;
+	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 
 	virtual BlkFilesystem* get_non_impl() override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
 	virtual const BlkFilesystem* get_non_impl() const override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
