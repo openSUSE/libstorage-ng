@@ -180,6 +180,16 @@ namespace storage
     }
 
 
+    // might become C++ standard, see
+    // http://en.cppreference.com/w/cpp/experimental/vector/erase_if
+    template <typename Type, typename Predicate>
+    void
+    erase_if(vector<Type>& v, Predicate pred)
+    {
+	v.erase(remove_if(v.begin(), v.end(), pred), v.end());
+    }
+
+
     template <class T, unsigned int sz>
     inline unsigned int lengthof(T (&)[sz]) { return sz; }
 

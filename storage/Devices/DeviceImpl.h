@@ -114,8 +114,8 @@ namespace storage
 
 	Devicegraph::Impl::vertex_descriptor get_vertex() const;
 
-	Device* get_device() { return devicegraph->get_impl()[vertex]; }
-	const Device* get_device() const { return devicegraph->get_impl()[vertex]; }
+	virtual Device* get_non_impl() { return devicegraph->get_impl()[vertex]; }
+	virtual const Device* get_non_impl() const { return devicegraph->get_impl()[vertex]; }
 
 	void remove_descendants();
 

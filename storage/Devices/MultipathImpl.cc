@@ -143,7 +143,7 @@ namespace storage
 	for (const string& device : entry.devices)
 	{
 	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, device, systeminfo);
-	    User::create(probed, blk_device, get_device());
+	    User::create(probed, blk_device, get_non_impl());
 	}
     }
 

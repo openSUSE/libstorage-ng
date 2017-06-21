@@ -83,7 +83,7 @@ namespace storage
 
 	MountPoint* mount_point = MountPoint::create(devicegraph, path);
 
-	User::create(devicegraph, get_device(), mount_point);
+	User::create(devicegraph, get_non_impl(), mount_point);
 
 	mount_point->set_default_mount_by();
 	mount_point->set_default_mount_options();
@@ -131,14 +131,14 @@ namespace storage
     Filesystem*
     Mountable::Impl::get_filesystem()
     {
-	return to_filesystem(get_device());
+	return to_filesystem(get_non_impl());
     }
 
 
     const Filesystem*
     Mountable::Impl::get_filesystem() const
     {
-	return to_filesystem(get_device());
+	return to_filesystem(get_non_impl());
     }
 
 
@@ -266,7 +266,7 @@ namespace storage
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
 	FstabEntry* entry = new FstabEntry();
-	entry->set_device(get_mount_by_name());
+	entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
 	entry->set_mount_point(mount_point->get_path());
 	entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	entry->set_fs_type(get_mount_type());
@@ -304,7 +304,7 @@ namespace storage
 	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
 	if (entry)
 	{
-	    entry->set_device(get_mount_by_name());
+	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
 	    entry->set_mount_point(mount_point->get_path());
 	    entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	    entry->set_fs_type(get_mount_type());
@@ -350,7 +350,7 @@ namespace storage
 
 
     EnsureMounted::EnsureMounted(const Mountable* mountable, bool read_only)
-	: mountable(mountable), read_only(read_only), tmp_mount()
+	: mountable(mountable), tmp_mount()
     {
 	y2mil("EnsureMounted " << *mountable);
 

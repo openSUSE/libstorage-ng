@@ -81,13 +81,14 @@ namespace storage
 	 * the name of a device and for Nfs the server plus the path. Used for
 	 * entries in /etc/fstab.
 	 */
-	virtual string get_mount_by_name() const = 0;
+	virtual string get_mount_by_name(MountByType mount_by_type) const = 0;
 
 	virtual FsType get_mount_type() const = 0;
 
 	virtual vector<string> get_mount_options() const { return vector<string>(); }
 
-	const Mountable* get_mountable() const { return to_mountable(get_device()); }
+	virtual Mountable* get_non_impl() override { return to_mountable(Device::Impl::get_non_impl()); }
+	virtual const Mountable* get_non_impl() const override { return to_mountable(Device::Impl::get_non_impl()); }
 
 	/**
 	 * Find the fstab entry for the Mountable. Normally just looks for the
@@ -150,7 +151,6 @@ namespace storage
 	bool mountable_has_active_mount_point() const;
 
 	const Mountable* mountable;
-	bool read_only;
 
 	unique_ptr<TmpMount> tmp_mount;
 

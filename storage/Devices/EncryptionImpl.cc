@@ -105,7 +105,7 @@ namespace storage
 	BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed,
 	    make_dev_block_name(majorminors.front()), systeminfo);
 
-	User::create(probed, blk_device, get_device());
+	User::create(probed, blk_device, get_non_impl());
     }
 
 

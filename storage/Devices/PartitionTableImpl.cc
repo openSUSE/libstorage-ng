@@ -102,7 +102,7 @@ namespace storage
 	if (region.get_block_size() != partitionable_region.get_block_size())
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
-	const Device* parent = type == PartitionType::LOGICAL ? get_extended() : get_device();
+	const Device* parent = type == PartitionType::LOGICAL ? get_extended() : get_non_impl();
 
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), parent, partition);

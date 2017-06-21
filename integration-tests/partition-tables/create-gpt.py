@@ -18,9 +18,9 @@ staging = storage.get_staging()
 
 print staging
 
-disk = Disk.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
-disk.create_partition_table(PtType_GPT)
+partitionable.create_partition_table(PtType_GPT)
 
 print staging
 

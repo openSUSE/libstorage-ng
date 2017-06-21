@@ -65,7 +65,7 @@ namespace storage
 		if (it2 != blkid.end())
 		{
 		    BlkDevice* jbd = BlkDevice::Impl::find_by_name(probed, it2->first, systeminfo);
-		    FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_device());
+		    FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_non_impl());
 		    filesystem_user->set_journal(true);
 		}
 	    }

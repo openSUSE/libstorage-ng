@@ -120,7 +120,7 @@ namespace storage
     BtrfsSubvolume*
     BtrfsSubvolume::Impl::get_top_level_btrfs_subvolume()
     {
-	BtrfsSubvolume* ret = to_btrfs_subvolume(get_device());
+	BtrfsSubvolume* ret = get_non_impl();
 
 	while (true)
 	{
@@ -135,7 +135,7 @@ namespace storage
     const BtrfsSubvolume*
     BtrfsSubvolume::Impl::get_top_level_btrfs_subvolume() const
     {
-	const BtrfsSubvolume* ret = to_btrfs_subvolume(get_device());
+	const BtrfsSubvolume* ret = get_non_impl();
 
 	while (true)
 	{
@@ -169,9 +169,9 @@ namespace storage
 
 
     string
-    BtrfsSubvolume::Impl::get_mount_by_name() const
+    BtrfsSubvolume::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
-	return get_btrfs()->get_impl().get_mount_by_name();
+	return get_btrfs()->get_impl().get_mount_by_name(mount_by_type);
     }
 
 
@@ -231,7 +231,7 @@ namespace storage
 
 	BtrfsSubvolume* btrfs_subvolume = create(devicegraph, path);
 
-	Subdevice::create(devicegraph, get_device(), btrfs_subvolume);
+	Subdevice::create(devicegraph, get_non_impl(), btrfs_subvolume);
 
 	return btrfs_subvolume;
     }

@@ -99,7 +99,7 @@ namespace storage
 	string dev = "/dev/block/" + dev_file.get_string();
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-	User::create(probed, blk_device, get_device());
+	User::create(probed, blk_device, get_non_impl());
     }
 
 

@@ -23,11 +23,11 @@ staging = storage.get_staging()
 
 print staging
 
-dasd = Dasd.find_by_name(staging, "/dev/dasdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/dasdb")
 
-dasd.remove_descendants()
+partitionable.remove_descendants()
 
-dasd.create_partition_table(PtType_DASD)
+partitionable.create_partition_table(PtType_DASD)
 
 print staging
 

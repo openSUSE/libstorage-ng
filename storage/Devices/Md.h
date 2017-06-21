@@ -66,6 +66,14 @@ namespace storage
 	std::vector<BlkDevice*> get_devices();
 	std::vector<const BlkDevice*> get_devices() const;
 
+	/**
+	 * Returns true if the name of the MD is numeric.
+	 */
+	bool is_numeric() const;
+
+	/**
+	 * Returns the number of the MD. Throws if the MD is not numeric.
+	 */
 	unsigned int get_number() const;
 
 	MdLevel get_md_level() const;
@@ -76,8 +84,6 @@ namespace storage
 
 	unsigned long get_chunk_size() const;
 	void set_chunk_size(unsigned long chunk_size);
-
-	const std::string& get_md_name() const;
 
 	const std::string& get_uuid() const;
 
@@ -95,7 +101,8 @@ namespace storage
 	void set_in_etc_mdadm(bool in_etc_mdadm);
 
 	/**
-	 * Sorted by number.
+	 * Sorted by name and number. The non-numeric Mds come before the
+	 * numeric Mds.
 	 */
 	static std::vector<Md*> get_all(Devicegraph* devicegraph);
 
@@ -108,9 +115,9 @@ namespace storage
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
-	 * Find a free name for a MD.
+	 * Find a free numeric name for a MD.
 	 */
-	static std::string find_free_name(const Devicegraph* devicegraph);
+	static std::string find_free_numeric_name(const Devicegraph* devicegraph);
 
     public:
 

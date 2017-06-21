@@ -25,6 +25,8 @@
 #define STORAGE_MD_IMPL_H
 
 
+#include <regex>
+
 #include "storage/Devices/Md.h"
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Utils/Enum.h"
@@ -66,6 +68,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
+	bool is_numeric() const;
+
 	unsigned int get_number() const;
 
 	MdLevel get_md_level() const { return md_level; }
@@ -79,8 +83,6 @@ namespace storage
 
 	unsigned long get_default_chunk_size() const;
 
-	const string& get_md_name() const { return md_name; }
-
 	const string& get_uuid() const { return uuid; }
 
 	const string& get_superblock_version() const { return superblock_version; }
@@ -90,7 +92,9 @@ namespace storage
 
 	static bool is_valid_name(const string& name);
 
-	static string find_free_name(const Devicegraph* devicegraph);
+	static bool is_valid_sysfs_name(const string& name);
+
+	static string find_free_numeric_name(const Devicegraph* devicegraph);
 
 	static void probe_mds(Devicegraph* probed, SystemInfo& systeminfo);
 	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
@@ -136,13 +140,21 @@ namespace storage
 
     private:
 
+	// regex to match name of the form /dev/md<number>
+	static const regex numeric_name_regex;
+
+	// regex to match name of the form /dev/md/<name>
+	static const regex format1_name_regex;
+
+	// regex to match name of the form /dev/md_<name>
+	static const regex format2_name_regex;
+
 	MdLevel md_level;
 
 	MdParity md_parity;
 
 	unsigned long chunk_size;
 
-	string md_name;
 	string uuid;
 
 	string superblock_version;
@@ -186,7 +198,8 @@ namespace storage
     }
 
 
-    bool compare_by_number(const Md* lhs, const Md* rhs);
+    bool compare_by_name_and_number(const Md* lhs, const Md* rhs);
+
 
 }
 

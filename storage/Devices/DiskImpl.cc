@@ -72,7 +72,7 @@ namespace storage
 	{
 	    string name = DEVDIR "/" + short_name;
 
-	    if (Md::Impl::is_valid_name(name) || boost::starts_with(name, DEVDIR "/loop") ||
+	    if (Md::Impl::is_valid_sysfs_name(name) || boost::starts_with(name, DEVDIR "/loop") ||
 		boost::starts_with(name, DEVDIR "/dasd"))
 		continue;
 

@@ -28,11 +28,9 @@ BOOST_AUTO_TEST_CASE(probe)
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
-
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-
     staging->load("dasd1-devicegraph.xml");
     staging->check();
 

@@ -136,7 +136,7 @@ namespace storage
 	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
 	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
-	User::create(probed, blk_device, get_device());
+	User::create(probed, blk_device, get_non_impl());
     }
 
 
@@ -173,7 +173,7 @@ namespace storage
 	if (has_lvm_vg())
 	{
 	    LvmVg* lvm_vg = get_lvm_vg();
-	    lvm_vg->get_impl().parent_has_new_region(get_device());
+	    lvm_vg->get_impl().parent_has_new_region(get_non_impl());
 	}
     }
 

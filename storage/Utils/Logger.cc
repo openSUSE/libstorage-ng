@@ -68,7 +68,7 @@ namespace storage
     StdoutLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
 			int line, const std::string& function, const std::string& content)
     {
-	std::cout << datetime(time(NULL), true, true) << " <" << log_level << "> [" << component << "] "
+	std::cout << datetime(time(nullptr)) << " <" << log_level << "> [" << component << "] "
 		  << file << "(" << function << "):" << line << " " << content << std::endl;
     }
 
@@ -99,7 +99,7 @@ namespace storage
 	FILE* f = fopen("/var/log/libstorage-ng.log", "ae");
 	if (f)
 	{
-	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(NULL), true, true).c_str(),
+	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
 		    log_level, component.c_str(), file.c_str(), function.c_str(), line,
 		    content.c_str());
 

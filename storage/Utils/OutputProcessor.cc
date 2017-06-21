@@ -72,10 +72,11 @@ Mke2fsProgressBar::process(const string& val, bool stderr)
 		list<string>::const_iterator i = l.begin();
 		if( i != l.end() )
 		    {
-		    unsigned cval, mx;
+		    unsigned cval;
 		    *i++ >> cval;
 		    if( first && i != l.end() )
 			{
+			unsigned mx;
 			*i >> mx;
 			setMaxValue( mx+4 );
 			setCurValue( 0 );

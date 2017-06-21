@@ -40,7 +40,7 @@ namespace storage
 
     private:
 
-	Text text() const;
+	Text text() const override;
 
 	Text mount_text() const;
 	Text unmount_text() const;

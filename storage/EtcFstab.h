@@ -198,7 +198,7 @@ namespace storage
     /**
      * Class representing one /etc/fstab entry.
      **/
-    class FstabEntry: public ColumnConfigFile::Entry
+    class FstabEntry : public ColumnConfigFile::Entry
     {
     public:
 
@@ -218,14 +218,14 @@ namespace storage
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual void populate_columns();
+	virtual void populate_columns() override;
 
 	/**
 	 * Parse a content line. Return 'true' on success, 'false' on error.
 	 *
 	 * Reimplemented from CommentedConfigFile.
 	 **/
-	virtual bool parse( const string & line, int line_no = -1 );
+	virtual bool parse(const string& line, int line_no = -1) override;
 
 
 	// Getters; see man fstab(5)
@@ -265,7 +265,7 @@ namespace storage
     /**
      * Class representing /etc/fstab.
      **/
-    class EtcFstab: public ColumnConfigFile
+    class EtcFstab : public ColumnConfigFile
     {
     public:
 
@@ -340,7 +340,7 @@ namespace storage
          *
          * Reimplemented from CommentedConfigFile.
          **/
-        virtual Entry * create_entry() { return new FstabEntry(); }
+        virtual Entry* create_entry() override { return new FstabEntry(); }
 
 
 	/**

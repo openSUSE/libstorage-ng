@@ -44,7 +44,7 @@ namespace storage
 
 	std::string name_of_devices() const;
 	
-	Text text() const;
+	Text text() const override;
 
 	Text create_with_pvs_text() const;
 	Text create_text() const;

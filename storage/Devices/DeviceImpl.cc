@@ -239,7 +239,7 @@ namespace storage
 	    lhs_sids.insert(device->get_sid());
 
 	set<sid_t> rhs_sids;
-	for (const Device* device : get_device()->get_parents())
+	for (const Device* device : get_non_impl()->get_parents())
 	    rhs_sids.insert(device->get_sid());
 
 	vector<sid_t> added_sids;

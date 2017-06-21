@@ -56,9 +56,9 @@ namespace storage
 
 	virtual ~ProgressBar() {}
 
-	virtual void reset() { first = true; cur = 0; }
-	virtual void finish() { setCurValue(max); }
-	virtual void process(const string& txt, bool stderr) {}
+	virtual void reset() override { first = true; cur = 0; }
+	virtual void finish() override { setCurValue(max); }
+	virtual void process(const string& txt, bool stderr) override {}
 
 	void setMaxValue(unsigned val) { max = val; }
 	unsigned getMaxValue() const { return max; }
@@ -88,7 +88,7 @@ namespace storage
 	    inode_tab = false;
 	}
 
-	virtual void process(const string& txt, bool stderr);
+	virtual void process(const string& txt, bool stderr) override;
 
     protected:
 	string seen;
@@ -106,7 +106,7 @@ namespace storage
 	    setMaxValue(100);
 	}
 
-	virtual void process(const string& txt, bool stderr);
+	virtual void process(const string& txt, bool stderr) override;
 
     protected:
 	string seen;
@@ -123,7 +123,7 @@ namespace storage
 	    max_cyl = cur_cyl = 0;
 	}
 
-	virtual void process(const string& txt, bool stderr);
+	virtual void process(const string& txt, bool stderr) override;
 
     protected:
 	string seen;

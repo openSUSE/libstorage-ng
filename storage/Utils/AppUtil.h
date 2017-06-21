@@ -97,7 +97,7 @@ void classic(StreamType& stream)
 
 
     string hostname();
-    string datetime( time_t t1, bool utc=false, bool classic=true );
+    string datetime(time_t t1, bool utc = true);
 
     string generated_string();
 

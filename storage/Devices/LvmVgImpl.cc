@@ -212,7 +212,7 @@ namespace storage
 		ST_THROW(Exception("illegal number of children"));
 	}
 
-	Subdevice::create(devicegraph, lvm_pv, get_device());
+	Subdevice::create(devicegraph, lvm_pv, get_non_impl());
 
 	calculate_region();
 
@@ -227,7 +227,7 @@ namespace storage
 
 	LvmVg* lvm_vg = lvm_pv->get_impl().get_single_child_of_type<LvmVg>();
 
-	if (lvm_vg != get_device())
+	if (lvm_vg != get_non_impl())
 	    ST_THROW(Exception("not a blk device of volume group"));
 
 	Devicegraph* devicegraph = get_devicegraph();
@@ -268,7 +268,7 @@ namespace storage
 	Devicegraph* devicegraph = get_devicegraph();
 
 	LvmLv* lvm_lv = LvmLv::create(devicegraph, vg_name, lv_name);
-	Subdevice::create(devicegraph, get_device(), lvm_lv);
+	Subdevice::create(devicegraph, get_non_impl(), lvm_lv);
 
 	unsigned long long extent_size = region.get_block_size();
 	lvm_lv->set_region(Region(0, size / extent_size, extent_size));

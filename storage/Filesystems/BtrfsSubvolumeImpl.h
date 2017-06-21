@@ -86,7 +86,7 @@ namespace storage
 	virtual FsType get_mount_type() const override { return FsType::BTRFS; }
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name() const override;
+	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 	virtual vector<string> get_mount_options() const override;
 
 	virtual MountByType get_default_mount_by() const override;
@@ -96,6 +96,9 @@ namespace storage
 	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const override;
 
 	BtrfsSubvolume* create_btrfs_subvolume(const string& path);
+
+	virtual BtrfsSubvolume* get_non_impl() override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
+	virtual const BtrfsSubvolume* get_non_impl() const override { return to_btrfs_subvolume(Device::Impl::get_non_impl()); }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;

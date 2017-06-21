@@ -147,7 +147,7 @@ namespace storage
 	    uuid = it->second.fs_uuid;
 	}
 
-	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, to_blk_filesystem(get_device()));
+	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
 	const FstabEntry* fstab_entry = find_etc_fstab_entry(systeminfo.getEtcFstab(), aliases);
         if (fstab_entry)
@@ -434,14 +434,13 @@ namespace storage
 
 
     string
-    BlkFilesystem::Impl::get_mount_by_name() const
+    BlkFilesystem::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
 	const BlkDevice* blk_device = get_blk_device();
-	const MountPoint* mount_point = get_mount_point();
 
 	string ret = blk_device->get_name();
 
-	switch (mount_point->get_mount_by())
+	switch (mount_by_type)
 	{
 	    case MountByType::UUID:
 		if (!uuid.empty())
@@ -590,7 +589,7 @@ namespace storage
 	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
 	if (entry)
         {
-            entry->set_device(get_mount_by_name());
+            entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
             etc_fstab.log_diff();
             etc_fstab.write();
         }

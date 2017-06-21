@@ -136,7 +136,7 @@ namespace storage
 
 
     string
-    Nfs::Impl::get_mount_by_name() const
+    Nfs::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
 	return get_mount_name();
     }
