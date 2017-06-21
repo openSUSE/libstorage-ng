@@ -9,6 +9,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
@@ -16,6 +17,16 @@
 
 using namespace std;
 using namespace storage;
+
+
+namespace std
+{
+    ostream&
+    operator<<(ostream& s, MountByType mount_my)
+    {
+	return s << get_mount_by_name(mount_my);
+    }
+}
 
 
 BOOST_AUTO_TEST_CASE(btrfs1)
@@ -52,4 +63,15 @@ BOOST_AUTO_TEST_CASE(btrfs1)
     BOOST_CHECK_EQUAL(top_level->get_filesystem(), btrfs);
     BOOST_CHECK_EQUAL(subvolume1->get_filesystem(), btrfs);
     BOOST_CHECK_EQUAL(subvolume2->get_filesystem(), btrfs);
+
+    BOOST_CHECK_EQUAL(mount_point1->get_mount_by(), MountByType::UUID);
+
+    // The mount point for a subvolume uses the btrfs filesystem to write
+    // entries in /etc/fstab. As long as the UUID in unknown the kernel name
+    // is used.
+
+    BOOST_CHECK_EQUAL(mount_point1->get_impl().get_mount_by_name(), "/dev/sda1");
+
+    btrfs->set_uuid("dead-beef");
+    BOOST_CHECK_EQUAL(mount_point1->get_impl().get_mount_by_name(), "UUID=dead-beef");
 }
