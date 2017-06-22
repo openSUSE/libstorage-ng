@@ -13,7 +13,7 @@ check_PROGRAMS =								\
 	copy.test coverage-tests.test default-partition-table.test disk.test	\
 	dynamic.test environment.test find-vertex.test fstab.test crypttab.test \
 	output.test probe.test range.test stable.test relatives.test 		\
-	mount-opts.test etc-mdadm.test mount-by.test btrfs.test
+	mount-opts.test etc-mdadm.test mount-by.test btrfs.test md1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 

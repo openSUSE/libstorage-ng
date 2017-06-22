@@ -70,7 +70,12 @@ namespace storage
     });
 
 
-    const regex Md::Impl::numeric_name_regex(DEVDIR "/md([0-9]+)", regex_constants::extended);
+    // Matches names of the form /dev/md<number> and /dev/md/<number>. The
+    // latter looks like a named MD but since mdadm creates /dev/md<number> in
+    // that case and not /dev/md<some big number> the number must be
+    // considered in find_free_numeric_name().
+
+    const regex Md::Impl::numeric_name_regex(DEVDIR "/md/?([0-9]+)", regex_constants::extended);
 
 
     // mdadm(8) states that any string for the names is allowed. That is

@@ -60,7 +60,7 @@ namespace storage
 	/**
 	 * Create a MD in devicegraph with name. Name must either be of the
 	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
-	 * called numeric.
+	 * called numeric. If name is a number it is also called numeric.
 	 */
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
 
