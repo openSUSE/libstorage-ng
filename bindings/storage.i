@@ -7,6 +7,7 @@
 %ignore "get_impl";
 %ignore "clone";
 %ignore "operator <<";
+%ignore "get_all_if";
 
 %rename("==") "operator==";
 %rename("!=") "operator!=";

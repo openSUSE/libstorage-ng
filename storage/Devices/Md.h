@@ -24,6 +24,8 @@
 #define STORAGE_MD_H
 
 
+#include <functional>
+
 #include "storage/Devices/Partitionable.h"
 
 
@@ -107,8 +109,8 @@ namespace storage
 	void set_in_etc_mdadm(bool in_etc_mdadm);
 
 	/**
-	 * Sorted by name and number. The non-numeric Mds come before the
-	 * numeric Mds.
+	 * Get all Mds. Sorted by name and number: The non-numeric Mds come
+	 * before the numeric Mds.
 	 */
 	static std::vector<Md*> get_all(Devicegraph* devicegraph);
 
@@ -116,6 +118,19 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Md*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Get all Mds for which the predicate pred returns true. Sorted by
+	 * name and number: The non-numeric Mds come before the numeric Mds.
+	 */
+	static std::vector<Md*> get_all_if(Devicegraph* devicegraph,
+					   std::function<bool(const Md*)> pred);
+
+	/**
+	 * @copydoc get_all_if()
+	 */
+	static std::vector<const Md*> get_all_if(const Devicegraph* devicegraph,
+						 std::function<bool(const Md*)> pred);
 
 	static Md* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);

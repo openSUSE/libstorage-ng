@@ -235,6 +235,20 @@ namespace storage
     }
 
 
+    vector<Md*>
+    Md::get_all_if(Devicegraph* devicegraph, std::function<bool(const Md*)> pred)
+    {
+	return devicegraph->get_impl().get_devices_of_type_if<Md>(pred, compare_by_name_and_number);
+    }
+
+
+    vector<const Md*>
+    Md::get_all_if(const Devicegraph* devicegraph, std::function<bool(const Md*)> pred)
+    {
+	return devicegraph->get_impl().get_devices_of_type_if<const Md>(pred, compare_by_name_and_number);
+    }
+
+
     string
     Md::find_free_numeric_name(const Devicegraph* devicegraph)
     {

@@ -129,9 +129,7 @@ namespace storage
     string
     Md::Impl::find_free_numeric_name(const Devicegraph* devicegraph)
     {
-	vector<const Md*> mds = get_all(devicegraph);
-
-	erase_if(mds, [](const Md* md) { return !md->is_numeric(); });
+	vector<const Md*> mds = get_all_if(devicegraph, [](const Md* md) { return md->is_numeric(); });
 
 	unsigned int free_number = first_missing_number(mds, 0);
 
