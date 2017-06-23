@@ -35,11 +35,11 @@ namespace storage
     class MdUser;
 
 
-    enum MdLevel {
+    enum class MdLevel {
 	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10
     };
 
-    enum MdParity {
+    enum class MdParity {
 	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
 	RIGHT_SYMMETRIC, FIRST, LAST, LEFT_ASYMMETRIC_6, LEFT_SYMMETRIC_6,
 	RIGHT_ASYMMETRIC_6, RIGHT_SYMMETRIC_6, FIRST_6, NEAR_2, OFFSET_2,

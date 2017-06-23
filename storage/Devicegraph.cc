@@ -92,14 +92,14 @@ namespace storage
 
     WrongNumberOfParents::WrongNumberOfParents(size_t seen, size_t expected)
 	: Exception(sformat("wrong number of parents, seen '%zu', expected '%zu'", seen, expected),
-		    Silencer::is_any_active() ? DEBUG : WARNING)
+		    Silencer::is_any_active() ? LogLevel::DEBUG : LogLevel::WARNING)
     {
     }
 
 
     WrongNumberOfChildren::WrongNumberOfChildren(size_t seen, size_t expected)
 	: Exception(sformat("wrong number of children, seen '%zu', expected '%zu'", seen, expected),
-		    Silencer::is_any_active() ? DEBUG : WARNING)
+		    Silencer::is_any_active() ? LogLevel::DEBUG : LogLevel::WARNING)
     {
     }
 

@@ -61,8 +61,9 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : md_level(UNKNOWN), md_parity(DEFAULT), size(0), chunk_size(0),
-		      readonly(false), inactive(false), is_container(false), has_container(false) {}
+	    Entry() : md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT), size(0),
+		      chunk_size(0), readonly(false), inactive(false), is_container(false),
+		      has_container(false) {}
 
 	    MdLevel md_level;
 	    MdParity md_parity;

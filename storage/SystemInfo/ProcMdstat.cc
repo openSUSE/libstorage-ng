@@ -186,37 +186,37 @@ namespace storage
 	    switch( alg )
 	    {
 		case 0:
-		    entry.md_parity = LEFT_ASYMMETRIC;
+		    entry.md_parity = MdParity::LEFT_ASYMMETRIC;
 		    break;
 		case 1:
-		    entry.md_parity = RIGHT_ASYMMETRIC;
+		    entry.md_parity = MdParity::RIGHT_ASYMMETRIC;
 		    break;
 		case 2:
-		    entry.md_parity = LEFT_SYMMETRIC;
+		    entry.md_parity = MdParity::LEFT_SYMMETRIC;
 		    break;
 		case 3:
-		    entry.md_parity = RIGHT_SYMMETRIC;
+		    entry.md_parity = MdParity::RIGHT_SYMMETRIC;
 		    break;
 		case 4:
-		    entry.md_parity = FIRST;
+		    entry.md_parity = MdParity::FIRST;
 		    break;
 		case 5:
-		    entry.md_parity = LAST;
+		    entry.md_parity = MdParity::LAST;
 		    break;
 		case 16:
-		    entry.md_parity = LEFT_ASYMMETRIC_6;
+		    entry.md_parity = MdParity::LEFT_ASYMMETRIC_6;
 		    break;
 		case 17:
-		    entry.md_parity = RIGHT_ASYMMETRIC_6;
+		    entry.md_parity = MdParity::RIGHT_ASYMMETRIC_6;
 		    break;
 		case 18:
-		    entry.md_parity = LEFT_SYMMETRIC_6;
+		    entry.md_parity = MdParity::LEFT_SYMMETRIC_6;
 		    break;
 		case 19:
-		    entry.md_parity = RIGHT_SYMMETRIC_6;
+		    entry.md_parity = MdParity::RIGHT_SYMMETRIC_6;
 		    break;
 		case 20:
-		    entry.md_parity = FIRST_6;
+		    entry.md_parity = MdParity::FIRST_6;
 		    break;
 		default:
 		    y2war("unknown parity " << line2.substr(pos));
@@ -235,11 +235,11 @@ namespace storage
 	    line2.substr( pos ) >> num;
 	    y2mil( "where:" << where << " num:" << num );
 	    if (where == "near-copies")
-		entry.md_parity = (num == 3) ? NEAR_3 : NEAR_2;
+		entry.md_parity = (num == 3) ? MdParity::NEAR_3 : MdParity::NEAR_2;
 	    else if (where == "far-copies")
-		entry.md_parity = (num == 3)? FAR_3 : FAR_2;
+		entry.md_parity = (num == 3)? MdParity::FAR_3 : MdParity::FAR_2;
 	    else if (where == "offset-copies")
-		entry.md_parity = (num == 3) ? OFFSET_3 : OFFSET_2;
+		entry.md_parity = (num == 3) ? MdParity::OFFSET_3 : MdParity::OFFSET_2;
 	}
 
 	return entry;
@@ -289,7 +289,7 @@ namespace storage
     {
 	s << "md-level:" << toString(entry.md_level);
 
-	if (entry.md_parity != DEFAULT)
+	if (entry.md_parity != MdParity::DEFAULT)
 	    s << " md-parity:" + toString(entry.md_parity);
 
 	if (!entry.super.empty())

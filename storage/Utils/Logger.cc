@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,6 +29,9 @@
 
 namespace storage
 {
+
+    typedef typename std::underlying_type<LogLevel>::type log_level_underlying_type;
+
 
     static Logger* my_logger = nullptr;
 
@@ -68,8 +71,9 @@ namespace storage
     StdoutLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
 			int line, const std::string& function, const std::string& content)
     {
-	std::cout << datetime(time(nullptr)) << " <" << log_level << "> [" << component << "] "
-		  << file << "(" << function << "):" << line << " " << content << std::endl;
+	std::cout << datetime(time(nullptr)) << " <" << static_cast<log_level_underlying_type>(log_level)
+		  << "> [" << component << "] " << file << "(" << function << "):" << line << " "
+		  << content << std::endl;
     }
 
 
@@ -100,8 +104,8 @@ namespace storage
 	if (f)
 	{
 	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
-		    log_level, component.c_str(), file.c_str(), function.c_str(), line,
-		    content.c_str());
+		    static_cast<log_level_underlying_type>(log_level), component.c_str(),
+		    file.c_str(), function.c_str(), line, content.c_str());
 
 	    fclose(f);
 	}

@@ -441,7 +441,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 	    paths.erase(DASDFMTBIN);
 	}
 
-	LogLevel log_level = instsys ? storage::ERROR : storage::MILESTONE;
+	LogLevel log_level = instsys ? storage::LogLevel::ERROR : storage::LogLevel::MILESTONE;
 	for (const string& name : paths)
         {
             if (access(name.c_str(), X_OK) != 0)
