@@ -24,6 +24,8 @@
 #define STORAGE_MD_H
 
 
+#include <functional>
+
 #include "storage/Devices/Partitionable.h"
 
 
@@ -33,11 +35,11 @@ namespace storage
     class MdUser;
 
 
-    enum MdLevel {
+    enum class MdLevel {
 	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10
     };
 
-    enum MdParity {
+    enum class MdParity {
 	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
 	RIGHT_SYMMETRIC, FIRST, LAST, LEFT_ASYMMETRIC_6, LEFT_SYMMETRIC_6,
 	RIGHT_ASYMMETRIC_6, RIGHT_SYMMETRIC_6, FIRST_6, NEAR_2, OFFSET_2,
@@ -57,7 +59,13 @@ namespace storage
     {
     public:
 
+	/**
+	 * Create a MD in devicegraph with name. Name must either be of the
+	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
+	 * called numeric. If name is a number it is also called numeric.
+	 */
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
+
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	MdUser* add_device(BlkDevice* blk_device);
@@ -101,8 +109,8 @@ namespace storage
 	void set_in_etc_mdadm(bool in_etc_mdadm);
 
 	/**
-	 * Sorted by name and number. The non-numeric Mds come before the
-	 * numeric Mds.
+	 * Get all Mds. Sorted by name and number: The non-numeric Mds come
+	 * before the numeric Mds.
 	 */
 	static std::vector<Md*> get_all(Devicegraph* devicegraph);
 
@@ -110,6 +118,19 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Md*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Get all Mds for which the predicate pred returns true. Sorted by
+	 * name and number: The non-numeric Mds come before the numeric Mds.
+	 */
+	static std::vector<Md*> get_all_if(Devicegraph* devicegraph,
+					   std::function<bool(const Md*)> pred);
+
+	/**
+	 * @copydoc get_all_if()
+	 */
+	static std::vector<const Md*> get_all_if(const Devicegraph* devicegraph,
+						 std::function<bool(const Md*)> pred);
 
 	static Md* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);

@@ -120,3 +120,21 @@ BOOST_AUTO_TEST_CASE(parse4)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse5)
+{
+    vector<string> input = {
+	"Personalities : [raid1] [raid0] ",
+	"md_test : active raid0 sda1[1] sdb1[0]",
+	"      8000512 blocks super 1.2 512k chunks"
+	"      ",
+	"unused devices: <none>"
+    };
+
+    vector<string> output = {
+	"data[md_test] -> md-level:RAID0 super:1.2 chunk-size:524288 size:8192524288 devices:</dev/sda1 /dev/sdb1>",
+    };
+
+    check(input, output);
+}

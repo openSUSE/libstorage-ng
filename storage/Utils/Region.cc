@@ -28,25 +28,25 @@ namespace storage
 {
 
     InvalidBlockSize::InvalidBlockSize(unsigned int block_size)
-	: Exception(sformat("invalid block size %d", block_size), ERROR)
+	: Exception(sformat("invalid block size %d", block_size), LogLevel::ERROR)
     {
     }
 
 
     DifferentBlockSizes::DifferentBlockSizes(unsigned int seen, unsigned int expected)
-	: Exception(sformat("different block sizes, seen: %d, exception: %d", seen, expected), ERROR)
+	: Exception(sformat("different block sizes, seen: %d, exception: %d", seen, expected), LogLevel::ERROR)
     {
     }
 
 
     NoIntersection::NoIntersection()
-	: Exception("no intersection", WARNING)
+	: Exception("no intersection", LogLevel::WARNING)
     {
     }
 
 
     NotInside::NotInside()
-	: Exception("not inside", WARNING)
+	: Exception("not inside", LogLevel::WARNING)
     {
     }
 

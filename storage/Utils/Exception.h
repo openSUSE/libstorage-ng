@@ -117,13 +117,13 @@ namespace storage
 	 * Default constructor.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception(LogLevel log_level = ERROR);
+	Exception(LogLevel log_level = LogLevel::ERROR);
 
 	/**
 	 * Constructor taking a message.
 	 * Use ST_THROW to throw exceptions.
 	 **/
-	Exception(const std::string & msg, LogLevel log_level = ERROR);
+	Exception(const std::string & msg, LogLevel log_level = LogLevel::ERROR);
 
 	/**
 	 * Destructor.
@@ -228,7 +228,7 @@ namespace storage
     {
     public:
 	NullPointerException()
-	    : Exception( "Null pointer", ERROR )
+	    : Exception("Null pointer", LogLevel::ERROR)
 	    {}
 
 	virtual ~NullPointerException() noexcept
@@ -268,7 +268,7 @@ namespace storage
     {
     public:
 	OutOfMemoryException()
-	    : Exception( "Out of memory", ERROR )
+	    : Exception("Out of memory", LogLevel::ERROR)
 	    {}
 
 	virtual ~OutOfMemoryException() noexcept

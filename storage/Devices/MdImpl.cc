@@ -70,7 +70,12 @@ namespace storage
     });
 
 
-    const regex Md::Impl::numeric_name_regex(DEVDIR "/md([0-9]+)", regex_constants::extended);
+    // Matches names of the form /dev/md<number> and /dev/md/<number>. The
+    // latter looks like a named MD but since mdadm creates /dev/md<number> in
+    // that case and not /dev/md<some big number> the number must be
+    // considered in find_free_numeric_name().
+
+    const regex Md::Impl::numeric_name_regex(DEVDIR "/md/?([0-9]+)", regex_constants::extended);
 
 
     // mdadm(8) states that any string for the names is allowed. That is
@@ -82,8 +87,8 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), uuid(),
-	  superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(name), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
+	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -100,16 +105,16 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(RAID0), md_parity(DEFAULT), chunk_size(0), uuid(),
-	  superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(node), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
+	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
     {
 	string tmp;
 
 	if (getChildValue(node, "md-level", tmp))
-	    md_level = toValueWithFallback(tmp, RAID0);
+	    md_level = toValueWithFallback(tmp, MdLevel::RAID0);
 
 	if (getChildValue(node, "md-parity", tmp))
-	    md_parity = toValueWithFallback(tmp, DEFAULT);
+	    md_parity = toValueWithFallback(tmp, MdParity::DEFAULT);
 
 	getChildValue(node, "chunk-size", chunk_size);
 
@@ -124,9 +129,7 @@ namespace storage
     string
     Md::Impl::find_free_numeric_name(const Devicegraph* devicegraph)
     {
-	vector<const Md*> mds = get_all(devicegraph);
-
-	erase_if(mds, [](const Md* md) { return !md->is_numeric(); });
+	vector<const Md*> mds = get_all_if(devicegraph, [](const Md* md) { return md->is_numeric(); });
 
 	unsigned int free_number = first_missing_number(mds, 0);
 
@@ -335,7 +338,7 @@ namespace storage
 	Partitionable::Impl::save(node);
 
 	setChildValue(node, "md-level", toString(md_level));
-	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != DEFAULT);
+	setChildValueIf(node, "md-parity", toString(md_parity), md_parity != MdParity::DEFAULT);
 
 	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
 
@@ -508,7 +511,7 @@ namespace storage
 	    real_chunk_size = get_default_chunk_size();
 
 	// mdadm uses a chunk size of 64 KiB just in case the RAID1 is ever reshaped to RAID5.
-	if (md_level == RAID1)
+	if (md_level == MdLevel::RAID1)
 	    real_chunk_size = 64 * KiB;
 
 	int number = 0;
@@ -552,7 +555,7 @@ namespace storage
 
 	switch (md_level)
 	{
-	    case RAID0:
+	    case MdLevel::RAID0:
 		if (number >= 2)
 		{
 		    size = sum;
@@ -560,7 +563,7 @@ namespace storage
 		}
 		break;
 
-	    case RAID1:
+	    case MdLevel::RAID1:
 		if (number >= 2)
 		{
 		    size = smallest;
@@ -568,7 +571,7 @@ namespace storage
 		}
 		break;
 
-	    case RAID5:
+	    case MdLevel::RAID5:
 		if (number >= 3)
 		{
 		    size = smallest * (number - 1);
@@ -576,7 +579,7 @@ namespace storage
 		}
 		break;
 
-	    case RAID6:
+	    case MdLevel::RAID6:
 		if (number >= 4)
 		{
 		    size = smallest * (number - 2);
@@ -584,7 +587,7 @@ namespace storage
 		}
 		break;
 
-	    case RAID10:
+	    case MdLevel::RAID10:
 		if (number >= 2)
 		{
 		    size = ((smallest / real_chunk_size) * number / 2) * real_chunk_size;
@@ -594,7 +597,7 @@ namespace storage
 		}
 		break;
 
-	    case UNKNOWN:
+	    case MdLevel::UNKNOWN:
 		break;
 	}
 
@@ -633,13 +636,14 @@ namespace storage
 	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata 1.0"
 	    " --homehost=any";
 
-	if (md_level == RAID1 || md_level == RAID5 || md_level == RAID6 || md_level == RAID10)
+	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID5 ||
+	    md_level == MdLevel::RAID6 || md_level == MdLevel::RAID10)
 	    cmd_line += " --bitmap internal";
 
 	if (chunk_size > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);
 
-	if (md_parity != DEFAULT)
+	if (md_parity != MdParity::DEFAULT)
 	    cmd_line += " --parity=" + toString(md_parity);
 
 	// place devices in multimaps to sort them according to the sort-key

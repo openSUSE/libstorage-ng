@@ -197,10 +197,10 @@ namespace storage
 
 	static const vector<string> allowed_prefixes = { "ccw-" };
 
-	udev_ids.erase(remove_if(udev_ids.begin(), udev_ids.end(), [](const string& udev_id) {
+	erase_if(udev_ids, [](const string& udev_id) {
 	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
 			   { return boost::starts_with(udev_id, prefix); });
-	}), udev_ids.end());
+	});
     }
 
 

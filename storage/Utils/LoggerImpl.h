@@ -40,10 +40,10 @@ namespace storage
     void close_log_stream(LogLevel log_level, const char* file, unsigned line,
 			  const char* func, std::ostringstream*);
 
-#define y2deb(op) y2log_op(storage::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2mil(op) y2log_op(storage::MILESTONE, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2war(op) y2log_op(storage::WARNING, __FILE__, __LINE__, __FUNCTION__, op)
-#define y2err(op) y2log_op(storage::ERROR, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2deb(op) y2log_op(storage::LogLevel::DEBUG, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2mil(op) y2log_op(storage::LogLevel::MILESTONE, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2war(op) y2log_op(storage::LogLevel::WARNING, __FILE__, __LINE__, __FUNCTION__, op)
+#define y2err(op) y2log_op(storage::LogLevel::ERROR, __FILE__, __LINE__, __FUNCTION__, op)
 
 #define y2log_op(log_level, file, line, func, op)				\
     do {									\

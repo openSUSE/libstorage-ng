@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,7 +32,7 @@ namespace storage
 {
 
 
-    enum LogLevel { DEBUG = 0, MILESTONE = 1, WARNING = 2, ERROR = 3 };
+    enum class LogLevel { DEBUG = 0, MILESTONE = 1, WARNING = 2, ERROR = 3 };
 
 
     /**

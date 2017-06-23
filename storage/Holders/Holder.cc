@@ -32,7 +32,7 @@ namespace storage
 
     HolderHasWrongType::HolderHasWrongType(const char* seen, const char* expected)
 	: Exception(sformat("holder has wrong type, seen '%s', expected '%s'", seen, expected),
-		    Silencer::is_any_active() ? DEBUG : WARNING)
+		    Silencer::is_any_active() ? LogLevel::DEBUG : LogLevel::WARNING)
     {
     }
 

@@ -97,6 +97,8 @@ namespace storage
     void
     Storage::Impl::probe()
     {
+	y2mil("probe begin");
+
 	remove_devicegraph("probed");
 	remove_devicegraph("staging");
 
@@ -132,6 +134,8 @@ namespace storage
 		probe_helper(probed);
 	    } break;
 	}
+
+	y2mil("probe end");
 
 	y2mil("probed devicegraph begin");
 	y2mil(*probed);
