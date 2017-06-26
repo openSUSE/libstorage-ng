@@ -142,9 +142,13 @@ namespace storage
     int
     SystemCmd::execute( const string& command )
     {
+	// TODO the command handling could need a better concept
+
+	string cmd = command.empty() ? _cmd : command;
+
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
-	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key.empty() ? command : mockup_key);
+	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key.empty() ? cmd : mockup_key);
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
@@ -155,7 +159,7 @@ namespace storage
 
 	if (get_remote_callbacks())
 	{
-	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(command);
+	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(cmd);
 	    _outputLines[IDX_STDOUT] = remote_command.stdout;
 	    _outputLines[IDX_STDERR] = remote_command.stderr;
 	    _cmdRet = remote_command.exit_code;
@@ -170,7 +174,7 @@ namespace storage
 
 	if (Mockup::get_mode() == Mockup::Mode::RECORD)
 	{
-	    Mockup::set_command(mockup_key.empty() ? command : mockup_key,
+	    Mockup::set_command(mockup_key.empty() ? cmd : mockup_key,
 				Mockup::Command(_outputLines[IDX_STDOUT], _outputLines[IDX_STDERR], _cmdRet));
 	}
 
