@@ -39,12 +39,11 @@ namespace storage
     CmdLsattr::CmdLsattr(const key_t& key, const string& mountpoint, const string& path)
 	: mountpoint(mountpoint), path(path)
     {
-	SystemCmd cmd;
-	cmd.setCmd(LSATTRBIN " -d " + quote(mountpoint + "/" + path));
-	cmd.setMockupKey(LSATTRBIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")");
-	cmd.setThrowBehaviour(SystemCmd::DoThrow);
-	cmd.execute();
+	SystemCmd::Options cmd_options(LSATTRBIN " -d " + quote(mountpoint + "/" + path));
+	cmd_options.mockup_key = LSATTRBIN " -d (device:" + get<0>(key) + " path:" + get<1>(key) + ")";
+	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
+	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
 	    ST_THROW(SystemCmdException(&cmd, "lsattr failed, retcode:" + to_string(cmd.retcode())));
 

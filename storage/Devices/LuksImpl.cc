@@ -115,9 +115,10 @@ namespace storage
 		quote(dm_name) + " --key-file -";
 	    cout << cmd_line << endl;
 
-	    SystemCmd cmd;
-	    cmd.setStdinText(tmp.second);
-	    cmd.execute(cmd_line);
+	    SystemCmd::Options cmd_options(cmd_line);
+	    cmd_options.stdin_text = tmp.second;
+
+	    SystemCmd cmd(cmd_options);
 
 	    // check for wrong password
 	    if (cmd.retcode() == 2)
@@ -321,9 +322,10 @@ namespace storage
 	    " --key-file -";
 	cout << cmd_line << endl;
 
-	SystemCmd cmd;
-	cmd.setStdinText(get_password());
-	cmd.execute(cmd_line);
+	SystemCmd::Options cmd_options(cmd_line);
+	cmd_options.stdin_text = get_password();
+
+	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create Luks failed"));
 
@@ -375,9 +377,10 @@ namespace storage
 	    quote(get_dm_table_name()) + " --key-file -";
 	cout << cmd_line << endl;
 
-	SystemCmd cmd;
-	cmd.setStdinText(get_password());
-	cmd.execute(cmd_line);
+	SystemCmd::Options cmd_options(cmd_line);
+	cmd_options.stdin_text = get_password();
+
+	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("activate Luks failed"));
     }

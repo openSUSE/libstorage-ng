@@ -82,9 +82,10 @@ BOOST_AUTO_TEST_CASE(pipe_stdin)
         "I'm leaving you today"
     };
 
-    SystemCmd cmd;
-    cmd.setStdinText( "Hello, cruel world\nI'm leaving you today" );
-    cmd.execute( "cat" );
+    SystemCmd::Options cmd_options("cat");
+    cmd_options.stdin_text = "Hello, cruel world\nI'm leaving you today";
+
+    SystemCmd cmd(cmd_options);
 
     BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
 }
