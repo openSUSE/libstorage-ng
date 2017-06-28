@@ -18,11 +18,11 @@ staging = storage.get_staging()
 
 # print staging
 
-disk = Disk.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
-disk.remove_descendants()
+partitionable.remove_descendants()
 
 # print staging
 
-commit(storage, skip_save_graphs = False)
+commit(storage)
 
