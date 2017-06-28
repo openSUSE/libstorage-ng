@@ -30,7 +30,6 @@
 
 #include <string>
 #include <vector>
-#include <list>
 #include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Exception.h"
@@ -43,10 +42,9 @@ namespace storage
 
     class OutputProcessor;
 
+
     /**
-     * Class to invoke a shell command and capture its output.
-     * By default, stdout and stderr output are kept separate.
-     * Use 'setCombine()' to merge them.
+     * Class to invoke a shell command and capture its exit value and output.
      */
     class SystemCmd : private boost::noncopyable
     {
@@ -54,36 +52,69 @@ namespace storage
 
 	enum ThrowBehaviour { DoThrow, NoThrow };
 
-	/**
-	 * Constructor. Invoke the specified command immediately in the foreground.
-	 * If 'throwBehaviour' is 'DoThrow', this might throw exceptions.
-	 * Use 'retcode()' to get the command's exit code.
-	 */
-	SystemCmd(const string& command, ThrowBehaviour throwBehaviour = NoThrow );
 
 	/**
-	 * Default constructor for the more advanced cases or where immediate
-	 * execution is not desired.
+	 * Class with detailed options for the SystemCmd class.
 	 */
-	SystemCmd();
+	struct Options
+	{
+	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
+		: command(command), throw_behaviour(throw_behaviour), stdin_text(),
+		  mockup_key() {}
+
+	    /**
+	     * The command to be executed.
+	     */
+	    string command;
+
+	    /**
+	     * Should exceptions be thrown or not?
+	     */
+	    ThrowBehaviour throw_behaviour;
+
+	    /**
+	     * The stdin text to be sent via pipe to the command.
+	     */
+	    string stdin_text;
+
+	    /**
+	     * The key used for mockup. If empty the command is used as the key.
+	     */
+	    string mockup_key;
+
+	};
+
+	/**
+	 * Constructor. The command is immediately executed with the options
+	 * in the Options object. Use 'retcode()' to get the commands exit
+	 * code and stdout() and stderr() to get the commands output.
+	 */
+	SystemCmd(const Options& options);
+
+	/**
+	 * Convenience constructor where only the command and the throw
+	 * behaviour can be specified. Otherwise identical to 'SystemCmd(const
+	 * Options& options)'.
+	 */
+	SystemCmd(const string& command, ThrowBehaviour throw_behaviour = NoThrow);
 
 	/**
 	 * Destructor.
 	 */
 	virtual ~SystemCmd();
 
+    protected:
+
 	/**
 	 * Execute the specified command in the foreground and return its exit code.
-         * If 'command' is empty, use the last used command.
 	 **/
-	int execute(const string& command = "");
+	int execute();
 
 	/**
 	 * Execute the specified command in the background.
-         * If 'command' is empty, use the last used command.
 	 * The return value is only meaningful if < 0 (fork() or exec() failed).
 	 */
-	int executeBackground(const string& command = "");
+	int executeBackground();
 
 	/**
 	 * Execute the specified command in the foreground with some restrictions:
@@ -98,8 +129,7 @@ namespace storage
 	 * This function returns the command's exit code if none of the limits
 	 * was exceeded, and -257 otherwise.
 	 */
-	int executeRestricted(const string& command,
-			      unsigned long maxTimeSec, unsigned long maxLineOut,
+	int executeRestricted(unsigned long maxTimeSec, unsigned long maxLineOut,
 			      bool& timeExceeded_ret, bool& linesExceeded_ret);
 
 	/**
@@ -108,6 +138,8 @@ namespace storage
 	 * called when an output line is read. See OutputProcessor.h.
 	 */
 	void setOutputProcessor(OutputProcessor* proc) { _outputProc = proc; }
+
+    public:
 
 	/**
 	 * Return the output lines collected on stdout so far.
@@ -119,50 +151,17 @@ namespace storage
 	 */
 	const vector<string>& stderr() const { return _outputLines[IDX_STDERR]; }
 
-        /**
-         * Set stdin text to be sent via pipe to the command.
-         *
-         * Notice this has only an effect if the command is not executed
-         * immediately from the constructor; use the default constructor, set
-         * the stdin text and explicitly call execute() with the command.
-         **/
-        void setStdinText( const string & stdinText ) { _stdinText = stdinText; }
-
 	/**
-	 * Return the (last) command executed.
+	 * Return the command executed.
 	 */
-	string cmd() const { return _cmd; }
-
-        /**
-         * Set the command to be called when execute() without arguments is
-         * called later.
-         **/
-        void setCmd( const string & cmd ) { _cmd = cmd; }
+	const string& command() const { return options.command; }
 
 	/**
 	 * Return the exit code of the command.
 	 */
 	int retcode() const { return _cmdRet; }
 
-	/**
-	 * Combine stdout and stderr in output lines?
-	 */
-	void setCombine(bool combine = true);
-
-	/**
-	 * Set the throw behaviour: Should exceptions be thrown or not?
-	 */
-	void setThrowBehaviour( ThrowBehaviour val );
-
-	/**
-	 * Set the key used for mockup. If empty the command is used as the key.
-	 */
-	void setMockupKey(const string& mockup_key);
-
-	/**
-	 * Set test mode, i.e. don't actually invoke the command.
-	 */
-	static void setTestmode(bool testmode = true);
+    public:
 
 	/**
 	 * Quotes and protects a single string for shell execution.
@@ -172,12 +171,7 @@ namespace storage
 	/**
 	 * Quotes and protects every single string in the vector for shell execution.
 	 */
-	static string quote(const std::vector<string>& strs);
-
-	/**
-	 * Quotes and protects every single string in the list for shell execution.
-	 */
-	static string quote(const std::list<string>& strs);
+	static string quote(const vector<string>& strs);
 
     protected:
 
@@ -187,7 +181,7 @@ namespace storage
 	void cleanup();
 	void invalidate();
 	void closeOpenFds() const;
-	int doExecute(const string& command);
+	int doExecute();
 	bool doWait(bool hang, int& cmdRet_ret);
 	void checkOutput();
         void sendStdin();
@@ -199,24 +193,27 @@ namespace storage
 
 	void logOutput() const;
 
+	bool do_throw() const { return options.throw_behaviour == DoThrow; }
+
+	const string& mockup_key() const
+	    { return options.mockup_key.empty() ? options.command : options.mockup_key; }
+
 	//
 	// Data members
 	//
 
+	Options options;
+
 	FILE* _files[2];
         FILE* _childStdin;
 	std::vector<string> _outputLines[2];
-        string _stdinText;
 	bool _newLineSeen[2];
 	bool _combineOutput;
 	bool _execInBackground;
-	string _cmd;
 	int _cmdRet;
 	int _cmdPid;
-	bool _doThrow;
 	OutputProcessor* _outputProc;
 	struct pollfd _pfds[3];
-	string mockup_key;
 
 	static bool _testmode;
 
@@ -243,7 +240,7 @@ namespace storage
 	    {
 		// Copy relevant information from sysCmd because it might go
 		// out of scope while this exception still exists.
-		_cmd = sysCmd->cmd();
+		_cmd = sysCmd->command();
 		setMsg( msg + ": \"" + _cmd + "\"" );
 		_cmdRet = sysCmd->retcode();
 		_stderr = sysCmd->stderr();
@@ -260,7 +257,7 @@ namespace storage
 	/**
 	 * Return the command that was to be called with all arguments.
 	 */
-	const string & cmd() const { return _cmd; }
+	const string& command() const { return _cmd; }
 
 	/**
 	 * Return the return code (the exit code) of the command. This might
@@ -310,14 +307,9 @@ namespace storage
 	return SystemCmd::quote(str);
     }
 
-    inline string
-    quote(const std::vector<string>& strs)
-    {
-	return SystemCmd::quote(strs);
-    }
 
     inline string
-    quote(const std::list<string>& strs)
+    quote(const vector<string>& strs)
     {
 	return SystemCmd::quote(strs);
     }

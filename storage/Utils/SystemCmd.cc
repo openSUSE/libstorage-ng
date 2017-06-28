@@ -42,7 +42,7 @@
 
 
 #define SYSCALL_FAILED( SYSCALL_MSG ) \
-    ST_MAYBE_THROW( Exception( Exception::strErrno( errno, SYSCALL_MSG ) ), _doThrow )
+    ST_MAYBE_THROW( Exception( Exception::strErrno( errno, SYSCALL_MSG ) ), do_throw() )
 
 #define SYSCALL_FAILED_NOTHROW( SYSCALL_MSG ) \
     ST_MAYBE_THROW( Exception( Exception::strErrno( errno, SYSCALL_MSG ) ), false )
@@ -53,21 +53,26 @@
 #define SHELL_RET_COMMAND_NOT_FOUND		127
 #define SHELL_RET_SIGNAL			128
 
+
 namespace storage
 {
     using namespace std;
 
 
-    SystemCmd::SystemCmd(const string& command, ThrowBehaviour throwBehaviour)
-	: _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0),
-	  _doThrow(throwBehaviour == DoThrow), _outputProc(nullptr), mockup_key()
+    SystemCmd::SystemCmd(const Options& options)
+	: options(options), _combineOutput(false), _execInBackground(false), _cmdRet(0),
+	  _cmdPid(0), _outputProc(nullptr)
     {
-	y2mil("constructor SystemCmd( \"" << command << "\" ) doThrow: " << _doThrow );
+	y2mil("constructor SystemCmd(\"" << command() << "\")");
+
+	if (command().empty())
+            ST_THROW(SystemCmdException(this, "No command specified"));
+
 	init();
 
 	try
 	{
-	    execute( command );
+	    execute();
 	}
 	catch ( const Exception &exception )
 	{
@@ -78,12 +83,9 @@ namespace storage
     }
 
 
-    SystemCmd::SystemCmd()
-	: _combineOutput(false), _execInBackground(false), _cmdRet(0), _cmdPid(0), _doThrow(false),
-	  _outputProc(nullptr), mockup_key()
+    SystemCmd::SystemCmd(const string& command, ThrowBehaviour throw_behaviour)
+	: SystemCmd(SystemCmd::Options(command, throw_behaviour))
     {
-	y2mil("constructor SystemCmd()");
-	init();
     }
 
 
@@ -140,15 +142,13 @@ namespace storage
 
 
     int
-    SystemCmd::execute( const string& command )
+    SystemCmd::execute()
     {
 	// TODO the command handling could need a better concept
 
-	string cmd = command.empty() ? _cmd : command;
-
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
-	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key.empty() ? cmd : mockup_key);
+	    const Mockup::Command& mockup_command = Mockup::get_command(mockup_key());
 	    _outputLines[IDX_STDOUT] = mockup_command.stdout;
 	    _outputLines[IDX_STDERR] = mockup_command.stderr;
 	    _cmdRet = mockup_command.exit_code;
@@ -159,7 +159,7 @@ namespace storage
 
 	if (get_remote_callbacks())
 	{
-	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(cmd);
+	    const RemoteCommand remote_command = get_remote_callbacks()->get_command(command());
 	    _outputLines[IDX_STDOUT] = remote_command.stdout;
 	    _outputLines[IDX_STDERR] = remote_command.stderr;
 	    _cmdRet = remote_command.exit_code;
@@ -167,15 +167,14 @@ namespace storage
 	}
 	else
 	{
-	    y2mil("SystemCmd Executing:\"" << command << "\"");
+	    y2mil("SystemCmd Executing:\"" << command() << "\"");
 	    _execInBackground = false;
-	    ret = doExecute(command);
+	    ret = doExecute();
 	}
 
 	if (Mockup::get_mode() == Mockup::Mode::RECORD)
 	{
-	    Mockup::set_command(mockup_key.empty() ? cmd : mockup_key,
-				Mockup::Command(_outputLines[IDX_STDOUT], _outputLines[IDX_STDERR], _cmdRet));
+	    Mockup::set_command(mockup_key(), Mockup::Command(stdout(), stderr(), retcode()));
 	}
 
 	return ret;
@@ -183,22 +182,21 @@ namespace storage
 
 
     int
-    SystemCmd::executeBackground( const string& command )
+    SystemCmd::executeBackground()
     {
-	y2mil("SystemCmd Executing (Background): \"" << command << "\"");
+	y2mil("SystemCmd Executing (Background): \"" << command() << "\"");
 	_execInBackground = true;
-	return doExecute( command );
+	return doExecute();
     }
 
 
     int
-    SystemCmd::executeRestricted( const string& command,
-				  long unsigned maxTimeSec, long unsigned maxLineOut,
-				  bool& timeExceeded_ret, bool& linesExceeded_ret )
+    SystemCmd::executeRestricted(long unsigned maxTimeSec, long unsigned maxLineOut,
+				 bool& timeExceeded_ret, bool& linesExceeded_ret)
     {
-	y2mil("cmd:" << command << " MaxTime:" << maxTimeSec << " MaxLines:" << maxLineOut);
+	y2mil("cmd:" << command() << " MaxTime:" << maxTimeSec << " MaxLines:" << maxLineOut);
 	timeExceeded_ret = linesExceeded_ret = false;
-	int ret = executeBackground( command );
+	int ret = executeBackground();
 	unsigned long ts = 0;
 	unsigned long ls = 0;
 	unsigned long start_time = time(NULL);
@@ -256,22 +254,13 @@ namespace storage
 
 
     int
-    SystemCmd::doExecute( const string& command )
+    SystemCmd::doExecute()
     {
-        if ( ! command.empty() )
-            _cmd = command;
-
-        if ( _cmd.empty() )
-        {
-            ST_MAYBE_THROW( SystemCmdException( this, "No command specified" ), _doThrow );
-            return -1;
-        }
-
 	if ( _outputProc )
 	{
 	    _outputProc->reset();
 	}
-	y2deb("Cmd:" << _cmd);
+	y2deb("command:" << command());
 
 	Stopwatch stopwatch;
 
@@ -353,7 +342,7 @@ namespace storage
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
 		    closeOpenFds();
-		    _cmdRet = execl(SHBIN, SHBIN, "-c", _cmd.c_str(), nullptr);
+		    _cmdRet = execl(SHBIN, SHBIN, "-c", command().c_str(), nullptr);
 
 		    // execl() should not return. If we get here, it failed.
 		    // Throwing an exception here would not make any sense, however:
@@ -407,7 +396,7 @@ namespace storage
 		    if ( !_execInBackground )
 		    {
 			doWait( true, _cmdRet );
-			y2mil("stopwatch " << stopwatch << " for \"" << cmd() << "\"");
+			y2mil("stopwatch " << stopwatch << " for \"" << command() << "\"");
 		    }
 		    break;
 	    }
@@ -419,11 +408,11 @@ namespace storage
 	else
 	{
 	    _cmdRet = 0;
-	    y2mil("TESTMODE would execute \"" << _cmd << "\"");
+	    y2mil("TESTMODE would execute \"" << command() << "\"");
 	}
 	if ( _cmdRet==-127 || _cmdRet==-1 )
 	{
-	    y2err("system (\"" << _cmd << "\") = " << _cmdRet);
+	    y2err("system (\"" << command() << "\") = " << _cmdRet);
 	}
 	if ( !_testmode )
 	    checkOutput();
@@ -481,20 +470,20 @@ namespace storage
 	    {
 		cmdRet_ret = WEXITSTATUS(cmdStatus);
 		if ( cmdRet_ret == SHELL_RET_COMMAND_NOT_EXECUTABLE )
-		    ST_MAYBE_THROW( SystemCmdException( this, "Command not executable" ), _doThrow );
+		    ST_MAYBE_THROW(SystemCmdException(this, "Command not executable"), do_throw());
 		else if ( cmdRet_ret == SHELL_RET_COMMAND_NOT_FOUND )
-		    ST_MAYBE_THROW( CommandNotFoundException( this ), _doThrow );
+		    ST_MAYBE_THROW(CommandNotFoundException(this), do_throw());
 		else if ( cmdRet_ret > SHELL_RET_SIGNAL )
 		{
 		    std::stringstream msg;
 		    msg << "Caught signal #" << ( cmdRet_ret - SHELL_RET_SIGNAL );
-		    ST_MAYBE_THROW( SystemCmdException( this, msg.str() ), _doThrow );
+		    ST_MAYBE_THROW( SystemCmdException(this, msg.str()), do_throw());
 		}
 	    }
 	    else
 	    {
 		cmdRet_ret = -127;
-		ST_MAYBE_THROW( SystemCmdException( this, "Command failed" ), _doThrow );
+		ST_MAYBE_THROW(SystemCmdException(this, "Command failed"), do_throw());
 	    }
 	    if ( _outputProc )
 	    {
@@ -505,34 +494,6 @@ namespace storage
 	y2deb("Wait:" << waitpidRet << " pid:" << _cmdPid << " stat:" << cmdStatus <<
 	      " Hang:" << hang << " Ret:" << cmdRet_ret);
 	return waitpidRet != 0;
-    }
-
-
-    void
-    SystemCmd::setCombine(bool val)
-    {
-	_combineOutput = val;
-    }
-
-
-    void
-    SystemCmd::setThrowBehaviour(ThrowBehaviour value)
-    {
-	_doThrow = value == DoThrow;
-    }
-
-
-    void
-    SystemCmd::setMockupKey(const string& mockup_key)
-    {
-	SystemCmd::mockup_key = mockup_key;
-    }
-
-
-    void
-    SystemCmd::setTestmode(bool val)
-    {
-	_testmode = val;
     }
 
 
@@ -565,20 +526,20 @@ namespace storage
         if ( ! _childStdin )
             return;
 
-        if ( ! _stdinText.empty() )
+        if (!options.stdin_text.empty())
         {
             string::size_type count = 0;
-            string::size_type len   = _stdinText.size();
+            string::size_type len   = options.stdin_text.size();
             int result = 1;
 
             while ( count < len && result > 0 )
-                result = fputc( _stdinText[ count++ ], _childStdin );
+                result = fputc( options.stdin_text[ count++ ], _childStdin );
 
-            _stdinText.erase( 0, count );
+            options.stdin_text.erase( 0, count );
             // y2deb( count << " characters written; left over: \"" << _stdinText << "\"" );
         }
 
-        if ( _stdinText.empty() )
+        if (options.stdin_text.empty())
         {
             fclose( _childStdin );
             _childStdin = NULL;
@@ -742,21 +703,6 @@ namespace storage
 	string ret;
 
 	for (std::vector<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
-	{
-	    if (it != strs.begin())
-		ret.append(" ");
-	    ret.append(quote(*it));
-	}
-
-	return ret;
-    }
-
-    string
-    SystemCmd::quote(const list<string>& strs)
-    {
-	string ret;
-
-	for (std::list<string>::const_iterator it = strs.begin(); it != strs.end(); ++it)
 	{
 	    if (it != strs.begin())
 		ret.append(" ");
