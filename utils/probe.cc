@@ -18,6 +18,7 @@ using namespace storage;
 bool display_devicegraph = false;
 bool save_devicegraph = false;
 bool save_mockup = false;
+bool load_mockup = false;
 
 
 void
@@ -25,8 +26,13 @@ doit()
 {
     set_logger(get_logfile_logger());
 
-    Environment environment(true, save_mockup ? ProbeMode::STANDARD_WRITE_MOCKUP : ProbeMode::STANDARD,
-			    TargetMode::DIRECT);
+    ProbeMode probe_mode = ProbeMode::STANDARD;
+    if (save_mockup)
+	probe_mode = ProbeMode::STANDARD_WRITE_MOCKUP;
+    else if (load_mockup)
+	probe_mode = ProbeMode::READ_MOCKUP;
+
+    Environment environment(true, probe_mode, TargetMode::DIRECT);
 
     environment.set_mockup_filename("mockup.xml");
 
@@ -65,7 +71,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup]" << endl;
+    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup]" << endl;
     exit(EXIT_FAILURE);
 }
 
@@ -77,6 +83,7 @@ main(int argc, char **argv)
 	{ "display-devicegraph",	no_argument,	0,	1 },
 	{ "save-devicegraph",		no_argument,	0,	2 },
 	{ "save-mockup",		no_argument,	0,	3 },
+	{ "load-mockup",		no_argument,	0,	4 },
 	{ 0, 0, 0, 0 }
     };
 
@@ -102,6 +109,10 @@ main(int argc, char **argv)
 
 	    case 3:
 		save_mockup = true;
+		break;
+
+	    case 4:
+		load_mockup = true;
 		break;
 
 	    default:
