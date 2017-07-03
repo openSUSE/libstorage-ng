@@ -105,6 +105,7 @@ namespace storage
 	const Storage* get_storage() const;
 
 	sid_t get_sid() const { return sid; }
+	void set_sid(sid_t sid) { Impl::sid = sid; }
 
 	void set_devicegraph_and_vertex(Devicegraph* devicegraph,
 					Devicegraph::Impl::vertex_descriptor vertex);

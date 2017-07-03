@@ -25,6 +25,7 @@
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/FindBy.h"
 
 
 namespace storage
@@ -165,14 +166,25 @@ namespace storage
     }
 
 
-    vector<BlkFilesystem*>
+    vector<const BlkFilesystem*>
     BlkFilesystem::find_by_label(const Devicegraph* devicegraph, const string& label)
     {
 	auto pred = [&label](const BlkFilesystem* blk_filesystem) {
 	    return blk_filesystem->get_label() == label;
 	};
 
-	return devicegraph->get_impl().get_devices_of_type_if<BlkFilesystem>(pred);
+	return devicegraph->get_impl().get_devices_of_type_if<const BlkFilesystem>(pred);
+    }
+
+
+    vector<const BlkFilesystem*>
+    BlkFilesystem::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    {
+	auto pred = [&uuid](const BlkFilesystem* blk_filesystem) {
+	    return blk_filesystem->get_uuid() == uuid;
+	};
+
+	return devicegraph->get_impl().get_devices_of_type_if<const BlkFilesystem>(pred);
     }
 
 

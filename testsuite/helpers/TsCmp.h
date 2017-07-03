@@ -40,7 +40,13 @@ namespace storage
     {
     public:
 
-	TsCmpDevicegraph(const Devicegraph& lhs, const Devicegraph& rhs);
+	TsCmpDevicegraph(const Devicegraph& lhs, Devicegraph& rhs);
+
+    private:
+
+	void adjust_sids(const Devicegraph& lhs, Devicegraph& rhs) const;
+
+	void adjust_sid(const Device* lhs, Device* rhs) const;
 
     };
 

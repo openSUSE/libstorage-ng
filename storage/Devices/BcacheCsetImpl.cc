@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/UsedFeatures.h"
+#include "storage/FindBy.h"
 
 
 namespace storage
@@ -182,6 +183,20 @@ namespace storage
 	Device::Impl::print(out);
 
 	out << " uuid:" << uuid;
+    }
+
+
+    BcacheCset*
+    BcacheCset::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<BcacheCset>(devicegraph, uuid);
+    }
+
+
+    const BcacheCset*
+    BcacheCset::Impl::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<const BcacheCset>(devicegraph, uuid);
     }
 
 

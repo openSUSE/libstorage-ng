@@ -75,8 +75,11 @@ namespace storage
 	 */
 	void set_content_info(const ContentInfo& content_info);
 
-	static std::vector<BlkFilesystem*> find_by_label(const Devicegraph* devicegraph,
-							 const std::string& label);
+	static std::vector<const BlkFilesystem*> find_by_label(const Devicegraph* devicegraph,
+							       const std::string& label);
+
+	static std::vector<const BlkFilesystem*> find_by_uuid(const Devicegraph* devicegraph,
+							      const std::string& uuid);
 
 	std::vector<const BlkDevice*> get_blk_devices() const;
 

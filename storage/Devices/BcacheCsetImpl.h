@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,9 +80,13 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	static BcacheCset* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
+	static const BcacheCset* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
+
     private:
 
 	string uuid;
+
     };
 
 

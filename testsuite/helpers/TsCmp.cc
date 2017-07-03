@@ -1,5 +1,6 @@
 
 
+#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <boost/algorithm/string.hpp>
@@ -8,6 +9,17 @@
 #include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/Action.h"
+#include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/Partitionable.h"
+#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/LvmVgImpl.h"
+#include "storage/Devices/LvmPvImpl.h"
+#include "storage/Devices/BcacheCsetImpl.h"
+#include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsSubvolume.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "testsuite/helpers/TsCmp.h"
 
 
@@ -29,14 +41,138 @@ namespace storage
     }
 
 
-    TsCmpDevicegraph::TsCmpDevicegraph(const Devicegraph& lhs, const Devicegraph& rhs)
+    TsCmpDevicegraph::TsCmpDevicegraph(const Devicegraph& lhs, Devicegraph& rhs)
     {
+	adjust_sids(lhs, rhs);
+
 	if (lhs != rhs)
 	{
 	    ostringstream tmp1;
 	    lhs.get_impl().log_diff(tmp1, rhs.get_impl());
 	    string tmp2 = tmp1.str();
 	    boost::split(errors, tmp2, boost::is_any_of("\n"), boost::token_compress_on);
+	}
+    }
+
+
+    /**
+     * This function adjusts the sids which is needed when devices are the
+     * detected in a differnet order than expected. Block devices use the name
+     * for identification, most others a uuid or a path. Some types are not
+     * handled at all, e.g. Nfs.
+     *
+     * The function makes assumptions that break in the general case and does
+     * no error checking. It can even ruin the devicegraph.
+     *
+     * Only enable it when you know what you are doing!
+     */
+    void
+    TsCmpDevicegraph::adjust_sids(const Devicegraph& lhs, Devicegraph& rhs) const
+    {
+#if 0
+
+	for (Device* device_rhs : Device::get_all(&rhs))
+	{
+	    // BlkDevices
+
+	    if (is_blk_device(device_rhs))
+	    {
+		BlkDevice* blk_device_rhs = to_blk_device(device_rhs);
+		const BlkDevice* blk_device_lhs = BlkDevice::find_by_name(&lhs, blk_device_rhs->get_name());
+
+		adjust_sid(blk_device_lhs, blk_device_rhs);
+
+		// PartitionTables
+
+		if (is_partitionable(blk_device_lhs) && is_partitionable(blk_device_rhs))
+		{
+		    const Partitionable* partitionable_lhs = to_partitionable(blk_device_lhs);
+		    Partitionable* partitionable_rhs = to_partitionable(blk_device_rhs);
+
+		    if (partitionable_lhs->has_partition_table() && partitionable_rhs->has_partition_table())
+			adjust_sid(partitionable_lhs->get_partition_table(), partitionable_rhs->get_partition_table());
+		}
+	    }
+
+	    // LvmVgs
+
+	    if (is_lvm_vg(device_rhs))
+	    {
+		LvmVg* lvm_vg_rhs = to_lvm_vg(device_rhs);
+		const LvmVg* lvm_vg_lhs = LvmVg::Impl::find_by_uuid(&lhs, lvm_vg_rhs->get_impl().get_uuid());
+
+		adjust_sid(lvm_vg_lhs, lvm_vg_rhs);
+	    }
+
+	    // LvmPvs
+
+	    if (is_lvm_pv(device_rhs))
+	    {
+		LvmPv* lvm_pv_rhs = to_lvm_pv(device_rhs);
+		const LvmPv* lvm_pv_lhs = LvmPv::Impl::find_by_uuid(&lhs, lvm_pv_rhs->get_impl().get_uuid());
+
+		adjust_sid(lvm_pv_lhs, lvm_pv_rhs);
+	    }
+
+	    // BcacheCset
+
+	    if (is_bcache_cset(device_rhs))
+	    {
+		BcacheCset* bcache_cset_rhs = to_bcache_cset(device_rhs);
+		const BcacheCset* bcache_cset_lhs = BcacheCset::Impl::find_by_uuid(&lhs, bcache_cset_rhs->get_uuid());
+
+		adjust_sid(bcache_cset_lhs, bcache_cset_rhs);
+	    }
+
+	    // BlkFilesystems
+
+	    if (is_blk_filesystem(device_rhs))
+	    {
+		BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(device_rhs);
+		const BlkFilesystem* blk_filesystem_lhs = BlkFilesystem::find_by_uuid(&lhs, blk_filesystem_rhs->get_uuid()).front();
+
+		adjust_sid(blk_filesystem_lhs, blk_filesystem_rhs);
+
+		// BtrfsSubvolumes
+
+		if (is_btrfs(blk_filesystem_lhs) && is_btrfs(blk_filesystem_rhs))
+		{
+		    const Btrfs* btrfs_lhs = to_btrfs(blk_filesystem_lhs);
+		    Btrfs* btrfs_rhs = to_btrfs(blk_filesystem_rhs);
+
+		    for (BtrfsSubvolume* btrfs_subvolume_rhs : btrfs_rhs->get_btrfs_subvolumes())
+		    {
+			const BtrfsSubvolume* btrfs_subvolume_lhs = btrfs_lhs->find_btrfs_subvolume_by_path(btrfs_subvolume_rhs->get_path());
+			adjust_sid(btrfs_subvolume_lhs, btrfs_subvolume_rhs);
+		    }
+		}
+	    }
+
+	    // MountPoints
+
+	    if (is_mount_point(device_rhs))
+            {
+                MountPoint* mount_point_rhs = to_mount_point(device_rhs);
+                const MountPoint* mount_point_lhs = MountPoint::find_by_path(&lhs, mount_point_rhs->get_path()).front();
+
+		adjust_sid(mount_point_lhs, mount_point_rhs);
+            }
+	}
+
+#endif
+    }
+
+
+    void
+    TsCmpDevicegraph::adjust_sid(const Device* lhs, Device* rhs) const
+    {
+	if (lhs->get_sid() != rhs->get_sid())
+	{
+	    cout << "adjust sid " << rhs->get_impl().get_classname() << " ("
+		 << rhs->get_displayname() << ") " << rhs->get_sid() << " -> "
+		 << lhs->get_sid() << endl;
+
+	    rhs->get_impl().set_sid(lhs->get_sid());
 	}
     }
 
