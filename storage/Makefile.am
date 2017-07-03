@@ -36,7 +36,7 @@ libstorage_ng_la_LIBADD =			\
 	Filesystems/libfilesystems.la		\
 	Holders/libholders.la			\
 	Utils/libutils.la			\
-	SystemInfo/libsysteminfo.la		\
+	SystemInfo/libsystem-info.la		\
 	$(XML_LIBS)
 
 pkgincludedir = $(includedir)/storage
