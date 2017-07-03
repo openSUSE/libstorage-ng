@@ -75,8 +75,8 @@ namespace storage
 	unsigned int get_stripes() const { return stripes; }
 	void set_stripes(unsigned int stripes) { Impl::stripes = stripes; }
 
-	unsigned long get_stripe_size() const { return stripe_size; }
-	void set_stripe_size(unsigned long stripe_size) { Impl::stripe_size = stripe_size; }
+	unsigned long long get_stripe_size() const { return stripe_size; }
+	void set_stripe_size(unsigned long long stripe_size) { Impl::stripe_size = stripe_size; }
 
 	virtual ResizeInfo detect_resize_info() const override;
 
@@ -113,7 +113,7 @@ namespace storage
 	string uuid;
 
 	unsigned int stripes;
-	unsigned long stripe_size;
+	unsigned long long stripe_size;
 
     };
 
