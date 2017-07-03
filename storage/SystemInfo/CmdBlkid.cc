@@ -145,15 +145,15 @@ namespace storage
 
 
     Blkid::const_iterator
-    Blkid::find_by_name(const string& device, SystemInfo& systeminfo) const
+    Blkid::find_by_name(const string& device, SystemInfo& system_info) const
     {
 	const_iterator it = data.find(device);
 	if (it != end())
 	    return it;
 
-	dev_t majorminor = systeminfo.getCmdUdevadmInfo(device).get_majorminor();
-	return find_if(begin(), end(), [&systeminfo, &majorminor](const value_type& tmp) {
-	    return systeminfo.getCmdUdevadmInfo(tmp.first).get_majorminor() == majorminor;
+	dev_t majorminor = system_info.getCmdUdevadmInfo(device).get_majorminor();
+	return find_if(begin(), end(), [&system_info, &majorminor](const value_type& tmp) {
+	    return system_info.getCmdUdevadmInfo(tmp.first).get_majorminor() == majorminor;
 	});
     }
 

@@ -124,7 +124,7 @@ namespace storage
 
 
     vector<string>
-    ProcMounts::find_by_name(const string& name, SystemInfo& systeminfo) const
+    ProcMounts::find_by_name(const string& name, SystemInfo& system_info) const
     {
 	vector<string> ret;
 
@@ -132,13 +132,13 @@ namespace storage
 	// devices (starting with '/dev/'). Parameter name will also be
 	// e.g. 'tmpfs' and nfs mounts.
 
-	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
 	for (const value_type& value : data)
 	{
 	    if (value.first == name ||
 		(BlkDevice::Impl::is_valid_name(value.first) &&
-		 systeminfo.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
+		 system_info.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
 		ret.push_back(value.second->get_mount_point());
 	}
 
