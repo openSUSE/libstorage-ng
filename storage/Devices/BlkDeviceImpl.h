@@ -109,6 +109,9 @@ namespace storage
 	 *
 	 * Should only be used for and during probing.
 	 */
+	static bool exists_by_name(const Devicegraph* devicegraph, const string& name,
+				   SystemInfo& systeminfo);
+
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
 				       SystemInfo& systeminfo);
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,

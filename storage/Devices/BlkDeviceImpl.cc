@@ -208,6 +208,39 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::exists_by_name(const Devicegraph* devicegraph, const string& name,
+				    SystemInfo& systeminfo)
+    {
+	if (!devicegraph->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong devicegraph"));
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return true;
+	    }
+	}
+
+	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device && blk_device->get_impl().active)
+	    {
+		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    return true;
+	    }
+	}
+
+	return false;
+    }
+
+
     BlkDevice*
     BlkDevice::Impl::find_by_name(Devicegraph* devicegraph, const string& name,
 				  SystemInfo& systeminfo)
