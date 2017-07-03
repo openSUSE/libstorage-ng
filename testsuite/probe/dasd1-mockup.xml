@@ -7,9 +7,6 @@
       <stdout>dasda</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/holders'</name>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/dasda1: UUID="26343be9-0042-4188-a5d0-e816cd3362f0" TYPE="ext2"</stdout>
       <stdout>/dev/dasda2: UUID="1623c840-f97a-4121-9322-456ed6eb5fbc" TYPE="swap"</stdout>

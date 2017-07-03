@@ -51,7 +51,7 @@ namespace storage
     {
     public:
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_1c(Prober& prober) override;
 
 	virtual void check() const override;
 

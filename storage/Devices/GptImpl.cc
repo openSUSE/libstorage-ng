@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -53,13 +54,13 @@ namespace storage
 
 
     void
-    Gpt::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Gpt::Impl::probe_pass_1c(Prober& prober)
     {
-	PartitionTable::Impl::probe_pass_1(probed, systeminfo);
+	PartitionTable::Impl::probe_pass_1c(prober);
 
 	const Partitionable* partitionable = get_partitionable();
 
-	const Parted& parted = systeminfo.getParted(partitionable->get_name());
+	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 
 	enlarge = parted.is_gpt_enlarge();
 	pmbr_boot = parted.is_gpt_pmbr_boot();

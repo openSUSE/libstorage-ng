@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,6 +38,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -68,13 +69,13 @@ namespace storage
 
 
     void
-    Partitionable::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Partitionable::Impl::probe_pass_1a(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
+	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
-	const File logical_block_size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
-								"/queue/logical_block_size");
+	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	const File logical_block_size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+									      "/queue/logical_block_size");
 
 	// size is always in 512 byte blocks
 	// TODO see get_int() TODO
@@ -83,36 +84,37 @@ namespace storage
 	unsigned long long c = a * 512 / b;
 	set_region(Region(0, c, b));
 
-	const File alignment_offset_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
-							      "/alignment_offset");
+	const File alignment_offset_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+									    "/alignment_offset");
 	topology.set_alignment_offset(alignment_offset_file.get_int());
 
-	const File optimal_io_size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() +
-							     "/queue/optimal_io_size");
+	const File optimal_io_size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+									   "/queue/optimal_io_size");
 	topology.set_optimal_io_size(optimal_io_size_file.get_int());
 
-	const File range_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
+	const File range_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
 	range = range_file.get_int();
+    }
 
-	// When the kernel reports the device to have holders we can and
-	// should skip looking for a partition table and partitions.
 
-	const Dir& dir = systeminfo.getDir(SYSFSDIR + get_sysfs_path() + "/holders");
-	if (dir.empty())
+    void
+    Partitionable::Impl::probe_pass_1c(Prober& prober)
+    {
+	if (has_children())
+	    return;
+
+	const Parted& parted = prober.get_system_info().getParted(get_name());
+	if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
+	    parted.get_label() == PtType::DASD)
 	{
-	    const Parted& parted = systeminfo.getParted(get_name());
-	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
-		parted.get_label() == PtType::DASD)
-	    {
-		if (get_region().get_block_size() != parted.get_region().get_block_size())
-		    ST_THROW(Exception("different block size reported by kernel and parted"));
+	    if (get_region().get_block_size() != parted.get_region().get_block_size())
+		ST_THROW(Exception("different block size reported by kernel and parted"));
 
-		if (get_region().get_length() != parted.get_region().get_length())
-		    ST_THROW(Exception("different size reported by kernel and parted"));
+	    if (get_region().get_length() != parted.get_region().get_length())
+		ST_THROW(Exception("different size reported by kernel and parted"));
 
-		PartitionTable* pt = create_partition_table(parted.get_label());
-		pt->get_impl().probe_pass_1(probed, systeminfo);
-	    }
+	    PartitionTable* pt = create_partition_table(parted.get_label());
+	    pt->get_impl().probe_pass_1c(prober);
 	}
     }
 

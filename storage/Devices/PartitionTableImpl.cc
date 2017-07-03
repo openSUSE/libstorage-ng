@@ -31,6 +31,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AlignmentImpl.h"
 #include "storage/Utils/Algorithm.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -54,13 +55,13 @@ namespace storage
 
 
     void
-    PartitionTable::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    PartitionTable::Impl::probe_pass_1c(Prober& prober)
     {
-	Device::Impl::probe_pass_1(probed, systeminfo);
+	Device::Impl::probe_pass_1c(prober);
 
 	const Partitionable* partitionable = get_partitionable();
 
-	const Parted& parted = systeminfo.getParted(partitionable->get_name());
+	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 
 	if (parted.is_implicit())
 	    read_only = true;
@@ -68,8 +69,9 @@ namespace storage
 	for (const Parted::Entry& entry : parted.get_entries())
 	{
 	    string name = partitionable->get_impl().partition_name(entry.number);
+
 	    Partition* p = create_partition(name, entry.region, entry.type);
-	    p->get_impl().probe_pass_1(probed, systeminfo);
+	    p->get_impl().probe_pass_1a(prober);
 	}
     }
 

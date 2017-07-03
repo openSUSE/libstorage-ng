@@ -28,6 +28,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/StorageImpl.h"
+#include "storage/Prober.h"
 #include "storage/EnvironmentImpl.h"
 
 
@@ -86,11 +87,9 @@ namespace storage
 
 
     void
-    Encryption::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    Encryption::Impl::probe_pass_1b(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_2(probed, systeminfo);
-
-	const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
+	const CmdDmsetupTable& cmd_dmsetup_table = prober.get_system_info().getCmdDmsetupTable();
 
 	vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
 
@@ -102,10 +101,11 @@ namespace storage
 	if (majorminors.size() != 1)
 	    ST_THROW(Exception("crypt target with several devices"));
 
-	BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed,
-	    make_dev_block_name(majorminors.front()), systeminfo);
+	string name = make_dev_block_name(majorminors.front());
 
-	User::create(probed, blk_device, get_non_impl());
+	prober.add_holder(name, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
+	    User::create(probed, a, b);
+	});
     }
 
 

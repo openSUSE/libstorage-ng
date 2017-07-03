@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,6 +31,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -65,41 +66,42 @@ namespace storage
 
 
     void
-    Bcache::Impl::probe_bcaches(Devicegraph* probed, SystemInfo& systeminfo)
+    Bcache::Impl::probe_bcaches(Prober& prober)
     {
-	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 	    if (!is_valid_name(name))
 		continue;
 
-	    Bcache* bcache = Bcache::create(probed, name);
-	    bcache->get_impl().probe_pass_1(probed, systeminfo);
+	    Bcache* bcache = Bcache::create(prober.get_probed(), name);
+	    bcache->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Bcache::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Bcache::Impl::probe_pass_1a(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
+	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get_unsigned_long_long(), 512));
     }
 
 
     void
-    Bcache::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    Bcache::Impl::probe_pass_1b(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_2(probed, systeminfo);
+	BlkDevice::Impl::probe_pass_1b(prober);
 
-	const File dev_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/bcache/../dev");
+	const File dev_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/bcache/../dev");
 	string dev = "/dev/block/" + dev_file.get_string();
 
-	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-	User::create(probed, blk_device, get_non_impl());
+	prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
+	    User::create(probed, a, b);
+	});
     }
 
 

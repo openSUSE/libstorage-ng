@@ -12,17 +12,6 @@
       <stdout>bcache1</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdc/holders'</name>
-      <stdout>bcache0</stdout>
-      <stdout>bcache1</stdout>
-    </Command>
-    <Command>
       <name>/bin/ls -1 --sort=none '/sys/fs/bcache'</name>
       <stdout>register_quiet</stdout>
       <stdout>43ff1dbc-ea5d-4a91-9f79-18c7dba83659</stdout>

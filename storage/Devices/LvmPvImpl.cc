@@ -23,6 +23,7 @@
 #include <iostream>
 
 #include "storage/Utils/XmlFile.h"
+#include "storage/Prober.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -115,28 +116,29 @@ namespace storage
 
 
     void
-    LvmPv::Impl::probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmPv::Impl::probe_lvm_pvs(Prober& prober)
     {
-	for (const CmdPvs::Pv& pv : systeminfo.getCmdPvs().get_pvs())
+	for (const CmdPvs::Pv& pv : prober.get_system_info().getCmdPvs().get_pvs())
 	{
-	    LvmPv* lvm_pv = LvmPv::create(probed);
+	    LvmPv* lvm_pv = LvmPv::create(prober.get_probed());
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
 
 	    // TODO the pv may not be included in any vg
-	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(probed, pv.vg_uuid);
-	    Subdevice::create(probed, lvm_pv, lvm_vg);
+	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), pv.vg_uuid);
+	    Subdevice::create(prober.get_probed(), lvm_pv, lvm_vg);
 	}
     }
 
 
     void
-    LvmPv::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmPv::Impl::probe_pass_1b(Prober& prober)
     {
-	const CmdPvs& cmd_pvs = systeminfo.getCmdPvs();
+	const CmdPvs& cmd_pvs = prober.get_system_info().getCmdPvs();
 	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
-	const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, pv.pv_name, systeminfo);
-	User::create(probed, blk_device, get_non_impl());
+	prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
+	    User::create(probed, a, b);
+	});
     }
 
 

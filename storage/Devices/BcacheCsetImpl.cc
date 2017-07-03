@@ -32,6 +32,7 @@
 #include "storage/Holders/User.h"
 #include "storage/UsedFeatures.h"
 #include "storage/FindBy.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -87,48 +88,50 @@ namespace storage
 
 
     void
-    BcacheCset::Impl::probe_bcache_csets(Devicegraph* probed, SystemInfo& systeminfo)
+    BcacheCset::Impl::probe_bcache_csets(Prober& prober)
     {
-	for (const string& uuid : systeminfo.getDir(SYSFSDIR "/fs/bcache"))
+	for (const string& uuid : prober.get_system_info().getDir(SYSFSDIR "/fs/bcache"))
 	{
 	    if (!is_valid_uuid(uuid))
 		continue;
 
-	    BcacheCset* bcache_cset = BcacheCset::create(probed);
+	    BcacheCset* bcache_cset = BcacheCset::create(prober.get_probed());
 	    bcache_cset->get_impl().set_uuid(uuid);
 	}
     }
 
 
     void
-    BcacheCset::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    BcacheCset::Impl::probe_pass_1b(Prober& prober)
     {
 	static regex bdev_regex("bdev[0-9]+", regex_constants::extended);
 	static regex cache_regex("cache[0-9]+", regex_constants::extended);
 
-	Device::Impl::probe_pass_2(probed, systeminfo);
+	Device::Impl::probe_pass_1b(prober);
 
 	string path = SYSFSDIR "/fs/bcache/" + uuid;
 
-	const Dir& dir = systeminfo.getDir(path);
+	const Dir& dir = prober.get_system_info().getDir(path);
 	for (const string& name : dir)
 	{
 	    if (regex_match(name, bdev_regex))
 	    {
-		const File dev_file = systeminfo.getFile(path + "/" + name + "/dev/dev");
+		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
 		string dev = "/dev/block/" + dev_file.get_string();
 
-		const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-		User::create(probed, get_non_impl(), blk_device);
+		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
+		    User::create(probed, b, a);
+		});
 	    }
 
 	    if (regex_match(name, cache_regex))
 	    {
-		const File dev_file = systeminfo.getFile(path + "/" + name + "/../dev");
+		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
 		string dev = "/dev/block/" + dev_file.get_string();
 
-		const BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, dev, systeminfo);
-		User::create(probed, blk_device, get_non_impl());
+		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
+		    User::create(probed, a, b);
+		});
 	    }
 	}
     }

@@ -64,8 +64,9 @@ namespace storage
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
-	static void probe_multipaths(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_multipaths(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
+	virtual void probe_pass_1b(Prober& prober) override;
 
 	virtual uint64_t used_features() const override;
 

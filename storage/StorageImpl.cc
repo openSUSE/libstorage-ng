@@ -24,24 +24,16 @@
 #include "config.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Mockup.h"
-#include "storage/Utils/StorageDefines.h"
 #include "storage/StorageImpl.h"
-#include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/DasdImpl.h"
 #include "storage/Devices/MultipathImpl.h"
 #include "storage/Devices/MdImpl.h"
-#include "storage/Devices/LvmPvImpl.h"
-#include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
-#include "storage/Devices/BcacheImpl.h"
-#include "storage/Devices/BcacheCsetImpl.h"
-#include "storage/Filesystems/BlkFilesystemImpl.h"
-#include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
-#include "storage/EtcFstab.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -148,94 +140,11 @@ namespace storage
     void
     Storage::Impl::probe_helper(Devicegraph* probed)
     {
-	SystemInfo systeminfo;
+	SystemInfo system_info;
 
-	arch = systeminfo.getArch();
+	arch = system_info.getArch();
 
-	// TODO
-
-	// Pass 1: Detect all Devices except Filesystems and some Holders,
-	// e.g. between Partitionable, PartitionTable and Partitions.
-
-	Disk::Impl::probe_disks(probed, systeminfo);
-
-	Dasd::Impl::probe_dasds(probed, systeminfo);
-
-	Multipath::Impl::probe_multipaths(probed, systeminfo);
-
-	if (systeminfo.getBlkid().any_md())
-	{
-	    // TODO check whether md tools are installed
-
-	    Md::Impl::probe_mds(probed, systeminfo);
-	}
-
-	if (systeminfo.getBlkid().any_lvm())
-	{
-	    // TODO check whether lvm tools are installed
-
-	    LvmVg::Impl::probe_lvm_vgs(probed, systeminfo);
-	    LvmPv::Impl::probe_lvm_pvs(probed, systeminfo);
-	    LvmLv::Impl::probe_lvm_lvs(probed, systeminfo);
-	}
-
-	if (systeminfo.getBlkid().any_luks())
-	{
-	    // TODO check whether cryptsetup tools are installed
-
-	    Luks::Impl::probe_lukses(probed, systeminfo);
-	}
-
-	if (systeminfo.getBlkid().any_bcache())
-	{
-	    // TODO check whether bcache-tools are installed
-
-	    Bcache::Impl::probe_bcaches(probed, systeminfo);
-	    BcacheCset::Impl::probe_bcache_csets(probed, systeminfo);
-	}
-
-	// Pass 2: Detect remaining Holders, e.g. MdUsers. This is not
-	// possible in pass 1 since a Md can use other Mds (e.g. md0 using md1
-	// and md2).
-
-	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
-	{
-	    Device* device = probed->get_impl()[vertex];
-	    device->get_impl().probe_pass_2(probed, systeminfo);
-	}
-
-	// Pass 3: Detect filesystems.
-
-	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
-	{
-	    if (blk_device->num_children() != 0)
-		continue;
-
-	    const Blkid& blkid = systeminfo.getBlkid();
-	    Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
-	    if (it != blkid.end())
-	    {
-		if (it->second.is_fs)
-		{
-		    if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
-			it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
-			it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
-			it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
-			it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
-			it->second.fs_type != FsType::UDF)
-		    {
-			y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
-			      blk_device->get_name());
-			continue;
-		    }
-
-		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
-		    blk_filesystem->get_impl().probe_pass_3(probed, systeminfo);
-		}
-	    }
-	}
-
-	Nfs::Impl::probe_nfses(probed, systeminfo);
+	Prober prober(probed, system_info);
     }
 
 

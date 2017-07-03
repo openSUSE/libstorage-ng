@@ -44,7 +44,7 @@ namespace storage
     using namespace std;
 
 
-    class SystemInfo;
+    class Prober;
 
 
     template <typename Type> struct DeviceTraits {};
@@ -123,8 +123,10 @@ namespace storage
 	const map<string, string>& get_userdata() const { return userdata; }
 	void set_userdata(const map<string, string>& userdata) { Impl::userdata = userdata; }
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo);
+	virtual void probe_pass_1a(Prober& prober);
+	virtual void probe_pass_1b(Prober& prober);
+	virtual void probe_pass_1c(Prober& prober);
+	virtual void probe_pass_1e(Prober& prober);
 
 	virtual ResizeInfo detect_resize_info() const;
 

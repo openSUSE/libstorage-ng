@@ -35,6 +35,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/FindBy.h"
+#include "storage/Prober.h"
 
 
 using namespace std;
@@ -122,23 +123,23 @@ namespace storage
 
 
     void
-    LvmLv::Impl::probe_lvm_lvs(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmLv::Impl::probe_lvm_lvs(Prober& prober)
     {
-	for (const CmdLvs::Lv& lv : systeminfo.getCmdLvs().get_lvs())
+	for (const CmdLvs::Lv& lv : prober.get_system_info().getCmdLvs().get_lvs())
 	{
-	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(probed, lv.vg_uuid);
+	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), lv.vg_uuid);
 	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.size);
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().set_active(lv.active);
-	    lvm_lv->get_impl().probe_pass_1(probed, systeminfo);
+	    lvm_lv->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    LvmLv::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmLv::Impl::probe_pass_1a(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
+	BlkDevice::Impl::probe_pass_1a(prober);
 
 	const LvmVg* lvm_vg = get_lvm_vg();
 
@@ -146,7 +147,7 @@ namespace storage
 
 	if (is_active())
 	{
-	    const CmdDmsetupTable& cmd_dmsetup_table = systeminfo.getCmdDmsetupTable();
+	    const CmdDmsetupTable& cmd_dmsetup_table = prober.get_system_info().getCmdDmsetupTable();
 	    vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
 	    if (tables[0].target == "striped")
 	    {

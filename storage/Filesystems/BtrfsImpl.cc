@@ -37,6 +37,7 @@
 #include "storage/Environment.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Mockup.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -194,9 +195,9 @@ namespace storage
 
 
     void
-    Btrfs::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    Btrfs::Impl::probe_pass_2(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
+	BlkFilesystem::Impl::probe_pass_2(prober);
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -214,14 +215,14 @@ namespace storage
 	}
 
 	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
-	    systeminfo.getCmdBtrfsSubvolumeList(blk_device->get_name(), mount_point);
+	    prober.get_system_info().getCmdBtrfsSubvolumeList(blk_device->get_name(), mount_point);
 
 	// Children can be listed after parents in output of 'btrfs subvolume
 	// list ...' so several passes over the list of subvolumes are needed.
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
-	    BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(probed, subvolume.path);
+	    BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(prober.get_probed(), subvolume.path);
 	    btrfs_subvolume->get_impl().set_id(subvolume.id);
 
 	    subvolumes_by_id[subvolume.id] = btrfs_subvolume;
@@ -231,19 +232,19 @@ namespace storage
 	{
 	    const BtrfsSubvolume* child = subvolumes_by_id[subvolume.id];
 	    const BtrfsSubvolume* parent = subvolumes_by_id[subvolume.parent_id];
-	    Subdevice::create(probed, parent, child);
+	    Subdevice::create(prober.get_probed(), parent, child);
 	}
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
 	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[subvolume.id];
-	    btrfs_subvolume->get_impl().probe_pass_3(probed, systeminfo, mount_point);
+	    btrfs_subvolume->get_impl().probe_pass_2(prober, mount_point);
 	}
 
 	if (subvolumes_by_id.size() > 1)
 	{
 	    const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default =
-		systeminfo.getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mount_point);
+		prober.get_system_info().getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mount_point);
 	    subvolumes_by_id[cmd_btrfs_subvolume_get_default.get_id()]->get_impl().set_default_btrfs_subvolume();
 	}
     }

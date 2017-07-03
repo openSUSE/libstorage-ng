@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,6 +37,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -66,9 +67,9 @@ namespace storage
 
 
     void
-    Disk::Impl::probe_disks(Devicegraph* probed, SystemInfo& systeminfo)
+    Disk::Impl::probe_disks(Prober& prober)
     {
-	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 
@@ -76,29 +77,31 @@ namespace storage
 		boost::starts_with(name, DEVDIR "/dasd"))
 		continue;
 
-	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo udevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
 
-	    const File range_file = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/ext_range");
+	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
+								     "/ext_range");
 
 	    if (range_file.get_int() <= 1)
 		continue;
 
-	    Disk* disk = Disk::create(probed, name);
-	    disk->get_impl().probe_pass_1(probed, systeminfo);
+	    Disk* disk = Disk::create(prober.get_probed(), name);
+	    disk->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Disk::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Disk::Impl::probe_pass_1a(Prober& prober)
     {
-	Partitionable::Impl::probe_pass_1(probed, systeminfo);
+	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
+	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+								      "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
 
 	Lsscsi::Entry entry;
-	if (systeminfo.getLsscsi().getEntry(get_name(), entry))
+	if (prober.get_system_info().getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
     }
 

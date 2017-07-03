@@ -62,7 +62,7 @@ namespace storage
 	static pair<string, string> split_name(const string& name);
 	static string canonical_path(const string& path);
 
-	static void probe_nfses(Devicegraph* probed, SystemInfo& systeminfo);
+	static void probe_nfses(Prober& prober);
 
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name(MountByType mount_by_type) const override;

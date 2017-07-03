@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/User.h"
 #include "storage/FindBy.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -81,23 +82,23 @@ namespace storage
 
 
     void
-    LvmVg::Impl::probe_lvm_vgs(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmVg::Impl::probe_lvm_vgs(Prober& prober)
     {
-	for (const CmdVgs::Vg& vg : systeminfo.getCmdVgs().get_vgs())
+	for (const CmdVgs::Vg& vg : prober.get_system_info().getCmdVgs().get_vgs())
 	{
-	    LvmVg* lvm_vg = LvmVg::create(probed, vg.vg_name);
+	    LvmVg* lvm_vg = LvmVg::create(prober.get_probed(), vg.vg_name);
 	    lvm_vg->get_impl().set_uuid(vg.vg_uuid);
-	    lvm_vg->get_impl().probe_pass_1(probed, systeminfo);
+	    lvm_vg->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    LvmVg::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    LvmVg::Impl::probe_pass_1a(Prober& prober)
     {
-	Device::Impl::probe_pass_1(probed, systeminfo);
+	Device::Impl::probe_pass_1a(prober);
 
-	const CmdVgs& cmd_vgs = systeminfo.getCmdVgs();
+	const CmdVgs& cmd_vgs = prober.get_system_info().getCmdVgs();
 	const CmdVgs::Vg& vg = cmd_vgs.find_by_vg_uuid(uuid);
 
 	region = Region(0, vg.extent_count, vg.extent_size);

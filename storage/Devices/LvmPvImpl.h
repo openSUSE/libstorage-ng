@@ -60,15 +60,17 @@ namespace storage
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
 	bool has_blk_device() const;
+
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
 
 	bool has_lvm_vg() const;
+
 	LvmVg* get_lvm_vg();
 	const LvmVg* get_lvm_vg() const;
 
-	static void probe_lvm_pvs(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_lvm_pvs(Prober& prober);
+	virtual void probe_pass_1b(Prober& prober) override;
 
 	virtual ResizeInfo detect_resize_info() const override;
 

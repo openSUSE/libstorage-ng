@@ -38,6 +38,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -135,12 +136,12 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    BlkFilesystem::Impl::probe_pass_2(Prober& prober)
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	const Blkid& blkid = systeminfo.getBlkid();
-	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	const Blkid& blkid = prober.get_system_info().getBlkid();
+	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
 	if (it != blkid.end())
 	{
 	    label = it->second.fs_label;
@@ -149,7 +150,7 @@ namespace storage
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(systeminfo.getEtcFstab(), aliases);
+	const FstabEntry* fstab_entry = find_etc_fstab_entry(prober.get_system_info().getEtcFstab(), aliases);
         if (fstab_entry)
         {
 	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());

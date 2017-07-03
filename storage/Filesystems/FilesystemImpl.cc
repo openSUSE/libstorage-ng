@@ -107,8 +107,8 @@ namespace storage
     {
 	EnsureMounted ensure_mounted(get_filesystem());
 
-	SystemInfo systeminfo;
-	const CmdDf& cmd_df = systeminfo.getCmdDf(ensure_mounted.get_any_mount_point());
+	SystemInfo system_info;
+	const CmdDf& cmd_df = system_info.getCmdDf(ensure_mounted.get_any_mount_point());
 
 	return cmd_df.get_space_info();
     }

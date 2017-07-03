@@ -65,8 +65,8 @@ namespace storage
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
 
-	static void probe_disks(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_disks(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
 
 	virtual uint64_t used_features() const override;
 

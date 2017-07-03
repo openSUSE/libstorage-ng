@@ -9,12 +9,6 @@
       <stdout>sda</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/holders'</name>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/sda1: UUID="cd8a95dc-0b17-4fdd-b6f4-71f58c1dc764" TYPE="swap" PARTUUID="321b4d22-01"</stdout>
       <stdout>/dev/sda2: UUID="53ec5c2a-b156-4926-9db5-0adbef5cc181" TYPE="ext4" PTTYPE="dos" PARTUUID="321b4d22-02"</stdout>
