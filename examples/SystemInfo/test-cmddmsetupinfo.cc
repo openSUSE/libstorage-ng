@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_cmddmsetupinfo(SystemInfo& systeminfo)
+test_cmddmsetupinfo(SystemInfo& system_info)
 {
     try
     {
-	const CmdDmsetupInfo& cmddmsetupinfo = systeminfo.getCmdDmsetupInfo();
+	const CmdDmsetupInfo& cmddmsetupinfo = system_info.getCmdDmsetupInfo();
 	cout << "CmdDmsetupInfo success" << endl;
 	cout << cmddmsetupinfo << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_cmddmsetupinfo(systeminfo);
+    test_cmddmsetupinfo(system_info);
 }

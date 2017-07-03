@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_df(SystemInfo& systeminfo, const string& path)
+test_df(SystemInfo& system_info, const string& path)
 {
     try
     {
-	const CmdDf& cmd_df = systeminfo.getCmdDf(path);
+	const CmdDf& cmd_df = system_info.getCmdDf(path);
 	cout << "CmdDf success for '" << path << "'" << endl;
 	cout << cmd_df << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_df(systeminfo, "/home/arvin");
+    test_df(system_info, "/home/arvin");
 }

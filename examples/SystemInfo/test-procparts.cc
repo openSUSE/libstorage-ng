@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_procparts(SystemInfo& systeminfo)
+test_procparts(SystemInfo& system_info)
 {
     try
     {
-	const ProcParts& procparts = systeminfo.getProcParts();
+	const ProcParts& procparts = system_info.getProcParts();
 	cout << "ProcParts success" << endl;
 	cout << procparts << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_procparts(systeminfo);
+    test_procparts(system_info);
 }

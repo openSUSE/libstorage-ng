@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_lvs(SystemInfo& systeminfo)
+test_lvs(SystemInfo& system_info)
 {
     try
     {
-	const CmdLvs& cmd_lvs = systeminfo.getCmdLvs();
+	const CmdLvs& cmd_lvs = system_info.getCmdLvs();
 	cout << "CmdLvs success" << endl;
 	cout << cmd_lvs << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_lvs(systeminfo);
+    test_lvs(system_info);
 }

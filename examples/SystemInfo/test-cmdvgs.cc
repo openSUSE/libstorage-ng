@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_vgs(SystemInfo& systeminfo)
+test_vgs(SystemInfo& system_info)
 {
     try
     {
-	const CmdVgs& cmd_vgs = systeminfo.getCmdVgs();
+	const CmdVgs& cmd_vgs = system_info.getCmdVgs();
 	cout << "CmdVgs success" << endl;
 	cout << cmd_vgs << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_vgs(systeminfo);
+    test_vgs(system_info);
 }

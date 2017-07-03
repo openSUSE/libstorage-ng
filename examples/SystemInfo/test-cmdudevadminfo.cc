@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_udevadminfo(SystemInfo& systeminfo, const string& file)
+test_udevadminfo(SystemInfo& system_info, const string& file)
 {
     try
     {
-	const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(file);
+	const CmdUdevadmInfo& cmdudevadminfo = system_info.getCmdUdevadmInfo(file);
 	cout << "CmdUdevadmInfo success for '" << file << "'" << endl;
 	cout << cmdudevadminfo << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_udevadminfo(systeminfo, "/dev/sda1");
+    test_udevadminfo(system_info, "/dev/sda1");
 }

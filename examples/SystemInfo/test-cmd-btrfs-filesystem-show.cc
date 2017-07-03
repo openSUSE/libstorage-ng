@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_cmd_btrfs_filesystem_show(SystemInfo& systeminfo)
+test_cmd_btrfs_filesystem_show(SystemInfo& system_info)
 {
     try
     {
-	const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow = systeminfo.getCmdBtrfsFilesystemShow();
+	const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow = system_info.getCmdBtrfsFilesystemShow();
 	cout << "CmdBtrfsFilesystemShow success" << endl;
 	cout << cmdbtrfsfilesystemshow << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_cmd_btrfs_filesystem_show(systeminfo);
+    test_cmd_btrfs_filesystem_show(system_info);
 }

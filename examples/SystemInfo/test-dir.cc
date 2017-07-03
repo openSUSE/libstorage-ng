@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_dir(SystemInfo& systeminfo, const string& path)
+test_dir(SystemInfo& system_info, const string& path)
 {
     try
     {
-	const Dir& dir = systeminfo.getDir(path);
+	const Dir& dir = system_info.getDir(path);
 	cout << "Dir success for '" << path << "'" << endl;
 	cout << dir << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_dir(systeminfo, "/sys/block");
+    test_dir(system_info, "/sys/block");
 }

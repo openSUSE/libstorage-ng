@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_blkid(SystemInfo& systeminfo)
+test_blkid(SystemInfo& system_info)
 {
     try
     {
-	const Blkid& blkid = systeminfo.getBlkid();
+	const Blkid& blkid = system_info.getBlkid();
 	cout << "Blkid success" << endl;
 	cout << blkid << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_blkid(systeminfo);
+    test_blkid(system_info);
 }

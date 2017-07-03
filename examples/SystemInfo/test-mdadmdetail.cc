@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_mdadmdetail(SystemInfo& systeminfo, const string& device)
+test_mdadmdetail(SystemInfo& system_info, const string& device)
 {
     try
     {
-	const MdadmDetail& mdadmdetail = systeminfo.getMdadmDetail(device);
+	const MdadmDetail& mdadmdetail = system_info.getMdadmDetail(device);
 	cout << "MdadmDetail success" << endl;
 	cout << mdadmdetail << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_mdadmdetail(systeminfo, "/dev/md127");
+    test_mdadmdetail(system_info, "/dev/md127");
 }
