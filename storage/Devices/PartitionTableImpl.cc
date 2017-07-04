@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
@@ -32,6 +34,7 @@
 #include "storage/Utils/AlignmentImpl.h"
 #include "storage/Utils/Algorithm.h"
 #include "storage/Prober.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -110,6 +113,9 @@ namespace storage
 	Subdevice::create(get_devicegraph(), parent, partition);
 
 	partition->get_impl().update_udev_paths_and_ids();
+
+	if (boost::starts_with(name, DEVMAPPERDIR "/"))
+	    partition->set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
 
 	return partition;
     }

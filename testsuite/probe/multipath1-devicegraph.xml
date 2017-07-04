@@ -211,6 +211,7 @@
       <udev-id>dm-uuid-part1-mpath-36005076305ffc73a00000000000013b4</udev-id>
       <udev-id>scsi-36005076305ffc73a00000000000013b4-part1</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4-part1</udev-id>
+      <dm-table-name>36005076305ffc73a00000000000013b4-part1</dm-table-name>
       <type>primary</type>
       <id>253</id>
     </Partition>
