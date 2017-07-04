@@ -120,7 +120,7 @@ namespace storage
     }
 
 
-    unsigned long
+    unsigned long long
     LvmLv::get_stripe_size() const
     {
 	return get_impl().get_stripe_size();
@@ -128,7 +128,7 @@ namespace storage
 
 
     void
-    LvmLv::set_stripe_size(unsigned long stripe_size)
+    LvmLv::set_stripe_size(unsigned long long stripe_size)
     {
 	get_impl().set_stripe_size(stripe_size);
     }
