@@ -46,20 +46,26 @@ namespace storage
     const char* DeviceTraits<Multipath>::classname = "Multipath";
 
 
-    Multipath::Impl::Impl(const string& dm_name)
-	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name), vendor(), model(), rotational(false)
+    Multipath::Impl::Impl(const string& name)
+	: Partitionable::Impl(name), vendor(), model(), rotational(false)
     {
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Multipath name"));
+
 	set_range(Partitionable::Impl::default_range);
 
-	set_dm_table_name(dm_name);
+	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
     }
 
 
-    Multipath::Impl::Impl(const string& dm_name, const Region& region)
-	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name, region, Partitionable::Impl::default_range),
+    Multipath::Impl::Impl(const string& name, const Region& region)
+	: Partitionable::Impl(name, region, Partitionable::Impl::default_range),
 	  vendor(), model(), rotational(false)
     {
-	set_dm_table_name(dm_name);
+	if (!is_valid_name(name))
+	    ST_THROW(Exception("invalid Multipath name"));
+
+	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
     }
 
 
@@ -70,6 +76,26 @@ namespace storage
 	getChildValue(node, "model", model);
 
 	getChildValue(node, "rotational", rotational);
+    }
+
+
+    void
+    Multipath::Impl::check() const
+    {
+	Partitionable::Impl::check();
+
+	if (get_region().get_start() != 0)
+	    cerr << "multiapth region start not zero" << endl;
+
+	if (!is_valid_name(get_name()))
+	    ST_THROW(Exception("invalid name"));
+    }
+
+
+    bool
+    Multipath::Impl::is_valid_name(const string& name)
+    {
+	return boost::starts_with(name, DEVMAPPERDIR "/");
     }
 
 
@@ -123,7 +149,7 @@ namespace storage
 
 	for (const string& dm_name : cmd_multipath.get_entries())
 	{
-	    Multipath* multipath = Multipath::create(prober.get_probed(), dm_name);
+	    Multipath* multipath = Multipath::create(prober.get_probed(), DEVMAPPERDIR "/" + dm_name);
 	    multipath->get_impl().probe_pass_1a(prober);
 	}
     }

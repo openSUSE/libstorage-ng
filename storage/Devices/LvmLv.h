@@ -54,8 +54,8 @@ namespace storage
 	unsigned int get_stripes() const;
 	void set_stripes(unsigned int stripes);
 
-	unsigned long get_stripe_size() const;
-	void set_stripe_size(unsigned long stripe_size);
+	unsigned long long get_stripe_size() const;
+	void set_stripe_size(unsigned long long stripe_size);
 
 	/**
 	 * Return volume group this logical volume belongs to.
