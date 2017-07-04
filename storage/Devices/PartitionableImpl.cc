@@ -92,8 +92,11 @@ namespace storage
 									   "/queue/optimal_io_size");
 	topology.set_optimal_io_size(optimal_io_size_file.get_int());
 
-	const File range_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
-	range = range_file.get_int();
+	if (get_dm_table_name().empty())
+	{
+	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/ext_range");
+	    range = range_file.get_int();
+	}
     }
 
 

@@ -72,6 +72,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	static const unsigned int default_range = 256;
+
     protected:
 
 	Impl(const string& name)

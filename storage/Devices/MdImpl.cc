@@ -94,7 +94,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	set_range(256);
+	set_range(default_range);
 
 	if (is_numeric())
 	{

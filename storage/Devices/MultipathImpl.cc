@@ -49,12 +49,15 @@ namespace storage
     Multipath::Impl::Impl(const string& dm_name)
 	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name), vendor(), model(), rotational(false)
     {
+	set_range(Partitionable::Impl::default_range);
+
 	set_dm_table_name(dm_name);
     }
 
 
     Multipath::Impl::Impl(const string& dm_name, const Region& region)
-	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name, region, 256), vendor(), model(), rotational(false)
+	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name, region, Partitionable::Impl::default_range),
+	  vendor(), model(), rotational(false)
     {
 	set_dm_table_name(dm_name);
     }

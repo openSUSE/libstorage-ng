@@ -115,7 +115,7 @@
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4</udev-id>
       <dm-table-name>36005076305ffc73a00000000000013b4</dm-table-name>
       <topology/>
-      <range>1</range>
+      <range>256</range>
       <vendor>IBM</vendor>
       <model>2107900</model>
       <rotational>true</rotational>
@@ -135,7 +135,7 @@
       <udev-id>wwn-0x6005076305ffc73a00000000000013b5</udev-id>
       <dm-table-name>36005076305ffc73a00000000000013b5</dm-table-name>
       <topology/>
-      <range>1</range>
+      <range>256</range>
       <vendor>IBM</vendor>
       <model>2107900</model>
       <rotational>true</rotational>
