@@ -44,6 +44,9 @@ namespace storage
 	static MountPoint* create(Devicegraph* devicegraph, const std::string& path);
 	static MountPoint* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	static std::vector<MountPoint*> get_all(Devicegraph* devicegraph);
+	static std::vector<const MountPoint*> get_all(const Devicegraph* devicegraph);
+
 	const std::string& get_path() const;
 	void set_path(const std::string& path);
 
@@ -91,8 +94,8 @@ namespace storage
 	 */
 	const Mountable* get_mountable() const;
 
-	static std::vector<MountPoint*> find_by_path(const Devicegraph* devicegraph,
-						     const std::string& path);
+	static std::vector<const MountPoint*> find_by_path(const Devicegraph* devicegraph,
+							   const std::string& path);
 
     public:
 

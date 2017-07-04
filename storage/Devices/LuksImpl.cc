@@ -33,6 +33,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcCrypttab.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -74,7 +75,7 @@ namespace storage
 
 
     string
-    Luks::Impl::next_free_cr_auto_name(SystemInfo& systeminfo)
+    Luks::Impl::next_free_cr_auto_name(SystemInfo& system_info)
     {
 	static int nr = 1;
 
@@ -82,14 +83,14 @@ namespace storage
 	{
 	    string name = "cr-auto-" + to_string(nr++);
 
-	    if (!systeminfo.getCmdDmsetupInfo().exists(name))
+	    if (!system_info.getCmdDmsetupInfo().exists(name))
 		return name;
 	}
     }
 
 
     bool
-    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& systeminfo,
+    Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& system_info,
 			      const string& name, const string& uuid)
     {
 	int attempt = 1;
@@ -109,7 +110,7 @@ namespace storage
 	    }
 
 	    if (attempt == 1)
-		dm_name = next_free_cr_auto_name(systeminfo);
+		dm_name = next_free_cr_auto_name(system_info);
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --key-file -";
@@ -140,19 +141,19 @@ namespace storage
     {
 	y2mil("activate_lukses");
 
-	SystemInfo systeminfo;
+	SystemInfo system_info;
 
 	bool ret = false;
 
-	for (const Blkid::value_type& key_value1 : systeminfo.getBlkid())
+	for (const Blkid::value_type& key_value1 : system_info.getBlkid())
 	{
 	    if (!key_value1.second.is_luks)
 		continue;
 
 	    // major and minor of the device holding the luks
-	    dev_t majorminor = systeminfo.getCmdUdevadmInfo(key_value1.first).get_majorminor();
+	    dev_t majorminor = system_info.getCmdUdevadmInfo(key_value1.first).get_majorminor();
 
-	    const CmdDmsetupTable& dmsetup_table = systeminfo.getCmdDmsetupTable();
+	    const CmdDmsetupTable& dmsetup_table = system_info.getCmdDmsetupTable();
 	    CmdDmsetupTable::const_iterator it = dmsetup_table.find_using(majorminor);
 	    if (it != dmsetup_table.end())
 		continue;
@@ -167,7 +168,7 @@ namespace storage
 	    // case the activation is run again, e.g. after deactivation and
 	    // reprobe.
 
-	    if (activate_luks(activate_callbacks, systeminfo, key_value1.first,
+	    if (activate_luks(activate_callbacks, system_info, key_value1.first,
 			      key_value1.second.luks_uuid))
 		ret = true;
 	}
@@ -180,46 +181,46 @@ namespace storage
 
 
     void
-    Luks::Impl::probe_lukses(Devicegraph* probed, SystemInfo& systeminfo)
+    Luks::Impl::probe_lukses(Prober& prober)
     {
-	for (const CmdDmsetupInfo::value_type& value : systeminfo.getCmdDmsetupInfo())
+	for (const CmdDmsetupInfo::value_type& value : prober.get_system_info().getCmdDmsetupInfo())
 	{
 	    if (value.second.subsystem != "CRYPT")
 		continue;
 
-	    const CmdCryptsetup& cmd_cryptsetup = systeminfo.getCmdCryptsetup(value.first);
+	    const CmdCryptsetup& cmd_cryptsetup = prober.get_system_info().getCmdCryptsetup(value.first);
 	    if (cmd_cryptsetup.encryption_type != EncryptionType::LUKS)
 		continue;
 
-	    Luks* luks = Luks::create(probed, value.first);
-	    luks->get_impl().probe_pass_1(probed, systeminfo);
+	    Luks* luks = Luks::create(prober.get_probed(), value.first);
+	    luks->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Luks::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Luks::Impl::probe_pass_1a(Prober& prober)
     {
-	Encryption::Impl::probe_pass_1(probed, systeminfo);
+	Encryption::Impl::probe_pass_1a(prober);
 
-	const File size_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get_unsigned_long_long(), 512));
 
-	const EtcCrypttab& etc_crypttab = systeminfo.getEtcCrypttab();
+	const EtcCrypttab& etc_crypttab = prober.get_system_info().getEtcCrypttab();
 	set_in_etc_crypttab(etc_crypttab.has_crypt_device(get_dm_table_name()));
     }
 
 
     void
-    Luks::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    Luks::Impl::probe_pass_1e(Prober& prober)
     {
-	Encryption::Impl::probe_pass_2(probed, systeminfo);
+	Encryption::Impl::probe_pass_1e(prober);
 
 	const BlkDevice* blk_device = get_blk_device();
 
-	const Blkid& blkid = systeminfo.getBlkid();
-	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	const Blkid& blkid = prober.get_system_info().getBlkid();
+	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
 	if (it == blkid.end())
 	    ST_THROW(Exception("failed to probe luks uuid"));
 

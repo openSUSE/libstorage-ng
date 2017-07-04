@@ -88,32 +88,32 @@ max_devices = 8
 
 for devices in range(2, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(RAID0, devices, 2**chunk_size)
+        doit(MdLevel_RAID0, devices, 2**chunk_size)
         cleanup()
 
 results.write("\n")
 
 for devices in range(2, max_devices + 1):
-    doit(RAID1, devices, 0)
+    doit(MdLevel_RAID1, devices, 0)
     cleanup()
 
 results.write("\n")
 
 for devices in range(3, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(RAID5, devices, 2**chunk_size)
+        doit(MdLevel_RAID5, devices, 2**chunk_size)
         cleanup()
 
 results.write("\n")
 
 for devices in range(4, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(RAID6, devices, 2**chunk_size)
+        doit(MdLevel_RAID6, devices, 2**chunk_size)
         cleanup()
 
 results.write("\n")
 
 for devices in range(2, max_devices + 1):
     for chunk_size in range(15, 20):
-        doit(RAID10, devices, 2**chunk_size)
+        doit(MdLevel_RAID10, devices, 2**chunk_size)
         cleanup()

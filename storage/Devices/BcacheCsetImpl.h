@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -61,8 +61,8 @@ namespace storage
 
 	vector<const Bcache*> get_bcaches() const;
 
-	static void probe_bcache_csets(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_bcache_csets(Prober& prober);
+	virtual void probe_pass_1b(Prober& prober) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -80,9 +80,13 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	static BcacheCset* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
+	static const BcacheCset* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
+
     private:
 
 	string uuid;
+
     };
 
 

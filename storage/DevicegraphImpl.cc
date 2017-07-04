@@ -360,6 +360,20 @@ namespace storage
     }
 
 
+    bool
+    Devicegraph::Impl::holder_exists(sid_t source_sid, sid_t target_sid) const
+    {
+	for (edge_descriptor edge : edges())
+	{
+	    if (graph[source(edge)]->get_sid() == source_sid &&
+		graph[target(edge)]->get_sid() == target_sid)
+		return true;
+	}
+
+	return false;
+    }
+
+
     Devicegraph::Impl::vertex_descriptor
     Devicegraph::Impl::find_vertex(sid_t sid) const
     {

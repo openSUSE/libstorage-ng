@@ -77,33 +77,6 @@
       <stdout>loop63</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
-      <stdout>md1</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/holders'</name>
-      <stdout>md1</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/holders'</name>
-      <stdout>md2</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/holders'</name>
-      <stdout>md2</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md0/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md1/holders'</name>
-      <stdout>md0</stdout>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md2/holders'</name>
-      <stdout>md0</stdout>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/sda: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="ad3cff36-a8fd-6728-2f2d-8c348472cddd" LABEL="any:1" TYPE="linux_raid_member" </stdout>
       <stdout>/dev/sdb: UUID="3e531727-0857-f684-cd2e-394b62046b74" UUID_SUB="6ba92495-88b5-33a4-ed2b-1fb1fa6387f7" LABEL="any:1" TYPE="linux_raid_member" </stdout>

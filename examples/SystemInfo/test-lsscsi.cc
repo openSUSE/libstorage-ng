@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_lsscsi(SystemInfo& systeminfo)
+test_lsscsi(SystemInfo& system_info)
 {
     try
     {
-	const Lsscsi& lsscsi = systeminfo.getLsscsi();
+	const Lsscsi& lsscsi = system_info.getLsscsi();
 	cout << "Lsscsi success" << endl;
 	cout << lsscsi << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_lsscsi(systeminfo);
+    test_lsscsi(system_info);
 }

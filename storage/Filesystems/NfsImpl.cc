@@ -35,6 +35,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -98,12 +99,12 @@ namespace storage
 
 
     void
-    Nfs::Impl::probe_nfses(Devicegraph* probed, SystemInfo& systeminfo)
+    Nfs::Impl::probe_nfses(Prober& prober)
     {
 	// TODO also read /etc/fstab
 	// TODO the old library filters the mount options
 
-	vector<const FstabEntry*> nfs_entries = systeminfo.getProcMounts().get_all_nfs();
+	vector<const FstabEntry*> nfs_entries = prober.get_system_info().getProcMounts().get_all_nfs();
 	for (const FstabEntry* fstab_entry : nfs_entries)
 	{
             string device = fstab_entry->get_device();
@@ -115,14 +116,14 @@ namespace storage
 	    }
 
 	    pair<string, string> name_parts = Nfs::Impl::split_name(device);
-	    Nfs* nfs = Nfs::create(probed, name_parts.first, canonical_path(name_parts.second));
+	    Nfs* nfs = Nfs::create(prober.get_probed(), name_parts.first, canonical_path(name_parts.second));
 
 	    MountPoint* mount_point = nfs->create_mount_point(fstab_entry->get_mount_point());
 	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
 	    mount_point->set_mount_by(fstab_entry->get_mount_by());
 	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 
-	    const CmdDf& cmd_df = systeminfo.getCmdDf(fstab_entry->get_mount_point());
+	    const CmdDf& cmd_df = prober.get_system_info().getCmdDf(fstab_entry->get_mount_point());
 	    nfs->set_space_info(cmd_df.get_space_info());
 	}
     }

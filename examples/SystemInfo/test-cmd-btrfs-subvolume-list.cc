@@ -8,12 +8,12 @@ using namespace storage;
 
 
 void
-test_cmd_btrfs_subvolume_list(SystemInfo& systeminfo, const string& path)
+test_cmd_btrfs_subvolume_list(SystemInfo& system_info, const string& path)
 {
     try
     {
 	const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list =
-	    systeminfo.getCmdBtrfsSubvolumeList("/dev/system/btrfs", path);
+	    system_info.getCmdBtrfsSubvolumeList("/dev/system/btrfs", path);
 	cout << "CmdBtrfsSubvolumeList success" << endl;
 	cout << cmd_btrfs_subvolume_list << endl;
     }
@@ -29,7 +29,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_cmd_btrfs_subvolume_list(systeminfo, "/btrfs");
+    test_cmd_btrfs_subvolume_list(system_info, "/btrfs");
 }

@@ -195,13 +195,27 @@ namespace storage
 
 
     vector<MountPoint*>
+    MountPoint::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<MountPoint>();
+    }
+
+
+    vector<const MountPoint*>
+    MountPoint::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const MountPoint>();
+    }
+
+
+    vector<const MountPoint*>
     MountPoint::find_by_path(const Devicegraph* devicegraph, const string& path)
     {
 	auto pred = [&path](const MountPoint* mount_point) {
 	    return mount_point->get_path() == path;
 	};
 
-	return devicegraph->get_impl().get_devices_of_type_if<MountPoint>(pred);
+	return devicegraph->get_impl().get_devices_of_type_if<const MountPoint>(pred);
     }
 
     bool

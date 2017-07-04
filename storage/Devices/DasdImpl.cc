@@ -33,6 +33,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -85,37 +86,38 @@ namespace storage
 
 
     void
-    Dasd::Impl::probe_dasds(Devicegraph* probed, SystemInfo& systeminfo)
+    Dasd::Impl::probe_dasds(Prober& prober)
     {
-	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 
 	    if (!boost::starts_with(name, DEVDIR "/dasd"))
 		continue;
 
-	    const CmdUdevadmInfo udevadminfo = systeminfo.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo udevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
 
-	    const File range_file = systeminfo.getFile(SYSFSDIR + udevadminfo.get_path() + "/ext_range");
+	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
+								     "/ext_range");
 
 	    if (range_file.get_int() <= 1)
 		continue;
 
-	    Dasd* dasd = Dasd::create(probed, name);
-	    dasd->get_impl().probe_pass_1(probed, systeminfo);
+	    Dasd* dasd = Dasd::create(prober.get_probed(), name);
+	    dasd->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Dasd::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Dasd::Impl::probe_pass_1a(Prober& prober)
     {
-	Partitionable::Impl::probe_pass_1(probed, systeminfo);
+	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
+	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
 
-	const Dasdview dasd_view = systeminfo.getDasdview(get_name());
+	const Dasdview dasd_view = prober.get_system_info().getDasdview(get_name());
 	dasd_type = dasd_view.get_dasd_type();
 	dasd_format = dasd_view.get_dasd_format();
     }

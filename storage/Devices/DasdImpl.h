@@ -65,8 +65,8 @@ namespace storage
 
 	DasdFormat get_dasd_format() const { return dasd_format; }
 
-	static void probe_dasds(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_dasds(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
 
 	virtual uint64_t used_features() const override;
 

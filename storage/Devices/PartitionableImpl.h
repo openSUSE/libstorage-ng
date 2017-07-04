@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -55,7 +55,8 @@ namespace storage
 
 	vector<PtType> get_possible_partition_table_types() const;
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_1a(Prober& prober) override;
+	virtual void probe_pass_1c(Prober& prober) override;
 
 	PartitionTable* create_partition_table(PtType pt_type);
 
@@ -70,6 +71,8 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
+
+	static const unsigned int default_range = 256;
 
     protected:
 

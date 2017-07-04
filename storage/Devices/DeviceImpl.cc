@@ -95,13 +95,25 @@ namespace storage
 
 
     void
-    Device::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Device::Impl::probe_pass_1a(Prober& prober)
     {
     }
 
 
     void
-    Device::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    Device::Impl::probe_pass_1b(Prober& prober)
+    {
+    }
+
+
+    void
+    Device::Impl::probe_pass_1c(Prober& prober)
+    {
+    }
+
+
+    void
+    Device::Impl::probe_pass_1e(Prober& prober)
     {
     }
 

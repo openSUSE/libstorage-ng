@@ -93,7 +93,7 @@ namespace storage
 	scan_device_line(stdout[1]);
 
 	if (label != PtType::UNKNOWN && label != PtType::LOOP)
-        {
+	{
 	    for (size_t i = 2; i < stdout.size(); ++i)
 		scan_entry_line(stdout[i]);
 	}

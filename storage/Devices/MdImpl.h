@@ -96,9 +96,9 @@ namespace storage
 
 	static string find_free_numeric_name(const Devicegraph* devicegraph);
 
-	static void probe_mds(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_mds(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
+	virtual void probe_pass_1b(Prober& prober) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;

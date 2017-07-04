@@ -36,6 +36,9 @@ namespace storage
     using namespace std;
 
 
+    class SystemInfo;
+
+
     template <> struct DeviceTraits<BlkDevice> { static const char* classname; };
 
 
@@ -109,12 +112,15 @@ namespace storage
 	 *
 	 * Should only be used for and during probing.
 	 */
-	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
-				       SystemInfo& systeminfo);
-	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,
-					     SystemInfo& systeminfo);
+	static bool exists_by_name(const Devicegraph* devicegraph, const string& name,
+				   SystemInfo& system_info);
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
+				       SystemInfo& system_info);
+	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,
+					     SystemInfo& system_info);
+
+	virtual void probe_pass_1a(Prober& prober) override;
 
 	virtual ResizeInfo detect_resize_info() const override;
 

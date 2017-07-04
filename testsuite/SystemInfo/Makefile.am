@@ -12,7 +12,7 @@ check_PROGRAMS =								\
 	dir.test dmraid.test							\
 	dmsetup-info.test dmsetup-table.test lsattr.test lsscsi.test lvs.test	\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\
-	parted.test 								\
+	parted.test								\
 	proc-mdstat.test proc-mounts.test proc-parts.test pvs.test		\
 	udevadm-info.test vgs.test multipath.test
 

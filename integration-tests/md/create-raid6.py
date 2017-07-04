@@ -24,7 +24,7 @@ sdb4 = Partition.find_by_name(staging, "/dev/sdb4")
 sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
 
 md = Md.create(staging, "/dev/md0")
-md.set_md_level(RAID6)
+md.set_md_level(MdLevel_RAID6)
 
 md.add_device(sdb1)
 md.add_device(sdb2)

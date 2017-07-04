@@ -2,9 +2,9 @@
 # Makefile.am for libstorage/storage/SystemInfo
 #
 
-noinst_LTLIBRARIES = libsysteminfo.la
+noinst_LTLIBRARIES = libsystem-info.la
 
-libsysteminfo_la_SOURCES =				\
+libsystem_info_la_SOURCES =				\
 	SystemInfo.cc		SystemInfo.h		\
 	Arch.cc			Arch.h			\
 	CmdBlkid.cc		CmdBlkid.h		\

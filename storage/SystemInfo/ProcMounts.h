@@ -48,7 +48,7 @@ namespace storage
 	ProcMounts();
         ~ProcMounts();
 
-	vector<string> find_by_name(const string& name, SystemInfo& systeminfo) const;
+	vector<string> find_by_name(const string& name, SystemInfo& system_info) const;
 
 	/**
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;

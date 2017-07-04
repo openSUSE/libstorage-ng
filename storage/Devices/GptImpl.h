@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,7 +57,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_1c(Prober& prober) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const override;

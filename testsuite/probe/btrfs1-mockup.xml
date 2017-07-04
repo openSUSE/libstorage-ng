@@ -8,9 +8,6 @@
       <stdout>sda</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
-    </Command>
-    <Command>
       <name>/bin/mount --read-only '/dev/sda2' '/tmp/libstorage-gHH6Jb/tmp-mount-Z4Ts24' -o subvol=/</name>
     </Command>
     <Command>

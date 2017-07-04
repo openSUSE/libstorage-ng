@@ -34,7 +34,7 @@
 
 #define COMMON_LVM_OPTIONS "--noheadings --unbuffered --units b --nosuffix"
 
-// TODO using --nameprefixes should make parsers robust to strange characters
+// TODO using --reportformat json will make parsers robust to strange characters
 
 
 namespace storage

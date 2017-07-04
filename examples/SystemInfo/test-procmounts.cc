@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_procmounts(SystemInfo& systeminfo)
+test_procmounts(SystemInfo& system_info)
 {
     try
     {
-	const ProcMounts& procmounts = systeminfo.getProcMounts();
+	const ProcMounts& procmounts = system_info.getProcMounts();
 	cout << "ProcMounts success" << endl;
 	cout << procmounts << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_procmounts(systeminfo);
+    test_procmounts(system_info);
 }

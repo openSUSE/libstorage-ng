@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_lsattr(SystemInfo& systeminfo)
+test_lsattr(SystemInfo& system_info)
 {
     try
     {
-	const CmdLsattr& cmd_lsattr = systeminfo.getCmdLsattr("/dev/system/btrfs", "/btrfs",
+	const CmdLsattr& cmd_lsattr = system_info.getCmdLsattr("/dev/system/btrfs", "/btrfs",
 							      "/var/lib/mariadb");
 	cout << "CmdLsattr success" << endl;
 	cout << cmd_lsattr << endl;
@@ -29,7 +29,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_lsattr(systeminfo);
+    test_lsattr(system_info);
 }

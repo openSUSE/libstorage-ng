@@ -49,7 +49,8 @@ namespace storage
 	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region, 256), rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name, region, Partitionable::Impl::default_range),
+	      rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
@@ -65,8 +66,8 @@ namespace storage
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
 
-	static void probe_disks(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_disks(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
 
 	virtual uint64_t used_features() const override;
 

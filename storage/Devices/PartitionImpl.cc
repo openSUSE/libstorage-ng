@@ -38,6 +38,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -77,13 +78,13 @@ namespace storage
 
 
     void
-    Partition::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Partition::Impl::probe_pass_1a(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1(probed, systeminfo);
+	BlkDevice::Impl::probe_pass_1a(prober);
 
 	const Partitionable* partitionable = get_partitionable();
 
-	const Parted& parted = systeminfo.getParted(partitionable->get_name());
+	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 	Parted::Entry entry;
 	if (!parted.get_entry(get_number(), entry))
 	    throw;

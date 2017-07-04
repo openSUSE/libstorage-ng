@@ -15,30 +15,6 @@
       <stdout>md1</stdout>
     </Command>
     <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md0/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md1/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md126/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md127/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md_test4/holders'</name>
-    </Command>
-    <Command>
-      <name>/bin/ls -1 --sort=none '/sys/devices/virtual/block/md_test5/holders'</name>
-    </Command>
-    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/sda1: UUID="2fd6a519-1b93-42dc-bc8f-99ac033a17a9" TYPE="ext4" PTTYPE="dos" PARTLABEL="primary" PARTUUID="7ec989ba-839c-4991-8a13-b66eab52c828"</stdout>
       <stdout>/dev/sda2: PARTLABEL="primary" PARTUUID="2a68a80b-94f7-4770-abf5-058f9660e791"</stdout>

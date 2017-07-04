@@ -28,7 +28,8 @@
 #include "storage/Holders/MdUserImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/StorageImpl.h"
+#include "storage/Storage.h"
+#include "storage/Prober.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/AppUtil.h"
@@ -93,7 +94,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	set_range(256);
+	set_range(default_range);
 
 	if (is_numeric())
 	{
@@ -197,35 +198,35 @@ namespace storage
 
 
     void
-    Md::Impl::probe_mds(Devicegraph* probed, SystemInfo& systeminfo)
+    Md::Impl::probe_mds(Prober& prober)
     {
-	for (const string& short_name : systeminfo.getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 	    if (!is_valid_sysfs_name(name))
 		continue;
 
 	    // workaround for https://bugzilla.suse.com/show_bug.cgi?id=1030896
-	    const ProcMdstat& proc_mdstat = systeminfo.getProcMdstat();
+	    const ProcMdstat& proc_mdstat = prober.get_system_info().getProcMdstat();
 	    if (!proc_mdstat.has_entry(short_name))
 		continue;
 
-	    MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(name);
+	    MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(name);
 	    if (!mdadm_detail.devname.empty())
 		name = DEVMDDIR "/" + mdadm_detail.devname;
 
-	    Md* md = Md::create(probed, name);
-	    md->get_impl().probe_pass_1(probed, systeminfo);
+	    Md* md = Md::create(prober.get_probed(), name);
+	    md->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Md::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Md::Impl::probe_pass_1a(Prober& prober)
     {
-	Partitionable::Impl::probe_pass_1(probed, systeminfo);
+	Partitionable::Impl::probe_pass_1a(prober);
 
-	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(get_sysfs_name());
+	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
 
 	md_level = entry.md_level;
 	md_parity = entry.md_parity;
@@ -234,25 +235,26 @@ namespace storage
 
 	superblock_version = entry.super;
 
-	MdadmDetail mdadm_detail = systeminfo.getMdadmDetail(get_name());
+	MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
 
-	const EtcMdadm& etc_mdadm = systeminfo.getEtcMdadm();
+	const EtcMdadm& etc_mdadm = prober.get_system_info().getEtcMdadm();
 	in_etc_mdadm = etc_mdadm.has_entry(uuid);
     }
 
 
     void
-    Md::Impl::probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo)
+    Md::Impl::probe_pass_1b(Prober& prober)
     {
-	const ProcMdstat::Entry& entry = systeminfo.getProcMdstat().get_entry(get_sysfs_name());
+	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
 
 	for (const ProcMdstat::Device& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, device.name, systeminfo);
-	    MdUser* md_user = MdUser::create(probed, blk_device, get_non_impl());
-	    md_user->set_spare(device.spare);
-	    md_user->set_faulty(device.faulty);
+	    prober.add_holder(device.name, get_non_impl(), [&device](Devicegraph* probed, Device* a, Device* b) {
+		MdUser* md_user = MdUser::create(probed, a, b);
+		md_user->set_spare(device.spare);
+		md_user->set_faulty(device.faulty);
+	    });
 	}
     }
 

@@ -25,6 +25,7 @@
 #include "storage/Devices/MultipathImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
+#include "storage/Prober.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -48,12 +49,15 @@ namespace storage
     Multipath::Impl::Impl(const string& dm_name)
 	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name), vendor(), model(), rotational(false)
     {
+	set_range(Partitionable::Impl::default_range);
+
 	set_dm_table_name(dm_name);
     }
 
 
     Multipath::Impl::Impl(const string& dm_name, const Region& region)
-	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name, region, 256), vendor(), model(), rotational(false)
+	: Partitionable::Impl(DEVMAPPERDIR "/" + dm_name, region, Partitionable::Impl::default_range),
+	  vendor(), model(), rotational(false)
     {
 	set_dm_table_name(dm_name);
     }
@@ -113,37 +117,48 @@ namespace storage
 
 
     void
-    Multipath::Impl::probe_multipaths(Devicegraph* probed, SystemInfo& systeminfo)
+    Multipath::Impl::probe_multipaths(Prober& prober)
     {
-	const CmdMultipath& cmd_multipath = systeminfo.getCmdMultipath();
+	const CmdMultipath& cmd_multipath = prober.get_system_info().getCmdMultipath();
 
 	for (const string& dm_name : cmd_multipath.get_entries())
 	{
-	    Multipath* multipath = Multipath::create(probed, dm_name);
-	    multipath->get_impl().probe_pass_1(probed, systeminfo);
+	    Multipath* multipath = Multipath::create(prober.get_probed(), dm_name);
+	    multipath->get_impl().probe_pass_1a(prober);
 	}
     }
 
 
     void
-    Multipath::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    Multipath::Impl::probe_pass_1a(Prober& prober)
     {
-	Partitionable::Impl::probe_pass_1(probed, systeminfo);
+	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = systeminfo.getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
+	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+								      "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
 
-	const CmdMultipath& cmd_multipath = systeminfo.getCmdMultipath();
+	const CmdMultipath& cmd_multipath = prober.get_system_info().getCmdMultipath();
 
 	const CmdMultipath::Entry& entry = cmd_multipath.get_entry(get_dm_table_name());
 
 	vendor = entry.vendor;
 	model = entry.model;
+    }
+
+
+    void
+    Multipath::Impl::probe_pass_1b(Prober& prober)
+    {
+	const CmdMultipath& cmd_multipath = prober.get_system_info().getCmdMultipath();
+
+	const CmdMultipath::Entry& entry = cmd_multipath.get_entry(get_dm_table_name());
 
 	for (const string& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(probed, device, systeminfo);
-	    User::create(probed, blk_device, get_non_impl());
+	    BlkDevice* blk_device = BlkDevice::Impl::find_by_name(prober.get_probed(), device,
+								  prober.get_system_info());
+	    User::create(prober.get_probed(), blk_device, get_non_impl());
 	}
     }
 

@@ -47,6 +47,7 @@
 #include "storage/Filesystems/Udf.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -93,13 +94,13 @@ namespace storage
 
 
     void
-    BlkDevice::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    BlkDevice::Impl::probe_pass_1a(Prober& prober)
     {
-	Device::Impl::probe_pass_1(probed, systeminfo);
+	Device::Impl::probe_pass_1a(prober);
 
 	if (active)
 	{
-	    const CmdUdevadmInfo& cmdudevadminfo = systeminfo.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo& cmdudevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
 
 	    sysfs_name = cmdudevadminfo.get_name();
 	    sysfs_path = cmdudevadminfo.get_path();
@@ -208,9 +209,42 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::exists_by_name(const Devicegraph* devicegraph, const string& name,
+				    SystemInfo& system_info)
+    {
+	if (!devicegraph->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong devicegraph"));
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return true;
+	    }
+	}
+
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device && blk_device->get_impl().active)
+	    {
+		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    return true;
+	    }
+	}
+
+	return false;
+    }
+
+
     BlkDevice*
     BlkDevice::Impl::find_by_name(Devicegraph* devicegraph, const string& name,
-				  SystemInfo& systeminfo)
+				  SystemInfo& system_info)
     {
 	if (!devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -225,14 +259,14 @@ namespace storage
 	    }
 	}
 
-	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
 	    if (blk_device && blk_device->get_impl().active)
 	    {
-		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
 		    return blk_device;
 	    }
 	}
@@ -243,7 +277,7 @@ namespace storage
 
     const BlkDevice*
     BlkDevice::Impl::find_by_name(const Devicegraph* devicegraph, const string& name,
-				  SystemInfo& systeminfo)
+				  SystemInfo& system_info)
     {
 	if (!devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -258,14 +292,14 @@ namespace storage
 	    }
 	}
 
-	dev_t majorminor = systeminfo.getCmdUdevadmInfo(name).get_majorminor();
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
 	    if (blk_device)
 	    {
-		if (systeminfo.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
 		    return blk_device;
 	    }
 	}

@@ -58,7 +58,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo, const string& mount_point);
+	virtual void probe_pass_2(Prober& prober, const string& mount_point);
 
 	long get_id() const { return id; }
 	void set_id(long id) { Impl::id = id; }

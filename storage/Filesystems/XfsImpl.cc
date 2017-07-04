@@ -34,6 +34,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -52,18 +53,18 @@ namespace storage
 
 
     void
-    Xfs::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    Xfs::Impl::probe_pass_2(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
+	BlkFilesystem::Impl::probe_pass_2(prober);
 
 	if (!get_uuid().empty())
 	{
-	    const Blkid& blkid = systeminfo.getBlkid();
+	    const Blkid& blkid = prober.get_system_info().getBlkid();
 	    Blkid::const_iterator it = blkid.find_by_journal_uuid(get_uuid());
 	    if (it != blkid.end())
 	    {
-		BlkDevice* jbd = BlkDevice::Impl::find_by_name(probed, it->first, systeminfo);
-		FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_non_impl());
+		BlkDevice* jbd = BlkDevice::Impl::find_by_name(prober.get_probed(), it->first, prober.get_system_info());
+		FilesystemUser* filesystem_user = FilesystemUser::create(prober.get_probed(), jbd, get_non_impl());
 		filesystem_user->set_journal(true);
 	    }
 	}

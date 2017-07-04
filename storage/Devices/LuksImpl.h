@@ -59,16 +59,16 @@ namespace storage
 	 * guaranteed that the name does not exist in the system and that the
 	 * same name is never returned twice.
 	 */
-	static string next_free_cr_auto_name(SystemInfo& systeminfo);
+	static string next_free_cr_auto_name(SystemInfo& system_info);
 
 	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
-				  SystemInfo& systeminfo, const string& name, const string& uuid);
+				  SystemInfo& system_info, const string& name, const string& uuid);
 
 	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);
 
-	static void probe_lukses(Devicegraph* probed, SystemInfo& systeminfo);
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
-	virtual void probe_pass_2(Devicegraph* probed, SystemInfo& systeminfo) override;
+	static void probe_lukses(Prober& prober);
+	virtual void probe_pass_1a(Prober& prober) override;
+	virtual void probe_pass_1e(Prober& prober) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 

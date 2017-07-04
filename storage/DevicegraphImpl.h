@@ -109,6 +109,7 @@ namespace storage
 				 Holder* holder);
 
 	bool device_exists(sid_t sid) const;
+	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
 
 	vertex_descriptor find_vertex(sid_t sid) const;
 	edge_descriptor find_edge(sid_t source_sid, sid_t target_sid) const;

@@ -8,11 +8,11 @@ using namespace storage;
 
 
 void
-test_parted(SystemInfo& systeminfo, const string& device)
+test_parted(SystemInfo& system_info, const string& device)
 {
     try
     {
-	const Parted& parted = systeminfo.getParted(device);
+	const Parted& parted = system_info.getParted(device);
 	cout << "Parted success for '" << device << "'" << endl;
 	cout << parted << endl;
     }
@@ -28,7 +28,7 @@ main()
 {
     set_logger(get_logfile_logger());
 
-    SystemInfo systeminfo;
+    SystemInfo system_info;
 
-    test_parted(systeminfo, "/dev/sda");
+    test_parted(system_info, "/dev/sda");
 }

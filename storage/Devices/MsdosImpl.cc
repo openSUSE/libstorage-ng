@@ -24,7 +24,7 @@
 #include <iostream>
 
 #include "storage/Devices/MsdosImpl.h"
-#include "storage/Devices/Partitionable.h"
+#include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -163,7 +163,7 @@ namespace storage
     unsigned int
     Msdos::Impl::max_logical() const
     {
-	return min(256U, get_partitionable()->get_range());
+	return min(Partitionable::Impl::default_range, get_partitionable()->get_range());
     }
 
 

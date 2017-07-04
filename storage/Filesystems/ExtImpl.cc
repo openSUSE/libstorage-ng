@@ -30,6 +30,7 @@
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/ExtImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -48,24 +49,24 @@ namespace storage
 
 
     void
-    Ext::Impl::probe_pass_3(Devicegraph* probed, SystemInfo& systeminfo)
+    Ext::Impl::probe_pass_2(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_3(probed, systeminfo);
+	BlkFilesystem::Impl::probe_pass_2(prober);
 
 	if (supports_external_journal())
 	{
 	    const BlkDevice* blk_device = get_blk_device();
 
-	    const Blkid& blkid = systeminfo.getBlkid();
+	    const Blkid& blkid = prober.get_system_info().getBlkid();
 
-	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), systeminfo);
+	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
 	    if (it1 != blkid.end() && !it1->second.fs_journal_uuid.empty())
 	    {
 		Blkid::const_iterator it2 = blkid.find_by_journal_uuid(it1->second.fs_journal_uuid);
 		if (it2 != blkid.end())
 		{
-		    BlkDevice* jbd = BlkDevice::Impl::find_by_name(probed, it2->first, systeminfo);
-		    FilesystemUser* filesystem_user = FilesystemUser::create(probed, jbd, get_non_impl());
+		    BlkDevice* jbd = BlkDevice::Impl::find_by_name(prober.get_probed(), it2->first, prober.get_system_info());
+		    FilesystemUser* filesystem_user = FilesystemUser::create(prober.get_probed(), jbd, get_non_impl());
 		    filesystem_user->set_journal(true);
 		}
 	    }

@@ -52,9 +52,9 @@ namespace storage
 
 
     void
-    DasdPt::Impl::probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo)
+    DasdPt::Impl::probe_pass_1c(Prober& prober)
     {
-	PartitionTable::Impl::probe_pass_1(probed, systeminfo);
+	PartitionTable::Impl::probe_pass_1c(prober);
     }
 
 

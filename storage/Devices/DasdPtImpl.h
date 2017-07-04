@@ -63,7 +63,7 @@ namespace storage
 
 	virtual void delete_partition(Partition* partition) override;
 
-	virtual void probe_pass_1(Devicegraph* probed, SystemInfo& systeminfo) override;
+	virtual void probe_pass_1c(Prober& prober) override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
