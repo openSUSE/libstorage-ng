@@ -36,10 +36,10 @@ namespace storage
     {
     public:
 
-	static Multipath* create(Devicegraph* devicegraph, const std::string& dm_name);
-	static Multipath* create(Devicegraph* devicegraph, const std::string& dm_name,
+	static Multipath* create(Devicegraph* devicegraph, const std::string& name);
+	static Multipath* create(Devicegraph* devicegraph, const std::string& name,
 				 const Region& region);
-	static Multipath* create(Devicegraph* devicegraph, const std::string& dm_name,
+	static Multipath* create(Devicegraph* devicegraph, const std::string& name,
 				 unsigned long long size);
 
 	static Multipath* load(Devicegraph* devicegraph, const xmlNode* node);

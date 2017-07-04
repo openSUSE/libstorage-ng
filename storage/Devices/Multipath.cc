@@ -31,27 +31,27 @@ namespace storage
 
 
     Multipath*
-    Multipath::create(Devicegraph* devicegraph, const string& dm_name)
+    Multipath::create(Devicegraph* devicegraph, const string& name)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(dm_name));
+	Multipath* ret = new Multipath(new Multipath::Impl(name));
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Multipath*
-    Multipath::create(Devicegraph* devicegraph, const string& dm_name, const Region& region)
+    Multipath::create(Devicegraph* devicegraph, const string& name, const Region& region)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(dm_name, region));
+	Multipath* ret = new Multipath(new Multipath::Impl(name, region));
 	ret->Device::create(devicegraph);
 	return ret;
     }
 
 
     Multipath*
-    Multipath::create(Devicegraph* devicegraph, const string& dm_name, unsigned long long size)
+    Multipath::create(Devicegraph* devicegraph, const string& name, unsigned long long size)
     {
-	Multipath* ret = new Multipath(new Multipath::Impl(dm_name, Region(0, size / 512, 512)));
+	Multipath* ret = new Multipath(new Multipath::Impl(name, Region(0, size / 512, 512)));
 	ret->Device::create(devicegraph);
 	return ret;
     }

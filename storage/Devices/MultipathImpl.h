@@ -45,8 +45,8 @@ namespace storage
     {
     public:
 
-	Impl(const string& dm_name);
-	Impl(const string& dm_name, const Region& region);
+	Impl(const string& name);
+	Impl(const string& name, const Region& region);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<Multipath>::classname; }
@@ -56,6 +56,10 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
+
+	virtual void check() const override;
+
+	static bool is_valid_name(const string& name);
 
 	const string& get_vendor() const { return vendor; }
 
