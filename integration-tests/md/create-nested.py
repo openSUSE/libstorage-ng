@@ -18,7 +18,7 @@ storage.probe()
 staging = storage.get_staging()
 
 md0 = Md.create(staging, "/dev/md0")
-md0.set_md_level(RAID1)
+md0.set_md_level(MdLevel_RAID1)
 
 sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
 sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
@@ -29,7 +29,7 @@ md0.add_device(sdb2)
 md0.add_device(sdb3)
 
 md1 = Md.create(staging, "/dev/md1")
-md1.set_md_level(RAID1)
+md1.set_md_level(MdLevel_RAID1)
 
 sdb4 = Partition.find_by_name(staging, "/dev/sdb4")
 sdb5 = Partition.find_by_name(staging, "/dev/sdb5")
@@ -40,7 +40,7 @@ md1.add_device(sdb5)
 md1.add_device(sdb6)
 
 md2 = Md.create(staging, "/dev/md2")
-md2.set_md_level(RAID0)
+md2.set_md_level(MdLevel_RAID0)
 
 md2.add_device(md0)
 md2.add_device(md1)

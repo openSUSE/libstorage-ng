@@ -21,7 +21,7 @@ sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
 sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
 
 md_test = Md.create(staging, "/dev/md/test")
-md_test.set_md_level(RAID0)
+md_test.set_md_level(MdLevel_RAID0)
 
 md_test.add_device(sdb1)
 sdb1.set_id(ID_RAID)
