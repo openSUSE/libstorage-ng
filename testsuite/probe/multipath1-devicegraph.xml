@@ -109,10 +109,10 @@
         <length>2097152</length>
         <block-size>512</block-size>
       </region>
-      <udev-id>dm-name-36005076305ffc73a00000000000013b4</udev-id>
-      <udev-id>dm-uuid-mpath-36005076305ffc73a00000000000013b4</udev-id>
       <udev-id>scsi-36005076305ffc73a00000000000013b4</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4</udev-id>
+      <udev-id>dm-name-36005076305ffc73a00000000000013b4</udev-id>
+      <udev-id>dm-uuid-mpath-36005076305ffc73a00000000000013b4</udev-id>
       <dm-table-name>36005076305ffc73a00000000000013b4</dm-table-name>
       <topology/>
       <range>256</range>
@@ -129,10 +129,10 @@
         <length>2097152</length>
         <block-size>512</block-size>
       </region>
-      <udev-id>dm-name-36005076305ffc73a00000000000013b5</udev-id>
-      <udev-id>dm-uuid-mpath-36005076305ffc73a00000000000013b5</udev-id>
       <udev-id>scsi-36005076305ffc73a00000000000013b5</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b5</udev-id>
+      <udev-id>dm-name-36005076305ffc73a00000000000013b5</udev-id>
+      <udev-id>dm-uuid-mpath-36005076305ffc73a00000000000013b5</udev-id>
       <dm-table-name>36005076305ffc73a00000000000013b5</dm-table-name>
       <topology/>
       <range>256</range>
@@ -207,10 +207,10 @@
         <length>1048576</length>
         <block-size>512</block-size>
       </region>
-      <udev-id>dm-name-36005076305ffc73a00000000000013b4-part1</udev-id>
-      <udev-id>dm-uuid-part1-mpath-36005076305ffc73a00000000000013b4</udev-id>
       <udev-id>scsi-36005076305ffc73a00000000000013b4-part1</udev-id>
       <udev-id>wwn-0x6005076305ffc73a00000000000013b4-part1</udev-id>
+      <udev-id>dm-name-36005076305ffc73a00000000000013b4-part1</udev-id>
+      <udev-id>dm-uuid-part1-mpath-36005076305ffc73a00000000000013b4</udev-id>
       <dm-table-name>36005076305ffc73a00000000000013b4-part1</dm-table-name>
       <type>primary</type>
       <id>253</id>

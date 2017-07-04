@@ -35,6 +35,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/User.h"
+#include "storage/Utils/StorageTypes.h"
 
 
 namespace storage
@@ -261,16 +262,10 @@ namespace storage
 
 
     void
-    Multipath::Impl::process_udev_paths(vector<string>& udev_paths) const
-    {
-	// TODO ?
-    }
-
-
-    void
     Multipath::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	// TODO ?
+	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("wwn-"));
+	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("scsi-"));
     }
 
 
