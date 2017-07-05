@@ -82,7 +82,6 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual void process_udev_paths(vector<string>& udev_paths) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
     private:
