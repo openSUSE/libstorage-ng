@@ -16,6 +16,7 @@ test-lsscsi
 test-mdadmdetail
 test-mdadmexamine
 test-mdlinks
+test-multipath
 test-parted
 test-procmdstat
 test-procmounts
