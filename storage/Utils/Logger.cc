@@ -53,7 +53,7 @@ namespace storage
     bool
     Logger::test(LogLevel log_level, const std::string& component)
     {
-	return true;
+	return log_level != LogLevel::DEBUG;
     }
 
 

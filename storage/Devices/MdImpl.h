@@ -39,6 +39,9 @@ namespace storage
     using namespace std;
 
 
+    class ActivateCallbacks;
+
+
     template <> struct DeviceTraits<Md> { static const char* classname; };
 
     template <> struct EnumTraits<MdLevel> { static const vector<string> names; };
@@ -95,6 +98,8 @@ namespace storage
 	static bool is_valid_sysfs_name(const string& name);
 
 	static string find_free_numeric_name(const Devicegraph* devicegraph);
+
+	static bool activate_mds(const ActivateCallbacks* activate_callbacks);
 
 	static void probe_mds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;

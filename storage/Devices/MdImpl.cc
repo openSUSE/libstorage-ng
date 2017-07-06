@@ -197,6 +197,23 @@ namespace storage
     }
 
 
+    bool
+    Md::Impl::activate_mds(const ActivateCallbacks* activate_callbacks)
+    {
+	y2mil("activate_mds");
+
+	string cmd_line = MDADMBIN " --assemble --scan --config=partitions";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+
+	if (cmd.retcode() == 0)
+	    SystemCmd(UDEVADMBIN_SETTLE);
+
+	return cmd.retcode() == 0;
+    }
+
+
     void
     Md::Impl::probe_mds(Prober& prober)
     {

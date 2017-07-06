@@ -62,15 +62,28 @@ namespace storage
     {
 	ST_CHECK_PTR(activate_callbacks);
 
+	/**
+	 * Multipath is activated first since multipath can only use disks.
+	 *
+	 * Activating MDs is only needed if the MDs were stopped manually
+	 * since they are otherwise activated by the system automatically.
+	 * That is also the reason why there is no loop for MD activations:
+	 * MDs on any device that appears are activated automatically,
+	 * e.g. nested MDs.
+	 *
+	 * Activation of LVM and LUKS is done in a loop since it the stacking
+	 * can be done in any order.
+	 */
+
 	y2mil("activate begin");
 
 	Multipath::Impl::activate_multipaths(activate_callbacks);
 
+	Md::Impl::activate_mds(activate_callbacks);
+
 	while (true)
 	{
 	    bool again = false;
-
-	    // TODO Md
 
 	    if (LvmLv::Impl::activate_lvm_lvs(activate_callbacks))
 		again = true;
