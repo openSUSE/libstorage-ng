@@ -1,4 +1,6 @@
 
+// This file is partly generated.
+
 %exceptionclass storage::Exception;
 
 %exceptionclass storage::LogicException;
@@ -23,67 +25,6 @@
 %exceptionclass storage::NoIntersection;
 %exceptionclass storage::DifferentBlockSizes;
 %exceptionclass storage::NotInside;
-
-
-%catches(storage::Exception) storage::Storage::Storage(const Environment&);
-
-%catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks*) const;
-%catches(storage::Exception) storage::Storage::probe();
-%catches(storage::Exception) storage::Storage::commit(const CommitCallbacks*);
-
-%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
-%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
-
-%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t);
-%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t, sid_t) const;
-
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph*, const std::string&);
-
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph*, const std::string&);
-
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph*, const std::string&);
-
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph*, const std::string&);
-%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph*, const std::string&);
-
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
-
-%catches(storage::DeviceNotFound) storage::Nfs::find_by_server_and_path(Devicegraph*, const std::string&, const std::string&);
-%catches(storage::DeviceNotFound) storage::Nfs::find_by_server_and_path(const Devicegraph*, const std::string&, const std::string&);
-
-%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType);
-
-%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots() const;
-%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy) const;
-
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem();
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem() const;
-
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem(); /* deprecated */
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const; /* deprecated */
-
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption();
-%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption() const;
-
-%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType);
-
-%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType); /* deprecated */
-
-%catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice*);
-
-%catches(storage::Exception) storage::Storage::create_devicegraph(const std::string&);
-%catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string&, const std::string&);
-%catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string&);
-%catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string&);
-
-%catches(storage::DifferentBlockSizes) storage::Region::operator==(const Region&) const;
-%catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region&) const;
-%catches(storage::DifferentBlockSizes) storage::Region::operator<(const Region&) const;
-%catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region&) const;
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
 
@@ -206,4 +147,87 @@
 
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(const Device *device);
+
+%catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_END) const;
+
+%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
+
+%catches(storage::WrongNumberOfChildren) storage::BlkDevice::create_encryption(const std::string &dm_name);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem() const;
+
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption() const;
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t sid);
+%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t sid) const;
+
+%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
+%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
+
+%catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::Exception) storage::Md::get_number() const;
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(Devicegraph *devicegraph, const std::string &server, const std::string &path);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(const Devicegraph *devicegraph, const std::string &server, const std::string &path);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
+
+%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType pt_type);
+
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator<(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator<=(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator==(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::operator>=(const Region &rhs) const;
+
+%catches(storage::Exception) storage::Storage::Storage(const Environment &environment);
+
+%catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
+
+%catches(storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
+
+%catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string &source_name, const std::string &dest_name);
+
+%catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
+
+%catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name);
+%catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name) const;
+
+%catches(storage::Exception) storage::Storage::probe();
+
+%catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
+
+%catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);
 
