@@ -100,7 +100,7 @@ namespace storage
 	 */
 	const BlkFilesystem* get_blk_filesystem() const;
 
-	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type);}
+	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type); }
 
 	bool has_filesystem() const ST_DEPRECATED { return has_blk_filesystem(); }
 
