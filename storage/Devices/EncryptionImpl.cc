@@ -130,8 +130,11 @@ namespace storage
 
 	// TODO rename last and first? or better define the meaning somewhere?
 
-	actions[1]->last = true;
-	actions[2]->last = false;
+	if (in_etc_crypttab)
+	{
+	    actions[1]->last = true;
+	    actions[2]->last = false;
+	}
     }
 
 
