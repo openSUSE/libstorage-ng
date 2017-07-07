@@ -31,62 +31,6 @@
 %catches(storage::Exception) storage::Storage::probe();
 %catches(storage::Exception) storage::Storage::commit(const CommitCallbacks*);
 
-%catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
-
-%catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_blk_device(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_partitionable(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_partitionable(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_disk(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_disk(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_dasd(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_dasd(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_md(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_md(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_partition_table(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_partition_table(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_msdos(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_msdos(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_gpt(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_gpt(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_dasd_pt(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_dasd_pt(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_partition(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_partition(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_ext4(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_ext4(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_xfs(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_xfs(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_btrfs(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_btrfs(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_swap(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_swap(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_ntfs(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_ntfs(const Device*);
-
-%catches(storage::DeviceHasWrongType) storage::to_vfat(Device*);
-%catches(storage::DeviceHasWrongType) storage::to_vfat(const Device*);
-
-%catches(storage::HolderHasWrongType) storage::to_subdevice(Holder*);
-%catches(storage::HolderHasWrongType) storage::to_subdevice(const Holder*);
-
-%catches(storage::HolderHasWrongType) storage::to_user(Holder*);
-%catches(storage::HolderHasWrongType) storage::to_user(const Holder*);
-
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t);
 %catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t) const;
 
@@ -140,3 +84,126 @@
 %catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region&) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator<(const Region&) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region&) const;
+
+%catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_device(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_filesystem(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_blk_filesystem(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_subvolume(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_btrfs_subvolume(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dasd(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dasd(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dasd_pt(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dasd_pt(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_disk(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_disk(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext2(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext2(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext3(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext3(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext4(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext4(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_filesystem(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_filesystem(const Device *device);
+
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(const Holder *holder);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_lv(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_lv(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_pv(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_pv(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_vg(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_vg(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md(const Device *device);
+
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_user(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_user(const Holder *holder);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_mount_point(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_mount_point(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_mountable(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_mountable(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_msdos(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_msdos(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_multipath(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_multipath(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_nfs(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ntfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ntfs(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition_table(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition_table(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partitionable(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partitionable(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(const Device *device);
+
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(const Holder *holder);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_swap(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_swap(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_udf(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_udf(const Device *device);
+
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_user(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_user(const Holder *holder);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_vfat(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_vfat(const Device *device);
+
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(const Device *device);
+
