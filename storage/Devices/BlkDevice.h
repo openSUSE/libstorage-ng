@@ -100,11 +100,21 @@ namespace storage
 	 */
 	const BlkFilesystem* get_blk_filesystem() const;
 
+	/**
+	 * @copydoc create_blk_filesystem
+	 */
 	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type); }
 
 	bool has_filesystem() const ST_DEPRECATED { return has_blk_filesystem(); }
 
+	/**
+	 * @copydoc get_blk_filesystem
+	 */
 	BlkFilesystem* get_filesystem() ST_DEPRECATED { return get_blk_filesystem(); }
+
+	/**
+	 * @copydoc get_blk_filesystem
+	 */
 	const BlkFilesystem* get_filesystem() const ST_DEPRECATED { return get_blk_filesystem(); }
 
 	/**
