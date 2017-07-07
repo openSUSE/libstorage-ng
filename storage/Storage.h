@@ -115,6 +115,8 @@ namespace storage
 
 	/**
 	 * Construct Storage object. Does not call activate() nor probe().
+	 *
+	 * @throw Exception
 	 */
 	Storage(const Environment& environment);
 
@@ -190,16 +192,22 @@ namespace storage
 	 * Activate devices like multipath, MD RAID, LVM and LUKS. It is not
 	 * required to have probed the system to call this function. On the
 	 * other hand after calling this function the system should be probed.
+	 *
+	 * @throw Exception
 	 */
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
 	/**
 	 * Probe the system and replace the probed and staging devicegraphs.
+	 *
+	 * @throw Exception
 	 */
 	void probe();
 
 	/**
 	 * The actiongraph must be valid.
+	 *
+	 * @throw Exception
 	 */
 	void commit(const CommitCallbacks* commit_callbacks = nullptr);
 
