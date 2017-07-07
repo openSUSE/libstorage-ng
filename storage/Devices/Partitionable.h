@@ -58,11 +58,21 @@ namespace storage
 	 */
 	std::vector<PtType> get_possible_partition_table_types() const;
 
+	/**
+	 * @throw WrongNumberOfChildren, UnsupportedException
+	 */
 	PartitionTable* create_partition_table(PtType pt_type);
 
 	bool has_partition_table() const;
 
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	PartitionTable* get_partition_table();
+
+	/**
+	 * @copydoc get_partition_table
+	 */
 	const PartitionTable* get_partition_table() const;
 
 	static std::vector<Partitionable*> get_all(Devicegraph* devicegraph);

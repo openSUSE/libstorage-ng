@@ -60,7 +60,17 @@ namespace storage
 
 	bool is_rotational() const;
 
+	/**
+	 * Find a Multipath by its name. Only the name returned by get_name()
+	 * is considered.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
 	static Multipath* find_by_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_name
+	 */
 	static const Multipath* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:

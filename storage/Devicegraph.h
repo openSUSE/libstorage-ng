@@ -152,7 +152,14 @@ namespace storage
 	size_t num_devices() const;
 	size_t num_holders() const;
 
+	/**
+	 * @throw DeviceNotFound
+	 */
 	Device* find_device(sid_t sid);
+
+	/**
+	 * @throw DeviceNotFound
+	 */
 	const Device* find_device(sid_t sid) const;
 
 	bool device_exists(sid_t sid) const;
@@ -187,7 +194,14 @@ namespace storage
 
 	void remove_devices(std::vector<Device*> devices);
 
+	/**
+	 * @throw HolderNotFound
+	 */
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
+
+	/**
+	 * @throw HolderNotFound
+	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
 	void remove_holder(Holder* holder);

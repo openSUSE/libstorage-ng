@@ -127,9 +127,24 @@ namespace storage
 	const Environment& get_environment() const;
 	const Arch& get_arch() const;
 
+	/**
+	 * @throw Exception
+	 */
 	Devicegraph* create_devicegraph(const std::string& name);
+
+	/**
+	 * @throw Exception
+	 */
 	Devicegraph* copy_devicegraph(const std::string& source_name, const std::string& dest_name);
+
+	/**
+	 * @throw Exception
+	 */
 	void remove_devicegraph(const std::string& name);
+
+	/**
+	 * @throw Exception
+	 */
 	void restore_devicegraph(const std::string& name);
 
 	bool equal_devicegraph(const std::string& lhs, const std::string& rhs) const;
@@ -139,11 +154,15 @@ namespace storage
 
 	/**
 	 * Return a devicegraph by name.
+	 *
+	 * @throw Exception
 	 */
 	Devicegraph* get_devicegraph(const std::string& name);
 
 	/**
 	 * Return a devicegraph by name.
+	 *
+	 * @throw Exception
 	 */
 	const Devicegraph* get_devicegraph(const std::string& name) const;
 

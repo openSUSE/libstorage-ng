@@ -68,7 +68,11 @@ namespace storage
 
 	static Md* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * @throw WrongNumberOfChildren
+	 */
 	MdUser* add_device(BlkDevice* blk_device);
+
 	void remove_device(BlkDevice* blk_device);
 
 	std::vector<BlkDevice*> get_devices();
@@ -81,6 +85,8 @@ namespace storage
 
 	/**
 	 * Returns the number of the MD. Throws if the MD is not numeric.
+	 *
+	 * @throw Exception
 	 */
 	unsigned int get_number() const;
 
@@ -132,7 +138,17 @@ namespace storage
 	static std::vector<const Md*> get_all_if(const Devicegraph* devicegraph,
 						 std::function<bool(const Md*)> pred);
 
+	/**
+	 * Find a Md by its name. Only the name returned by get_name() is
+	 * considered.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
 	static Md* find_by_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_name
+	 */
 	static const Md* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**

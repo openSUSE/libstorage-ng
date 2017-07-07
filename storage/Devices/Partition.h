@@ -162,7 +162,16 @@ namespace storage
 	const PartitionTable* get_partition_table() const;
 	const Partitionable* get_partitionable() const;
 
+	/**
+	 * Find a Partition by its name. Only the name returned by get_name() is considered.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
 	static Partition* find_by_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_name
+	 */
 	static const Partition* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:

@@ -73,6 +73,8 @@ namespace storage
 	/**
 	 * Find a block device by its name. Only the name returned by
 	 * get_name() is considered.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
 	 */
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const std::string& name);
 
@@ -81,11 +83,21 @@ namespace storage
 	 */
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
+	/**
+	 * @throw WrongNumberOfChildren, UnsupportedException
+	 */
 	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 
 	bool has_blk_filesystem() const;
 
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	BlkFilesystem* get_blk_filesystem();
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	const BlkFilesystem* get_blk_filesystem() const;
 
 	BlkFilesystem* create_filesystem(FsType fs_type) ST_DEPRECATED { return create_blk_filesystem(fs_type);}
@@ -97,12 +109,21 @@ namespace storage
 
 	/**
 	 * TODO parameter for encryption type? do all encryptions need a dm_name?
+	 *
+	 * @throw WrongNumberOfChildren
 	 */
 	Encryption* create_encryption(const std::string& dm_name);
 
 	bool has_encryption() const;
 
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	Encryption* get_encryption();
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
 	const Encryption* get_encryption() const;
 
     public:
