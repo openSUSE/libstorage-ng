@@ -80,7 +80,17 @@ namespace storage
 
     bool is_btrfs(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Btrfs.
+     *
+     * @return Pointer to Btrfs.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Btrfs* to_btrfs(Device* device);
+
+    /**
+     * @copydoc to_btrfs(Device*)
+     */
     const Btrfs* to_btrfs(const Device* device);
 
 }

@@ -56,7 +56,17 @@ namespace storage
 
     bool is_ext2(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Ext2.
+     *
+     * @return Pointer to Ext2.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Ext2* to_ext2(Device* device);
+
+    /**
+     * @copydoc to_ext2(Device*)
+     */
     const Ext2* to_ext2(const Device* device);
 
 }

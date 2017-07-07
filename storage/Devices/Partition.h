@@ -183,7 +183,17 @@ namespace storage
 
     bool is_partition(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Partition.
+     *
+     * @return Pointer to Partition.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Partition* to_partition(Device* device);
+
+    /**
+     * @copydoc to_partition(Device*)
+     */
     const Partition* to_partition(const Device* device);
 
 }

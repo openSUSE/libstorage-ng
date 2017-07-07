@@ -121,7 +121,17 @@ namespace storage
 
     bool is_blk_device(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to BlkDevice.
+     *
+     * @return Pointer to BlkDevice.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     BlkDevice* to_blk_device(Device* device);
+
+    /**
+     * @copydoc to_blk_device(Device*)
+     */
     const BlkDevice* to_blk_device(const Device* device);
 
 }

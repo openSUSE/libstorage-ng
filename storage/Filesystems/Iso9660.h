@@ -59,7 +59,17 @@ namespace storage
 
     bool is_iso9660(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Iso9660.
+     *
+     * @return Pointer to Iso9660.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Iso9660* to_iso9660(Device* device);
+
+    /**
+     * @copydoc to_iso9660(Device*)
+     */
     const Iso9660* to_iso9660(const Device* device);
 
 }

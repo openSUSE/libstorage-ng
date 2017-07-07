@@ -59,7 +59,17 @@ namespace storage
 
     bool is_udf(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Udf.
+     *
+     * @return Pointer to Udf.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Udf* to_udf(Device* device);
+
+    /**
+     * @copydoc to_udf(Device*)
+     */
     const Udf* to_udf(const Device* device);
 
 }

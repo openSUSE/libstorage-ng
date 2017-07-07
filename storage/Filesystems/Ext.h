@@ -53,7 +53,17 @@ namespace storage
 
     bool is_ext(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Ext.
+     *
+     * @return Pointer to Ext.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Ext* to_ext(Device* device);
+
+    /**
+     * @copydoc to_ext(Device*)
+     */
     const Ext* to_ext(const Device* device);
 
 }

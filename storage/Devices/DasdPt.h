@@ -56,7 +56,17 @@ namespace storage
 
     bool is_dasd_pt(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to DasdPt.
+     *
+     * @return Pointer to DasdPt.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     DasdPt* to_dasd_pt(Device* device);
+
+    /**
+     * @copydoc to_dasd_pt(Device*)
+     */
     const DasdPt* to_dasd_pt(const Device* device);
 
 }

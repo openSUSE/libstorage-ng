@@ -69,7 +69,17 @@ namespace storage
 
     bool is_gpt(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Gpt.
+     *
+     * @return Pointer to Gpt.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Gpt* to_gpt(Device* device);
+
+    /**
+     * @copydoc to_gpt(Device*)
+     */
     const Gpt* to_gpt(const Device* device);
 
 }

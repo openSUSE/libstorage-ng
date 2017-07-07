@@ -59,7 +59,17 @@ namespace storage
 
     bool is_msdos(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Msdos.
+     *
+     * @return Pointer to Msdos.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Msdos* to_msdos(Device* device);
+
+    /**
+     * @copydoc to_msdos(Device*)
+     */
     const Msdos* to_msdos(const Device* device);
 
 }

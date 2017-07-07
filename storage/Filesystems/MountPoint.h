@@ -115,7 +115,17 @@ namespace storage
 
     bool is_mount_point(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Mountpoint.
+     *
+     * @return Pointer to Mountpoint.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     MountPoint* to_mount_point(Device* device);
+
+    /**
+     * @copydoc to_mount_point(Device*)
+     */
     const MountPoint* to_mount_point(const Device* device);
 
 }

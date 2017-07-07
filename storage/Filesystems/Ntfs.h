@@ -58,7 +58,17 @@ namespace storage
 
     bool is_ntfs(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Ntfs.
+     *
+     * @return Pointer to Ntfs.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Ntfs* to_ntfs(Device* device);
+
+    /**
+     * @copydoc to_ntfs(Device*)
+     */
     const Ntfs* to_ntfs(const Device* device);
 
 }

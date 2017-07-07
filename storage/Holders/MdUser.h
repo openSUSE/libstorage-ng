@@ -75,8 +75,18 @@ namespace storage
 
     bool is_md_user(const Holder* holder);
 
-    MdUser* to_md_user(Holder* device);
-    const MdUser* to_md_user(const Holder* device);
+    /**
+     * Converts pointer to Holder to pointer to MdUser.
+     *
+     * @return Pointer to MdUser.
+     * @throw HolderHasWrongType, NullPointerException
+     */
+    MdUser* to_md_user(Holder* holder);
+
+    /**
+     * @copydoc to_md_user(Holder*)
+     */
+    const MdUser* to_md_user(const Holder* holder);
 
 }
 

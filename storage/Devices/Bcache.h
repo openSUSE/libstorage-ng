@@ -89,7 +89,17 @@ namespace storage
 
     bool is_bcache(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Bcache.
+     *
+     * @return Pointer to Bcache.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Bcache* to_bcache(Device* device);
+
+    /**
+     * @copydoc to_bcache(Device*)
+     */
     const Bcache* to_bcache(const Device* device);
 
 }

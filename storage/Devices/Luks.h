@@ -70,7 +70,17 @@ namespace storage
 
     bool is_luks(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Luks.
+     *
+     * @return Pointer to Luks.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Luks* to_luks(Device* device);
+
+    /**
+     * @copydoc to_luks(Device*)
+     */
     const Luks* to_luks(const Device* device);
 
 }

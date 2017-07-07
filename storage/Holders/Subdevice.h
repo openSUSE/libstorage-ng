@@ -55,8 +55,18 @@ namespace storage
 
     bool is_subdevice(const Holder* holder);
 
-    Subdevice* to_subdevice(Holder* device);
-    const Subdevice* to_subdevice(const Holder* device);
+    /**
+     * Converts pointer to Holder to pointer to Subdevice.
+     *
+     * @return Pointer to Subdevice.
+     * @throw HolderHasWrongType, NullPointerException
+     */
+    Subdevice* to_subdevice(Holder* holder);
+
+    /**
+     * @copydoc to_user(Holder*)
+     */
+    const Subdevice* to_subdevice(const Holder* holder);
 
 }
 

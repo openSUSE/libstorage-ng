@@ -87,7 +87,17 @@ namespace storage
 
     bool is_partitionable(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Partitionable.
+     *
+     * @return Pointer to Partitionable.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Partitionable* to_partitionable(Device* device);
+
+    /**
+     * @copydoc to_partitionable(Device*)
+     */
     const Partitionable* to_partitionable(const Device* device);
 
 }

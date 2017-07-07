@@ -55,7 +55,17 @@ namespace storage
 
     bool is_vfat(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Vfat.
+     *
+     * @return Pointer to Vfat.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Vfat* to_vfat(Device* device);
+
+    /**
+     * @copydoc to_vfat(Device*)
+     */
     const Vfat* to_vfat(const Device* device);
 
 }

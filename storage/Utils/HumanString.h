@@ -85,6 +85,8 @@ namespace storage
      *
      * The conversion is always case-insensitive. With classic set to
      * false the conversion is also sloppy concerning omission of 'B'.
+     *
+     * @throw ParseException, OverflowException
      */
     unsigned long long humanstring_to_byte(const std::string& str, bool classic);
 

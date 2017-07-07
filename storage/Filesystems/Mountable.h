@@ -133,7 +133,17 @@ namespace storage
 
     bool is_mountable(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Mountable.
+     *
+     * @return Pointer to Mountable.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Mountable* to_mountable(Device* device);
+
+    /**
+     * @copydoc to_mountable(Device*)
+     */
     const Mountable* to_mountable(const Device* device);
 
 }

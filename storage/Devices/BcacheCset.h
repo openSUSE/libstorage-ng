@@ -86,7 +86,17 @@ namespace storage
 
     bool is_bcache_cset(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to BcacheCset.
+     *
+     * @return Pointer to BcacheCset.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     BcacheCset* to_bcache_cset(Device* device);
+
+    /**
+     * @copydoc to_bcache_cset(Device*)
+     */
     const BcacheCset* to_bcache_cset(const Device* device);
 
 }

@@ -171,7 +171,17 @@ namespace storage
 
     bool is_lvm_vg(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to LvmVg.
+     *
+     * @return Pointer to LvmVg.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     LvmVg* to_lvm_vg(Device* device);
+
+    /**
+     * @copydoc to_lvm_vg(Device*)
+     */
     const LvmVg* to_lvm_vg(const Device* device);
 
 }
