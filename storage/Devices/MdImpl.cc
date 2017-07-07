@@ -302,6 +302,14 @@ namespace storage
 	    actions.push_back(new Action::AddToEtcMdadm(get_sid()));
 
 	actiongraph.add_chain(actions);
+
+	// see Encryption::Impl::add_create_actions()
+
+	if (in_etc_mdadm)
+	{
+	    actions[0]->last = true;
+	    actions[1]->last = false;
+	}
     }
 
 
