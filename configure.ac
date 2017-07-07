@@ -101,6 +101,8 @@ AC_OUTPUT(
 	storage/SystemInfo/Makefile
 	doc/Makefile
 	doc/autodocs/Makefile
+	doc/autodocs/html/Makefile
+	doc/autodocs/xml/Makefile
 	po/Makefile
 	utils/Makefile
 	examples/Makefile

@@ -1,0 +1,12 @@
+*.css
+*.gif
+*.html
+*.map
+*.md5
+*.png
+*.svg
+dynsections.js
+jquery.js
+menu.js
+menudata.js
+search/
