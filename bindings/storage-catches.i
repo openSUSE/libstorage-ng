@@ -27,6 +27,10 @@
 
 %catches(storage::Exception) storage::Storage::Storage(const Environment&);
 
+%catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks*) const;
+%catches(storage::Exception) storage::Storage::probe();
+%catches(storage::Exception) storage::Storage::commit(const CommitCallbacks*);
+
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string&, bool);
 
 %catches(storage::DeviceHasWrongType) storage::to_blk_device(Device*);
