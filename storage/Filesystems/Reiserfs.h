@@ -55,7 +55,17 @@ namespace storage
 
     bool is_reiserfs(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Reiserfs.
+     *
+     * @return Pointer to Reiserfs.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Reiserfs* to_reiserfs(Device* device);
+
+    /**
+     * @copydoc to_reiserfs(Device*)
+     */
     const Reiserfs* to_reiserfs(const Device* device);
 
 }

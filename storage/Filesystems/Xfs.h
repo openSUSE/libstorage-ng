@@ -55,7 +55,17 @@ namespace storage
 
     bool is_xfs(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Xfs.
+     *
+     * @return Pointer to Xfs.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Xfs* to_xfs(Device* device);
+
+    /**
+     * @copydoc to_xfs(Device*)
+     */
     const Xfs* to_xfs(const Device* device);
 
 }

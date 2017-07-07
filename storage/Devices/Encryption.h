@@ -92,7 +92,17 @@ namespace storage
 
     bool is_encryption(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Encryption.
+     *
+     * @return Pointer to Encryption.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Encryption* to_encryption(Device* device);
+
+    /**
+     * @copydoc to_encryption(Device*)
+     */
     const Encryption* to_encryption(const Device* device);
 
 }

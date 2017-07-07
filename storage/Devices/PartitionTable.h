@@ -155,7 +155,17 @@ namespace storage
 
     bool is_partition_table(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to PartitionTable.
+     *
+     * @return Pointer to PartitionTable.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     PartitionTable* to_partition_table(Device* device);
+
+    /**
+     * @copydoc to_partition_table(Device*)
+     */
     const PartitionTable* to_partition_table(const Device* device);
 
 }

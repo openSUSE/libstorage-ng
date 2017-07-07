@@ -56,8 +56,18 @@ namespace storage
 
     bool is_user(const Holder* holder);
 
-    User* to_user(Holder* device);
-    const User* to_user(const Holder* device);
+    /**
+     * Converts pointer to Holder to pointer to User.
+     *
+     * @return Pointer to User.
+     * @throw HolderHasWrongType, NullPointerException
+     */
+    User* to_user(Holder* holder);
+
+    /**
+     * @copydoc to_user(Holder*)
+     */
+    const User* to_user(const Holder* holder);
 
 }
 

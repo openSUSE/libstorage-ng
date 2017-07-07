@@ -80,7 +80,17 @@ namespace storage
 
     bool is_lvm_lv(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to LvmLv.
+     *
+     * @return Pointer to LvmLv.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     LvmLv* to_lvm_lv(Device* device);
+
+    /**
+     * @copydoc to_lvm_lv(Device*)
+     */
     const LvmLv* to_lvm_lv(const Device* device);
 
 }

@@ -58,7 +58,17 @@ namespace storage
 
     bool is_swap(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Swap.
+     *
+     * @return Pointer to Swap.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Swap* to_swap(Device* device);
+
+    /**
+     * @copydoc to_swap(Device*)
+     */
     const Swap* to_swap(const Device* device);
 
 }

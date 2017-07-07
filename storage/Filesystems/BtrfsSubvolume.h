@@ -82,7 +82,17 @@ namespace storage
 
     bool is_btrfs_subvolume(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to BtrfsSubvolume.
+     *
+     * @return Pointer to BtrfsSubvolume.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     BtrfsSubvolume* to_btrfs_subvolume(Device* device);
+
+    /**
+     * @copydoc to_btrfs_subvolume(Device*)
+     */
     const BtrfsSubvolume* to_btrfs_subvolume(const Device* device);
 
 }

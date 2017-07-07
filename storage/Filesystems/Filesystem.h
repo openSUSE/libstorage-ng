@@ -77,7 +77,17 @@ namespace storage
 
     bool is_filesystem(const Device* device);
 
+    /**
+     * Converts pointer to Device to pointer to Filesystem.
+     *
+     * @return Pointer to Filesystem.
+     * @throw DeviceHasWrongType, NullPointerException
+     */
     Filesystem* to_filesystem(Device* device);
+
+    /**
+     * @copydoc to_filesystem(Device*)
+     */
     const Filesystem* to_filesystem(const Device* device);
 
 }

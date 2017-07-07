@@ -62,8 +62,18 @@ namespace storage
 
     bool is_filesystem_user(const Holder* holder);
 
-    FilesystemUser* to_filesystem_user(Holder* device);
-    const FilesystemUser* to_filesystem_user(const Holder* device);
+    /**
+     * Converts pointer to Holder to pointer to FilesystemUser.
+     *
+     * @return Pointer to FilesystemUser.
+     * @throw HolderHasWrongType, NullPointerException
+     */
+    FilesystemUser* to_filesystem_user(Holder* holder);
+
+    /**
+     * @copydoc to_filesystem_user(Holder*)
+     */
+    const FilesystemUser* to_filesystem_user(const Holder* holder);
 
 }
 
