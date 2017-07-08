@@ -44,32 +44,42 @@ namespace storage
     class BlkFilesystem;
 
 
-    struct DeviceNotFound : public Exception
+    class DeviceNotFound : public Exception
     {
+    public:
+
 	DeviceNotFound(const std::string& msg);
     };
 
 
-    struct DeviceNotFoundBySid : public DeviceNotFound
+    class DeviceNotFoundBySid : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundBySid(sid_t sid);
     };
 
 
-    struct DeviceNotFoundByName : public DeviceNotFound
+    class DeviceNotFoundByName : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundByName(const std::string& name);
     };
 
 
-    struct DeviceNotFoundByUuid : public DeviceNotFound
+    class DeviceNotFoundByUuid : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundByUuid(const std::string& uuid);
     };
 
 
-    struct HolderNotFound : public Exception
+    class HolderNotFound : public Exception
     {
+    public:
+
 	HolderNotFound(const std::string& msg);
     };
 
@@ -82,20 +92,26 @@ namespace storage
     };
 
 
-    struct HolderAlreadyExists : public Exception
+    class HolderAlreadyExists : public Exception
     {
+    public:
+
 	HolderAlreadyExists(sid_t source_sid, sid_t target_sid);
     };
 
 
-    struct WrongNumberOfParents : public Exception
+    class WrongNumberOfParents : public Exception
     {
+    public:
+
 	WrongNumberOfParents(size_t seen, size_t expected);
     };
 
 
-    struct WrongNumberOfChildren : public Exception
+    class WrongNumberOfChildren : public Exception
     {
+    public:
+
 	WrongNumberOfChildren(size_t seen, size_t expected);
     };
 
