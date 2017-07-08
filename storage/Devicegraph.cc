@@ -78,7 +78,7 @@ namespace storage
     }
 
 
-    HolderNotFoundBySid::HolderNotFoundBySid(sid_t source_sid, sid_t target_sid)
+    HolderNotFoundBySids::HolderNotFoundBySids(sid_t source_sid, sid_t target_sid)
 	: HolderNotFound(sformat("holder not found, source_sid:%d, target_sid:%d", source_sid, target_sid))
     {
     }

@@ -74,9 +74,11 @@ namespace storage
     };
 
 
-    struct HolderNotFoundBySid : public HolderNotFound
+    class HolderNotFoundBySids : public HolderNotFound
     {
-	HolderNotFoundBySid(sid_t source_sid, sid_t target_sid);
+    public:
+
+	HolderNotFoundBySids(sid_t source_sid, sid_t target_sid);
     };
 
 
