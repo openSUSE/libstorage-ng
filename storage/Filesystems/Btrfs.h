@@ -35,8 +35,10 @@ namespace storage
     class BtrfsSubvolume;
 
 
-    struct BtrfsSubvolumeNotFoundByPath : public DeviceNotFound
+    class BtrfsSubvolumeNotFoundByPath : public DeviceNotFound
     {
+    public:
+
 	BtrfsSubvolumeNotFoundByPath(const std::string& path);
     };
 

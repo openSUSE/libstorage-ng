@@ -31,8 +31,10 @@
 namespace storage
 {
 
-    struct NfsNotFoundByServerAndPath : public DeviceNotFound
+    class NfsNotFoundByServerAndPath : public DeviceNotFound
     {
+    public:
+
 	NfsNotFoundByServerAndPath(const std::string& server, const std::string& path);
     };
 
