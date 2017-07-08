@@ -3,28 +3,33 @@
 
 %exceptionclass storage::Exception;
 
-%exceptionclass storage::LogicException;
-
-%exceptionclass storage::NullPointerException;
-%exceptionclass storage::OutOfMemoryException;
-%exceptionclass storage::IndexOutOfRangeException;
-%exceptionclass storage::OverflowException;
-%exceptionclass storage::ParseException;
-
+%exceptionclass storage::AlignError;
+%exceptionclass storage::BtrfsSubvolumeNotFoundByPath;
 %exceptionclass storage::DeviceHasWrongType;
 %exceptionclass storage::DeviceNotFound;
-
+%exceptionclass storage::DeviceNotFoundByName;
+%exceptionclass storage::DeviceNotFoundBySid;
+%exceptionclass storage::DeviceNotFoundByUuid;
+%exceptionclass storage::DifferentBlockSizes;
+%exceptionclass storage::HolderAlreadyExists;
 %exceptionclass storage::HolderHasWrongType;
 %exceptionclass storage::HolderNotFound;
-%exceptionclass storage::HolderAlreadyExists;
-
+%exceptionclass storage::HolderNotFoundBySids;
+%exceptionclass storage::IndexOutOfRangeException;
+%exceptionclass storage::InvalidBlockSize;
+%exceptionclass storage::InvalidExtentSize;
+%exceptionclass storage::LogicException;
+%exceptionclass storage::LvmVgNotFoundByVgName;
+%exceptionclass storage::NfsNotFoundByServerAndPath;
+%exceptionclass storage::NoIntersection;
+%exceptionclass storage::NotInside;
+%exceptionclass storage::NullPointerException;
+%exceptionclass storage::OutOfMemoryException;
+%exceptionclass storage::OverflowException;
+%exceptionclass storage::ParseException;
+%exceptionclass storage::UnsupportedException;
 %exceptionclass storage::WrongNumberOfChildren;
 %exceptionclass storage::WrongNumberOfParents;
-
-%exceptionclass storage::InvalidBlockSize;
-%exceptionclass storage::NoIntersection;
-%exceptionclass storage::DifferentBlockSizes;
-%exceptionclass storage::NotInside;
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
 
