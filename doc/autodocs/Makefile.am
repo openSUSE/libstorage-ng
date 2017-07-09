@@ -4,7 +4,7 @@
 
 SUBDIRS = . html xml
 
-doxygen.timestamp: $(srcdir)/../../storage/*.h $(srcdir)/../../storage/*/*.h
+doxygen.timestamp: doxygen.conf $(srcdir)/../../storage/*.h $(srcdir)/../../storage/*/*.h
 	doxygen doxygen.conf
 	touch doxygen.timestamp
 
