@@ -2,14 +2,15 @@
 # Makefile.am for libstorage/doc/autodocs
 #
 
-htmldir = $(docdir)/autodocs
+SUBDIRS = . html xml
 
-html_DATA = index.html $(filter-out index.html, $(wildcard *.html *.css *.png *.gif *.map))
-
-index.html: $(srcdir)/../../storage/*.h
+doxygen.timestamp: doxygen.conf $(srcdir)/../../storage/*.h $(srcdir)/../../storage/*/*.h
 	doxygen doxygen.conf
+	touch doxygen.timestamp
 
-CLEANFILES = $(html_DATA) $(wildcard *.js *.md5) doxygen.log installdox
+all: doxygen.timestamp
+
+CLEANFILES = doxygen.timestamp
 
 EXTRA_DIST = doxygen.conf
 

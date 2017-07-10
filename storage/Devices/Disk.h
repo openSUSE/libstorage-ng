@@ -66,7 +66,17 @@ namespace storage
 
 	Transport get_transport() const;
 
+	/**
+	 * Find a Disk by its name. Only the name returned by get_name() is
+	 * considered.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
 	static Disk* find_by_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_name
+	 */
 	static const Disk* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
     public:

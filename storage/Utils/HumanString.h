@@ -80,7 +80,6 @@ namespace storage
      *
      * @param str size string
      * @param classic use classic locale instead of global C++ locale
-     * @param size size in bytes
      * @return true on successful conversion
      *
      * The conversion is always case-insensitive. With classic set to

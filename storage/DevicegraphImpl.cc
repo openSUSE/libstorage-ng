@@ -397,7 +397,7 @@ namespace storage
 		return edge;
 	}
 
-	ST_THROW(HolderNotFoundBySid(source_sid, target_sid));
+	ST_THROW(HolderNotFoundBySids(source_sid, target_sid));
     }
 
 

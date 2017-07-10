@@ -31,8 +31,10 @@
 namespace storage
 {
 
-    struct NfsNotFoundByServerAndPath : public DeviceNotFound
+    class NfsNotFoundByServerAndPath : public DeviceNotFound
     {
+    public:
+
 	NfsNotFoundByServerAndPath(const std::string& server, const std::string& path);
     };
 
@@ -63,8 +65,17 @@ namespace storage
 	static std::vector<Nfs*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Nfs*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Find a Nfs by its server and path.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
 	static Nfs* find_by_server_and_path(Devicegraph* devicegraph, const std::string& server,
 					    const std::string& path);
+
+	/**
+	 * @copydoc find_by_server_and_path
+	 */
 	static const Nfs* find_by_server_and_path(const Devicegraph* devicegraph,
 						  const std::string& server, const std::string& path);
 

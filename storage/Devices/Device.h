@@ -43,8 +43,10 @@ namespace storage
     class ResizeInfo;
 
 
-    struct DeviceHasWrongType : public Exception
+    class DeviceHasWrongType : public Exception
     {
+    public:
+
 	DeviceHasWrongType(const char* seen, const char* expected);
     };
 

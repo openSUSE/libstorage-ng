@@ -44,56 +44,74 @@ namespace storage
     class BlkFilesystem;
 
 
-    struct DeviceNotFound : public Exception
+    class DeviceNotFound : public Exception
     {
+    public:
+
 	DeviceNotFound(const std::string& msg);
     };
 
 
-    struct DeviceNotFoundBySid : public DeviceNotFound
+    class DeviceNotFoundBySid : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundBySid(sid_t sid);
     };
 
 
-    struct DeviceNotFoundByName : public DeviceNotFound
+    class DeviceNotFoundByName : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundByName(const std::string& name);
     };
 
 
-    struct DeviceNotFoundByUuid : public DeviceNotFound
+    class DeviceNotFoundByUuid : public DeviceNotFound
     {
+    public:
+
 	DeviceNotFoundByUuid(const std::string& uuid);
     };
 
 
-    struct HolderNotFound : public Exception
+    class HolderNotFound : public Exception
     {
+    public:
+
 	HolderNotFound(const std::string& msg);
     };
 
 
-    struct HolderNotFoundBySid : public HolderNotFound
+    class HolderNotFoundBySids : public HolderNotFound
     {
-	HolderNotFoundBySid(sid_t source_sid, sid_t target_sid);
+    public:
+
+	HolderNotFoundBySids(sid_t source_sid, sid_t target_sid);
     };
 
 
-    struct HolderAlreadyExists : public Exception
+    class HolderAlreadyExists : public Exception
     {
+    public:
+
 	HolderAlreadyExists(sid_t source_sid, sid_t target_sid);
     };
 
 
-    struct WrongNumberOfParents : public Exception
+    class WrongNumberOfParents : public Exception
     {
+    public:
+
 	WrongNumberOfParents(size_t seen, size_t expected);
     };
 
 
-    struct WrongNumberOfChildren : public Exception
+    class WrongNumberOfChildren : public Exception
     {
+    public:
+
 	WrongNumberOfChildren(size_t seen, size_t expected);
     };
 
@@ -152,7 +170,14 @@ namespace storage
 	size_t num_devices() const;
 	size_t num_holders() const;
 
+	/**
+	 * @throw DeviceNotFound
+	 */
 	Device* find_device(sid_t sid);
+
+	/**
+	 * @throw DeviceNotFound
+	 */
 	const Device* find_device(sid_t sid) const;
 
 	bool device_exists(sid_t sid) const;
@@ -187,7 +212,14 @@ namespace storage
 
 	void remove_devices(std::vector<Device*> devices);
 
+	/**
+	 * @throw HolderNotFound
+	 */
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
+
+	/**
+	 * @throw HolderNotFound
+	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
 	void remove_holder(Holder* holder);

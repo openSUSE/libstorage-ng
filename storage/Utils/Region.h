@@ -99,26 +99,45 @@ namespace storage
 	unsigned long long to_bytes(unsigned long long blocks) const;
 	unsigned long long to_blocks(unsigned long long bytes) const;
 
+	/**
+	 * Compare start and length of two regions.
+	 *
+	 * @throw DifferentBlockSizes
+	 */
 	bool operator==(const Region& rhs) const;
+
+	/**
+	 * Compare start and length of two regions.
+	 *
+	 * @throw DifferentBlockSizes
+	 */
 	bool operator!=(const Region& rhs) const;
 
 	/**
 	 * Compare start of two regions.
+	 *
+	 * @throw DifferentBlockSizes
 	 */
 	bool operator<(const Region& rhs) const;
 
 	/**
 	 * Compare start of two regions.
+	 *
+	 * @throw DifferentBlockSizes
 	 */
 	bool operator>(const Region& rhs) const;
 
 	/**
 	 * Compare start of two regions.
+	 *
+	 * @throw DifferentBlockSizes
 	 */
 	bool operator<=(const Region& rhs) const;
 
 	/**
 	 * Compare start of two regions.
+	 *
+	 * @throw DifferentBlockSizes
 	 */
 	bool operator>=(const Region& rhs) const;
 

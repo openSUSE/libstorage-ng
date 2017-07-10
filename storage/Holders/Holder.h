@@ -38,8 +38,10 @@ namespace storage
     class Device;
 
 
-    struct HolderHasWrongType : public Exception
+    class HolderHasWrongType : public Exception
     {
+    public:
+
 	HolderHasWrongType(const char* seen, const char* expected);
     };
 

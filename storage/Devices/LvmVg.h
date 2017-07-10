@@ -36,14 +36,18 @@ namespace storage
     class LvmLv;
 
 
-    struct LvmVgNotFoundByVgName : public DeviceNotFound
+    class LvmVgNotFoundByVgName : public DeviceNotFound
     {
+    public:
+
 	LvmVgNotFoundByVgName(const std::string& vg_name);
     };
 
 
-    struct InvalidExtentSize : public Exception
+    class InvalidExtentSize : public Exception
     {
+    public:
+
 	InvalidExtentSize(unsigned long long extent_size);
     };
 
