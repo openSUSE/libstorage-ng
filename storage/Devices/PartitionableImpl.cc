@@ -49,6 +49,8 @@ namespace storage
 
     const char* DeviceTraits<Partitionable>::classname = "Partitionable";
 
+    const unsigned int Partitionable::Impl::default_range;
+
 
     Partitionable::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), topology(), range(0)
