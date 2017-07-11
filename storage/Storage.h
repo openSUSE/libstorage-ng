@@ -181,6 +181,9 @@ namespace storage
 	 */
 	const Devicegraph* get_probed() const;
 
+	/**
+	 * @throw Exception
+	 */
 	void check() const;
 
 	/**

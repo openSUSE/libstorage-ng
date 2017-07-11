@@ -1,7 +1,5 @@
 
-// This file is partly generated.
-
-%exceptionclass storage::Exception;
+// This file is generated.
 
 %exceptionclass storage::AlignError;
 %exceptionclass storage::BtrfsSubvolumeNotFoundByPath;
@@ -11,6 +9,7 @@
 %exceptionclass storage::DeviceNotFoundBySid;
 %exceptionclass storage::DeviceNotFoundByUuid;
 %exceptionclass storage::DifferentBlockSizes;
+%exceptionclass storage::Exception;
 %exceptionclass storage::HolderAlreadyExists;
 %exceptionclass storage::HolderHasWrongType;
 %exceptionclass storage::HolderNotFound;
@@ -153,6 +152,10 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(const Device *device);
 
+%catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, const Devicegraph *lhs, Devicegraph *rhs);
+
+%catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NONE) const;
+
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_END) const;
 
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
@@ -176,11 +179,21 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 
-%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t sid);
-%catches(storage::DeviceNotFound) storage::Devicegraph::find_device(sid_t sid) const;
+%catches(storage::Exception) storage::Devicegraph::check() const;
 
-%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
-%catches(storage::HolderNotFound) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
+%catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid);
+%catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid) const;
+
+%catches(storage::HolderNotFoundBySids) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid);
+%catches(storage::HolderNotFoundBySids) storage::Devicegraph::find_holder(sid_t source_sid, sid_t target_sid) const;
+
+%catches(storage::Exception) storage::Devicegraph::load(const std::string &filename);
+
+%catches(storage::DeviceNotFoundBySid) storage::Devicegraph::remove_device(sid_t sid);
+
+%catches(storage::Exception) storage::Devicegraph::save(const std::string &filename) const;
+
+%catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, GraphvizFlags graphviz_flags=GraphvizFlags::NONE) const;
 
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
@@ -202,6 +215,10 @@
 
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
+
+%catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
 
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
 
@@ -225,6 +242,8 @@
 %catches(storage::Exception) storage::Storage::Storage(const Environment &environment);
 
 %catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
+
+%catches(storage::Exception) storage::Storage::check() const;
 
 %catches(storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
 

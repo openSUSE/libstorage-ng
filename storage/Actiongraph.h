@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,7 +56,11 @@ namespace storage
     {
     public:
 
+	/**
+	 * @throw Exception
+	 */
 	Actiongraph(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs);
+
 	~Actiongraph();
 
 	const Storage& get_storage() const;
@@ -64,6 +68,10 @@ namespace storage
 	const Devicegraph* get_devicegraph(Side side) const;
 
 	void print_graph() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags flags =
 			    GraphvizFlags::NONE) const;
 

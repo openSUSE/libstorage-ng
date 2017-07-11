@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -162,7 +162,14 @@ namespace storage
 
 	const Storage* get_storage() const;
 
+	/**
+	 * @throw Exception
+	 */
 	void load(const std::string& filename);
+
+	/**
+	 * @throw Exception
+	 */
 	void save(const std::string& filename) const;
 
 	bool empty() const;
@@ -171,12 +178,12 @@ namespace storage
 	size_t num_holders() const;
 
 	/**
-	 * @throw DeviceNotFound
+	 * @throw DeviceNotFoundBySid
 	 */
 	Device* find_device(sid_t sid);
 
 	/**
-	 * @throw DeviceNotFound
+	 * @throw DeviceNotFoundBySid
 	 */
 	const Device* find_device(sid_t sid) const;
 
@@ -205,25 +212,31 @@ namespace storage
 	 * function if there is no special function to delete a device,
 	 * e.g. PartitionTable.delete_partition() or LvmVg.delete_lvm_lv().
 	 *
+	 * @throw DeviceNotFoundBySid
+	 *
 	 * TODO internally redirect to special delete functions?
 	 */
 	void remove_device(sid_t sid);
+
 	void remove_device(Device* a);
 
 	void remove_devices(std::vector<Device*> devices);
 
 	/**
-	 * @throw HolderNotFound
+	 * @throw HolderNotFoundBySids
 	 */
 	Holder* find_holder(sid_t source_sid, sid_t target_sid);
 
 	/**
-	 * @throw HolderNotFound
+	 * @throw HolderNotFoundBySids
 	 */
 	const Holder* find_holder(sid_t source_sid, sid_t target_sid) const;
 
 	void remove_holder(Holder* holder);
 
+	/**
+	 * @throw Exception
+	 */
 	void check() const;
 
 	/**
@@ -234,6 +247,9 @@ namespace storage
 	// TODO move to Impl
 	void copy(Devicegraph& dest) const;
 
+	/**
+	 * @throw Exception
+	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags graphviz_flags =
 			    GraphvizFlags::NONE) const;
 

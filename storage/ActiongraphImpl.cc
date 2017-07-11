@@ -613,6 +613,9 @@ namespace storage
 			      vertex_index_map_generator.get());
 
 	fout.close();
+
+	if (!fout.good())
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
     }
 
 }
