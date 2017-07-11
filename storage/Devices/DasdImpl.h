@@ -62,8 +62,10 @@ namespace storage
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
 	DasdType get_dasd_type() const { return dasd_type; }
+	void set_dasd_type(DasdType dasd_type) { Impl::dasd_type = dasd_type; }
 
 	DasdFormat get_dasd_format() const { return dasd_format; }
+	void set_dasd_format(DasdFormat dasd_format) { Impl::dasd_format = dasd_format; }
 
 	static void probe_dasds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
