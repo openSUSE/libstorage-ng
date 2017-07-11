@@ -601,8 +601,7 @@ namespace storage
     {
 	ofstream fout(filename);
 
-	fout << "// " << generated_string() << '\n';
-	fout << '\n';
+	fout << "// " << generated_string() << "\n\n";
 
 	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
 

@@ -927,8 +927,7 @@ namespace storage
     {
 	ofstream fout(filename);
 
-	fout << "// " << generated_string() << '\n';
-	fout << '\n';
+	fout << "// " << generated_string() << "\n\n";
 
 	// TODO write same rank stuff, should be possible in write_graph
 
