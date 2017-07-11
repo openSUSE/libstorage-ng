@@ -56,32 +56,32 @@ namespace storage
 
 
     Dasd::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), rotational(false), dasd_type(DasdType::UNKNOWN),
-	  dasd_format(DasdFormat::NONE)
+	: Partitionable::Impl(name), rotational(false), type(DasdType::UNKNOWN),
+	  format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, 4), rotational(false), dasd_type(DasdType::UNKNOWN),
-	  dasd_format(DasdFormat::NONE)
+	: Partitionable::Impl(name, region, 4), rotational(false), type(DasdType::UNKNOWN),
+	  format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), dasd_type(DasdType::UNKNOWN),
-	  dasd_format(DasdFormat::NONE)
+	: Partitionable::Impl(node), rotational(false), type(DasdType::UNKNOWN),
+	  format(DasdFormat::NONE)
     {
 	string tmp;
 
 	getChildValue(node, "rotational", rotational);
 
-	if (getChildValue(node, "dasd-type", tmp))
-	    dasd_type = toValueWithFallback(tmp, DasdType::UNKNOWN);
+	if (getChildValue(node, "type", tmp))
+	    type = toValueWithFallback(tmp, DasdType::UNKNOWN);
 
-	if (getChildValue(node, "dasd-format", tmp))
-	    dasd_format = toValueWithFallback(tmp, DasdFormat::NONE);
+	if (getChildValue(node, "format", tmp))
+	    format = toValueWithFallback(tmp, DasdFormat::NONE);
     }
 
 
@@ -117,9 +117,9 @@ namespace storage
 	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
 	rotational = rotational_file.get_int() != 0;
 
-	const Dasdview dasd_view = prober.get_system_info().getDasdview(get_name());
-	dasd_type = dasd_view.get_dasd_type();
-	dasd_format = dasd_view.get_dasd_format();
+	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
+	type = dasdview.get_type();
+	format = dasdview.get_format();
     }
 
 
@@ -137,8 +137,8 @@ namespace storage
 
 	setChildValueIf(node, "rotational", rotational, rotational);
 
-	setChildValueIf(node, "dasd-type", toString(dasd_type), dasd_type != DasdType::UNKNOWN);
-	setChildValueIf(node, "dasd-format", toString(dasd_format), dasd_format != DasdFormat::NONE);
+	setChildValueIf(node, "type", toString(type), type != DasdType::UNKNOWN);
+	setChildValueIf(node, "format", toString(format), format != DasdFormat::NONE);
     }
 
 
@@ -150,8 +150,8 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && dasd_type == rhs.dasd_type &&
-	    dasd_format == rhs.dasd_format;
+	return rotational == rhs.rotational && type == rhs.type &&
+	    format == rhs.format;
     }
 
 
@@ -164,8 +164,8 @@ namespace storage
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
-	storage::log_diff_enum(log, "dasd-type", dasd_type, rhs.dasd_type);
-	storage::log_diff_enum(log, "dasd-format", dasd_format, rhs.dasd_format);
+	storage::log_diff_enum(log, "type", type, rhs.type);
+	storage::log_diff_enum(log, "format", format, rhs.format);
     }
 
 
@@ -177,8 +177,8 @@ namespace storage
 	if (rotational)
 	    out << " rotational";
 
-	out << " dasd-type:" << toString(dasd_type);
-	out << " dasd-format:" << toString(dasd_format);
+	out << " type:" << toString(type);
+	out << " format:" << toString(format);
     }
 
 
