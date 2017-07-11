@@ -97,8 +97,8 @@
       <udev-id>ccw-IBM.750000000L2371.0001.40.00000000000027200000000000000000</udev-id>
       <topology/>
       <range>4</range>
-      <dasd-type>ECKD</dasd-type>
-      <dasd-format>CDL</dasd-format>
+      <type>ECKD</type>
+      <format>CDL</format>
     </Dasd>
     <Multipath>
       <sid>47</sid>

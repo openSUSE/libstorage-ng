@@ -68,9 +68,11 @@ namespace storage
 
 	bool is_rotational() const;
 
-	DasdType get_dasd_type() const;
+	DasdType get_type() const;
+	void set_type(DasdType type);
 
-	DasdFormat get_dasd_format() const;
+	DasdFormat get_format() const;
+	void set_format(DasdFormat format);
 
 	/**
 	 * Find a Dasd by its name. Only the name returned by get_name() is

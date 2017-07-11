@@ -31,7 +31,7 @@ namespace storage
 {
 
     Dasdview::Dasdview(const string& device)
-	: device(device), dasd_type(DasdType::UNKNOWN), dasd_format(DasdFormat::NONE)
+	: device(device), type(DasdType::UNKNOWN), format(DasdFormat::NONE)
     {
 	SystemCmd cmd(DASDVIEWBIN " --extended " + quote(device));
 
@@ -58,9 +58,9 @@ namespace storage
 	    string tmp = string(*pos, pos->find(':') + 1);
 	    tmp = extractNthWord(4, tmp);
 	    if (tmp == "CDL")
-		dasd_format = DasdFormat::CDL;
+		format = DasdFormat::CDL;
 	    else if (tmp == "LDL")
-		dasd_format = DasdFormat::LDL;
+		format = DasdFormat::LDL;
 	}
 
 	pos = find_if(lines, string_starts_with("type"));
@@ -70,9 +70,9 @@ namespace storage
 	    string tmp = string(*pos, pos->find(':') + 1);
 	    tmp = extractNthWord(0, tmp);
 	    if (tmp == "ECKD")
-		dasd_type = DasdType::ECKD;
+		type = DasdType::ECKD;
 	    else if (tmp == "FBA")
-		dasd_type = DasdType::FBA;
+		type = DasdType::FBA;
 	}
 
 	y2mil(*this);
@@ -82,8 +82,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Dasdview& dasdview)
     {
-	s << "device:" << dasdview.device << " dasd-type:" << toString(dasdview.dasd_type)
-	  << " dasd-format:" << toString(dasdview.dasd_format);
+	s << "device:" << dasdview.device << " type:" << toString(dasdview.type)
+	  << " format:" << toString(dasdview.format);
 
 	return s;
     }

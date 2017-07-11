@@ -120,16 +120,30 @@ namespace storage
 
 
     DasdType
-    Dasd::get_dasd_type() const
+    Dasd::get_type() const
     {
-	return get_impl().get_dasd_type();
+	return get_impl().get_type();
+    }
+
+
+    void
+    Dasd::set_type(DasdType type)
+    {
+	get_impl().set_type(type);
     }
 
 
     DasdFormat
-    Dasd::get_dasd_format() const
+    Dasd::get_format() const
     {
-	return get_impl().get_dasd_format();
+	return get_impl().get_format();
+    }
+
+
+    void
+    Dasd::set_format(DasdFormat format)
+    {
+	get_impl().set_format(format);
     }
 
 

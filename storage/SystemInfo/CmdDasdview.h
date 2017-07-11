@@ -43,8 +43,8 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
 
-	DasdType get_dasd_type() const { return dasd_type; }
-	DasdFormat get_dasd_format() const { return dasd_format; }
+	DasdType get_type() const { return type; }
+	DasdFormat get_format() const { return format; }
 
     private:
 
@@ -52,8 +52,8 @@ namespace storage
 
 	string device;
 
-	DasdType dasd_type;
-	DasdFormat dasd_format;
+	DasdType type;
+	DasdFormat format;
 
     };
 
