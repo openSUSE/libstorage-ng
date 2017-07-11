@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/bindings/ruby/testsuite
 #
 
-check_SCRIPTS = polymorphism.rb sid.rb types.rb logger.rb
+check_SCRIPTS = polymorphism.rb sid.rb types.rb logger.rb function-call.rb
 
 TESTS = $(check_SCRIPTS)
 
