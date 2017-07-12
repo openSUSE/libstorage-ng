@@ -927,8 +927,7 @@ namespace storage
     {
 	ofstream fout(filename);
 
-	fout << "// " << generated_string() << '\n';
-	fout << '\n';
+	fout << "// " << generated_string() << "\n\n";
 
 	// TODO write same rank stuff, should be possible in write_graph
 
@@ -946,6 +945,9 @@ namespace storage
 			      write_graph(*this), vertex_index_map_generator.get());
 
 	fout.close();
+
+	if (!fout.good())
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
     }
 
 }

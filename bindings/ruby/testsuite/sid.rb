@@ -20,12 +20,12 @@ class TestSid < Test::Unit::TestCase
 
     assert_equal(devicegraph.find_device(42).sid, 42)
 
-    assert_raises(Storage::DeviceNotFound) { devicegraph.find_device(99) }
+    assert_raises(Storage::DeviceNotFoundBySid) { devicegraph.find_device(99) }
 
     assert_equal(devicegraph.find_holder(42, 43).source_sid, 42)
     assert_equal(devicegraph.find_holder(42, 43).target_sid, 43)
 
-    assert_raises(Storage::HolderNotFound) { devicegraph.find_holder(99, 99) }
+    assert_raises(Storage::HolderNotFoundBySids) { devicegraph.find_holder(99, 99) }
 
   end
 

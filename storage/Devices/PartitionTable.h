@@ -83,6 +83,8 @@ namespace storage
 
 	/**
 	 * region is sector-based.
+	 *
+	 * @throw DifferentBlockSizes
 	 */
 	Partition* create_partition(const std::string& name, const Region& region, PartitionType type);
 
@@ -112,6 +114,9 @@ namespace storage
 	 */
 	std::vector<const Partition*> get_partitions() const;
 
+	/**
+	 * @throw Exception
+	 */
 	Partition* get_partition(const std::string& name);
 
 	const Partitionable* get_partitionable() const;
