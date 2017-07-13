@@ -85,6 +85,13 @@ namespace storage
     }
 
 
+    unsigned long
+    Alignment::grain() const
+    {
+	return get_impl().calculate_grain();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const Alignment& alignment)
     {
