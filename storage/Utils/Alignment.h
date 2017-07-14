@@ -91,6 +91,10 @@ namespace storage
 	 * @throw AlignError
 	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
+	
+	long offset() const;
+
+	unsigned long grain() const;
 
     public:
 

@@ -48,6 +48,8 @@ namespace storage
 
 	void set_extra_grain(unsigned long extra_grain) { Impl::extra_grain = extra_grain; }
 
+	long offset() const;
+
 	unsigned long calculate_grain() const;
 
 	bool can_be_aligned(const Region& region, AlignPolicy align_policy) const;

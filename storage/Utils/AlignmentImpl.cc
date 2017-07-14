@@ -29,6 +29,13 @@
 namespace storage
 {
 
+    long
+    Alignment::Impl::offset() const
+    {
+	return topology.get_alignment_offset();
+    }
+
+
     unsigned long
     Alignment::Impl::calculate_grain() const
     {
@@ -53,7 +60,7 @@ namespace storage
     Alignment::Impl::align_block_in_place(unsigned long long& block, unsigned long block_size,
 					  Location location) const
     {
-	long alignment_offset_in_blocks = topology.get_alignment_offset() / block_size;
+	long alignment_offset_in_blocks = offset() / block_size;
 	unsigned long grain_in_blocks = calculate_grain() / block_size;
 
 	block -= alignment_offset_in_blocks;
