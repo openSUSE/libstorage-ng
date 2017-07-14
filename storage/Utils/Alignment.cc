@@ -85,6 +85,13 @@ namespace storage
     }
 
 
+    long
+    Alignment::offset() const
+    {
+	return get_impl().offset();
+    }
+
+
     unsigned long
     Alignment::grain() const
     {
