@@ -95,6 +95,17 @@ namespace storage
     }
 
 
+    const CmdDmraid::Entry&
+    CmdDmraid::get_entry(const string& name) const
+    {
+	const_iterator it = data.find(name);
+	if (it == data.end())
+	    ST_THROW(Exception("entry not found"));
+
+	return it->second;
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdDmraid& cmd_dmraid)
     {

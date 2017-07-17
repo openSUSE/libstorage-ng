@@ -53,6 +53,8 @@ namespace storage
 
 	vector<string> get_entries() const;
 
+	const Entry& get_entry(const string& name) const;
+
 	typedef map<string, Entry>::const_iterator const_iterator;
 
 	const_iterator begin() const { return data.begin(); }
