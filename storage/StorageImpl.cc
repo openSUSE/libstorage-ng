@@ -66,6 +66,9 @@ namespace storage
 	/**
 	 * Multipath is activated first since multipath can only use disks.
 	 *
+	 * MD RAIDs are activated before DM RAIDs since using mdadm is
+	 * preferred over dmraid (see fate #316007).
+	 *
 	 * Activating MDs is only needed if the MDs were stopped manually
 	 * since they are otherwise activated by the system automatically.
 	 * That is also the reason why there is no loop for MD activations:
@@ -80,9 +83,9 @@ namespace storage
 
 	Multipath::Impl::activate_multipaths(activate_callbacks);
 
-	DmRaid::Impl::activate_dm_raids(activate_callbacks);
-
 	Md::Impl::activate_mds(activate_callbacks);
+
+	DmRaid::Impl::activate_dm_raids(activate_callbacks);
 
 	while (true)
 	{
