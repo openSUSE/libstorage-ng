@@ -30,6 +30,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/DasdImpl.h"
 #include "storage/Devices/MultipathImpl.h"
+#include "storage/Devices/DmRaidImpl.h"
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
@@ -90,6 +91,8 @@ namespace storage
 	Dasd::Impl::probe_dasds(*this);
 
 	Multipath::Impl::probe_multipaths(*this);
+
+	DmRaid::Impl::probe_dm_raids(*this);
 
 	if (system_info.getBlkid().any_md())
 	{

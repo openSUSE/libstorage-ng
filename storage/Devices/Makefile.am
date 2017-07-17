@@ -15,6 +15,8 @@ libdevices_la_SOURCES =					\
 	DasdImpl.h		DasdImpl.cc		\
 	Multipath.h		Multipath.cc		\
 	MultipathImpl.h		MultipathImpl.cc	\
+	DmRaid.h		DmRaid.cc		\
+	DmRaidImpl.h		DmRaidImpl.cc		\
 	Md.h			Md.cc			\
 	MdImpl.h		MdImpl.cc		\
 	Partitionable.h		Partitionable.cc	\

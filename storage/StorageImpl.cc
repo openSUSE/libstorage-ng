@@ -28,6 +28,7 @@
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/DasdImpl.h"
 #include "storage/Devices/MultipathImpl.h"
+#include "storage/Devices/DmRaidImpl.h"
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LuksImpl.h"
@@ -78,6 +79,8 @@ namespace storage
 	y2mil("activate begin");
 
 	Multipath::Impl::activate_multipaths(activate_callbacks);
+
+	DmRaid::Impl::activate_dm_raids(activate_callbacks);
 
 	Md::Impl::activate_mds(activate_callbacks);
 
