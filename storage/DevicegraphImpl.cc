@@ -36,6 +36,7 @@
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
 #include "storage/Devices/Multipath.h"
+#include "storage/Devices/DmRaid.h"
 #include "storage/Devices/Md.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
@@ -631,6 +632,7 @@ namespace storage
 	{ "Disk", &Disk::load },
 	{ "Dasd", &Dasd::load },
 	{ "Multipath", &Multipath::load },
+	{ "DmRaid", &DmRaid::load },
 	{ "Md", &Md::load },
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
@@ -841,7 +843,7 @@ namespace storage
 
 		out << "[ label=" << boost::escape_dot_string(label);
 
-		if (is_disk(device) || is_dasd(device) || is_multipath(device))
+		if (is_disk(device) || is_dasd(device) || is_multipath(device) || is_dm_raid(device))
 		    out << ", color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else if (is_md(device))
 		    out << ", color=\"#aaaa00\", fillcolor=\"#ffffaa\"";

@@ -11,6 +11,7 @@ test-cmdpvs
 test-cmdudevadminfo
 test-cmdvgs
 test-dir
+test-dmraid
 test-lsattr
 test-lsscsi
 test-mdadmdetail

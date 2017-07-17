@@ -38,17 +38,25 @@ namespace storage
 
     CmdMultipath::CmdMultipath(bool test)
     {
-	string cmd = MULTIPATHBIN " -d -v 2+";
+	string cmd_line = MULTIPATHBIN " -d -v 2+";
 	if (!test)
-	    cmd += " -ll";
+	    cmd_line += " -ll";
 
-	SystemCmd c(cmd);
-	if (c.retcode() != 0 || c.stdout().empty())
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0 || cmd.stdout().empty())
 	    return;
 
+	parse(cmd.stdout());
+    }
+
+
+    void
+    CmdMultipath::parse(const vector<string>& lines)
+    {
 	regex lun("[0-9]+:[0-9]+:[0-9]+:[0-9]+", regex_constants::extended);
 
-	const vector<string>& lines = c.stdout();
+	data.clear();
+
 	vector<string>::const_iterator it1 = lines.begin();
 
 	while (it1 != lines.end())
@@ -99,9 +107,7 @@ namespace storage
 	    data[name] = entry;
 	}
 
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
-	    y2mil("data[" << it->first << "] -> vendor:" << it->second.vendor <<
-		  " model:" << it->second.model << " devices:" << it->second.devices);
+	y2mil(*this);
     }
 
 
@@ -154,4 +160,5 @@ namespace storage
 
 	return s;
     }
+
 }

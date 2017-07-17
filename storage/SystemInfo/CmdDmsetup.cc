@@ -38,10 +38,10 @@ namespace storage
 
     CmdDmsetupInfo::CmdDmsetupInfo()
     {
-	SystemCmd c(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,"
-		    "segments,subsystem,uuid info");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(DMSETUPBIN " --columns --separator '/' --noheadings -o name,major,minor,"
+		      "segments,subsystem,uuid info");
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 

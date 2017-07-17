@@ -352,6 +352,10 @@
     <Command>
       <name>/sbin/multipath -d -v 2+ -ll</name>
     </Command>
+    <Command>
+      <name>/sbin/dmraid -s -c -c -c</name>
+      <stdout>no raid disks</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>

@@ -35,9 +35,9 @@ namespace storage
     CmdCryptsetup::CmdCryptsetup(const string& name)
 	: encryption_type(EncryptionType::UNKNOWN), name(name)
     {
-	SystemCmd c(CRYPTSETUPBIN " status " + quote(name));
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(CRYPTSETUPBIN " status " + quote(name));
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 
@@ -70,6 +70,8 @@ namespace storage
 	    y2err("unknown encryption type:" << type << " cipher:" << cipher << " keysize:" <<
 		  keysize);
 	}
+
+	y2mil(*this);
     }
 
 
