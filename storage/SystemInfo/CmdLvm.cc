@@ -44,10 +44,10 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd c(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid,"
-		    "pv_attr");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid,"
+		      "pv_attr");
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 
@@ -113,10 +113,10 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	SystemCmd c(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
-		    "lv_attr,lv_size");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
+		      "lv_attr,lv_size");
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 
@@ -191,10 +191,10 @@ namespace storage
 
     CmdVgs::CmdVgs()
     {
-	SystemCmd c(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
-		    "vg_extent_size,vg_extent_count");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
+		      "vg_extent_size,vg_extent_count");
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 

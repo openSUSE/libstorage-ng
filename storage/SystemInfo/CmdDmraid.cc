@@ -27,6 +27,7 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/SystemInfo/CmdDmraid.h"
 
 
@@ -37,9 +38,9 @@ namespace storage
 
     CmdDmraid::CmdDmraid()
     {
-	SystemCmd c(DMRAIDBIN " -s -c -c -c");
-	if (c.retcode() == 0 && !c.stdout().empty())
-	    parse(c.stdout());
+	SystemCmd cmd(DMRAIDBIN " -s -c -c -c");
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
     }
 
 
@@ -79,9 +80,7 @@ namespace storage
 	    }
 	}
 
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
-	    y2mil("data[" << it->first << "] -> controller:" << it->second.controller <<
-		  " raid-type:" << it->second.raid_type << " devices:" << it->second.devices);
+	y2mil(*this);
     }
 
 

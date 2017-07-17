@@ -67,6 +67,8 @@ namespace storage
 
     private:
 
+	void parse(const vector<string>& lines);
+
 	map<string, Entry> data;
 
     };
