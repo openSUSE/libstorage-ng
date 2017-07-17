@@ -90,7 +90,7 @@ namespace storage
     bool is_dm_raid(const Device* device);
 
     /**
-     * Converts pointer to Device to pointer to Dmraid.
+     * Converts pointer to Device to pointer to DmRaid.
      *
      * @return Pointer to Dmraid.
      * @throw DeviceHasWrongType, NullPointerException
