@@ -21,6 +21,9 @@
 %template(VectorMultipathPtr) std::vector<Multipath*>;
 %template(VectorConstMultipathPtr) std::vector<const Multipath*>;
 
+%template(VectorDmRaidPtr) std::vector<DmRaid*>;
+%template(VectorConstDmRaidPtr) std::vector<const DmRaid*>;
+
 %template(VectorMdPtr) std::vector<Md*>;
 %template(VectorConstMdPtr) std::vector<const Md*>;
 

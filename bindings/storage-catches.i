@@ -59,6 +59,9 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_disk(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_disk(const Device *device);
 
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dm_raid(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dm_raid(const Device *device);
+
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(const Device *device);
 
@@ -197,6 +200,9 @@
 
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 
