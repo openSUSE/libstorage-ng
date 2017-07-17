@@ -37,13 +37,35 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"isw_bfhghbahji_foo:16767744:128:mirror:ok:0:2:0",
-	"/dev/sda:isw:isw_bfhghbahji_foo:mirror:ok:16767744:0",
-	"/dev/sdb:isw:isw_bfhghbahji_foo:mirror:ok:16767744:0"
+	"isw_ddgdcbibhd_test1:16777216:128:mirror:ok:0:2:0",
+	"/dev/sdb:isw:isw_ddgdcbibhd_test1:mirror:ok:16777216:0",
+	"/dev/sdc:isw:isw_ddgdcbibhd_test1:mirror:ok:16777216:0",
+	"isw_ddgdcbibhd_test2:33534976:256:stripe:ok:0:2:0",
+	"/dev/sdb:isw:isw_ddgdcbibhd_test2:stripe:ok:16767488:16781576",
+	"/dev/sdc:isw:isw_ddgdcbibhd_test2:stripe:ok:16767488:16781576"
     };
 
     vector<string> output = {
-	"data[isw_bfhghbahji_foo] -> raid-type:mirror controller:isw devices:</dev/sda /dev/sdb>"
+	"data[isw_ddgdcbibhd_test1] -> raid-type:mirror controller:isw devices:</dev/sdb /dev/sdc>",
+	"data[isw_ddgdcbibhd_test2] -> raid-type:stripe controller:isw devices:</dev/sdb /dev/sdc>"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse2)
+{
+    vector<string> input = {
+	"isw_ebihadbfhi_test1:100634880:128:raid5_la:ok:0:4:0",
+	"/dev/sdb:isw:isw_ebihadbfhi_test1:raid5_la:ok:33544960:0",
+	"/dev/sdc:isw:isw_ebihadbfhi_test1:raid5_la:ok:33544960:0",
+	"/dev/sdd:isw:isw_ebihadbfhi_test1:raid5_la:ok:33544960:0",
+	"/dev/sde:isw:isw_ebihadbfhi_test1:raid5_la:ok:33544960:0"
+    };
+
+    vector<string> output = {
+	"data[isw_ebihadbfhi_test1] -> raid-type:raid5_la controller:isw devices:</dev/sdb /dev/sdc /dev/sdd /dev/sde>"
     };
 
     check(input, output);
