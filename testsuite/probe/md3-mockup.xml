@@ -1919,6 +1919,10 @@
       <stdout>11:33554432s:36909055s:3354624s::primary:;</stdout>
       <stdout>12:36909056s:40265727s:3356672s::primary:;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/dmraid -s -c -c -c</name>
+      <stdout>no raid disks</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>

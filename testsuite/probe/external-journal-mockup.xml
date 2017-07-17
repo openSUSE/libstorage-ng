@@ -608,6 +608,10 @@
       <stdout>1:2048s:1073741823s:1073739776s:ext4::;</stdout>
       <stdout>2:1073741824s:2147481599s:1073739776s:xfs::;</stdout>
     </Command>
+    <Command>
+      <name>/sbin/dmraid -s -c -c -c</name>
+      <stdout>no raid disks</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>
