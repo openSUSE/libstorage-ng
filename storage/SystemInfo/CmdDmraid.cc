@@ -49,38 +49,78 @@ namespace storage
     {
 	data.clear();
 
-	vector<string>::const_iterator it = lines.begin();
-	while (it != lines.end())
+	if (!(lines.size() == 1 && lines[0] == "no raid disks"))
 	{
-	    const list<string> sl = splitString(*it++, ":");
-	    if (sl.size() >= 4)
-	    {
-		Entry entry;
+	    LinesIterator lines_iterator(lines);
 
-		list<string>::const_iterator ci = sl.begin();
-		string name = *ci;
-		advance(ci, 3);
-		entry.raid_type = *ci;
-
-		while (it != lines.end() && boost::starts_with(*it, "/dev/"))
-		{
-		    const list<string> sl = splitString(*it, ":");
-		    if (sl.size() >= 4)
-		    {
-			list<string>::const_iterator ci = sl.begin();
-			entry.devices.push_back(*ci);
-			advance(ci, 1);
-			entry.controller = *ci;
-		    }
-
-		    ++it;
-		}
-
-		data[name] = entry;
-	    }
+	    while (!lines_iterator.at_end())
+		scan_superset_line(lines_iterator);
 	}
 
 	y2mil(*this);
+    }
+
+
+    void
+    CmdDmraid::scan_superset_line(LinesIterator& lines_iterator)
+    {
+	vector<string> tmp;
+	boost::split(tmp, lines_iterator.pop_line(), boost::is_any_of(":"));
+
+	if (tmp.size() < 8)
+	    ST_THROW(Exception("missing fields"));
+
+	Entry entry;
+
+	entry.raid_type = tmp[3];
+
+	int subsets = 0;
+	tmp[5] >> subsets;
+
+	for (int subset = 0; subset < subsets; ++subset)
+	    scan_subset_line(lines_iterator, entry);
+
+	int devices = 0;
+	tmp[6] >> devices;
+
+	devices -= entry.devices.size();
+
+	for (int device = 0; device < devices; ++device)
+	    scan_device_line(lines_iterator, entry);
+
+	data[tmp[0]] = entry;
+    }
+
+
+    void
+    CmdDmraid::scan_subset_line(LinesIterator& lines_iterator, Entry& entry)
+    {
+	vector<string> tmp;
+	boost::split(tmp, lines_iterator.pop_line(), boost::is_any_of(":"));
+
+	if (tmp.size() < 8)
+	    ST_THROW(Exception("missing fields"));
+
+	int devices = 0;
+	tmp[6] >> devices;
+
+	for (int device = 0; device < devices; ++device)
+	    scan_device_line(lines_iterator, entry);
+    }
+
+
+    void
+    CmdDmraid::scan_device_line(LinesIterator& lines_iterator, Entry& entry)
+    {
+	vector<string> tmp;
+	boost::split(tmp, lines_iterator.pop_line(), boost::is_any_of(":"));
+
+	if (tmp.size() < 7)
+	    ST_THROW(Exception("missing fields"));
+
+	entry.devices.push_back(tmp[0]);
+
+	entry.controller = tmp[1];
     }
 
 
