@@ -29,6 +29,8 @@
 #include <vector>
 #include <map>
 
+#include "storage/Utils/LinesIterator.h"
+
 
 namespace storage
 {
@@ -66,6 +68,10 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+
+	void scan_superset_line(LinesIterator& lines_iterator);
+	void scan_subset_line(LinesIterator& lines_iterator, Entry& entry);
+	void scan_device_line(LinesIterator& lines_iterator, Entry& entry);
 
 	map<string, Entry> data;
 
