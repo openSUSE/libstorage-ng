@@ -125,7 +125,6 @@ namespace storage
 	    DmRaid* dm_raid = DmRaid::create(prober.get_probed(), DEVMAPPERDIR "/" + dm_name);
 	    dm_raid->get_impl().probe_pass_1a(prober);
 	}
-
     }
 
 
