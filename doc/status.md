@@ -18,7 +18,14 @@ Not planned:
 DASD
 ----
 
-Missing.
+Implemented:
+
+* ECKD
+
+Missing:
+
+* FBA
+* zKVM
 
 
 Partition Table
@@ -26,7 +33,7 @@ Partition Table
 
 Implemented:
 
-* For MS-DOS and GPT (creating, deleting and resizing partitions).
+* For MS-DOS, GPT and DASD (creating, deleting and resizing partitions).
 * Topology calculations.
 * Support for boot, legacy_boot and pmbr_boot flags.
 * Renumbering of logical partition.
@@ -34,7 +41,6 @@ Implemented:
 Missing:
 
 * Query resize information.
-* DASD partition table.
 
 
 LVM
@@ -91,13 +97,17 @@ Missing:
 DM RAID
 -------
 
-Missing.
+Implemented.
+
+* Probing.
 
 
 Multipath
 ---------
 
-Missing.
+Implemented.
+
+* Probing.
 
 
 BCache
