@@ -102,7 +102,12 @@ namespace storage
     {
 	y2mil("activate_dm_raids");
 
-	// TODO
+	string cmd_line = DMRAIDBIN " --activate yes --no_partitions";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("activate dmraid failed"));
 
 	SystemCmd(UDEVADMBIN_SETTLE);
 
