@@ -141,9 +141,20 @@ namespace storage
 	 */
 	bool operator>=(const Region& rhs) const;
 
+	/**
+	 * Check whether the region is contained inside other.
+	 *
+	 * @throw DifferentBlockSizes
+	 */
 	bool inside(const Region& rhs) const;
 
+	/**
+	 * Check whether the region intersects with other.
+	 *
+	 * @throw DifferentBlockSizes
+	 */
 	bool intersect(const Region& rhs) const;
+
 	Region intersection(const Region& rhs) const;
 
 	/**
