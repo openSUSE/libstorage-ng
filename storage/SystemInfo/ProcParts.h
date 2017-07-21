@@ -43,8 +43,9 @@ namespace storage
 
 	ProcParts();
 
+	bool exists(const string& device) const;
+
 	bool get_size(const string& device, unsigned long long& size) const;
-	bool find_device(const string& device) const;
 
 	vector<string> get_entries() const;
 

@@ -106,12 +106,11 @@ namespace storage
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("activate dmraid failed"));
 
-	SystemCmd(UDEVADMBIN_SETTLE);
+	if (cmd.retcode() == 0)
+	    SystemCmd(UDEVADMBIN_SETTLE);
 
-	return true;
+	return cmd.retcode() == 0;
     }
 
 
@@ -125,7 +124,6 @@ namespace storage
 	    DmRaid* dm_raid = DmRaid::create(prober.get_probed(), DEVMAPPERDIR "/" + dm_name);
 	    dm_raid->get_impl().probe_pass_1a(prober);
 	}
-
     }
 
 

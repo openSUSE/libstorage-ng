@@ -755,8 +755,9 @@
       <stdout>1:0s:2097151s:2097152s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/sbin/dmraid -s -c -c -c</name>
+      <name>/sbin/dmraid --sets=active -ccc</name>
       <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
     </Command>
   </Commands>
   <Files>
