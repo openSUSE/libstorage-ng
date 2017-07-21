@@ -233,6 +233,10 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 
+%catches(storage::DifferentBlockSizes) storage::Region::inside(const Region &rhs) const;
+
+%catches(storage::DifferentBlockSizes) storage::Region::intersect(const Region &rhs) const;
+
 %catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region &rhs) const;
 
 %catches(storage::DifferentBlockSizes) storage::Region::operator<(const Region &rhs) const;
