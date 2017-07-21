@@ -39,7 +39,7 @@ namespace storage
     CmdDmraid::CmdDmraid()
     {
 	SystemCmd cmd(DMRAIDBIN " --sets=active -ccc");
-	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	if (cmd.retcode() == 0)
 	    parse(cmd.stdout());
     }
 
@@ -49,13 +49,10 @@ namespace storage
     {
 	data.clear();
 
-	if (!(lines.size() == 1 && lines[0] == "no raid disks"))
-	{
-	    LinesIterator lines_iterator(lines);
+	LinesIterator lines_iterator(lines);
 
-	    while (!lines_iterator.at_end())
-		scan_superset_line(lines_iterator);
-	}
+	while (!lines_iterator.at_end())
+	    scan_superset_line(lines_iterator);
 
 	y2mil(*this);
     }

@@ -757,6 +757,7 @@
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>
       <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
     </Command>
   </Commands>
   <Files>
