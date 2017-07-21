@@ -28,7 +28,7 @@
       <stdout>/dev/mapper/isw_ddgdcbibhd_test1-part2: UUID="363fedc7-3aed-4525-b1e2-ee361595d249" TYPE="xfs" PARTUUID="6e7a2cd6-33d7-4474-91d0-5a8786d31367"</stdout>
     </Command>
     <Command>
-      <name>/sbin/dmraid -s -c -c -c</name>
+      <name>/sbin/dmraid --sets=active -ccc</name>
       <stdout>isw_ddgdcbibhd_test1:16777216:128:mirror:ok:0:2:0</stdout>
       <stdout>/dev/sdb:isw:isw_ddgdcbibhd_test1:mirror:ok:16777216:0</stdout>
       <stdout>/dev/sdc:isw:isw_ddgdcbibhd_test1:mirror:ok:16777216:0</stdout>

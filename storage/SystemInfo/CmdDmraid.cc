@@ -38,7 +38,7 @@ namespace storage
 
     CmdDmraid::CmdDmraid()
     {
-	SystemCmd cmd(DMRAIDBIN " -s -c -c -c");
+	SystemCmd cmd(DMRAIDBIN " --sets=active -ccc");
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
