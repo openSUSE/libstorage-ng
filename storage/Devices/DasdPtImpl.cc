@@ -229,6 +229,8 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create DasdPt failed"));
+
+	SystemCmd(UDEVADMBIN_SETTLE);
     }
 
 
