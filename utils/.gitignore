@@ -2,6 +2,7 @@
 *.xml
 *.o
 *.svg
+*.pyc
 .deps
 .libs
 display
