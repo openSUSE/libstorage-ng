@@ -35,6 +35,14 @@ class TestPolymorphism < Test::Unit::TestCase
     assert_raise_kind_of(Storage::Exception) { Storage::to_disk(tmp2) }
     assert_equal(Storage.downcast(tmp2).class, Storage::Gpt)
 
+    tmp3 = devicegraph.find_holder(42, 43)
+    assert(Storage::user?(tmp3))
+    assert(Storage::to_user(tmp3))
+    assert(!Storage::filesystem_user?(tmp3))
+    assert_raises(Storage::HolderHasWrongType) { Storage::to_filesystem_user(tmp3) }
+    assert_raise_kind_of(Storage::Exception) { Storage::to_filesystem_user(tmp3) }
+    assert_equal(Storage.downcast(tmp3).class, Storage::User)
+
   end
 
 end

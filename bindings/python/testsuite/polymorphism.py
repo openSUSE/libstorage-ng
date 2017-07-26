@@ -34,6 +34,14 @@ class TestPolymorphism(unittest.TestCase):
       self.assertRaises(storage.Exception, lambda: storage.to_disk(tmp2))
       self.assertEqual(storage.downcast(tmp2).__class__, storage.Gpt)
 
+        tmp3 = devicegraph.find_holder(42, 43)
+        self.assertTrue(storage.is_user(tmp3))
+        self.assertTrue(storage.to_user(tmp3))
+        self.assertFalse(storage.is_filesystem_user(tmp3))
+        self.assertRaises(storage.HolderHasWrongType, lambda: storage.to_filesystem_user(tmp3))
+        self.assertRaises(storage.Exception, lambda: storage.to_filesystem_user(tmp3))
+        self.assertEqual(storage.downcast(tmp3).__class__, storage.User)
+
 
 if __name__ == '__main__':
     unittest.main()
