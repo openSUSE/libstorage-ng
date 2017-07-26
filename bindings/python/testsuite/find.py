@@ -8,25 +8,25 @@ class TestFind(unittest.TestCase):
 
     def test_find(self):
 
-      environment = storage.Environment(True, storage.ProbeMode_NONE, storage.TargetMode_DIRECT)
-      s = storage.Storage(environment)
+        environment = storage.Environment(True, storage.ProbeMode_NONE, storage.TargetMode_DIRECT)
+        s = storage.Storage(environment)
 
-      devicegraph = storage.Devicegraph(s)
+        devicegraph = storage.Devicegraph(s)
 
-      sda = storage.Disk.create(devicegraph, "/dev/sda")
-      sda.set_region(storage.Region(0, 1000000, 512))
+        sda = storage.Disk.create(devicegraph, "/dev/sda")
+        sda.set_region(storage.Region(0, 1000000, 512))
 
-      gpt = sda.create_partition_table(storage.PtType_GPT)
+        gpt = sda.create_partition_table(storage.PtType_GPT)
 
-      sda1 = gpt.create_partition("/dev/sda1", storage.Region(0, 100, 512), storage.PartitionType_PRIMARY)
+        sda1 = gpt.create_partition("/dev/sda1", storage.Region(0, 100, 512), storage.PartitionType_PRIMARY)
 
-      self.assertEqual(sda.get_sid(), 42)
-      self.assertEqual(gpt.get_sid(), 43)
-      self.assertEqual(sda1.get_sid(), 44)
+        self.assertEqual(sda.get_sid(), 42)
+        self.assertEqual(gpt.get_sid(), 43)
+        self.assertEqual(sda1.get_sid(), 44)
 
-      self.assertTrue(storage.Disk.find_by_name(devicegraph, "/dev/sda"))
-      self.assertRaises(storage.DeviceNotFound, lambda: storage.Disk.find_by_name(devicegraph, "/dev/not-here"))
-      self.assertRaises(storage.DeviceHasWrongType, lambda: storage.Disk.find_by_name(devicegraph, "/dev/sda1"))
+        self.assertTrue(storage.Disk.find_by_name(devicegraph, "/dev/sda"))
+        self.assertRaises(storage.DeviceNotFound, lambda: storage.Disk.find_by_name(devicegraph, "/dev/not-here"))
+        self.assertRaises(storage.DeviceHasWrongType, lambda: storage.Disk.find_by_name(devicegraph, "/dev/sda1"))
 
 
 if __name__ == '__main__':
