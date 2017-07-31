@@ -10,10 +10,10 @@ This document was created as a summary of a meeting held in Nuernberg in Februar
 * AI PM: Clarify requirements on FAT partitions
 * AI lmb, Holgi: Claryfy requirements on filesystems (see below)
 * AI Architecture maintainers: Clarify which configurations of RAID are bootable, possibly under which conditions
-* AI: Veryfy support of resizing logical volumes for LVM
+* AI: Verify support of resizing logical volumes for LVM
 * AI: Clarify why we do not support encryption of root filesystem, which tools would possibly need to be fixed
 * AI: speak with different parties which requirements they have on automated proposal (Cloud, SES, SAP, ...)
-* AI: Define when dedicated boot partition is needed before merging into the 
+* AI: Define when dedicated boot partition is needed before merging into the
 * AI: Provide specifics for zFCP devices
 * AI: Define requirements on /boot/zipl partition
 * AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
@@ -21,19 +21,19 @@ This document was created as a summary of a meeting held in Nuernberg in Februar
 
 ## Disks and Partitions Simple case:
 
-   * Disk  
+   * Disk
        * Partition table
-           * Partition  
-               * File system  
+           * Partition
+               * File system
                       * File
                       * File
                       * File
                       * ...
-           * Partition  
-               * File system  
+           * Partition
+               * File system
                       * File
                       * ...
-           * Partition  
+           * Partition
                * ...
            * ...
 
@@ -47,7 +47,7 @@ ways to manage the disk space provided by the disks
    * Hardware RAID: mostly automatic and transparent
        * Behaves like any regular disk
        * No need for any special handling (or even detection)
-   * Linux Software RAID / BIOS RAID (type dependent on BIOS):  
+   * Linux Software RAID / BIOS RAID (type dependent on BIOS):
        * mdadm RAID: https://en.wikipedia.org/wiki/Mdadm
        * dmraid (Device Mapper RAID): https://en.wikipedia.org/wiki/Device_mapper ?
 
@@ -106,10 +106,10 @@ Not supported (use low-level tools instead):
 
 ### Encryption
 
-   * full disk encryptionn (LVM only: encrypted PVs) 
+   * full disk encryptionn (LVM only: encrypted PVs)
    * per partition (not root file system) with device mapper
    * per partition also for the root filesystem (currently not supported, AI: find out why it is not possible and fix it)
-   * using LUKS (Linux Unified Key Setup) 
+   * using LUKS (Linux Unified Key Setup)
    * limited support for legacy method: loop devices and crypto kernel modules
 
 Actions:
@@ -127,10 +127,10 @@ Not supported (use LUKS commands instead):
 
 ### Multipath
 
-   * network storage devices (typically fibre channel) where multiple low-level kernel devices for the same storage device exist that have redundant connections to the machine 
-   * improved performance (parallel I/O over multiple channels) 
-   * fail safe against some I/O channels being blocked 
-   * special hardware that needs to be set up with special tools (outside the scope of YaST storage) 
+   * network storage devices (typically fibre channel) where multiple low-level kernel devices for the same storage device exist that have redundant connections to the machine
+   * improved performance (parallel I/O over multiple channels)
+   * fail safe against some I/O channels being blocked
+   * special hardware that needs to be set up with special tools (outside the scope of YaST storage)
    * for most operations, it is important to use only the one device mapper device for that storage device (representing the multipath device), not the multiple low-level devices (representing individual paths to the device)
 
 Supported actions:
@@ -140,10 +140,10 @@ Supported actions:
 
 ### Multiple Dimensions
 
-   * LVM on RAID 
-   * Btrfs (which has its own volume manager) on LVM 
-   * Btrfs on LVM on RAID 
-   * Btrfs on encrypted LVM on RAID 
+   * LVM on RAID
+   * Btrfs (which has its own volume manager) on LVM
+   * Btrfs on LVM on RAID
+   * Btrfs on encrypted LVM on RAID
    * ... (use your imagination)
 
 ## Remote Storage
@@ -219,9 +219,9 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
        * BIOS loads the first sector of the disk (the MBR (Master Boot Record)) and executes it
        * only 512 bytes - sizeof( partition\_table ) = 446 bytes for this first stage of the boot loader, i.e., the next stage (Grub2, Grub, LILO) has to be chain-loaded
        * the next stage has to be accessible by the BIOS
-       * limitations depending on BIOS:  
+       * limitations depending on BIOS:
            * legacy: 1024 cylinders in CHS (Cylinder/Head/Sector) mode (obsolete today)
-           * LBA (Logical Block Address):  
+           * LBA (Logical Block Address):
                * 32 bit LBA (obsolete today): 2 TB limit
                * latest (7/2015): 48 bit LBA; 144 PB (144000 TB) limit
            * there have always been limits, they always seemed way out of reach, and we always reached them before we thought it possible.
@@ -283,9 +283,9 @@ Local file system can be located in a disk partition, in whole disk, on an MD ar
        * AI: Provide details about specific tools for first sector writing, reasoning for two copies of kernel (why two?) for DASD
 
    * Not supported or very limited support (which will be dropped in the future) in YaST storage:
-       * BSD  
+       * BSD
            * Fixed number of 8 or 16 partition slots
-           * Fixed role (by convention) for some slots:  
+           * Fixed role (by convention) for some slots:
                * slot a: root
                * slot b: swap
                * slot c: complete disk
@@ -326,7 +326,7 @@ Supported scenarios:
 AI: speak with different parties which requirements they have (Cloud, SES, SAP, ...)
    * -> bring all the use cases up
    * -> mark those that make most sense
-   * -> discuss the implementation of them with UX expert 
+   * -> discuss the implementation of them with UX expert
 
 Not supported by the automated proposal:
 
@@ -343,4 +343,3 @@ Not supported by the automated proposal:
    * Use udisks for storage detection "to do it the right way"? => Not a good idea, see https://mailman.suse.de/mlarch/SuSE/research/2015/research.2015.10/msg00033.html
    * Samba?
    * SSD?
-
