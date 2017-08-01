@@ -25,6 +25,8 @@
 #include <iostream>
 
 #include "storage/Devices/MdImpl.h"
+#include "storage/Devices/MdContainerImpl.h"
+#include "storage/Devices/MdMemberImpl.h"
 #include "storage/Holders/MdUserImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -232,8 +234,23 @@ namespace storage
 	    if (!mdadm_detail.devname.empty())
 		name = DEVMDDIR "/" + mdadm_detail.devname;
 
-	    Md* md = Md::create(prober.get_probed(), name);
-	    md->get_impl().probe_pass_1a(prober);
+	    const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(short_name);
+
+	    if (entry.is_container)
+	    {
+		MdContainer* md_container = MdContainer::create(prober.get_probed(), name);
+		md_container->get_impl().probe_pass_1a(prober);
+	    }
+	    else if (entry.has_container)
+	    {
+		MdMember* md_member = MdMember::create(prober.get_probed(), name);
+		md_member->get_impl().probe_pass_1a(prober);
+	    }
+	    else
+	    {
+		Md* md = Md::create(prober.get_probed(), name);
+		md->get_impl().probe_pass_1a(prober);
+	    }
 	}
     }
 
@@ -771,8 +788,6 @@ namespace storage
 	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
 
 	etc_mdadm.init(get_storage());
-
-	// TODO containers
 
 	EtcMdadm::Entry entry;
 

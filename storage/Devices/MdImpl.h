@@ -66,8 +66,8 @@ namespace storage
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
-	vector<BlkDevice*> get_devices();
-	vector<const BlkDevice*> get_devices() const;
+	virtual vector<BlkDevice*> get_devices();
+	virtual vector<const BlkDevice*> get_devices() const;
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
@@ -138,7 +138,7 @@ namespace storage
 	virtual void do_reduce(const BlkDevice* blk_device) const;
 	virtual void do_extend(const BlkDevice* blk_device) const;
 
-	void calculate_region_and_topology();
+	virtual void calculate_region_and_topology();
 
     protected:
 

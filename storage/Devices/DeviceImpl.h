@@ -300,6 +300,49 @@ namespace storage
 	}
 
 	template<typename Type>
+	vector<Type*> get_parents_of_type()
+	{
+	    static_assert(!is_const<Type>::value, "Type must not be const");
+
+	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex()));
+	}
+
+	template<typename Type>
+	const vector<Type*> get_parents_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex()));
+	}
+
+	template<typename Type>
+	vector<const Type*> get_in_holders_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex()));
+	}
+
+	template<typename Type>
+	const Type* get_single_in_holder_of_type() const
+	{
+	    static_assert(is_const<Type>::value, "Type must be const");
+
+	    vector<const Type*> tmp = get_in_holders_of_type<Type>();
+
+	    if (tmp.size() != 1)
+		ST_THROW(Exception("single in holder of type not found"));
+
+	    return tmp[0];
+	}
+
+	template<typename Type>
 	const Type* get_single_out_holder_of_type() const
 	{
 	    static_assert(is_const<Type>::value, "Type must be const");
