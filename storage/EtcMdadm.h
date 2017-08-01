@@ -46,23 +46,20 @@ namespace storage
 
 	EtcMdadm(const string& filename = ETC_MDADM);
 
-	// From this structure line 'ARRAY' will be build in config file.
-	// Not all fields are mandatory
-	// If container is present then container line will be build
-	// before volume line.
+	/**
+	 * From this structure line 'ARRAY' is build in the config file. The
+	 * UUID is mandatory.
+	 */
 	struct Entry
 	{
-	    Entry() : container_present(false) {}
+	    Entry() : device(), uuid(), metadata(), container_uuid(), container_member() {}
 
 	    string device;
 	    string uuid;
+	    string metadata;
 
-	    bool container_present;
-
-	    /* following members only valid if container_present is true */
-	    string container_member;
-	    string container_metadata;
 	    string container_uuid;
+	    string container_member;
 
 	    friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 	};
@@ -81,7 +78,6 @@ namespace storage
 	void set_auto_line(const string& line);
 	void set_array_line(const string& line, const string& uuid);
 
-	string cont_line(const Entry& entry) const;
 	string array_line(const Entry& entry) const;
 
 	vector<string>::iterator find_array(const string& uuid);
