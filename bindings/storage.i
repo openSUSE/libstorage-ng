@@ -68,6 +68,8 @@
 #include "storage/Devices/Multipath.h"
 #include "storage/Devices/DmRaid.h"
 #include "storage/Devices/Md.h"
+#include "storage/Devices/MdContainer.h"
+#include "storage/Devices/MdMember.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/DasdPt.h"
@@ -81,6 +83,7 @@
 
 #include "storage/Holders/Holder.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/MdSubdevice.h"
 #include "storage/Holders/User.h"
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"
@@ -142,6 +145,8 @@
 %include "../../storage/Devices/Multipath.h"
 %include "../../storage/Devices/DmRaid.h"
 %include "../../storage/Devices/Md.h"
+%include "../../storage/Devices/MdContainer.h"
+%include "../../storage/Devices/MdMember.h"
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
 %include "../../storage/Devices/DasdPt.h"
@@ -155,6 +160,7 @@
 
 %include "../../storage/Holders/Holder.h"
 %include "../../storage/Holders/Subdevice.h"
+%include "../../storage/Holders/MdSubdevice.h"
 %include "../../storage/Holders/User.h"
 %include "../../storage/Holders/MdUser.h"
 %include "../../storage/Holders/FilesystemUser.h"

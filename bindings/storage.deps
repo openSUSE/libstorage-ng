@@ -19,6 +19,8 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Devices/Multipath.h		\
 	${top_srcdir}/storage/Devices/DmRaid.h			\
 	${top_srcdir}/storage/Devices/Md.h			\
+	${top_srcdir}/storage/Devices/MdContainer.h		\
+	${top_srcdir}/storage/Devices/MdMember.h		\
 	${top_srcdir}/storage/Devices/Encryption.h		\
 	${top_srcdir}/storage/Devices/Luks.h			\
 	${top_srcdir}/storage/Devices/Bcache.h			\
@@ -48,6 +50,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Environment.h			\
 	${top_srcdir}/storage/Holders/Holder.h			\
 	${top_srcdir}/storage/Holders/Subdevice.h		\
+	${top_srcdir}/storage/Holders/MdSubdevice.h		\
 	${top_srcdir}/storage/Holders/User.h			\
 	${top_srcdir}/storage/Holders/MdUser.h			\
 	${top_srcdir}/storage/Holders/FilesystemUser.h		\

@@ -27,6 +27,12 @@
 %template(VectorMdPtr) std::vector<Md*>;
 %template(VectorConstMdPtr) std::vector<const Md*>;
 
+%template(VectorMdContainerPtr) std::vector<MdContainer*>;
+%template(VectorConstMdContainerPtr) std::vector<const MdContainer*>;
+
+%template(VectorMdMemberPtr) std::vector<MdMember*>;
+%template(VectorConstMdMemberPtr) std::vector<const MdMember*>;
+
 %template(VectorLvmPvPtr) std::vector<LvmPv*>;
 %template(VectorConstLvmPvPtr) std::vector<const LvmPv*>;
 

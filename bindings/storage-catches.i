@@ -79,6 +79,12 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_vg(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md_container(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md_container(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md_member(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_md_member(const Device *device);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_subdevice(Holder *holder);
+%catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_subdevice(const Holder *holder);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_user(Holder *holder);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_md_user(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_mount_point(Device *device);
@@ -145,9 +151,15 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Md::get_number() const;
+%catches(storage::Exception) storage::Md::remove_device(BlkDevice *blk_device);
+%catches(storage::Exception) storage::MdContainer::create(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::MdMember::create(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::MdMember::get_md_container();
+%catches(storage::Exception) storage::MdMember::get_md_container() const;
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(Devicegraph *devicegraph, const std::string &server, const std::string &path);

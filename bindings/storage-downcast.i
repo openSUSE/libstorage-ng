@@ -23,6 +23,8 @@
 	 storage::Dasd,
 	 storage::Disk,
 	 storage::DmRaid,
+	 storage::MdContainer,
+	 storage::MdMember,
 	 storage::Md,
 	 storage::Multipath,
 	 storage::Partitionable,
@@ -63,6 +65,8 @@
 	 const storage::Dasd,
 	 const storage::Disk,
 	 const storage::DmRaid,
+	 const storage::MdContainer,
+	 const storage::MdMember,
 	 const storage::Md,
 	 const storage::Multipath,
 	 const storage::Partitionable,
@@ -94,6 +98,7 @@
 	 const storage::Device)
 
 %factory(storage::Holder* storage::downcast,
+	 storage::MdSubdevice,
 	 storage::Subdevice,
 	 storage::FilesystemUser,
 	 storage::MdUser,
@@ -101,6 +106,7 @@
 	 storage::Holder)
 
 %factory(const storage::Holder* storage::downcast,
+	 const storage::MdSubdevice,
 	 const storage::Subdevice,
 	 const storage::FilesystemUser,
 	 const storage::MdUser,
