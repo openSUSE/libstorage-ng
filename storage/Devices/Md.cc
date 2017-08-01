@@ -201,9 +201,16 @@ namespace storage
 
 
     const string&
-    Md::get_superblock_version() const
+    Md::get_metadata() const
     {
-	return get_impl().get_superblock_version();
+	return get_impl().get_metadata();
+    }
+
+
+    void
+    Md::set_metadata(const string& metadata)
+    {
+	get_impl().set_metadata(metadata);
     }
 
 

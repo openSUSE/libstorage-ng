@@ -59,7 +59,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>5d1cea4b:8d7dfcb2:3380fe48:b1934d2a</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -79,7 +79,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>529c9212:439ae1e7:54ce8595:19604ae5</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -99,7 +99,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>3615d8bc:263fad71:78782364:ddf8dd58</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -119,7 +119,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>04ac694a:d5170a17:75bf9d81:6ec1f71f</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -139,7 +139,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>d18642aa:6cec3364:52da8d3b:e6229373</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -159,7 +159,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>0ea71d45:8bed4762:7e2112f0:67d0a563</uuid>
-      <superblock-version>1.2</superblock-version>
+      <metadata>1.2</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Gpt>

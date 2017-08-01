@@ -89,7 +89,7 @@ namespace storage
 
     Md::Impl::Impl(const string& name)
 	: Partitionable::Impl(name), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
+	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -107,7 +107,7 @@ namespace storage
 
     Md::Impl::Impl(const xmlNode* node)
 	: Partitionable::Impl(node), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
+	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	string tmp;
 
@@ -121,7 +121,7 @@ namespace storage
 
 	getChildValue(node, "uuid", uuid);
 
-	getChildValue(node, "superblock-version", superblock_version);
+	getChildValue(node, "metadata", metadata);
 
 	getChildValue(node, "in-etc-mdadm", in_etc_mdadm);
     }
@@ -250,10 +250,10 @@ namespace storage
 
 	chunk_size = entry.chunk_size;
 
-	superblock_version = entry.super;
 
 	MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
+	metadata = mdadm_detail.metadata;
 
 	const EtcMdadm& etc_mdadm = prober.get_system_info().getEtcMdadm();
 	in_etc_mdadm = etc_mdadm.has_entry(uuid);
@@ -326,6 +326,9 @@ namespace storage
 	if (lhs.md_level != md_level)
 	    ST_THROW(Exception("cannot change raid level"));
 
+	if (lhs.metadata != metadata)
+	    ST_THROW(Exception("cannot change raid metadata"));
+
 	if (lhs.chunk_size != chunk_size)
 	    ST_THROW(Exception("cannot change chunk size"));
 
@@ -371,7 +374,7 @@ namespace storage
 
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
-	setChildValueIf(node, "superblock-version", superblock_version, !superblock_version.empty());
+	setChildValueIf(node, "metadata", metadata, !metadata.empty());
 
 	setChildValueIf(node, "in-etc-mdadm", in_etc_mdadm, !in_etc_mdadm);
     }
@@ -461,7 +464,7 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
+	    chunk_size == rhs.chunk_size && metadata == rhs.metadata &&
 	    uuid == rhs.uuid && in_etc_mdadm == rhs.in_etc_mdadm;
     }
 
@@ -478,7 +481,7 @@ namespace storage
 
 	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
 
-	storage::log_diff(log, "superblock-version", superblock_version, rhs.superblock_version);
+	storage::log_diff(log, "metadata", metadata, rhs.metadata);
 
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
@@ -496,7 +499,7 @@ namespace storage
 
 	out << " chunk-size:" << get_chunk_size();
 
-	out << " superblock-version:" << superblock_version;
+	out << " metadata:" << metadata;
 
 	out << " uuid:" << uuid;
 

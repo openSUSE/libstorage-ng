@@ -102,7 +102,16 @@ namespace storage
 
 	const std::string& get_uuid() const;
 
-	const std::string& get_superblock_version() const;
+	/**
+	 * A string like "1.0" for Linux RAID, "imsm" or "ddf" for BIOS RAID
+	 * containers and empty for BIOS RAID members.
+	 */
+	const std::string& get_metadata() const;
+
+	/**
+	 * Currently create always uses metadata 1.0.
+	 */
+	void set_metadata(const std::string& metadata);
 
 	/**
 	 * Query whether the MD RAID is present (probed devicegraph) or will

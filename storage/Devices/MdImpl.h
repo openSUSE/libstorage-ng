@@ -88,7 +88,8 @@ namespace storage
 
 	const string& get_uuid() const { return uuid; }
 
-	const string& get_superblock_version() const { return superblock_version; }
+	const string& get_metadata() const { return metadata; }
+	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
 	bool is_in_etc_mdadm() const { return in_etc_mdadm; }
 	void set_in_etc_mdadm(bool in_etc_mdadm) { Impl::in_etc_mdadm = in_etc_mdadm; }
@@ -162,7 +163,7 @@ namespace storage
 
 	string uuid;
 
-	string superblock_version;
+	string metadata;
 
 	bool in_etc_mdadm;
 
