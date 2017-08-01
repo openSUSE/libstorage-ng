@@ -228,7 +228,7 @@ namespace storage
 	    if (!proc_mdstat.has_entry(short_name))
 		continue;
 
-	    MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(name);
+	    const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(name);
 	    if (!mdadm_detail.devname.empty())
 		name = DEVMDDIR "/" + mdadm_detail.devname;
 
@@ -251,7 +251,7 @@ namespace storage
 	chunk_size = entry.chunk_size;
 
 
-	MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
+	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
 	metadata = mdadm_detail.metadata;
 
