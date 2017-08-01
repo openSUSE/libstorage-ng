@@ -88,7 +88,7 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
+	: Partitionable::Impl(name), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
 	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
@@ -106,7 +106,7 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
+	: Partitionable::Impl(node), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
 	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	string tmp;
