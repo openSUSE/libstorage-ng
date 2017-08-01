@@ -158,7 +158,9 @@ namespace storage
 	string sysfs_path;
 
 	/**
-	 * Some blk devices can be inactive, e.g. LVM LVs or LUKSes.
+	 * Some blk devices can be inactive, e.g. MDs, LVM LVs or LUKSes.
+	 *
+	 * TODO But active has different meanings for those subsystems.
 	 */
 	bool active;
 
