@@ -244,16 +244,13 @@ namespace storage
 	Partitionable::Impl::probe_pass_1a(prober);
 
 	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
-
-	md_level = entry.md_level;
 	md_parity = entry.md_parity;
-
 	chunk_size = entry.chunk_size;
-
 
 	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
 	metadata = mdadm_detail.metadata;
+	md_level = mdadm_detail.level;
 
 	const EtcMdadm& etc_mdadm = prober.get_system_info().getEtcMdadm();
 	in_etc_mdadm = etc_mdadm.has_entry(uuid);
