@@ -58,7 +58,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdLevel>::names({
-	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10", "CONTAINER"
     });
 
 
@@ -624,6 +624,7 @@ namespace storage
 		}
 		break;
 
+	    case MdLevel::CONTAINER:
 	    case MdLevel::UNKNOWN:
 		break;
 	}

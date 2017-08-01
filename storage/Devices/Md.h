@@ -36,8 +36,9 @@ namespace storage
 
 
     enum class MdLevel {
-	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10
+	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10, CONTAINER
     };
+
 
     enum class MdParity {
 	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
