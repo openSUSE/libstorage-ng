@@ -64,6 +64,8 @@ namespace storage
 	 * Create a MD in devicegraph with name. Name must either be of the
 	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
 	 * called numeric. If name is a number it is also called numeric.
+	 *
+	 * @throw Exception
 	 */
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
 
@@ -74,6 +76,9 @@ namespace storage
 	 */
 	MdUser* add_device(BlkDevice* blk_device);
 
+	/**
+	 * @throw Exception
+	 */
 	void remove_device(BlkDevice* blk_device);
 
 	std::vector<BlkDevice*> get_devices();

@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -51,9 +49,6 @@ namespace storage
     Md*
     Md::create(Devicegraph* devicegraph, const string& name)
     {
-	if (!Md::Impl::is_valid_name(name))
-	    ST_THROW(Exception("invalid md name"));
-
 	Md* ret = new Md(new Md::Impl(name));
 	ret->Device::create(devicegraph);
 	return ret;
