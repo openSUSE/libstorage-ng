@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"device:/dev/md0 uuid:35dd06d4:b4e9e248:9262c3ad:02b61654 devname: metadata:1.0"
+	"device:/dev/md0 uuid:35dd06d4:b4e9e248:9262c3ad:02b61654 devname: metadata:1.0 level:RAID1"
     };
 
     check("/dev/md0", input, output);
