@@ -66,8 +66,8 @@ namespace storage
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 
-	vector<BlkDevice*> get_devices();
-	vector<const BlkDevice*> get_devices() const;
+	virtual vector<BlkDevice*> get_devices();
+	virtual vector<const BlkDevice*> get_devices() const;
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
@@ -88,7 +88,8 @@ namespace storage
 
 	const string& get_uuid() const { return uuid; }
 
-	const string& get_superblock_version() const { return superblock_version; }
+	const string& get_metadata() const { return metadata; }
+	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
 	bool is_in_etc_mdadm() const { return in_etc_mdadm; }
 	void set_in_etc_mdadm(bool in_etc_mdadm) { Impl::in_etc_mdadm = in_etc_mdadm; }
@@ -137,7 +138,7 @@ namespace storage
 	virtual void do_reduce(const BlkDevice* blk_device) const;
 	virtual void do_extend(const BlkDevice* blk_device) const;
 
-	void calculate_region_and_topology();
+	virtual void calculate_region_and_topology();
 
     protected:
 
@@ -162,7 +163,7 @@ namespace storage
 
 	string uuid;
 
-	string superblock_version;
+	string metadata;
 
 	bool in_etc_mdadm;
 

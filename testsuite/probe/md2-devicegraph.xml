@@ -93,7 +93,7 @@
       <md-level>RAID0</md-level>
       <chunk-size>524288</chunk-size>
       <uuid>d11cbd17:b4fa9ccd:bb7b9bab:557d863c</uuid>
-      <superblock-version>1.0</superblock-version>
+      <metadata>1.0</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -110,7 +110,7 @@
       <range>256</range>
       <md-level>RAID1</md-level>
       <uuid>3e531727:0857f684:cd2e394b:62046b74</uuid>
-      <superblock-version>1.0</superblock-version>
+      <metadata>1.0</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Md>
@@ -127,7 +127,7 @@
       <range>256</range>
       <md-level>RAID1</md-level>
       <uuid>c8440826:8e55745c:d7e14cdd:ac26716d</uuid>
-      <superblock-version>1.0</superblock-version>
+      <metadata>1.0</metadata>
       <in-etc-mdadm>false</in-etc-mdadm>
     </Md>
     <Gpt>

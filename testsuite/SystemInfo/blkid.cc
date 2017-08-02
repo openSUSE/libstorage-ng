@@ -167,3 +167,43 @@ BOOST_AUTO_TEST_CASE(parse_external_journal)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_isw)
+{
+    vector<string> input = {
+	"/dev/sdb: TYPE=\"isw_raid_member\"",
+	"/dev/sdc: TYPE=\"isw_raid_member\"",
+	"/dev/sdd: TYPE=\"isw_raid_member\"",
+	"/dev/md126: UUID=\"aa211544-31d9-491a-b770-2295381acb3b\" TYPE=\"ext4\""
+    };
+
+    vector<string> output = {
+	"data[/dev/md126] -> is-fs:true fs-type:ext4 fs-uuid:aa211544-31d9-491a-b770-2295381acb3b",
+	"data[/dev/sdb] -> is-md:true",
+	"data[/dev/sdc] -> is-md:true",
+	"data[/dev/sdd] -> is-md:true"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_ddf)
+{
+    vector<string> input = {
+	"/dev/sdb: UUID=\"Linux-MDM-^M--M->M-o\" TYPE=\"ddf_raid_member\"",
+	"/dev/sdc: UUID=\"Linux-MDM-^M--M->M-o\" TYPE=\"ddf_raid_member\"",
+	"/dev/sdd: UUID=\"Linux-MDM-^M--M->M-o\" TYPE=\"ddf_raid_member\"",
+	"/dev/md126: UUID=\"b6da62bd-6057-4315-a58c-b7b4a9a5e693\" TYPE=\"ext4\""
+    };
+
+    vector<string> output = {
+	"data[/dev/md126] -> is-fs:true fs-type:ext4 fs-uuid:b6da62bd-6057-4315-a58c-b7b4a9a5e693",
+	"data[/dev/sdb] -> is-md:true",
+	"data[/dev/sdc] -> is-md:true",
+	"data[/dev/sdd] -> is-md:true"
+    };
+
+    check(input, output);
+}

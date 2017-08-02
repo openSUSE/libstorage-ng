@@ -67,6 +67,32 @@ BOOST_AUTO_TEST_CASE(update1)
 }
 
 
+BOOST_AUTO_TEST_CASE(update2)
+{
+    setup({ });
+
+    EtcMdadm etc_mdadm;
+
+    EtcMdadm::Entry entry1;
+    entry1.uuid = "9087e240:1a2f2dfe:85189535:b0c0ebc5";
+    entry1.metadata = "imsm";
+
+    EtcMdadm::Entry entry2;
+    entry2.device = "/dev/md/126";
+    entry2.uuid = "24d20d34:3c2dc232:37f18a24:76282016";
+    entry2.container_uuid = "9087e240:1a2f2dfe:85189535:b0c0ebc5";
+    entry2.container_member = "0";
+
+    etc_mdadm.update_entry(entry1);
+    etc_mdadm.update_entry(entry2);
+
+    check({
+	"ARRAY metadata=imsm UUID=9087e240:1a2f2dfe:85189535:b0c0ebc5",
+	"ARRAY /dev/md/126 container=9087e240:1a2f2dfe:85189535:b0c0ebc5 member=0 UUID=24d20d34:3c2dc232:37f18a24:76282016"
+    });
+}
+
+
 BOOST_AUTO_TEST_CASE(remove1)
 {
     setup({

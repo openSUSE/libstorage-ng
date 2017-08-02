@@ -27,7 +27,6 @@
 #include "storage/EtcMdadm.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Storage.h"
-#include "storage/DevicegraphImpl.h"
 
 
 namespace storage
@@ -68,15 +67,6 @@ namespace storage
 	    y2err("empty UUID " << entry);
 	    return false;
 	}
-
-	if (entry.container_present && entry.container_uuid.empty())
-	{
-	    y2err("empty UUID for container " << entry);
-	    return false;
-	}
-
-	if (entry.container_present)
-	    set_array_line(cont_line(entry), entry.container_uuid);
 
 	set_array_line(array_line(entry), entry.uuid);
 
@@ -150,25 +140,24 @@ namespace storage
 
 
     string
-    EtcMdadm::cont_line(const Entry& entry) const
-    {
-	string line = "ARRAY";
-	line += " metadata=" + entry.container_metadata;
-	line += " UUID=" + entry.container_uuid;
-	return line;
-    }
-
-
-    string
     EtcMdadm::array_line(const Entry& entry) const
     {
-	string line = "ARRAY " + entry.device;
-	if (entry.container_present)
-	{
+	string line = "ARRAY";
+
+	if (!entry.device.empty())
+	    line += " " + entry.device;
+
+	if (!entry.metadata.empty())
+	    line += " metadata=" + entry.metadata;
+
+	if (!entry.container_uuid.empty())
 	    line += " container=" + entry.container_uuid;
+
+	if (!entry.container_member.empty())
 	    line += " member=" + entry.container_member;
-	}
+
 	line += " UUID=" + entry.uuid;
+
 	return line;
     }
 
@@ -240,11 +229,14 @@ namespace storage
     {
 	s << "device:" << entry.device << " uuid:" << entry.uuid;
 
-	if (entry.container_present)
-	{
-	    s << " container_present container_uuid:" << entry.container_uuid << " container_member:"
-	      << entry.container_member << " container_metadata:" << entry.container_metadata;
-	}
+	if (!entry.metadata.empty())
+	    s << " metadata:" << entry.metadata;
+
+	if (!entry.container_uuid.empty())
+	    s << " container-uuid:" << entry.container_uuid;
+
+	if (!entry.container_member.empty())
+	    s << " container-member:" << entry.container_member;
 
 	return s;
     }

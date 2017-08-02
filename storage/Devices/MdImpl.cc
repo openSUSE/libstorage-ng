@@ -25,6 +25,8 @@
 #include <iostream>
 
 #include "storage/Devices/MdImpl.h"
+#include "storage/Devices/MdContainerImpl.h"
+#include "storage/Devices/MdMemberImpl.h"
 #include "storage/Holders/MdUserImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -58,7 +60,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdLevel>::names({
-	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10", "CONTAINER"
     });
 
 
@@ -88,8 +90,8 @@ namespace storage
 
 
     Md::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(name), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
+	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
@@ -106,8 +108,8 @@ namespace storage
 
 
     Md::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), md_level(MdLevel::RAID0), md_parity(MdParity::DEFAULT),
-	  chunk_size(0), uuid(), superblock_version(), in_etc_mdadm(true)
+	: Partitionable::Impl(node), md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT),
+	  chunk_size(0), uuid(), metadata(), in_etc_mdadm(true)
     {
 	string tmp;
 
@@ -121,7 +123,7 @@ namespace storage
 
 	getChildValue(node, "uuid", uuid);
 
-	getChildValue(node, "superblock-version", superblock_version);
+	getChildValue(node, "metadata", metadata);
 
 	getChildValue(node, "in-etc-mdadm", in_etc_mdadm);
     }
@@ -228,12 +230,27 @@ namespace storage
 	    if (!proc_mdstat.has_entry(short_name))
 		continue;
 
-	    MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(name);
+	    const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(name);
 	    if (!mdadm_detail.devname.empty())
 		name = DEVMDDIR "/" + mdadm_detail.devname;
 
-	    Md* md = Md::create(prober.get_probed(), name);
-	    md->get_impl().probe_pass_1a(prober);
+	    const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(short_name);
+
+	    if (entry.is_container)
+	    {
+		MdContainer* md_container = MdContainer::create(prober.get_probed(), name);
+		md_container->get_impl().probe_pass_1a(prober);
+	    }
+	    else if (entry.has_container)
+	    {
+		MdMember* md_member = MdMember::create(prober.get_probed(), name);
+		md_member->get_impl().probe_pass_1a(prober);
+	    }
+	    else
+	    {
+		Md* md = Md::create(prober.get_probed(), name);
+		md->get_impl().probe_pass_1a(prober);
+	    }
 	}
     }
 
@@ -244,16 +261,13 @@ namespace storage
 	Partitionable::Impl::probe_pass_1a(prober);
 
 	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
-
-	md_level = entry.md_level;
 	md_parity = entry.md_parity;
-
 	chunk_size = entry.chunk_size;
 
-	superblock_version = entry.super;
-
-	MdadmDetail mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
+	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
 	uuid = mdadm_detail.uuid;
+	metadata = mdadm_detail.metadata;
+	md_level = mdadm_detail.level;
 
 	const EtcMdadm& etc_mdadm = prober.get_system_info().getEtcMdadm();
 	in_etc_mdadm = etc_mdadm.has_entry(uuid);
@@ -326,6 +340,9 @@ namespace storage
 	if (lhs.md_level != md_level)
 	    ST_THROW(Exception("cannot change raid level"));
 
+	if (lhs.metadata != metadata)
+	    ST_THROW(Exception("cannot change raid metadata"));
+
 	if (lhs.chunk_size != chunk_size)
 	    ST_THROW(Exception("cannot change chunk size"));
 
@@ -371,7 +388,7 @@ namespace storage
 
 	setChildValueIf(node, "uuid", uuid, !uuid.empty());
 
-	setChildValueIf(node, "superblock-version", superblock_version, !superblock_version.empty());
+	setChildValueIf(node, "metadata", metadata, !metadata.empty());
 
 	setChildValueIf(node, "in-etc-mdadm", in_etc_mdadm, !in_etc_mdadm);
     }
@@ -461,7 +478,7 @@ namespace storage
 	    return false;
 
 	return md_level == rhs.md_level && md_parity == rhs.md_parity &&
-	    chunk_size == rhs.chunk_size && superblock_version == rhs.superblock_version &&
+	    chunk_size == rhs.chunk_size && metadata == rhs.metadata &&
 	    uuid == rhs.uuid && in_etc_mdadm == rhs.in_etc_mdadm;
     }
 
@@ -478,7 +495,7 @@ namespace storage
 
 	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
 
-	storage::log_diff(log, "superblock-version", superblock_version, rhs.superblock_version);
+	storage::log_diff(log, "metadata", metadata, rhs.metadata);
 
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
@@ -496,7 +513,7 @@ namespace storage
 
 	out << " chunk-size:" << get_chunk_size();
 
-	out << " superblock-version:" << superblock_version;
+	out << " metadata:" << metadata;
 
 	out << " uuid:" << uuid;
 
@@ -624,6 +641,7 @@ namespace storage
 		}
 		break;
 
+	    case MdLevel::CONTAINER:
 	    case MdLevel::UNKNOWN:
 		break;
 	}
@@ -770,8 +788,6 @@ namespace storage
 	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
 
 	etc_mdadm.init(get_storage());
-
-	// TODO containers
 
 	EtcMdadm::Entry entry;
 

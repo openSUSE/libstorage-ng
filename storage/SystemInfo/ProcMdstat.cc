@@ -334,7 +334,7 @@ namespace storage
 
 
     MdadmDetail::MdadmDetail(const string& device)
-	: device(device)
+	: uuid(), devname(), metadata(), level(MdLevel::UNKNOWN), device(device)
     {
 	SystemCmd cmd(MDADMBIN " --detail " + quote(device) + " --export");
 	if (cmd.retcode() == 0)
@@ -353,10 +353,16 @@ namespace storage
 		devname = string(line, 11);
 	    else if (boost::starts_with(line, "MD_METADATA="))
 		metadata = string(line, 12);
+	    else if (boost::starts_with(line, "MD_LEVEL="))
+	    {
+		level = toValueWithFallback(boost::to_upper_copy(string(line, 9), locale::classic()),
+					    MdLevel::UNKNOWN);
+		if (level == MdLevel::UNKNOWN)
+		    y2war("unknown raid type " << string(line, 9));
+	    }
 	}
 
-	y2mil("device:" << device << " uuid:" << uuid << " devname:" << devname << " metadata:"
-	      << metadata);
+	y2mil(*this);
     }
 
 
@@ -364,7 +370,8 @@ namespace storage
     operator<<(std::ostream& s, const MdadmDetail& mdadm_detail)
     {
 	s << "device:" << mdadm_detail.device << " uuid:" << mdadm_detail.uuid << " devname:"
-	  << mdadm_detail.devname << " metadata:" << mdadm_detail.metadata << '\n';
+	  << mdadm_detail.devname << " metadata:" << mdadm_detail.metadata << " level:"
+	  << toString(mdadm_detail.level) << '\n';
 
 	return s;
     }
@@ -432,10 +439,7 @@ namespace storage
 	    }
 	}
 
-	y2mil("devices:" << devices << " metadata:" << metadata << " uuid:" << uuid);
-	for (const_iterator it = begin(); it != end(); ++it)
-	    y2mil("data["<< it->first << "] -> member:" << it->second.member << " uuid:" <<
-		  it->second.uuid);
+	y2mil(*this);
     }
 
 

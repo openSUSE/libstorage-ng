@@ -39,3 +39,17 @@ Renaming existing MD RAIDs is not supported.
 Support for "CREATE names=yes" in /etc/mdadm.conf should works but is
 not supported due to missing testing from QA.
 
+
+BIOS RAIDs
+
+Some BIOS RAIDs (IMSM and DDF) can be handled by mdadm as MD RAIDs. For each
+of these RAIDs a container device exists in the system. The container device
+has type MdContainer and the RAIDs inside the container have type
+MdMember. Modifying (even deleting) BIOS RAIDs is not supported.
+
+MdContainers must not be used as a block devices.
+
+MdMembers can be used as generic Mds.
+
+MdContainers and MdMembers can be added to and removed from /etc/mdadm.conf.
+

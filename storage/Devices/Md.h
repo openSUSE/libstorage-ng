@@ -36,8 +36,9 @@ namespace storage
 
 
     enum class MdLevel {
-	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10
+	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10, CONTAINER
     };
+
 
     enum class MdParity {
 	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
@@ -63,6 +64,8 @@ namespace storage
 	 * Create a MD in devicegraph with name. Name must either be of the
 	 * form "/dev/md<number>" or "/dev/md/<name>". The first form is
 	 * called numeric. If name is a number it is also called numeric.
+	 *
+	 * @throw Exception
 	 */
 	static Md* create(Devicegraph* devicegraph, const std::string& name);
 
@@ -73,6 +76,9 @@ namespace storage
 	 */
 	MdUser* add_device(BlkDevice* blk_device);
 
+	/**
+	 * @throw Exception
+	 */
 	void remove_device(BlkDevice* blk_device);
 
 	std::vector<BlkDevice*> get_devices();
@@ -101,7 +107,16 @@ namespace storage
 
 	const std::string& get_uuid() const;
 
-	const std::string& get_superblock_version() const;
+	/**
+	 * A string like "1.0" for Linux RAID, "imsm" or "ddf" for BIOS RAID
+	 * containers and empty for BIOS RAID members.
+	 */
+	const std::string& get_metadata() const;
+
+	/**
+	 * Currently create always uses metadata 1.0.
+	 */
+	void set_metadata(const std::string& metadata);
 
 	/**
 	 * Query whether the MD RAID is present (probed devicegraph) or will

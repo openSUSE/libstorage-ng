@@ -22,6 +22,7 @@
 
 
 #include <algorithm>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
@@ -81,7 +82,7 @@ namespace storage
 		{
 		    entry.is_journal = true;
 		}
-		else if (it1->second == "linux_raid_member")
+		else if (boost::ends_with(it1->second, "_raid_member"))
 		{
 		    entry.is_md = true;
 		}

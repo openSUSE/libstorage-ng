@@ -105,7 +105,7 @@ namespace storage
     void
     Partitionable::Impl::probe_pass_1c(Prober& prober)
     {
-	if (has_children())
+	if (has_children() || !is_active() || get_size() == 0)
 	    return;
 
 	const Parted& parted = prober.get_system_info().getParted(get_name());

@@ -19,6 +19,10 @@ libdevices_la_SOURCES =					\
 	DmRaidImpl.h		DmRaidImpl.cc		\
 	Md.h			Md.cc			\
 	MdImpl.h		MdImpl.cc		\
+	MdContainer.h		MdContainer.cc		\
+	MdContainerImpl.h	MdContainerImpl.cc	\
+	MdMember.h		MdMember.cc		\
+	MdMemberImpl.h		MdMemberImpl.cc		\
 	Partitionable.h		Partitionable.cc	\
 	PartitionableImpl.h	PartitionableImpl.cc	\
 	PartitionTable.h	PartitionTable.cc	\
@@ -55,6 +59,8 @@ pkginclude_HEADERS =		\
 	Dasd.h			\
 	Multipath.h		\
 	Md.h			\
+	MdContainer.h		\
+	MdMember.h		\
 	Partitionable.h		\
 	PartitionTable.h	\
 	Msdos.h			\

@@ -10,7 +10,7 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 check_PROGRAMS =								\
 	disk.test multipath1.test md1.test md2.test md3.test lvm1.test 		\
 	luks1.test bcache1.test btrfs1.test dasd1.test external-journal.test	\
-	dmraid1.test
+	dmraid1.test md-imsm1.test md-ddf1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -27,5 +27,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	md1-mockup.xml md1-devicegraph.xml					\
 	md2-mockup.xml md2-devicegraph.xml					\
 	md3-mockup.xml md3-devicegraph.xml					\
+	md-imsm1-mockup.xml md-imsm1-devicegraph.xml				\
+	md-ddf1-mockup.xml md-ddf1-devicegraph.xml				\
 	external-journal-mockup.xml external-journal-devicegraph.xml
 

@@ -120,6 +120,7 @@ namespace storage
 	string uuid;
 	string devname;
 	string metadata;
+	MdLevel level;
 
 	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadm_detail);
 

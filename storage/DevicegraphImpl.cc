@@ -38,6 +38,8 @@
 #include "storage/Devices/Multipath.h"
 #include "storage/Devices/DmRaid.h"
 #include "storage/Devices/Md.h"
+#include "storage/Devices/MdContainer.h"
+#include "storage/Devices/MdMember.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/DasdPt.h"
@@ -69,6 +71,7 @@
 #include "storage/Holders/MdUser.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Holders/MdSubdevice.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 
@@ -634,6 +637,8 @@ namespace storage
 	{ "Multipath", &Multipath::load },
 	{ "DmRaid", &DmRaid::load },
 	{ "Md", &Md::load },
+	{ "MdContainer", &MdContainer::load },
+	{ "MdMember", &MdMember::load },
 	{ "Msdos", &Msdos::load },
 	{ "Gpt", &Gpt::load },
 	{ "DasdPt", &DasdPt::load },
@@ -668,7 +673,8 @@ namespace storage
 	{ "User", &User::load },
 	{ "MdUser", &MdUser::load },
 	{ "FilesystemUser", &FilesystemUser::load },
-	{ "Subdevice", &Subdevice::load }
+	{ "Subdevice", &Subdevice::load },
+	{ "MdSubdevice", &MdSubdevice::load }
     };
 
 
