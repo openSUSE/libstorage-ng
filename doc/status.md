@@ -88,9 +88,6 @@ Implemented:
 * Adding and removing devices.
 * Calculation of RAID size.
 * Handling of /etc/mdadm.conf.
-
-Missing:
-
 * IMSM and DDF.
 
 
