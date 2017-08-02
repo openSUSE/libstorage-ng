@@ -66,11 +66,11 @@ Code Documentation
 ------------------
 
 ```sh
-xdg-open doc/autodocs/index.html
+xdg-open doc/autodocs/html/index.html
 ```
 
 See especially the class hierarchy:
 
 ```sh
-xdg-open doc/autodocs/inherits.html
+xdg-open doc/autodocs/html/inherits.html
 ```
