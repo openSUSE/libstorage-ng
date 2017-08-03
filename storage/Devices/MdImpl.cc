@@ -200,19 +200,34 @@ namespace storage
 
 
     bool
-    Md::Impl::activate_mds(const ActivateCallbacks* activate_callbacks)
+    Md::Impl::activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir)
     {
 	y2mil("activate_mds");
 
-	string cmd_line = MDADMBIN " --assemble --scan --config=partitions";
-	cout << cmd_line << endl;
+	// When using 'mdadm --assemble --scan' without the previously
+	// generated config file some devices, e.g. members of IMSM
+	// containers, get non 'local' names (ending in '_' followed by a
+	// digit string). Using 'mdadm --assemble --scan --config=partitions'
+	// the members of containers are not started at all.
 
-	SystemCmd cmd(cmd_line);
+	string filename = tmp_dir.get_fullname() + "/mdadm.conf";
 
-	if (cmd.retcode() == 0)
+	string cmd_line1 = MDADMBIN " --examine --scan > " + quote(filename);
+	cout << cmd_line1 << endl;
+
+	SystemCmd cmd1(cmd_line1);
+
+	string cmd_line2 = MDADMBIN " --assemble --scan --config=" + quote(filename);
+	cout << cmd_line2 << endl;
+
+	SystemCmd cmd2(cmd_line2);
+
+	if (cmd2.retcode() == 0)
 	    SystemCmd(UDEVADMBIN_SETTLE);
 
-	return cmd.retcode() == 0;
+	unlink(filename.c_str());
+
+	return cmd2.retcode() == 0;
     }
 
 
