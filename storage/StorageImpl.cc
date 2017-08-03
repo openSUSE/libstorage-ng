@@ -83,7 +83,7 @@ namespace storage
 
 	Multipath::Impl::activate_multipaths(activate_callbacks);
 
-	Md::Impl::activate_mds(activate_callbacks);
+	Md::Impl::activate_mds(activate_callbacks, tmp_dir);
 
 	DmRaid::Impl::activate_dm_raids(activate_callbacks);
 

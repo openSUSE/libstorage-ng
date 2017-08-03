@@ -40,6 +40,7 @@ namespace storage
 
 
     class ActivateCallbacks;
+    class TmpDir;
 
 
     template <> struct DeviceTraits<Md> { static const char* classname; };
@@ -100,7 +101,7 @@ namespace storage
 
 	static string find_free_numeric_name(const Devicegraph* devicegraph);
 
-	static bool activate_mds(const ActivateCallbacks* activate_callbacks);
+	static bool activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir);
 
 	static void probe_mds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
