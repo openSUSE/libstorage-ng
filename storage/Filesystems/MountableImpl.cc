@@ -186,7 +186,7 @@ namespace storage
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
 	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
-	if (access(real_mount_point.c_str(), R_OK ) != 0)
+	if (access(real_mount_point.c_str(), R_OK) != 0)
 	{
 	    createPath(real_mount_point);
 	}

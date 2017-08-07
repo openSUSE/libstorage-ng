@@ -561,7 +561,7 @@ namespace storage
 
 	return ret;
     }
-    
+
 
     void
     Actiongraph::Impl::print_graph() const

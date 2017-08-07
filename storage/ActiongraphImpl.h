@@ -202,7 +202,7 @@ namespace storage
 
 	map<sid_t, vector<vertex_descriptor>> cache_for_actions_with_sid;
 
-	vector<shared_ptr<CompoundAction>> compound_actions; 
+	vector<shared_ptr<CompoundAction>> compound_actions;
 
     };
 
