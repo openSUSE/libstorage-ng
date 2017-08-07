@@ -524,6 +524,9 @@ namespace storage
 			   all_actions.grow_actions.end());
 
 	    actiongraph.add_chain(actions);
+
+	    const PartitionTable* partition_table = to_partition_table(devicegraph_rhs->find_device(tmp.first));
+	    actiongraph.last_action_on_partition_table[partition_table->get_sid()] = actions.back();
 	}
     }
 

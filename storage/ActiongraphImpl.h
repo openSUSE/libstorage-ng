@@ -178,12 +178,14 @@ namespace storage
 
 	// special actions, TODO make private and provide interface
 	vertex_iterator mount_root_filesystem;
+	map<sid_t, vertex_descriptor> last_action_on_partition_table;
 
     private:
 
 	void get_actions();
 	void set_special_actions();
 	void add_dependencies();
+	void add_special_dasd_pt_dependencies();
 	void remove_only_syncs();
 	void calculate_order();
 
