@@ -385,7 +385,7 @@ namespace storage
 	// instead of BLKPG_*_PARTITION ioctl. So no partition must be in use
 	// when modifying the creating/resizing/deleting partitions.
 
-	// For all mount actions add a dependencies to the last action on the
+	// For all mount actions add a dependency to the last action on the
 	// partition table.
 
 	// TODO Equivalent for all actions that use/unuse a partition. Or find
