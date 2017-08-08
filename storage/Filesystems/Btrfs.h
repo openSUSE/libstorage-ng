@@ -61,7 +61,16 @@ namespace storage
 	std::vector<BtrfsSubvolume*> get_btrfs_subvolumes();
 	std::vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
 
+	/**
+	 * Find a btrfs subvolume of the btrfs by its path.
+	 *
+	 * @throw BtrfsSubvolumeNotFoundByPath
+	 */
 	BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path);
+
+	/**
+	 * @copydoc find_btrfs_subvolume_by_path(const std::string&)
+	 */
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path) const;
 
     public:
