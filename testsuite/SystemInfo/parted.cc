@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_with_pmbr_boot)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse_dasd_good)
+BOOST_AUTO_TEST_CASE(parse_dasd_good1)
 {
     vector<string> input = {
 	"BYT;",
@@ -139,6 +139,27 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good)
 	"number:1 region:[24, 51192, 4096 B] type:primary id:0x83",
 	"number:2 region:[51216, 253440, 4096 B] type:primary id:0x83",
 	"number:3 region:[304656, 1498404, 4096 B] type:primary id:0x83"
+    };
+
+    check("/dev/dasda", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse_dasd_good2)
+{
+    vector<string> input = {
+	"BYT;",
+	"/dev/dasda:4808160s:dasd:512:4096:dasd:IBM S390 DASD drive:;",
+	"1:192s:1442399s:1442208s:::raid;",
+	"2:1442400s:2884895s:1442496s:::lvm;",
+	"3:2884896s:4327295s:1442400s:linux-swap(v1)::swap;"
+    };
+
+    vector<string> output = {
+	"device:/dev/dasda label:DASD region:[0, 601020, 4096 B]",
+	"number:1 region:[24, 180276, 4096 B] type:primary id:0xFD",
+	"number:2 region:[180300, 180312, 4096 B] type:primary id:0x8E",
+	"number:3 region:[360612, 180300, 4096 B] type:primary id:0x82"
     };
 
     check("/dev/dasda", input, output);

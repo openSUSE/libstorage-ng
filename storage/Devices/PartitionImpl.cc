@@ -626,13 +626,11 @@ namespace storage
 	    {
 		case ID_LINUX:
 		    // this is tricky but parted has no clearer way
-		    cmd_line += "lvm off";
+		    cmd_line += "lvm on set " + to_string(get_number()) + " lvm off";
 		    break;
 
 		case ID_SWAP:
 		    cmd_line += "swap on";
-		    // TODO improve parted
-		    ST_THROW(Exception("set swap not supported by parted"));
 		    break;
 
 		case ID_LVM:
