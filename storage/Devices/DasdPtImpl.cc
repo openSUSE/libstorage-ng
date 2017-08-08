@@ -187,7 +187,7 @@ namespace storage
     DasdPt::Impl::is_partition_id_supported(unsigned int id) const
     {
 	static const vector<unsigned int> supported_ids = {
-	    ID_UNKNOWN, ID_LINUX, ID_LVM, ID_RAID
+	    ID_UNKNOWN, ID_LINUX, ID_LVM, ID_RAID, ID_SWAP
 	};
 
 	return contains(supported_ids, id);
