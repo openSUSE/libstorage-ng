@@ -418,6 +418,13 @@ namespace storage
 	}
 
 
+	const MountPoint*
+	Mount::get_mount_point(Actiongraph::Impl& actiongraph) const
+	{
+	    return to_mount_point(get_device(actiongraph));
+	}
+
+
 	Text
 	Umount::text(const CommitData& commit_data) const
 	{

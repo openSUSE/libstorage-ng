@@ -373,6 +373,62 @@ namespace storage
 
 	    add_chain(mounts);
 	}
+
+	add_special_dasd_pt_dependencies();
+    }
+
+
+    void
+    Actiongraph::Impl::add_special_dasd_pt_dependencies()
+    {
+	// For DASD partition tables parted always uses the BLKRRPART ioctl
+	// instead of BLKPG_*_PARTITION ioctl. So no partition must be in use
+	// when modifying the creating/resizing/deleting partitions.
+
+	// For all mount actions add a dependency to the last action on the
+	// partition table.
+
+	// TODO Equivalent for all actions that use/unuse a partition. Or find
+	// a better solution.
+
+	for (vertex_descriptor vertex : vertices())
+	{
+	    const Action::Mount* mount = dynamic_cast<const Action::Mount*>(graph[vertex].get());
+	    if (!mount)
+		continue;
+
+	    const MountPoint* mount_point = mount->get_mount_point(*this);
+	    if (!mount_point->has_mountable())
+		continue;
+
+	    const Mountable* mountable = mount_point->get_mountable();
+	    if (!mountable->has_filesystem())
+		continue;
+
+	    const Filesystem* filesystem = mountable->get_filesystem();
+	    if (!is_blk_filesystem(filesystem))
+		continue;
+
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(filesystem);
+	    for (const BlkDevice* blk_device : blk_filesystem->get_blk_devices())
+	    {
+		if (!is_partition(blk_device))
+		    continue;
+
+		const Partition* partition = to_partition(blk_device);
+
+		const PartitionTable* partition_table = partition->get_partition_table();
+		if (partition_table->get_type() != PtType::DASD)
+		    continue;
+
+		map<sid_t, vertex_descriptor>::const_iterator it1 =
+		    last_action_on_partition_table.find(partition_table->get_sid());
+		if (it1 == last_action_on_partition_table.end())
+		    continue;
+
+		add_edge(it1->second, vertex);
+	    }
+	}
     }
 
 
@@ -505,7 +561,7 @@ namespace storage
 
 	return ret;
     }
-    
+
 
     void
     Actiongraph::Impl::print_graph() const
