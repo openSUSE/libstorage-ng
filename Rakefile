@@ -18,10 +18,6 @@ Packaging.configuration do |conf|
   # FIXME: we should not skip .c and .h files from the license check
   conf.skip_license_check << /.*/
   conf.package_name = "libstorage-ng"
-  # The package does not live in the official YaST:Head OBS project
-  conf.obs_project = "YaST:storage-ng"
-  # Non-existent project to prevent accidental submission to Tumbleweed
-  conf.obs_sr_project = "NONE"
 end
 
 desc 'Pretend to run the test suite'
