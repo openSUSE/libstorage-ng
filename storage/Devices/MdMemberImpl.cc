@@ -147,8 +147,8 @@ namespace storage
     void
     MdMember::Impl::do_add_to_etc_mdadm(CommitData& commit_data) const
     {
-	const MdContainer* md_container = get_md_container();
 	const MdSubdevice* md_subdevice = get_single_in_holder_of_type<const MdSubdevice>();
+	const MdContainer* md_container = to_md_container(md_subdevice->get_source());
 
 	EtcMdadm& etc_mdadm = commit_data.get_etc_mdadm();
 
