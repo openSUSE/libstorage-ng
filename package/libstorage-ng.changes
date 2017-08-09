@@ -1,17 +1,4275 @@
--------------------------------------------------------------------
-Fri May 27 11:56:53 CEST 2016 - aschnell@suse.com
+--------------------------------------------------------------------
+Wed Aug 9 12:33:12 UTC 2017 - aschnell@suse.de
 
-- call parted with --wipesignatures when creating partitions to
-  avoid auto-assembly of old MD RAIDs (fate#319893, bsc#943623)
+- merge gh#openSUSE/libstorage-ng#323
+- simpler code
 
--------------------------------------------------------------------
-Fri Apr 19 12:34:56 CEST 2016 - aschnell@suse.com
+--------------------------------------------------------------------
+Wed Aug 9 09:22:41 UTC 2017 - aschnell@suse.de
 
-- switched from cylinder to sector based sized for disks and
-  partitions
+- merge gh#openSUSE/libstorage-ng#322
+- use define
 
--------------------------------------------------------------------
-Wed Feb 24 15:24:51 CET 2016 - aschnell@suse.com
+--------------------------------------------------------------------
+Tue Aug 8 12:59:40 UTC 2017 - aschnell@suse.de
 
-- initial package with libstorage-ng, successor of libstorage
+- merge gh#openSUSE/libstorage-ng#321
+- added exception handling
+
+--------------------------------------------------------------------
+Tue Aug 8 11:23:02 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#320
+- support partition ids on dasd partition table
+
+--------------------------------------------------------------------
+Tue Aug 8 07:46:16 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#319
+- special dependencies for DASD partition table
+- added unit test
+- coding style
+- fixed typo
+
+--------------------------------------------------------------------
+Thu Aug 3 15:03:05 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#318
+- improved activation of Md
+
+--------------------------------------------------------------------
+Thu Aug 3 07:58:06 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#317
+- updated paths
+
+--------------------------------------------------------------------
+Wed Aug 2 18:54:37 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#316
+- allow independent control of container entries
+- also parse MD level in MdadmDetail
+- skip parted call on inactive and zero-size devices
+- added note
+- added MD level "container"
+- renamed superblock-version to metadata
+- use reference
+- recognize imsm and ddf
+- set initial MD level to unknown
+- probe MD level from mdadm --detail
+- coding style
+- cleanup
+- exception handling
+- added MdContainer and MdMember
+- added unit tests
+- added unit test
+- updated documentation
+- updated bindings
+- updated status
+- extended documentation
+
+--------------------------------------------------------------------
+Mon Jul 31 10:22:26 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#315
+- moved document, fixed typo
+
+--------------------------------------------------------------------
+Thu Jul 27 09:45:39 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#314
+- added program to generate downcast file
+- regenerated downcast file
+- coding style
+- fixed test
+- added unit tests
+- coding style
+
+--------------------------------------------------------------------
+Tue Jul 25 10:37:47 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#313
+- added program to generate catches file
+- updated catches file
+
+--------------------------------------------------------------------
+Mon Jul 24 11:29:28 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#312
+- try to fix installation on multipath
+
+--------------------------------------------------------------------
+Fri Jul 21 21:41:55 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#311
+- regenerated catches file
+
+--------------------------------------------------------------------
+Fri Jul 21 16:42:42 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#310
+- Comment some public Region methods
+
+--------------------------------------------------------------------
+Fri Jul 21 11:57:29 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#308
+- coding style
+- fixed DM RAID activation
+- only probe active DM RAIDs
+- removed unneeded code
+
+--------------------------------------------------------------------
+Thu Jul 20 11:40:22 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#307
+- implemented activation of DM RAID
+- updated documentation
+
+--------------------------------------------------------------------
+Thu Jul 20 09:08:55 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#306
+- improved dmraid parser
+
+--------------------------------------------------------------------
+Mon Jul 17 19:45:26 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#305
+- updated bindings
+
+--------------------------------------------------------------------
+Mon Jul 17 15:07:12 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#304
+- added query function
+- updated unit tests
+- added support for DM RAIDs
+- added example program
+- fixed typo
+- coding style
+- added unit test
+- extended unit tests
+- activate Md before DmRaid
+- fixed typo
+
+--------------------------------------------------------------------
+Fri Jul 14 13:37:56 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#303
+- Expose Alignment#grain
+- Expose Alignment#offset
+
+--------------------------------------------------------------------
+Wed Jul 12 07:51:14 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#302
+- fixed syntax
+- work on exceptions
+- coding style
+- added unit tests
+- added unit tests
+
+--------------------------------------------------------------------
+Tue Jul 11 13:01:06 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#301
+- added functions to set dasd type and format
+- consistent function names
+
+--------------------------------------------------------------------
+Wed Jun 14 15:45:21 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#284
+- avoid integer overflow
+- correct name for unit tests
+- extended unit test
+- probe multipath devices
+- better interface
+- extended CmdBlkid for external journal information
+- probe external journals devices
+- added unit test
+- added override
+- added support for named MD RAIDs
+- added integration tests
+- extended unit test
+- added unit test
+- adapted integration test
+- extended documentation
+- coding style
+- generalised tests
+- corrected test
+- added documentation
+- avoid g++ warning by removing unused code
+- added override
+- removed unused variable
+- added unit test
+- renamed get_device et.al. to get_non_impl
+- pass mount_by to get_mount_by_name()
+- extended unit test
+- reduced scope of variable
+- added test case
+- shorter code
+- added documentation
+- added special handling for named RAIDs where the name is a number
+- added get_all_if for Mds
+- added debug messages
+- use strongly types enums
+- fixed command handling
+- reduced interface of SystemCmd
+- updated file list
+- allow to load mockup
+- generalised test
+- added function to adjust sids
+- extended int
+- added query function
+- added query function
+- coding style
+- renamed variables
+- renamed library
+- renamed variables
+- coding style
+- improved probing for multipath
+- set dm table name for partitions
+- set range for partitionables on dm
+- updates tests to md level enum change
+- simple valid check for multipath names
+- added unit tests
+- use wider int
+- sort udev ids like libstorage does
+- include multipath with alias in test case
+- added example program
+- activate mds
+- do not log debug log-level per default
+- updated swig catches
+- updated documentation
+- avoid cycle in actiongraph
+- added documentation
+- updated swig catches
+- fixed file list
+- extended documentation
+- updated swig catches file
+- removed wrong parameter documentation
+- coding style
+- generate swig catches for some deprecated functions
+- enable doxygen xml output (needed for generating swig catches)
+- fixed class name
+- coding style
+- updated list of exception classes
+- coding style
+- added dependency on doxygen.conf
+- provide definition of data member
+
+--------------------------------------------------------------------
+Tue Jun 13 16:34:25 UTC 2017 - tchvatal@suse.com
+
+- merge gh#openSUSE/libstorage-ng#147
+- Detect libxml bit more properly to work on most distributions
+- Cleanup the spec file to adhere Factory packaging guidelines
+- Check for boost headers to ensure configure stops prior build
+  failure if the boost-devel is not present
+- Split out the boost dependencies up to the latest boost package
+  split on openSUSE_Tumbleweed
+- Do not require rubygem-test-unit on Factory
+- Remove boost-regexp dependency as it was removed in favor of
+  higer C++ standard function
+
+--------------------------------------------------------------------
+Tue Jun 13 13:13:31 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#283
+- fixed function names
+
+--------------------------------------------------------------------
+Tue Jun 13 09:10:42 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#282
+- reuse existing table of filesystem names
+- improved exception message
+
+--------------------------------------------------------------------
+Mon Jun 12 10:16:51 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#281
+- split directory examples into utils and examples
+
+--------------------------------------------------------------------
+Mon Jun 12 08:11:17 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#280
+- Fix bug
+
+--------------------------------------------------------------------
+Mon Jun 12 08:02:47 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#279
+- added used features flag for DASDs
+
+--------------------------------------------------------------------
+Fri Jun 9 15:22:48 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#278
+- extended transmogify example
+- improved Action::RenameIn ordering for DASDs
+- added unit tests
+- added documentation
+- added bugzilla reference
+
+--------------------------------------------------------------------
+Fri Jun 9 10:54:53 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#277
+- updated mockups to use parted --machine
+- removed old parted parser
+
+--------------------------------------------------------------------
+Thu Jun 8 12:01:38 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#276
+- added check
+- do not use cylinder size as block size
+- avoid holder two actiongraph in memory
+- coding style
+- added more comparison operators
+- check partition order
+- coding style
+- added call to check()
+- workaround for parted sector size during resize
+- handle alignment in partition resize integration tests
+- simpler Makefile.am
+- renumber partitions on DASD partition table
+- added unit-tests
+- renamed unit-test
+- added integration test
+- renamed variable
+- fixed typos
+
+--------------------------------------------------------------------
+Tue Jun 6 13:04:26 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#259
+- WIP
+- WIP
+- WIP
+- Add CompoundActionFormater base class
+- Add BtrfsSubvolumeFormater class
+- Update gitignore files
+- Add NfsFormater class
+- Add BtrfsFormater class
+- Add LvmLvFormater and LvmVgFormater
+- Add compound actions to actiongraph
+- Integrate CompoundAction and Actiongraph
+- Add bindings for CompoundAction
+- Remove old files
+- Update gitignore
+- Add CompoundAction#is_delete
+- Change return of find_by_target_device
+- Rename CompoundAction classes
+- Use Generator to generate compounds actions
+- Simplify CompoundAction creation
+- Rename and delete public methods
+- Return const objects
+- Remove empty destructors and improve constructors
+- Fix spelling
+- Add methods to LvmLv formatter
+- Add methods for LvmVg formatter
+- Delete improperly added file
+- Update example
+- Add automake subdir-objects option
+- Throw exception when action is unknown
+- Add tests for CompoundAction
+- Fix example
+- Improve formatters
+- Add files for compound actions example
+- Improve formatters
+- Improve tests
+- Improve text for compound actions with swap
+- Minor fixes
+- Rename data files
+- Fix test makefile
+- Improve variable names
+- Some improvements in formatters
+- Add gitignore
+- Remove spaces
+
+--------------------------------------------------------------------
+Tue Jun 6 11:39:46 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#274
+- Add compound actions summary doc
+- Fix text
+- More text fixes
+
+--------------------------------------------------------------------
+Tue Jun 6 10:18:36 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#275
+- enhanced get_possible_partition_table_types() for DASDs
+- simpler code
+
+--------------------------------------------------------------------
+Mon Jun 5 18:30:35 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#273
+- added documentation
+- renamed variable and enums
+- set extended_slot to false on GPT
+- implemented partition slots for DASD partition table
+- added unit test
+- removed unused function
+- use vector instead of list
+- added assert
+- renamed typename
+- added utility function
+- added unit tests
+- simpler code
+- added comment
+- added convenience function
+- added integration test
+- better variable names
+
+--------------------------------------------------------------------
+Fri Jun 2 12:06:09 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#272
+- added unit tests
+- new parse error tests
+- converted unit tests to new parted parser
+- removed old code
+- added note
+- fixed syntax
+- updated mockups
+
+--------------------------------------------------------------------
+Thu Jun 1 12:11:58 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#271
+- recognize parted "diag" flag
+- log partition id as hex
+
+--------------------------------------------------------------------
+Thu Jun 1 11:38:08 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#270
+- added find_by_name for Partitionable
+- split Topology class into Topology and Alignment
+- set minimal-grain to 0 B for DASDs
+- improved integration tests
+- set extra alignment for DASD partition table
+- fix sectors when calling parted on DASD partition table
+- use correct sector size
+- nicer check
+- keep minimal grain for DASDs
+- allow to get Alignment class
+- allow to align only to hard requirements
+- updated documentation about alignment
+- use partition id supported on all partition types
+
+--------------------------------------------------------------------
+Wed May 31 08:05:40 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#269
+- adapted parted mkpart call for dasd partition table
+
+--------------------------------------------------------------------
+Tue May 30 10:07:52 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#268
+- allow more control over mockup
+- rewrote parted parser including fixing sectors on DASDs
+- work on support for DASD partition table
+- updated unit-test
+- coding style
+
+--------------------------------------------------------------------
+Wed May 24 13:04:14 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#266
+- added function to convert partition type to string
+
+--------------------------------------------------------------------
+Wed May 24 09:34:25 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#265
+- avoid ambiguous code
+- replace own Regex class by C++11 regex
+- use C++11 regex instead of boost regex
+
+--------------------------------------------------------------------
+Mon May 22 16:28:49 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#264
+- fixed human string parser
+
+--------------------------------------------------------------------
+Mon May 22 07:19:30 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#263
+- use svg for graphs
+
+--------------------------------------------------------------------
+Fri May 19 13:29:05 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#262
+- updated
+
+--------------------------------------------------------------------
+Thu May 18 12:14:54 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#261
+- also allow to display actiongraph
+
+--------------------------------------------------------------------
+Wed May 17 15:46:57 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#260
+- allow to keep temporary files
+
+--------------------------------------------------------------------
+Thu May 11 07:52:36 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#258
+- removed obsolete file
+
+--------------------------------------------------------------------
+Wed May 10 09:29:00 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#257
+- improved parser
+- added test case
+
+--------------------------------------------------------------------
+Mon May 8 09:09:07 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#256
+- eliminated defects found by coverity
+
+--------------------------------------------------------------------
+Fri May 5 14:44:51 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#255
+- updated cleanup lists
+
+--------------------------------------------------------------------
+Fri May 5 10:55:00 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#253
+- make delete Filesystem or PartitionTable also delete signatures
+  on disk
+- modified integration tests
+- added nop flag to actions
+- added helper function
+- set nop flag if btrfs filesystem is also deleted
+- extended documentation
+- removed unused functionality
+
+--------------------------------------------------------------------
+Thu May 4 15:00:32 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#252
+- added unit tests
+- renamed integration test for consistency
+- removed unused variable
+- added integration test
+- coding style
+- handle tense
+- removed unneeded function override
+
+--------------------------------------------------------------------
+Wed May 3 17:18:21 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#251
+- setup logger
+- coding style
+
+--------------------------------------------------------------------
+Wed May 3 09:42:33 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#250
+- updated file list
+
+--------------------------------------------------------------------
+Tue May 2 12:05:07 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#249
+- fixed documentation
+
+--------------------------------------------------------------------
+Tue May 2 10:24:23 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#248
+- added in_etc_crypttab flag
+- also provide EtcFstab and EtcCrypttab in SystemInfo
+- coding style
+- set in_etc_crypttab
+- set correct crypt device
+- added documentation
+
+--------------------------------------------------------------------
+Tue May 2 09:22:02 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#247
+- provide version information in bindings
+
+--------------------------------------------------------------------
+Fri Apr 28 15:42:20 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#246
+- removed probing in constructor and added probe function
+- adapted unit tests
+- adapted examples
+- adapted integration tests
+- fixed comment
+- added DEVMAPPERDIR define
+- save and load in_etc_fstab
+- adapted integration test
+
+--------------------------------------------------------------------
+Fri Apr 28 10:00:25 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#245
+- removed inadequate lvm activation
+- removed unused code
+- improved documentation
+- added missing include
+- provide begin() and end()
+- added function returning number of inactive lvm lvs
+- added utility functions
+- removed unused code
+- activate inactive lvm and luks if desired
+- updated bindings
+- added integration test
+- provide activate function in API
+- check callback pointer
+- fixed typo
+
+--------------------------------------------------------------------
+Thu Apr 27 08:07:21 UTC 2017 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#244
+- Propagate DifferentBlockSizes through the bindings
+
+--------------------------------------------------------------------
+Mon Apr 24 16:38:33 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#243
+- added override
+
+--------------------------------------------------------------------
+Mon Apr 24 12:40:45 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#242
+- fixed typo
+
+--------------------------------------------------------------------
+Mon Apr 24 10:26:05 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#241
+- added check
+
+--------------------------------------------------------------------
+Fri Apr 21 16:04:25 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#240
+- initialize values
+- reduced include
+
+--------------------------------------------------------------------
+Fri Apr 21 10:52:52 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#239
+- added check
+- added unit tests
+- updated test
+- updated documentation
+- updated integration tests
+- consistent naming
+- added documentation
+- added convenience function
+- improved integration test
+
+--------------------------------------------------------------------
+Thu Apr 20 19:36:50 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#238
+- added convenience function
+- removed nfs from dasd probing test
+- also remove descendants
+- added helper functions
+- return const objects
+- moved mount point data to dedicated class in devicegraph
+- adapted bindings
+- adapted example
+- adapted integration tests
+- added integration test for changeing mount-by method
+- added documentation
+- adapted unit tests
+- consistent naming
+- make functions as deprecated
+- do not longer allow to create Devicegraph without pointer to Storage
+- keep exact signature of deprecated functions
+- coding style
+- added warning
+
+--------------------------------------------------------------------
+Wed Apr 19 09:09:59 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#237
+- fixed exception message
+- more detailed exception message
+- updated xml devicegraphs
+
+--------------------------------------------------------------------
+Tue Apr 18 13:13:22 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#236
+- more detailed error messages
+- added comparison operators
+
+--------------------------------------------------------------------
+Fri Apr 7 07:24:16 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#235
+- check types to avoid exception
+
+--------------------------------------------------------------------
+Wed Apr 5 12:17:40 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#234
+- create parent directory of new subvolume
+
+--------------------------------------------------------------------
+Wed Apr 5 10:36:43 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#233
+- document that nested RAIDs are unsupported
+
+--------------------------------------------------------------------
+Wed Apr 5 07:50:30 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#232
+- added functions to handle default mount-by
+- removed obsolete classes
+- added documentation
+- renamed variable
+
+--------------------------------------------------------------------
+Tue Apr 4 10:10:31 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#231
+- work on md size calculation
+- added documentation
+- fixed typo
+
+--------------------------------------------------------------------
+Tue Apr 4 09:12:35 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#230
+- coding style
+- added unit test
+- improved function interface
+- removed debug output
+- install header
+
+--------------------------------------------------------------------
+Mon Apr 3 09:11:26 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#229
+- probe subvolume id after create
+
+--------------------------------------------------------------------
+Fri Mar 31 17:34:35 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#228
+- added functions to get source and target of a Holder
+- fixed integrations tests
+- added integration test
+
+--------------------------------------------------------------------
+Thu Mar 30 10:55:01 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#227
+- added convenience functions
+- minor refactoring
+- added unit tests
+- added convenience functions
+- added integration tests
+
+--------------------------------------------------------------------
+Wed Mar 29 15:00:02 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#226
+- flush results after each test
+- handle spare devices in size calculation
+- make a conservative calculation
+- improve results output
+- fix typo
+
+--------------------------------------------------------------------
+Wed Mar 29 07:37:32 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#225
+- fixed check
+- added test for nested RAIDs
+- added workaround for bsc#1030896
+- removed debug setting
+
+--------------------------------------------------------------------
+Tue Mar 28 11:52:03 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#224
+- added sort-key for devices of MD RAID
+
+--------------------------------------------------------------------
+Tue Mar 28 08:16:49 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#223
+- added flag in_etc_mdadm
+
+--------------------------------------------------------------------
+Mon Mar 27 13:11:29 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#222
+- create /etc directory when mounting /
+
+--------------------------------------------------------------------
+Mon Mar 27 10:01:36 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#221
+- probe some uuids after on disk creation
+
+--------------------------------------------------------------------
+Fri Mar 24 15:09:27 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#220
+- coding style
+- reuse objects EtcFstab, EtcCrypttab and EtcMdadm
+- added writing of mdadm.conf
+- set partition id
+- handle new values in Md::Impl
+- probe md-name and uuid
+- add tense to CommitData
+
+--------------------------------------------------------------------
+Thu Mar 23 10:09:06 UTC 2017 - opensuse-packaging@opensuse.org
+
+- Fixed line number output for empty ranges
+- Unit tests for Diff
+- Fixed include path
+
+--------------------------------------------------------------------
+Thu Mar 23 10:09:06 UTC 2017 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#219
+- Added generic diff
+- Added log_diff()
+- Use log_diff() instead of log()
+- Fixed verbose mode
+- Fixed out of range segfault
+- Prevent diff context at file borders
+
+--------------------------------------------------------------------
+Tue Mar 21 16:39:45 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#218
+- added support for DASDs (the block device)
+
+--------------------------------------------------------------------
+Tue Mar 21 10:23:40 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#217
+- initialize value
+
+--------------------------------------------------------------------
+Mon Mar 20 18:14:02 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#215
+- protect mount options since subvol can include spaces
+
+--------------------------------------------------------------------
+Mon Mar 20 17:19:53 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#213
+- added btrfs subvolume support
+
+--------------------------------------------------------------------
+Mon Mar 20 15:05:01 UTC 2017 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#214
+- Handle fs type unknown
+- New test case for fs type unknown
+
+--------------------------------------------------------------------
+Mon Mar 20 12:50:16 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#212
+- initialize value in ctor
+- set filename
+
+--------------------------------------------------------------------
+Fri Mar 17 21:51:36 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#211
+- cleanup AsciiFile (possible after EtcFstab rewrite)
+- use AsciiFile to read fstab for mockup playback and record
+
+--------------------------------------------------------------------
+Fri Mar 17 13:59:56 UTC 2017 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#210
+- Use full filename for fstab and crypttab
+- Add missing space in mount command
+
+--------------------------------------------------------------------
+Fri Mar 17 09:42:46 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#209
+- changed return type of get_mount_type()
+- added compatibility functions
+
+--------------------------------------------------------------------
+Thu Mar 16 13:38:52 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#208
+- removed unneeded includes
+- removed obsolete handling of list
+
+--------------------------------------------------------------------
+Thu Mar 16 13:30:47 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#202
+- Activate vgs
+- Add comment
+- Fix indentation
+
+--------------------------------------------------------------------
+Thu Mar 16 12:50:01 UTC 2017 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#206
+- New EtcFstab API
+- Methods to maintain correct mount order
+- Stricter constness and avoid endless call recursion
+- Added missing factory method
+- Added MountOpts::clear()
+- Unit tests for new EtcFstab class
+- Better runtime checks using exceptions
+- Tests for checking and fixing mount order
+- Added tests for pathological cases
+- Make line no. optional during parsing
+- Store filename for writing, too
+- Removed obsolete tests
+- Added EtcCrypttab class
+- Don't pad last column
+- Remove entry by pointer
+- Unit test for EtcCrypttab
+- New unit test: Nonexistent crypttab
+- Removed cruft
+- Don't stop parsing after the first error
+- Accept unparsable fs enums as type 'unknown'
+- Support for logging contents
+- Added missing includes
+- Get and set options completely at once
+- Use new EtcFstab: StorageImpl
+- Use new EtcFstab: ProcMounts
+- Use new EtcFstab: Nfs
+- Use new EtcCrypttab: Luks
+- Use new EtcCrypttab: Mountable and BlkFilesystem
+- Use new EtcFstab: XML mocking in testsuite
+- Omit 'defaults' for mount opts in XML
+- Code review fixes
+- Documentation fixes
+- Support for mocking during probing
+- Fixed unit test data
+
+--------------------------------------------------------------------
+Thu Mar 9 16:34:21 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#200
+- split off Mountable from Filesystem
+- removed unused variable
+- added parsers for btrfs tools
+- removed unused functions
+- unified comments
+- fixed typo
+- added missing implementation
+- allow mocking of SystemCmds with unstable command-line
+- added include
+- avoid btrfs in test cases (will need more mockup)
+- extended style guide
+- added example program
+
+--------------------------------------------------------------------
+Tue Mar 7 09:45:07 UTC 2017 - shundhammer@suse.de
+
+- Imported https://github.com/shundhammer/commented-config-file
+  (#199)
+
+--------------------------------------------------------------------
+Wed Mar 1 11:33:35 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#197
+- added some compile time checks
+- renamed macro to avoid name collision
+
+--------------------------------------------------------------------
+Tue Feb 28 16:54:06 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#196
+- moved code to implementation classes
+- removed unneeded virtual in API
+- added Encryption::get_all() functions
+
+--------------------------------------------------------------------
+Mon Feb 27 17:37:07 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#195
+- added comment
+- removed unused enum value
+
+--------------------------------------------------------------------
+Mon Feb 27 13:31:45 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#194
+- redirect to probed devicegraph in EnsureMounted
+
+--------------------------------------------------------------------
+Thu Feb 23 19:28:01 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#192
+- tiny code simplifications
+- added includes
+- make EnsureMounted more generic and work for Filesystem
+- added class to parse df output
+- added class SpaceInfo
+- added function to query nfs mounts
+- generalise and move some functions from BlkFilesystem to
+  Filesystem
+- store SpaceInfo in Filesystem
+- cleanup
+- added basic NFS support
+- coding style
+- extended bindings for NFS
+- added integration tests
+- removed dangerous functions and added comment
+- updated python bindings
+- added check
+- added integration test
+- added Nfs::Impl::used_features()
+
+--------------------------------------------------------------------
+Mon Feb 20 17:14:36 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#191
+- split off class BlkFilesystem from class Filesystem
+- updated testcases
+- updated example
+- updated documentation
+- updated bindings
+- updated testcases
+- updated integration tests
+
+--------------------------------------------------------------------
+Mon Feb 20 11:16:34 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#190
+- coding style
+- removed abstract class
+- use direct parent class
+- avoid flushes
+
+--------------------------------------------------------------------
+Fri Feb 17 10:36:41 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#189
+- detect nilfs2
+- cleanup
+- shorter code
+- coding style
+- coding style
+- added support for ext2, ext3, reiserfs, iso9660 and udf
+- updated bindings to new filesystems
+- added integration tests
+
+--------------------------------------------------------------------
+Thu Feb 16 11:18:13 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#188
+- removed cycle from actiongraph for Luks setup
+- cleanup
+
+--------------------------------------------------------------------
+Wed Feb 15 18:40:38 UTC 2017 - jlopez@suse.com
+
+- merge gh#openSUSE/libstorage-ng#187
+- Bind exceptions for BlkDevice::get_encryption
+
+--------------------------------------------------------------------
+Wed Feb 15 11:38:45 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#186
+- fixed shrinking devices
+- enable commit
+
+--------------------------------------------------------------------
+Tue Feb 14 10:07:04 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#185
+- added Encryption::get_type()
+- make get_type() in EncryptionImpl virtual
+
+--------------------------------------------------------------------
+Fri Feb 10 14:14:43 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#184
+- implemented do_rename_in_etc_crypttab()
+
+--------------------------------------------------------------------
+Thu Feb 9 11:29:00 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#183
+- save sid in devicegraphs
+- add dependencies to some actions of children of partition table
+- added test case
+- added documentation
+- use convenience function
+
+--------------------------------------------------------------------
+Tue Jan 31 12:28:10 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#180
+- added set_number() function
+- renumber logical partitions in delete_partition()
+- added testcase
+- coding style
+- added actions to rename entries in fstab and crypttab
+- use integration test utils
+- implemented rename in fstab
+- override function
+- allow to skip more steps
+- better check
+- renamed functions
+- reuse code
+- the check was correct
+- coding style
+
+--------------------------------------------------------------------
+Mon Jan 23 14:48:11 UTC 2017 - lslezak@suse.cz
+
+- Added Travis support (use Docker for building)
+
+--------------------------------------------------------------------
+Mon Jan 16 10:46:18 UTC 2017 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#179
+- fixed swig bindings for used_features()
+
+--------------------------------------------------------------------
+Thu Jan 12 17:50:13 UTC 2017 - shundhammer@suse.de
+
+- Typo: Fixed inconsistent enum prefix (#178)
+
+--------------------------------------------------------------------
+Thu Dec 22 11:13:25 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#177
+- added move constructor and assignment operator
+
+--------------------------------------------------------------------
+Tue Dec 13 10:08:06 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#176
+- Make boot flag checks public
+
+--------------------------------------------------------------------
+Tue Dec 6 12:49:30 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#175
+- turn udev_path into vector (see bsc#1011357)
+
+--------------------------------------------------------------------
+Mon Dec 5 10:23:20 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#174
+- show base in log for hex
+- fixed typo
+- added tests
+- handle partition id on GPT
+- added unit tests
+- removed TODO mark
+- fixed typo
+- DRYer code
+- renamed test files
+- markdown improvements
+- renamed function
+
+--------------------------------------------------------------------
+Mon Nov 28 10:59:20 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#173
+- updated history
+
+--------------------------------------------------------------------
+Fri Nov 18 15:57:05 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#172
+- added interface to query used features
+- added bcache to used features
+- added unit tests
+
+--------------------------------------------------------------------
+Thu Nov 17 11:01:39 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#171
+- added convenience functions
+
+--------------------------------------------------------------------
+Thu Nov 3 11:42:38 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#170
+- make functions public available
+
+--------------------------------------------------------------------
+Wed Nov 2 10:06:40 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#169
+- added parsing legacy_boot in parted output
+- actions for boot, legacy_boot and pmbr_boot
+- added integration tests
+- updated status document
+- removed out-commented code
+- extended documentation
+
+--------------------------------------------------------------------
+Fri Oct 28 11:44:39 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#168
+- added probing pmbr-boot
+- added test case for pmbr boot
+
+--------------------------------------------------------------------
+Fri Oct 28 08:37:29 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#167
+- moved setting BOOST_TEST_CATCH_SYSTEM_ERRORS
+
+--------------------------------------------------------------------
+Wed Oct 26 12:11:19 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#166
+- Added LvmLv.get_all()
+
+--------------------------------------------------------------------
+Wed Oct 26 10:33:46 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#165
+- added utility function to public API
+
+--------------------------------------------------------------------
+Tue Oct 25 09:53:56 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#164
+- added convenience functions
+- moved template definitions to separate file
+
+--------------------------------------------------------------------
+Mon Oct 24 08:48:21 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#163
+- added name for partition id
+
+--------------------------------------------------------------------
+Fri Oct 21 09:59:11 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#162
+- added test case
+- moved test cases
+- reuse code
+- coding style
+- simpler code
+- reuse code
+- help compiler understand code
+- removed workaround
+- fixed partition name
+- run performance tests as last
+- coding style
+- allow to set udev path and ids
+- set udev path and if when creating partition
+- added test case
+- updated unit test to include object for partition table
+- make logical partitions children of extended partition
+- added note and todo
+- added checks
+- moved unit test
+
+--------------------------------------------------------------------
+Tue Oct 18 07:25:05 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#161
+- also check udev_path and udev_ids in equal and log_diff
+- fixed typo
+- omit more udev-ids (use whitelist instead of blacklist)
+- added explanatory comment
+
+--------------------------------------------------------------------
+Mon Oct 17 14:49:12 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#160
+- set default partition id based on partition type
+
+--------------------------------------------------------------------
+Mon Oct 17 10:29:47 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#159
+- fixed initialization order
+- check that function is called on correct devicegraph
+
+--------------------------------------------------------------------
+Thu Oct 13 08:49:32 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#158
+- use const unique_ptr for pimpl
+- added testcase
+- added documentation
+
+--------------------------------------------------------------------
+Wed Oct 5 09:11:09 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#157
+- renamed class
+- removed printing to cout from Actiongraph
+- performance improvement
+- added performance test
+- removed examples with testsuite character
+- improved example
+
+--------------------------------------------------------------------
+Wed Oct 5 07:56:59 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#156
+- updated status document
+- include feedback from code review
+
+--------------------------------------------------------------------
+Tue Oct 4 12:34:38 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#155
+- updated documentation
+- added end user example
+- fixed typo
+- improvements from code review
+
+--------------------------------------------------------------------
+Thu Sep 29 19:23:59 UTC 2016 - opensuse-packaging@opensuse.org
+
+- merge gh#openSUSE/libstorage-ng#143
+- the dependency fix: updated from the specfile
+- specified distribution specific dependencies
+- corrected deps on tumbleweed
+
+--------------------------------------------------------------------
+Thu Sep 29 12:09:37 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#154
+- handle tense
+- handle tense
+- throw on logic error
+- coding style
+- added humanstring example
+
+--------------------------------------------------------------------
+Wed Sep 28 12:20:05 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#153
+- fixed temporary check
+- quote commit message in log
+
+--------------------------------------------------------------------
+Tue Sep 27 12:35:34 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#152
+- removed some examples that were initial test programs
+
+--------------------------------------------------------------------
+Tue Sep 27 12:03:12 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#151
+- cylinder -> sector cleanup
+
+--------------------------------------------------------------------
+Fri Sep 23 12:14:13 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#150
+- added TmpMount class
+- added EnsureMounted class
+- use EnsureMounted class
+- added note
+- name enum strongly typed
+- now removed enum entirely
+
+--------------------------------------------------------------------
+Wed Sep 21 12:33:49 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#149
+- added convenience function to query Ntfs objects
+- added convenience function to query Partitionable objects
+
+--------------------------------------------------------------------
+Fri Sep 16 14:12:33 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#148
+- initialise class members
+
+--------------------------------------------------------------------
+Fri Sep 16 12:39:33 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#145
+- improved device_exists
+- fixed typo
+- added support to resize (active) lukses
+- added integration tests for luks
+- coding style
+- moved check function to impls
+- added check function for Luks
+- added comment
+- added unit test for resizing luks
+- require to provide filename
+- incorporated comments from code review
+- ignore generated files
+
+--------------------------------------------------------------------
+Tue Sep 13 19:55:40 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#144
+- added UntranslatedText and moved Text to own file
+- moded StopWatch to own file
+- added documentation
+- renamed variable
+
+--------------------------------------------------------------------
+Mon Sep 12 12:14:02 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#142
+- fixed lvm vg dependency generation if modify actions exist purely
+  on lhs
+- coding style
+- added convenience function
+- added flags to control handling of credentials
+- correcter explanation for translators
+- use ST_THROW macro
+- coding style
+- support to create, activate, deactivate and delete Luks
+- added encryption handling functions to BlkDevice
+- added unit tests
+- added integrations tests
+- handle tense
+- added skeleton actions for crypttab handling
+- handle tense
+- handle crypttab
+
+--------------------------------------------------------------------
+Mon Sep 5 12:24:28 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#141
+- use C++11 initialisation
+- shorter code
+- removed unused check
+- coding style
+- added reusable sort_by_key function
+
+--------------------------------------------------------------------
+Tue Aug 30 14:10:23 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#140
+- Added a failing test (TDD) for LVM dependencies
+- Bugfixes in Action::Create#add_dependencies
+- Dependencies between LVM operations
+- Fixes from code review: coding style
+- Another complex test for LVM dependencies
+- Reusable function to add grouped dependencies
+- Added a test for PVs being moved between VGs
+- Dependencies for moving PVs between different VGs
+- Added note about add_chain cost
+
+--------------------------------------------------------------------
+Fri Aug 19 13:59:49 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#139
+- added const
+- added helper function
+- renamed variable
+- moved calculating dependencies for creating partitions to
+  PartitionTable class
+- make vertices in actiongraph stable
+
+--------------------------------------------------------------------
+Thu Aug 18 13:47:49 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#138
+- renamed function
+- indicate only-sync in graph output
+
+--------------------------------------------------------------------
+Thu Aug 18 12:55:02 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#137
+- also save devicegraphs
+- renamed function
+- call function in base class
+- add dependency for reallot actions
+- added unit tests for reallot actions in lvm case
+- moved some tests to md subdirectory
+- always use svg instead of png
+
+--------------------------------------------------------------------
+Wed Aug 17 07:51:51 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#136
+- Obsolete again old libstorage
+
+--------------------------------------------------------------------
+Tue Aug 16 09:57:02 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#135
+- pass vector by reference
+
+--------------------------------------------------------------------
+Tue Aug 16 08:55:56 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#134
+- do not call udevadm info for inactive devices
+
+--------------------------------------------------------------------
+Fri Aug 12 12:53:23 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#133
+- fixed output
+- set flags for ostream
+- probe attr for lvm devices
+- added active flag to BlkDevice
+
+--------------------------------------------------------------------
+Fri Aug 12 10:34:47 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#131
+- fixed parsing of 'dmsetup table' output if no devices were found
+- catch exceptions from Storage constructor
+
+--------------------------------------------------------------------
+Mon Aug 8 15:34:40 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#130
+- Avoid conflict with old libstorage config file
+- Do not obsolete old libstorage in .spec
+
+--------------------------------------------------------------------
+Mon Aug 1 12:35:48 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#129
+- added functions to query volume group
+- wait as late as possible
+- added note
+- moved detect_resize_info to Device
+- provide ResizeInfo for LvmPv
+- added override
+- generate actions for resizing lvm pvs
+- added tests for lvm pv resizing
+- added get_size_string()
+- inform children (LvmVg and Md) when parent has new region
+
+--------------------------------------------------------------------
+Fri Jul 29 09:22:14 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#128
+- format numbers
+- handle ResizeInfo in LvmLv
+- added functions to find a volume group by the vg-name
+- make reallot handling work with Device instead of BlkDevice
+- handle reallot for volume groups
+- allow to save graphs
+- fixed consistency between variable name and partition
+
+--------------------------------------------------------------------
+Wed Jul 27 11:52:19 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#127
+- added most common lvm actions
+- removed obsolete define
+- wait as late as possible
+- added define
+- include size in volume group create/delete text
+
+--------------------------------------------------------------------
+Fri Jul 22 13:53:43 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#126
+- added override where appropriate
+
+--------------------------------------------------------------------
+Fri Jul 15 12:34:10 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#125
+- make find by uuid functions non public
+- extended comment
+
+--------------------------------------------------------------------
+Fri Jul 15 08:01:46 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#124
+- sort sids in output for better readability
+
+--------------------------------------------------------------------
+Thu Jul 14 10:03:27 UTC 2016 - shundhammer@suse.de
+
+- Use stdin, not tmp files for passwords (bsc#986971) (#123)
+
+--------------------------------------------------------------------
+Tue Jul 12 15:05:31 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#122
+- added convenience functions for lvm
+- make delete_partition take a Partition
+- removed obsolete code
+- shorter code
+- added function to delete logical volume
+- renamed file
+- make doxygen analyse more files
+- updated documentation
+- activate DEPRECATED define
+- consistent function names
+
+--------------------------------------------------------------------
+Thu Jul 7 15:03:56 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#121
+- added convenience functions for Bcache and BcacheCset
+
+--------------------------------------------------------------------
+Wed Jul 6 09:01:11 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#120
+- move dm-table-name from Encryption to BlkDevice
+- probe stripes and stripe-size
+- removed obsolete class
+- removed unused functions
+- fixed documentation
+
+--------------------------------------------------------------------
+Fri Jul 1 13:43:19 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#119
+- removed unused functions
+
+--------------------------------------------------------------------
+Thu Jun 30 11:58:17 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#118
+- also support downcast for bcache classes
+
+--------------------------------------------------------------------
+Thu Jun 30 08:42:38 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#117
+- added copyright headers
+- moved filesystem classes from Devices to new Filesystems directory
+
+--------------------------------------------------------------------
+Wed Jun 29 13:02:43 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#116
+- added and renamed examples
+- init logger
+- prefer vector over list
+- detect bcache in blkid output
+- renamed output files
+- simply call probe_pass_2 for all devices
+- extended check function
+- added get_string function
+- decentralized code
+- added bcache probing support
+- includes cleanup
+- added bcache probing testcase
+- added documentation links
+
+--------------------------------------------------------------------
+Wed Jun 22 11:45:54 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#115
+- extended 'dmsetup table' parser to provide target and stripes
+
+--------------------------------------------------------------------
+Tue Jun 21 10:17:12 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#114
+- updated doxygen list of input files
+
+--------------------------------------------------------------------
+Tue Jun 21 09:13:43 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#113
+- enable client side searching
+
+--------------------------------------------------------------------
+Tue Jun 21 09:08:54 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#112
+- extended lvm parsers
+- probe size of luks
+- probe size of lvm vg and lv
+- added copyright header
+- handle new class variables
+
+--------------------------------------------------------------------
+Thu Jun 16 08:25:13 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#111
+- add get_partitionable() to API
+
+--------------------------------------------------------------------
+Wed Jun 15 08:02:36 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#110
+- use new is_valid_name
+
+--------------------------------------------------------------------
+Tue Jun 14 07:39:50 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#109
+- added is_valid_name for BldDevice
+
+--------------------------------------------------------------------
+Mon Jun 13 11:36:25 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#108
+- use fallback lockup
+- removed now unused function
+
+--------------------------------------------------------------------
+Mon Jun 13 10:22:20 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#107
+- use fallback lookup by major and minor number
+
+--------------------------------------------------------------------
+Fri Jun 10 14:14:40 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#106
+- corrected order
+
+--------------------------------------------------------------------
+Fri Jun 10 12:00:59 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#105
+- added note
+- added luks probing testcase
+
+--------------------------------------------------------------------
+Thu Jun 9 14:59:45 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#104
+- extended SystemInfo for encryption
+- cleanup
+- prefer vector over list
+- added luks probing support
+- use C++11 range based for
+
+--------------------------------------------------------------------
+Thu Jun 9 13:04:37 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#103
+- during probing find devices by major and minor number if find my
+  name fails
+
+--------------------------------------------------------------------
+Wed Jun 8 08:10:45 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#102
+- added convenience function
+- added unit tests
+
+--------------------------------------------------------------------
+Fri Jun 3 16:01:51 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#101
+- work on LVM support
+- added documentation
+- added todo
+- added check
+- extended check functions
+- provide vectors of LVM objects
+- added get_lvs function
+- added get_lvm_pvs function
+- added get_blk_device function
+- downcast also LVM objects
+- added more convenient functions
+
+--------------------------------------------------------------------
+Thu Jun 2 07:48:08 UTC 2016 - jsrain@suse.cz
+
+- merge gh#openSUSE/libstorage-ng#96
+- Added YaST requirements, based on meeting in NUE
+- AI formatting
+- MD formatting
+- More formatting
+- comments from review
+- comments
+- Clarified upgrade from EVMS
+
+--------------------------------------------------------------------
+Wed Jun 1 13:06:29 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#100
+- added functions to search for lvm devices by uuid
+- added BlkDevice::get_all
+- cleanup
+- sort results of lvm commands
+- use get_all function
+
+--------------------------------------------------------------------
+Tue May 31 15:15:02 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#99
+- added functions any_md, any_lvm and any_luks
+- explicit function name
+- probe mds only if blkid found some
+- added uuid to lvm objects
+- added get_all functions
+- added testcase
+- added parsers for pvs and lvs
+
+--------------------------------------------------------------------
+Fri May 27 11:20:44 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#98
+- call parted with --wipesignatures when creating partitions
+- use long option
+- adapted tests
+
+--------------------------------------------------------------------
+Tue May 24 13:13:05 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#97
+- removed perl bindings (only potential use-case kiwi was rewritten
+  in python)
+- mark function as override
+
+--------------------------------------------------------------------
+Fri Apr 29 13:28:59 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#95
+- initialise and log variable
+
+--------------------------------------------------------------------
+Fri Apr 29 10:46:26 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#94
+- allow to set minimal_mbr_gap
+
+--------------------------------------------------------------------
+Thu Apr 28 15:35:56 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#93
+- allow to set minimal grain
+
+--------------------------------------------------------------------
+Thu Apr 28 08:45:56 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#92
+- added convenience functions
+
+--------------------------------------------------------------------
+Thu Apr 28 08:09:44 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#91
+- added convenience functions
+
+--------------------------------------------------------------------
+Wed Apr 27 13:32:14 UTC 2016 - aschnell@suse.com
+
+- partition alignment, drop cylinders and geometry, change unit of
+  sizes (#85)
+
+--------------------------------------------------------------------
+Tue Apr 19 09:31:54 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#89
+- Added support to set label and uuid for swap devices
+- Allow to change label and UUID of pre-existing partitions
+- Fix from code review: ST_THROW
+
+--------------------------------------------------------------------
+Wed Apr 13 15:18:35 UTC 2016 - aschnell@suse.com
+
+- merge gh#openSUSE/libstorage-ng#88
+- Update TsCmp.cc
+- Update .gitignore
+
+--------------------------------------------------------------------
+Wed Apr 13 09:48:39 UTC 2016 - aschnell@suse.com
+
+- merge gh#openSUSE/libstorage-ng#87
+- added buildrequires graphviz since doxygen needs it
+
+--------------------------------------------------------------------
+Tue Apr 12 15:28:17 UTC 2016 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#86
+- Added check for PPC PowerNV
+
+--------------------------------------------------------------------
+Fri Apr 1 15:12:43 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#84
+- Added ID_EFI
+
+--------------------------------------------------------------------
+Tue Mar 29 15:06:12 UTC 2016 - wfeldt@opensuse.org
+
+- merge gh#openSUSE/libstorage-ng#83
+- swig bindings for Storage::Arch
+- include Arch.h in docs and devel package
+- fix list include
+- automake fix
+
+--------------------------------------------------------------------
+Thu Mar 24 14:57:07 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#81
+- do not create devicegraph without storage object
+- coding style
+- added missing includes
+- coding style
+- coding style
+
+--------------------------------------------------------------------
+Wed Mar 23 11:28:26 UTC 2016 - wfeldt@opensuse.org
+
+- merge gh#openSUSE/libstorage-ng#80
+- add documentation on parted partition alignment
+- enhance doc according to pr comments
+- added details on alignment
+
+--------------------------------------------------------------------
+Mon Mar 21 14:20:47 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#79
+- removed now unneeded scope operator
+
+--------------------------------------------------------------------
+Thu Mar 17 16:31:46 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#78
+- Disable changelog check
+
+--------------------------------------------------------------------
+Wed Mar 16 16:01:17 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#77
+- added detailed flags for write_graphviz()
+
+--------------------------------------------------------------------
+Wed Mar 16 10:15:07 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#76
+- added missing include (for whatever version travis/jenkins is
+  using)
+
+--------------------------------------------------------------------
+Tue Mar 15 15:48:24 UTC 2016 - opensuse-packaging@opensuse.org
+
+- merge gh#openSUSE/libstorage-ng#75
+- clarify dependencies, how to test
+
+--------------------------------------------------------------------
+Tue Mar 15 15:48:18 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#74
+- detect reducing/extending of devices
+- just keep one sorted vector of devices
+- added function to remove edge
+- added function to remove device
+- use exception macros
+- allow to add and remove spare devices to md
+- added integration tests
+- more descriptive parameter names
+- coding style
+- added comments
+- eliminate temporary variable
+- added some inline documentation
+- reshuffle code
+
+--------------------------------------------------------------------
+Fri Mar 11 16:08:30 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#73
+- added second link in documentation
+- detect faulty devices in MD RAID
+- fixed comment
+
+--------------------------------------------------------------------
+Thu Mar 10 13:21:38 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#72
+- test public interface
+- added testcases
+
+--------------------------------------------------------------------
+Wed Mar 9 16:01:18 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#71
+- added set_range to API
+
+--------------------------------------------------------------------
+Wed Mar 9 15:19:31 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#70
+- added documentation
+- added documentation
+
+--------------------------------------------------------------------
+Tue Mar 8 16:50:56 UTC 2016 - ancor@suse.de
+
+- merge gh#openSUSE/libstorage-ng#69
+- Added integration with Jenkins
+
+--------------------------------------------------------------------
+Tue Mar 8 14:19:49 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#68
+- added document about resizing
+- fixed typo
+
+--------------------------------------------------------------------
+Tue Mar 8 11:34:23 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#67
+- reduce code duplication
+- throw exceptions in error case
+- also generate pictures of devicegraphs
+- renamed function and added comments
+
+--------------------------------------------------------------------
+Mon Mar 7 17:02:46 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#66
+- avoid code duplication
+- added unit test
+
+--------------------------------------------------------------------
+Mon Mar 7 16:16:25 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#65
+- work on tenses for messages
+
+--------------------------------------------------------------------
+Mon Mar 7 12:54:07 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#64
+- avoid header file
+- use new size constants
+- avoid assert
+- use exception macro
+- no need for postfix
+- fixed error handling
+- cache, load and save Resize- and ContentInfo
+
+--------------------------------------------------------------------
+Thu Mar 3 15:15:23 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#63
+- adapted filename to library rename
+- make code reusable
+- coding style
+- init logger
+- provide __str__ for more classes
+- added missing dependency
+- use exception macros
+- added is_probed query function
+- allow to query resize and content information
+
+--------------------------------------------------------------------
+Tue Mar 1 08:10:36 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#62
+- avoid code repetition
+- updated gitignore
+
+--------------------------------------------------------------------
+Mon Feb 29 14:45:43 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#61
+- added Action classes for resize
+
+--------------------------------------------------------------------
+Mon Feb 29 13:17:21 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#60
+- removed unused functions
+- avoid boolean function argument
+
+--------------------------------------------------------------------
+Thu Feb 25 15:13:34 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#59
+- several adoptions to library name change
+
+--------------------------------------------------------------------
+Thu Feb 25 13:24:10 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#58
+- drop major and minor number from BlkDevice
+
+--------------------------------------------------------------------
+Wed Feb 24 21:50:47 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#57
+- rename rpm and library to libstorage-ng
+
+--------------------------------------------------------------------
+Wed Feb 24 15:53:22 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#56
+- drop bindings for legacy interface
+- dropped legacy interface and most/all legacy functions
+- renamed enum
+
+--------------------------------------------------------------------
+Tue Feb 23 15:57:52 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#55
+- added and use LogfileLogger
+
+--------------------------------------------------------------------
+Fri Feb 19 12:36:26 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#54
+- added downcast function in bindings
+
+--------------------------------------------------------------------
+Thu Feb 18 16:02:19 UTC 2016 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#53
+- Expose get_geometry() / set_geometry() to API
+
+--------------------------------------------------------------------
+Thu Feb 18 10:43:43 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#52
+- added actions to handle /etc/mdadm.conf
+- renamed classes
+
+--------------------------------------------------------------------
+Thu Jan 14 14:46:39 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#51
+- initialise member variables
+- replace cmp_lt_number by compare_by_number
+- ignore coverity output directory cov-int
+- fixed assert
+- use proper function
+- use proper functions
+- added check for overflow
+- replace ParseError by ParseException
+- extended testsuite
+
+--------------------------------------------------------------------
+Wed Jan 13 14:27:48 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#50
+- more tweaking for broken ruby packaging
+
+--------------------------------------------------------------------
+Wed Jan 13 13:11:33 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#49
+- make Exception hierarchy available in bindings
+- do not expose exception macros in public API
+
+--------------------------------------------------------------------
+Tue Jan 12 16:16:12 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#48
+- avoid warning with g++ 5.2.1
+
+--------------------------------------------------------------------
+Tue Jan 12 14:00:44 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#47
+- removed redundant ";"
+- added interface functions to query number of partitions
+
+--------------------------------------------------------------------
+Mon Jan 11 17:37:35 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#46
+- support probing of Md using Md
+- fixed function name
+- consistent function/variable name
+
+--------------------------------------------------------------------
+Fri Jan 8 15:43:09 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#45
+- added get_md_parity_name
+- added TODO note
+
+--------------------------------------------------------------------
+Fri Jan 8 12:46:48 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#44
+- added quote for vector<string>
+- moved code to storageitu.py
+- fixed documentation
+- initialise all member variables
+- added basic MD RAID support
+- added checks and unit-test
+- added DEVDIR macro as requested during code review
+- added node about consistent naming
+- use strlen instead of fixed value
+
+--------------------------------------------------------------------
+Tue Jan 5 15:13:31 UTC 2016 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#43
+- define sorting of results
+- use macro
+- shorter code
+- do not use legacy file for AC_INIT
+- remove function identical to base function
+- extended style document
+
+--------------------------------------------------------------------
+Wed Dec 23 11:44:48 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#42
+- remove interim sync actions
+- included suggestions from code-review
+
+--------------------------------------------------------------------
+Tue Dec 22 15:11:53 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#41
+- renamed classes
+- added num_actions()
+
+--------------------------------------------------------------------
+Tue Dec 22 10:53:04 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#40
+- ensure "one definition rule"
+
+--------------------------------------------------------------------
+Mon Dec 21 14:20:16 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#39
+- added region.to_value function
+- added disk.get_possible_partition_table_types()
+- added get_pt_type_name()
+- use new ST_THROW macro
+- call parted with filesystem type depending on partition id
+- do not set numeric partition id on non MSDOS partition tables
+- added more fs-types for parted mkpart call
+- use define
+- better names for partition table types
+
+--------------------------------------------------------------------
+Tue Dec 15 16:47:56 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#38
+- added Device::remove_descendants()
+- moved num_children and num_parents to Impl
+- use new exceptions macro
+
+--------------------------------------------------------------------
+Tue Dec 15 13:09:55 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#37
+- added functions to query partition table type of partition table
+  object
+
+--------------------------------------------------------------------
+Tue Dec 15 11:57:20 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#36
+- added missing include
+- use C++11 underlying_type for correctness
+- define copy constructor and copy assignment for Region
+
+--------------------------------------------------------------------
+Mon Dec 14 15:55:23 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#35
+- fixed function name
+- added TmpDir class (complied with RAII)
+- added Vfat and Ntfs device classes
+- removed ntfs-3g naming workarounds
+- coding style
+- delete copy constructor and assignment operator for Device and
+  Holder
+- use new ST_THROW macro
+
+--------------------------------------------------------------------
+Mon Dec 14 11:06:41 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#34
+- moved test files
+- extended bindings
+- updated test program
+- added missing include
+- added test programs
+- moved test programs
+- added options to example probe program
+- consistent naming
+- avoid casts by using std::function
+- added logic check
+- use traits to avoid undetected typos
+- moved setting compiler flags before AC_PROG_CXX to avoid problems
+  with --coverage
+- more descriptive exceptions
+- moved swig catches statements to own file
+- extended unit-test
+- test documenting exceptions with doxygen
+- use constant
+
+--------------------------------------------------------------------
+Wed Dec 9 14:48:01 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#33
+- added test case
+- added branch coverage example
+- call region.empty
+- coding style
+- moved Exception to Utils
+- added test-cases
+- made text more comprehensible
+- added test-case
+- fixed off-by-one error
+- robuster test-case
+
+--------------------------------------------------------------------
+Tue Dec 8 11:31:16 UTC 2015 - tgoettlicher@suse.de
+
+- merge gh#openSUSE/libstorage-ng#32
+- Add ruby remote probe example
+
+--------------------------------------------------------------------
+Mon Dec 7 10:37:01 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#31
+- added missing DeviceTraits
+- consisting coding style
+- avoid warning with clang++
+- added and use templates is_device/holder_of_type
+
+--------------------------------------------------------------------
+Fri Dec 4 15:26:18 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#30
+- don't generate documentation for legacy interface
+- added some overall documentation
+- documented difference between high- and low-level device graph
+  functions
+
+--------------------------------------------------------------------
+Fri Dec 4 14:06:35 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#29
+- added subgraph and filtered_graph paragraph
+
+--------------------------------------------------------------------
+Thu Dec 3 17:11:24 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#28
+- use fixture
+- added checks for big numbers
+- coding style
+- removed bogus operator
+- removed some asserts now handled via exceptions
+- added block-size to Region class
+- make Partition create functions take region parameter
+
+--------------------------------------------------------------------
+Mon Nov 30 16:20:11 UTC 2015 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#27
+- Prevent crash upon shutdown (object destruction sequence)
+- Added TO DO
+
+--------------------------------------------------------------------
+Mon Nov 30 16:14:31 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#26
+- fixed file list
+
+--------------------------------------------------------------------
+Mon Nov 30 15:46:04 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#25
+- more detailed message
+- added check
+- adapted to api change
+- implemented umount/swapoff actions
+- replaced specifier deprecated in C++11
+- moved Logger to Utils
+- added nullptr checks
+- added traits for Holders
+- work on exception logging
+- exception handling for storage::to_partition
+- updated examples
+
+--------------------------------------------------------------------
+Thu Nov 26 17:02:36 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#24
+- fixed Umount and RemoveFstab actions
+
+--------------------------------------------------------------------
+Thu Nov 26 16:42:16 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#23
+- added functions to convert enums to strings
+
+--------------------------------------------------------------------
+Wed Nov 25 15:29:11 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#22
+- added Filesystem::get_all()
+
+--------------------------------------------------------------------
+Tue Nov 24 16:36:00 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#21
+- added const version
+- steps towards private Devicegraph::Impl graph
+- added convenient functions
+- use checker macro
+- avoid using Devicegraph::Impl.graph member
+
+--------------------------------------------------------------------
+Mon Nov 23 14:15:31 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#20
+- make Actiongraph.graph private
+- added operator[] and fixed some constness
+- added probe mode that write devicegraph
+- rename class to reflect concept
+- make also graph type private
+- added typedefs
+- log destruction
+
+--------------------------------------------------------------------
+Fri Nov 20 11:40:35 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#19
+- use font Arial also for action graph
+
+--------------------------------------------------------------------
+Thu Nov 19 16:31:19 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#18
+- make Actiongraph part of public interface
+
+--------------------------------------------------------------------
+Thu Nov 19 15:26:28 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#17
+- also provide non-const relatives functions
+- added function to remove a list of devices
+- use exception macros
+
+--------------------------------------------------------------------
+Wed Nov 18 09:14:12 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#16
+- use long named option for readability
+
+--------------------------------------------------------------------
+Tue Nov 17 16:38:20 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#15
+- added one more 'udevadm settle' call
+- use a define for udevadm settle
+
+--------------------------------------------------------------------
+Tue Nov 17 14:48:54 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#14
+- added logger control functions to new api
+- allow Logger test function to also check component
+- added documentation
+- do not expose symbol
+- added constructor (just eye candy)
+
+--------------------------------------------------------------------
+Mon Nov 16 16:46:53 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#13
+- added to_device_of_type template function
+- use new to_device_of_type function
+- added testcases
+- detailed exception messages
+- make exceptions take parameters instead of final message
+- remember base filename in exception locations
+
+--------------------------------------------------------------------
+Thu Nov 12 14:29:41 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#12
+- work on exceptions
+
+--------------------------------------------------------------------
+Thu Nov 12 09:03:26 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#11
+- prefix include guards
+
+--------------------------------------------------------------------
+Tue Nov 10 16:55:27 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#10
+- generate bindings before running tests
+
+--------------------------------------------------------------------
+Tue Nov 10 10:03:27 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#9
+- parallel compile and run of tests
+
+--------------------------------------------------------------------
+Tue Nov 10 09:13:49 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#8
+- removed unneeded define
+
+--------------------------------------------------------------------
+Mon Nov 9 15:53:33 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#7
+- set BOOST_TEST_CATCH_SYSTEM_ERRORS=no
+
+--------------------------------------------------------------------
+Mon Nov 9 14:40:07 UTC 2015 - gs@suse.de
+
+- merge gh#openSUSE/libstorage-ng#5
+- Added exception classes
+- added class SystemCmdException and CommandNotFoundException
+- added testsuite helpers
+- added unit tests for SystemCmd class
+- documented CmdParted class
+- improved error reporting with new exception classes don't throw
+  exception for all kinds of parted stderr output
+- improved error reporting for CmdBtrfs, added CmdBtrfsSubvolumes
+  class
+- added gpt fix backup
+- added files common.cc/.h, added test case parse_empty
+- use const string&
+- remove do_probe and probe() from CmdBtrfsSubvolumes
+- use const string&
+- remove common.cc/.h (not needed here), remove systemcmd1.cc (to
+  be adapted first)
+- added test case parse_bad_device_name, parse_no_devices and
+  systemcmd_error
+- test case parse_wiped_disk_good added, better test names applied
+- test cases for ParseException added
+- tests for SystemCmd added - retcode != 0 doesn't work
+- ignore non zero exit code
+- check for boost version >= 1.58
+- add test cases for exceptions
+- add TO DO for test cases parse_gpt_enlarge_good and
+  parse_gpt_fix_backup_good
+
+--------------------------------------------------------------------
+Mon Nov 9 14:20:22 UTC 2015 - shundhammer@suse.de
+
+- merge gh#openSUSE/libstorage-ng#6
+- Added use case document
+- Added pseudo code for suggested API
+- Use partition_table, not disk directly
+- Added multi_boot_pc_with_windows() C++ sample
+- use correct exception macro
+- added comment
+
+--------------------------------------------------------------------
+Thu Oct 22 13:55:53 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#4
+- added rules to style guide
+- added reasons to use C++11
+
+--------------------------------------------------------------------
+Wed Oct 21 13:32:35 UTC 2015 - aschnell@suse.de
+
+- merge gh#openSUSE/libstorage-ng#3
+- updated URLs
+- added requirements and how to run unit test
+
+--------------------------------------------------------------------
+Fri Oct 16 12:28:45 UTC 2015 - aschnell@suse.de
+
+- extended comment
+
+--------------------------------------------------------------------
+Thu Oct 15 15:43:21 UTC 2015 - mvidner@suse.cz
+
+- merge gh#openSUSE/libstorage-ng#2
+- Enable documentation of the storage_legacy namespace.
+- Added brief descriptions to classes.
+
+--------------------------------------------------------------------
+Thu Oct 15 12:14:00 UTC 2015 - mvidner@suse.cz
+
+- merge gh#openSUSE/libstorage-ng#1
+- How to compile
+- How to make a RPM, code documentation.
+
+--------------------------------------------------------------------
+Thu Oct 15 10:40:46 UTC 2015 - aschnell@suse.com
+
+- make code
+
+--------------------------------------------------------------------
+Thu Oct 15 10:35:32 UTC 2015 - aschnell@suse.de
+
+- added design decisions
+
+--------------------------------------------------------------------
+Thu Oct 15 10:35:09 UTC 2015 - aschnell@suse.de
+
+- added heading
+
+--------------------------------------------------------------------
+Thu Oct 15 07:54:57 UTC 2015 - aschnell@suse.de
+
+- moved style guide to docs
+
+--------------------------------------------------------------------
+Tue Oct 6 14:42:18 UTC 2015 - aschnell@suse.com
+
+- added goals
+
+--------------------------------------------------------------------
+Thu Apr 16 09:15:02 UTC 2015 - aschnell@suse.de
+
+- use C++11 to_string
+
+--------------------------------------------------------------------
+Thu Mar 12 09:21:39 UTC 2015 - aschnell@suse.de
+
+- adapted testcase
+
+--------------------------------------------------------------------
+Mon Mar 9 11:32:52 UTC 2015 - aschnell@suse.de
+
+- moved testsuite compare classes to testsuite directory
+
+--------------------------------------------------------------------
+Mon Mar 9 09:16:47 UTC 2015 - aschnell@suse.de
+
+- make output work with older graphviz versions
+
+--------------------------------------------------------------------
+Fri Mar 6 16:58:25 UTC 2015 - aschnell@suse.de
+
+- added testcase
+
+--------------------------------------------------------------------
+Fri Mar 6 16:58:04 UTC 2015 - aschnell@suse.de
+
+- use back_inserter
+
+--------------------------------------------------------------------
+Fri Mar 6 16:57:51 UTC 2015 - aschnell@suse.de
+
+- make errors in actiongraph testsuite readable
+
+--------------------------------------------------------------------
+Thu Mar 5 16:10:27 UTC 2015 - aschnell@suse.de
+
+- improved test message
+
+--------------------------------------------------------------------
+Thu Mar 5 15:07:17 UTC 2015 - aschnell@suse.de
+
+- moved statement
+
+--------------------------------------------------------------------
+Thu Mar 5 11:44:39 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Mar 4 15:41:48 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Mar 4 15:41:29 UTC 2015 - aschnell@suse.de
+
+- throw exception instead of returning nullptr
+
+--------------------------------------------------------------------
+Wed Mar 4 14:19:56 UTC 2015 - aschnell@suse.de
+
+- renamed class to avoid likely conflict with keyword
+
+--------------------------------------------------------------------
+Wed Mar 4 09:44:49 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Tue Mar 3 16:18:41 UTC 2015 - aschnell@suse.de
+
+- ported interface additions from fate#318392
+
+--------------------------------------------------------------------
+Tue Mar 3 16:17:52 UTC 2015 - aschnell@suse.de
+
+- ported interface additions from fate#318392
+
+--------------------------------------------------------------------
+Mon Feb 23 13:34:35 UTC 2015 - aschnell@suse.de
+
+- build on Fedora 21
+
+--------------------------------------------------------------------
+Mon Feb 23 10:24:35 UTC 2015 - aschnell@suse.de
+
+- sync version numbers with libstorage
+
+--------------------------------------------------------------------
+Fri Feb 20 15:04:03 UTC 2015 - aschnell@suse.de
+
+- mark functions as override
+
+--------------------------------------------------------------------
+Thu Feb 19 15:47:15 UTC 2015 - aschnell@suse.de
+
+- added per action callbacks
+
+--------------------------------------------------------------------
+Mon Feb 9 15:16:30 UTC 2015 - aschnell@suse.de
+
+- adapted enum names
+
+--------------------------------------------------------------------
+Fri Feb 6 14:29:44 UTC 2015 - aschnell@suse.de
+
+- first setting first and last flag on actions
+
+--------------------------------------------------------------------
+Fri Feb 6 14:28:43 UTC 2015 - aschnell@suse.de
+
+- save detailed actiongraph
+
+--------------------------------------------------------------------
+Fri Feb 6 11:50:55 UTC 2015 - aschnell@suse.de
+
+- added commit error callback
+
+--------------------------------------------------------------------
+Fri Feb 6 10:56:51 UTC 2015 - aschnell@suse.de
+
+- display name of partition id in message
+
+--------------------------------------------------------------------
+Fri Feb 6 10:26:06 UTC 2015 - aschnell@suse.de
+
+- fstab actions depend on the root filesystem mounted
+
+--------------------------------------------------------------------
+Fri Feb 6 09:49:39 UTC 2015 - aschnell@suse.de
+
+- place detailed node info in extra line
+
+--------------------------------------------------------------------
+Thu Feb 5 16:54:59 UTC 2015 - aschnell@suse.de
+
+- save libstorage version in output files
+
+--------------------------------------------------------------------
+Thu Feb 5 14:05:18 UTC 2015 - aschnell@suse.de
+
+- added namespace
+
+--------------------------------------------------------------------
+Thu Feb 5 13:57:35 UTC 2015 - aschnell@suse.de
+
+- allow to show details in graphviz output
+
+--------------------------------------------------------------------
+Thu Feb 5 13:11:55 UTC 2015 - aschnell@suse.de
+
+- added compare example which reads devicegraphs
+
+--------------------------------------------------------------------
+Thu Feb 5 13:09:21 UTC 2015 - aschnell@suse.de
+
+- added check for nullptr
+
+--------------------------------------------------------------------
+Thu Feb 5 13:09:03 UTC 2015 - aschnell@suse.de
+
+- don't save empty values
+
+--------------------------------------------------------------------
+Thu Feb 5 13:08:42 UTC 2015 - aschnell@suse.de
+
+- a devicegraph might have no devices or holders
+
+--------------------------------------------------------------------
+Thu Feb 5 11:33:52 UTC 2015 - aschnell@suse.de
+
+- work on strongly typed enums with swig 3.0.0
+
+--------------------------------------------------------------------
+Wed Feb 4 17:42:58 UTC 2015 - aschnell@suse.de
+
+- work on compatibility callbacks
+
+--------------------------------------------------------------------
+Wed Feb 4 16:44:35 UTC 2015 - aschnell@suse.de
+
+- skip nop action
+
+--------------------------------------------------------------------
+Wed Feb 4 16:09:33 UTC 2015 - aschnell@suse.de
+
+- rename devicegraph
+
+--------------------------------------------------------------------
+Wed Feb 4 15:42:40 UTC 2015 - aschnell@suse.de
+
+- install legacy header
+
+--------------------------------------------------------------------
+Wed Feb 4 15:42:27 UTC 2015 - aschnell@suse.de
+
+- added namespace
+
+--------------------------------------------------------------------
+Wed Feb 4 15:23:39 UTC 2015 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Wed Feb 4 15:22:07 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Feb 4 15:21:43 UTC 2015 - aschnell@suse.de
+
+- fixed efi detection
+
+--------------------------------------------------------------------
+Wed Feb 4 15:21:19 UTC 2015 - aschnell@suse.de
+
+- quote device
+
+--------------------------------------------------------------------
+Wed Feb 4 14:45:50 UTC 2015 - aschnell@suse.de
+
+- implemented real get_default_partition_table_type function
+
+--------------------------------------------------------------------
+Wed Feb 4 14:43:31 UTC 2015 - aschnell@suse.de
+
+- add storage backref to Devicegraph
+
+--------------------------------------------------------------------
+Wed Feb 4 14:31:59 UTC 2015 - aschnell@suse.de
+
+- install perl5 bindings into versioned directory
+
+--------------------------------------------------------------------
+Wed Feb 4 13:32:46 UTC 2015 - aschnell@suse.de
+
+- allow access to Arch and set some values
+
+--------------------------------------------------------------------
+Wed Feb 4 11:11:40 UTC 2015 - aschnell@suse.de
+
+- save architecture in Storage object
+
+--------------------------------------------------------------------
+Tue Feb 3 15:48:20 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Tue Feb 3 15:47:21 UTC 2015 - aschnell@suse.de
+
+- added dummy functions for default partition table type
+
+--------------------------------------------------------------------
+Tue Feb 3 15:26:13 UTC 2015 - aschnell@suse.de
+
+- implemented create for msdos and gpt
+
+--------------------------------------------------------------------
+Tue Feb 3 14:18:26 UTC 2015 - aschnell@suse.de
+
+- generate bindings for filesystems classes
+
+--------------------------------------------------------------------
+Tue Feb 3 14:12:11 UTC 2015 - aschnell@suse.de
+
+- added btrfs (without multidevice) and xfs
+
+--------------------------------------------------------------------
+Tue Feb 3 13:19:03 UTC 2015 - aschnell@suse.de
+
+- use C++11
+
+--------------------------------------------------------------------
+Tue Feb 3 13:17:52 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Tue Feb 3 10:13:53 UTC 2015 - aschnell@suse.de
+
+- added check function to Storage
+
+--------------------------------------------------------------------
+Tue Feb 3 10:10:34 UTC 2015 - aschnell@suse.de
+
+- delegate checking for modify actions
+
+--------------------------------------------------------------------
+Mon Feb 2 16:42:42 UTC 2015 - aschnell@suse.de
+
+- added convert functions
+
+--------------------------------------------------------------------
+Mon Feb 2 16:27:39 UTC 2015 - aschnell@suse.de
+
+- mostly reverted a previously patch
+
+--------------------------------------------------------------------
+Mon Feb 2 15:28:52 UTC 2015 - aschnell@suse.de
+
+- added type query functions
+
+--------------------------------------------------------------------
+Mon Feb 2 14:28:30 UTC 2015 - aschnell@suse.de
+
+- make functions creating partitions also take region
+
+--------------------------------------------------------------------
+Mon Feb 2 13:48:35 UTC 2015 - aschnell@suse.de
+
+- implemented calculating unused partition slots
+
+--------------------------------------------------------------------
+Mon Feb 2 10:39:50 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Mon Feb 2 10:29:21 UTC 2015 - aschnell@suse.de
+
+- added partition type parameter to create partition functions
+
+--------------------------------------------------------------------
+Fri Jan 30 16:30:18 UTC 2015 - aschnell@suse.de
+
+- added constructor taking all values
+
+--------------------------------------------------------------------
+Fri Jan 30 13:09:03 UTC 2015 - aschnell@suse.de
+
+- removed functions from interface
+
+--------------------------------------------------------------------
+Fri Jan 30 13:07:13 UTC 2015 - aschnell@suse.de
+
+- added function to count partitions of a specific type
+
+--------------------------------------------------------------------
+Fri Jan 30 11:20:57 UTC 2015 - aschnell@suse.de
+
+- more verbose error message
+
+--------------------------------------------------------------------
+Fri Jan 30 11:20:19 UTC 2015 - aschnell@suse.de
+
+- handle range in Disk
+
+--------------------------------------------------------------------
+Fri Jan 30 09:11:51 UTC 2015 - aschnell@suse.de
+
+- catch exception
+
+--------------------------------------------------------------------
+Thu Jan 29 16:32:35 UTC 2015 - aschnell@suse.de
+
+- allow to create ext4 on disk (without partition)
+
+--------------------------------------------------------------------
+Thu Jan 29 15:22:55 UTC 2015 - aschnell@suse.de
+
+- save files in YaST2 dir
+
+--------------------------------------------------------------------
+Thu Jan 29 11:56:05 UTC 2015 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Thu Jan 29 10:47:09 UTC 2015 - aschnell@suse.de
+
+- better error handling
+
+--------------------------------------------------------------------
+Thu Jan 29 10:42:29 UTC 2015 - aschnell@suse.de
+
+- log beginning of commit action
+
+--------------------------------------------------------------------
+Thu Jan 29 10:00:16 UTC 2015 - aschnell@suse.de
+
+- wait for device before mkfs
+
+--------------------------------------------------------------------
+Thu Jan 29 09:56:06 UTC 2015 - aschnell@suse.de
+
+- handle rootprefix when writing fstab
+
+--------------------------------------------------------------------
+Wed Jan 28 17:41:02 UTC 2015 - aschnell@suse.de
+
+- set size when setting region
+
+--------------------------------------------------------------------
+Wed Jan 28 17:38:54 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Jan 28 14:31:43 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Jan 28 11:09:29 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Wed Jan 28 09:55:03 UTC 2015 - aschnell@suse.de
+
+- extended compatibility layer
+
+--------------------------------------------------------------------
+Wed Jan 28 09:46:52 UTC 2015 - aschnell@suse.de
+
+- extended compatibility layer
+
+--------------------------------------------------------------------
+Wed Jan 28 09:06:22 UTC 2015 - aschnell@suse.de
+
+- improved messages
+
+--------------------------------------------------------------------
+Tue Jan 27 17:42:23 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Tue Jan 27 17:37:06 UTC 2015 - aschnell@suse.de
+
+- added mkfs_options and tune_options
+
+--------------------------------------------------------------------
+Tue Jan 27 14:27:31 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Tue Jan 27 14:23:58 UTC 2015 - aschnell@suse.de
+
+- use helper functions
+
+--------------------------------------------------------------------
+Tue Jan 27 14:07:32 UTC 2015 - aschnell@suse.de
+
+- fixed dependency generation
+
+--------------------------------------------------------------------
+Tue Jan 27 13:03:46 UTC 2015 - aschnell@suse.de
+
+- work on compatibility layer
+
+--------------------------------------------------------------------
+Mon Jan 26 14:15:25 UTC 2015 - aschnell@suse.de
+
+- handle mount-by when writing fstab
+
+--------------------------------------------------------------------
+Mon Jan 26 14:04:05 UTC 2015 - aschnell@suse.de
+
+- fixed variable order
+
+--------------------------------------------------------------------
+Mon Jan 26 13:27:35 UTC 2015 - aschnell@suse.de
+
+- extended compatibility layer
+
+--------------------------------------------------------------------
+Mon Jan 26 13:24:26 UTC 2015 - aschnell@suse.de
+
+- added Storage reference to Actiongraph
+
+--------------------------------------------------------------------
+Mon Jan 26 12:56:27 UTC 2015 - aschnell@suse.de
+
+- added functions for rootprefix
+
+--------------------------------------------------------------------
+Fri Jan 23 14:48:52 UTC 2015 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Fri Jan 23 14:45:15 UTC 2015 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Fri Jan 23 14:34:08 UTC 2015 - aschnell@suse.de
+
+- create mountpoint directory
+
+--------------------------------------------------------------------
+Fri Jan 23 13:51:13 UTC 2015 - aschnell@suse.de
+
+- write fstab entry
+
+--------------------------------------------------------------------
+Fri Jan 23 13:50:52 UTC 2015 - aschnell@suse.de
+
+- simpler syntax
+
+--------------------------------------------------------------------
+Fri Jan 23 13:50:31 UTC 2015 - aschnell@suse.de
+
+- treat empty fstab opts as "defaults"
+
+--------------------------------------------------------------------
+Fri Jan 23 13:49:13 UTC 2015 - aschnell@suse.de
+
+- fixed typo
+
+--------------------------------------------------------------------
+Fri Jan 23 13:16:38 UTC 2015 - aschnell@suse.de
+
+- improved commit messages
+
+--------------------------------------------------------------------
+Fri Jan 23 11:47:21 UTC 2015 - aschnell@suse.de
+
+- extended tests
+
+--------------------------------------------------------------------
+Fri Jan 23 11:45:26 UTC 2015 - aschnell@suse.de
+
+- moved code from Actions to Devices and added Actions
+
+--------------------------------------------------------------------
+Thu Jan 22 14:44:05 UTC 2015 - aschnell@suse.de
+
+- moved code
+
+--------------------------------------------------------------------
+Thu Jan 22 13:29:19 UTC 2015 - aschnell@suse.de
+
+- added action to format swap
+
+--------------------------------------------------------------------
+Thu Jan 22 11:07:23 UTC 2015 - aschnell@suse.de
+
+- updated testsuite data
+
+--------------------------------------------------------------------
+Thu Jan 22 11:07:08 UTC 2015 - aschnell@suse.de
+
+- added rotational/ssd to Disk
+
+--------------------------------------------------------------------
+Thu Jan 22 11:06:47 UTC 2015 - aschnell@suse.de
+
+- added sysfs-name and -path to BlkDevice
+
+--------------------------------------------------------------------
+Thu Jan 22 10:56:47 UTC 2015 - aschnell@suse.de
+
+- added script to demonstrate remote probing
+
+--------------------------------------------------------------------
+Thu Jan 22 08:52:24 UTC 2015 - aschnell@suse.de
+
+- allow to provide own functions for remote probing
+
+--------------------------------------------------------------------
+Wed Jan 21 09:50:44 UTC 2015 - aschnell@suse.de
+
+- implemented commit callbacks
+
+--------------------------------------------------------------------
+Mon Jan 19 15:54:49 UTC 2015 - aschnell@suse.de
+
+- removed unused Actiongraph declaration
+
+--------------------------------------------------------------------
+Mon Jan 19 14:43:43 UTC 2015 - aschnell@suse.de
+
+- provide getPresentDisks
+
+--------------------------------------------------------------------
+Mon Jan 19 13:24:28 UTC 2015 - aschnell@suse.de
+
+- use C++11 chrono::steady_clock
+
+--------------------------------------------------------------------
+Fri Jan 16 21:28:42 UTC 2015 - aschnell@suse.de
+
+- added simple compatibility for saveDeviceGraph
+
+--------------------------------------------------------------------
+Fri Jan 16 14:58:32 UTC 2015 - aschnell@suse.de
+
+- allow access to new Storage from old StorageInterface
+
+--------------------------------------------------------------------
+Fri Jan 16 13:46:27 UTC 2015 - aschnell@suse.de
+
+- fixed namespace
+
+--------------------------------------------------------------------
+Fri Jan 16 11:26:20 UTC 2015 - aschnell@suse.de
+
+- fixed use of PYTHON_INCLUDES
+
+--------------------------------------------------------------------
+Fri Jan 16 11:26:06 UTC 2015 - aschnell@suse.de
+
+- query perl include paths from perl
+
+--------------------------------------------------------------------
+Fri Jan 16 08:58:49 UTC 2015 - aschnell@suse.de
+
+- read mount-by type from fstab
+
+--------------------------------------------------------------------
+Thu Jan 15 15:52:27 UTC 2015 - aschnell@suse.de
+
+- added convenient functions
+
+--------------------------------------------------------------------
+Thu Jan 15 15:24:43 UTC 2015 - aschnell@suse.de
+
+- install StorageVersion.h
+
+--------------------------------------------------------------------
+Thu Jan 15 14:42:06 UTC 2015 - aschnell@suse.de
+
+- install perl files to vender_site
+
+--------------------------------------------------------------------
+Thu Jan 15 14:00:56 UTC 2015 - aschnell@suse.de
+
+- also use data from /etc/fstab for filesystem probing
+
+--------------------------------------------------------------------
+Thu Jan 15 11:42:16 UTC 2015 - aschnell@suse.de
+
+- fixed namespace
+
+--------------------------------------------------------------------
+Thu Jan 15 09:49:45 UTC 2015 - aschnell@suse.de
+
+- detect mountpoint from /proc/mounts
+
+--------------------------------------------------------------------
+Wed Jan 14 17:28:52 UTC 2015 - aschnell@suse.de
+
+- renamed functions
+
+--------------------------------------------------------------------
+Wed Jan 14 17:09:31 UTC 2015 - aschnell@suse.de
+
+- use udevadm to query udev device links
+
+--------------------------------------------------------------------
+Wed Jan 14 14:16:45 UTC 2015 - aschnell@suse.de
+
+- extended compaitbility code
+
+--------------------------------------------------------------------
+Wed Jan 14 11:35:24 UTC 2015 - aschnell@suse.de
+
+- some rudimentary probing for ext4 and swap
+
+--------------------------------------------------------------------
+Wed Jan 14 11:30:46 UTC 2015 - aschnell@suse.de
+
+- load more data
+
+--------------------------------------------------------------------
+Wed Jan 14 11:08:18 UTC 2015 - aschnell@suse.de
+
+- moved code
+
+--------------------------------------------------------------------
+Wed Jan 14 11:07:50 UTC 2015 - aschnell@suse.de
+
+- print more data
+
+--------------------------------------------------------------------
+Wed Jan 14 11:07:26 UTC 2015 - aschnell@suse.de
+
+- added function to query filesystem type
+
+--------------------------------------------------------------------
+Wed Jan 14 11:06:55 UTC 2015 - aschnell@suse.de
+
+- removed function from public interface
+
+--------------------------------------------------------------------
+Tue Jan 13 17:23:05 UTC 2015 - aschnell@suse.de
+
+- added todo
+
+--------------------------------------------------------------------
+Tue Jan 13 16:34:27 UTC 2015 - aschnell@suse.de
+
+- removed unused code
+
+--------------------------------------------------------------------
+Tue Jan 13 16:34:16 UTC 2015 - aschnell@suse.de
+
+- moved file
+
+--------------------------------------------------------------------
+Tue Jan 13 16:24:45 UTC 2015 - aschnell@suse.de
+
+- cleanup
+
+--------------------------------------------------------------------
+Tue Jan 13 15:40:26 UTC 2015 - aschnell@suse.de
+
+- handle udev path and id in compatibility layer
+
+--------------------------------------------------------------------
+Tue Jan 13 15:24:59 UTC 2015 - aschnell@suse.de
+
+- handle udev path and ids in BlkDevice
+
+--------------------------------------------------------------------
+Tue Jan 13 15:24:32 UTC 2015 - aschnell@suse.de
+
+- use external command to query links
+
+--------------------------------------------------------------------
+Tue Jan 13 13:35:32 UTC 2015 - aschnell@suse.de
+
+- formatting
+
+--------------------------------------------------------------------
+Tue Jan 13 11:07:20 UTC 2015 - aschnell@suse.de
+
+- moved get_classname and print to Impl
+
+--------------------------------------------------------------------
+Tue Jan 13 10:03:43 UTC 2015 - aschnell@suse.de
+
+- improved log_diff output
+
+--------------------------------------------------------------------
+Mon Jan 12 16:44:50 UTC 2015 - aschnell@suse.de
+
+- set verbose for 'make check'
+
+--------------------------------------------------------------------
+Mon Jan 12 15:38:18 UTC 2015 - aschnell@suse.de
+
+- handle gpt enlarge during probing
+
+--------------------------------------------------------------------
+Mon Jan 12 15:35:00 UTC 2015 - aschnell@suse.de
+
+- fixed gpt enlarge detection
+
+--------------------------------------------------------------------
+Mon Jan 12 15:34:28 UTC 2015 - aschnell@suse.de
+
+- also record stderr for mockup
+
+--------------------------------------------------------------------
+Mon Jan 12 14:43:26 UTC 2015 - aschnell@suse.de
+
+- implemented comparing device graphs
+
+--------------------------------------------------------------------
+Mon Jan 12 14:31:09 UTC 2015 - aschnell@suse.de
+
+- removed unused code
+
+--------------------------------------------------------------------
+Mon Jan 12 14:11:30 UTC 2015 - aschnell@suse.de
+
+- clear devicegraph in load
+
+--------------------------------------------------------------------
+Mon Jan 12 14:10:54 UTC 2015 - aschnell@suse.de
+
+- initialise values
+
+--------------------------------------------------------------------
+Mon Jan 12 13:53:57 UTC 2015 - aschnell@suse.de
+
+- removed file
+
+--------------------------------------------------------------------
+Mon Jan 12 10:42:42 UTC 2015 - aschnell@suse.de
+
+- added function to get holder sid pairs
+
+--------------------------------------------------------------------
+Fri Jan 9 13:40:08 UTC 2015 - aschnell@suse.de
+
+- added probe testcase (unfinished)
+
+--------------------------------------------------------------------
+Fri Jan 9 13:39:31 UTC 2015 - aschnell@suse.de
+
+- use external command
+
+--------------------------------------------------------------------
+Fri Jan 9 13:38:28 UTC 2015 - aschnell@suse.de
+
+- added clear function
+
+--------------------------------------------------------------------
+Fri Jan 9 11:26:58 UTC 2015 - aschnell@suse.de
+
+- added testsuite
+
+--------------------------------------------------------------------
+Fri Jan 9 11:26:46 UTC 2015 - aschnell@suse.de
+
+- use external command
+
+--------------------------------------------------------------------
+Fri Jan 9 11:26:25 UTC 2015 - aschnell@suse.de
+
+- pass complete object
+
+--------------------------------------------------------------------
+Fri Jan 9 09:57:07 UTC 2015 - aschnell@suse.de
+
+- allow to set mockup filename
+
+--------------------------------------------------------------------
+Thu Jan 8 16:59:54 UTC 2015 - aschnell@suse.de
+
+- added probe modes to read and write mockup
+
+--------------------------------------------------------------------
+Thu Jan 8 16:41:54 UTC 2015 - aschnell@suse.de
+
+- removed obsolete code (env.var. does not exist anymore)
+
+--------------------------------------------------------------------
+Thu Jan 8 16:38:33 UTC 2015 - aschnell@suse.de
+
+- implemented load and save in Mockup
+
+--------------------------------------------------------------------
+Thu Jan 8 13:25:40 UTC 2015 - aschnell@suse.de
+
+- added testcases for EtcFstab
+
+--------------------------------------------------------------------
+Thu Jan 8 10:23:40 UTC 2015 - aschnell@suse.de
+
+- added mockup mode
+
+--------------------------------------------------------------------
+Wed Jan 7 16:03:52 UTC 2015 - aschnell@suse.de
+
+- moved file
+
+--------------------------------------------------------------------
+Wed Jan 7 16:02:36 UTC 2015 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Jan 7 15:35:41 UTC 2015 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Jan 7 15:16:07 UTC 2015 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Jan 7 14:39:48 UTC 2015 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Jan 7 14:25:56 UTC 2015 - aschnell@suse.de
+
+- moved testsuite for SystemInfo to subdir
+
+--------------------------------------------------------------------
+Wed Jan 7 13:41:21 UTC 2015 - aschnell@suse.de
+
+- added testcase
+
+--------------------------------------------------------------------
+Wed Jan 7 13:25:43 UTC 2015 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Jan 7 11:52:18 UTC 2015 - aschnell@suse.de
+
+- allow mockup for SystemCmd and AsciiFile
+
+--------------------------------------------------------------------
+Mon Jan 5 10:36:51 UTC 2015 - aschnell@suse.de
+
+- added test
+
+--------------------------------------------------------------------
+Mon Jan 5 10:18:53 UTC 2015 - aschnell@suse.de
+
+- use variable
+
+--------------------------------------------------------------------
+Fri Jan 2 14:58:51 UTC 2015 - aschnell@suse.de
+
+- added runtime checks
+
+--------------------------------------------------------------------
+Fri Jan 2 14:45:36 UTC 2015 - aschnell@suse.de
+
+- removed old stuff
+
+--------------------------------------------------------------------
+Fri Jan 2 11:58:02 UTC 2015 - aschnell@suse.de
+
+- added lvm classes
+
+--------------------------------------------------------------------
+Fri Jan 2 11:34:08 UTC 2015 - aschnell@suse.de
+
+- added spec file and utilities
+
+--------------------------------------------------------------------
+Fri Jan 2 11:30:11 UTC 2015 - aschnell@suse.de
+
+- split c and c++ flags
+
+--------------------------------------------------------------------
+Fri Jan 2 11:24:27 UTC 2015 - aschnell@suse.de
+
+- better cleanup
+
+--------------------------------------------------------------------
+Fri Jan 2 11:08:44 UTC 2015 - aschnell@suse.de
+
+- added translations (which are needed for testsuite)
+
+--------------------------------------------------------------------
+Fri Jan 2 11:03:41 UTC 2015 - aschnell@suse.de
+
+- added sysconfig fillup
+
+--------------------------------------------------------------------
+Fri Jan 2 10:58:40 UTC 2015 - aschnell@suse.de
+
+- integrate doxygen
+
+--------------------------------------------------------------------
+Fri Jan 2 09:52:46 UTC 2015 - aschnell@suse.de
+
+- use single location for dependencies
+
+--------------------------------------------------------------------
+Fri Jan 2 09:28:26 UTC 2015 - aschnell@suse.de
+
+- install integration-tests
+
+--------------------------------------------------------------------
+Fri Jan 2 09:18:59 UTC 2015 - aschnell@suse.de
+
+- avoid compiler warnings
+
+--------------------------------------------------------------------
+Fri Dec 26 20:32:59 UTC 2014 - aschnell@suse.de
+
+- ignore generated file
+
+--------------------------------------------------------------------
+Fri Dec 26 17:57:23 UTC 2014 - aschnell@suse.de
+
+- ignore generated file
+
+--------------------------------------------------------------------
+Fri Dec 26 17:57:04 UTC 2014 - aschnell@suse.de
+
+- find local swig bindings
+
+--------------------------------------------------------------------
+Fri Dec 26 11:25:12 UTC 2014 - aschnell@suse.de
+
+- generate file
+
+--------------------------------------------------------------------
+Fri Dec 26 11:23:50 UTC 2014 - aschnell@suse.de
+
+- added source files
+
+--------------------------------------------------------------------
+Fri Dec 26 11:23:26 UTC 2014 - aschnell@suse.de
+
+- added subdir
+
+--------------------------------------------------------------------
+Fri Dec 26 11:22:48 UTC 2014 - aschnell@suse.de
+
+- package test xml file
+
+--------------------------------------------------------------------
+Fri Dec 26 11:22:26 UTC 2014 - aschnell@suse.de
+
+- do not include non-existing file
+
+--------------------------------------------------------------------
+Fri Dec 26 11:21:55 UTC 2014 - aschnell@suse.de
+
+- added missing includes
+
+--------------------------------------------------------------------
+Fri Dec 26 11:21:28 UTC 2014 - aschnell@suse.de
+
+- package test scripts
+
+--------------------------------------------------------------------
+Fri Dec 26 11:20:37 UTC 2014 - aschnell@suse.de
+
+- moved file, generate file
+
+--------------------------------------------------------------------
+Tue Dec 23 09:25:37 UTC 2014 - aschnell@suse.de
+
+- added logging of environment
+
+--------------------------------------------------------------------
+Tue Dec 23 09:25:06 UTC 2014 - aschnell@suse.de
+
+- always create a "probed" devicegraph, even if empty
+
+--------------------------------------------------------------------
+Mon Dec 22 15:56:30 UTC 2014 - aschnell@suse.de
+
+- perl like function name
+
+--------------------------------------------------------------------
+Mon Dec 22 15:06:02 UTC 2014 - aschnell@suse.de
+
+- provide sformat also for plain string
+
+--------------------------------------------------------------------
+Mon Dec 22 14:24:14 UTC 2014 - aschnell@suse.de
+
+- namespace cleanup
+
+--------------------------------------------------------------------
+Mon Dec 22 13:58:15 UTC 2014 - aschnell@suse.de
+
+- namespace cleanup
+
+--------------------------------------------------------------------
+Mon Dec 22 12:02:47 UTC 2014 - aschnell@suse.de
+
+- log probed devicegraph
+
+--------------------------------------------------------------------
+Mon Dec 22 10:28:19 UTC 2014 - aschnell@suse.de
+
+- first integration tests
+
+--------------------------------------------------------------------
+Thu Dec 18 17:42:49 UTC 2014 - aschnell@suse.de
+
+- ignore operator<<
+
+--------------------------------------------------------------------
+Thu Dec 18 17:42:38 UTC 2014 - aschnell@suse.de
+
+- include and namespace fixes
+
+--------------------------------------------------------------------
+Wed Dec 17 12:01:47 UTC 2014 - aschnell@suse.de
+
+- report disk label type
+
+--------------------------------------------------------------------
+Wed Dec 17 11:39:50 UTC 2014 - aschnell@suse.de
+
+- fixed examples (still not all working)
+
+--------------------------------------------------------------------
+Wed Dec 17 11:30:21 UTC 2014 - aschnell@suse.de
+
+- make Region usable for interface
+
+--------------------------------------------------------------------
+Wed Dec 17 09:35:13 UTC 2014 - aschnell@suse.de
+
+- work on providing legacy interface and bindings
+
+--------------------------------------------------------------------
+Tue Dec 16 17:51:24 UTC 2014 - aschnell@suse.de
+
+- provide legacy functions
+
+--------------------------------------------------------------------
+Tue Dec 16 17:42:34 UTC 2014 - aschnell@suse.de
+
+- provide more getters and setters
+
+--------------------------------------------------------------------
+Mon Dec 15 16:19:32 UTC 2014 - aschnell@suse.de
+
+- avoid name conflict in swig generated target languages
+
+--------------------------------------------------------------------
+Mon Dec 15 16:10:56 UTC 2014 - aschnell@suse.de
+
+- fix includes
+
+--------------------------------------------------------------------
+Mon Dec 15 13:34:46 UTC 2014 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Fri Dec 12 08:27:31 UTC 2014 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Thu Dec 11 12:58:32 UTC 2014 - aschnell@suse.de
+
+- addes testcases
+
+--------------------------------------------------------------------
+Thu Dec 11 12:04:35 UTC 2014 - aschnell@suse.de
+
+- fixed compilation
+
+--------------------------------------------------------------------
+Thu Dec 11 12:02:43 UTC 2014 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Thu Dec 11 11:26:46 UTC 2014 - aschnell@suse.de
+
+- don't crash if no logger was setup
+
+--------------------------------------------------------------------
+Thu Dec 11 09:58:18 UTC 2014 - aschnell@suse.de
+
+- work on probing (design still unsatisfied)
+
+--------------------------------------------------------------------
+Wed Dec 10 17:54:13 UTC 2014 - aschnell@suse.de
+
+- updated gitignore
+
+--------------------------------------------------------------------
+Wed Dec 10 17:39:25 UTC 2014 - aschnell@suse.de
+
+- added include
+
+--------------------------------------------------------------------
+Wed Dec 10 17:38:48 UTC 2014 - aschnell@suse.de
+
+- removed generated file
+
+--------------------------------------------------------------------
+Wed Dec 10 17:37:25 UTC 2014 - aschnell@suse.de
+
+- added names for enum
+
+--------------------------------------------------------------------
+Wed Dec 10 17:34:46 UTC 2014 - aschnell@suse.de
+
+- added function to setup logger
+
+--------------------------------------------------------------------
+Wed Dec 10 17:34:20 UTC 2014 - aschnell@suse.de
+
+- fixed sformat string
+
+--------------------------------------------------------------------
+Wed Dec 10 17:34:08 UTC 2014 - aschnell@suse.de
+
+- added assert
+
+--------------------------------------------------------------------
+Wed Dec 10 17:27:26 UTC 2014 - aschnell@suse.de
+
+- added testcases
+
+--------------------------------------------------------------------
+Wed Dec 10 16:51:58 UTC 2014 - aschnell@suse.de
+
+- cleanup
+
+--------------------------------------------------------------------
+Wed Dec 10 14:11:26 UTC 2014 - aschnell@suse.de
+
+- save label as enum instead of string
+
+--------------------------------------------------------------------
+Wed Dec 10 13:40:13 UTC 2014 - aschnell@suse.de
+
+- added functions child and parent
+
+--------------------------------------------------------------------
+Wed Dec 10 13:18:46 UTC 2014 - aschnell@suse.de
+
+- save proved devicegraph
+
+--------------------------------------------------------------------
+Wed Dec 10 13:17:36 UTC 2014 - aschnell@suse.de
+
+- fix for strongly typed enums
+
+--------------------------------------------------------------------
+Wed Dec 10 13:16:58 UTC 2014 - aschnell@suse.de
+
+- added check
+
+--------------------------------------------------------------------
+Wed Dec 10 10:30:23 UTC 2014 - aschnell@suse.de
+
+- added Msdos device object
+
+--------------------------------------------------------------------
+Wed Dec 10 08:28:18 UTC 2014 - aschnell@suse.de
+
+- coding style
+
+--------------------------------------------------------------------
+Wed Dec 10 08:18:48 UTC 2014 - aschnell@suse.de
+
+- cleanup
+
+--------------------------------------------------------------------
+Tue Dec 9 17:39:37 UTC 2014 - aschnell@suse.de
+
+- copied SystemInfo and some utils from old libstorage
+
+--------------------------------------------------------------------
+Tue Dec 9 14:31:16 UTC 2014 - aschnell@suse.de
+
+- reformatted
+
+--------------------------------------------------------------------
+Tue Dec 9 14:23:18 UTC 2014 - aschnell@suse.de
+
+- use different namespace to avoid conflicts with old libstorage
+
+--------------------------------------------------------------------
+Tue Dec 9 09:29:18 UTC 2014 - aschnell@suse.de
+
+- work on style and bindings
+
+--------------------------------------------------------------------
+Mon Dec 8 13:42:37 UTC 2014 - aschnell@suse.de
+
+- added testcase
+
+--------------------------------------------------------------------
+Mon Dec 8 13:12:22 UTC 2014 - aschnell@suse.de
+
+- work on startup
+
+--------------------------------------------------------------------
+Mon Dec 8 10:20:26 UTC 2014 - aschnell@suse.de
+
+- cleanup
+
+--------------------------------------------------------------------
+Mon Dec 8 09:41:53 UTC 2014 - aschnell@suse.de
+
+- fixed order
+
+--------------------------------------------------------------------
+Mon Dec 8 09:30:06 UTC 2014 - aschnell@suse.de
+
+- work on bindings
+
+--------------------------------------------------------------------
+Fri Dec 5 15:56:45 UTC 2014 - aschnell@suse.de
+
+- work on testsuites
+
+--------------------------------------------------------------------
+Fri Dec 5 15:39:02 UTC 2014 - aschnell@suse.de
+
+- added testcase for perl bindings
+
+--------------------------------------------------------------------
+Fri Dec 5 15:38:47 UTC 2014 - aschnell@suse.de
+
+- use strict in perl examples
+
+--------------------------------------------------------------------
+Fri Dec 5 15:38:32 UTC 2014 - aschnell@suse.de
+
+- renamed testcase
+
+--------------------------------------------------------------------
+Fri Dec 5 13:57:40 UTC 2014 - aschnell@suse.de
+
+- renamed cast functions and use autorename for ruby
+
+--------------------------------------------------------------------
+Fri Dec 5 10:55:16 UTC 2014 - aschnell@suse.de
+
+- work on bindings
+
+--------------------------------------------------------------------
+Fri Dec 5 10:51:14 UTC 2014 - aschnell@suse.de
+
+- work on bindings
+
+--------------------------------------------------------------------
+Fri Dec 5 09:53:57 UTC 2014 - aschnell@suse.de
+
+- added tiny testsuite for ruby bindings
+
+--------------------------------------------------------------------
+Fri Dec 5 09:29:17 UTC 2014 - aschnell@suse.de
+
+- work on exceptions and testsuite
+
+--------------------------------------------------------------------
+Thu Dec 4 16:33:16 UTC 2014 - aschnell@suse.de
+
+- added testsuite for python bindings
+
+--------------------------------------------------------------------
+Thu Dec 4 16:32:42 UTC 2014 - aschnell@suse.de
+
+- fixed sid_t bindings
+
+--------------------------------------------------------------------
+Thu Dec 4 16:22:50 UTC 2014 - aschnell@suse.de
+
+- consistent naming
+
+--------------------------------------------------------------------
+Thu Dec 4 14:19:26 UTC 2014 - aschnell@suse.de
+
+- improved failure message
+
+--------------------------------------------------------------------
+Thu Dec 4 11:10:02 UTC 2014 - aschnell@suse.de
+
+- extended example
+
+--------------------------------------------------------------------
+Thu Dec 4 10:34:03 UTC 2014 - aschnell@suse.de
+
+- renamed INCLUDES to AM_CPPFLAGS
+
+--------------------------------------------------------------------
+Thu Dec 4 10:04:55 UTC 2014 - aschnell@suse.de
+
+- consistency
+
+--------------------------------------------------------------------
+Wed Dec 3 13:40:44 UTC 2014 - aschnell@suse.de
+
+- work on loading and saving device graphs
+
+--------------------------------------------------------------------
+Wed Dec 3 08:27:10 UTC 2014 - aschnell@suse.de
+
+- use template function
+
+--------------------------------------------------------------------
+Tue Dec 2 16:48:35 UTC 2014 - aschnell@suse.de
+
+- moved file
+
+--------------------------------------------------------------------
+Tue Dec 2 16:30:39 UTC 2014 - aschnell@suse.de
+
+- fixed compilation
+
+--------------------------------------------------------------------
+Tue Dec 2 16:23:04 UTC 2014 - aschnell@suse.de
+
+- use enum
+
+--------------------------------------------------------------------
+Tue Dec 2 15:49:21 UTC 2014 - aschnell@suse.de
+
+- added find example
+
+--------------------------------------------------------------------
+Tue Dec 2 13:52:27 UTC 2014 - aschnell@suse.de
+
+- work on loading device graph
+
+--------------------------------------------------------------------
+Mon Dec 1 11:27:45 UTC 2014 - aschnell@suse.de
+
+- fixed variable names
+
+--------------------------------------------------------------------
+Mon Dec 1 10:09:47 UTC 2014 - aschnell@suse.de
+
+- work on saving device graph
+
+--------------------------------------------------------------------
+Mon Dec 1 09:10:35 UTC 2014 - aschnell@suse.de
+
+- split Holder files
+
+--------------------------------------------------------------------
+Fri Nov 28 16:04:21 UTC 2014 - aschnell@suse.de
+
+- renamed function
+
+--------------------------------------------------------------------
+Fri Nov 28 13:54:42 UTC 2014 - aschnell@suse.de
+
+- added getSids function
+
+--------------------------------------------------------------------
+Fri Nov 28 10:52:30 UTC 2014 - aschnell@suse.de
+
+- added Environment class
+
+--------------------------------------------------------------------
+Thu Nov 27 16:54:07 UTC 2014 - aschnell@suse.de
+
+- added main class Storage
+
+--------------------------------------------------------------------
+Thu Nov 27 14:51:50 UTC 2014 - aschnell@suse.de
+
+- added swap function
+
+--------------------------------------------------------------------
+Wed Nov 26 17:15:29 UTC 2014 - aschnell@suse.de
+
+- avoid warning from swig
+
+--------------------------------------------------------------------
+Wed Nov 26 15:18:43 UTC 2014 - aschnell@suse.de
+
+- use enum
+
+--------------------------------------------------------------------
+Wed Nov 26 11:44:07 UTC 2014 - aschnell@suse.de
+
+- work on perl5 bindings
+
+--------------------------------------------------------------------
+Wed Nov 26 10:20:59 UTC 2014 - aschnell@suse.de
+
+- exception handling for bindings
+
+--------------------------------------------------------------------
+Tue Nov 25 14:40:24 UTC 2014 - aschnell@suse.de
+
+- added polymorphism example for ruby and perl
+
+--------------------------------------------------------------------
+Tue Nov 25 14:03:27 UTC 2014 - aschnell@suse.de
+
+- use common swig interface file
+
+--------------------------------------------------------------------
+Tue Nov 25 13:24:03 UTC 2014 - aschnell@suse.de
+
+- added BlkDevice::createFilesystem
+
+--------------------------------------------------------------------
+Tue Nov 25 13:06:50 UTC 2014 - aschnell@suse.de
+
+- make Device and Holder object contructors private, use create
+  function instead
+
+--------------------------------------------------------------------
+Tue Nov 25 11:25:00 UTC 2014 - aschnell@suse.de
+
+- removed generated file
+
+--------------------------------------------------------------------
+Tue Nov 25 11:23:57 UTC 2014 - aschnell@suse.de
+
+- work on interface
+
+--------------------------------------------------------------------
+Tue Nov 25 10:17:30 UTC 2014 - aschnell@suse.de
+
+- work on swig bindings
+
+--------------------------------------------------------------------
+Tue Nov 25 09:30:46 UTC 2014 - aschnell@suse.de
+
+- work on swig bindings
+
+--------------------------------------------------------------------
+Tue Nov 25 09:00:27 UTC 2014 - aschnell@suse.de
+
+- work on swig bindings
+
+--------------------------------------------------------------------
+Tue Nov 25 08:56:27 UTC 2014 - aschnell@suse.de
+
+- work on swig bindings
+
+--------------------------------------------------------------------
+Mon Nov 24 10:15:32 UTC 2014 - aschnell@suse.de
+
+- work on bindings (not usable yet)
+
+--------------------------------------------------------------------
+Wed Nov 19 16:07:51 UTC 2014 - aschnell@suse.de
+
+- use impl ptr pattern for DeviceGraph
+
+--------------------------------------------------------------------
+Wed Nov 19 13:28:14 UTC 2014 - aschnell@suse.de
+
+- added back reference to device objects
+
+--------------------------------------------------------------------
+Tue Nov 18 17:11:14 UTC 2014 - aschnell@suse.de
+
+- remove old output files
+
+--------------------------------------------------------------------
+Tue Nov 18 17:11:02 UTC 2014 - aschnell@suse.de
+
+- added helper functions
+
+--------------------------------------------------------------------
+Sat Nov 15 22:46:16 UTC 2014 - aschnell@suse.de
+
+- use impl ptr pattern for Device objects
+
+--------------------------------------------------------------------
+Fri Oct 24 14:01:44 UTC 2014 - aschnell@suse.de
+
+- better module name
+
+--------------------------------------------------------------------
+Fri Oct 24 14:01:33 UTC 2014 - aschnell@suse.de
+
+- check exception message
+
+--------------------------------------------------------------------
+Fri Oct 24 12:40:06 UTC 2014 - aschnell@suse.de
+
+- disallow create/delete of disk, instead have partition table
+  object
+
+--------------------------------------------------------------------
+Fri Oct 24 10:01:25 UTC 2014 - aschnell@suse.de
+
+- fixed mount ordering
+
+--------------------------------------------------------------------
+Fri Oct 24 08:52:10 UTC 2014 - aschnell@suse.de
+
+- changed action texts
+
+--------------------------------------------------------------------
+Fri Oct 24 08:51:49 UTC 2014 - aschnell@suse.de
+
+- display device graph
+
+--------------------------------------------------------------------
+Fri Oct 24 08:07:01 UTC 2014 - aschnell@suse.de
+
+- fixed return type
+
+--------------------------------------------------------------------
+Thu Oct 23 17:03:09 UTC 2014 - aschnell@suse.de
+
+- added testcase for dependencies
+
+--------------------------------------------------------------------
+Thu Oct 23 12:27:50 UTC 2014 - aschnell@suse.de
+
+- link to wiki
+
+--------------------------------------------------------------------
+Thu Oct 23 12:09:01 UTC 2014 - aschnell@suse.de
+
+- updated
+
+--------------------------------------------------------------------
+Thu Oct 23 12:05:02 UTC 2014 - aschnell@suse.de
+
+- added nop action for synchronization
+
+--------------------------------------------------------------------
+Thu Oct 23 12:04:04 UTC 2014 - aschnell@suse.de
+
+- removed example now in testsuite
+
+--------------------------------------------------------------------
+Thu Oct 23 09:32:08 UTC 2014 - aschnell@suse.de
+
+- dummy ordering for mount actions
+
+--------------------------------------------------------------------
+Thu Oct 23 08:43:28 UTC 2014 - aschnell@suse.de
+
+- use specific test tools
+
+--------------------------------------------------------------------
+Thu Oct 23 08:29:44 UTC 2014 - aschnell@suse.de
+
+- added testsuite
+
+--------------------------------------------------------------------
+Wed Oct 22 15:57:13 UTC 2014 - aschnell@suse.de
+
+- updated
+
+--------------------------------------------------------------------
+Wed Oct 22 15:25:03 UTC 2014 - aschnell@suse.de
+
+- restructured build stuff
+
+--------------------------------------------------------------------
+Wed Oct 22 15:04:33 UTC 2014 - aschnell@suse.de
+
+- updated build stuff
+
+--------------------------------------------------------------------
+Wed Oct 22 14:57:15 UTC 2014 - aschnell@suse.de
+
+- initial eval
 
