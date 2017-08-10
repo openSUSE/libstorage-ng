@@ -448,6 +448,78 @@ namespace storage
     }
 
 
+    Text
+    LvmLv::Impl::do_activate_text(Tense tense) const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Activate logical volume %1$s (%2$s) on volume group %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Activating logical volume %1$s (%2$s) on volume group %3$s"));
+
+	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
+		       lvm_vg->get_vg_name().c_str());
+    }
+
+
+    void
+    LvmLv::Impl::do_activate() const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVCHANGEBIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("activate LvmLv failed"));
+    }
+
+
+    Text
+    LvmLv::Impl::do_deactivate_text(Tense tense) const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Deactivate logical volume %1$s (%2$s) on volume group %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by logical volume name (e.g. root),
+			   // %2$s is replaced by size (e.g. 2GiB),
+			   // %3$s is replaced by volume group name (e.g. system)
+			   _("Deactivating logical volume %1$s (%2$s) on volume group %3$s"));
+
+	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
+		       lvm_vg->get_vg_name().c_str());
+    }
+
+
+    void
+    LvmLv::Impl::do_deactivate() const
+    {
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVCHANGEBIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("deactivate LvmLv failed"));
+    }
+
+
     namespace Action
     {
 
