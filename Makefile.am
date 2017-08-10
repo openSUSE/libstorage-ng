@@ -17,7 +17,7 @@ EXTRA_DIST = $(doc_DATA) VERSION LIBVERSION
 
 $(PACKAGE_PREFIX).tar.bz2: dist-bzip2
 
-package: $(PACKAGE_PREFIX).tar.bz2
+package: changes $(PACKAGE_PREFIX).tar.bz2
 	rm -f package/$(PACKAGE_NAME)-*.tar.bz2
 	mv $(PACKAGE_PREFIX).tar.bz2 package/
 
