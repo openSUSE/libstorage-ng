@@ -102,6 +102,10 @@ namespace storage
 
 	fix_dasd_sector_size();
 
+	sort(entries.begin(), entries.end(), [](const Entry& lhs, const Entry& rhs)
+	    { return lhs.number < rhs.number; }
+	);
+
 	y2mil(*this);
     }
 
