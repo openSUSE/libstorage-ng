@@ -28,7 +28,6 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
-#include "storage/FreeInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"

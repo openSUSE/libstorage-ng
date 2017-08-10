@@ -36,7 +36,7 @@ namespace storage
 
     template <> struct DeviceTraits<MdContainer> { static const char* classname; };
 
-    
+
     class MdContainer::Impl : public Md::Impl
     {
     public:

@@ -315,7 +315,7 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_size() != lhs.get_size())
+	if (lhs.get_size() != get_size())
 	{
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;

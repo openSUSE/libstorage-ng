@@ -112,7 +112,7 @@ namespace storage
 	etc_mdadm.init(get_storage());
 
 	EtcMdadm::Entry entry;
-	
+
 	entry.uuid = get_uuid();
 	entry.metadata = get_metadata();
 
