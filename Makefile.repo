@@ -19,4 +19,4 @@ all:
 	autoconf
 	autoheader
 	automake --add-missing --foreign
-
+	utils/git2log --version VERSION
