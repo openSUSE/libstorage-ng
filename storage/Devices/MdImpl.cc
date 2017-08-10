@@ -385,6 +385,9 @@ namespace storage
 	if (in_etc_mdadm)
 	    actions.push_back(new Action::RemoveFromEtcMdadm(get_sid()));
 
+	if (is_active())
+	    actions.push_back(new Action::Deactivate(get_sid()));
+
 	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);
@@ -765,16 +768,6 @@ namespace storage
     void
     Md::Impl::do_delete() const
     {
-	// TODO split into deactivate and delete?
-
-	string cmd_line = MDADMBIN " --stop " + quote(get_name());
-
-	cout << cmd_line << endl;
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete md raid failed"));
-
 	for (const BlkDevice* blk_device : get_devices())
 	{
 	    blk_device->get_impl().wipe_device();
@@ -928,6 +921,38 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("extend md failed"));
+    }
+
+
+    Text
+    Md::Impl::do_deactivate_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Deactivate MD %1$s %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by RAID level (e.g. RAID0),
+			   // %2$s is replaced by RAID name (e.g. /dev/md0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Deactivating MD %1$s %2$s (%3$s)"));
+
+	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
+		       get_size_string().c_str());
+    }
+
+
+    void
+    Md::Impl::do_deactivate() const
+    {
+	string cmd_line = MDADMBIN " --stop " + quote(get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("deactivate md raid failed"));
     }
 
 

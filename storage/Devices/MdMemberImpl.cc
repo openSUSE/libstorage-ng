@@ -165,4 +165,18 @@ namespace storage
 	etc_mdadm.update_entry(entry);
     }
 
+
+    Text
+    MdMember::Impl::do_deactivate_text(Tense tense) const
+    {
+	return Device::Impl::do_deactivate_text(tense);
+    }
+
+
+    void
+    MdMember::Impl::do_deactivate() const
+    {
+	Device::Impl::do_deactivate();
+    }
+
 }

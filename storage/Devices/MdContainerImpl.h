@@ -60,6 +60,9 @@ namespace storage
 
 	virtual void do_add_to_etc_mdadm(CommitData& commit_data) const override;
 
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
+
     };
 
 }
