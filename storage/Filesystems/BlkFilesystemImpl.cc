@@ -138,10 +138,12 @@ namespace storage
     void
     BlkFilesystem::Impl::probe_pass_2(Prober& prober)
     {
+	SystemInfo& system_info = prober.get_system_info();
+
 	const BlkDevice* blk_device = get_blk_device();
 
-	const Blkid& blkid = prober.get_system_info().getBlkid();
-	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
+	const Blkid& blkid = system_info.getBlkid();
+	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
 	if (it != blkid.end())
 	{
 	    label = it->second.fs_label;
@@ -150,14 +152,16 @@ namespace storage
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(prober.get_system_info().getEtcFstab(), aliases);
-        if (fstab_entry)
-        {
+	const FstabEntry* fstab_entry = find_etc_fstab_entry(system_info.getEtcFstab(), aliases);
+	if (fstab_entry)
+	{
 	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
 	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
 	    mount_point->set_mount_by(fstab_entry->get_mount_by());
 	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 	}
+
+	// TODO also add mount points from /proc/mounts, set active flag
     }
 
 

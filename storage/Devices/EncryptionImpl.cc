@@ -176,7 +176,9 @@ namespace storage
 	if (in_etc_crypttab)
 	    actions.push_back(new Action::RemoveFromEtcCrypttab(get_sid()));
 
-	actions.push_back(new Action::Deactivate(get_sid()));
+	if (is_active())
+	    actions.push_back(new Action::Deactivate(get_sid()));
+
 	actions.push_back(new Action::Delete(get_sid()));
 
 	actiongraph.add_chain(actions);

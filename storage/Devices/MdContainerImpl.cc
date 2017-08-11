@@ -112,11 +112,25 @@ namespace storage
 	etc_mdadm.init(get_storage());
 
 	EtcMdadm::Entry entry;
-	
+
 	entry.uuid = get_uuid();
 	entry.metadata = get_metadata();
 
 	etc_mdadm.update_entry(entry);
+    }
+
+
+    Text
+    MdContainer::Impl::do_deactivate_text(Tense tense) const
+    {
+	return Device::Impl::do_deactivate_text(tense);
+    }
+
+
+    void
+    MdContainer::Impl::do_deactivate() const
+    {
+	Device::Impl::do_deactivate();
     }
 
 }

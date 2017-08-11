@@ -256,6 +256,26 @@ BOOST_AUTO_TEST_CASE(parse_gpt_enlarge)
 }
 
 
+BOOST_AUTO_TEST_CASE(parse_uncommon_ordering)
+{
+    vector<string> input = {
+	"BYT;",
+	"/dev/sdb:160086528s:scsi:512:512:gpt:Maxtor 6 Y080L0:;",
+	"2:2048s:32016383s:32014336s:::;",
+	"1:32016384s:80044031s:48027648s:::;"
+    };
+
+    vector<string> output = {
+	"device:/dev/sdb label:GPT region:[0, 160086528, 512 B]",
+	"number:1 region:[32016384, 48027648, 512 B] type:primary id:0x83",
+	"number:2 region:[2048, 32014336, 512 B] type:primary id:0x83"
+    };
+
+    check("/dev/sdb", input, output);
+}
+
+
+
 BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
 {
     vector<string> stdout = {

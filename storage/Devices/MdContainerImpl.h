@@ -36,7 +36,7 @@ namespace storage
 
     template <> struct DeviceTraits<MdContainer> { static const char* classname; };
 
-    
+
     class MdContainer::Impl : public Md::Impl
     {
     public:
@@ -59,6 +59,9 @@ namespace storage
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual void do_add_to_etc_mdadm(CommitData& commit_data) const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
 
     };
 

@@ -84,6 +84,9 @@ namespace storage
 
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
+
     private:
 
 	string vendor;

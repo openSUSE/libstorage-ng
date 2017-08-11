@@ -315,7 +315,7 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (get_size() != lhs.get_size())
+	if (lhs.get_size() != get_size())
 	{
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;
@@ -331,6 +331,17 @@ namespace storage
 		    if (actiongraph.get_devicegraph(LHS)->device_exists(child->get_sid()))
 			actiongraph.add_vertex(new Action::Resize(child->get_sid(), resize_mode));
 	    }
+	}
+
+	if (!lhs.is_active() && is_active())
+	{
+	    Action::Base* action = new Action::Activate(get_sid());
+	    actiongraph.add_vertex(action);
+	}
+	else if (lhs.is_active() && !is_active())
+	{
+	    Action::Base* action = new Action::Deactivate(get_sid());
+	    actiongraph.add_vertex(action);
 	}
     }
 

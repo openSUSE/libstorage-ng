@@ -103,6 +103,12 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
+	virtual Text do_activate_text(Tense tense) const override;
+	virtual void do_activate() const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
+
     private:
 
 	static string make_name(const string& vg_name, const string& lv_name);
