@@ -106,7 +106,7 @@ namespace storage
 	if (number_of_inactive == 0)
 	    return false;
 
-	string cmd_line = VGCHANGEBIN " -a y";
+	string cmd_line = VGCHANGEBIN " --activate y";
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -119,6 +119,20 @@ namespace storage
 	    SystemCmd(UDEVADMBIN_SETTLE);
 
 	return ret;
+    }
+
+
+    bool
+    LvmLv::Impl::deactivate_lvm_lvs()
+    {
+	y2mil("deactivate_lvm_lvs");
+
+	string cmd_line = VGCHANGEBIN " --activate n";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+
+	return cmd.retcode() == 0;
     }
 
 

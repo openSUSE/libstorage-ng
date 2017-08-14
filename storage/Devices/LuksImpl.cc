@@ -179,6 +179,32 @@ namespace storage
     }
 
 
+    bool
+    Luks::Impl::deactivate_lukses()
+    {
+	y2mil("deactivate_lukses");
+
+	bool ret = true;
+
+	SystemInfo system_info;
+	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())
+	{
+	    if (value.second.subsystem != "CRYPT")
+		continue;
+
+	    string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(value.first);
+	    cout << cmd_line << endl;
+
+	    SystemCmd cmd(cmd_line);
+
+	    if (cmd.retcode() != 0)
+		ret = false;
+	}
+
+	return ret;
+    }
+
+
     void
     Luks::Impl::probe_lukses(Prober& prober)
     {

@@ -103,6 +103,8 @@ namespace storage
 
 	static bool activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir);
 
+	static bool deactivate_mds();
+
 	static void probe_mds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1b(Prober& prober) override;

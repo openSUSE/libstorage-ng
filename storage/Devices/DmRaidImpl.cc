@@ -114,6 +114,33 @@ namespace storage
     }
 
 
+    bool
+    DmRaid::Impl::deactivate_dm_raids()
+    {
+	y2mil("deactivate_dm_raids");
+
+	string cmd_line = DMRAIDBIN " --activate no";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+
+	if (cmd.retcode() == 0)
+	    return true;
+
+	// Unfortunately from the return value of dmraid it is unclear whether
+	// there are no raids or some raid could not be deactivate.
+
+	SystemInfo system_info;
+	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())
+	{
+	    if (value.second.subsystem == "DMRAID")
+		return false;
+	}
+
+	return true;
+    }
+
+
     void
     DmRaid::Impl::probe_dm_raids(Prober& prober)
     {

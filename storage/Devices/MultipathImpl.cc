@@ -143,6 +143,25 @@ namespace storage
     }
 
 
+    bool
+    Multipath::Impl::deactivate_multipaths()
+    {
+	y2mil("deactivate_multipaths");
+
+	string cmd_line1 = MULTIPATHDBIN " -k'shutdown'";
+	cout << cmd_line1 << endl;
+
+	SystemCmd cmd1(cmd_line1);
+
+	string cmd_line2 = MULTIPATHBIN " -F";
+	cout << cmd_line2 << endl;
+
+	SystemCmd cmd2(cmd_line2);
+
+	return cmd2.retcode() == 0;
+    }
+
+
     void
     Multipath::Impl::probe_multipaths(Prober& prober)
     {
