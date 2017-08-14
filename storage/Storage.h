@@ -96,6 +96,21 @@ namespace storage
     };
 
 
+    /**
+     * Provides information whether deactivate() was able to deactivate
+     * subsystems. True indicates that the corresponding subsystem was
+     * deactivate or not activate in the first place.
+     */
+    struct DeactivateStatus
+    {
+	bool multipath;
+	bool dm_raid;
+	bool md;
+	bool lvm_lv;
+	bool luks;
+    };
+
+
     class CommitCallbacks
     {
     public:
@@ -211,13 +226,31 @@ namespace storage
 	const Actiongraph* calculate_actiongraph();
 
 	/**
-	 * Activate devices like multipath, MD RAID, LVM and LUKS. It is not
-	 * required to have probed the system to call this function. On the
-	 * other hand after calling this function the system should be probed.
+	 * Activate devices like multipath, DM and MD RAID, LVM and LUKS. It
+	 * is not required to have probed the system to call this function. On
+	 * the other hand after calling activate() the system should be
+	 * probed.
+	 *
+	 * This functions is only intended for the installation system.
 	 *
 	 * @throw Exception
 	 */
 	void activate(const ActivateCallbacks* activate_callbacks) const;
+
+	/**
+	 * Deactivate devices like multipath, DM and MD RAID, LVM and LUKS. It
+	 * is not required to have probed the system to call this function. On
+	 * the other hand after calling this function activate() should be
+	 * called and the system should be probed.
+	 *
+	 * The purpose of this function is to reverse the actions of
+	 * activate() and auto-assemble.
+	 *
+	 * This functions is only intended for the installation system.
+	 *
+	 * @throw Exception
+	 */
+	DeactivateStatus deactivate() const;
 
 	/**
 	 * Probe the system and replace the probed and staging devicegraphs.

@@ -197,6 +197,13 @@ namespace storage
     }
 
 
+    DeactivateStatus
+    Storage::deactivate() const
+    {
+	return get_impl().deactivate();
+    }
+
+
     void
     Storage::probe()
     {

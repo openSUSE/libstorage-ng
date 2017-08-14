@@ -85,6 +85,8 @@ namespace storage
 
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
+	DeactivateStatus deactivate() const;
+
 	void probe();
 
 	void commit(const CommitCallbacks* commit_callbacks);
