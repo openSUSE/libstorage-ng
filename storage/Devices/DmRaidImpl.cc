@@ -128,7 +128,7 @@ namespace storage
 	    return true;
 
 	// Unfortunately from the return value of dmraid it is unclear whether
-	// there are no raids or some raid could not be deactivate.
+	// there are no raids or some raid could not be deactivated.
 
 	SystemInfo system_info;
 	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())

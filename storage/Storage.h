@@ -231,7 +231,7 @@ namespace storage
 	 * the other hand after calling activate() the system should be
 	 * probed.
 	 *
-	 * This functions is only intended for the installation system.
+	 * This function is only intended for the installation system.
 	 *
 	 * @throw Exception
 	 */
@@ -246,7 +246,7 @@ namespace storage
 	 * The purpose of this function is to reverse the actions of
 	 * activate() and auto-assemble.
 	 *
-	 * This functions is only intended for the installation system.
+	 * This function is only intended for the installation system.
 	 *
 	 * @throw Exception
 	 */
