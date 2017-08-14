@@ -53,6 +53,8 @@ namespace storage
 
 	static bool activate_multipaths(const ActivateCallbacks* activate_callbacks);
 
+	static bool deactivate_multipaths();
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;

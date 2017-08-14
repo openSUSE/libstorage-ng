@@ -231,6 +231,20 @@ namespace storage
     }
 
 
+    bool
+    Md::Impl::deactivate_mds()
+    {
+	y2mil("deactivate_mds");
+
+	string cmd_line = MDADMBIN " --stop --scan";
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+
+	return cmd.retcode() == 0;
+    }
+
+
     void
     Md::Impl::probe_mds(Prober& prober)
     {

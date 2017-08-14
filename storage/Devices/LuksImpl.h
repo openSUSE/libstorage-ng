@@ -66,6 +66,8 @@ namespace storage
 
 	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);
 
+	static bool deactivate_lukses();
+
 	static void probe_lukses(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1e(Prober& prober) override;

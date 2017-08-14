@@ -53,6 +53,8 @@ namespace storage
 
 	static bool activate_lvm_lvs(const ActivateCallbacks* activate_callbacks);
 
+	static bool deactivate_lvm_lvs();
+
 	static void probe_lvm_lvs(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 

@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: something to activate, e.g. LUKS or LVM
+# requirements: something to activate, e.g. LUKS and LVM
 
 
 from storage import *
@@ -30,5 +30,6 @@ my_activate_callbacks = MyActivateCallbacks()
 environment = Environment(False)
 
 storage = Storage(environment)
+
 storage.activate(my_activate_callbacks)
 

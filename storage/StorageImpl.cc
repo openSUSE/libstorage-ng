@@ -105,6 +105,47 @@ namespace storage
     }
 
 
+    DeactivateStatus
+    Storage::Impl::deactivate() const
+    {
+	y2mil("deactivate begin");
+
+	/**
+	 * All deactivate functions return true if nothing is left to
+	 * deactivate (so either deactivation was successful or there was
+	 * nothing to deactivate).
+	 *
+	 * So loop at most three times until all deactivate functions returned
+	 * true.
+	 */
+
+	DeactivateStatus deactivate_status = { };
+
+	for (int i = 0; i < 3; ++i)
+	{
+	    if (!deactivate_status.luks)
+		deactivate_status.luks = Luks::Impl::deactivate_lukses();
+
+	    if (!deactivate_status.lvm_lv)
+		deactivate_status.lvm_lv = LvmLv::Impl::deactivate_lvm_lvs();
+
+	    if (!deactivate_status.md)
+		deactivate_status.md = Md::Impl::deactivate_mds();
+
+	    if (deactivate_status.luks && deactivate_status.lvm_lv && deactivate_status.md)
+		break;
+	}
+
+	deactivate_status.dm_raid = DmRaid::Impl::deactivate_dm_raids();
+
+	deactivate_status.multipath = Multipath::Impl::deactivate_multipaths();
+
+	y2mil("deactivate end");
+
+	return deactivate_status;
+    }
+
+
     void
     Storage::Impl::probe()
     {

@@ -53,6 +53,8 @@ namespace storage
 
 	static bool activate_dm_raids(const ActivateCallbacks* activate_callbacks);
 
+	static bool deactivate_dm_raids();
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
