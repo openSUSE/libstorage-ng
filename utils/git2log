@@ -108,9 +108,18 @@ if($opt_branch) {
 
 # just print current version
 if($opt_version) {
-  open my $f, ">$opt_file";
-  print $f "$config->{version}\n";
-  close $f;
+  my $old_version;
+
+  if($opt_file ne '-' && open(my $f, $opt_file)) {
+    chomp($old_version = <$f>);
+    close $f;
+  }
+
+  if($config->{version} ne $old_version) {
+    open my $f, ">$opt_file";
+    print $f "$config->{version}\n";
+    close $f;
+  }
 
   exit 0;
 }
