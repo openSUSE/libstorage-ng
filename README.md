@@ -92,6 +92,9 @@ The version can always be set manually by setting an appropriate tag in git.
 > 2. The spec file template `libstorage-ng.spec.in` is **not** used.
 Instead, the spec file from the OBS is used.
 
+For a more detailed description about the handling of version numbers and changelog entries
+look [here](https://github.com/openSUSE/linuxrc-devtools/blob/master/workflow.md).
+
 
 Code Documentation
 ------------------
