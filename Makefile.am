@@ -2,6 +2,8 @@
 # Makefile.am for libstorage
 #
 
+VERSION = $(shell utils/git2log --version VERSION ; cat VERSION)
+
 SUBDIRS = storage doc po utils examples testsuite bindings integration-tests
 
 AUTOMAKE_OPTIONS = foreign dist-bzip2 no-dist-gzip subdir-objects
