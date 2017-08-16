@@ -20,5 +20,5 @@ git archive --prefix=$PACKAGE_PREFIX/ $BRANCH > package/$PACKAGE_PREFIX.tar
 tar -r -f package/$PACKAGE_PREFIX.tar \
   --mode=0664 --owner=root --group=root \
   --mtime="`git show -s --format=%ci`" \
-  --transform='s:^:$PACKAGE_PREFIX/:' VERSION
+  --transform="s:^:$PACKAGE_PREFIX/:" VERSION
 xz -f package/$PACKAGE_PREFIX.tar
