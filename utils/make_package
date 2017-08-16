@@ -5,6 +5,9 @@ VERSION=`utils/git2log --version VERSION ; cat VERSION`
 PACKAGE_PREFIX=$PACKAGE_NAME-$VERSION
 BRANCH=`[ -d .git ] && git branch | perl -ne 'print $_ if s/^\*\s*//'`
 
+mkdir -p package
+rm -f package/*.tar.xz package/*.changes
+
 utils/git2log --changelog --format obs package/$PACKAGE_NAME.changes
 
 if [ ! -d .git ] ; then
