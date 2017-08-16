@@ -16,3 +16,8 @@ package: libstorage-ng-$(VERSION).tar.bz2
 	rm -f package/libstorage-ng-*.tar.bz2
 	mv libstorage-ng-$(VERSION).tar.bz2 package/
 
+changes:
+	utils/git2log --changelog --format obs package/libstorage-ng.changes
+
+archive:
+	utils/make_package --name libstorage-ng

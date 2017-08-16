@@ -62,6 +62,36 @@ osc build --local-package --alternative-project=openSUSE:Factory
 ```
 
 
+Creating Changes And Package And Submitting To OBS
+--------------------------------------------------
+
+Creating the changes file and tar archive are handled by jenkins using `linuxrc-devtools`.
+
+You can generate a preview of the changes file by running
+
+```sh
+make changes
+```
+
+and create the tar.xz source archive by running
+
+```sh
+make archive
+```
+
+Package versions are tracked by setting version tags in git. The last
+version digit is auto-increased with every OBS commit.
+
+The version can always be set manually by setting an appropriate tag in git.
+
+> **Notes**
+>
+> 1. The `VERSION` file is auto-generated from the latest git tag.
+>
+> 2. The spec file template `libstorage-ng.spec.in` is **not** used.
+Instead, the spec file from the OBS is used.
+
+
 Code Documentation
 ------------------
 
