@@ -1,0 +1,21 @@
+#! /bin/bash -x
+
+PACKAGE_NAME=libstorage-ng
+VERSION=`utils/git2log --version VERSION ; cat VERSION`
+PACKAGE_PREFIX=$PACKAGE_NAME-$VERSION
+BRANCH=`[ -d .git ] && git branch | perl -ne 'print $_ if s/^\*\s*//'`
+
+utils/git2log --changelog --format obs package/$PACKAGE_NAME.changes
+
+if [ ! -d .git ] ; then
+  echo no git repo
+  exit 1
+fi
+
+git archive --prefix=$PACKAGE_PREFIX/ $BRANCH > package/$PACKAGE_PREFIX.tar
+
+tar -r -f package/$PACKAGE_PREFIX.tar \
+  --mode=0664 --owner=root --group=root \
+  --mtime="`git show -s --format=%ci`" \
+  --transform='s:^:$PACKAGE_PREFIX/:' VERSION
+xz -f package/$PACKAGE_PREFIX.tar
