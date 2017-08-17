@@ -2,6 +2,8 @@
 # Makefile.am for libstorage
 #
 
+VERSION = $(shell utils/git2log --version VERSION ; cat VERSION)
+
 SUBDIRS = storage doc po utils examples testsuite bindings integration-tests
 
 AUTOMAKE_OPTIONS = foreign dist-bzip2 no-dist-gzip subdir-objects
@@ -16,3 +18,8 @@ package: libstorage-ng-$(VERSION).tar.bz2
 	rm -f package/libstorage-ng-*.tar.bz2
 	mv libstorage-ng-$(VERSION).tar.bz2 package/
 
+changes:
+	utils/git2log --changelog --format obs package/libstorage-ng.changes
+
+archive:
+	utils/make_package --name libstorage-ng

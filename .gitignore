@@ -21,3 +21,4 @@ cov-int
 /.obsdir/
 /obs-package-from-git
 compile
+VERSION
