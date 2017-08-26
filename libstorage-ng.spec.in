@@ -22,7 +22,7 @@ Version:        @VERSION@
 Release:        0
 Summary:        Library for storage management
 License:        GPL-2.0
-Group:          System/Libraries
+Group:          Development/Libraries/C and C++
 Url:            http://github.com/openSUSE/libstorage-ng
 Source:         libstorage-ng-%{version}.tar.bz2
 %if 0%{?suse_version} >= 1330
@@ -108,7 +108,7 @@ libstorage-ng.
 
 %package -n libstorage-ng-python
 Summary:        Python bindings for libstorage-ng
-Group:          System/Libraries
+Group:          Development/Languages/Python
 Requires:       %{libname} = %{version}
 
 %description python
@@ -116,7 +116,7 @@ This package contains Python bindings for libstorage-ng.
 
 %package -n libstorage-ng-ruby
 Summary:        Ruby bindings for libstorage-ng
-Group:          System/Libraries
+Group:          Development/Languages/Ruby
 Requires:       %{libname} = %{version}
 
 %description ruby
@@ -158,9 +158,7 @@ touch %{buildroot}/run/libstorage/lock
 
 %find_lang libstorage-ng
 
-%post -n %{libname}
-/sbin/ldconfig
-
+%post   -n %{libname} -p /sbin/ldconfig
 %postun -n %{libname} -p /sbin/ldconfig
 
 %files -n %{name}-lang -f libstorage-ng.lang
