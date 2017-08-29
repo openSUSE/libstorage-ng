@@ -73,6 +73,9 @@ namespace storage
 	 */
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const std::string& path) const;
 
+        bool get_configure_snapper() const;
+        void set_configure_snapper(bool configure);
+
     public:
 
 	class Impl;

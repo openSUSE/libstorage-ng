@@ -49,9 +49,26 @@ namespace storage
     const char* DeviceTraits<Btrfs>::classname = "Btrfs";
 
 
+    Btrfs::Impl::Impl()
+        : BlkFilesystem::Impl()
+        , configure_snapper(false)
+        , snapper_config(nullptr)
+    {
+    }
+
+
     Btrfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
+        , configure_snapper(false)
+        , snapper_config(nullptr)
     {
+    }
+
+
+    Btrfs::Impl::~Impl()
+    {
+        if (snapper_config)
+            delete snapper_config;
     }
 
 
@@ -285,6 +302,30 @@ namespace storage
 	// TODO uuid is included in mkfs output
 
 	probe_uuid();
+
+        if (configure_snapper && !snapper_config)
+        {
+            snapper_config = new SnapperConfig(to_btrfs(get_non_impl()));
+            snapper_config->post_filesystem_create();
+        }
+    }
+
+
+    void Btrfs::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
+    {
+        BlkFilesystem::Impl::do_mount(commit_data, mount_point);
+
+        if (snapper_config)
+            snapper_config->post_mount();
+    }
+
+
+    void Btrfs::Impl::do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
+    {
+        BlkFilesystem::Impl::do_add_to_etc_fstab(commit_data, mount_point);
+
+        if (snapper_config)
+            snapper_config->post_add_to_etc_fstab();
     }
 
 
