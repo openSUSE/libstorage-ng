@@ -53,7 +53,8 @@ enum : uint64_t
     UF_FC = 1 << 19,
     UF_DASD = 1 << 20,
 
-    UF_QUOTA = 1 << 21
+    UF_QUOTA = 1 << 21,
+    UF_SNAPSHOTS = 1 << 22
 };
 
 

@@ -281,7 +281,12 @@ namespace storage
     uint64_t
     Btrfs::Impl::used_features() const
     {
-	return UF_BTRFS | BlkFilesystem::Impl::used_features();
+        uint64_t features = UF_BTRFS | BlkFilesystem::Impl::used_features();
+
+        if (configure_snapper)
+            features |= UF_SNAPSHOTS;
+
+        return features;
     }
 
 
