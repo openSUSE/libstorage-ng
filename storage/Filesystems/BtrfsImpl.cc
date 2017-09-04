@@ -49,9 +49,26 @@ namespace storage
     const char* DeviceTraits<Btrfs>::classname = "Btrfs";
 
 
+    Btrfs::Impl::Impl()
+        : BlkFilesystem::Impl()
+        , configure_snapper(false)
+        , snapper_config(nullptr)
+    {
+    }
+
+
     Btrfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
+        , configure_snapper(false)
+        , snapper_config(nullptr)
     {
+    }
+
+
+    Btrfs::Impl::~Impl()
+    {
+        if (snapper_config)
+            delete snapper_config;
     }
 
 
@@ -264,7 +281,12 @@ namespace storage
     uint64_t
     Btrfs::Impl::used_features() const
     {
-	return UF_BTRFS | BlkFilesystem::Impl::used_features();
+        uint64_t features = UF_BTRFS | BlkFilesystem::Impl::used_features();
+
+        if (configure_snapper)
+            features |= UF_SNAPSHOTS;
+
+        return features;
     }
 
 
@@ -285,6 +307,37 @@ namespace storage
 	// TODO uuid is included in mkfs output
 
 	probe_uuid();
+
+        // This would fit better in do_mount(), but that one is a const method
+        // which would not allow to set the snapper_config member variable.
+        // But we need to give the application a chance to set the
+        // configure_snapper variable, so the ctor would not be good choice
+        // either. This place is guaranteed to be in the commit phase, so this
+        // is the best place for the time being.
+
+        if (configure_snapper && !snapper_config)
+            snapper_config = new SnapperConfig(to_btrfs(get_non_impl()));
+    }
+
+
+    void Btrfs::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
+    {
+        if (snapper_config)
+            snapper_config->pre_mount();
+
+        BlkFilesystem::Impl::do_mount(commit_data, mount_point);
+
+        if (snapper_config)
+            snapper_config->post_mount();
+    }
+
+
+    void Btrfs::Impl::do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
+    {
+        BlkFilesystem::Impl::do_add_to_etc_fstab(commit_data, mount_point);
+
+        if (snapper_config)
+            snapper_config->post_add_to_etc_fstab();
     }
 
 

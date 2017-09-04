@@ -133,6 +133,20 @@ namespace storage
     }
 
 
+    bool
+    Btrfs::get_configure_snapper() const
+    {
+        return get_impl().get_configure_snapper();
+    }
+
+
+    void
+    Btrfs::set_configure_snapper(bool configure)
+    {
+        get_impl().set_configure_snapper(configure);
+    }
+
+
     Btrfs*
     Btrfs::clone() const
     {

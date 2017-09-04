@@ -37,6 +37,7 @@ libutils_la_SOURCES =					\
 	Mockup.cc		Mockup.h		\
 	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
+	SnapperConfig.h		SnapperConfig.cc	\
 	CDgD.h						\
 	Swig.h						\
 	StorageDefines.h

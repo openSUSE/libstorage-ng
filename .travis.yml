@@ -6,6 +6,6 @@ services:
 before_install:
   - docker build -t libstorage-ng-image .
 script:
-  # the "storage-ng-travis-cpp" script is included in the base yastdevel/storage-ng image
-  # see https://github.com/yast/docker-storage-ng/blob/master/storage-ng-travis-cpp
-  - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" libstorage-ng-image storage-ng-travis-cpp
+  # the "yast-travis-cpp" script is included in the base yastdevel/cpp-tw image
+  # see https://github.com/yast/docker-yast-cpp-tw/blob/master/yast-travis-cpp
+  - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" libstorage-ng-image yast-travis-cpp
