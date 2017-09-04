@@ -52,7 +52,7 @@ namespace storage
         SnapperConfig( Btrfs * btrfs );
 
         /**
-         * Hook to be called after the Btrfs root filesystem is created.
+         * Hook to be called just before the Btrfs root filesystem is mounted.
          * This executes installation-helper step 1:
          *
          * Temporarily mount the btrfs on the root device, create the
@@ -60,7 +60,7 @@ namespace storage
          * configuration file for the root filesystem. Then create a first
          * single snapshot and set this to the default snapshot.
          **/
-        void post_filesystem_create();
+        void pre_mount();
 
         /**
          * Hook to be called after the Btrfs root filesystem is mounted.

@@ -49,7 +49,7 @@ SnapperConfig::SnapperConfig( Btrfs * btrfs )
 
 
 void
-SnapperConfig::post_filesystem_create()
+SnapperConfig::pre_mount()
 {
     if ( ! sanity_check() )
         return;

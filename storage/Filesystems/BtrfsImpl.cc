@@ -308,16 +308,23 @@ namespace storage
 
 	probe_uuid();
 
+        // This would fit better in do_mount(), but that one is a const method
+        // which would not allow to set the snapper_config member variable.
+        // But we need to give the application a chance to set the
+        // configure_snapper variable, so the ctor would not be good choice
+        // either. This place is guaranteed to be in the commit phase, so this
+        // is the best place for the time being.
+
         if (configure_snapper && !snapper_config)
-        {
             snapper_config = new SnapperConfig(to_btrfs(get_non_impl()));
-            snapper_config->post_filesystem_create();
-        }
     }
 
 
     void Btrfs::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
     {
+        if (snapper_config)
+            snapper_config->pre_mount();
+
         BlkFilesystem::Impl::do_mount(commit_data, mount_point);
 
         if (snapper_config)
