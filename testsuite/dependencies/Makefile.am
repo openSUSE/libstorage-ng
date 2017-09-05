@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite/dependencies
 #
 
-SUBDIRS = luks lvm md partitions btrfs dasd-pt
+SUBDIRS = luks lvm md partitions btrfs dasd-pt partition-tables
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
