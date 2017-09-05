@@ -500,8 +500,9 @@ namespace storage
 	    cmd_line += toString(get_type()) + " ";
 
 	if (is_gpt(partition_table))
-	    // see https://bugzilla.suse.com/show_bug.cgi?id=1023818
-	    cmd_line += "primary ";
+	    // pass empty string as partition name, funny syntax (see
+	    // https://bugzilla.suse.com/show_bug.cgi?id=1023818)
+	    cmd_line += "'\"\"' ";
 
 	if (get_type() != PartitionType::EXTENDED)
 	{
