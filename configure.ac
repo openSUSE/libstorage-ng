@@ -118,7 +118,7 @@ AC_OUTPUT(
 	testsuite/dependencies/md/Makefile
 	testsuite/dependencies/partitions/Makefile
 	testsuite/dependencies/btrfs/Makefile
-	testsuite/dependencies/dasd-pt/Makefile
+	testsuite/dependencies/partition-tables/Makefile
 	testsuite/sorting/Makefile
 	testsuite/partitions/Makefile
 	testsuite/Devices/Makefile

@@ -1,0 +1,12 @@
+1a - Delete xfs on /dev/sda4 (10.20 GiB) -> 1b
+1b - Delete partition /dev/sda4 (10.20 GiB) -> 2b 5
+
+2a - Delete swap on /dev/sda3 (2.00 GiB) -> 2b
+2b - Delete partition /dev/sda3 (2.00 GiB) -> 3b 5
+
+3b - Delete partition /dev/sda2 (1.00 MiB) -> 4b 5
+
+4a - Delete ext4 on /dev/sda1 (7.80 GiB) -> 4b
+4b - Delete partition /dev/sda1 (7.80 GiB) -> 5
+
+5 - Delete GPT on /dev/sda ->
