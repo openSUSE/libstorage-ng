@@ -562,6 +562,32 @@ namespace storage
     }
 
 
+    unsigned int
+    Md::Impl::minimal_number_of_devices() const
+    {
+	switch (md_level)
+	{
+	    case MdLevel::RAID0:
+		return 2;
+
+	    case MdLevel::RAID1:
+		return 2;
+
+	    case MdLevel::RAID5:
+		return 3;
+
+	    case MdLevel::RAID6:
+		return 4;
+
+	    case MdLevel::RAID10:
+		return 2;
+
+	    default:
+		return 0;
+	}
+    }
+
+
     void
     Md::Impl::calculate_region_and_topology()
     {
