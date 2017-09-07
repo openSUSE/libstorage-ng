@@ -119,6 +119,13 @@ namespace storage
 	void set_metadata(const std::string& metadata);
 
 	/**
+	 * Return the minimal number of devices required by the RAID. For
+	 * RAIDs of level CONTAINER it returns 0 (those RAIDs cannot be
+	 * created or modified anyway).
+	 */
+	unsigned int minimal_number_of_devices() const;
+
+	/**
 	 * Query whether the MD RAID is present (probed devicegraph) or will
 	 * be present (staging devicegraph) in /etc/mdadm.conf.
 	 */

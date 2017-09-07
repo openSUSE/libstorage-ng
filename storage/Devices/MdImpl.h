@@ -92,6 +92,8 @@ namespace storage
 	const string& get_metadata() const { return metadata; }
 	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
+	unsigned int minimal_number_of_devices() const;
+
 	bool is_in_etc_mdadm() const { return in_etc_mdadm; }
 	void set_in_etc_mdadm(bool in_etc_mdadm) { Impl::in_etc_mdadm = in_etc_mdadm; }
 

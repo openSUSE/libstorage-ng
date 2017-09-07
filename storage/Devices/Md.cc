@@ -209,6 +209,13 @@ namespace storage
     }
 
 
+    unsigned int
+    Md::minimal_number_of_devices() const
+    {
+	return get_impl().minimal_number_of_devices();
+    }
+
+
     bool
     Md::is_in_etc_mdadm() const
     {
