@@ -79,7 +79,7 @@ Requires:       lsscsi >= 0.26
 Suggests:       lvm2
 Suggests:       mdadm >= 3.3
 Suggests:       multipath-tools
-Requires:       parted >= 3.1
+Requires:       parted >= 3.2
 Requires:       pkgconfig
 Requires:       util-linux >= 2.16
 Requires:       pkgconfig(udev)
