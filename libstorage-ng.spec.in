@@ -72,13 +72,13 @@ Summary:        Library for storage management
 Group:          System/Libraries
 Requires:       %{name}-lang
 Requires:       coreutils
-Requires:       cryptsetup
+Suggests:       cryptsetup
 Requires:       device-mapper
-Requires:       dmraid
+Suggests:       dmraid
 Requires:       lsscsi >= 0.26
-Requires:       lvm2
-Requires:       mdadm >= 3.3
-Requires:       multipath-tools
+Suggests:       lvm2
+Suggests:       mdadm >= 3.3
+Suggests:       multipath-tools
 Requires:       parted >= 3.1
 Requires:       pkgconfig
 Requires:       util-linux >= 2.16
