@@ -32,6 +32,7 @@
 #include "storage/Filesystems/NtfsImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -50,10 +51,23 @@ namespace storage
 
 
     ResizeInfo
+    Ntfs::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
+
+	resize_info.combine(ResizeInfo(true, 1 * MiB, 256 * TiB - 64 * KiB));
+
+	return resize_info;
+    }
+
+
+    ResizeInfo
     Ntfs::Impl::detect_resize_info_pure() const
     {
 	if (!get_devicegraph()->get_impl().is_probed())
-	    ST_THROW(Exception("function called on wrong device"));
+	{
+	    return redirect_to_probed(get_non_impl())->get_impl().detect_resize_info_pure();
+	}
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -83,7 +97,7 @@ namespace storage
 	    // see ntfsresize(8) for += 100 MiB
 	    resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
 
-	    resize_info.max_size = 256 * TiB;
+	    resize_info.max_size = 256 * TiB - 64 * KiB;
 	}
 
 	y2mil("resize-info:" << resize_info);

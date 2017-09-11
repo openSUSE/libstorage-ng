@@ -118,6 +118,11 @@ namespace storage
 
 	virtual const Partition* get_extended() const;
 
+	/**
+	 * Returns the usable region of the partition table. This is the
+	 * region of the partitionable not used for the partition table data
+	 * or MBR gap.
+	 */
 	virtual Region get_usable_region() const = 0;
 
 	virtual Alignment get_alignment(AlignType align_type) const;

@@ -42,7 +42,11 @@ namespace storage
 	ResizeInfo(bool resize_ok, unsigned long long min_size, unsigned long long max_size);
 	ResizeInfo(bool resize_ok);
 
-	void combine(ResizeInfo resize_info);
+	void combine(ResizeInfo extra_resize_info);
+
+	void combine_min(unsigned long long extra_min_size);
+
+	void combine_max(unsigned long long extra_max_size);
 
 	bool resize_ok;
 

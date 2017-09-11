@@ -119,6 +119,14 @@ namespace storage
 	 */
 	Partition* get_partition(const std::string& name);
 
+	/**
+	 * Returns the extended partition of the partition table. Throws if no
+	 * extended partition exists.
+	 *
+	 * @throw Exception
+	 */
+	const Partition* get_extended() const;
+
 	const Partitionable* get_partitionable() const;
 
 	Alignment get_alignment(AlignType align_type = AlignType::OPTIMAL) const;

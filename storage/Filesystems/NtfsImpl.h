@@ -63,6 +63,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	ResizeInfo detect_resize_info() const override;
+
 	virtual ResizeInfo detect_resize_info_pure() const override;
 
 	virtual ContentInfo detect_content_info_pure() const override;

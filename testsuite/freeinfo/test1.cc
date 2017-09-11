@@ -40,7 +40,7 @@ BOOST_AUTO_TEST_CASE(load)
 
 	ResizeInfo resize_info = blk_filesystem->detect_resize_info();
 	BOOST_CHECK_EQUAL(resize_info.resize_ok, true);
-	BOOST_CHECK_EQUAL(resize_info.min_size, 1000 * KiB);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 1 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 2000000 * KiB);
 
 	ContentInfo content_info = blk_filesystem->detect_content_info();
@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(load)
 
 	ResizeInfo resize_info = blk_filesystem->detect_resize_info();
 	BOOST_CHECK_EQUAL(resize_info.resize_ok, true);
-	BOOST_CHECK_EQUAL(resize_info.min_size, 1000 * KiB);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 1 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 2000000 * KiB);
 
 	ContentInfo content_info = blk_filesystem->detect_content_info();

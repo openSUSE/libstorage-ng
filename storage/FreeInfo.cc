@@ -21,6 +21,8 @@
  */
 
 
+#include <limits>
+
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/FreeInfo.h"
@@ -40,7 +42,7 @@ namespace storage
 
 
     ResizeInfo::ResizeInfo(bool resize_ok)
-	: resize_ok(resize_ok), min_size(0), max_size(1 * EiB)
+	: resize_ok(resize_ok), min_size(0), max_size(std::numeric_limits<unsigned long long>::max())
     {
     }
 
@@ -64,12 +66,26 @@ namespace storage
 
 
     void
-    ResizeInfo::combine(ResizeInfo resize_info)
+    ResizeInfo::combine(ResizeInfo extra_resize_info)
     {
-	resize_ok = resize_ok && resize_info.resize_ok;
+	resize_ok = resize_ok && extra_resize_info.resize_ok;
 
-	min_size = max(min_size, resize_info.min_size);
-	max_size = min(max_size, resize_info.max_size);
+	combine_min(extra_resize_info.min_size);
+	combine_max(extra_resize_info.max_size);
+    }
+
+
+    void
+    ResizeInfo::combine_min(unsigned long long extra_min_size)
+    {
+	min_size = max(min_size, extra_min_size);
+    }
+
+
+    void
+    ResizeInfo::combine_max(unsigned long long extra_max_size)
+    {
+	max_size = min(max_size, extra_max_size);
     }
 
 

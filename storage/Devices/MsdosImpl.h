@@ -43,6 +43,16 @@ namespace storage
     {
     public:
 
+	/**
+	 * Normally one sector is needed for the EBR, see
+	 * https://en.wikipedia.org/wiki/Extended_boot_record, before a
+	 * logical partition. But when placing a logical partition before an
+	 * existing logical partition parted might require space for two EBRs.
+	 * To be safe always keep space for many EBRs. Normally alignment will
+	 * keep much space anyway so nothing is wasted by a high number here.
+	 */
+	static const int num_ebrs = 128;
+
 	Impl()
 	    : PartitionTable::Impl(), minimal_mbr_gap(default_minimal_mbr_gap) {}
 

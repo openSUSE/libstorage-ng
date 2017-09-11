@@ -162,6 +162,14 @@ namespace storage
 	const Partitionable* get_partitionable() const;
 
 	/**
+	 * Returns the unused region surrounding the partition (including the
+	 * partition itself). The returned region is not aligned.
+	 *
+	 * @throw Exception
+	 */
+	Region get_unused_surrounding_region() const;
+
+	/**
 	 * Find a Partition by its name. Only the name returned by get_name() is considered.
 	 *
 	 * @throw DeviceNotFound, DeviceHasWrongType

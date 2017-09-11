@@ -203,7 +203,7 @@ namespace storage
 	ResizeInfo resize_info(true);
 
 	for (const Device* child : get_non_impl()->get_children())
-	     resize_info.combine(child->detect_resize_info());
+	    resize_info.combine(child->detect_resize_info());
 
 	return resize_info;
     }
