@@ -167,6 +167,13 @@ namespace storage
     }
 
 
+    Region
+    Partition::get_unused_surrounding_region() const
+    {
+	return get_impl().get_unused_surrounding_region();
+    }
+
+
     Partition*
     Partition::find_by_name(Devicegraph* devicegraph, const string& name)
     {

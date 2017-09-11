@@ -26,6 +26,7 @@
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
+#include "storage/Devices/MsdosImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -333,15 +334,14 @@ namespace storage
 	    const Region& extended_region = get_extended()->get_region();
 	    for (const Region& unused_region : extended_region.unused_regions(used_regions))
 	    {
-		// one sector is needed for the EBR, see
-		// https://en.wikipedia.org/wiki/Extended_boot_record
+		// Keep space for EBRs.
 
-		if (unused_region.get_length() <= 1)
+		if (unused_region.get_length() <= Msdos::Impl::num_ebrs)
 		    continue;
 
 		Region adjusted_region = unused_region;
-		adjusted_region.adjust_start(+1);
-		adjusted_region.adjust_length(-1);
+		adjusted_region.adjust_start(+Msdos::Impl::num_ebrs);
+		adjusted_region.adjust_length(-Msdos::Impl::num_ebrs);
 
 		slot.region = adjusted_region;
 		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))

@@ -88,6 +88,8 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const override;
 
+	Region get_unused_surrounding_region() const;
+
 	PartitionTable* get_partition_table();
 	const PartitionTable* get_partition_table() const;
 

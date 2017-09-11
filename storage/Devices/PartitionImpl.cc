@@ -31,6 +31,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
+#include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/DasdPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
@@ -416,11 +417,83 @@ namespace storage
     {
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
-	// TODO min one sector
-	// TODO check free space behind partition
-	// TODO check limits of partition table
+	// minimal size is one sector
+
+	resize_info.combine_min(get_region().get_block_size());
+
+	// maximal size is limited by used space behind partition
+
+	Region surrounding = get_unused_surrounding_region();
+
+	unsigned long long unused_sectors_behind_partition = get_region().get_length() +
+	    surrounding.get_end() - get_region().get_end();
+
+	resize_info.combine_max(surrounding.to_bytes(unused_sectors_behind_partition));
 
 	return resize_info;
+    }
+
+
+    Region
+    Partition::Impl::get_unused_surrounding_region() const
+    {
+	const PartitionTable* partition_table = get_partition_table();
+	vector<const Partition*> partitions = partition_table->get_partitions();
+
+	switch (get_type())
+	{
+	    case PartitionType::PRIMARY:
+	    case PartitionType::EXTENDED:
+	    {
+		Region tmp = partition_table->get_impl().get_usable_region();
+
+		unsigned long long start = tmp.get_start();
+		unsigned long long end = tmp.get_end();
+
+		for (const Partition* partition : partitions)
+		{
+		    if (partition->get_type() == PartitionType::PRIMARY ||
+			partition->get_type() == PartitionType::EXTENDED)
+		    {
+			if (partition->get_region().get_end() < get_region().get_start())
+			    start = max(start, partition->get_region().get_end() + 1);
+
+			if (partition->get_region().get_start() > get_region().get_end())
+			    end = min(end, partition->get_region().get_start() - 1);
+		    }
+		}
+
+		return Region(start, end - start + 1, tmp.get_block_size());
+	    }
+
+	    case PartitionType::LOGICAL:
+	    {
+		Region tmp = partition_table->get_extended()->get_region();
+
+		unsigned long long start = tmp.get_start();
+		unsigned long long end = tmp.get_end();
+
+		for (const Partition* partition : partitions)
+		{
+		    if (partition->get_type() == PartitionType::LOGICAL)
+		    {
+			if (partition->get_region().get_end() < get_region().get_start())
+			    start = max(start, partition->get_region().get_end() + 1);
+
+			if (partition->get_region().get_start() > get_region().get_end())
+			    end = min(end, partition->get_region().get_start() - 1);
+		    }
+		}
+
+		// Keep space for EBRs.
+
+		start += Msdos::Impl::num_ebrs;
+
+		return Region(start, end - start + 1, tmp.get_block_size());
+	    }
+	}
+
+	ST_THROW(Exception("illegal partition type"));
     }
 
 
