@@ -180,6 +180,11 @@ namespace storage
     ResizeInfo
     BlkFilesystem::Impl::detect_resize_info() const
     {
+	if (!exists_in_probed())
+	{
+	    return ResizeInfo(true);
+	}
+
 	if (!resize_info.has_value())
 	{
 	    resize_info.set_value(detect_resize_info_pure());
