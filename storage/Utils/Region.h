@@ -87,10 +87,28 @@ namespace storage
 	unsigned long long get_length() const;
 	unsigned long long get_end() const;
 
+	/**
+	 * Sets the start while keeping the length.
+	 */
 	void set_start(unsigned long long start);
+
+	/**
+	 * Sets the length while keeping the start.
+	 */
 	void set_length(unsigned long long length);
 
+	/**
+	 * Adjusts the start while keeping the length.
+	 *
+	 * @throw Exception
+	 */
 	void adjust_start(long long delta);
+
+	/**
+	 * Adjusts the length while keeping the start.
+	 *
+	 * @throw Exception
+	 */
 	void adjust_length(long long delta);
 
 	unsigned int get_block_size() const;
