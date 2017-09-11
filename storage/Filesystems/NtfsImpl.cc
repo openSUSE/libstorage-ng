@@ -50,6 +50,17 @@ namespace storage
 
 
     ResizeInfo
+    Ntfs::Impl::detect_resize_info() const
+    {
+	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
+
+	resize_info.combine(ResizeInfo(true, 1 * MiB, 256 * TiB - 64 * KiB));
+
+	return resize_info;
+    }
+
+
+    ResizeInfo
     Ntfs::Impl::detect_resize_info_pure() const
     {
 	if (!get_devicegraph()->get_impl().is_probed())

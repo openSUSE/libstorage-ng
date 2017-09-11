@@ -272,7 +272,7 @@ namespace storage
     {
 	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
 
-	resize_info.combine(ResizeInfo(true, 256 * MiB, 16 * EiB));
+	resize_info.combine(ResizeInfo(true, 256 * MiB, 16 * EiB - 1 * B));
 
 	return resize_info;
     }

@@ -112,7 +112,7 @@
       <uuid>1419F5B71AAD58CE</uuid>
       <ResizeInfo>
 	<resize-ok>true</resize-ok>
-	<min-size>1024000</min-size>
+	<min-size>1048576</min-size>
 	<max-size>2048000000</max-size>
       </ResizeInfo>
       <ContentInfo>
