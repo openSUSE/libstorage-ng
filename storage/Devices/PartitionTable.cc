@@ -177,6 +177,13 @@ namespace storage
     }
 
 
+    const Partition*
+    PartitionTable::get_extended() const
+    {
+	return get_impl().get_extended();
+    }
+
+
     const Partitionable*
     PartitionTable::get_partitionable() const
     {
