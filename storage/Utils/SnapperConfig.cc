@@ -27,15 +27,18 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Filesystems/Btrfs.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Storage.h"
+#include "storage/EtcFstab.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Text.h"
 
 #define INSTALLATION_HELPER_BIN "/usr/lib/snapper/installation-helper"
+#define SNAPSHOTS_DIR ".snapshots"
 
 using namespace storage;
 
@@ -88,18 +91,33 @@ SnapperConfig::post_mount()
 
 
 void
-SnapperConfig::post_add_to_etc_fstab()
+SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
 {
     if ( ! sanity_check() )
         return;
 
-    vector<string> args = {
-        "--step", "3",
-        "--root-prefix", get_root_prefix(),
-        "--default-subvolume-name", get_default_subvolume_name()
-    };
+    // Don't call installation-helper as an external program for this step
+    // because this would modify /etc/fstab on the target system while it is
+    // already open and modified by libstorage during the commit phase, so any
+    // changes made to that file by installation-helper are silently
+    // overwritten by libstorage (bsc#1057443).
 
-    installation_helper( args );
+    // Sample fstab entry:
+    //
+    // UUID=5acfd198-963a-4740-a33e-030b7f305d67 /.snapshots btrfs subvol=@/.snapshots 0 0
+
+
+    FstabEntry * entry = new FstabEntry();
+
+    entry->set_device( get_device_name() );
+    entry->set_mount_point( "/" SNAPSHOTS_DIR );
+    entry->set_mount_opts( MountOpts( string( "subvol=" ) + get_snapshots_subvol_name() ) );
+    entry->set_fs_type( FsType::BTRFS );
+
+    y2mil( "Adding snapshots dir to /etc/fstab:" );
+    etc_fstab.add( entry );
+    etc_fstab.log_diff();
+    etc_fstab.write();
 }
 
 
@@ -191,4 +209,25 @@ SnapperConfig::get_root_prefix() const
     Device * device = to_device_of_type<Device>(btrfs);
 
     return device->get_impl().get_devicegraph()->get_storage()->get_rootprefix();
+}
+
+
+string
+SnapperConfig::get_device_name() const
+{
+    return btrfs->get_impl().get_mount_by_name( btrfs->get_mount_point()->get_mount_by() );
+}
+
+
+string
+SnapperConfig::get_snapshots_subvol_name() const
+{
+    string subvol_name = get_default_subvolume_name();
+
+    if ( ! subvol_name.empty() )
+        subvol_name += "/";
+
+    subvol_name += SNAPSHOTS_DIR;
+
+    return subvol_name;
 }
