@@ -168,12 +168,16 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(const Devicegraph *devicegraph, const std::string &server, const std::string &path);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Partition::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Partition::get_unused_surrounding_region() const;
 %catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
+%catches(storage::Exception) storage::PartitionTable::get_extended() const;
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType pt_type);
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
+%catches(storage::Exception) storage::Region::adjust_length(long long delta);
+%catches(storage::Exception) storage::Region::adjust_start(long long delta);
 %catches(storage::DifferentBlockSizes) storage::Region::inside(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::intersect(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator!=(const Region &rhs) const;
@@ -188,6 +192,7 @@
 %catches(storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string &source_name, const std::string &dest_name);
 %catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
+%catches(storage::Exception) storage::Storage::deactivate() const;
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name) const;
 %catches(storage::Exception) storage::Storage::probe();
