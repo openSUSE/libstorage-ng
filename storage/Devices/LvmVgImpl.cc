@@ -534,13 +534,16 @@ namespace storage
     void
     LvmVg::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
     {
-	// First, all the operations removing or shrinking LVs
+	// First, all the operations removing or shrinking LVs.
 	vector<Actiongraph::Impl::vertex_descriptor> decrease_lv_actions;
 
-	// Afterward, all the operations adding or removing PVs
-	vector<Actiongraph::Impl::vertex_descriptor> reallot_actions;
+	// Afterward, all the operations adding, removing or resizing PVs.
+	// Since only unused extents of physical volume can be removed by
+	// reduce and shrink the order of reallot and resize actions is not
+	// important here.
+	vector<Actiongraph::Impl::vertex_descriptor> reallot_and_resize_actions;
 
-	// Finally, operations adding and growing LVs
+	// Finally, operations adding or growing LVs.
 	vector<Actiongraph::Impl::vertex_descriptor> increase_lv_actions;
 
 	// Look for the relevant actions
@@ -548,16 +551,19 @@ namespace storage
 	{
 	    const Action::Base* action = actiongraph[vertex];
 
-	    if (action_is_my_reallot(action, actiongraph))
-		reallot_actions.push_back(vertex);
+	    if (action_frees_vg_space(action, actiongraph))
+		decrease_lv_actions.push_back(vertex);
+	    else if (action_is_my_reallot(action, actiongraph))
+		reallot_and_resize_actions.push_back(vertex);
+	    else if (action_is_my_pv_resize(action, actiongraph))
+		reallot_and_resize_actions.push_back(vertex);
 	    else if (action_uses_vg_space(action, actiongraph))
 		increase_lv_actions.push_back(vertex);
-	    else if (action_frees_vg_space(action, actiongraph))
-		decrease_lv_actions.push_back(vertex);
 	}
 
 	// Add the dependencies to the action graph
-	actiongraph.add_chain({ decrease_lv_actions, reallot_actions, increase_lv_actions });
+	actiongraph.add_chain({ decrease_lv_actions, reallot_and_resize_actions,
+		    increase_lv_actions });
     }
 
 
@@ -566,6 +572,22 @@ namespace storage
     {
 	const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
 	return reallot && reallot->sid == get_sid();
+    }
+
+
+    bool
+    LvmVg::Impl::action_is_my_pv_resize(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
+    {
+	const Action::Resize* resize = dynamic_cast<const Action::Resize*>(action);
+	if (!resize)
+	    return false;
+
+	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);
+	const Device* device = devicegraph->find_device(resize->sid);
+	if (!is_lvm_pv(device))
+	    return false;
+
+	return to_lvm_pv(device)->get_lvm_vg()->get_sid() == get_sid();
     }
 
 

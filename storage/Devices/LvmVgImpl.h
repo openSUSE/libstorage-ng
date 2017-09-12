@@ -139,6 +139,11 @@ namespace storage
 	bool action_is_my_reallot(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
 
 	/**
+	 * Checks if the given action is resizing a physical volume of this volume group.
+	 */
+	bool action_is_my_pv_resize(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+
+	/**
 	 * Checks if the action performed in a logical volume decreases the free
 	 * space available in the volume group.
 	 */
