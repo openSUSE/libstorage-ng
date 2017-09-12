@@ -147,15 +147,27 @@ namespace storage
     {
 	ResizeInfo resize_info(true);
 
-	// A physical volume must have at least one extent and space for metadata.
+	// A physical volume must have at least one extent and space for
+	// metadata.
 
-	// TODO handle space for metdata
+	// TODO 1 MiB due to metadata and physical extent alignment, needs
+	// more research.
+
+	resize_info.min_size = 1 * MiB;
 
 	if (has_lvm_vg())
 	{
 	    const LvmVg* lvm_vg = get_lvm_vg();
 
-	    resize_info.min_size = lvm_vg->get_extent_size();
+	    resize_info.min_size += lvm_vg->get_extent_size();
+	}
+
+	// Currently we only support growing if the physical volume is already
+	// on disk - shrinking is more complicated.
+
+	if (exists_in_probed())
+	{
+	    resize_info.min_size = get_blk_device()->get_size();
 	}
 
 	return resize_info;

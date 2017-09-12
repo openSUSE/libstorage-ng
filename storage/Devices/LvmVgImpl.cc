@@ -180,7 +180,8 @@ namespace storage
 
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	{
-	    // TODO 1MiB due to metadata and physical extent alignment, needs more research
+	    // TODO 1 MiB due to metadata and physical extent alignment, needs
+	    // more research.
 
 	    unsigned long long size = lvm_pv->get_blk_device()->get_size();
 	    if (size >= 1 * MiB)
