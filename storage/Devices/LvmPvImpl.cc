@@ -147,15 +147,27 @@ namespace storage
     {
 	ResizeInfo resize_info(true);
 
-	// A physical volume must have at least one extent and space for metadata.
+	// A physical volume must have at least one extent and space for
+	// metadata.
 
-	// TODO handle space for metdata
+	// TODO 1 MiB due to metadata and physical extent alignment, needs
+	// more research.
+
+	resize_info.min_size = 1 * MiB;
 
 	if (has_lvm_vg())
 	{
 	    const LvmVg* lvm_vg = get_lvm_vg();
 
-	    resize_info.min_size = lvm_vg->get_extent_size();
+	    resize_info.min_size += lvm_vg->get_extent_size();
+	}
+
+	// Currently we only support growing if the physical volume is already
+	// on disk - shrinking is more complicated.
+
+	if (exists_in_probed())
+	{
+	    resize_info.min_size = get_blk_device()->get_size();
 	}
 
 	return resize_info;
@@ -248,7 +260,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVCREATEBIN " " + quote(blk_device->get_name());
+	string cmd_line = PVCREATEBIN " --force " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -316,7 +328,7 @@ namespace storage
 
 	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
+	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
 	cout << cmd_line << endl;
 
@@ -324,7 +336,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize LvmLV failed"));
+	    ST_THROW(Exception("resize LvmPv failed"));
     }
 
 

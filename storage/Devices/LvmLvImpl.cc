@@ -453,7 +453,7 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	string cmd_line = LVREMOVEBIN " -f " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
+	string cmd_line = LVREMOVEBIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
