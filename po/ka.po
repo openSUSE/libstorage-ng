@@ -1,0 +1,1329 @@
+# Georgian message file for YaST2 (@memory@).
+# Copyright (C) 2005 SUSE Linux Products GmbH.
+# Copyright (C) 2005 SUSE Linux Products GmbH.
+# Aiet Kolkhi <aiet@qartuli.net>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: YaST (@memory@)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-12 20:00+0200\n"
+"PO-Revision-Date:  2005-05-17 19:57+0200\n"
+"Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
+"Language-Team: Georgian <i18n@suse.de>\n"
+"Language: ka\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:311
+#, c-format
+msgid "Activate encryption layer device on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:475
+#, fuzzy, c-format
+msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:314
+#, c-format
+msgid "Activating encryption layer device on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:480
+#, c-format
+msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by device name (e.g. /dev/md0)
+#: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
+#, fuzzy, c-format
+msgid "Add %1$s to %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by md name (e.g. /dev/md0)
+#: ../storage/Devices/MdImpl.cc:824
+#, c-format
+msgid "Add %1$s to /etc/mdadm.conf"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:341
+#, c-format
+msgid "Add encryption layer device on %1$s to /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:253
+#, c-format
+msgid "Add mount point %1$s of %2$s to /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by subvolume path (e.g. home),
+#. %3$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
+#, c-format
+msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by device name (e.g. /dev/md0)
+#: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
+#, fuzzy, c-format
+msgid "Adding %1$s to %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by md name (e.g. /dev/md0)
+#: ../storage/Devices/MdImpl.cc:827
+#, c-format
+msgid "Adding %1$s to /etc/mdadm.conf"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:344
+#, c-format
+msgid "Adding encryption layer device on %1$s to /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:257
+#, c-format
+msgid "Adding mount point %1$s of %2$s to /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by subvolume path (e.g. home),
+#. %3$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:482
+#, c-format
+msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: symbol for "bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:54
+msgid "B"
+msgstr "ბ"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:769
+#, fuzzy, c-format
+msgid "Clear boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:810
+#, fuzzy, c-format
+msgid "Clear legacy boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
+#, fuzzy, c-format
+msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:245
+#, c-format
+msgid "Clear protective MBR boot flag of GPT on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:772
+#, fuzzy, c-format
+msgid "Clearing boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:813
+#, fuzzy, c-format
+msgid "Clearing legacy boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:531
+#, c-format
+msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:248
+#, c-format
+msgid "Clearing protective MBR boot flag of GPT on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:503
+#, fuzzy, c-format
+msgid "Create %1$s on %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/DasdPtImpl.cc:212
+#, fuzzy, c-format
+msgid "Create DASD partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:201
+#, fuzzy, c-format
+msgid "Create GPT on %1$s"
+msgstr "შეიქმნა: %1"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/MdImpl.cc:720
+#, fuzzy, c-format
+msgid "Create MD %1$s %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/MsdosImpl.cc:276
+#, fuzzy, c-format
+msgid "Create MSDOS partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:233
+#, fuzzy, c-format
+msgid "Create encryption layer device on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:538
+#, fuzzy, c-format
+msgid "Create extended partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#: ../storage/Devices/DiskImpl.cc:227
+#, fuzzy, c-format
+msgid "Create hard disk %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:550
+#, fuzzy, c-format
+msgid "Create logical partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:298
+#, fuzzy, c-format
+msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:511
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/LvmPvImpl.cc:249
+#, fuzzy, c-format
+msgid "Create physical volume on %1$s"
+msgstr "%1 რეპოზიტორიის შექმნა"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:526
+#, fuzzy, c-format
+msgid "Create primary partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
+#, fuzzy, c-format
+msgid "Create subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/LvmVgImpl.cc:386
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:508
+#, fuzzy, c-format
+msgid "Creating %1$s on %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/DasdPtImpl.cc:215
+#, fuzzy, c-format
+msgid "Creating DASD partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:204
+#, fuzzy, c-format
+msgid "Creating GPT on %1$s"
+msgstr "%1-ის წაშლა"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/MdImpl.cc:725
+#, fuzzy, c-format
+msgid "Creating MD %1$s %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/MsdosImpl.cc:279
+#, fuzzy, c-format
+msgid "Creating MSDOS partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:236
+#, fuzzy, c-format
+msgid "Creating encryption layer device on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:542
+#, fuzzy, c-format
+msgid "Creating extended partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:554
+#, fuzzy, c-format
+msgid "Creating logical partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:303
+#, fuzzy, c-format
+msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 რეპოზიტორიის შექმნა"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:515
+#, fuzzy, c-format
+msgid "Creating partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/LvmPvImpl.cc:252
+#, fuzzy, c-format
+msgid "Creating physical volume on %1$s"
+msgstr "%1 რეპოზიტორიის შექმნა"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:530
+#, fuzzy, c-format
+msgid "Creating primary partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
+#, fuzzy, c-format
+msgid "Creating subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/LvmVgImpl.cc:390
+#, fuzzy, c-format
+msgid "Creating volume group %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/MdImpl.cc:975
+#, c-format
+msgid "Deactivate MD %1$s %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:326
+#, fuzzy, c-format
+msgid "Deactivate encryption layer device on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:511
+#, fuzzy, c-format
+msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
+#. %2$s is replaced by size (e.g. 1 TiB)
+#: ../storage/Devices/MultipathImpl.cc:298
+#, fuzzy, c-format
+msgid "Deactivate multipath %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/MdImpl.cc:980
+#, fuzzy, c-format
+msgid "Deactivating MD %1$s %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:329
+#, fuzzy, c-format
+msgid "Deactivating encryption layer device on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:516
+#, fuzzy, c-format
+msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
+#. %2$s is replaced by size (e.g. 1 TiB)
+#: ../storage/Devices/MultipathImpl.cc:302
+#, fuzzy, c-format
+msgid "Deactivating multipath %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:676
+#, fuzzy, c-format
+msgid "Delete %1$s on %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/DasdPtImpl.cc:245
+#, fuzzy, c-format
+msgid "Delete DASD partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:277
+#, fuzzy, c-format
+msgid "Delete GPT on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/MdImpl.cc:796
+#, fuzzy, c-format
+msgid "Delete MD %1$s %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/MsdosImpl.cc:309
+#, fuzzy, c-format
+msgid "Delete MSDOS partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:248
+#, fuzzy, c-format
+msgid "Delete encryption layer device on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:439
+#, fuzzy, c-format
+msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:841
+#, fuzzy, c-format
+msgid "Delete partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/LvmPvImpl.cc:351
+#, fuzzy, c-format
+msgid "Delete physical volume on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
+#, fuzzy, c-format
+msgid "Delete subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/LvmVgImpl.cc:420
+#, fuzzy, c-format
+msgid "Delete volume group %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:681
+#, fuzzy, c-format
+msgid "Deleting %1$s on %2$s (%3$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/DasdPtImpl.cc:248
+#, fuzzy, c-format
+msgid "Deleting DASD partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:280
+#, fuzzy, c-format
+msgid "Deleting GPT on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by RAID level (e.g. RAID0),
+#. %2$s is replaced by RAID name (e.g. /dev/md0),
+#. %3$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/MdImpl.cc:801
+#, c-format
+msgid "Deleting MD %1$s %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/MsdosImpl.cc:312
+#, fuzzy, c-format
+msgid "Deleting MSDOS partition table on %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:251
+#, fuzzy, c-format
+msgid "Deleting encryption layer device on %1$s"
+msgstr "მოწყობილობების აღმოჩენა..."
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:444
+#, fuzzy, c-format
+msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:845
+#, fuzzy, c-format
+msgid "Deleting partition %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/LvmPvImpl.cc:354
+#, fuzzy, c-format
+msgid "Deleting physical volume on %1$s"
+msgstr "%1 რეპოზიტორიის შექმნა"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
+#, fuzzy, c-format
+msgid "Deleting subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Devices/LvmVgImpl.cc:424
+#, fuzzy, c-format
+msgid "Deleting volume group %1$s (%2$s)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: symbol for "exa" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:122
+msgid "E"
+msgstr ""
+
+#. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:119
+#, fuzzy
+#| msgid "B"
+msgid "EB"
+msgstr "ბ"
+
+#. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:116
+#, fuzzy
+#| msgid "KiB"
+msgid "EiB"
+msgstr "კბტ"
+
+#. TRANSLATORS: symbol for "giga" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:89
+#, fuzzy
+msgid "G"
+msgstr "გბ"
+
+#. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:86
+msgid "GB"
+msgstr "გბ"
+
+#. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:83
+#, fuzzy
+msgid "GiB"
+msgstr "გბ"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by filesystem (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:645
+#, fuzzy, c-format
+msgid "Grow %1$s on %2$s from %3$s to %4$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/EncryptionImpl.cc:288
+#, fuzzy, c-format
+msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:385
+#, c-format
+msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:896
+#, fuzzy, c-format
+msgid "Grow partition %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdb1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmPvImpl.cc:305
+#, fuzzy, c-format
+msgid "Grow physical volume on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by filesystem (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:651
+#, fuzzy, c-format
+msgid "Growing %1$s on %2$s from %3$s to %4$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/EncryptionImpl.cc:293
+#, fuzzy, c-format
+msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:391
+#, c-format
+msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/PartitionImpl.cc:901
+#, fuzzy, c-format
+msgid "Growing partition %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdb1),
+#. %2$s is replaced by old size (e.g. 1GiB),
+#. %3$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmPvImpl.cc:310
+#, fuzzy, c-format
+msgid "Growing physical volume on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:61
+msgid "KiB"
+msgstr "კბტ"
+
+#. TRANSLATORS: symbol for "mega" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:78
+#, fuzzy
+msgid "M"
+msgstr "მბ"
+
+#. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:75
+msgid "MB"
+msgstr "მბ"
+
+#. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:72
+msgid "MiB"
+msgstr "მბტ"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/MountableImpl.cc:173
+#, fuzzy, c-format
+msgid "Mount %1$s at %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. home),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by mount point (e.g. /home)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
+#, fuzzy, c-format
+msgid "Mount subvolume %1$s on %2$s at %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/MountableImpl.cc:177
+#, fuzzy, c-format
+msgid "Mounting %1$s at %2$s"
+msgstr ""
+"\n"
+"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. home),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by mount point (e.g. /home)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
+#, fuzzy, c-format
+msgid "Mounting subvolume %1$s on %2$s at %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: symbol for "peta" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:111
+#, fuzzy
+msgid "P"
+msgstr "IP"
+
+#. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:108
+#, fuzzy
+msgid "PB"
+msgstr "ბ"
+
+#. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:105
+#, fuzzy
+msgid "PiB"
+msgstr "კბტ"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by device name (e.g. /dev/md0)
+#: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
+#, fuzzy, c-format
+msgid "Remove %1$s from %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by md name (e.g. /dev/md0)
+#: ../storage/Devices/MdImpl.cc:855
+#, fuzzy, c-format
+msgid "Remove %1$s from /etc/mdadm.conf"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:391
+#, c-format
+msgid "Remove encryption layer device on %1$s from /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:327
+#, c-format
+msgid "Remove mount point %1$s of %2$s from /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by subvolume path (e.g. home),
+#. %3$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
+#, c-format
+msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by device name (e.g. /dev/md0)
+#: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
+#, fuzzy, c-format
+msgid "Removing %1$s from %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by md name (e.g. /dev/md0)
+#: ../storage/Devices/MdImpl.cc:858
+#, c-format
+msgid "Removing %1$s from /etc/mdadm.conf"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Devices/EncryptionImpl.cc:394
+#, c-format
+msgid "Removing encryption layer device on %1$s from /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:331
+#, c-format
+msgid "Removing mount point %1$s of %2$s from /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by subvolume path (e.g. home),
+#. %3$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
+#, c-format
+msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
+msgstr ""
+
+#: ../storage/Devices/LvmLvImpl.cc:338
+#, fuzzy, c-format
+msgid "Rename %1$s to %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda6),
+#. %2$s is replaced by device name (e.g. /dev/sda5)
+#: ../storage/Devices/EncryptionImpl.cc:367
+#, c-format
+msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda6),
+#. %3$s is replaced by device name (e.g. /dev/sda5)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:580
+#, c-format
+msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda6),
+#. %2$s is replaced by device name (e.g. /dev/sda5)
+#: ../storage/Devices/EncryptionImpl.cc:371
+#, c-format
+msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda6),
+#. %3$s is replaced by device name (e.g. /dev/sda5)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:585
+#, c-format
+msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:550
+#, fuzzy, c-format
+msgid "Set UUID of %1$s to %2$s"
+msgstr ""
+"\n"
+"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:761
+#, fuzzy, c-format
+msgid "Set boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
+#, fuzzy, c-format
+msgid "Set default subvolume to subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition id string (e.g. Linux LVM)
+#: ../storage/Devices/PartitionImpl.cc:672
+#, fuzzy, c-format
+msgid "Set id of partition %1$s to %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition id string (e.g. Linux LVM),
+#. 0x%3$02X is replaced by partition id (e.g. 0x8E)
+#: ../storage/Devices/PartitionImpl.cc:654
+#, fuzzy, c-format
+msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. 0x%2$02X is replaced by partition id (e.g. 0x8E)
+#: ../storage/Devices/PartitionImpl.cc:640
+#, fuzzy, c-format
+msgid "Set id of partition %1$s to 0x%2$02X"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by label (e.g. ROOT)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:524
+#, fuzzy, c-format
+msgid "Set label of %1$s to %2$s"
+msgstr ""
+"\n"
+"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:802
+#, fuzzy, c-format
+msgid "Set legacy boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
+#, c-format
+msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:237
+#, c-format
+msgid "Set protective MBR boot flag of GPT on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:554
+#, fuzzy, c-format
+msgid "Setting UUID of %1$s to %2$s"
+msgstr ""
+"\n"
+"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:764
+#, fuzzy, c-format
+msgid "Setting boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
+#, fuzzy, c-format
+msgid "Setting default subvolume to subvolume %1$s on %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition id string (e.g. Linux LVM)
+#: ../storage/Devices/PartitionImpl.cc:676
+#, fuzzy, c-format
+msgid "Setting id of partition %1$s to %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by partition id string (e.g. Linux LVM),
+#. 0x%3$02X is replaced by partition id (e.g. 0x8E)
+#: ../storage/Devices/PartitionImpl.cc:659
+#, fuzzy, c-format
+msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. 0x%2$02X is replaced by partition id (e.g. 0x8E)
+#: ../storage/Devices/PartitionImpl.cc:644
+#, fuzzy, c-format
+msgid "Setting id of partition %1$s to 0x%2$02X"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by label (e.g. ROOT)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:528
+#, fuzzy, c-format
+msgid "Setting label of %1$s to %2$s"
+msgstr ""
+"\n"
+"'%1' ცვლადისთვის '%2'-ის მინიჭება: %3"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1)
+#: ../storage/Devices/PartitionImpl.cc:805
+#, fuzzy, c-format
+msgid "Setting legacy boot flag of partition %1$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:521
+#, c-format
+msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#: ../storage/Devices/GptImpl.cc:240
+#, c-format
+msgid "Setting protective MBR boot flag of GPT on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by filesystem (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:629
+#, fuzzy, c-format
+msgid "Shrink %1$s on %2$s from %3$s to %4$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/EncryptionImpl.cc:274
+#, c-format
+msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:369
+#, c-format
+msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/PartitionImpl.cc:882
+#, fuzzy, c-format
+msgid "Shrink partition %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdb1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmPvImpl.cc:291
+#, fuzzy, c-format
+msgid "Shrink physical volume on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by filesystem (e.g. ext4),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:635
+#, fuzzy, c-format
+msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/EncryptionImpl.cc:279
+#, fuzzy, c-format
+msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:375
+#, c-format
+msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/PartitionImpl.cc:887
+#, fuzzy, c-format
+msgid "Shrinking partition %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sdb1),
+#. %2$s is replaced by old size (e.g. 2GiB),
+#. %3$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmPvImpl.cc:296
+#, fuzzy, c-format
+msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: symbol for "tera" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:100
+#, fuzzy
+msgid "T"
+msgstr "ტბ"
+
+#. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:97
+msgid "TB"
+msgstr "ტბ"
+
+#. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:94
+#, fuzzy
+msgid "TiB"
+msgstr "ტბ"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/MountableImpl.cc:220
+#, fuzzy, c-format
+msgid "Unmount %1$s at %2$s"
+msgstr "მონაცემებიდან ამოღება"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by subvolume path (e.g. home),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by mount point (e.g. /home)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
+#, fuzzy, c-format
+msgid "Unmount subvolume %1$s on %2$s at %3$s"
+msgstr "პაკეტების წაშლა..."
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#: ../storage/Filesystems/MountableImpl.cc:224
+#, fuzzy, c-format
+msgid "Unmounting %1$s at %2$s"
+msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by subvolume path (e.g. home),
+#. %2$s is replaced by device name (e.g. /dev/sda1),
+#. %3$s is replaced by mount point (e.g. /home)
+#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
+#, fuzzy, c-format
+msgid "Unmounting subvolume %1$s on %2$s at %3$s"
+msgstr "პაკეტების წაშლა..."
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:289
+#, c-format
+msgid "Update mount point %1$s of %2$s in /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by mount point (e.g. /home),
+#. %2$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/MountableImpl.cc:293
+#, c-format
+msgid "Updating mount point %1$s of %2$s in /etc/fstab"
+msgstr ""
+
+#. TRANSLATORS: first snapshot description
+#: ../storage/Utils/SnapperConfig.cc:58
+msgid "first root filesystem"
+msgstr ""
+
+#. TRANSLATORS: symbol for "kilo" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:67
+#, fuzzy
+msgid "k"
+msgstr "კბ"
+
+#. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
+#: ../storage/Utils/HumanString.cc:64
+msgid "kB"
+msgstr "კბ"
