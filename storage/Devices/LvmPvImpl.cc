@@ -248,7 +248,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = PVCREATEBIN " " + quote(blk_device->get_name());
+	string cmd_line = PVCREATEBIN " --force " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
@@ -316,7 +316,7 @@ namespace storage
 
 	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
+	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
 	cout << cmd_line << endl;
 
@@ -324,7 +324,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize LvmLV failed"));
+	    ST_THROW(Exception("resize LvmPv failed"));
     }
 
 
