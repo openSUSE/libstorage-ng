@@ -528,12 +528,15 @@ namespace storage
 	bool
 	Reallot::action_removes_device(const Action::Base* action) const
 	{
-	    const Action::Reallot* reallot;
+	    const Action::Reallot* reallot = dynamic_cast<const Action::Reallot*>(action);
 
-	    reallot = dynamic_cast<const Action::Reallot*>(action);
-	    if (!reallot) return false;
-	    if (reallot->reallot_mode != ReallotMode::REDUCE) return false;
-	    return (reallot->device->get_sid() == device->get_sid());
+	    if (!reallot)
+		return false;
+
+	    if (reallot->reallot_mode != ReallotMode::REDUCE)
+		return false;
+
+	    return reallot->device->get_sid() == device->get_sid();
 	}
 
     }
