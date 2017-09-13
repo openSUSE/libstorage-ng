@@ -157,6 +157,9 @@ bool CommentedConfigFile::write( const string & new_filename )
     for ( size_t i=0; i < lines.size(); ++i )
         file << lines[i] << "\n"; // no endl: Don't flush after every line
 
+    if ( diff_enabled )
+        save_orig( lines );
+
     return true;
 }
 

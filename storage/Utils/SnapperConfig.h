@@ -34,6 +34,7 @@ namespace storage
     using std::vector;
 
     class Btrfs;
+    class EtcFstab;
 
 
     /**
@@ -73,10 +74,9 @@ namespace storage
          * Hook to be called after the Btrfs root filesystem is added to
          * /etc/fstab.
          *
-         * This executes installation-helper step 3:
-         * Add @/.snapshots or .snapshots to /etc/fstab.
+         * This adds @/.snapshots or .snapshots to /etc/fstab.
          **/
-        void post_add_to_etc_fstab();
+        void post_add_to_etc_fstab( EtcFstab & etc_fstab );
 
         /**
          * Return the Btrfs filesystem this object works on.
@@ -138,6 +138,17 @@ namespace storage
          * the new root filesystem of the target is or will be mounted).
          **/
         string get_root_prefix() const;
+
+        /**
+         * Return the device name for the btrfs.
+         **/
+        string get_device_name() const;
+
+        /**
+         * Return the subvolume name of the ".snapshots" subvolume
+         * (prepended by the default subvolume if that is configured).
+         **/
+        string get_snapshots_subvol_name() const;
 
 
     private:
