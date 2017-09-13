@@ -117,7 +117,7 @@ SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
     mount_opts.append( string( "subvol=/" ) + get_snapshots_subvol_name() );
     entry->set_mount_opts( mount_opts );
 
-    etc_fstab.write(); // Just to make the next logged diff shorter
+    etc_fstab.save_orig(); // Reset reference for diff
     y2mil( "Adding .snapshots subvolume to /etc/fstab:" );
     etc_fstab.add( entry );
     etc_fstab.log_diff();
