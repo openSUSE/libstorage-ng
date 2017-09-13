@@ -111,7 +111,7 @@ SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
 
     entry->set_device( get_device_name() );
     entry->set_mount_point( "/" SNAPSHOTS_DIR );
-    entry->set_mount_opts( MountOpts( string( "subvol=" ) + get_snapshots_subvol_name() ) );
+    entry->set_mount_opts( MountOpts( string( "subvol=/" ) + get_snapshots_subvol_name() ) );
     entry->set_fs_type( FsType::BTRFS );
 
     y2mil( "Adding snapshots dir to /etc/fstab:" );
