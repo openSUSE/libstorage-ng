@@ -337,7 +337,7 @@ namespace storage
         BlkFilesystem::Impl::do_add_to_etc_fstab(commit_data, mount_point);
 
         if (snapper_config)
-            snapper_config->post_add_to_etc_fstab();
+            snapper_config->post_add_to_etc_fstab(commit_data.get_etc_fstab());
     }
 
 
