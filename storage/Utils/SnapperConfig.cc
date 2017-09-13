@@ -104,17 +104,21 @@ SnapperConfig::post_add_to_etc_fstab( EtcFstab & etc_fstab )
 
     // Sample fstab entry:
     //
-    // UUID=5acfd198-963a-4740-a33e-030b7f305d67 /.snapshots btrfs subvol=@/.snapshots 0 0
+    // UUID=5acfd198-963a-4740-a33e-030b7f305d67 /.snapshots btrfs subvol=/@/.snapshots 0 0
 
 
     FstabEntry * entry = new FstabEntry();
 
     entry->set_device( get_device_name() );
     entry->set_mount_point( "/" SNAPSHOTS_DIR );
-    entry->set_mount_opts( MountOpts( string( "subvol=/" ) + get_snapshots_subvol_name() ) );
     entry->set_fs_type( FsType::BTRFS );
 
-    y2mil( "Adding snapshots dir to /etc/fstab:" );
+    MountOpts mount_opts = btrfs->get_impl().get_mount_options();
+    mount_opts.append( string( "subvol=/" ) + get_snapshots_subvol_name() );
+    entry->set_mount_opts( mount_opts );
+
+    etc_fstab.write(); // Just to make the next logged diff shorter
+    y2mil( "Adding .snapshots subvolume to /etc/fstab:" );
     etc_fstab.add( entry );
     etc_fstab.log_diff();
     etc_fstab.write();
