@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-07-11 16:00+0000\n"
-"Last-Translator: Jyri Palokangas <jmp@opensuse.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/master/"
-"fi/>\n"
+"PO-Revision-Date: 2017-09-13 09:29+0000\n"
+"Last-Translator: Arvin Schnell <aschnell@suse.com>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -764,12 +764,12 @@ msgstr "G"
 #. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:86
 msgid "GB"
-msgstr "Gt"
+msgstr "GB"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:83
 msgid "GiB"
-msgstr "Gt"
+msgstr "GiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -887,7 +887,7 @@ msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:61
 msgid "KiB"
-msgstr "Kt"
+msgstr "KiB"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:78
@@ -897,12 +897,12 @@ msgstr "M"
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:75
 msgid "MB"
-msgstr "Mt"
+msgstr "MB"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:72
 msgid "MiB"
-msgstr "Mit"
+msgstr "MiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -950,7 +950,7 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:108
 msgid "PB"
-msgstr "Pt"
+msgstr "PB"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:105
@@ -1374,7 +1374,7 @@ msgstr "T"
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:97
 msgid "TB"
-msgstr "Tt"
+msgstr "TB"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:94
@@ -1450,4 +1450,4 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:64
 msgid "kB"
-msgstr "kt"
+msgstr "kB"
