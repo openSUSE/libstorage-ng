@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-09-13 08:57+0000\n"
+"PO-Revision-Date: 2017-09-13 12:03+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ja/>\n"
@@ -170,7 +170,7 @@ msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' �
 #: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr "%1$s 内の GPT の protective MBR boot フラグの消去"
+msgstr "%1$s 内の GPT に対する protective MBR boot フラグの消去"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -700,20 +700,18 @@ msgstr "GiB"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "%4$s 用のボリューム %1$s (%2$s) を %3$s で作成"
+msgstr "%2$s 内の %1$s に対する %3$s から %4$s への拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:288
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s への拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -721,30 +719,27 @@ msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマッ
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:385
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "%4$s 用の論理ボリューム %1$s (%2$s) を %3$s で作成"
+msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対する %3$s から %4$s への拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:896
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s (%2$s) を %3$s でフォーマット"
+msgstr "パーティション %1$s の %2$s から %3$s への拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:305
-#, fuzzy, c-format
-#| msgid "Format logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "論理ボリューム %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への拡大"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -752,20 +747,18 @@ msgstr "論理ボリューム %1$s (%2$s) を %3$s でフォーマット"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "%4$s 用のパーティション %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%2$s 内の %1$s を %3$s から %4$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%1$s 内の暗号化レイヤデバイスを %2$s から %3$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -773,30 +766,27 @@ msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマッ
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:391
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "%4$s 用の論理ボリューム %1$s (%2$s) を %3$s で作成"
+msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:901
-#, fuzzy, c-format
-#| msgid "Formatting partition %1$s (%2$s) with %3$s "
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s (%2$s) を %3$s でフォーマットしています "
+msgstr "パーティション %1$s を %2$s から %3$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:310
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "論理ボリューム %1$s (%2$s) を %3$s でフォーマットしています"
+msgstr "%1$s 内の物理ボリュームを %2$s から %3$s に拡大しています"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:61
@@ -822,27 +812,24 @@ msgstr "MiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:173
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "%1$s を %2$s にマウントしています"
+msgstr "%1$s に対する %2$s へのマウント"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Create boot volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "ブートボリューム %1$s (%2$s) を %3$s で作成"
+msgstr "%2$s 内のサブボリューム %1$s に対する %3$s へのマウント"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:177
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mounting %1$s at %2$s"
 msgstr "%1$s を %2$s にマウントしています"
 
@@ -851,10 +838,9 @@ msgstr "%1$s を %2$s にマウントしています"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "デバイス %2$s 上にサブボリューム %1$s を作成しています"
+msgstr "%2$s 内のサブボリューム %1$s を %3$s にマウントしています"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:111
@@ -885,26 +871,24 @@ msgstr "%1$s を %2$s から削除"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:855
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "%1$s を %2$s から削除"
+msgstr "%1$s の /etc/mdadm.conf からの削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "暗号化レイヤデバイス %1$s の /etc/crypttab からの削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:327
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "マウントポイント %1$s のエントリを %2$s から削除"
+msgstr "マウントポイント %1$s (%2$s) の /etc/fstab からの削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -913,7 +897,7 @@ msgstr "マウントポイント %1$s のエントリを %2$s から削除"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr ""
+msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s に対する /etc/fstab からの削除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -922,49 +906,45 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "%1$s を %2$s から削除"
+msgstr "%1$s を %2$s から削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s を /etc/mdadm.conf から削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab から削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:331
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "マウントポイント %1$s の項目を %2$s から削除しています"
+msgstr "マウントポイント %1$s (%2$s) を /etc/fstab から削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "マウントポイント %1$s の項目を %2$s から削除しています"
+msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab から削除しています"
 
 #: ../storage/Devices/LvmLvImpl.cc:338
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "%1$s を %2$s から削除"
+msgstr "%1$s に対する %2$s への名称変更"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -972,17 +952,16 @@ msgstr "%1$s を %2$s から削除"
 #: ../storage/Devices/EncryptionImpl.cc:367
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:580
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s のエントリを %2$s から削除"
+msgstr "マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -990,88 +969,79 @@ msgstr "マウントポイント %1$s のエントリを %2$s から削除"
 #: ../storage/Devices/EncryptionImpl.cc:371
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名称変更しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:585
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s の項目を %2$s から削除しています"
+msgstr "マウントポイント %1$s を /etc/fstab 内で %2$s から %3$s に名称変更しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "%1$s のラベルを %2$s に設定"
+msgstr "%1$s の UUID に対する %2$s への設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:761
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "パーティション %1$s のタイプを %2$X に設定"
+msgstr "パーティション %1$s の boot フラグの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "デバイス %2$s 上にサブボリューム %1$s を作成"
+msgstr "%2$s 内のサブボリューム %1$s に対する既定のサブボリュームへの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:672
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "パーティション %1$s のタイプを %2$X に設定"
+msgstr "パーティション %1$s に対する ID (%2$s) の設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:654
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "パーティション %1$s のタイプを %2$s (%3$X) に設定"
+msgstr "パーティション %1$s に対する ID (%2$s (0x%3$02X)) の設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:640
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "パーティション %1$s のタイプを %2$X に設定"
+msgstr "パーティション %1$s に対する ID (0x%2$02X) の設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr "%1$s のラベルを %2$s に設定"
+msgstr "%1$s に対するラベル %2$s の設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:802
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "パーティション %1$s を削除しています"
+msgstr "パーティション %1$s に対する legacy boot フラグの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1079,85 +1049,77 @@ msgstr "パーティション %1$s を削除しています"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s 内の GPT に対する protective MBR boot フラグの設定"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting UUID of %1$s to %2$s"
-msgstr "%1$s のラベルを %2$s に設定しています"
+msgstr "%1$s の UUID を %2$s に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:764
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "パーティション %1$s の種類を %2$X に設定しています"
+msgstr "パーティション %1$s の boot フラグを設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "デバイス %2$s 上にサブボリューム %1$s を作成しています"
+msgstr "%2$s 内のサブボリューム %1$s を既定のサブボリュームに設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "パーティション %1$s の種類を %2$X に設定しています"
+msgstr "パーティション %1$s の ID を %2$s に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:659
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "パーティション %1$s の種類を %2$s (%3$X) に設定しています"
+msgstr "パーティション %1$s の ID を %2$s (0x%3$02X) に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:644
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "パーティション %1$s の種類を %2$X に設定しています"
+msgstr "パーティション %1$s の ID を 0x%2$02X に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:528
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting label of %1$s to %2$s"
 msgstr "%1$s のラベルを %2$s に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:805
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "パーティション %1$s の種類を %2$X に設定しています"
+msgstr "パーティション %1$s に対して legacy boot フラグを設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1165,14 +1127,14 @@ msgstr "パーティション %1$s の種類を %2$X に設定しています"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:521
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s 内の GPT に対して protective MBR boot フラグを設定しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1180,20 +1142,18 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
-#, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s を %2$s まで縮小"
+msgstr "%2$s に対する %1$s を %3$s から %4$s までの縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:274
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s への縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1201,30 +1161,27 @@ msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマッ
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:369
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "論理ボリューム %1$s を %2$s に縮小"
+msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対する %3$s から %4$s への縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:882
-#, fuzzy, c-format
-#| msgid "Shrink partition %1$s to %2$s"
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s を %2$s まで縮小"
+msgstr "パーティション %1$s に対する %2$s から %3$s への縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:291
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "論理ボリューム %1$s を %2$s に縮小"
+msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への縮小"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1232,20 +1189,18 @@ msgstr "論理ボリューム %1$s を %2$s に縮小"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
-#, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s を %2$s まで縮小しています"
+msgstr "%2$s 内の %1$s を %3$s から %4$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマット"
+msgstr "%1$s 内の暗号化レイヤデバイスを %2$s から %3$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1253,30 +1208,27 @@ msgstr "%4$s 用の暗号化デバイス %1$s (%2$s) を %3$s でフォーマッ
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:375
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "論理ボリューム %1$s を %2$s まで縮小しています"
+msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:887
-#, fuzzy, c-format
-#| msgid "Shrinking partition %1$s to %2$s"
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s を %2$s まで縮小しています"
+msgstr "パーティション %1$s を %2$s から %3$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:296
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "論理ボリューム %1$s を %2$s まで縮小しています"
+msgstr "%1$s 内の物理ボリュームを %2$s から %3$s まで縮小しています"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:100
@@ -1297,62 +1249,56 @@ msgstr "TiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:220
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "%1$s を %2$s にマウントしています"
+msgstr "%1$s に対する %2$s からのマウント解除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "デバイス %2$s 上のサブボリューム %1$s を削除しています"
+msgstr "%2$s 内のサブボリューム %1$s に対する %3$s からのマウント解除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:224
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "%1$s を %2$s にマウントしています"
+msgstr "%1$s (%2$s) をマウント解除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "デバイス %2$s 上のサブボリューム %1$s を削除しています"
+msgstr "%2$s 内のサブボリューム %1$s を %3$s からマウント解除しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:289
-#, fuzzy, c-format
-#| msgid "Update entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "%2$s のマウントポイント %1$s の項目を更新"
+msgstr "マウントポイント %1$s (%2$s) の /etc/fstab での更新"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Updating entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "%2$s のマウントポイント %1$s の項目を更新しています"
+msgstr "マウントポイント %1$s (%2$s) を /etc/fstab で更新しています"
 
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
-msgstr ""
+msgstr "初期ルートファイルシステム"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:67
