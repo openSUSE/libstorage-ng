@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-09-13 16:07+0000\n"
+"PO-Revision-Date: 2017-09-13 16:08+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ca/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Activa el dispositiu de la capa d'encriptació a %1$s"
+msgstr "Activa el dispositiu de capa d'encriptació a %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -41,7 +41,7 @@ msgstr "Activa el volum lògic %1$s (%2$s) al grup de volums %3$s"
 #: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Activant el dispositiu de la capa d'encriptació a %1$s"
+msgstr "Activant el dispositiu de capa d'encriptació a %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -230,7 +230,7 @@ msgstr "Crea GPT a %1$s"
 #: ../storage/Devices/MdImpl.cc:720
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "Crea MD %1$s %2$s (%3$s)"
+msgstr "Crea l'MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -345,7 +345,7 @@ msgstr "Creant GPT a %1$s"
 #: ../storage/Devices/MdImpl.cc:725
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Creant MD %1$s %2$s (%3$s)"
+msgstr "Creant l'MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -432,7 +432,7 @@ msgstr "Creant el grup de volums %1$s (%2$s)"
 #: ../storage/Devices/MdImpl.cc:975
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "Desactiva MS %1$s %2$s (%3$s)"
+msgstr "Desactiva l'MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -465,7 +465,7 @@ msgstr "Desactiva el multicamí %1$s (%2$s)"
 #: ../storage/Devices/MdImpl.cc:980
 #, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "Desactivant MD %1$s %2$s (%3$s)"
+msgstr "Desactivant l'MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
