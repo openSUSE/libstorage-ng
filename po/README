@@ -1,10 +1,8 @@
 
 Do not edit the PO files here. Changes will be overwritten.
 
-The POT file libstorage.pot is given to the openSUSE Localization Team and the
-resulting PO files are placed here. For more information see:
+The POT file libstorage-ng.pot is used by Weblate. Weblate also places
+translations here.
 
-http://old-en.opensuse.org/OpenSUSE_Localization_Developers_Information
-
-use "make libstorage min=50"
+https://l10n.opensuse.org/projects/libstorage-ng/
 
