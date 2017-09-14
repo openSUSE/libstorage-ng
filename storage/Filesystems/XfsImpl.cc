@@ -108,6 +108,23 @@ namespace storage
 
 
     void
+    Xfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    {
+	if (resize_mode == ResizeMode::SHRINK)
+	    ST_THROW(Exception("shrink Xfs not possible"));
+
+	EnsureMounted ensure_mounted(get_filesystem(), false);
+
+        string cmd_line = XFSGROWFSBIN " " + ensure_mounted.get_any_mount_point();
+        cout << cmd_line << endl;
+
+        SystemCmd cmd(cmd_line);
+        if (cmd.retcode() != 0)
+            ST_THROW(Exception("resize Xfs failed"));
+    }
+
+
+    void
     Xfs::Impl::do_set_label() const
     {
 	const BlkDevice* blk_device = get_blk_device();
