@@ -42,6 +42,6 @@ install-data-local: $(MOFILES)
 	    $(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$$langdir/$(PACKAGE).mo; \
 	done
 
-CLEANFILES = $(PACKAGE).pot $(MOFILES)
+CLEANFILES = $(MOFILES)
 
 EXTRA_DIST = $(POFILES)
