@@ -23,13 +23,16 @@ while true ; do
 done
 
 if [ -z "$PACKAGE_NAME" ] ; then
+  PACKAGE_NAME=$(git config --get remote.origin.url | perl -pe 's#^.*/|\.git$##g')
+fi
+
+if [ -z "$PACKAGE_NAME" ] ; then
   echo no package name set
   exit 1
 fi
 
 VERSION=`git2log --version VERSION ; cat VERSION`
 PACKAGE_PREFIX=$PACKAGE_NAME-$VERSION
-BRANCH=`[ -d .git ] && git branch | perl -ne 'print $_ if s/^\*\s*//'`
 
 mkdir -p package
 rm -f package/*.tar.xz package/*.changes
@@ -41,7 +44,7 @@ if [ ! -d .git ] ; then
   exit 1
 fi
 
-git archive --prefix=$PACKAGE_PREFIX/ $BRANCH > package/$PACKAGE_PREFIX.tar
+git archive --prefix=$PACKAGE_PREFIX/ HEAD > package/$PACKAGE_PREFIX.tar
 
 tar -r -f package/$PACKAGE_PREFIX.tar \
   --mode=0664 --owner=root --group=root \

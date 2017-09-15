@@ -31,6 +31,7 @@ sub add_head_tag;
 sub tags_to_str;
 sub format_log;
 sub format_all_logs;
+sub fix_dates;
 sub add_line_breaks;
 sub format_date_obs;
 sub format_date_iso;
@@ -92,6 +93,7 @@ $opt_max = 2 if $opt_version || $opt_branch;
 get_github_project;
 get_branch;
 get_log;
+fix_dates;
 get_tags;
 choose_tags;
 add_head_tag;
@@ -481,6 +483,36 @@ sub add_head_tag
 
   # remember that the tag was generated
   $config->{log}[0]{was_untagged} = 1;
+}
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# fix_dates()
+#
+# Adjust time stamps in entire git log.
+#
+# The time stamps of the git commits are not necessarily ordered by date.
+# But the generated changelog is required to have a monotonic time.
+#
+# We do this by going through the log in reverse and rewriting any dates we
+# find whenever the date decreases.
+#
+# Not very subtle but it works.
+#
+sub fix_dates
+{
+  my $last_date;
+
+  for (reverse @{$config->{raw_log}}) {
+    # e.g. "Date: 1443184889 +0200"
+    if(/^(Date:\s+)(\S+)(\s+\S+)/) {
+      if(defined $last_date && $2 < $last_date) {
+        $_ = "$1$last_date$3\n";
+        next;
+      }
+    }
+    $last_date = $2;
+  }
 }
 
 

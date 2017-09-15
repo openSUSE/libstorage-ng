@@ -24,7 +24,7 @@ Summary:        Library for storage management
 License:        GPL-2.0
 Group:          System/Libraries
 Url:            http://github.com/openSUSE/libstorage-ng
-Source:         libstorage-ng-%{version}.tar.bz2
+Source:         libstorage-ng-%{version}.tar.xz
 %if 0%{?suse_version} >= 1330
 BuildRequires:  libboost_headers-devel
 BuildRequires:  libboost_test-devel
