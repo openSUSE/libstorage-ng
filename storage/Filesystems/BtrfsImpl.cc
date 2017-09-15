@@ -325,7 +325,6 @@ namespace storage
     {
 	// TODO handle multiple devices
 
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_btrfs(rhs)->get_impl().get_blk_device();
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
