@@ -338,8 +338,6 @@ namespace storage
 	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
 	cout << cmd_line << endl;
 
-	blk_device->get_impl().wait_for_device();
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("resize Btrfs failed"));
