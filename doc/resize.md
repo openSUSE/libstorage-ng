@@ -54,9 +54,13 @@ Extending/Reducing
 Filesystems
 -----------
 
-- ext4: shrink and grow.
+- ext2/3/4: shrink and grow.
 
 - btrfs: shrink and grow.
+
+- XFS: grow
+
+- reiserfs: shrink and grow
 
 - NTFS: shrink and grow.
 
