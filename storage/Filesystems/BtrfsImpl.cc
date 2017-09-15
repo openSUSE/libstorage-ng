@@ -320,7 +320,31 @@ namespace storage
     }
 
 
-    void Btrfs::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
+    void
+    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    {
+	// TODO handle multiple devices
+
+	const BlkDevice* blk_device_rhs = to_btrfs(rhs)->get_impl().get_blk_device();
+
+	EnsureMounted ensure_mounted(get_filesystem(), false);
+
+	string cmd_line = BTRFSBIN " filesystem resize";
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " " + to_string(blk_device_rhs->get_size());
+	else
+	    cmd_line += " max";
+	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("resize Btrfs failed"));
+    }
+
+
+    void
+    Btrfs::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
     {
         if (snapper_config)
             snapper_config->pre_mount();
@@ -332,7 +356,8 @@ namespace storage
     }
 
 
-    void Btrfs::Impl::do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
+    void
+    Btrfs::Impl::do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const
     {
         BlkFilesystem::Impl::do_add_to_etc_fstab(commit_data, mount_point);
 
