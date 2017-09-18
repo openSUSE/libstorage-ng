@@ -27,7 +27,7 @@
 
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
-#include "storage/Action.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -43,6 +43,12 @@ namespace storage
     {
 
     public:
+
+	virtual unsigned long long min_size() const override { return 40 * MiB; }
+	virtual unsigned long long max_size() const override { return 8 * EiB - 1 * B; }
+
+	virtual bool supports_shrink() const override { return false; }
+	virtual bool supports_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 12; }
@@ -67,8 +73,6 @@ namespace storage
 	virtual string get_displayname() const override { return "xfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
-
-	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual uint64_t used_features() const override;
 

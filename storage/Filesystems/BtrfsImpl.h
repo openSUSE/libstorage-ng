@@ -29,6 +29,7 @@
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Utils/SnapperConfig.h"
 #include "storage/Action.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -44,6 +45,12 @@ namespace storage
     {
 
     public:
+
+	virtual unsigned long long min_size() const override { return 256 * MiB; }
+	virtual unsigned long long max_size() const override { return 16 * EiB - 1 * B; }
+
+	virtual bool supports_shrink() const override { return true; }
+	virtual bool supports_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 256; }
@@ -89,8 +96,6 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void probe_pass_2(Prober& prober) override;
-
-	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual uint64_t used_features() const override;
 

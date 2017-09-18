@@ -58,7 +58,7 @@ namespace storage
 	virtual FsType get_mount_type() const override { return get_type(); }
 
 	virtual SpaceInfo detect_space_info() const;
-	virtual SpaceInfo detect_space_info_pure() const;
+	virtual SpaceInfo detect_space_info_on_disk() const;
 	void set_space_info(const SpaceInfo& space_info);
 	bool has_space_info() const { return space_info.has_value(); }
 

@@ -38,11 +38,4 @@ namespace storage
     {
     }
 
-
-    ResizeInfo
-    Iso9660::Impl::detect_resize_info() const
-    {
-	return ResizeInfo(false);
-    }
-
 }

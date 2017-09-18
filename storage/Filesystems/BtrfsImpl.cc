@@ -267,15 +267,18 @@ namespace storage
     }
 
 
+#if 0
     ResizeInfo
-    Btrfs::Impl::detect_resize_info() const
+    Btrfs::Impl::detect_resize_info_on_disk() const
     {
-	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
+	if (!get_devicegraph()->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong device"));
 
-	resize_info.combine(ResizeInfo(true, 256 * MiB, 16 * EiB - 1 * B));
-
-	return resize_info;
+	// TODO btrfs provides a command to query the min size (btrfs
+	// inspect-internal min-dev-size /mount-point) but it does reports
+	// wrong values
     }
+#endif
 
 
     uint64_t

@@ -46,17 +46,6 @@ namespace storage
     }
 
 
-    ResizeInfo
-    Reiserfs::Impl::detect_resize_info() const
-    {
-	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
-
-	resize_info.combine(ResizeInfo(true, 64 * MiB, 16 * TiB));
-
-	return resize_info;
-    }
-
-
     uint64_t
     Reiserfs::Impl::used_features() const
     {

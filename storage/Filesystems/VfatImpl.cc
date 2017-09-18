@@ -47,19 +47,8 @@ namespace storage
     }
 
 
-    ResizeInfo
-    Vfat::Impl::detect_resize_info() const
-    {
-	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
-
-	resize_info.combine(ResizeInfo(true, 64 * KiB, 2 * TiB));
-
-	return resize_info;
-    }
-
-
     ContentInfo
-    Vfat::Impl::detect_content_info_pure() const
+    Vfat::Impl::detect_content_info_on_disk() const
     {
 	EnsureMounted ensure_mounted(get_filesystem());
 

@@ -27,6 +27,7 @@
 
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -42,6 +43,12 @@ namespace storage
     {
 
     public:
+
+	virtual unsigned long long min_size() const override { return 40 * KiB; }
+	virtual unsigned long long max_size() const override { return 1 * TiB; }
+
+	virtual bool supports_shrink() const override { return true; }
+	virtual bool supports_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 15; }

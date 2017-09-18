@@ -38,11 +38,4 @@ namespace storage
     {
     }
 
-
-    ResizeInfo
-    Udf::Impl::detect_resize_info() const
-    {
-	return ResizeInfo(false);
-    }
-
 }

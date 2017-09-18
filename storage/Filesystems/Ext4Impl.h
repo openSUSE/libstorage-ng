@@ -27,6 +27,7 @@
 
 #include "storage/Filesystems/Ext4.h"
 #include "storage/Filesystems/ExtImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -47,6 +48,9 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
+	virtual unsigned long long min_size() const override { return 32 * MiB; }
+	virtual unsigned long long max_size() const override { return 16 * TiB; }
+
 	virtual bool supports_external_journal() const override { return true; }
 
 	virtual FsType get_type() const override { return FsType::EXT4; }
@@ -56,8 +60,6 @@ namespace storage
 	virtual string get_displayname() const override { return "ext4"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
-
-	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual uint64_t used_features() const override;
 

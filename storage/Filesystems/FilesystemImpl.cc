@@ -35,7 +35,6 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
-#include "storage/Redirect.h"
 
 
 namespace storage
@@ -95,7 +94,7 @@ namespace storage
     {
 	if (!space_info.has_value())
 	{
-	    space_info.set_value(detect_space_info_pure());
+	    space_info.set_value(detect_space_info_on_disk());
 	}
 
 	return space_info.get_value();
@@ -103,7 +102,7 @@ namespace storage
 
 
     SpaceInfo
-    Filesystem::Impl::detect_space_info_pure() const
+    Filesystem::Impl::detect_space_info_on_disk() const
     {
 	EnsureMounted ensure_mounted(get_filesystem());
 

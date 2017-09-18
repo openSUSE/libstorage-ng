@@ -30,6 +30,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
@@ -39,6 +40,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -180,14 +182,40 @@ namespace storage
     ResizeInfo
     BlkFilesystem::Impl::detect_resize_info() const
     {
+	/*
+	 * If the filesystem is not on-disk, ResizeInfo(true, min_size,
+	 * max_size) is returned.
+	 *
+	 * Otherwise detect_resize_info_on_disk() is called (on the probed
+	 * devicegraph), the value cached and returned.
+	 *
+	 * The on-disk ResizeInfo is cached since it is invariant. E.g. the
+	 * ResizeInfo of a partition changes when the following partition is
+	 * removed.
+	 *
+	 * Filesystems that do not support create nor resize, e.g. ISO9660,
+	 * override detect_resize_info() and just return ResizeInfo(false).
+	 *
+	 * Filesystems can also override detect_resize_info_on_disk() if they
+	 * need special handling to detect the values, e.g. Ntfs calls a
+	 * external program to do so. In general a tools for every filesystem
+	 * reporting min and max size would be nice (LOL).
+	 */
+
 	if (!exists_in_probed())
 	{
-	    return ResizeInfo(true);
+	    return ResizeInfo(true, min_size(), max_size());
 	}
 
 	if (!resize_info.has_value())
 	{
-	    resize_info.set_value(detect_resize_info_pure());
+	    const BlkFilesystem* tmp_blk_filesystem = redirect_to_probed(get_non_impl());
+
+	    ResizeInfo tmp_resize_info = tmp_blk_filesystem->get_impl().detect_resize_info_on_disk();
+
+	    y2mil("on-disk resize-info:" << tmp_resize_info);
+
+	    resize_info.set_value(tmp_resize_info);
 	}
 
 	return resize_info.get_value();
@@ -195,18 +223,55 @@ namespace storage
 
 
     ResizeInfo
-    BlkFilesystem::Impl::detect_resize_info_pure() const
+    BlkFilesystem::Impl::detect_resize_info_on_disk() const
     {
 	// TODO only in real probe mode allowed
 
-	EnsureMounted ensure_mounted(get_filesystem());
+	if (!get_devicegraph()->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong device"));
 
-	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
+	ResizeInfo resize_info(true, min_size(), max_size());
 
-	ResizeInfo resize_info(true);
-	resize_info.min_size = stat_vfs.size - stat_vfs.free;
+	// Even if shrink or grow is not supported it is still possible to
+	// shrink or grow to the original size.
+
+	if (!supports_shrink())
+	{
+	    unsigned long long original_size = get_blk_device()->get_size();
+
+	    resize_info.min_size = original_size;
+	}
+	else
+	{
+	    // Assume that the min-size, e.g. for superblocks, metadata and
+	    // journal, is needed additional to the used-size.
+
+	    resize_info.min_size += used_size_on_disk();
+	}
+
+	if (!supports_grow())
+	{
+	    unsigned long long original_size = get_blk_device()->get_size();
+
+	    resize_info.max_size = original_size;
+	}
+
+	resize_info.check();
 
 	return resize_info;
+    }
+
+
+    unsigned long long
+    BlkFilesystem::Impl::used_size_on_disk() const
+    {
+	// TODO only in real probe mode allowed
+
+        EnsureMounted ensure_mounted(get_filesystem());
+
+        StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
+
+        return stat_vfs.size - stat_vfs.free;
     }
 
 
@@ -222,7 +287,7 @@ namespace storage
     {
 	if (!content_info.has_value())
 	{
-	    content_info.set_value(detect_content_info_pure());
+	    content_info.set_value(detect_content_info_on_disk());
 	}
 
 	return content_info.get_value();
@@ -230,7 +295,7 @@ namespace storage
 
 
     ContentInfo
-    BlkFilesystem::Impl::detect_content_info_pure() const
+    BlkFilesystem::Impl::detect_content_info_on_disk() const
     {
 	// TODO only in real probe mode allowed
 

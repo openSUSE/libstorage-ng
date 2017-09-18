@@ -42,17 +42,6 @@ namespace storage
     }
 
 
-    ResizeInfo
-    Ext4::Impl::detect_resize_info() const
-    {
-	ResizeInfo resize_info = Ext::Impl::detect_resize_info();
-
-	resize_info.combine(ResizeInfo(true, 32 * MiB, 16 * TiB));
-
-	return resize_info;
-    }
-
-
     uint64_t
     Ext4::Impl::used_features() const
     {
