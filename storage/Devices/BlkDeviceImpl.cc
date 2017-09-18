@@ -476,7 +476,7 @@ namespace storage
 
 
     Encryption*
-    BlkDevice::Impl::create_encryption(const std::string& dm_name)
+    BlkDevice::Impl::create_encryption(const string& dm_name)
     {
 	if (num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
