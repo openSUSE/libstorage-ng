@@ -124,7 +124,6 @@
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_END) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
-%catches(storage::WrongNumberOfChildren) storage::BlkDevice::create_encryption(const std::string &dm_name);
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType fs_type);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
@@ -134,6 +133,7 @@
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_filesystem() const;
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::remove_encryption();
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path) const;
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
