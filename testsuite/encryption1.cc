@@ -36,6 +36,8 @@ BOOST_AUTO_TEST_CASE(test_hihi)
 
     Filesystem* xfs = sdb->create_blk_filesystem(FsType::XFS);
 
+    storage.check();
+
     {
 	BOOST_CHECK_EQUAL(staging->num_devices(), 2);
 	BOOST_CHECK_EQUAL(staging->num_holders(), 1);
@@ -46,6 +48,8 @@ BOOST_AUTO_TEST_CASE(test_hihi)
 
     Encryption* encryption = sdb->create_encryption("cr-test");
     encryption->set_password("12345678");
+
+    storage.check();
 
     {
 	BOOST_CHECK_EQUAL(staging->num_devices(), 3);
@@ -79,6 +83,8 @@ BOOST_AUTO_TEST_CASE(test_hoho)
 
     Filesystem* xfs = encryption->create_blk_filesystem(FsType::XFS);
 
+    storage.check();
+
     {
 	BOOST_CHECK_EQUAL(staging->num_devices(), 3);
 	BOOST_CHECK_EQUAL(staging->num_holders(), 2);
@@ -93,6 +99,8 @@ BOOST_AUTO_TEST_CASE(test_hoho)
     }
 
     sdb->remove_encryption();
+
+    storage.check();
 
     {
 	BOOST_CHECK_EQUAL(staging->num_devices(), 2);
