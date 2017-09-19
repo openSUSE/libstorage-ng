@@ -64,6 +64,17 @@ namespace storage
     }
 
 
+    void
+    Holder::Impl::set_edge(Devicegraph::Impl::edge_descriptor edge)
+    {
+	Impl::edge = edge;
+
+	const Holder* holder = devicegraph->get_impl()[edge];
+	if (&holder->get_impl() != this)
+	    ST_THROW(LogicException("wrong edge for back references"));
+    }
+
+
     Device*
     Holder::Impl::get_source()
     {

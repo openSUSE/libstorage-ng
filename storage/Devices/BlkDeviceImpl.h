@@ -95,6 +95,8 @@ namespace storage
 
 	Encryption* create_encryption(const string& dm_name);
 
+	void remove_encryption();
+
 	bool has_encryption() const;
 
 	Encryption* get_encryption();

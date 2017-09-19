@@ -478,17 +478,45 @@ namespace storage
     Encryption*
     BlkDevice::Impl::create_encryption(const string& dm_name)
     {
-	if (num_children() != 0)
-	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
+	Devicegraph* devicegraph = get_devicegraph();
 
-	Luks* luks = Luks::create(get_devicegraph(), dm_name);
+	vector<Devicegraph::Impl::edge_descriptor> out_edges =
+	    devicegraph->get_impl().out_edges(get_vertex());
 
-	User::create(get_devicegraph(), get_non_impl(), luks);
+	Encryption* encryption = Luks::create(devicegraph, dm_name);
+	Devicegraph::Impl::vertex_descriptor encryption_vertex = encryption->get_impl().get_vertex();
+
+	User::create(devicegraph, get_non_impl(), encryption);
+
+	for (Devicegraph::Impl::edge_descriptor out_edge : out_edges)
+	{
+	    devicegraph->get_impl().set_source(out_edge, encryption_vertex);
+	}
 
 	// TODO maybe add parent_added() next to parent_has_new_region() for this?
-	luks->get_impl().parent_has_new_region(get_non_impl());
+	encryption->get_impl().parent_has_new_region(get_non_impl());
 
-	return luks;
+	return encryption;
+    }
+
+
+    void
+    BlkDevice::Impl::remove_encryption()
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+
+	Encryption* encryption = get_encryption();
+	Devicegraph::Impl::vertex_descriptor encryption_vertex = encryption->get_impl().get_vertex();
+
+	vector<Devicegraph::Impl::edge_descriptor> out_edges =
+	    devicegraph->get_impl().out_edges(encryption_vertex);
+
+	for (Devicegraph::Impl::edge_descriptor out_edge : out_edges)
+	{
+	    devicegraph->get_impl().set_source(out_edge, get_vertex());
+	}
+
+	devicegraph->get_impl().remove_vertex(encryption_vertex);
     }
 
 
