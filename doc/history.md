@@ -29,3 +29,9 @@ layer. Instead the most important YaST modules required for the installation
 have been [adapted to the libstorage-ng
 API](https://lists.opensuse.org/yast-devel/2016-11/msg00043.html).
 
+
+September 2017
+--------------
+
+Included in SLE 15 Alpha 4, replacing legacy libstorage.
+
