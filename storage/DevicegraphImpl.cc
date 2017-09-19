@@ -327,6 +327,9 @@ namespace storage
 	    ST_THROW(HolderAlreadyExists(graph[source_vertex]->get_sid(),
 					 graph[target_vertex]->get_sid()));
 
+	// TODO should also set devicegraph and edge in holder but the
+	// devicegraph is not available here
+
 	return tmp.first;
     }
 
@@ -402,6 +405,25 @@ namespace storage
 	}
 
 	ST_THROW(HolderNotFoundBySids(source_sid, target_sid));
+    }
+
+
+    Devicegraph::Impl::edge_descriptor
+    Devicegraph::Impl::set_source(edge_descriptor old_edge, vertex_descriptor source_vertex)
+    {
+	vertex_descriptor target_vertex = boost::target(old_edge, graph);
+
+	Holder* new_holder = graph[old_edge].get()->clone();
+
+	Devicegraph::Impl::edge_descriptor new_edge = add_edge(source_vertex, target_vertex,
+							       new_holder);
+
+	// set back-reference
+	new_holder->get_impl().set_edge(new_edge);
+
+	remove_edge(old_edge);
+
+	return new_edge;
     }
 
 

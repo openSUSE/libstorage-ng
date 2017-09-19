@@ -117,6 +117,8 @@ namespace storage
 	vertex_descriptor source(edge_descriptor edge) const { return boost::source(edge, graph); }
 	vertex_descriptor target(edge_descriptor edge) const { return boost::target(edge, graph); }
 
+	edge_descriptor set_source(edge_descriptor edge, vertex_descriptor vertex);
+
 	Device* operator[](vertex_descriptor vertex) { return graph[vertex].get(); }
 	const Device* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
 

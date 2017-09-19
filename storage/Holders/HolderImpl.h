@@ -59,6 +59,8 @@ namespace storage
 	void set_devicegraph_and_edge(Devicegraph* devicegraph,
 				      Devicegraph::Impl::edge_descriptor edge);
 
+	void set_edge(Devicegraph::Impl::edge_descriptor edge);
+
 	Devicegraph* get_devicegraph() { return devicegraph; }
 	const Devicegraph* get_devicegraph() const { return devicegraph; }
 
