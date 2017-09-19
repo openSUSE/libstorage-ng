@@ -73,7 +73,7 @@ Using Resize Functionality
 --------------------------
 
 To use the resize functionality always set the size on the underlying block
-device. E.g. if you have a partitions with LUKS and a filesystem on top, set
+device. E.g. if you have a partition with LUKS and a filesystem on top, set
 size on the partition.
 
 Also use detect_resize_info() on the underlying block device. That function
