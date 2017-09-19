@@ -49,6 +49,12 @@ namespace storage
     {
     public:
 
+	virtual unsigned long long min_size() const = 0;
+	virtual unsigned long long max_size() const = 0;
+
+	virtual bool supports_shrink() const = 0;
+	virtual bool supports_grow() const = 0;
+
 	virtual bool supports_label() const = 0;
 	virtual unsigned int max_labelsize() const = 0;
 
@@ -84,11 +90,13 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual ResizeInfo detect_resize_info() const override;
-	virtual ResizeInfo detect_resize_info_pure() const;
+	virtual ResizeInfo detect_resize_info_on_disk() const;
 	void set_resize_info(const ResizeInfo& resize_info);
 
+	unsigned long long used_size_on_disk() const;
+
 	virtual ContentInfo detect_content_info() const;
-	virtual ContentInfo detect_content_info_pure() const;
+	virtual ContentInfo detect_content_info_on_disk() const;
 	void set_content_info(const ContentInfo& content_info);
 
 	virtual string get_mount_name() const override;

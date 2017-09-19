@@ -38,11 +38,12 @@ namespace storage
 			   unsigned long long max_size)
 	: resize_ok(resize_ok), min_size(min_size), max_size(max_size)
     {
+	check();
     }
 
 
     ResizeInfo::ResizeInfo(bool resize_ok)
-	: resize_ok(resize_ok), min_size(0), max_size(std::numeric_limits<unsigned long long>::max())
+	: ResizeInfo(resize_ok, 0 * B, std::numeric_limits<unsigned long long>::max() * B)
     {
     }
 
@@ -72,6 +73,8 @@ namespace storage
 
 	combine_min(extra_resize_info.min_size);
 	combine_max(extra_resize_info.max_size);
+
+	check();
     }
 
 
@@ -79,6 +82,8 @@ namespace storage
     ResizeInfo::combine_min(unsigned long long extra_min_size)
     {
 	min_size = max(min_size, extra_min_size);
+
+	check();
     }
 
 
@@ -86,6 +91,32 @@ namespace storage
     ResizeInfo::combine_max(unsigned long long extra_max_size)
     {
 	max_size = min(max_size, extra_max_size);
+
+	check();
+    }
+
+
+    void
+    ResizeInfo::shift(unsigned long long offset)
+    {
+	// handling saturation
+
+	min_size += offset;
+	if (min_size < offset)
+	    min_size = std::numeric_limits<unsigned long long>::max();
+
+	max_size += offset;
+	if (max_size < offset)
+	    max_size = std::numeric_limits<unsigned long long>::max();
+
+	check();
+    }
+
+
+    void
+    ResizeInfo::check()
+    {
+	resize_ok = resize_ok && max_size > min_size;
     }
 
 

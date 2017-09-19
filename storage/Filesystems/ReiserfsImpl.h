@@ -26,7 +26,7 @@
 
 #include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
-#include "storage/Action.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -42,6 +42,12 @@ namespace storage
     {
 
     public:
+
+	virtual unsigned long long min_size() const override { return 64 * MiB; }
+	virtual unsigned long long max_size() const override { return 16 * TiB; }
+
+	virtual bool supports_shrink() const override { return true; }
+	virtual bool supports_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 16; }
@@ -62,8 +68,6 @@ namespace storage
 	virtual string get_displayname() const override { return "reiserfs"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
-
-	virtual ResizeInfo detect_resize_info() const override;
 
 	virtual uint64_t used_features() const override;
 

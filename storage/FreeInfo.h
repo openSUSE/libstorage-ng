@@ -42,11 +42,27 @@ namespace storage
 	ResizeInfo(bool resize_ok, unsigned long long min_size, unsigned long long max_size);
 	ResizeInfo(bool resize_ok);
 
+	/**
+	 * min_size = max(min_size, extra_resize_info.min_size)
+	 * max_size = min(max_size, extra_resize_info.max_size)
+	 *
+	 * Use e.g. to combine limits from filesystem with limits from partition.
+	 */
 	void combine(ResizeInfo extra_resize_info);
 
 	void combine_min(unsigned long long extra_min_size);
 
 	void combine_max(unsigned long long extra_max_size);
+
+	/**
+	 * min_size += offset
+	 * max_size += offset
+	 *
+	 * Use e.g. to shift limits from filesystem by metadata of LUKS.
+	 */
+	void shift(unsigned long long offset);
+
+	void check();
 
 	bool resize_ok;
 

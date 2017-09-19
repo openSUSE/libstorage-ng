@@ -51,23 +51,10 @@ namespace storage
 
 
     ResizeInfo
-    Ntfs::Impl::detect_resize_info() const
-    {
-	ResizeInfo resize_info = BlkFilesystem::Impl::detect_resize_info();
-
-	resize_info.combine(ResizeInfo(true, 1 * MiB, 256 * TiB - 64 * KiB));
-
-	return resize_info;
-    }
-
-
-    ResizeInfo
-    Ntfs::Impl::detect_resize_info_pure() const
+    Ntfs::Impl::detect_resize_info_on_disk() const
     {
 	if (!get_devicegraph()->get_impl().is_probed())
-	{
-	    return redirect_to_probed(get_non_impl())->get_impl().detect_resize_info_pure();
-	}
+	    ST_THROW(Exception("function called on wrong device"));
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -100,14 +87,14 @@ namespace storage
 	    resize_info.max_size = 256 * TiB - 64 * KiB;
 	}
 
-	y2mil("resize-info:" << resize_info);
+	resize_info.check();
 
 	return resize_info;
     }
 
 
     ContentInfo
-    Ntfs::Impl::detect_content_info_pure() const
+    Ntfs::Impl::detect_content_info_on_disk() const
     {
 	EnsureMounted ensure_mounted(get_filesystem());
 

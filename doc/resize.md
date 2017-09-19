@@ -68,3 +68,20 @@ Filesystems
 
 - swap: shrink and grow (only via recreate, involves data loss).
 
+
+Using Resize Functionality
+--------------------------
+
+To use the resize functionality always set the size on the underlying block
+device. E.g. if you have a partition with LUKS and a filesystem on top, set
+size on the partition.
+
+Also use detect_resize_info() on the underlying block device. That function
+returns ResizeInfo object with the minimal and maximal size for a resize
+operation. Note that the minimal and maximal are not aligned.
+
+Limitations of ResizeInfo:
+
+- Although LVM PVs on-disk can be shrunk with limitations (see pvresize) the
+  ResizeInfo reports them as if shrinking is not possible.
+

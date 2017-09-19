@@ -27,6 +27,7 @@
 
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/ExtImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -53,9 +54,10 @@ namespace storage
 
 	virtual string get_displayname() const override { return "ext2"; }
 
-	virtual Impl* clone() const override { return new Impl(*this); }
+	virtual unsigned long long min_size() const override { return 512 * KiB; }
+	virtual unsigned long long max_size() const override { return 2 * TiB; }
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual uint64_t used_features() const override;
 

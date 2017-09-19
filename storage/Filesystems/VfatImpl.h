@@ -27,6 +27,7 @@
 
 #include "storage/Filesystems/Vfat.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -42,6 +43,12 @@ namespace storage
     {
 
     public:
+
+	virtual unsigned long long min_size() const override { return 64 * KiB; }
+	virtual unsigned long long max_size() const override { return 2 * TiB; }
+
+	virtual bool supports_shrink() const override { return false; }
+	virtual bool supports_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 11; }
@@ -63,9 +70,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual ResizeInfo detect_resize_info() const override;
-
-	virtual ContentInfo detect_content_info_pure() const override;
+	virtual ContentInfo detect_content_info_on_disk() const override;
 
 	virtual uint64_t used_features() const override;
 

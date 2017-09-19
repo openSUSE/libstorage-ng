@@ -328,7 +328,7 @@ namespace storage
     {
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
-	// TODO handle metadata size
+	resize_info.shift(metadata_size);
 
 	return resize_info;
     }
