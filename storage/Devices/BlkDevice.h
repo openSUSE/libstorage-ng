@@ -118,11 +118,21 @@ namespace storage
 	const BlkFilesystem* get_filesystem() const ST_DEPRECATED { return get_blk_filesystem(); }
 
 	/**
-	 * TODO parameter for encryption type? do all encryptions need a dm_name?
+	 * Creates an encryption device on the blk device. If the blk device
+	 * has children the children will become children of the encryption
+	 * device.
 	 *
-	 * @throw WrongNumberOfChildren
+	 * TODO parameter for encryption type? do all encryptions need a dm_name?
 	 */
 	Encryption* create_encryption(const std::string& dm_name);
+
+	/**
+	 * Removes an encryption device on the blk device. If the encryption device
+	 * has children the children will become children of the blk device.
+	 *
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	void remove_encryption();
 
 	bool has_encryption() const;
 

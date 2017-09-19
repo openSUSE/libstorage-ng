@@ -206,6 +206,13 @@ namespace storage
     }
 
 
+    void
+    BlkDevice::remove_encryption()
+    {
+	get_impl().remove_encryption();
+    }
+
+
     bool
     BlkDevice::has_encryption() const
     {
