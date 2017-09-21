@@ -729,7 +729,8 @@ namespace storage
 		if (it == device_load_registry.end())
 		    ST_THROW(Exception(sformat("unknown device class name %s", classname.c_str())));
 
-		it->second(devicegraph, device_node);
+		const Device* device = it->second(devicegraph, device_node);
+		Device::Impl::raise_global_sid(device->get_sid());
 	    }
 	}
 
