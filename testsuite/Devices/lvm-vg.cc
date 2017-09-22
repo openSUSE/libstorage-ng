@@ -140,7 +140,7 @@ BOOST_AUTO_TEST_CASE(create_lvm_lv_test1)
     LvmVg* lvm_vg = LvmVg::create(staging, "vg-name");
     lvm_vg->add_lvm_pv(sda);
 
-    LvmLv* lvm_lv = lvm_vg->create_lvm_lv("lv-name", 10 * GiB);
+    LvmLv* lvm_lv = lvm_vg->create_lvm_lv("lv-name", LvType::NORMAL, 10 * GiB);
 
     BOOST_CHECK_EQUAL(staging->num_devices(), 4);
     BOOST_CHECK_EQUAL(staging->num_holders(), 3);

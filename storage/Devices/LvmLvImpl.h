@@ -47,7 +47,7 @@ namespace storage
     {
     public:
 
-	Impl(const string& vg_name, const string& lv_name);
+	Impl(const string& vg_name, const string& lv_name, LvType lv_type);
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<LvmLv>::classname; }
@@ -69,8 +69,14 @@ namespace storage
 
 	const LvmVg* get_lvm_vg() const;
 
+	const LvmLv* get_thin_pool() const;
+
+	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
+
 	const string& get_lv_name() const { return lv_name; }
 	void set_lv_name(const string& lv_name);
+
+	LvType get_lv_type() const { return lv_type; }
 
 	const string& get_uuid() const { return uuid; }
 	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
@@ -121,6 +127,7 @@ namespace storage
 	static string make_dm_table_name(const string& vg_name, const string& lv_name);
 
 	string lv_name;
+	LvType lv_type;
 	string uuid;
 
 	unsigned int stripes;

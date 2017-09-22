@@ -265,11 +265,12 @@ namespace storage
 
 
     LvmLv*
-    LvmVg::Impl::create_lvm_lv(const std::string& lv_name, unsigned long long size)
+    LvmVg::Impl::create_lvm_lv(const std::string& lv_name, LvType lv_type,
+			       unsigned long long size)
     {
 	Devicegraph* devicegraph = get_devicegraph();
 
-	LvmLv* lvm_lv = LvmLv::create(devicegraph, vg_name, lv_name);
+	LvmLv* lvm_lv = LvmLv::create(devicegraph, vg_name, lv_name, lv_type);
 	Subdevice::create(devicegraph, get_non_impl(), lvm_lv);
 
 	unsigned long long extent_size = region.get_block_size();

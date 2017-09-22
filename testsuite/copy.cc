@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(copy)
     Encryption::create(devicegraph, "cr_sda1");
 
     LvmVg::create(devicegraph, "system");
-    LvmLv::create(devicegraph, "system", "root");
+    LvmLv::create(devicegraph, "system", "root", LvType::NORMAL);
 
     Ext4::create(devicegraph);
     Swap::create(devicegraph);

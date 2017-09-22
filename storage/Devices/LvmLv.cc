@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,9 +34,10 @@ namespace storage
 
 
     LvmLv*
-    LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name)
+    LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name,
+		  LvType lv_type)
     {
-	LvmLv* ret = new LvmLv(new LvmLv::Impl(vg_name, lv_name));
+	LvmLv* ret = new LvmLv(new LvmLv::Impl(vg_name, lv_name, lv_type));
 	ret->Device::create(devicegraph);
 	return ret;
     }
@@ -106,6 +107,13 @@ namespace storage
     }
 
 
+    LvType
+    LvmLv::get_lv_type() const
+    {
+	return get_impl().get_lv_type();
+    }
+
+
     unsigned int
     LvmLv::get_stripes() const
     {
@@ -138,6 +146,13 @@ namespace storage
     LvmLv::get_lvm_vg() const
     {
 	return get_impl().get_lvm_vg();
+    }
+
+
+    LvmLv*
+    LvmLv::create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size)
+    {
+	return get_impl().create_lvm_lv(lv_name, lv_type, size);
     }
 
 

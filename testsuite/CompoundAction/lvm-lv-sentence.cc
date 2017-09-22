@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
-    auto lv = vg->create_lvm_lv("lv-name", 10 * GiB);
+    auto lv = vg->create_lvm_lv("lv-name", LvType::NORMAL, 10 * GiB);
     auto ext4 = to_ext4(lv->create_blk_filesystem(FsType::EXT4));
     ext4->create_mount_point("/test");
 
@@ -46,7 +46,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
-    auto lv = vg->create_lvm_lv("lv-name", 10 * GiB);
+    auto lv = vg->create_lvm_lv("lv-name", LvType::NORMAL, 10 * GiB);
     auto encryption = lv->create_encryption("cr_sda2");
     auto ext4 = to_ext4(encryption->create_blk_filesystem(FsType::EXT4));
     ext4->create_mount_point("/test");
@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
 
     auto vg = LvmVg::create(staging, "vg-name");
     vg->add_lvm_pv(sda2);
-    auto lv = vg->create_lvm_lv("lv-name", 2 * GiB);
+    auto lv = vg->create_lvm_lv("lv-name", LvType::NORMAL, 2 * GiB);
     lv->create_blk_filesystem(FsType::SWAP);
 
     auto actiongraph = storage->calculate_actiongraph();

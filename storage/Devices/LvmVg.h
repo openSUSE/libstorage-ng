@@ -25,6 +25,7 @@
 
 
 #include "storage/Devices/Device.h"
+#include "storage/Devices/LvmLv.h"
 #include "storage/Devicegraph.h"
 
 
@@ -119,9 +120,13 @@ namespace storage
 	void remove_lvm_pv(BlkDevice* blk_device);
 
 	/**
-	 * Create a logical volume with name lv_name in the volume group.
+	 * Create a logical volume with name lv_name and type lv_type in the
+	 * volume group. Supported lv_types are NORMAL and THIN_POOL.
 	 */
-	LvmLv* create_lvm_lv(const std::string& lv_name, unsigned long long size);
+	LvmLv* create_lvm_lv(const std::string& lv_name, LvType lv_type,
+			     unsigned long long size);
+
+	LvmLv* create_lvm_lv(const std::string& lv_name, unsigned long long size) ST_DEPRECATED;
 
 	/**
 	 * Delete a logical volume in the volume group. Also deletes all
