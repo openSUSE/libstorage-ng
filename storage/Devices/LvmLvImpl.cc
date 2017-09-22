@@ -385,9 +385,36 @@ namespace storage
     LvmLv::Impl::do_create()
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
+	const Region& region = get_region();
 
-	string cmd_line = LVCREATEBIN " --zero=y --wipesignatures=y --yes --name " + quote(lv_name) +
-	    " --extents " + to_string(get_region().get_length());
+	string cmd_line = LVCREATEBIN;
+
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    {
+		cmd_line += " --zero=y --wipesignatures=y --yes --extents " +
+		    to_string(region.get_length());
+	    }
+	    break;
+
+	    case LvType::THIN_POOL:
+	    {
+		cmd_line += " --type thin-pool --zero=y --yes --extents " +
+		    to_string(region.get_length());
+	    }
+	    break;
+
+	    case LvType::THIN:
+	    {
+		const LvmLv* thin_pool = get_thin_pool();
+
+		cmd_line += " --type thin --wipesignatures=y --yes --virtualsize " +
+		    to_string(region.to_bytes(region.get_length())) + "B " +
+		    " --thin-pool " + quote(thin_pool->get_lv_name());
+	    }
+	    break;
+	}
 
 	if (stripes > 1)
 	{
@@ -396,7 +423,7 @@ namespace storage
 		cmd_line += " --stripesize " + to_string(stripe_size / KiB);
 	}
 
-	cmd_line += " " + quote(lvm_vg->get_vg_name());
+	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
 
 	cout << cmd_line << endl;
 
@@ -491,8 +518,6 @@ namespace storage
 	    to_string(lvm_lv_rhs->get_region().get_length());
 
 	cout << cmd_line << endl;
-
-	wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
