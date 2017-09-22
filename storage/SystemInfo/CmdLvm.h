@@ -28,6 +28,8 @@
 #include <string>
 #include <vector>
 
+#include "storage/Devices/LvmLv.h"
+
 
 namespace storage
 {
@@ -75,14 +77,18 @@ namespace storage
 
 	struct Lv
 	{
-	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), active(false), size(0) {}
+	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::NORMAL),
+		   active(false), size(0), pool_name(), pool_uuid() {}
 
 	    string lv_name;
 	    string lv_uuid;
 	    string vg_name;
 	    string vg_uuid;
+	    LvType lv_type;
 	    bool active;
 	    unsigned long long size;
+	    string pool_name;
+	    string pool_uuid;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdLvs& cmd_lvs);

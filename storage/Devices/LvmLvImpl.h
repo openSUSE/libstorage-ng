@@ -26,6 +26,7 @@
 
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Utils/Enum.h"
 #include "storage/Action.h"
 
 
@@ -38,6 +39,8 @@ namespace storage
 
 
     template <> struct DeviceTraits<LvmLv> { static const char* classname; };
+
+    template <> struct EnumTraits<LvType> { static const vector<string> names; };
 
 
     class LvmLv::Impl : public BlkDevice::Impl

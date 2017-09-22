@@ -25,6 +25,7 @@
 #include <vector>
 #include <boost/algorithm/string.hpp>
 
+#include "storage/Devices/LvmLvImpl.h"
 #include "storage/SystemInfo/CmdLvm.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/LoggerImpl.h"
@@ -95,7 +96,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdPvs& cmd_pvs)
     {
-	s << "pvs:" << cmd_pvs.pvs;
+	for (const CmdPvs::Pv& pv : cmd_pvs.pvs)
+	    s << "pv:{ " << pv << " }\n";
 
 	return s;
     }
@@ -114,7 +116,7 @@ namespace storage
     CmdLvs::CmdLvs()
     {
 	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
-		      "lv_attr,lv_size");
+		      "lv_attr,lv_size,pool_lv,pool_lv_uuid");
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
@@ -133,12 +135,19 @@ namespace storage
 	    Lv lv;
 
 	    string attr;
-	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> attr >> lv.size;
+	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> attr >> lv.size
+		 >> lv.pool_name >> lv.pool_uuid;
 
 	    if (attr.size() < 10)
 		ST_THROW(ParseException("bad lv_attr", attr, "-wi-ao----"));
 
 	    lv.active = attr[4] == 'a';
+
+	    switch (attr[0])
+	    {
+		case 't': lv.lv_type = LvType::THIN_POOL; break;
+		case 'V': lv.lv_type = LvType::THIN; break;
+	    }
 
 	    lvs.push_back(lv);
 	}
@@ -172,7 +181,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdLvs& cmd_lvs)
     {
-	s << "lvs:" << cmd_lvs.lvs;
+	for (const CmdLvs::Lv& lv : cmd_lvs.lvs)
+	    s << "lv:{ " << lv << " }\n";
 
 	return s;
     }
@@ -182,8 +192,14 @@ namespace storage
     operator<<(std::ostream& s, const CmdLvs::Lv& lv)
     {
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
-	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " active:" << lv.active
-	  << " size:" << lv.size;
+	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
+	  << " active:" << lv.active << " size:" << lv.size;
+
+	if (!lv.pool_name.empty())
+	    s << " pool-name:" << lv.pool_name;
+
+	if (!lv.pool_uuid.empty())
+	    s << " pool-uuid:" << lv.pool_uuid;
 
 	return s;
     }
@@ -242,7 +258,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdVgs& cmd_vgs)
     {
-	s << "vgs:" << cmd_vgs.vgs;
+	for (const CmdVgs::Vg& vg : cmd_vgs.vgs)
+	    s << "vg:{ " << vg << " }\n";
 
 	return s;
     }

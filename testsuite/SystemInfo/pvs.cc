@@ -28,7 +28,7 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << cmd_pvs;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n");
+    string rhs = boost::join(output, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"pvs:<pv-name:/dev/sda2 pv-uuid:qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn>"
+	"pv:{ pv-name:/dev/sda2 pv-uuid:qquP1O-WWoh-Ofas-Rbx0-y72T-0sNe-Wnyc33 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn }"
     };
 
     check(input, output);

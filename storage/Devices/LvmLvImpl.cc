@@ -47,6 +47,11 @@ namespace storage
     const char* DeviceTraits<LvmLv>::classname = "LvmLv";
 
 
+    const vector<string> EnumTraits<LvType>::names({
+	"normal", "thin-pool", "thin"
+    });
+
+
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), uuid(), stripes(0),
 	  stripe_size(0)

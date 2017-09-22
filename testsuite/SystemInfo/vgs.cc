@@ -28,7 +28,7 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << cmd_vgs;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n");
+    string rhs = boost::join(output, "\n") + "\n";
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"vgs:<vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn extent-size:4194304 extent-count:230400>"
+	"vg:{ vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn extent-size:4194304 extent-count:230400 }"
     };
 
     check(input, output);

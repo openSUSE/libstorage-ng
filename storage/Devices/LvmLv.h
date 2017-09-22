@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,7 +29,17 @@
 
 namespace storage
 {
+
     class LvmVg;
+
+
+    /**
+     * LVM logical volume types, see lvs(8).
+     */
+    enum class LvType
+    {
+	NORMAL, THIN_POOL, THIN
+    };
 
 
     /**
