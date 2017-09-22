@@ -19,7 +19,7 @@ staging = storage.get_staging()
 
 test = LvmVg.find_by_vg_name(staging, "test")
 
-test.create_lvm_lv("foo", 50 * MiB)
+test.create_lvm_lv("foo", LvType_NORMAL, 50 * MiB)
 
 print staging
 

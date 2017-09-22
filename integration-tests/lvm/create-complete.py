@@ -24,9 +24,9 @@ test = LvmVg.create(staging, "test")
 test.add_lvm_pv(sdb1)
 test.add_lvm_pv(sdb2)
 
-test.create_lvm_lv("1", 1 * GiB)
-test.create_lvm_lv("2", 1 * GiB)
-test.create_lvm_lv("3", 1 * GiB)
+test.create_lvm_lv("1", LvType_NORMAL, 1 * GiB)
+test.create_lvm_lv("2", LvType_NORMAL, 1 * GiB)
+test.create_lvm_lv("3", LvType_NORMAL, 1 * GiB)
 
 print staging
 

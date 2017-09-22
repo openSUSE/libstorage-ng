@@ -26,7 +26,7 @@ luks.set_password("12345678")
 test = LvmVg.create(staging, "test")
 test.add_lvm_pv(luks)
 
-test.create_lvm_lv("1", 1 * GiB)
+test.create_lvm_lv("1", LvType_NORMAL, 1 * GiB)
 
 print staging
 
