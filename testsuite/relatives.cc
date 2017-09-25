@@ -81,9 +81,9 @@ BOOST_AUTO_TEST_CASE(dependencies)
     User::create(devicegraph, sda1, system);
     User::create(devicegraph, sdb1, system);
 
-    LvmLv* system_root = system->create_lvm_lv("root", 4 * GiB);
-    LvmLv* system_swap = system->create_lvm_lv("swap", 1 * GiB);
-    LvmLv* system_home = system->create_lvm_lv("home", 15 * GiB);
+    LvmLv* system_root = system->create_lvm_lv("root", LvType::NORMAL, 4 * GiB);
+    LvmLv* system_swap = system->create_lvm_lv("swap", LvType::NORMAL, 1 * GiB);
+    LvmLv* system_home = system->create_lvm_lv("home", LvType::NORMAL, 15 * GiB);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 12);
     BOOST_CHECK_EQUAL(devicegraph->num_holders(), 11);

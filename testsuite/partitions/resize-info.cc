@@ -91,9 +91,9 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     LvmVg* lvm_vg = LvmVg::create(staging, "vg");
     lvm_vg->add_lvm_pv(sda1);
 
-    LvmLv* lvm_lv1 = lvm_vg->create_lvm_lv("lv1", 1 * GiB);
+    LvmLv* lvm_lv1 = lvm_vg->create_lvm_lv("lv1", LvType::NORMAL, 1 * GiB);
 
-    LvmLv* lvm_lv2 = lvm_vg->create_lvm_lv("lv2", 1 * GiB);
+    LvmLv* lvm_lv2 = lvm_vg->create_lvm_lv("lv2", LvType::NORMAL, 1 * GiB);
     lvm_lv2->create_blk_filesystem(FsType::EXT4);
 
     Partition* sda2 = gpt->create_partition("/dev/sda2", Region(30 * spg, 10 * spg, 512), PartitionType::PRIMARY);

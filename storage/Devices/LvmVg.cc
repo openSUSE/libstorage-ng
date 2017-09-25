@@ -248,9 +248,16 @@ namespace storage
 
 
     LvmLv*
+    LvmVg::create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size)
+    {
+	return get_impl().create_lvm_lv(lv_name, lv_type, size);
+    }
+
+
+    LvmLv*
     LvmVg::create_lvm_lv(const string& lv_name, unsigned long long size)
     {
-	return get_impl().create_lvm_lv(lv_name, size);
+	return get_impl().create_lvm_lv(lv_name, LvType::NORMAL, size);
     }
 
 

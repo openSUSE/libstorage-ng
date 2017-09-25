@@ -151,6 +151,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);

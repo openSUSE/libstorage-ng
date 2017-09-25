@@ -39,7 +39,7 @@ BOOST_AUTO_TEST_CASE(dynamic)
     LvmVg* system = LvmVg::create(devicegraph, "system");
     User::create(devicegraph, sda1, system);
 
-    LvmLv* root = system->create_lvm_lv("root", 4 * GiB);
+    LvmLv* root = system->create_lvm_lv("root", LvType::NORMAL, 4 * GiB);
 
     Ext4* ext4 = to_ext4(sda2->create_blk_filesystem(FsType::EXT4));
 

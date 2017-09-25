@@ -120,7 +120,7 @@ BOOST_AUTO_TEST_CASE(test_lvm_lvs)
     {
 	storage.set_default_mount_by(MountByType::UUID);
 
-	LvmLv* lvm_lv = lvm_vg->create_lvm_lv("lv1", 1 * GiB);
+	LvmLv* lvm_lv = lvm_vg->create_lvm_lv("lv1", LvType::NORMAL, 1 * GiB);
 	Ext4* ext4 = to_ext4(lvm_lv->create_blk_filesystem(FsType::EXT4));
 
 	MountPoint* mount_point = ext4->create_mount_point("/test");

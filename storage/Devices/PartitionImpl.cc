@@ -415,6 +415,13 @@ namespace storage
     ResizeInfo
     Partition::Impl::detect_resize_info() const
     {
+	if (type == PartitionType::EXTENDED)
+	{
+	    // TODO resize is technical possible but would be a new feature.
+
+	    return ResizeInfo(false);
+	}
+
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
 	// minimal size is one sector

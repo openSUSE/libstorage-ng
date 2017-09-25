@@ -30,6 +30,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
+#include "storage/Holders/Subdevice.h"
 #include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
@@ -47,22 +48,33 @@ namespace storage
     const char* DeviceTraits<LvmLv>::classname = "LvmLv";
 
 
-    LvmLv::Impl::Impl(const string& vg_name, const string& lv_name)
-	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), uuid(), stripes(0),
-	  stripe_size(0)
+    const vector<string> EnumTraits<LvType>::names({
+	"normal", "thin-pool", "thin"
+    });
+
+
+    LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
+	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
+	  uuid(), stripes(0), stripe_size(0)
     {
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), uuid(), stripes(0), stripe_size(0)
+	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(0),
+	  stripe_size(0)
     {
+	string tmp;
+
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
 
 	if (!getChildValue(node, "lv-name", lv_name))
 	    ST_THROW(Exception("no lv-name"));
+
+	if (getChildValue(node, "lv-type", tmp))
+	    lv_type = toValueWithFallback(tmp, LvType::NORMAL);
 
 	getChildValue(node, "uuid", uuid);
 
@@ -77,6 +89,9 @@ namespace storage
 	BlkDevice::Impl::save(node);
 
 	setChildValue(node, "lv-name", lv_name);
+
+	setChildValue(node, "lv-type", toString(lv_type));
+
 	setChildValue(node, "uuid", uuid);
 
 	setChildValueIf(node, "stripes", stripes, stripes != 0);
@@ -139,10 +154,38 @@ namespace storage
     void
     LvmLv::Impl::probe_lvm_lvs(Prober& prober)
     {
-	for (const CmdLvs::Lv& lv : prober.get_system_info().getCmdLvs().get_lvs())
+	vector<CmdLvs::Lv> lvs = prober.get_system_info().getCmdLvs().get_lvs();
+
+	// ensure thin-pools are probed before thins
+
+	stable_partition(lvs.begin(), lvs.end(), [](const CmdLvs::Lv& lv) {
+	    return lv.lv_type != LvType::THIN;
+	});
+
+	for (const CmdLvs::Lv& lv : lvs)
 	{
-	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), lv.vg_uuid);
-	    LvmLv* lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.size);
+	    LvmLv* lvm_lv = nullptr;
+
+	    switch (lv.lv_type)
+	    {
+		case LvType::NORMAL:
+		case LvType::THIN_POOL:
+		{
+		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), lv.vg_uuid);
+		    lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+		}
+		break;
+
+		case LvType::THIN:
+		{
+		    LvmLv* thin_pool = LvmLv::Impl::find_by_uuid(prober.get_probed(), lv.pool_uuid);
+		    lvm_lv = thin_pool->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
+		}
+		break;
+	    }
+
+	    ST_CHECK_PTR(lvm_lv);
+
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().set_active(lv.active);
 	    lvm_lv->get_impl().probe_pass_1a(prober);
@@ -188,9 +231,37 @@ namespace storage
     const LvmVg*
     LvmLv::Impl::get_lvm_vg() const
     {
-	Devicegraph::Impl::vertex_descriptor vertex = get_devicegraph()->get_impl().parent(get_vertex());
+	if (lv_type == LvType::THIN)
+	    return get_thin_pool()->get_lvm_vg();
 
-	return to_lvm_vg(get_devicegraph()->get_impl()[vertex]);
+	return get_single_parent_of_type<const LvmVg>();
+    }
+
+
+    const LvmLv*
+    LvmLv::Impl::get_thin_pool() const
+    {
+	if (lv_type != LvType::THIN)
+	    ST_THROW(Exception("not a thin logical volume"));
+
+	return get_single_parent_of_type<const LvmLv>();
+    }
+
+
+    LvmLv*
+    LvmLv::Impl::create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size)
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	LvmLv* lvm_lv = LvmLv::create(devicegraph, lvm_vg->get_vg_name(), lv_name, lv_type);
+	Subdevice::create(devicegraph, get_non_impl(), lvm_lv);
+
+	unsigned long long extent_size = lvm_vg->get_region().get_block_size();
+	lvm_lv->set_region(Region(0, size / extent_size, extent_size));
+
+	return lvm_lv;
     }
 
 
@@ -216,8 +287,8 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return lv_name == rhs.lv_name && uuid == rhs.uuid && stripes == rhs.stripes &&
-	    stripe_size == rhs.stripe_size;
+	return lv_name == rhs.lv_name && lv_type == rhs.lv_type && uuid == rhs.uuid &&
+	    stripes == rhs.stripes && stripe_size == rhs.stripe_size;
     }
 
 
@@ -229,6 +300,9 @@ namespace storage
 	BlkDevice::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "lv-name", lv_name, rhs.lv_name);
+
+	storage::log_diff_enum(log, "lv-type", lv_type, rhs.lv_type);
+
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "stripes", stripes, rhs.stripes);
@@ -241,7 +315,7 @@ namespace storage
     {
 	BlkDevice::Impl::print(out);
 
-	out << " lv-name:" << lv_name << " uuid:" << uuid;
+	out << " lv-name:" << lv_name << " lv-type:" << toString(lv_type) << " uuid:" << uuid;
 
 	if (stripes != 0)
 	    out << " stripes:" << stripes;
@@ -311,9 +385,36 @@ namespace storage
     LvmLv::Impl::do_create()
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
+	const Region& region = get_region();
 
-	string cmd_line = LVCREATEBIN " --zero=y --wipesignatures=y --yes --name " + quote(lv_name) +
-	    " --extents " + to_string(get_region().get_length());
+	string cmd_line = LVCREATEBIN;
+
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    {
+		cmd_line += " --zero=y --wipesignatures=y --yes --extents " +
+		    to_string(region.get_length());
+	    }
+	    break;
+
+	    case LvType::THIN_POOL:
+	    {
+		cmd_line += " --type thin-pool --zero=y --yes --extents " +
+		    to_string(region.get_length());
+	    }
+	    break;
+
+	    case LvType::THIN:
+	    {
+		const LvmLv* thin_pool = get_thin_pool();
+
+		cmd_line += " --type thin --wipesignatures=y --yes --virtualsize " +
+		    to_string(region.to_bytes(region.get_length())) + "B " +
+		    " --thin-pool " + quote(thin_pool->get_lv_name());
+	    }
+	    break;
+	}
 
 	if (stripes > 1)
 	{
@@ -322,7 +423,7 @@ namespace storage
 		cmd_line += " --stripesize " + to_string(stripe_size / KiB);
 	}
 
-	cmd_line += " " + quote(lvm_vg->get_vg_name());
+	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
 
 	cout << cmd_line << endl;
 
@@ -417,8 +518,6 @@ namespace storage
 	    to_string(lvm_lv_rhs->get_region().get_length());
 
 	cout << cmd_line << endl;
-
-	wait_for_device();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

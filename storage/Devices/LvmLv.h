@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -29,7 +29,17 @@
 
 namespace storage
 {
+
     class LvmVg;
+
+
+    /**
+     * LVM logical volume types, see lvs(8).
+     */
+    enum class LvType
+    {
+	NORMAL, THIN_POOL, THIN
+    };
 
 
     /**
@@ -37,9 +47,11 @@ namespace storage
      */
     class LvmLv : public BlkDevice
     {
+
     public:
 
-	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name, const std::string& lv_name);
+	static LvmLv* create(Devicegraph* devicegraph, const std::string& vg_name,
+			     const std::string& lv_name, LvType lv_type);
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	static std::vector<LvmLv*> get_all(Devicegraph* devicegraph);
@@ -51,6 +63,8 @@ namespace storage
 	const std::string& get_lv_name() const;
 	void set_lv_name(const std::string& lv_name);
 
+	LvType get_lv_type() const;
+
 	unsigned int get_stripes() const;
 	void set_stripes(unsigned int stripes);
 
@@ -61,6 +75,14 @@ namespace storage
 	 * Return volume group this logical volume belongs to.
 	 */
 	const LvmVg* get_lvm_vg() const;
+
+	/**
+	 * Create a logical volume with name lv_name and type lv_type in the
+	 * thin pool. Only supported lv_type is THIN.
+	 *
+	 * @throw Exception
+	 */
+	LvmLv* create_lvm_lv(const std::string& lv_name, LvType lv_type, unsigned long long size);
 
     public:
 
