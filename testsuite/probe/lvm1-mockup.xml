@@ -25,14 +25,30 @@
       <stdout>system-root: 0 12189696 linear 8:1 18294784</stdout>
     </Command>
     <Command>
-      <name>/sbin/lvs --noheadings --unbuffered --units b --nosuffix --options lv_name,lv_uuid,vg_name,vg_uuid,lv_attr,lv_size,pool_lv,pool_lv_uuid</name>
-      <stdout>  home h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 9365880832</stdout>
-      <stdout>  root Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5 system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 6241124352</stdout>
-      <stdout>  swap wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL -wi-ao---- 1560281088</stdout>
+      <name>/sbin/lvs --reportformat json --units b --nosuffix --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid</name>
+      <stdout>  {</stdout>
+      <stdout>      "report": [</stdout>
+      <stdout>          {</stdout>
+      <stdout>              "lv": [</stdout>
+      <stdout>                  {"lv_name":"home", "lv_uuid":"h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "lv_role":"public", "lv_attr":"-wi-ao----", "lv_size":"9365880832", "pool_lv":"", "pool_lv_uuid":""},</stdout>
+      <stdout>                  {"lv_name":"root", "lv_uuid":"Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "lv_role":"public", "lv_attr":"-wi-ao----", "lv_size":"6241124352", "pool_lv":"", "pool_lv_uuid":""},</stdout>
+      <stdout>                  {"lv_name":"swap", "lv_uuid":"wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "lv_role":"public", "lv_attr":"-wi-ao----", "lv_size":"1560281088", "pool_lv":"", "pool_lv_uuid":""}</stdout>
+      <stdout>              ]</stdout>
+      <stdout>          }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --noheadings --unbuffered --units b --nosuffix --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
-      <stdout>  /dev/sda1  h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL a--</stdout>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <stdout>  {</stdout>
+      <stdout>      "report": [</stdout>
+      <stdout>          {</stdout>
+      <stdout>              "pv": [</stdout>
+      <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "pv_attr":"a--"}</stdout>
+      <stdout>              ]</stdout>
+      <stdout>          }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>  }</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dm-0'</name>
@@ -625,8 +641,16 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/vgs --noheadings --unbuffered --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count</name>
-      <stdout>  system 2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL wz--n- 4194304 4095</stdout>
+      <name>/sbin/vgs --reportformat json --units b --nosuffix --options vg_name,vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count</name>
+      <stdout>  {</stdout>
+      <stdout>      "report": [</stdout>
+      <stdout>          {</stdout>
+      <stdout>              "vg": [</stdout>
+      <stdout>                  {"vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "vg_attr":"wz--n-", "vg_extent_size":"4194304", "vg_extent_count":"4095", "vg_free_count":"2"}</stdout>
+      <stdout>              ]</stdout>
+      <stdout>          }</stdout>
+      <stdout>      ]</stdout>
+      <stdout>  }</stdout>
     </Command>
     <Command>
       <name>/usr/bin/lsscsi --transport</name>

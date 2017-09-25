@@ -18,8 +18,9 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(LVSBIN " --noheadings --unbuffered --units b --nosuffix --options lv_name,"
-			"lv_uuid,vg_name,vg_uuid,lv_attr,lv_size,pool_lv,pool_lv_uuid", input);
+    Mockup::set_command(LVSBIN " --reportformat json --units b --nosuffix --options lv_name,"
+			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid",
+			input);
 
     CmdLvs cmd_lvs;
 
@@ -37,8 +38,16 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  root 89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn -wi-ao---- 34359738368",
-	"  swap KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 system OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn -wi-ao---- 2147483648"
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"lv\": [",
+	"                  {\"lv_name\":\"root\", \"lv_uuid\":\"89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN\", \"vg_name\":\"system\", \"vg_uuid\":\"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn\", \"lv_role\":\"public\", \"lv_attr\":\"-wi-ao----\", \"lv_size\":\"34359738368\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\"},",
+	"                  {\"lv_name\":\"swap\", \"lv_uuid\":\"KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0\", \"vg_name\":\"system\", \"vg_uuid\":\"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn\", \"lv_role\":\"public\", \"lv_attr\":\"-wi-ao----\", \"lv_size\":\"2147483648\", \"pool_lv\":\"\", \"pool_lv_uuid\":\"\"}",
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
     };
 
     // TODO bad output format

@@ -31,16 +31,36 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/JsonFile.h"
 
 
-#define COMMON_LVM_OPTIONS "--noheadings --unbuffered --units b --nosuffix"
-
-// TODO using --reportformat json will make parsers robust to strange characters
+#define COMMON_LVM_OPTIONS "--reportformat json --units b --nosuffix"
 
 
 namespace storage
 {
     using namespace std;
+
+
+    void
+    CmdLvm::parse(const vector<string>& lines, const char* tag)
+    {
+	JsonFile json_file(lines);
+
+	vector<json_object*> tmp1;
+	if (get_child_nodes(json_file.get_root(), "report", tmp1))
+	{
+	    for (json_object* tmp2 : tmp1)
+	    {
+		vector<json_object*> tmp3;
+		if (get_child_nodes(tmp2, tag, tmp3))
+		{
+		    for (json_object* tmp4 : tmp3)
+			parse(tmp4);
+		}
+	    }
+	}
+    }
 
 
     CmdPvs::CmdPvs()
@@ -57,26 +77,31 @@ namespace storage
     {
 	pvs.clear();
 
-	for (const string& line : lines)
-	{
-	    std::istringstream data(line);
-	    classic(data);
-
-	    Pv pv;
-
-	    string attr;
-
-	    data >> pv.pv_name >> pv.pv_uuid >> pv.vg_name >> pv.vg_uuid >> attr;
-
-	    if (attr.size() < 3)
-		ST_THROW(ParseException("bad pv_attr", attr, "a--"));
-
-	    pvs.push_back(pv);
-	}
+	CmdLvm::parse(lines, "pv");
 
 	sort(pvs.begin(), pvs.end(), [](const Pv& lhs, const Pv& rhs) { return lhs.pv_name < rhs.pv_name; });
 
 	y2mil(*this);
+    }
+
+
+    void
+    CmdPvs::parse(json_object* object)
+    {
+	Pv pv;
+
+	get_child_value(object, "pv_name", pv.pv_name);
+	get_child_value(object, "pv_uuid", pv.pv_uuid);
+
+	get_child_value(object, "vg_name", pv.vg_name);
+	get_child_value(object, "vg_uuid", pv.vg_uuid);
+
+	string pv_attr;
+	get_child_value(object, "pv_attr", pv_attr);
+	if (pv_attr.size() < 3)
+	    ST_THROW(ParseException("bad pv_attr", pv_attr, "a--"));
+
+	pvs.push_back(pv);
     }
 
 
@@ -115,8 +140,9 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,vg_uuid,"
-		      "lv_attr,lv_size,pool_lv,pool_lv_uuid");
+	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,"
+		      "vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid");
+
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
@@ -127,34 +153,42 @@ namespace storage
     {
 	lvs.clear();
 
-	for (const string& line : lines)
-	{
-	    std::istringstream data(line);
-	    classic(data);
-
-	    Lv lv;
-
-	    string attr;
-	    data >> lv.lv_name >> lv.lv_uuid >> lv.vg_name >> lv.vg_uuid >> attr >> lv.size
-		 >> lv.pool_name >> lv.pool_uuid;
-
-	    if (attr.size() < 10)
-		ST_THROW(ParseException("bad lv_attr", attr, "-wi-ao----"));
-
-	    lv.active = attr[4] == 'a';
-
-	    switch (attr[0])
-	    {
-		case 't': lv.lv_type = LvType::THIN_POOL; break;
-		case 'V': lv.lv_type = LvType::THIN; break;
-	    }
-
-	    lvs.push_back(lv);
-	}
+	CmdLvm::parse(lines, "lv");
 
 	sort(lvs.begin(), lvs.end(), [](const Lv& lhs, const Lv& rhs) { return lhs.lv_name < rhs.lv_name; });
 
 	y2mil(*this);
+    }
+
+
+    void
+    CmdLvs::parse(json_object* object)
+    {
+	Lv lv;
+
+	get_child_value(object, "lv_name", lv.lv_name);
+	get_child_value(object, "lv_uuid", lv.lv_uuid);
+
+	get_child_value(object, "lv_size", lv.size);
+
+	get_child_value(object, "vg_name", lv.vg_name);
+	get_child_value(object, "vg_uuid", lv.vg_uuid);
+
+	string lv_attr;
+	get_child_value(object, "lv_attr", lv_attr);
+
+	lv.active = lv_attr[4] == 'a';
+
+	switch (lv_attr[0])
+	{
+	    case 't': lv.lv_type = LvType::THIN_POOL; break;
+	    case 'V': lv.lv_type = LvType::THIN; break;
+	}
+
+	get_child_value(object, "pool_lv", lv.pool_name);
+	get_child_value(object, "pool_lv_uuid", lv.pool_uuid);
+
+	lvs.push_back(lv);
     }
 
 
@@ -208,7 +242,7 @@ namespace storage
     CmdVgs::CmdVgs()
     {
 	SystemCmd cmd(VGSBIN " " COMMON_LVM_OPTIONS " --options vg_name,vg_uuid,vg_attr,"
-		      "vg_extent_size,vg_extent_count");
+		      "vg_extent_size,vg_extent_count,vg_free_count");
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
@@ -219,26 +253,32 @@ namespace storage
     {
 	vgs.clear();
 
-	for (const string& line : lines)
-	{
-	    std::istringstream data(line);
-	    classic(data);
-
-	    Vg vg;
-
-	    string attr;
-
-	    data >> vg.vg_name >> vg.vg_uuid >> attr >> vg.extent_size >> vg.extent_count;
-
-	    if (attr.size() < 6)
-		ST_THROW(ParseException("bad vg_attr", attr, "wz--n-"));
-
-	    vgs.push_back(vg);
-	}
+	CmdLvm::parse(lines, "vg");
 
 	sort(vgs.begin(), vgs.end(), [](const Vg& lhs, const Vg& rhs) { return lhs.vg_name < rhs.vg_name; });
 
 	y2mil(*this);
+    }
+
+
+    void
+    CmdVgs::parse(json_object* object)
+    {
+	Vg vg;
+
+	get_child_value(object, "vg_name", vg.vg_name);
+	get_child_value(object, "vg_uuid", vg.vg_uuid);
+
+	string vg_attr;
+	get_child_value(object, "vg_attr", vg_attr);
+	if (vg_attr.size() < 6)
+	    ST_THROW(ParseException("bad vg_attr", vg_attr, "wz--n-"));
+
+	get_child_value(object, "vg_extent_size", vg.extent_size);
+	get_child_value(object, "vg_extent_count", vg.extent_count);
+	get_child_value(object, "vg_free_count", vg.free_extent_count);
+
+	vgs.push_back(vg);
     }
 
 
@@ -269,7 +309,8 @@ namespace storage
     operator<<(std::ostream& s, const CmdVgs::Vg& vg)
     {
 	s << "vg-name:" << vg.vg_name << " vg-uuid:" << vg.vg_uuid << " extent-size:"
-	  << vg.extent_size << " extent-count:" << vg.extent_count;
+	  << vg.extent_size << " extent-count:" << vg.extent_count << " free-extent-count:"
+	  << vg.free_extent_count;
 
 	return s;
     }
