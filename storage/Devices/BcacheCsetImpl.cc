@@ -117,7 +117,7 @@ namespace storage
 	    if (regex_match(name, bdev_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
-		string dev = "/dev/block/" + dev_file.get_string();
+		string dev = DEVDIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
 		    User::create(probed, b, a);
@@ -127,7 +127,7 @@ namespace storage
 	    if (regex_match(name, cache_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
-		string dev = "/dev/block/" + dev_file.get_string();
+		string dev = DEVDIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
 		    User::create(probed, a, b);

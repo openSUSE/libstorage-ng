@@ -230,7 +230,7 @@ namespace storage
 
 	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
-	set_region(Region(0, size_file.get_unsigned_long_long(), 512));
+	set_region(Region(0, size_file.get<unsigned long long>(), 512));
 
 	const EtcCrypttab& etc_crypttab = prober.get_system_info().getEtcCrypttab();
 	set_in_etc_crypttab(etc_crypttab.has_crypt_device(get_dm_table_name()));

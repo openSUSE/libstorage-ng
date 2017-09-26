@@ -161,7 +161,7 @@ namespace storage
 
 	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
 								      "/queue/rotational");
-	rotational = rotational_file.get_int() != 0;
+	rotational = rotational_file.get<int>() != 0;
     }
 
 
