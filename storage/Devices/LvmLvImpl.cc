@@ -266,6 +266,44 @@ namespace storage
 
 
     LvmLv*
+    LvmLv::Impl::get_lvm_lv(const string& lv_name)
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	for (LvmLv* lvm_lv : devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex)))
+	{
+	    if (lvm_lv->get_lv_name() == lv_name)
+		return lvm_lv;
+	}
+
+	ST_THROW(LvmLvNotFoundByLvName(lv_name));
+    }
+
+
+    vector<LvmLv*>
+    LvmLv::Impl::get_lvm_lvs()
+    {
+	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::Impl::get_lvm_lvs() const
+    {
+	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
+	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
+
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
+							 compare_by_lv_name);
+    }
+
+
+    LvmLv*
     LvmLv::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
     {
 	return storage::find_by_uuid<LvmLv>(devicegraph, uuid);

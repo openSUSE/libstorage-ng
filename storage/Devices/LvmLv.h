@@ -25,6 +25,7 @@
 
 
 #include "storage/Devices/BlkDevice.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
@@ -39,6 +40,14 @@ namespace storage
     enum class LvType
     {
 	NORMAL, THIN_POOL, THIN
+    };
+
+
+    class LvmLvNotFoundByLvName : public DeviceNotFound
+    {
+    public:
+
+	LvmLvNotFoundByLvName(const std::string& lv_name);
     };
 
 
@@ -83,6 +92,14 @@ namespace storage
 	 * @throw Exception
 	 */
 	LvmLv* create_lvm_lv(const std::string& lv_name, LvType lv_type, unsigned long long size);
+
+	/**
+	 * @throw Exception
+	 */
+	LvmLv* get_lvm_lv(const std::string& lv_name);
+
+	std::vector<LvmLv*> get_lvm_lvs();
+	std::vector<const LvmLv*> get_lvm_lvs() const;
 
     public:
 

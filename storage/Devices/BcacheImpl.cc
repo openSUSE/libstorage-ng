@@ -87,7 +87,7 @@ namespace storage
 
 	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
-	set_region(Region(0, size_file.get_unsigned_long_long(), 512));
+	set_region(Region(0, size_file.get<unsigned long long>(), 512));
     }
 
 
@@ -97,7 +97,7 @@ namespace storage
 	BlkDevice::Impl::probe_pass_1b(prober);
 
 	const File dev_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/bcache/../dev");
-	string dev = "/dev/block/" + dev_file.get_string();
+	string dev = DEVDIR "/block/" + dev_file.get<string>();
 
 	prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
 	    User::create(probed, a, b);

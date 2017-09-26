@@ -51,6 +51,7 @@ BuildRequires:  rubygem-test-unit
 %endif
 BuildRequires:  swig >= 3.0.3
 BuildRequires:  pkgconfig(libxml-2.0)
+BuildRequires:  libjson-c-devel
 BuildRequires:  pkgconfig(python)
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
@@ -158,8 +159,7 @@ touch %{buildroot}/run/libstorage/lock
 
 %find_lang libstorage-ng
 
-%post -n %{libname}
-/sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
 %postun -n %{libname} -p /sbin/ldconfig
 

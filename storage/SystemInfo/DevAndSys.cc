@@ -108,8 +108,9 @@ namespace storage
     }
 
 
+    template<>
     int
-    File::get_int() const
+    File::get<int>() const
     {
 	if (content.empty())
 	    ST_THROW(Exception("empty file"));
@@ -123,8 +124,9 @@ namespace storage
     }
 
 
+    template<>
     unsigned long long
-    File::get_unsigned_long_long() const
+    File::get<unsigned long long>() const
     {
 	if (content.empty())
 	    ST_THROW(Exception("empty file"));
@@ -138,13 +140,22 @@ namespace storage
     }
 
 
+    template<>
     string
-    File::get_string() const
+    File::get<string>() const
     {
 	if (content.empty())
 	    ST_THROW(Exception("empty file"));
 
 	return content.front();
+    }
+
+
+    template<>
+    bool
+    File::get<bool>() const
+    {
+	return get<int>() != 0;
     }
 
 

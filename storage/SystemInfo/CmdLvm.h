@@ -29,6 +29,7 @@
 #include <vector>
 
 #include "storage/Devices/LvmLv.h"
+#include "storage/Utils/JsonFile.h"
 
 
 namespace storage
@@ -37,7 +38,20 @@ namespace storage
     using std::vector;
 
 
-    class CmdPvs
+    class CmdLvm
+    {
+    protected:
+
+	virtual ~CmdLvm() {}
+
+	void parse(const vector<string>& lines, const char* tag);
+
+	virtual void parse(json_object* object) = 0;
+
+    };
+
+
+    class CmdPvs : protected CmdLvm
     {
     public:
 
@@ -63,13 +77,14 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+	void parse(json_object* object) override;
 
 	vector<Pv> pvs;
 
     };
 
 
-    class CmdLvs
+    class CmdLvs : protected CmdLvm
     {
     public:
 
@@ -103,13 +118,14 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+	void parse(json_object* object) override;
 
 	vector<Lv> lvs;
 
     };
 
 
-    class CmdVgs
+    class CmdVgs : protected CmdLvm
     {
     public:
 
@@ -117,12 +133,13 @@ namespace storage
 
 	struct Vg
 	{
-	    Vg() : vg_name(), vg_uuid(), extent_size(0), extent_count(0) {}
+	    Vg() : vg_name(), vg_uuid(), extent_size(0), extent_count(0), free_extent_count(0) {}
 
 	    string vg_name;
 	    string vg_uuid;
 	    unsigned long extent_size;
 	    unsigned long extent_count;
+	    unsigned long free_extent_count;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdVgs& cmd_vgs);
@@ -135,6 +152,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+	void parse(json_object* object) override;
 
 	vector<Vg> vgs;
 

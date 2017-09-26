@@ -91,6 +91,11 @@ namespace storage
 
 	virtual ResizeInfo detect_resize_info() const override;
 
+	LvmLv* get_lvm_lv(const string& lv_name);
+
+	vector<LvmLv*> get_lvm_lvs();
+	vector<const LvmLv*> get_lvm_lvs() const;
+
 	static LvmLv* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
 	static const LvmLv* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -80,10 +80,7 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const File& file);
 
-	// TODO rethink interface, maybe template based
-	int get_int() const;
-	unsigned long long get_unsigned_long_long() const;
-	string get_string() const;
+	template<typename Type> Type get() const;
 
     private:
 

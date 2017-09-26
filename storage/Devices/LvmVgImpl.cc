@@ -301,7 +301,7 @@ namespace storage
 		return lvm_lv;
 	}
 
-	ST_THROW(Exception("lvm lv not found"));
+	ST_THROW(LvmLvNotFoundByLvName(lv_name));
     }
 
 

@@ -82,7 +82,7 @@ namespace storage
 	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
 								     "/ext_range");
 
-	    if (range_file.get_int() <= 1)
+	    if (range_file.get<int>() <= 1)
 		continue;
 
 	    Disk* disk = Disk::create(prober.get_probed(), name);
@@ -98,7 +98,7 @@ namespace storage
 
 	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
 								      "/queue/rotational");
-	rotational = rotational_file.get_int() != 0;
+	rotational = rotational_file.get<bool>();
 
 	Lsscsi::Entry entry;
 	if (prober.get_system_info().getLsscsi().getEntry(get_name(), entry))

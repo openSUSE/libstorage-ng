@@ -100,7 +100,7 @@ namespace storage
 	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
 								     "/ext_range");
 
-	    if (range_file.get_int() <= 1)
+	    if (range_file.get<int>() <= 1)
 		continue;
 
 	    Dasd* dasd = Dasd::create(prober.get_probed(), name);
@@ -114,8 +114,9 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/queue/rotational");
-	rotational = rotational_file.get_int() != 0;
+	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+								      "/queue/rotational");
+	rotational = rotational_file.get<bool>();
 
 	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
 	type = dasdview.get_type();

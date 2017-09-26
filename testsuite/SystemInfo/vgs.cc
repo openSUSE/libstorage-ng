@@ -18,8 +18,8 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(VGSBIN " --noheadings --unbuffered --units b --nosuffix --options vg_name,"
-			"vg_uuid,vg_attr,vg_extent_size,vg_extent_count", input);
+    Mockup::set_command(VGSBIN " --reportformat json --units b --nosuffix --options vg_name,"
+			"vg_uuid,vg_attr,vg_extent_size,vg_extent_count,vg_free_count", input);
 
     CmdVgs cmd_vgs;
 
@@ -37,11 +37,19 @@ check(const vector<string>& input, const vector<string>& output)
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"  system  OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn wz--n- 4194304 230400"
+	"  {",
+	"      \"report\": [",
+	"          {",
+	"              \"vg\": [",
+	"                  {\"vg_name\":\"system\", \"vg_uuid\":\"OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn\", \"vg_attr\":\"wz--n-\", \"vg_extent_size\":\"4194304\", \"vg_extent_count\":\"230400\", \"vg_free_count\":\"71666\"}",
+	"              ]",
+	"          }",
+	"      ]",
+	"  }"
     };
 
     vector<string> output = {
-	"vg:{ vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn extent-size:4194304 extent-count:230400 }"
+	"vg:{ vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn extent-size:4194304 extent-count:230400 free-extent-count:71666 }"
     };
 
     check(input, output);
