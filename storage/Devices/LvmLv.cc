@@ -162,6 +162,27 @@ namespace storage
     }
 
 
+    LvmLv*
+    LvmLv::get_lvm_lv(const string& lv_name)
+    {
+	return get_impl().get_lvm_lv(lv_name);
+    }
+
+
+    vector<LvmLv*>
+    LvmLv::get_lvm_lvs()
+    {
+	return get_impl().get_lvm_lvs();
+    }
+
+
+    vector<const LvmLv*>
+    LvmLv::get_lvm_lvs() const
+    {
+	return get_impl().get_lvm_lvs();
+    }
+
+
     bool
     is_lvm_lv(const Device* device)
     {

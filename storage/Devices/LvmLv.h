@@ -93,6 +93,14 @@ namespace storage
 	 */
 	LvmLv* create_lvm_lv(const std::string& lv_name, LvType lv_type, unsigned long long size);
 
+	/**
+	 * @throw Exception
+	 */
+	LvmLv* get_lvm_lv(const std::string& lv_name);
+
+	std::vector<LvmLv*> get_lvm_lvs();
+	std::vector<const LvmLv*> get_lvm_lvs() const;
+
     public:
 
 	class Impl;
