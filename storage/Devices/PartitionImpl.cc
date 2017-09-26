@@ -37,6 +37,7 @@
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Prober.h"
@@ -858,14 +859,38 @@ namespace storage
     void
     Partition::Impl::do_delete() const
     {
+	do_delete_efi_boot_mgr();
+
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script " + partitionable->get_name() + " rm " + to_string(get_number());
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " rm " +
+	    to_string(get_number());
 	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("delete partition failed"));
+    }
+
+
+    void
+    Partition::Impl::do_delete_efi_boot_mgr() const
+    {
+	if (!is_gpt(get_partition_table()))
+	    return;
+
+	if (!get_devicegraph()->get_storage()->get_arch().is_efiboot())
+	    return;
+
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = EFIBOOTMGRBIN " --verbose --delete --disk " +
+	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("delete partition in efi boot mgr failed"));
     }
 
 
