@@ -18,6 +18,7 @@
 %exceptionclass storage::InvalidBlockSize;
 %exceptionclass storage::InvalidExtentSize;
 %exceptionclass storage::LogicException;
+%exceptionclass storage::LvmLvNotFoundByLvName;
 %exceptionclass storage::LvmVgNotFoundByVgName;
 %exceptionclass storage::NfsNotFoundByServerAndPath;
 %exceptionclass storage::NoIntersection;
@@ -152,6 +153,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
+%catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
