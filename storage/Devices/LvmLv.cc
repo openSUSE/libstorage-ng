@@ -33,6 +33,12 @@ namespace storage
     using namespace std;
 
 
+    LvmLvNotFoundByLvName::LvmLvNotFoundByLvName(const string& lv_name)
+	: DeviceNotFound(sformat("LvmLv not found, lv-name:%s", lv_name.c_str()))
+    {
+    }
+
+
     LvmLv*
     LvmLv::create(Devicegraph* devicegraph, const string& vg_name, const string& lv_name,
 		  LvType lv_type)
