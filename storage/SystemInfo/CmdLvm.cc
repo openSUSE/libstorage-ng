@@ -140,7 +140,7 @@ namespace storage
 
     CmdLvs::CmdLvs()
     {
-	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --options lv_name,lv_uuid,vg_name,"
+	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
 		      "vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid");
 
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
@@ -181,8 +181,10 @@ namespace storage
 
 	switch (lv_attr[0])
 	{
+	    case '-': lv.lv_type = LvType::NORMAL; break;
 	    case 't': lv.lv_type = LvType::THIN_POOL; break;
 	    case 'V': lv.lv_type = LvType::THIN; break;
+	    case 'r': lv.lv_type = LvType::RAID; break;
 	}
 
 	get_child_value(object, "pool_lv", lv.pool_name);

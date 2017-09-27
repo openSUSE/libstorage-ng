@@ -49,7 +49,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<LvType>::names({
-	"normal", "thin-pool", "thin"
+	"unknown", "normal", "thin-pool", "thin", "raid"
     });
 
 
@@ -170,6 +170,7 @@ namespace storage
 	    {
 		case LvType::NORMAL:
 		case LvType::THIN_POOL:
+		case LvType::RAID:
 		{
 		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), lv.vg_uuid);
 		    lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
@@ -182,6 +183,12 @@ namespace storage
 		    lvm_lv = thin_pool->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
 		}
 		break;
+
+		case LvType::UNKNOWN:
+		{
+		    // unknown or lvm internal lvs (e.g. metadata) are ignored
+		    continue;
+		}
 	    }
 
 	    ST_CHECK_PTR(lvm_lv);
@@ -450,6 +457,14 @@ namespace storage
 		cmd_line += " --type thin --wipesignatures=y --yes --virtualsize " +
 		    to_string(region.to_bytes(region.get_length())) + "B " +
 		    " --thin-pool " + quote(thin_pool->get_lv_name());
+	    }
+	    break;
+
+	    case LvType::UNKNOWN:
+	    case LvType::RAID:
+	    {
+		ST_THROW(UnsupportedException(sformat("creating LvmLv with type %s is unsupported",
+						      toString(lv_type).c_str())));
 	    }
 	    break;
 	}
