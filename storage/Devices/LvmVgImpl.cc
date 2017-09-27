@@ -48,7 +48,7 @@ namespace storage
 
 
     LvmVg::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), vg_name(), uuid(), region(0, 0, default_extent_size)
+	: Device::Impl(node), vg_name(), uuid(), region(0, 0, default_extent_size), reserved_extents(0)
     {
 	if (!getChildValue(node, "vg-name", vg_name))
 	    ST_THROW(Exception("no vg-name"));
@@ -56,6 +56,7 @@ namespace storage
 	getChildValue(node, "uuid", uuid);
 
 	getChildValue(node, "region", region);
+	getChildValue(node, "reserved-extents", reserved_extents);
     }
 
 
@@ -68,6 +69,7 @@ namespace storage
 	setChildValue(node, "uuid", uuid);
 
 	setChildValue(node, "region", region);
+	setChildValue(node, "reserved-extents", reserved_extents);
     }
 
 
@@ -105,6 +107,16 @@ namespace storage
     }
 
 
+    void
+    LvmVg::Impl::calculate_reserved_extents(Prober& prober)
+    {
+	const CmdVgs& cmd_vgs = prober.get_system_info().getCmdVgs();
+	const CmdVgs::Vg& vg = cmd_vgs.find_by_vg_uuid(uuid);
+
+	reserved_extents = number_of_free_extents() - vg.free_extent_count;
+    }
+
+
     unsigned long long
     LvmVg::Impl::get_size() const
     {
@@ -138,6 +150,8 @@ namespace storage
     {
 	unsigned long long ret = 0;
 
+	// TODO handle metadata for new thin-pools
+
 	for (const LvmLv* lvm_lv : get_lvm_lvs())
 	    ret += lvm_lv->get_impl().number_of_extents();
 
@@ -148,6 +162,8 @@ namespace storage
     unsigned long long
     LvmVg::Impl::number_of_free_extents() const
     {
+	// TODO handle reserved_extents
+
 	unsigned long long a = number_of_extents();
 	unsigned long long b = number_of_used_extents();
 
@@ -349,7 +365,8 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return vg_name == rhs.vg_name && uuid == rhs.uuid && region == rhs.region;
+	return vg_name == rhs.vg_name && uuid == rhs.uuid && region == rhs.region &&
+	    reserved_extents == rhs.reserved_extents;
     }
 
 
@@ -364,6 +381,7 @@ namespace storage
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
 
 	storage::log_diff(log, "region", region, rhs.region);
+	storage::log_diff(log, "reserved-extents", reserved_extents, rhs.reserved_extents);
     }
 
 
@@ -372,8 +390,8 @@ namespace storage
     {
 	Device::Impl::print(out);
 
-	out << " vg-name:" << vg_name << " uuid:" << uuid
-	    << " region:" << region;
+	out << " vg-name:" << vg_name << " uuid:" << uuid << " region:" << region
+	    << " reserved-extents:" << reserved_extents;
     }
 
 
