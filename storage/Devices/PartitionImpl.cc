@@ -624,6 +624,8 @@ namespace storage
 
 	cout << cmd_line << endl;
 
+	SystemCmd(UDEVADMBIN_SETTLE);
+
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create partition failed"));
