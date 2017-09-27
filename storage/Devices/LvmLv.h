@@ -39,7 +39,7 @@ namespace storage
      */
     enum class LvType
     {
-	NORMAL, THIN_POOL, THIN
+	UNKNOWN, NORMAL, THIN_POOL, THIN, RAID
     };
 
 

@@ -92,7 +92,7 @@ namespace storage
 
 	struct Lv
 	{
-	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::NORMAL),
+	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
 		   active(false), size(0), pool_name(), pool_uuid() {}
 
 	    string lv_name;
