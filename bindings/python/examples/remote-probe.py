@@ -35,7 +35,7 @@ def run_command(name):
         for line in stderr.split('\n'):
             ret.stderr.push_back(line)
 
-    ret.exitcode = p.returncode
+    ret.exit_code = p.returncode
 
     return ret
 
