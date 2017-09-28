@@ -46,7 +46,8 @@ namespace storage
 	static const unsigned long long default_extent_size = 4 * MiB;
 
 	Impl(const string& vg_name)
-	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size) {}
+	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size),
+	      reserved_extents(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -56,6 +57,8 @@ namespace storage
 
 	static void probe_lvm_vgs(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
+
+	void calculate_reserved_extents(Prober& prober);
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -130,6 +133,12 @@ namespace storage
 	 * Holds extent-size and extent-count.
 	 */
 	Region region;
+
+	/**
+	 * Number of reserved extents in the volume group. Those reserved
+	 * extents are not used by libstorage-ng. Also see doc/lvm.md.
+	 */
+	unsigned long long reserved_extents;
 
 	void calculate_region();
 

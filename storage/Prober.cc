@@ -108,6 +108,9 @@ namespace storage
 	    LvmVg::Impl::probe_lvm_vgs(*this);
 	    LvmPv::Impl::probe_lvm_pvs(*this);
 	    LvmLv::Impl::probe_lvm_lvs(*this);
+
+	    for (LvmVg* lvm_vg : LvmVg::get_all(probed))
+		lvm_vg->get_impl().calculate_reserved_extents(*this);
 	}
 
 	if (system_info.getBlkid().any_luks())
