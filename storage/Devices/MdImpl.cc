@@ -736,12 +736,12 @@ namespace storage
 	// function calculate_region_and_topology() to be checked!
 
 	string cmd_line = MDADMBIN " --create " + quote(get_name()) + " --run --level=" +
-	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata 1.0"
+	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=1.0"
 	    " --homehost=any";
 
 	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID5 ||
 	    md_level == MdLevel::RAID6 || md_level == MdLevel::RAID10)
-	    cmd_line += " --bitmap internal";
+	    cmd_line += " --bitmap=internal";
 
 	if (chunk_size > 0)
 	    cmd_line += " --chunk=" + to_string(chunk_size / KiB);

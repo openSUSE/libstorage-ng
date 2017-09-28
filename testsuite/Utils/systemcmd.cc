@@ -25,6 +25,20 @@ join(const vector<string>& input)
     return boost::join(input, "\n") + "\n";
 }
 
+class Fixture
+{
+public:
+
+    Fixture()
+    {
+	set_logger(get_stdout_logger());
+    }
+
+};
+
+
+BOOST_GLOBAL_FIXTURE(Fixture);
+
 
 BOOST_AUTO_TEST_CASE(hello_stdout)
 {
@@ -101,7 +115,10 @@ BOOST_AUTO_TEST_CASE(retcode_42)
 
 BOOST_AUTO_TEST_CASE(non_existent_no_throw)
 {
-    BOOST_CHECK_NO_THROW({SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::NoThrow);});
+    BOOST_CHECK_NO_THROW({
+	SystemCmd cmd("/bin/wrglbrmpf", SystemCmd::ThrowBehaviour::NoThrow);
+	BOOST_CHECK_EQUAL(cmd.retcode(), 127);
+    });
 }
 
 
@@ -114,7 +131,10 @@ BOOST_AUTO_TEST_CASE(non_existent_throw)
 
 BOOST_AUTO_TEST_CASE(segfault_no_throw)
 {
-    BOOST_CHECK_NO_THROW({SystemCmd cmd("../helpers/segfaulter", SystemCmd::ThrowBehaviour::NoThrow);});
+    BOOST_CHECK_NO_THROW({
+	SystemCmd cmd("../helpers/segfaulter", SystemCmd::ThrowBehaviour::NoThrow);
+	BOOST_CHECK_EQUAL(cmd.retcode(), -127);
+    });
 }
 
 
@@ -127,7 +147,10 @@ BOOST_AUTO_TEST_CASE(segfault_throw)
 
 BOOST_AUTO_TEST_CASE(non_exec_no_throw)
 {
-    BOOST_CHECK_NO_THROW({SystemCmd cmd( "/etc/fstab", SystemCmd::ThrowBehaviour::NoThrow);});
+    BOOST_CHECK_NO_THROW({
+	SystemCmd cmd("/etc/fstab", SystemCmd::ThrowBehaviour::NoThrow);
+	BOOST_CHECK_EQUAL(cmd.retcode(), 126);
+    });
 }
 
 
