@@ -45,6 +45,7 @@
       </region>
       <dm-table-name>system-home</dm-table-name>
       <lv-name>home</lv-name>
+      <stripes>1</stripes>
       <uuid>h2EA7Z-e564-bocL-7iFD-Fpj8-1GUh-5eyc3S</uuid>
     </LvmLv>
     <LvmLv>
@@ -58,6 +59,7 @@
       </region>
       <dm-table-name>system-root</dm-table-name>
       <lv-name>root</lv-name>
+      <stripes>1</stripes>
       <uuid>Y5Og1S-LvHZ-Ivob-doBF-0xwB-myYU-WzKfq5</uuid>
     </LvmLv>
     <LvmLv>
@@ -71,6 +73,7 @@
       </region>
       <dm-table-name>system-swap</dm-table-name>
       <lv-name>swap</lv-name>
+      <stripes>1</stripes>
       <uuid>wGZ7UT-icrj-6iSM-gl0F-jxme-CW48-tOyl8Y</uuid>
     </LvmLv>
     <Msdos>

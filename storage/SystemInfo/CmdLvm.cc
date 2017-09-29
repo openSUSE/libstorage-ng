@@ -243,7 +243,7 @@ namespace storage
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
 	  << " active:" << lv.active << " size:" << lv.size;
 
-	if (lv.stripes != 1)
+	if (lv.stripes != 0)
 	    s << " stripes:" << lv.stripes;
 
 	if (lv.stripe_size != 0)

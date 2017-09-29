@@ -55,14 +55,14 @@ namespace storage
 
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
-	  uuid(), stripes(1), stripe_size(0), chunk_size(0)
+	  uuid(), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0), chunk_size(0)
     {
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(1),
+	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(0),
 	  stripe_size(0), chunk_size(0)
     {
 	string tmp;
@@ -96,7 +96,7 @@ namespace storage
 
 	setChildValue(node, "uuid", uuid);
 
-	setChildValueIf(node, "stripes", stripes, stripes != 1);
+	setChildValueIf(node, "stripes", stripes, stripes != 0);
 	setChildValueIf(node, "stripe-size", stripe_size, stripe_size != 0);
 
 	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
@@ -374,7 +374,7 @@ namespace storage
 
 	out << " lv-name:" << lv_name << " lv-type:" << toString(lv_type) << " uuid:" << uuid;
 
-	if (stripes != 1)
+	if (stripes != 0)
 	    out << " stripes:" << stripes;
 	if (stripe_size != 0)
 	    out << " stripe-size:" << stripe_size;
