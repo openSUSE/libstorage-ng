@@ -469,7 +469,7 @@ namespace storage
 	    break;
 	}
 
-	if (stripes > 1)
+	if (stripes > 1 && lv_type != LvType::THIN)
 	{
 	    cmd_line += " --stripes " + to_string(stripes);
 	    if (stripe_size > 0)
