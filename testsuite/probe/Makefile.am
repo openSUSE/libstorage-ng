@@ -8,7 +8,8 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 	-lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	disk.test multipath1.test md1.test md2.test md3.test lvm1.test 		\
+	disk.test multipath1.test md1.test md2.test md3.test lvm1.test		\
+	lvm2.test 								\
 	luks1.test bcache1.test btrfs1.test dasd1.test external-journal.test	\
 	dmraid1.test md-imsm1.test md-ddf1.test
 
@@ -20,6 +21,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	multipath1-mockup.xml multipath1-devicegraph.xml			\
 	dmraid1-mockup.xml dmraid1-devicegraph.xml				\
 	lvm1-mockup.xml lvm1-devicegraph.xml					\
+	lvm2-mockup.xml lvm2-devicegraph.xml					\
 	luks1-mockup.xml luks1-devicegraph.xml					\
 	bcache1-mockup.xml bcache1-devicegraph.xml				\
 	btrfs1-mockup.xml btrfs1-devicegraph.xml				\
