@@ -324,7 +324,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_type_supported(type))
-	    ST_THROW(Exception("illegal partition type"));
+	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type),
+				       toString(partition_table->get_type()).c_str())));
 
 	Impl::type = type;
     }
@@ -336,7 +337,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_id_supported(id))
-	    ST_THROW(Exception("illegal partition id"));
+	    ST_THROW(Exception(sformat("illegal partition id %d on %s", id,
+				       toString(partition_table->get_type()).c_str())));
 
 	Impl::id = id;
     }
