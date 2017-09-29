@@ -19,8 +19,9 @@ check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(LVSBIN " --reportformat json --units b --nosuffix --all --options lv_name,"
-			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid",
-			input);
+			"lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,"
+			"chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,"
+			"metadata_lv_uuid", input);
 
     CmdLvs cmd_lvs;
 

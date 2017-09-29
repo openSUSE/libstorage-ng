@@ -19,13 +19,7 @@
       <stdout>/dev/mapper/system-home: UUID="5a32b2fb-ac84-4b2f-b53c-4ff68c4721c7" TYPE="xfs"</stdout>
     </Command>
     <Command>
-      <name>/sbin/dmsetup table</name>
-      <stdout>system-home: 0 18292736 linear 8:1 2048</stdout>
-      <stdout>system-swap: 0 3047424 linear 8:1 30484480</stdout>
-      <stdout>system-root: 0 12189696 linear 8:1 18294784</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid</name>
+      <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>

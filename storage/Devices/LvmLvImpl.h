@@ -138,6 +138,8 @@ namespace storage
 	unsigned int stripes;
 	unsigned long long stripe_size;
 
+	unsigned long long chunk_size;
+
     };
 
 

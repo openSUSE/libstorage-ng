@@ -141,7 +141,8 @@ namespace storage
     CmdLvs::CmdLvs()
     {
 	SystemCmd cmd(LVSBIN " " COMMON_LVM_OPTIONS " --all --options lv_name,lv_uuid,vg_name,"
-		      "vg_uuid,lv_role,lv_attr,lv_size,pool_lv,pool_lv_uuid");
+		      "vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,"
+		      "pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid");
 
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
@@ -170,6 +171,11 @@ namespace storage
 	get_child_value(object, "lv_uuid", lv.lv_uuid);
 
 	get_child_value(object, "lv_size", lv.size);
+
+	get_child_value(object, "stripes", lv.stripes);
+	get_child_value(object, "stripe_size", lv.stripe_size);
+
+	get_child_value(object, "chunk_size", lv.chunk_size);
 
 	get_child_value(object, "vg_name", lv.vg_name);
 	get_child_value(object, "vg_uuid", lv.vg_uuid);
@@ -230,6 +236,15 @@ namespace storage
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
 	  << " active:" << lv.active << " size:" << lv.size;
+
+	if (lv.stripes != 1)
+	    s << " stripes:" << lv.stripes;
+
+	if (lv.stripe_size != 0)
+	    s << " stripe-size:" << lv.stripe_size;
+
+	if (lv.chunk_size != 0)
+	    s << " chunk-size:" << lv.chunk_size;
 
 	if (!lv.pool_name.empty())
 	    s << " pool-name:" << lv.pool_name;
