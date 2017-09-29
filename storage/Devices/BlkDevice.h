@@ -46,9 +46,17 @@ namespace storage
 	void set_name(const std::string& name);
 
 	const Region& get_region() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_region(const Region& region);
 
 	unsigned long long get_size() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_size(unsigned long long size);
 
 	std::string get_size_string() const;

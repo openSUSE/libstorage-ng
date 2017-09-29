@@ -75,6 +75,12 @@ namespace storage
 	LvType get_lv_type() const;
 
 	unsigned int get_stripes() const;
+
+	/**
+	 * Set the number of stripes. The size of the LV must be a multiple of
+	 * the number of stripes and the stripe size. Thin LV cannot be
+	 * striped.
+	 */
 	void set_stripes(unsigned int stripes);
 
 	unsigned long long get_stripe_size() const;
