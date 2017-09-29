@@ -55,14 +55,14 @@ namespace storage
 
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
-	  uuid(), stripes(0), stripe_size(0)
+	  uuid(), stripes(1), stripe_size(0)
     {
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
 
 
     LvmLv::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(0),
+	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(1),
 	  stripe_size(0)
     {
 	string tmp;
@@ -94,7 +94,7 @@ namespace storage
 
 	setChildValue(node, "uuid", uuid);
 
-	setChildValueIf(node, "stripes", stripes, stripes != 0);
+	setChildValueIf(node, "stripes", stripes, stripes != 1);
 	setChildValueIf(node, "stripe-size", stripe_size, stripe_size != 0);
     }
 
@@ -209,16 +209,9 @@ namespace storage
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
 
-	if (is_active())
-	{
-	    const CmdDmsetupTable& cmd_dmsetup_table = prober.get_system_info().getCmdDmsetupTable();
-	    vector<CmdDmsetupTable::Table> tables = cmd_dmsetup_table.get_tables(get_dm_table_name());
-	    if (tables[0].target == "striped")
-	    {
-		stripes = tables[0].stripes;
-		stripe_size = tables[0].stripe_size;
-	    }
-	}
+	const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
+	stripes = lv.stripes;
+	stripe_size = lv.stripe_size;
     }
 
 
@@ -362,7 +355,7 @@ namespace storage
 
 	out << " lv-name:" << lv_name << " lv-type:" << toString(lv_type) << " uuid:" << uuid;
 
-	if (stripes != 0)
+	if (stripes != 1)
 	    out << " stripes:" << stripes;
 	if (stripe_size != 0)
 	    out << " stripe-size:" << stripe_size;

@@ -29,16 +29,6 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/sbin/dmsetup table</name>
-      <stdout>system-pool-tpool: 0 31457280 thin-pool 254:0 254:1 128 0 0 </stdout>
-      <stdout>system-pool_tdata: 0 31457280 linear 8:2 34816</stdout>
-      <stdout>system-pool_tmeta: 0 32768 linear 8:2 31492096</stdout>
-      <stdout>system-home: 0 20971520 thin 254:2 1</stdout>
-      <stdout>system-swap: 0 2097152 thin 254:2 3</stdout>
-      <stdout>system-root: 0 20971520 thin 254:2 2</stdout>
-      <stdout>system-pool: 0 31457280 linear 254:2 0</stdout>
-    </Command>
-    <Command>
       <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
