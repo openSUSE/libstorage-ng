@@ -350,7 +350,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_boot_flag_supported())
-	    ST_THROW(Exception("set_boot not supported"));
+	    ST_THROW(Exception(sformat("set_boot not supported on %s",
+				       toString(partition_table->get_type()).c_str())));
 
 	if (boot && !Impl::boot)
 	{
@@ -370,7 +371,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
-	    ST_THROW(Exception("set_boot not supported"));
+	    ST_THROW(Exception(sformat("set_boot not supported on %s",
+				       toString(partition_table->get_type()).c_str())));
 
 	Impl::legacy_boot = legacy_boot;
     }

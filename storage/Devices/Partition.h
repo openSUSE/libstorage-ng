@@ -122,9 +122,17 @@ namespace storage
 	unsigned int get_number() const;
 
 	PartitionType get_type() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_type(PartitionType type);
 
 	unsigned int get_id() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_id(unsigned int id);
 
 	/**
@@ -145,6 +153,8 @@ namespace storage
 	 * 2. Partitions on GPT have no boot flag, "set <nr> boot on" with
 	 * parted on GPT partitions only sets the partition type to EFI System
 	 * Partition.
+	 *
+	 * @throw Exception
 	 */
 	void set_boot(bool boot);
 
@@ -155,6 +165,8 @@ namespace storage
 
 	/**
 	 * Set the legacy boot flag of the partition. Only supported on Gpt.
+	 *
+	 * @throw Exception
 	 */
 	void set_legacy_boot(bool legacy_boot);
 
