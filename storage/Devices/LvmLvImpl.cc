@@ -55,7 +55,7 @@ namespace storage
 
     LvmLv::Impl::Impl(const string& vg_name, const string& lv_name, LvType lv_type)
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
-	  uuid(), stripes(1), stripe_size(0)
+	  uuid(), stripes(1), stripe_size(0), chunk_size(0)
     {
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
@@ -63,7 +63,7 @@ namespace storage
 
     LvmLv::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), lv_name(), lv_type(LvType::NORMAL), uuid(), stripes(1),
-	  stripe_size(0)
+	  stripe_size(0), chunk_size(0)
     {
 	string tmp;
 
@@ -80,6 +80,8 @@ namespace storage
 
 	getChildValue(node, "stripes", stripes);
 	getChildValue(node, "stripe-size", stripe_size);
+
+	getChildValue(node, "chunk-size", chunk_size);
     }
 
 
@@ -96,6 +98,8 @@ namespace storage
 
 	setChildValueIf(node, "stripes", stripes, stripes != 1);
 	setChildValueIf(node, "stripe-size", stripe_size, stripe_size != 0);
+
+	setChildValueIf(node, "chunk-size", chunk_size, chunk_size != 0);
     }
 
 
@@ -212,6 +216,7 @@ namespace storage
 	const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
 	stripes = lv.stripes;
 	stripe_size = lv.stripe_size;
+	chunk_size = lv.chunk_size;
     }
 
 
@@ -326,7 +331,8 @@ namespace storage
 	    return false;
 
 	return lv_name == rhs.lv_name && lv_type == rhs.lv_type && uuid == rhs.uuid &&
-	    stripes == rhs.stripes && stripe_size == rhs.stripe_size;
+	    stripes == rhs.stripes && stripe_size == rhs.stripe_size &&
+	    chunk_size == rhs.chunk_size;
     }
 
 
@@ -345,6 +351,8 @@ namespace storage
 
 	storage::log_diff(log, "stripes", stripes, rhs.stripes);
 	storage::log_diff(log, "stripe-size", stripe_size, rhs.stripe_size);
+
+	storage::log_diff(log, "chunk-size", chunk_size, rhs.chunk_size);
     }
 
 
@@ -359,6 +367,9 @@ namespace storage
 	    out << " stripes:" << stripes;
 	if (stripe_size != 0)
 	    out << " stripe-size:" << stripe_size;
+
+	if (chunk_size != 0)
+	    out << " chunk-size:" << chunk_size;
     }
 
 
