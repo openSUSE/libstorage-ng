@@ -45,6 +45,7 @@
       <dm-table-name>system-pool</dm-table-name>
       <lv-name>pool</lv-name>
       <lv-type>thin-pool</lv-type>
+      <stripes>1</stripes>
       <uuid>XLDPQS-6U7n-zfW8-hiP5-E8xa-TOag-e2xCk1</uuid>
       <chunk-size>65536</chunk-size>
     </LvmLv>

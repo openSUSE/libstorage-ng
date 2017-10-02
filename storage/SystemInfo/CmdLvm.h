@@ -93,8 +93,8 @@ namespace storage
 	struct Lv
 	{
 	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
-		   active(false), size(0), pool_name(), pool_uuid(), stripes(1), stripe_size(0),
-		   chunk_size(0) {}
+		   active(false), size(0), pool_name(), pool_uuid(), stripes(0), stripe_size(0),
+		   chunk_size(0), data_name(), data_uuid(), metadata_name(), metadata_uuid() {}
 
 	    string lv_name;
 	    string lv_uuid;
@@ -108,6 +108,10 @@ namespace storage
 	    unsigned long stripes;
 	    unsigned long long stripe_size;
 	    unsigned long long chunk_size;
+	    string data_name;
+	    string data_uuid;
+	    string metadata_name;
+	    string metadata_uuid;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdLvs& cmd_lvs);

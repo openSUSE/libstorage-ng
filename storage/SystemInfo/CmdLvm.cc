@@ -196,6 +196,12 @@ namespace storage
 	get_child_value(object, "pool_lv", lv.pool_name);
 	get_child_value(object, "pool_lv_uuid", lv.pool_uuid);
 
+	get_child_value(object, "data_lv", lv.data_name);
+	get_child_value(object, "data_lv_uuid", lv.data_uuid);
+
+	get_child_value(object, "metadata_lv", lv.metadata_name);
+	get_child_value(object, "metadata_lv_uuid", lv.metadata_uuid);
+
 	lvs.push_back(lv);
     }
 
@@ -237,7 +243,7 @@ namespace storage
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
 	  << " active:" << lv.active << " size:" << lv.size;
 
-	if (lv.stripes != 1)
+	if (lv.stripes != 0)
 	    s << " stripes:" << lv.stripes;
 
 	if (lv.stripe_size != 0)
@@ -251,6 +257,18 @@ namespace storage
 
 	if (!lv.pool_uuid.empty())
 	    s << " pool-uuid:" << lv.pool_uuid;
+
+	if (!lv.data_name.empty())
+	    s << " data-name:" << lv.data_name;
+
+	if (!lv.data_uuid.empty())
+	    s << " data-uuid:" << lv.data_uuid;
+
+	if (!lv.metadata_name.empty())
+	    s << " metadata-name:" << lv.metadata_name;
+
+	if (!lv.metadata_uuid.empty())
+	    s << " metadata-uuid:" << lv.metadata_uuid;
 
 	return s;
     }
