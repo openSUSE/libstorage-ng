@@ -148,6 +148,20 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmLv::get_chunk_size() const
+    {
+	return get_impl().get_chunk_size();
+    }
+
+
+    void
+    LvmLv::set_chunk_size(unsigned long long chunk_size)
+    {
+	get_impl().set_chunk_size(chunk_size);
+    }
+
+
     const LvmVg*
     LvmLv::get_lvm_vg() const
     {

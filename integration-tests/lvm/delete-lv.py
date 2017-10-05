@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: lvm volume group test with logical volume foo
+# requirements: lvm volume group test with logical volume normal1
 
 
 from sys import exit
@@ -19,10 +19,10 @@ staging = storage.get_staging()
 
 test = LvmVg.find_by_vg_name(staging, "test")
 
-lv = test.get_lvm_lv("foo")
+normal1 = test.get_lvm_lv("normal1")
 
-lv.remove_descendants()
-staging.remove_device(lv)
+normal1.remove_descendants()
+staging.remove_device(normal1)
 
 print staging
 

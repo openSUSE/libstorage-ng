@@ -83,11 +83,18 @@ namespace storage
 
 	unsigned long long number_of_extents() const { return get_region().get_length(); }
 
+	bool supports_stripes() const;
+
 	unsigned int get_stripes() const { return stripes; }
 	void set_stripes(unsigned int stripes) { Impl::stripes = stripes; }
 
 	unsigned long long get_stripe_size() const { return stripe_size; }
 	void set_stripe_size(unsigned long long stripe_size) { Impl::stripe_size = stripe_size; }
+
+	bool supports_chunk_size() const;
+
+	unsigned long long get_chunk_size() const { return chunk_size; }
+	void set_chunk_size(unsigned long long chunk_size) { Impl::chunk_size = chunk_size; }
 
 	virtual ResizeInfo detect_resize_info() const override;
 
