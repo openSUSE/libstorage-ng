@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 20:00+0200\n"
+"POT-Creation-Date: 2017-10-05 10:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,9 +28,27 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:475
+#: ../storage/Devices/LvmLvImpl.cc:840
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:826
+#, c-format
+msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:812
+#, c-format
+msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -44,9 +62,27 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:480
+#: ../storage/Devices/LvmLvImpl.cc:845
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:831
+#, c-format
+msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:817
+#, c-format
+msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
@@ -55,7 +91,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
+#: ../storage/Devices/LvmVgImpl.cc:485 ../storage/Devices/MdImpl.cc:899
 #, c-format
 msgid "Add %1$s to %2$s"
 msgstr ""
@@ -97,7 +133,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
+#: ../storage/Devices/LvmVgImpl.cc:489 ../storage/Devices/MdImpl.cc:903
 #, c-format
 msgid "Adding %1$s to %2$s"
 msgstr ""
@@ -140,14 +176,14 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:769
+#: ../storage/Devices/PartitionImpl.cc:783
 #, c-format
 msgid "Clear boot flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:810
+#: ../storage/Devices/PartitionImpl.cc:824
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
 msgstr ""
@@ -169,14 +205,14 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:772
+#: ../storage/Devices/PartitionImpl.cc:786
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:813
+#: ../storage/Devices/PartitionImpl.cc:827
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr ""
@@ -200,7 +236,7 @@ msgstr ""
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:503
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:568
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr ""
@@ -245,7 +281,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:538
+#: ../storage/Devices/PartitionImpl.cc:550
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
 msgstr ""
@@ -258,7 +294,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:550
+#: ../storage/Devices/PartitionImpl.cc:562
 #, c-format
 msgid "Create logical partition %1$s (%2$s)"
 msgstr ""
@@ -267,7 +303,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:298
+#: ../storage/Devices/LvmLvImpl.cc:479
 #, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -275,7 +311,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:511
+#: ../storage/Devices/PartitionImpl.cc:523
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr ""
@@ -290,7 +326,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:526
+#: ../storage/Devices/PartitionImpl.cc:538
 #, c-format
 msgid "Create primary partition %1$s (%2$s)"
 msgstr ""
@@ -304,9 +340,27 @@ msgid "Create subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:465
+#, c-format
+msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:451
+#, c-format
+msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:386
+#: ../storage/Devices/LvmVgImpl.cc:405
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr ""
@@ -315,7 +369,7 @@ msgstr ""
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:508
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:573
 #, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
 msgstr ""
@@ -360,7 +414,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:542
+#: ../storage/Devices/PartitionImpl.cc:554
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr ""
@@ -368,7 +422,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:554
+#: ../storage/Devices/PartitionImpl.cc:566
 #, c-format
 msgid "Creating logical partition %1$s (%2$s)"
 msgstr ""
@@ -377,7 +431,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:303
+#: ../storage/Devices/LvmLvImpl.cc:484
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -385,7 +439,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:515
+#: ../storage/Devices/PartitionImpl.cc:527
 #, c-format
 msgid "Creating partition %1$s (%2$s)"
 msgstr ""
@@ -400,7 +454,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:530
+#: ../storage/Devices/PartitionImpl.cc:542
 #, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr ""
@@ -414,9 +468,27 @@ msgid "Creating subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:470
+#, c-format
+msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:456
+#, c-format
+msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:390
+#: ../storage/Devices/LvmVgImpl.cc:409
 #, c-format
 msgid "Creating volume group %1$s (%2$s)"
 msgstr ""
@@ -441,7 +513,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:511
+#: ../storage/Devices/LvmLvImpl.cc:911
 #, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -452,6 +524,24 @@ msgstr ""
 #: ../storage/Devices/MultipathImpl.cc:298
 #, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:897
+#, c-format
+msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:883
+#, c-format
+msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -474,7 +564,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:516
+#: ../storage/Devices/LvmLvImpl.cc:916
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -487,11 +577,29 @@ msgstr ""
 msgid "Deactivating multipath %1$s (%2$s)"
 msgstr ""
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:902
+#, c-format
+msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:888
+#, c-format
+msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:676
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:741
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr ""
@@ -537,7 +645,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:439
+#: ../storage/Devices/LvmLvImpl.cc:769
 #, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -545,7 +653,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:841
+#: ../storage/Devices/PartitionImpl.cc:855
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr ""
@@ -566,9 +674,27 @@ msgid "Delete subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:755
+#, c-format
+msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:741
+#, c-format
+msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:420
+#: ../storage/Devices/LvmVgImpl.cc:439
 #, c-format
 msgid "Delete volume group %1$s (%2$s)"
 msgstr ""
@@ -577,7 +703,7 @@ msgstr ""
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:681
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:746
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr ""
@@ -623,7 +749,7 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:444
+#: ../storage/Devices/LvmLvImpl.cc:774
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -631,7 +757,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:845
+#: ../storage/Devices/PartitionImpl.cc:859
 #, c-format
 msgid "Deleting partition %1$s (%2$s)"
 msgstr ""
@@ -652,9 +778,27 @@ msgid "Deleting subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:760
+#, c-format
+msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#: ../storage/Devices/LvmLvImpl.cc:746
+#, c-format
+msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:424
+#: ../storage/Devices/LvmVgImpl.cc:443
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr ""
@@ -694,7 +838,7 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:645
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:710
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -713,7 +857,7 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:385
+#: ../storage/Devices/LvmLvImpl.cc:682
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -722,7 +866,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:896
+#: ../storage/Devices/PartitionImpl.cc:934
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr ""
@@ -736,12 +880,32 @@ msgstr ""
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:666
+#, c-format
+msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:650
+#, c-format
+msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:651
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:716
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -760,7 +924,7 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:391
+#: ../storage/Devices/LvmLvImpl.cc:688
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -769,7 +933,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:901
+#: ../storage/Devices/PartitionImpl.cc:939
 #, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr ""
@@ -781,6 +945,26 @@ msgstr ""
 #: ../storage/Devices/LvmPvImpl.cc:310
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:672
+#, c-format
+msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#: ../storage/Devices/LvmLvImpl.cc:656
+#, c-format
+msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
@@ -858,7 +1042,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
+#: ../storage/Devices/LvmVgImpl.cc:473 ../storage/Devices/MdImpl.cc:887
 #, c-format
 msgid "Remove %1$s from %2$s"
 msgstr ""
@@ -900,7 +1084,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
+#: ../storage/Devices/LvmVgImpl.cc:477 ../storage/Devices/MdImpl.cc:891
 #, c-format
 msgid "Removing %1$s from %2$s"
 msgstr ""
@@ -936,7 +1120,7 @@ msgstr ""
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
-#: ../storage/Devices/LvmLvImpl.cc:338
+#: ../storage/Devices/LvmLvImpl.cc:561
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr ""
@@ -953,7 +1137,7 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:580
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:645
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr ""
@@ -970,7 +1154,7 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:585
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:650
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr ""
@@ -978,14 +1162,14 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:550
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:615
 #, c-format
 msgid "Set UUID of %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:761
+#: ../storage/Devices/PartitionImpl.cc:775
 #, c-format
 msgid "Set boot flag of partition %1$s"
 msgstr ""
@@ -1001,7 +1185,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:672
+#: ../storage/Devices/PartitionImpl.cc:686
 #, c-format
 msgid "Set id of partition %1$s to %2$s"
 msgstr ""
@@ -1010,7 +1194,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:654
+#: ../storage/Devices/PartitionImpl.cc:668
 #, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
 msgstr ""
@@ -1018,7 +1202,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:640
+#: ../storage/Devices/PartitionImpl.cc:654
 #, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr ""
@@ -1026,14 +1210,14 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:524
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:589
 #, c-format
 msgid "Set label of %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:802
+#: ../storage/Devices/PartitionImpl.cc:816
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
 msgstr ""
@@ -1056,14 +1240,14 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:554
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:619
 #, c-format
 msgid "Setting UUID of %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:764
+#: ../storage/Devices/PartitionImpl.cc:778
 #, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr ""
@@ -1079,7 +1263,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:676
+#: ../storage/Devices/PartitionImpl.cc:690
 #, c-format
 msgid "Setting id of partition %1$s to %2$s"
 msgstr ""
@@ -1088,7 +1272,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:659
+#: ../storage/Devices/PartitionImpl.cc:673
 #, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
 msgstr ""
@@ -1096,7 +1280,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:644
+#: ../storage/Devices/PartitionImpl.cc:658
 #, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr ""
@@ -1104,14 +1288,14 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:528
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:593
 #, c-format
 msgid "Setting label of %1$s to %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:805
+#: ../storage/Devices/PartitionImpl.cc:819
 #, c-format
 msgid "Setting legacy boot flag of partition %1$s"
 msgstr ""
@@ -1136,7 +1320,7 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:629
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:694
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -1155,7 +1339,7 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:369
+#: ../storage/Devices/LvmLvImpl.cc:628
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1164,7 +1348,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:882
+#: ../storage/Devices/PartitionImpl.cc:920
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr ""
@@ -1178,12 +1362,32 @@ msgstr ""
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:612
+#, c-format
+msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:596
+#, c-format
+msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:635
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:700
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -1202,7 +1406,7 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:375
+#: ../storage/Devices/LvmLvImpl.cc:634
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1211,7 +1415,7 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:887
+#: ../storage/Devices/PartitionImpl.cc:925
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr ""
@@ -1223,6 +1427,26 @@ msgstr ""
 #: ../storage/Devices/LvmPvImpl.cc:296
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:618
+#, c-format
+msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#: ../storage/Devices/LvmLvImpl.cc:602
+#, c-format
+msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
@@ -1291,7 +1515,7 @@ msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: first snapshot description
-#: ../storage/Utils/SnapperConfig.cc:58
+#: ../storage/Utils/SnapperConfig.cc:61
 msgid "first root filesystem"
 msgstr ""
 
