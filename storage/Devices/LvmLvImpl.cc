@@ -424,17 +424,52 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Create logical volume %1$s (%2$s) on volume group %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Creating logical volume %1$s (%2$s) on volume group %3$s"));
+	Text text;
+
+	switch (lv_type)
+	{
+	    case LvType::THIN_POOL:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Create thin pool logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    case LvType::THIN:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Create thin logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Creating thin logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    default:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Create logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Creating logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+	}
 
 	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
 		       lvm_vg->get_vg_name().c_str());
@@ -529,35 +564,111 @@ namespace storage
 	switch (resize_mode)
 	{
 	    case ResizeMode::SHRINK:
-		text = tenser(tense,
-			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by volume group name (e.g. system),
-			      // %3$s is replaced by old size (e.g. 2GiB),
-			      // %4$s is replaced by new size (e.g. 1GiB)
-			      _("Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"),
-			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by volume group name (e.g. system),
-			      // %3$s is replaced by old size (e.g. 2GiB),
-			      // %4$s is replaced by new size (e.g. 1GiB)
-			      _("Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+
+		switch (lv_type)
+		{
+		    case LvType::THIN_POOL:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+
+		    case LvType::THIN:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+
+		    default:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 2GiB),
+				      // %4$s is replaced by new size (e.g. 1GiB)
+				      _("Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+		}
 		break;
 
 	    case ResizeMode::GROW:
-		text = tenser(tense,
-			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by volume group name (e.g. system),
-			      // %3$s is replaced by old size (e.g. 1GiB),
-			      // %4$s is replaced by new size (e.g. 2GiB)
-			      _("Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"),
-			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by volume group name (e.g. system),
-			      // %3$s is replaced by old size (e.g. 1GiB),
-			      // %4$s is replaced by new size (e.g. 2GiB)
-			      _("Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+
+		switch (lv_type)
+		{
+		    case LvType::THIN_POOL:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+
+		    case LvType::THIN:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+
+		    default:
+			text = tenser(tense,
+				      // TRANSLATORS: displayed before action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"),
+				      // TRANSLATORS: displayed during action,
+				      // %1$s is replaced by logical volume name (e.g. root),
+				      // %2$s is replaced by volume group name (e.g. system),
+				      // %3$s is replaced by old size (e.g. 1GiB),
+				      // %4$s is replaced by new size (e.g. 2GiB)
+				      _("Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"));
+			break;
+		}
 		break;
 
 	    default:
@@ -598,17 +709,52 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Delete logical volume %1$s (%2$s) on volume group %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Deleting logical volume %1$s (%2$s) on volume group %3$s"));
+	Text text;
+
+	switch (lv_type)
+	{
+	    case LvType::THIN_POOL:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    case LvType::THIN:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Delete thin logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deleting thin logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    default:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Delete logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deleting logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+	}
 
 	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
 		       lvm_vg->get_vg_name().c_str());
@@ -634,17 +780,52 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Activate logical volume %1$s (%2$s) on volume group %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Activating logical volume %1$s (%2$s) on volume group %3$s"));
+	Text text;
+
+	switch (lv_type)
+	{
+	    case LvType::THIN_POOL:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    case LvType::THIN:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activate thin logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activating thin logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    default:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activate logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Activating logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+	}
 
 	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
 		       lvm_vg->get_vg_name().c_str());
@@ -670,17 +851,52 @@ namespace storage
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Deactivate logical volume %1$s (%2$s) on volume group %3$s"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by logical volume name (e.g. root),
-			   // %2$s is replaced by size (e.g. 2GiB),
-			   // %3$s is replaced by volume group name (e.g. system)
-			   _("Deactivating logical volume %1$s (%2$s) on volume group %3$s"));
+	Text text;
+
+	switch (lv_type)
+	{
+	    case LvType::THIN_POOL:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    case LvType::THIN:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+
+	    default:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivate logical volume %1$s (%2$s) on volume group %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by logical volume name (e.g. root),
+			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %3$s is replaced by volume group name (e.g. system)
+			      _("Deactivating logical volume %1$s (%2$s) on volume group %3$s"));
+		break;
+	}
 
 	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
 		       lvm_vg->get_vg_name().c_str());
