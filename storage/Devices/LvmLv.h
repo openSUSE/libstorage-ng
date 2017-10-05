@@ -86,6 +86,13 @@ namespace storage
 	unsigned long long get_stripe_size() const;
 	void set_stripe_size(unsigned long long stripe_size);
 
+	unsigned long long get_chunk_size() const;
+
+	/**
+	 * Set the chunk size. Only thin pools can have a chunk size.
+	 */
+	void set_chunk_size(unsigned long long chunk_size);
+
 	/**
 	 * Return volume group this logical volume belongs to.
 	 */

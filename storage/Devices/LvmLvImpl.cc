@@ -231,6 +231,20 @@ namespace storage
     }
 
 
+    bool
+    LvmLv::Impl::supports_stripes() const
+    {
+	return lv_type == LvType::NORMAL || lv_type == LvType::THIN_POOL;
+    }
+
+
+    bool
+    LvmLv::Impl::supports_chunk_size() const
+    {
+	return lv_type == LvType::THIN_POOL;
+    }
+
+
     void
     LvmLv::Impl::set_lv_name(const string& lv_name)
     {
@@ -505,8 +519,8 @@ namespace storage
 		const LvmLv* thin_pool = get_thin_pool();
 
 		cmd_line += " --type thin --wipesignatures=y --yes --virtualsize " +
-		    to_string(region.to_bytes(region.get_length())) + "B " +
-		    " --thin-pool " + quote(thin_pool->get_lv_name());
+		    to_string(region.to_bytes(region.get_length())) + "B --thin-pool " +
+		    quote(thin_pool->get_lv_name());
 	    }
 	    break;
 
@@ -519,11 +533,16 @@ namespace storage
 	    break;
 	}
 
-	if (stripes > 1 && lv_type != LvType::THIN)
+	if (supports_stripes() && stripes > 1)
 	{
 	    cmd_line += " --stripes " + to_string(stripes);
 	    if (stripe_size > 0)
 		cmd_line += " --stripesize " + to_string(stripe_size / KiB);
+	}
+
+	if (supports_chunk_size() && chunk_size > 0)
+	{
+	    cmd_line += " --chunksize " + to_string(chunk_size / KiB);
 	}
 
 	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
