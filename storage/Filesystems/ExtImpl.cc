@@ -80,7 +80,7 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = MKFSEXT2BIN " -t " + toString(get_type()) + " -v -F " +
-	    quote(blk_device->get_name());
+	    get_mkfs_options() + " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	blk_device->get_impl().wait_for_device();

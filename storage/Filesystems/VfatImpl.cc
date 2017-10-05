@@ -75,7 +75,7 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = MKFSFATBIN " -v " + quote(blk_device->get_name());
+	string cmd_line = MKFSFATBIN " -v " + get_mkfs_options() + " " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
 	blk_device->get_impl().wait_for_device();
