@@ -23,6 +23,7 @@ partition.set_id(ID_LINUX)
 
 ext4 = partition.create_blk_filesystem(FsType_EXT4)
 ext4.set_label("TEST")
+ext4.set_tune_options("-c 10")
 
 mount_point = ext4.create_mount_point("/test")
 mount_point.set_mount_by(MountByType_LABEL)
