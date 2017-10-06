@@ -61,6 +61,11 @@ namespace storage
 	void set_mkfs_options(const std::string& mkfs_options);
 
 	const std::string& get_tune_options() const;
+
+	/**
+	 * Set options for the filesystem tune command. Only supported on Ext
+	 * and Reiserfs.
+	 */
 	void set_tune_options(const std::string& tune_options);
 
 	/**

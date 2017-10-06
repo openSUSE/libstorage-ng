@@ -93,6 +93,20 @@ namespace storage
 
 
     void
+    Reiserfs::Impl::do_set_tune_options() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = TUNEREISERFSBIN " " + get_tune_options() + " " + quote(blk_device->get_name());
+	cout << cmd_line << endl;
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("set-tune-options Reiserfs failed"));
+    }
+
+
+    void
     Reiserfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();

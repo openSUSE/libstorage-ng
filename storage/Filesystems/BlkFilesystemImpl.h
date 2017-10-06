@@ -113,6 +113,9 @@ namespace storage
 	virtual Text do_set_uuid_text(Tense tense) const;
 	virtual void do_set_uuid() const;
 
+	virtual Text do_set_tune_options_text(Tense tense) const;
+	virtual void do_set_tune_options() const;
+
 	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const;
 	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs) const;
 
@@ -182,6 +185,18 @@ namespace storage
 	public:
 
 	    SetUuid(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data) const override;
+
+	};
+
+
+	class SetTuneOptions : public Modify
+	{
+	public:
+
+	    SetTuneOptions(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data) const override;

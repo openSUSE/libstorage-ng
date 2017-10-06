@@ -1237,6 +1237,13 @@ msgstr ""
 msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:648
+#, c-format
+msgid "Set tune options on %1$s"
+msgstr ""
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
@@ -1313,6 +1320,13 @@ msgstr ""
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#: ../storage/Filesystems/BlkFilesystemImpl.cc:651
+#, c-format
+msgid "Setting tune options on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
