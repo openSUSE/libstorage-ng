@@ -103,7 +103,7 @@ namespace storage
 
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
-	virtual void do_mount(CommitData& commit_data, CommitOptions& commit_options, const MountPoint* mount_point) const override;
+	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const override;
 
 	virtual void do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const override;
 

@@ -406,7 +406,7 @@ namespace storage
 
 
 	void
-	Activate::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	Activate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Device* device = get_device(commit_data.actiongraph, RHS);
 	    device->get_impl().do_activate();
@@ -422,7 +422,7 @@ namespace storage
 
 
 	void
-	Deactivate::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	Deactivate::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Device* device = get_device(commit_data.actiongraph, LHS);
 	    device->get_impl().do_deactivate();
@@ -441,7 +441,7 @@ namespace storage
 
 
 	void
-	Resize::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	Resize::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
@@ -486,7 +486,7 @@ namespace storage
 
 
 	void
-	Reallot::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	Reallot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 	    device_rhs->get_impl().do_reallot(reallot_mode, device);

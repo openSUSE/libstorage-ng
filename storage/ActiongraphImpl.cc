@@ -505,7 +505,7 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
+    Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 

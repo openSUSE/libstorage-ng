@@ -102,7 +102,7 @@ namespace storage
 	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const;
 
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
-	virtual void do_mount(CommitData& commit_data, CommitOptions& commit_options, const MountPoint* mount_point) const;
+	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const;
 
 	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_umount(CommitData& commit_data, const MountPoint* mount_point) const;

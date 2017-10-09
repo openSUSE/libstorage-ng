@@ -264,7 +264,7 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	void commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
+	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.

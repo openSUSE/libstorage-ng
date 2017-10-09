@@ -90,7 +90,7 @@ namespace storage
 
 	void probe();
 
-	void commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
+	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 

@@ -218,7 +218,7 @@ namespace storage
     }
     
     void
-    Storage::commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
+    Storage::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
     {
 	get_impl().commit(commit_options, commit_callbacks);
     }

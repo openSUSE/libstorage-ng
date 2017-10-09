@@ -348,7 +348,7 @@ namespace storage
 
 
     void
-    Btrfs::Impl::do_mount(CommitData& commit_data, CommitOptions& commit_options, const MountPoint* mount_point) const
+    Btrfs::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const
     {
         if (snapper_config)
             snapper_config->pre_mount();

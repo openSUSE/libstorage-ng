@@ -400,7 +400,7 @@ namespace storage
 
 
     void
-    Storage::Impl::commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
+    Storage::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
     {
 	ST_CHECK_PTR(actiongraph.get());
 

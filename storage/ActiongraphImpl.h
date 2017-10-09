@@ -172,7 +172,7 @@ namespace storage
 	void print_order() const;
 
 	vector<const Action::Base*> get_commit_actions() const;
-	void commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const;
+	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const;
 
 	void generate_compound_actions(const Actiongraph* actiongraph);
 	vector<const CompoundAction*> get_compound_actions() const;

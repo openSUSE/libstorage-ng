@@ -416,7 +416,7 @@ namespace storage
 
 
 	void
-	AddToEtcCrypttab::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	AddToEtcCrypttab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
 	    encryption->get_impl().do_add_to_etc_crypttab(commit_data);
@@ -442,7 +442,7 @@ namespace storage
 
 
 	void
-	RenameInEtcCrypttab::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	RenameInEtcCrypttab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Encryption* encryption_lhs = to_encryption(get_device(commit_data.actiongraph, LHS));
 	    const Encryption* encryption_rhs = to_encryption(get_device(commit_data.actiongraph, RHS));
@@ -468,7 +468,7 @@ namespace storage
 
 
 	void
-	RemoveFromEtcCrypttab::commit(CommitData& commit_data, CommitOptions& commit_options) const
+	RemoveFromEtcCrypttab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, LHS));
 	    encryption->get_impl().do_remove_from_etc_crypttab(commit_data);

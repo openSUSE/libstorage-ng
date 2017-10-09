@@ -181,7 +181,7 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_mount(CommitData& commit_data, CommitOptions& commit_options, const MountPoint* mount_point) const
+    Mountable::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const
     {
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
