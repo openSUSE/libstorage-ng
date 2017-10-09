@@ -123,9 +123,11 @@ namespace storage
 	    LvmPv* lvm_pv = LvmPv::create(prober.get_probed());
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
 
-	    // TODO the pv may not be included in any vg
-	    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), pv.vg_uuid);
-	    Subdevice::create(prober.get_probed(), lvm_pv, lvm_vg);
+	    if (!pv.vg_uuid.empty())
+	    {
+		LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), pv.vg_uuid);
+		Subdevice::create(prober.get_probed(), lvm_pv, lvm_vg);
+	    }
 	}
     }
 
