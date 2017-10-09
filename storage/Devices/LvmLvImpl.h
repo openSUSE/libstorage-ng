@@ -96,6 +96,16 @@ namespace storage
 	unsigned long long get_chunk_size() const { return chunk_size; }
 	void set_chunk_size(unsigned long long chunk_size) { Impl::chunk_size = chunk_size; }
 
+	static unsigned long long default_chunk_size(unsigned long long size);
+
+	unsigned long long default_chunk_size() const;
+
+	static unsigned long long default_metadata_size(unsigned long long size,
+							unsigned long long chunk_size,
+							unsigned long long extent_size);
+
+	unsigned long long default_metadata_size() const;
+
 	virtual ResizeInfo detect_resize_info() const override;
 
 	LvmLv* get_lvm_lv(const string& lv_name);

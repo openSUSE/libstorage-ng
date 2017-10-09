@@ -27,6 +27,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Math.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
@@ -242,6 +243,45 @@ namespace storage
     LvmLv::Impl::supports_chunk_size() const
     {
 	return lv_type == LvType::THIN_POOL;
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_chunk_size(unsigned long long size)
+    {
+	// Calculation researched, limits can be found in the LVM documentation.
+
+	unsigned long long tmp = next_power_of_two(size >> 21);
+
+	return clamp(tmp, 64 * KiB, 1 * GiB);
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_chunk_size() const
+    {
+	return default_chunk_size(get_size());
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_metadata_size(unsigned long long size, unsigned long long chunk_size,
+				       unsigned long long extent_size)
+    {
+	// Calculation and limits can be found in the LVM documentation.
+
+	unsigned long long tmp = round_up(size / chunk_size * 64 * B, extent_size);
+
+	return clamp(tmp, 2 * MiB, 16 * GiB);
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_metadata_size() const
+    {
+	unsigned long long tmp = chunk_size > 0 ? chunk_size : default_chunk_size();
+
+	return default_metadata_size(get_size(), tmp, get_region().get_block_size());
     }
 
 
