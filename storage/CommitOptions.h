@@ -24,15 +24,20 @@
 
 namespace storage
 {
+
+    // TODO move root_prefix here? only needed in do_mount and do_umount
+
     class CommitOptions
     {
     public:
 
-	//CommitOptions(const bool force_rw);
-	CommitOptions(bool force_rw): force_rw(force_rw) {};
+	CommitOptions(bool force_rw)
+	    : force_rw(force_rw) {}
 
 	const bool force_rw;
+
     };
+
 }
 
 #endif
