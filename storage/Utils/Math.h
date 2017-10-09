@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,11 +31,22 @@ namespace storage
     is_power_of_two(unsigned long long i);
 
 
+    unsigned long long
+    next_power_of_two(unsigned long long i);
+
+
     inline bool
     is_multiple_of(unsigned long long i, unsigned long long j)
     {
 	return i % j == 0;
     }
+
+
+    /**
+     * Round i up to a multiple of m.
+     */
+    unsigned long long
+    round_up(unsigned long long i, unsigned long long m);
 
 }
 

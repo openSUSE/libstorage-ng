@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,30 @@ namespace storage
     is_power_of_two(unsigned long long i)
     {
 	return (i != 0) && ((i & (i - 1)) == 0);
+    }
+
+
+    unsigned long long
+    next_power_of_two(unsigned long long i)
+    {
+	i--;
+	i |= i >> 1;
+	i |= i >> 2;
+	i |= i >> 4;
+	i |= i >> 8;
+	i |= i >> 16;
+	i |= i >> 32;
+	i++;
+
+	return i;
+    }
+
+
+    unsigned long long
+    round_up(unsigned long long i, unsigned long long m)
+    {
+	unsigned long long r = i % m;
+	return r == 0 ? i : i + m - r;
     }
 
 }
