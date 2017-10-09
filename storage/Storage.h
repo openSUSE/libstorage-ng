@@ -271,7 +271,7 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	void commit(const CommitCallbacks* commit_callbacks = nullptr);
+	void commit(const CommitCallbacks* commit_callbacks = nullptr) ST_DEPRECATED;
 
     public:
 
