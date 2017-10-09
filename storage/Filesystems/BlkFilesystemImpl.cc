@@ -836,7 +836,7 @@ namespace storage
 
 
 	void
-	SetTuneOptions::commit(CommitData& commit_data) const
+	SetTuneOptions::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_tune_options();
