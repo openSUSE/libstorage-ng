@@ -986,7 +986,7 @@ namespace storage
 
 
 	void
-	SetPartitionId::commit(CommitData& commit_data) const
+	SetPartitionId::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_id();
@@ -1002,7 +1002,7 @@ namespace storage
 
 
 	void
-	SetBoot::commit(CommitData& commit_data) const
+	SetBoot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_boot();
@@ -1018,7 +1018,7 @@ namespace storage
 
 
 	void
-	SetLegacyBoot::commit(CommitData& commit_data) const
+	SetLegacyBoot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Partition* partition = to_partition(get_device(commit_data.actiongraph, RHS));
 	    partition->get_impl().do_set_legacy_boot();

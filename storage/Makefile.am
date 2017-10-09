@@ -27,7 +27,8 @@ libstorage_ng_la_SOURCES =						\
 	UsedFeatures.h							\
 	Version.h							\
 	CompoundAction.h		CompoundAction.cc		\
-	CompoundActionImpl.h		CompoundActionImpl.cc
+	CompoundActionImpl.h		CompoundActionImpl.cc		\
+	CommitOptions.h
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
@@ -52,5 +53,6 @@ pkginclude_HEADERS =		\
 	Graphviz.h		\
 	FreeInfo.h		\
 	UsedFeatures.h		\
-	CompoundAction.h
+	CompoundAction.h		\
+	CommitOptions.h
 

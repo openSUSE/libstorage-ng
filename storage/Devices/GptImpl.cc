@@ -295,7 +295,7 @@ namespace storage
 
 
 	void
-	SetPmbrBoot::commit(CommitData& commit_data) const
+	SetPmbrBoot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
 	    gpt->get_impl().do_set_pmbr_boot();

@@ -94,6 +94,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Environment.h"
+#include "storage/CommitOptions.h"
 #include "storage/Storage.h"
 %}
 
@@ -171,6 +172,7 @@
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Actiongraph.h"
 %include "../../storage/Environment.h"
+%include "../../storage/CommitOptions.h"
 %include "../../storage/Storage.h"
 
 %include "storage-downcast.i"

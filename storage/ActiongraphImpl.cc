@@ -43,6 +43,7 @@
 #include "storage/EtcCrypttab.h"
 #include "storage/EtcMdadm.h"
 #include "storage/CompoundAction/Generator.h"
+#include "storage/CommitOptions.h"
 
 
 namespace storage
@@ -504,7 +505,7 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::commit(const CommitCallbacks* commit_callbacks) const
+    Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 
@@ -526,7 +527,7 @@ namespace storage
 
 	    try
 	    {
-		action->commit(commit_data);
+		action->commit(commit_data, commit_options);
 	    }
 	    catch (const Exception& e)
 	    {

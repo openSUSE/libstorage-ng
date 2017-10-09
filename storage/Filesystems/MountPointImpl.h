@@ -110,7 +110,7 @@ namespace storage
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual Text do_mount_text(Tense tense) const;
-	virtual void do_mount(CommitData& commit_data) const;
+	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options) const;
 
 	virtual Text do_umount_text(Tense tense) const;
 	virtual void do_umount(CommitData& commit_data) const;
@@ -161,7 +161,7 @@ namespace storage
 	    Mount(sid_t sid) : Create(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
 
@@ -176,7 +176,7 @@ namespace storage
 	    Umount(sid_t sid) : Delete(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	};
 
@@ -188,7 +188,7 @@ namespace storage
 	    AddToEtcFstab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    const string& get_path(Actiongraph::Impl& actiongraph) const;
 
@@ -205,7 +205,7 @@ namespace storage
 	    UpdateInEtcFstab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	};
 
@@ -217,7 +217,7 @@ namespace storage
 	    RemoveFromEtcFstab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	};
 

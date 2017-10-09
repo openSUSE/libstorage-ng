@@ -637,7 +637,7 @@ namespace storage
 
 
 	void
-	SetNocow::commit(CommitData& commit_data) const
+	SetNocow::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
 	    btrfs_subvolume->get_impl().do_set_nocow();
@@ -653,7 +653,7 @@ namespace storage
 
 
 	void
-	SetDefaultBtrfsSubvolume::commit(CommitData& commit_data) const
+	SetDefaultBtrfsSubvolume::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const BtrfsSubvolume* btrfs_subvolume = to_btrfs_subvolume(get_device(commit_data.actiongraph, RHS));
 	    btrfs_subvolume->get_impl().do_set_default_btrfs_subvolume();

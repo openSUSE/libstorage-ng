@@ -29,6 +29,7 @@
 #include "storage/Devices/Device.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/CommitOptions.h"
 
 
 namespace storage
@@ -51,7 +52,7 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const = 0;
 
-	    virtual void commit(CommitData& commit_data) const = 0;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const = 0;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const {}
@@ -83,7 +84,7 @@ namespace storage
 	    Create(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -136,7 +137,7 @@ namespace storage
 		: Base(sid, only_sync, nop) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;

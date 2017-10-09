@@ -120,7 +120,7 @@ namespace storage
 	    AddToEtcCrypttab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
 					  Actiongraph::Impl& actiongraph) const override;
@@ -135,7 +135,7 @@ namespace storage
 	    RenameInEtcCrypttab(sid_t sid) : RenameIn(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
 							    Side side) const override;
@@ -150,7 +150,7 @@ namespace storage
 	    RemoveFromEtcCrypttab(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
 	};
 

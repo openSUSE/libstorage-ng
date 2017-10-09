@@ -329,9 +329,9 @@ namespace storage
 
 
     void
-    MountPoint::Impl::do_mount(CommitData& commit_data) const
+    MountPoint::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options) const
     {
-	get_mountable()->get_impl().do_mount(commit_data, get_non_impl());
+	get_mountable()->get_impl().do_mount(commit_data, commit_options, get_non_impl());
     }
 
 
@@ -403,10 +403,10 @@ namespace storage
 
 
 	void
-	Mount::commit(CommitData& commit_data) const
+	Mount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
-	    mount_point->get_impl().do_mount(commit_data);
+	    mount_point->get_impl().do_mount(commit_data, commit_options);
 	}
 
 
@@ -434,7 +434,7 @@ namespace storage
 
 
 	void
-	Umount::commit(CommitData& commit_data) const
+	Umount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
 	    mount_point->get_impl().do_umount(commit_data);
@@ -450,7 +450,7 @@ namespace storage
 
 
 	void
-	AddToEtcFstab::commit(CommitData& commit_data) const
+	AddToEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph, RHS));
 	    mount_point->get_impl().do_add_to_etc_fstab(commit_data);
@@ -485,7 +485,7 @@ namespace storage
 
 
 	void
-	UpdateInEtcFstab::commit(CommitData& commit_data) const
+	UpdateInEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const MountPoint* mount_point_lhs = to_mount_point(get_device(commit_data.actiongraph, LHS));
 	    const MountPoint* mount_point_rhs = to_mount_point(get_device(commit_data.actiongraph, RHS));
@@ -502,7 +502,7 @@ namespace storage
 
 
 	void
-	RemoveFromEtcFstab::commit(CommitData& commit_data) const
+	RemoveFromEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph, LHS));
 	    mount_point->get_impl().do_remove_from_etc_fstab(commit_data);

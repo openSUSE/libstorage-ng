@@ -61,7 +61,7 @@ namespace storage
 
 
 	void
-	Create::commit(CommitData& commit_data) const
+	Create::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    get_device(commit_data.actiongraph)->get_impl().do_create();
 	}
@@ -75,7 +75,7 @@ namespace storage
 
 
 	void
-	Delete::commit(CommitData& commit_data) const
+	Delete::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    get_device(commit_data.actiongraph)->get_impl().do_delete();
 	}

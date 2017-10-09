@@ -32,7 +32,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Filesystems/Mountable.h"
-
+#include "storage/CommitOptions.h"
 
 namespace storage
 {
@@ -264,7 +264,14 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	void commit(const CommitCallbacks* commit_callbacks = nullptr);
+	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
+
+	/**
+	 * The actiongraph must be valid.
+	 *
+	 * @throw Exception
+	 */
+	void commit(const CommitCallbacks* commit_callbacks = nullptr) ST_DEPRECATED;
 
     public:
 
