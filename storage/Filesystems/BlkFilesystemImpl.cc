@@ -393,6 +393,9 @@ namespace storage
 	if (!get_uuid().empty())
 	    actions.push_back(new Action::SetUuid(get_sid()));
 
+	if (!tune_options.empty())
+	    actions.push_back(new Action::SetTuneOptions(get_sid()));
+
 	actiongraph.add_chain(actions);
     }
 
@@ -417,6 +420,11 @@ namespace storage
 	if (get_uuid() != lhs.get_uuid())
 	{
 	    actions.push_back(new Action::SetUuid(get_sid()));
+	}
+
+	if (get_tune_options() != lhs.get_tune_options())
+	{
+	    actions.push_back(new Action::SetTuneOptions(get_sid()));
 	}
 
 	// TODO depends on mount-by, whether there actually is an entry in fstab,
@@ -630,6 +638,30 @@ namespace storage
 
 
     Text
+    BlkFilesystem::Impl::do_set_tune_options_text(Tense tense) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Set tune options of %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1)
+			   _("Setting tune options of %1$s"));
+
+	return sformat(text, blk_device->get_name().c_str(), uuid.c_str());
+    }
+
+
+    void
+    BlkFilesystem::Impl::do_set_tune_options() const
+    {
+	ST_THROW(LogicException("stub do_set_tune_options called"));
+    }
+
+
+    Text
     BlkFilesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const
     {
 	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
@@ -792,6 +824,22 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_uuid();
+	}
+
+
+	Text
+	SetTuneOptions::text(const CommitData& commit_data) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    return blk_filesystem->get_impl().do_set_tune_options_text(commit_data.tense);
+	}
+
+
+	void
+	SetTuneOptions::commit(CommitData& commit_data) const
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    blk_filesystem->get_impl().do_set_tune_options();
 	}
 
 

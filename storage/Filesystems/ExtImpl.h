@@ -66,6 +66,8 @@ namespace storage
 
 	virtual void do_set_label() const override;
 
+	virtual void do_set_tune_options() const override;
+
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
     };
