@@ -31,8 +31,6 @@ namespace storage
 	//CommitOptions(const bool force_rw);
 	CommitOptions(const bool force_rw): force_rw(force_rw) {};
 
-	~CommitOptions() {};
-
 	const bool force_rw;
     };
 }
