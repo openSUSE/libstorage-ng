@@ -99,7 +99,8 @@ namespace storage
 
 
     void
-    Swap::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
+    Swap::Impl::do_mount(CommitData& commit_data, CommitOptions& commit_options,
+        const MountPoint* mount_point) const
     {
 	const BlkDevice* blk_device = get_blk_device();
 

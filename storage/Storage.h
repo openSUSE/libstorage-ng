@@ -32,7 +32,7 @@
 #include <boost/noncopyable.hpp>
 
 #include "storage/Filesystems/Mountable.h"
-
+#include "storage/CommitOptions.h"
 
 namespace storage
 {
@@ -258,6 +258,13 @@ namespace storage
 	 * @throw Exception
 	 */
 	void probe();
+
+	/**
+	 * The actiongraph must be valid.
+	 *
+	 * @throw Exception
+	 */
+	void commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.

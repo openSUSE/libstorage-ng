@@ -772,7 +772,7 @@ namespace storage
 
 
 	void
-	SetLabel::commit(CommitData& commit_data) const
+	SetLabel::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_label();
@@ -788,7 +788,7 @@ namespace storage
 
 
 	void
-	SetUuid::commit(CommitData& commit_data) const
+	SetUuid::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_uuid();
@@ -805,7 +805,7 @@ namespace storage
 
 
 	void
-	RenameInEtcFstab::commit(CommitData& commit_data) const
+	RenameInEtcFstab::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
 	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));

@@ -199,6 +199,7 @@
 %catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
 %catches(storage::Exception) storage::Storage::check() const;
 %catches(storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
+%catches(storage::Exception) storage::Storage::commit(CommitOptions& commit_options, const CommitCallbacks *commit_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string &source_name, const std::string &dest_name);
 %catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::deactivate() const;

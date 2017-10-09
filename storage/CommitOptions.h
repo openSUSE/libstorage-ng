@@ -28,8 +28,10 @@ namespace storage
     {
     public:
 
-	CommitOptions(const bool force_rw);
-	~CommitOptions();
+	//CommitOptions(const bool force_rw);
+	CommitOptions(const bool force_rw): force_rw(force_rw) {};
+
+	~CommitOptions() {};
 
 	const bool force_rw;
     };

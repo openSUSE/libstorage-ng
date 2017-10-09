@@ -948,7 +948,7 @@ namespace storage
 	}
 
 	void
-	Rename::commit(CommitData& commit_data) const
+	Rename::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const LvmLv* lhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, LHS));
 	    const LvmLv* rhs_lvm_lv = to_lvm_lv(get_device(commit_data.actiongraph, RHS));

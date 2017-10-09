@@ -181,7 +181,7 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_mount(CommitData& commit_data, const MountPoint* mount_point) const
+    Mountable::Impl::do_mount(CommitData& commit_data, CommitOptions& commit_options, const MountPoint* mount_point) const
     {
 	const Storage& storage = commit_data.actiongraph.get_storage();
 
@@ -192,8 +192,11 @@ namespace storage
 	}
 
 	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
-	if (!mount_point->get_mount_options().empty())
-	    cmd_line += " -o " + quote(mount_point->get_impl().get_mount_options().format());
+	if (!mount_point->get_mount_options().empty()) {
+	    MountOpts mount_opts = mount_point->get_impl().get_mount_options();
+	    if (commit_options.force_rw) mount_opts.remove("ro");
+	    cmd_line += " -o " + quote(mount_opts.format());
+	}
 	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
 	cout << cmd_line << endl;
 

@@ -1008,7 +1008,7 @@ namespace storage
 
 
 	void
-	AddToEtcMdadm::commit(CommitData& commit_data) const
+	AddToEtcMdadm::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const Md* md = to_md(get_device(commit_data.actiongraph, RHS));
 	    md->get_impl().do_add_to_etc_mdadm(commit_data);
@@ -1035,7 +1035,7 @@ namespace storage
 
 
 	void
-	RemoveFromEtcMdadm::commit(CommitData& commit_data) const
+	RemoveFromEtcMdadm::commit(CommitData& commit_data, CommitOptions& commit_options) const
 	{
 	    const Md* md = to_md(get_device(commit_data.actiongraph, LHS));
 	    md->get_impl().do_remove_from_etc_mdadm(commit_data);

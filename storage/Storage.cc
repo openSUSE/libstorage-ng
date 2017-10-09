@@ -210,11 +210,17 @@ namespace storage
 	get_impl().probe();
     }
 
-
     void
     Storage::commit(const CommitCallbacks* commit_callbacks)
     {
-	get_impl().commit(commit_callbacks);
+	CommitOptions commit_options(false);
+	commit(commit_options, commit_callbacks);
+    }
+    
+    void
+    Storage::commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
+    {
+	get_impl().commit(commit_options, commit_callbacks);
     }
 
 }

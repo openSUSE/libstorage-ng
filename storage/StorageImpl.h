@@ -31,6 +31,7 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/Arch.h"
+#include "storage/CommitOptions.h"
 
 
 namespace storage
@@ -89,7 +90,7 @@ namespace storage
 
 	void probe();
 
-	void commit(const CommitCallbacks* commit_callbacks);
+	void commit(CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
 
 	const TmpDir& get_tmp_dir() const { return tmp_dir; }
 

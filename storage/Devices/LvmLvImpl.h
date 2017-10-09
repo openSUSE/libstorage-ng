@@ -160,7 +160,7 @@ namespace storage
 	    Rename(sid_t sid) : Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, CommitOptions& commit_options) const override;
 
 	};
 
