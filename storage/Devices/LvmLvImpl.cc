@@ -214,20 +214,22 @@ namespace storage
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
 
+	// Use the stripes, stripe_size and chunk_size from the first segment.
+
 	if (lv_type == LvType::THIN_POOL)
 	{
 	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
-	    chunk_size = lv.chunk_size;
+	    chunk_size = lv.segments[0].chunk_size;
 
 	    const CmdLvs::Lv& data_lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(lv.data_uuid);
-	    stripes = data_lv.stripes;
-	    stripe_size = data_lv.stripe_size;
+	    stripes = data_lv.segments[0].stripes;
+	    stripe_size = data_lv.segments[0].stripe_size;
 	}
 	else
 	{
 	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
-	    stripes = lv.stripes;
-	    stripe_size = lv.stripe_size;
+	    stripes = lv.segments[0].stripes;
+	    stripe_size = lv.segments[0].stripe_size;
 	}
     }
 
