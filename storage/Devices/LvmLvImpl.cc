@@ -318,6 +318,24 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	switch (lv_type)
+	{
+	    case LvType::THIN:
+	    {
+		return LvmVg::Impl::max_extent_number * get_lvm_vg()->get_extent_size();
+	    }
+
+	    default:
+	    {
+		return 0;
+	    }
+	}
+    }
+
+
     LvmLv*
     LvmLv::Impl::create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size)
     {

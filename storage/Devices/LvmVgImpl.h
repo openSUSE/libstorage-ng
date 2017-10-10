@@ -45,6 +45,8 @@ namespace storage
 
 	static const unsigned long long default_extent_size = 4 * MiB;
 
+	static const unsigned long long max_extent_number = std::numeric_limits<uint32_t>::max();
+
 	Impl(const string& vg_name)
 	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size),
 	      reserved_extents(0) {}

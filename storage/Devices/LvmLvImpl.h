@@ -71,6 +71,8 @@ namespace storage
 
 	const LvmLv* get_thin_pool() const;
 
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
+
 	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
 
 	const string& get_lv_name() const { return lv_name; }
