@@ -1,5 +1,6 @@
 
-Metadata used by LVM:
+Metadata used by LVM
+--------------------
 
 When trying to create a thin-pool using all free space the metadata has to be
 accounted for. In contrast to linear LVs the metadata for thin-pool uses space
@@ -44,4 +45,17 @@ Solutions:
    available (in memory).
 
 Solution 2 is implemented.
+
+
+Creating a Logical Volume
+-------------------------
+
+When creating a new logical volume the size should not be bigger than the
+value which max_size_for_lvm_lv() returned. A calculation simple based on
+number_of_free_extents() does not work for e.g. thin pools where the metadata
+must also be considered.
+
+Changing some parameters, e.g. the chunk size of a thin pool, can increase the
+size of the metadata. Check is_overcommitted() to avoid running into trouble
+during commit.
 
