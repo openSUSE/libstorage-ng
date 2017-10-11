@@ -115,6 +115,29 @@ namespace storage
 	if (get_region().get_start() != 0)
 	    ST_THROW(Exception("LvmLv region start not zero"));
 
+	if (stripes > 1)
+	{
+	    if (stripes > 128)
+		ST_THROW(Exception("stripes above 128"));
+
+	    if (!is_multiple_of(number_of_extents(), stripes))
+		ST_THROW(Exception("number of extents not a multiple of stripes"));
+	}
+
+	if (stripe_size > 0)
+	{
+	    const LvmVg* lvm_vg = get_lvm_vg();
+
+	    if (stripe_size < 4 * KiB)
+		ST_THROW(Exception("stripe size below 4 KiB"));
+
+	    if (stripe_size > lvm_vg->get_extent_size())
+		ST_THROW(Exception("stripe size above extent size"));
+
+	    if (!is_power_of_two(stripe_size))
+		ST_THROW(Exception("stripe size not a power of two"));
+	}
+
 	// the constant 265289728 is calculated from the LVM sources
 	if (lv_type == LvType::THIN_POOL && chunk_size > 0 && get_size() > chunk_size * 265289728)
 	    ST_THROW(Exception("chunk size too small for thin pool"));
