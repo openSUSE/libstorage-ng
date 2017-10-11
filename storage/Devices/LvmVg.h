@@ -152,6 +152,8 @@ namespace storage
 
 	/**
 	 * Find a volume group by vg-name.
+	 *
+	 * @throw Exception
 	 */
 	static LvmVg* find_by_vg_name(Devicegraph* devicegraph, const std::string& vg_name);
 
@@ -163,6 +165,9 @@ namespace storage
 	std::vector<LvmPv*> get_lvm_pvs();
 	std::vector<const LvmPv*> get_lvm_pvs() const;
 
+	/**
+	 * @throw Exception
+	 */
 	LvmLv* get_lvm_lv(const std::string& lv_name);
 
 	std::vector<LvmLv*> get_lvm_lvs();

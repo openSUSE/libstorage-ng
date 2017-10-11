@@ -156,6 +156,9 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
+%catches(storage::Exception) storage::LvmVg::find_by_vg_name(Devicegraph *devicegraph, const std::string &vg_name);
+%catches(storage::Exception) storage::LvmVg::find_by_vg_name(const Devicegraph *devicegraph, const std::string &vg_name);
+%catches(storage::Exception) storage::LvmVg::get_lvm_lv(const std::string &lv_name);
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
@@ -198,8 +201,8 @@
 %catches(storage::Exception) storage::Storage::Storage(const Environment &environment);
 %catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
 %catches(storage::Exception) storage::Storage::check() const;
+%catches(storage::Exception) storage::Storage::commit(const CommitOptions &commit_options, const CommitCallbacks *commit_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::commit(const CommitCallbacks *commit_callbacks=nullptr);
-%catches(storage::Exception) storage::Storage::commit(const CommitOptions& commit_options, const CommitCallbacks *commit_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::copy_devicegraph(const std::string &source_name, const std::string &dest_name);
 %catches(storage::Exception) storage::Storage::create_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::deactivate() const;
