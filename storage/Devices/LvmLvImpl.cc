@@ -114,6 +114,10 @@ namespace storage
 
 	if (get_region().get_start() != 0)
 	    ST_THROW(Exception("LvmLv region start not zero"));
+
+	// the constant 265289728 is calculated from the LVM sources
+	if (lv_type == LvType::THIN_POOL && chunk_size > 0 && get_size() > chunk_size * 265289728)
+	    ST_THROW(Exception("chunk size too small for thin pool"));
     }
 
 
@@ -489,6 +493,26 @@ namespace storage
 	    Action::Base* action = new Action::Rename(get_sid());
 	    actiongraph.add_vertex(action);
 	    action->first = action->last = true;
+	}
+
+	if (get_lv_type() != lhs.get_lv_type())
+	{
+	    ST_THROW(Exception("changing lv type not supported"));
+	}
+
+	if (get_stripes() != lhs.get_stripes())
+	{
+	    ST_THROW(Exception("changing stripes not supported"));
+	}
+
+	if (get_stripe_size() != lhs.get_stripe_size())
+	{
+	    ST_THROW(Exception("changing stripe size not supported"));
+	}
+
+	if (get_chunk_size() != lhs.get_chunk_size())
+	{
+	    ST_THROW(Exception("changing chunk size not supported"));
 	}
     }
 
