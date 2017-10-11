@@ -97,6 +97,8 @@ namespace storage
 	vector<LvmPv*> get_lvm_pvs();
 	vector<const LvmPv*> get_lvm_pvs() const;
 
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
+
 	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
 	void delete_lvm_lv(LvmLv* lvm_lv);
 

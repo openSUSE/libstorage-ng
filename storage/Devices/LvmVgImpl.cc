@@ -201,6 +201,41 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmVg::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	unsigned long long extent_size = get_extent_size();
+
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    {
+		return number_of_free_extents() * extent_size;
+	    }
+
+	    case LvType::THIN_POOL:
+	    {
+		unsigned long long data_size = number_of_free_extents() * extent_size;
+
+		unsigned long long chunk_size = LvmLv::Impl::default_chunk_size(data_size);
+		unsigned long long metadata_size =
+		    LvmLv::Impl::default_metadata_size(data_size, chunk_size, extent_size);
+
+		// Subtract metadata size twice due to spare metadata. This is
+		// a bit conservative since there might already be a spare
+		// metadata.
+
+		return data_size - 2 * metadata_size;
+	    }
+
+	    default:
+	    {
+		return 0;
+	    }
+	}
+    }
+
+
     void
     LvmVg::Impl::parent_has_new_region(const Device* parent)
     {

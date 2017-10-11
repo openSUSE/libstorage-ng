@@ -254,6 +254,13 @@ namespace storage
     }
 
 
+    unsigned long long
+    LvmVg::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	return get_impl().max_size_for_lvm_lv(lv_type);
+    }
+
+
     LvmLv*
     LvmVg::create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size)
     {

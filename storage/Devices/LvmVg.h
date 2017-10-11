@@ -126,6 +126,14 @@ namespace storage
 	void remove_lvm_pv(BlkDevice* blk_device);
 
 	/**
+	 * Return the max size in bytes for a new logical volume of type
+	 * lv_type. The size may be limited by other parameters, e.g. the
+	 * filesystem on it. The max size also depends on parameters, e.g. the
+	 * chunk size for thin pools.
+	 */
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
+
+	/**
 	 * Create a logical volume with name lv_name and type lv_type in the
 	 * volume group. Supported lv_types are NORMAL and THIN_POOL.
 	 */
