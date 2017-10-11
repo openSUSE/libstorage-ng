@@ -152,12 +152,30 @@ namespace storage
     unsigned long long
     LvmVg::Impl::number_of_used_extents() const
     {
-	unsigned long long ret = 0;
+	unsigned long long extent_size = get_extent_size();
 
-	// TODO handle metadata for new thin-pools
+	unsigned long long ret = 0;
+	unsigned long long spare_metadata_extents = 0;
 
 	for (const LvmLv* lvm_lv : get_lvm_lvs())
+	{
 	    ret += lvm_lv->get_impl().number_of_extents();
+
+	    // For thin pools that do not exist in probed also add the
+	    // metadata size. For thin pools that do exist in probed the
+	    // metadata size is included in reserved_extents.
+
+	    if (lvm_lv->get_lv_type() == LvType::THIN_POOL && !lvm_lv->exists_in_probed())
+	    {
+		unsigned long long metadata_size = lvm_lv->get_impl().default_metadata_size();
+		unsigned long long metadata_extents = metadata_size / extent_size;
+
+		ret += metadata_extents;
+		spare_metadata_extents = max(spare_metadata_extents, metadata_extents);
+	    }
+	}
+
+	ret += spare_metadata_extents;
 
 	return ret;
     }
