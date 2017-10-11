@@ -166,10 +166,8 @@ namespace storage
     unsigned long long
     LvmVg::Impl::number_of_free_extents() const
     {
-	// TODO handle reserved_extents
-
 	unsigned long long a = number_of_extents();
-	unsigned long long b = number_of_used_extents();
+	unsigned long long b = number_of_used_extents() + reserved_extents;
 
 	return b >= a ? 0 : a - b;
     }
