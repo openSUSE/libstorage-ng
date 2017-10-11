@@ -99,8 +99,9 @@ namespace storage
 	const LvmVg* get_lvm_vg() const;
 
 	/**
-	 * Return the max size for a new logical volume of type lv_type. The
-	 * size may be limited by other parameters, e.g. the filesystem on it.
+	 * Return the max size in bytes for a new logical volume of type
+	 * lv_type. The size may be limited by other parameters, e.g. the
+	 * filesystem on it.
 	 *
 	 * The max size for thin logical volumes is in general theoretic since
 	 * a thin pool logical volume should never be overcommited so much.
