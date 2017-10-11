@@ -83,6 +83,8 @@ namespace storage
 	unsigned long long number_of_used_extents() const;
 	unsigned long long number_of_free_extents() const;
 
+	bool is_overcommitted() const;
+
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -105,6 +105,12 @@ namespace storage
 	 * Calculates the number of free extents in the volume group.
 	 */
 	unsigned long long number_of_free_extents() const;
+
+	/**
+	 * Check whether the volume group is overcommitted. If it is,
+	 * Storage::commit() will most likely fail.
+	 */
+	bool is_overcommitted() const;
 
 	/**
 	 * Adds a block device as a physical volume to the volume group. If

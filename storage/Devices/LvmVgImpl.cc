@@ -80,6 +80,10 @@ namespace storage
 
 	if (get_vg_name().empty())
 	    ST_THROW(Exception("LvmVg has no vg-name"));
+
+	// needs better API for check function
+	// if (is_overcommitted())
+	//     ST_THROW(Exception("LvmVg is overcommitted"));
     }
 
 
@@ -168,6 +172,16 @@ namespace storage
 	unsigned long long b = number_of_used_extents();
 
 	return b >= a ? 0 : a - b;
+    }
+
+
+    bool
+    LvmVg::Impl::is_overcommitted() const
+    {
+	unsigned long long a = number_of_extents();
+	unsigned long long b = number_of_used_extents() + reserved_extents;
+
+	return b > a;
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -146,6 +146,13 @@ namespace storage
     LvmVg::number_of_free_extents() const
     {
 	return get_impl().number_of_free_extents();
+    }
+
+
+    bool
+    LvmVg::is_overcommitted() const
+    {
+	return get_impl().is_overcommitted();
     }
 
 
