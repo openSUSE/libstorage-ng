@@ -41,8 +41,17 @@ BOOST_AUTO_TEST_CASE(test_next_power_of_two)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_round_down)
+{
+    BOOST_CHECK_EQUAL(round_down(9, 10), 0);
+    BOOST_CHECK_EQUAL(round_down(10, 10), 10);
+    BOOST_CHECK_EQUAL(round_down(11, 10), 10);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_round_up)
 {
     BOOST_CHECK_EQUAL(round_up(9, 10), 10);
     BOOST_CHECK_EQUAL(round_up(10, 10), 10);
+    BOOST_CHECK_EQUAL(round_up(11, 10), 20);
 }

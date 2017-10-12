@@ -43,6 +43,13 @@ namespace storage
 
 
     /**
+     * Round i down to a multiple of m.
+     */
+    unsigned long long
+    round_down(unsigned long long i, unsigned long long m);
+
+
+    /**
      * Round i up to a multiple of m.
      */
     unsigned long long
