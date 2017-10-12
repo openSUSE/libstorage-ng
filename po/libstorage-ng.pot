@@ -1241,7 +1241,7 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:648
 #, c-format
-msgid "Set tune options on %1$s"
+msgid "Set tune options of %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -1326,7 +1326,7 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
 #, c-format
-msgid "Setting tune options on %1$s"
+msgid "Setting tune options of %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
