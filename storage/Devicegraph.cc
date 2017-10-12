@@ -353,9 +353,9 @@ namespace storage
 
 
     void
-    Devicegraph::check() const
+    Devicegraph::check(const CheckCallbacks* check_callbacks) const
     {
-	get_impl().check();
+	get_impl().check(check_callbacks);
     }
 
 

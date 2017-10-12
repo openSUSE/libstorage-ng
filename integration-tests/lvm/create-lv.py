@@ -25,5 +25,6 @@ normal1 = test.create_lvm_lv("normal1", LvType_NORMAL, 1 * GiB)
 
 print staging
 
+check(storage)
 commit(storage)
 

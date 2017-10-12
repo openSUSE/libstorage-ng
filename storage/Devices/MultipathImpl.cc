@@ -81,9 +81,9 @@ namespace storage
 
 
     void
-    Multipath::Impl::check() const
+    Multipath::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Partitionable::Impl::check();
+	Partitionable::Impl::check(check_callbacks);
 
 	if (get_region().get_start() != 0)
 	    cerr << "multipath region start not zero" << endl;

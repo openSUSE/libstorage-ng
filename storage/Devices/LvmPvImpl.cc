@@ -64,9 +64,9 @@ namespace storage
 
 
     void
-    LvmPv::Impl::check() const
+    LvmPv::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	if (!has_single_parent_of_type<const BlkDevice>())
 	    ST_THROW(Exception("LvmPv has no BlkDevice parent"));

@@ -61,9 +61,9 @@ namespace storage
 
 
     void
-    BcacheCset::Impl::check() const
+    BcacheCset::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	if (!get_uuid().empty() && !is_valid_uuid(get_uuid()))
 	    ST_THROW(Exception("invalid uuid"));

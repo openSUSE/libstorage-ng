@@ -34,6 +34,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/User.h"
+#include "storage/Storage.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 
@@ -74,16 +75,19 @@ namespace storage
 
 
     void
-    LvmVg::Impl::check() const
+    LvmVg::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	if (get_vg_name().empty())
 	    ST_THROW(Exception("LvmVg has no vg-name"));
 
-	// needs better API for check function
-	// if (is_overcommitted())
-	//     ST_THROW(Exception("LvmVg is overcommitted"));
+	if (check_callbacks)
+	{
+	    if (is_overcommitted())
+		check_callbacks->error(sformat("Volume group %s is overcommitted.",
+					       vg_name.c_str()));
+	}
     }
 
 

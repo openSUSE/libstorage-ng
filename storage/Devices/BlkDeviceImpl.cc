@@ -144,9 +144,9 @@ namespace storage
 
 
     void
-    BlkDevice::Impl::check() const
+    BlkDevice::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	if (region.get_block_size() == 0)
 	    ST_THROW(Exception(sformat("block size is zero for %s", get_name().c_str())));

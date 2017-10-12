@@ -110,9 +110,9 @@ namespace storage
 
 
     void
-    Partition::Impl::check() const
+    Partition::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	BlkDevice::Impl::check();
+	BlkDevice::Impl::check(check_callbacks);
 
 	const Device* parent = get_single_parent_of_type<const Device>();
 

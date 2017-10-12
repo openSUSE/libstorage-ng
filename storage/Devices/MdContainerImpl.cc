@@ -48,9 +48,9 @@ namespace storage
 
 
     void
-    MdContainer::Impl::check() const
+    MdContainer::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Md::Impl::check();
+	Md::Impl::check(check_callbacks);
 
 	if (get_md_level() != MdLevel::CONTAINER)
 	    ST_THROW(Exception("invalid md-level for MdContainer"));

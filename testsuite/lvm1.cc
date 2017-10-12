@@ -113,6 +113,26 @@ BOOST_AUTO_TEST_CASE(lvm_vg_overcommitted)
 }
 
 
+class CheckCallbacksRecorder : public CheckCallbacks
+{
+public:
+
+    CheckCallbacksRecorder(vector<string>& messages) : messages(messages) { messages.clear(); }
+
+    virtual void error(const string& message) const override;
+
+    vector<string>& messages;
+
+};
+
+
+void
+CheckCallbacksRecorder::error(const string& message) const
+{
+    messages.push_back(message);
+}
+
+
 BOOST_AUTO_TEST_CASE(chunk_size_too_small)
 {
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
@@ -129,7 +149,11 @@ BOOST_AUTO_TEST_CASE(chunk_size_too_small)
     LvmLv* thin_pool = lvm_vg->create_lvm_lv("thin-pool", LvType::THIN_POOL, 16 * TiB);
     thin_pool->set_chunk_size(64 * KiB);
 
-    // TODO check correct reason ("chunk size too small"), needs better API
-    // for check function
-    BOOST_CHECK_THROW(staging->check(), Exception);
+    vector<string> messages;
+    CheckCallbacksRecorder check_callbacks_recorder(messages);
+    staging->check(&check_callbacks_recorder);
+
+    BOOST_CHECK_EQUAL(messages.size(), 1);
+    BOOST_CHECK_EQUAL(messages[0], "Chunk size is too small for thin pool logical volume "
+		      "thin-pool in volume group test.");
 }

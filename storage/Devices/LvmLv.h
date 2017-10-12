@@ -80,16 +80,24 @@ namespace storage
 	 * Set the number of stripes. The size of the LV must be a multiple of
 	 * the number of stripes and the stripe size. Thin LV cannot be
 	 * striped.
+	 *
+	 * @throw Exception
 	 */
 	void set_stripes(unsigned int stripes);
 
 	unsigned long long get_stripe_size() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_stripe_size(unsigned long long stripe_size);
 
 	unsigned long long get_chunk_size() const;
 
 	/**
 	 * Set the chunk size. Only thin pools can have a chunk size.
+	 *
+	 * @throw Exception
 	 */
 	void set_chunk_size(unsigned long long chunk_size);
 
