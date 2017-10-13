@@ -22,10 +22,12 @@
 
 
 #include <limits>
+#include <boost/math/common_factor_rt.hpp>
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/FreeInfo.h"
+#include "storage/Utils/Math.h"
 
 
 namespace storage
@@ -36,7 +38,7 @@ namespace storage
 
     ResizeInfo::ResizeInfo(bool resize_ok, unsigned long long min_size,
 			   unsigned long long max_size)
-	: resize_ok(resize_ok), min_size(min_size), max_size(max_size)
+	: resize_ok(resize_ok), min_size(min_size), max_size(max_size), block_size(1 * B)
     {
 	check();
     }
@@ -54,6 +56,7 @@ namespace storage
 	getChildValue(node, "resize-ok", resize_ok);
 	getChildValue(node, "min-size", min_size);
 	getChildValue(node, "max-size", max_size);
+	getChildValue(node, "block-size", block_size);
     }
 
 
@@ -63,6 +66,7 @@ namespace storage
 	setChildValue(node, "resize-ok", resize_ok);
 	setChildValue(node, "min-size", min_size);
 	setChildValue(node, "max-size", max_size);
+	setChildValue(node, "block-size", block_size);
     }
 
 
@@ -73,6 +77,8 @@ namespace storage
 
 	combine_min(extra_resize_info.min_size);
 	combine_max(extra_resize_info.max_size);
+
+	combine_block_size(extra_resize_info.block_size);
 
 	check();
     }
@@ -91,6 +97,15 @@ namespace storage
     ResizeInfo::combine_max(unsigned long long extra_max_size)
     {
 	max_size = min(max_size, extra_max_size);
+
+	check();
+    }
+
+
+    void
+    ResizeInfo::combine_block_size(unsigned long long extra_block_size)
+    {
+	block_size = boost::math::lcm(block_size, extra_block_size);
 
 	check();
     }
@@ -116,6 +131,9 @@ namespace storage
     void
     ResizeInfo::check()
     {
+	min_size = round_up(min_size, block_size);
+	max_size = round_down(max_size, block_size);
+
 	resize_ok = resize_ok && max_size > min_size;
     }
 
@@ -123,8 +141,9 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& out, const ResizeInfo& resize_info)
     {
-	return out << "resize-ok:" << resize_info.resize_ok << " min-size:" <<
-	    resize_info.min_size << " max-size:" << resize_info.max_size;
+	return out << "resize-ok:" << resize_info.resize_ok << " min-size:"
+		   << resize_info.min_size << " max-size:" << resize_info.max_size
+		   << " block-size:" << resize_info.block_size;
     }
 
 

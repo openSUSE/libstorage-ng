@@ -54,6 +54,8 @@ namespace storage
 
 	void combine_max(unsigned long long extra_max_size);
 
+	void combine_block_size(unsigned long long extra_block_size);
+
 	/**
 	 * min_size += offset
 	 * max_size += offset
@@ -68,6 +70,8 @@ namespace storage
 
 	unsigned long long min_size;
 	unsigned long long max_size;
+
+	unsigned long long block_size;
 
 	friend std::ostream& operator<<(std::ostream& out, const ResizeInfo& resize_info);
 
