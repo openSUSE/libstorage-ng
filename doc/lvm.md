@@ -51,7 +51,7 @@ Creating a Logical Volume
 -------------------------
 
 When creating a new logical volume the size should not be bigger than the
-value which max_size_for_lvm_lv() returned. A calculation simple based on
+value which max_size_for_lvm_lv() returned. A calculation purely based on
 number_of_free_extents() does not work for e.g. thin pools where the metadata
 must also be considered.
 
