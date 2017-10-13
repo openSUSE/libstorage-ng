@@ -66,8 +66,10 @@ namespace storage
 
 
     void
-    DasdPt::Impl::check() const
+    DasdPt::Impl::check(const CheckCallbacks* check_callbacks) const
     {
+	PartitionTable::Impl::check(check_callbacks);
+
 	// partitions must be ordered according to start sector on DASD partition tables
 
 	vector<const Partition*> partitions = get_partitions();

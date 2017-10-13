@@ -62,7 +62,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);

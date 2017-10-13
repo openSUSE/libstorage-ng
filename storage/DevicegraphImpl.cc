@@ -164,7 +164,7 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::check() const
+    Devicegraph::Impl::check(const CheckCallbacks* check_callbacks) const
     {
 	{
 	    // check uniqueness of device and holder object and sid
@@ -235,7 +235,7 @@ namespace storage
 	    for (vertex_descriptor vertex : vertices())
 	    {
 		const Device* device = graph[vertex].get();
-		device->get_impl().check();
+		device->get_impl().check(check_callbacks);
 	    }
 	}
 

@@ -166,16 +166,12 @@ namespace storage
     CmdLvs::parse(json_object* object)
     {
 	Lv lv;
+	Segment segment;
 
 	get_child_value(object, "lv_name", lv.lv_name);
 	get_child_value(object, "lv_uuid", lv.lv_uuid);
 
 	get_child_value(object, "lv_size", lv.size);
-
-	get_child_value(object, "stripes", lv.stripes);
-	get_child_value(object, "stripe_size", lv.stripe_size);
-
-	get_child_value(object, "chunk_size", lv.chunk_size);
 
 	get_child_value(object, "vg_name", lv.vg_name);
 	get_child_value(object, "vg_uuid", lv.vg_uuid);
@@ -202,7 +198,28 @@ namespace storage
 	get_child_value(object, "metadata_lv", lv.metadata_name);
 	get_child_value(object, "metadata_lv_uuid", lv.metadata_uuid);
 
-	lvs.push_back(lv);
+	get_child_value(object, "stripes", segment.stripes);
+	get_child_value(object, "stripe_size", segment.stripe_size);
+
+	get_child_value(object, "chunk_size", segment.chunk_size);
+
+	// The stripes and chunksize options makes lvs print every segment of
+	// a LV. Depending on whether the LV is already in lvs, either add the
+	// complete LV or only the segment to the already existing LV.
+
+	vector<Lv>::iterator it = find_if(lvs.begin(), lvs.end(), [lv](const Lv& tmp) {
+	    return lv.lv_uuid == tmp.lv_uuid;
+	});
+
+	if (it == lvs.end())
+	{
+	    lv.segments.push_back(segment);
+	    lvs.push_back(lv);
+	}
+	else
+	{
+	    it->segments.push_back(segment);
+	}
     }
 
 
@@ -237,20 +254,27 @@ namespace storage
 
 
     std::ostream&
+    operator<<(std::ostream& s, const CmdLvs::Segment& segment)
+    {
+	if (segment.stripes != 0)
+	    s << "stripes:" << segment.stripes;
+
+	if (segment.stripe_size != 0)
+	    s << " stripe-size:" << segment.stripe_size;
+
+	if (segment.chunk_size != 0)
+	    s << " chunk-size:" << segment.chunk_size;
+
+	return s;
+    }
+
+
+    std::ostream&
     operator<<(std::ostream& s, const CmdLvs::Lv& lv)
     {
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
 	  << " active:" << lv.active << " size:" << lv.size;
-
-	if (lv.stripes != 0)
-	    s << " stripes:" << lv.stripes;
-
-	if (lv.stripe_size != 0)
-	    s << " stripe-size:" << lv.stripe_size;
-
-	if (lv.chunk_size != 0)
-	    s << " chunk-size:" << lv.chunk_size;
 
 	if (!lv.pool_name.empty())
 	    s << " pool-name:" << lv.pool_name;
@@ -269,6 +293,8 @@ namespace storage
 
 	if (!lv.metadata_uuid.empty())
 	    s << " metadata-uuid:" << lv.metadata_uuid;
+
+	s << " segments:" << lv.segments;
 
 	return s;
     }

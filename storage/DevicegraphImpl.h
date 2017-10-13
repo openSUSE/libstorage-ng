@@ -80,7 +80,7 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
-	void check() const;
+	void check(const CheckCallbacks* check_callbacks) const;
 
 	uint64_t used_features() const;
 

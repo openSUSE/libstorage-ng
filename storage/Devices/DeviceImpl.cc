@@ -126,7 +126,7 @@ namespace storage
 
 
     void
-    Device::Impl::check() const
+    Device::Impl::check(const CheckCallbacks* check_callbacks) const
     {
     }
 

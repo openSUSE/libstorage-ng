@@ -7,6 +7,23 @@
 from storage import *
 from os import system
 
+
+class MyCheckCallbacks(CheckCallbacks):
+
+    def __init__(self):
+        super(MyCheckCallbacks, self).__init__()
+
+    def error(self, message):
+        print "error '%s'" % message
+
+
+def check(storage):
+
+    my_check_callbacks = MyCheckCallbacks()
+
+    storage.check(my_check_callbacks)
+
+
 class MyCommitCallbacks(CommitCallbacks):
 
     def __init__(self):

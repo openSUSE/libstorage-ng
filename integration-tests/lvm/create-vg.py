@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: lvm volume group test without logical volume normal1
+# requirements: empty partitions sdb1 and sdc1
 
 
 from sys import exit
@@ -17,14 +17,15 @@ storage.probe()
 
 staging = storage.get_staging()
 
-test = LvmVg.find_by_vg_name(staging, "test")
+sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-normal1 = test.create_lvm_lv("normal1", LvType_NORMAL, 1 * GiB)
-# normal1.set_stripes(2)
-# normal1.set_stripe_size(256 * KiB)
+test = LvmVg.create(staging, "test")
+test.add_lvm_pv(sdb1)
+test.add_lvm_pv(sdc1)
+test.set_extent_size(128 * MiB)
 
 print staging
 
-check(storage)
 commit(storage)
 

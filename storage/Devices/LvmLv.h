@@ -80,16 +80,24 @@ namespace storage
 	 * Set the number of stripes. The size of the LV must be a multiple of
 	 * the number of stripes and the stripe size. Thin LV cannot be
 	 * striped.
+	 *
+	 * @throw Exception
 	 */
 	void set_stripes(unsigned int stripes);
 
 	unsigned long long get_stripe_size() const;
+
+	/**
+	 * @throw Exception
+	 */
 	void set_stripe_size(unsigned long long stripe_size);
 
 	unsigned long long get_chunk_size() const;
 
 	/**
 	 * Set the chunk size. Only thin pools can have a chunk size.
+	 *
+	 * @throw Exception
 	 */
 	void set_chunk_size(unsigned long long chunk_size);
 
@@ -97,6 +105,16 @@ namespace storage
 	 * Return volume group this logical volume belongs to.
 	 */
 	const LvmVg* get_lvm_vg() const;
+
+	/**
+	 * Return the max size in bytes for a new logical volume of type
+	 * lv_type. The size may be limited by other parameters, e.g. the
+	 * filesystem on it.
+	 *
+	 * The max size for thin logical volumes is in general theoretic since
+	 * a thin pool logical volume should never be overcommited so much.
+	 */
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
 
 	/**
 	 * Create a logical volume with name lv_name and type lv_type in the

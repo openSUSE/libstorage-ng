@@ -64,7 +64,7 @@ namespace storage
 
 	virtual bool has_dependency_manager() const override { return true; }
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	unsigned int get_number() const;
 	void set_number(unsigned int number);

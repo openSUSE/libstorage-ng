@@ -53,9 +53,9 @@ namespace storage
 
 
     void
-    MdMember::Impl::check() const
+    MdMember::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Md::Impl::check();
+	Md::Impl::check(check_callbacks);
 
 	if (get_metadata() != "")
 	    ST_THROW(Exception("invalid metadata for MdMember"));

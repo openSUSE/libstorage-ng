@@ -141,9 +141,9 @@ namespace storage
 
 
     void
-    Md::Impl::check() const
+    Md::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Partitionable::Impl::check();
+	Partitionable::Impl::check(check_callbacks);
 
 	if (get_region().get_start() != 0)
 	    cerr << "md region start not zero" << endl;

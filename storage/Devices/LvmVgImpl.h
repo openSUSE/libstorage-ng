@@ -45,6 +45,8 @@ namespace storage
 
 	static const unsigned long long default_extent_size = 4 * MiB;
 
+	static const unsigned long long max_extent_number = std::numeric_limits<uint32_t>::max();
+
 	Impl(const string& vg_name)
 	    : Device::Impl(), vg_name(vg_name), uuid(), region(0, 0, default_extent_size),
 	      reserved_extents(0) {}
@@ -64,7 +66,7 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	const Region& get_region() const { return region; }
 
@@ -81,6 +83,8 @@ namespace storage
 	unsigned long long number_of_used_extents() const;
 	unsigned long long number_of_free_extents() const;
 
+	bool is_overcommitted() const;
+
 	const string& get_vg_name() const { return vg_name; }
 	void set_vg_name(const string& vg_name);
 
@@ -92,6 +96,8 @@ namespace storage
 
 	vector<LvmPv*> get_lvm_pvs();
 	vector<const LvmPv*> get_lvm_pvs() const;
+
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
 
 	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
 	void delete_lvm_lv(LvmLv* lvm_lv);

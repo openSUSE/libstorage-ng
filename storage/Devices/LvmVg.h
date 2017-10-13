@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -107,6 +107,12 @@ namespace storage
 	unsigned long long number_of_free_extents() const;
 
 	/**
+	 * Check whether the volume group is overcommitted. If it is,
+	 * Storage::commit() will most likely fail.
+	 */
+	bool is_overcommitted() const;
+
+	/**
 	 * Adds a block device as a physical volume to the volume group. If
 	 * there is not a physical volume on the block device it will be
 	 * created.
@@ -118,6 +124,14 @@ namespace storage
 	 * on the block device will the deleted.
 	 */
 	void remove_lvm_pv(BlkDevice* blk_device);
+
+	/**
+	 * Return the max size in bytes for a new logical volume of type
+	 * lv_type. The size may be limited by other parameters, e.g. the
+	 * filesystem on it. The max size also depends on parameters, e.g. the
+	 * chunk size for thin pools.
+	 */
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
 
 	/**
 	 * Create a logical volume with name lv_name and type lv_type in the
@@ -146,6 +160,8 @@ namespace storage
 
 	/**
 	 * Find a volume group by vg-name.
+	 *
+	 * @throw Exception
 	 */
 	static LvmVg* find_by_vg_name(Devicegraph* devicegraph, const std::string& vg_name);
 
@@ -157,6 +173,9 @@ namespace storage
 	std::vector<LvmPv*> get_lvm_pvs();
 	std::vector<const LvmPv*> get_lvm_pvs() const;
 
+	/**
+	 * @throw Exception
+	 */
 	LvmLv* get_lvm_lv(const std::string& lv_name);
 
 	std::vector<LvmLv*> get_lvm_lvs();

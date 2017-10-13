@@ -52,11 +52,11 @@ Implemented:
 * Probing, creating and deleting logical volumes.
 * Extend and reduce volume groups.
 * Resize logical volumes.
+* Thin provisioning.
 
 Missing:
 
 * Snapshots.
-* Thin provisioning.
 
 
 LUKS

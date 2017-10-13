@@ -42,6 +42,7 @@ namespace storage
     class LvmVg;
     class Filesystem;
     class BlkFilesystem;
+    class CheckCallbacks;
 
 
     class DeviceNotFound : public Exception
@@ -235,9 +236,13 @@ namespace storage
 	void remove_holder(Holder* holder);
 
 	/**
+	 * Checks the devicegraph.
+	 *
+	 * See also Storage::check().
+	 *
 	 * @throw Exception
 	 */
-	void check() const;
+	void check(const CheckCallbacks* check_callbacks = nullptr) const;
 
 	/**
 	 * Calculates a bit-field with the used features of the devicegraph.
