@@ -62,6 +62,9 @@ namespace storage
 
 	void calculate_reserved_extents(Prober& prober);
 
+	unsigned long long get_reserved_extents() const { return reserved_extents; }
+	void set_reserved_extents(unsigned long long reserved_extents) { Impl::reserved_extents = reserved_extents; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
