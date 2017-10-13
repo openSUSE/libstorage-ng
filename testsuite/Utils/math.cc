@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(test_next_power_of_two)
     BOOST_CHECK_EQUAL(next_power_of_two(2), 2);
 
     BOOST_CHECK_EQUAL(next_power_of_two(3), 4);
-    BOOST_CHECK_EQUAL(next_power_of_two(3), 4);
+    BOOST_CHECK_EQUAL(next_power_of_two(4), 4);
 
     BOOST_CHECK_EQUAL(next_power_of_two(1000), 1024);
 
