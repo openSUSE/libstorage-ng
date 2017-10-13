@@ -53,7 +53,7 @@ namespace storage
     round_down(unsigned long long i, unsigned long long m)
     {
 	unsigned long long r = i % m;
-	return r == 0 ? i : i - r;
+	return i - r;
     }
 
 
