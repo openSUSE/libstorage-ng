@@ -28,4 +28,5 @@ print resize_info
 print resize_info.resize_ok
 print byte_to_humanstring(resize_info.min_size, False, 2, True)
 print byte_to_humanstring(resize_info.max_size, False, 2, True)
+print byte_to_humanstring(resize_info.block_size, False, 2, True)
 
