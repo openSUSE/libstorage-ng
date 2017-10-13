@@ -229,6 +229,9 @@ namespace storage
 		// a bit conservative since there might already be a spare
 		// metadata.
 
+		if (data_size <= 2 * metadata_size)
+		    return 0;
+
 		return data_size - 2 * metadata_size;
 	    }
 
