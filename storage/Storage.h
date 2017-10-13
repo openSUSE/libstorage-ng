@@ -111,6 +111,17 @@ namespace storage
     };
 
 
+    class CheckCallbacks
+    {
+    public:
+
+	virtual ~CheckCallbacks() {}
+
+	virtual void error(const std::string& message) const = 0;
+
+    };
+
+
     class CommitCallbacks
     {
     public:
@@ -197,9 +208,22 @@ namespace storage
 	const Devicegraph* get_probed() const;
 
 	/**
+	 * Checks all devicegraphs.
+	 *
+	 * There are two types of errors that can be found:
+	 *
+	 * Errors that indicate a problem inside the library or a severe
+	 * misuse of the library, e.g. attaching a BlkFilesystem directly to a
+	 * PartitionTable. For these errors an exception is thrown.
+	 *
+	 * Errors that can be easily fixed by the user, e.g. an overcommitted
+	 * volume group. For these errors CheckCallbacks::error() is called.
+	 *
+	 * The checks are WIP.
+	 *
 	 * @throw Exception
 	 */
-	void check() const;
+	void check(const CheckCallbacks* check_callbacks = nullptr) const;
 
 	/**
 	 * Query the default mount-by method.

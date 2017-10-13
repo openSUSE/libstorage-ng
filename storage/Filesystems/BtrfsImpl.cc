@@ -73,9 +73,9 @@ namespace storage
 
 
     void
-    Btrfs::Impl::check() const
+    Btrfs::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	BlkFilesystem::Impl::check();
+	BlkFilesystem::Impl::check(check_callbacks);
 
 	if (num_children_of_type<const BtrfsSubvolume>() != 1)
 	    ST_THROW(Exception("top-level subvolume missing"));

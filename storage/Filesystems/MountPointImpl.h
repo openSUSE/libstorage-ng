@@ -128,7 +128,7 @@ namespace storage
 
 	void save(xmlNode* node) const override;
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
     private:
 

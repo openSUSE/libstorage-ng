@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -149,6 +149,13 @@ namespace storage
     }
 
 
+    bool
+    LvmVg::is_overcommitted() const
+    {
+	return get_impl().is_overcommitted();
+    }
+
+
     const string&
     LvmVg::get_vg_name() const
     {
@@ -244,6 +251,13 @@ namespace storage
     LvmVg::get_lvm_lvs() const
     {
 	return get_impl().get_lvm_lvs();
+    }
+
+
+    unsigned long long
+    LvmVg::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	return get_impl().max_size_for_lvm_lv(lv_type);
     }
 
 

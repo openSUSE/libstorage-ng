@@ -61,9 +61,9 @@ namespace storage
 
 
     void
-    Luks::Impl::check() const
+    Luks::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	BlkDevice::Impl::check();
+	BlkDevice::Impl::check(check_callbacks);
 
 	if (!has_single_parent_of_type<const BlkDevice>())
 	    ST_THROW(Exception("Luks has no BlkDevice parent"));

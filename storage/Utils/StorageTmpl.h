@@ -190,6 +190,15 @@ namespace storage
     }
 
 
+    // already C++17 standard, see
+    // http://en.cppreference.com/w/cpp/algorithm/clamp
+    template<class T>
+    const T& clamp(const T& v, const T& lo, const T& hi)
+    {
+	return v < lo ? lo : v > hi ? hi : v;
+    }
+
+
     template <class T, unsigned int sz>
     inline unsigned int lengthof(T (&)[sz]) { return sz; }
 

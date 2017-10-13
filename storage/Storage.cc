@@ -142,9 +142,9 @@ namespace storage
 
 
     void
-    Storage::check() const
+    Storage::check(const CheckCallbacks* check_callbacks) const
     {
-	get_impl().check();
+	get_impl().check(check_callbacks);
     }
 
 

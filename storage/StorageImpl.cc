@@ -336,7 +336,7 @@ namespace storage
 
 
     void
-    Storage::Impl::check() const
+    Storage::Impl::check(const CheckCallbacks* check_callbacks) const
     {
 	// check all devicegraphs
 
@@ -349,7 +349,7 @@ namespace storage
 	{
 	    const Devicegraph& devicegraph = key_value.second;
 
-	    devicegraph.check();
+	    devicegraph.check(check_callbacks);
 
 	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph.get_impl().vertices())
 	    {

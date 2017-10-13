@@ -78,9 +78,9 @@ namespace storage
 
 
     void
-    DmRaid::Impl::check() const
+    DmRaid::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Partitionable::Impl::check();
+	Partitionable::Impl::check(check_callbacks);
 
 	if (get_region().get_start() != 0)
 	    cerr << "dm raid region start not zero" << endl;

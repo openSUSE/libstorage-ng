@@ -65,11 +65,13 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	const LvmVg* get_lvm_vg() const;
 
 	const LvmLv* get_thin_pool() const;
+
+	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
 
 	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
 
@@ -86,15 +88,25 @@ namespace storage
 	bool supports_stripes() const;
 
 	unsigned int get_stripes() const { return stripes; }
-	void set_stripes(unsigned int stripes) { Impl::stripes = stripes; }
+	void set_stripes(unsigned int stripes);
 
 	unsigned long long get_stripe_size() const { return stripe_size; }
-	void set_stripe_size(unsigned long long stripe_size) { Impl::stripe_size = stripe_size; }
+	void set_stripe_size(unsigned long long stripe_size);
 
 	bool supports_chunk_size() const;
 
 	unsigned long long get_chunk_size() const { return chunk_size; }
-	void set_chunk_size(unsigned long long chunk_size) { Impl::chunk_size = chunk_size; }
+	void set_chunk_size(unsigned long long chunk_size);
+
+	static unsigned long long default_chunk_size(unsigned long long size);
+
+	unsigned long long default_chunk_size() const;
+
+	static unsigned long long default_metadata_size(unsigned long long size,
+							unsigned long long chunk_size,
+							unsigned long long extent_size);
+
+	unsigned long long default_metadata_size() const;
 
 	virtual ResizeInfo detect_resize_info() const override;
 

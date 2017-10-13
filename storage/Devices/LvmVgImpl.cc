@@ -34,6 +34,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/User.h"
+#include "storage/Storage.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 
@@ -74,12 +75,19 @@ namespace storage
 
 
     void
-    LvmVg::Impl::check() const
+    LvmVg::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	if (get_vg_name().empty())
 	    ST_THROW(Exception("LvmVg has no vg-name"));
+
+	if (check_callbacks)
+	{
+	    if (is_overcommitted())
+		check_callbacks->error(sformat("Volume group %s is overcommitted.",
+					       vg_name.c_str()));
+	}
     }
 
 
@@ -148,12 +156,30 @@ namespace storage
     unsigned long long
     LvmVg::Impl::number_of_used_extents() const
     {
-	unsigned long long ret = 0;
+	unsigned long long extent_size = get_extent_size();
 
-	// TODO handle metadata for new thin-pools
+	unsigned long long ret = 0;
+	unsigned long long spare_metadata_extents = 0;
 
 	for (const LvmLv* lvm_lv : get_lvm_lvs())
+	{
 	    ret += lvm_lv->get_impl().number_of_extents();
+
+	    // For thin pools that do not exist in probed also add the
+	    // metadata size. For thin pools that do exist in probed the
+	    // metadata size is included in reserved_extents.
+
+	    if (lvm_lv->get_lv_type() == LvType::THIN_POOL && !lvm_lv->exists_in_probed())
+	    {
+		unsigned long long metadata_size = lvm_lv->get_impl().default_metadata_size();
+		unsigned long long metadata_extents = metadata_size / extent_size;
+
+		ret += metadata_extents;
+		spare_metadata_extents = max(spare_metadata_extents, metadata_extents);
+	    }
+	}
+
+	ret += spare_metadata_extents;
 
 	return ret;
     }
@@ -162,12 +188,58 @@ namespace storage
     unsigned long long
     LvmVg::Impl::number_of_free_extents() const
     {
-	// TODO handle reserved_extents
-
 	unsigned long long a = number_of_extents();
-	unsigned long long b = number_of_used_extents();
+	unsigned long long b = number_of_used_extents() + reserved_extents;
 
 	return b >= a ? 0 : a - b;
+    }
+
+
+    bool
+    LvmVg::Impl::is_overcommitted() const
+    {
+	unsigned long long a = number_of_extents();
+	unsigned long long b = number_of_used_extents() + reserved_extents;
+
+	return b > a;
+    }
+
+
+    unsigned long long
+    LvmVg::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	unsigned long long extent_size = get_extent_size();
+
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    {
+		return number_of_free_extents() * extent_size;
+	    }
+
+	    case LvType::THIN_POOL:
+	    {
+		unsigned long long data_size = number_of_free_extents() * extent_size;
+
+		unsigned long long chunk_size = LvmLv::Impl::default_chunk_size(data_size);
+		unsigned long long metadata_size =
+		    LvmLv::Impl::default_metadata_size(data_size, chunk_size, extent_size);
+
+		// Subtract metadata size twice due to spare metadata. This is
+		// a bit conservative since there might already be a spare
+		// metadata.
+
+		if (data_size <= 2 * metadata_size)
+		    return 0;
+
+		return data_size - 2 * metadata_size;
+	    }
+
+	    default:
+	    {
+		return 0;
+	    }
+	}
     }
 
 

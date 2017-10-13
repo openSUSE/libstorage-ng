@@ -27,10 +27,12 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Math.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Storage.h"
 #include "storage/FreeInfo.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
@@ -104,15 +106,42 @@ namespace storage
 
 
     void
-    LvmLv::Impl::check() const
+    LvmLv::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	BlkDevice::Impl::check();
+	BlkDevice::Impl::check(check_callbacks);
 
 	if (get_lv_name().empty())
 	    ST_THROW(Exception("LvmLv has no lv-name"));
 
 	if (get_region().get_start() != 0)
 	    ST_THROW(Exception("LvmLv region start not zero"));
+
+	if (check_callbacks)
+	{
+	    const LvmVg* lvm_vg = get_lvm_vg();
+
+	    if (stripes > 1)
+	    {
+		if (!is_multiple_of(number_of_extents(), stripes))
+		    check_callbacks->error(sformat("Number of extents not a multiple of stripes "
+						   "of logical volume %s in volume group %s.",
+						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+	    }
+
+	    if (stripe_size > 0)
+	    {
+		if (stripe_size > lvm_vg->get_extent_size())
+		    check_callbacks->error(sformat("Stripe size is greater then the extent size "
+						   "of logical volume %s in volume group %s.",
+						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+	    }
+
+	    // the constant 265289728 is calculated from the LVM sources
+	    if (lv_type == LvType::THIN_POOL && chunk_size > 0 && get_size() > chunk_size * 265289728)
+		check_callbacks->error(sformat("Chunk size is too small for thin pool logical "
+					       "volume %s in volume group %s.", lv_name.c_str(),
+					       lvm_vg->get_vg_name().c_str()));
+	}
     }
 
 
@@ -213,20 +242,22 @@ namespace storage
 
 	set_dm_table_name(make_dm_table_name(lvm_vg->get_vg_name(), lv_name));
 
+	// Use the stripes, stripe_size and chunk_size from the first segment.
+
 	if (lv_type == LvType::THIN_POOL)
 	{
 	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
-	    chunk_size = lv.chunk_size;
+	    chunk_size = lv.segments[0].chunk_size;
 
 	    const CmdLvs::Lv& data_lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(lv.data_uuid);
-	    stripes = data_lv.stripes;
-	    stripe_size = data_lv.stripe_size;
+	    stripes = data_lv.segments[0].stripes;
+	    stripe_size = data_lv.segments[0].stripe_size;
 	}
 	else
 	{
 	    const CmdLvs::Lv& lv = prober.get_system_info().getCmdLvs().find_by_lv_uuid(uuid);
-	    stripes = lv.stripes;
-	    stripe_size = lv.stripe_size;
+	    stripes = lv.segments[0].stripes;
+	    stripe_size = lv.segments[0].stripe_size;
 	}
     }
 
@@ -238,10 +269,94 @@ namespace storage
     }
 
 
+    void
+    LvmLv::Impl::set_stripes(unsigned int stripes)
+    {
+	if (stripes > 128)
+	    ST_THROW(Exception("stripes above 128"));
+
+	Impl::stripes = stripes;
+    }
+
+
+    void
+    LvmLv::Impl::set_stripe_size(unsigned long long stripe_size)
+    {
+	if (stripe_size > 0)
+	{
+	    if (stripe_size < 4 * KiB)
+		ST_THROW(Exception("stripe size below 4 KiB"));
+
+	    if (!is_power_of_two(stripe_size))
+		ST_THROW(Exception("stripe size not a power of two"));
+	}
+
+	Impl::stripe_size = stripe_size;
+    }
+
+
     bool
     LvmLv::Impl::supports_chunk_size() const
     {
 	return lv_type == LvType::THIN_POOL;
+    }
+
+
+    void
+    LvmLv::Impl::set_chunk_size(unsigned long long chunk_size)
+    {
+	if (chunk_size > 0)
+	{
+	    if (chunk_size < 64 * KiB)
+		ST_THROW(Exception("chunk size below 64 KiB"));
+
+	    if (chunk_size > 1 * GiB)
+		ST_THROW(Exception("chunk size above 1 GiB"));
+
+	    if (!is_multiple_of(chunk_size, 64 * KiB))
+		ST_THROW(Exception("chunk size not multiple of 64 KiB"));
+	}
+
+	Impl::chunk_size = chunk_size;
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_chunk_size(unsigned long long size)
+    {
+	// Calculation researched, limits can be found in the LVM documentation.
+
+	unsigned long long tmp = next_power_of_two(size >> 21);
+
+	return clamp(tmp, 64 * KiB, 1 * GiB);
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_chunk_size() const
+    {
+	return default_chunk_size(get_size());
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_metadata_size(unsigned long long size, unsigned long long chunk_size,
+				       unsigned long long extent_size)
+    {
+	// Calculation and limits can be found in the LVM documentation.
+
+	unsigned long long tmp = round_up(size / chunk_size * 64 * B, extent_size);
+
+	return clamp(tmp, 2 * MiB, 16 * GiB);
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::default_metadata_size() const
+    {
+	unsigned long long tmp = chunk_size > 0 ? chunk_size : default_chunk_size();
+
+	return default_metadata_size(get_size(), tmp, get_region().get_block_size());
     }
 
 
@@ -275,6 +390,24 @@ namespace storage
 	    ST_THROW(Exception("not a thin logical volume"));
 
 	return get_single_parent_of_type<const LvmLv>();
+    }
+
+
+    unsigned long long
+    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    {
+	switch (lv_type)
+	{
+	    case LvType::THIN:
+	    {
+		return LvmVg::Impl::max_extent_number * get_lvm_vg()->get_extent_size();
+	    }
+
+	    default:
+	    {
+		return 0;
+	    }
+	}
     }
 
 
@@ -429,6 +562,26 @@ namespace storage
 	    Action::Base* action = new Action::Rename(get_sid());
 	    actiongraph.add_vertex(action);
 	    action->first = action->last = true;
+	}
+
+	if (get_lv_type() != lhs.get_lv_type())
+	{
+	    ST_THROW(Exception("changing lv type not supported"));
+	}
+
+	if (get_stripes() != lhs.get_stripes())
+	{
+	    ST_THROW(Exception("changing stripes not supported"));
+	}
+
+	if (get_stripe_size() != lhs.get_stripe_size())
+	{
+	    ST_THROW(Exception("changing stripe size not supported"));
+	}
+
+	if (get_chunk_size() != lhs.get_chunk_size())
+	{
+	    ST_THROW(Exception("changing chunk size not supported"));
 	}
     }
 

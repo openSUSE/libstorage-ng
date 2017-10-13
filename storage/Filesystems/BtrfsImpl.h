@@ -85,7 +85,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	virtual FsType get_type() const override { return FsType::BTRFS; }
 

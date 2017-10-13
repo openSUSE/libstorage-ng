@@ -90,9 +90,9 @@ namespace storage
 
 
     void
-    PartitionTable::Impl::check() const
+    PartitionTable::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	Device::Impl::check();
+	Device::Impl::check(check_callbacks);
 
 	const Device* parent = get_single_parent_of_type<const Device>();
 

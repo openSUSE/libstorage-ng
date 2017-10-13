@@ -48,7 +48,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void check() const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	vector<MdMember*> get_md_members();
 	vector<const MdMember*> get_md_members() const;
