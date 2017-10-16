@@ -178,6 +178,12 @@ namespace storage
 	 */
 	bool is_my_lvm_lv(const Device* device) const;
 
+	/**
+	 * Checks whether the device is a logical volume of the volume group
+	 * using extents (so excluding thin logical volumes).
+	 */
+	bool is_my_lvm_lv_using_extents(const Device* device) const;
+
     };
 
 
