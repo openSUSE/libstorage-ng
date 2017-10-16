@@ -248,8 +248,7 @@ namespace storage
 
 	    resize_info.min_size += used_size_on_disk();
 
-	    // But the min-size must never be smaller than the blk device
-	    // size.
+	    // But the min-size must never be bigger than the blk device size.
 
 	    resize_info.min_size = min(resize_info.min_size, blk_device_size);
 	}
