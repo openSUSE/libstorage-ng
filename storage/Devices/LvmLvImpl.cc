@@ -39,6 +39,7 @@
 #include "storage/Action.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
+#include "storage/Redirect.h"
 
 
 using namespace std;
@@ -394,7 +395,7 @@ namespace storage
 
 
     unsigned long long
-    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids) const
     {
 	switch (lv_type)
 	{
@@ -534,19 +535,78 @@ namespace storage
     ResizeInfo
     LvmLv::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
-
-	// A logical volume must have at least one extent. Maximal size
-	// calculated from free extents in volume group.
-
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	unsigned long long a = lvm_vg->get_extent_size();
-	unsigned long long b = lvm_vg->get_impl().number_of_free_extents() + number_of_extents();
+	unsigned long long extent_size = lvm_vg->get_extent_size();
 
-	resize_info.combine(ResizeInfo(true, a, b * a));
+	// A logical volume must have at least one extent.
 
-	return resize_info;
+	switch (lv_type)
+	{
+	    case LvType::NORMAL:
+	    {
+		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+
+		unsigned long long data_size = lvm_vg->get_impl().number_of_free_extents({ get_sid() }) * extent_size;
+
+		resize_info.combine(ResizeInfo(true, extent_size, data_size));
+
+		resize_info.combine_block_size(max(1U, stripes) * extent_size);
+
+		return resize_info;
+	    }
+
+	    case LvType::THIN_POOL:
+	    {
+		if (exists_in_probed())
+		{
+		    // Shrinking thin pools is not supported by LVM. Since the
+		    // metadata is already on disk and does not get resized no
+		    // need to handle them here.
+
+		    const LvmLv* tmp_lvm_lv = to_lvm_lv(redirect_to_probed(get_non_impl()));
+
+		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
+						    number_of_extents()) * extent_size;
+
+		    ResizeInfo resize_info(true, tmp_lvm_lv->get_size(), data_size);
+
+		    resize_info.combine_block_size(max(1U, stripes) * extent_size);
+
+		    return resize_info;
+		}
+		else
+		{
+		    unsigned long long data_size = lvm_vg->get_impl().max_size_for_lvm_lv(lv_type, { get_sid() });
+
+		    ResizeInfo resize_info(true, extent_size, data_size);
+
+		    resize_info.combine_block_size(max(1U, stripes) * extent_size);
+
+		    return resize_info;
+		}
+	    }
+
+	    case LvType::THIN:
+	    {
+		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+
+		const LvmLv* thin_pool = get_thin_pool();
+
+		unsigned long long data_size = thin_pool->max_size_for_lvm_lv(LvType::THIN);
+
+		resize_info.combine(ResizeInfo(true, extent_size, data_size));
+
+		resize_info.combine_block_size(extent_size);
+
+		return resize_info;
+	    }
+
+	    default:
+	    {
+		return ResizeInfo(false);
+	    }
+	}
     }
 
 

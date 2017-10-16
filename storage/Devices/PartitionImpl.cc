@@ -442,6 +442,8 @@ namespace storage
 
 	resize_info.combine_max(surrounding.to_bytes(unused_sectors_behind_partition));
 
+	resize_info.combine_block_size(get_region().get_block_size());
+
 	return resize_info;
     }
 

@@ -154,7 +154,7 @@ namespace storage
 
 
     unsigned long long
-    LvmVg::Impl::number_of_used_extents() const
+    LvmVg::Impl::number_of_used_extents(const vector<sid_t>& ignore_sids) const
     {
 	unsigned long long extent_size = get_extent_size();
 
@@ -163,6 +163,9 @@ namespace storage
 
 	for (const LvmLv* lvm_lv : get_lvm_lvs())
 	{
+	    if (contains(ignore_sids, lvm_lv->get_sid()))
+		continue;
+
 	    ret += lvm_lv->get_impl().number_of_extents();
 
 	    // For thin pools that do not exist in probed also add the
@@ -186,10 +189,10 @@ namespace storage
 
 
     unsigned long long
-    LvmVg::Impl::number_of_free_extents() const
+    LvmVg::Impl::number_of_free_extents(const vector<sid_t>& ignore_sids) const
     {
 	unsigned long long a = number_of_extents();
-	unsigned long long b = number_of_used_extents() + reserved_extents;
+	unsigned long long b = number_of_used_extents(ignore_sids) + reserved_extents;
 
 	return b >= a ? 0 : a - b;
     }
@@ -206,7 +209,7 @@ namespace storage
 
 
     unsigned long long
-    LvmVg::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    LvmVg::Impl::max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids) const
     {
 	unsigned long long extent_size = get_extent_size();
 
@@ -214,12 +217,12 @@ namespace storage
 	{
 	    case LvType::NORMAL:
 	    {
-		return number_of_free_extents() * extent_size;
+		return number_of_free_extents(ignore_sids) * extent_size;
 	    }
 
 	    case LvType::THIN_POOL:
 	    {
-		unsigned long long data_size = number_of_free_extents() * extent_size;
+		unsigned long long data_size = number_of_free_extents(ignore_sids) * extent_size;
 
 		unsigned long long chunk_size = LvmLv::Impl::default_chunk_size(data_size);
 		unsigned long long metadata_size =

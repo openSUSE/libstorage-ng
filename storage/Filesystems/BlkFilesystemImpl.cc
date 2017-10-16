@@ -232,14 +232,14 @@ namespace storage
 
 	ResizeInfo resize_info(true, min_size(), max_size());
 
+	unsigned long long blk_device_size = get_blk_device()->get_size();
+
 	// Even if shrink or grow is not supported it is still possible to
 	// shrink or grow to the original size.
 
 	if (!supports_shrink())
 	{
-	    unsigned long long original_size = get_blk_device()->get_size();
-
-	    resize_info.min_size = original_size;
+	    resize_info.min_size = blk_device_size;
 	}
 	else
 	{
@@ -247,13 +247,15 @@ namespace storage
 	    // journal, is needed additional to the used-size.
 
 	    resize_info.min_size += used_size_on_disk();
+
+	    // But the min-size must never be bigger than the blk device size.
+
+	    resize_info.min_size = min(resize_info.min_size, blk_device_size);
 	}
 
 	if (!supports_grow())
 	{
-	    unsigned long long original_size = get_blk_device()->get_size();
-
-	    resize_info.max_size = original_size;
+	    resize_info.max_size = blk_device_size;
 	}
 
 	resize_info.check();

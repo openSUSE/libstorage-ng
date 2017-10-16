@@ -62,6 +62,9 @@ namespace storage
 
 	void calculate_reserved_extents(Prober& prober);
 
+	unsigned long long get_reserved_extents() const { return reserved_extents; }
+	void set_reserved_extents(unsigned long long reserved_extents) { Impl::reserved_extents = reserved_extents; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void save(xmlNode* node) const override;
@@ -80,8 +83,8 @@ namespace storage
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	unsigned long long number_of_extents() const { return region.get_length(); }
-	unsigned long long number_of_used_extents() const;
-	unsigned long long number_of_free_extents() const;
+	unsigned long long number_of_used_extents(const vector<sid_t>& ignore_sids = {}) const;
+	unsigned long long number_of_free_extents(const vector<sid_t>& ignore_sids = {}) const;
 
 	bool is_overcommitted() const;
 
@@ -97,7 +100,7 @@ namespace storage
 	vector<LvmPv*> get_lvm_pvs();
 	vector<const LvmPv*> get_lvm_pvs() const;
 
-	unsigned long long max_size_for_lvm_lv(LvType lv_type) const;
+	unsigned long long max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids = {}) const;
 
 	LvmLv* create_lvm_lv(const string& lv_name, LvType lv_type, unsigned long long size);
 	void delete_lvm_lv(LvmLv* lvm_lv);
