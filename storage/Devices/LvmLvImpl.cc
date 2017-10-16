@@ -395,7 +395,7 @@ namespace storage
 
 
     unsigned long long
-    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type) const
+    LvmLv::Impl::max_size_for_lvm_lv(LvType lv_type, const vector<sid_t>& ignore_sids) const
     {
 	switch (lv_type)
 	{
@@ -547,8 +547,7 @@ namespace storage
 	    {
 		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
-		unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
-						number_of_extents()) * extent_size;
+		unsigned long long data_size = lvm_vg->get_impl().number_of_free_extents({ get_sid() }) * extent_size;
 
 		resize_info.combine(ResizeInfo(true, extent_size, data_size));
 
@@ -578,20 +577,9 @@ namespace storage
 		}
 		else
 		{
-		    // Subtract metadata size twice due to spare metadata. This is
-		    // a bit conservative since there might already be a spare
-		    // metadata.
+		    unsigned long long data_size = lvm_vg->get_impl().max_size_for_lvm_lv(lv_type, { get_sid() });
 
-		    unsigned long long old_metadata_size = default_metadata_size();
-
-		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
-						    number_of_extents()) * extent_size + 2 * old_metadata_size;
-
-		    unsigned long long chunk_size = default_chunk_size(data_size);
-		    unsigned long long metadata_size = default_metadata_size(data_size, chunk_size,
-									     extent_size);
-
-		    ResizeInfo resize_info(true, extent_size, data_size - 2 * metadata_size);
+		    ResizeInfo resize_info(true, extent_size, data_size);
 
 		    resize_info.combine_block_size(max(1U, stripes) * extent_size);
 
