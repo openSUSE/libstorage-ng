@@ -695,7 +695,7 @@ namespace storage
 
 	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
 	if (resize_action && resize_action->resize_mode == ResizeMode::GROW)
-	    return is_my_lvm_lv(resize_action->get_device(actiongraph, RHS));
+	    return is_my_lvm_lv_using_extents(resize_action->get_device(actiongraph, RHS));
 
 	return false;
     }
@@ -710,7 +710,7 @@ namespace storage
 
 	const Action::Resize* resize_action = dynamic_cast<const Action::Resize*>(action);
 	if (resize_action && resize_action->resize_mode == ResizeMode::SHRINK)
-	    return is_my_lvm_lv(resize_action->get_device(actiongraph, LHS));
+	    return is_my_lvm_lv_using_extents(resize_action->get_device(actiongraph, LHS));
 
 	return false;
     }
@@ -723,6 +723,22 @@ namespace storage
 	    return false;
 
 	const LvmLv* lvm_lv = to_lvm_lv(device);
+
+	return lvm_lv->get_lvm_vg()->get_sid() == get_sid();
+    }
+
+
+    bool
+    LvmVg::Impl::is_my_lvm_lv_using_extents(const Device* device) const
+    {
+	if (!is_lvm_lv(device))
+	    return false;
+
+	const LvmLv* lvm_lv = to_lvm_lv(device);
+
+	if (lvm_lv->get_lv_type() == LvType::THIN)
+	    return false;
+
 	return lvm_lv->get_lvm_vg()->get_sid() == get_sid();
     }
 

@@ -1,0 +1,4 @@
+1 - Delete thin logical volume thin3 (1.00 TiB) on volume group test -> 2
+2 - Create thin logical volume thin3 (2.00 TiB) on volume group test ->
+3 - Grow thin logical volume thin1 on volume group test from 1.00 TiB to 2.00 TiB ->
+4 - Grow thin logical volume thin2 on volume group test from 1.00 TiB to 2.00 TiB ->
