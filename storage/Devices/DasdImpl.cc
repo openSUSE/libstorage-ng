@@ -120,7 +120,9 @@ namespace storage
 
 	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
 	type = dasdview.get_type();
-	format = dasdview.get_format();
+
+	if (type == DasdType::ECKD)
+	    format = dasdview.get_format();
     }
 
 

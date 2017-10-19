@@ -31,11 +31,17 @@
 namespace storage
 {
 
+    /**
+     * The DASD type.
+     */
     enum class DasdType {
 	UNKNOWN, ECKD, FBA
     };
 
 
+    /**
+     * The layout with which the ECKD DASD was formatted.
+     */
     enum class DasdFormat {
 	NONE, LDL, CDL
     };
