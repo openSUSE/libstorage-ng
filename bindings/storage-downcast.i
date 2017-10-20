@@ -51,6 +51,7 @@
 	 storage::Mountable,
 	 storage::DasdPt,
 	 storage::Gpt,
+	 storage::ImplicitPt,
 	 storage::Msdos,
 	 storage::PartitionTable,
 	 storage::Device)
@@ -93,6 +94,7 @@
 	 const storage::Mountable,
 	 const storage::DasdPt,
 	 const storage::Gpt,
+	 const storage::ImplicitPt,
 	 const storage::Msdos,
 	 const storage::PartitionTable,
 	 const storage::Device)

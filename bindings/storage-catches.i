@@ -68,6 +68,8 @@
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(Device *device);
