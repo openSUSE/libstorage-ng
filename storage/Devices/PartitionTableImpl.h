@@ -147,6 +147,9 @@ namespace storage
 
     private:
 
+	/**
+	 * TODO document and use
+	 */
 	bool read_only;
 
     };
