@@ -92,7 +92,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"device:/dev/dasda type:ECKD format:CDL"
+	"device:/dev/dasda bus-id:0.0.0150 type:ECKD format:CDL"
     };
 
     check("/dev/dasda", input, output);
@@ -157,7 +157,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"device:/dev/dasdb type:ECKD format:NONE"
+	"device:/dev/dasdb bus-id:0.0.0160 type:ECKD format:NONE"
     };
 
     check("/dev/dasdb", input, output);
@@ -205,7 +205,7 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"device:/dev/dasdc type:FBA format:LDL"
+	"device:/dev/dasdc bus-id:0.0.3333 type:FBA format:LDL"
     };
 
     check("/dev/dasdc", input, output);

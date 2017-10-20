@@ -56,24 +56,26 @@ namespace storage
 
 
     Dasd::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), rotational(false), type(DasdType::UNKNOWN),
+	: Partitionable::Impl(name), bus_id(), rotational(false), type(DasdType::UNKNOWN),
 	  format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, 4), rotational(false), type(DasdType::UNKNOWN),
-	  format(DasdFormat::NONE)
+	: Partitionable::Impl(name, region, 4), bus_id(), rotational(false),
+	  type(DasdType::UNKNOWN), format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), type(DasdType::UNKNOWN),
+	: Partitionable::Impl(node), bus_id(), rotational(false), type(DasdType::UNKNOWN),
 	  format(DasdFormat::NONE)
     {
 	string tmp;
+
+	getChildValue(node, "bus-id", bus_id);
 
 	getChildValue(node, "rotational", rotational);
 
@@ -119,6 +121,9 @@ namespace storage
 	rotational = rotational_file.get<bool>();
 
 	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
+
+	bus_id = dasdview.get_bus_id();
+
 	type = dasdview.get_type();
 
 	if (type == DasdType::ECKD)
@@ -138,6 +143,8 @@ namespace storage
     {
 	Partitionable::Impl::save(node);
 
+	setChildValue(node, "bus-id", bus_id);
+
 	setChildValueIf(node, "rotational", rotational, rotational);
 
 	setChildValueIf(node, "type", toString(type), type != DasdType::UNKNOWN);
@@ -153,7 +160,7 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && type == rhs.type &&
+	return bus_id == rhs.bus_id && rotational == rhs.rotational && type == rhs.type &&
 	    format == rhs.format;
     }
 
@@ -164,6 +171,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	Partitionable::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "bus-id", bus_id, rhs.bus_id);
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
@@ -176,6 +185,8 @@ namespace storage
     Dasd::Impl::print(std::ostream& out) const
     {
 	Partitionable::Impl::print(out);
+
+	out << " bus-id:" << bus_id;
 
 	if (rotational)
 	    out << " rotational";

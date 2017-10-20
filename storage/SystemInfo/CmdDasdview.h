@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,6 +44,8 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
 
+	string get_bus_id() const { return bus_id; }
+
 	DasdType get_type() const { return type; }
 	DasdFormat get_format() const { return format; }
 
@@ -51,6 +54,8 @@ namespace storage
 	void parse(const std::vector<string>& lines);
 
 	string device;
+
+	string bus_id;
 
 	DasdType type;
 	DasdFormat format;
