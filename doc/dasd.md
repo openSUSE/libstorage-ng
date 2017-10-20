@@ -60,8 +60,8 @@ this looks like a recipe for disaster.
 - Use as Block Device: Unsupported
 
 
-Glosar
-------
+Glossary
+--------
 
 DASD = Direct Access Storage Device
 
