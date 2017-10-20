@@ -10,6 +10,7 @@ test-cmdlvs
 test-cmdpvs
 test-cmdudevadminfo
 test-cmdvgs
+test-dasdview
 test-dir
 test-dmraid
 test-lsattr
