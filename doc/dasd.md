@@ -63,7 +63,7 @@ this looks like a recipe for disaster.
 Glossary
 --------
 
-DASD = Direct Access Storage Device
+DASD = Direct Access Storage Device (https://en.wikipedia.org/wiki/Direct-access_storage_device)
 
 ECKD = Extended Count Key Data
 
