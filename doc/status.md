@@ -37,9 +37,6 @@ Implemented:
 * Topology calculations.
 * Support for boot, legacy_boot and pmbr_boot flags.
 * Renumbering of logical partition.
-
-Missing:
-
 * Query resize information.
 
 
