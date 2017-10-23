@@ -40,7 +40,7 @@ namespace storage
 
     //! Partition Table Type.
     enum class PtType {
-	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC
+	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC, IMPLICIT
     };
 
     std::string get_pt_type_name(PtType pt_type);

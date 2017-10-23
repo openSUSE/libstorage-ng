@@ -45,7 +45,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<PtType>::names({
-	"unknown", "loop", "MS-DOS", "GPT", "DASD", "Mac"
+	"unknown", "loop", "MS-DOS", "GPT", "DASD", "Mac", "implicit"
     });
 
 
@@ -55,6 +55,7 @@ namespace storage
     PartitionTable::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), read_only(false)
     {
+	getChildValue(node, "read-only", read_only);
     }
 
 
@@ -66,9 +67,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
-
-	if (parted.is_implicit())
-	    read_only = true;
 
 	for (const Parted::Entry& entry : parted.get_entries())
 	{

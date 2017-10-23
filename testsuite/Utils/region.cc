@@ -187,9 +187,9 @@ BOOST_AUTO_TEST_CASE(test_unused_regions1)
 {
     Region region(0, 100, 1);
 
-    vector<Region> unused_regions = region.unused_regions(vector<Region>({
+    vector<Region> unused_regions = region.unused_regions({
 	Region(30, 50, 1),
-    }));
+    });
 
     BOOST_CHECK_EQUAL(unused_regions.size(), 2);
 
@@ -205,9 +205,10 @@ BOOST_AUTO_TEST_CASE(test_unused_regions2)
 {
     Region region(0, 100, 1);
 
-    vector<Region> unused_regions = region.unused_regions(vector<Region>({
-	Region(0, 10, 1), Region(90, 10, 1)
-    }));
+    vector<Region> unused_regions = region.unused_regions({
+	Region(0, 10, 1),
+	Region(90, 10, 1)
+    });
 
     BOOST_CHECK_EQUAL(unused_regions.size(), 1);
 
@@ -220,9 +221,27 @@ BOOST_AUTO_TEST_CASE(test_unused_regions3)
 {
     Region region(0, 100, 1);
 
-    vector<Region> unused_regions = region.unused_regions(vector<Region>({
-	Region(10, 10, 1), Region(40, 20, 1), Region(80, 15, 1)
-    }));
+    vector<Region> unused_regions = region.unused_regions({
+	Region(90, 10, 1),	// sorted incorrectly with other used region
+	Region(0, 10, 1)	// sorted incorrectly with other used region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 1);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 10);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 80);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions4)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(10, 10, 1),
+	Region(40, 20, 1),
+	Region(80, 15, 1)
+    });
 
     BOOST_CHECK_EQUAL(unused_regions.size(), 4);
 
@@ -237,4 +256,102 @@ BOOST_AUTO_TEST_CASE(test_unused_regions3)
 
     BOOST_CHECK_EQUAL(unused_regions[3].get_start(), 95);
     BOOST_CHECK_EQUAL(unused_regions[3].get_length(), 5);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions5)
+{
+    Region region(10, 80, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(0, 10, 1),	// completely before region
+	Region(40, 20, 1),
+	Region(90, 10, 1)	// completely behind region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 10);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 30);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 60);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 30);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions6)
+{
+    Region region(10, 80, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(0, 5, 1),	// completely before region
+	Region(40, 20, 1),
+	Region(95, 5, 1)	// completely behind region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 10);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 30);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 60);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 30);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions7)
+{
+    Region region(10, 80, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(0, 20, 1),	// partly before region
+	Region(40, 20, 1),
+	Region(80, 20, 1)	// partly behind region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 20);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 60);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions8)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(20, 40, 1),	// overlapping with other used region
+	Region(40, 40, 1)	// overlapping with other used region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 80);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_unused_regions9)
+{
+    Region region(0, 100, 1);
+
+    vector<Region> unused_regions = region.unused_regions({
+	Region(20, 60, 1),	// overlapping with other used region
+	Region(40, 20, 1)	// overlapping with other used region
+    });
+
+    BOOST_CHECK_EQUAL(unused_regions.size(), 2);
+
+    BOOST_CHECK_EQUAL(unused_regions[0].get_start(), 0);
+    BOOST_CHECK_EQUAL(unused_regions[0].get_length(), 20);
+
+    BOOST_CHECK_EQUAL(unused_regions[1].get_start(), 80);
+    BOOST_CHECK_EQUAL(unused_regions[1].get_length(), 20);
 }

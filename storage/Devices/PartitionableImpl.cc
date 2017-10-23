@@ -28,6 +28,7 @@
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/DasdPt.h"
+#include "storage/Devices/ImplicitPt.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -118,7 +119,23 @@ namespace storage
 	    if (get_region().get_length() != parted.get_region().get_length())
 		ST_THROW(Exception("different size reported by kernel and parted"));
 
-	    PartitionTable* pt = create_partition_table(parted.get_label());
+	    PtType label = parted.get_label();
+
+	    // parted reports DASD partition table for implicit partition
+	    // tables. Convert that to implicit partition table.
+
+	    if (is_dasd(get_non_impl()))
+	    {
+		const Dasd* dasd = to_dasd(get_non_impl());
+
+		if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
+		    label = PtType::IMPLICIT;
+
+		if (dasd->get_type() == DasdType::FBA && parted.is_implicit())
+		    label = PtType::IMPLICIT;
+	    }
+
+	    PartitionTable* pt = create_partition_table(label);
 	    pt->get_impl().probe_pass_1c(prober);
 	}
     }
@@ -188,6 +205,10 @@ namespace storage
 
 	    case PtType::DASD:
 		ret = DasdPt::create(get_devicegraph());
+		break;
+
+	    case PtType::IMPLICIT:
+		ret = ImplicitPt::create(get_devicegraph());
 		break;
 
 	    default:

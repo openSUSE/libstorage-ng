@@ -31,11 +31,17 @@
 namespace storage
 {
 
+    /**
+     * The DASD type.
+     */
     enum class DasdType {
 	UNKNOWN, ECKD, FBA
     };
 
 
+    /**
+     * The layout with which the ECKD DASD was formatted.
+     */
     enum class DasdFormat {
 	NONE, LDL, CDL
     };
@@ -65,6 +71,9 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Dasd*> get_all(const Devicegraph* devicegraph);
+
+	std::string get_bus_id() const;
+	void set_bus_id(std::string bus_id);
 
 	bool is_rotational() const;
 

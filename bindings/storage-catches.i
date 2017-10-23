@@ -68,6 +68,8 @@
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(Device *device);
@@ -201,6 +203,7 @@
 %catches(storage::DifferentBlockSizes) storage::Region::operator==(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>=(const Region &rhs) const;
+%catches(storage::Exception) storage::Region::unused_regions(const std::vector< Region > &used_regions) const;
 %catches(storage::Exception) storage::Storage::Storage(const Environment &environment);
 %catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
 %catches(storage::Exception) storage::Storage::check(const CheckCallbacks *check_callbacks=nullptr) const;
