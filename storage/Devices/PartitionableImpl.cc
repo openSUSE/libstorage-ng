@@ -144,7 +144,12 @@ namespace storage
     PtType
     Partitionable::Impl::get_default_partition_table_type() const
     {
-	PtType ret = get_possible_partition_table_types().front();
+	vector<PtType> possible = get_possible_partition_table_types();
+
+	if (possible.empty())
+	    ST_THROW(Exception("no partition table possible"));
+
+	PtType ret = possible.front();
 
 	y2mil("ret:" << toString(ret));
 
@@ -152,13 +157,11 @@ namespace storage
     }
 
 
-    std::vector<PtType>
+    vector<PtType>
     Partitionable::Impl::get_possible_partition_table_types() const
     {
-	// TODO other archs, other DASD types (e.g. FBA)
-
-	if (is_dasd(get_non_impl()))
-	    return { PtType::DASD };
+	// ECKD DASDs are handled completely and FBA DASDs partly in Dasd
+	// class.
 
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
 

@@ -191,6 +191,7 @@
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
 %catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType pt_type);
+%catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;
 %catches(storage::Exception) storage::Region::adjust_length(long long delta);

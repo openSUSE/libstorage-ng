@@ -90,9 +90,67 @@ BOOST_AUTO_TEST_CASE(test4)
     Devicegraph* devicegraph = storage.get_staging();
 
     Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
+    dasda->set_type(DasdType::ECKD);
+    dasda->set_format(DasdFormat::CDL);
 
     BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::DASD);
 
     BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
 		      vector<PtType>({ PtType::DASD }));
+}
+
+
+BOOST_AUTO_TEST_CASE(test5)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
+    dasda->set_type(DasdType::ECKD);
+    dasda->set_format(DasdFormat::LDL);
+
+    BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::IMPLICIT);
+
+    BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
+		      vector<PtType>({ PtType::IMPLICIT }));
+}
+
+
+BOOST_AUTO_TEST_CASE(test6)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
+    dasda->set_type(DasdType::ECKD);
+    dasda->set_format(DasdFormat::NONE);
+
+    BOOST_CHECK_THROW(dasda->get_default_partition_table_type(), Exception);
+
+    BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
+		      vector<PtType>({ }));
+}
+
+
+BOOST_AUTO_TEST_CASE(test7)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
+    dasda->set_type(DasdType::FBA);
+
+    BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::MSDOS);
+
+    BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
+		      vector<PtType>({ PtType::MSDOS, PtType::GPT, PtType::IMPLICIT }));
 }

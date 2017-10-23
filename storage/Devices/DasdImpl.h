@@ -70,6 +70,8 @@ namespace storage
 	DasdFormat get_format() const { return format; }
 	void set_format(DasdFormat format) { Impl::format = format; }
 
+	virtual vector<PtType> get_possible_partition_table_types() const override;
+
 	static void probe_dasds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 

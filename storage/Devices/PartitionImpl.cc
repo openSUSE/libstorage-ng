@@ -33,6 +33,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/DasdPt.h"
+#include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
