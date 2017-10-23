@@ -39,9 +39,6 @@ namespace storage
 
     template <> struct EnumTraits<PtType> { static const vector<string> names; };
 
-    std::ostream& operator<<(std::ostream& s, const PartitionSlot& partition_slot);
-
-
     template <> struct DeviceTraits<PartitionTable> { static const char* classname; };
 
 

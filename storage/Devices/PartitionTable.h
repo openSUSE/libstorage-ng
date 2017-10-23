@@ -70,6 +70,9 @@ namespace storage
 	bool logical_possible;
 
 	bool is_possible(PartitionType partition_type) const;
+
+	friend std::ostream& operator<<(std::ostream& s, const PartitionSlot& partition_slot);
+
     };
 
 
