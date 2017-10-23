@@ -70,6 +70,14 @@ namespace storage
     }
 
 
+    vector<PartitionSlot>
+    ImplicitPt::Impl::get_unused_partition_slots(AlignPolicy align_policy,
+						 AlignType align_type) const
+    {
+	return { };
+    }
+
+
     bool
     ImplicitPt::Impl::equal(const Device::Impl& rhs_base) const
     {

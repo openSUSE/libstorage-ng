@@ -124,8 +124,8 @@ namespace storage
 
 	virtual Alignment get_alignment(AlignType align_type) const;
 
-	vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
-							 AlignType align_type) const;
+	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
+								 AlignType align_type) const;
 
 	Region align(const Region& region, AlignPolicy align_policy, AlignType align_type) const;
 
