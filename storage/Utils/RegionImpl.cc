@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2015-2016] SUSE LLC
+ * Copyright (c) [2015-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -176,15 +176,15 @@ namespace storage
 
 	for (const Region& used_region : used_regions_sorted)
 	{
-	    if (!used_region.get_impl().inside(*this))
-		ST_THROW(NotInside());
-
 	    assert_equal_block_size(used_region.get_impl());
+
+	    if (used_region.get_end() < start || used_region.get_start() > end)
+		continue;
 
 	    if (used_region.get_start() > start)
 		ret.emplace_back(start, used_region.get_start() - start, block_size);
 
-	    start = used_region.get_end() + 1;
+	    start = max(start, used_region.get_end() + 1);
 	}
 
 	if (end > start)

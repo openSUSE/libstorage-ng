@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -176,9 +176,8 @@ namespace storage
 	Region intersection(const Region& rhs) const;
 
 	/**
-	 * Returns all regions not included in used_regions. Regions in
-	 * used_regions must not overlap and be inside the region. All block
-	 * sizes must be identical.
+	 * Returns all regions not included in used_regions. All block sizes
+	 * must be identical.
 	 *
 	 * @throw Exception
 	 */
