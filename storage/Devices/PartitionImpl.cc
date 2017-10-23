@@ -420,6 +420,11 @@ namespace storage
     ResizeInfo
     Partition::Impl::detect_resize_info() const
     {
+	if (is_implicit_pt(get_partition_table()))
+	{
+	    return ResizeInfo(false);
+	}
+
 	if (type == PartitionType::EXTENDED)
 	{
 	    // TODO resize is technical possible but would be a new feature.
