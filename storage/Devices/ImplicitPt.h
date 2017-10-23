@@ -31,6 +31,14 @@
 namespace storage
 {
 
+    /**
+     * Class to represent implicit partition table. An implicit partition
+     * table does not exist on-disk so no operations are possible. It is
+     * present on some DASDs where the kernel creates a partition all by
+     * itself.
+     *
+     * See also doc/dasd.md.
+     */
     class ImplicitPt : public PartitionTable
     {
     public:
