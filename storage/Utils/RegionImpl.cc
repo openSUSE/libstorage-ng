@@ -21,6 +21,8 @@
  */
 
 
+#include <functional>
+
 #include "storage/Utils/RegionImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
 
@@ -169,8 +171,8 @@ namespace storage
 	unsigned long long end = get_end();
 	unsigned long long block_size = get_block_size();
 
-	vector<Region> used_regions_sorted = used_regions;
-	sort(used_regions_sorted.begin(), used_regions_sorted.end());
+	vector<std::reference_wrapper<const Region>> used_regions_sorted(used_regions.begin(), used_regions.end());
+	sort(used_regions_sorted.begin(), used_regions_sorted.end(), std::less<const Region>{});
 
 	vector<Region> ret;
 
