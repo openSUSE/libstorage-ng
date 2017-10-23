@@ -121,7 +121,7 @@ namespace storage
 
 	    PtType label = parted.get_label();
 
-	    // parted reports DASD partition type for implicit partition
+	    // parted reports DASD partition table for implicit partition
 	    // tables. Convert that to implicit partition table.
 
 	    if (is_dasd(get_non_impl()))
