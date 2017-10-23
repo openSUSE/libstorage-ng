@@ -203,6 +203,7 @@
 %catches(storage::DifferentBlockSizes) storage::Region::operator==(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>(const Region &rhs) const;
 %catches(storage::DifferentBlockSizes) storage::Region::operator>=(const Region &rhs) const;
+%catches(storage::Exception) storage::Region::unused_regions(const std::vector< Region > &used_regions) const;
 %catches(storage::Exception) storage::Storage::Storage(const Environment &environment);
 %catches(storage::Exception) storage::Storage::activate(const ActivateCallbacks *activate_callbacks) const;
 %catches(storage::Exception) storage::Storage::check(const CheckCallbacks *check_callbacks=nullptr) const;
