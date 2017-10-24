@@ -2,10 +2,10 @@
 1b - Shrink partition /dev/sdb7 from 2.00 GiB to 1.00 GiB -> 2b
 
 2a - Delete ext4 on /dev/sdb6 (2.00 GiB) -> 2b
-2b - Delete partition /dev/sdb6 (2.00 GiB) -> 3b
+2b - Delete logical partition /dev/sdb6 (2.00 GiB) -> 3b
 
 3a - Delete ext4 on /dev/sdb5 (2.00 GiB) -> 3b
-3b - Delete partition /dev/sdb5 (2.00 GiB) -> 4
+3b - Delete logical partition /dev/sdb5 (2.00 GiB) -> 4
 
 4 - Rename mount point /test1 from /dev/sdb7 to /dev/sdb5 in /etc/fstab -> 5
 5 - Rename mount point /test2 from /dev/sdb8 to /dev/sdb6 in /etc/fstab -> 6

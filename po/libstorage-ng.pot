@@ -292,6 +292,21 @@ msgid "Create hard disk %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:546
+#, c-format
+msgid "Create implicit partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#: ../storage/Devices/ImplicitPtImpl.cc:164
+#, c-format
+msgid "Create implicit partition table on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:562
@@ -417,6 +432,21 @@ msgstr ""
 #: ../storage/Devices/PartitionImpl.cc:554
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:550
+#, c-format
+msgid "Creating implicit partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#: ../storage/Devices/ImplicitPtImpl.cc:167
+#, c-format
+msgid "Creating implicit partition table on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -642,6 +672,37 @@ msgid "Delete encryption layer device on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:933
+#, c-format
+msgid "Delete extended partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:894
+#, c-format
+msgid "Delete implicit partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#: ../storage/Devices/ImplicitPtImpl.cc:181
+#, c-format
+msgid "Delete implicit partition table on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:945
+#, c-format
+msgid "Delete logical partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
@@ -663,6 +724,14 @@ msgstr ""
 #: ../storage/Devices/LvmPvImpl.cc:351
 #, c-format
 msgid "Delete physical volume on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:921
+#, c-format
+msgid "Delete primary partition %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
@@ -746,6 +815,37 @@ msgid "Deleting encryption layer device on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:937
+#, c-format
+msgid "Deleting extended partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:898
+#, c-format
+msgid "Deleting implicit partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#: ../storage/Devices/ImplicitPtImpl.cc:184
+#, c-format
+msgid "Deleting implicit partition table on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:949
+#, c-format
+msgid "Deleting logical partition %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
@@ -767,6 +867,14 @@ msgstr ""
 #: ../storage/Devices/LvmPvImpl.cc:354
 #, c-format
 msgid "Deleting physical volume on %1$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#: ../storage/Devices/PartitionImpl.cc:925
+#, c-format
+msgid "Deleting primary partition %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,

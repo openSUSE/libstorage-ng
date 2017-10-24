@@ -5,4 +5,4 @@
 2b - Unmount /dev/sda1 at /test2 -> 3a
 
 3a - Delete xfs on /dev/sda1 (1.46 GiB) -> 3b
-3b - Delete partition /dev/sda1 (1.46 GiB) ->
+3b - Delete primary partition /dev/sda1 (1.46 GiB) ->
