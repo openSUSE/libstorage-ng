@@ -247,6 +247,8 @@ namespace storage
     void
     DmRaid::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
+	// See doc/udev.md.
+
 	erase_if(udev_ids, [](const string& udev_id) {
 	    return !boost::starts_with(udev_id, "raid-");
 	});

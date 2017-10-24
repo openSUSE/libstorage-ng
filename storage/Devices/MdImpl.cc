@@ -556,9 +556,11 @@ namespace storage
     void
     Md::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	udev_ids.erase(remove_if(udev_ids.begin(), udev_ids.end(), [](const string& udev_id) {
+	// See doc/udev.md.
+
+	erase_if(udev_ids, [](const string& udev_id) {
 	    return !boost::starts_with(udev_id, "md-uuid-");
-	}), udev_ids.end());
+	});
     }
 
 

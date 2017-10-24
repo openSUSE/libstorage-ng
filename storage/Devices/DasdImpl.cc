@@ -238,23 +238,21 @@ namespace storage
     void
     Dasd::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
+	// See doc/udev.md.
+
+	erase_if(udev_paths, [](const string& udev_path) {
+	    return !boost::starts_with(udev_path, "ccw-");
+	});
     }
 
 
     void
     Dasd::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	// Only keep udev-ids known to represent the dasd, not its
-	// content. E.g. ignore lvm-pv-<pv-uuid> since it vanishes when the
-	// lvm physical volume is removed. Since udev may come up with new
-	// udev-ids any time a whitelist looks more future-proof than a
-	// blacklist.
-
-	static const vector<string> allowed_prefixes = { "ccw-" };
+	// See doc/udev.md.
 
 	erase_if(udev_ids, [](const string& udev_id) {
-	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
-			   { return boost::starts_with(udev_id, prefix); });
+	    return !boost::starts_with(udev_id, "ccw-");
 	});
     }
 

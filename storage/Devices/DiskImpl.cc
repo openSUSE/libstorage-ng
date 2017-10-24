@@ -198,19 +198,23 @@ namespace storage
     void
     Disk::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
+	// See doc/udev.md.
+
+	static const vector<string> allowed_prefixes = { "scsi-", "pci-", "ccw-" };
+
+	erase_if(udev_paths, [](const string& udev_path) {
+	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_path](const string& prefix)
+			   { return boost::starts_with(udev_path, prefix); });
+	});
     }
 
 
     void
     Disk::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	// Only keep udev-ids known to represent the disk, not its
-	// content. E.g. ignore lvm-pv-<pv-uuid> since it vanishes when the
-	// lvm physical volume is removed. Since udev may come up with new
-	// udev-ids any time a whitelist looks more future-proof than a
-	// blacklist.
+	// See doc/udev.md.
 
-	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-" };
+	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-", "nvme-" };
 
 	erase_if(udev_ids, [](const string& udev_id) {
 	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
