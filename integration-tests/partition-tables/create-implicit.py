@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: disk /dev/sdb
+# requirements: fba dasd /dev/dasdb
 
 
 from storage import *
@@ -18,11 +18,11 @@ staging = storage.get_staging()
 
 print staging
 
-partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/dasdb")
 
 partitionable.remove_descendants()
 
-partitionable.create_partition_table(PtType_GPT)
+partitionable.create_partition_table(PtType_IMPLICIT)
 
 print staging
 

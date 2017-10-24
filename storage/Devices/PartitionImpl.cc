@@ -33,6 +33,7 @@
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/DasdPt.h"
+#include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Filesystems/FilesystemImpl.h"
 #include "storage/Devicegraph.h"
@@ -204,7 +205,9 @@ namespace storage
     {
 	vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Create(get_sid()));
+	bool nop = is_implicit_pt(get_partition_table());
+
+	actions.push_back(new Action::Create(get_sid(), false, nop));
 
 	if (default_id_for_type(type) != id)
 	{
@@ -238,12 +241,12 @@ namespace storage
 
 	if (get_type() != lhs.get_type())
 	{
-	    throw runtime_error("cannot change partition type");
+	    ST_THROW(Exception("cannot change partition type"));
 	}
 
 	if (get_region().get_start() != lhs.get_region().get_start())
 	{
-	    throw runtime_error("cannot move partition");
+	    ST_THROW(Exception("cannot move partition"));
 	}
 
 	if (get_id() != lhs.get_id())
@@ -263,6 +266,19 @@ namespace storage
 	    Action::Base* action = new Action::SetLegacyBoot(get_sid());
 	    actiongraph.add_vertex(action);
 	}
+    }
+
+
+    void
+    Partition::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	bool nop = is_implicit_pt(get_partition_table());
+
+	actions.push_back(new Action::Delete(get_sid(), false, nop));
+
+	actiongraph.add_chain(actions);
     }
 
 
@@ -420,6 +436,11 @@ namespace storage
     ResizeInfo
     Partition::Impl::detect_resize_info() const
     {
+	if (is_implicit_pt(get_partition_table()))
+	{
+	    return ResizeInfo(false);
+	}
+
 	if (type == PartitionType::EXTENDED)
 	{
 	    // TODO resize is technical possible but would be a new feature.
@@ -516,16 +537,28 @@ namespace storage
     {
 	Text text;
 
-	if (!is_msdos(get_partition_table()))
+	if (is_implicit_pt(get_partition_table()))
+	{
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/dasda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Create implicit partition %1$s (%2$s)"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/dasda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Creating implicit partition %1$s (%2$s)"));
+	}
+	else if (!is_msdos(get_partition_table()))
 	{
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
 			  // %1$s is replaced by partition name (e.g. /dev/sda1),
-			  // %2$s is replaced by size (e.g. 2GiB)
+			  // %2$s is replaced by size (e.g. 2 GiB)
 			  _("Create partition %1$s (%2$s)"),
 			  // TRANSLATORS: displayed during action,
 			  // %1$s is replaced by partition name (e.g. /dev/sda1),
-			  // %2$s is replaced by size (e.g. 2GiB)
+			  // %2$s is replaced by size (e.g. 2 GiB)
 			  _("Creating partition %1$s (%2$s)"));
 	}
 	else
@@ -536,11 +569,11 @@ namespace storage
 		    text = tenser(tense,
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Create primary partition %1$s (%2$s)"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Creating primary partition %1$s (%2$s)"));
 		    break;
 
@@ -548,11 +581,11 @@ namespace storage
 		    text = tenser(tense,
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Create extended partition %1$s (%2$s)"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Creating extended partition %1$s (%2$s)"));
 		    break;
 
@@ -560,11 +593,11 @@ namespace storage
 		    text = tenser(tense,
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Create logical partition %1$s (%2$s)"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by partition name (e.g. /dev/sda1),
-				  // %2$s is replaced by size (e.g. 2GiB)
+				  // %2$s is replaced by size (e.g. 2 GiB)
 				  _("Creating logical partition %1$s (%2$s)"));
 		    break;
 	    }
@@ -850,15 +883,73 @@ namespace storage
     Text
     Partition::Impl::do_delete_text(Tense tense) const
     {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Delete partition %1$s (%2$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Deleting partition %1$s (%2$s)"));
+	Text text;
+
+	if (is_implicit_pt(get_partition_table()))
+	{
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/dasda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Delete implicit partition %1$s (%2$s)"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/dasda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Deleting implicit partition %1$s (%2$s)"));
+	}
+	else if (!is_msdos(get_partition_table()))
+	{
+	    text = tenser(tense,
+			  // TRANSLATORS: displayed before action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Delete partition %1$s (%2$s)"),
+			  // TRANSLATORS: displayed during action,
+			  // %1$s is replaced by partition name (e.g. /dev/sda1),
+			  // %2$s is replaced by size (e.g. 2 GiB)
+			  _("Deleting partition %1$s (%2$s)"));
+	}
+	else
+	{
+	    switch (type)
+	    {
+		case PartitionType::PRIMARY:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Delete primary partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Deleting primary partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::EXTENDED:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Delete extended partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Deleting extended partition %1$s (%2$s)"));
+		    break;
+
+		case PartitionType::LOGICAL:
+		    text = tenser(tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Delete logical partition %1$s (%2$s)"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by partition name (e.g. /dev/sda1),
+				  // %2$s is replaced by size (e.g. 2 GiB)
+				  _("Deleting logical partition %1$s (%2$s)"));
+		    break;
+	    }
+	}
 
 	return sformat(text, get_name().c_str(), get_size_string().c_str());
     }
@@ -917,13 +1008,13 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2 GiB),
+			      // %3$s is replaced by new size (e.g. 1 GiB)
 			      _("Shrink partition %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2 GiB),
+			      // %3$s is replaced by new size (e.g. 1 GiB)
 			      _("Shrinking partition %1$s from %2$s to %3$s"));
 		break;
 
@@ -931,13 +1022,13 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1 GiB),
+			      // %3$s is replaced by new size (e.g. 2 GiB)
 			      _("Grow partition %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1 GiB),
+			      // %3$s is replaced by new size (e.g. 2 GiB)
 			      _("Growing partition %1$s from %2$s to %3$s"));
 		break;
 

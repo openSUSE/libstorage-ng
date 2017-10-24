@@ -87,6 +87,45 @@ namespace storage
     }
 
 
+    vector<PtType>
+    Dasd::Impl::get_possible_partition_table_types() const
+    {
+	switch (type)
+	{
+	    case DasdType::ECKD:
+	    {
+		switch (format)
+		{
+		    case DasdFormat::CDL:
+			return { PtType::DASD };
+
+		    case DasdFormat::LDL:
+			return { PtType::IMPLICIT };
+
+		    default:
+			return { };
+		}
+	    }
+
+	    case DasdType::FBA:
+	    {
+		vector<PtType> ret = Partitionable::Impl::get_possible_partition_table_types();
+
+		ret.push_back(PtType::IMPLICIT);
+
+		return ret;
+	    }
+
+	    case DasdType::UNKNOWN:
+	    {
+		return { };
+	    }
+	}
+
+	return { };
+    }
+
+
     void
     Dasd::Impl::probe_dasds(Prober& prober)
     {

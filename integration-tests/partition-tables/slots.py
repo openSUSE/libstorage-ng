@@ -1,11 +1,14 @@
 #!/usr/bin/python
 
-# requirements: disk /dev/sdb
+# requirements: partitionable /dev/sdb with partition table
 
 
+from sys import exit
 from storage import *
 from storageitu import *
 
+
+type = PartitionType_PRIMARY
 
 set_logger(get_logfile_logger())
 
@@ -20,11 +23,10 @@ print staging
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
-partitionable.remove_descendants()
+partition_table = partitionable.get_partition_table()
 
-partitionable.create_partition_table(PtType_GPT)
+partition_slots = partition_table.get_unused_partition_slots()
 
-print staging
-
-commit(storage)
+for partition_slot in partition_slots:
+    print partition_slot
 

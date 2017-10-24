@@ -27,6 +27,7 @@ use_ostream(storage::Region);
 use_ostream(storage::ResizeInfo);
 use_ostream(storage::ContentInfo);
 use_ostream(storage::SpaceInfo);
+use_ostream(storage::PartitionSlot);
 
 %include "../storage.i"
 

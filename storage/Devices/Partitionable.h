@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +49,8 @@ namespace storage
 
 	/**
 	 * Get the default partition table type for the partitionable.
+	 *
+	 * @throw Exception
 	 */
 	PtType get_default_partition_table_type() const;
 

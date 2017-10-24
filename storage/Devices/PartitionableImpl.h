@@ -53,7 +53,7 @@ namespace storage
 
 	PtType get_default_partition_table_type() const;
 
-	vector<PtType> get_possible_partition_table_types() const;
+	virtual vector<PtType> get_possible_partition_table_types() const;
 
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1c(Prober& prober) override;

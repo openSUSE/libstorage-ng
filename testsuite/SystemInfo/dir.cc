@@ -59,5 +59,5 @@ BOOST_AUTO_TEST_CASE(error1)
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(LSBIN " -1 --sort=none " + quote(path), command);
 
-    BOOST_CHECK_THROW(Dir dir(path), runtime_error);
+    BOOST_CHECK_THROW(Dir dir(path), Exception);
 }
