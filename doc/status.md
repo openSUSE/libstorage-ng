@@ -20,11 +20,11 @@ DASD
 
 Implemented:
 
-* ECKD
+* ECKD (CDL and LDL)
+* FBA
 
 Missing:
 
-* FBA
 * zKVM
 
 
