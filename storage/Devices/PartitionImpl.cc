@@ -241,12 +241,12 @@ namespace storage
 
 	if (get_type() != lhs.get_type())
 	{
-	    throw runtime_error("cannot change partition type");
+	    ST_THROW(Exception("cannot change partition type"));
 	}
 
 	if (get_region().get_start() != lhs.get_region().get_start())
 	{
-	    throw runtime_error("cannot move partition");
+	    ST_THROW(Exception("cannot move partition"));
 	}
 
 	if (get_id() != lhs.get_id())

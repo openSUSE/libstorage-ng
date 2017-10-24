@@ -146,7 +146,7 @@ namespace storage
 	}
 	else
 	{
-	    throw runtime_error("cannot create disk");
+	    ST_THROW(Exception("cannot create disk"));
 	}
     }
 
@@ -154,7 +154,7 @@ namespace storage
     void
     Disk::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	throw runtime_error("cannot delete disk");
+	ST_THROW(Exception("cannot delete disk"));
     }
 
 
