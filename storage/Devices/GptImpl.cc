@@ -186,7 +186,7 @@ namespace storage
     unsigned int
     Gpt::Impl::max_primary() const
     {
-	return min(128U, get_partitionable()->get_range());
+	return min(128U, get_partitionable()->get_range() - 1);
     }
 
 

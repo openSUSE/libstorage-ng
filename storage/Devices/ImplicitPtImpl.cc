@@ -127,7 +127,7 @@ namespace storage
     unsigned int
     ImplicitPt::Impl::max_primary() const
     {
-	return min(1U, get_partitionable()->get_range());
+	return min(1U, get_partitionable()->get_range() - 1);
     }
 
 

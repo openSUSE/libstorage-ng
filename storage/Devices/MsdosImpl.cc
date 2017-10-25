@@ -156,7 +156,7 @@ namespace storage
     unsigned int
     Msdos::Impl::max_primary() const
     {
-	return min(4U, get_partitionable()->get_range());
+	return min(4U, get_partitionable()->get_range() - 1);
     }
 
 
