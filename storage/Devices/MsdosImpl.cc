@@ -163,7 +163,9 @@ namespace storage
     unsigned int
     Msdos::Impl::max_logical() const
     {
-	return min(Partitionable::Impl::default_range, get_partitionable()->get_range());
+	unsigned int ret = min(Partitionable::Impl::default_range, get_partitionable()->get_range()) - 1;
+
+	return ret < 5 ? 0 : ret;
     }
 
 
