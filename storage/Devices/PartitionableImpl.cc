@@ -135,8 +135,8 @@ namespace storage
 		    label = PtType::IMPLICIT;
 	    }
 
-	    PartitionTable* pt = create_partition_table(label);
-	    pt->get_impl().probe_pass_1c(prober);
+	    PartitionTable* partition_table = create_partition_table(label);
+	    partition_table->get_impl().probe_pass_1c(prober);
 	}
     }
 
