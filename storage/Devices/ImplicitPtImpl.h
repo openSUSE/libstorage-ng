@@ -75,7 +75,7 @@ namespace storage
 	virtual Region get_usable_region() const override;
 
 	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
-                                                                 AlignType align_type) const override;
+								 AlignType align_type) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 
