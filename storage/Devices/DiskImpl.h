@@ -49,8 +49,7 @@ namespace storage
 	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region, Partitionable::Impl::default_range),
-	      rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name, region), rotational(false), transport(Transport::UNKNOWN) {}
 
 	Impl(const xmlNode* node);
 
