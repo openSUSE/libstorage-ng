@@ -139,7 +139,3 @@ Implemented:
 * Loading and saving devicegraph in XML.
 * Remote probing.
 
-Missing:
-
-* Complete udev link handling.
-
