@@ -55,6 +55,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual void probe_pass_1c(Prober& prober) override;
+
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	virtual void save(xmlNode* node) const override;
@@ -76,6 +78,8 @@ namespace storage
 
 	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
 								 AlignType align_type) const override;
+
+	void create_implicit_partition();
 
 	virtual Text do_create_text(Tense tense) const override;
 

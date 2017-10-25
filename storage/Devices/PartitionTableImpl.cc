@@ -111,6 +111,7 @@ namespace storage
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), parent, partition);
 
+	partition->get_impl().update_sysfs_name_and_path();
 	partition->get_impl().update_udev_paths_and_ids();
 
 	if (boost::starts_with(name, DEVMAPPERDIR "/"))

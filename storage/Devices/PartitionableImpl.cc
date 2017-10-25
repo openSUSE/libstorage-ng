@@ -219,6 +219,12 @@ namespace storage
 	}
 
 	User::create(get_devicegraph(), get_non_impl(), ret);
+
+	if (pt_type == PtType::IMPLICIT)
+	{
+	    to_implicit_pt(ret)->create_implicit_partition();
+	}
+
 	return ret;
     }
 

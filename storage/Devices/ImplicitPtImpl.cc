@@ -57,6 +57,14 @@ namespace storage
 
 
     void
+    ImplicitPt::Impl::probe_pass_1c(Prober& prober)
+    {
+	// TODO Maybe check that the implicit partition already created really
+	// matches the one reported by parted.
+    }
+
+
+    void
     ImplicitPt::Impl::check(const CheckCallbacks* check_callbacks) const
     {
 	PartitionTable::Impl::check(check_callbacks);
@@ -128,6 +136,27 @@ namespace storage
     ImplicitPt::Impl::max_primary() const
     {
 	return min(1U, get_partitionable()->get_range() - 1);
+    }
+
+
+    void
+    ImplicitPt::Impl::create_implicit_partition()
+    {
+	const Dasd* dasd = to_dasd(get_partitionable());
+
+	unsigned long long start = 0;
+
+	if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
+	    start = 3;
+	else if (dasd->get_type() == DasdType::FBA)
+	    start = 2;
+	else
+	    ST_THROW(Exception("cannot create implicit partition on device " + dasd->get_name()));
+
+	Region region(start, dasd->get_region().get_length() - start,
+		      dasd->get_region().get_block_size());
+
+	create_partition(dasd->partition_name(1), region, PartitionType::PRIMARY);
     }
 
 
