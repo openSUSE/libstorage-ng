@@ -153,12 +153,15 @@ namespace storage
 	 */
 	const Partition* get_extended() const;
 
+	/**
+	 * @throw Exception
+	 */
 	const Partitionable* get_partitionable() const;
 
 	Alignment get_alignment(AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**
-	 * @throw NotInside
+	 * @throw Exception
 	 */
 	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END,
 							      AlignType align_type = AlignType::OPTIMAL) const;
