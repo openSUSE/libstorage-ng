@@ -8,11 +8,11 @@ created, then the filesystem on it and finally it has to be mounted.
 The cardinal rules are that 1. children are deleted before their parents and
 2. children are created after their parents.
 
-For some devices the issue is much more complex, e.g. MSDOS partition tables.
+For some devices the issue is much more complex, e.g. MS-DOS partition tables.
 
 
-MSDOS Partition Table
----------------------
+MS-DOS Partition Table
+----------------------
 
 Obviously deleting and shrinking partitions should be done before creating and
 growing partitions. Additionally creating must be done sorted according to the

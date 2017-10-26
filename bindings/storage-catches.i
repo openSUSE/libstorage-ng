@@ -156,6 +156,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
 %catches(storage::Exception) storage::LvmLv::set_chunk_size(unsigned long long chunk_size);
@@ -189,8 +190,9 @@
 %catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
 %catches(storage::Exception) storage::PartitionTable::get_extended() const;
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
-%catches(storage::NotInside) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
-%catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::Partitionable::create_partition_table(PtType pt_type);
+%catches(storage::Exception) storage::PartitionTable::get_partitionable() const;
+%catches(storage::Exception) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
+%catches(storage::WrongNumberOfChildren, storage::UnsupportedException, storage::Exception) storage::Partitionable::create_partition_table(PtType pt_type);
 %catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table() const;

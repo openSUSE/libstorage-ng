@@ -34,7 +34,7 @@ namespace storage
 
 
     DifferentBlockSizes::DifferentBlockSizes(unsigned int seen, unsigned int expected)
-	: Exception(sformat("different block sizes, seen: %d, exception: %d", seen, expected), LogLevel::ERROR)
+	: Exception(sformat("different block sizes, seen: %d, expected: %d", seen, expected), LogLevel::ERROR)
     {
     }
 

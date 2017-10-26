@@ -53,15 +53,12 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid DmRaid name"));
 
-	set_range(Partitionable::Impl::default_range);
-
 	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
     }
 
 
     DmRaid::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, Partitionable::Impl::default_range),
-	  rotational(false)
+	: Partitionable::Impl(name, region), rotational(false)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid DmRaid name"));

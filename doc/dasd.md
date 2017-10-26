@@ -49,7 +49,7 @@ Unformatted ECKD DASDs
 FBA DASDs
 ---------
 
-Can be used with a MSDOS or GPT partition table. Otherwise implicit partition
+Can be used with a MS-DOS partition table or GPT. Otherwise implicit partition
 table with one big partition.
 
 Can be used directly as a block device. But since the implicit partition stays
@@ -58,6 +58,19 @@ this looks like a recipe for disaster.
 - Partition Types: Implicit, MS-DOS, GPT
 
 - Use as Block Device: Unsupported
+
+
+Implicit Partition Table
+------------------------
+
+What is an implicit partition table? As mentioned above the kernel creates a
+partition on some DASDs even though no partition table exists on-disk. This
+situation is represented in libstorage-ng by an implicit partition table
+having one partition. Since the implicit partition table does not exist
+on-disk no modifications whatsoever are possible.
+
+On FBA DASDs the implicit partition table can be replaced by a MS-DOS partition
+table or GPT.
 
 
 Glossary

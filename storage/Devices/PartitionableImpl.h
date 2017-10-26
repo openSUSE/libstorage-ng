@@ -76,10 +76,10 @@ namespace storage
 
     protected:
 
-	Impl(const string& name)
-	    : BlkDevice::Impl(name), topology(), range(0) {}
+	Impl(const string& name, unsigned int range = default_range)
+	    : BlkDevice::Impl(name), topology(), range(range) {}
 
-	Impl(const string& name, const Region& region, unsigned int range)
+	Impl(const string& name, const Region& region, unsigned int range = default_range)
 	    : BlkDevice::Impl(name, region), topology(), range(range) {}
 
 	Impl(const xmlNode* node);

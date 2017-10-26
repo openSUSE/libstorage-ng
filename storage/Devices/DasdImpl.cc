@@ -56,7 +56,7 @@ namespace storage
 
 
     Dasd::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), bus_id(), rotational(false), type(DasdType::UNKNOWN),
+	: Partitionable::Impl(name, 4), bus_id(), rotational(false), type(DasdType::UNKNOWN),
 	  format(DasdFormat::NONE)
     {
     }

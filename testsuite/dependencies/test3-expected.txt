@@ -1,4 +1,4 @@
-1 - Create MSDOS partition table on /dev/sda -> 2a 4a 6a
+1 - Create MS-DOS partition table on /dev/sda -> 2a 4a 6a
 
 2a - Create primary partition /dev/sda1 (1.46 GiB) -> 3a 4a
 

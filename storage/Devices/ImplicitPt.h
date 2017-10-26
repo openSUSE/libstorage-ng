@@ -55,6 +55,13 @@ namespace storage
 
 	virtual ImplicitPt* clone() const override;
 
+	/**
+	 * Create the implicit partition.
+	 *
+	 * @throw Exception
+	 */
+	void create_implicit_partition();
+
     protected:
 
 	ImplicitPt(Impl* impl);

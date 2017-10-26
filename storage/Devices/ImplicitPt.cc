@@ -62,6 +62,13 @@ namespace storage
     }
 
 
+    void
+    ImplicitPt::create_implicit_partition()
+    {
+	get_impl().create_implicit_partition();
+    }
+
+
     ImplicitPt::Impl&
     ImplicitPt::get_impl()
     {

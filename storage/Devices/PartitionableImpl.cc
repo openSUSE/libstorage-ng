@@ -135,8 +135,8 @@ namespace storage
 		    label = PtType::IMPLICIT;
 	    }
 
-	    PartitionTable* pt = create_partition_table(label);
-	    pt->get_impl().probe_pass_1c(prober);
+	    PartitionTable* partition_table = create_partition_table(label);
+	    partition_table->get_impl().probe_pass_1c(prober);
 	}
     }
 
@@ -167,7 +167,7 @@ namespace storage
 
 	unsigned long long int num_sectors = get_region().get_length();
 	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
-	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
+	y2mil("num-sectors:" << num_sectors << " size-ok-for-msdos:" << size_ok_for_msdos);
 
 	PtType best = PtType::MSDOS;
 
@@ -179,7 +179,7 @@ namespace storage
 	if (best == PtType::MSDOS)
 	    ret.push_back(PtType::GPT);
 
-	// For a small disk attached to a EFI machine MSDOS is possible
+	// For a small disk attached to a EFI machine MS-DOS is possible
 	// (e.g. use-case USB stick).
 	if (best == PtType::GPT && size_ok_for_msdos)
 	    ret.push_back(PtType::MSDOS);
@@ -219,6 +219,12 @@ namespace storage
 	}
 
 	User::create(get_devicegraph(), get_non_impl(), ret);
+
+	if (pt_type == PtType::IMPLICIT)
+	{
+	    to_implicit_pt(ret)->create_implicit_partition();
+	}
+
 	return ret;
     }
 

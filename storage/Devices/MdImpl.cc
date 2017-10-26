@@ -96,8 +96,6 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	set_range(default_range);
-
 	if (is_numeric())
 	{
 	    string::size_type pos = string(DEVDIR).size() + 1;

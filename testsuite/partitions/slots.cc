@@ -34,7 +34,13 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
+    BOOST_CHECK_EQUAL(sda->get_range(), 256);
+
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
+
+    BOOST_CHECK_EQUAL(msdos->max_primary(), 4);
+    BOOST_CHECK(msdos->extended_possible());
+    BOOST_CHECK_EQUAL(msdos->max_logical(), 255);
 
     vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
 
@@ -164,7 +170,12 @@ BOOST_AUTO_TEST_CASE(test_gpt1)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
 
+    BOOST_CHECK_EQUAL(sda->get_range(), 256);
+
     PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
+
+    BOOST_CHECK_EQUAL(gpt->max_primary(), 128);
+    BOOST_CHECK(!gpt->extended_possible());
 
     gpt->create_partition("/dev/sda1", Region(1 * 2048, 10 * 2048, 512), PartitionType::PRIMARY);
     gpt->create_partition("/dev/sda2", Region(20 * 2048, 30 * 2048, 512), PartitionType::PRIMARY);
@@ -281,4 +292,86 @@ BOOST_AUTO_TEST_CASE(test_dasd1)
     BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
     BOOST_CHECK_EQUAL(slots[1].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[1].logical_possible, false);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_msdos4)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", Region(0, 1000000, 512));
+    dasda->set_type(DasdType::FBA);
+
+    BOOST_CHECK_EQUAL(dasda->get_range(), 4);
+
+    PartitionTable* msdos = dasda->create_partition_table(PtType::MSDOS);
+
+    BOOST_CHECK_EQUAL(msdos->max_primary(), 3);
+    BOOST_CHECK(msdos->extended_possible());
+    BOOST_CHECK_EQUAL(msdos->max_logical(), 0);
+
+    msdos->create_partition("/dev/dasda1", Region(2048, 2048, 512), PartitionType::PRIMARY);
+    msdos->create_partition("/dev/dasda2", Region(4096, 2048, 512), PartitionType::PRIMARY);
+    msdos->create_partition("/dev/dasda3", Region(6144, 2048, 512), PartitionType::PRIMARY);
+
+    vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 1);
+
+    BOOST_CHECK_EQUAL(slots[0].region.get_start(), 8192);
+    BOOST_CHECK_EQUAL(slots[0].region.get_length(), 991808);
+    BOOST_CHECK_EQUAL(slots[0].number, 4);
+    BOOST_CHECK_EQUAL(slots[0].name, "/dev/dasda4");
+    BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].primary_possible, false);
+    BOOST_CHECK_EQUAL(slots[0].extended_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_gpt2)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", Region(0, 1000000, 512));
+    dasda->set_type(DasdType::FBA);
+
+    BOOST_CHECK_EQUAL(dasda->get_range(), 4);
+
+    PartitionTable* gpt = dasda->create_partition_table(PtType::GPT);
+
+    BOOST_CHECK_EQUAL(gpt->max_primary(), 3);
+
+    gpt->create_partition("/dev/dasda1", Region(2048, 2048, 512), PartitionType::PRIMARY);
+    gpt->create_partition("/dev/dasda2", Region(4096, 2048, 512), PartitionType::PRIMARY);
+    gpt->create_partition("/dev/dasda3", Region(6144, 2048, 512), PartitionType::PRIMARY);
+
+    vector<PartitionSlot> slots = gpt->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 1);
+
+    BOOST_CHECK_EQUAL(slots[0].region.get_start(), 8192);
+    BOOST_CHECK_EQUAL(slots[0].region.get_length(), 991775);
+    BOOST_CHECK_EQUAL(slots[0].number, 4);
+    BOOST_CHECK_EQUAL(slots[0].name, "/dev/dasda4");
+    BOOST_CHECK_EQUAL(slots[0].primary_slot, true);
+    BOOST_CHECK_EQUAL(slots[0].primary_possible, false);
+    BOOST_CHECK_EQUAL(slots[0].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
+    BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
 }

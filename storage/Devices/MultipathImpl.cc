@@ -53,15 +53,12 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
 
-	set_range(Partitionable::Impl::default_range);
-
 	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
     }
 
 
     Multipath::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, Partitionable::Impl::default_range),
-	  vendor(), model(), rotational(false)
+	: Partitionable::Impl(name, region), vendor(), model(), rotational(false)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));

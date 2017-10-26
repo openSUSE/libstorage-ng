@@ -6,6 +6,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Devicegraph.h"
@@ -35,7 +36,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     BOOST_CHECK_EQUAL(msdos->max_primary(), 4);
     BOOST_CHECK_EQUAL(msdos->extended_possible(), true);
-    BOOST_CHECK_EQUAL(msdos->max_logical(), 256);
+    BOOST_CHECK_EQUAL(msdos->max_logical(), 255);
 
     BOOST_CHECK_EQUAL(msdos->num_primary(), 1);
     BOOST_CHECK_EQUAL(msdos->has_extended(), false);
@@ -60,6 +61,60 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     BOOST_CHECK_EQUAL(gpt->get_partitionable()->get_range(), 256);
 
     BOOST_CHECK_EQUAL(gpt->max_primary(), 128);
+    BOOST_CHECK_EQUAL(gpt->extended_possible(), false);
+    BOOST_CHECK_EQUAL(gpt->max_logical(), 0);
+
+    BOOST_CHECK_EQUAL(gpt->num_primary(), 1);
+    BOOST_CHECK_EQUAL(gpt->has_extended(), false);
+    BOOST_CHECK_EQUAL(gpt->num_logical(), 0);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_msdos_on_dasd)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
+    dasda->set_type(DasdType::FBA);
+
+    PartitionTable* msdos = dasda->create_partition_table(PtType::MSDOS);
+
+    msdos->create_partition("/dev/dasda1", Region(2048, 100000, 512), PartitionType::PRIMARY);
+
+    BOOST_CHECK_EQUAL(msdos->get_partitionable()->get_range(), 4);
+
+    BOOST_CHECK_EQUAL(msdos->max_primary(), 3);
+    BOOST_CHECK_EQUAL(msdos->extended_possible(), true);
+    BOOST_CHECK_EQUAL(msdos->max_logical(), 0);
+
+    BOOST_CHECK_EQUAL(msdos->num_primary(), 1);
+    BOOST_CHECK_EQUAL(msdos->has_extended(), false);
+    BOOST_CHECK_EQUAL(msdos->num_logical(), 0);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_gpt_on_dasd)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Dasd* dasda = Dasd::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
+    dasda->set_type(DasdType::FBA);
+
+    PartitionTable* gpt = dasda->create_partition_table(PtType::GPT);
+
+    gpt->create_partition("/dev/dasda1", Region(2048, 100000, 512), PartitionType::PRIMARY);
+
+    BOOST_CHECK_EQUAL(gpt->get_partitionable()->get_range(), 4);
+
+    BOOST_CHECK_EQUAL(gpt->max_primary(), 3);
     BOOST_CHECK_EQUAL(gpt->extended_possible(), false);
     BOOST_CHECK_EQUAL(gpt->max_logical(), 0);
 
