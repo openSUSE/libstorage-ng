@@ -167,7 +167,7 @@ namespace storage
 
 	unsigned long long int num_sectors = get_region().get_length();
 	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
-	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
+	y2mil("num-sectors:" << num_sectors << " size-ok-for-msdos:" << size_ok_for_msdos);
 
 	PtType best = PtType::MSDOS;
 

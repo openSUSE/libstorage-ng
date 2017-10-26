@@ -142,7 +142,7 @@ namespace storage
 	PartitionTable::Impl::print(out);
 
 	if (minimal_mbr_gap != default_minimal_mbr_gap)
-	    out << " minimal_mbr_gap:" << minimal_mbr_gap;
+	    out << " minimal-mbr-gap:" << minimal_mbr_gap;
     }
 
 
