@@ -20,7 +20,9 @@
 %rename("exists_in_probed?") "exists_in_probed";
 %rename("exists_in_staging?") "exists_in_staging";
 
-%extend storage::Devicegraph
+%define use_ostream(CLASS)
+
+%extend CLASS
 {
     std::string to_s()
     {
@@ -29,6 +31,8 @@
 	return out.str();
     }
 };
+
+%enddef
 
 %include "../storage.i"
 
