@@ -37,6 +37,7 @@ def doit
   Storage.remote_callbacks = my_remote_callbacks
   environment = Storage::Environment.new(true)
   storage = Storage::Storage.new(environment)
+  storage.probe()
   probed = storage.probed()
   puts probed
 end
