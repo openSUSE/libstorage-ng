@@ -49,7 +49,7 @@ Unformatted ECKD DASDs
 FBA DASDs
 ---------
 
-Can be used with a MSDOS or GPT partition table. Otherwise implicit partition
+Can be used with a MS-DOS partition table or GPT. Otherwise implicit partition
 table with one big partition.
 
 Can be used directly as a block device. But since the implicit partition stays

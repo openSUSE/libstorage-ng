@@ -46,7 +46,7 @@ namespace storage
     /**
      * Enum with values used as partition ids.
      *
-     * For MSDOS the value of the enum is equal to the partition type
+     * For MS-DOS the value of the enum is equal to the partition type
      * byte. For GPT and DASD the value has no special meaning.
      *
      * For details about the ids see e.g.
@@ -55,43 +55,43 @@ namespace storage
      */
     enum IdNum : unsigned int {
 
-	/** Only for MSDOS. */
+	/** Only for MS-DOS. */
 	ID_DOS12 = 0x01,
 
-	/** Only for MSDOS. */
+	/** Only for MS-DOS. */
 	ID_DOS16 = 0x06,
 
-	/** Only for MSDOS. */
+	/** Only for MS-DOS. */
 	ID_DOS32 = 0x0c,
 
-	/** Only for MSDOS. */
+	/** Only for MS-DOS. */
 	ID_NTFS = 0x07,
 
-	/** Only for MSDOS. */
+	/** Only for MS-DOS. */
 	ID_EXTENDED = 0x0f,
 
-	/** For MSDOS and GPT. */
+	/** For MS-DOS and GPT. */
 	ID_DIAG = 0x12,
 
-	/** PPC PReP Boot partition, for MSDOS and GPT. */
+	/** PPC PReP Boot partition, for MS-DOS and GPT. */
 	ID_PREP = 0x41,
 
-	/** For MSDOS, GPT and DASD. */
+	/** For MS-DOS, GPT and DASD. */
 	ID_LINUX = 0x83,
 
-	/** Swap partition, for MSDOS, GPT and DASD. */
+	/** Swap partition, for MS-DOS, GPT and DASD. */
 	ID_SWAP = 0x82,
 
-	/** LVM partition, for MSDOS, GPT and DASD. */
+	/** LVM partition, for MS-DOS, GPT and DASD. */
 	ID_LVM = 0x8e,
 
-	/** RAID partition, for MSDOS, GPT and DASD. */
+	/** RAID partition, for MS-DOS, GPT and DASD. */
 	ID_RAID = 0xfd,
 
-	/** EFI System Partition, for MSDOS and GPT. */
+	/** EFI System Partition, for MS-DOS and GPT. */
 	ID_ESP = 0xef,
 
-	/** Only set during probing. For MSDOS, GPT and DASD. */
+	/** Only set during probing. For MS-DOS, GPT and DASD. */
 	ID_UNKNOWN = 0x100,
 
 	/** BIOS boot partition (https://en.wikipedia.org/wiki/BIOS_boot_partition),

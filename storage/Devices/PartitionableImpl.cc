@@ -179,7 +179,7 @@ namespace storage
 	if (best == PtType::MSDOS)
 	    ret.push_back(PtType::GPT);
 
-	// For a small disk attached to a EFI machine MSDOS is possible
+	// For a small disk attached to a EFI machine MS-DOS is possible
 	// (e.g. use-case USB stick).
 	if (best == PtType::GPT && size_ok_for_msdos)
 	    ret.push_back(PtType::MSDOS);
