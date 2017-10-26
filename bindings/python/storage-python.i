@@ -20,14 +20,5 @@
 
 %enddef
 
-use_ostream(storage::Devicegraph);
-use_ostream(storage::Device);
-use_ostream(storage::Holder);
-use_ostream(storage::Region);
-use_ostream(storage::ResizeInfo);
-use_ostream(storage::ContentInfo);
-use_ostream(storage::SpaceInfo);
-use_ostream(storage::PartitionSlot);
-
 %include "../storage.i"
 

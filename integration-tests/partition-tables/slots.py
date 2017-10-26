@@ -8,8 +8,6 @@ from storage import *
 from storageitu import *
 
 
-type = PartitionType_PRIMARY
-
 set_logger(get_logfile_logger())
 
 environment = Environment(False)
