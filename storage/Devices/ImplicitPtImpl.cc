@@ -74,7 +74,22 @@ namespace storage
     Region
     ImplicitPt::Impl::get_usable_region() const
     {
-	return get_partitionable()->get_region();
+	// The usable region matches the implicit partition. The start and end
+	// values must match what the kernel does.
+
+	const Dasd* dasd = to_dasd(get_partitionable());
+
+	unsigned long long start = 0;
+
+	if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
+	    start = 3;
+	else if (dasd->get_type() == DasdType::FBA)
+	    start = 2;
+	else
+	    ST_THROW(Exception("usable region is unknown for device " + dasd->get_name()));
+
+	return Region(start, dasd->get_region().get_length() - start,
+		      dasd->get_region().get_block_size());
     }
 
 
@@ -142,21 +157,10 @@ namespace storage
     void
     ImplicitPt::Impl::create_implicit_partition()
     {
-	const Dasd* dasd = to_dasd(get_partitionable());
+	// The usable region matches the implicit partition.
 
-	unsigned long long start = 0;
-
-	if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
-	    start = 3;
-	else if (dasd->get_type() == DasdType::FBA)
-	    start = 2;
-	else
-	    ST_THROW(Exception("cannot create implicit partition on device " + dasd->get_name()));
-
-	Region region(start, dasd->get_region().get_length() - start,
-		      dasd->get_region().get_block_size());
-
-	create_partition(dasd->partition_name(1), region, PartitionType::PRIMARY);
+	create_partition(get_partitionable()->partition_name(1), get_usable_region(),
+			 PartitionType::PRIMARY);
     }
 
 
