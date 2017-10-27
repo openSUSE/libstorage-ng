@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,7 +38,7 @@ namespace storage
 
     Arch::Arch(bool do_probe)
 	: arch("unknown"), ppc_mac(false), ppc_pegasos(false), ppc_power_nv(false),
-	  efiboot(false)
+	  efiboot(false), page_size(0)
     {
 	if (do_probe)
 	    probe();
@@ -51,6 +52,8 @@ namespace storage
 
 	if (!getChildValue(node, "efiboot", efiboot))
 	    efiboot = false;
+
+	getChildValue(node, "page-size", page_size);
     }
 
 
@@ -60,15 +63,17 @@ namespace storage
 	setChildValue(node, "arch", arch);
 
 	setChildValueIf(node, "efiboot", efiboot, efiboot);
+
+	setChildValue(node, "page-size", page_size);
     }
 
 
     void
     Arch::probe()
     {
-	SystemCmd cmd(UNAMEBIN " -m");
-	if (cmd.retcode() == 0 && cmd.stdout().size() == 1)
-	    arch = cmd.stdout().front();
+	SystemCmd cmd1(UNAMEBIN " -m");
+	if (cmd1.retcode() == 0 && cmd1.stdout().size() == 1)
+	    arch = cmd1.stdout().front();
 
 	if (is_ppc())
 	{
@@ -108,6 +113,10 @@ namespace storage
 	{
 	    efiboot = string(tenv) == "yes";
 	}
+
+	SystemCmd cmd2(GETCONFBIN " PAGESIZE");
+	if (cmd2.retcode() == 0 && cmd2.stdout().size() == 1)
+	    cmd2.stdout().front() >> page_size;
 
 	y2mil(*this);
     }
@@ -161,7 +170,7 @@ namespace storage
     {
 	return s << "arch:" << arch.arch << " ppc-mac:" << arch.ppc_mac << " ppc-pegasos:"
 		 << arch.ppc_pegasos << " ppc-power-nv:" << arch.ppc_power_nv << " efiboot:"
-		 << arch.efiboot;
+		 << arch.efiboot << " page-size:" << arch.page_size;
     }
 
 }

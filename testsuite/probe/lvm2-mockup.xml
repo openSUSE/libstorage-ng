@@ -733,6 +733,10 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:0]    disk    sata:                           /dev/sda </stdout>
       <stdout>[3:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
