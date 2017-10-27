@@ -265,6 +265,8 @@ namespace storage
 	string cmd_line = PVCREATEBIN " --force " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
+	wait_for_devices({ blk_device->get_name() });
+
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create LvmPv failed"));
