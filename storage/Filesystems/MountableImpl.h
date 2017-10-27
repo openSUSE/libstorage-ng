@@ -87,6 +87,12 @@ namespace storage
 
 	virtual vector<string> get_mount_options() const { return vector<string>(); }
 
+	/**
+	 * Somehow waits for all involved devices to be present, e.g. run
+	 * "udevadm settle" and check device nodes.
+	 */
+	virtual void wait_for_devices() const { }
+
 	virtual Mountable* get_non_impl() override { return to_mountable(Device::Impl::get_non_impl()); }
 	virtual const Mountable* get_non_impl() const override { return to_mountable(Device::Impl::get_non_impl()); }
 

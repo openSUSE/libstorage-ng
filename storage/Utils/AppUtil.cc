@@ -45,6 +45,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/SystemInfo/Arch.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/SystemCmd.h"
 
 
 namespace storage
@@ -172,6 +173,34 @@ checkNormalFile(const string& Path_Cv)
 	      << " free:" << stat_vfs.free);
 
 	return stat_vfs;
+    }
+
+
+    void
+    wait_for_devices(const vector<string>& names)
+    {
+	SystemCmd(UDEVADMBIN_SETTLE);
+
+	for (const string& name : names)
+	{
+	    bool exists = access(name.c_str(), R_OK) == 0;
+	    y2mil("name:" << name << " exists:" << exists);
+
+	    if (!exists)
+	    {
+		for (int count = 0; count < 500; ++count)
+		{
+		    usleep(10000);
+		    exists = access(name.c_str(), R_OK) == 0;
+		    if (exists)
+			break;
+		}
+		y2mil("name:" << name << " exists:" << exists);
+	    }
+
+	    if (!exists)
+		ST_THROW(Exception("wait_for_devices failed " + name));
+	}
     }
 
 

@@ -403,12 +403,7 @@ namespace storage
 
 	const Storage* storage = mountable->get_impl().get_storage();
 
-	if (is_blk_filesystem(mountable))
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(mountable);
-	    for (const BlkDevice* blk_device : blk_filesystem->get_blk_devices())
-		blk_device->get_impl().wait_for_device();
-	}
+	mountable->get_impl().wait_for_devices();
 
         tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
 				     "tmp-mount-XXXXXX", mountable->get_impl().get_mount_name(),

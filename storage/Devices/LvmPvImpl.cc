@@ -334,7 +334,7 @@ namespace storage
 
 	cout << cmd_line << endl;
 
-	blk_device->get_impl().wait_for_device();
+	wait_for_devices({ blk_device->get_name() });
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

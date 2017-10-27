@@ -136,7 +136,6 @@ namespace storage
 	virtual void process_udev_paths(vector<string>& udev_paths) const { udev_paths.clear(); }
 	virtual void process_udev_ids(vector<string>& udev_ids) const { udev_ids.clear(); }
 
-	void wait_for_device() const;
 	void wipe_device() const;
 
 	static bool is_valid_name(const string& name);

@@ -86,7 +86,7 @@ namespace storage
 	string cmd_line = MKSWAPBIN " -f " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
-	blk_device->get_impl().wait_for_device();
+	wait_for_devices();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -143,7 +143,7 @@ namespace storage
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 	cout << cmd_line << endl;
 
-	blk_device->get_impl().wait_for_device();
+	wait_for_devices();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
