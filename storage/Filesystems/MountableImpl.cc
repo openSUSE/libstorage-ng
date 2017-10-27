@@ -405,7 +405,7 @@ namespace storage
 
 	mountable->get_impl().wait_for_devices();
 
-        tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
+	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
 				     "tmp-mount-XXXXXX", mountable->get_impl().get_mount_name(),
 				     read_only, mountable->get_impl().get_mount_options()));
     }

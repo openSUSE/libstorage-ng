@@ -108,6 +108,7 @@ checkNormalFile(const string& Path_Cv)
 	  S_ISREG(Stat_ri.st_mode));
 }
 
+
     string
     dirname(const string& name)
     {
