@@ -344,12 +344,16 @@ namespace storage
     void
     Luks::Impl::do_create()
     {
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(get_blk_device()->get_name()) +
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name()) +
 	    " --key-file -";
 	cout << cmd_line << endl;
 
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
@@ -399,12 +403,16 @@ namespace storage
     void
     Luks::Impl::do_activate() const
     {
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(get_blk_device()->get_name()) + " " +
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) + " " +
 	    quote(get_dm_table_name()) + " --key-file -";
 	cout << cmd_line << endl;
 
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
+
+	blk_device->get_impl().wait_for_device();
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
