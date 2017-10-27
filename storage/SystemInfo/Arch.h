@@ -69,7 +69,7 @@ namespace storage
 	std::string arch;
 	bool ppc_mac;
 	bool ppc_pegasos;
-        bool ppc_power_nv;
+	bool ppc_power_nv;
 	bool efiboot;
 	unsigned int page_size;
 
