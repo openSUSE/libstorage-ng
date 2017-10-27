@@ -107,6 +107,8 @@ namespace storage
 	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
+	wait_for_devices();
+
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("swapon failed"));
