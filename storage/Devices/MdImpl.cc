@@ -753,6 +753,7 @@ namespace storage
 
 	multimap<unsigned int, string> devices;
 	multimap<unsigned int, string> spares;
+	vector<string> names;
 
 	for (const BlkDevice* blk_device : get_devices())
 	{
@@ -762,6 +763,8 @@ namespace storage
 		devices.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
 	    else
 		spares.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
+
+	    names.push_back(blk_device->get_name());
 	}
 
 	cmd_line += " --raid-devices=" + to_string(devices.size());
@@ -776,6 +779,8 @@ namespace storage
 	    cmd_line += " " + quote(value.second);
 
 	cout << cmd_line << endl;
+
+	wait_for_devices(names);
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
