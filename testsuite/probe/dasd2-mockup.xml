@@ -393,6 +393,10 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>
