@@ -89,7 +89,7 @@ namespace storage
 	    quote(blk_device->get_name());
 	cout << cmd_line << endl;
 
-	blk_device->get_impl().wait_for_device();
+	wait_for_devices();
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

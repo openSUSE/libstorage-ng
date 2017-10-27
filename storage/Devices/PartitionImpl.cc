@@ -1059,7 +1059,7 @@ namespace storage
 
 	cout << cmd_line << endl;
 
-	wait_for_device();
+	wait_for_devices({ get_name() });
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
