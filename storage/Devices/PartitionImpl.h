@@ -107,6 +107,9 @@ namespace storage
 	virtual void process_udev_paths(vector<string>& udev_paths) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
+	virtual Partition* get_non_impl() override { return to_partition(Device::Impl::get_non_impl()); }
+	virtual const Partition* get_non_impl() const override { return to_partition(Device::Impl::get_non_impl()); }
+
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 

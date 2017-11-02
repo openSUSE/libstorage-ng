@@ -185,6 +185,12 @@ namespace storage
 
     bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
 
+
+    /**
+     * Run "udevadm settle" and check existence of all blk devices.
+     */
+    void wait_for_devices(const vector<const BlkDevice*>& blk_devices);
+
 }
 
 #endif
