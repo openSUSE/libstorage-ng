@@ -465,12 +465,7 @@ namespace storage
     void
     BlkFilesystem::Impl::wait_for_devices() const
     {
-	vector<string> names;
-
-	for (const BlkDevice* blk_device : get_blk_devices())
-	    names.push_back(blk_device->get_name());
-
-	storage::wait_for_devices(names);
+	storage::wait_for_devices(get_blk_devices());
     }
 
 

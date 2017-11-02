@@ -567,4 +567,33 @@ namespace storage
     }
 
 
+    void
+    wait_for_devices(const vector<const BlkDevice*>& blk_devices)
+    {
+	SystemCmd(UDEVADMBIN_SETTLE);
+
+	for (const BlkDevice* blk_device : blk_devices)
+	{
+	    string name = blk_device->get_name();
+
+	    bool exists = access(name.c_str(), R_OK) == 0;
+	    y2mil("name:" << name << " exists:" << exists);
+
+	    if (!exists)
+	    {
+		for (int count = 0; count < 500; ++count)
+		{
+		    usleep(10000);
+		    exists = access(name.c_str(), R_OK) == 0;
+		    if (exists)
+			break;
+		}
+		y2mil("name:" << name << " exists:" << exists);
+	    }
+
+	    if (!exists)
+		ST_THROW(Exception("wait_for_devices failed " + name));
+	}
+    }
+
 }

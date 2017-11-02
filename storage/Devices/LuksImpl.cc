@@ -353,7 +353,7 @@ namespace storage
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
 
-	wait_for_devices({ blk_device->get_name() });
+	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)
@@ -412,7 +412,7 @@ namespace storage
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
 
-	wait_for_devices({ blk_device->get_name() });
+	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_options);
 	if (cmd.retcode() != 0)

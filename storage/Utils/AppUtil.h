@@ -70,11 +70,6 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     StatVfs detect_stat_vfs(const string& path);
 
-    /**
-     * Run "udevadm settle" and check existence of all names.
-     */
-    void wait_for_devices(const vector<string>& names);
-
 
 string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 
