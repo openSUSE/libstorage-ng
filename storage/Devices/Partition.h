@@ -76,7 +76,7 @@ namespace storage
 	/** PPC PReP Boot partition, for MS-DOS and GPT. */
 	ID_PREP = 0x41,
 
-	/** For MS-DOS, GPT and DASD. */
+	/** For MS-DOS, GPT, DASD and implicit. */
 	ID_LINUX = 0x83,
 
 	/** Swap partition, for MS-DOS, GPT and DASD. */
@@ -91,7 +91,7 @@ namespace storage
 	/** EFI System Partition, for MS-DOS and GPT. */
 	ID_ESP = 0xef,
 
-	/** Only set during probing. For MS-DOS, GPT and DASD. */
+	/** Only set during probing. For MS-DOS, GPT, DASD and implicit. */
 	ID_UNKNOWN = 0x100,
 
 	/** BIOS boot partition (https://en.wikipedia.org/wiki/BIOS_boot_partition),
