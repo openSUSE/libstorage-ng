@@ -88,8 +88,8 @@ namespace storage
 	virtual vector<string> get_mount_options() const { return vector<string>(); }
 
 	/**
-	 * Somehow waits for all involved devices to be present, e.g. run
-	 * "udevadm settle" and check device nodes.
+	 * Somehow waits for all underlying/parent devices to be present,
+	 * e.g. run "udevadm settle" and check device nodes.
 	 */
 	virtual void wait_for_devices() const { }
 
