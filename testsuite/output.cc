@@ -64,7 +64,7 @@ Fixture fixture;
 
 BOOST_AUTO_TEST_CASE(test_disk)
 {
-    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:0 transport:SATA";
+    string expected = "Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:256 transport:SATA";
 
     ostringstream out;
     out << *(Disk::find_by_name(fixture.get_storage()->get_staging(), "/dev/sda")) << endl;
@@ -87,7 +87,7 @@ BOOST_AUTO_TEST_CASE(test_partition)
 BOOST_AUTO_TEST_CASE(test_devicegraph)
 {
     list<string> expected = {
-	"Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:0 transport:SATA --> 43",
+	"Disk sid:42 displayname:/dev/sda name:/dev/sda region:[0, 167772160, 512 B] topology:[0 B, 0 B] range:256 transport:SATA --> 43",
 	"Gpt sid:43 displayname:gpt --> 44",
 	"Partition sid:44 displayname:/dev/sda1 name:/dev/sda1 region:[2048, 2097152, 512 B] -->",
 	"User source-sid:42 target-sid:43",

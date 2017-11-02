@@ -58,6 +58,9 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	string get_bus_id() const { return bus_id; }
+	void set_bus_id(string bus_id) { Impl::bus_id = bus_id; }
+
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 
@@ -66,6 +69,8 @@ namespace storage
 
 	DasdFormat get_format() const { return format; }
 	void set_format(DasdFormat format) { Impl::format = format; }
+
+	virtual vector<PtType> get_possible_partition_table_types() const override;
 
 	static void probe_dasds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
@@ -81,6 +86,8 @@ namespace storage
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
     private:
+
+	string bus_id;
 
 	bool rotational;
 

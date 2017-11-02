@@ -206,6 +206,10 @@
       <stdout>2858730233856 1857733844992 1000996388864 nfs</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>

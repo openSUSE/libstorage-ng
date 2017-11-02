@@ -84,6 +84,8 @@ namespace storage
 	vector<const BlkDevice*> get_blk_devices() const;
 	const BlkDevice* get_blk_device() const;
 
+	virtual void wait_for_devices() const override;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

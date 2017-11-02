@@ -40,7 +40,7 @@ namespace storage
 
     //! Partition Table Type.
     enum class PtType {
-	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC
+	UNKNOWN, LOOP, MSDOS, GPT, DASD, MAC, IMPLICIT
     };
 
     std::string get_pt_type_name(PtType pt_type);
@@ -70,6 +70,9 @@ namespace storage
 	bool logical_possible;
 
 	bool is_possible(PartitionType partition_type) const;
+
+	friend std::ostream& operator<<(std::ostream& s, const PartitionSlot& partition_slot);
+
     };
 
 
@@ -96,8 +99,31 @@ namespace storage
 
 	void delete_partition(const std::string& name) ST_DEPRECATED;
 
+	/**
+	 * Highest number for a primary or extended partition. Returns 0 if no
+	 * primary or extended partition is possible.
+	 *
+	 * Lowest number for a primary or extended partition is 1.
+	 *
+	 * This function is independend of existing partitions.
+	 */
 	unsigned int max_primary() const;
+
+	/**
+	 * Returns whether a extended partition is supported.
+	 *
+	 * This function is independend of existing partitions.
+	 */
 	bool extended_possible() const;
+
+	/**
+	 * Highest number for a logical partition. Returns 0 if no logical
+	 * partition is possible.
+	 *
+	 * Lowest number for a logical partition is 5.
+	 *
+	 * This function is independend of existing partitions.
+	 */
 	unsigned int max_logical() const;
 
 	unsigned int num_primary() const;
@@ -127,12 +153,15 @@ namespace storage
 	 */
 	const Partition* get_extended() const;
 
+	/**
+	 * @throw Exception
+	 */
 	const Partitionable* get_partitionable() const;
 
 	Alignment get_alignment(AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**
-	 * @throw NotInside
+	 * @throw Exception
 	 */
 	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END,
 							      AlignType align_type = AlignType::OPTIMAL) const;

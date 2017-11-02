@@ -53,15 +53,12 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
 
-	set_range(Partitionable::Impl::default_range);
-
 	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
     }
 
 
     Multipath::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, Partitionable::Impl::default_range),
-	  vendor(), model(), rotational(false)
+	: Partitionable::Impl(name, region), vendor(), model(), rotational(false)
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
@@ -283,6 +280,15 @@ namespace storage
     void
     Multipath::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
+	// See doc/udev.md.
+
+	static const vector<string> allowed_prefixes = { "scsi-", "wwn-", "dm-name-", "dm-uuid-" };
+
+	erase_if(udev_ids, [](const string& udev_id) {
+	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
+			   { return boost::starts_with(udev_id, prefix); });
+	});
+
 	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("wwn-"));
 	stable_partition(udev_ids.begin(), udev_ids.end(), string_starts_with("scsi-"));
     }

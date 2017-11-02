@@ -53,7 +53,7 @@ namespace storage
 
 	PtType get_default_partition_table_type() const;
 
-	vector<PtType> get_possible_partition_table_types() const;
+	virtual vector<PtType> get_possible_partition_table_types() const;
 
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1c(Prober& prober) override;
@@ -76,10 +76,10 @@ namespace storage
 
     protected:
 
-	Impl(const string& name)
-	    : BlkDevice::Impl(name), topology(), range(0) {}
+	Impl(const string& name, unsigned int range = default_range)
+	    : BlkDevice::Impl(name), topology(), range(range) {}
 
-	Impl(const string& name, const Region& region, unsigned int range)
+	Impl(const string& name, const Region& region, unsigned int range = default_range)
 	    : BlkDevice::Impl(name, region), topology(), range(range) {}
 
 	Impl(const xmlNode* node);

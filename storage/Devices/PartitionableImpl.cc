@@ -28,6 +28,7 @@
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/DasdPt.h"
+#include "storage/Devices/ImplicitPt.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
@@ -118,8 +119,24 @@ namespace storage
 	    if (get_region().get_length() != parted.get_region().get_length())
 		ST_THROW(Exception("different size reported by kernel and parted"));
 
-	    PartitionTable* pt = create_partition_table(parted.get_label());
-	    pt->get_impl().probe_pass_1c(prober);
+	    PtType label = parted.get_label();
+
+	    // parted reports DASD partition table for implicit partition
+	    // tables. Convert that to implicit partition table.
+
+	    if (is_dasd(get_non_impl()))
+	    {
+		const Dasd* dasd = to_dasd(get_non_impl());
+
+		if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
+		    label = PtType::IMPLICIT;
+
+		if (dasd->get_type() == DasdType::FBA && parted.is_implicit())
+		    label = PtType::IMPLICIT;
+	    }
+
+	    PartitionTable* partition_table = create_partition_table(label);
+	    partition_table->get_impl().probe_pass_1c(prober);
 	}
     }
 
@@ -127,7 +144,12 @@ namespace storage
     PtType
     Partitionable::Impl::get_default_partition_table_type() const
     {
-	PtType ret = get_possible_partition_table_types().front();
+	vector<PtType> possible = get_possible_partition_table_types();
+
+	if (possible.empty())
+	    ST_THROW(Exception("no partition table possible"));
+
+	PtType ret = possible.front();
 
 	y2mil("ret:" << toString(ret));
 
@@ -135,19 +157,17 @@ namespace storage
     }
 
 
-    std::vector<PtType>
+    vector<PtType>
     Partitionable::Impl::get_possible_partition_table_types() const
     {
-	// TODO other archs, other DASD types (e.g. FBA)
-
-	if (is_dasd(get_non_impl()))
-	    return { PtType::DASD };
+	// ECKD DASDs are handled completely and FBA DASDs partly in Dasd
+	// class.
 
 	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
 
 	unsigned long long int num_sectors = get_region().get_length();
 	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
-	y2mil("num_sectors:" << num_sectors << " size_ok_for_msdos:" << size_ok_for_msdos);
+	y2mil("num-sectors:" << num_sectors << " size-ok-for-msdos:" << size_ok_for_msdos);
 
 	PtType best = PtType::MSDOS;
 
@@ -159,7 +179,7 @@ namespace storage
 	if (best == PtType::MSDOS)
 	    ret.push_back(PtType::GPT);
 
-	// For a small disk attached to a EFI machine MSDOS is possible
+	// For a small disk attached to a EFI machine MS-DOS is possible
 	// (e.g. use-case USB stick).
 	if (best == PtType::GPT && size_ok_for_msdos)
 	    ret.push_back(PtType::MSDOS);
@@ -190,11 +210,21 @@ namespace storage
 		ret = DasdPt::create(get_devicegraph());
 		break;
 
+	    case PtType::IMPLICIT:
+		ret = ImplicitPt::create(get_devicegraph());
+		break;
+
 	    default:
 		ST_THROW(UnsupportedException("unsupported partition table type " + toString(pt_type)));
 	}
 
 	User::create(get_devicegraph(), get_non_impl(), ret);
+
+	if (pt_type == PtType::IMPLICIT)
+	{
+	    to_implicit_pt(ret)->create_implicit_partition();
+	}
+
 	return ret;
     }
 

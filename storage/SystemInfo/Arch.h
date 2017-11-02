@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,6 +58,8 @@ namespace storage
 	bool is_efiboot() const { return efiboot; }
 	void set_efiboot(bool efiboot) { Arch::efiboot = efiboot; }
 
+	unsigned int get_page_size() const { return page_size; }
+
 	friend std::ostream& operator<<(std::ostream& s, const Arch& arch);
 
     private:
@@ -66,8 +69,9 @@ namespace storage
 	std::string arch;
 	bool ppc_mac;
 	bool ppc_pegasos;
-        bool ppc_power_nv;
+	bool ppc_power_nv;
 	bool efiboot;
+	unsigned int page_size;
 
     };
 

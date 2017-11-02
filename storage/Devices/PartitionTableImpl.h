@@ -39,9 +39,6 @@ namespace storage
 
     template <> struct EnumTraits<PtType> { static const vector<string> names; };
 
-    std::ostream& operator<<(std::ostream& s, const PartitionSlot& partition_slot);
-
-
     template <> struct DeviceTraits<PartitionTable> { static const char* classname; };
 
 
@@ -127,8 +124,8 @@ namespace storage
 
 	virtual Alignment get_alignment(AlignType align_type) const;
 
-	vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
-							 AlignType align_type) const;
+	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
+								 AlignType align_type) const;
 
 	Region align(const Region& region, AlignPolicy align_policy, AlignType align_type) const;
 
@@ -147,6 +144,9 @@ namespace storage
 
     private:
 
+	/**
+	 * TODO document and use
+	 */
 	bool read_only;
 
     };

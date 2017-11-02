@@ -81,7 +81,8 @@ namespace storage
 	{
 	public:
 
-	    Create(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
+	    Create(sid_t sid, bool only_sync = false, bool nop = false)
+		: Base(sid, only_sync, nop) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;

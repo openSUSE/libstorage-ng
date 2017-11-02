@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +49,8 @@ namespace storage
 
 	/**
 	 * Get the default partition table type for the partitionable.
+	 *
+	 * @throw Exception
 	 */
 	PtType get_default_partition_table_type() const;
 
@@ -59,7 +61,12 @@ namespace storage
 	std::vector<PtType> get_possible_partition_table_types() const;
 
 	/**
-	 * @throw WrongNumberOfChildren, UnsupportedException
+	 * Create a partition table on the partitionable.
+	 *
+	 * When creating a implicit partition table this function also creates
+	 * the implicit partition.
+	 *
+	 * @throw WrongNumberOfChildren, UnsupportedException, Exception
 	 */
 	PartitionTable* create_partition_table(PtType pt_type);
 
@@ -69,6 +76,11 @@ namespace storage
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	PartitionTable* get_partition_table();
+
+	/**
+	 * Return the name of the partition with the specified number.
+	 */
+	virtual std::string partition_name(int number) const;
 
 	/**
 	 * @copydoc get_partition_table

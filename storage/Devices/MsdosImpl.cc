@@ -142,7 +142,7 @@ namespace storage
 	PartitionTable::Impl::print(out);
 
 	if (minimal_mbr_gap != default_minimal_mbr_gap)
-	    out << " minimal_mbr_gap:" << minimal_mbr_gap;
+	    out << " minimal-mbr-gap:" << minimal_mbr_gap;
     }
 
 
@@ -156,14 +156,16 @@ namespace storage
     unsigned int
     Msdos::Impl::max_primary() const
     {
-	return min(4U, get_partitionable()->get_range());
+	return min(4U, get_partitionable()->get_range() - 1);
     }
 
 
     unsigned int
     Msdos::Impl::max_logical() const
     {
-	return min(Partitionable::Impl::default_range, get_partitionable()->get_range());
+	unsigned int ret = min(Partitionable::Impl::default_range, get_partitionable()->get_range()) - 1;
+
+	return ret < 5 ? 0 : ret;
     }
 
 
@@ -273,10 +275,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda)
-			   _("Create MSDOS partition table on %1$s"),
+			   _("Create MS-DOS partition table on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda)
-			   _("Creating MSDOS partition table on %1$s"));
+			   _("Creating MS-DOS partition table on %1$s"));
 
 	return sformat(text, partitionable->get_displayname().c_str());
     }
@@ -306,10 +308,10 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda)
-			   _("Delete MSDOS partition table on %1$s"),
+			   _("Delete MS-DOS partition table on %1$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda)
-			   _("Deleting MSDOS partition table on %1$s"));
+			   _("Deleting MS-DOS partition table on %1$s"));
 
 	return sformat(text, partitionable->get_displayname().c_str());
     }

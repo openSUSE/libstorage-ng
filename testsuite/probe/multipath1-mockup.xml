@@ -720,6 +720,10 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/lsscsi --transport</name>
       <stdout>[0:0:0:1085554707] disk    fc:0x500507630500873a0x770d00   /dev/sda </stdout>
       <stdout>[0:0:0:1085620243] disk    fc:0x500507630500873a0x770d00   /dev/sdb </stdout>

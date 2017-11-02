@@ -96,8 +96,6 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Md name"));
 
-	set_range(default_range);
-
 	if (is_numeric())
 	{
 	    string::size_type pos = string(DEVDIR).size() + 1;
@@ -556,9 +554,11 @@ namespace storage
     void
     Md::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	udev_ids.erase(remove_if(udev_ids.begin(), udev_ids.end(), [](const string& udev_id) {
+	// See doc/udev.md.
+
+	erase_if(udev_ids, [](const string& udev_id) {
 	    return !boost::starts_with(udev_id, "md-uuid-");
-	}), udev_ids.end());
+	});
     }
 
 
@@ -753,6 +753,7 @@ namespace storage
 
 	multimap<unsigned int, string> devices;
 	multimap<unsigned int, string> spares;
+	vector<string> names;
 
 	for (const BlkDevice* blk_device : get_devices())
 	{
@@ -762,6 +763,8 @@ namespace storage
 		devices.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
 	    else
 		spares.insert(make_pair(md_user->get_sort_key(), blk_device->get_name()));
+
+	    names.push_back(blk_device->get_name());
 	}
 
 	cmd_line += " --raid-devices=" + to_string(devices.size());
@@ -776,6 +779,8 @@ namespace storage
 	    cmd_line += " " + quote(value.second);
 
 	cout << cmd_line << endl;
+
+	wait_for_devices(names);
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

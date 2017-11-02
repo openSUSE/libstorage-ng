@@ -112,6 +112,20 @@ namespace storage
     }
 
 
+    string
+    Dasd::get_bus_id() const
+    {
+	return get_impl().get_bus_id();
+    }
+
+
+    void
+    Dasd::set_bus_id(string bus_id)
+    {
+	get_impl().set_bus_id(bus_id);
+    }
+
+
     bool
     Dasd::is_rotational() const
     {

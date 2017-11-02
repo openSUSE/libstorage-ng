@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-# requirements: empty disk /dev/sdb
+# requirements: disk /dev/sdb
 
 
 from storage import *
@@ -19,6 +19,8 @@ staging = storage.get_staging()
 print staging
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
+
+partitionable.remove_descendants()
 
 partitionable.create_partition_table(PtType_GPT)
 

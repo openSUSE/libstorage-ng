@@ -17,6 +17,7 @@
       <udev-id>ccw-IBM.750000000L2371.0001.40.00000000000027200000000000000000</udev-id>
       <topology/>
       <range>4</range>
+      <bus-id>0.0.0150</bus-id>
       <type>ECKD</type>
       <format>CDL</format>
     </Dasd>

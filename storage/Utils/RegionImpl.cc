@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2015-2016] SUSE LLC
+ * Copyright (c) [2015-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,6 +20,8 @@
  * find current contact information at www.novell.com.
  */
 
+
+#include <functional>
 
 #include "storage/Utils/RegionImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
@@ -169,22 +171,22 @@ namespace storage
 	unsigned long long end = get_end();
 	unsigned long long block_size = get_block_size();
 
-	vector<Region> used_regions_sorted = used_regions;
-	sort(used_regions_sorted.begin(), used_regions_sorted.end());
+	vector<std::reference_wrapper<const Region>> used_regions_sorted(used_regions.begin(), used_regions.end());
+	sort(used_regions_sorted.begin(), used_regions_sorted.end(), std::less<const Region>{});
 
 	vector<Region> ret;
 
 	for (const Region& used_region : used_regions_sorted)
 	{
-	    if (!used_region.get_impl().inside(*this))
-		ST_THROW(NotInside());
-
 	    assert_equal_block_size(used_region.get_impl());
+
+	    if (used_region.get_end() < start || used_region.get_start() > end)
+		continue;
 
 	    if (used_region.get_start() > start)
 		ret.emplace_back(start, used_region.get_start() - start, block_size);
 
-	    start = used_region.get_end() + 1;
+	    start = max(start, used_region.get_end() + 1);
 	}
 
 	if (end > start)

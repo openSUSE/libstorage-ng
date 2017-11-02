@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2017 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,7 +32,7 @@ namespace storage
 {
 
     Dasdview::Dasdview(const string& device)
-	: device(device), type(DasdType::UNKNOWN), format(DasdFormat::NONE)
+	: device(device), bus_id(), type(DasdType::UNKNOWN), format(DasdFormat::NONE)
     {
 	SystemCmd cmd(DASDVIEWBIN " --extended " + quote(device));
 
@@ -50,6 +51,14 @@ namespace storage
     Dasdview::parse(const vector<string>& lines)
     {
 	vector<string>::const_iterator pos;
+
+	pos = find_if(lines, string_starts_with("busid"));
+	if (pos != lines.end())
+	{
+	    y2mil("Bus-ID line:" << *pos);
+	    string tmp = string(*pos, pos->find(':') + 1);
+	    bus_id = extractNthWord(0, tmp);
+	}
 
 	pos = find_if(lines, string_starts_with("format"));
 	if (pos != lines.end())
@@ -82,8 +91,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const Dasdview& dasdview)
     {
-	s << "device:" << dasdview.device << " type:" << toString(dasdview.type)
-	  << " format:" << toString(dasdview.format);
+	s << "device:" << dasdview.device << " bus-id:" << dasdview.bus_id << " type:"
+	  << toString(dasdview.type) << " format:" << toString(dasdview.format);
 
 	return s;
     }

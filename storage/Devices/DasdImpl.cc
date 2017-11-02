@@ -56,24 +56,26 @@ namespace storage
 
 
     Dasd::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), rotational(false), type(DasdType::UNKNOWN),
+	: Partitionable::Impl(name, 4), bus_id(), rotational(false), type(DasdType::UNKNOWN),
 	  format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const string& name, const Region& region)
-	: Partitionable::Impl(name, region, 4), rotational(false), type(DasdType::UNKNOWN),
-	  format(DasdFormat::NONE)
+	: Partitionable::Impl(name, region, 4), bus_id(), rotational(false),
+	  type(DasdType::UNKNOWN), format(DasdFormat::NONE)
     {
     }
 
 
     Dasd::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), type(DasdType::UNKNOWN),
+	: Partitionable::Impl(node), bus_id(), rotational(false), type(DasdType::UNKNOWN),
 	  format(DasdFormat::NONE)
     {
 	string tmp;
+
+	getChildValue(node, "bus-id", bus_id);
 
 	getChildValue(node, "rotational", rotational);
 
@@ -82,6 +84,45 @@ namespace storage
 
 	if (getChildValue(node, "format", tmp))
 	    format = toValueWithFallback(tmp, DasdFormat::NONE);
+    }
+
+
+    vector<PtType>
+    Dasd::Impl::get_possible_partition_table_types() const
+    {
+	switch (type)
+	{
+	    case DasdType::ECKD:
+	    {
+		switch (format)
+		{
+		    case DasdFormat::CDL:
+			return { PtType::DASD };
+
+		    case DasdFormat::LDL:
+			return { PtType::IMPLICIT };
+
+		    default:
+			return { };
+		}
+	    }
+
+	    case DasdType::FBA:
+	    {
+		vector<PtType> ret = Partitionable::Impl::get_possible_partition_table_types();
+
+		ret.push_back(PtType::IMPLICIT);
+
+		return ret;
+	    }
+
+	    case DasdType::UNKNOWN:
+	    {
+		return { };
+	    }
+	}
+
+	return { };
     }
 
 
@@ -119,8 +160,13 @@ namespace storage
 	rotational = rotational_file.get<bool>();
 
 	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
+
+	bus_id = dasdview.get_bus_id();
+
 	type = dasdview.get_type();
-	format = dasdview.get_format();
+
+	if (type == DasdType::ECKD)
+	    format = dasdview.get_format();
     }
 
 
@@ -135,6 +181,8 @@ namespace storage
     Dasd::Impl::save(xmlNode* node) const
     {
 	Partitionable::Impl::save(node);
+
+	setChildValue(node, "bus-id", bus_id);
 
 	setChildValueIf(node, "rotational", rotational, rotational);
 
@@ -151,7 +199,7 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && type == rhs.type &&
+	return bus_id == rhs.bus_id && rotational == rhs.rotational && type == rhs.type &&
 	    format == rhs.format;
     }
 
@@ -162,6 +210,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	Partitionable::Impl::log_diff(log, rhs);
+
+	storage::log_diff(log, "bus-id", bus_id, rhs.bus_id);
 
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
@@ -175,6 +225,8 @@ namespace storage
     {
 	Partitionable::Impl::print(out);
 
+	out << " bus-id:" << bus_id;
+
 	if (rotational)
 	    out << " rotational";
 
@@ -186,23 +238,21 @@ namespace storage
     void
     Dasd::Impl::process_udev_paths(vector<string>& udev_paths) const
     {
+	// See doc/udev.md.
+
+	erase_if(udev_paths, [](const string& udev_path) {
+	    return !boost::starts_with(udev_path, "ccw-");
+	});
     }
 
 
     void
     Dasd::Impl::process_udev_ids(vector<string>& udev_ids) const
     {
-	// Only keep udev-ids known to represent the dasd, not its
-	// content. E.g. ignore lvm-pv-<pv-uuid> since it vanishes when the
-	// lvm physical volume is removed. Since udev may come up with new
-	// udev-ids any time a whitelist looks more future-proof than a
-	// blacklist.
-
-	static const vector<string> allowed_prefixes = { "ccw-" };
+	// See doc/udev.md.
 
 	erase_if(udev_ids, [](const string& udev_id) {
-	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
-			   { return boost::starts_with(udev_id, prefix); });
+	    return !boost::starts_with(udev_id, "ccw-");
 	});
     }
 

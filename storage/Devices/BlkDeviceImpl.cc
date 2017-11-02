@@ -542,31 +542,6 @@ namespace storage
 
 
     void
-    BlkDevice::Impl::wait_for_device() const
-    {
-	SystemCmd(UDEVADMBIN_SETTLE);
-
-	bool exist = access(name.c_str(), R_OK) == 0;
-	y2mil("name:" << name << " exist:" << exist);
-
-	if (!exist)
-	{
-	    for (int count = 0; count < 500; ++count)
-	    {
-		usleep(10000);
-		exist = access(name.c_str(), R_OK) == 0;
-		if (exist)
-		    break;
-	    }
-	    y2mil("name:" << name << " exist:" << exist);
-	}
-
-	if (!exist)
-	    ST_THROW(Exception("wait_for_device failed"));
-    }
-
-
-    void
     BlkDevice::Impl::wipe_device() const
     {
 	string cmd_line = WIPEFSBIN " --all " + quote(get_name());

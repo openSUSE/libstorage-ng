@@ -66,6 +66,34 @@ namespace storage
     }
 
 
+    std::ostream&
+    operator<<(std::ostream& s, const PartitionSlot& partition_slot)
+    {
+	s << "region:" << partition_slot.region << " number:" << partition_slot.number
+	  << " name:" << partition_slot.name;
+
+	if (partition_slot.primary_slot)
+	    s << " primary-slot";
+
+	if (partition_slot.primary_possible)
+	    s << " primary-possible";
+
+	if (partition_slot.extended_slot)
+	    s << " extended-slot";
+
+	if (partition_slot.extended_possible)
+	    s << " extended-possible";
+
+	if (partition_slot.logical_slot)
+	    s << " logical-slot";
+
+	if (partition_slot.logical_possible)
+	    s << " logical-possible";
+
+	return s;
+    }
+
+
     PartitionTable::PartitionTable(Impl* impl)
 	: Device(impl)
     {

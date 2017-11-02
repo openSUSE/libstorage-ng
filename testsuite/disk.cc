@@ -29,8 +29,8 @@ BOOST_AUTO_TEST_CASE(disk1)
     Disk* sda = Disk::create(rhs, "/dev/sda");
     sda->set_size(16 * GiB);
 
-    BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(storage, lhs, rhs), std::runtime_error,
-	[](const std::runtime_error& e) { return e.what() == string("cannot create disk"); }
+    BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(storage, lhs, rhs), Exception,
+	[](const Exception& e) { return e.what() == string("cannot create disk"); }
     );
 }
 

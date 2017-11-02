@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -120,6 +120,13 @@ namespace storage
     Partitionable::get_partition_table() const
     {
 	return get_impl().get_partition_table();
+    }
+
+
+    string
+    Partitionable::partition_name(int number) const
+    {
+	return get_impl().partition_name(number);
     }
 
 

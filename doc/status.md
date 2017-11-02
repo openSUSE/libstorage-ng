@@ -20,11 +20,11 @@ DASD
 
 Implemented:
 
-* ECKD
+* ECKD (CDL and LDL)
+* FBA
 
 Missing:
 
-* FBA
 * zKVM
 
 
@@ -37,9 +37,6 @@ Implemented:
 * Topology calculations.
 * Support for boot, legacy_boot and pmbr_boot flags.
 * Renumbering of logical partition.
-
-Missing:
-
 * Query resize information.
 
 
@@ -141,8 +138,4 @@ Implemented:
 
 * Loading and saving devicegraph in XML.
 * Remote probing.
-
-Missing:
-
-* Complete udev link handling.
 

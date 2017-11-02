@@ -15,7 +15,7 @@ MOFILES = $(POFILES:.po=.mo)
 all: $(MOFILES)
 
 $(PACKAGE).pot: $(SRCFILES)
-	$(XGETTEXT) -s --no-wrap --add-comments=TRANSLATORS: --add-location \
+	$(XGETTEXT) --sort-output --no-wrap --add-comments=TRANSLATORS: --no-location \
 	    --keyword=_ --keyword=_:1,2 --foreign-user \
 	    --copyright-holder="SUSE Linux GmbH, Nuernberg" \
 	    --default-domain=$(PACKAGE) --output=$(PACKAGE).pot $(SRCFILES)

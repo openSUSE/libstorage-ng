@@ -36,6 +36,7 @@
 #define SHBIN "/bin/sh"
 
 #define UNAMEBIN "/usr/bin/uname"
+#define GETCONFBIN "/usr/bin/getconf"
 
 #define PARTEDBIN "/usr/sbin/parted"
 #define ADDPARTBIN "/usr/sbin/addpart"

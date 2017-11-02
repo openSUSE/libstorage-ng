@@ -12,6 +12,15 @@
 %rename("==") "operator==";
 %rename("!=") "operator!=";
 
+use_ostream(storage::Devicegraph);
+use_ostream(storage::Device);
+use_ostream(storage::Holder);
+use_ostream(storage::Region);
+use_ostream(storage::ResizeInfo);
+use_ostream(storage::ContentInfo);
+use_ostream(storage::SpaceInfo);
+use_ostream(storage::PartitionSlot);
+
 // Since dynamic exception specifications are deprecated in C++11 we use the
 // SWIG %catches feature instead.
 
@@ -74,6 +83,7 @@
 #include "storage/Devices/Msdos.h"
 #include "storage/Devices/Gpt.h"
 #include "storage/Devices/DasdPt.h"
+#include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/LvmVg.h"
@@ -152,6 +162,7 @@
 %include "../../storage/Devices/Msdos.h"
 %include "../../storage/Devices/Gpt.h"
 %include "../../storage/Devices/DasdPt.h"
+%include "../../storage/Devices/ImplicitPt.h"
 %include "../../storage/Devices/LvmPv.h"
 %include "../../storage/Devices/LvmLv.h"
 %include "../../storage/Devices/LvmVg.h"

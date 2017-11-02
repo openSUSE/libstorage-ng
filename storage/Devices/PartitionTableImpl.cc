@@ -45,7 +45,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<PtType>::names({
-	"unknown", "loop", "MS-DOS", "GPT", "DASD", "Mac"
+	"unknown", "loop", "MS-DOS", "GPT", "DASD", "Mac", "implicit"
     });
 
 
@@ -55,6 +55,7 @@ namespace storage
     PartitionTable::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), read_only(false)
     {
+	getChildValue(node, "read-only", read_only);
     }
 
 
@@ -66,9 +67,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
-
-	if (parted.is_implicit())
-	    read_only = true;
 
 	for (const Parted::Entry& entry : parted.get_entries())
 	{
@@ -113,6 +111,7 @@ namespace storage
 	Partition* partition = Partition::create(get_devicegraph(), name, region, type);
 	Subdevice::create(get_devicegraph(), parent, partition);
 
+	partition->get_impl().update_sysfs_name_and_path();
 	partition->get_impl().update_udev_paths_and_ids();
 
 	if (boost::starts_with(name, DEVMAPPERDIR "/"))
@@ -543,34 +542,6 @@ namespace storage
 	// https://bugzilla.suse.com/show_bug.cgi?id=896485
 
 	partitionable->get_impl().wipe_device();
-    }
-
-
-    std::ostream&
-    operator<<(std::ostream& s, const PartitionSlot& partition_slot)
-    {
-	s << "region:" << partition_slot.region << " number:" << partition_slot.number
-	  << " name:" << partition_slot.name;
-
-	if (partition_slot.primary_slot)
-	    s << " primary-slot";
-
-	if (partition_slot.primary_possible)
-	    s << " primary-possible";
-
-	if (partition_slot.extended_slot)
-	    s << " extended-slot";
-
-	if (partition_slot.extended_possible)
-	    s << " extended-possible";
-
-	if (partition_slot.logical_slot)
-	    s << " logical-slot";
-
-	if (partition_slot.logical_possible)
-	    s << " logical-possible";
-
-	return s;
     }
 
 }

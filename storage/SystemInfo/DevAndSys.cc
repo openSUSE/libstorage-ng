@@ -42,7 +42,7 @@ namespace storage
     {
 	SystemCmd cmd(LSBIN " -1 --sort=none " + quote(path));
 	if (cmd.retcode() != 0)
-	    throw runtime_error("ls failure for " + path);
+	    ST_THROW(Exception("ls failure for " + path));
 
 	parse(cmd.stdout());
 
@@ -113,7 +113,7 @@ namespace storage
     File::get<int>() const
     {
 	if (content.empty())
-	    ST_THROW(Exception("empty file"));
+	    ST_THROW(Exception("empty file " + path));
 
 	int ret;
 	content.front() >> ret;
@@ -129,7 +129,7 @@ namespace storage
     File::get<unsigned long long>() const
     {
 	if (content.empty())
-	    ST_THROW(Exception("empty file"));
+	    ST_THROW(Exception("empty file " + path));
 
 	unsigned long long ret;
 	content.front() >> ret;
@@ -145,7 +145,7 @@ namespace storage
     File::get<string>() const
     {
 	if (content.empty())
-	    ST_THROW(Exception("empty file"));
+	    ST_THROW(Exception("empty file " + path));
 
 	return content.front();
     }
@@ -175,7 +175,7 @@ namespace storage
 
 	SystemCmd cmd(LSBIN " -1l --sort=none " + quote(path));
 	if (cmd.retcode() != 0)
-	    throw runtime_error("ls failure for " + path);
+	    ST_THROW(Exception("ls failure for " + path));
 
 	return parse(cmd.stdout());
     }

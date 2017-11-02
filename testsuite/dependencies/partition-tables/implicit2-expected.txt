@@ -1,0 +1,4 @@
+1 - Delete partition /dev/dasda1 (8.75 MiB) -> 2
+2 - Delete GPT on /dev/dasda -> 3
+3 - Create implicit partition table on /dev/dasda [nop] -> 4
+4 - Create implicit partition /dev/dasda1 (9.76 MiB) [nop] ->
