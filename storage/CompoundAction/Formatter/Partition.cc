@@ -290,16 +290,29 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_text() const
     {
-	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by partition id string (e.g. Linux LVM)
-	Text text = _("Create partition %1$s (%2$s) as %3$s");
+	string tmp = id_to_string(partition->get_id());
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
-		       partition->get_size_string().c_str(),
-		       id_to_string(partition->get_id()).c_str());
+	if (!tmp.empty())
+	{
+	    // TRANSLATORS:
+	    // %1$s is replaced by partition name (e.g. /dev/sda1),
+	    // %2$s is replaced by size (e.g. 2 GiB),
+	    // %3$s is replaced by partition id string (e.g. Linux LVM)
+	    Text text = _("Create partition %1$s (%2$s) as %3$s");
+
+	    return sformat(text, partition->get_name().c_str(),
+			   partition->get_size_string().c_str(), tmp.c_str());
+	}
+	else
+	{
+	    // TRANSLATORS:
+	    // %1$s is replaced by partition name (e.g. /dev/sda1),
+	    // %2$s is replaced by size (e.g. 2 GiB)
+	    Text text = _("Create partition %1$s (%2$s)");
+
+	    return sformat(text, partition->get_name().c_str(),
+			   partition->get_size_string().c_str());
+	}
     }
 
 
