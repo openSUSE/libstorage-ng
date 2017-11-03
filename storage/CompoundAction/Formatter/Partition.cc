@@ -208,7 +208,7 @@ namespace storage
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
@@ -227,7 +227,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by filesystem name (e.g. ext4)
+	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
@@ -258,7 +258,7 @@ namespace storage
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
@@ -277,7 +277,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by filesystem name (e.g. ext4)
+	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
@@ -325,7 +325,7 @@ namespace storage
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
@@ -344,7 +344,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by filesystem name (e.g. ext4)
+	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 
@@ -376,7 +376,7 @@ namespace storage
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text, 
@@ -395,7 +395,7 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by filesystem name (e.g. ext4)
+	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
 	return sformat(text, 

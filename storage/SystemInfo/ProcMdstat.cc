@@ -87,7 +87,7 @@ namespace storage
 	    tmp = line.substr( 0, pos );
 	    if( tmp=="(read-only)" || tmp=="(auto-read-only)" || tmp=="inactive" )
 	    {
-		entry.readonly = true;
+		entry.read_only = true;
 		entry.inactive = tmp=="inactive";
 		line.erase( 0, pos );
 		boost::trim_left(line, locale::classic());
@@ -300,8 +300,8 @@ namespace storage
 
 	s << " size:" << entry.size;
 
-	if (entry.readonly)
-	    s << " readonly";
+	if (entry.read_only)
+	    s << " read-only";
 
 	if (entry.inactive)
 	    s << " inactive";

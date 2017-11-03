@@ -62,7 +62,7 @@ namespace storage
 	struct Entry
 	{
 	    Entry() : md_level(MdLevel::UNKNOWN), md_parity(MdParity::DEFAULT), size(0),
-		      chunk_size(0), readonly(false), inactive(false), is_container(false),
+		      chunk_size(0), read_only(false), inactive(false), is_container(false),
 		      has_container(false) {}
 
 	    MdLevel md_level;
@@ -73,7 +73,7 @@ namespace storage
 	    unsigned long long size;
 	    unsigned long chunk_size;
 
-	    bool readonly;
+	    bool read_only;
 	    bool inactive;
 
 	    vector<Device> devices;

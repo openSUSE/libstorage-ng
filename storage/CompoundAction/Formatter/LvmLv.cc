@@ -131,7 +131,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
 	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by filesystem name (e.g. ext4)
+	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
@@ -152,7 +152,7 @@ namespace storage
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
@@ -189,7 +189,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
 	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by filesystem name (e.g. ext4)
+	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
@@ -210,7 +210,7 @@ namespace storage
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
@@ -247,7 +247,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
 	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by filesystem name (e.g. ext4)
+	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
@@ -268,7 +268,7 @@ namespace storage
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
@@ -305,7 +305,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
 	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by filesystem name (e.g. ext4)
+	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text, 
@@ -326,7 +326,7 @@ namespace storage
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
 	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by filesystem name (e.g. ext4)
+	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text, 
