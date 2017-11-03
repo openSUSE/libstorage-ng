@@ -161,7 +161,7 @@ namespace storage
 	/**
 	 * Find a volume group by vg-name.
 	 *
-	 * @throw Exception
+	 * @throw LvmVgNotFoundByVgName
 	 */
 	static LvmVg* find_by_vg_name(Devicegraph* devicegraph, const std::string& vg_name);
 

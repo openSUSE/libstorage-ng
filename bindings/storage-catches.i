@@ -162,8 +162,8 @@
 %catches(storage::Exception) storage::LvmLv::set_chunk_size(unsigned long long chunk_size);
 %catches(storage::Exception) storage::LvmLv::set_stripe_size(unsigned long long stripe_size);
 %catches(storage::Exception) storage::LvmLv::set_stripes(unsigned int stripes);
-%catches(storage::Exception) storage::LvmVg::find_by_vg_name(Devicegraph *devicegraph, const std::string &vg_name);
-%catches(storage::Exception) storage::LvmVg::find_by_vg_name(const Devicegraph *devicegraph, const std::string &vg_name);
+%catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(Devicegraph *devicegraph, const std::string &vg_name);
+%catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(const Devicegraph *devicegraph, const std::string &vg_name);
 %catches(storage::Exception) storage::LvmVg::get_lvm_lv(const std::string &lv_name);
 %catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
