@@ -56,7 +56,7 @@ namespace storage
 
     public:
 
-	Lock(bool readonly, bool disable = false);
+	Lock(bool read_only, bool disable = false);
 	~Lock() noexcept;
 
     private:

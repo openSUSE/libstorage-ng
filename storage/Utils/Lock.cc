@@ -50,21 +50,21 @@ namespace storage
     }
 
 
-    Lock::Lock(bool readonly, bool disable)
+    Lock::Lock(bool read_only, bool disable)
 	: disabled(disable || getenv("LIBSTORAGE_NO_LOCKING") != NULL),
 	  fd(-1)
     {
 	if (disabled)
 	    return;
 
-	y2mil("getting " << (readonly ? "read-only" : "read-write") << " lock");
+	y2mil("getting " << (read_only ? "read-only" : "read-write") << " lock");
 
 	if (mkdir(LOCKDIR, 0755) == -1 && errno != EEXIST)
 	{
 	    y2err("creating directory for lock-file failed: " << strerror(errno));
 	}
 
-	fd = open(LOCKDIR "/lock", (readonly ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC,
+	fd = open(LOCKDIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC,
 		  S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
 	if (fd < 0)
 	{
@@ -76,7 +76,7 @@ namespace storage
 	struct flock lock;
 	memset(&lock, 0, sizeof(lock));
 	lock.l_whence = SEEK_SET;
-	lock.l_type = (readonly ? F_RDLCK : F_WRLCK);
+	lock.l_type = (read_only ? F_RDLCK : F_WRLCK);
 	if (fcntl(fd, F_SETLK, &lock) < 0)
 	{
 	    switch (errno)
