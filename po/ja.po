@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-09-13 12:03+0000\n"
+"PO-Revision-Date: 2017-11-04 02:04+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ja/>\n"
@@ -702,7 +702,7 @@ msgstr "GiB"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "%2$s 内の %1$s に対する %3$s から %4$s への拡大"
+msgstr "%2$s にある %1$s を %3$s から %4$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -711,7 +711,7 @@ msgstr "%2$s 内の %1$s に対する %3$s から %4$s への拡大"
 #: ../storage/Devices/EncryptionImpl.cc:288
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s への拡大"
+msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -721,7 +721,7 @@ msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s �
 #: ../storage/Devices/LvmLvImpl.cc:385
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対する %3$s から %4$s への拡大"
+msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -730,7 +730,7 @@ msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対
 #: ../storage/Devices/PartitionImpl.cc:896
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s の %2$s から %3$s への拡大"
+msgstr "パーティション %1$s を %2$s から %3$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -739,7 +739,7 @@ msgstr "パーティション %1$s の %2$s から %3$s への拡大"
 #: ../storage/Devices/LvmPvImpl.cc:305
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への拡大"
+msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ拡大"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -749,7 +749,7 @@ msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への拡�
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "%2$s 内の %1$s を %3$s から %4$s に拡大しています"
+msgstr "%2$s にある %1$s を %3$s から %4$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -758,7 +758,7 @@ msgstr "%2$s 内の %1$s を %3$s から %4$s に拡大しています"
 #: ../storage/Devices/EncryptionImpl.cc:293
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の暗号化レイヤデバイスを %2$s から %3$s に拡大しています"
+msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s に拡大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1144,7 +1144,7 @@ msgstr "%1$s 内の GPT に対して protective MBR boot フラグを設定し�
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "%2$s に対する %1$s を %3$s から %4$s までの縮小"
+msgstr "%2$s にある %1$s を %3$s から %4$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1153,7 +1153,7 @@ msgstr "%2$s に対する %1$s を %3$s から %4$s までの縮小"
 #: ../storage/Devices/EncryptionImpl.cc:274
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s への縮小"
+msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1163,7 +1163,7 @@ msgstr "%1$s 内の暗号化レイヤデバイスに対する %2$s から %3$s �
 #: ../storage/Devices/LvmLvImpl.cc:369
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対する %3$s から %4$s への縮小"
+msgstr "ボリュームグループ %2$s 内にある論理ボリューム %1$s を %3$s から %4$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1172,7 +1172,7 @@ msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s に対
 #: ../storage/Devices/PartitionImpl.cc:882
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "パーティション %1$s に対する %2$s から %3$s への縮小"
+msgstr "パーティション %1$s を %2$s から %3$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -1181,7 +1181,7 @@ msgstr "パーティション %1$s に対する %2$s から %3$s への縮小"
 #: ../storage/Devices/LvmPvImpl.cc:291
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への縮小"
+msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ縮小"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1191,7 +1191,7 @@ msgstr "%1$s 内の物理ボリュームに対する %2$s から %3$s への縮�
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "%2$s 内の %1$s を %3$s から %4$s まで縮小しています"
+msgstr "%2$s にある %1$s を %3$s から %4$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1200,7 +1200,7 @@ msgstr "%2$s 内の %1$s を %3$s から %4$s まで縮小しています"
 #: ../storage/Devices/EncryptionImpl.cc:279
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%1$s 内の暗号化レイヤデバイスを %2$s から %3$s まで縮小しています"
+msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s まで縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
