@@ -36,7 +36,7 @@ namespace storage
 
 
     enum class MdLevel {
-	UNKNOWN, RAID0, RAID1, RAID5, RAID6, RAID10, CONTAINER
+	UNKNOWN, RAID0, RAID1, RAID4, RAID5, RAID6, RAID10, CONTAINER
     };
 
 

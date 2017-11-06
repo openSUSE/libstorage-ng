@@ -23,6 +23,7 @@
 
 #include <ctype.h>
 #include <iostream>
+#include <boost/math/common_factor_rt.hpp>
 
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/MdContainerImpl.h"
@@ -45,6 +46,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Algorithm.h"
+#include "storage/Utils/Math.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcMdadm.h"
 
@@ -60,7 +62,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdLevel>::names({
-	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10", "CONTAINER"
+	"unknown", "RAID0", "RAID1", "RAID4", "RAID5", "RAID6", "RAID10", "CONTAINER"
     });
 
 
@@ -148,6 +150,61 @@ namespace storage
 
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("invalid name"));
+
+	if (check_callbacks && chunk_size > 0)
+	{
+	    // See man page of mdadm and // http://bugzilla.suse.com/show_bug.cgi?id=1065381
+	    // for the constraints.
+
+	    switch (md_level)
+	    {
+		case MdLevel::RAID0:
+		{
+		    if (chunk_size < 4 * KiB)
+		    {
+			check_callbacks->error(sformat("Chunk size of MD %s is smaller than 4 KiB.",
+						       get_name().c_str()));
+		    }
+
+		    unsigned long long tmp = 1 * KiB;
+		    for (const BlkDevice* blk_device : get_devices())
+		    {
+			tmp = boost::math::lcm(tmp, (unsigned long long)
+					       blk_device->get_region().get_block_size());
+		    }
+
+		    if (!is_multiple_of(chunk_size, tmp))
+		    {
+			check_callbacks->error(sformat("Chunk size of MD %s is not a multiple of "
+						       "the sector size of the devices.",
+						       get_name().c_str()));
+		    }
+		}
+		break;
+
+		case MdLevel::RAID4:
+		case MdLevel::RAID5:
+		case MdLevel::RAID6:
+		case MdLevel::RAID10:
+		{
+		    if (chunk_size < get_devicegraph()->get_storage()->get_arch().get_page_size())
+		    {
+			check_callbacks->error(sformat("Chunk size of MD %s is smaller than the "
+						       "page size.", get_name().c_str()));
+		    }
+
+		    if (!is_power_of_two(chunk_size))
+		    {
+			check_callbacks->error(sformat("Chunk size of MD %s is not a power of two.",
+						       get_name().c_str()));
+		    }
+		}
+		break;
+
+		default:
+		    break;
+	    }
+	}
     }
 
 
@@ -573,6 +630,7 @@ namespace storage
 	    case MdLevel::RAID1:
 		return 2;
 
+	    case MdLevel::RAID4:
 	    case MdLevel::RAID5:
 		return 3;
 
@@ -673,6 +731,7 @@ namespace storage
 		}
 		break;
 
+	    case MdLevel::RAID4:
 	    case MdLevel::RAID5:
 		if (number >= 3)
 		{
@@ -739,8 +798,9 @@ namespace storage
 	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=1.0"
 	    " --homehost=any";
 
-	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID5 ||
-	    md_level == MdLevel::RAID6 || md_level == MdLevel::RAID10)
+	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID4 ||
+	    md_level == MdLevel::RAID5 || md_level == MdLevel::RAID6 ||
+	    md_level == MdLevel::RAID10)
 	    cmd_line += " --bitmap=internal";
 
 	if (chunk_size > 0)
