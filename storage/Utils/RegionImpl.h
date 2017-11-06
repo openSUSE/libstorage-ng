@@ -45,7 +45,7 @@ namespace storage
 
 	unsigned long long get_start() const { return start; }
 	unsigned long long get_length() const { return length; }
-	unsigned long long get_end() const { return start + length - 1; }
+	unsigned long long get_end() const;
 
 	void set_start(unsigned long long start) { Impl::start = start; }
 	void set_length(unsigned long long length) { Impl::length = length; }

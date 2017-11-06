@@ -68,6 +68,15 @@ namespace storage
     }
 
 
+    unsigned long long
+    Region::Impl::get_end() const
+    {
+	// TODO check if region is empty
+
+	return start + length - 1;
+    }
+
+
     void
     Region::Impl::adjust_start(long long delta)
     {
