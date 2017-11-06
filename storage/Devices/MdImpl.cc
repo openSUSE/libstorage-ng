@@ -154,7 +154,7 @@ namespace storage
 	if (check_callbacks && chunk_size > 0)
 	{
 	    // See man page of mdadm and // http://bugzilla.suse.com/show_bug.cgi?id=1065381
-	    // for the constrains.
+	    // for the constraints.
 
 	    switch (md_level)
 	    {
