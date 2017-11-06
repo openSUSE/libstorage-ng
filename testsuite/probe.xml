@@ -4,6 +4,11 @@
     <Disk>
       <sid>42</sid>
       <name>/dev/sda</name>
+      <region>
+        <length>5860466688</length>
+        <block-size>512</block-size>
+      </region>
+      <range>256</range>
     </Disk>
     <Msdos>
       <sid>43</sid>
@@ -11,6 +16,13 @@
     <Partition>
       <sid>44</sid>
       <name>/dev/sda1</name>
+      <region>
+        <start>2048</start>
+        <length>2103296</length>
+        <block-size>512</block-size>
+      </region>
+      <type>primary</type>
+      <id>131</id>
     </Partition>
   </Devices>
   <Holders>
