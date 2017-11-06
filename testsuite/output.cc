@@ -38,9 +38,11 @@ public:
 
 	PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
 
-	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 0, 512), PartitionType::PRIMARY);
+	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 32768, 512), PartitionType::PRIMARY);
 	sda1->set_size(1 * GiB);
 	sda1->set_id(ID_LINUX);
+
+	storage->check();
     }
 
     ~Fixture()
