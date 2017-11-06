@@ -62,7 +62,7 @@ namespace storage
 
     // strings must match /proc/mdstat
     const vector<string> EnumTraits<MdLevel>::names({
-	"unknown", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10", "CONTAINER"
+	"unknown", "RAID0", "RAID1", "RAID4", "RAID5", "RAID6", "RAID10", "CONTAINER"
     });
 
 
@@ -182,6 +182,7 @@ namespace storage
 		}
 		break;
 
+		case MdLevel::RAID4:
 		case MdLevel::RAID5:
 		case MdLevel::RAID6:
 		case MdLevel::RAID10:
@@ -629,6 +630,7 @@ namespace storage
 	    case MdLevel::RAID1:
 		return 2;
 
+	    case MdLevel::RAID4:
 	    case MdLevel::RAID5:
 		return 3;
 
@@ -729,6 +731,7 @@ namespace storage
 		}
 		break;
 
+	    case MdLevel::RAID4:
 	    case MdLevel::RAID5:
 		if (number >= 3)
 		{
@@ -795,8 +798,9 @@ namespace storage
 	    boost::to_lower_copy(toString(md_level), locale::classic()) + " --metadata=1.0"
 	    " --homehost=any";
 
-	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID5 ||
-	    md_level == MdLevel::RAID6 || md_level == MdLevel::RAID10)
+	if (md_level == MdLevel::RAID1 || md_level == MdLevel::RAID4 ||
+	    md_level == MdLevel::RAID5 || md_level == MdLevel::RAID6 ||
+	    md_level == MdLevel::RAID10)
 	    cmd_line += " --bitmap=internal";
 
 	if (chunk_size > 0)
