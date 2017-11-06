@@ -36,6 +36,8 @@ def doit(level, devices, chunk_size):
     print
 
     storage = Storage(environment)
+    storage.probe()
+
     staging = storage.get_staging()
 
     md = Md.create(staging, "/dev/md0")
@@ -96,6 +98,13 @@ results.write("\n")
 for devices in range(2, max_devices + 1):
     doit(MdLevel_RAID1, devices, 0)
     cleanup()
+
+results.write("\n")
+
+for devices in range(3, max_devices + 1):
+    for chunk_size in range(15, 20):
+        doit(MdLevel_RAID4, devices, 2**chunk_size)
+        cleanup()
 
 results.write("\n")
 
