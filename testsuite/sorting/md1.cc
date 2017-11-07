@@ -18,12 +18,12 @@ namespace std
 {
     ostream& operator<<(ostream& s, const vector<Md*>& mds)
     {
-        s << "{";
-        for (vector<Md*>::const_iterator it = mds.begin(); it != mds.end(); ++it)
-            s << (it == mds.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
-        s << " }";
+	s << "{";
+	for (vector<Md*>::const_iterator it = mds.begin(); it != mds.end(); ++it)
+	    s << (it == mds.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	s << " }";
 
-        return s;
+	return s;
     }
 }
 

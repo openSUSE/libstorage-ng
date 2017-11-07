@@ -18,12 +18,12 @@ namespace std
 {
     ostream& operator<<(ostream& s, const vector<Disk*>& disks)
     {
-        s << "{";
-        for (vector<Disk*>::const_iterator it = disks.begin(); it != disks.end(); ++it)
-            s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
-        s << " }";
+	s << "{";
+	for (vector<Disk*>::const_iterator it = disks.begin(); it != disks.end(); ++it)
+	    s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	s << " }";
 
-        return s;
+	return s;
     }
 }
 
