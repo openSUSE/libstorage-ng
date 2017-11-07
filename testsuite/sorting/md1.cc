@@ -41,8 +41,10 @@ BOOST_AUTO_TEST_CASE(md_sorting1)
     Md* md2 = Md::create(staging, "/dev/md2");
     Md* md1 = Md::create(staging, "/dev/md1");
 
-    Md* foo = Md::create(staging, "/dev/md/foo");
-    Md* bar = Md::create(staging, "/dev/md/bar");
+    Md* md_foo = Md::create(staging, "/dev/md/foo");
+    Md* md_bar = Md::create(staging, "/dev/md/bar");
 
-    BOOST_CHECK_EQUAL(staging->get_all_mds(), vector<Md*>({ bar, foo, md0, md1, md2, md10 }));
+    Md* md_3 = Md::create(staging, "/dev/md/3");
+
+    BOOST_CHECK_EQUAL(staging->get_all_mds(), vector<Md*>({ md_3, md_bar, md_foo, md0, md1, md2, md10 }));
 }
