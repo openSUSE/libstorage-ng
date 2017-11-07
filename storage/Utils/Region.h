@@ -83,8 +83,22 @@ namespace storage
 
 	bool empty() const;
 
+	/**
+	 * Returns the start of the region.
+	 */
 	unsigned long long get_start() const;
+
+	/**
+	 * Returns the length of the region.
+	 */
 	unsigned long long get_length() const;
+
+	/**
+	 * Returns the end of the region. Do not use this function if the
+	 * region is empty since the end can wrap around in that case.
+	 *
+	 * @throw Exception
+	 */
 	unsigned long long get_end() const;
 
 	/**
