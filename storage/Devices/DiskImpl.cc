@@ -242,7 +242,7 @@ namespace storage
 	string::size_type size_lhs = string_lhs.size();
 	string::size_type size_rhs = string_rhs.size();
 
-	for (const string& tmp : { DEVDIR "/sd", DEVDIR "/vd", DEVDIR "/dasd" })
+	for (const string& tmp : { DEVDIR "/sd", DEVDIR "/vd", DEVDIR "/pmem" })
 	{
 	    if (boost::starts_with(string_lhs, tmp) && boost::starts_with(string_rhs, tmp))
 	    {
