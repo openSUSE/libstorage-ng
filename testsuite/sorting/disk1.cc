@@ -48,5 +48,10 @@ BOOST_AUTO_TEST_CASE(disk_sorting1)
     Disk* pmem10 = Disk::create(staging, "/dev/pmem10");
     Disk* pmem2 = Disk::create(staging, "/dev/pmem2");
 
-    BOOST_CHECK_EQUAL(staging->get_all_disks(), vector<Disk*>({ pmem0, pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa }));
+    vector<Disk*> all = Disk::get_all(staging);
+    sort(all.begin(), all.end(), Disk::compare_by_name);
+
+    BOOST_CHECK_EQUAL(all, vector<Disk*>({
+	pmem0, pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa
+    }));
 }

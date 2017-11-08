@@ -403,7 +403,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
-							 compare_by_lv_name);
+							 LvmLv::compare_by_lv_name);
     }
 
 
@@ -414,7 +414,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
-							 compare_by_lv_name);
+							 LvmLv::compare_by_lv_name);
     }
 
 
@@ -616,13 +616,6 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("extend LvmVg failed"));
-    }
-
-
-    bool
-    compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs)
-    {
-	return lhs->get_vg_name() < rhs->get_vg_name();
     }
 
 

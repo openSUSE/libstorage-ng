@@ -176,6 +176,30 @@ namespace storage
 
 
     bool
+    Dasd::compare_by_name(const Dasd* lhs, const Dasd* rhs)
+    {
+	const string& string_lhs = lhs->get_name();
+	const string& string_rhs = rhs->get_name();
+
+	for (const string& tmp : { DEVDIR "/dasd", DEVDIR "/vd" })
+	{
+	    if (boost::starts_with(string_lhs, tmp) && boost::starts_with(string_rhs, tmp))
+	    {
+		string::size_type size_lhs = string_lhs.size();
+		string::size_type size_rhs = string_rhs.size();
+
+		if (size_lhs != size_rhs)
+		    return size_lhs < size_rhs;
+		else
+		    return string_lhs < string_rhs;
+	    }
+	}
+
+	return string_lhs < string_rhs;
+    }
+
+
+    bool
     is_dasd(const Device* device)
     {
 	return is_device_of_type<const Dasd>(device);

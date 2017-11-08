@@ -202,11 +202,4 @@ namespace storage
 	return storage::find_by_uuid<const BcacheCset>(devicegraph, uuid);
     }
 
-
-    bool
-    compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs)
-    {
-	return lhs->get_uuid() < rhs->get_uuid();
-    }
-
 }

@@ -45,7 +45,7 @@ namespace storage
 	static Multipath* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Sorted by name.
+	 * Get all Multipaths.
 	 */
 	static std::vector<Multipath*> get_all(Devicegraph* devicegraph);
 
@@ -72,6 +72,11 @@ namespace storage
 	 * @copydoc find_by_name
 	 */
 	static const Multipath* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Compare (less than) two Multipaths by name.
+	 */
+	static bool compare_by_name(const Multipath* lhs, const Multipath* rhs);
 
     public:
 

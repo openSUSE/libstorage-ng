@@ -193,6 +193,11 @@ namespace storage
 	 */
 	static const Partition* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
+	/**
+	 * Compare (less than) two Partitions by number.
+	 */
+	static bool compare_by_number(const Partition* lhs, const Partition* rhs);
+
     public:
 
 	class Impl;

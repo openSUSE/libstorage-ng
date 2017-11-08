@@ -63,7 +63,14 @@ namespace storage
 			     const std::string& lv_name, LvType lv_type);
 	static LvmLv* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get all LvmLvs.
+	 */
 	static std::vector<LvmLv*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const LvmLv*> get_all(const Devicegraph* devicegraph);
 
 	/**
@@ -131,6 +138,11 @@ namespace storage
 
 	std::vector<LvmLv*> get_lvm_lvs();
 	std::vector<const LvmLv*> get_lvm_lvs() const;
+
+	/**
+	 * Compare (less than) two LvmLvs by lv-name.
+	 */
+	static bool compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs);
 
     public:
 

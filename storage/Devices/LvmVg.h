@@ -149,7 +149,7 @@ namespace storage
 	void delete_lvm_lv(LvmLv* lvm_lv);
 
 	/**
-	 * Sorted by vg_name.
+	 * Get all LvmVgs.
 	 */
 	static std::vector<LvmVg*> get_all(Devicegraph* devicegraph);
 
@@ -180,6 +180,11 @@ namespace storage
 
 	std::vector<LvmLv*> get_lvm_lvs();
 	std::vector<const LvmLv*> get_lvm_lvs() const;
+
+	/**
+	 * Compare (less than) two LvmVgs by vg-name.
+	 */
+	static bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
 
     public:
 

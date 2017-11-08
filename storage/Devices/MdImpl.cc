@@ -134,12 +134,7 @@ namespace storage
     {
 	vector<const Md*> mds = get_all_if(devicegraph, [](const Md* md) { return md->is_numeric(); });
 
-	// get_all_if() does sorting but not exactly by number (/dev/md/2 is
-	// numeric but not sorted as /dev/md2).
-
-	sort(mds.begin(), mds.end(), [](const Md* lhs, const Md* rhs) {
-	    return lhs->get_number() < rhs->get_number();
-	});
+	sort(mds.begin(), mds.end(), compare_by_number);
 
 	// The non-numeric MDs also need numbers but those start at 127
 	// counting backwards.
@@ -1114,27 +1109,6 @@ namespace storage
 	    md->get_impl().do_remove_from_etc_mdadm(commit_data);
 	}
 
-    }
-
-
-    bool
-    compare_by_name_and_number(const Md* lhs, const Md* rhs)
-    {
-	const string& string_lhs = lhs->get_name();
-	const string& string_rhs = rhs->get_name();
-
-	if (!boost::starts_with(string_lhs, DEVDIR "/md/") && !boost::starts_with(string_rhs, DEVDIR "/md/"))
-	{
-	    string::size_type size_lhs = string_lhs.size();
-	    string::size_type size_rhs = string_rhs.size();
-
-	    if (size_lhs != size_rhs)
-		return size_lhs < size_rhs;
-	    else
-		return string_lhs < string_rhs;
-	}
-
-	return string_lhs < string_rhs;
     }
 
 }

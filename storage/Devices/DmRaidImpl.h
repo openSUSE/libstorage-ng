@@ -92,9 +92,6 @@ namespace storage
     static_assert(!std::is_abstract<DmRaid>(), "Dmraid ought not to be abstract.");
     static_assert(!std::is_abstract<DmRaid::Impl>(), "Dmraid::Impl ought not to be abstract.");
 
-
-    bool compare_by_name(const DmRaid* lhs, const DmRaid* rhs);
-
 }
 
 #endif

@@ -100,9 +100,6 @@ namespace storage
     static_assert(!std::is_abstract<Dasd>(), "Dasd ought not to be abstract.");
     static_assert(!std::is_abstract<Dasd::Impl>(), "Dasd::Impl ought not to be abstract.");
 
-
-    bool compare_by_name(const Dasd* lhs, const Dasd* rhs);
-
 }
 
 #endif

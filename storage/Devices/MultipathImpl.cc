@@ -322,11 +322,4 @@ namespace storage
 	    ST_THROW(Exception("deactivate multipath failed"));
     }
 
-
-    bool
-    compare_by_name(const Multipath* lhs, const Multipath* rhs)
-    {
-	return lhs->get_name() < rhs->get_name();
-    }
-
 }

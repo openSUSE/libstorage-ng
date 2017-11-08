@@ -44,5 +44,10 @@ BOOST_AUTO_TEST_CASE(dasd_sorting1)
     Dasd* vdb = Dasd::create(staging, "/dev/vdb");
     Dasd* vdaa = Dasd::create(staging, "/dev/vdaa");
 
-    BOOST_CHECK_EQUAL(Dasd::get_all(staging), vector<Dasd*>({ dasda, dasdz, dasdaa, vda, vdb, vdaa }));
+    vector<Dasd*> all = Dasd::get_all(staging);
+    sort(all.begin(), all.end(), Dasd::compare_by_name);
+
+    BOOST_CHECK_EQUAL(all, vector<Dasd*>({
+	dasda, dasdz, dasdaa, vda, vdb, vdaa
+    }));
 }

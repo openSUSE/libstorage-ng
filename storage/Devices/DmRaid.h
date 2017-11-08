@@ -47,7 +47,7 @@ namespace storage
 	static DmRaid* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Sorted by name.
+	 * Get all DmRaids.
 	 */
 	static std::vector<DmRaid*> get_all(Devicegraph* devicegraph);
 
@@ -70,6 +70,11 @@ namespace storage
 	 * @copydoc find_by_name
 	 */
 	static const DmRaid* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Compare (less than) two DmRaids by name.
+	 */
+	static bool compare_by_name(const DmRaid* lhs, const DmRaid* rhs);
 
     public:
 

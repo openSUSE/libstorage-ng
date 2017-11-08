@@ -117,14 +117,21 @@ namespace storage
     vector<DmRaid*>
     DmRaid::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<DmRaid>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<DmRaid>();
     }
 
 
     vector<const DmRaid*>
     DmRaid::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const DmRaid>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<const DmRaid>();
+    }
+
+
+    bool
+    DmRaid::compare_by_name(const DmRaid* lhs, const DmRaid* rhs)
+    {
+	return lhs->get_name() < rhs->get_name();
     }
 
 

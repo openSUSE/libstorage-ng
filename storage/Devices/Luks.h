@@ -43,7 +43,7 @@ namespace storage
 	static Luks* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Sorted by dm-table-name.
+	 * Get all Lukses.
 	 */
 	static std::vector<Luks*> get_all(Devicegraph* devicegraph);
 

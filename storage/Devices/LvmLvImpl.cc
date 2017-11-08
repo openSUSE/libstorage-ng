@@ -1185,11 +1185,4 @@ namespace storage
 	    boost::replace_all_copy(lv_name, "-", "--");
     }
 
-
-    bool
-    compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs)
-    {
-	return lhs->get_lv_name() < rhs->get_lv_name();
-    }
-
 }

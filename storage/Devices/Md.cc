@@ -20,10 +20,13 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/Enum.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 namespace storage
@@ -233,28 +236,28 @@ namespace storage
     vector<Md*>
     Md::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Md>(compare_by_name_and_number);
+	return devicegraph->get_impl().get_devices_of_type<Md>();
     }
 
 
     vector<const Md*>
     Md::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Md>(compare_by_name_and_number);
+	return devicegraph->get_impl().get_devices_of_type<const Md>();
     }
 
 
     vector<Md*>
     Md::get_all_if(Devicegraph* devicegraph, std::function<bool(const Md*)> pred)
     {
-	return devicegraph->get_impl().get_devices_of_type_if<Md>(pred, compare_by_name_and_number);
+	return devicegraph->get_impl().get_devices_of_type_if<Md>(pred);
     }
 
 
     vector<const Md*>
     Md::get_all_if(const Devicegraph* devicegraph, std::function<bool(const Md*)> pred)
     {
-	return devicegraph->get_impl().get_devices_of_type_if<const Md>(pred, compare_by_name_and_number);
+	return devicegraph->get_impl().get_devices_of_type_if<const Md>(pred);
     }
 
 
@@ -262,6 +265,34 @@ namespace storage
     Md::find_free_numeric_name(const Devicegraph* devicegraph)
     {
 	return Md::Impl::find_free_numeric_name(devicegraph);
+    }
+
+
+    bool
+    Md::compare_by_name(const Md* lhs, const Md* rhs)
+    {
+	const string& string_lhs = lhs->get_name();
+	const string& string_rhs = rhs->get_name();
+
+	if (!boost::starts_with(string_lhs, DEVDIR "/md/") && !boost::starts_with(string_rhs, DEVDIR "/md/"))
+	{
+	    string::size_type size_lhs = string_lhs.size();
+	    string::size_type size_rhs = string_rhs.size();
+
+	    if (size_lhs != size_rhs)
+		return size_lhs < size_rhs;
+	    else
+		return string_lhs < string_rhs;
+	}
+
+	return string_lhs < string_rhs;
+    }
+
+
+    bool
+    Md::compare_by_number(const Md* lhs, const Md* rhs)
+    {
+	return lhs->get_number() < rhs->get_number();
     }
 
 

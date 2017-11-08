@@ -46,5 +46,10 @@ BOOST_AUTO_TEST_CASE(md_sorting1)
 
     Md* md_3 = Md::create(staging, "/dev/md/3");
 
-    BOOST_CHECK_EQUAL(staging->get_all_mds(), vector<Md*>({ md_3, md_bar, md_foo, md0, md1, md2, md10 }));
+    vector<Md*> all = Md::get_all(staging);
+    sort(all.begin(), all.end(), Md::compare_by_name);
+
+    BOOST_CHECK_EQUAL(all, vector<Md*>({
+	md_3, md_bar, md_foo, md0, md1, md2, md10
+    }));
 }

@@ -59,7 +59,7 @@ namespace storage
 	std::vector<const Bcache*> get_bcaches() const;
 
 	/**
-	 * Sorted by uuid.
+	 * Get all BcacheCsets.
 	 */
 	static std::vector<BcacheCset*> get_all(Devicegraph* devicegraph);
 
@@ -67,6 +67,11 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const BcacheCset*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Compare (less than) two BcacheCsets by UUID.
+	 */
+	static bool compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs);
 
     public:
 

@@ -235,6 +235,13 @@ namespace storage
 
 
     bool
+    BlkDevice::compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs)
+    {
+	return lhs->get_dm_table_name() < rhs->get_dm_table_name();
+    }
+
+
+    bool
     is_blk_device(const Device* device)
     {
 	return is_device_of_type<const BlkDevice>(device);

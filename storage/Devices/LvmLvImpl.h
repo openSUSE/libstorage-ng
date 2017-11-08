@@ -178,9 +178,6 @@ namespace storage
 
     }
 
-
-    bool compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs);
-
 }
 
 #endif

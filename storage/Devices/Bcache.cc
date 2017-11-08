@@ -118,6 +118,13 @@ namespace storage
 
 
     bool
+    Bcache::compare_by_number(const Bcache* lhs, const Bcache* rhs)
+    {
+	return lhs->get_number() < rhs->get_number();
+    }
+
+
+    bool
     is_bcache(const Device* device)
     {
 	return is_device_of_type<const Bcache>(device);

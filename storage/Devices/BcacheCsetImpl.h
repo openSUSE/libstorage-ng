@@ -89,9 +89,6 @@ namespace storage
 
     };
 
-
-    bool compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs);
-
 }
 
 #endif

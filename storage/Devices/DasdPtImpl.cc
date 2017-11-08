@@ -73,6 +73,8 @@ namespace storage
 	// partitions must be ordered according to start sector on DASD partition tables
 
 	vector<const Partition*> partitions = get_partitions();
+	sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
+
 	if (std::adjacent_find(partitions.begin(), partitions.end(),
 			       [](const Partition* lhs, const Partition* rhs) {
 				   return lhs->get_region() >= rhs->get_region();

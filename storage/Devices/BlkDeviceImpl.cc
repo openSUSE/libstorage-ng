@@ -560,13 +560,6 @@ namespace storage
     }
 
 
-    bool
-    compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs)
-    {
-	return lhs->get_dm_table_name() < rhs->get_dm_table_name();
-    }
-
-
     void
     wait_for_devices(const vector<const BlkDevice*>& blk_devices)
     {
