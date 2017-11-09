@@ -77,9 +77,6 @@ namespace storage
 
     };
 
-
-    bool compare_by_number(const Bcache* lhs, const Bcache* rhs);
-
 }
 
 #endif

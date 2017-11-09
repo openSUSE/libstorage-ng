@@ -251,11 +251,4 @@ namespace storage
 	});
     }
 
-
-    bool
-    compare_by_name(const DmRaid* lhs, const DmRaid* rhs)
-    {
-	return lhs->get_name() < rhs->get_name();
-    }
-
 }

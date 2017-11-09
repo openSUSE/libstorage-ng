@@ -290,6 +290,13 @@ namespace storage
 
 
     bool
+    LvmVg::compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs)
+    {
+	return lhs->get_vg_name() < rhs->get_vg_name();
+    }
+
+
+    bool
     is_lvm_vg(const Device* device)
     {
 	return is_device_of_type<const LvmVg>(device);

@@ -53,7 +53,7 @@ namespace storage
 	static Disk* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Sorted by name.
+	 * Get all Disks.
 	 */
 	static std::vector<Disk*> get_all(Devicegraph* devicegraph);
 
@@ -78,6 +78,11 @@ namespace storage
 	 * @copydoc find_by_name
 	 */
 	static const Disk* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Compare (less than) two Disks by name.
+	 */
+	static bool compare_by_name(const Disk* lhs, const Disk* rhs);
 
     public:
 

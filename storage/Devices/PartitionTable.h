@@ -131,7 +131,7 @@ namespace storage
 	unsigned int num_logical() const;
 
 	/**
-	 * Sorted by partition number.
+	 * Get partitions of the partition table.
 	 */
 	std::vector<Partition*> get_partitions();
 

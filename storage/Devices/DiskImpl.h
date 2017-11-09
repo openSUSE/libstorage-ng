@@ -81,7 +81,7 @@ namespace storage
 	virtual void process_udev_paths(vector<string>& udev_paths) const override;
 	virtual void process_udev_ids(vector<string>& udev_ids) const override;
 
-	Text do_create_text(Tense tense) const override;
+	virtual Text do_create_text(Tense tense) const override;
 
     private:
 
@@ -94,9 +94,6 @@ namespace storage
 
     static_assert(!std::is_abstract<Disk>(), "Disk ought not to be abstract.");
     static_assert(!std::is_abstract<Disk::Impl>(), "Disk::Impl ought not to be abstract.");
-
-
-    bool compare_by_name(const Disk* lhs, const Disk* rhs);
 
 }
 

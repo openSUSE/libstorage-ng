@@ -18,12 +18,12 @@ namespace std
 {
     ostream& operator<<(ostream& s, const vector<Disk*>& disks)
     {
-        s << "{";
-        for (vector<Disk*>::const_iterator it = disks.begin(); it != disks.end(); ++it)
-            s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
-        s << " }";
+	s << "{";
+	for (vector<Disk*>::const_iterator it = disks.begin(); it != disks.end(); ++it)
+	    s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	s << " }";
 
-        return s;
+	return s;
     }
 }
 
@@ -44,5 +44,14 @@ BOOST_AUTO_TEST_CASE(disk_sorting1)
     Disk* vdb = Disk::create(staging, "/dev/vdb");
     Disk* vdaa = Disk::create(staging, "/dev/vdaa");
 
-    BOOST_CHECK_EQUAL(staging->get_all_disks(), vector<Disk*>({ sda, sdz, sdaa, vda, vdb, vdaa }));
+    Disk* pmem0 = Disk::create(staging, "/dev/pmem0");
+    Disk* pmem10 = Disk::create(staging, "/dev/pmem10");
+    Disk* pmem2 = Disk::create(staging, "/dev/pmem2");
+
+    vector<Disk*> all = Disk::get_all(staging);
+    sort(all.begin(), all.end(), Disk::compare_by_name);
+
+    BOOST_CHECK_EQUAL(all, vector<Disk*>({
+	pmem0, pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa
+    }));
 }

@@ -134,6 +134,11 @@ namespace storage
     {
 	vector<const Md*> mds = get_all_if(devicegraph, [](const Md* md) { return md->is_numeric(); });
 
+	sort(mds.begin(), mds.end(), compare_by_number);
+
+	// The non-numeric MDs also need numbers but those start at 127
+	// counting backwards.
+
 	unsigned int free_number = first_missing_number(mds, 0);
 
 	return DEVDIR "/md" + to_string(free_number);
@@ -1104,21 +1109,6 @@ namespace storage
 	    md->get_impl().do_remove_from_etc_mdadm(commit_data);
 	}
 
-    }
-
-
-    bool
-    compare_by_name_and_number(const Md* lhs, const Md* rhs)
-    {
-	bool numeric_lhs = lhs->is_numeric();
-	bool numeric_rhs = rhs->is_numeric();
-
-	if (!numeric_lhs && !numeric_rhs)
-	    return lhs->get_name() < rhs->get_name();
-	else if (numeric_lhs && numeric_rhs)
-	    return lhs->get_number() < rhs->get_number();
-	else
-	    return numeric_lhs < numeric_rhs;
     }
 
 }

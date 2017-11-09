@@ -131,14 +131,21 @@ namespace storage
     vector<Multipath*>
     Multipath::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Multipath>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<Multipath>();
     }
 
 
     vector<const Multipath*>
     Multipath::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Multipath>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<const Multipath>();
+    }
+
+
+    bool
+    Multipath::compare_by_name(const Multipath* lhs, const Multipath* rhs)
+    {
+	return lhs->get_name() < rhs->get_name();
     }
 
 

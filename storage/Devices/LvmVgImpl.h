@@ -186,9 +186,6 @@ namespace storage
 
     };
 
-
-    bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
-
 }
 
 #endif

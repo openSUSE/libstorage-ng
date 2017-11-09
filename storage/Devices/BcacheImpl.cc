@@ -185,11 +185,4 @@ namespace storage
 	BlkDevice::Impl::print(out);
     }
 
-
-    bool
-    compare_by_number(const Bcache* lhs, const Bcache* rhs)
-    {
-	return lhs->get_number() < rhs->get_number();
-    }
-
 }

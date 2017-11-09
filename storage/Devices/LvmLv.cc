@@ -205,6 +205,13 @@ namespace storage
 
 
     bool
+    LvmLv::compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs)
+    {
+	return lhs->get_lv_name() < rhs->get_lv_name();
+    }
+
+
+    bool
     is_lvm_lv(const Device* device)
     {
 	return is_device_of_type<const LvmLv>(device);

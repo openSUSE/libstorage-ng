@@ -66,8 +66,7 @@ namespace storage
 	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<MdMember>(devicegraph.children(vertex),
-							    compare_by_name_and_number);
+	return devicegraph.filter_devices_of_type<MdMember>(devicegraph.children(vertex));
     }
 
 
@@ -77,8 +76,7 @@ namespace storage
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<MdMember>(devicegraph.children(vertex),
-							    compare_by_name_and_number);
+	return devicegraph.filter_devices_of_type<MdMember>(devicegraph.children(vertex));
     }
 
 

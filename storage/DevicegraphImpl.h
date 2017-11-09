@@ -182,6 +182,7 @@ namespace storage
 	}
 
 
+	// TODO remove
 	template <typename Type, class StrictWeakOrdering>
 	vector<Type*>
 	get_devices_of_type(StrictWeakOrdering compare) const
@@ -211,6 +212,7 @@ namespace storage
 	}
 
 
+	// TODO remove
 	template <typename Type, typename Pred, class StrictWeakOrdering>
 	vector<Type*>
 	get_devices_of_type_if(Pred pred, StrictWeakOrdering compare) const
@@ -240,6 +242,7 @@ namespace storage
 	}
 
 
+	// TODO remove
 	template <typename Type, class StrictWeakOrdering>
 	vector<Type*>
 	filter_devices_of_type(const vector<vertex_descriptor>& vertices, StrictWeakOrdering compare)
@@ -269,6 +272,7 @@ namespace storage
 	}
 
 
+	// TODO remove
 	template <typename Type, class StrictWeakOrdering>
 	vector<const Type*>
 	filter_devices_of_type(const vector<vertex_descriptor>& vertices, StrictWeakOrdering compare) const

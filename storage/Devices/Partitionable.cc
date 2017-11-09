@@ -22,6 +22,11 @@
 
 
 #include "storage/Devices/PartitionableImpl.h"
+#include "storage/Devices/Disk.h"
+#include "storage/Devices/Dasd.h"
+#include "storage/Devices/Md.h"
+#include "storage/Devices/Multipath.h"
+#include "storage/Devices/DmRaid.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -155,6 +160,28 @@ namespace storage
     Partitionable::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
 	return to_partitionable(BlkDevice::find_by_name(devicegraph, name));
+    }
+
+
+    bool
+    Partitionable::compare_by_name(const Partitionable* lhs, const Partitionable* rhs)
+    {
+	if (is_disk(lhs) && is_disk(rhs))
+	    return Disk::compare_by_name(to_disk(lhs), to_disk(rhs));
+
+	if (is_dasd(lhs) && is_dasd(rhs))
+	    return Dasd::compare_by_name(to_dasd(lhs), to_dasd(rhs));
+
+	if (is_md(lhs) && is_md(rhs))
+	    return Md::compare_by_name(to_md(lhs), to_md(rhs));
+
+	if (is_multipath(lhs) && is_multipath(rhs))
+	    return Multipath::compare_by_name(to_multipath(lhs), to_multipath(rhs));
+
+	if (is_dm_raid(lhs) && is_dm_raid(rhs))
+	    return DmRaid::compare_by_name(to_dm_raid(lhs), to_dm_raid(rhs));
+
+	return lhs->get_name() < rhs->get_name();
     }
 
 

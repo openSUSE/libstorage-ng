@@ -212,10 +212,6 @@ namespace storage
 
     }
 
-
-    bool compare_by_name_and_number(const Md* lhs, const Md* rhs);
-
-
 }
 
 #endif

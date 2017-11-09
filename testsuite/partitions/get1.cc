@@ -38,6 +38,7 @@ BOOST_AUTO_TEST_CASE(test_msdos1)
     msdos->create_partition("/dev/sda6", Region(31 * 2048, 10 * 2048, 512), PartitionType::LOGICAL);
 
     vector<Partition*> partitions = msdos->get_partitions();
+    sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 
     BOOST_REQUIRE_EQUAL(partitions.size(), 4);
 

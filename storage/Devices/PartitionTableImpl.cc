@@ -175,7 +175,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
-							     compare_by_number);
+							     Partition::compare_by_number);
     }
 
 
@@ -186,7 +186,7 @@ namespace storage
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
-							     compare_by_number);
+							     Partition::compare_by_number);
     }
 
 
@@ -258,6 +258,7 @@ namespace storage
 	vector<PartitionSlot> slots;
 
 	vector<const Partition*> partitions = get_partitions();
+	sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 
 	if (true)
 	{

@@ -102,9 +102,6 @@ namespace storage
     static_assert(!std::is_abstract<Multipath>(), "Multipath ought not to be abstract.");
     static_assert(!std::is_abstract<Multipath::Impl>(), "Multipath::Impl ought not to be abstract.");
 
-
-    bool compare_by_name(const Multipath* lhs, const Multipath* rhs);
-
 }
 
 #endif

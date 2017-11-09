@@ -137,8 +137,7 @@ namespace storage
 	void set_in_etc_mdadm(bool in_etc_mdadm);
 
 	/**
-	 * Get all Mds. Sorted by name and number: The non-numeric Mds come
-	 * before the numeric Mds.
+	 * Get all Mds.
 	 */
 	static std::vector<Md*> get_all(Devicegraph* devicegraph);
 
@@ -148,8 +147,7 @@ namespace storage
 	static std::vector<const Md*> get_all(const Devicegraph* devicegraph);
 
 	/**
-	 * Get all Mds for which the predicate pred returns true. Sorted by
-	 * name and number: The non-numeric Mds come before the numeric Mds.
+	 * Get all Mds for which the predicate pred returns true.
 	 */
 	static std::vector<Md*> get_all_if(Devicegraph* devicegraph,
 					   std::function<bool(const Md*)> pred);
@@ -177,6 +175,18 @@ namespace storage
 	 * Find a free numeric name for a MD.
 	 */
 	static std::string find_free_numeric_name(const Devicegraph* devicegraph);
+
+	/**
+	 * Compare (less than) two Mds by name.
+	 */
+	static bool compare_by_name(const Md* lhs, const Md* rhs);
+
+	/**
+	 * Compare (less than) two Mds by number.
+	 *
+	 * @throw Exception
+	 */
+	static bool compare_by_number(const Md* lhs, const Md* rhs);
 
     public:
 

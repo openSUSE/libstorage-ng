@@ -189,6 +189,13 @@ namespace storage
 
 
     bool
+    Partition::compare_by_number(const Partition* lhs, const Partition* rhs)
+    {
+	return lhs->get_number() < rhs->get_number();
+    }
+
+
+    bool
     is_partition(const Device* device)
     {
 	return is_device_of_type<const Partition>(device);

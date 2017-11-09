@@ -120,6 +120,13 @@ namespace storage
 
 
     bool
+    BcacheCset::compare_by_uuid(const BcacheCset* lhs, const BcacheCset* rhs)
+    {
+	return lhs->get_uuid() < rhs->get_uuid();
+    }
+
+
+    bool
     is_bcache_cset(const Device* device)
     {
 	return is_device_of_type<const BcacheCset>(device);

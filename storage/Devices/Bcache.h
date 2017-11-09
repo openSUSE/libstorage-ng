@@ -62,7 +62,7 @@ namespace storage
 	const BcacheCset* get_bcache_cset() const;
 
 	/**
-	 * Sorted by number.
+	 * Get all Bcaches.
 	 */
 	static std::vector<Bcache*> get_all(Devicegraph* devicegraph);
 
@@ -70,6 +70,11 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Bcache*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Compare (less than) two Bcaches by number.
+	 */
+	static bool compare_by_number(const Bcache* lhs, const Bcache* rhs);
 
     public:
 

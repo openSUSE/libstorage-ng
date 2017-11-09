@@ -75,7 +75,14 @@ namespace storage
 
 	void set_dm_table_name(const std::string& dm_table_name);
 
+	/**
+	 * Get all BlkDevices.
+	 */
 	static std::vector<BlkDevice*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const BlkDevice*> get_all(const Devicegraph* devicegraph);
 
 	/**
@@ -153,6 +160,11 @@ namespace storage
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	const Encryption* get_encryption() const;
+
+	/**
+	 * Compare (less than) two BlkDevices by DM table name.
+	 */
+	static bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
 
     public:
 

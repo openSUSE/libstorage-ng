@@ -87,11 +87,23 @@ namespace storage
 	 */
 	const PartitionTable* get_partition_table() const;
 
+	/**
+	 * Get all Partitionables.
+	 */
 	static std::vector<Partitionable*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
 	static std::vector<const Partitionable*> get_all(const Devicegraph* devicegraph);
 
 	static Partitionable* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Partitionable* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Compare (less than) two Partitionables by name.
+	 */
+	static bool compare_by_name(const Partitionable* lhs, const Partitionable* rhs);
 
     public:
 

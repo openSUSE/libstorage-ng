@@ -63,7 +63,7 @@ namespace storage
 	static Dasd* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
-	 * Sorted by name.
+	 * Get all Dasds.
 	 */
 	static std::vector<Dasd*> get_all(Devicegraph* devicegraph);
 
@@ -95,6 +95,11 @@ namespace storage
 	 * @copydoc find_by_name
 	 */
 	static const Dasd* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Compare (less than) two Dasds by name.
+	 */
+	static bool compare_by_name(const Dasd* lhs, const Dasd* rhs);
 
     public:
 
