@@ -313,6 +313,15 @@ namespace storage
     Partition::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	out << " type:" << toString(type)
+	    << " id:" << id;
+
+	if (boot)
+	    out << " boot:" << boot;
+
+	if (legacy_boot)
+	    out << " legacy-boot:" << legacy_boot;
     }
 
 
