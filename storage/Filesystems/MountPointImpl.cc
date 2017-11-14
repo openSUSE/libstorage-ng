@@ -101,10 +101,10 @@ namespace storage
     void
     MountPoint::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-        Device::Impl::check(check_callbacks);
+	Device::Impl::check(check_callbacks);
 
-        if (!has_single_parent_of_type<const Mountable>())
-            ST_THROW(Exception("Mountable parent missing"));
+	if (!has_single_parent_of_type<const Mountable>())
+	    ST_THROW(Exception("Mountable parent missing"));
 
 #if 0
 	if (!valid_path(path))
