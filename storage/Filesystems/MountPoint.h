@@ -34,6 +34,14 @@ namespace storage
     class Devicegraph;
 
 
+    class InvalidMountPointPath : public Exception
+    {
+    public:
+
+        InvalidMountPointPath(const std::string& path);
+    };
+
+
     /**
      * Class to represent a mount point.
      */
@@ -41,13 +49,21 @@ namespace storage
     {
     public:
 
+	/**
+	 * @throw InvalidMountPointPath
+	 */
 	static MountPoint* create(Devicegraph* devicegraph, const std::string& path);
+
 	static MountPoint* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	static std::vector<MountPoint*> get_all(Devicegraph* devicegraph);
 	static std::vector<const MountPoint*> get_all(const Devicegraph* devicegraph);
 
 	const std::string& get_path() const;
+
+	/**
+	 * @throw InvalidMountPointPath
+	 */
 	void set_path(const std::string& path);
 
 	MountByType get_mount_by() const;

@@ -17,6 +17,7 @@
 %exceptionclass storage::IndexOutOfRangeException;
 %exceptionclass storage::InvalidBlockSize;
 %exceptionclass storage::InvalidExtentSize;
+%exceptionclass storage::InvalidMountPointPath;
 %exceptionclass storage::LogicException;
 %exceptionclass storage::LvmLvNotFoundByLvName;
 %exceptionclass storage::LvmVgNotFoundByVgName;
@@ -177,6 +178,8 @@
 %catches(storage::Exception) storage::MdMember::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::MdMember::get_md_container();
 %catches(storage::Exception) storage::MdMember::get_md_container() const;
+%catches(storage::InvalidMountPointPath) storage::MountPoint::create(Devicegraph *devicegraph, const std::string &path);
+%catches(storage::InvalidMountPointPath) storage::MountPoint::set_path(const std::string &path);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(Devicegraph *devicegraph, const std::string &server, const std::string &path);
