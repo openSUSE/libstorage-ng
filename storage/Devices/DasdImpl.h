@@ -58,6 +58,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
+
 	string get_bus_id() const { return bus_id; }
 	void set_bus_id(string bus_id) { Impl::bus_id = bus_id; }
 
