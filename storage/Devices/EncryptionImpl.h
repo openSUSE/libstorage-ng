@@ -64,6 +64,8 @@ namespace storage
 
 	void set_default_mount_by();
 
+	virtual string get_mount_by_name(MountByType mount_by_type) const;
+
 	bool is_in_etc_crypttab() const { return in_etc_crypttab; }
 	void set_in_etc_crypttab(bool in_etc_crypttab) { Impl::in_etc_crypttab = in_etc_crypttab; }
 

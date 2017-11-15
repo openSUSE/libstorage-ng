@@ -78,6 +78,38 @@ namespace storage
     }
 
 
+    string
+    Encryption::Impl::get_mount_by_name(MountByType mount_by_type) const
+    {
+	string ret;
+
+	switch (mount_by_type)
+	{
+	    case MountByType::UUID:
+		y2err("no uuid possible, using fallback");
+		break;
+
+	    case MountByType::LABEL:
+		y2err("no label possible, using fallback");
+		break;
+
+	    case MountByType::ID:
+	    case MountByType::PATH:
+	    case MountByType::DEVICE:
+		break;
+	}
+
+	if (ret.empty())
+	{
+	    const BlkDevice* blk_device = get_blk_device();
+
+	    ret = blk_device->get_impl().get_mount_by_name(mount_by_type);
+	}
+
+	return ret;
+    }
+
+
     void
     Encryption::Impl::save(xmlNode* node) const
     {
