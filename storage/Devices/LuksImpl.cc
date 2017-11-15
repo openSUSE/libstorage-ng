@@ -469,13 +469,13 @@ namespace storage
     {
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-        CrypttabEntry * entry = new CrypttabEntry();
-        entry->set_crypt_device(get_dm_table_name());
+	CrypttabEntry* entry = new CrypttabEntry();
+	entry->set_crypt_device(get_dm_table_name());
 	entry->set_block_device(get_mount_by_name(get_mount_by()));
 
-        etc_crypttab.add(entry);
-        etc_crypttab.log();
-        etc_crypttab.write();
+	etc_crypttab.add(entry);
+	etc_crypttab.log();
+	etc_crypttab.write();
     }
 
 

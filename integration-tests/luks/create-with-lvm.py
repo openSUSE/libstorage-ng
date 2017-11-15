@@ -19,7 +19,7 @@ staging = storage.get_staging()
 
 sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
 
-luks = sdb1.create_encryption("cr_test")
+luks = sdb1.create_encryption("cr-test")
 
 luks.set_password("12345678")
 
