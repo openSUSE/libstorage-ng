@@ -493,6 +493,8 @@ namespace storage
 	    devicegraph->get_impl().set_source(out_edge, encryption_vertex);
 	}
 
+	encryption->set_default_mount_by();
+
 	// TODO maybe add parent_added() next to parent_has_new_region() for this?
 	encryption->get_impl().parent_has_new_region(get_non_impl());
 

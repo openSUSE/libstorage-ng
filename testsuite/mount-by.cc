@@ -9,6 +9,7 @@
 #include "storage/Devices/Partition.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/Encryption.h"
 #include "storage/Holders/User.h"
 #include "storage/Filesystems/Ext4.h"
 #include "storage/Filesystems/Btrfs.h"
@@ -126,5 +127,39 @@ BOOST_AUTO_TEST_CASE(test_lvm_lvs)
 	MountPoint* mount_point = ext4->create_mount_point("/test");
 
 	BOOST_CHECK_EQUAL(mount_point->get_mount_by(), MountByType::DEVICE);
+    }
+}
+
+
+BOOST_AUTO_TEST_CASE(test_luks)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1000000, 512));
+
+    Gpt* gpt = to_gpt(sda->create_partition_table(PtType::GPT));
+
+    {
+	storage.set_default_mount_by(MountByType::UUID);
+
+	Partition* sda1 = gpt->create_partition("/dev/sda1", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
+
+	Encryption* encryption = sda1->create_encryption("cr-test1");
+
+	BOOST_CHECK_EQUAL(encryption->get_mount_by(), MountByType::UUID);
+    }
+
+    {
+	storage.set_default_mount_by(MountByType::DEVICE);
+
+	Partition* sda2 = gpt->create_partition("/dev/sda2", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
+
+	Encryption* encryption = sda2->create_encryption("cr-test2");
+
+	BOOST_CHECK_EQUAL(encryption->get_mount_by(), MountByType::DEVICE);
     }
 }

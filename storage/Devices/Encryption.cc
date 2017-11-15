@@ -55,6 +55,27 @@ namespace storage
     }
 
 
+    MountByType
+    Encryption::get_mount_by() const
+    {
+	return get_impl().get_mount_by();
+    }
+
+
+    void
+    Encryption::set_mount_by(const MountByType mount_by)
+    {
+	get_impl().set_mount_by(mount_by);
+    }
+
+
+    void
+    Encryption::set_default_mount_by()
+    {
+	get_impl().set_default_mount_by();
+    }
+
+
     bool
     Encryption::is_in_etc_crypttab() const
     {

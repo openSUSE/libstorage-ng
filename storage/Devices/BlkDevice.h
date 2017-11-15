@@ -137,6 +137,9 @@ namespace storage
 	 * has children the children will become children of the encryption
 	 * device.
 	 *
+	 * Sets the mount-by method of the encryption to the storage default
+	 * mount-by method.
+	 *
 	 * TODO parameter for encryption type? do all encryptions need a dm_name?
 	 */
 	Encryption* create_encryption(const std::string& dm_name);
