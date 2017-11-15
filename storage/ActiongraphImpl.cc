@@ -105,10 +105,28 @@ namespace storage
     }
 
 
+    class CheckCallbacksLogger : public CheckCallbacks
+    {
+    public:
+
+	virtual void error(const string& error) const override;
+
+    };
+
+
+    void
+    CheckCallbacksLogger::error(const string& error) const
+    {
+	y2err(error);
+    }
+
+
     Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
-	storage.check();
+	CheckCallbacksLogger check_callbacks_logger;
+
+	storage.check(&check_callbacks_logger);
 
 	Stopwatch stopwatch;
 

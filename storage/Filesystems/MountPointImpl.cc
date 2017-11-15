@@ -51,6 +51,10 @@ namespace storage
 	: Device::Impl(), path(path), mount_by(MountByType::DEVICE), freq(0), passno(0),
 	  active(true), in_etc_fstab(true)
     {
+#if 0
+	if (!valid_path(path))
+	    ST_THROW(InvalidMountPointPath(path));
+#endif
     }
 
 
@@ -97,10 +101,27 @@ namespace storage
     void
     MountPoint::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-        Device::Impl::check(check_callbacks);
+	Device::Impl::check(check_callbacks);
 
-        if (!has_single_parent_of_type<const Mountable>())
-            ST_THROW(Exception("Mountable parent missing"));
+	if (!has_single_parent_of_type<const Mountable>())
+	    ST_THROW(Exception("Mountable parent missing"));
+
+#if 0
+	if (!valid_path(path))
+	    ST_THROW(InvalidMountPointPath(path));
+#endif
+    }
+
+
+    void
+    MountPoint::Impl::set_path(const string& path)
+    {
+#if 0
+	if (!valid_path(path))
+	    ST_THROW(InvalidMountPointPath(path));
+#endif
+
+	Impl::path = path;
     }
 
 

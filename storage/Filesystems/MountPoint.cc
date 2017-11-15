@@ -30,6 +30,12 @@ namespace storage
     using namespace std;
 
 
+    InvalidMountPointPath::InvalidMountPointPath(const string& path)
+        : Exception(sformat("invalid path '%s' for mount point", path.c_str()))
+    {
+    }
+
+
     MountPoint*
     MountPoint::create(Devicegraph* devicegraph, const string& path)
     {

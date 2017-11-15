@@ -56,7 +56,7 @@ namespace storage
 	static string normalize_path(const string& path);
 
 	const string& get_path() const { return path; }
-	void set_path(const string& path) { Impl::path = path; }
+	void set_path(const string& path);
 
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(const MountByType mount_by) { Impl::mount_by = mount_by; }

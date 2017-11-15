@@ -87,6 +87,20 @@ namespace storage
     }
 
 
+    void
+    Dasd::Impl::check(const CheckCallbacks* check_callbacks) const
+    {
+	if (check_callbacks)
+	{
+	    if (has_children() && !has_single_child_of_type<const PartitionTable>())
+	    {
+		check_callbacks->error(sformat("DASD %s used without a partition table.",
+                                               get_displayname().c_str()));
+	    }
+	}
+    }
+
+
     vector<PtType>
     Dasd::Impl::get_possible_partition_table_types() const
     {
