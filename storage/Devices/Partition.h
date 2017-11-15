@@ -46,8 +46,11 @@ namespace storage
     /**
      * Enum with values used as partition ids.
      *
-     * For MS-DOS the value of the enum is equal to the partition type
-     * byte. For GPT and DASD the value has no special meaning.
+     * For MS-DOS the value of the enum is equal to the partition type byte.
+     * For GPT, DASD and Implicit the value has no special meaning.
+     *
+     * For MS-DOS any value between 0 and 255 is possible, while for the other
+     * partition tables only those specified are possible.
      *
      * For details about the ids see e.g.
      * https://en.wikipedia.org/wiki/Partition_type and
