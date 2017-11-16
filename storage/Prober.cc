@@ -86,6 +86,8 @@ namespace storage
 
 	// Pass 1a
 
+	y2mil("prober pass 1a");
+
 	Disk::Impl::probe_disks(*this);
 
 	Dasd::Impl::probe_dasds(*this);
@@ -130,6 +132,8 @@ namespace storage
 
 	// Pass 1b
 
+	y2mil("prober pass 1b");
+
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
 	    Device* device = probed->get_impl()[vertex];
@@ -137,6 +141,8 @@ namespace storage
 	}
 
 	// Pass 1c
+
+	y2mil("prober pass 1c");
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
@@ -150,9 +156,13 @@ namespace storage
 
 	// Pass 1d
 
+	y2mil("prober pass 1d");
+
 	flush_pending_holders();
 
 	// Pass 1e
+
+	y2mil("prober pass 1e");
 
 	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
 	{
@@ -161,6 +171,8 @@ namespace storage
 	}
 
 	// Pass 2
+
+	y2mil("prober pass 2");
 
 	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
 	{
