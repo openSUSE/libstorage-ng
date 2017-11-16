@@ -59,6 +59,13 @@ namespace storage
 
 	void set_password(const string& password) { Impl::password = password; }
 
+	MountByType get_mount_by() const { return mount_by; }
+	void set_mount_by(const MountByType mount_by) { Impl::mount_by = mount_by; }
+
+	void set_default_mount_by();
+
+	virtual string get_mount_by_name(MountByType mount_by_type) const;
+
 	bool is_in_etc_crypttab() const { return in_etc_crypttab; }
 	void set_in_etc_crypttab(bool in_etc_crypttab) { Impl::in_etc_crypttab = in_etc_crypttab; }
 
@@ -103,9 +110,9 @@ namespace storage
 
 	string password;
 
-	bool in_etc_crypttab;
+	MountByType mount_by;
 
-	// mount-by for crypttab
+	bool in_etc_crypttab;
 
     };
 

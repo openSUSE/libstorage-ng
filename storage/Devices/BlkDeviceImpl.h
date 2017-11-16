@@ -83,6 +83,8 @@ namespace storage
 	const vector<string>& get_udev_ids() const { return udev_ids; }
 	void set_udev_ids(const vector<string>& udev_ids) { Impl::udev_ids = udev_ids; }
 
+	string get_mount_by_name(MountByType mount_by_type) const;
+
 	const string& get_dm_table_name() const { return dm_table_name; }
 	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
 

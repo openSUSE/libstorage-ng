@@ -47,21 +47,66 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEVMAPPERDIR "/" + dm_table_name), password(), in_etc_crypttab(true)
+	: BlkDevice::Impl(DEVMAPPERDIR "/" + dm_table_name), password(), mount_by(MountByType::DEVICE),
+	  in_etc_crypttab(true)
     {
 	set_dm_table_name(dm_table_name);
     }
 
 
     Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), password(), in_etc_crypttab(true)
+	: BlkDevice::Impl(node), password(), mount_by(MountByType::DEVICE), in_etc_crypttab(true)
     {
+	string tmp;
+
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
 
 	getChildValue(node, "password", password);
 
+	if (getChildValue(node, "mount-by", tmp))
+	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
+
 	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
+    }
+
+
+    void
+    Encryption::Impl::set_default_mount_by()
+    {
+	set_mount_by(get_storage()->get_default_mount_by());
+    }
+
+
+    string
+    Encryption::Impl::get_mount_by_name(MountByType mount_by_type) const
+    {
+	string ret;
+
+	switch (mount_by_type)
+	{
+	    case MountByType::UUID:
+		y2err("no uuid possible, using fallback");
+		break;
+
+	    case MountByType::LABEL:
+		y2err("no label possible, using fallback");
+		break;
+
+	    case MountByType::ID:
+	    case MountByType::PATH:
+	    case MountByType::DEVICE:
+		break;
+	}
+
+	if (ret.empty())
+	{
+	    const BlkDevice* blk_device = get_blk_device();
+
+	    ret = blk_device->get_impl().get_mount_by_name(mount_by_type);
+	}
+
+	return ret;
     }
 
 
@@ -72,6 +117,8 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    setChildValue(node, "password", password);
+
+	setChildValue(node, "mount-by", toString(mount_by));
 
 	setChildValue(node, "in-etc-crypttab", in_etc_crypttab);
     }
@@ -193,7 +240,8 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return password == rhs.password && in_etc_crypttab == rhs.in_etc_crypttab;
+	return password == rhs.password && mount_by == rhs.mount_by &&
+	    in_etc_crypttab == rhs.in_etc_crypttab;
     }
 
 
@@ -207,6 +255,8 @@ namespace storage
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    storage::log_diff(log, "password", password, rhs.password);
 
+	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
+
 	storage::log_diff(log, "in-etc-crypttab", in_etc_crypttab, rhs.in_etc_crypttab);
     }
 
@@ -218,6 +268,8 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    out << " password:" << get_password();
+
+	out << " mount-by:" << toString(mount_by);
 
 	if (in_etc_crypttab)
 	    out << " in-etc-crypttab";

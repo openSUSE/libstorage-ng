@@ -99,6 +99,8 @@ namespace storage
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
+	 * Creates a block filesystem on the block device.
+	 *
 	 * @throw WrongNumberOfChildren, UnsupportedException
 	 */
 	BlkFilesystem* create_blk_filesystem(FsType fs_type);
@@ -136,6 +138,9 @@ namespace storage
 	 * Creates an encryption device on the blk device. If the blk device
 	 * has children the children will become children of the encryption
 	 * device.
+	 *
+	 * It will also set the mount-by method of the encryption to the
+	 * storage default mount-by method.
 	 *
 	 * TODO parameter for encryption type? do all encryptions need a dm_name?
 	 */
