@@ -383,6 +383,13 @@ namespace storage
     }
 
 
+    bool
+    Device::compare_by_sid(const Device* lhs, const Device* rhs)
+    {
+	return lhs->get_sid() < rhs->get_sid();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& out, const Device& device)
     {
