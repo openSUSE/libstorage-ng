@@ -45,6 +45,7 @@ BOOST_AUTO_TEST_CASE(test_delete_logical)
     storage.check();
 
     vector<Partition*> partitions = msdos->get_partitions();
+    sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 
     BOOST_REQUIRE_EQUAL(partitions.size(), 3);
 

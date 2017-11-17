@@ -42,6 +42,7 @@ BOOST_AUTO_TEST_CASE(test_create)
     vector<Partition*> partitions = dasd_pt->get_partitions();
 
     BOOST_REQUIRE_EQUAL(partitions.size(), 2);
+    sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 
     BOOST_CHECK_EQUAL(partitions[0]->get_name(), "/dev/dasda1");
     BOOST_CHECK_EQUAL(partitions[0]->get_region(), Region(768, 130560, 4 * KiB));
