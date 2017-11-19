@@ -66,9 +66,20 @@ namespace storage
 	 */
 	void set_path(const std::string& path);
 
+	/**
+	 * Get the mount-by method.
+	 */
 	MountByType get_mount_by() const;
+
+	/**
+	 * Set the mount-by method.
+	 */
 	void set_mount_by(const MountByType mount_by);
 
+	/**
+	 * Set the mount-by method to the global default, see
+	 * Storage::get_default_mount_by().
+	 */
 	void set_default_mount_by();
 
 	const std::vector<std::string>& get_mount_options() const;

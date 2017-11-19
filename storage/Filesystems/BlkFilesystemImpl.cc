@@ -528,9 +528,7 @@ namespace storage
     string
     BlkFilesystem::Impl::get_mount_by_name(MountByType mount_by_type) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
-	string ret = blk_device->get_name();
+	string ret;
 
 	switch (mount_by_type)
 	{
@@ -538,32 +536,27 @@ namespace storage
 		if (!uuid.empty())
 		    ret = "UUID=" + uuid;
 		else
-		    y2err("no uuid defined");
+		    y2err("no uuid defined, using fallback");
 		break;
 
 	    case MountByType::LABEL:
 		if (!label.empty())
 		    ret = "LABEL=" + label;
 		else
-		    y2err("no label defined");
+		    y2err("no label defined, using fallback");
 		break;
 
 	    case MountByType::ID:
-		if (!blk_device->get_udev_ids().empty())
-		    ret = DEVDIR "/disk/by-id/" + blk_device->get_udev_ids().front();
-		else
-		    y2err("no udev-id defined");
-		break;
-
 	    case MountByType::PATH:
-		if (!blk_device->get_udev_paths().empty())
-		    ret = DEVDIR "/disk/by-path/" + blk_device->get_udev_paths().front();
-		else
-		    y2err("no udev-path defined");
-		break;
-
 	    case MountByType::DEVICE:
 		break;
+	}
+
+	if (ret.empty())
+	{
+	    const BlkDevice* blk_device = get_blk_device();
+
+	    ret = blk_device->get_impl().get_mount_by_name(mount_by_type);
 	}
 
 	return ret;

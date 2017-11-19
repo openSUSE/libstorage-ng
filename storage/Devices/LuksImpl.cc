@@ -74,6 +74,36 @@ namespace storage
 
 
     string
+    Luks::Impl::get_mount_by_name(MountByType mount_by_type) const
+    {
+	string ret;
+
+	switch (mount_by_type)
+	{
+	    case MountByType::UUID:
+		if (!uuid.empty())
+		    ret = "UUID=" + uuid;
+		else
+		    y2err("no uuid defined, using fallback");
+		break;
+
+	    case MountByType::LABEL:
+	    case MountByType::ID:
+	    case MountByType::PATH:
+	    case MountByType::DEVICE:
+		break;
+	}
+
+	if (ret.empty())
+	{
+	    ret = Encryption::Impl::get_mount_by_name(mount_by_type);
+	}
+
+	return ret;
+    }
+
+
+    string
     Luks::Impl::next_free_cr_auto_name(SystemInfo& system_info)
     {
 	static int nr = 1;
@@ -231,6 +261,8 @@ namespace storage
 	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
+
+	// TODO mount-by
 
 	const EtcCrypttab& etc_crypttab = prober.get_system_info().getEtcCrypttab();
 	set_in_etc_crypttab(etc_crypttab.has_crypt_device(get_dm_table_name()));
@@ -437,15 +469,13 @@ namespace storage
     {
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-	// TODO, error handling and mount-by
+	CrypttabEntry* entry = new CrypttabEntry();
+	entry->set_crypt_device(get_dm_table_name());
+	entry->set_block_device(get_mount_by_name(get_mount_by()));
 
-        CrypttabEntry * entry = new CrypttabEntry();
-        entry->set_crypt_device(get_dm_table_name());
-        entry->set_block_device( get_blk_device()->get_name() );
-
-        etc_crypttab.add(entry);
-        etc_crypttab.log();
-        etc_crypttab.write();
+	etc_crypttab.add(entry);
+	etc_crypttab.log();
+	etc_crypttab.write();
     }
 
 
@@ -456,14 +486,14 @@ namespace storage
 
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-	// TODO, error handling and mount-by
+	// TODO find entry by different names
 
         string old_block_device = luks_lhs->get_blk_device()->get_name();
         CrypttabEntry* entry = etc_crypttab.find_block_device(old_block_device);
 
         if (entry)
         {
-            entry->set_block_device(get_blk_device()->get_name());
+            entry->set_block_device(get_mount_by_name(get_mount_by()));
             etc_crypttab.log();
             etc_crypttab.write();
         }
@@ -474,6 +504,8 @@ namespace storage
     Luks::Impl::do_remove_from_etc_crypttab(CommitData& commit_data) const
     {
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
+
+	// TODO find entry by different names
 
         CrypttabEntry* entry = etc_crypttab.find_block_device(get_blk_device()->get_name());
 

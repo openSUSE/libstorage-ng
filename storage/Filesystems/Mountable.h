@@ -66,7 +66,8 @@ namespace storage
 
 	/**
 	 * Create a new mount point for the mountable with path. It will also
-	 * set the default mount-by method and the default mount options.
+	 * set the default mount-by method to the storage default mount-by
+	 * method and the default mount options.
 	 */
 	MountPoint* create_mount_point(const std::string& path);
 

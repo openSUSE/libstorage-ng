@@ -150,6 +150,11 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& out, const Device& device);
 
+	/**
+	 * Compare (less than) two Devices by sid.
+	 */
+	static bool compare_by_sid(const Device* lhs, const Device* rhs);
+
     public:
 
 	class Impl;

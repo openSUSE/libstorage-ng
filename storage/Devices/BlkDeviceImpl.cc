@@ -197,6 +197,48 @@ namespace storage
     }
 
 
+    string
+    BlkDevice::Impl::get_mount_by_name(MountByType mount_by_type) const
+    {
+	string ret;
+
+	switch (mount_by_type)
+	{
+	    case MountByType::UUID:
+		y2err("no uuid possible, using fallback");
+		break;
+
+	    case MountByType::LABEL:
+		y2err("no label possible, using fallback");
+		break;
+
+	    case MountByType::ID:
+		if (!get_udev_ids().empty())
+		    ret = DEVDIR "/disk/by-id/" + get_udev_ids().front();
+		else
+		    y2err("no udev-id defined, using fallback");
+		break;
+
+	    case MountByType::PATH:
+		if (!get_udev_paths().empty())
+		    ret = DEVDIR "/disk/by-path/" + get_udev_paths().front();
+		else
+		    y2err("no udev-path defined, using fallback");
+		break;
+
+	    case MountByType::DEVICE:
+		break;
+	}
+
+	if (ret.empty())
+	{
+	    ret = get_name();
+	}
+
+	return ret;
+    }
+
+
     ResizeInfo
     BlkDevice::Impl::detect_resize_info() const
     {
@@ -492,6 +534,8 @@ namespace storage
 	{
 	    devicegraph->get_impl().set_source(out_edge, encryption_vertex);
 	}
+
+	encryption->set_default_mount_by();
 
 	// TODO maybe add parent_added() next to parent_has_new_region() for this?
 	encryption->get_impl().parent_has_new_region(get_non_impl());

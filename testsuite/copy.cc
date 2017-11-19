@@ -38,7 +38,7 @@ BOOST_AUTO_TEST_CASE(copy)
     Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 512), PartitionType::PRIMARY);
     Subdevice::create(devicegraph, gpt, sda1);
 
-    Encryption::create(devicegraph, "cr_sda1");
+    Encryption::create(devicegraph, "cr-sda1");
 
     LvmVg::create(devicegraph, "system");
     LvmLv::create(devicegraph, "system", "root", LvType::NORMAL);

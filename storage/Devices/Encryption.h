@@ -56,6 +56,26 @@ namespace storage
 	void set_password(const std::string& password);
 
 	/**
+	 * Get the mount-by method. For encrypted devices the mount-by method
+	 * defines the name used for the second parameter in /etc/crypttab.
+	 */
+	MountByType get_mount_by() const;
+
+	/**
+	 * Set the mount-by method. For encrypted devices the mount-by method
+	 * defines the name used for the second parameter in /etc/crypttab.
+	 */
+	void set_mount_by(const MountByType mount_by);
+
+	/**
+	 * Set the mount-by method to the global default, see
+	 * Storage::get_default_mount_by(). For encrypted devices the mount-by
+	 * method defines the name used for the second parameter in
+	 * /etc/crypttab.
+	 */
+	void set_default_mount_by();
+
+	/**
 	 * Query whether the LUKS device is present (probed devicegraph) or
 	 * will be present (staging devicegraph) in /etc/crypttab.
 	 */
