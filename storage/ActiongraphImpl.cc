@@ -525,6 +525,8 @@ namespace storage
     void
     Actiongraph::Impl::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks) const
     {
+	y2mil("commit begin");
+
 	CommitData commit_data(*this, Tense::PRESENT_CONTINUOUS);
 
 	for (const vertex_descriptor& vertex : order)
@@ -557,6 +559,8 @@ namespace storage
 		y2mil("user decides to continue after error");
 	    }
 	}
+
+	y2mil("commit end");
     }
 
 
