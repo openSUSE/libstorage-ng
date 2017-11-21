@@ -116,7 +116,7 @@ BOOST_AUTO_TEST_CASE( create_new )
     crypttab2.read( filename );
 
     BOOST_CHECK_EQUAL( crypttab2.get_entry_count(), 1 );
-    
+
     BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_crypt_device(), "cr_data" );
     BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_block_device(), "/dev/sda1" );
     BOOST_CHECK_EQUAL( crypttab2.get_entry( 0 )->get_password(), ""  );
