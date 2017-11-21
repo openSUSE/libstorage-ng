@@ -116,6 +116,10 @@ namespace storage
 	void set_password    ( const string &	 new_val ) { password	  = new_val; }
 	void set_crypt_opts  ( const CryptOpts & new_val ) { crypt_opts	  = new_val; }
 
+	/**
+	 * Convenience function calling EtcCrypttab::get_mount_by(get_device()).
+	 */
+	MountByType get_mount_by() const;
 
     private:
 
@@ -176,6 +180,11 @@ namespace storage
 	 * Reimplemented from CommentedConfigFile.
 	 **/
 	virtual Entry* create_entry() override { return new CrypttabEntry(); }
+
+	/**
+	 * @copydoc EtcFstab::get_mount_by(const string& device)
+	 */
+	static MountByType get_mount_by(const string& device);
 
         /**
          * Dump the current contents to the log.
