@@ -32,6 +32,7 @@
       </region>
       <dm-table-name>cr_home</dm-table-name>
       <mount-by>id</mount-by>
+      <crypt-options>verify</crypt-options>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>90da7454-0be6-4b44-957a-61a05408b8fb</uuid>
     </Luks>

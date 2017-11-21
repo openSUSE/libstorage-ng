@@ -457,7 +457,7 @@
   <Files>
     <File>
       <name>/etc/crypttab</name>
-      <content>cr_home         /dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2 none       none</content>
+      <content>cr_home         /dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2 none       verify</content>
     </File>
     <File>
       <name>/etc/fstab</name>
