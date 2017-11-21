@@ -67,6 +67,9 @@ namespace storage
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
 
+	if (getChildValue(node, "crypt-options", tmp))
+	    crypt_options.parse(tmp);
+
 	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
     }
 
@@ -75,6 +78,20 @@ namespace storage
     Encryption::Impl::set_default_mount_by()
     {
 	set_mount_by(get_storage()->get_default_mount_by());
+    }
+
+
+    void
+    Encryption::Impl::set_crypt_options(const CryptOpts& crypt_options)
+    {
+	Impl::crypt_options = crypt_options;
+    }
+
+
+    void
+    Encryption::Impl::set_crypt_options(const vector<string>& crypt_options)
+    {
+	Impl::crypt_options.set_opts(crypt_options);
     }
 
 
@@ -119,6 +136,9 @@ namespace storage
 	    setChildValue(node, "password", password);
 
 	setChildValue(node, "mount-by", toString(mount_by));
+
+	if (!crypt_options.empty())
+	    setChildValue(node, "crypt-options", crypt_options.format());
 
 	setChildValue(node, "in-etc-crypttab", in_etc_crypttab);
     }
@@ -241,7 +261,7 @@ namespace storage
 	    return false;
 
 	return password == rhs.password && mount_by == rhs.mount_by &&
-	    in_etc_crypttab == rhs.in_etc_crypttab;
+	    crypt_options == rhs.crypt_options && in_etc_crypttab == rhs.in_etc_crypttab;
     }
 
 
@@ -257,6 +277,8 @@ namespace storage
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
+	storage::log_diff(log, "crypt-options", crypt_options.get_opts(), rhs.crypt_options.get_opts());
+
 	storage::log_diff(log, "in-etc-crypttab", in_etc_crypttab, rhs.in_etc_crypttab);
     }
 
@@ -270,6 +292,8 @@ namespace storage
 	    out << " password:" << get_password();
 
 	out << " mount-by:" << toString(mount_by);
+
+	out << " crypt-options:" << crypt_options.get_opts();
 
 	if (in_etc_crypttab)
 	    out << " in-etc-crypttab";

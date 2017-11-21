@@ -76,6 +76,16 @@ namespace storage
 	void set_default_mount_by();
 
 	/**
+	 * Get options (fourth field) in /etc/crypttab.
+	 */
+	const std::vector<std::string>& get_crypt_options() const;
+
+	/**
+	 * Set options (fourth field) in /etc/crypttab.
+	 */
+	void set_crypt_options(const std::vector<std::string>& crypt_options);
+
+	/**
 	 * Query whether the LUKS device is present (probed devicegraph) or
 	 * will be present (staging devicegraph) in /etc/crypttab.
 	 */

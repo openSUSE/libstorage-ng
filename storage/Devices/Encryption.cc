@@ -76,6 +76,20 @@ namespace storage
     }
 
 
+    const std::vector<string>&
+    Encryption::get_crypt_options() const
+    {
+	return get_impl().get_crypt_options().get_opts();;
+    }
+
+
+    void
+    Encryption::set_crypt_options(const vector<string>& crypt_options)
+    {
+	get_impl().set_crypt_options(crypt_options);
+    }
+
+
     bool
     Encryption::is_in_etc_crypttab() const
     {
