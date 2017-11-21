@@ -66,6 +66,9 @@ namespace storage
 		      boost::is_any_of( "," ),
 		      boost::token_compress_on );
 
+	while (contains("none"))
+	    remove("none");
+
         return true;
     }
 
