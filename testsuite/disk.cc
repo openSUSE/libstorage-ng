@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_CASE(disk1)
     sda->set_size(16 * GiB);
 
     BOOST_CHECK_EXCEPTION(Actiongraph actiongraph(storage, lhs, rhs), Exception,
-	[](const Exception& e) { return e.what() == string("cannot create disk"); }
+	[](const Exception& e) { return e.what() == "cannot create disk"s; }
     );
 }
 

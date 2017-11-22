@@ -16,7 +16,7 @@ LIBVERSION_INFO=$LIBVERSION_CURRENT:$LIBVERSION_REVISON:$LIBVERSION_AGE
 CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
 CFLAGS="${CFLAGS} ${CWARNS}"
 CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter -Wsuggest-override"
-CXXFLAGS="${CXXFLAGS} -std=c++11 ${CXXWARNS}"
+CXXFLAGS="${CXXFLAGS} -std=c++14 ${CXXWARNS}"
 
 AM_INIT_AUTOMAKE(libstorage-ng, $VERSION)
 AM_CONFIG_HEADER(config.h)
