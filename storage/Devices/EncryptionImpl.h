@@ -29,6 +29,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Action.h"
+#include "storage/EtcCrypttab.h"
 
 
 namespace storage
@@ -65,6 +66,10 @@ namespace storage
 	void set_default_mount_by();
 
 	virtual string get_mount_by_name(MountByType mount_by_type) const;
+
+	const CryptOpts& get_crypt_options() const { return crypt_options; }
+	void set_crypt_options(const CryptOpts& crypt_options);
+	void set_crypt_options(const vector<string>& crypt_options);
 
 	bool is_in_etc_crypttab() const { return in_etc_crypttab; }
 	void set_in_etc_crypttab(bool in_etc_crypttab) { Impl::in_etc_crypttab = in_etc_crypttab; }
@@ -111,6 +116,8 @@ namespace storage
 	string password;
 
 	MountByType mount_by;
+
+	CryptOpts crypt_options;
 
 	bool in_etc_crypttab;
 

@@ -91,7 +91,7 @@ BOOST_AUTO_TEST_CASE(add_lvm_pv_test3)
 
     LvmVg* lvm_vg = LvmVg::create(staging, "test");
     BOOST_CHECK_EXCEPTION(lvm_vg->add_lvm_pv(sda), DeviceHasWrongType,
-	[](const Exception& e) { return e.what() == string("device has wrong type, seen 'Gpt', expected 'LvmPv'"); }
+	[](const Exception& e) { return e.what() == "device has wrong type, seen 'Gpt', expected 'LvmPv'"s; }
     );
 }
 

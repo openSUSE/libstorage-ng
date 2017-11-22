@@ -265,7 +265,14 @@ namespace storage
 	// TODO mount-by
 
 	const EtcCrypttab& etc_crypttab = prober.get_system_info().getEtcCrypttab();
-	set_in_etc_crypttab(etc_crypttab.has_crypt_device(get_dm_table_name()));
+
+	CrypttabEntry* crypttab_entry = etc_crypttab.find_crypt_device(get_dm_table_name());
+	if (crypttab_entry)
+	{
+	    set_mount_by(crypttab_entry->get_mount_by());
+	    set_crypt_options(crypttab_entry->get_crypt_opts());
+	    set_in_etc_crypttab(true);
+	}
     }
 
 
@@ -472,6 +479,7 @@ namespace storage
 	CrypttabEntry* entry = new CrypttabEntry();
 	entry->set_crypt_device(get_dm_table_name());
 	entry->set_block_device(get_mount_by_name(get_mount_by()));
+	entry->set_crypt_opts(get_crypt_options());
 
 	etc_crypttab.add(entry);
 	etc_crypttab.log();

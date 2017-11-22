@@ -66,6 +66,9 @@ namespace storage
 		      boost::is_any_of( "," ),
 		      boost::token_compress_on );
 
+	while (contains("none"))
+	    remove("none");
+
         return true;
     }
 
@@ -145,6 +148,11 @@ namespace storage
     }
 
 
+    MountByType
+    CrypttabEntry::get_mount_by() const
+    {
+	return EtcCrypttab::get_mount_by(block_device);
+    }
 
 
     EtcCrypttab::EtcCrypttab(const string& filename) :
@@ -216,6 +224,13 @@ namespace storage
         ST_CHECK_PTR( entry );
 
         return dynamic_cast<CrypttabEntry *>( entry );
+    }
+
+
+    MountByType
+    EtcCrypttab::get_mount_by(const string& block_device)
+    {
+	return EtcFstab::get_mount_by(block_device);
     }
 
 
