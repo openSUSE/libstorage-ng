@@ -137,14 +137,14 @@ namespace storage
     vector<Disk*>
     Disk::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Disk>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<Disk>();
     }
 
 
     vector<const Disk*>
     Disk::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Disk>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<const Disk>();
     }
 
 

@@ -164,14 +164,14 @@ namespace storage
     vector<Dasd*>
     Dasd::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Dasd>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<Dasd>();
     }
 
 
     vector<const Dasd*>
     Dasd::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Dasd>(compare_by_name);
+	return devicegraph->get_impl().get_devices_of_type<const Dasd>();
     }
 
 
