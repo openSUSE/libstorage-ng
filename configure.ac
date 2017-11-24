@@ -48,10 +48,8 @@ AC_SUBST(LIBVERSION_PATCHLEVEL)
 AC_SUBST(LIBVERSION_INFO)
 
 docdir=\${prefix}/share/doc/packages/libstorage-ng
-fillupdir=/var/adm/fillup-templates
 
 AC_SUBST(docdir)
-AC_SUBST(fillupdir)
 
 PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
 PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
