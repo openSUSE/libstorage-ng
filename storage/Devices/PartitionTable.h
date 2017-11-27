@@ -184,6 +184,11 @@ namespace storage
 	 */
 	bool is_partition_legacy_boot_flag_supported() const;
 
+	/**
+	 * Returns whether the partition id is supported on the partition table.
+	 */
+	bool is_partition_id_supported(unsigned int id) const;
+
     public:
 
 	class Impl;
