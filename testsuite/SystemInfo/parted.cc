@@ -275,7 +275,6 @@ BOOST_AUTO_TEST_CASE(parse_uncommon_ordering)
 }
 
 
-
 BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
 {
     vector<string> stdout = {
@@ -294,6 +293,23 @@ BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
     check("/dev/sdc", stdout, stderr, output);
 }
 
+
+BOOST_AUTO_TEST_CASE(parse_name_with_colon)
+{
+    // see bsc #1066467
+
+    vector<string> input = {
+	"BYT;",
+	"/dev/md/ozelot\\:0:67100416s:md:512:4096:loop:Linux Software RAID Array:;",
+	"1:0s:67100415s:67100416s:ext3::;"
+    };
+
+    vector<string> output = {
+	"device:/dev/md/ozelot:0 label:loop region:[0, 67100416, 512 B]"
+    };
+
+    check("/dev/md/ozelot:0", input, output);
+}
 
 
 BOOST_AUTO_TEST_CASE(parse_missing_byt)

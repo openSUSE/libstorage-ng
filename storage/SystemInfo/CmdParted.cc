@@ -113,13 +113,7 @@ namespace storage
     void
     Parted::scan_device_line(const string& line)
     {
-	if (!boost::ends_with(line, ";"))
-	    ST_THROW(ParseException("missing semicolon", "", ";"));
-
-	string line_without_semicolon = line.substr(0, line.size() - 1);
-
-	vector<string> tmp;
-	boost::split(tmp, line_without_semicolon, boost::is_any_of(":"));
+	vector<string> tmp = tokenize(line);
 
 	unsigned long long num_sectors = 0;
 	tmp[1] >> num_sectors;
@@ -171,13 +165,7 @@ namespace storage
     void
     Parted::scan_entry_line(const string& line)
     {
-	if (!boost::ends_with(line, ";"))
-	    ST_THROW(ParseException("missing semicolon", "", ";"));
-
-	string line_without_semicolon = line.substr(0, line.size() - 1);
-
-	vector<string> tmp;
-	boost::split(tmp, line_without_semicolon, boost::is_any_of(":"));
+	vector<string> tmp = tokenize(line);
 
 	Entry entry;
 
@@ -313,6 +301,51 @@ namespace storage
 	}
 
 	return false;
+    }
+
+
+    vector<string>
+    Parted::tokenize(const string& line) const
+    {
+	if (!boost::ends_with(line, ";"))
+	    ST_THROW(ParseException("missing semicolon", "", ";"));
+
+	string line_without_semicolon = line.substr(0, line.size() - 1);
+
+	vector<string> ret;
+
+	string tmp;
+
+	// see bsc #1066467
+
+	string::const_iterator it = line_without_semicolon.begin();
+	while (true)
+	{
+	    if (*it == ':')
+	    {
+		ret.push_back(tmp);
+		tmp.clear();
+	    }
+	    else if (*it == '\\')
+	    {
+		if (++it == line_without_semicolon.end())
+		    ST_THROW(Exception("premature end-of-string"));
+
+		tmp += *it;
+	    }
+	    else
+	    {
+		tmp += *it;
+	    }
+
+	    if (++it == line_without_semicolon.end())
+	    {
+		ret.push_back(tmp);
+		break;
+	    }
+	}
+
+	return ret;
     }
 
 
