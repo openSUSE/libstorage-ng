@@ -275,7 +275,6 @@ BOOST_AUTO_TEST_CASE(parse_uncommon_ordering)
 }
 
 
-
 BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
 {
     vector<string> stdout = {
