@@ -168,6 +168,8 @@ namespace storage
 
 	void scan_stderr(const vector<string>& stderr);
 
+	vector<string> tokenize(const string& line) const;
+
     };
 
 }
