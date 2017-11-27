@@ -274,4 +274,11 @@ namespace storage
 	return get_impl().is_partition_legacy_boot_flag_supported();
     }
 
+
+    bool
+    PartitionTable::is_partition_id_supported(unsigned int id) const
+    {
+	return get_impl().is_partition_id_supported(id);
+    }
+
 }
