@@ -20,7 +20,7 @@ namespace std
     {
 	s << "{";
 	for (vector<Md*>::const_iterator it = mds.begin(); it != mds.end(); ++it)
-	    s << (it == mds.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	    s << (it == mds.begin() ? " " : ", ") << (*it)->get_displayname() << " ";
 	s << " }";
 
 	return s;

@@ -25,7 +25,7 @@ namespace std
     {
 	s << "{";
 	for (vector<Partitionable*>::const_iterator it = partitionables.begin(); it != partitionables.end(); ++it)
-	    s << (it == partitionables.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	    s << (it == partitionables.begin() ? " " : ", ") << (*it)->get_displayname() << " ";
 	s << " }";
 
 	return s;

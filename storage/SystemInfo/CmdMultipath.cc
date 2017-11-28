@@ -53,7 +53,7 @@ namespace storage
     void
     CmdMultipath::parse(const vector<string>& lines)
     {
-	regex lun("[0-9]+:[0-9]+:[0-9]+:[0-9]+", regex_constants::extended);
+	regex lun("[0-9]+:[0-9]+:[0-9]+:[0-9]+", regex::extended);
 
 	data.clear();
 
