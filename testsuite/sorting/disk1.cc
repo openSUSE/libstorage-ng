@@ -20,7 +20,7 @@ namespace std
     {
 	s << "{";
 	for (vector<Disk*>::const_iterator it = disks.begin(); it != disks.end(); ++it)
-	    s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	    s << (it == disks.begin() ? " " : ", ") << (*it)->get_displayname() << " ";
 	s << " }";
 
 	return s;

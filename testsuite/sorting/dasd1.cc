@@ -20,7 +20,7 @@ namespace std
     {
 	s << "{";
 	for (vector<Dasd*>::const_iterator it = dasds.begin(); it != dasds.end(); ++it)
-	    s << (it == dasds.begin() ? " " : ", ") << (*it)->get_displayname() << " (" << *it << ")";
+	    s << (it == dasds.begin() ? " " : ", ") << (*it)->get_displayname() << " ";
 	s << " }";
 
 	return s;
