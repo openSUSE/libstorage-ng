@@ -80,15 +80,15 @@ namespace storage
     // that case and not /dev/md<some big number> the number must be
     // considered in find_free_numeric_name().
 
-    const regex Md::Impl::numeric_name_regex(DEVDIR "/md/?([0-9]+)", regex_constants::extended);
+    const regex Md::Impl::numeric_name_regex(DEVDIR "/md/?([0-9]+)", regex::extended);
 
 
     // mdadm(8) states that any string for the names is allowed. That is
     // not correct: A '/' is reported as invalid by mdadm itself. A ' '
     // does not work, e.g. the links in /dev/md/ are broken.
 
-    const regex Md::Impl::format1_name_regex(DEVMDDIR "/([^/ ]+)", regex_constants::extended);
-    const regex Md::Impl::format2_name_regex(DEVMDDIR "_([^/ ]+)", regex_constants::extended);
+    const regex Md::Impl::format1_name_regex(DEVMDDIR "/([^/ ]+)", regex::extended);
+    const regex Md::Impl::format2_name_regex(DEVMDDIR "_([^/ ]+)", regex::extended);
 
 
     Md::Impl::Impl(const string& name)

@@ -81,7 +81,7 @@ namespace storage
     BcacheCset::Impl::is_valid_uuid(const string& uuid)
     {
 	static regex uuid_regex("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
-				regex_constants::extended);
+				regex::extended);
 
 	return regex_match(uuid, uuid_regex);
     }
@@ -104,8 +104,8 @@ namespace storage
     void
     BcacheCset::Impl::probe_pass_1b(Prober& prober)
     {
-	static regex bdev_regex("bdev[0-9]+", regex_constants::extended);
-	static regex cache_regex("cache[0-9]+", regex_constants::extended);
+	static regex bdev_regex("bdev[0-9]+", regex::extended);
+	static regex cache_regex("cache[0-9]+", regex::extended);
 
 	Device::Impl::probe_pass_1b(prober);
 
