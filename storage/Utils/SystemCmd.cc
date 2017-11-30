@@ -638,7 +638,7 @@ namespace storage
     void
     SystemCmd::addLine(const string& text, vector<string>& lines) const
     {
-	if (lines.size() < LINE_LIMIT)
+	if (lines.size() < options.log_line_limit)
 	{
 	    y2mil("Adding Line " << lines.size() + 1 << " \"" << text << "\"");
 	}
@@ -655,36 +655,36 @@ namespace storage
     SystemCmd::logOutput() const
     {
 	unsigned lineCount = stderr().size();
-	if (lineCount <= LINE_LIMIT)
+	if (lineCount <= options.log_line_limit)
 	{
 	    for (const string& line : stderr())
 		y2mil("stderr:" << line);
 	}
 	else
 	{
-	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
+	    for (unsigned i = 0; i < options.log_line_limit / 2; ++i)
 		y2mil("stderr:" << stderr()[i]);
 
 	    y2mil("stderr omitting lines");
 
-	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
+	    for (unsigned i = lineCount - options.log_line_limit / 2; i < lineCount; ++i)
 		y2mil("stderr:" << stderr()[i]);
 	}
 
 	lineCount = stdout().size();
-	if (lineCount <= LINE_LIMIT)
+	if (lineCount <= options.log_line_limit)
 	{
 	    for (const string& line : stdout())
                 y2mil("stdout:" << line);
 	}
 	else
 	{
-	    for (unsigned i = 0; i < LINE_LIMIT / 2; ++i)
+	    for (unsigned i = 0; i < options.log_line_limit / 2; ++i)
 		y2mil("stdout:" << stdout()[i]);
 
 	    y2mil("stdout omitting lines");
 
-	    for (unsigned i = lineCount - LINE_LIMIT / 2; i < lineCount; ++i)
+	    for (unsigned i = lineCount - options.log_line_limit / 2; i < lineCount; ++i)
 		y2mil("stdout:" << stdout()[i]);
 	}
     }
