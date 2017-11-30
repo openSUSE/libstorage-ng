@@ -60,7 +60,7 @@ namespace storage
 	{
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
 		: command(command), throw_behaviour(throw_behaviour), stdin_text(),
-		  mockup_key() {}
+		  mockup_key(), log_line_limit(1000) {}
 
 	    /**
 	     * The command to be executed.
@@ -81,6 +81,11 @@ namespace storage
 	     * The key used for mockup. If empty the command is used as the key.
 	     */
 	    string mockup_key;
+
+	    /**
+	     * Limit for logged lines.
+	     */
+	    unsigned int log_line_limit;
 
 	};
 
@@ -216,8 +221,6 @@ namespace storage
 	struct pollfd _pfds[3];
 
 	static bool _testmode;
-
-	static const unsigned LINE_LIMIT = 50;
 
     };
 
