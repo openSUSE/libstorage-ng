@@ -149,32 +149,6 @@ namespace storage
 
 
     bool
-    Disk::compare_by_name(const Disk* lhs, const Disk* rhs)
-    {
-	const string& string_lhs = lhs->get_name();
-	const string& string_rhs = rhs->get_name();
-
-	for (const string& tmp : { DEVDIR "/sd", DEVDIR "/vd", DEVDIR "/pmem" })
-	{
-	    if (boost::starts_with(string_lhs, tmp) && boost::starts_with(string_rhs, tmp))
-	    {
-		string::size_type size_lhs = string_lhs.size();
-		string::size_type size_rhs = string_rhs.size();
-
-		if (size_lhs != size_rhs)
-		    return size_lhs < size_rhs;
-		else
-		    return string_lhs < string_rhs;
-	    }
-	}
-
-	// TODO mmcblk, nvme, ...
-
-	return string_lhs < string_rhs;
-    }
-
-
-    bool
     is_disk(const Device* device)
     {
 	return is_device_of_type<const Disk>(device);

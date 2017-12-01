@@ -269,27 +269,6 @@ namespace storage
 
 
     bool
-    Md::compare_by_name(const Md* lhs, const Md* rhs)
-    {
-	const string& string_lhs = lhs->get_name();
-	const string& string_rhs = rhs->get_name();
-
-	if (!boost::starts_with(string_lhs, DEVDIR "/md/") && !boost::starts_with(string_rhs, DEVDIR "/md/"))
-	{
-	    string::size_type size_lhs = string_lhs.size();
-	    string::size_type size_rhs = string_rhs.size();
-
-	    if (size_lhs != size_rhs)
-		return size_lhs < size_rhs;
-	    else
-		return string_lhs < string_rhs;
-	}
-
-	return string_lhs < string_rhs;
-    }
-
-
-    bool
     Md::compare_by_number(const Md* lhs, const Md* rhs)
     {
 	return lhs->get_number() < rhs->get_number();

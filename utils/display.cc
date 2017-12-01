@@ -51,7 +51,7 @@ doit_devicegraph(const string& filename)
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
-    cout << *probed << endl;
+    cout << *probed << '\n';
 
     const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
@@ -79,11 +79,11 @@ doit_actiongraph(const string& filename_lhs, const string& filename_rhs)
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
-    cout << *probed << endl;
+    cout << *probed << '\n';
 
     Devicegraph* staging = storage.get_staging();
     staging->load(filename_rhs);
-    cout << *staging << endl;
+    cout << *staging << '\n';
 
     Actiongraph actiongraph(storage, probed, staging);
 
@@ -105,9 +105,8 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] filename"
-	 << "display --actiongraph [--keep-gv] [--keep-svg] filename filename"
-	 << endl;
+    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] filename\n"
+	 << "display --actiongraph [--keep-gv] [--keep-svg] filename filename\n";
 
     exit(EXIT_FAILURE);
 }
@@ -187,7 +186,7 @@ main(int argc, char **argv)
     }
     catch (const exception& e)
     {
-	cerr << "exception occured: " << e.what() << endl;
+	cerr << "exception occured: " << e.what() << '\n';
 	exit(EXIT_FAILURE);
     }
 

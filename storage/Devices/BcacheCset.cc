@@ -108,14 +108,14 @@ namespace storage
     vector<BcacheCset*>
     BcacheCset::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<BcacheCset>(compare_by_uuid);
+	return devicegraph->get_impl().get_devices_of_type<BcacheCset>();
     }
 
 
     vector<const BcacheCset*>
     BcacheCset::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const BcacheCset>(compare_by_uuid);
+	return devicegraph->get_impl().get_devices_of_type<const BcacheCset>();
     }
 
 

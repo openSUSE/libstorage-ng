@@ -106,14 +106,14 @@ namespace storage
     vector<Bcache*>
     Bcache::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Bcache>(compare_by_number);
+	return devicegraph->get_impl().get_devices_of_type<Bcache>();
     }
 
 
     vector<const Bcache*>
     Bcache::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Bcache>(compare_by_number);
+	return devicegraph->get_impl().get_devices_of_type<const Bcache>();
     }
 
 

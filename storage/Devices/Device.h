@@ -155,6 +155,21 @@ namespace storage
 	 */
 	static bool compare_by_sid(const Device* lhs, const Device* rhs);
 
+	/**
+	 * Compare (less than) two Devices by name. So far only avaliable for
+	 * BlkDevices and LvmVgs.
+	 *
+	 * The comparison sorts to alphabetical order with some
+	 * exceptions. E.g. The disk /dev/sdz is in front of /dev/sdaa and the
+	 * partition /dev/sda2 is in front of /dev/sda10.
+	 *
+	 * The comparison fulfills strict weak ordering. The exact ordering
+	 * may change in future versions.
+	 *
+	 * @throw Exception
+	 */
+	static bool compare_by_name(const Device* lhs, const Device* rhs);
+
     public:
 
 	class Impl;

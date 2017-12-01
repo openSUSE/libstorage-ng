@@ -55,6 +55,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_name(); }
 
+	virtual string get_sort_key() const override { return get_name(); }
+
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	const string& get_name() const { return name; }

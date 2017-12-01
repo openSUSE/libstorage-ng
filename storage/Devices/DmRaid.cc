@@ -129,13 +129,6 @@ namespace storage
 
 
     bool
-    DmRaid::compare_by_name(const DmRaid* lhs, const DmRaid* rhs)
-    {
-	return lhs->get_name() < rhs->get_name();
-    }
-
-
-    bool
     is_dm_raid(const Device* device)
     {
 	return is_device_of_type<const DmRaid>(device);

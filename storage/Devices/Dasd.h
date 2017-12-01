@@ -96,11 +96,6 @@ namespace storage
 	 */
 	static const Dasd* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
-	/**
-	 * Compare (less than) two Dasds by name.
-	 */
-	static bool compare_by_name(const Dasd* lhs, const Dasd* rhs);
-
     public:
 
 	class Impl;

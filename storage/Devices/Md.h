@@ -177,11 +177,6 @@ namespace storage
 	static std::string find_free_numeric_name(const Devicegraph* devicegraph);
 
 	/**
-	 * Compare (less than) two Mds by name.
-	 */
-	static bool compare_by_name(const Md* lhs, const Md* rhs);
-
-	/**
 	 * Compare (less than) two Mds by number.
 	 *
 	 * @throw Exception

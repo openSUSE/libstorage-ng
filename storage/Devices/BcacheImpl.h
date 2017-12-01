@@ -50,6 +50,8 @@ namespace storage
 
 	virtual const char* get_classname() const override { return "Bcache"; }
 
+	virtual string get_sort_key() const override;
+
 	static bool is_valid_name(const string& name);
 
 	static void probe_bcaches(Prober& prober);

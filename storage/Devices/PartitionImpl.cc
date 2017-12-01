@@ -80,6 +80,15 @@ namespace storage
     }
 
 
+    string
+    Partition::Impl::get_sort_key() const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	return partitionable->get_impl().get_sort_key() + pad_front(to_string(get_number()), 3, '0');
+    }
+
+
     void
     Partition::Impl::probe_pass_1a(Prober& prober)
     {

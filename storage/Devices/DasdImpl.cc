@@ -34,6 +34,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
+#include "storage/Utils/AppUtil.h"
 
 
 namespace storage
@@ -84,6 +85,18 @@ namespace storage
 
 	if (getChildValue(node, "format", tmp))
 	    format = toValueWithFallback(tmp, DasdFormat::NONE);
+    }
+
+
+    string
+    Dasd::Impl::get_sort_key() const
+    {
+	static const vector<NameSchema> name_schemata = {
+	    NameSchema(regex(DEVDIR "/dasd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEVDIR "/vd([a-z]+)", regex::extended), 4, ' ')
+	};
+
+	return format_to_name_schemata(get_name(), name_schemata);
     }
 
 

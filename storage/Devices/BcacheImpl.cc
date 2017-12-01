@@ -49,6 +49,17 @@ namespace storage
     }
 
 
+    string
+    Bcache::Impl::get_sort_key() const
+    {
+	static const vector<NameSchema> name_schemata = {
+	    NameSchema(regex(DEVDIR "/bcache([0-9]+)", regex::extended), 3, '0'),
+	};
+
+	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
     void
     Bcache::Impl::save(xmlNode* node) const
     {

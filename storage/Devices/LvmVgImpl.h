@@ -26,6 +26,7 @@
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/Region.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -56,6 +57,8 @@ namespace storage
 	virtual const char* get_classname() const override { return DeviceTraits<LvmVg>::classname; }
 
 	virtual string get_displayname() const override { return get_vg_name(); }
+
+	virtual string get_sort_key() const override { return DEVDIR "/" + vg_name; }
 
 	static void probe_lvm_vgs(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
