@@ -94,7 +94,7 @@ Requires:       s390-tools
 %description -n %{libname}
 This package contains libstorage-ng, a library for storage management.
 
-%package -n libstorage-ng-devel
+%package devel
 Summary:        Header files and documentation for libstorage-ng
 Group:          Development/Languages/C and C++
 Requires:       %{libname} = %{version}
@@ -103,11 +103,11 @@ Requires:       libstdc++-devel
 Requires:       pkgconfig
 Requires:       pkgconfig(libxml-2.0)
 
-%description -n libstorage-ng-devel
+%description devel
 This package contains header files and documentation for developing with
 libstorage-ng.
 
-%package -n libstorage-ng-python
+%package python
 Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
@@ -115,7 +115,7 @@ Requires:       %{libname} = %{version}
 %description python
 This package contains Python bindings for libstorage-ng.
 
-%package -n libstorage-ng-ruby
+%package ruby
 Summary:        Ruby bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
@@ -132,12 +132,12 @@ Recommends:	ImageMagick
 %description utils
 This package contains utils for libstorage-ng.
 
-%package -n libstorage-ng-integration-tests
+%package integration-tests
 Summary:        Integration tests for libstorage-ng
 Group:          Development/Tools/Other
 Requires:       libstorage-ng-python
 
-%description -n libstorage-ng-integration-tests
+%description integration-tests
 This package contains integration tests for libstorage-ng.
 
 %prep
@@ -181,19 +181,19 @@ touch %{buildroot}/run/libstorage/lock
 %{_libdir}/libstorage-ng.so.*
 %ghost /run/libstorage
 
-%files -n libstorage-ng-devel
+%files devel
 %defattr(-,root,root)
 %{_libdir}/libstorage-ng.so
 %{_includedir}/storage
 %dir %{_docdir}/%{name}/
 %doc %{_docdir}/%{name}/*
 
-%files -n libstorage-ng-python
+%files python
 %defattr(-,root,root)
 %{python_sitelib}/storage.py*
 %attr(755,root,root) %{python_sitearch}/_storage.so
 
-%files -n libstorage-ng-ruby
+%files ruby
 %defattr(-,root,root)
 %{rb_vendorarch}/storage.so
 
