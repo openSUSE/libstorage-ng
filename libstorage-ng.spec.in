@@ -123,6 +123,15 @@ Requires:       %{libname} = %{version}
 %description ruby
 This package contains Ruby bindings for libstorage-ng.
 
+%package utils
+Summary:	Utils for libstorage-ng
+Group:		Development/Tools/Other
+Recommends:	graphviz
+Recommends:	ImageMagick
+
+%description utils
+This package contains utils for libstorage-ng.
+
 %package -n libstorage-ng-integration-tests
 Summary:        Integration tests for libstorage-ng
 Group:          Development/Tools/Other
@@ -187,6 +196,11 @@ touch %{buildroot}/run/libstorage/lock
 %files -n libstorage-ng-ruby
 %defattr(-,root,root)
 %{rb_vendorarch}/storage.so
+
+%files utils
+%defattr(-,root,root)
+%dir %{_libexecdir}/libstorage-ng
+%{_libexecdir}/libstorage-ng/utils
 
 %files integration-tests
 %defattr(-,root,root)
