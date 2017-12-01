@@ -36,6 +36,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/AppUtil.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 
@@ -63,6 +64,22 @@ namespace storage
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
+    }
+
+
+    string
+    Disk::Impl::get_sort_key() const
+    {
+	static const vector<NameSchema> name_schemata = {
+	    NameSchema(regex(DEVDIR "/sd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEVDIR "/vd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEVDIR "/mmcblk([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEVDIR "/rsxx([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEVDIR "/pmem([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEVDIR "/nvme([0-9]+)n([0-9]+)", regex::extended), 3, '0'),
+	};
+
+	return format_to_name_schemata(get_name(), name_schemata);
     }
 
 

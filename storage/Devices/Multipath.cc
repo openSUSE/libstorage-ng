@@ -143,13 +143,6 @@ namespace storage
 
 
     bool
-    Multipath::compare_by_name(const Multipath* lhs, const Multipath* rhs)
-    {
-	return lhs->get_name() < rhs->get_name();
-    }
-
-
-    bool
     is_multipath(const Device* device)
     {
 	return is_device_of_type<const Multipath>(device);

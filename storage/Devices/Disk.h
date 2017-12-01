@@ -79,11 +79,6 @@ namespace storage
 	 */
 	static const Disk* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
-	/**
-	 * Compare (less than) two Disks by name.
-	 */
-	static bool compare_by_name(const Disk* lhs, const Disk* rhs);
-
     public:
 
 	class Impl;

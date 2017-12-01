@@ -390,6 +390,13 @@ namespace storage
     }
 
 
+    bool
+    Device::compare_by_name(const Device* lhs, const Device* rhs)
+    {
+	return lhs->get_impl().get_sort_key() < rhs->get_impl().get_sort_key();
+    }
+
+
     std::ostream&
     operator<<(std::ostream& out, const Device& device)
     {

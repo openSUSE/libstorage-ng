@@ -100,11 +100,6 @@ namespace storage
 	static Partitionable* find_by_name(Devicegraph* devicegraph, const std::string& name);
 	static const Partitionable* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
-	/**
-	 * Compare (less than) two Partitionables by name.
-	 */
-	static bool compare_by_name(const Partitionable* lhs, const Partitionable* rhs);
-
     public:
 
 	class Impl;

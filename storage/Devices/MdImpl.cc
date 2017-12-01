@@ -130,6 +130,17 @@ namespace storage
 
 
     string
+    Md::Impl::get_sort_key() const
+    {
+	static const vector<NameSchema> name_schemata = {
+	    NameSchema(regex(DEVDIR "/md([0-9]+)", regex::extended), 4, '0')
+	};
+
+	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
+    string
     Md::Impl::find_free_numeric_name(const Devicegraph* devicegraph)
     {
 	vector<const Md*> mds = get_all_if(devicegraph, [](const Md* md) { return md->is_numeric(); });

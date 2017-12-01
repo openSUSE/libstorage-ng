@@ -91,6 +91,8 @@ namespace storage
 
 	virtual string get_displayname() const = 0;
 
+	virtual string get_sort_key() const { return ""; }
+
 	virtual void save(xmlNode* node) const = 0;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const;

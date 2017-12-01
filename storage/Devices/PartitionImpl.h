@@ -56,6 +56,8 @@ namespace storage
 
 	virtual const char* get_classname() const override { return DeviceTraits<Partition>::classname; }
 
+	virtual string get_sort_key() const override;
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void probe_pass_1a(Prober& prober) override;

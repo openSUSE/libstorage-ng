@@ -71,11 +71,6 @@ namespace storage
 	 */
 	static const DmRaid* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
-	/**
-	 * Compare (less than) two DmRaids by name.
-	 */
-	static bool compare_by_name(const DmRaid* lhs, const DmRaid* rhs);
-
     public:
 
 	class Impl;
