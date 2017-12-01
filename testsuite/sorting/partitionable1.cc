@@ -57,6 +57,9 @@ BOOST_AUTO_TEST_CASE(partitionable_sorting1)
     Dasd* dasdb = Dasd::create(staging, "/dev/dasdb");
     Dasd* dasdaa = Dasd::create(staging, "/dev/dasdaa");
 
+    Disk* vdc = Disk::create(staging, "/dev/vdc");
+    Dasd* vdbb = Dasd::create(staging, "/dev/vdbb");
+
     Md* md10 = Md::create(staging, "/dev/md10");
     Md* md0 = Md::create(staging, "/dev/md0");
     Md* md1 = Md::create(staging, "/dev/md1");
@@ -75,6 +78,6 @@ BOOST_AUTO_TEST_CASE(partitionable_sorting1)
 
     BOOST_CHECK_EQUAL(all, vector<Partitionable*>({
 	dasda, dasdb, dasdaa, mpath_1, dm_raid_1, md_2, md_bar, md_foo, md0, md1, md10, pmem0,
-	pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa
+	pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdc, vdaa, vdbb
     }));
 }
