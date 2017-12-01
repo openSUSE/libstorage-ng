@@ -79,14 +79,14 @@ namespace storage
     vector<Luks*>
     Luks::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<Luks>(compare_by_dm_table_name);
+	return devicegraph->get_impl().get_devices_of_type<Luks>();
     }
 
 
     vector<const Luks*>
     Luks::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const Luks>(compare_by_dm_table_name);
+	return devicegraph->get_impl().get_devices_of_type<const Luks>();
     }
 
 
