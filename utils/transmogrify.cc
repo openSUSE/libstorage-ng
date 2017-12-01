@@ -62,7 +62,7 @@ doit(const string& filename, const vector<string>& commands)
 	}
 	else
 	{
-	    cerr << "unknown command" << endl;
+	    cerr << "unknown command\n";
 	}
     }
 
@@ -75,7 +75,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "transmogrify filename [commands...]" << endl;
+    cerr << "transmogrify filename [commands...]\n";
     exit(EXIT_FAILURE);
 }
 
@@ -92,7 +92,7 @@ main(int argc, char **argv)
     }
     catch (const exception& e)
     {
-	cerr << "exception occured: " << e.what() << endl;
+	cerr << "exception occured: " << e.what() << '\n';
 	exit(EXIT_FAILURE);
     }
 

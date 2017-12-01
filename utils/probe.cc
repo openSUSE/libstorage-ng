@@ -44,7 +44,7 @@ doit()
     cout.setf(ios::boolalpha);
     cout.setf(ios::showbase);
 
-    cout << *probed << endl;
+    cout << *probed << '\n';
 
     probed->check();
 
@@ -71,7 +71,7 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup]" << endl;
+    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup]\n";
     exit(EXIT_FAILURE);
 }
 
@@ -129,7 +129,7 @@ main(int argc, char **argv)
     }
     catch (const exception& e)
     {
-	cerr << "exception occured: " << e.what() << endl;
+	cerr << "exception occured: " << e.what() << '\n';
 	exit(EXIT_FAILURE);
     }
 
