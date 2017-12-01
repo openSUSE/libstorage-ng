@@ -105,9 +105,8 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] filename"
-	 << "display --actiongraph [--keep-gv] [--keep-svg] filename filename"
-	 << endl;
+    cerr << "display [--devicegraph] [--keep-gv] [--keep-svg] filename\n"
+	 << "display --actiongraph [--keep-gv] [--keep-svg] filename filename\n";
 
     exit(EXIT_FAILURE);
 }
