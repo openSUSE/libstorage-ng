@@ -481,4 +481,39 @@ const string app_ws = " \t\n";
 	return name + to_string(number);
     }
 
+
+    string
+    pad_front(const string& s, size_t w, char c)
+    {
+	if (s.size() >= w)
+	    return s;
+
+	return string(w - s.size(), c) + s;
+    }
+
+
+    string
+    format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata)
+    {
+	for (const NameSchema& name_schema : name_schemata)
+	{
+	    smatch match;
+
+	    if (regex_match(s, match, name_schema.re))
+	    {
+		string ret = s;
+
+		for (size_t i = match.size() - 1; i > 0; --i)
+		{
+		    ret.replace(match.position(i), match.length(i),
+				pad_front(match.str(i), name_schema.w, name_schema.c));
+		}
+
+		return ret;
+	    }
+	}
+
+	return s;
+    }
+
 }

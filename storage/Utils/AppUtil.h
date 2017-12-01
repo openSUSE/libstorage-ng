@@ -33,6 +33,7 @@
 #include <vector>
 #include <list>
 #include <map>
+#include <regex>
 
 
 namespace storage
@@ -41,6 +42,7 @@ namespace storage
     using std::vector;
     using std::list;
     using std::map;
+    using std::regex;
 
     class Arch;
 
@@ -104,6 +106,31 @@ void classic(StreamType& stream)
     string sformat(const string& format, va_list ap);
 
     string sformat(const string& format, ...);
+
+
+    /**
+     * Pads the string s to at least width w with char c at the front.
+     */
+    string
+    pad_front(const string& s, size_t w, char c);
+
+
+    struct NameSchema
+    {
+	NameSchema(regex re, size_t w, char c) : re(re), w(w), c(c) {}
+
+	const regex re;
+	const size_t w;
+	const char c;
+    };
+
+
+    /**
+     * Formats the string s to the first matching name schema: All submatchs
+     * will be padded as defined in the name schema.
+     */
+    string
+    format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata);
 
 
 extern const string app_ws;
