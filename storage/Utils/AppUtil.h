@@ -115,18 +115,32 @@ void classic(StreamType& stream)
     pad_front(const string& s, size_t w, char c);
 
 
+    /**
+     * Definition of a name schema used by format_to_name_schemata().
+     */
     struct NameSchema
     {
 	NameSchema(regex re, size_t w, char c) : re(re), w(w), c(c) {}
 
+	/**
+	 * Regular expression matching the name schema.
+	 */
 	const regex re;
+
+	/**
+	 * Width to which the sub-match will be padded.
+	 */
 	const size_t w;
+
+	/**
+	 * Char with which the sub-match will be padded.
+	 */
 	const char c;
     };
 
 
     /**
-     * Formats the string s to the first matching name schema: All submatchs
+     * Formats the string s to the first matching name schema: All sub-matchs
      * will be padded as defined in the name schema.
      */
     string
