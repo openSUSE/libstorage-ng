@@ -6,7 +6,11 @@ AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../storage/libstorage-ng.la
 
-noinst_PROGRAMS = display probe humanstring transmogrify
+libexecdir = /usr/lib/libstorage-ng/utils
+
+libexec_PROGRAMS = display probe humanstring
+
+noinst_PROGRAMS = transmogrify
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
