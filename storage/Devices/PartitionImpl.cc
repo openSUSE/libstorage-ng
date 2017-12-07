@@ -730,7 +730,8 @@ namespace storage
 	else
 	{
 	    if (tmp.empty())
-		ST_THROW(LogicException("error"));
+		ST_THROW(Exception(sformat("partition id %d of %s does not have text representation",
+					   get_id(), get_name().c_str())));
 
 	    Text text = tenser(tense,
 			       // TRANSLATORS: displayed before action,
