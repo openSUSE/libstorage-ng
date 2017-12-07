@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-09-26 15:27+0000\n"
-"Last-Translator: Vojtech Zeisek <Vojtech.Zeisek@opensuse.org>\n"
+"PO-Revision-Date: 2017-12-07 20:01+0000\n"
+"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/cs/>\n"
 "Language: cs\n"
@@ -22,43 +22,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.13.1\n"
+"X-Generator: Weblate 2.17.1\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:311
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Nastavit šifrované loop zařízení na %1$s"
+msgstr "Nastavit zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:475
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) pro %4$s pomocí %3$s"
+msgstr "Aktivovat logický svazek %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Nastavuje se šifrované loop zařízení na %1$s"
+msgstr "Aktivuje se zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:480
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Formátuje se logický svazek %1$s (%2$s) pomocí %3$s"
+msgstr "Aktivuje se logický svazek %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -67,10 +63,9 @@ msgstr "Formátuje se logický svazek %1$s (%2$s) pomocí %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
-#, fuzzy, c-format
-#| msgid "Extend %1$s to %2$s"
+#, c-format
 msgid "Add %1$s to %2$s"
-msgstr "Rozšířit %1$s na %2$s"
+msgstr "Přidat %1$s k %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -90,10 +85,9 @@ msgstr "Přidat šifrovanou vrstvu na %1$s do /etc/crypttab"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:253
-#, fuzzy, c-format
-#| msgid "Add entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr "Přidat bod připojení %1$s do %2$s"
+msgstr "Přidat bod připojení %1$s z %2$s k /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -111,10 +105,9 @@ msgstr "Přidat bod připojení %1$s podsvazku %2$s na %3$s do /etc/fstab"
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
-#, fuzzy, c-format
-#| msgid "Extending %1$s to %2$s"
+#, c-format
 msgid "Adding %1$s to %2$s"
-msgstr "Rozšiřuje se %1$s na %2$s"
+msgstr "Přidává se %1$s k %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -134,10 +127,9 @@ msgstr "Přidávání šifrované vrstvy zařízení na %1$s do /etc/crypttab"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:257
-#, fuzzy, c-format
-#| msgid "Adding entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "Přidává se bod připojení %1$s do %2$s"
+msgstr "Přidává se bod připojení %1$s z %2$s k /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -156,27 +148,26 @@ msgstr "B"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:769
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Ruším boot příznak oddílu %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:810
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Ruším starý boot příznak oddílu %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Vytváření podřízeného svazku %1$s zařízení %2$s"
+msgstr ""
+"Odstraňuji volbu 'no copy on write' (nekopírovat při zápisu) podsvazku %1$s "
+"na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -188,18 +179,16 @@ msgstr "Vyčistit ochranný příznak MBR boot na GPT na %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:772
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "Vytváří multipath oddíl %1$s"
+msgstr "Ruším zaváděcí (boot) příznak oddílu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:813
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "Vytváří multipath oddíl %1$s"
+msgstr "Ruším starý příznak zavádění (boot) oddílu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -221,52 +210,46 @@ msgstr "Vyčištění ochranného příznaku MBR boot GPT na %1$s"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:503
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create %1$s on %2$s (%3$s)"
-msgstr "Vytvořit odkládací svazek %1$s (%2$s)"
+msgstr "Vytvořit %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:212
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Vytváří se tabulka oddílů typu DASD na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:201
-#, fuzzy, c-format
-#| msgid "Create %1$s"
+#, c-format
 msgid "Create GPT on %1$s"
-msgstr "Vytvořit %1$s"
+msgstr "Vytvořit GPT na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:720
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "Vytvořit svazek %1$s (%2$s)"
+msgstr "Vytvořit hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:276
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Vytváří se tabulka oddílů typu MSDOS na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:233
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Nastavit šifrované loop zařízení na %1$s"
+msgstr "Vytvořit zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -277,73 +260,65 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
 
 #: ../storage/Devices/DiskImpl.cc:227
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "Vytvořit odkládací svazek %1$s (%2$s)"
+msgstr "Vytvořit pevný disk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "Vytvořit multipath oddíl %1$s (%2$s)"
+msgstr "Vytvořit logický oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) pro %4$s pomocí %3$s"
+msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "Vytvořit oddíl RAID %1$s (%2$s)"
+msgstr "Vytvořit oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:249
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "Vytváří se logický svazek %1$s"
+msgstr "Vytváří se fyzický svazek na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:526
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "Vytvořit oddíl RAID %1$s (%2$s)"
+msgstr "Vytvořit primární oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Vytvořit podřízený svazek %1$s zařízení %2$s"
+msgstr "Vytvořit podsvazek %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "Vytvořit svazek %1$s (%2$s)"
+msgstr "Vytvořit skupinu svazků %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -351,59 +326,52 @@ msgstr "Vytvořit svazek %1$s (%2$s)"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "Nastavit typ oddílu %1$s na %2$s (%3$X)"
+msgstr "Vytvořit %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Vytváří se tabulka oddílů typu DASD na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:204
-#, fuzzy, c-format
-#| msgid "Creating %1$s"
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "Vytváří se %1$s"
+msgstr "Vytváří se tabulka oddílů typu GUID (GPT) na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Vytváří se skupina svazků %1$s (%2$s) z %3$s"
+msgstr "Vytváří se hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating MSDOS partition table on %1$s"
-msgstr "Vytváří se oddíl RAID %1$s"
+msgstr "Vytváří se tabulka oddílů typu MSDOS na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Nastavuje se šifrované loop zařízení na %1$s"
+msgstr "Vytváří se zařízení šifrované vrstvy na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
 
@@ -411,200 +379,178 @@ msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "Vytvořit multipath oddíl %1$s (%2$s)"
+msgstr "Vytvořit logický oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:303
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) pro %4$s pomocí %3$s"
+msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:515
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr "Vytvořit oddíl RAID %1$s (%2$s)"
+msgstr "Vytvořit oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:252
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Creating physical volume on %1$s"
-msgstr "Vytváří se logický svazek %1$s"
+msgstr "Vytváří se fyzický svazek na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:530
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "Vytvořit multipath oddíl %1$s (%2$s)"
+msgstr "Vytvořit primární oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "Vytváření podřízeného svazku %1$s zařízení %2$s"
+msgstr "Vytváření podsvazku %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:390
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating volume group %1$s (%2$s)"
-msgstr "Vytváří se skupina svazků %1$s (%2$s) z %3$s"
+msgstr "Vytváří se skupina svazků %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:975
-#, fuzzy, c-format
-#| msgid "Create software RAID %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "Vytvořit softwarový RAID %1$s (%2$s) z %3$s"
+msgstr "Deaktivovat hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:326
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "Nastavit šifrované loop zařízení na %1$s"
+msgstr "Deaktivovat zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) pro %4$s pomocí %3$s"
+msgstr "Deaktivovat logický svazek %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "Vytvořit multipath oddíl %1$s (%2$s)"
+msgstr "Deaktivovat multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:980
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "Odstranit oddíl %1$s (%2$s)"
+msgstr "Deaktivovat hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:329
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Nastavuje se šifrované loop zařízení na %1$s"
+msgstr "Deaktivuje se zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:516
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Formátuje se logický svazek %1$s (%2$s) pomocí %3$s"
+msgstr "Deaktivuje se logický svazek %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:302
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "Vytvořit multipath oddíl %1$s (%2$s)"
+msgstr "Deaktivuji multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
-msgstr "Odstranit oddíl %1$s (%2$s)"
+msgstr "Odstranit %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:245
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "Odstraňuje se oddíl RAID %1$s"
+msgstr "Odstraňuje se tabulka oddílů typu DASD na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:277
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Delete GPT on %1$s"
-msgstr "Odstraňuje se oddíl %1$s"
+msgstr "Odstraňuje se GPT na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:796
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr "Odstranit oddíl %1$s (%2$s)"
+msgstr "Odstranit hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:309
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete MSDOS partition table on %1$s"
-msgstr "Odstraňuje se oddíl RAID %1$s"
+msgstr "Odstraňuje se tabulka oddílů MSDOS na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Nastavit šifrované loop zařízení na %1$s"
+msgstr "Odstranit zařízení šifrovací vrstvy na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Odstranit logický svazek %1$s (%2$s)"
+msgstr "Odstranit logický svazek %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -617,28 +563,25 @@ msgstr "Odstranit oddíl %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:351
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Delete physical volume on %1$s"
-msgstr "Odstraňuje se logický oddíl %1$s"
+msgstr "Odstraňuje se fyzický oddíl na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "Vytvořit podřízený svazek %1$s zařízení %2$s"
+msgstr "Odstranit podsvazek %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:420
-#, fuzzy, c-format
-#| msgid "Reduce volume group %1$s by %2$s"
+#, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr "Zmenšit skupinu svazků %1$s o %2$s"
+msgstr "Zrušit skupinu svazků %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -646,26 +589,23 @@ msgstr "Zmenšit skupinu svazků %1$s o %2$s"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:681
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
-msgstr "Nastavit typ oddílu %1$s na %2$s (%3$X)"
+msgstr "Odstraňuje se %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "Odstraňuje se oddíl RAID %1$s"
+msgstr "Odstraňuje se tabulka oddílů typu DASD na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:280
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Deleting GPT on %1$s"
-msgstr "Odstraňuje se oddíl %1$s"
+msgstr "Odstraňuje se GPT na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
