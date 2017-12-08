@@ -32,7 +32,7 @@ sdb2.set_id(ID_RAID)
 test = LvmVg.create(staging, "test")
 test.add_lvm_pv(md)
 
-print staging
+print(staging)
 
 commit(storage)
 

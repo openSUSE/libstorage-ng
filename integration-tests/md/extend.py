@@ -24,7 +24,7 @@ md = Md.find_by_name(staging, "/dev/md0")
 md_user = md.add_device(sdb5)
 md_user.set_spare(True)
 
-print staging
+print(staging)
 
 commit(storage)
 

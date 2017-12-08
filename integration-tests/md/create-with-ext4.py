@@ -34,7 +34,7 @@ ext4.set_label("TEST")
 
 mount_point = ext4.create_mount_point("/test")
 
-print staging
+print(staging)
 
 commit(storage)
 

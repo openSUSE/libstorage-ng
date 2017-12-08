@@ -32,7 +32,7 @@ md.add_device(sdb3)
 md.add_device(sdb4)
 md.add_device(sdb5).set_spare(True)
 
-print staging
+print(staging)
 
 commit(storage)
 

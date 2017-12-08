@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_SWAP)
@@ -25,7 +25,7 @@ swap = partition.create_blk_filesystem(FsType_SWAP)
 
 mount_point = swap.create_mount_point("swap")
 
-print staging
+print(staging)
 
 commit(storage)
 

@@ -15,11 +15,11 @@ class MyActivateCallbacks(ActivateCallbacks):
         super(MyActivateCallbacks, self).__init__()
 
     def multipath(self):
-        print "multipath callback"
+        print("multipath callback")
         return True
 
     def luks(self, uuid, attempt):
-        print "luks callback uuid:%s attempt:%d" % (uuid, attempt)
+        print("luks callback uuid:%s attempt:%d" % (uuid, attempt))
         if attempt == 2:
             return PairBoolString(True, "12345678")
         else:

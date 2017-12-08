@@ -23,7 +23,7 @@ md = Md.find_by_name(staging, "/dev/md0")
 
 md.remove_device(sdb5)
 
-print staging
+print(staging)
 
 commit(storage)
 

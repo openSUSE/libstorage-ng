@@ -17,15 +17,15 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb5")
 
 surrounding = partition.get_unused_surrounding_region()
 
-print surrounding
+print(surrounding)
 
-print byte_to_humanstring(surrounding.to_bytes(surrounding.get_start()), False, 2, True)
-print byte_to_humanstring(surrounding.to_bytes(surrounding.get_length()), False, 2, True)
-print byte_to_humanstring(surrounding.to_bytes(surrounding.get_end()), False, 2, True)
+print(byte_to_humanstring(surrounding.to_bytes(surrounding.get_start()), False, 2, True))
+print(byte_to_humanstring(surrounding.to_bytes(surrounding.get_length()), False, 2, True))
+print(byte_to_humanstring(surrounding.to_bytes(surrounding.get_end()), False, 2, True))
 

@@ -16,13 +16,13 @@ storage.probe()
 
 staging = storage.get_staging()
 
-# print staging
+# print(staging)
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
 partitionable.remove_descendants()
 
-# print staging
+# print(staging)
 
 commit(storage)
 

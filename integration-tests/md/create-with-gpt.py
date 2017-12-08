@@ -31,7 +31,7 @@ sdb2.set_id(ID_RAID)
 
 gpt = to_gpt(md.create_partition_table(PtType_GPT))
 
-print staging
+print(staging)
 
 commit(storage)
 

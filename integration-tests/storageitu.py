@@ -14,7 +14,7 @@ class MyCheckCallbacks(CheckCallbacks):
         super(MyCheckCallbacks, self).__init__()
 
     def error(self, message):
-        print "error '%s'" % message
+        print("error '%s'" % message)
 
 
 def check(storage):
@@ -30,10 +30,10 @@ class MyCommitCallbacks(CommitCallbacks):
         super(MyCommitCallbacks, self).__init__()
 
     def message(self, message):
-        print "message '%s'" % message
+        print("message '%s'" % message)
 
     def error(self, message, what):
-        print "error '%s' '%s'" % (message, what)
+        print("error '%s' '%s'" % (message, what))
         return False
 
 

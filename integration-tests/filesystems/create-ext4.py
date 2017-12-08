@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
@@ -28,7 +28,7 @@ ext4.set_tune_options("-c 10")
 mount_point = ext4.create_mount_point("/test")
 mount_point.set_mount_by(MountByType_LABEL)
 
-print staging
+print(staging)
 
 commit(storage)
 

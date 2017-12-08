@@ -30,7 +30,7 @@ md.add_device(sdb2)
 md.add_device(sdb3)
 md.add_device(sdb4)
 
-print staging
+print(staging)
 
 commit(storage)
 

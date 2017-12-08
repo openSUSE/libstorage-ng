@@ -17,7 +17,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 
@@ -29,7 +29,7 @@ region = partition.get_partition_table().align(region)
 
 partition.set_region(region)
 
-print staging
+print(staging)
 
 commit(storage)
 

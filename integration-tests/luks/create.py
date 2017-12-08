@@ -23,7 +23,7 @@ luks = sdb1.create_encryption("cr-test")
 
 luks.set_password("12345678")
 
-print staging
+print(staging)
 
 commit(storage)
 

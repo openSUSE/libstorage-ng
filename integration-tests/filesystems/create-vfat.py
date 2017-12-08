@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
@@ -26,7 +26,7 @@ vfat.set_label("TEST")
 
 mount_point = vfat.create_mount_point("/test")
 
-print staging
+print(staging)
 
 commit(storage)
 

@@ -17,15 +17,15 @@ storage.probe()
 
 probed = storage.get_probed()
 
-print probed
+print(probed)
 
 sdb1 = BlkDevice.find_by_name(probed, "/dev/sdb1")
 
 resize_info = sdb1.detect_resize_info()
 
-print resize_info
+print(resize_info)
 
-print resize_info.resize_ok
-print byte_to_humanstring(resize_info.min_size, False, 2, True)
-print byte_to_humanstring(resize_info.max_size, False, 2, True)
+print(resize_info.resize_ok)
+print(byte_to_humanstring(resize_info.min_size, False, 2, True))
+print(byte_to_humanstring(resize_info.max_size, False, 2, True))
 

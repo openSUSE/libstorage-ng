@@ -23,7 +23,7 @@ normal1 = test.create_lvm_lv("normal1", LvType_NORMAL, 1 * GiB)
 # normal1.set_stripes(2)
 # normal1.set_stripe_size(256 * KiB)
 
-print staging
+print(staging)
 
 check(storage)
 commit(storage)

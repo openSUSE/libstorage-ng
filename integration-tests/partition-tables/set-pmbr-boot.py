@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 disk = Disk.find_by_name(staging, "/dev/sdb")
 
@@ -24,7 +24,7 @@ gpt = to_gpt(disk.get_partition_table())
 
 gpt.set_pmbr_boot(not gpt.is_pmbr_boot())
 
-print staging
+print(staging)
 
 commit(storage)
 

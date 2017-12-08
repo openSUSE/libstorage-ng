@@ -27,7 +27,7 @@ thin_pool = test.create_lvm_lv("thin-pool", LvType_THIN_POOL, 1 * GiB)
 thin_pool.create_lvm_lv("thin1", LvType_THIN, 2 * GiB)
 thin_pool.create_lvm_lv("thin2", LvType_THIN, 3 * GiB)
 
-print staging
+print(staging)
 
 commit(storage)
 

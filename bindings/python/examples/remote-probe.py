@@ -46,12 +46,12 @@ class MyRemoteCallbacks(RemoteCallbacks):
         super(MyRemoteCallbacks, self).__init__()
 
     def get_command(self, name):
-        print "command '%s'" % name
+        print("command '%s'" % name)
         command = run_command(name)
         return command
 
     def get_file(self, name):
-        print "file '%s'" % name
+        print("file '%s'" % name)
         command = run_command("cat '%s'" % name)
         file = RemoteFile(command.stdout)
         return file
@@ -72,18 +72,18 @@ def doit():
     storage = Storage(environment)
     storage.probe()
 
-    print
+    print()
 
     probed = storage.get_probed()
 
-    print probed
+    print(probed)
 
     if save_devicegraph:
         probed.save("devicegraph.xml");
 
 
 def usage():
-    print "usage: remote-probe.py [--host=name] [--save-mockup] [--save-devicegraph]"
+    print("usage: remote-probe.py [--host=name] [--save-mockup] [--save-devicegraph]")
     exit(1)
 
 try:

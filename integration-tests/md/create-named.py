@@ -29,7 +29,7 @@ sdb1.set_id(ID_RAID)
 md_test.add_device(sdb2)
 sdb2.set_id(ID_RAID)
 
-print staging
+print(staging)
 
 commit(storage)
 

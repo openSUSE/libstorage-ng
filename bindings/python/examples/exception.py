@@ -8,9 +8,9 @@ devicegraph = Devicegraph()
 
 try:
   tmp = BlkDevice.find(devicegraph, "/dev/sda")
-  print tmp
+  print(tmp)
 except DeviceNotFound, e:
-  print "device not found"
+  print("device not found")
 
-print "done"
+print("done")
 

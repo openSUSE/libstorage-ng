@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 blk_device = BlkDevice.find_by_name(staging, "/dev/sdb1")
 
@@ -29,7 +29,7 @@ btrfs_subvolume.set_default_btrfs_subvolume()
 
 mount_point = btrfs_subvolume.create_mount_point("/test/test")
 
-print staging
+print(staging)
 
 commit(storage)
 

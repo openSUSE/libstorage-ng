@@ -25,7 +25,7 @@ test.add_lvm_pv(sdb1)
 test.add_lvm_pv(sdc1)
 test.set_extent_size(128 * MiB)
 
-print staging
+print(staging)
 
 commit(storage)
 

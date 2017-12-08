@@ -16,13 +16,13 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 
 partition.set_boot(not partition.is_boot())
 
-print staging
+print(staging)
 
 commit(storage)
 

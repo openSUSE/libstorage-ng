@@ -11,7 +11,7 @@ class MyLogger(Logger):
 
     def write(self, level, component, filename, line, function, content):
 
-        print "my-logger", content
+        print("my-logger", content)
 
         global my_logger_called
         my_logger_called = True

@@ -19,7 +19,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
@@ -45,7 +45,7 @@ for partition_slot in partition_slots:
 
 
 if not good_partition_slot:
-    print "no good partition slot found"
+    print("no good partition slot found")
     exit()
 
 region = good_partition_slot.region
@@ -58,7 +58,7 @@ partition = partition_table.create_partition(good_partition_slot.name, region, t
 
 partition.set_id(ID_RAID)
 
-print staging
+print(staging)
 
 commit(storage)
 

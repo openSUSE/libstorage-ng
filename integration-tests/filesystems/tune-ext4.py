@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
 
@@ -24,7 +24,7 @@ ext4 = sdb1.get_blk_filesystem()
 
 ext4.set_tune_options("-c 20")
 
-print staging
+print(staging)
 
 commit(storage)
 

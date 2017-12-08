@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
@@ -24,7 +24,7 @@ partitionable.remove_descendants()
 
 partitionable.create_partition_table(PtType_GPT)
 
-print staging
+print(staging)
 
 commit(storage)
 

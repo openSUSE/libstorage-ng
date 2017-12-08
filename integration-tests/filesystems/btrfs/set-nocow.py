@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 blk_device = BlkDevice.find_by_name(staging, "/dev/system/btrfs")
 btrfs = to_btrfs(blk_device.get_blk_filesystem())
@@ -25,7 +25,7 @@ btrfs_subvolume = btrfs.find_btrfs_subvolume_by_path("test")
 
 btrfs_subvolume.set_nocow(not btrfs_subvolume.is_nocow())
 
-print staging
+print(staging)
 
 commit(storage)
 

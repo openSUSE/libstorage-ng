@@ -37,7 +37,7 @@ md.add_device(sdc1).set_sort_key(2)
 md.add_device(sdc2).set_sort_key(4)
 md.add_device(sdc3).set_sort_key(6)
 
-print staging
+print(staging)
 
 commit(storage)
 
