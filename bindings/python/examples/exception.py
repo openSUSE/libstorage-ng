@@ -1,13 +1,17 @@
 #!/usr/bin/python
 
-from storage import Devicegraph, BlkDevice, DeviceNotFound
+from storage import Environment, Storage, BlkDevice, DeviceNotFound
 
 
-devicegraph = Devicegraph()
+environment = Environment(True)
 
+storage = Storage(environment)
+storage.probe()
+
+probed = storage.get_probed()
 
 try:
-  tmp = BlkDevice.find(devicegraph, "/dev/sda")
+  tmp = BlkDevice.find_by_name(probed, "/dev/sdz")
   print(tmp)
 except DeviceNotFound, e:
   print("device not found")
