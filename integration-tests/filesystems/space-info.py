@@ -17,7 +17,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 mount_points = MountPoint.find_by_path(staging, "/test")
 
@@ -27,8 +27,8 @@ if not mount_points.empty():
 
     space_info = filesystem.detect_space_info()
 
-    print space_info
+    print(space_info)
 
-    print byte_to_humanstring(space_info.size, False, 2, True)
-    print byte_to_humanstring(space_info.used, False, 2, True)
+    print(byte_to_humanstring(space_info.size, False, 2, True))
+    print(byte_to_humanstring(space_info.used, False, 2, True))
 

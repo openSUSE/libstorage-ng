@@ -16,9 +16,9 @@ storage = Storage(environment)
 
 status = storage.deactivate()
 
-print "multipath:", status.multipath
-print "dm-raid:", status.dm_raid
-print "md:", status.md
-print "lvm-lv:", status.lvm_lv
-print "luks:", status.luks
+print("multipath:", status.multipath)
+print("dm-raid:", status.dm_raid)
+print("md:", status.md)
+print("lvm-lv:", status.lvm_lv)
+print("luks:", status.luks)
 

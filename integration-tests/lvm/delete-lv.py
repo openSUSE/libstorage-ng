@@ -24,7 +24,7 @@ normal1 = test.get_lvm_lv("normal1")
 normal1.remove_descendants()
 staging.remove_device(normal1)
 
-print staging
+print(staging)
 
 commit(storage)
 

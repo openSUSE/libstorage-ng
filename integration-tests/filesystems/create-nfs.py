@@ -16,13 +16,13 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 nfs = Nfs.create(staging, "dist", "/dist")
 
 mount_point = nfs.create_mount_point("/test")
 
-print staging
+print(staging)
 
 commit(storage)
 

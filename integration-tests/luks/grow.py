@@ -19,13 +19,13 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
 
 sdb1.set_size(sdb1.get_size() + 512 * MiB)
 
-print staging
+print(staging)
 
 commit(storage)
 

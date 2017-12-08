@@ -16,14 +16,14 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 nfs = Nfs.find_by_server_and_path(staging, "dist", "/dist")
 
 nfs.remove_descendants()
 staging.remove_device(nfs)
 
-print staging
+print(staging)
 
 commit(storage)
 

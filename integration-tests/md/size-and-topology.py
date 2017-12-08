@@ -31,9 +31,9 @@ def read_int(filename):
 
 def doit(level, devices, chunk_size):
 
-    print
-    print "level:", get_md_level_name(level), "devices:", devices, "chunk-size:", chunk_size
-    print
+    print()
+    print("level:", get_md_level_name(level), "devices:", devices, "chunk-size:", chunk_size)
+    print()
 
     storage = Storage(environment)
     storage.probe()

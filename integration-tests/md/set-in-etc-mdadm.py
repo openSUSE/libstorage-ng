@@ -21,7 +21,7 @@ md0 = Md.find_by_name(staging, "/dev/md0")
 
 md0.set_in_etc_mdadm(not md0.is_in_etc_mdadm())
 
-print staging
+print(staging)
 
 commit(storage)
 

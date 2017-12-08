@@ -23,7 +23,7 @@ sdb1.remove_descendants()
 sdb2 = Partition.find_by_name(staging, "/dev/sdb2")
 sdb2.remove_descendants()
 
-print staging
+print(staging)
 
 commit(storage)
 

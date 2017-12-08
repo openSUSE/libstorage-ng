@@ -22,7 +22,7 @@ partitionables = Partitionable.get_all(staging)
 for partitionable in sorted(partitionables, lambda lhs, rhs:
                             -1 if Partitionable.compare_by_name(lhs, rhs) else +1):
 
-    print "%s" % partitionable.get_name()
+    print("%s" % partitionable.get_name())
 
     if partitionable.has_partition_table():
 
@@ -31,5 +31,5 @@ for partitionable in sorted(partitionables, lambda lhs, rhs:
         for partition in sorted(partition_table.get_partitions(), lambda lhs, rhs:
                                 -1 if Partition.compare_by_number(lhs, rhs) else +1):
 
-            print "  %s" % partition.get_name()
+            print("  %s" % partition.get_name())
 

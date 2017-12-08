@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 partition.set_id(ID_LINUX)
@@ -27,7 +27,7 @@ reiserfs.set_tune_options("-m 10")
 
 mount_point = reiserfs.create_mount_point("/test")
 
-print staging
+print(staging)
 
 commit(storage)
 

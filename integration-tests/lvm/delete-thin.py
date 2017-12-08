@@ -26,7 +26,7 @@ thin1 = thin_pool.get_lvm_lv("thin1")
 thin1.remove_descendants()
 staging.remove_device(thin1)
 
-print staging
+print(staging)
 
 commit(storage)
 

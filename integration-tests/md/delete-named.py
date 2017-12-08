@@ -22,7 +22,7 @@ md_test = Md.find_by_name(staging, "/dev/md/test")
 md_test.remove_descendants()
 staging.remove_device(md_test)
 
-print staging
+print(staging)
 
 commit(storage)
 

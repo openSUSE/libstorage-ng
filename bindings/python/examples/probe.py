@@ -10,5 +10,5 @@ storage.probe()
 
 probed = storage.get_probed()
 
-print probed
+print(probed)
 

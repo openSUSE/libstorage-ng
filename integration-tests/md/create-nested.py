@@ -45,7 +45,7 @@ md2.set_md_level(MdLevel_RAID0)
 md2.add_device(md0)
 md2.add_device(md1)
 
-print staging
+print(staging)
 
 commit(storage)
 

@@ -16,7 +16,7 @@ storage.probe()
 
 staging = storage.get_staging()
 
-print staging
+print(staging)
 
 partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
 
@@ -24,7 +24,7 @@ partition_table = partitionable.get_partition_table()
 
 partition_table.delete_partition("/dev/sdb1")
 
-print staging
+print(staging)
 
 commit(storage)
 

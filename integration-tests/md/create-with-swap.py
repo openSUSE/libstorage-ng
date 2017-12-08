@@ -33,7 +33,7 @@ swap = md.create_blk_filesystem(FsType_SWAP)
 
 mount_point = swap.create_mount_point("swap")
 
-print staging
+print(staging)
 
 commit(storage)
 
