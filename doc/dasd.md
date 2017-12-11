@@ -20,7 +20,7 @@ Can be used with a DASD partition table.
 
 Cannot be used as a block device since the two first tracks are special.
 
-- Partition Types: DASD
+- Partition Table Types: DASD
 
 - Use as Block Device: No
 
@@ -33,7 +33,7 @@ Implicit partition table with one big partition.
 Can be used directly as a block device. But since the implicit partition stays
 this looks like a recipe for disaster.
 
-- Partition Types: Implicit
+- Partition Table Types: Implicit
 
 - Use as Block Device: Unsupported
 
@@ -41,7 +41,7 @@ this looks like a recipe for disaster.
 Unformatted ECKD DASDs
 ----------------------
 
-- Partition Types: None
+- Partition Table Types: None
 
 - Use as Block Device: No
 
@@ -55,7 +55,7 @@ table with one big partition.
 Can be used directly as a block device. But since the implicit partition stays
 this looks like a recipe for disaster.
 
-- Partition Types: Implicit, MS-DOS, GPT
+- Partition Table Types: Implicit, MS-DOS, GPT
 
 - Use as Block Device: Unsupported
 
