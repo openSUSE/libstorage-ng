@@ -255,6 +255,8 @@ namespace storage
 	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
 	}
 
+	// TODO /proc/mounts
+
 	const CmdLsattr& cmdlsattr = prober.get_system_info().getCmdLsattr(blk_device->get_name(), mount_point, path);
 	nocow = cmdlsattr.is_nocow();
     }
