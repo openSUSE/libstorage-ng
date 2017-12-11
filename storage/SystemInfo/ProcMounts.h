@@ -46,7 +46,7 @@ namespace storage
     public:
 
 	ProcMounts();
-        ~ProcMounts();
+	~ProcMounts();
 
 	/**
 	 * Return all entries for the device. This object keeps ownership of
@@ -56,7 +56,7 @@ namespace storage
 
 	/**
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
-         * do not delete them.
+	 * do not delete them.
 	 */
 	vector<const FstabEntry*> get_all_nfs() const;
 
@@ -64,14 +64,15 @@ namespace storage
 
     protected:
 
-        void clear();
+	void clear();
+
 	void parse_proc_mounts_lines(const vector<string>& lines);
-	void parse_proc_swaps_lines (const vector<string>& lines);
+	void parse_proc_swaps_lines(const vector<string>& lines);
 
-	typedef multimap<string, FstabEntry *>::const_iterator const_iterator;
-	typedef multimap<string, FstabEntry *>::value_type value_type;
+	typedef multimap<string, FstabEntry*>::const_iterator const_iterator;
+	typedef multimap<string, FstabEntry*>::value_type value_type;
 
-	multimap<string, FstabEntry *> data;
+	multimap<string, FstabEntry*> data;
     };
 
 }
