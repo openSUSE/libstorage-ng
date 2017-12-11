@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,7 +48,11 @@ namespace storage
 	ProcMounts();
         ~ProcMounts();
 
-	vector<string> find_by_name(const string& name, SystemInfo& system_info) const;
+	/**
+	 * Return all entries for the device. This object keeps ownership of
+	 * the entries; do not delete them.
+	 */
+	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo& system_info) const;
 
 	/**
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
