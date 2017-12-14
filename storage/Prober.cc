@@ -204,6 +204,8 @@ namespace storage
 	}
 
 	Nfs::Impl::probe_nfses(*this);
+
+	y2mil("prober done");
     }
 
 
