@@ -174,8 +174,7 @@ namespace storage
 	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
-							     Partition::compare_by_number);
+	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex));
     }
 
 
@@ -185,8 +184,7 @@ namespace storage
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex),
-							     Partition::compare_by_number);
+	return devicegraph.filter_devices_of_type<Partition>(devicegraph.children(vertex));
     }
 
 

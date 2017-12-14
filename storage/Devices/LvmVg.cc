@@ -187,14 +187,14 @@ namespace storage
     vector<LvmVg*>
     LvmVg::get_all(Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<LvmVg>(compare_by_vg_name);
+	return devicegraph->get_impl().get_devices_of_type<LvmVg>();
     }
 
 
     vector<const LvmVg*>
     LvmVg::get_all(const Devicegraph* devicegraph)
     {
-	return devicegraph->get_impl().get_devices_of_type<const LvmVg>(compare_by_vg_name);
+	return devicegraph->get_impl().get_devices_of_type<const LvmVg>();
     }
 
 
