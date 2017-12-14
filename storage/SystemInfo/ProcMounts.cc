@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2017] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,10 +123,10 @@ namespace storage
     }
 
 
-    vector<string>
-    ProcMounts::find_by_name(const string& name, SystemInfo& system_info) const
+    vector<const FstabEntry*>
+    ProcMounts::get_by_name(const string& name, SystemInfo& system_info) const
     {
-	vector<string> ret;
+	vector<const FstabEntry*> ret;
 
 	// TODO: Lookup with major and minor number only for names of block
 	// devices (starting with '/dev/'). Parameter name will also be
@@ -139,7 +139,7 @@ namespace storage
 	    if (value.first == name ||
 		(BlkDevice::Impl::is_valid_name(value.first) &&
 		 system_info.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
-		ret.push_back(value.second->get_mount_point());
+		ret.push_back(value.second);
 	}
 
 	return ret;

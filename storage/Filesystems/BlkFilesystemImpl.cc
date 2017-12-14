@@ -152,6 +152,12 @@ namespace storage
 	    uuid = it->second.fs_uuid;
 	}
 
+	// The code here works only with one mount point per device. Anything
+	// else is not supported since it was rejected by the product owner.
+
+	// TODO similar code needed for BtrfsSubvolume and maybe Nfs. Try to
+	// make generic helpers.
+
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
 	const FstabEntry* fstab_entry = find_etc_fstab_entry(system_info.getEtcFstab(), aliases);
@@ -161,9 +167,30 @@ namespace storage
 	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
 	    mount_point->set_mount_by(fstab_entry->get_mount_by());
 	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
+	    mount_point->set_in_etc_fstab(true);
+	    mount_point->set_active(false);
 	}
 
-	// TODO also add mount points from /proc/mounts, set active flag
+	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_by_name(blk_device->get_name(),
+											  system_info);
+	for (const FstabEntry* mount_entry : mount_entries)
+	{
+	    if (has_mount_point())
+	    {
+		MountPoint* mount_point = get_mount_point();
+
+		if (mount_point->get_path() == mount_entry->get_mount_point())
+		    mount_point->set_active(true);
+	    }
+	    else
+	    {
+		MountPoint* mount_point = create_mount_point(mount_entry->get_mount_point());
+		mount_point->set_mount_by(MountByType::DEVICE);
+		mount_point->set_mount_options(mount_entry->get_mount_opts().get_opts());
+		mount_point->set_in_etc_fstab(false);
+		mount_point->set_active(true);
+	    }
+	}
     }
 
 
