@@ -137,9 +137,35 @@ namespace storage
     void
     PartitionTable::Impl::delete_partition(Partition* partition)
     {
+	PartitionType old_type = partition->get_type();
+	unsigned int old_number = partition->get_number();
+
 	partition->remove_descendants();
 
 	get_devicegraph()->remove_device(partition);
+
+	if ((get_type() == PtType::GPT || get_type() == PtType::MSDOS) &&
+	    old_type == PartitionType::PRIMARY)
+	{
+	    // After deleting a primary partition on MS-DOS or GPT the numbers
+	    // of partitions not on disk with higher numbers are shifted. For
+	    // DASD there is special handling.
+
+	    vector<Partition*> partitions = get_partitions();
+	    sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
+	    for (Partition* tmp : partitions)
+	    {
+		if (tmp->get_type() == PartitionType::PRIMARY && !tmp->exists_in_probed())
+		{
+		    unsigned int number = tmp->get_number();
+		    if (number > old_number)
+		    {
+			tmp->get_impl().set_number(old_number);
+			old_number = number;
+		    }
+		}
+	    }
+	}
     }
 
 
