@@ -145,24 +145,24 @@ namespace storage
 	get_devicegraph()->remove_device(partition);
 
 	if ((get_type() == PtType::GPT || get_type() == PtType::MSDOS) &&
-	    old_type == PartitionType::PRIMARY)
+	    (old_type == PartitionType::PRIMARY || old_type == PartitionType::EXTENDED))
 	{
-	    // After deleting a primary partition on MS-DOS or GPT the numbers
-	    // of partitions not on disk with higher numbers are shifted. For
-	    // DASD there is special handling.
+	    // After deleting a primary or extended partition on MS-DOS or GPT
+	    // the numbers of primary and extended partitions not on disk with
+	    // higher numbers are shifted. For DASD there is special handling.
 
 	    vector<Partition*> partitions = get_partitions();
 	    sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 	    for (Partition* tmp : partitions)
 	    {
-		if (tmp->get_type() == PartitionType::PRIMARY && !tmp->exists_in_probed())
+		PartitionType type = tmp->get_type();
+		unsigned int number = tmp->get_number();
+
+		if ((type == PartitionType::PRIMARY || type == PartitionType::EXTENDED) &&
+		    number > old_number && !tmp->exists_in_probed())
 		{
-		    unsigned int number = tmp->get_number();
-		    if (number > old_number)
-		    {
-			tmp->get_impl().set_number(old_number);
-			old_number = number;
-		    }
+		    tmp->get_impl().set_number(old_number);
+		    old_number = number;
 		}
 	    }
 	}
