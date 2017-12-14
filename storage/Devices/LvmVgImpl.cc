@@ -402,8 +402,7 @@ namespace storage
 	Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
-							 LvmLv::compare_by_lv_name);
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex));
     }
 
 
@@ -413,8 +412,7 @@ namespace storage
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
-	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex),
-							 LvmLv::compare_by_lv_name);
+	return devicegraph.filter_devices_of_type<LvmLv>(devicegraph.children(vertex));
     }
 
 
