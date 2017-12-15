@@ -51,7 +51,7 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
-	virtual void probe_pass_2(Prober& prober) override;
+	virtual void probe_pass_2b(Prober& prober) override;
 
     public:
 

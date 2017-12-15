@@ -198,7 +198,8 @@ namespace storage
 		    }
 
 		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
-		    blk_filesystem->get_impl().probe_pass_2(*this);
+		    blk_filesystem->get_impl().probe_pass_2a(*this);
+		    blk_filesystem->get_impl().probe_pass_2b(*this);
 		}
 	    }
 	}

@@ -64,7 +64,7 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual void probe_pass_2(Prober& prober) override;
+	virtual void probe_pass_2b(Prober& prober) override;
 
 	virtual FsType get_type() const override { return FsType::XFS; }
 

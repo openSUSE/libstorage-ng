@@ -138,7 +138,7 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::probe_pass_2(Prober& prober)
+    BlkFilesystem::Impl::probe_pass_2a(Prober& prober)
     {
 	SystemInfo& system_info = prober.get_system_info();
 
@@ -151,46 +151,28 @@ namespace storage
 	    label = it->second.fs_label;
 	    uuid = it->second.fs_uuid;
 	}
+    }
 
-	// The code here works only with one mount point per device. Anything
-	// else is not supported since it was rejected by the product owner.
 
-	// TODO similar code needed for BtrfsSubvolume and maybe Nfs. Try to
-	// make generic helpers.
+    void
+    BlkFilesystem::Impl::probe_pass_2b(Prober& prober)
+    {
+	SystemInfo& system_info = prober.get_system_info();
+
+	const BlkDevice* blk_device = get_blk_device();
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(system_info.getEtcFstab(), aliases);
-	if (fstab_entry)
-	{
-	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
-	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
-	    mount_point->set_mount_by(fstab_entry->get_mount_by());
-	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
-	    mount_point->set_in_etc_fstab(true);
-	    mount_point->set_active(false);
-	}
+	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
 
-	vector<const FstabEntry*> mount_entries = system_info.getProcMounts().get_by_name(blk_device->get_name(),
-											  system_info);
-	for (const FstabEntry* mount_entry : mount_entries)
-	{
-	    if (has_mount_point())
-	    {
-		MountPoint* mount_point = get_mount_point();
+	// The code here works only with one mount point per
+	// mountable. Anything else is not supported since rejected by the
+	// product owner.
 
-		if (mount_point->get_path() == mount_entry->get_mount_point())
-		    mount_point->set_active(true);
-	    }
-	    else
-	    {
-		MountPoint* mount_point = create_mount_point(mount_entry->get_mount_point());
-		mount_point->set_mount_by(MountByType::DEVICE);
-		mount_point->set_mount_options(mount_entry->get_mount_opts().get_opts());
-		mount_point->set_in_etc_fstab(false);
-		mount_point->set_active(true);
-	    }
-	}
+	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
+	if (!joint_entries.empty())
+	    joint_entries[0].add_to(get_non_impl());
     }
 
 
@@ -722,13 +704,12 @@ namespace storage
 
 	const MountPoint* mount_point = get_mount_point();
 
-	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
-	if (entry)
-        {
-            entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
-            etc_fstab.log_diff();
-            etc_fstab.write();
-        }
+	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
+	{
+	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
+	    etc_fstab.log_diff();
+	    etc_fstab.write();
+	}
     }
 
 

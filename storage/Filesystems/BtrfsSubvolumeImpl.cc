@@ -197,29 +197,52 @@ namespace storage
     }
 
 
-    FstabEntry*
-    BtrfsSubvolume::Impl::find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<FstabEntry*>
+    BtrfsSubvolume::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
     {
+	vector<FstabEntry*> ret;
+
 	for (FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
 	{
 	    if (fstab_entry->get_mount_opts().has_subvol(id, path))
-		return fstab_entry;
+		ret.push_back(fstab_entry);
 	}
 
-	return nullptr;
+	return ret;
     }
 
 
-    const FstabEntry*
-    BtrfsSubvolume::Impl::find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<const FstabEntry*>
+    BtrfsSubvolume::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
     {
+	vector<const FstabEntry*> ret;
+
 	for (const FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
 	{
 	    if (fstab_entry->get_mount_opts().has_subvol(id, path))
-		return fstab_entry;
+		ret.push_back(fstab_entry);
 	}
 
-	return nullptr;
+	return ret;
+    }
+
+
+    vector<const FstabEntry*>
+    BtrfsSubvolume::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
+    {
+	// see doc/btrfs.md for default id handling
+
+	long default_id = get_btrfs()->get_default_btrfs_subvolume()->get_id();
+
+	vector<const FstabEntry*> ret;
+
+	for (const FstabEntry* mount_entry : system_info.getProcMounts().get_by_name(names[0], system_info))
+	{
+	    if (mount_entry->get_mount_opts().has_subvol(id, path) && id != default_id)
+		ret.push_back(mount_entry);
+	}
+
+	return ret;
     }
 
 
@@ -239,26 +262,38 @@ namespace storage
 
 
     void
-    BtrfsSubvolume::Impl::probe_pass_2(Prober& prober, const string& mount_point)
+    BtrfsSubvolume::Impl::probe_pass_2a(Prober& prober, const string& mount_point)
     {
+	SystemInfo& system_info = prober.get_system_info();
+
+	const Btrfs* btrfs = get_btrfs();
+	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
+
+	const CmdLsattr& cmdlsattr = system_info.getCmdLsattr(blk_device->get_name(), mount_point, path);
+	nocow = cmdlsattr.is_nocow();
+    }
+
+
+    void
+    BtrfsSubvolume::Impl::probe_pass_2b(Prober& prober, const string& mount_point)
+    {
+	SystemInfo& system_info = prober.get_system_info();
+
 	const Btrfs* btrfs = get_btrfs();
 	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
 
 	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, btrfs);
 
-	const FstabEntry* fstab_entry = find_etc_fstab_entry(prober.get_system_info().getEtcFstab(), aliases);
-	if (fstab_entry)
-        {
-	    MountPoint* mount_point = create_mount_point(fstab_entry->get_mount_point());
-	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
-	    mount_point->set_mount_by(fstab_entry->get_mount_by());
-	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
-	}
+	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
 
-	// TODO /proc/mounts
+	// The code here works only with one mount point per
+	// mountable. Anything else is not supported since rejected by the
+	// product owner.
 
-	const CmdLsattr& cmdlsattr = prober.get_system_info().getCmdLsattr(blk_device->get_name(), mount_point, path);
-	nocow = cmdlsattr.is_nocow();
+	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
+	if (!joint_entries.empty())
+	    joint_entries[0].add_to(get_non_impl());
     }
 
 

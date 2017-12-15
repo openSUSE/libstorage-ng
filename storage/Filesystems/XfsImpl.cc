@@ -53,9 +53,9 @@ namespace storage
 
 
     void
-    Xfs::Impl::probe_pass_2(Prober& prober)
+    Xfs::Impl::probe_pass_2b(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_2(prober);
+	BlkFilesystem::Impl::probe_pass_2b(prober);
 
 	if (!get_uuid().empty())
 	{

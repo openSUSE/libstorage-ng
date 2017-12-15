@@ -49,9 +49,9 @@ namespace storage
 
 
     void
-    Ext::Impl::probe_pass_2(Prober& prober)
+    Ext::Impl::probe_pass_2b(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_2(prober);
+	BlkFilesystem::Impl::probe_pass_2b(prober);
 
 	if (supports_external_journal())
 	{

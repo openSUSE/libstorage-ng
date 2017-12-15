@@ -39,6 +39,8 @@ namespace storage
 
     using namespace std;
 
+    class SystemInfo;
+
 
     template <> struct DeviceTraits<Mountable> { static const char* classname; };
 
@@ -104,8 +106,15 @@ namespace storage
 	 * During probing names should be the device aliases, during commit
 	 * actions only the 'fstab device name'.
 	 */
-	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const;
-	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const;
+	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const;
+	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const;
+
+	/**
+	 * Find the fstab entry for the Mountable in /proc/mounts. Normally
+	 * just looks for the device but for Btrfs and BtrfsSubvolume also the
+	 * subvol option has to fit.
+	 */
+	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const;
 
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const;

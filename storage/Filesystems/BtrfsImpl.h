@@ -68,8 +68,10 @@ namespace storage
 	vector<BtrfsSubvolume*> get_btrfs_subvolumes();
 	vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
 
-	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const override;
-	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+
+	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const override;
 
 	BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path);
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path) const;
@@ -95,7 +97,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void probe_pass_2(Prober& prober) override;
+	virtual void probe_pass_2a(Prober& prober) override;
+	virtual void probe_pass_2b(Prober& prober) override;
 
 	virtual uint64_t used_features() const override;
 
