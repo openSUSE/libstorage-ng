@@ -122,6 +122,12 @@ namespace storage
 	bool has_subvol() const;
 
 	/**
+	 * Return true iff the options include 'subvol=id'. Fuzzy concerning
+	 * leading zeros for ids.
+	 */
+	bool has_subvol(long id) const;
+
+	/**
 	 * Return true iff the options include 'subvol=id' or 'subvolid=path'.
 	 * Fuzzy concerning leading zeros for ids and leading slashes for paths.
 	 */

@@ -92,6 +92,17 @@ namespace storage
 
 
     bool
+    MountOpts::has_subvol(long id) const
+    {
+	regex re_id("subvolid=0*" + to_string(id), regex::extended);
+
+	return any_of(opts.begin(), opts.end(), [re_id](const string& opt) {
+	    return regex_match(opt, re_id);
+	});
+    }
+
+
+    bool
     MountOpts::has_subvol(long id, const string& path) const
     {
 	regex re_id("subvolid=0*" + to_string(id), regex::extended);
