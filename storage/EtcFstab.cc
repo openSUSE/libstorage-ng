@@ -29,6 +29,7 @@
 
 #include "storage/EtcFstab.h"
 #include "storage/Filesystems/FilesystemImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 
@@ -577,5 +578,86 @@ namespace storage
 	return device_aliases;
     }
 
+
+    string
+    JointEntry::get_mount_point() const
+    {
+	if (fstab_entry)
+	    return fstab_entry->get_mount_point();
+
+	if (mount_entry)
+	    return mount_entry->get_mount_point();
+
+	ST_THROW(Exception("neither fstab nor mount entry set"));
+    }
+
+
+    vector<string>
+    JointEntry::get_mount_options() const
+    {
+	if (fstab_entry)
+	    return fstab_entry->get_mount_opts().get_opts();
+
+	if (mount_entry)
+	    return mount_entry->get_mount_opts().get_opts();
+
+	ST_THROW(Exception("neither fstab nor mount entry set"));
+    }
+
+
+    MountByType
+    JointEntry::get_mount_by() const
+    {
+	if (fstab_entry)
+	    return fstab_entry->get_mount_by();
+
+	return MountByType::DEVICE;
+    }
+
+
+    MountPoint*
+    JointEntry::add_to(Mountable* mountable) const
+    {
+	MountPoint* mount_point = mountable->create_mount_point(get_mount_point());
+
+	if (is_in_etc_fstab())
+	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
+
+	mount_point->set_mount_by(get_mount_by());
+	mount_point->set_mount_options(get_mount_options());
+
+	mount_point->set_in_etc_fstab(is_in_etc_fstab());
+	mount_point->set_active(is_active());
+
+	return mount_point;
+    }
+
+
+    vector<JointEntry>
+    join_entries(vector<const FstabEntry*> fstab_entries, vector<const FstabEntry*> mount_entries)
+    {
+	vector<JointEntry> ret;
+
+	for (const FstabEntry* fstab_entry : fstab_entries)
+	{
+	    ret.push_back(JointEntry(fstab_entry, nullptr));
+	}
+
+	for (const FstabEntry* mount_entry : mount_entries)
+	{
+	    string path = mount_entry->get_mount_point();
+
+	    vector<JointEntry>::iterator it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
+		return tmp.is_in_etc_fstab() && tmp.fstab_entry->get_mount_point() == path;
+	    });
+
+	    if (it != ret.end())
+		it->mount_entry = mount_entry;
+	    else
+		ret.push_back(JointEntry(nullptr, mount_entry));
+	}
+
+	return ret;
+    }
 
 }
