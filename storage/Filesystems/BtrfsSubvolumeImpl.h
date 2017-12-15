@@ -58,7 +58,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual void probe_pass_2(Prober& prober, const string& mount_point);
+	virtual void probe_pass_2a(Prober& prober, const string& mount_point);
+	virtual void probe_pass_2b(Prober& prober, const string& mount_point);
 
 	long get_id() const { return id; }
 	void set_id(long id) { Impl::id = id; }
@@ -92,8 +93,10 @@ namespace storage
 	virtual MountByType get_default_mount_by() const override;
 	virtual MountOpts get_default_mount_options() const override;
 
-	virtual FstabEntry* find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const override;
-	virtual const FstabEntry* find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+
+	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const override;
 
 	BtrfsSubvolume* create_btrfs_subvolume(const string& path);
 

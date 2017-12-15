@@ -64,6 +64,11 @@ namespace storage
 
 	BtrfsSubvolume* create_btrfs_subvolume(const std::string& path);
 
+	/**
+	 * Compare (less than) two BtrfsSubvolumes by id.
+	 */
+	static bool compare_by_id(const BtrfsSubvolume* lhs, const BtrfsSubvolume* rhs);
+
     public:
 
 	class Impl;

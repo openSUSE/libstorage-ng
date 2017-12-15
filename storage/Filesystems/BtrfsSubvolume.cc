@@ -160,6 +160,13 @@ namespace storage
 
 
     bool
+    BtrfsSubvolume::compare_by_id(const BtrfsSubvolume* lhs, const BtrfsSubvolume* rhs)
+    {
+	return lhs->get_id() < rhs->get_id();
+    }
+
+
+    bool
     is_btrfs_subvolume(const Device* device)
     {
 	return is_device_of_type<const BtrfsSubvolume>(device);

@@ -122,6 +122,12 @@ namespace storage
 	bool has_subvol() const;
 
 	/**
+	 * Return true iff the options include 'subvol=id'. Fuzzy concerning
+	 * leading zeros for ids.
+	 */
+	bool has_subvol(long id) const;
+
+	/**
 	 * Return true iff the options include 'subvol=id' or 'subvolid=path'.
 	 * Fuzzy concerning leading zeros for ids and leading slashes for paths.
 	 */
@@ -419,6 +425,36 @@ namespace storage
         CommentedConfigFile & operator<<( CommentedConfigFile::Entry * entry )
             { return CommentedConfigFile::operator<<( entry ); }
     };
+
+
+    /**
+     * Joint entry of entries in /etc/fstab and /proc/mounts.
+     */
+    struct JointEntry
+    {
+	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry)
+	    : fstab_entry(fstab_entry), mount_entry(mount_entry) {}
+
+	string get_mount_point() const;
+	vector<string> get_mount_options() const;
+	MountByType get_mount_by() const;
+
+	bool is_in_etc_fstab() const { return fstab_entry; }
+	bool is_active() const { return mount_entry; }
+
+	MountPoint* add_to(Mountable* mountable) const;
+
+	const FstabEntry* fstab_entry;
+	const FstabEntry* mount_entry;
+    };
+
+
+    /**
+     * Joins entries from /etc/fstab and /proc/mounts that have the same mount
+     * path.
+     */
+    vector<JointEntry>
+    join_entries(vector<const FstabEntry*> fstab_entries, vector<const FstabEntry*> mount_entries);
 
 }
 

@@ -149,17 +149,24 @@ namespace storage
     }
 
 
-    FstabEntry*
-    Mountable::Impl::find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<FstabEntry*>
+    Mountable::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
     {
-	return etc_fstab.find_device(names);
+	return etc_fstab.find_all_devices(names);
     }
 
 
-    const FstabEntry*
-    Mountable::Impl::find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<const FstabEntry*>
+    Mountable::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
     {
-	return etc_fstab.find_device(names);
+	return etc_fstab.find_all_devices(names);
+    }
+
+
+    vector<const FstabEntry*>
+    Mountable::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
+    {
+	return system_info.getProcMounts().get_by_name(names[0], system_info);
     }
 
 
@@ -304,8 +311,7 @@ namespace storage
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
-	if (entry)
+	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
 	{
 	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
 	    entry->set_mount_point(mount_point->get_path());
@@ -342,8 +348,7 @@ namespace storage
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	FstabEntry* entry = find_etc_fstab_entry(etc_fstab, { mount_point->get_impl().get_fstab_device_name() });
-	if (entry)
+	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
 	{
 	    etc_fstab.remove(entry);
 	    etc_fstab.log_diff();

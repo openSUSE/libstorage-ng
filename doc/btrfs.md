@@ -26,3 +26,11 @@ btrfs->get_top_level_subvolume->create_mount_point("/test")
 When deleting the default btrfs subvolume without deleting the btrfs
 filesystem itself a new default btrfs subvolume has to be set.
 
+
+When probing the system it is not possible to decide, e.g. in /proc/mounts,
+whether mounting used no subvol option or the subvol option for the default
+subvolume. /proc/mounts always includes the subvol option. During probing the
+library adds a mount point to the Btrfs object instead of the BtrfsSubvolume
+objects when the subvol option is the default subvolume. This behaviour looks
+more natural in the SUSE btrfs setup - but may change anytime if required.
+

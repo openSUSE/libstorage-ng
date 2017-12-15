@@ -159,29 +159,53 @@ namespace storage
     }
 
 
-    FstabEntry*
-    Btrfs::Impl::find_etc_fstab_entry(EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<FstabEntry*>
+    Btrfs::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
     {
+	vector<FstabEntry*> ret;
+
 	for (FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
 	{
 	    if (!fstab_entry->get_mount_opts().has_subvol())
-		return fstab_entry;
+		ret.push_back(fstab_entry);
 	}
 
-	return nullptr;
+	return ret;
     }
 
 
-    const FstabEntry*
-    Btrfs::Impl::find_etc_fstab_entry(const EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<const FstabEntry*>
+    Btrfs::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
     {
+	vector<const FstabEntry*> ret;
+
 	for (const FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
 	{
 	    if (!fstab_entry->get_mount_opts().has_subvol())
-		return fstab_entry;
+		ret.push_back(fstab_entry);
 	}
 
-	return nullptr;
+	return ret;
+    }
+
+
+    vector<const FstabEntry*>
+    Btrfs::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
+    {
+	// see doc/btrfs.md for default id handling
+
+	long default_id = get_default_btrfs_subvolume()->get_id();
+
+	vector<const FstabEntry*> ret;
+
+	for (const FstabEntry* mount_entry : system_info.getProcMounts().get_by_name(names[0], system_info))
+	{
+	    if (!mount_entry->get_mount_opts().has_subvol() ||
+		mount_entry->get_mount_opts().has_subvol(default_id))
+		ret.push_back(mount_entry);
+	}
+
+	return ret;
     }
 
 
@@ -212,9 +236,9 @@ namespace storage
 
 
     void
-    Btrfs::Impl::probe_pass_2(Prober& prober)
+    Btrfs::Impl::probe_pass_2a(Prober& prober)
     {
-	BlkFilesystem::Impl::probe_pass_2(prober);
+	BlkFilesystem::Impl::probe_pass_2a(prober);
 
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -255,7 +279,7 @@ namespace storage
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
 	    BtrfsSubvolume* btrfs_subvolume = subvolumes_by_id[subvolume.id];
-	    btrfs_subvolume->get_impl().probe_pass_2(prober, mount_point);
+	    btrfs_subvolume->get_impl().probe_pass_2a(prober, mount_point);
 	}
 
 	if (subvolumes_by_id.size() > 1)
@@ -263,6 +287,30 @@ namespace storage
 	    const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default =
 		prober.get_system_info().getCmdBtrfsSubvolumeGetDefault(blk_device->get_name(), mount_point);
 	    subvolumes_by_id[cmd_btrfs_subvolume_get_default.get_id()]->get_impl().set_default_btrfs_subvolume();
+	}
+    }
+
+
+    void
+    Btrfs::Impl::probe_pass_2b(Prober& prober)
+    {
+	BlkFilesystem::Impl::probe_pass_2b(prober);
+
+	BtrfsSubvolume* top_level = get_top_level_btrfs_subvolume();
+
+	unique_ptr<EnsureMounted> ensure_mounted;
+	string mount_point = "/tmp/does-not-matter";
+	if (Mockup::get_mode() != Mockup::Mode::PLAYBACK)
+	{
+	    ensure_mounted.reset(new EnsureMounted(top_level));
+	    mount_point = ensure_mounted->get_any_mount_point();
+	}
+
+	vector<BtrfsSubvolume*> btrfs_subvolumes = get_btrfs_subvolumes();
+	sort(btrfs_subvolumes.begin(), btrfs_subvolumes.end(), BtrfsSubvolume::compare_by_id);
+	for (BtrfsSubvolume* btrfs_subvolume : btrfs_subvolumes)
+	{
+	    btrfs_subvolume->get_impl().probe_pass_2b(prober, mount_point);
 	}
     }
 
