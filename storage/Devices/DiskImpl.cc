@@ -217,7 +217,9 @@ namespace storage
     {
 	// See doc/udev.md.
 
-	static const vector<string> allowed_prefixes = { "scsi-", "pci-", "ccw-" };
+	static const vector<string> allowed_prefixes = {
+	    "scsi-", "pci-", "ccw-", "virtio-scsi-", "virtio-pci-", "virtio-ccw-"
+	};
 
 	erase_if(udev_paths, [](const string& udev_path) {
 	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_path](const string& prefix)
@@ -231,7 +233,9 @@ namespace storage
     {
 	// See doc/udev.md.
 
-	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-", "nvme-" };
+	static const vector<string> allowed_prefixes = {
+	    "ata-", "scsi-", "usb-", "wwn-", "nvme-", "virtio-"
+	};
 
 	erase_if(udev_ids, [](const string& udev_id) {
 	    return none_of(allowed_prefixes.begin(), allowed_prefixes.end(), [&udev_id](const string& prefix)
