@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: nfs server dist exporting path dist and mounted somewhere
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: partition /dev/sdb1 with at least 512 MiB space behind /dev/sdb1
 

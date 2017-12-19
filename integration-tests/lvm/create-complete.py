@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: disk /dev/sdb with empty partitions sdb1 and sdb2
 

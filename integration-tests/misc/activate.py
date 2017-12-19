@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: something to activate, e.g. LUKS and LVM
 

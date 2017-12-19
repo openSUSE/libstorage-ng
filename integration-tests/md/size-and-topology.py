@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: disk /dev/sdb with 8 empty and unused partitions preferably of
 # slightly different size (sdb1-sdb8)

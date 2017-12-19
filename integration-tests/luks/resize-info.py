@@ -1,7 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: partition /dev/sdb1 with luks on it, possible also something
 # on luks, e.g. filesystem or lvm pv
+
 
 from sys import exit
 from storage import *

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: some disks
 
@@ -6,6 +6,7 @@
 from sys import exit
 from storage import *
 from storageitu import *
+from functools import cmp_to_key
 
 
 # place USB disks at the end
@@ -32,7 +33,8 @@ staging = storage.get_staging()
 
 disks = Disk.get_all(staging)
 
-for disk in sorted(disks, compare):
+
+for disk in sorted(disks, key = cmp_to_key(compare)):
 
     print("%s" % disk.get_name())
 

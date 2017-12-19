@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 from sys import argv, exit
 from getopt import getopt, GetoptError

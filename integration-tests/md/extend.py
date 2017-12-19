@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: md raid /dev/md0 with partitions sdb[1-4] and unused partition sdb5
 

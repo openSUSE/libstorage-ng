@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: partition /dev/sdb1 with at least 512MiB space behind
 # /dev/sdb1 and luks on it, possible also something on luks, e.g. filesystem

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: lvm vg test with physical volumes sdb1 and sdb2, physical volume sdb2 unused
 

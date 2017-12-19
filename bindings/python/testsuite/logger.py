@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import unittest, gc
 from storage import Logger, set_logger, Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage

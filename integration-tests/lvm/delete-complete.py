@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: disk /dev/sdb with lvm on partition sdb1 and sdb2
 
