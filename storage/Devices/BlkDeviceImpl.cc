@@ -252,8 +252,8 @@ namespace storage
 
 
     bool
-    BlkDevice::Impl::exists_by_name(const Devicegraph* devicegraph, const string& name,
-				    SystemInfo& system_info)
+    BlkDevice::Impl::exists_by_any_name(const Devicegraph* devicegraph, const string& name,
+					SystemInfo& system_info)
     {
 	if (!devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -285,8 +285,8 @@ namespace storage
 
 
     BlkDevice*
-    BlkDevice::Impl::find_by_name(Devicegraph* devicegraph, const string& name,
-				  SystemInfo& system_info)
+    BlkDevice::Impl::find_by_any_name(Devicegraph* devicegraph, const string& name,
+				      SystemInfo& system_info)
     {
 	if (!devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
@@ -318,8 +318,8 @@ namespace storage
 
 
     const BlkDevice*
-    BlkDevice::Impl::find_by_name(const Devicegraph* devicegraph, const string& name,
-				  SystemInfo& system_info)
+    BlkDevice::Impl::find_by_any_name(const Devicegraph* devicegraph, const string& name,
+				      SystemInfo& system_info)
     {
 	if (!devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));

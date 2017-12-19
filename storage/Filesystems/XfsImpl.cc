@@ -63,8 +63,8 @@ namespace storage
 	    Blkid::const_iterator it = blkid.find_by_journal_uuid(get_uuid());
 	    if (it != blkid.end())
 	    {
-		BlkDevice* jbd = BlkDevice::Impl::find_by_name(prober.get_probed(), it->first,
-							       prober.get_system_info());
+		BlkDevice* jbd = BlkDevice::Impl::find_by_any_name(prober.get_probed(), it->first,
+								   prober.get_system_info());
 		FilesystemUser* filesystem_user = FilesystemUser::create(prober.get_probed(), jbd,
 									 get_non_impl());
 		filesystem_user->set_journal(true);

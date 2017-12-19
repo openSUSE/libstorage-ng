@@ -118,13 +118,13 @@ namespace storage
 	 *
 	 * Should only be used for and during probing.
 	 */
-	static bool exists_by_name(const Devicegraph* devicegraph, const string& name,
-				   SystemInfo& system_info);
-
-	static BlkDevice* find_by_name(Devicegraph* devicegraph, const string& name,
+	static bool exists_by_any_name(const Devicegraph* devicegraph, const string& name,
 				       SystemInfo& system_info);
-	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const string& name,
-					     SystemInfo& system_info);
+
+	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const string& name,
+					   SystemInfo& system_info);
+	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const string& name,
+						 SystemInfo& system_info);
 
 	virtual void probe_pass_1a(Prober& prober) override;
 

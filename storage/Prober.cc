@@ -213,9 +213,9 @@ namespace storage
     void
     Prober::add_holder(const string& name, Device* b, add_holder_func_t add_holder_func)
     {
-	if (BlkDevice::Impl::exists_by_name(probed, name, system_info))
+	if (BlkDevice::Impl::exists_by_any_name(probed, name, system_info))
 	{
-	    BlkDevice* a = BlkDevice::Impl::find_by_name(probed, name, system_info);
+	    BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, name, system_info);
 	    add_holder_func(probed, a, b);
 	}
 	else
@@ -230,7 +230,7 @@ namespace storage
     {
 	for (const pending_holder_t& pending_holder : pending_holders)
 	{
-	    BlkDevice* a = BlkDevice::Impl::find_by_name(probed, pending_holder.name, system_info);
+	    BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, pending_holder.name, system_info);
 	    pending_holder.add_holder_func(probed, a, pending_holder.b);
 	}
 
