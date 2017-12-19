@@ -48,7 +48,7 @@ namespace storage
 	virtual unsigned long long max_size() const override { return 2 * TiB; }
 
 	virtual bool supports_shrink() const override { return false; }
-	virtual bool supports_grow() const override { return true; }
+	virtual bool supports_grow() const override { return false; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 11; }
