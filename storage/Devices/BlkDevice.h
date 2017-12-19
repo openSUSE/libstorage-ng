@@ -89,7 +89,7 @@ namespace storage
 	 * Find a block device by its name. Only the name returned by
 	 * get_name() is considered.
 	 *
-	 * @throw DeviceNotFound, DeviceHasWrongType
+	 * @throw DeviceNotFoundByName, DeviceHasWrongType
 	 */
 	static BlkDevice* find_by_name(Devicegraph* devicegraph, const std::string& name);
 
@@ -97,6 +97,20 @@ namespace storage
 	 * @copydoc find_by_name
 	 */
 	static const BlkDevice* find_by_name(const Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * Find a block device by any name including any symbolic links in
+	 * /dev. Function might require a system lookup and is therefore
+	 * slow. Only works on the probed devicegraph.
+	 *
+	 * @throw DeviceNotFoundByName, DeviceHasWrongType, Exception
+	 */
+	static BlkDevice* find_by_any_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_any_name
+	 */
+	static const BlkDevice* find_by_any_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
 	 * Creates a block filesystem on the block device.

@@ -22,6 +22,7 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 #include "storage/FindBy.h"
 
@@ -63,6 +64,24 @@ namespace storage
     BlkDevice::find_by_name(const Devicegraph* devicegraph, const string& name)
     {
 	return storage::find_by_name<const BlkDevice>(devicegraph, name);
+    }
+
+
+    BlkDevice*
+    BlkDevice::find_by_any_name(Devicegraph* devicegraph, const string& name)
+    {
+	SystemInfo system_info;
+
+	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info);
+    }
+
+
+    const BlkDevice*
+    BlkDevice::find_by_any_name(const Devicegraph* devicegraph, const string& name)
+    {
+	SystemInfo system_info;
+
+	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info);
     }
 
 
