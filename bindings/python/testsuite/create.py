@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import unittest
 from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, Devicegraph, Disk,

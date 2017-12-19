@@ -24,7 +24,7 @@ AM_CONFIG_HEADER(config.h)
 
 AC_PROG_CXX
 
-AM_PATH_PYTHON
+AM_PATH_PYTHON([3])
 
 AC_PREFIX_DEFAULT(/usr)
 
@@ -51,7 +51,7 @@ docdir=\${prefix}/share/doc/packages/libstorage-ng
 
 AC_SUBST(docdir)
 
-PYTHON_CONFIG=${PYTHON_CONFIG:-python2-config}
+PYTHON_CONFIG=${PYTHON_CONFIG:-python3-config}
 PYTHON_INCLUDES=$($PYTHON_CONFIG --includes)
 PYTHON_LIBS=$($PYTHON_CONFIG --libs)
 

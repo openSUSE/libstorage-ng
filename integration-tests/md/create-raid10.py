@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: disks /dev/sdb and /dev/sdc with six empty and unused
 # partitions (sdb1-sdb3, sdc1-sdc3)

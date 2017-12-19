@@ -52,7 +52,7 @@ BuildRequires:  rubygem-test-unit
 BuildRequires:  swig >= 3.0.3
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  libjson-c-devel
-BuildRequires:  pkgconfig(python)
+BuildRequires:  pkgconfig(python3)
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
@@ -107,12 +107,12 @@ Requires:       pkgconfig(libxml-2.0)
 This package contains header files and documentation for developing with
 libstorage-ng.
 
-%package python
+%package python3
 Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
 
-%description python
+%description python3
 This package contains Python bindings for libstorage-ng.
 
 %package ruby
@@ -135,7 +135,7 @@ This package contains utils for libstorage-ng.
 %package integration-tests
 Summary:        Integration tests for libstorage-ng
 Group:          Development/Tools/Other
-Requires:       libstorage-ng-python
+Requires:       libstorage-ng-python3
 
 %description integration-tests
 This package contains integration tests for libstorage-ng.
@@ -160,6 +160,7 @@ make %{?_smp_mflags} check LOCALEDIR=%{buildroot}%{_datadir}/locale
 %install
 %make_install
 find %{buildroot} -type f -name "*.la" -delete -print
+find %{buildroot} -type f -name "*.pyc" -delete -print
 
 install -d -m 755 %{buildroot}/run/libstorage
 touch %{buildroot}/run/libstorage/lock
@@ -188,10 +189,10 @@ touch %{buildroot}/run/libstorage/lock
 %dir %{_docdir}/%{name}/
 %doc %{_docdir}/%{name}/*
 
-%files python
+%files python3
 %defattr(-,root,root)
-%{python_sitelib}/storage.py*
-%attr(755,root,root) %{python_sitearch}/_storage.so
+%{python3_sitelib}/storage.py*
+%attr(755,root,root) %{python3_sitearch}/_storage.so
 
 %files ruby
 %defattr(-,root,root)
@@ -204,7 +205,7 @@ touch %{buildroot}/run/libstorage/lock
 
 %files integration-tests
 %defattr(-,root,root)
-%{python_sitelib}/storageitu.py*
+%{python3_sitelib}/storageitu.py*
 %dir %{_libexecdir}/libstorage-ng
 %{_libexecdir}/libstorage-ng/integration-tests
 

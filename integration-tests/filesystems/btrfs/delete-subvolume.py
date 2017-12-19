@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: btrfs on /dev/sdb1 with test subvolume
 

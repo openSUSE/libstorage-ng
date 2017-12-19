@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: lvm vg test with physical volume /dev/sdb1
 

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: disk /dev/sdb with msdos partition table and partition
 # /dev/sdb1 and some filesystem on /dev/sdb1

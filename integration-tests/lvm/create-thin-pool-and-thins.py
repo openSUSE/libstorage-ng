@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: lvm volume group test without logical volume thin-pool, thin1 and thin2
 

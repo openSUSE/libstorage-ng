@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 # requirements: partition /dev/sdb1 with size at least 1GiB and luks on it,
 # possible also something on luks, e.g. filesystem or lvm pv
