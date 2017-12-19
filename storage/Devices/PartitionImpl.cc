@@ -358,7 +358,7 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_type_supported(type))
-	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type),
+	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type).c_str(),
 				       toString(partition_table->get_type()).c_str())));
 
 	Impl::type = type;
