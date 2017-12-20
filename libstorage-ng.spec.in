@@ -85,7 +85,6 @@ Requires:       pkgconfig
 Requires:       util-linux >= 2.16
 Requires:       pkgconfig(udev)
 Obsoletes:      %{libname} < %{version}
-Obsoletes:      yast2-storage-lib
 Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
 %ifarch s390 s390x
 Requires:       s390-tools
@@ -111,6 +110,7 @@ libstorage-ng.
 Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
+Obsoletes:      libstorage-python
 
 %description python3
 This package contains Python bindings for libstorage-ng.
@@ -119,6 +119,7 @@ This package contains Python bindings for libstorage-ng.
 Summary:        Ruby bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
+Obsoletes:      libstorage-ruby
 
 %description ruby
 This package contains Ruby bindings for libstorage-ng.
