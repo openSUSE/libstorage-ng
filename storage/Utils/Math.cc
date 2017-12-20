@@ -21,6 +21,7 @@
 
 
 #include "storage/Utils/Math.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -52,6 +53,9 @@ namespace storage
     unsigned long long
     round_down(unsigned long long i, unsigned long long m)
     {
+	if (m == 0)
+	    ST_THROW(Exception("divisor is zero"));
+
 	unsigned long long r = i % m;
 	return i - r;
     }
@@ -60,6 +64,9 @@ namespace storage
     unsigned long long
     round_up(unsigned long long i, unsigned long long m)
     {
+	if (m == 0)
+	    ST_THROW(Exception("divisor is zero"));
+
 	unsigned long long r = i % m;
 	return r == 0 ? i : i - r + m;
     }
