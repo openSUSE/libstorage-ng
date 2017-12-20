@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-12-13 12:03+0000\n"
+"PO-Revision-Date: 2017-12-20 20:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/it/>\n"
@@ -529,18 +529,16 @@ msgstr "Disattivazione del multipath %1$s (%2$s)"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
-msgstr "Eliminazione della partizione %1$s (%2$s)"
+msgstr "Eliminare %1$s su %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:245
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "Eliminazione della partizione RAID %1$s in corso"
+msgstr "Elimina la tabella delle partizioni DASD su %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
