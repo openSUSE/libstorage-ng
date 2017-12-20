@@ -285,7 +285,7 @@ namespace storage
 	int col = 0;
 	set_max_column_width( col++, 45 ); // device; just enough for UUID=...
 	set_max_column_width( col++, 25 ); // mount point
-	set_max_column_width( col++,  7 ); // fs type
+	set_max_column_width( col++, 10 ); // fs type
 	set_max_column_width( col++, 30 ); // mount options
 	set_max_column_width( col++,  1 ); // dump pass
 	set_max_column_width( col++,  1 ); // fsck pass
