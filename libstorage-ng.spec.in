@@ -85,7 +85,6 @@ Requires:       pkgconfig
 Requires:       util-linux >= 2.16
 Requires:       pkgconfig(udev)
 Obsoletes:      %{libname} < %{version}
-Obsoletes:      yast2-storage-lib
 Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
 %ifarch s390 s390x
 Requires:       s390-tools
