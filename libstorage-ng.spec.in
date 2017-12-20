@@ -111,6 +111,7 @@ libstorage-ng.
 Summary:        Python bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
+Obsoletes:      libstorage-python
 
 %description python3
 This package contains Python bindings for libstorage-ng.
@@ -119,6 +120,7 @@ This package contains Python bindings for libstorage-ng.
 Summary:        Ruby bindings for libstorage-ng
 Group:          System/Libraries
 Requires:       %{libname} = %{version}
+Obsoletes:      libstorage-ruby
 
 %description ruby
 This package contains Ruby bindings for libstorage-ng.
