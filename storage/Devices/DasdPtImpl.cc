@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/DasdPtImpl.h"
 #include "storage/Devices/Partitionable.h"
@@ -228,7 +226,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel dasd";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

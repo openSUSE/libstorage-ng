@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/GptImpl.h"
 #include "storage/Devices/Partitionable.h"
@@ -213,7 +211,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -258,7 +255,6 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
 	    " disk_set pmbr_boot " + (is_pmbr_boot() ? "on" : "off");
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

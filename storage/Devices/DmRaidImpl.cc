@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/DmRaidImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -97,7 +95,6 @@ namespace storage
 	y2mil("activate_dm_raids");
 
 	string cmd_line = DMRAIDBIN " --activate yes --no_partitions";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 
@@ -114,7 +111,6 @@ namespace storage
 	y2mil("deactivate_dm_raids");
 
 	string cmd_line = DMRAIDBIN " --activate no";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 

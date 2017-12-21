@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmLv.h"

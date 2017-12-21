@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
@@ -455,7 +453,6 @@ namespace storage
 	    createPath(full_dirname);
 
 	string cmd_line = BTRFSBIN " subvolume create " + quote(full_path);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -582,7 +579,6 @@ namespace storage
 
 	string cmd_line = CHATTRBIN " " + string(nocow ? "+" : "-") + "C " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -618,7 +614,6 @@ namespace storage
 
 	string cmd_line = BTRFSBIN " subvolume set-default " + to_string(id) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -654,7 +649,6 @@ namespace storage
 
 	string cmd_line = BTRFSBIN " subvolume delete " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

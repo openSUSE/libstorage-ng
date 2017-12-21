@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
@@ -143,7 +141,6 @@ namespace storage
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --key-file -";
-	    cout << cmd_line << endl;
 
 	    SystemCmd::Options cmd_options(cmd_line);
 	    cmd_options.stdin_text = tmp.second;
@@ -223,7 +220,6 @@ namespace storage
 		continue;
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(value.first);
-	    cout << cmd_line << endl;
 
 	    SystemCmd cmd(cmd_line);
 
@@ -387,7 +383,6 @@ namespace storage
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name()) +
 	    " --key-file -";
-	cout << cmd_line << endl;
 
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
@@ -408,7 +403,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode erase " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -431,8 +425,6 @@ namespace storage
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(luks_rhs->get_impl().get_size() / (512 * B));
 
-	cout << cmd_line << endl;
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("resize Luks failed"));
@@ -446,7 +438,6 @@ namespace storage
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) + " " +
 	    quote(get_dm_table_name()) + " --key-file -";
-	cout << cmd_line << endl;
 
 	SystemCmd::Options cmd_options(cmd_line);
 	cmd_options.stdin_text = get_password();
@@ -463,7 +454,6 @@ namespace storage
     Luks::Impl::do_deactivate() const
     {
 	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
@@ -76,7 +74,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = MKFSFATBIN " -v " + get_mkfs_options() + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -97,7 +94,6 @@ namespace storage
 
 	string cmd_line = FATLABELBIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -114,7 +110,6 @@ namespace storage
 	string cmd_line = FATRESIZE " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 

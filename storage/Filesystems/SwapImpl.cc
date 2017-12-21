@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/SwapImpl.h"
 #include "storage/Devicegraph.h"
@@ -84,7 +82,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = MKSWAPBIN " -f " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -105,7 +102,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -121,7 +117,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -143,7 +138,6 @@ namespace storage
 	cmd_line += " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -159,7 +153,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = SWAPLABELBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -173,7 +166,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = SWAPLABELBIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

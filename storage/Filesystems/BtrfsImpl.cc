@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
@@ -348,7 +346,6 @@ namespace storage
 
 	string cmd_line = MKFSBTRFSBIN " --force " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -387,7 +384,6 @@ namespace storage
 	else
 	    cmd_line += " max";
 	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -427,7 +423,6 @@ namespace storage
 
 	string cmd_line = BTRFSBIN " filesystem label " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
