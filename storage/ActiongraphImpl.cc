@@ -498,11 +498,11 @@ namespace storage
 
 	for (const vertex_descriptor& vertex : order)
 	{
-	   const Action::Base* action = graph[vertex].get();
-	   cout << action->text(commit_data).native << endl;
+	    const Action::Base* action = graph[vertex].get();
+	    cout << action->text(commit_data).native << '\n';
 	}
 
-	cout << endl;
+	cout << '\n';
     }
 
 
@@ -603,7 +603,7 @@ namespace storage
 
 	boost::print_graph(graph, my_vertex_name_map);
 
-	cout << endl;
+	cout << '\n';
     }
 
 

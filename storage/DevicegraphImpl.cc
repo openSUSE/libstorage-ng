@@ -800,12 +800,12 @@ namespace storage
 	    for (sid_t sid : sids)
 		out << " " << sid;
 
-	    out << endl;
+	    out << '\n';
 	}
 
 	for (edge_descriptor edge : edges())
 	{
-	    out << *(graph[edge].get()) << endl;
+	    out << *(graph[edge].get()) << '\n';
 	}
     }
 
