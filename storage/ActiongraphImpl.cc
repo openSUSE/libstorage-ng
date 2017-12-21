@@ -486,7 +486,7 @@ namespace storage
 	}
 	catch (const boost::not_a_dag&)
 	{
-	    cerr << "action graph not a DAG" << endl;
+	    ST_THROW(Exception("actiongraph not a DAG"));
 	}
     }
 

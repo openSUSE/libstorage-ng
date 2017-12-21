@@ -79,9 +79,6 @@ namespace storage
     {
 	Partitionable::Impl::check(check_callbacks);
 
-	if (get_region().get_start() != 0)
-	    cerr << "dm raid region start not zero" << endl;
-
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("invalid name"));
     }
