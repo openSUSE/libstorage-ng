@@ -33,7 +33,6 @@
 #include <sys/utsname.h>
 #include <dirent.h>
 #include <string>
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 #include <boost/io/ios_state.hpp>
 

@@ -21,7 +21,6 @@
  */
 
 
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
@@ -205,7 +204,6 @@ namespace storage
 	    cmd_line += " -o " + quote(mount_opts.format());
 	}
 	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -245,7 +243,6 @@ namespace storage
 	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
 
 	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

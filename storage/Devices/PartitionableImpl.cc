@@ -62,6 +62,16 @@ namespace storage
 
 
     void
+    Partitionable::Impl::check(const CheckCallbacks* check_callbacks) const
+    {
+	BlkDevice::Impl::check(check_callbacks);
+
+	if (get_region().get_start() != 0)
+	    ST_THROW(Exception("start of region of partitionable not zero"));
+    }
+
+
+    void
     Partitionable::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);

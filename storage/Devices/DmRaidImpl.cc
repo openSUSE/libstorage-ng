@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/DmRaidImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -79,9 +77,6 @@ namespace storage
     {
 	Partitionable::Impl::check(check_callbacks);
 
-	if (get_region().get_start() != 0)
-	    cerr << "dm raid region start not zero" << endl;
-
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("invalid name"));
     }
@@ -100,7 +95,6 @@ namespace storage
 	y2mil("activate_dm_raids");
 
 	string cmd_line = DMRAIDBIN " --activate yes --no_partitions";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 
@@ -117,7 +111,6 @@ namespace storage
 	y2mil("deactivate_dm_raids");
 
 	string cmd_line = DMRAIDBIN " --activate no";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 

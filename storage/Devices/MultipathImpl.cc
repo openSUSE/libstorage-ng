@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/MultipathImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
@@ -82,9 +80,6 @@ namespace storage
     {
 	Partitionable::Impl::check(check_callbacks);
 
-	if (get_region().get_start() != 0)
-	    cerr << "multipath region start not zero" << endl;
-
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("invalid name"));
     }
@@ -119,7 +114,6 @@ namespace storage
 	}
 
 	string cmd_line1 = MULTIPATHBIN;
-	cout << cmd_line1 << endl;
 
 	SystemCmd cmd1(cmd_line1);
 	if (cmd1.retcode() != 0)
@@ -128,7 +122,6 @@ namespace storage
 	SystemCmd(UDEVADMBIN_SETTLE);
 
 	string cmd_line2 = MULTIPATHDBIN;
-	cout << cmd_line2 << endl;
 
 	SystemCmd cmd2(cmd_line2);
 	if (cmd2.retcode() != 0)
@@ -146,12 +139,10 @@ namespace storage
 	y2mil("deactivate_multipaths");
 
 	string cmd_line1 = MULTIPATHDBIN " -k'shutdown'";
-	cout << cmd_line1 << endl;
 
 	SystemCmd cmd1(cmd_line1);
 
 	string cmd_line2 = MULTIPATHBIN " -F";
-	cout << cmd_line2 << endl;
 
 	SystemCmd cmd2(cmd_line2);
 
@@ -315,7 +306,6 @@ namespace storage
     Multipath::Impl::do_deactivate() const
     {
 	string cmd_line = MULTIPATHBIN " -f " + quote(get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

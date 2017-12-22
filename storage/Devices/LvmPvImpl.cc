@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Prober.h"
 #include "storage/Utils/StorageTmpl.h"
@@ -263,7 +261,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = PVCREATEBIN " --force " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices({ blk_device });
 
@@ -334,8 +331,6 @@ namespace storage
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
-	cout << cmd_line << endl;
-
 	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_line);
@@ -367,7 +362,6 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = PVREMOVEBIN " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

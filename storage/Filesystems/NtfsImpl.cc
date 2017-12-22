@@ -21,7 +21,6 @@
  */
 
 
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageDefines.h"
@@ -120,7 +119,6 @@ namespace storage
 
 	string cmd_line = MKFSNTFSBIN " --fast --with-uuid " + get_mkfs_options() + " " +
 	    quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 
@@ -139,7 +137,6 @@ namespace storage
 
 	string cmd_line = NTFSLABELBIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -157,7 +154,6 @@ namespace storage
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(blk_device_rhs->get_size());
 	cmd_line += " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	wait_for_devices();
 

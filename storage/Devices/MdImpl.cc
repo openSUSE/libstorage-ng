@@ -22,7 +22,6 @@
 
 
 #include <ctype.h>
-#include <iostream>
 #include <boost/math/common_factor_rt.hpp>
 
 #include "storage/Devices/MdImpl.h"
@@ -161,9 +160,6 @@ namespace storage
     {
 	Partitionable::Impl::check(check_callbacks);
 
-	if (get_region().get_start() != 0)
-	    cerr << "md region start not zero" << endl;
-
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("invalid name"));
 
@@ -284,12 +280,10 @@ namespace storage
 	string filename = tmp_dir.get_fullname() + "/mdadm.conf";
 
 	string cmd_line1 = MDADMBIN " --examine --scan > " + quote(filename);
-	cout << cmd_line1 << endl;
 
 	SystemCmd cmd1(cmd_line1);
 
 	string cmd_line2 = MDADMBIN " --assemble --scan --config=" + quote(filename);
-	cout << cmd_line2 << endl;
 
 	SystemCmd cmd2(cmd_line2);
 
@@ -308,7 +302,6 @@ namespace storage
 	y2mil("deactivate_mds");
 
 	string cmd_line = MDADMBIN " --stop --scan";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 
@@ -851,8 +844,6 @@ namespace storage
 	for (const pair<unsigned int, string>& value : spares)
 	    cmd_line += " " + quote(value.second);
 
-	cout << cmd_line << endl;
-
 	wait_for_devices(std::add_const<const Md::Impl&>::type(*this).get_devices());
 	// wait_for_devices(std::as_const(*this).get_devices()); // C++17
 
@@ -1014,7 +1005,6 @@ namespace storage
     Md::Impl::do_reduce(const BlkDevice* blk_device) const
     {
 	string cmd_line = MDADMBIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1035,7 +1025,6 @@ namespace storage
 	string cmd_line = MDADMBIN;
 	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
 	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1067,7 +1056,6 @@ namespace storage
     Md::Impl::do_deactivate() const
     {
 	string cmd_line = MDADMBIN " --stop " + quote(get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

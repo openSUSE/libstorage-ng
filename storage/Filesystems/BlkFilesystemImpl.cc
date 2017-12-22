@@ -22,7 +22,6 @@
 
 
 #include <glob.h>
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"

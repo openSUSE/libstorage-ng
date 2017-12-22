@@ -45,6 +45,8 @@ namespace storage
     {
     public:
 
+	void check(const CheckCallbacks* check_callbacks) const override;
+
 	const Topology& get_topology() const { return topology; }
 	void set_topology(const Topology& topology) { Impl::topology = topology; }
 

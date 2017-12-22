@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
@@ -679,8 +677,6 @@ namespace storage
 	else
 	    cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
 
-	cout << cmd_line << endl;
-
 	SystemCmd(UDEVADMBIN_SETTLE);
 
 	SystemCmd cmd(cmd_line);
@@ -809,8 +805,6 @@ namespace storage
 	    }
 	}
 
-	cout << cmd_line << endl;
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("set partition id failed"));
@@ -850,7 +844,6 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " boot " + (is_boot() ? "on" : "off");
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -891,7 +884,6 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -983,7 +975,6 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " rm " +
 	    to_string(get_number());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1004,7 +995,6 @@ namespace storage
 
 	string cmd_line = EFIBOOTMGRBIN " --verbose --delete --disk " +
 	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1075,8 +1065,6 @@ namespace storage
 	    cmd_line += to_string(partition_rhs->get_region().get_end() * 8 + 7);
 	else
 	    cmd_line += to_string(partition_rhs->get_region().get_end());
-
-	cout << cmd_line << endl;
 
 	wait_for_devices({ get_non_impl() });
 

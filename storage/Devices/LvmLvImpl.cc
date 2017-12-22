@@ -20,7 +20,6 @@
  */
 
 
-#include <iostream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageDefines.h"
@@ -156,7 +155,6 @@ namespace storage
 	    return false;
 
 	string cmd_line = VGCHANGEBIN " --activate y";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -177,7 +175,6 @@ namespace storage
 	y2mil("deactivate_lvm_lvs");
 
 	string cmd_line = VGCHANGEBIN " --activate n";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 
@@ -758,8 +755,6 @@ namespace storage
 
 	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
 
-	cout << cmd_line << endl;
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create LvmLv failed"));
@@ -926,8 +921,6 @@ namespace storage
 	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +
 	    to_string(lvm_lv_rhs->get_region().get_length());
 
-	cout << cmd_line << endl;
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("resize LvmLV failed"));
@@ -997,7 +990,6 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 
 	string cmd_line = LVREMOVEBIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1068,7 +1060,6 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 
 	string cmd_line = LVCHANGEBIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -1139,7 +1130,6 @@ namespace storage
 	const LvmVg* lvm_vg = get_lvm_vg();
 
 	string cmd_line = LVCHANGEBIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

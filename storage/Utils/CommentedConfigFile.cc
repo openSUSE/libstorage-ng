@@ -21,7 +21,6 @@
 
 
 #include <fstream>
-#include <iostream>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 
@@ -31,8 +30,6 @@
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AsciiFile.h"
 
-using std::cout;
-using std::endl;
 
 #define WHITESPACE " \t"
 

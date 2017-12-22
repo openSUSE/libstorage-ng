@@ -20,8 +20,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Math.h"
@@ -494,8 +492,6 @@ namespace storage
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
 
-	cout << cmd_line << endl;
-
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("create LvmVg failed"));
@@ -523,7 +519,6 @@ namespace storage
     LvmVg::Impl::do_delete() const
     {
 	string cmd_line = VGREMOVEBIN " " + quote(vg_name);
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -597,7 +592,6 @@ namespace storage
     LvmVg::Impl::do_reduce(const LvmPv* lvm_pv) const
     {
 	string cmd_line = VGREDUCEBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
@@ -609,7 +603,6 @@ namespace storage
     LvmVg::Impl::do_extend(const LvmPv* lvm_pv) const
     {
 	string cmd_line = VGEXTENDBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)

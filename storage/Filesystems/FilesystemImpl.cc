@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"

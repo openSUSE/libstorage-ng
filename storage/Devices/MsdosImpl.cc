@@ -21,8 +21,6 @@
  */
 
 
-#include <iostream>
-
 #include "storage/Devices/MsdosImpl.h"
 #include "storage/Devices/PartitionableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
@@ -290,7 +288,6 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
-	cout << cmd_line << endl;
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
