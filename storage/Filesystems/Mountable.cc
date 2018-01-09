@@ -34,6 +34,13 @@ namespace storage
 
 
     string
+    get_fs_type_name(FsType fs_type)
+    {
+	return toString(fs_type);
+    }
+
+
+    string
     get_mount_by_name(MountByType mount_by_type)
     {
 	return toString(mount_by_type);

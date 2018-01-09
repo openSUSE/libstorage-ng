@@ -44,6 +44,9 @@ namespace storage
     };
 
 
+    std::string get_fs_type_name(FsType fs_type);
+
+
     /**
      * The key by which the mount program identifies a mountable
      */
