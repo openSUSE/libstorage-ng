@@ -82,9 +82,21 @@ namespace storage
 	 */
 	void set_default_mount_by();
 
+	/**
+	 * Get the mount options.
+	 */
 	const std::vector<std::string>& get_mount_options() const;
+
+	/**
+	 * Set the mount options. Avoid overriding the subvol option for btrfs
+	 * subvolumes unless you are certain what you are doing.
+	 */
 	void set_mount_options(const std::vector<std::string>& mount_options);
 
+	/**
+	 * Set the mount options to the default mount options. So far the
+	 * default mount options only contain the subvol for btrfs subvolumes.
+	 */
 	void set_default_mount_options();
 
 	int get_freq() const;
