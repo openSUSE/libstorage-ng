@@ -53,6 +53,6 @@ pkginclude_HEADERS =		\
 	Graphviz.h		\
 	FreeInfo.h		\
 	UsedFeatures.h		\
-	CompoundAction.h		\
+	CompoundAction.h	\
 	CommitOptions.h
 
