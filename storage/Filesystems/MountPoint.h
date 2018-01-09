@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -82,9 +82,21 @@ namespace storage
 	 */
 	void set_default_mount_by();
 
+	/**
+	 * Get the mount options.
+	 */
 	const std::vector<std::string>& get_mount_options() const;
+
+	/**
+	 * Set the mount options. Avoid overriding the subvol option for btrfs
+	 * subvolumes unless you are certain what you are doing.
+	 */
 	void set_mount_options(const std::vector<std::string>& mount_options);
 
+	/**
+	 * Set the mount options to the default mount options. So far the
+	 * default mount options only contain the subvol for btrfs subvolumes.
+	 */
 	void set_default_mount_options();
 
 	int get_freq() const;
@@ -113,6 +125,8 @@ namespace storage
 
 	/**
 	 * Return the mountable of the mount point.
+	 *
+	 * @throw Exception
 	 */
 	Mountable* get_mountable();
 
@@ -120,6 +134,18 @@ namespace storage
 	 * @copydoc get_mountable()
 	 */
 	const Mountable* get_mountable() const;
+
+	/**
+	 * Return the filesystem of mountable of the mount point.
+	 *
+	 * @throw Exception
+	 */
+	Filesystem* get_filesystem();
+
+	/**
+	 * @copydoc get_filesystem()
+	 */
+	const Filesystem* get_filesystem() const;
 
 	static std::vector<const MountPoint*> find_by_path(const Devicegraph* devicegraph,
 							   const std::string& path);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -83,6 +83,9 @@ namespace storage
 
 	Mountable* get_mountable();
 	const Mountable* get_mountable() const;
+
+	Filesystem* get_filesystem();
+	const Filesystem* get_filesystem() const;
 
 	string get_mount_name() const;
 
