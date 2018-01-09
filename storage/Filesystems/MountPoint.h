@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -125,6 +125,8 @@ namespace storage
 
 	/**
 	 * Return the mountable of the mount point.
+	 *
+	 * @throw Exception
 	 */
 	Mountable* get_mountable();
 
@@ -132,6 +134,18 @@ namespace storage
 	 * @copydoc get_mountable()
 	 */
 	const Mountable* get_mountable() const;
+
+	/**
+	 * Return the filesystem of mountable of the mount point.
+	 *
+	 * @throw Exception
+	 */
+	Filesystem* get_filesystem();
+
+	/**
+	 * @copydoc get_filesystem()
+	 */
+	const Filesystem* get_filesystem() const;
 
 	static std::vector<const MountPoint*> find_by_path(const Devicegraph* devicegraph,
 							   const std::string& path);

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -221,6 +221,20 @@ namespace storage
     MountPoint::Impl::get_mountable() const
     {
 	return get_single_parent_of_type<const Mountable>();
+    }
+
+
+    Filesystem*
+    MountPoint::Impl::get_filesystem()
+    {
+	return get_mountable()->get_filesystem();
+    }
+
+
+    const Filesystem*
+    MountPoint::Impl::get_filesystem() const
+    {
+	return get_mountable()->get_filesystem();
     }
 
 
