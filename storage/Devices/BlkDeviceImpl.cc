@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -338,7 +338,7 @@ namespace storage
 	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	{
 	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device)
+	    if (blk_device && blk_device->get_impl().active)
 	    {
 		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
 		    return blk_device;
