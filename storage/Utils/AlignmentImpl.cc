@@ -61,7 +61,9 @@ namespace storage
 					  Location location) const
     {
 	long alignment_offset_in_blocks = offset() / block_size;
-	unsigned long grain_in_blocks = calculate_grain() / block_size;
+
+	unsigned long grain = std::max(calculate_grain(), block_size);
+	unsigned long grain_in_blocks = grain / block_size;
 
 	block -= alignment_offset_in_blocks;
 

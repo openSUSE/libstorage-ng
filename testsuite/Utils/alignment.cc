@@ -25,7 +25,7 @@ BOOST_AUTO_TEST_CASE(test_grain)
 }
 
 
-BOOST_AUTO_TEST_CASE(test_align_block_in_place)
+BOOST_AUTO_TEST_CASE(test_align_block_in_place_optimal)
 {
     const Alignment alignment(Topology(0, 0));
 
@@ -67,6 +67,36 @@ BOOST_AUTO_TEST_CASE(test_align_block_in_place)
     block = 4096;
     BOOST_CHECK(alignment.get_impl().align_block_in_place(block, block_size, Alignment::Impl::Location::END));
     BOOST_CHECK_EQUAL(block, 4095);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_align_block_in_place_required)
+{
+    const Alignment alignment(Topology(0, 0), AlignType::REQUIRED);
+
+    unsigned long block_size = 512;
+
+    unsigned long long block;
+
+    // Location::START
+
+    block = 0;
+    BOOST_CHECK(alignment.get_impl().align_block_in_place(block, block_size, Alignment::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 0);
+
+    block = 1;
+    BOOST_CHECK(alignment.get_impl().align_block_in_place(block, block_size, Alignment::Impl::Location::START));
+    BOOST_CHECK_EQUAL(block, 1);
+
+    // Location::END
+
+    block = 2047;
+    BOOST_CHECK(alignment.get_impl().align_block_in_place(block, block_size, Alignment::Impl::Location::END));
+    BOOST_CHECK_EQUAL(block, 2047);
+
+    block = 2048;
+    BOOST_CHECK(alignment.get_impl().align_block_in_place(block, block_size, Alignment::Impl::Location::END));
+    BOOST_CHECK_EQUAL(block, 2048);
 }
 
 
