@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2015-2017] SUSE LLC
+ * Copyright (c) [2015-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -168,6 +168,8 @@ namespace storage
 
 	/**
 	 * region is sector-based.
+	 *
+	 * @throw AlignError
 	 */
 	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END,
 		     AlignType align_type = AlignType::OPTIMAL) const;
