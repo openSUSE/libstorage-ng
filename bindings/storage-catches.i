@@ -198,6 +198,7 @@
 %catches(storage::Exception) storage::Partition::set_id(unsigned int id);
 %catches(storage::Exception) storage::Partition::set_legacy_boot(bool legacy_boot);
 %catches(storage::Exception) storage::Partition::set_type(PartitionType type);
+%catches(storage::AlignError) storage::PartitionTable::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::DifferentBlockSizes) storage::PartitionTable::create_partition(const std::string &name, const Region &region, PartitionType type);
 %catches(storage::Exception) storage::PartitionTable::get_extended() const;
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
