@@ -76,44 +76,57 @@ BOOST_AUTO_TEST_CASE(test_align_region_in_place)
 
     Region region;
 
-    // AlignPolicy::ALIGN_END
+    // AlignPolicy::ALIGN_START_AND_END
 
     region = Region(0, 2047, 512);
-    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_AND_END));
 
     region = Region(1, 2048, 512);
-    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_AND_END));
 
     region = Region(0, 2048, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_END));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_AND_END));
     BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
 
-    // AlignPolicy::KEEP_SIZE
+    // AlignPolicy::ALIGN_START_KEEP_SIZE
 
     region = Region(0, 2048, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_SIZE));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_SIZE));
     BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
 
     region = Region(1, 2048, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_SIZE));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_SIZE));
     BOOST_CHECK_EQUAL(region, Region(2048, 2048, 512));
 
-    // AlignPolicy::KEEP_END
+    // AlignPolicy::ALIGN_START_KEEP_END
 
     region = Region(0, 2048, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_END));
     BOOST_CHECK_EQUAL(region, Region(0, 2048, 512));
 
     region = Region(0, 2047, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_END));
     BOOST_CHECK_EQUAL(region, Region(0, 2047, 512));
 
     region = Region(1, 2047, 512);
-    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_END));
 
     region = Region(1, 2048, 512);
-    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_END));
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::ALIGN_START_KEEP_END));
     BOOST_CHECK_EQUAL(region, Region(2048, 1, 512));
+
+    // AlignPolicy::KEEP_START_ALIGN_END
+
+    region = Region(63, 1985, 512);
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_START_ALIGN_END));
+    BOOST_CHECK_EQUAL(region, Region(63, 1985, 512));
+
+    region = Region(63, 1986, 512);
+    BOOST_CHECK(alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_START_ALIGN_END));
+    BOOST_CHECK_EQUAL(region, Region(63, 1985, 512));
+
+    region = Region(63, 1984, 512);
+    BOOST_CHECK(!alignment.get_impl().align_region_in_place(region, AlignPolicy::KEEP_START_ALIGN_END));
 }
 
 
@@ -121,18 +134,21 @@ BOOST_AUTO_TEST_CASE(test_align1)
 {
     const Alignment alignment(Topology(0, 0));
 
-    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::ALIGN_END), Region(0, 8192, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::ALIGN_END), Region(2048, 6144, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::ALIGN_START_AND_END), Region(0, 8192, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::ALIGN_START_AND_END), Region(2048, 6144, 512));
 
-    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10239, 512), AlignPolicy::ALIGN_END), Region(2048, 8192, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10240, 512), AlignPolicy::ALIGN_END), Region(2048, 10240, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10241, 512), AlignPolicy::ALIGN_END), Region(2048, 10240, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10239, 512), AlignPolicy::ALIGN_START_AND_END), Region(2048, 8192, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10240, 512), AlignPolicy::ALIGN_START_AND_END), Region(2048, 10240, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(2048, 10241, 512), AlignPolicy::ALIGN_START_AND_END), Region(2048, 10240, 512));
 
-    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::KEEP_END), Region(0, 10000, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::KEEP_END), Region(2048, 7953, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::ALIGN_START_KEEP_END), Region(0, 10000, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::ALIGN_START_KEEP_END), Region(2048, 7953, 512));
 
-    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::KEEP_SIZE), Region(0, 10000, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::KEEP_SIZE), Region(2048, 10000, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::ALIGN_START_KEEP_SIZE), Region(0, 10000, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::ALIGN_START_KEEP_SIZE), Region(2048, 10000, 512));
+
+    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::KEEP_START_ALIGN_END), Region(0, 8192, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(1, 10000, 512), AlignPolicy::KEEP_START_ALIGN_END), Region(1, 8191, 512));
 }
 
 
@@ -140,11 +156,11 @@ BOOST_AUTO_TEST_CASE(test_align2)
 {
     const Alignment alignment(Topology(0, 0));
 
-    BOOST_CHECK(!alignment.can_be_aligned(Region(1, 4094, 512), AlignPolicy::ALIGN_END));
-    BOOST_CHECK_THROW(alignment.align(Region(1, 4094, 512), AlignPolicy::ALIGN_END), AlignError);
+    BOOST_CHECK(!alignment.can_be_aligned(Region(1, 4094, 512), AlignPolicy::ALIGN_START_AND_END));
+    BOOST_CHECK_THROW(alignment.align(Region(1, 4094, 512), AlignPolicy::ALIGN_START_AND_END), AlignError);
 
-    BOOST_CHECK(alignment.can_be_aligned(Region(1, 4095, 512), AlignPolicy::ALIGN_END));
-    BOOST_CHECK_EQUAL(alignment.align(Region(1, 4095, 512), AlignPolicy::ALIGN_END), Region(2048, 2048, 512));
+    BOOST_CHECK(alignment.can_be_aligned(Region(1, 4095, 512), AlignPolicy::ALIGN_START_AND_END));
+    BOOST_CHECK_EQUAL(alignment.align(Region(1, 4095, 512), AlignPolicy::ALIGN_START_AND_END), Region(2048, 2048, 512));
 }
 
 
@@ -152,6 +168,6 @@ BOOST_AUTO_TEST_CASE(test_align_with_offset)
 {
     const Alignment alignment(Topology(4 * KiB - 512 * B, 0));
 
-    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::KEEP_SIZE), Region(7, 10000, 512));
-    BOOST_CHECK_EQUAL(alignment.align(Region(7, 10000, 512), AlignPolicy::KEEP_SIZE), Region(7, 10000, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(0, 10000, 512), AlignPolicy::ALIGN_START_KEEP_SIZE), Region(7, 10000, 512));
+    BOOST_CHECK_EQUAL(alignment.align(Region(7, 10000, 512), AlignPolicy::ALIGN_START_KEEP_SIZE), Region(7, 10000, 512));
 }
