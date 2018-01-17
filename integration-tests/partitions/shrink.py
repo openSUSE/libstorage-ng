@@ -23,9 +23,9 @@ partition = Partition.find_by_name(staging, "/dev/sdb1")
 
 region = partition.get_region()
 
-region.set_length(region.get_length() - 512 * MiB / region.get_block_size())
+region.set_length(int(region.get_length() - 512 * MiB / region.get_block_size()))
 
-region = partition.get_partition_table().align(region)
+region = partition.get_partition_table().align(region, AlignPolicy_KEEP_START_ALIGN_END)
 
 partition.set_region(region)
 
