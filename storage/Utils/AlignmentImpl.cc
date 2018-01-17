@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,13 +93,18 @@ namespace storage
 	unsigned long block_size = region.get_block_size();
 
 	unsigned long long start = region.get_start();
-	if (!align_block_in_place(start, block_size, Location::START))
-	    return false;
+
+	if (align_policy != AlignPolicy::KEEP_START_ALIGN_END)
+	{
+	    if (!align_block_in_place(start, block_size, Location::START))
+		return false;
+	}
 
 	unsigned long long length = 0;
 	switch (align_policy)
 	{
-	    case AlignPolicy::ALIGN_END: {
+	    case AlignPolicy::KEEP_START_ALIGN_END:
+	    case AlignPolicy::ALIGN_START_AND_END: {
 		unsigned long long end = region.get_end();
 		if (!align_block_in_place(end, block_size, Location::END))
 		    return false;
@@ -108,11 +113,11 @@ namespace storage
 		length = end - start + 1;
 	    } break;
 
-	    case AlignPolicy::KEEP_SIZE: {
+	    case AlignPolicy::ALIGN_START_KEEP_SIZE: {
 		length = region.get_length();
 	    } break;
 
-	    case AlignPolicy::KEEP_END: {
+	    case AlignPolicy::ALIGN_START_KEEP_END: {
 		unsigned long long delta = start - region.get_start();
 		if (region.get_length() <= delta)
 		    return false;
