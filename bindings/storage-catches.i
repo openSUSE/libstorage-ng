@@ -126,7 +126,7 @@
 
 %catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, const Devicegraph *lhs, Devicegraph *rhs);
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NONE) const;
-%catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_END) const;
+%catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType fs_type);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(Devicegraph *devicegraph, const std::string &name);
@@ -203,7 +203,7 @@
 %catches(storage::Exception) storage::PartitionTable::get_extended() const;
 %catches(storage::Exception) storage::PartitionTable::get_partition(const std::string &name);
 %catches(storage::Exception) storage::PartitionTable::get_partitionable() const;
-%catches(storage::Exception) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
+%catches(storage::Exception) storage::PartitionTable::get_unused_partition_slots(AlignPolicy align_policy=AlignPolicy::ALIGN_START_KEEP_END, AlignType align_type=AlignType::OPTIMAL) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException, storage::Exception) storage::Partitionable::create_partition_table(PtType pt_type);
 %catches(storage::Exception) storage::Partitionable::get_default_partition_table_type() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::Partitionable::get_partition_table();

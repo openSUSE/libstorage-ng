@@ -163,7 +163,7 @@ namespace storage
 	/**
 	 * @throw Exception
 	 */
-	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::KEEP_END,
+	std::vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy = AlignPolicy::ALIGN_START_KEEP_END,
 							      AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**
@@ -171,7 +171,7 @@ namespace storage
 	 *
 	 * @throw AlignError
 	 */
-	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END,
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_START_AND_END,
 		     AlignType align_type = AlignType::OPTIMAL) const;
 
 	/**

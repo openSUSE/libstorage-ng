@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 #include "storage/Utils/Topology.h"
 #include "storage/Utils/Region.h"
 #include "storage/Utils/Exception.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -48,7 +49,28 @@ namespace storage
 
     enum class AlignPolicy
     {
-	ALIGN_END, KEEP_END, KEEP_SIZE
+	/**
+	 * Align start and end.
+	 */
+	ALIGN_START_AND_END = 0,
+	ALIGN_END ST_DEPRECATED = 0,
+
+	/**
+	 * Align start and keep end.
+	 */
+	ALIGN_START_KEEP_END = 1,
+	KEEP_END ST_DEPRECATED = 1,
+
+	/**
+	 * Align start and keep size.
+	 */
+	ALIGN_START_KEEP_SIZE = 2,
+	KEEP_SIZE ST_DEPRECATED = 2,
+
+	/**
+	 * Keep start and align end.
+	 */
+	KEEP_START_ALIGN_END = 3
     };
 
 
@@ -90,8 +112,8 @@ namespace storage
 	 *
 	 * @throw AlignError
 	 */
-	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_END) const;
-	
+	Region align(const Region& region, AlignPolicy align_policy = AlignPolicy::ALIGN_START_AND_END) const;
+
 	long offset() const;
 
 	unsigned long grain() const;
