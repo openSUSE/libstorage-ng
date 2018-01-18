@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,7 +81,7 @@ namespace storage
 	if (pos == string::npos)
 	    ST_THROW(Exception("invalid Nfs name"));
 
-	return make_pair(name.substr(0, pos), name.substr(pos + 1));
+	return make_pair(name.substr(0, pos), canonical_path(name.substr(pos + 1)));
     }
 
 
@@ -100,30 +100,58 @@ namespace storage
     void
     Nfs::Impl::probe_nfses(Prober& prober)
     {
-	// TODO also read /etc/fstab
 	// TODO the old library filters the mount options
 
-	vector<const FstabEntry*> nfs_entries = prober.get_system_info().getProcMounts().get_all_nfs();
-	for (const FstabEntry* fstab_entry : nfs_entries)
+	SystemInfo& system_info = prober.get_system_info();
+
+	/*
+	 * The key of the map is a pair of server and path of the NFS mounts.
+	 * The value of the map is a pair of vectors with the FstabEntries
+	 * from /etc/fstab and /proc/mounts.
+	 */
+	typedef map<pair<string, string>, pair<vector<const FstabEntry*>, vector<const FstabEntry*>>> entries_t;
+
+	entries_t entries;
+
+	const EtcFstab& etc_fstab = system_info.getEtcFstab();
+	for (int i = 0; i < etc_fstab.get_entry_count(); ++i)
 	{
-            string device = fstab_entry->get_device();
+	    const FstabEntry* fstab_entry = etc_fstab.get_entry(i);
+	    string device = fstab_entry->get_device();
 
-	    if (!is_valid_name(device))
+	    if (is_valid_name(device))
+		entries[Nfs::Impl::split_name(device)].first.push_back(fstab_entry);
+	}
+
+	vector<const FstabEntry*> mount_entries = prober.get_system_info().getProcMounts().get_all_nfs();
+	for (const FstabEntry* mount_entry : mount_entries)
+	{
+	    string device = mount_entry->get_device();
+
+	    if (is_valid_name(device))
+		entries[Nfs::Impl::split_name(device)].second.push_back(mount_entry);
+	}
+
+	// The code here works only with one mount point per
+	// mountable. Anything else is not supported since rejected by the
+	// product owner.
+
+	for (const entries_t::value_type& entry : entries)
+	{
+	    pair<string, string> name_parts = entry.first;
+
+	    vector<JointEntry> joint_entries = join_entries(entry.second.first, entry.second.second);
+	    if (!joint_entries.empty())
 	    {
-		y2war("invalid name for Nfs device: " << device );
-		continue;
+		Nfs* nfs = Nfs::create(prober.get_probed(), name_parts.first, name_parts.second);
+		joint_entries[0].add_to(nfs);
+
+		if (nfs->get_mount_point()->is_active())
+		{
+		    const CmdDf& cmd_df = prober.get_system_info().getCmdDf(nfs->get_mount_point()->get_path());
+		    nfs->set_space_info(cmd_df.get_space_info());
+		}
 	    }
-
-	    pair<string, string> name_parts = Nfs::Impl::split_name(device);
-	    Nfs* nfs = Nfs::create(prober.get_probed(), name_parts.first, canonical_path(name_parts.second));
-
-	    MountPoint* mount_point = nfs->create_mount_point(fstab_entry->get_mount_point());
-	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
-	    mount_point->set_mount_by(fstab_entry->get_mount_by());
-	    mount_point->set_mount_options(fstab_entry->get_mount_opts().get_opts());
-
-	    const CmdDf& cmd_df = prober.get_system_info().getCmdDf(fstab_entry->get_mount_point());
-	    nfs->set_space_info(cmd_df.get_space_info());
 	}
     }
 

@@ -127,7 +127,7 @@
       <path>/suse/aschnell</path>
       <mount-by>device</mount-by>
       <mount-options>rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=10.160.0.111,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=10.160.0.111</mount-options>
-      <in-etc-fstab>true</in-etc-fstab>
+      <in-etc-fstab>false</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
     </MountPoint>
