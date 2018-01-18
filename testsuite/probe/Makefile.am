@@ -12,7 +12,7 @@ check_PROGRAMS =								\
 	lvm2.test 								\
 	luks1.test bcache1.test btrfs1.test dasd1.test dasd2.test		\
 	external-journal.test							\
-	dmraid1.test md-imsm1.test md-ddf1.test
+	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -33,5 +33,6 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	md3-mockup.xml md3-devicegraph.xml					\
 	md-imsm1-mockup.xml md-imsm1-devicegraph.xml				\
 	md-ddf1-mockup.xml md-ddf1-devicegraph.xml				\
+	nfs1-mockup.xml nfs1-devicegraph.xml					\
 	external-journal-mockup.xml external-journal-devicegraph.xml
 
