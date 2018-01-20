@@ -53,6 +53,7 @@ BuildRequires:  swig >= 3.0.3
 BuildRequires:  pkgconfig(libxml-2.0)
 BuildRequires:  libjson-c-devel
 BuildRequires:  pkgconfig(python3)
+Recommends:     %{name}-lang
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
