@@ -71,7 +71,7 @@ Provides translations to the package %{name}
 %package -n %{libname}
 Summary:        Library for storage management
 Group:          System/Libraries
-Requires:       %{name}-lang
+Recommends:     %{name}-lang
 Requires:       coreutils
 Suggests:       cryptsetup
 Requires:       device-mapper
