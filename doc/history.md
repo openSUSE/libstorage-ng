@@ -35,3 +35,9 @@ September 2017
 
 Included in SLE 15 Alpha 4, replacing legacy libstorage.
 
+
+Januay 2018
+-----------
+
+Included in openSUSE Tumbleweed, replacing legacy libstorage.
+
