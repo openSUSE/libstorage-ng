@@ -113,12 +113,6 @@ namespace storage
 
 
     void
-    Device::Impl::probe_pass_1e(Prober& prober)
-    {
-    }
-
-
-    void
     Device::Impl::save(xmlNode* node) const
     {
 	setChildValue(node, "sid", sid);

@@ -420,6 +420,12 @@
       <stdout>E: USEC_INITIALIZED=5360379</stdout>
     </Command>
     <Command>
+      <name>/sbin/udevadm info '/dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2'</name>
+      <!-- output faked and incomplete -->
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=2</stdout>
+    </Command>
+    <Command>
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>

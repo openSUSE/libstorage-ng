@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -160,16 +160,6 @@ namespace storage
 
 	flush_pending_holders();
 
-	// Pass 1e
-
-	y2mil("prober pass 1e");
-
-	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
-	{
-	    Device* device = probed->get_impl()[vertex];
-	    device->get_impl().probe_pass_1e(*this);
-	}
-
 	// Pass 2
 
 	y2mil("prober pass 2");
@@ -177,6 +167,9 @@ namespace storage
 	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
 	{
 	    if (blk_device->has_children())
+		continue;
+
+	    if (!blk_device->get_impl().is_active())
 		continue;
 
 	    const Blkid& blkid = system_info.getBlkid();
