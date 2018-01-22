@@ -811,9 +811,6 @@
   </Commands>
   <Files>
     <File>
-      <name>/etc/crypttab</name>
-    </File>
-    <File>
       <name>/etc/fstab</name>
       <content>UUID=6990d6be-8fa8-4be7-8cf3-66ad1448864e swap                 swap       defaults              0 0</content>
       <content>UUID=f0d1ab95-62b0-42f8-96c3-db9b641b8b7f /                    ext4       acl,user_xattr        1 1</content>
