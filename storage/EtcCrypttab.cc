@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017] SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +27,7 @@
 
 #include "storage/EtcCrypttab.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 #define CRYPTTAB_MIN_COLUMN_COUNT	2
@@ -211,6 +212,45 @@ namespace storage
 	}
 
 	return 0;
+    }
+
+
+    const CrypttabEntry*
+    EtcCrypttab::find_by_block_device(SystemInfo& system_info, const string& uuid,
+				      const string& label, dev_t majorminor) const
+    {
+	for (int i = 0; i < get_entry_count(); ++i)
+	{
+	    const CrypttabEntry* entry = get_entry(i);
+
+	    string blk_device = entry->get_block_device();
+
+	    if (!uuid.empty())
+	    {
+		if (boost::starts_with(blk_device, "UUID=") && blk_device.substr(5) == uuid)
+		    return entry;
+
+		if (boost::starts_with(blk_device, "/dev/disk/by-uuid/") && blk_device.substr(18) == uuid)
+		    return entry;
+	    }
+
+	    if (!label.empty())
+	    {
+		if (boost::starts_with(blk_device, "LABEL=") && blk_device.substr(6) == label)
+		    return entry;
+
+		if (boost::starts_with(blk_device, "/dev/disk/by-label/") && blk_device.substr(19) == label)
+		    return entry;
+	    }
+
+	    if (boost::starts_with(blk_device, "/dev/"))
+	    {
+		if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
+		    return entry;
+	    }
+	}
+
+	return nullptr;
     }
 
 
