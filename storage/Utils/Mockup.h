@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,14 +27,19 @@
 
 #include <string>
 #include <map>
+#include <set>
 
 #include "storage/Utils/Remote.h"
+
+
+// #define OCCAMS_RAZOR
 
 
 namespace storage
 {
     using std::string;
     using std::map;
+    using std::set;
 
 
     class Mockup
@@ -65,12 +70,19 @@ namespace storage
 	static void set_file(const string& name, const File& file);
 	static void erase_file(const string& name);
 
+	static void occams_razor();
+
     private:
 
 	static Mode mode;
 
 	static map<string, Command> commands;
 	static map<string, File> files;
+
+#ifdef OCCAMS_RAZOR
+	static set<string> used_commands;
+	static set<string> used_files;
+#endif
 
     };
 

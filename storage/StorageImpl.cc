@@ -184,6 +184,7 @@ namespace storage
 		Mockup::set_mode(Mockup::Mode::PLAYBACK);
 		Mockup::load(environment.get_mockup_filename());
 		probe_helper(probed);
+		Mockup::occams_razor();
 	    } break;
 	}
 
