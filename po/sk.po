@@ -1,58 +1,53 @@
 # Copyright (C) YEAR SUSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the PACKAGE package.
-#
-# Ferdinand Galko <galko.ferdinand@gmail.com>, 2015.
+# Ferdinand Galko <galko.ferdinand@gmail.com>, 2015, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2015-10-10 21:01+0200\n"
+"PO-Revision-Date: 2018-01-23 12:00+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <http://10n.opensuse.org/projects/libstorage/master/sk/"
-">\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 2.3\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:311
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Nastaviť šifrované loop zariadenie na %1$s"
+msgstr "Nastaviť zariadenie šifrovacej úrovne na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:475
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvoriť logický zväzok %1$s (%2$s) pre %4$s s %3$s"
+msgstr "Aktivovať logický zväzok %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Nastavujem šifrované loop zariadenie na %1$s"
+msgstr "Aktivovanie zariadenia šifrovacej úrovne na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:480
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Formátujem logický zväzok %1$s (%2$s) s%3$s"
+msgstr "Aktivovanie logického zväzku %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
