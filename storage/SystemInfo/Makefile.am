@@ -22,8 +22,7 @@ libsystem_info_la_SOURCES =				\
 	CmdUdevadm.cc		CmdUdevadm.h		\
 	DevAndSys.cc		DevAndSys.h		\
 	ProcMdstat.cc		ProcMdstat.h		\
-	ProcMounts.cc		ProcMounts.h		\
-	ProcParts.cc		ProcParts.h
+	ProcMounts.cc		ProcMounts.h
 
 pkgincludedir = $(includedir)/storage/SystemInfo
 

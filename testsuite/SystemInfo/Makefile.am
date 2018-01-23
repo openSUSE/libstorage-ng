@@ -13,7 +13,7 @@ check_PROGRAMS =								\
 	dmsetup-info.test dmsetup-table.test lsattr.test lsscsi.test lvs.test	\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\
 	parted.test								\
-	proc-mdstat.test proc-mounts.test proc-parts.test pvs.test		\
+	proc-mdstat.test proc-mounts.test pvs.test				\
 	udevadm-info.test vgs.test multipath.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
