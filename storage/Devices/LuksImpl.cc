@@ -517,12 +517,12 @@ namespace storage
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
 	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
-        if (entry)
-        {
-            entry->set_block_device(get_mount_by_name(get_mount_by()));
-            etc_crypttab.log();
-            etc_crypttab.write();
-        }
+	if (entry)
+	{
+	    entry->set_block_device(get_mount_by_name(get_mount_by()));
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 
@@ -532,12 +532,12 @@ namespace storage
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
 	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
-        if (entry)
-        {
-            etc_crypttab.remove(entry);
-            etc_crypttab.log();
-            etc_crypttab.write();
-        }
+	if (entry)
+	{
+	    etc_crypttab.remove(entry);
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 }
