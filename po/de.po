@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-23 11:05+0000\n"
+"PO-Revision-Date: 2018-01-23 14:02+0000\n"
 "Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
@@ -30,7 +30,7 @@ msgstr ""
 #: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s aktivieren"
+msgstr "Verschlüsseltes Gerät auf %1$s aktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -39,14 +39,14 @@ msgstr "Verschlüsselungsschicht-Gerät auf %1$s aktivieren"
 #: ../storage/Devices/LvmLvImpl.cc:475
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s aktivieren"
+msgstr "Logisches Volume %1$s (%2$s) in Volume-Gruppe %3$s aktivieren"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät wird auf %1$s aktiviert"
+msgstr "Verschlüsseltes Gerät wird auf %1$s aktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -55,7 +55,7 @@ msgstr "Verschlüsselungsschicht-Gerät wird auf %1$s aktiviert"
 #: ../storage/Devices/LvmLvImpl.cc:480
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s wird aktiviert"
+msgstr "Logisches Volume %1$s (%2$s) in Volume-Gruppe %3$s wird aktiviert"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -252,7 +252,7 @@ msgstr "MSDOS-Partitionstabelle auf %1$s erstellen"
 #: ../storage/Devices/EncryptionImpl.cc:233
 #, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s erstellen"
+msgstr "Verschlüsseltes Gerät auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -367,7 +367,7 @@ msgstr "MSDOS-Partitionstabelle wird auf %1$s erstellt"
 #: ../storage/Devices/EncryptionImpl.cc:236
 #, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät wird auf %1$s erstellt"
+msgstr "Verschlüsseltes Gerät wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -447,7 +447,7 @@ msgstr "MD %1$s %2$s (%3$s) deaktivieren"
 #: ../storage/Devices/EncryptionImpl.cc:326
 #, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s deaktivieren"
+msgstr "Verschlüsseltes Gerät auf %1$s deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -480,7 +480,7 @@ msgstr "MD %1$s %2$s (%3$s) wird deaktiviert"
 #: ../storage/Devices/EncryptionImpl.cc:329
 #, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird deaktiviert"
+msgstr "Verschlüsseltes Gerät auf %1$s wird deaktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -543,7 +543,7 @@ msgstr "MSDOS-Partitionstabelle auf %1$s löschen"
 #: ../storage/Devices/EncryptionImpl.cc:248
 #, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s löschen"
+msgstr "Verschlüsseltes Gerät auf %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -629,7 +629,7 @@ msgstr "MSDOS-Partitionstabelle %1$s wird gelöscht"
 #: ../storage/Devices/EncryptionImpl.cc:251
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird gelöscht"
+msgstr "Verschlüsseltes Gerät auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -709,7 +709,7 @@ msgstr "GiB"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "Größe für %1$s auf %2$s von %3$s auf %4$s erhöhen"
+msgstr "%1$s auf %2$s von %3$s auf %4$s vergrößern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -718,8 +718,7 @@ msgstr "Größe für %1$s auf %2$s von %3$s auf %4$s erhöhen"
 #: ../storage/Devices/EncryptionImpl.cc:288
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
-"Größe für Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s erhöhen"
+msgstr "Verschlüsseltes Gerät auf %1$s von %2$s auf %3$s vergrößern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -730,8 +729,7 @@ msgstr ""
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Größe für logisches Volumen %1$s in Volume-Gruppe %2$s von %3$s auf %4$s "
-"erhöhen"
+"Logisches Volume %1$s in Volume-Gruppe %2$s von %3$s auf %4$s vergrößern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -740,7 +738,7 @@ msgstr ""
 #: ../storage/Devices/PartitionImpl.cc:896
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "Größe für Partition %1$s von %2$s auf %3$s erhöhen"
+msgstr "Partition %1$s von %2$s auf %3$s vergrößern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -749,7 +747,7 @@ msgstr "Größe für Partition %1$s von %2$s auf %3$s erhöhen"
 #: ../storage/Devices/LvmPvImpl.cc:305
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "Größe für physisches Volume auf %1$s von %2$s auf %3$s erhöhen"
+msgstr "Physisches Volume auf %1$s von %2$s auf %3$s vergrößern"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -768,8 +766,7 @@ msgstr "Größe für %1$s auf %2$s von %3$s auf %4$s erhöhen"
 #: ../storage/Devices/EncryptionImpl.cc:293
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
-"Größe für Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s erhöhen"
+msgstr "Verschlüsseltes Gerät auf %1$s von %2$s auf %3$s vergrößern"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -893,7 +890,7 @@ msgstr "%1$s aus /etc/mdadm.conf entfernen"
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s aus /etc/crypttab entfernen"
+msgstr "Verschlüsseltes Gerät auf %1$s aus /etc/crypttab entfernen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -936,7 +933,7 @@ msgstr "%1$s wird aus /etc/mdadm.conf entfernt"
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird aus /etc/crypttab entfernt"
+msgstr "Verschlüsseltes Gerät auf %1$s wird aus /etc/crypttab entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -967,8 +964,7 @@ msgstr "%1$s zu %2$s umbenennen"
 #: ../storage/Devices/EncryptionImpl.cc:367
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
-"Verschlüsselungsschicht-Gerät in /etc/crypttab von %1$s zu %2$s umbenennen"
+msgstr "Verschlüsseltes Gerät in /etc/crypttab von %1$s zu %2$s umbenennen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -985,9 +981,7 @@ msgstr "Einhängepunkt %1$s in /etc/fstab von %2$s zu %3$s umbenennen"
 #: ../storage/Devices/EncryptionImpl.cc:371
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
-"Verschlüsselungsschicht-Gerät in /etc/crypttab wird von %1$s zu %2$s "
-"umbenannt"
+msgstr "Verschlüsseltes Gerät in /etc/crypttab wird von %1$s zu %2$s umbenannt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1172,7 +1166,7 @@ msgstr "%1$s auf %2$s von %3$s auf %4$s verkleinern"
 #: ../storage/Devices/EncryptionImpl.cc:274
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s verkleinern"
+msgstr "Verschlüsseltes Gerät auf %1$s von %2$s auf %3$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1220,8 +1214,7 @@ msgstr "%1$s auf %2$s wird von %3$s auf %4$s verkleinert"
 #: ../storage/Devices/EncryptionImpl.cc:279
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr ""
-"Verschlüsselungsschicht-Gerät auf %1$s wird von %2$s auf %3$s verkleinert"
+msgstr "Verschlüsseltes Gerät auf %1$s wird von %2$s auf %3$s verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
