@@ -141,7 +141,18 @@ namespace storage
 	    }
 
 	    if (attempt == 1)
-		dm_name = next_free_cr_auto_name(system_info);
+	    {
+		dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+		const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
+											"", majorminor);
+
+		if (crypttab_entry)
+		    dm_name = crypttab_entry->get_crypt_device();
+		else
+		    dm_name = next_free_cr_auto_name(system_info);
+	    }
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --key-file -";
