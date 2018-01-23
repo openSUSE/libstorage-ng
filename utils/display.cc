@@ -63,7 +63,7 @@ doit_devicegraph(const string& filename)
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
     probed->write_graphviz(filename_gv, GraphvizFlags::CLASSNAME | GraphvizFlags::SID |
-			   GraphvizFlags::SIZE);
+			   GraphvizFlags::SIZE | GraphvizFlags::ACTIVE | GraphvizFlags::IN_ETC);
 
     helper(filename_gv, filename_svg);
 }
