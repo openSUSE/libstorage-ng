@@ -17,9 +17,6 @@
       <name>/sbin/multipath -d -v 2+ -ll</name>
     </Command>
     <Command>
-      <name>/sbin/udevadm settle --timeout=20</name>
-    </Command>
-    <Command>
       <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/test2'</name>
       <stdout>    1B-blocks          Used         Avail Type</stdout>
       <stdout>3216071524352 1981481418752 1234590105600 nfs</stdout>

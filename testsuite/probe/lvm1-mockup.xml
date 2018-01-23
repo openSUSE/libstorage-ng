@@ -679,9 +679,6 @@
   </Commands>
   <Files>
     <File>
-      <name>/etc/crypttab</name>
-    </File>
-    <File>
       <name>/etc/fstab</name>
       <content>/dev/system/swap     swap                 swap       defaults              0 0</content>
       <content>/dev/system/root     /                    ext4       acl,user_xattr        1 1</content>

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,7 +32,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/DeviceImpl.h"
-#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Dasd.h"
 #include "storage/Devices/Multipath.h"
@@ -869,6 +869,40 @@ namespace storage
 			const Filesystem* filesystem = to_filesystem(device);
 			if (filesystem->has_space_info())
 			    extra += "\\n" + filesystem->detect_space_info().get_size_string();
+		    }
+		}
+
+		if (graphviz_flags && GraphvizFlags::ACTIVE)
+		{
+		    if (is_blk_device(device))
+		    {
+			const BlkDevice* blk_device = to_blk_device(device);
+			if (blk_device->get_impl().is_active())
+			    extra += "\\nactive";
+		    }
+
+		    if (is_mount_point(device))
+		    {
+			const MountPoint* mount_point = to_mount_point(device);
+			if (mount_point->is_active())
+			    extra += "\\nactive";
+		    }
+		}
+
+		if (graphviz_flags && GraphvizFlags::IN_ETC)
+		{
+		    if (is_mount_point(device))
+		    {
+			const MountPoint* mount_point = to_mount_point(device);
+			if (mount_point->is_in_etc_fstab())
+			    extra += "\\nin fstab";
+		    }
+
+		    if (is_encryption(device))
+		    {
+			const Encryption* encryption = to_encryption(device);
+			if (encryption->is_in_etc_crypttab())
+			    extra += "\\nin crypttab";
 		    }
 		}
 

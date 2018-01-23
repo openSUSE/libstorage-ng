@@ -12,7 +12,7 @@ noinst_PROGRAMS = test-blkid test-cmd-btrfs-filesystem-show test-cmddmsetupinfo	
 	test-lsattr test-lsscsi							\
 	test-mdadmdetail test-mdadmexamine test-mdlinks test-multipath		\
 	test-parted								\
-	test-procmdstat test-procmounts test-procparts test-cmddf 		\
+	test-procmdstat test-procmounts test-cmddf 				\
 	test-cmd-btrfs-subvolume-list test-cmd-btrfs-subvolume-get-default
 
 AM_DEFAULT_SOURCE_EXT = .cc

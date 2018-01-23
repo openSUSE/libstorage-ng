@@ -364,10 +364,6 @@
   </Commands>
   <Files>
     <File>
-      <name>/etc/crypttab</name>
-      <content></content>
-    </File>
-    <File>
       <name>/etc/fstab</name>
       <content>UUID=86b64dbc-0530-4a4b-bca7-72e2c8b4e317 swap                 swap       defaults              0 0</content>
       <content>UUID=9f0f12c5-4d18-494b-b234-7342c953e99a /                    ext4       acl,user_xattr        1 1</content>
@@ -401,16 +397,6 @@
       <content>mqueue /dev/mqueue mqueue rw,relatime 0 0</content>
       <content>debugfs /sys/kernel/debug debugfs rw,relatime 0 0</content>
       <content>/dev/sdb /home ext4 rw,relatime,data=ordered 0 0</content>
-    </File>
-    <File>
-      <name>/proc/partitions</name>
-      <content>major minor  #blocks  name</content>
-      <content></content>
-      <content>   8        0    8388608 sda</content>
-      <content>   8        1    1018880 sda1</content>
-      <content>   8        2    7368704 sda2</content>
-      <content>   8       16   16777216 sdb</content>
-      <content>  11        0    4569088 sr0</content>
     </File>
     <File>
       <name>/proc/swaps</name>

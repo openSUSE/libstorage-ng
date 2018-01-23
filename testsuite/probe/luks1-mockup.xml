@@ -16,85 +16,8 @@
       <stdout>/dev/mapper/cr_home: UUID="30032cea-a1f0-4891-8396-28a8d97491d4" TYPE="xfs"</stdout>
     </Command>
     <Command>
-      <name>/sbin/cryptsetup status 'cr_home'</name>
-      <stdout>/dev/mapper/cr_home is active and is in use.</stdout>
-      <stdout>  type:    LUKS1</stdout>
-      <stdout>  cipher:  aes-xts-plain64</stdout>
-      <stdout>  keysize: 256 bits</stdout>
-      <stdout>  device:  /dev/sda2</stdout>
-      <stdout>  offset:  4096 sectors</stdout>
-      <stdout>  size:    16779264 sectors</stdout>
-      <stdout>  mode:    read/write</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/dmsetup --columns --separator '/' --noheadings -o name,major,minor,segments,subsystem,uuid info</name>
-      <stdout>cr_home/254/0/1/CRYPT/CRYPT-LUKS1-90da74540be64b44957a61a05408b8fb-cr_home</stdout>
-    </Command>
-    <Command>
       <name>/sbin/dmsetup table</name>
       <stdout>cr_home: 0 16779264 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:2 4096</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/8:2'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
-      <stdout>N: sda2</stdout>
-      <stdout>S: disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
-      <stdout>S: disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
-      <stdout>S: disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
-      <stdout>S: disk/by-id/scsi-SATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
-      <stdout>S: disk/by-path/pci-0000:00:1f.2-ata-1-part2</stdout>
-      <stdout>S: disk/by-uuid/90da7454-0be6-4b44-957a-61a05408b8fb</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/scsi-1ATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2 /dev/disk/by-uuid/90da7454-0be6-4b44-957a-61a05408b8fb /dev/disk/by-id/scsi-0ATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2 /dev/disk/by-id/scsi-SATA_VBOX_HARDDISK_VB56faa9ee-37629d93-part2 /dev/disk/by-path/pci-0000:00:1f.2-ata-1-part2 /dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2</stdout>
-      <stdout>E: DEVNAME=/dev/sda2</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2</stdout>
-      <stdout>E: DEVTYPE=partition</stdout>
-      <stdout>E: ID_ATA=1</stdout>
-      <stdout>E: ID_BUS=ata</stdout>
-      <stdout>E: ID_FS_TYPE=crypto_LUKS</stdout>
-      <stdout>E: ID_FS_USAGE=crypto</stdout>
-      <stdout>E: ID_FS_UUID=90da7454-0be6-4b44-957a-61a05408b8fb</stdout>
-      <stdout>E: ID_FS_UUID_ENC=90da7454-0be6-4b44-957a-61a05408b8fb</stdout>
-      <stdout>E: ID_FS_VERSION=1</stdout>
-      <stdout>E: ID_MODEL=VBOX_HARDDISK</stdout>
-      <stdout>E: ID_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
-      <stdout>E: ID_PART_ENTRY_DISK=8:0</stdout>
-      <stdout>E: ID_PART_ENTRY_NUMBER=2</stdout>
-      <stdout>E: ID_PART_ENTRY_OFFSET=16771072</stdout>
-      <stdout>E: ID_PART_ENTRY_SCHEME=dos</stdout>
-      <stdout>E: ID_PART_ENTRY_SIZE=16783360</stdout>
-      <stdout>E: ID_PART_ENTRY_TYPE=0x83</stdout>
-      <stdout>E: ID_PART_ENTRY_UUID=36f7ecf1-02</stdout>
-      <stdout>E: ID_PART_TABLE_TYPE=dos</stdout>
-      <stdout>E: ID_PART_TABLE_UUID=36f7ecf1</stdout>
-      <stdout>E: ID_PATH=pci-0000:00:1f.2-ata-1</stdout>
-      <stdout>E: ID_PATH_TAG=pci-0000_00_1f_2-ata-1</stdout>
-      <stdout>E: ID_REVISION=1.0</stdout>
-      <stdout>E: ID_SCSI=1</stdout>
-      <stdout>E: ID_SCSI_COMPAT=SATA_VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
-      <stdout>E: ID_SCSI_COMPAT_TRUNCATED=SATA_VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
-      <stdout>E: ID_SCSI_DI=1</stdout>
-      <stdout>E: ID_SCSI_SN=1</stdout>
-      <stdout>E: ID_SERIAL=VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
-      <stdout>E: ID_SERIAL_SHORT=VB56faa9ee-37629d93</stdout>
-      <stdout>E: ID_TYPE=disk</stdout>
-      <stdout>E: ID_VENDOR=ATA</stdout>
-      <stdout>E: ID_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
-      <stdout>E: MAJOR=8</stdout>
-      <stdout>E: MINOR=2</stdout>
-      <stdout>E: SCSI_IDENT_LUN_ATA=VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
-      <stdout>E: SCSI_IDENT_LUN_T10=ATA_VBOX_HARDDISK_VB56faa9ee-37629d93</stdout>
-      <stdout>E: SCSI_IDENT_LUN_VENDOR=VB56faa9ee-37629d93</stdout>
-      <stdout>E: SCSI_IDENT_SERIAL=VB56faa9ee-37629d93</stdout>
-      <stdout>E: SCSI_MODEL=VBOX_HARDDISK</stdout>
-      <stdout>E: SCSI_MODEL_ENC=VBOX\x20HARDDISK\x20\x20\x20</stdout>
-      <stdout>E: SCSI_REVISION=1.0</stdout>
-      <stdout>E: SCSI_TPGS=0</stdout>
-      <stdout>E: SCSI_TYPE=disk</stdout>
-      <stdout>E: SCSI_VENDOR=ATA</stdout>
-      <stdout>E: SCSI_VENDOR_ENC=ATA\x20\x20\x20\x20\x20</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=5718331</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dm-0'</name>
@@ -418,6 +341,12 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:seat:systemd:uaccess:</stdout>
       <stdout>E: USEC_INITIALIZED=5360379</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/disk/by-id/ata-VBOX_HARDDISK_VB56faa9ee-37629d93-part2'</name>
+      <!-- output faked and incomplete -->
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=2</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm settle --timeout=20</name>

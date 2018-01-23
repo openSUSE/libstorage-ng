@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/StorageImpl.h"
@@ -104,13 +105,16 @@ namespace storage
     string
     Luks::Impl::next_free_cr_auto_name(SystemInfo& system_info)
     {
+	const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+
 	static int nr = 1;
 
 	while (true)
 	{
 	    string name = "cr-auto-" + to_string(nr++);
 
-	    if (!system_info.getCmdDmsetupInfo().exists(name))
+	    if (!cmd_dmsetup_info.exists(name) && !etc_crypttab.has_crypt_device(name))
 		return name;
 	}
     }
@@ -137,7 +141,18 @@ namespace storage
 	    }
 
 	    if (attempt == 1)
-		dm_name = next_free_cr_auto_name(system_info);
+	    {
+		dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+		const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
+											"", majorminor);
+
+		if (crypttab_entry)
+		    dm_name = crypttab_entry->get_crypt_device();
+		else
+		    dm_name = next_free_cr_auto_name(system_info);
+	    }
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --key-file -";
@@ -234,16 +249,60 @@ namespace storage
     void
     Luks::Impl::probe_lukses(Prober& prober)
     {
-	for (const CmdDmsetupInfo::value_type& value : prober.get_system_info().getCmdDmsetupInfo())
+	SystemInfo& system_info = prober.get_system_info();
+	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+
+	/*
+	 * The main source for probing LUKSes is the blkid output. It contains
+	 * all LUKSes with UUID and underlying block device. For some LUKSes
+	 * this is already all available information.
+	 */
+
+	const Blkid& blkid = system_info.getBlkid();
+	for (const Blkid::value_type& entry : blkid)
 	{
-	    if (value.second.subsystem != "CRYPT")
+	    if (!entry.second.is_luks)
 		continue;
 
-	    const CmdCryptsetup& cmd_cryptsetup = prober.get_system_info().getCmdCryptsetup(value.first);
-	    if (cmd_cryptsetup.encryption_type != EncryptionType::LUKS)
-		continue;
+	    string uuid = entry.second.luks_uuid;
 
-	    Luks* luks = Luks::create(prober.get_probed(), value.first);
+	    string blk_device = entry.first;
+
+	    dev_t majorminor = system_info.getCmdUdevadmInfo(blk_device).get_majorminor();
+
+	    CmdDmsetupTable::const_iterator it = cmd_dmsetup_table.find_using(majorminor);
+
+	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
+										    "", majorminor);
+
+	    /*
+	     * The DM table name is 1. taken from the active table, 2. taken
+	     * from crypttab and 3. auto-generated.
+	     */
+	    string dm_table_name;
+	    if (it != cmd_dmsetup_table.end())
+		dm_table_name = it->first;
+	    else if (crypttab_entry)
+		dm_table_name = crypttab_entry->get_crypt_device();
+	    else
+		dm_table_name = next_free_cr_auto_name(system_info);
+
+	    Luks* luks = Luks::create(prober.get_probed(), dm_table_name);
+	    luks->get_impl().uuid = uuid;
+	    luks->get_impl().set_active(it != cmd_dmsetup_table.end());
+	    luks->set_in_etc_crypttab(crypttab_entry);
+
+	    if (crypttab_entry)
+	    {
+		luks->set_mount_by(crypttab_entry->get_mount_by());
+		luks->get_impl().set_crypt_options(crypttab_entry->get_crypt_opts());
+	    }
+
+	    prober.add_holder(blk_device, luks, [](Devicegraph* probed, Device* a, Device* b) {
+		User::create(probed, a, b);
+	    });
+
 	    luks->get_impl().probe_pass_1a(prober);
 	}
     }
@@ -254,37 +313,11 @@ namespace storage
     {
 	Encryption::Impl::probe_pass_1a(prober);
 
-	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
-
-	set_region(Region(0, size_file.get<unsigned long long>(), 512));
-
-	// TODO mount-by
-
-	const EtcCrypttab& etc_crypttab = prober.get_system_info().getEtcCrypttab();
-
-	CrypttabEntry* crypttab_entry = etc_crypttab.find_crypt_device(get_dm_table_name());
-	if (crypttab_entry)
+	if (is_active())
 	{
-	    set_mount_by(crypttab_entry->get_mount_by());
-	    set_crypt_options(crypttab_entry->get_crypt_opts());
-	    set_in_etc_crypttab(true);
+	    const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
 	}
-    }
-
-
-    void
-    Luks::Impl::probe_pass_1e(Prober& prober)
-    {
-	Encryption::Impl::probe_pass_1e(prober);
-
-	const BlkDevice* blk_device = get_blk_device();
-
-	const Blkid& blkid = prober.get_system_info().getBlkid();
-	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
-	if (it == blkid.end())
-	    ST_THROW(Exception("failed to probe luks uuid"));
-
-	uuid = it->second.luks_uuid;
     }
 
 

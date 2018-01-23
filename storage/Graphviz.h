@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,7 +40,9 @@ namespace storage
 	TOOLTIP = 0x1,
 	CLASSNAME = 0x2,
 	SID = 0x4,
-	SIZE = 0x8
+	SIZE = 0x8,
+	ACTIVE = 0x16,
+	IN_ETC = 0x32
     };
 
 

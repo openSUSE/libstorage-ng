@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017] SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,6 +38,8 @@ namespace storage
 {
     using std::string;
     using std::vector;
+
+    class SystemInfo;
 
 
     /**
@@ -158,6 +160,13 @@ namespace storage
 	 * is no matching entry.
 	 **/
 	CrypttabEntry * find_block_device( const string & block_device ) const;
+
+	/**
+	 * Return the first entry or 0 where the block device matches the
+	 * provided uuid, label or major and minor number.
+	 */
+	const CrypttabEntry* find_by_block_device(SystemInfo& system_info, const string& uuid,
+						  const string& label, dev_t majorminor) const;
 
 	/**
 	 * Add an entry. This is just an alias for append() to maintain

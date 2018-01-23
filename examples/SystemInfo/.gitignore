@@ -22,4 +22,3 @@ test-multipath
 test-parted
 test-procmdstat
 test-procmounts
-test-procparts

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/ExceptionImpl.h"
+#include "storage/Utils/LoggerImpl.h"
 
 
 namespace storage
@@ -127,6 +128,10 @@ namespace storage
 	if (it == commands.end())
 	    ST_THROW(Exception("no mockup found for command '" + name + "'"));
 
+#ifdef OCCAMS_RAZOR
+	used_commands.insert(name);
+#endif
+
 	return it->second;
     }
 
@@ -159,6 +164,10 @@ namespace storage
 	if (it == files.end())
 	    ST_THROW(Exception("no mockup found for file '" + name + "'"));
 
+#ifdef OCCAMS_RAZOR
+	used_files.insert(name);
+#endif
+
 	return it->second;
     }
 
@@ -177,9 +186,46 @@ namespace storage
     }
 
 
+    void
+    Mockup::occams_razor()
+    {
+#ifdef OCCAMS_RAZOR
+
+	bool ok = true;
+
+	for (const map<string, Command>::value_type& tmp : commands)
+	{
+	    if (used_commands.count(tmp.first) == 0)
+	    {
+		y2err("unused command mockup '" << tmp.first << "'");
+		ok = false;
+	    }
+	}
+
+	for (const map<string, File>::value_type& tmp : files)
+	{
+	    if (used_files.count(tmp.first) == 0)
+	    {
+		y2err("unused file mockup '" << tmp.first << "'");
+		ok = false;
+	    }
+	}
+
+	if (!ok)
+	    ST_THROW(Exception("Occam's Razor"));
+
+#endif
+    }
+
+
     Mockup::Mode Mockup::mode = Mockup::Mode::NONE;
 
     map<string, Mockup::Command> Mockup::commands;
     map<string, Mockup::File> Mockup::files;
+
+#ifdef OCCAMS_RAZOR
+    set<string> Mockup::used_commands;
+    set<string> Mockup::used_files;
+#endif
 
 }

@@ -32,7 +32,6 @@
 #include "storage/EtcMdadm.h"
 
 #include "storage/SystemInfo/Arch.h"
-#include "storage/SystemInfo/ProcParts.h"
 #include "storage/SystemInfo/ProcMounts.h"
 #include "storage/SystemInfo/ProcMdstat.h"
 #include "storage/SystemInfo/CmdBlkid.h"
@@ -83,7 +82,6 @@ namespace storage
 	const Dir& getDir(const string& path) { return dirs.get(path); }
 	const File& getFile(const string& path) { return files.get(path); }
 	const MdLinks& getMdLinks() { return mdlinks.get(); }
-	const ProcParts& getProcParts() { return procparts.get(); }
 	const ProcMounts& getProcMounts() { return procmounts.get(); }
 	const ProcMdstat& getProcMdstat() { return procmdstat.get(); }
 	const MdadmDetail& getMdadmDetail(const string& device) { return mdadmdetails.get(device); }
@@ -223,7 +221,6 @@ namespace storage
 	LazyObjects<Dir> dirs;
 	LazyObjects<File> files;
 	LazyObject<MdLinks> mdlinks;
-	LazyObject<ProcParts> procparts;
 	LazyObject<ProcMounts> procmounts;
 	LazyObject<ProcMdstat> procmdstat;
 	LazyObjects<MdadmDetail> mdadmdetails;
