@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2017-12-29 21:02+0000\n"
-"Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
+"PO-Revision-Date: 2018-01-23 11:05+0000\n"
+"Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
 "Language: de\n"
@@ -23,43 +23,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.17.1\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:311
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät auf %1$s einrichten"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s aktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:475
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s aktivieren"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät wird auf %1$s eingerichtet"
+msgstr "Verschlüsselungsschicht-Gerät wird auf %1$s aktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:480
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) wird mit %3$s formatiert"
+msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s wird aktiviert"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -161,42 +157,39 @@ msgstr "Boot-Flag der Partition %1$s reinigen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:810
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "RAID-Partition %1$s erstellen"
+msgstr "Legacy-Boot-Flag von Partition %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s wird erstellt"
+msgstr ""
+"Option 'Keine Kopie beim Schreiben' für Subvolumen %1$s auf %2$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s löschen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:772
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "Multipath-Partition %1$s wird erstellt"
+msgstr "Boot-Flag von Partition %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:813
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "Multipath-Partition %1$s wird erstellt"
+msgstr "Legacy-Boot-Flag von Partition %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -205,65 +198,61 @@ msgstr "Multipath-Partition %1$s wird erstellt"
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Option 'Keine Kopie beim Schreiben' wird für Subvolumen %1$s auf %2$s "
+"gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:503
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create %1$s on %2$s (%3$s)"
-msgstr "Auslagerungs-Volume %1$s (%2$s) erstellen"
+msgstr "%1$s auf %2$s (%3$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:212
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "RAID-Partition %1$s erstellen"
+msgstr "DASD-Partitionstabelle auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:201
-#, fuzzy, c-format
-#| msgid "Create %1$s"
+#, c-format
 msgid "Create GPT on %1$s"
-msgstr "%1$s erstellen"
+msgstr "GPT auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:720
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "Volume %1$s (%2$s) erstellen"
+msgstr "MD %1$s %2$s (%3$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:276
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "RAID-Partition %1$s erstellen"
+msgstr "MSDOS-Partitionstabelle auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:233
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät auf %1$s einrichten"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -274,333 +263,296 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "Erweiterte Partition %1$s (%2$s) erstellen"
 
 #: ../storage/Devices/DiskImpl.cc:227
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "Auslagerungs-Volume %1$s (%2$s) erstellen"
+msgstr "Festplatte %1$s (%2$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "Multipath-Partition %1$s (%2$s) erstellen"
+msgstr "Logische Partition %1$s (%2$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "RAID-Partition %1$s (%2$s) erstellen"
+msgstr "Partition %1$s (%2$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:249
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "Logisches Volume %1$s wird erstellt"
+msgstr "Physisches Volume auf %1$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:526
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "RAID-Partition %1$s (%2$s) erstellen"
+msgstr "Primäre Partition %1$s (%2$s) erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s erstellen"
+msgstr "Subvolumen %1$s auf %2$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "Volume %1$s (%2$s) erstellen"
+msgstr "Volume-Gruppe %1$s (%2$s) erstellen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "Partitionstyp für %1$s auf  %2$s (%3$X) setzen"
+msgstr "%1$s wird auf %2$s (%3$s) erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "RAID-Partition %1$s erstellen"
+msgstr "DASD-Partitionstabelle wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:204
-#, fuzzy, c-format
-#| msgid "Creating %1$s"
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "%1$s wird erstellt"
+msgstr "GPT wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Volume-Gruppe %1$s (%2$s) wird aus %3$s erstellt"
+msgstr "MD %1$s %2$s (%3$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating MSDOS partition table on %1$s"
-msgstr "RAID-Partition %1$s erstellen"
+msgstr "MSDOS-Partitionstabelle wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät wird auf %1$s eingerichtet"
+msgstr "Verschlüsselungsschicht-Gerät wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr "Erweiterte Partition %1$s (%2$s) erstellen"
+msgstr "Erweiterte Partition wird auf %1$s (%2$s) erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "Multipath-Partition %1$s (%2$s) erstellen"
+msgstr "Logische Partition %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:303
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr "Logisches Volume %1$s (%2$s) wird auf Volume-Gruppe %3$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:515
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr "RAID-Partition %1$s (%2$s) erstellen"
+msgstr "Partition %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:252
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Creating physical volume on %1$s"
-msgstr "Logisches Volume %1$s wird erstellt"
+msgstr "Physisches Volume wird auf %1$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:530
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "Multipath-Partition %1$s (%2$s) erstellen"
+msgstr "Primäre Partition %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s wird erstellt"
+msgstr "Subvolumen %1$s wird auf %2$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:390
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating volume group %1$s (%2$s)"
-msgstr "Volume-Gruppe %1$s (%2$s) wird aus %3$s erstellt"
+msgstr "Volume-Gruppe %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:975
-#, fuzzy, c-format
-#| msgid "Create software RAID %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "Software-RAID %1$s (%2$s) von %3$s erstellen"
+msgstr "MD %1$s %2$s (%3$s) deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:326
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät auf %1$s einrichten"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "Multipath-Partition %1$s (%2$s) erstellen"
+msgstr "Multipath-Komponente %1$s (%2$s) deaktivieren"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:980
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "Partition %1$s (%2$s) löschen"
+msgstr "MD %1$s %2$s (%3$s) wird deaktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:329
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät wird auf %1$s eingerichtet"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird deaktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:516
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) wird mit %3$s formatiert"
+msgstr "Logisches Volume %1$s (%2$s) auf Volume-Gruppe %3$s wird deaktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:302
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "Multipath-Partition %1$s (%2$s) erstellen"
+msgstr "Multipath-Komponente %1$s (%2$s) wird deaktiviert"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
-msgstr "Partition %1$s (%2$s) löschen"
+msgstr "%1$s auf %2$s (%3$s) löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:245
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "RAID-Partition %1$s löschen"
+msgstr "DASD-Partitionstabelle auf %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:277
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Delete GPT on %1$s"
-msgstr "Partition %1$s wird gelöscht"
+msgstr "GPT auf %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:796
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr "Partition %1$s (%2$s) löschen"
+msgstr "MD %1$s %2$s (%3$s) löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:309
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete MSDOS partition table on %1$s"
-msgstr "RAID-Partition %1$s löschen"
+msgstr "MSDOS-Partitionstabelle auf %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät auf %1$s einrichten"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) löschen"
+msgstr "Logisches Volume %1$s (%2$s) in Volume-Gruppe %3$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -613,125 +565,111 @@ msgstr "Partition %1$s (%2$s) löschen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:351
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Delete physical volume on %1$s"
-msgstr "Logisches Volume %1$s wird gelöscht"
+msgstr "Physisches Volume %1$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s erstellen"
+msgstr "Subvolumen %1$s auf %2$s löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:420
-#, fuzzy, c-format
-#| msgid "Reduce volume group %1$s by %2$s"
+#, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr "Volume-Gruppe %1$s um %2$s reduzieren"
+msgstr "Volume-Gruppe %1$s (%2$s) löschen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:681
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
-msgstr "Partitionstyp für %1$s auf  %2$s (%3$X) setzen"
+msgstr "%1$s auf %2$s (%3$s) wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "RAID-Partition %1$s löschen"
+msgstr "DASD-Partitionstabelle auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:280
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Deleting GPT on %1$s"
-msgstr "Partition %1$s wird gelöscht"
+msgstr "GPT auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:801
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
-msgstr "Partition %1$s (%2$s) löschen"
+msgstr "MD %1$s %2$s (%3$s) wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:312
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting MSDOS partition table on %1$s"
-msgstr "RAID-Partition %1$s löschen"
+msgstr "MSDOS-Partitionstabelle %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:251
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "Verschlüsseltes Loop-Gerät wird auf %1$s eingerichtet"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Logisches Volume %1$s (%2$s) löschen"
+msgstr "Logisches Volume %1$s (%2$s) in Volume-Gruppe %3$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:845
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting partition %1$s (%2$s)"
-msgstr "Partition %1$s (%2$s) löschen"
+msgstr "Partition %1$s (%2$s) wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:354
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr "Logisches Volume %1$s wird gelöscht"
+msgstr "Physisches Volume auf %1$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s wird erstellt"
+msgstr "Subvolumen %1$s auf %2$s wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:424
-#, fuzzy, c-format
-#| msgid "Reducing volume group %1$s by %2$s"
+#, c-format
 msgid "Deleting volume group %1$s (%2$s)"
-msgstr "Volume-Gruppe %1$s wird um %2$s reduziert"
+msgstr "Volume-Gruppe %1$s (%2$s) wird gelöscht"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:122
@@ -769,20 +707,19 @@ msgstr "GiB"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr "Größe für %1$s auf %2$s von %3$s auf %4$s erhöhen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:288
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
+msgstr ""
+"Größe für Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -790,30 +727,29 @@ msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:385
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr ""
+"Größe für logisches Volumen %1$s in Volume-Gruppe %2$s von %3$s auf %4$s "
+"erhöhen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:896
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "Partition %1$s (%2$s) mit %3$s formatieren"
+msgstr "Größe für Partition %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:305
-#, fuzzy, c-format
-#| msgid "Format logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "Logisches Volume %1$s (%2$s) mit %3$s formatieren"
+msgstr "Größe für physisches Volume auf %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -821,20 +757,19 @@ msgstr "Logisches Volume %1$s (%2$s) mit %3$s formatieren"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "Partition %1$s (%2$s) für %4$s mit %3$s formatieren"
+msgstr "Größe für %1$s auf %2$s von %3$s auf %4$s erhöhen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
+msgstr ""
+"Größe für Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -842,30 +777,29 @@ msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:391
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Logisches Volume %1$s (%2$s) für %4$s mit %3$s erstellen"
+msgstr ""
+"Größe für logisches Volume %1$s auf Volume-Gruppe %2$s von %3$s auf %4$s "
+"erhöhen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:901
-#, fuzzy, c-format
-#| msgid "Formatting partition %1$s (%2$s) with %3$s "
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "Partition %1$s (%2$s) wird mit %3$s formatiert "
+msgstr "Größe für Partition %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:310
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "Logisches Volume %1$s (%2$s) wird mit %3$s formatiert"
+msgstr "Größe für physisches Volume auf %1$s von %2$s auf %3$s erhöhen"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:61
@@ -891,39 +825,35 @@ msgstr "MiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:173
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "%1$s wird auf %2$s eingehängt"
+msgstr "%1$s auf %2$s einhängen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Create boot volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "Boot-Partition %1$s (%2$s) mit %3$s erstellen"
+msgstr "Subvolumen %1$s auf %2$s an %3$s einhängen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:177
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "%1$s wird auf %2$s eingehängt"
+msgstr "%1$s wird mit %2$s eingehängt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s wird erstellt"
+msgstr "Subvolumen %1$s wird auf %2$s an %3$s eingehängt"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:111
@@ -954,26 +884,24 @@ msgstr "%1$s aus %2$s entfernen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:855
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "%1$s aus %2$s entfernen"
+msgstr "%1$s aus /etc/mdadm.conf entfernen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s aus /etc/crypttab entfernen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:327
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s aus %2$s entfernen"
+msgstr "Einhängepunkt %1$s auf %2$s aus /etc/fstab entfernen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -983,6 +911,7 @@ msgstr "Eintrag für Einhängepunkt %1$s aus %2$s entfernen"
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+"Einhängepunkt %1$s von Subvolumen %2$s auf %3$s aus /etc/fstab entfernen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -991,49 +920,46 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "%1$s aus %2$s entfernen"
+msgstr "%1$s wird aus %2$s entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s wird aus /etc/mdadm.conf entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s wird aus /etc/crypttab entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:331
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s wird aus %2$s entfernt"
+msgstr "Einhängepunkt %1$s auf %2$s wird aus /etc/fstab entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s wird aus %2$s entfernt"
+msgstr ""
+"Einhängepunkt %1$s von Subvolumen %2$s auf %3$s wird aus /etc/fstab entfernt"
 
 #: ../storage/Devices/LvmLvImpl.cc:338
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "%1$s aus %2$s entfernen"
+msgstr "%1$s zu %2$s umbenennen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1042,16 +968,16 @@ msgstr "%1$s aus %2$s entfernen"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Verschlüsselungsschicht-Gerät in /etc/crypttab von %1$s zu %2$s umbenennen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:580
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s aus %2$s entfernen"
+msgstr "Einhängepunkt %1$s in /etc/fstab von %2$s zu %3$s umbenennen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1060,87 +986,80 @@ msgstr "Eintrag für Einhängepunkt %1$s aus %2$s entfernen"
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Verschlüsselungsschicht-Gerät in /etc/crypttab wird von %1$s zu %2$s "
+"umbenannt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:585
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s wird aus %2$s entfernt"
+msgstr "Einhängepunkt %1$s wird in /etc/fstab von %2$s zu %3$s umbenannt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "Kennung auf %1$s auf %2$s setzen"
+msgstr "UUID von %1$s auf %2$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:761
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "Partitionstyp für %1$s auf %2$X setzen"
+msgstr "Boot-Flag von Partition %1$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s erstellen"
+msgstr "Subvolumen %1$s auf %2$s als Standard-Subvolumen festlegen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:672
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "Partitionstyp für %1$s auf %2$X setzen"
+msgstr "ID von Partion %1$s auf %2$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:654
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Partitionstyp für %1$s auf  %2$s (%3$X) setzen"
+msgstr "ID von Partition %1$s auf %2$s (0x%3$02X) setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:640
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "Partitionstyp für %1$s auf %2$X setzen"
+msgstr "ID von Partition %1$s auf 0x%2$02X setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr "Kennung auf %1$s auf %2$s setzen"
+msgstr "Kennung von %1$s auf %2$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:802
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "Partition %1$s wird gelöscht"
+msgstr "Legacy-Boot-Flag von Partition %1$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1148,85 +1067,77 @@ msgstr "Partition %1$s wird gelöscht"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "Option 'Keine Kopie beim Schreiben' für Subvolumen %1$s auf %2$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s setzen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting UUID of %1$s to %2$s"
-msgstr "Kennung auf %1$s wird auf %2$s gesetzt"
+msgstr "UUID von %1$s wird auf %2$s gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:764
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "Partitionstyp für %1$s wird auf %2$X gesetzt"
+msgstr "Boot-Flag von Partition %1$s wird gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "Subvolumen %1$s auf Gerät %2$s wird erstellt"
+msgstr "Subvolumen %1$s auf %2$s wird als Standard-Subvolumen festgelegt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "Partitionstyp für %1$s wird auf %2$X gesetzt"
+msgstr "ID von Partition %1$s wird auf %2$s gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:659
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Partitionstyp für %1$s wird auf %2$s (%3$X) gesetzt"
+msgstr "ID von Partition %1$s wird auf %2$s (0x%3$02X) gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:644
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "Partitionstyp für %1$s wird auf %2$X gesetzt"
+msgstr "ID von Partition %1$s wird auf 0x%2$02X gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:528
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting label of %1$s to %2$s"
-msgstr "Kennung auf %1$s wird auf %2$s gesetzt"
+msgstr "Kennung von %1$s wird auf %2$s gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:805
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "Partitionstyp für %1$s wird auf %2$X gesetzt"
+msgstr "Legacy-Boot-Flag von Partition %1$s wird gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1235,13 +1146,14 @@ msgstr "Partitionstyp für %1$s wird auf %2$X gesetzt"
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Option 'Keine Kopie beim Schreiben' für Subvolumen %1$s auf %2$s wird gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s wird gesetzt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1249,20 +1161,18 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
-#, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s auf %2$s verkleinern"
+msgstr "%1$s auf %2$s von %3$s auf %4$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:274
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
+msgstr "Verschlüsselungsschicht-Gerät auf %1$s von %2$s auf %3$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1270,30 +1180,28 @@ msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:369
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Logisches Volume %1$s auf %2$s verkleinern"
+msgstr ""
+"Logisches Volume %1$s in Volume-Gruppe %2$s von %3$s auf %4$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:882
-#, fuzzy, c-format
-#| msgid "Shrink partition %1$s to %2$s"
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Partition %1$s auf %2$s verkleinern"
+msgstr "Partition %1$s von %2$s auf %3$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:291
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Logisches Volume %1$s auf %2$s verkleinern"
+msgstr "Physisches Volume auf %1$s von %2$s auf %3$s verkleinern"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1301,20 +1209,19 @@ msgstr "Logisches Volume %1$s auf %2$s verkleinern"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
-#, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s wird auf %2$s verkleinert"
+msgstr "%1$s auf %2$s wird von %3$s auf %4$s verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
+msgstr ""
+"Verschlüsselungsschicht-Gerät auf %1$s wird von %2$s auf %3$s verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1322,30 +1229,29 @@ msgstr "Verschlüsseltes Gerät %1$s (%2$s) für %4$s mit %3$s formatieren"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:375
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Logisches Volume %1$s wird auf %2$s verkleinert"
+msgstr ""
+"Logisches Volume %1$s in Volume-Gruppe %2$s wird von %3$s auf %4$s "
+"verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:887
-#, fuzzy, c-format
-#| msgid "Shrinking partition %1$s to %2$s"
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Partition %1$s wird auf %2$s verkleinert"
+msgstr "Partition %1$s wird von %2$s auf %3$s verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:296
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Logisches Volume %1$s wird auf %2$s verkleinert"
+msgstr "Physisches Volume auf %1$s wird von %2$s auf %3$s verkleinert"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:100
@@ -1366,62 +1272,56 @@ msgstr "TiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:220
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "%1$s wird auf %2$s eingehängt"
+msgstr "%1$s auf %2$s aushängen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Subvolumen %1$s wird vom Gerät %2$s entfernt"
+msgstr "Subvolumen %1$s auf %2$s an %3$s aushängen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:224
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "%1$s wird auf %2$s eingehängt"
+msgstr "%1$s mit %2$s wird ausgehängt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Subvolumen %1$s wird vom Gerät %2$s entfernt"
+msgstr "Subvolumen %1$s auf %2$s an %3$s wird ausgehängt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:289
-#, fuzzy, c-format
-#| msgid "Update entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s in %2$s aktualisieren"
+msgstr "Einhängepunkt %1$s von %2$s in /etc/fstab aktualisieren"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Updating entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "Eintrag für Einhängepunkt %1$s in %2$s wird aktualisiert"
+msgstr "Einhängepunkt %1$s von %2$s in /etc/fstab wird aktualisiert"
 
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
-msgstr ""
+msgstr "Erstes Root-Dateisystem"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:67
