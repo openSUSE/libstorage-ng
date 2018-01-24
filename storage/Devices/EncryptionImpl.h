@@ -111,7 +111,7 @@ namespace storage
 	virtual void do_add_to_etc_crypttab(CommitData& commit_data) const;
 
 	virtual Text do_rename_in_etc_crypttab_text(const Device* lhs, Tense tense) const;
-	virtual void do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const;
+	virtual void do_rename_in_etc_crypttab(CommitData& commit_data) const;
 
 	virtual Text do_remove_from_etc_crypttab_text(Tense tense) const;
 	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const;

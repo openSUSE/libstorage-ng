@@ -512,7 +512,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const
+    Luks::Impl::do_rename_in_etc_crypttab(CommitData& commit_data) const
     {
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
