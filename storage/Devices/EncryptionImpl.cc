@@ -428,7 +428,7 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const
+    Encryption::Impl::do_rename_in_etc_crypttab(CommitData& commit_data) const
     {
         ST_THROW(LogicException("stub do_rename_in_etc_crypttab called"));
     }
@@ -496,9 +496,8 @@ namespace storage
 	void
 	RenameInEtcCrypttab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const Encryption* encryption_lhs = to_encryption(get_device(commit_data.actiongraph, LHS));
-	    const Encryption* encryption_rhs = to_encryption(get_device(commit_data.actiongraph, RHS));
-	    encryption_rhs->get_impl().do_rename_in_etc_crypttab(commit_data, encryption_lhs);
+	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
+	    encryption->get_impl().do_rename_in_etc_crypttab(commit_data);
 	}
 
 

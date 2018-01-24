@@ -120,7 +120,7 @@ namespace storage
 	virtual void do_set_tune_options() const;
 
 	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const;
-	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs) const;
+	virtual void do_rename_in_etc_fstab(CommitData& commit_data) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    Tense tense) const override;

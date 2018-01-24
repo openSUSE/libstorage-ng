@@ -697,7 +697,7 @@ namespace storage
 
 
     void
-    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data, const Device* lhs) const
+    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data) const
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
@@ -864,9 +864,8 @@ namespace storage
 	void
 	RenameInEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
-	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab(commit_data, blk_filesystem_lhs);
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
+	    blk_filesystem->get_impl().do_rename_in_etc_fstab(commit_data);
 	}
 
 

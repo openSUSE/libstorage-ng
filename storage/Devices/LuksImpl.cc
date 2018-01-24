@@ -297,6 +297,7 @@ namespace storage
 	    {
 		luks->set_mount_by(crypttab_entry->get_mount_by());
 		luks->get_impl().set_crypt_options(crypttab_entry->get_crypt_opts());
+		luks->get_impl().set_crypttab_blk_device_name(crypttab_entry->get_block_device());
 	    }
 
 	    prober.add_holder(blk_device, luks, [](Devicegraph* probed, Device* a, Device* b) {
@@ -511,23 +512,17 @@ namespace storage
 
 
     void
-    Luks::Impl::do_rename_in_etc_crypttab(CommitData& commit_data, const Device* lhs) const
+    Luks::Impl::do_rename_in_etc_crypttab(CommitData& commit_data) const
     {
-	const Luks* luks_lhs = to_luks(lhs);
-
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-	// TODO find entry by different names
-
-        string old_block_device = luks_lhs->get_blk_device()->get_name();
-        CrypttabEntry* entry = etc_crypttab.find_block_device(old_block_device);
-
-        if (entry)
-        {
-            entry->set_block_device(get_mount_by_name(get_mount_by()));
-            etc_crypttab.log();
-            etc_crypttab.write();
-        }
+	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
+	if (entry)
+	{
+	    entry->set_block_device(get_mount_by_name(get_mount_by()));
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 
@@ -536,16 +531,13 @@ namespace storage
     {
 	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
 
-	// TODO find entry by different names
-
-        CrypttabEntry* entry = etc_crypttab.find_block_device(get_blk_device()->get_name());
-
-        if (entry)
-        {
-            etc_crypttab.remove(entry);
-            etc_crypttab.log();
-            etc_crypttab.write();
-        }
+	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
+	if (entry)
+	{
+	    etc_crypttab.remove(entry);
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 }
