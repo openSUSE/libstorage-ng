@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-24 12:45+0000\n"
+"PO-Revision-Date: 2018-01-24 12:47+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -233,7 +233,7 @@ msgstr "Vytvoriť MD %1$s %2$s (%3$s)"
 #: ../storage/Devices/MsdosImpl.cc:276
 #, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "Vytvoriť tabuľku oddielov MSDOS na %1s"
+msgstr "Vytvoriť tabuľku oddielov MSDOS na %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
