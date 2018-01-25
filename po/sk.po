@@ -1174,10 +1174,9 @@ msgstr "Zmenšiť oddiel %1$s z %2$s na %3$s"
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:291
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Zmenšiť logický zväzok %1$s na %2$s"
+msgstr "Zmenšiť fyzický zväzok na %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1185,10 +1184,9 @@ msgstr "Zmenšiť logický zväzok %1$s na %2$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
-#, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "Zmenšujem %1$s na %2$s"
+msgstr "Zmenšiť %1$s na %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
