@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-25 11:25+0000\n"
+"PO-Revision-Date: 2018-01-25 11:41+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -866,10 +866,9 @@ msgstr "Odstrániť %1$s z %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:855
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "Odstrániť %1$s z %2$s"
+msgstr "Odstrániť %1$s z /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -882,10 +881,9 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:327
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "Odstrániť bod pripojenia %1$s z %2$s"
+msgstr "Odstrániť bod pripojenia %1$s z %2$s z /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -903,10 +901,9 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "Odstrániť %1$s z %2$s"
+msgstr "Odstránenie %1$s z %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -926,26 +923,23 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:331
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "Odstraňujem bod pripojenia %1$s z %2$s"
+msgstr "Odstránenie bodu pripojenia %1$s z %2$s z /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Odstraňujem bod pripojenia %1$s z %2$s"
+msgstr "Odstránenie bodu pripojenia %1$s z podzväzku %2$s na %3$s z /etc/fstab"
 
 #: ../storage/Devices/LvmLvImpl.cc:338
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "Odstrániť %1$s z %2$s"
+msgstr "Premenovať %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -960,10 +954,9 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:580
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Odstrániť bod pripojenia %1$s z %2$s"
+msgstr "Premenovať bod pripojenia %1$s z %2$s na %3$s v /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -978,81 +971,72 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:585
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Odstraňujem bod pripojenia %1$s z %2$s"
+msgstr "Premenovanie bodu pripojenia %1$s z %2$s na %3$s v /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "Nastaviť popis na %1$s na %2$s"
+msgstr "Nastaviť UUID z %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:761
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "Nastaviť typ oddielu %1$s na %2$X"
+msgstr "Nastaviť príznak štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "Vytvoriť podzväzok %1$s na zariadení %2$s"
+msgstr "Nastaviť predvolený podzväzok na podzväzok %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:672
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "Nastaviť typ oddielu %1$s na %2$X"
+msgstr "Nastaviť id oddielu %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:654
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Nastaviť typu oddielu %1$s na %2$s (%3$X)"
+msgstr "Nastaviť id oddielu %1$s na %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:640
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "Nastaviť typ oddielu %1$s na %2$X"
+msgstr "Nastaviť id oddielu %1$s na 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr "Nastaviť popis na %1$s na %2$s"
+msgstr "Nastaviť popis %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:802
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "Mažem oddiel %1$s"
+msgstr "Nastaviť starý príznak štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1073,36 +1057,32 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting UUID of %1$s to %2$s"
-msgstr "Nastavujem popis na %1$s na %2$s"
+msgstr "Nastavenie UUID z %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:764
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "Nastavujem typ oddielu %1$s na %2$X"
+msgstr "Nastavenie príznaku štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "Vytvorenie podzväzku %1$s na zariadení %2$s"
+msgstr "Nastavenie predvoleného podzväzku na podzväzok %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "Nastavujem typ oddielu %1$s na %2$X"
+msgstr "Nastavenie id oddielu %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
