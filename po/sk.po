@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-25 11:41+0000\n"
+"PO-Revision-Date: 2018-01-25 12:54+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -150,7 +150,7 @@ msgstr "Vyčistiť príznak štartu systému pre oddiel %1$s"
 #: ../storage/Devices/PartitionImpl.cc:810
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "Vyčistiť starý príznak štartu systému pre oddiel %1$s"
+msgstr "Vyčistiť zastaralý príznak štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -179,7 +179,7 @@ msgstr "Vyčistenie príznaku štartu systému pre oddiel %1$s"
 #: ../storage/Devices/PartitionImpl.cc:813
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "Vyčistenie starého príznaku štartu systému pre oddiel %1$s"
+msgstr "Vyčistenie zastaralého príznaku štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1036,7 +1036,7 @@ msgstr "Nastaviť popis %1$s na %2$s"
 #: ../storage/Devices/PartitionImpl.cc:802
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "Nastaviť starý príznak štartu systému pre oddiel %1$s"
+msgstr "Nastaviť zastaralý príznak štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1089,36 +1089,32 @@ msgstr "Nastavenie id oddielu %1$s na %2$s"
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:659
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Nastavenie typu oddielu %1$s na %2$s (%3$X)"
+msgstr "Nastavenie id oddielu %1$s na %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:644
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "Nastavujem typ oddielu %1$s na %2$X"
+msgstr "Nastavenie id oddielu %1$s na 0x%2$02X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:528
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting label of %1$s to %2$s"
-msgstr "Nastavujem popis na %1$s na %2$s"
+msgstr "Nastavenie popisu %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:805
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "Nastavujem typ oddielu %1$s na %2$X"
+msgstr "Nastavenie zastaralého príznaku štartu systému pre oddiel %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1141,20 +1137,18 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
-#, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "Zmenšiť %1$s na %2$s"
+msgstr "Zmenšiť %1$s na %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:274
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Naformátovať šifrované zariadenie %1$s (%2$s) pre %4$s s %3$s"
+msgstr "Zmenšiť zariadenie šifrovacej úrovne na %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1162,20 +1156,18 @@ msgstr "Naformátovať šifrované zariadenie %1$s (%2$s) pre %4$s s %3$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:369
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Zmenšiť logický zväzok %1$s na %2$s"
+msgstr "Zmenšiť logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:882
-#, fuzzy, c-format
-#| msgid "Shrink partition %1$s to %2$s"
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Zmenšiť oddiel %1$s na %2$s"
+msgstr "Zmenšiť oddiel %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
