@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-24 12:47+0000\n"
+"PO-Revision-Date: 2018-01-25 07:43+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -291,89 +291,79 @@ msgstr "Vytvoriť fyzický zväzok na %1$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:526
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "Vytvoriť oddiel RAID %1$s (%2$s)"
+msgstr "Vytvoriť primárny oddiel %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Vytvoriť podzväzok %1$s na zariadení %2$s"
+msgstr "Vytvoriť podzväzok %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "Vytvoriť zväzok %1$s (%2$s)"
+msgstr "Vytvoriť skupinu zväzkov %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "Nastaviť typu oddielu %1$s na %2$s (%3$X)"
+msgstr "Vytvorenie %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "Vytváranie oddielu RAID %1$s"
+msgstr "Vytvorenie tabuľky oddielov DASD na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:204
-#, fuzzy, c-format
-#| msgid "Creating %1$s"
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "Vytváram %1$s"
+msgstr "Vytvorenie GPT na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Vytváram skupinu zväzkov %1$s (%2$s) z %3$s"
+msgstr "Vytvorenie MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating MSDOS partition table on %1$s"
-msgstr "Vytváranie oddielu RAID %1$s"
+msgstr "Vytvorenie tabuľky oddielov MSDOS na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Nastavujem šifrované loop zariadenie na %1$s"
+msgstr "Vytvorenie zariadenia šifrovacej úrovne na %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr "Vytvoriť rozšírený oddiel %1$s (%2$s)"
+msgstr "Vytvorenie rozšíreného oddielu %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
