@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-25 13:39+0000\n"
+"PO-Revision-Date: 2018-01-25 16:04+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/pl/>\n"
@@ -25,7 +25,7 @@ msgstr ""
 #: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Aktywuj urządzenie warstwy szyfrowania na %1$s"
+msgstr "Aktywuj urządzenie warstwy szyfrowania na urządzeniu %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -41,7 +41,7 @@ msgstr "Aktywuj wolumin logiczny %1$s (%2$s) w grupie woluminów %3$s"
 #: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Aktywowanie urządzenia warstwy szyfrowania na %1$s"
+msgstr "Aktywowanie urządzenia warstwy szyfrowania na urządzeniu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -75,7 +75,8 @@ msgstr "Dodaj %1$s do /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr "Dodaj urządzenie warstwy szyfrowania na %1$s do /etc/crypttab"
+msgstr ""
+"Dodaj urządzenie warstwy szyfrowania na urządzeniu %1$s do /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -92,7 +93,8 @@ msgstr "Dodaj punkt montowania %1$s urządzenia %2$s do /etc/fstab"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Dodaj punkt montowania %1$s podwoluminu %2$s na %3$s do /etc/fstab"
+msgstr ""
+"Dodaj punkt montowania %1$s podwoluminu %2$s na urządzeniu %3$s do /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -117,7 +119,8 @@ msgstr "Dodawanie %1$s do /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr "Dodawanie urządzenia warstwy szyfrowania na %1$s do /etc/crypttab"
+msgstr ""
+"Dodawanie urządzenia warstwy szyfrowania na urządzeniu %1$s do /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -134,7 +137,9 @@ msgstr "Dodawanie punktu montowania %1$s urządzenia %2$s do /etc/fstab"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:482
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Dodawanie punktu montowania %1$s podwoluminu %2$s na %3$s do /etc/fstab"
+msgstr ""
+"Dodawanie punktu montowania %1$s podwoluminu %2$s na urządzeniu %3$s do "
+"/etc/fstab"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:54
@@ -170,7 +175,8 @@ msgstr ""
 #: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr "Wyczyść ochronną flagę rozruchu MBR tablicy partycji GPT na %1$s"
+msgstr ""
+"Wyczyść ochronną flagę rozruchu MBR tablicy partycji GPT na urządzeniu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -193,14 +199,17 @@ msgstr "Czyszczenie starszej flagi rozruchu partycji %1$s"
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
-"Czyszczenie opcji braku kopiowania przy zapisie dla podwoluminu %1$s na %2$s"
+"Czyszczenie opcji braku kopiowania przy zapisie dla podwoluminu %1$s na "
+"urządzeniu %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr "Czyszczenie ochronnej flagi rozruchu MBR tablicy partycji GPT na %1$s"
+msgstr ""
+"Czyszczenie ochronnej flagi rozruchu MBR tablicy partycji GPT na urządzeniu "
+"%1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
@@ -254,7 +263,7 @@ msgstr "Utwórz urządzenie warstwy szyfrowania na urządzeniu %1$s"
 #: ../storage/Devices/PartitionImpl.cc:538
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
-msgstr "Rozszerzona partycja %1$s (%2$s) zostanie utworzona"
+msgstr "Utwórz partycję rozszerzoną %1$s (%2$s)"
 
 #: ../storage/Devices/DiskImpl.cc:227
 #, c-format
@@ -554,7 +563,7 @@ msgstr "Usuń wolumin logiczny %1$s (%2$s) w grupie woluminów (%3$s)"
 #: ../storage/Devices/PartitionImpl.cc:841
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr "Partycja %1$s (%2$s) zostanie usunięta"
+msgstr "Usuń partycję %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -824,7 +833,7 @@ msgstr "MiB"
 #: ../storage/Filesystems/MountableImpl.cc:173
 #, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "Zamontuj %1$s w %2$s"
+msgstr "Zamontuj urządzenie %1$s w %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -876,7 +885,7 @@ msgstr "PiB"
 #: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
 #, c-format
 msgid "Remove %1$s from %2$s"
-msgstr "%1$s zostanie usunięty z %2$s"
+msgstr "Usuń urządzenie %1$s z urządzenia %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -890,7 +899,7 @@ msgstr "Usuń %1$s z /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr "Usuń urządzenie warstwy szyfrowania na %1$s z /etc/crypttab"
+msgstr "Usuń urządzenie warstwy szyfrowania na urządzeniu %1$s z /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -907,7 +916,8 @@ msgstr "Usuń punkt montowania %1$s urządzenia %2$s z /etc/fstab"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Usuń punkt montowania %1$s podwoluminu %2$s na %3$s z /etc/fstab"
+msgstr ""
+"Usuń punkt montowania %1$s podwoluminu %2$s na urządzeniu %3$s z /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -918,7 +928,7 @@ msgstr "Usuń punkt montowania %1$s podwoluminu %2$s na %3$s z /etc/fstab"
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
 #, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "Usuwanie %1$s z %2$s"
+msgstr "Usuwanie urządzenia %1$s z urządzenia %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -932,7 +942,8 @@ msgstr "Usuwanie %1$s z /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr "Usuwanie urządzenia warstwy szyfrowania na %1$s z /etc/crypttab"
+msgstr ""
+"Usuwanie urządzenia warstwy szyfrowania na urządzeniu %1$s z /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1001,7 +1012,7 @@ msgstr "Zmienianie nazwy punktu montowania %1$s z %2$s na %3$s w /etc/fstab"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
 #, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "Ustaw identyfikator UUID urządzenia %1$s na %2$s"
+msgstr "Ustaw identyfikator UUID urządzenia %1$s jako %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1024,7 +1035,7 @@ msgstr "Ustaw jako domyślny podwolumin %1$s na urządzeniu %2$s"
 #: ../storage/Devices/PartitionImpl.cc:672
 #, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "Ustaw identyfikator partycji %1$s na %2$s"
+msgstr "Ustaw identyfikator partycji %1$s jako %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1033,7 +1044,7 @@ msgstr "Ustaw identyfikator partycji %1$s na %2$s"
 #: ../storage/Devices/PartitionImpl.cc:654
 #, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Ustaw identyfikator partycji %1$s na %2$s (0x%3$02X)"
+msgstr "Ustaw identyfikator partycji %1$s jako %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1041,7 +1052,7 @@ msgstr "Ustaw identyfikator partycji %1$s na %2$s (0x%3$02X)"
 #: ../storage/Devices/PartitionImpl.cc:640
 #, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "Ustaw identyfikator partycji %1$s na 0x%2$02X"
+msgstr "Ustaw identyfikator partycji %1$s jako 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1049,7 +1060,7 @@ msgstr "Ustaw identyfikator partycji %1$s na 0x%2$02X"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
 #, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr "Ustaw etykietę urządzenia %1$s na %2$s"
+msgstr "Ustaw etykietę urządzenia %1$s jako %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -1064,14 +1075,17 @@ msgstr "Ustaw starszą flagę rozruchu partycji %1$s"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Ustaw opcję braku kopiowania przy zapisie dla podwoluminu %1$s na %2$s"
+msgstr ""
+"Ustaw opcję braku kopiowania przy zapisie dla podwoluminu %1$s na urządzeniu "
+"%2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr "Ustaw ochronną flagę rozruchu MBR tablicy partycji GPT na %1$s"
+msgstr ""
+"Ustaw ochronną flagę rozruchu MBR tablicy partycji GPT na urządzeniu %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1111,7 +1125,7 @@ msgstr "Ustawianie identyfikatora partycji %1$s jako %2$s"
 #: ../storage/Devices/PartitionImpl.cc:659
 #, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Ustawianie identyfikatora partycji %1$s jako %2$s 0x%3$02X)"
+msgstr "Ustawianie identyfikatora partycji %1$s jako %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1143,14 +1157,17 @@ msgstr "Ustawianie starszej flagi rozruchu partycji %1$s"
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
-"Ustawianie opcji braku kopiowania przy zapisie dla podwoluminu %1$s na %2$s"
+"Ustawianie opcji braku kopiowania przy zapisie dla podwoluminu %1$s na "
+"urządzeniu %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr "Ustawianie ochronnej flagi rozruchu MBR tablicy partycji GPT na %1$s"
+msgstr ""
+"Ustawianie ochronnej flagi rozruchu MBR tablicy partycji GPT na urządzeniu "
+"%1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
