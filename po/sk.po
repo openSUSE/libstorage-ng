@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-25 08:46+0000\n"
+"PO-Revision-Date: 2018-01-25 11:25+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -732,10 +732,9 @@ msgstr "Zväčšiť oddiel %1$s z %2$s na %3$s"
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:305
-#, fuzzy, c-format
-#| msgid "Format logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "Naformátovať logický zväzok %1$s (%2$s) s %3$s"
+msgstr "Zväčšiť fyzický zväzok na %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -743,20 +742,18 @@ msgstr "Naformátovať logický zväzok %1$s (%2$s) s %3$s"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "Naformátovať oddiel %1$s (%2$s) pre %4$s s %3$s"
+msgstr "Zväčšenie %1$s na %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Naformátovať šifrované zariadenie %1$s (%2$s) pre %4$s s %3$s"
+msgstr "Zväčšenie zariadenia šifrovacej úrovne na %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -764,30 +761,27 @@ msgstr "Naformátovať šifrované zariadenie %1$s (%2$s) pre %4$s s %3$s"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:391
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Vytvoriť logický zväzok %1$s (%2$s) pre %4$s s %3$s"
+msgstr "Zväčšenie logického zväzku %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:901
-#, fuzzy, c-format
-#| msgid "Formatting partition %1$s (%2$s) with %3$s "
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "Formátujem oddiel %1$s (%2$s) s %3$s "
+msgstr "Zväčšenie oddielu %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:310
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "Formátujem logický zväzok %1$s (%2$s) s%3$s"
+msgstr "Zväčšenie fyzického zväzku na %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:61
@@ -813,39 +807,35 @@ msgstr "MiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:173
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "Pripájam %1$s na %2$s"
+msgstr "Pripojiť %1$s k %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Create boot volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "Vytvoriť štartovací zväzok %1$s (%2$s) s %3$s"
+msgstr "Pripojiť podzväzok %1$s na %2$s k %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:177
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "Pripájam %1$s na %2$s"
+msgstr "Pripojenie %1$s k %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "Vytvorenie podzväzku %1$s na zariadení %2$s"
+msgstr "Pripojenie podzväzku %1$s na %2$s k %3$s"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:111
