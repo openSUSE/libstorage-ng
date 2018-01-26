@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import sys
 import glob
 import xml.dom.minidom as minidom
 import networkx
@@ -111,3 +112,8 @@ for filename in glob.glob("../doc/autodocs/xml/class*.xml"):
 
 for filename in glob.glob("../doc/autodocs/xml/namespace*.xml"):
     load_single_file(filename)
+
+if not classes or not functions:
+    print("no classes or no functions loaded", file=sys.stderr)
+    print("please run make in doc directory", file=sys.stderr)
+    sys.exit(1)

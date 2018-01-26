@@ -147,6 +147,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Device::compare_by_name(const Device *lhs, const Device *rhs);
+%catches(storage::Exception) storage::Device::detect_resize_info() const;
 %catches(storage::Exception) storage::Devicegraph::check(const CheckCallbacks *check_callbacks=nullptr) const;
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid) const;

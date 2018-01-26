@@ -101,6 +101,9 @@ namespace storage
 
 	std::string get_displayname() const;
 
+	/**
+	 * @throw Exception
+	 */
 	ResizeInfo detect_resize_info() const;
 
 	bool has_children() const;
