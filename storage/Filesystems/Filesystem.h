@@ -50,6 +50,8 @@ namespace storage
 
 	/**
 	 * So far only supported for Nfs.
+	 *
+	 * @throw Exception
 	 */
 	SpaceInfo detect_space_info() const;
 

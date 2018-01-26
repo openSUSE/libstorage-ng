@@ -160,6 +160,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Filesystem::detect_space_info() const;
 %catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
