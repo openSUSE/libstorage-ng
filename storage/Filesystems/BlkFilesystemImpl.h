@@ -52,8 +52,14 @@ namespace storage
 	virtual unsigned long long min_size() const = 0;
 	virtual unsigned long long max_size() const = 0;
 
-	virtual bool supports_shrink() const = 0;
-	virtual bool supports_grow() const = 0;
+	bool supports_shrink() const { return supports_mounted_shrink() || supports_unmounted_shrink(); }
+	bool supports_grow() const { return supports_mounted_grow() || supports_unmounted_grow(); }
+
+	virtual bool supports_mounted_shrink() const = 0;
+	virtual bool supports_mounted_grow() const = 0;
+
+	virtual bool supports_unmounted_shrink() const = 0;
+	virtual bool supports_unmounted_grow() const = 0;
 
 	virtual bool supports_label() const = 0;
 	virtual unsigned int max_labelsize() const = 0;
