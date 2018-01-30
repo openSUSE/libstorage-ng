@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-29 15:43+0100\n"
+"PO-Revision-Date: 2018-01-30 12:51+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ar/>\n"
@@ -24,7 +24,7 @@ msgstr ""
 #: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "تنشيط جهاز طبقة تشفير %1$s"
+msgstr "تنشيط جهاز طبقة التشفير في %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -33,13 +33,12 @@ msgstr "تنشيط جهاز طبقة تشفير %1$s"
 #: ../storage/Devices/LvmLvImpl.cc:475
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "تنشيط وحدة التخزين المنطقية %1$s (%2$s) بمجموعة وحدة التخزين بـ %3$s"
+msgstr "تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "يتم الآن تنشيط جهاز طبقة تشفير %1$s"
 
@@ -51,7 +50,7 @@ msgstr "يتم الآن تنشيط جهاز طبقة تشفير %1$s"
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
-"يتم الآن تنشيط وحدة التخزين المنطقية %1$s (%2$s) في مجموعة وحدة التخزين %3$s"
+"يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -76,7 +75,7 @@ msgstr "إضافة %1$s إلى /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr "إضافة جهاز طبقة تشفير على %1$s إلى /etc/crypttab"
+msgstr "إضافة جهاز طبقة التشفير في %1$s إلى /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -93,7 +92,7 @@ msgstr "إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
+msgstr "إضافة نقطة توصيل %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -104,21 +103,21 @@ msgstr ""
 #: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
 #, c-format
 msgid "Adding %1$s to %2$s"
-msgstr "يتم الآن إضافة %1$s إلى %2$s"
+msgstr "تتم الآن إضافة %1$s إلى %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:827
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr "يتم الآن إضافة %1$s إلى /etc/mdadm.conf"
+msgstr "تتم الآن إضافة %1$s إلى /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr "يتم  الآن إضافة جهاز طبقة تشفير على %1$s إلى /etc/crypttab"
+msgstr "تتم  الآن إضافة جهاز طبقة التشفير في %1$s إلى /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -126,7 +125,7 @@ msgstr "يتم  الآن إضافة جهاز طبقة تشفير على %1$s إ�
 #: ../storage/Filesystems/MountableImpl.cc:257
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "يتم الآن إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
+msgstr "تتم الآن إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -136,6 +135,8 @@ msgstr "يتم الآن إضافة نقطة التركيب %1$s من %2$s إلى
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"تتم الآن إضافة نقطة تركيب %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى "
+"/etc/fstab"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:54
@@ -147,7 +148,7 @@ msgstr "B"
 #: ../storage/Devices/PartitionImpl.cc:769
 #, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "مسح علامة تتشغيل القسم %1$s"
+msgstr "مسح علامة تشغيل القسم %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -162,14 +163,14 @@ msgstr "مسح علامة التشغيل القديمة للقسم %1$s"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "مسح الخيار \"عدم نسخ الكتابة\" للحجم الفرعي %1$s على %2$s"
+msgstr "مسح الخيار \"عدم النسخ عند الكتابة\" لوحدة التخزين الفرعية %1$s في %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "مسح علامة تشغيل MBR للحماية في GPT على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -191,14 +192,16 @@ msgstr "يتم الآن مسح علامة التشغيل القديمة للقس
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:531
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "يتم الآن مسح الخيار \"عدم نسخ الكتابة\" للحجم الفرعي %1$s على %2$s"
+msgstr ""
+"يتم الآن مسح الخيار \"عدم النسخ عند الكتابة\" لوحدة التخزين الفرعية %1$s على "
+"%2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "يتم الآن مسح علامة تشغيل MBR للحماية في GPT على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
@@ -207,15 +210,14 @@ msgstr ""
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:503
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
-msgstr "إنشاء %1$s 1 على %2$s 2 (%3$s 3)"
+msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:212
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "يتم الآن إنشاء قسم الغارة %1$s"
+msgstr "إنشاء حدول قسم DASD على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -229,17 +231,16 @@ msgstr "إنشاء GPT على %1$s"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:720
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "إنشاء حجم %1$s (%2$s)"
+msgstr "إنشاء MD‏ %1$s %2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:276
 #, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "إنشاء جدول للقسم MSDOS على %1$s"
+msgstr "إنشاء جدول لقسم MSDOS على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -254,12 +255,12 @@ msgstr "إنشاء جهاز طبقة تشفير على %1$s"
 #: ../storage/Devices/PartitionImpl.cc:538
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
-msgstr "%1$sإنشاء قسم موسع %1$s (%2$s)"
+msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
 
 #: ../storage/Devices/DiskImpl.cc:227
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "إنشاء قرص ثابت %1$s (%2$s)"
+msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -267,7 +268,7 @@ msgstr "إنشاء قرص ثابت %1$s (%2$s)"
 #: ../storage/Devices/PartitionImpl.cc:550
 #, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "إنشاء القسم المنطقي %1$s (%2$s)"
+msgstr "إنشاء القسم المنطقي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -276,7 +277,7 @@ msgstr "إنشاء القسم المنطقي %1$s (%2$s)"
 #: ../storage/Devices/LvmLvImpl.cc:298
 #, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (%2$s) بمجموعة وحدة التخزين %3$s"
+msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -284,15 +285,14 @@ msgstr "إنشاء وحدة التخزين المنطقية %1$s (%2$s) بمجم
 #: ../storage/Devices/PartitionImpl.cc:511
 #, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "إنشاء القسم %1$s (%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:249
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "يتم الآن إنشاء حجم منطقي %1$s"
+msgstr "إنشاء وحدة نخزين فعلية %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -300,7 +300,7 @@ msgstr "يتم الآن إنشاء حجم منطقي %1$s"
 #: ../storage/Devices/PartitionImpl.cc:526
 #, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "إنشاء القسم الأساسي %1$s (%2$s)"
+msgstr "إنشاء القسم الأساسي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -308,16 +308,15 @@ msgstr "إنشاء القسم الأساسي %1$s (%2$s)"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "إنشاء الحجم الفرعي %1$s على %2$s"
+msgstr "إنشاء وحدة التخزين الفرعية %1$s على %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "إنشاء حجم %1$s (%2$s)"
+msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
@@ -326,14 +325,14 @@ msgstr "إنشاء حجم %1$s (%2$s)"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
 #, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "يتم الآن إنشاء %1$s على %2$s (%3$s)"
+msgstr "يتم الآن إنشاء %1$s على %2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
 #, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "يتم الآن إنشاء جدول للقسم DASD على %1$s"
+msgstr "يتم الآن إنشاء جدول لقسم DASD على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -347,10 +346,9 @@ msgstr "يتم الآن إنشاء GPT على %1$s"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "يتم الآن إنشاء مجموعة الحجم %1$s (%2$s) من %3$s"
+msgstr "يتم الآن إنشاء MD‏ %1$s %2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -362,38 +360,36 @@ msgstr "يتم الآن إنشاء جدول للقسم MSDOS على %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "يتم الآن إعداد جهاز تسلسل مشفر على %1$s"
+msgstr "يتم الآن إعداد جهاز طبقة التشفير على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr "إنشاء قسم موسع %1$s (%2$s)"
+msgstr "يتم الآن إنشاء قسم موسع %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "إنشاء قسم متعدد المسارات %1$s (%2$s)"
+msgstr "يتم الآن إنشاء قسم منطقي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:303
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (%2$s) الخاصة بـ %4$s بـ %3$s"
+msgstr ""
+"يتم الآن إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين "
+"%3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -581,7 +577,7 @@ msgstr "حذف وحدة التخزين المنطقية %1$s (%2$s)"
 #: ../storage/Devices/PartitionImpl.cc:841
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr "حذف قسم %1$s (%2$s)"
+msgstr "حذف قسم %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
