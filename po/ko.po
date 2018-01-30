@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2016-04-25 09:23+0000\n"
-"Last-Translator: YunSeok Choi <xein@naver.com>\n"
-"Language-Team: Korean <http://l10n.opensuse.org/projects/libstorage/master/"
-"ko/>\n"
+"PO-Revision-Date: 2018-01-30 09:15+0000\n"
+"Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
+"Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.5\n"
+"X-Generator: Weblate 2.18\n"
 "X-Poedit-Language: Korean\n"
 "X-Poedit-Country: KOREA, REPUBLIC OF\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -76,14 +76,14 @@ msgstr "%1$s을(를) %2$s(으)로 확장"
 #: ../storage/Devices/MdImpl.cc:824
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "/etc/mdadm.conf에 %1$s 추가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에 %1$s의 암호화 계층 장치 추가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -101,7 +101,7 @@ msgstr "마운트 포인트 %1$s의 항목을 %2$s에 추가"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab에 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %1$s 추가"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -120,14 +120,14 @@ msgstr "%1$s을(를) %2$s(으)로 확장 중"
 #: ../storage/Devices/MdImpl.cc:827
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "/etc/mdadm.conf에 %1$s 추가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에 %1$s의 암호화 계층 장치 추가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -145,7 +145,7 @@ msgstr "마운트 포인트 %1$s의 항목을 %2$s에 추가 중"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:482
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab에 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %1$s 추가 중"
 
 #  10^3 bytes
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
@@ -186,7 +186,7 @@ msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
 #: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s에서 GPT의 보호 부팅 플래그 지우기"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -210,14 +210,14 @@ msgstr "%1$s 다중경로 파티션 생성 중"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:531
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s에서 %1$s 하위 볼륨에 대한 'no copy on write' 옵션 지우는 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 지우는 중"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1034,7 +1034,7 @@ msgstr "%2$s에서 %1$s을(를) 제거"
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에서 %1$s의 암호화 계층 장치 제거"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1052,7 +1052,7 @@ msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr ""
+msgstr "/etc/fstab에서 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %1$s 제거"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1071,14 +1071,14 @@ msgstr "%2$s에서 %1$s을(를) 제거"
 #: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "/etc/mdadm.conf에서 %1$s 제거 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에서 %1$s의 암호화 계층 장치 제거 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1111,7 +1111,7 @@ msgstr "%2$s에서 %1$s을(를) 제거"
 #: ../storage/Devices/EncryptionImpl.cc:367
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에서 암호화 계층 장치 이름을 %1$s에서 %2$s(으)로 바꾸기"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1129,7 +1129,7 @@ msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거"
 #: ../storage/Devices/EncryptionImpl.cc:371
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr ""
+msgstr "/etc/crypttab에서 암호화 계층 장치 이름을 %1$s에서 %2$s(으)로 바꾸는 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1220,14 +1220,14 @@ msgstr "%1$s 파티션 삭제 중"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s에서 %1$s 하위 볼륨에 대해 'no copy on write' 옵션 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 설정"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1308,14 +1308,14 @@ msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:521
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s에서 %1$s 하위 볼륨에 대해 'no copy on write' 옵션 설정"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 설정 중"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1500,7 +1500,7 @@ msgstr "%2$s에서 마운트 포인트 %1$s의 항목 업데이트 중"
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
-msgstr ""
+msgstr "첫 번째 루트 파일 시스템"
 
 #  10^3 bytes
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
