@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-30 15:01+0000\n"
+"PO-Revision-Date: 2018-01-30 18:00+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ar/>\n"
@@ -135,7 +135,7 @@ msgstr "تتم الآن إضافة نقطة التركيب %1$s من %2$s إلى
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
-"تتم الآن إضافة نقطة تركيب %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى "
+"تتم الآن إضافة نقطة توصيل %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى "
 "/etc/fstab"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
@@ -826,7 +826,7 @@ msgstr "MiB"
 #: ../storage/Filesystems/MountableImpl.cc:173
 #, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "تركيب %1$s في %2$s"
+msgstr "توصيل %1$s في %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -835,7 +835,7 @@ msgstr "تركيب %1$s في %2$s"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "تركيب وحدة التخزين الفرعية %1$s على %2$s في %3$s"
+msgstr "توصيل وحدة التخزين الفرعية %1$s على %2$s في %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -843,7 +843,7 @@ msgstr "تركيب وحدة التخزين الفرعية %1$s على %2$s في 
 #: ../storage/Filesystems/MountableImpl.cc:177
 #, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "يتم الآن تركيب %1$s في %2$s"
+msgstr "يتم الآن توصيل %1$s في %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -852,7 +852,7 @@ msgstr "يتم الآن تركيب %1$s في %2$s"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "يتم الآن تركيب وحدة التخزين الفرعية %1$s على %2$s في %3$s"
+msgstr "يتم الآن توصيل وحدة التخزين الفرعية %1$s على %2$s في %3$s"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:111
@@ -1033,7 +1033,7 @@ msgstr "تعيين معرف القسم %1$s على %2$s"
 #: ../storage/Devices/PartitionImpl.cc:654
 #, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "تعيين معرف القسم %1$s على (0x%3$02X)"
+msgstr "تعيين معرف القسم %1$s على %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
