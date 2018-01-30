@@ -79,6 +79,8 @@ namespace storage
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
+	virtual void do_pre_mount() const override;
+
     protected:
 
 	void save(xmlNode* node) const override;

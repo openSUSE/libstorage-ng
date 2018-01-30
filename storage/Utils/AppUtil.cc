@@ -433,8 +433,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 #include "gen-pathlist.cc"
 	};
 
-	paths.erase(PORTMAPBIN);
-
 	if (!arch.is_s390())
 	{
 	    paths.erase(DASDVIEWBIN);
