@@ -239,4 +239,20 @@ namespace storage
 	actiongraph.add_chain(actions);
     }
 
+
+    void
+    Nfs::Impl::do_pre_mount() const
+    {
+	// rpcbind might be needed for remote locking
+
+	static bool rpcbind_started = false;
+
+	if (rpcbind_started)
+	    return;
+
+	SystemCmd cmd(RPCBINDBIN);
+
+	rpcbind_started = true;
+    }
+
 }
