@@ -54,19 +54,26 @@ Extending/Reducing
 Filesystems
 -----------
 
-- ext2/3/4: shrink and grow.
+- ext2/3/4: Shrink (unmounted) and grow (mounted and unmounted). See
+  resize2fs(8).
 
-- btrfs: shrink and grow.
+- btrfs: Shrink (mounted) and grow (mounted). See btrfs-filesystem(8).
 
-- XFS: grow
+- XFS: Grow (mounted). See xfs_growfs(8).
 
-- reiserfs: shrink and grow
+- reiserfs: Shrink (unmounted) and grow (mounted and unmounted). See
+  resize_reiserfs(8).
 
-- NTFS: shrink and grow.
+- NTFS: Shrink (unmounted) and grow (unmounted). See ntfsresize(8).
 
-- VFAT: shrink and grow.
+- VFAT: Unsupported due to bugs.
 
-- swap: shrink and grow (only via recreate, involves data loss).
+- swap: Shrink (unmounted) and grow (unmounted). This is done via recreate,
+  thus involves complete data loss.
+
+- ISO9660: Unsupported.
+
+- UDF: Unsupported.
 
 
 Using Resize Functionality
