@@ -116,6 +116,8 @@ namespace storage
 	 */
 	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const;
 
+	virtual void do_pre_mount() const {}
+
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const;
 

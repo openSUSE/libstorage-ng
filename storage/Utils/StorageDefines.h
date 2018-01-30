@@ -97,9 +97,7 @@
 #define UDEVADMBIN_SETTLE UDEVADMBIN " settle --timeout=20"
 
 #define MODPROBEBIN "/sbin/modprobe"
-#define PORTMAPBIN     "/sbin/portmap"
 #define RPCBINDBIN     "/sbin/rpcbind"
-#define RPCSTATDBIN    "/usr/sbin/rpc.statd"
 
 #define EFIBOOTMGRBIN "/usr/sbin/efibootmgr"
 

@@ -197,6 +197,8 @@ namespace storage
 	    createPath(real_mount_point);
 	}
 
+	do_pre_mount();
+
 	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
 	if (!mount_point->get_mount_options().empty()) {
 	    MountOpts mount_opts = mount_point->get_impl().get_mount_options();
@@ -405,6 +407,7 @@ namespace storage
 
 	const Storage* storage = mountable->get_impl().get_storage();
 
+	mountable->get_impl().do_pre_mount();
 	mountable->get_impl().wait_for_devices();
 
 	tmp_mount.reset(new TmpMount(storage->get_impl().get_tmp_dir().get_fullname(),
