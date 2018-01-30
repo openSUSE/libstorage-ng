@@ -43,8 +43,11 @@ namespace storage
 
     public:
 
-	virtual bool supports_shrink() const override { return true; }
-	virtual bool supports_grow() const override { return true; }
+	virtual bool supports_mounted_shrink() const override { return false; }
+	virtual bool supports_mounted_grow() const override { return true; }
+
+	virtual bool supports_unmounted_shrink() const override { return true; }
+	virtual bool supports_unmounted_grow() const override { return true; }
 
 	virtual bool supports_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 16; }
