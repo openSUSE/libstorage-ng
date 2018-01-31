@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-31 07:04+0000\n"
+"PO-Revision-Date: 2018-01-31 10:04+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ko/>\n"
@@ -340,7 +340,7 @@ msgstr "%1$s(%2$s) 볼륨 그룹 생성"
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
 #, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "%2$s(%3$)에서 %1$s 생성"
+msgstr "%2$s(%3$s)에서 %1$s 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
