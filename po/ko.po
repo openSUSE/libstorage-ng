@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-01-30 09:15+0000\n"
+"PO-Revision-Date: 2018-01-31 07:04+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ko/>\n"
@@ -26,38 +26,34 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:311
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치를 설정"
+msgstr "%1$s에 암호화된 레이어 장치 활성화"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:475
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹 %3$s에서 논리적 볼륨 %1$s(%2$s)을(를) 활성화"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치 설정 중"
+msgstr "%1$s에 암호화된 레이어 장치 활성화 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:480
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s) 포맷 중"
+msgstr "볼륨 그룹 %3$s에서 논리적 볼륨 %1$s(%2$s) 활성화 중"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -66,10 +62,9 @@ msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s) 포맷 중"
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
-#, fuzzy, c-format
-#| msgid "Extend %1$s to %2$s"
+#, c-format
 msgid "Add %1$s to %2$s"
-msgstr "%1$s을(를) %2$s(으)로 확장"
+msgstr "%1$s을(를) %2$s(으)로 추가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -89,10 +84,9 @@ msgstr "/etc/crypttab에 %1$s의 암호화 계층 장치 추가"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:253
-#, fuzzy, c-format
-#| msgid "Add entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에 추가"
+msgstr "마운트 포인트 %2$s의 %1$s을(를) /etc/fstab에 추가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -110,10 +104,9 @@ msgstr "/etc/fstab에 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
-#, fuzzy, c-format
-#| msgid "Extending %1$s to %2$s"
+#, c-format
 msgid "Adding %1$s to %2$s"
-msgstr "%1$s을(를) %2$s(으)로 확장 중"
+msgstr "%1$s을(를) %2$s에 추가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -133,10 +126,9 @@ msgstr "/etc/crypttab에 %1$s의 암호화 계층 장치 추가 중"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:257
-#, fuzzy, c-format
-#| msgid "Adding entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에 추가 중"
+msgstr "마운트 포인트 %2$s의 %1$s을(를) /etc/fstab에 추가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -157,29 +149,26 @@ msgstr "B"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:769
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "파티션 %1$s의 부트 플래그 지우기"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:810
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "파티션 %1$s의 레거시 부트 플래그 지우기"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
+msgstr "%2$s에 %1$s 하위 볼륨용 '작성 중 복사 안 함' 옵션 지우기"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -191,18 +180,16 @@ msgstr "%1$s에서 GPT의 보호 부팅 플래그 지우기"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:772
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "%1$s 다중경로 파티션 생성 중"
+msgstr "파티션 %1$s의 부트 플래그 지우는 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:813
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "%1$s 다중경로 파티션 생성 중"
+msgstr "파티션 %1$s의 레거시 부트 플래그 지우는 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -225,27 +212,24 @@ msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 지우는 중"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:503
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create %1$s on %2$s (%3$s)"
-msgstr "스왑 볼륨 %1$s (%2$s) 을(를) 생성"
+msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:212
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "%1$s의 DASD 파티션 테이블 생성"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:201
-#, fuzzy, c-format
-#| msgid "Create %1$s"
+#, c-format
 msgid "Create GPT on %1$s"
-msgstr "%1$s 을(를) 생성"
+msgstr "%1$s에서 GPT 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -253,27 +237,24 @@ msgstr "%1$s 을(를) 생성"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:720
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "%1$s (%2$s) 볼륨을 생성"
+msgstr "MD %1$s %2$s(%3$s) 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:276
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "%1$s에서 MSDOS 파티션 테이블 생성"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:233
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치를 설정"
+msgstr "%1$s에서 암호화 레이어 장치 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -286,78 +267,70 @@ msgstr "확장 파티션 %1$s(%2$s)을(를) 생성"
 
 # SLE12
 #: ../storage/Devices/DiskImpl.cc:227
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "스왑 볼륨 %1$s (%2$s) 을(를) 생성"
+msgstr "하드 디스크 %1$s(%2$s) 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
+msgstr "%1$s(%2$s) 논리적 파티션 생성"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹 %3$s(으)로 논리적 볼륨 %1$s(%2$s) 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "RAID 파티션 %1$s(%2$s) 생성"
+msgstr "파티션 %1$s(%2$s) 생성"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:249
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "논리적 볼륨 %1$s 생성 중"
+msgstr "물리적 볼륨 %1$s 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:526
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "RAID 파티션 %1$s(%2$s) 생성"
+msgstr "주 파티션 %1$s(%2$s) 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨을 생성"
+msgstr "%2$s에 %1$s 하위 볼륨을 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "%1$s (%2$s) 볼륨을 생성"
+msgstr "%1$s(%2$s) 볼륨 그룹 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -365,27 +338,24 @@ msgstr "%1$s (%2$s) 볼륨을 생성"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "파티션 %1$s의 유형을 %2$s(%3$X)(으)로 설정"
+msgstr "%2$s(%3$)에서 %1$s 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "%1$s에 DASD 파티션 테이블 생성 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:204
-#, fuzzy, c-format
-#| msgid "Creating %1$s"
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "%1$s 생성 중"
+msgstr "%1$s에 GPT 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -393,143 +363,128 @@ msgstr "%1$s 생성 중"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "%3$s에서 %1$s 볼륨 그룹(%2$s) 생성 중"
+msgstr "MD %1$s %2$s(%3$s) 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating MSDOS partition table on %1$s"
-msgstr "RAID 파티션 %1$s 생성 중"
+msgstr "%1$s에 MSDOS 파티션 테이블 생성 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치 설정 중"
+msgstr "%1$s에 암호화 레이어 장치 생성 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
-msgstr "확장 파티션 %1$s(%2$s)을(를) 생성"
+msgstr "확장 파티션 %1$s(%2$s) 생성 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
+msgstr "%1$s(%2$s) 논리적 파티션을 생성 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:303
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹 %3$s(으)로 논리적 볼륨 %1$s(%2$s) 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:515
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr "RAID 파티션 %1$s(%2$s) 생성"
+msgstr "파티션 %1$s(%2$s) 생성 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:252
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Creating physical volume on %1$s"
-msgstr "논리적 볼륨 %1$s 생성 중"
+msgstr "%1$s에 논리적 볼륨 생성 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:530
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
+msgstr "%1$s(%2$s) 주 파티션을 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
+msgstr "%2$s에 %1$s 하위 볼륨 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:390
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating volume group %1$s (%2$s)"
-msgstr "%3$s에서 %1$s 볼륨 그룹(%2$s) 생성 중"
+msgstr "%1$s 볼륨 그룹(%2$s) 생성 중"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:975
-#, fuzzy, c-format
-#| msgid "Create software RAID %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "%3$s 으로부터 소프트웨어 RAID %1$s (%2$s) 을 생성"
+msgstr "MD %1$s %2$s(%3$s) 비활성화"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:326
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치를 설정"
+msgstr "%1$s에 암호화 레이어 장치 비활성화"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹 %3$s(으)로 논리적 볼륨 %1$s(%2$s) 비활성화"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
+msgstr "다중경로 파티션 %1$s(%2$s) 비활성화"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
@@ -537,38 +492,34 @@ msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:980
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "MD %1$s %2$s(%3$s) 비활성화 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:329
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치 설정 중"
+msgstr "%1$s에 암호화 레이어 장치 비활성화 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:516
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s) 포맷 중"
+msgstr "볼륨 그룹 %3$s(으)로 논리적 볼륨 %1$s(%2$s) 비활성화 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:302
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
+msgstr "%1$s 다중경로(%2$s) 비활성화 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -576,27 +527,24 @@ msgstr "%1$s (%2$s) 다중경로 파티션을 생성"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "%2$s(%3$s)에 %1$s 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:245
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "RAID 파티션 %1$s 삭제 중"
+msgstr "%1$s에 DASD 파티션 테이블 삭제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:277
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Delete GPT on %1$s"
-msgstr "%1$s 파티션 삭제 중"
+msgstr "%1$s에 GPT 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -604,37 +552,33 @@ msgstr "%1$s 파티션 삭제 중"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:796
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "MD %1$s %2$s(%3$s) 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:309
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete MSDOS partition table on %1$s"
-msgstr "RAID 파티션 %1$s 삭제 중"
+msgstr "%1$s에서 MSDOS 파티션 삭제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치를 설정"
+msgstr "%1$s에 암호화 레이어 장치 삭제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "논리적 볼륨 %1$s(%2$s)을(를) 삭제"
+msgstr "볼륨 그룹 %3$s에 논리적 볼륨 %1$s(%2$s) 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -648,29 +592,26 @@ msgstr "%1$s (%2$s) 파티션을 삭제"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:351
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Delete physical volume on %1$s"
-msgstr "논리적 볼륨 %1$s 삭제 중"
+msgstr "%1$s에 물리적 볼륨 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨을 생성"
+msgstr "%2$s에 %1$s 하위 볼륨 삭제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:420
-#, fuzzy, c-format
-#| msgid "Reduce volume group %1$s by %2$s"
+#, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr "%2$s(으)로 볼륨 그룹 %1$s을(를) 축소"
+msgstr "볼륨 그룹 %1$s(%2$s) 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -678,27 +619,24 @@ msgstr "%2$s(으)로 볼륨 그룹 %1$s을(를) 축소"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:681
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
-msgstr "파티션 %1$s의 유형을 %2$s(%3$X)(으)로 설정"
+msgstr "%2$s(%3$s)에 %1$s 삭제 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "RAID 파티션 %1$s 삭제 중"
+msgstr "%1$s에 DASD 파티션 테이블 삭제 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:280
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Deleting GPT on %1$s"
-msgstr "%1$s 파티션 삭제 중"
+msgstr "%1$s에 GPT 삭제 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
@@ -706,74 +644,66 @@ msgstr "%1$s 파티션 삭제 중"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:801
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "MD %1$s %2$s(%3$s) 삭제 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:312
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting MSDOS partition table on %1$s"
-msgstr "RAID 파티션 %1$s 삭제 중"
+msgstr "%1$s에 MSDOS 파티션 테이블 삭제 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:251
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "%1$s에 암호화된 루프 장치 설정 중"
+msgstr "%1$s에 암호화 레이어 장치 삭제 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "논리적 볼륨 %1$s(%2$s)을(를) 삭제"
+msgstr "볼륨 그룹 %3$s에 논리적 볼륨 %1$s(%2$s) 삭제 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:845
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting partition %1$s (%2$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "%1$s(%2$s) 파티션 삭제 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:354
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr "논리적 볼륨 %1$s 삭제 중"
+msgstr "%1$s에 물리적 볼륨 삭제 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
+msgstr "%2$s에 %1$s 하위 볼륨 삭제 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:424
-#, fuzzy, c-format
-#| msgid "Reducing volume group %1$s by %2$s"
+#, c-format
 msgid "Deleting volume group %1$s (%2$s)"
-msgstr "%2$s(으)로 볼륨 그룹 %1$s 축소 중"
+msgstr "볼륨 그룹 %1$s(%2$s) 삭제 중"
 
 # SLE12
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
@@ -818,20 +748,18 @@ msgstr "GiB"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "%3$s (으)로 %4$s에 대한 볼륨 %1$s (%2$s) 을(를) 생성"
+msgstr "%2$s에서 %1$s을(를) %3$s에서 %4$s(으)로 증가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:288
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포맷"
+msgstr "%1$s에서 암호화 레이어 장치를 %2$s에서 %3$s(으)로 증가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -839,30 +767,27 @@ msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포�
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:385
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹%2$s에서 논리적 볼륨 %1$s을(를) %3$s에서 %4$s(으)로 증가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:896
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 %1$s(%2$s) 파티션을 포맷"
+msgstr "%1$s 파티션을 %2$s에서 %3$s(으)로 증가"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:305
-#, fuzzy, c-format
-#| msgid "Format logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s)을(를) 포맷"
+msgstr "%1$s에서 물리적 볼륨을 %2$s에서 %3$s(으)로 증가"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -870,20 +795,18 @@ msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s)을(를) 포맷"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "%3$s(으)로 %4$s에 대해 파티션 %1$s(%2$s)을(를) 포맷"
+msgstr "%2$s에서 %1$s을(를) %3$s에서 %4$s(으)로 증가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포맷"
+msgstr "%1$s에서 암호화 레이어 장치를 %2$s에서 %3$s(으)로 증가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -891,30 +814,27 @@ msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포�
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:391
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "%3$s(으)로 %4$s에 대해 논리적 볼륨 %1$s(%2$s)을(를) 생성"
+msgstr "볼륨 그룹 %2$s에서 논리적 볼륨 %1$s을(를) %3$s에서 %4$s(으)로 증가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:901
-#, fuzzy, c-format
-#| msgid "Formatting partition %1$s (%2$s) with %3$s "
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 파티션 %1$s(%2$s) 포맷 중 "
+msgstr "%1$s 파티션을 %2$s에서 %3$s(으)로 증가 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:310
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 논리적 볼륨 %1$s(%2$s) 포맷 중"
+msgstr "%1$s에서 물리적 볼륨을 %2$s에서 %3$s(으)로 증가 중"
 
 #  KiloByte abbreviated
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
@@ -956,10 +876,9 @@ msgstr "MiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:173
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "%1$s을(를) %2$s(으)로 마운트 중"
+msgstr "%2$s에 %1$s 탑재"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -967,19 +886,17 @@ msgstr "%1$s을(를) %2$s(으)로 마운트 중"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Create boot volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "%3$s (으)로 부트 볼륨 %1$s (%2$s) 을(를) 생성"
+msgstr "%2$s에서 %3$s에 하위 볼륨 %1$s 탑재"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:177
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "%1$s을(를) %2$s(으)로 마운트 중"
+msgstr "%1$s을(를) %2$s에 탑재"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -987,10 +904,9 @@ msgstr "%1$s을(를) %2$s(으)로 마운트 중"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
+msgstr "%2$s에서 하위 볼륨 %1$s을(를) %3$s에 탑재 중"
 
 #  10^3 bytes
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
@@ -1024,10 +940,9 @@ msgstr "%2$s에서 %1$s을(를) 제거"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:855
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "%2$s에서 %1$s을(를) 제거"
+msgstr "/etc/mdadm.conf에서 %1$s 제거"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1040,10 +955,9 @@ msgstr "/etc/crypttab에서 %1$s의 암호화 계층 장치 제거"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:327
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거"
+msgstr "%2$s의 마운트 포인트 %1$s을(를) /etc/fstab에서 제거"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1061,10 +975,9 @@ msgstr "/etc/fstab에서 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인�
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "%2$s에서 %1$s을(를) 제거"
+msgstr "%2$s에서 %1$s 제거 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -1084,26 +997,23 @@ msgstr "/etc/crypttab에서 %1$s의 암호화 계층 장치 제거 중"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:331
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거 중"
+msgstr "%2$s의 마운트 포인트 %1$s을(를) /etc/fstab에서 제거 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거 중"
+msgstr "%3$s에서 하위 볼륨 %2$s의 마운트 포인트 %1$s을(를) /etc/fstab에서 제거 중"
 
 #: ../storage/Devices/LvmLvImpl.cc:338
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "%2$s에서 %1$s을(를) 제거"
+msgstr "%2$s에서 %1$s 이름 바꾸기"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1118,10 +1028,9 @@ msgstr "/etc/crypttab에서 암호화 계층 장치 이름을 %1$s에서 %2$s(�
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:580
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거"
+msgstr "/etc/fstab의 마운트 포인트 %1$s을(를) %2$s에서 %3$s으로 이름 바꾸기"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1136,46 +1045,41 @@ msgstr "/etc/crypttab에서 암호화 계층 장치 이름을 %1$s에서 %2$s(�
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:585
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "마운트 포인트 %1$s의 항목을 %2$s에서 제거 중"
+msgstr "/etc/fstab의 마운트 포인트 %1$s을(를) %2$s에서 %3$s(으)로 이름 바꾸기"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "%1$s의 레이블을 %2$s(으)로 설정"
+msgstr "%2$s에서 %1$s의 UUID 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:761
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정"
+msgstr "%1$s 파티션의 부트 플래그 설정"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨을 생성"
+msgstr "%2$s에 %1$s 하위 볼륨에서 기본 하위 볼륨 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:672
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정"
+msgstr "%1$s 파티션의 ID를 %2$s(으)로 설정"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1183,36 +1087,32 @@ msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정"
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:654
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "파티션 %1$s의 유형을 %2$s(%3$X)(으)로 설정"
+msgstr "파티션 %1$s의 ID를 %2$s(0x%3$02X)(으)로 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:640
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정"
+msgstr "%1$s 파티션의 ID를 0x%2$02X(으)로 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set label of %1$s to %2$s"
 msgstr "%1$s의 레이블을 %2$s(으)로 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:802
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "%1$s 파티션 삭제 중"
+msgstr "%1$s 파티션의 레거시 부트 플래그 설정"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1233,37 +1133,33 @@ msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 설정"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting UUID of %1$s to %2$s"
-msgstr "%1$s의 레이블을 %2$s(으)로 설정 중"
+msgstr "%1$s의 UUID를 %2$s(으)로 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:764
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
+msgstr "%1$s 파티션의 부트 플래그 설정 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "%2$s 장치에 %1$s 하위 볼륨 생성 중"
+msgstr "%2$s에 %1$s 하위 볼륨에서 기본 하위 볼륨 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
 #: ../storage/Devices/PartitionImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
+msgstr "%1$s 파티션의 ID를 %2$s(으)로 설정 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1271,36 +1167,32 @@ msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:659
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "파티션 %1$s의 유형을 %2$s(%3$X)(으)로 설정 중"
+msgstr "파티션 %1$s의 ID를 %2$s(0x%3$02X)(으)로 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
 #: ../storage/Devices/PartitionImpl.cc:644
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
+msgstr "%1$s 파티션의 ID를 0x%2$02X(으)로 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:528
-#, fuzzy, c-format
-#| msgid "Setting label on %1$s to %2$s"
+#, c-format
 msgid "Setting label of %1$s to %2$s"
 msgstr "%1$s의 레이블을 %2$s(으)로 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:805
-#, fuzzy, c-format
-#| msgid "Setting type of partition %1$s to %2$X"
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "%1$s 파티션의 형식을 %2$X(으)로 설정 중"
+msgstr "%1$s 파티션의 레거시 부트 플래그 설정 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1323,20 +1215,18 @@ msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 설정 중"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
-#, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s을(를) %2$s(으)로 축소"
+msgstr "%2$s에서 %1$s을(를) %3$s에서 %4$s(으)로 축소"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:274
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포맷"
+msgstr "%1$s에서 암호화 레이어 장치를 %2$s에서 %3$s(으)로 축소"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1344,30 +1234,27 @@ msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포�
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:369
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "논리적 볼륨 %1$s을(를) %2$s(으)로 축소"
+msgstr "논리적 그룹 %2$s에서 논리적 볼륨 %1$s을(를) %3$s에서 %4$s(으)로 축소"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:882
-#, fuzzy, c-format
-#| msgid "Shrink partition %1$s to %2$s"
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "%1$s 파티션을 %2$s(으)로 축소"
+msgstr "%1$s 파티션을 %2$s에서 %3$s(으)로 축소"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:291
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "논리적 볼륨 %1$s을(를) %2$s(으)로 축소"
+msgstr "%1$s에서 물리적 볼륨을 %2$s에서 %3$s(으)로 축소"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1375,20 +1262,18 @@ msgstr "논리적 볼륨 %1$s을(를) %2$s(으)로 축소"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
-#, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s을(를) %2$s(으)로 축소 중"
+msgstr "%2$s에서 %1$s을(를) %3$s에서 %4$s(으)로 축소 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포맷"
+msgstr "%1$s에서 암호화 레이어 장치를 %2$s에서 %3$s(으)로 축소 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1396,30 +1281,27 @@ msgstr "%3$s(으)로 %4$s에 대해 암호화된 장치 %1$s(%2$s)을(를) 포�
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:375
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "논리적 볼륨 %1$s을(를) %2$s(으)로 축소 중"
+msgstr "볼륨 그룹 %2$s에서 논리적 볼륨 %1$s을(를) %3$s에서 %4$s(으)로 축소 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:887
-#, fuzzy, c-format
-#| msgid "Shrinking partition %1$s to %2$s"
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "%1$s 파티션을 %2$s(으)로 축소 중"
+msgstr "%1$s 파티션을 %2$s에서 %3$s(으)로 축소 중"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:296
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "논리적 볼륨 %1$s을(를) %2$s(으)로 축소 중"
+msgstr "%1$s에서 물리적 볼륨을 %2$s에서 %3$s(으)로 축소 중"
 
 #  TeraByte abbreviated
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
@@ -1443,10 +1325,9 @@ msgstr "TiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:220
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "%1$s을(를) %2$s(으)로 마운트 중"
+msgstr "%1$s을(를) %2$s(으)로 탑재 해제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1454,19 +1335,17 @@ msgstr "%1$s을(를) %2$s(으)로 마운트 중"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "%2$s 장치에서 %1$s 하위 볼륨 제거 중"
+msgstr "%2$s에서 %1$s 하위 볼륨을 %3$s(으)로 탑재 해제"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:224
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "%1$s을(를) %2$s(으)로 마운트 중"
+msgstr "%1$s을(를) %2$s(으)로 탑재 해제"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1474,28 +1353,25 @@ msgstr "%1$s을(를) %2$s(으)로 마운트 중"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "%2$s 장치에서 %1$s 하위 볼륨 제거 중"
+msgstr "%2$s에서 %1$s 하위 볼륨을 %3$s(으)로 탑재 해제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:289
-#, fuzzy, c-format
-#| msgid "Update entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "%2$s에서 마운트 포인트 %1$s의 항목을 업데이트"
+msgstr "/etc/fstab에서 %2$s의 마운트 포인트 %1$s을(를) 업데이트"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Updating entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "%2$s에서 마운트 포인트 %1$s의 항목 업데이트 중"
+msgstr "/etc/fstab에서 %2$s의 마운트 포인트 %1$s을(를) 업데이트 중"
 
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
