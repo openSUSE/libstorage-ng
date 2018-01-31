@@ -198,6 +198,7 @@ namespace storage
 	}
 
 	do_pre_mount();
+	wait_for_devices();
 
 	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
 	if (!mount_point->get_mount_options().empty()) {
