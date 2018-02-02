@@ -50,6 +50,14 @@ namespace storage
     }
 
 
+    string
+    Luks::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("LUKS").translated;
+    }
+
+
     void
     Luks::Impl::save(xmlNode* node) const
     {

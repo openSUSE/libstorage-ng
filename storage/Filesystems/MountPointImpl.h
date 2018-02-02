@@ -48,6 +48,8 @@ namespace storage
 
 	virtual const char* get_classname() const override { return DeviceTraits<MountPoint>::classname; }
 
+	virtual string get_pretty_classname() const override;
+
 	virtual string get_displayname() const override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }

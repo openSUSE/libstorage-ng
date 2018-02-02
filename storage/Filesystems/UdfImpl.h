@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -67,6 +67,8 @@ namespace storage
 	virtual FsType get_type() const override { return FsType::UDF; }
 
 	virtual const char* get_classname() const override { return DeviceTraits<Udf>::classname; }
+
+	virtual string get_pretty_classname() const override;
 
 	virtual string get_displayname() const override { return "udf"; }
 

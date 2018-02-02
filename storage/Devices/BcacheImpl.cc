@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,14 @@ namespace storage
     Bcache::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node)
     {
+    }
+
+
+    string
+    Bcache::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Bcache").translated;
     }
 
 

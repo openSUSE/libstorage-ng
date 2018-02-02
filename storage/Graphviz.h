@@ -39,10 +39,11 @@ namespace storage
 	NONE = 0x0,
 	TOOLTIP = 0x1,
 	CLASSNAME = 0x2,
-	SID = 0x4,
-	SIZE = 0x8,
-	ACTIVE = 0x16,
-	IN_ETC = 0x32
+	PRETTY_CLASSNAME = 0x4,
+	SID = 0x8,
+	SIZE = 0x16,
+	ACTIVE = 0x32,
+	IN_ETC = 0x64
     };
 
 

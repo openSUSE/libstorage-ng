@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -70,6 +70,14 @@ namespace storage
 	    crypt_options.parse(tmp);
 
 	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
+    }
+
+
+    string
+    Encryption::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Encryption").translated;
     }
 
 

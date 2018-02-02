@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,6 +88,8 @@ namespace storage
 	virtual Impl* clone() const = 0;
 
 	virtual const char* get_classname() const = 0;
+
+	virtual string get_pretty_classname() const = 0;
 
 	virtual string get_displayname() const = 0;
 

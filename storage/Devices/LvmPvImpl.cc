@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +49,14 @@ namespace storage
 	: Device::Impl(node), uuid()
     {
 	getChildValue(node, "uuid", uuid);
+    }
+
+
+    string
+    LvmPv::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("LVM Physical Volume").translated;
     }
 
 

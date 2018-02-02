@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -68,6 +68,8 @@ namespace storage
 	virtual FsType get_type() const override { return FsType::SWAP; }
 
 	virtual const char* get_classname() const override { return DeviceTraits<Swap>::classname; }
+
+	virtual string get_pretty_classname() const override;
 
 	virtual string get_displayname() const override { return "swap"; }
 

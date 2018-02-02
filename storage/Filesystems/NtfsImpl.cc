@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,14 @@ namespace storage
     Ntfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    string
+    Ntfs::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("NTFS").translated;
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,6 +53,8 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return "Luks"; }
+
+	virtual string get_pretty_classname() const override;
 
 	/**
 	 * Returns the next free name for automatic naming of lukses. It is

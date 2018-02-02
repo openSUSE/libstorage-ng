@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,14 @@ namespace storage
     Reiserfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    string
+    Reiserfs::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Reiserfs").translated;
     }
 
 
