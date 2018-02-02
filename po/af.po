@@ -6,14 +6,16 @@ msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2006-11-03 14:26\n"
-"Last-Translator: Novell Language <language@novell.com>\n"
-"Language-Team: Novell Language <language@novell.com>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-02-02 15:00+0000\n"
+"Last-Translator: Arvin Schnell <aschnell@suse.com>\n"
+"Language-Team: Afrikaans <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/af/>\n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -987,10 +989,9 @@ msgstr "Verwyder van inskrywing vir hegpunt %1$s uit %2$s"
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Verwyder van inskrywing vir hegpunt %1$s uit %2$s"
+msgstr ""
 
 #: ../storage/Devices/LvmLvImpl.cc:338
 #, fuzzy, c-format
