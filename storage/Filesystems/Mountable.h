@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,6 +88,13 @@ namespace storage
 	 * @copydoc get_mount_point()
 	 */
 	const MountPoint* get_mount_point() const;
+
+	/**
+	 * Removes the mount point from the mountable.
+	 *
+	 * @throw Exception
+	 */
+	void remove_mount_point();
 
 	/**
 	 * Checks whether the mountable has a filesystem. Currently always true.

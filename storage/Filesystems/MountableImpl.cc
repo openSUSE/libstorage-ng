@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -117,6 +117,13 @@ namespace storage
 	    ST_THROW(Exception("no mount point"));
 
 	return tmp.front();
+    }
+
+
+    void
+    Mountable::Impl::remove_mount_point()
+    {
+	get_devicegraph()->remove_device(get_mount_point());
     }
 
 
