@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,14 @@ namespace storage
     DasdPt::Impl::Impl(const xmlNode* node)
 	: PartitionTable::Impl(node)
     {
+    }
+
+
+    string
+    DasdPt::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("DASD Partition Table").translated;
     }
 
 

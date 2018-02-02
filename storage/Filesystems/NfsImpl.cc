@@ -57,6 +57,14 @@ namespace storage
     }
 
 
+    string
+    Nfs::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("NFS").translated;
+    }
+
+
     void
     Nfs::Impl::save(xmlNode* node) const
     {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +49,8 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return "Bcache"; }
+
+	virtual string get_pretty_classname() const override;
 
 	virtual string get_sort_key() const override;
 

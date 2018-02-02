@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,6 +60,14 @@ namespace storage
 
 	getChildValue(node, "default-btrfs-subvolume", default_btrfs_subvolume);
 	getChildValue(node, "nocow", nocow);
+    }
+
+
+    string
+    BtrfsSubvolume::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Btrfs Subvolume").translated;
     }
 
 

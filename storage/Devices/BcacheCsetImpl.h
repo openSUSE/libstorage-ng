@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -54,6 +54,8 @@ namespace storage
 	virtual const char* get_classname() const override { return DeviceTraits<BcacheCset>::classname; }
 
 	virtual string get_displayname() const override { return get_uuid(); }
+
+	virtual string get_pretty_classname() const override;
 
 	static bool is_valid_uuid(const string& uuid);
 

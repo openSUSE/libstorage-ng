@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -72,6 +72,14 @@ namespace storage
 	getChildValue(node, "model", model);
 
 	getChildValue(node, "rotational", rotational);
+    }
+
+
+    string
+    Multipath::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Multipath").translated;
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,6 +47,14 @@ namespace storage
 	: PartitionTable::Impl(node), minimal_mbr_gap(default_minimal_mbr_gap)
     {
 	getChildValue(node, "minimal-mbr-gap", minimal_mbr_gap);
+    }
+
+
+    string
+    Msdos::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("MS-DOS Partition Table").translated;
     }
 
 

@@ -79,6 +79,14 @@ namespace storage
     }
 
 
+    string
+    MountPoint::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Mount Point").translated;
+    }
+
+
     void
     MountPoint::Impl::save(xmlNode* node) const
     {

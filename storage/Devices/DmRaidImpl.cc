@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -69,6 +69,14 @@ namespace storage
 	: Partitionable::Impl(node), rotational(false)
     {
 	getChildValue(node, "rotational", rotational);
+    }
+
+
+    string
+    DmRaid::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("DM RAID").translated;
     }
 
 

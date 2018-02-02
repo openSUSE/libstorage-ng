@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,6 +84,13 @@ namespace storage
 	getChildValue(node, "stripe-size", stripe_size);
 
 	getChildValue(node, "chunk-size", chunk_size);
+    }
+
+    string
+    LvmLv::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("LVM Logical Volume").translated;
     }
 
 

@@ -847,6 +847,11 @@ namespace storage
 		    extra += "\\n" + string(device->get_impl().get_classname());
 		}
 
+		if (graphviz_flags && GraphvizFlags::PRETTY_CLASSNAME)
+		{
+		    extra += "\\n" + string(device->get_impl().get_pretty_classname());
+		}
+
 		if (graphviz_flags && GraphvizFlags::SID)
 		{
 		    extra += "\\n" "sid:" + to_string(device->get_sid());

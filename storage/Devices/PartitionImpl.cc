@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -75,6 +75,14 @@ namespace storage
 	getChildValue(node, "id", id);
 	getChildValue(node, "boot", boot);
 	getChildValue(node, "legacy-boot", legacy_boot);
+    }
+
+
+    string
+    Partition::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Partition").translated;
     }
 
 

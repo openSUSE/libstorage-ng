@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -64,6 +64,14 @@ namespace storage
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
+    }
+
+
+    string
+    Disk::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("Disk").translated;
     }
 
 

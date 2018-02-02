@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,6 +36,14 @@ namespace storage
     Iso9660::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    string
+    Iso9660::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("ISO 9660").translated;
     }
 
 }
