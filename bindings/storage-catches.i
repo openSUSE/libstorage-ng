@@ -189,6 +189,7 @@
 %catches(storage::Exception) storage::MountPoint::get_mountable();
 %catches(storage::Exception) storage::MountPoint::get_mountable() const;
 %catches(storage::InvalidMountPointPath) storage::MountPoint::set_path(const std::string &path);
+%catches(storage::Exception) storage::Mountable::remove_mount_point();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Nfs::find_by_server_and_path(Devicegraph *devicegraph, const std::string &server, const std::string &path);

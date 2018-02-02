@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -106,6 +106,13 @@ namespace storage
     Mountable::get_mount_point() const
     {
 	return get_impl().get_mount_point();
+    }
+
+
+    void
+    Mountable::remove_mount_point()
+    {
+	get_impl().remove_mount_point();
     }
 
 
