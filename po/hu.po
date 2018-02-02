@@ -13,23 +13,23 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2012-06-09 07:21+0200\n"
-"Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
-"Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
+"PO-Revision-Date: 2018-02-02 19:03+0000\n"
+"Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:311
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz létrehozása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -37,29 +37,25 @@ msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:475
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s logikai kötet aktiválása (%2$s) a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:314
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz aktiválása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:480
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
+msgstr "%1$s logikai kötet aktiválása (%2$s) a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -68,17 +64,16 @@ msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
-#, fuzzy, c-format
-#| msgid "Extend %1$s to %2$s"
+#, c-format
 msgid "Add %1$s to %2$s"
-msgstr "%1$s növelése %2$s méretre"
+msgstr "%1$s hozzáadása a(z) %2$s eszközhöz"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:824
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s hozzáadása az /etc/mdadm.conf fájlhoz"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -86,15 +81,17 @@ msgstr ""
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz hozzáadása a(z) %1$s eszközön az /etc/crypttab "
+"fájlhoz"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:253
-#, fuzzy, c-format
-#| msgid "Add entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr "%1$s csatolási pont hozzáadása a(z) %2$s fájlhoz"
+msgstr ""
+"%2$s eszköz %1$s csatlakoztatási pontjának hozzáadása az /etc/fstab fájlhoz"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -104,6 +101,8 @@ msgstr "%1$s csatolási pont hozzáadása a(z) %2$s fájlhoz"
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"A(z) %3$s eszközön lévő %2$s alkötet %1$s csatlakoztatási pontjának "
+"hozzáadása az /etc/fstab fájlhoz"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -112,17 +111,16 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
-#, fuzzy, c-format
-#| msgid "Extending %1$s to %2$s"
+#, c-format
 msgid "Adding %1$s to %2$s"
-msgstr "%1$s növelése %2$s méretre"
+msgstr "%1$s eszköz hozzáadása a(z) %2$s eszközhöz"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:827
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s hozzáadása az /etc/mdadm.conf fájlhoz"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -130,15 +128,17 @@ msgstr ""
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz hozzáadása a(z) %1$s eszközön az /etc/crypttab "
+"fájlhoz"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:257
-#, fuzzy, c-format
-#| msgid "Adding entry for mount point %1$s to %2$s"
+#, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "%1$s csatolási pont hozzáadása a(z) %2$s fájlhoz"
+msgstr ""
+"%2$s eszköz %1$s csatlakoztatási pontjának hozzáadása az /etc/fstab fájlhoz"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -148,6 +148,8 @@ msgstr "%1$s csatolási pont hozzáadása a(z) %2$s fájlhoz"
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+"A(z) %3$s eszközön lévő %2$s alkötet %1$s csatlakoztatási pontjának "
+"hozzáadása az /etc/fstab fájlhoz"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:54
@@ -157,27 +159,26 @@ msgstr "B"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:769
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear boot flag of partition %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "%1$s partíció rendszerindítási jelzőjének törlése"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:810
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Clear legacy boot flag of partition %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "%1$s partíció örökölt rendszerindítási jelzőjének törlése"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr ""
+"Az 'íráskor nincs másolás' beállítás törlése a(z) %2$s eszközön lévő %1$s "
+"alkötetnél"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -185,22 +186,21 @@ msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
 msgstr ""
+"GPT biztonsági fő rendszertöltő rekordjelzőjének törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:772
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing boot flag of partition %1$s"
-msgstr "%1$s többutas partíció létrehozása"
+msgstr "%1$s partíció rendszerindítási jelzőjének létrehozása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:813
-#, fuzzy, c-format
-#| msgid "Creating multipath partition %1$s"
+#, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
-msgstr "%1$s többutas partíció létrehozása"
+msgstr "%1$s partíció örökölt rendszerindítási jelzőjének létrehozása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -209,6 +209,7 @@ msgstr "%1$s többutas partíció létrehozása"
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"%1$s alkötet 'íráskor nincs másolás' beállításának törlése a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -216,59 +217,54 @@ msgstr ""
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr ""
+"GPT biztonsági fő rendszertöltő rekordjelzőjének törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:503
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create %1$s on %2$s (%3$s)"
-msgstr "%1$s cserekötet létrehozása (%2$s)"
+msgstr "%1$s létrehozás a(z) %2$s eszközön (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:212
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "DASD partíciós tábla létrehozása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:498
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:201
-#, fuzzy, c-format
-#| msgid "Create %1$s"
+#, c-format
 msgid "Create GPT on %1$s"
-msgstr "%1$s létrehozása"
+msgstr "GPT létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:720
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "%1$s kötet létrehozása (%2$s)"
+msgstr "MD %1$s %2$s (%3$s) létrehozása"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:276
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Create MSDOS partition table on %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "MSDOS partíciós tábla létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:233
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz létrehozása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -280,20 +276,18 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "%1$s kiterjesztett partíció létrehozása (%2$s)"
 
 #: ../storage/Devices/DiskImpl.cc:227
-#, fuzzy, c-format
-#| msgid "Create swap volume %1$s (%2$s)"
+#, c-format
 msgid "Create hard disk %1$s (%2$s)"
-msgstr "%1$s cserekötet létrehozása (%2$s)"
+msgstr "%1$s merevlemez létrehozása (%2$s)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Create logical partition %1$s (%2$s)"
-msgstr "%1$s többutas partíció létrehozása (%2$s)"
+msgstr "%1$s logikai partíció létrehozása (%2$s)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -301,57 +295,50 @@ msgstr "%1$s többutas partíció létrehozása (%2$s)"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s logikai kötet létrehozása (%2$s) a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create partition %1$s (%2$s)"
-msgstr "%1$s RAID-partíció létrehozása (%2$s)"
+msgstr "%1$s partíció létrehozása (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:249
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Create physical volume on %1$s"
-msgstr "%1$s logikai kötet létrehozása"
+msgstr "%1$s fizikai kötet létrehozása"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:526
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Create primary partition %1$s (%2$s)"
-msgstr "%1$s RAID-partíció létrehozása (%2$s)"
+msgstr "%1$s elsődleges partíció létrehozása (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:386
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s)"
+#, c-format
 msgid "Create volume group %1$s (%2$s)"
-msgstr "%1$s kötet létrehozása (%2$s)"
+msgstr "%1$s kötetcsoport létrehozása (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -359,60 +346,53 @@ msgstr "%1$s kötet létrehozása (%2$s)"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:508
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
-msgstr "%1$s partíció átállítása %2$s (%3$X) típusúra"
+msgstr "%1$s létrehozása a(z) %2$s eszközön (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:215
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "DASD partíciós tábla létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:204
-#, fuzzy, c-format
-#| msgid "Creating %1$s"
+#, c-format
 msgid "Creating GPT on %1$s"
-msgstr "%1$s létrehozása"
+msgstr "GPT létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:725
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "%1$s kötetcsoport létrehozása (%2$s) ebből: %3$s"
+msgstr "MD %1$s %2$s (%3$s) létrehozása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Creating RAID partition %1$s"
+#, c-format
 msgid "Creating MSDOS partition table on %1$s"
-msgstr "%1$s RAID-partíció létrehozása"
+msgstr "MSDOS partíciós tábla létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:236
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz létrehozása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:542
-#, fuzzy, c-format
-#| msgid "Create extended partition %1$s (%2$s)"
+#, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "%1$s kiterjesztett partíció létrehozása (%2$s)"
 
@@ -421,10 +401,9 @@ msgstr "%1$s kiterjesztett partíció létrehozása (%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:554
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating logical partition %1$s (%2$s)"
-msgstr "%1$s többutas partíció létrehozása (%2$s)"
+msgstr "%1$s logikai partíció létrehozása (%2$s)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -432,75 +411,66 @@ msgstr "%1$s többutas partíció létrehozása (%2$s)"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:303
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s logikai kötet létrehozása (%2$s) a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:515
-#, fuzzy, c-format
-#| msgid "Create RAID partition %1$s (%2$s)"
+#, c-format
 msgid "Creating partition %1$s (%2$s)"
-msgstr "%1$s RAID-partíció létrehozása (%2$s)"
+msgstr "%1$s partíció létrehozása (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:252
-#, fuzzy, c-format
-#| msgid "Creating logical volume %1$s"
+#, c-format
 msgid "Creating physical volume on %1$s"
-msgstr "%1$s logikai kötet létrehozása"
+msgstr "Fizikai kötet létrehozása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:530
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Creating primary partition %1$s (%2$s)"
-msgstr "%1$s többutas partíció létrehozása (%2$s)"
+msgstr "%1$s elsődleges partíció létrehozása (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:390
-#, fuzzy, c-format
-#| msgid "Creating volume group %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Creating volume group %1$s (%2$s)"
-msgstr "%1$s kötetcsoport létrehozása (%2$s) ebből: %3$s"
+msgstr "%1$s kötetcsoport létrehozása (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:975
-#, fuzzy, c-format
-#| msgid "Create software RAID %1$s (%2$s) from %3$s"
+#, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
-msgstr "%1$s szoftveres RAID létrehozása (%2$s) a(z) %3$s eszközön"
+msgstr "MD %1$s %2$s (%3$s) inaktiválása"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:326
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivate encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz inaktiválása a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -508,21 +478,18 @@ msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:511
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s logikai kötet inaktiválása (%2$s) a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:298
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "%1$s többutas partíció létrehozása (%2$s)"
+msgstr "%1$s többutas partíció inaktiválása (%2$s)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -530,38 +497,34 @@ msgstr "%1$s többutas partíció létrehozása (%2$s)"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #: ../storage/Devices/MdImpl.cc:980
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
-msgstr "%1$s partíció törlése (%2$s)"
+msgstr "MD %1$s %2$s (%3$s) inaktiválása"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:329
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deactivating encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz inaktiválása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:516
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
+msgstr "%1$s logikai kötet inaktiválása (%2$s) a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
 #: ../storage/Devices/MultipathImpl.cc:302
-#, fuzzy, c-format
-#| msgid "Create multipath partition %1$s (%2$s)"
+#, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "%1$s többutas partíció létrehozása (%2$s)"
+msgstr "%1$s többutas partíció inaktiválása (%2$s)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -569,26 +532,23 @@ msgstr "%1$s többutas partíció létrehozása (%2$s)"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:676
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
-msgstr "%1$s partíció törlése (%2$s)"
+msgstr "A(z) %2$s eszközön lévő %1$s törlése (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:245
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "%1$s RAID-partíció törlése"
+msgstr "DASD partíciós tábla törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:277
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Delete GPT on %1$s"
-msgstr "%1$s partíció törlése"
+msgstr "GPT törlése a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -596,36 +556,32 @@ msgstr "%1$s partíció törlése"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:796
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
-msgstr "%1$s partíció törlése (%2$s)"
+msgstr "MD %1$s %2$s (%3$s) törlése"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:309
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Delete MSDOS partition table on %1$s"
-msgstr "%1$s RAID-partíció törlése"
+msgstr "MSDOS partíciós tábla törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Set up encrypted loop device on %1$s"
+#, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s logikai kötet törlése (%2$s)"
+msgstr "%1$s logikai kötet törlése (%2$s) a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -639,28 +595,25 @@ msgstr "%1$s partíció törlése (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:351
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Delete physical volume on %1$s"
-msgstr "%1$s logikai kötet törlése"
+msgstr "Fizikai kötet törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr "%1$s alkötet törlése a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:420
-#, fuzzy, c-format
-#| msgid "Reduce volume group %1$s by %2$s"
+#, c-format
 msgid "Delete volume group %1$s (%2$s)"
-msgstr "%1$s kötetcsoport csökkentése a(z) %2$s eszközzel"
+msgstr "%1$s (%2$s) kötetcsoport törlése"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -668,26 +621,23 @@ msgstr "%1$s kötetcsoport csökkentése a(z) %2$s eszközzel"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:681
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$s (%3$X)"
+#, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
-msgstr "%1$s partíció átállítása %2$s (%3$X) típusúra"
+msgstr "%1$s törlése a(z) %2$s eszközön (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/DasdPtImpl.cc:248
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "%1$s RAID-partíció törlése"
+msgstr "DASD partíciós tábla törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/GptImpl.cc:280
-#, fuzzy, c-format
-#| msgid "Deleting partition %1$s"
+#, c-format
 msgid "Deleting GPT on %1$s"
-msgstr "%1$s partíció törlése"
+msgstr "GPT törlése a(z) %1$s eszközön"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -695,72 +645,64 @@ msgstr "%1$s partíció törlése"
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/MdImpl.cc:801
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
-msgstr "%1$s partíció törlése (%2$s)"
+msgstr "MD %1$s %2$s (%3$s) törlése"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #: ../storage/Devices/MsdosImpl.cc:312
-#, fuzzy, c-format
-#| msgid "Deleting RAID partition %1$s"
+#, c-format
 msgid "Deleting MSDOS partition table on %1$s"
-msgstr "%1$s RAID-partíció törlése"
+msgstr "MSDOS partíciós tábla törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/EncryptionImpl.cc:251
-#, fuzzy, c-format
-#| msgid "Setting up encrypted loop device on %1$s"
+#, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "Titkosított hurokeszköz létrehozása a(z) %1$s eszközön"
+msgstr "Titkosításiréteg-eszköz törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #: ../storage/Devices/LvmLvImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Delete logical volume %1$s (%2$s)"
+#, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "%1$s logikai kötet törlése (%2$s)"
+msgstr "%1$s (%2$s) logikai kötet törlése a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:845
-#, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
+#, c-format
 msgid "Deleting partition %1$s (%2$s)"
 msgstr "%1$s partíció törlése (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Devices/LvmPvImpl.cc:354
-#, fuzzy, c-format
-#| msgid "Deleting logical volume %1$s"
+#, c-format
 msgid "Deleting physical volume on %1$s"
-msgstr "%1$s logikai kötet törlése"
+msgstr "Fizikai kötet törlése a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr "%1$s alkötet törlése a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Devices/LvmVgImpl.cc:424
-#, fuzzy, c-format
-#| msgid "Reducing volume group %1$s by %2$s"
+#, c-format
 msgid "Deleting volume group %1$s (%2$s)"
-msgstr "%1$s kötetcsoport csökkentése a(z) %2$s eszközzel"
+msgstr "%1$s kötetcsoport törlése (%2$s)"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:122
@@ -803,22 +745,20 @@ msgstr "GiB"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:645
-#, fuzzy, c-format
-#| msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s növelése a(z) %2$s eszközön, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:288
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
-"%1$s titkosított eszköz formázása (%2$s), %4$s csatolási ponttal, %3$s "
-"fájlrendszerrel"
+"Titkosításréteg-eszköz növelése a(z) %1$s eszközön, régi méret: %2$s, új "
+"méret: %3$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -827,11 +767,11 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:385
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+"%1$s logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új "
+"méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -839,20 +779,19 @@ msgstr ""
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:896
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
-msgstr "%1$s partíció formázása (%2$s) %3$s fájlrendszerrel"
+msgstr "%1$s partíció növelése, régi méret: %2$s, új méret: %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:305
-#, fuzzy, c-format
-#| msgid "Format logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
-msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
+msgstr ""
+"Fizikai kötet növelése a(z) %1$s eszközön, régi méret: %2$s, új méret: %3$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -861,22 +800,20 @@ msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:651
-#, fuzzy, c-format
-#| msgid "Format partition %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s partíció formázása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+msgstr "%1$s növelése a(z) %2$s eszközön, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/EncryptionImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
-"%1$s titkosított eszköz formázása (%2$s), %4$s csatolási ponttal, %3$s "
-"fájlrendszerrel"
+"Titkosításiréteg-eszköz növelése a(z) %1$s eszközön, régi méret: %2$s, új "
+"méret: %3$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -885,11 +822,11 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmLvImpl.cc:391
-#, fuzzy, c-format
-#| msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"%1$s logikai kötet létrehozása (%2$s), %4$s csatolási pont, %3$s fájlrendszer"
+"%1$s logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új "
+"méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -897,20 +834,19 @@ msgstr ""
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/PartitionImpl.cc:901
-#, fuzzy, c-format
-#| msgid "Formatting partition %1$s (%2$s) with %3$s "
+#, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
-msgstr "%1$s partíció formázása (%2$s) %3$s fájlrendszerrel"
+msgstr "%1$s partíció növelése, régi méret: %2$s, új méret: %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
 #: ../storage/Devices/LvmPvImpl.cc:310
-#, fuzzy, c-format
-#| msgid "Formatting logical volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
-msgstr "%1$s logikai kötet formázása (%2$s) %3$s fájlrendszerrel"
+msgstr ""
+"Fizikai kötet növelés a(z) %1$s eszközön, régi méret: %2$s, új méret: %3$s"
 
 # /usr/lib/YaST2/clients/sw_single.ycp:31
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
@@ -943,10 +879,9 @@ msgstr "MiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:173
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "%1$s kötet csatolása a(z) %2$s csatolási pontra"
+msgstr "%1$s csatlakoztatása a(z) %2$s csatlakoztatási ponton"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -954,29 +889,30 @@ msgstr "%1$s kötet csatolása a(z) %2$s csatolási pontra"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
-#, fuzzy, c-format
-#| msgid "Create boot volume %1$s (%2$s) with %3$s"
+#, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "%1$s rendszerindító kötet létrehozása (%2$s), %3$s fájlrendszerrel"
+msgstr ""
+"A(z) %2$s eszközön lévő %1$s alkötet csatlakoztatása a(z) %3$s "
+"csatlakoztatási ponton"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:177
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "%1$s kötet csatolása a(z) %2$s csatolási pontra"
+msgstr "%1$s csatlakoztatása a(z) %2$s csatlakoztatási ponton"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
-#, fuzzy, c-format
-#| msgid "Creating subvolume %1$s on device %2$s"
+#, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr ""
+"A(z) %2$s eszközön lévő %1$s alkötet csatlakoztatása a(z) %3$s "
+"csatlakoztatási ponton"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:111
@@ -1002,15 +938,14 @@ msgstr "PiB"
 #: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
 #, c-format
 msgid "Remove %1$s from %2$s"
-msgstr "%1$s eltávolítása a(z) %2$s fájlból"
+msgstr "%1$s eltávolítása a(z) %2$s eszközről"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:855
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
-msgstr "%1$s eltávolítása a(z) %2$s fájlból"
+msgstr "%1$s eltávolítása az /etc/mdadm.conf fájlból"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1018,15 +953,17 @@ msgstr "%1$s eltávolítása a(z) %2$s fájlból"
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz eltávolítása a(z) %1$s eszközön az /etc/crypttab "
+"fájlból"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:327
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
+msgstr ""
+"%2$s eszköz %1$s csatlakoztatási pontjának eltávolítása az /etc/fstab fájlból"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1036,6 +973,8 @@ msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+"A(z) %3$s eszközön lévő %2$s alkötet %1$s csatlakoztatási pontjának "
+"eltávolítása az /etc/fstab fájlból"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1044,17 +983,16 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Removing %1$s from %2$s"
-msgstr "%1$s eltávolítása a(z) %2$s fájlból"
+msgstr "%1$s eltávolítása a(z) %2$s kötetcsoportból"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "%1$s eltávolítása az /etc/mdadm.conf fájlból"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1062,31 +1000,33 @@ msgstr ""
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz eltávolítása a(z) %1$s eszközön az /etc/crypttab "
+"fájlból"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:331
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
+msgstr ""
+"%2$s eszköz %1$s csatlakoztatási pontjának eltávolítása az /etc/fstab fájlból"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
+msgstr ""
+"A(z) %3$s eszközön lévő %2$s alkötet %1$s csatlakoztatási pontjának "
+"eltávolítása az /etc/fstab fájlból"
 
 #: ../storage/Devices/LvmLvImpl.cc:338
-#, fuzzy, c-format
-#| msgid "Remove %1$s from %2$s"
+#, c-format
 msgid "Rename %1$s to %2$s"
-msgstr "%1$s eltávolítása a(z) %2$s fájlból"
+msgstr "%1$s átnevezése, új név: %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1095,16 +1035,19 @@ msgstr "%1$s eltávolítása a(z) %2$s fájlból"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz átnevezése az /etc/crypttab fájlban, régi név: %1$s, "
+"új név: %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:580
-#, fuzzy, c-format
-#| msgid "Remove entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
+msgstr ""
+"%1$s csatlakoztatási pont átnevezése az /etc/fstab fájlban, régi név: %2$s, "
+"új név: %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -1113,42 +1056,43 @@ msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Titkosításiréteg-eszköz átnevezése az /etc/crypttab fájlban, régi név: %1$s, "
+"új név: %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:585
-#, fuzzy, c-format
-#| msgid "Removing entry for mount point %1$s from %2$s"
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének törlése"
+msgstr ""
+"%1$s csatlakoztatási pont átnevezése az /etc/fstab fájlban, régi név: %2$s, "
+"új név: %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:550
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set UUID of %1$s to %2$s"
-msgstr "%1$s címkéjének beállítása a(z) %2$s értékre"
+msgstr "%1$s UUID-azonosítójának beállítása a(z) %2$s értékre"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
 #: ../storage/Devices/PartitionImpl.cc:761
-#, fuzzy, c-format
-#| msgid "Set type of partition %1$s to %2$X"
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "%1$s partíció átállítása %2$X típusúra"
+msgstr "%1$s partíció rendszerindítási jelzőjének beállítása"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
-#, fuzzy, c-format
-#| msgid "Create subvolume %1$s on device %2$s"
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "%1$s alkötet létrehozása ezen az eszközön: %2$s"
+msgstr ""
+"A(z) %1$s alkötet beállítása alapértelmezett alkötetként a(z) %2$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1203,6 +1147,8 @@ msgstr "%1$s partíció törlése"
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Az 'íráskor nincs másolás' beállítás megadása a(z) %2$s eszközön lévő %1$s "
+"alkötethez"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1210,6 +1156,8 @@ msgstr ""
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr ""
+"GPT biztonsági fő rendszertöltő rekordjelzőjének beállítása a(z) %1$s "
+"eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1290,6 +1238,8 @@ msgstr "%1$s partíció átállítása %2$X típusúra"
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Az 'íráskor nincs másolás' beállítás megadása a(z) %2$s eszközön lévő %1$s "
+"alkötethez"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1297,6 +1247,8 @@ msgstr ""
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
 msgstr ""
+"GPT biztonsági fő rendszertöltő rekordjelzőjének beállítása a(z) %1$s "
+"eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1480,7 +1432,7 @@ msgstr "%2$s fájlban megadott %1$s csatolási pont bejegyzésének frissítése
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
-msgstr ""
+msgstr "első gyökérszintű fájlrendszer"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 #: ../storage/Utils/HumanString.cc:67
