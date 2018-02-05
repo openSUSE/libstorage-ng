@@ -390,9 +390,10 @@ namespace storage
 
 
     void
-    Devicegraph::write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const
+    Devicegraph::write_graphviz(const string& filename, GraphvizFlags flags,
+				GraphvizFlags tooltip_flags) const
     {
-	get_impl().write_graphviz(filename, graphviz_flags);
+	get_impl().write_graphviz(filename, flags, tooltip_flags);
     }
 
 }

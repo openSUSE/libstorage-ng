@@ -62,8 +62,8 @@ doit_devicegraph(const string& filename)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    probed->write_graphviz(filename_gv, GraphvizFlags::CLASSNAME | GraphvizFlags::SID |
-			   GraphvizFlags::SIZE | GraphvizFlags::ACTIVE | GraphvizFlags::IN_ETC);
+    probed->write_graphviz(filename_gv, GraphvizFlags::CLASSNAME | GraphvizFlags::NAME |
+			   GraphvizFlags::SID | GraphvizFlags::SIZE);
 
     helper(filename_gv, filename_svg);
 }
@@ -94,7 +94,7 @@ doit_actiongraph(const string& filename_lhs, const string& filename_rhs)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    actiongraph.write_graphviz(filename_gv, GraphvizFlags::NONE);
+    actiongraph.write_graphviz(filename_gv, GraphvizFlags::NAME | GraphvizFlags::SID);
 
     helper(filename_gv, filename_svg);
 }

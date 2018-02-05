@@ -258,8 +258,8 @@ namespace storage
 	 *
 	 * @throw Exception
 	 */
-	void write_graphviz(const std::string& filename, GraphvizFlags graphviz_flags =
-			    GraphvizFlags::NONE) const;
+	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NAME,
+			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
 
 	friend std::ostream& operator<<(std::ostream& out, const Devicegraph& devicegraph);
 
