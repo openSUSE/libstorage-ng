@@ -253,6 +253,9 @@ namespace storage
 	void copy(Devicegraph& dest) const;
 
 	/**
+	 * Writes the devicegraph in graphviz format. The node id is the sid
+	 * (storage id).
+	 *
 	 * @throw Exception
 	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags graphviz_flags =
