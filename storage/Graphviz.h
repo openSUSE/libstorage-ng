@@ -30,20 +30,19 @@ namespace storage
     /**
      * Bitfield to control graphviz output.
      *
-     * If TOOLTIP is enabled the output of the others fields is added to the
-     * tooltip, otherwise they are added to the label. Not all flags apply to
-     * all graphs or all objects (devices, holders and actions).
+     * Not all flags apply to all graphs or all objects (devices, holders and
+     * actions).
      */
     enum class GraphvizFlags : unsigned int
     {
-	NONE = 0x0,
-	TOOLTIP = 0x1,
-	CLASSNAME = 0x2,
-	PRETTY_CLASSNAME = 0x4,
-	SID = 0x8,
-	SIZE = 0x16,
-	ACTIVE = 0x32,
-	IN_ETC = 0x64
+	NONE = 0,
+	CLASSNAME = 1 << 0,
+	PRETTY_CLASSNAME = 1 << 1,
+	NAME = 1 << 2,
+	SID = 1 << 3,
+	SIZE = 1 << 4,
+	ACTIVE = 1 << 5,
+	IN_ETC = 1 << 6
     };
 
 

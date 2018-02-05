@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -621,52 +621,66 @@ namespace storage
 	};
 
 
+	string
+	vertex_text(const Action::Base* action, const CommitData& commit_data, GraphvizFlags flags)
+	{
+	    string ret;
+
+	    if (flags && GraphvizFlags::NAME)
+	    {
+		ret += action->text(commit_data).translated + "\\n";
+	    }
+
+	    if (flags && GraphvizFlags::SID)
+	    {
+		ret += "sid:" + to_string(action->sid);
+
+		ret += " [";
+		if (action->first)
+		    ret += "f";
+		if (action->last)
+		    ret += "l";
+		if (action->only_sync)
+		    ret += "s";
+		ret += "]" "\\n";
+	    }
+
+	    if (!ret.empty())
+		ret.erase(ret.size() - 2); // erase trailing "\\n"
+
+	    return ret;
+	}
+
+
 	struct write_vertex
 	{
-	    write_vertex(const CommitData& commit_data, GraphvizFlags graphviz_flags)
-		: commit_data(commit_data), graphviz_flags(graphviz_flags) {}
+	    write_vertex(const CommitData& commit_data, GraphvizFlags flags, GraphvizFlags tooltip_flags)
+		: commit_data(commit_data), flags(flags), tooltip_flags(tooltip_flags) {}
 
 	    const CommitData& commit_data;
-	    const GraphvizFlags graphviz_flags;
+	    const GraphvizFlags flags;
+	    const GraphvizFlags tooltip_flags;
 
 	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& vertex) const
 	    {
 		const Action::Base* action = commit_data.actiongraph[vertex];
 
-		string label = action->text(commit_data).translated;
-		string tooltip = action->text(commit_data).translated;
+		out << "[ ";
 
-		string& extra = (graphviz_flags && GraphvizFlags::TOOLTIP) ? tooltip : label;
+		if (flags != GraphvizFlags::NONE)
+		    out << "label=" << boost::escape_dot_string(vertex_text(action, commit_data, flags)) << ", ";
 
-		if (graphviz_flags && GraphvizFlags::SID)
-		{
-		    extra += "\\n" "sid:" + to_string(action->sid);
-
-		    extra += " [";
-		    if (action->first)
-			extra += "f";
-		    if (action->last)
-			extra += "l";
-		    if (action->only_sync)
-			extra += "s";
-		    extra += "]";
-		}
-
-		out << "[ label=" << boost::escape_dot_string(label);
+		if (tooltip_flags != GraphvizFlags::NONE)
+		    out << "tooltip=" << boost::escape_dot_string(vertex_text(action, commit_data, tooltip_flags)) << ", ";
 
 		if (is_create(action))
-		    out << ", color=\"#00ff00\", fillcolor=\"#ccffcc\"";
+		    out << "color=\"#00ff00\", fillcolor=\"#ccffcc\"";
 		else if (is_modify(action))
-		    out << ", color=\"#0000ff\", fillcolor=\"#ccccff\"";
+		    out << "color=\"#0000ff\", fillcolor=\"#ccccff\"";
 		else if (is_delete(action))
-		    out << ", color=\"#ff0000\", fillcolor=\"#ffcccc\"";
+		    out << "color=\"#ff0000\", fillcolor=\"#ffcccc\"";
 		else
 		    ST_THROW(LogicException("unknown Action::Base subclass"));
-
-		if (graphviz_flags && GraphvizFlags::TOOLTIP)
-		{
-		    out << ", tooltip=" << boost::escape_dot_string(tooltip);
-		}
 
 		out << " ]";
 	    }
@@ -676,7 +690,8 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const
+    Actiongraph::Impl::write_graphviz(const string& filename, GraphvizFlags flags,
+				      GraphvizFlags tooltip_flags) const
     {
 	ofstream fout(filename);
 
@@ -686,7 +701,7 @@ namespace storage
 
 	const CommitData commit_data(*this, Tense:: SIMPLE_PRESENT);
 
-	boost::write_graphviz(fout, graph, write_vertex(commit_data, graphviz_flags),
+	boost::write_graphviz(fout, graph, write_vertex(commit_data, flags, tooltip_flags),
 			      boost::default_writer(), write_graph(commit_data),
 			      vertex_index_map_generator.get());
 

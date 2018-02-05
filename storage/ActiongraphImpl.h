@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -167,7 +167,7 @@ namespace storage
 	const Action::Base* operator[](vertex_descriptor vertex) const { return graph[vertex].get(); }
 
 	void print_graph() const;
-	void write_graphviz(const string& filename, GraphvizFlags graphviz_flags) const;
+	void write_graphviz(const string& filename, GraphvizFlags flags, GraphvizFlags tooltip_flags) const;
 
 	void print_order() const;
 
