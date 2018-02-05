@@ -75,7 +75,7 @@ namespace storage
 
 
     /*
-     * Generates a vertex index map.
+     * Generates a vertex index (0 <= index < number of vertices) map.
      *
      * With VertexList=listS the adjacency_list does not automatically have a
      * vertex_index property.  Since some algorithm we use need that property

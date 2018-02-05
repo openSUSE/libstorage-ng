@@ -1001,20 +1001,22 @@ namespace storage
 
 	fout << "// " << generated_string() << "\n\n";
 
-	// TODO write same rank stuff, should be possible in write_graph
+	// Build up a property map with the sid to be used for the vertex
+	// id. Same as VertexIndexMapGenerator but with the sid instead of a
+	// generated index.
 
-	// TODO the node must include device name (or better some unique id) to
-	// detect clicked objects in YaST
+	typedef map<vertex_descriptor, sid_t> vertex_id_map_t;
 
-	// TODO in the long run a filesystem must support several mount points, so
-	// boost::write_graphviz might not be able to handle our needs (or the
-	// needs of YaST).  Just keep a write_graphviz function here for debugging
-	// and move the thing YaST needs to yast2-storage.
+	vertex_id_map_t vertex_id_map;
 
-	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
+	boost::associative_property_map<vertex_id_map_t> vertex_id_property_map(vertex_id_map);
+
+	vertex_iterator vi, vi_end;
+	for (boost::tie(vi, vi_end) = boost::vertices(graph); vi != vi_end; ++vi)
+	    boost::put(vertex_id_property_map, *vi, graph[*vi].get()->get_sid());
 
 	boost::write_graphviz(fout, graph, write_vertex(*this, graphviz_flags), write_edge(*this),
-			      write_graph(*this), vertex_index_map_generator.get());
+			      write_graph(*this), vertex_id_property_map);
 
 	fout.close();
 
