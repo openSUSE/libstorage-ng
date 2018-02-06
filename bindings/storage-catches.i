@@ -125,7 +125,7 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(const Device *device);
 
 %catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, const Devicegraph *lhs, Devicegraph *rhs);
-%catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NONE) const;
+%catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_filesystem(FsType fs_type);
@@ -156,7 +156,7 @@
 %catches(storage::Exception) storage::Devicegraph::load(const std::string &filename);
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::remove_device(sid_t sid);
 %catches(storage::Exception) storage::Devicegraph::save(const std::string &filename) const;
-%catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, GraphvizFlags graphviz_flags=GraphvizFlags::NONE) const;
+%catches(storage::Exception) storage::Devicegraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Disk::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
