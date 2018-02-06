@@ -72,7 +72,7 @@ namespace storage
 	/**
 	 * @throw Exception
 	 */
-	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NONE,
+	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NAME,
 			    GraphvizFlags tooltip_flags = GraphvizFlags::NONE) const;
 
 	void print_order() const;
