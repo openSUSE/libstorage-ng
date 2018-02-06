@@ -855,6 +855,11 @@ namespace storage
 		}
 	    }
 
+	    if (flags && GraphvizFlags::DISPLAYNAME)
+	    {
+		ret += string(device->get_displayname()) + "\\n";
+	    }
+
 	    if (flags && GraphvizFlags::SID)
 	    {
 		ret += "sid:" + to_string(device->get_sid()) + "\\n";

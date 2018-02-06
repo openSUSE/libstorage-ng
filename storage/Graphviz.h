@@ -42,7 +42,8 @@ namespace storage
 	SID = 1 << 3,
 	SIZE = 1 << 4,
 	ACTIVE = 1 << 5,
-	IN_ETC = 1 << 6
+	IN_ETC = 1 << 6,
+	DISPLAYNAME = 1 << 7
     };
 
 
