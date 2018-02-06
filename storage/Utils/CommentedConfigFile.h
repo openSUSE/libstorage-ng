@@ -135,6 +135,19 @@ public:
 	 **/
 	virtual string format() { return content; }
 
+        /**
+         * Validate this entry just prior to formatting/writing it back to
+         * file: Return 'true' if okay, 'false' if not.
+         *
+         * If this returns 'false', the entry is not formatted/written -
+         * neither the entry itself nor the comments that belong to it. Error
+         * handling such as logging an error or whatever is this function's
+         * responsibility.
+         *
+         * This default implementation always returns 'true'.
+         **/
+        virtual bool validate() { return true; }
+
 	/**
 	 * Parse a content line. Return 'true' on success, 'false' on error.
          * 'line_no' (if >0) is the line number in the current file. This can

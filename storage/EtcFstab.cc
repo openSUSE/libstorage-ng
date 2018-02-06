@@ -209,6 +209,26 @@ namespace storage
     }
 
 
+    bool FstabEntry::validate()
+    {
+        bool ok = true;
+
+        if ( device.empty() )
+        {
+            ok = false;
+            y2err( "No device specified for entry " << mount_point );
+        }
+
+        if ( mount_point.empty() )
+        {
+            ok = false;
+            y2err( "No mount point specified for entry " << device );
+        }
+
+        return ok;
+    }
+
+
     void FstabEntry::populate_columns()
     {
 	set_column_count( FSTAB_COLUMN_COUNT );
