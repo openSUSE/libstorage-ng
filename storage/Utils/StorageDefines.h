@@ -86,6 +86,7 @@
 #define LSBIN "/bin/ls"
 #define DFBIN "/usr/bin/df"
 #define TESTBIN "/usr/bin/test"
+#define STATBIN "/usr/bin/stat"
 
 #define LSATTRBIN "/usr/bin/lsattr"
 #define CHATTRBIN "/usr/bin/chattr"
