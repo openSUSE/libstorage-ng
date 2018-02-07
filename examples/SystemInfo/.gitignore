@@ -8,6 +8,7 @@ test-cmddmsetupinfo
 test-cmddmsetuptable
 test-cmdlvs
 test-cmdpvs
+test-cmdstat
 test-cmdudevadminfo
 test-cmdvgs
 test-dasdview

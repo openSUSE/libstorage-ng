@@ -438,6 +438,14 @@
       <stdout>[3:0:0:0]    cd/dvd  ata:                            /dev/sr0 </stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,12 +20,14 @@
  */
 
 
+#include <stdexcept>
+#include <boost/algorithm/string.hpp>
+
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/StorageTmpl.h"
-#include "storage/SystemInfo/SystemInfo.h"
-#include "storage/SystemInfo/CmdDf.h"
-#include "storage/Utils/ExceptionImpl.h"
+#include "storage/SystemInfo/CmdStat.h"
 
 
 namespace storage
@@ -33,39 +35,31 @@ namespace storage
     using namespace std;
 
 
-    CmdDf::CmdDf(const string& path)
-	: path(path), size(0), used(0)
+    CmdStat::CmdStat(const string& path)
+	: path(path), mode(0)
     {
-	SystemCmd cmd(DFBIN " --block-size=1 --output=size,used,avail,fstype " + quote(path));
-	if (cmd.retcode() == 0)
+	SystemCmd cmd(STATBIN " --format '%f' " + quote(path));
+
+	if (cmd.retcode() == 0 && cmd.stdout().size() >= 1)
 	    parse(cmd.stdout());
-    }
-
-
-    void
-    CmdDf::parse(const vector<string>& lines)
-    {
-	if (lines.size() != 2)
-	    ST_THROW(Exception("parse error"));
-
-	std::istringstream data(lines[1]);
-	classic(data);
-
-	data >> size >> used;
-
-	if (data.fail())
-	    ST_THROW(Exception("parse error"));
 
 	y2mil(*this);
     }
 
 
-    std::ostream&
-    operator<<(std::ostream& s, const CmdDf& cmd_df)
+    void
+    CmdStat::parse(const vector<string>& lines)
     {
-	s << "path:" << cmd_df.path << " size:" << cmd_df.size << " used:" << cmd_df.used << '\n';
+	mode = stoi(lines[0], 0, 16);
+    }
 
-	return s;
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdStat& cmd_stat)
+    {
+	s << "path:" << cmd_stat.path << " mode:" << cmd_stat.mode << '\n';
+
+        return s;
     }
 
 }

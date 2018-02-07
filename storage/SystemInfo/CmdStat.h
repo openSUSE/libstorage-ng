@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,14 +20,16 @@
  */
 
 
-#ifndef STORAGE_CMD_DF_H
-#define STORAGE_CMD_DF_H
+#ifndef STORAGE_CMD_STAT_H
+#define STORAGE_CMD_STAT_H
 
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
 #include <string>
 #include <vector>
-
-#include "storage/FreeInfo.h"
 
 
 namespace storage
@@ -36,18 +38,17 @@ namespace storage
     using std::vector;
 
 
-    class CmdDf
+    class CmdStat
     {
     public:
 
-	CmdDf(const string& path);
+	CmdStat(const string& path);
 
-	unsigned long long get_size() const { return size; }
-	unsigned long long get_used() const { return used; }
+	bool is_blk() const { return S_ISBLK(mode); }
+	bool is_dir() const { return S_ISDIR(mode); }
+	bool is_reg() const { return S_ISREG(mode); }
 
-	SpaceInfo get_space_info() const { return SpaceInfo(size, used); }
-
-	friend std::ostream& operator<<(std::ostream& s, const CmdDf& cmd_df);
+	friend std::ostream& operator<<(std::ostream& s, const CmdStat& cmd_stat);
 
     private:
 
@@ -55,12 +56,10 @@ namespace storage
 
 	string path;
 
-	unsigned long long size;
-	unsigned long long used;
+	mode_t mode;
 
     };
 
 }
-
 
 #endif
