@@ -443,6 +443,18 @@
       <stdout>[6:0:0:1]    enclosu usb:1-1.3:1.0                   -        </stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/dm-6'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/dm-8'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>
