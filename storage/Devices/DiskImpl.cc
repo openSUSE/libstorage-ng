@@ -96,7 +96,7 @@ namespace storage
     {
 	SystemInfo& system_info = prober.get_system_info();
 
-	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
+	for (const string& short_name : system_info.getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 
@@ -110,8 +110,9 @@ namespace storage
 		continue;
 
 	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
-	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
-								     "/ext_range");
+
+	    const File range_file = system_info.getFile(SYSFSDIR + udevadminfo.get_path() +
+							"/ext_range");
 
 	    if (range_file.get<int>() <= 1)
 		continue;
@@ -127,12 +128,14 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
-								      "/queue/rotational");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File rotational_file = system_info.getFile(SYSFSDIR + get_sysfs_path() +
+							 "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 
 	Lsscsi::Entry entry;
-	if (prober.get_system_info().getLsscsi().getEntry(get_name(), entry))
+	if (system_info.getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
     }
 

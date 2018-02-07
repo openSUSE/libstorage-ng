@@ -46,7 +46,7 @@ namespace storage
 	unsigned long long get_used() const { return used; }
 
 	SpaceInfo get_space_info() const { return SpaceInfo(size, used); }
-	
+
 	friend std::ostream& operator<<(std::ostream& s, const CmdDf& cmd_df);
 
     private:

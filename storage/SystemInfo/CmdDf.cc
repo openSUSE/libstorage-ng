@@ -55,6 +55,8 @@ namespace storage
 
 	if (data.fail())
 	    ST_THROW(Exception("parse error"));
+
+	y2mil(*this);
     }
 
 
