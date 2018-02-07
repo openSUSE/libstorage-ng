@@ -329,3 +329,71 @@ BOOST_AUTO_TEST_CASE( unknown_fs_type )
     BOOST_CHECK_EQUAL( output[4], expected );
 }
 
+
+BOOST_AUTO_TEST_CASE( validate_entry )
+{
+    // This needs to be formatted exactly like the expected output
+
+    string_vec initial = {
+        "LABEL=swap      swap     swap    defaults     0  0",
+        "LABEL=xfs-root  /        xfs     defaults     0  0",
+        "# Data comment 1",
+        "LABEL=data      /data    ext4    defaults     1  2",
+        "# CoolFS comment 1",
+        "# CoolFS comment 2",
+        "LABEL=coolfs    /coolfs  coolfs  ro           1  2",
+        "LABEL=space     /space   xfs     noauto,user  1  2"
+    };
+
+    string_vec modified = {
+        "LABEL=swap      swap     swap    defaults     0  0",
+        "LABEL=xfs-root  /        xfs     defaults     0  0",
+        "LABEL=space     /space   xfs     noauto,user  1  2"
+    };
+
+    EtcFstab fstab;
+    fstab.parse( initial );
+
+    BOOST_CHECK_EQUAL( fstab.get_entry_count(), 5 );
+
+    string_vec output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), initial.size() );
+
+    for ( int i=0; i < fstab.get_entry_count(); ++i )
+        BOOST_CHECK_EQUAL( fstab.get_entry( i )->validate(), true );
+
+    FstabEntry * data = fstab.find_mount_point( "/data" );
+    data->set_mount_point( "" ); // Invalidate data entry
+    BOOST_CHECK_EQUAL( data->validate(), false );
+
+    FstabEntry * coolfs = fstab.find_mount_point( "/coolfs" );
+    coolfs->set_device( "" ); // Invalidate coolfs entry
+    BOOST_CHECK_EQUAL( coolfs->validate(), false );
+
+    output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), initial.size() - 5 );
+
+    // With the invalid entries, the output should look like in "modified"
+
+    output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), modified.size() );
+
+    for ( size_t i=0; i < output.size(); ++i )
+        BOOST_CHECK_EQUAL( output[i], modified[i] );
+
+    // Restore both invalidated entries
+
+    coolfs->set_device( "LABEL=coolfs" );
+    data->set_mount_point( "/data" );
+
+    BOOST_CHECK_EQUAL( coolfs->validate(), true );
+    BOOST_CHECK_EQUAL( data->validate(), true );
+
+    // Now the output should again look like in "initial"
+
+    output = fstab.format_lines();
+    BOOST_CHECK_EQUAL( output.size(), initial.size() );
+
+    for ( size_t i=0; i < output.size(); ++i )
+        BOOST_CHECK_EQUAL( output[i], initial[i] );
+}

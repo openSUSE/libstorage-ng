@@ -298,15 +298,18 @@ string_vec CommentedConfigFile::format_lines()
     {
         Entry * entry = entries[i];
 
-        for ( size_t j=0; j < entry->get_comment_before().size(); ++j )
-            lines.push_back( entry->get_comment_before()[j] );
+        if ( entry->validate() )
+        {
+            for ( size_t j=0; j < entry->get_comment_before().size(); ++j )
+                lines.push_back( entry->get_comment_before()[j] );
 
-        string line = entry->format();
+            string line = entry->format();
 
-        if ( ! entry->get_line_comment().empty() )
-            line += " " + entry->get_line_comment();
+            if ( ! entry->get_line_comment().empty() )
+                line += " " + entry->get_line_comment();
 
-        lines.push_back( line );
+            lines.push_back( line );
+        }
     }
 
     for ( size_t i=0; i < footer_comments.size(); ++i )

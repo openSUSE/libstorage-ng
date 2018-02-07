@@ -219,10 +219,23 @@ namespace storage
 
 	virtual ~FstabEntry();
 
+        /**
+         * Validate this entry just prior to formatting/writing it back to
+         * file: Return 'true' if okay, 'false' if not.
+         *
+         * If this returns 'false', the entry is not formatted/written -
+         * neither the entry itself nor the comments that belong to it. Error
+         * handling such as logging an error or whatever is this function's
+         * responsibility.
+         *
+	 * Reimplemented from CommentedConfigFile.
+         **/
+        virtual bool validate() override;
+
 	/**
 	 * Populate the columns with content from the member variables.
 	 *
-	 * Reimplemented from CommentedConfigFile.
+	 * Reimplemented from ColumnConfigFile.
 	 **/
 	virtual void populate_columns() override;
 
