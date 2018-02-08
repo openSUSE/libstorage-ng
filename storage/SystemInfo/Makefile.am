@@ -19,6 +19,7 @@ libsystem_info_la_SOURCES =				\
 	CmdLvm.cc		CmdLvm.h		\
 	CmdMultipath.cc		CmdMultipath.h		\
 	CmdParted.cc		CmdParted.h		\
+	CmdStat.cc		CmdStat.h		\
 	CmdUdevadm.cc		CmdUdevadm.h		\
 	DevAndSys.cc		DevAndSys.h		\
 	ProcMdstat.cc		ProcMdstat.h		\

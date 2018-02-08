@@ -780,6 +780,22 @@
       <stdout>[6:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdb'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
     </Command>
     <Command>
@@ -930,20 +946,12 @@
       <content>8:17</content>
     </File>
     <File>
-      <name>/sys/devices/virtual/block/bcache0/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
       <name>/sys/devices/virtual/block/bcache0/size</name>
       <content>16775152</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache1/bcache/../dev</name>
       <content>8:18</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/bcache1/ext_range</name>
-      <content>1</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache1/size</name>
