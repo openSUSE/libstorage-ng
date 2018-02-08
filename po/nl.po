@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-02-08 10:29+0000\n"
+"PO-Revision-Date: 2018-02-08 13:02+0000\n"
 "Last-Translator: Eva van Rein <vistatec@globaltextware.nl>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/nl/>\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Versleutellaag van apparaat activeren op %1$s"
+msgstr "Versleutelingslaag van apparaat activeren op %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -47,7 +47,7 @@ msgstr "Logisch volume %1$s (%2$s) activeren op volumegroep %3$s"
 #: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Versleutellaag van apparaat wordt geactiveerd op %1$s"
+msgstr "Versleutelingslaag van apparaat wordt geactiveerd op %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -81,7 +81,7 @@ msgstr "%1$s toevoegen aan /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr "Versleutellaag van apparaat op %1$s toevoegen aan /etc/crypttab"
+msgstr "Versleutelingslaag van apparaat op %1$s toevoegen aan /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -123,7 +123,8 @@ msgstr "%1$s wordt toegevoegd aan /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr "Versleutellaag van apparaat op %1$s wordt toegeveogd aan /etc/crypttab"
+msgstr ""
+"Versleutelingslaag van apparaat op %1$s wordt toegeveogd aan /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -168,7 +169,7 @@ msgstr "Verouderde bootvlag van partitie %1$s wissen"
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Optie 'geen kopiëren bij schrijven' voor subvolume %1$s op %2$s wissen"
+msgstr "Optie 'niet kopiëren bij schrijven' voor subvolume %1$s op %2$s wissen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -252,7 +253,7 @@ msgstr "MSDOS-partitietabel op %1$s aanmaken"
 #: ../storage/Devices/EncryptionImpl.cc:233
 #, c-format
 msgid "Create encryption layer device on %1$s"
-msgstr "Versleutellaag van apparaat op %1$s aanmaken"
+msgstr "Versleutelingslaag van apparaat op %1$s aanmaken"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -367,7 +368,7 @@ msgstr "MSDOS-partitietabel op %1$s wordt aangemaakt"
 #: ../storage/Devices/EncryptionImpl.cc:236
 #, c-format
 msgid "Creating encryption layer device on %1$s"
-msgstr "Versleutellaag van apparaat op %1$s wordt aangemaakt"
+msgstr "Versleutelingslaag van apparaat op %1$s wordt aangemaakt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -464,7 +465,7 @@ msgstr "Logisch volume %1$s (%2$s) op volumegroep %3$s deactiveren"
 #: ../storage/Devices/MultipathImpl.cc:298
 #, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
-msgstr "Multipad %1$s (%2$s) deactiveren"
+msgstr "Multipath %1$s (%2$s) deactiveren"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -497,7 +498,7 @@ msgstr "Logisch volume %1$s (%2$s) deactiveren op volumegroep %3$s"
 #: ../storage/Devices/MultipathImpl.cc:302
 #, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
-msgstr "Multipad %1$s (%2$s) deactiveren"
+msgstr "Multipath %1$s (%2$s) deactiveren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem name (e.g. ext4),
@@ -543,7 +544,7 @@ msgstr "MSDOS-partitietabel op %1$s verwijderen"
 #: ../storage/Devices/EncryptionImpl.cc:248
 #, c-format
 msgid "Delete encryption layer device on %1$s"
-msgstr "Versleutelingslaagapparaat op %1$s verwijderen"
+msgstr "Versleutelingslaag van apparaat op %1$s verwijderen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -629,7 +630,7 @@ msgstr "MSDOS-partitietabel op %1$s verwijderen"
 #: ../storage/Devices/EncryptionImpl.cc:251
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
-msgstr "Versleutelingslaagapparaat op %1$s verwijderen"
+msgstr "Versleutelingslaag van apparaat op %1$s verwijderen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -718,7 +719,7 @@ msgstr "%1$s op %2$s vergroten van %3$s naar %4$s"
 #: ../storage/Devices/EncryptionImpl.cc:288
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Versleutelingslaagapparaat op %1$s vergroten van %2$s naar %3$s"
+msgstr "Versleutelingslaag van apparaat op %1$s vergroten van %2$s naar %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -765,7 +766,7 @@ msgstr "%1$s op %2$s vergroten van %3$s naar %4$s"
 #: ../storage/Devices/EncryptionImpl.cc:293
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Versleutelingslaagapparaat op %1$s vergroten van %2$s naar %3$s"
+msgstr "Versleutelingslaag van apparaat op %1$s vergroten van %2$s naar %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -887,7 +888,7 @@ msgstr "%1$s uit /etc/mdadm.conf verwijderen"
 #: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr "Versleutelingslaagapparaat op %1$s verwijderen uit /etc/crypttab"
+msgstr "Versleutelingslaag van apparaat op %1$s verwijderen uit /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -929,7 +930,7 @@ msgstr "%1$s verwijderen uit /etc/mdadm.conf"
 #: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr "Versleutelingslaagapparaat op %1$s verwijderen uit /etc/crypttab"
+msgstr "Versleutelingslaag van apparaat op %1$s verwijderen uit /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -960,7 +961,7 @@ msgstr "%1$s hernoemen naar %2$s"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
-"Versleutelingslaagapparaat hetnoemen van %1$s naar %2$s in /etc/crypttab"
+"Versleutelingslaag van apparaat hetnoemen van %1$s naar %2$s in /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -978,7 +979,7 @@ msgstr "Aankoppelpunt %1$s hernoemen van %2$s naar %3$s in /etc/fstab"
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
-"Versleutelingslaagapparaat hernoemen van %1$s naar %2$s in /etc/crypttab"
+"Versleutelingslaag van apparaat hernoemen van %1$s naar %2$s in /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1164,7 +1165,7 @@ msgstr "%1$s op %2$s inkrimpen van %3$s naar %4$s"
 #: ../storage/Devices/EncryptionImpl.cc:274
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Versleutelingslaagapparaat op %1$s inkrimpen van %2$s naar %3$s"
+msgstr "Versleutelingslaag van apparaat op %1$s inkrimpen van %2$s naar %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1211,7 +1212,7 @@ msgstr "%1$s op %2$s inkrimpen van %3$s naar %4$s"
 #: ../storage/Devices/EncryptionImpl.cc:279
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Versleutelingslaagapparaat op %1$s inkrimpen van %2$s naar %3$s"
+msgstr "Versleutelingslaag van apparaat op %1$s inkrimpen van %2$s naar %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
