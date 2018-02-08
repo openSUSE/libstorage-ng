@@ -64,121 +64,6 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dm-0'</name>
-      <stdout>P: /devices/virtual/block/dm-0</stdout>
-      <stdout>N: dm-0</stdout>
-      <stdout>S: mapper/system-pool_tmeta</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/system-pool_tmeta</stdout>
-      <stdout>E: DEVNAME=/dev/dm-0</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-0</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=pool_tmeta</stdout>
-      <stdout>E: DM_NAME=system-pool_tmeta</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_DISK_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_OTHER_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_SUBSYSTEM_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7f1hZ5zxiwaJFN4tjfsrsRPce9TffuTPi-tmeta</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=0</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=2868999</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/dm-1'</name>
-      <stdout>P: /devices/virtual/block/dm-1</stdout>
-      <stdout>N: dm-1</stdout>
-      <stdout>S: mapper/system-pool_tdata</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/system-pool_tdata</stdout>
-      <stdout>E: DEVNAME=/dev/dm-1</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-1</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=pool_tdata</stdout>
-      <stdout>E: DM_NAME=system-pool_tdata</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_DISK_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_OTHER_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_SUBSYSTEM_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7ncT7EUglkKcOpFAQHKUI0lcdID9wFY3s-tdata</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=1</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=2884860</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/dm-2'</name>
-      <stdout>P: /devices/virtual/block/dm-2</stdout>
-      <stdout>N: dm-2</stdout>
-      <stdout>S: mapper/system-pool-tpool</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/system-pool-tpool</stdout>
-      <stdout>E: DEVNAME=/dev/dm-2</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-2</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_LAYER=tpool</stdout>
-      <stdout>E: DM_LV_NAME=pool</stdout>
-      <stdout>E: DM_NAME=system-pool-tpool</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_DISK_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_OTHER_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_SUBSYSTEM_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7XLDPQS6U7nzfW8hiP5E8xaTOage2xCk1-tpool</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=2</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=3056365</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/dm-3'</name>
-      <stdout>P: /devices/virtual/block/dm-3</stdout>
-      <stdout>N: dm-3</stdout>
-      <stdout>S: disk/by-id/dm-name-system-root</stdout>
-      <stdout>S: disk/by-id/dm-uuid-LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7ZhifjqfIhtGU9KDF8uAyFXgTzvNyg1jf</stdout>
-      <stdout>S: disk/by-uuid/2dd93abb-d689-440b-a469-d3af0a8122f0</stdout>
-      <stdout>S: mapper/system-root</stdout>
-      <stdout>S: system/root</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/system-root /dev/system/root /dev/disk/by-uuid/2dd93abb-d689-440b-a469-d3af0a8122f0 /dev/disk/by-id/dm-uuid-LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7ZhifjqfIhtGU9KDF8uAyFXgTzvNyg1jf /dev/disk/by-id/dm-name-system-root</stdout>
-      <stdout>E: DEVNAME=/dev/dm-3</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-3</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=root</stdout>
-      <stdout>E: DM_NAME=system-root</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7ZhifjqfIhtGU9KDF8uAyFXgTzvNyg1jf</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: ID_FS_TYPE=ext4</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=2dd93abb-d689-440b-a469-d3af0a8122f0</stdout>
-      <stdout>E: ID_FS_UUID_ENC=2dd93abb-d689-440b-a469-d3af0a8122f0</stdout>
-      <stdout>E: ID_FS_VERSION=1.0</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=3</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=3105114</stdout>
-    </Command>
-    <Command>
       <name>/sbin/udevadm info '/dev/dm-4'</name>
       <stdout>P: /devices/virtual/block/dm-4</stdout>
       <stdout>N: dm-4</stdout>
@@ -210,65 +95,6 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=3220380</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/dm-5'</name>
-      <stdout>P: /devices/virtual/block/dm-5</stdout>
-      <stdout>N: dm-5</stdout>
-      <stdout>S: mapper/system-pool</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/system-pool</stdout>
-      <stdout>E: DEVNAME=/dev/dm-5</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-5</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=pool</stdout>
-      <stdout>E: DM_NAME=system-pool</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_DISK_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_OTHER_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_DISABLE_SUBSYSTEM_RULES_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm7XLDPQS6U7nzfW8hiP5E8xaTOage2xCk1-pool</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=5</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=14046474</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/dm-6'</name>
-      <stdout>P: /devices/virtual/block/dm-6</stdout>
-      <stdout>N: dm-6</stdout>
-      <stdout>S: disk/by-id/dm-name-system-home</stdout>
-      <stdout>S: disk/by-id/dm-uuid-LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm70sG8JgICCSl8uIpspL9vHWkn3Ei0zT7C</stdout>
-      <stdout>S: disk/by-uuid/930d98c7-9a1b-4eea-a979-8e0268fa8d4c</stdout>
-      <stdout>S: mapper/system-home</stdout>
-      <stdout>S: system/home</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-uuid/930d98c7-9a1b-4eea-a979-8e0268fa8d4c /dev/disk/by-id/dm-name-system-home /dev/disk/by-id/dm-uuid-LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm70sG8JgICCSl8uIpspL9vHWkn3Ei0zT7C /dev/system/home /dev/mapper/system-home</stdout>
-      <stdout>E: DEVNAME=/dev/dm-6</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-6</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_LV_NAME=home</stdout>
-      <stdout>E: DM_NAME=system-home</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=LVM-UIJPvy619vaB28JCloUALhQUhRq7yKm70sG8JgICCSl8uIpspL9vHWkn3Ei0zT7C</stdout>
-      <stdout>E: DM_VG_NAME=system</stdout>
-      <stdout>E: ID_FS_TYPE=xfs</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=930d98c7-9a1b-4eea-a979-8e0268fa8d4c</stdout>
-      <stdout>E: ID_FS_UUID_ENC=930d98c7-9a1b-4eea-a979-8e0268fa8d4c</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=6</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=14057865</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/mapper/system-home'</name>
@@ -742,6 +568,14 @@
       <stdout>[3:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>
@@ -831,34 +665,6 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/size</name>
       <content>33554432</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-0/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-1/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-2/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-3/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-4/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-5/ext_range</name>
-      <content>1</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-6/ext_range</name>
-      <content>1</content>
     </File>
   </Files>
 </Mockup>
