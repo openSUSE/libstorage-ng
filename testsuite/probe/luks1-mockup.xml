@@ -20,46 +20,6 @@
       <stdout>cr_home: 0 16779264 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:2 4096</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/dm-0'</name>
-      <stdout>P: /devices/virtual/block/dm-0</stdout>
-      <stdout>N: dm-0</stdout>
-      <stdout>L: 50</stdout>
-      <stdout>S: disk/by-id/dm-name-cr_home</stdout>
-      <stdout>S: disk/by-id/dm-uuid-CRYPT-LUKS1-90da74540be64b44957a61a05408b8fb-cr_home</stdout>
-      <stdout>S: disk/by-id/raid-cr_home</stdout>
-      <stdout>S: disk/by-uuid/30032cea-a1f0-4891-8396-28a8d97491d4</stdout>
-      <stdout>S: mapper/cr_home</stdout>
-      <stdout>E: DEVLINKS=/dev/mapper/cr_home /dev/disk/by-uuid/30032cea-a1f0-4891-8396-28a8d97491d4 /dev/disk/by-id/dm-uuid-CRYPT-LUKS1-90da74540be64b44957a61a05408b8fb-cr_home /dev/disk/by-id/raid-cr_home /dev/disk/by-id/dm-name-cr_home</stdout>
-      <stdout>E: DEVNAME=/dev/dm-0</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/dm-0</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: DM_ACTIVATION=1</stdout>
-      <stdout>E: DM_DEPS=1</stdout>
-      <stdout>E: DM_LAST_EVENT_NR=0</stdout>
-      <stdout>E: DM_MAJOR=254</stdout>
-      <stdout>E: DM_MINOR=0</stdout>
-      <stdout>E: DM_NAME=cr_home</stdout>
-      <stdout>E: DM_OPENCOUNT=0</stdout>
-      <stdout>E: DM_STATE=ACTIVE</stdout>
-      <stdout>E: DM_SUSPENDED=0</stdout>
-      <stdout>E: DM_TABLE_STATE=LIVE</stdout>
-      <stdout>E: DM_TARGET_COUNT=1</stdout>
-      <stdout>E: DM_TARGET_TYPES=crypt</stdout>
-      <stdout>E: DM_TYPE=raid</stdout>
-      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
-      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
-      <stdout>E: DM_UUID=CRYPT-LUKS1-90da74540be64b44957a61a05408b8fb-cr_home</stdout>
-      <stdout>E: ID_FS_TYPE=xfs</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=30032cea-a1f0-4891-8396-28a8d97491d4</stdout>
-      <stdout>E: ID_FS_UUID_ENC=30032cea-a1f0-4891-8396-28a8d97491d4</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=0</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=32865604</stdout>
-    </Command>
-    <Command>
       <name>/sbin/udevadm info '/dev/mapper/cr_home'</name>
       <stdout>P: /devices/virtual/block/dm-0</stdout>
       <stdout>N: dm-0</stdout>
@@ -361,6 +321,14 @@
       <stdout>[2:0:0:0]    cd/dvd  ata:                            /dev/sr0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
     </Command>
     <Command>
@@ -455,10 +423,6 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/size</name>
       <content>33554432</content>
-    </File>
-    <File>
-      <name>/sys/devices/virtual/block/dm-0/ext_range</name>
-      <content>1</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/dm-0/size</name>

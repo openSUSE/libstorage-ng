@@ -25,6 +25,7 @@
 
 #include "storage/Devices/DiskImpl.h"
 #include "storage/Devices/MdImpl.h"
+#include "storage/Devices/BcacheImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Storage.h"
@@ -94,18 +95,26 @@ namespace storage
     void
     Disk::Impl::probe_disks(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
+	SystemInfo& system_info = prober.get_system_info();
+
+	for (const string& short_name : system_info.getDir(SYSFSDIR "/block"))
 	{
 	    string name = DEVDIR "/" + short_name;
 
-	    if (Md::Impl::is_valid_sysfs_name(name) || boost::starts_with(name, DEVDIR "/loop") ||
-		boost::starts_with(name, DEVDIR "/dasd"))
+	    if (Md::Impl::is_valid_sysfs_name(name) || Bcache::Impl::is_valid_name(name) ||
+		boost::starts_with(name, DEVDIR "/loop") || boost::starts_with(name, DEVDIR "/dasd") ||
+		boost::starts_with(name, DEVDIR "/dm-"))
 		continue;
 
-	    const CmdUdevadmInfo udevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
+	    // skip disks without node in /dev (bsc #1076971)
+	    const CmdStat cmd_stat = system_info.getCmdStat(name);
+	    if (!cmd_stat.is_blk())
+		continue;
 
-	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
-								     "/ext_range");
+	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
+
+	    const File range_file = system_info.getFile(SYSFSDIR + udevadminfo.get_path() +
+							"/ext_range");
 
 	    if (range_file.get<int>() <= 1)
 		continue;
@@ -121,12 +130,14 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
-								      "/queue/rotational");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File rotational_file = system_info.getFile(SYSFSDIR + get_sysfs_path() +
+							 "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 
 	Lsscsi::Entry entry;
-	if (prober.get_system_info().getLsscsi().getEntry(get_name(), entry))
+	if (system_info.getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
     }
 
