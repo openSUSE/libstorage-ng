@@ -5,6 +5,9 @@
 # exit on error immediately, print the executed commands
 set -e -x
 
+# fetch the full history so the log can be generated correctly
+git fetch --unshallow
+
 # generate the .tar.xz source tarball and the *.changes file
 utils/make_package
 
