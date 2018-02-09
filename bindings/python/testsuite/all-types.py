@@ -4,7 +4,7 @@ import unittest
 
 from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage,
                      Devicegraph, Disk, Region, PtType_GPT, PartitionType_PRIMARY, FsType_EXT4,
-                     UF_EXT4, UF_BTRFS, LIBSTORAGE_NG_VERSION_STRING)
+                     UF_EXT4, UF_BTRFS, LIBSTORAGE_NG_VERSION_STRING, VectorString)
 
 
 class TestCreate(unittest.TestCase):
@@ -22,9 +22,11 @@ class TestCreate(unittest.TestCase):
         gpt = sda.create_partition_table(PtType_GPT)
         sda1 = gpt.create_partition("/dev/sda1", Region(2048, 4096, 512), PartitionType_PRIMARY)
         ext4 = sda1.create_blk_filesystem(FsType_EXT4)
+        mount_point = ext4.create_mount_point("/test")
+        mount_point.set_mount_options(VectorString(["ro"]))
 
         self.assertEqual(devicegraph.empty(), False)
-        self.assertEqual(devicegraph.num_devices(), 4)
+        self.assertEqual(devicegraph.num_devices(), 5)
 
         sda.set_size(2**64 - 512)
         self.assertEqual(sda.get_size(), 2**64 - 512)
@@ -38,9 +40,8 @@ class TestCreate(unittest.TestCase):
         ext4.set_label("test-label")
         self.assertEqual(ext4.get_label(), "test-label")
 
-        ext4.add_mountpoint("/test1")
-        self.assertEqual(ext4.get_mountpoints().size(), 1)
-        self.assertEqual(ext4.get_mountpoints()[0], "/test1")
+        self.assertEqual(mount_point.get_mount_options().size(), 1)
+        self.assertEqual(mount_point.get_mount_options()[0], "ro")
 
         self.assertTrue(devicegraph.used_features() & UF_EXT4)
         self.assertFalse(devicegraph.used_features() & UF_BTRFS)
