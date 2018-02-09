@@ -25,6 +25,8 @@ BOOST_AUTO_TEST_CASE(test_is_power_of_two)
 
 BOOST_AUTO_TEST_CASE(test_next_power_of_two)
 {
+    BOOST_CHECK_EQUAL(next_power_of_two(0), 1);
+
     BOOST_CHECK_EQUAL(next_power_of_two(1), 1);
 
     BOOST_CHECK_EQUAL(next_power_of_two(2), 2);
@@ -54,4 +56,11 @@ BOOST_AUTO_TEST_CASE(test_round_up)
     BOOST_CHECK_EQUAL(round_up(9, 10), 10);
     BOOST_CHECK_EQUAL(round_up(10, 10), 10);
     BOOST_CHECK_EQUAL(round_up(11, 10), 20);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_clz)
+{
+    BOOST_CHECK_EQUAL(clz(1023), 54);
+    BOOST_CHECK_EQUAL(clz(1024), 53);
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,12 +27,18 @@
 namespace storage
 {
 
-    bool
-    is_power_of_two(unsigned long long i);
+    inline bool
+    is_power_of_two(unsigned long long i)
+    {
+	return __builtin_popcountll(i) == 1;
+    }
 
 
-    unsigned long long
-    next_power_of_two(unsigned long long i);
+    inline unsigned long long
+    next_power_of_two(unsigned long long i)
+    {
+	return i <= 1 ? 1 : 1ULL << (64 - __builtin_clzll(i - 1));
+    }
 
 
     inline bool
@@ -54,6 +60,16 @@ namespace storage
      */
     unsigned long long
     round_up(unsigned long long i, unsigned long long m);
+
+
+    /**
+     * Count leading zeros. Result is undefined if i is zero.
+     */
+    inline int
+    clz(unsigned long long i)
+    {
+	return __builtin_clzll(i);
+    }
 
 }
 
