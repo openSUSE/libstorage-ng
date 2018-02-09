@@ -94,17 +94,6 @@ namespace storage
     }
 
 
-    vector<Filesystem*>
-    Filesystem::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
-    {
-	auto pred = [&mountpoint](const Filesystem* filesystem) {
-	    return contains(filesystem->get_mountpoints(), mountpoint);
-	};
-
-	return devicegraph->get_impl().get_devices_of_type_if<Filesystem>(pred);
-    }
-
-
     bool
     is_filesystem(const Device* device)
     {

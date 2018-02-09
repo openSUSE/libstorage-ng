@@ -112,10 +112,6 @@ namespace storage
 	 */
 	const Filesystem* get_filesystem() const;
 
-	std::vector<std::string> get_mountpoints() const ST_DEPRECATED;
-	void set_mountpoints(const std::vector<std::string>& mountpoints) ST_DEPRECATED;
-	void add_mountpoint(const std::string& mountpoint) ST_DEPRECATED;
-
 	MountByType get_mount_by() const ST_DEPRECATED;
 	void set_mount_by(MountByType mount_by) ST_DEPRECATED;
 
@@ -124,9 +120,6 @@ namespace storage
 
 	const std::vector<std::string>& get_fstab_options() const ST_DEPRECATED;
 	void set_fstab_options(const std::vector<std::string>& mount_opts) ST_DEPRECATED;
-
-	static std::vector<Mountable*> find_by_mountpoint(const Devicegraph* devicegraph,
-							  const std::string& mountpoint) ST_DEPRECATED;
 
     public:
 

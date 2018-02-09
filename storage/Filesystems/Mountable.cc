@@ -137,37 +137,6 @@ namespace storage
     }
 
 
-    vector<string>
-    Mountable::get_mountpoints() const
-    {
-	if (has_mount_point())
-	{
-	    const MountPoint* mount_point = get_mount_point();
-	    return vector<string>({ mount_point->get_path() });
-	}
-
-	return vector<string>();
-    }
-
-
-    void
-    Mountable::set_mountpoints(const vector<string>& mountpoints)
-    {
-	if (!mountpoints.empty())
-	    add_mountpoint(mountpoints.front());
-    }
-
-
-    void
-    Mountable::add_mountpoint(const string& mountpoint)
-    {
-	if (has_mount_point())
-	    get_mount_point()->set_path(mountpoint);
-	else
-	    create_mount_point(mountpoint);
-    }
-
-
     MountByType
     Mountable::get_mount_by() const
     {
@@ -222,17 +191,6 @@ namespace storage
     Mountable::set_fstab_options(const vector<string>& mount_opts)
     {
 	set_mount_opts(mount_opts);
-    }
-
-
-    vector<Mountable*>
-    Mountable::find_by_mountpoint(const Devicegraph* devicegraph, const string& mountpoint)
-    {
-	auto pred = [&mountpoint](const Mountable* mountable) {
-	    return contains(mountable->get_mountpoints(), mountpoint);
-	};
-
-	return devicegraph->get_impl().get_devices_of_type_if<Mountable>(pred);
     }
 
 
