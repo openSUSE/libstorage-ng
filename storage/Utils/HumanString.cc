@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,11 +23,14 @@
 
 #include <locale>
 #include <cmath>
+#include <vector>
+#include <sstream>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/Text.h"
 #include "storage/Utils/HumanString.h"
-#include "storage/Utils/Enum.h"
+#include "storage/Utils/Math.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -139,28 +142,102 @@ namespace storage
     {
 	const locale loc = classic ? locale::classic() : locale();
 
-	long double f = size;
-	int i = 0;
+	// Calculate the index of the suffix to use. The index increases by 1
+	// when the number of leading zeros decreases by 10.
 
-	while (f >= 1024.0 && i + 1 < num_suffixes())
+	int i = size > 0 ? (64 - (clz(size) + 1)) / 10 : 0;
+
+	if ((i == 0) || (omit_zeroes && is_multiple_of(size, 1ULL << 10 * i)))
 	{
-	    f /= 1024.0;
-	    i++;
+	    unsigned long long v = size >> 10 * i;
+
+	    std::ostringstream s;
+	    s.imbue(loc);
+	    s << v << ' ' << get_suffix(i, classic);
+	    return s.str();
+	}
+	else
+	{
+	    long double v = std::ldexp((long double)(size), - 10 * i);
+
+	    std::ostringstream s;
+	    s.imbue(loc);
+	    s.setf(ios::fixed);
+	    s.precision(precision);
+	    s << v << ' ' << get_suffix(i, classic);
+	    return s.str();
+	}
+    }
+
+
+    namespace
+    {
+	// Helper functions to parse a number as int or float, multiply
+	// according to the suffix. Do all required error checks.
+
+	pair<bool, unsigned long long>
+	parse_i(const string& str, int i, const locale& loc)
+	{
+	    istringstream s(str);
+	    s.imbue(loc);
+
+	    unsigned long long v;
+	    s >> v;
+
+	    if (!s.eof())
+		return make_pair(false, 0);
+
+	    if (s.fail())
+	    {
+		if (v == std::numeric_limits<unsigned long long>::max())
+		    ST_THROW(OverflowException());
+
+		return make_pair(false, 0);
+	    }
+
+	    if (v != 0 && str[0] == '-')
+		ST_THROW(OverflowException());
+
+	    if (v > 0 && clz(v) < 10 * i)
+		ST_THROW(OverflowException());
+
+	    v <<= 10 * i;
+
+	    return make_pair(true, v);
 	}
 
-	if ((i == 0) || (omit_zeroes && (f == (unsigned long long)(f))))
+
+	pair<bool, unsigned long long>
+	parse_f(const string& str, int i, const locale& loc)
 	{
-	    precision = 0;
+	    istringstream s(str);
+	    s.imbue(loc);
+
+	    long double v;
+	    s >> v;
+
+	    if (!s.eof())
+		return make_pair(false, 0);
+
+	    if (s.fail())
+	    {
+		if (v == std::numeric_limits<long double>::max())
+		    ST_THROW(OverflowException());
+
+		return make_pair(false, 0);
+	    }
+
+	    if (v < 0.0)
+		ST_THROW(OverflowException());
+
+	    v = std::round(std::ldexp(v, 10 * i));
+
+	    if (v > std::numeric_limits<unsigned long long>::max())
+		ST_THROW(OverflowException());
+
+	    return make_pair(true, v);
 	}
 
-	ostringstream s;
-	s.imbue(loc);
-	s.setf(ios::fixed);
-	s.precision(precision);
-
-	s << f << ' ' << get_suffix(i, classic);
-
-	return s.str();
     }
 
 
@@ -170,8 +247,6 @@ namespace storage
 	const locale loc = classic ? locale::classic() : locale();
 
 	const string str_trimmed = boost::trim_copy(str, loc);
-
-	long double f = 1.0;
 
 	for (int i = 0; i < num_suffixes(); ++i)
 	{
@@ -183,30 +258,19 @@ namespace storage
 
 		if (boost::iends_with(str_trimmed, tmp, loc))
 		{
-		    string number = str_trimmed.substr(0, str_trimmed.size() - tmp.size());
+		    string number = boost::trim_copy(str_trimmed.substr(0, str_trimmed.size() - tmp.size()), loc);
 
-		    istringstream s(boost::trim_copy(number, loc));
-		    s.imbue(loc);
+		    pair<bool, unsigned long long> v;
 
-		    long double g;
-		    s >> g;
+		    v = parse_i(number, i, loc);
+		    if (v.first)
+			return v.second;
 
-		    if (!s.fail() && s.eof())
-		    {
-			if (g < 0.0)
-			    ST_THROW(OverflowException());
-
-			long double r = std::round(g * f);
-
-			if (r > std::numeric_limits<unsigned long long>::max())
-			    ST_THROW(OverflowException());
-
-			return r;
-		    }
+		    v = parse_f(number, i, loc);
+		    if (v.first)
+			return v.second;
 		}
 	    }
-
-	    f *= 1024.0;
 	}
 
 	ST_THROW(ParseException("failed to parse", str, "something like 1 GiB"));

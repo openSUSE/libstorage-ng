@@ -16,6 +16,10 @@ using namespace std;
 using namespace storage;
 
 
+// Tests here must work when using double instead of long double in
+// HumanString.cc.
+
+
 class Fixture
 {
 public:
