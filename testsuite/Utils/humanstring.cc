@@ -169,6 +169,16 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
 }
 
 
+BOOST_AUTO_TEST_CASE(test_ridiculous_high_numbers)
+{
+    // The unshifted value fits 80-bit IEEE but the shifted value overflows.
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "1.0E4930 EiB", true), OverflowException);
+
+    // Even the unshifted value is too high for 80-bit (and even 128-bit) IEEE.
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "1.0E5000 B", true), OverflowException);
+}
+
+
 BOOST_AUTO_TEST_CASE(test_negative_numbers)
 {
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1 B", false), OverflowException);
