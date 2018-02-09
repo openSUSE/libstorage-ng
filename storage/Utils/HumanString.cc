@@ -137,6 +137,10 @@ namespace storage
     }
 
 
+    // Both byte_to_humanstring and humanstring_to_byte use integer arithmetic
+    // as long as possible to provide exact results for those cases.
+
+
     string
     byte_to_humanstring(unsigned long long size, bool classic, int precision, bool omit_zeroes)
     {
