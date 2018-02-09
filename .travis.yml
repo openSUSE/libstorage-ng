@@ -8,3 +8,6 @@ before_install:
 script:
   # run the travis script
   - docker run -it -e TRAVIS=1 -e TRAVIS_JOB_ID="$TRAVIS_JOB_ID" libstorage-ng-image ./.travis.sh
+
+git:
+  depth: 9999999
