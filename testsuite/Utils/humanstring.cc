@@ -56,8 +56,14 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, true), "0 B");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 0, false, 2, false), "0 B");
 
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1023, true, 2, true), "1023 B");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1023, true, 2, false), "1023 B");
+
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, true), "1 KiB");
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1024, true, 2, false), "1.00 KiB");
+
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1025, true, 2, true), "1.00 KiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1025, true, 2, false), "1.00 KiB");
 
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 123456789, true, 4, false), "117.7376 MiB");
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 123456789, false, 4, false), "117,7376 MiB");
@@ -69,11 +75,18 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 1000*1024, false, 2, false), "1.000,00 KiB");
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", 1000*1024, false, 2, false), "1'000.00 KiB");
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", 1000*1024, false, 2, false), "1 000,00 Kio");
+
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 50 * MiB, false, 2, false), "50.00 MiB");
+    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 50 * MiB, false, 2, false), "50,00 MiB");
+    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", 50 * MiB, false, 2, false), "50.00 MiB");
+    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", 50 * MiB, false, 2, false), "50,00 Mio");
 }
 
 
 BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 {
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "hello", true), ParseException);
+
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "0 B", true), 0);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "-0 B", true), 0);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "+0 B", true), 0);
@@ -124,16 +137,23 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "12345 GB", false), 13255342817280);
-    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12345 GB", false), ParseException);
+    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "12345 Go", false), 13255342817280);
 }
 
 
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
+    // 1 EiB - 1 B
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1 * EiB - 1 * B, true, 2, true), "1024.00 PiB");
+
     // 1 EiB
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", EiB, true, 2, false), "1.00 EiB");
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1 EiB", true), EiB);
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), EiB);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1 * EiB, true, 2, true), "1 EiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1 * EiB, true, 2, false), "1.00 EiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1 EiB", true), 1 * EiB);
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "1.00 EiB", true), 1 * EiB);
+
+    // 1 EiB + 1 B
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1 * EiB + 1 * B, true, 2, true), "1.00 EiB");
 
     // 16 EiB - 1 B
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 16 * EiB - 1 * B, true, 2, true), "16.00 EiB");
@@ -148,4 +168,5 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
 BOOST_AUTO_TEST_CASE(test_negative_numbers)
 {
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1 B", false), OverflowException);
+    BOOST_CHECK_THROW(test("en_GB.UTF-8", "-1.0 B", false), OverflowException);
 }
