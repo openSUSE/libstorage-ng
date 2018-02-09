@@ -5,17 +5,18 @@ from getopt import getopt, GetoptError
 from subprocess import Popen, PIPE
 from storage import Environment, Storage, ProbeMode_STANDARD, ProbeMode_STANDARD_WRITE_MOCKUP, TargetMode_DIRECT
 from storage import RemoteCallbacks, RemoteCommand, RemoteFile, set_remote_callbacks
-from storage import set_logger, get_logfile_logger
+from storage import set_logger, get_logfile_logger, get_stdout_logger
 
 
 host = "localhost"
+port = "22";
 save_mockup = False
 save_devicegraph = False
 
 
 def run_command(name):
 
-    cmd = "ssh -l root %s %s" % (host, name)
+    cmd = "ssh -l root %s -p %s %s" % (host, port, name)
 
     p = Popen(cmd, shell = True, stdout = PIPE, stderr = PIPE, close_fds = True)
     stdout, stderr = p.communicate()
@@ -28,10 +29,12 @@ def run_command(name):
     # TODO rethink difference between no line and single empty line
 
     if stdout:
+        stdout = stdout.decode("utf-8")
         for line in stdout.split('\n'):
             ret.stdout.push_back(line)
 
     if stderr:
+        stderr = stderr.decode("utf-8")
         for line in stderr.split('\n'):
             ret.stderr.push_back(line)
 
@@ -87,7 +90,7 @@ def usage():
     exit(1)
 
 try:
-    opts, args = getopt(argv[1:], "", ["host=", "save-mockup", "save-devicegraph"])
+    opts, args = getopt(argv[1:], "", ["host=", "port=", "save-mockup", "save-devicegraph"])
 
 except GetoptError:
     usage()
@@ -98,6 +101,8 @@ if len(args) > 0:
 for o, a in opts:
     if o == "--host":
         host = a
+    if o == "--port":
+        port = a
     if o == "--save-mockup":
         save_mockup = True
     if o == "--save-devicegraph":
