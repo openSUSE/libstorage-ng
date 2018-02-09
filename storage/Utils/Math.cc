@@ -27,29 +27,6 @@
 namespace storage
 {
 
-    bool
-    is_power_of_two(unsigned long long i)
-    {
-	return (i != 0) && ((i & (i - 1)) == 0);
-    }
-
-
-    unsigned long long
-    next_power_of_two(unsigned long long i)
-    {
-	i--;
-	i |= i >> 1;
-	i |= i >> 2;
-	i |= i >> 4;
-	i |= i >> 8;
-	i |= i >> 16;
-	i |= i >> 32;
-	i++;
-
-	return i;
-    }
-
-
     unsigned long long
     round_down(unsigned long long i, unsigned long long m)
     {
