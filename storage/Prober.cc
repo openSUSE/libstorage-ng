@@ -223,8 +223,17 @@ namespace storage
     {
 	for (const pending_holder_t& pending_holder : pending_holders)
 	{
-	    BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, pending_holder.name, system_info);
-	    pending_holder.add_holder_func(probed, a, pending_holder.b);
+	    try
+	    {
+		BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, pending_holder.name, system_info);
+		pending_holder.add_holder_func(probed, a, pending_holder.b);
+	    }
+	    catch (const Exception& e)
+	    {
+		y2err("failed to find " << pending_holder.name << " for "
+		      << pending_holder.b->get_displayname());
+		ST_RETHROW(e);
+	    }
 	}
 
 	pending_holders.clear();
