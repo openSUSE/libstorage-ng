@@ -60,9 +60,6 @@ namespace storage
 	 */
 	void set_space_info(const SpaceInfo& space_info);
 
-	static std::vector<Filesystem*> find_by_mountpoint(const Devicegraph* devicegraph,
-							   const std::string& mountpoint) ST_DEPRECATED;
-
     public:
 
 	class Impl;
