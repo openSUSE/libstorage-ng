@@ -38,6 +38,7 @@ mkdir -p package
 rm -f package/*.tar.xz package/*.changes
 
 git2log --changelog --format obs package/$PACKAGE_NAME.changes
+/usr/lib/obs/service/source_validators/helpers/fix_changelog package
 
 if [ ! -d .git ] ; then
   echo no git repo

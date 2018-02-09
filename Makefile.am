@@ -20,6 +20,7 @@ package: libstorage-ng-$(VERSION).tar.xz
 
 changes:
 	utils/git2log --changelog --format obs package/libstorage-ng.changes
+	/usr/lib/obs/service/source_validators/helpers/fix_changelog package
 
 archive:
 	utils/make_package --name libstorage-ng
