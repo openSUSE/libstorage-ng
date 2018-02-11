@@ -145,6 +145,7 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
 }
 
 
+#ifndef __NO_LONG_DOUBLE_MATH
 BOOST_AUTO_TEST_CASE(test_big_numbers)
 {
     // 1 EiB - 1 B
@@ -167,6 +168,7 @@ BOOST_AUTO_TEST_CASE(test_big_numbers)
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "16 EiB", true), OverflowException);
     BOOST_CHECK_THROW(test("en_GB.UTF-8", "18446744073709551616 B", true), OverflowException);
 }
+#endif
 
 
 BOOST_AUTO_TEST_CASE(test_ridiculous_high_numbers)
