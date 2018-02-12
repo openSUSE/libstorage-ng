@@ -78,7 +78,6 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1000*1024, false, 2, false), "1,000.00 KiB");
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 1000*1024, false, 2, false), "1.000,00 KiB");
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", 1000*1024, false, 2, false), "1'000.00 KiB");
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", 1000*1024, false, 2, false), "1 000,00 Kio");
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 50 * MiB, false, 2, false), "50.00 MiB");
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 50 * MiB, false, 2, false), "50,00 MiB");
@@ -114,17 +113,14 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456 kB", false), 126418944);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456 kB", false), 126418944);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456 kB", false), 126418944);
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456 ko", false), 126418944);
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789kB", false), 126419752);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789kB", false), 126419752);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789kB", false), 126419752);
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789ko", false), 126419752);
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "123,456.789 kB", false), 126419752);
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "123.456,789 kB", false), 126419752);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "123'456.789 kB", false), 126419752);
-    BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "123 456,789 ko", false), 126419752);
 
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5Go", false), 5368709120);
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "5 Go", false), 5368709120);
@@ -132,7 +128,6 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_THROW(test("en_US.UTF-8", "5 G B", false), ParseException);
     BOOST_CHECK_THROW(test("de_DE.UTF-8", "12.34 kB", false), ParseException);
     BOOST_CHECK_THROW(test("de_DE.UTF-8", "12'34 kB", false), ParseException);
-    BOOST_CHECK_THROW(test("fr_FR.UTF-8", "12 34 Go", false), ParseException);
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "3.14 G", false), 3371549327);
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", "3.14 GB", false), 3371549327);
