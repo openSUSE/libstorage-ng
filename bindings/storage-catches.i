@@ -234,6 +234,9 @@
 %catches(storage::Exception) storage::Storage::deactivate() const;
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::get_devicegraph(const std::string &name) const;
+%catches(storage::Exception) storage::Storage::get_probed() const;
+%catches(storage::Exception) storage::Storage::get_staging();
+%catches(storage::Exception) storage::Storage::get_staging() const;
 %catches(storage::Exception) storage::Storage::probe();
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);

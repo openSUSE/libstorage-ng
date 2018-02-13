@@ -194,16 +194,22 @@ namespace storage
 
 	/**
 	 * Return the staging devicegraph.
+	 *
+	 * @throw Exception
 	 */
 	Devicegraph* get_staging();
 
 	/**
 	 * Return the staging devicegraph.
+	 *
+	 * @throw Exception
 	 */
 	const Devicegraph* get_staging() const;
 
 	/**
 	 * Return the probed devicegraph.
+	 *
+	 * @throw Exception
 	 */
 	const Devicegraph* get_probed() const;
 
