@@ -14,6 +14,7 @@ using namespace storage;
 
 BOOST_FIXTURE_TEST_SUITE(btrfs_subvolume_sentence, test::CompoundActionFixture)
 
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
     initialize_staging_with_two_partitions();
@@ -23,9 +24,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
     auto subvolume = top_level_subvolume->create_btrfs_subvolume("test");
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, subvolume);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2");
@@ -42,9 +43,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_nocow)
     subvolume->set_nocow(true);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, subvolume);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2 with option 'no copy on write'");
@@ -68,11 +69,11 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
     auto actiongraph = storage->calculate_actiongraph();
 
     auto compound_action = find_compound_action_by_target(actiongraph, subvolume);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Delete subvolume @/tmp on /dev/sda2");
 }
 
-BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE_END()

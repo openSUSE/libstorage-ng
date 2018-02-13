@@ -31,7 +31,7 @@ namespace storage
 		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
 		storage = shared_ptr<Storage>(new Storage(environment));
 		staging = storage->get_staging();
-		
+
 		auto sda = Disk::create(staging, "/dev/sda");
 		auto gpt = to_gpt(sda->create_partition_table(PtType::GPT));
 		sda1 = gpt->create_partition("/dev/sda1", Region(2048, 4 * 2048, 512), PartitionType::PRIMARY);
@@ -78,11 +78,10 @@ namespace storage
 	    Partition* sda1;
 	    Partition* sda2;
 	};
- 
+
     }
 
 }
 
 
 #endif
-

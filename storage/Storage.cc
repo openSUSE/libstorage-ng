@@ -216,7 +216,7 @@ namespace storage
 	CommitOptions commit_options(false);
 	commit(commit_options, commit_callbacks);
     }
-    
+
     void
     Storage::commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks)
     {

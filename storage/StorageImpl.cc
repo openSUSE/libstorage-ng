@@ -366,8 +366,8 @@ namespace storage
 		stringstream tmp;
 		tmp << key_value.second;
 
-		ST_THROW(Exception(sformat("objects with sid %d have different types %s", key_value.first,
-					   tmp.str().c_str())));
+		ST_THROW(Exception(sformat("objects with sid %d have different types %s",
+					   key_value.first, tmp.str().c_str())));
 	    }
 	}
     }
