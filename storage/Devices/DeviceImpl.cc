@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,6 +84,20 @@ namespace storage
     Device::Impl::exists_in_staging() const
     {
 	return exists_in_devicegraph(get_storage()->get_staging());
+    }
+
+
+    bool
+    Device::Impl::exists_in_system() const
+    {
+	return exists_in_devicegraph(get_storage()->get_system());
+    }
+
+
+    Storage*
+    Device::Impl::get_storage()
+    {
+	return get_devicegraph()->get_storage();
     }
 
 

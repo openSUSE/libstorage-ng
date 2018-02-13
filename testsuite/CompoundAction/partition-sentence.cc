@@ -151,7 +151,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
 
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
 
-    auto deleted_partition = Partition::find_by_name(storage->get_probed(), partition_name);
+    auto deleted_partition = Partition::find_by_name(storage->get_system(), partition_name);
 
     auto compound_action = find_compound_action_by_target(actiongraph, deleted_partition);
 

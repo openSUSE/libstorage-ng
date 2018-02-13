@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(disk1)
 
     Storage storage(environment);
 
-    const Devicegraph* lhs = storage.get_probed();
+    Devicegraph* lhs = storage.get_system();
 
     Devicegraph* rhs = storage.get_staging();
 
@@ -41,7 +41,7 @@ BOOST_AUTO_TEST_CASE(disk2)
 
     Storage storage(environment);
 
-    const Devicegraph* lhs = storage.get_probed();
+    Devicegraph* lhs = storage.get_system();
 
     Devicegraph* rhs = storage.get_staging();
 

@@ -40,7 +40,7 @@
 namespace storage
 {
 
-    Storage::Impl::Impl(const Storage& storage, const Environment& environment)
+    Storage::Impl::Impl(Storage& storage, const Environment& environment)
 	: storage(storage), environment(environment), arch(false), default_mount_by(MountByType::UUID),
 	  tmp_dir("libstorage-XXXXXX")
     {
@@ -49,6 +49,7 @@ namespace storage
 
 	create_devicegraph("probed");
 	copy_devicegraph("probed", "staging");
+	copy_devicegraph("probed", "system");
     }
 
 
@@ -153,6 +154,7 @@ namespace storage
 
 	remove_devicegraph("probed");
 	remove_devicegraph("staging");
+	remove_devicegraph("system");
 
 	Devicegraph* probed = create_devicegraph("probed");
 
@@ -195,6 +197,7 @@ namespace storage
 	y2mil("probed devicegraph end");
 
 	copy_devicegraph("probed", "staging");
+	copy_devicegraph("probed", "system");
     }
 
 
@@ -252,6 +255,20 @@ namespace storage
     Storage::Impl::get_probed() const
     {
 	return get_devicegraph("probed");
+    }
+
+
+    Devicegraph*
+    Storage::Impl::get_system()
+    {
+	return get_devicegraph("system");
+    }
+
+
+    const Devicegraph*
+    Storage::Impl::get_system() const
+    {
+	return get_devicegraph("system");
     }
 
 
@@ -391,7 +408,7 @@ namespace storage
     {
 	actiongraph.reset();	// free old actiongraph
 
-	Actiongraph* tmp = new Actiongraph(storage, get_probed(), get_staging());
+	Actiongraph* tmp = new Actiongraph(storage, get_system(), get_staging());
 	tmp->generate_compound_actions();
 
 	actiongraph.reset(tmp);

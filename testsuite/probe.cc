@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE(dependencies)
     storage.probe();
     storage.check();
 
-    BOOST_CHECK_EQUAL(storage.get_devicegraph_names().size(), 2);
+    BOOST_CHECK_EQUAL(storage.get_devicegraph_names().size(), 3);
 
     const Devicegraph* probed = storage.get_probed();
 

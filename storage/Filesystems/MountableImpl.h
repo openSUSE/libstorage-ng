@@ -121,10 +121,10 @@ namespace storage
 	virtual void do_pre_mount() const {}
 
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
-	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const;
+	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, MountPoint* mount_point) const;
 
 	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const;
-	virtual void do_umount(CommitData& commit_data, const MountPoint* mount_point) const;
+	virtual void do_umount(CommitData& commit_data, MountPoint* mount_point) const;
 
 	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
@@ -134,6 +134,9 @@ namespace storage
 
 	virtual Text do_remove_from_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;
+
+	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const;
+	virtual void immediate_deactivate(MountPoint* mount_point) const;
 
     protected:
 

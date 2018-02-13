@@ -124,7 +124,7 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_xfs(const Device *device);
 
-%catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, const Devicegraph *lhs, Devicegraph *rhs);
+%catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, Devicegraph *lhs, Devicegraph *rhs);
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
 %catches(storage::WrongNumberOfChildren, storage::UnsupportedException) storage::BlkDevice::create_blk_filesystem(FsType fs_type);
@@ -188,6 +188,8 @@
 %catches(storage::Exception) storage::MountPoint::get_filesystem() const;
 %catches(storage::Exception) storage::MountPoint::get_mountable();
 %catches(storage::Exception) storage::MountPoint::get_mountable() const;
+%catches(storage::Exception) storage::MountPoint::immediate_activate();
+%catches(storage::Exception) storage::MountPoint::immediate_deactivate();
 %catches(storage::InvalidMountPointPath) storage::MountPoint::set_path(const std::string &path);
 %catches(storage::Exception) storage::Mountable::remove_mount_point();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Multipath::find_by_name(Devicegraph *devicegraph, const std::string &name);
@@ -237,6 +239,8 @@
 %catches(storage::Exception) storage::Storage::get_probed() const;
 %catches(storage::Exception) storage::Storage::get_staging();
 %catches(storage::Exception) storage::Storage::get_staging() const;
+%catches(storage::Exception) storage::Storage::get_system();
+%catches(storage::Exception) storage::Storage::get_system() const;
 %catches(storage::Exception) storage::Storage::probe();
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);

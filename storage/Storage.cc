@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -89,6 +89,20 @@ namespace storage
     Storage::get_probed() const
     {
 	return get_impl().get_probed();
+    }
+
+
+    Devicegraph*
+    Storage::get_system()
+    {
+	return get_impl().get_system();
+    }
+
+
+    const Devicegraph*
+    Storage::get_system() const
+    {
+	return get_impl().get_system();
     }
 
 

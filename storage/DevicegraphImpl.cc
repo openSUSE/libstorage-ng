@@ -277,6 +277,13 @@ namespace storage
 
 
     bool
+    Devicegraph::Impl::is_system() const
+    {
+	return &(get_storage()->get_system()->get_impl()) == this;
+    }
+
+
+    bool
     Devicegraph::Impl::empty() const
     {
 	return boost::num_vertices(graph) == 0;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,7 +104,7 @@ namespace storage
     }
 
 
-    Devicegraph::Devicegraph(const Storage* storage)
+    Devicegraph::Devicegraph(Storage* storage)
 	: impl(new Impl(storage))
     {
 	ST_CHECK_PTR(storage);
@@ -127,6 +127,13 @@ namespace storage
     Devicegraph::operator!=(const Devicegraph& rhs) const
     {
 	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
+    Storage*
+    Devicegraph::get_storage()
+    {
+	return get_impl().get_storage();
     }
 
 

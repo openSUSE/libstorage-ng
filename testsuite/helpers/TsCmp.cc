@@ -201,7 +201,7 @@ namespace storage
 	storage.probe();
 	storage.get_staging()->load(name + "-staging.xml");
 
-	Actiongraph actiongraph(storage, storage.get_probed(), storage.get_staging());
+	Actiongraph actiongraph(storage, storage.get_system(), storage.get_staging());
 
 	if (access("/usr/bin/dot", X_OK) == 0)
 	{

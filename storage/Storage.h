@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -212,6 +212,20 @@ namespace storage
 	 * @throw Exception
 	 */
 	const Devicegraph* get_probed() const;
+
+	/**
+	 * Return the system devicegraph.
+	 *
+	 * @throw Exception
+	 */
+	Devicegraph* get_system();
+
+	/**
+	 * Return the system devicegraph.
+	 *
+	 * @throw Exception
+	 */
+	const Devicegraph* get_system() const;
 
 	/**
 	 * Checks all devicegraphs.

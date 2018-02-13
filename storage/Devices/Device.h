@@ -99,6 +99,11 @@ namespace storage
 	 */
 	bool exists_in_staging() const;
 
+	/**
+	 * Checks if the device exists in the system devicegraph.
+	 */
+	bool exists_in_system() const;
+
 	std::string get_displayname() const;
 
 	/**

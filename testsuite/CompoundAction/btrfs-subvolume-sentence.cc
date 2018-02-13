@@ -57,7 +57,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
     initialize_with_devicegraph("devicegraph.xml");
 
     // Get subvolume @/tmp
-    auto sda2 = Partition::find_by_name(storage->get_probed(), "/dev/sda2");
+    auto sda2 = Partition::find_by_name(storage->get_system(), "/dev/sda2");
     auto btrfs = to_btrfs(sda2->get_blk_filesystem());
     auto subvolume = btrfs->find_btrfs_subvolume_by_path("@/tmp");
 

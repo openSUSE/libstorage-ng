@@ -40,8 +40,8 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
     nfs->remove_descendants();
 
     auto actiongraph = storage->calculate_actiongraph();
-    auto probed_nfs = Nfs::get_all(storage->get_probed())[0];
 
+    auto probed_nfs = Nfs::get_all(storage->get_system())[0];
     auto compound_action = find_compound_action_by_target(actiongraph, probed_nfs);
 
     BOOST_REQUIRE(compound_action);

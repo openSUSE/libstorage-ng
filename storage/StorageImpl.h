@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,7 +44,7 @@ namespace storage
     {
     public:
 
-	Impl(const Storage& storage, const Environment& environment);
+	Impl(Storage& storage, const Environment& environment);
 	~Impl();
 
     public:
@@ -72,6 +72,9 @@ namespace storage
 
 	const Devicegraph* get_probed() const;
 
+	Devicegraph* get_system();
+	const Devicegraph* get_system() const;
+
 	void check(const CheckCallbacks* check_callbacks) const;
 
 	MountByType get_default_mount_by() const { return default_mount_by; }
@@ -98,7 +101,7 @@ namespace storage
 
 	void probe_helper(Devicegraph* probed);
 
-	const Storage& storage;
+	Storage& storage;
 
 	const Environment environment;
 

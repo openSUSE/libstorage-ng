@@ -35,6 +35,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -373,7 +374,7 @@ namespace storage
 
 
     void
-    MountPoint::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options) const
+    MountPoint::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options)
     {
 	get_mountable()->get_impl().do_mount(commit_data, commit_options, get_non_impl());
     }
@@ -387,7 +388,7 @@ namespace storage
 
 
     void
-    MountPoint::Impl::do_umount(CommitData& commit_data) const
+    MountPoint::Impl::do_umount(CommitData& commit_data)
     {
 	get_mountable()->get_impl().do_umount(commit_data, get_non_impl());
     }
@@ -435,6 +436,24 @@ namespace storage
     }
 
 
+    void
+    MountPoint::Impl::immediate_activate()
+    {
+	const MountPoint* tmp_mount_point = redirect_to_system(get_non_impl());
+
+	tmp_mount_point->get_mountable()->get_impl().immediate_activate(get_non_impl());
+    }
+
+
+    void
+    MountPoint::Impl::immediate_deactivate()
+    {
+	const MountPoint* tmp_mount_point = redirect_to_system(get_non_impl());
+
+	tmp_mount_point->get_mountable()->get_impl().immediate_deactivate(get_non_impl());
+    }
+
+
     namespace Action
     {
 
@@ -449,7 +468,7 @@ namespace storage
 	void
 	Mount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
+	    MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
 	    mount_point->get_impl().do_mount(commit_data, commit_options);
 	}
 
@@ -480,7 +499,7 @@ namespace storage
 	void
 	Umount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
+	    MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
 	    mount_point->get_impl().do_umount(commit_data);
 	}
 
