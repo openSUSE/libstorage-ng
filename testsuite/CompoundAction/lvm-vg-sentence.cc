@@ -12,6 +12,7 @@ using namespace storage;
 
 BOOST_FIXTURE_TEST_SUITE(lvm_vg_sentence, test::CompoundActionFixture)
 
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
     initialize_staging_with_two_partitions();
@@ -20,13 +21,13 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
     vg->add_lvm_pv(sda2);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, vg);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create volume group vg-name (496.00 MiB) with /dev/sda2");
 }
 
-BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE_END()

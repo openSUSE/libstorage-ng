@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -213,11 +213,11 @@ namespace storage
     Storage::Impl::get_devicegraph(const string& name)
     {
 	if (name == "probed")
-	    ST_THROW(Exception("invalid name"));
+	    ST_THROW(Exception(sformat("invalid devicegraph name '%s'", name.c_str())));
 
 	map<string, Devicegraph>::iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
-	    ST_THROW(Exception("device graph not found"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name.c_str())));
 
 	return &it->second;
     }
@@ -228,7 +228,7 @@ namespace storage
     {
 	map<string, Devicegraph>::const_iterator it = devicegraphs.find(name);
 	if (it == devicegraphs.end())
-	    ST_THROW(Exception("device graph not found"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name.c_str())));
 
 	return &it->second;
     }
@@ -274,7 +274,7 @@ namespace storage
 	    devicegraphs.emplace(piecewise_construct, forward_as_tuple(name),
 				 forward_as_tuple(&storage));
 	if (!tmp.second)
-	    ST_THROW(Exception("device graph already exists"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' already exists", name.c_str())));
 
 	map<string, Devicegraph>::iterator it = tmp.first;
 
@@ -300,7 +300,7 @@ namespace storage
     {
 	map<string, Devicegraph>::const_iterator it1 = devicegraphs.find(name);
 	if (it1 == devicegraphs.end())
-	    ST_THROW(Exception("device graph not found"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name.c_str())));
 
 	devicegraphs.erase(it1);
     }
@@ -311,11 +311,11 @@ namespace storage
     {
 	map<string, Devicegraph>::iterator it1 = devicegraphs.find(name);
 	if (it1 == devicegraphs.end())
-	    ST_THROW(Exception("device graph not found"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name.c_str())));
 
 	map<string, Devicegraph>::iterator it2 = devicegraphs.find("staging");
 	if (it2 == devicegraphs.end())
-	    ST_THROW(Exception("device graph not found"));
+	    ST_THROW(Exception(sformat("devicegraph '%s' not found", name.c_str())));
 
 	it1->second.get_impl().swap(it2->second.get_impl());
 	devicegraphs.erase(it1);
@@ -366,8 +366,8 @@ namespace storage
 		stringstream tmp;
 		tmp << key_value.second;
 
-		ST_THROW(Exception(sformat("objects with sid %d have different types %s", key_value.first,
-					   tmp.str().c_str())));
+		ST_THROW(Exception(sformat("objects with sid %d have different types %s",
+					   key_value.first, tmp.str().c_str())));
 	    }
 	}
     }

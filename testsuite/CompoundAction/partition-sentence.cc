@@ -17,6 +17,7 @@ using namespace storage;
 
 BOOST_FIXTURE_TEST_SUITE(partition_sentence, test::CompoundActionFixture)
 
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
     initialize_staging_with_two_partitions();
@@ -25,9 +26,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
     ext4->create_mount_point("/test");
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda2);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) for /test with ext4");
@@ -44,9 +45,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
     ext4->create_mount_point("/test");
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda2);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted partition /dev/sda2 (500.00 MiB) for /test with ext4");
@@ -61,9 +62,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_pv)
     lvm_vg->add_lvm_pv(sda2);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda2);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) as LVM physical volume");
@@ -80,9 +81,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption_as_pv)
     lvm_vg->add_lvm_pv(encryption);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda2);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted partition /dev/sda2 (500.00 MiB) as LVM physical volume");
@@ -96,9 +97,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
     sda2->create_blk_filesystem(FsType::SWAP);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda2);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda2 (500.00 MiB) for swap");
@@ -112,9 +113,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_as_bios)
     sda1->set_id(ID_BIOS_BOOT);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, sda1);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create partition /dev/sda1 (4.00 MiB) as BIOS Boot Partition");
@@ -131,9 +132,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_mounting)
     fs->create_mount_point("/home");
 
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, partition);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Mount partition /dev/sda3 (42.27 GiB) at /home");
@@ -151,13 +152,13 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
     const Actiongraph* actiongraph = storage->calculate_actiongraph();
 
     auto deleted_partition = Partition::find_by_name(storage->get_probed(), partition_name);
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, deleted_partition);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Delete partition /dev/sda2 (28.50 GiB)");
 }
 
-BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE_END()

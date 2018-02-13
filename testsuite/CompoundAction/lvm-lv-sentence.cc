@@ -20,6 +20,7 @@ using namespace storage;
 
 BOOST_FIXTURE_TEST_SUITE(lvm_lv_sentence, test::CompoundActionFixture)
 
+
 BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 {
     initialize_staging_with_two_partitions();
@@ -31,9 +32,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
     ext4->create_mount_point("/test");
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, lv);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create LVM logical volume /dev/vg-name/lv-name (10.00 GiB) on volume group vg-name for /test with ext4");
@@ -52,9 +53,9 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_encryption)
     ext4->create_mount_point("/test");
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, lv);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create encrypted LVM logical volume /dev/vg-name/lv-name (10.00 GiB) on volume group vg-name for /test with ext4");
@@ -71,13 +72,13 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_with_swap)
     lv->create_blk_filesystem(FsType::SWAP);
 
     auto actiongraph = storage->calculate_actiongraph();
-    
+
     auto compound_action = find_compound_action_by_target(actiongraph, lv);
-    
+
     BOOST_REQUIRE(compound_action);
 
     BOOST_CHECK_EQUAL(compound_action->sentence(), "Create LVM logical volume /dev/vg-name/lv-name (2.00 GiB) on volume group vg-name for swap");
 }
 
-BOOST_AUTO_TEST_SUITE_END()
 
+BOOST_AUTO_TEST_SUITE_END()
