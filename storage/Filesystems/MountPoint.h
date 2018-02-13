@@ -103,7 +103,14 @@ namespace storage
 
 	int get_passno() const;
 
+	/**
+	 * Return whether the mount point is active (mounted).
+	 */
 	bool is_active() const;
+
+	/**
+	 * Sets whether the mount point is active (mounted).
+	 */
 	void set_active(bool active);
 
 	/**
