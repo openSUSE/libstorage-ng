@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -66,6 +66,14 @@ namespace storage
 
 	const std::vector<std::string>& get_udev_paths() const;
 	const std::vector<std::string>& get_udev_ids() const;
+
+	/**
+	 * Checks whether the blk device is in general usable as a blk
+	 * device. This is not the case for some DASDs, see doc/dasd.md.
+	 *
+	 * Does not consider if the blk device is already in use.
+	 */
+	bool is_usable_as_blk_device() const;
 
 	/**
 	 * Return device-mapper table name (dm-table-name for short). Empty if

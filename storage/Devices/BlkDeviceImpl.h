@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,6 +58,8 @@ namespace storage
 	virtual string get_sort_key() const override { return get_name(); }
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
+
+	virtual bool is_usable_as_blk_device() const { return true; }
 
 	const string& get_name() const { return name; }
 	void set_name(const string& name);
