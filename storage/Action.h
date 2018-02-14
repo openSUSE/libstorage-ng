@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -94,7 +94,7 @@ namespace storage
 	     * Returns the device of the action on the RHS devicegraph.
 	     */
 	    Device* get_device(const Actiongraph::Impl& actiongraph) const
-		{ return actiongraph.get_devicegraph_rhs()->find_device(sid); }
+		{ return actiongraph.get_devicegraph(RHS)->find_device(sid); }
 
 	};
 
@@ -106,9 +106,9 @@ namespace storage
 	    Modify(sid_t sid, bool only_sync = false) : Base(sid, only_sync) {}
 
 	    /**
-	     * Returns the device of the action on the Lhs or RHS devicegraph. May not exist.
+	     * Returns the device of the action on the LHS or RHS devicegraph. May not exist.
 	     */
-	    const Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const
+	    Device* get_device(const Actiongraph::Impl& actiongraph, Side side) const
 		{ return actiongraph.get_devicegraph(side)->find_device(sid); }
 
 	};
@@ -146,7 +146,7 @@ namespace storage
 	    /**
 	     * Returns the device of the action on the LHS devicegraph.
 	     */
-	    const Device* get_device(const Actiongraph::Impl& actiongraph) const
+	    Device* get_device(const Actiongraph::Impl& actiongraph) const
 		{ return actiongraph.get_devicegraph(LHS)->find_device(sid); }
 
 	};

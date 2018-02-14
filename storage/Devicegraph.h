@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -155,12 +155,13 @@ namespace storage
 
     public:
 
-	Devicegraph(const Storage* storage);
+	Devicegraph(Storage* storage);
 	~Devicegraph();
 
 	bool operator==(const Devicegraph& rhs) const;
 	bool operator!=(const Devicegraph& rhs) const;
 
+	Storage* get_storage();
 	const Storage* get_storage() const;
 
 	/**

@@ -112,14 +112,11 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs);
+	Impl(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs);
 
 	const Storage& get_storage() const { return storage; }
 
-	const Devicegraph* get_devicegraph(Side side) const { return side == LHS ? lhs : rhs; }
-
-	Devicegraph* get_devicegraph_rhs() const { return rhs; }
-	const Devicegraph* get_devicegraph_lhs() const { return lhs; }
+	Devicegraph* get_devicegraph(Side side) const { return side == LHS ? lhs : rhs; }
 
 	bool exists_in(const Device* device, Side side) const;
 
@@ -192,7 +189,7 @@ namespace storage
 
 	const Storage& storage;
 
-	const Devicegraph* lhs;
+	Devicegraph* lhs;
 	Devicegraph* rhs;
 
 	typedef deque<vertex_descriptor> Order;

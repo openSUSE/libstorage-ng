@@ -105,7 +105,9 @@ namespace storage
 	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
 	bool exists_in_probed() const;
 	bool exists_in_staging() const;
+	bool exists_in_system() const;
 
+	Storage* get_storage();
 	const Storage* get_storage() const;
 
 	sid_t get_sid() const { return sid; }

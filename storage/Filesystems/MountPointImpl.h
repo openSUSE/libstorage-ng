@@ -115,10 +115,10 @@ namespace storage
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual Text do_mount_text(Tense tense) const;
-	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options) const;
+	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options);
 
 	virtual Text do_umount_text(Tense tense) const;
-	virtual void do_umount(CommitData& commit_data) const;
+	virtual void do_umount(CommitData& commit_data);
 
 	virtual Text do_add_to_etc_fstab_text(Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data) const;
@@ -128,6 +128,9 @@ namespace storage
 
 	virtual Text do_remove_from_etc_fstab_text(Tense tense) const;
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data) const;
+
+	virtual void immediate_activate();
+	virtual void immediate_deactivate();
 
     protected:
 

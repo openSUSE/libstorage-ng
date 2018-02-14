@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,19 @@ namespace storage
      * Finds the device corresponding to original in devicegraph.
      */
     template<class Type>
+    Type*
+    redirect_to(Devicegraph* devicegraph, Type* original)
+    {
+	sid_t sid = original->get_sid();
+	Device* device = devicegraph->find_device(sid);
+	return dynamic_cast<Type*>(device);
+    }
+
+
+    /**
+     * Finds the device corresponding to original in devicegraph.
+     */
+    template<class Type>
     const Type*
     redirect_to(const Devicegraph* devicegraph, const Type* original)
     {
@@ -53,6 +66,30 @@ namespace storage
     {
 	const Devicegraph* probed = original->get_impl().get_storage()->get_probed();
 	return redirect_to<Type>(probed, original);
+    }
+
+
+    /**
+     * Finds the device corresponding to original in the system devicegraph.
+     */
+    template<class Type>
+    Type*
+    redirect_to_system(Type* original)
+    {
+	Devicegraph* system = original->get_impl().get_storage()->get_system();
+	return redirect_to<Type>(system, original);
+    }
+
+
+    /**
+     * Finds the device corresponding to original in the system devicegraph.
+     */
+    template<class Type>
+    const Type*
+    redirect_to_system(const Type* original)
+    {
+	const Devicegraph* system = original->get_impl().get_storage()->get_system();
+	return redirect_to<Type>(system, original);
     }
 
 }

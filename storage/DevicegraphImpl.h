@@ -75,7 +75,7 @@ namespace storage
 
 	typedef graph_t::vertices_size_type vertices_size_type;
 
-	Impl(const Storage* storage) : storage(storage) {}
+	Impl(Storage* storage) : storage(storage) {}
 
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
@@ -95,6 +95,11 @@ namespace storage
 	 * Check if this devicegraph is the staging devicegraph.
 	 */
 	bool is_staging() const;
+
+	/**
+	 * Check if this devicegraph is the system devicegraph.
+	 */
+	bool is_system() const;
 
 	bool empty() const;
 
@@ -271,13 +276,14 @@ namespace storage
 
 	void swap(Devicegraph::Impl& x);
 
+	Storage* get_storage() { return storage; }
 	const Storage* get_storage() const { return storage; }
 
 	graph_t graph;		// TODO private?
 
     private:
 
-	const Storage* storage;
+	Storage* storage;
 
     };
 

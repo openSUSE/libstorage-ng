@@ -78,14 +78,14 @@ doit_actiongraph(const string& filename_lhs, const string& filename_rhs)
     Storage storage(environment);
     storage.probe();
 
-    const Devicegraph* probed = storage.get_probed();
-    cout << *probed << '\n';
+    Devicegraph* system = storage.get_system();
+    cout << *system << '\n';
 
     Devicegraph* staging = storage.get_staging();
     staging->load(filename_rhs);
     cout << *staging << '\n';
 
-    Actiongraph actiongraph(storage, probed, staging);
+    Actiongraph actiongraph(storage, system, staging);
 
     const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 

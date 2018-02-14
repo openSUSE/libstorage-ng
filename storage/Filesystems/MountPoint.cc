@@ -238,6 +238,21 @@ namespace storage
 	return devicegraph->get_impl().get_devices_of_type_if<const MountPoint>(pred);
     }
 
+
+    void
+    MountPoint::immediate_activate()
+    {
+	return get_impl().immediate_activate();
+    }
+
+
+    void
+    MountPoint::immediate_deactivate()
+    {
+	return get_impl().immediate_deactivate();
+    }
+
+
     bool
     is_mount_point(const Device* device)
     {

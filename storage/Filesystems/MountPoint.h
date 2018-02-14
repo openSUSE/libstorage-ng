@@ -157,6 +157,28 @@ namespace storage
 	static std::vector<const MountPoint*> find_by_path(const Devicegraph* devicegraph,
 							   const std::string& path);
 
+	/**
+	 * Immediately activate (mount) the mount point. In contrast to
+	 * set_active() this function acts immediately and does not require
+	 * calling commit().
+	 *
+	 * The mount point object must exist in the probed devicegraph.
+	 *
+	 * @throw Exception
+	 */
+	void immediate_activate();
+
+	/**
+	 * Immediately deactivate (unmount) the mount point object. In
+	 * contrast to set_active() this function acts immediately and does
+	 * not require calling commit().
+	 *
+	 * The mount point object must exist in the probed devicegraph.
+	 *
+	 * @throw Exception
+	 */
+	void immediate_deactivate();
+
     public:
 
 	class Impl;

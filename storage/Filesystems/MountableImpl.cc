@@ -194,30 +194,10 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options, const MountPoint* mount_point) const
+    Mountable::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options,
+			      MountPoint* mount_point) const
     {
-	const Storage& storage = commit_data.actiongraph.get_storage();
-
-	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
-	if (access(real_mount_point.c_str(), R_OK) != 0)
-	{
-	    createPath(real_mount_point);
-	}
-
-	do_pre_mount();
-	wait_for_devices();
-
-	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
-	if (!mount_point->get_mount_options().empty()) {
-	    MountOpts mount_opts = mount_point->get_impl().get_mount_options();
-	    if (commit_options.force_rw) mount_opts.remove("ro");
-	    cmd_line += " -o " + quote(mount_opts.format());
-	}
-	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("mount failed"));
+	immediate_activate(mount_point);
 
 	if (mount_point->get_path() == "/")
 	{
@@ -246,17 +226,9 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_umount(CommitData& commit_data, const MountPoint* mount_point) const
+    Mountable::Impl::do_umount(CommitData& commit_data, MountPoint* mount_point) const
     {
-	const Storage& storage = commit_data.actiongraph.get_storage();
-
-	string real_mount_point = storage.get_impl().prepend_rootprefix(mount_point->get_path());
-
-	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("umount failed"));
+	immediate_deactivate(mount_point);
     }
 
 
@@ -364,6 +336,57 @@ namespace storage
     }
 
 
+    void
+    Mountable::Impl::immediate_activate(MountPoint* mount_point, bool force_rw) const
+    {
+	const Storage* storage = get_devicegraph()->get_storage();
+
+	string real_mount_point = storage->get_impl().prepend_rootprefix(mount_point->get_path());
+	if (access(real_mount_point.c_str(), R_OK) != 0)
+	{
+	    createPath(real_mount_point);
+	}
+
+	do_pre_mount();
+	wait_for_devices();
+
+	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
+
+	MountOpts mount_opts = mount_point->get_impl().get_mount_options();
+	if (force_rw)
+	    mount_opts.remove("ro");
+	if (!mount_opts.empty())
+	    cmd_line += " -o " + quote(mount_opts.format());
+
+	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("mount failed"));
+
+	if (exists_in_system())
+	    redirect_to_system(mount_point)->set_active(true);
+    }
+
+
+    void
+    Mountable::Impl::immediate_deactivate(MountPoint* mount_point) const
+    {
+	const Storage* storage = get_devicegraph()->get_storage();
+
+	string real_mount_point = storage->get_impl().prepend_rootprefix(mount_point->get_path());
+
+	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("umount failed"));
+
+	if (exists_in_system())
+	    redirect_to_system(mount_point)->set_active(false);
+    }
+
+
     EnsureMounted::EnsureMounted(const Mountable* mountable, bool read_only)
 	: mountable(mountable), tmp_mount()
     {
@@ -371,34 +394,34 @@ namespace storage
 
 	bool need_mount = false;
 
-	if (mountable->get_impl().get_devicegraph()->get_impl().is_probed())
+	if (mountable->get_impl().get_devicegraph()->get_impl().is_system())
 	{
-	    // Called on probed devicegraph.
+	    // Called on system devicegraph.
 
 	    need_mount = !mountable_has_active_mount_point();
 	}
 	else
 	{
-	    // Not called on probed devicegraph.
+	    // Not called on system devicegraph.
 
 	    if (is_blk_filesystem(mountable))
 	    {
 		// The names of BlkDevices may have changed so redirect to the
-		// Mountable in the probed devicegraph.
+		// Mountable in the system devicegraph.
 
-		mountable = redirect_to_probed(mountable);
+		mountable = redirect_to_system(mountable);
 		need_mount = !mountable_has_active_mount_point();
 	    }
 	    else
 	    {
 		// Nfs can be temporarily mounted on any devicegraph. But the
-		// list of mountpoints is only useful for the probed
+		// list of mountpoints is only useful for the system
 		// devicegraph, so redirect if the mountable exists there to
 		// avoid unnecessary temporary mounts.
 
-		if (mountable->exists_in_probed())
+		if (mountable->exists_in_system())
 		{
-		    mountable = redirect_to_probed(mountable);
+		    mountable = redirect_to_system(mountable);
 		    need_mount = !mountable_has_active_mount_point();
 		}
 		else

@@ -121,7 +121,7 @@ namespace storage
     }
 
 
-    Actiongraph::Impl::Impl(const Storage& storage, const Devicegraph* lhs, Devicegraph* rhs)
+    Actiongraph::Impl::Impl(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
 	CheckCallbacksLogger check_callbacks_logger;

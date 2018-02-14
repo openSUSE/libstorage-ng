@@ -23,6 +23,7 @@
 
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/SwapImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/Utils/StorageDefines.h"
@@ -31,6 +32,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -104,35 +106,6 @@ namespace storage
 
 
     void
-    Swap::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options,
-        const MountPoint* mount_point) const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
-
-	wait_for_devices();
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("swapon failed"));
-    }
-
-
-    void
-    Swap::Impl::do_umount(CommitData& commit_data, const MountPoint* mount_point) const
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
-
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("swapoff failed"));
-    }
-
-
-    void
     Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();
@@ -178,6 +151,40 @@ namespace storage
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("set-uuid swap failed"));
+    }
+
+
+    void
+    Swap::Impl::immediate_activate(MountPoint* mount_point, bool force_rw) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = SWAPONBIN " --fixpgsz " + quote(blk_device->get_name());
+
+	wait_for_devices();
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("swapon failed"));
+
+	if (exists_in_system())
+	    redirect_to_system(mount_point)->set_active(true);
+    }
+
+
+    void
+    Swap::Impl::immediate_deactivate(MountPoint* mount_point) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line);
+	if (cmd.retcode() != 0)
+	    ST_THROW(Exception("swapoff failed"));
+
+	if (exists_in_system())
+	    redirect_to_system(mount_point)->set_active(false);
     }
 
 }

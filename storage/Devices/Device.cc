@@ -94,6 +94,13 @@ namespace storage
     }
 
 
+    bool
+    Device::exists_in_system() const
+    {
+	return get_impl().exists_in_system();
+    }
+
+
     void
     Device::create(Devicegraph* devicegraph)
     {

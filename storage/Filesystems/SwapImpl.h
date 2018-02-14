@@ -85,16 +85,14 @@ namespace storage
 
 	virtual void do_create() override;
 
-	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options,
-	                      const MountPoint* mount_point) const override;
-
-	virtual void do_umount(CommitData& commit_data, const MountPoint* mount_point) const override;
-
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
 	virtual void do_set_label() const override;
 
 	virtual void do_set_uuid() const override;
+
+	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const override;
+	virtual void immediate_deactivate(MountPoint* mount_point) const override;
 
     };
 
