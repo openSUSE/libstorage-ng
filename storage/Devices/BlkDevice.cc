@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -82,6 +82,13 @@ namespace storage
 	SystemInfo system_info;
 
 	return BlkDevice::Impl::find_by_any_name(devicegraph, name, system_info);
+    }
+
+
+    bool
+    BlkDevice::is_usable_as_blk_device() const
+    {
+	return get_impl().is_usable_as_blk_device();
     }
 
 

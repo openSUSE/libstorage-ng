@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,6 +46,15 @@ namespace storage
 
 	unsigned int get_range() const;
 	void set_range(unsigned int range);
+
+	/**
+	 * Checks whether the partitionable is in general usable as a
+	 * partitionable (can hold a partition table). This is not the case
+	 * for some DASDs, see doc/dasd.md.
+	 *
+	 * Does not consider if the partitionable is already in use.
+	 */
+	bool is_usable_as_partitionable() const;
 
 	/**
 	 * Get the default partition table type for the partitionable.
