@@ -106,21 +106,6 @@ namespace storage
 
 
     void
-    Swap::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options,
-			 MountPoint* mount_point) const
-    {
-	immediate_activate(mount_point);
-    }
-
-
-    void
-    Swap::Impl::do_umount(CommitData& commit_data, MountPoint* mount_point) const
-    {
-	immediate_deactivate(mount_point);
-    }
-
-
-    void
     Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
     {
 	const BlkDevice* blk_device = get_blk_device();
