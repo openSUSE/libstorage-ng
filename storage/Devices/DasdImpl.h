@@ -78,6 +78,8 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const override { return false; }
 
+	virtual bool is_usable_as_partitionable() const override;
+
 	virtual vector<PtType> get_possible_partition_table_types() const override;
 
 	static void probe_dasds(Prober& prober);

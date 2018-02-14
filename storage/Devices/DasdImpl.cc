@@ -122,6 +122,19 @@ namespace storage
     }
 
 
+    bool
+    Dasd::Impl::is_usable_as_partitionable() const
+    {
+	if (type == DasdType::ECKD && (format == DasdFormat::CDL || format == DasdFormat::LDL))
+	    return true;
+
+	if (type == DasdType::FBA)
+	    return true;
+
+	return false;
+    }
+
+
     vector<PtType>
     Dasd::Impl::get_possible_partition_table_types() const
     {

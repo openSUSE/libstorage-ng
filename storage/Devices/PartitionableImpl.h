@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,6 +52,8 @@ namespace storage
 
 	unsigned int get_range() const { return range; }
 	void set_range(unsigned int range) { Impl::range = range; }
+
+	virtual bool is_usable_as_partitionable() const { return true; }
 
 	PtType get_default_partition_table_type() const;
 
