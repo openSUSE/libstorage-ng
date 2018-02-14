@@ -560,13 +560,13 @@ namespace storage
 
 	    case LvType::THIN_POOL:
 	    {
-		if (exists_in_probed())
+		if (exists_in_system())
 		{
 		    // Shrinking thin pools is not supported by LVM. Since the
 		    // metadata is already on disk and does not get resized no
 		    // need to handle them here.
 
-		    const LvmLv* tmp_lvm_lv = to_lvm_lv(redirect_to_probed(get_non_impl()));
+		    const LvmLv* tmp_lvm_lv = to_lvm_lv(redirect_to_system(get_non_impl()));
 
 		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
 						    number_of_extents()) * extent_size;

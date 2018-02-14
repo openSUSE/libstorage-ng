@@ -677,7 +677,7 @@ namespace storage
 	// action to be generated. Operations changing the RAID size are not
 	// supported.
 
-	if (exists_in_probed())
+	if (exists_in_system())
 	    return;
 
 	vector<BlkDevice*> devices = get_devices();

@@ -90,8 +90,8 @@ BOOST_AUTO_TEST_CASE(test2)
 
     lvm_vg->get_impl().set_reserved_extents(2);
 
-    storage.remove_devicegraph("probed");
-    storage.copy_devicegraph("staging", "probed");
+    storage.remove_devicegraph("system");
+    storage.copy_devicegraph("staging", "system");
 
     {
 	ResizeInfo resize_info = normal->detect_resize_info();

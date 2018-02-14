@@ -325,7 +325,7 @@ namespace storage
     ResizeInfo
     Btrfs::Impl::detect_resize_info_on_disk() const
     {
-	if (!get_devicegraph()->get_impl().is_probed())
+	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
 
 	// TODO btrfs provides a command to query the min size (btrfs
