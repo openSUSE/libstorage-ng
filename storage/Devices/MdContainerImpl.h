@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +49,8 @@ namespace storage
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
+
+	virtual bool is_usable_as_blk_device() const override { return false; }
 
 	vector<MdMember*> get_md_members();
 	vector<const MdMember*> get_md_members() const;

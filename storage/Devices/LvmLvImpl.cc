@@ -112,6 +112,13 @@ namespace storage
     }
 
 
+    bool
+    LvmLv::Impl::is_usable_as_blk_device() const
+    {
+	return lv_type == LvType::NORMAL || lv_type == LvType::THIN || lv_type == LvType::RAID;
+    }
+
+
     void
     LvmLv::Impl::check(const CheckCallbacks* check_callbacks) const
     {
