@@ -24,12 +24,8 @@ blk_filesystem = sdb1.get_blk_filesystem()
 
 mount_point = blk_filesystem.get_mount_point()
 
-print(mount_point.is_active())
-
 if mount_point.is_active():
     mount_point.immediate_deactivate()
 else:
     mount_point.immediate_activate()
-
-print(mount_point.is_active())
 
