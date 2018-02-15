@@ -58,18 +58,6 @@ namespace storage
 
 
     /**
-     * Finds the device corresponding to original in the probed devicegraph.
-     */
-    template<class Type>
-    const Type*
-    redirect_to_probed(const Type* original)
-    {
-	const Devicegraph* probed = original->get_impl().get_storage()->get_probed();
-	return redirect_to<Type>(probed, original);
-    }
-
-
-    /**
      * Finds the device corresponding to original in the system devicegraph.
      */
     template<class Type>

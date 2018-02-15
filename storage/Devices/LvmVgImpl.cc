@@ -177,7 +177,7 @@ namespace storage
 	    // metadata size. For thin pools that do exist in probed the
 	    // metadata size is included in reserved_extents.
 
-	    if (lvm_lv->get_lv_type() == LvType::THIN_POOL && !lvm_lv->exists_in_probed())
+	    if (lvm_lv->get_lv_type() == LvType::THIN_POOL && !lvm_lv->exists_in_system())
 	    {
 		unsigned long long metadata_size = lvm_lv->get_impl().default_metadata_size();
 		unsigned long long metadata_extents = metadata_size / extent_size;

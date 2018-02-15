@@ -214,7 +214,7 @@ namespace storage
     bool
     EtcMdadm::has_iscsi(const Storage* storage) const
     {
-	for (const Disk* disk : Disk::get_all(storage->get_probed()))
+	for (const Disk* disk : Disk::get_all(storage->get_system()))
 	{
 	    if (disk->get_transport() == Transport::ISCSI)
 		return true;

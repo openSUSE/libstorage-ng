@@ -35,8 +35,8 @@ BOOST_AUTO_TEST_CASE(test_delete)
 
     gpt->create_partition("/dev/sda2", Region(2099200, 2097152, 512), PartitionType::PRIMARY);
 
-    storage.remove_devicegraph("probed");
-    storage.copy_devicegraph("staging", "probed");
+    storage.remove_devicegraph("system");
+    storage.copy_devicegraph("staging", "system");
 
     staging = storage.get_staging();
     sda = Disk::find_by_name(staging, "/dev/sda");

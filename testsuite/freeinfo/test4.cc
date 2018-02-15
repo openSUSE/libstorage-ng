@@ -47,8 +47,8 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     Partition* sda3 = msdos->create_partition("/dev/sda3", Region(80 * spg, 40 * spg, 512), PartitionType::PRIMARY);
     sda3->create_blk_filesystem(FsType::SWAP);
 
-    storage.remove_devicegraph("probed");
-    storage.copy_devicegraph("staging", "probed");
+    storage.remove_devicegraph("system");
+    storage.copy_devicegraph("staging", "system");
 
     {
 	ResizeInfo resize_info = sda1->detect_resize_info();

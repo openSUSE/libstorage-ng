@@ -159,7 +159,7 @@ namespace storage
 		unsigned int number = tmp->get_number();
 
 		if ((type == PartitionType::PRIMARY || type == PartitionType::EXTENDED) &&
-		    number > old_number && !tmp->exists_in_probed())
+		    number > old_number && !tmp->exists_in_system())
 		{
 		    tmp->get_impl().set_number(old_number);
 		    old_number = number;

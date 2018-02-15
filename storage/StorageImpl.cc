@@ -156,7 +156,15 @@ namespace storage
 	remove_devicegraph("staging");
 	remove_devicegraph("system");
 
-	Devicegraph* probed = create_devicegraph("probed");
+	// The system devicegraph is created and used for probing since it is
+	// needed in EnsureMounted.
+
+	// TODO The change from using probed to using system should be
+	// reflected at many places, e.g. variable names and file
+	// names. Ideally probed should just be a read-only copy of system not
+	// further used in the library. Or find a better solution.
+
+	Devicegraph* probed = create_devicegraph("system");
 
 	switch (environment.get_probe_mode())
 	{
@@ -196,8 +204,8 @@ namespace storage
 	y2mil(*probed);
 	y2mil("probed devicegraph end");
 
-	copy_devicegraph("probed", "staging");
-	copy_devicegraph("probed", "system");
+	copy_devicegraph("system", "staging");
+	copy_devicegraph("system", "probed");
     }
 
 

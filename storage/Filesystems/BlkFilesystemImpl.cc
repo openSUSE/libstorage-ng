@@ -210,14 +210,14 @@ namespace storage
 	 * reporting min and max size would be nice (LOL).
 	 */
 
-	if (!exists_in_probed())
+	if (!exists_in_system())
 	{
 	    return ResizeInfo(true, min_size(), max_size());
 	}
 
 	if (!resize_info.has_value())
 	{
-	    const BlkFilesystem* tmp_blk_filesystem = redirect_to_probed(get_non_impl());
+	    const BlkFilesystem* tmp_blk_filesystem = redirect_to_system(get_non_impl());
 
 	    ResizeInfo tmp_resize_info = tmp_blk_filesystem->get_impl().detect_resize_info_on_disk();
 
@@ -235,7 +235,7 @@ namespace storage
     {
 	// TODO only in real probe mode allowed
 
-	if (!get_devicegraph()->get_impl().is_probed())
+	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
 
 	ResizeInfo resize_info(true, min_size(), max_size());

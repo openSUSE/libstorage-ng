@@ -173,7 +173,7 @@ namespace storage
 	// Currently we only support growing if the physical volume is already
 	// on disk - shrinking is more complicated.
 
-	if (exists_in_probed())
+	if (exists_in_system())
 	{
 	    resize_info.min_size = get_blk_device()->get_size();
 	}
