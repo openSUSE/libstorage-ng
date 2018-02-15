@@ -183,7 +183,7 @@ namespace storage
 			it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
 			it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
 			it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
-			it->second.fs_type != FsType::UDF)
+			it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS)
 		    {
 			y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
 			      blk_device->get_name());

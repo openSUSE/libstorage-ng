@@ -73,6 +73,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_iso9660(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_jfs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_jfs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_luks(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_lvm_lv(Device *device);
