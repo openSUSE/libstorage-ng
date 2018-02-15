@@ -69,6 +69,8 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
+	virtual bool is_usable_as_blk_device() const override;
+
 	const LvmVg* get_lvm_vg() const;
 
 	const LvmLv* get_thin_pool() const;

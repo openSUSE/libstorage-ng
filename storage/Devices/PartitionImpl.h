@@ -70,6 +70,8 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
+	virtual bool is_usable_as_blk_device() const override;
+
 	unsigned int get_number() const;
 	void set_number(unsigned int number);
 

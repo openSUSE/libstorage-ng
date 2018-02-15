@@ -125,6 +125,13 @@ namespace storage
     }
 
 
+    bool
+    Partition::Impl::is_usable_as_blk_device() const
+    {
+	return type == PartitionType::PRIMARY || type == PartitionType::LOGICAL;
+    }
+
+
     void
     Partition::Impl::check(const CheckCallbacks* check_callbacks) const
     {

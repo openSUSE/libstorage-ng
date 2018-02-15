@@ -69,7 +69,9 @@ namespace storage
 
 	/**
 	 * Checks whether the blk device is in general usable as a blk
-	 * device. This is not the case for some DASDs, see doc/dasd.md.
+	 * device. This is not the case for some DASDs, see doc/dasd.md,
+	 * extended partitions, LVM thin pools and MD RAID containers, see
+	 * doc/md-raid.md.
 	 *
 	 * Does not consider if the blk device is already in use.
 	 */
