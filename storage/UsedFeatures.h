@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,7 @@ enum : uint64_t
     UF_NTFS = 1 << 7,
     UF_VFAT = 1 << 8,
     UF_NFS = 1 << 9,
+    UF_JFS = 1 << 10,
 
     UF_LUKS = 1 << 11,
 

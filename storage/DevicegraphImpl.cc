@@ -63,6 +63,7 @@
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
+#include "storage/Filesystems/Jfs.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
@@ -691,6 +692,7 @@ namespace storage
 	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
 	{ "Reiserfs", &Reiserfs::load },
 	{ "Xfs", &Xfs::load },
+	{ "Jfs", &Jfs::load },
 	{ "Swap", &Swap::load },
 	{ "Iso9660", &Iso9660::load },
 	{ "Udf", &Udf::load },

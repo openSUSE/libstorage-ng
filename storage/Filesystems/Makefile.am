@@ -29,6 +29,8 @@ libfilesystems_la_SOURCES =				\
 	ReiserfsImpl.h		ReiserfsImpl.cc		\
 	Xfs.h			Xfs.cc			\
 	XfsImpl.h		XfsImpl.cc		\
+	Jfs.h			Jfs.cc			\
+	JfsImpl.h		JfsImpl.cc		\
 	Ntfs.h			Ntfs.cc			\
 	NtfsImpl.h		NtfsImpl.cc		\
 	Vfat.h			Vfat.cc			\

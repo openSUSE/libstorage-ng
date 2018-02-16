@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -111,6 +111,7 @@
 #define TUNE2FSBIN     "/sbin/tune2fs"
 #define TUNEREISERFSBIN "/sbin/reiserfstune"
 #define XFSADMINBIN    "/usr/sbin/xfs_admin"
+#define TUNEJFSBIN "/sbin/jfs_tune"
 #define NTFSLABELBIN   "/usr/sbin/ntfslabel"
 #define FATLABELBIN	"/usr/sbin/fatlabel"
 #define SWAPLABELBIN   "/sbin/swaplabel"
@@ -124,6 +125,7 @@
 
 #define MKSWAPBIN      "/sbin/mkswap"
 #define MKFSXFSBIN     "/sbin/mkfs.xfs"
+#define MKFSJFSBIN "/sbin/mkfs.jfs"
 #define MKFSFATBIN	"/sbin/mkfs.fat"
 #define MKFSNTFSBIN	"/sbin/mkfs.ntfs"
 #define MKFSREISERFSBIN "/sbin/mkreiserfs"
