@@ -1072,8 +1072,8 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 	const PartitionTable* partition_table = get_partition_table();
 
-	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " unit s "
-	    "resizepart " + to_string(get_number()) + " ";
+	string cmd_line = PARTEDBIN " --script --ignore-busy " + quote(partitionable->get_name()) +
+	    " unit s resizepart " + to_string(get_number()) + " ";
 
 	// See fix_dasd_sector_size() in class Parted.
 	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
