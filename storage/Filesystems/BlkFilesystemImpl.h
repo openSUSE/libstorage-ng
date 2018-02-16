@@ -55,6 +55,9 @@ namespace storage
 	bool supports_shrink() const { return supports_mounted_shrink() || supports_unmounted_shrink(); }
 	bool supports_grow() const { return supports_mounted_grow() || supports_unmounted_grow(); }
 
+	bool supports_mounted_resize(ResizeMode resize_mode) const;
+	bool supports_unmounted_resize(ResizeMode resize_mode) const;
+
 	virtual bool supports_mounted_shrink() const = 0;
 	virtual bool supports_mounted_grow() const = 0;
 
