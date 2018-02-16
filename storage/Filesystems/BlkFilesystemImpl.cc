@@ -71,6 +71,38 @@ namespace storage
     }
 
 
+    bool
+    BlkFilesystem::Impl::supports_mounted_resize(ResizeMode resize_mode) const
+    {
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		return supports_mounted_shrink();
+
+	    case ResizeMode::GROW:
+		return supports_mounted_grow();
+	}
+
+	ST_THROW(Exception("invalid resize_mode"));
+    }
+
+
+    bool
+    BlkFilesystem::Impl::supports_unmounted_resize(ResizeMode resize_mode) const
+    {
+	switch (resize_mode)
+	{
+	    case ResizeMode::SHRINK:
+		return supports_unmounted_shrink();
+
+	    case ResizeMode::GROW:
+		return supports_unmounted_grow();
+	}
+
+	ST_THROW(Exception("invalid resize_mode"));
+    }
+
+
     void
     BlkFilesystem::Impl::set_label(const string& label)
     {
