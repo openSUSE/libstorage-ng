@@ -116,11 +116,13 @@
       <sid>1000</sid>
       <path>/test1</path>
       <mount-by>device</mount-by>
+      <active>false</active>
     </MountPoint>
     <MountPoint>
       <sid>1001</sid>
       <path>/test2</path>
       <mount-by>device</mount-by>
+      <active>false</active>
     </MountPoint>
   </Devices>
   <Holders>
