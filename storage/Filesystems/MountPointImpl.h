@@ -233,6 +233,20 @@ namespace storage
 
     }
 
+
+    inline bool
+    is_mount(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Mount>(action);
+    }
+
+
+    inline bool
+    is_unmount(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Unmount>(action);
+    }
+
 }
 
 #endif

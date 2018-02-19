@@ -181,6 +181,7 @@ namespace storage
     private:
 
 	void get_actions();
+	void remove_duplicates();
 	void set_special_actions();
 	void add_dependencies();
 	void add_special_dasd_pt_dependencies();
