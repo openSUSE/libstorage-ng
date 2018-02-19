@@ -50,7 +50,7 @@ if not good_partition_slot:
 
 region = good_partition_slot.region
 
-region.set_length(1 * GiB / region.get_block_size())
+region.set_length(int(1 * GiB / region.get_block_size()))
 
 region = partition_table.align(region)
 
