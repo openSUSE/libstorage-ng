@@ -209,7 +209,7 @@ namespace storage
 
 
     Text
-    Mountable::Impl::do_umount_text(const MountPoint* mount_point, Tense tense) const
+    Mountable::Impl::do_unmount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -226,7 +226,7 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_umount(CommitData& commit_data, MountPoint* mount_point) const
+    Mountable::Impl::do_unmount(CommitData& commit_data, MountPoint* mount_point) const
     {
 	immediate_deactivate(mount_point);
     }
@@ -380,7 +380,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("umount failed"));
+	    ST_THROW(Exception("unmount failed"));
 
 	if (exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);

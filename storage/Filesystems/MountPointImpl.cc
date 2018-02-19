@@ -352,7 +352,7 @@ namespace storage
 	}
 	else if (lhs.active && !active)
 	{
-	    Action::Base* action = new Action::Umount(get_sid());
+	    Action::Base* action = new Action::Unmount(get_sid());
 	    actiongraph.add_vertex(action);
 	}
 
@@ -387,7 +387,7 @@ namespace storage
 	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
 
 	if (active)
-	    actions.push_back(new Action::Umount(get_sid()));
+	    actions.push_back(new Action::Unmount(get_sid()));
 
 	actiongraph.add_chain(actions);
     }
@@ -408,16 +408,16 @@ namespace storage
 
 
     Text
-    MountPoint::Impl::do_umount_text(Tense tense) const
+    MountPoint::Impl::do_unmount_text(Tense tense) const
     {
-	return get_mountable()->get_impl().do_umount_text(get_non_impl(), tense);
+	return get_mountable()->get_impl().do_unmount_text(get_non_impl(), tense);
     }
 
 
     void
-    MountPoint::Impl::do_umount(CommitData& commit_data)
+    MountPoint::Impl::do_unmount(CommitData& commit_data)
     {
-	get_mountable()->get_impl().do_umount(commit_data, get_non_impl());
+	get_mountable()->get_impl().do_unmount(commit_data, get_non_impl());
     }
 
 
@@ -516,18 +516,18 @@ namespace storage
 
 
 	Text
-	Umount::text(const CommitData& commit_data) const
+	Unmount::text(const CommitData& commit_data) const
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
-	    return mount_point->get_impl().do_umount_text(commit_data.tense);
+	    return mount_point->get_impl().do_unmount_text(commit_data.tense);
 	}
 
 
 	void
-	Umount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	Unmount::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph));
-	    mount_point->get_impl().do_umount(commit_data);
+	    mount_point->get_impl().do_unmount(commit_data);
 	}
 
 

@@ -108,7 +108,7 @@ namespace storage
 	SystemCmd cmd(UMOUNTBIN " " + quote(get_fullname()));
 	if (cmd.retcode() != 0)
 	{
-	    y2err("tmp umount '" << get_fullname() << "' failed");
+	    y2err("tmp unmount '" << get_fullname() << "' failed");
 	}
     }
 

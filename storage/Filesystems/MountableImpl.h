@@ -123,8 +123,8 @@ namespace storage
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, MountPoint* mount_point) const;
 
-	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const;
-	virtual void do_umount(CommitData& commit_data, MountPoint* mount_point) const;
+	virtual Text do_unmount_text(const MountPoint* mount_point, Tense tense) const;
+	virtual void do_unmount(CommitData& commit_data, MountPoint* mount_point) const;
 
 	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data, const MountPoint* mount_point) const;

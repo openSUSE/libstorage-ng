@@ -490,7 +490,7 @@ namespace storage
 
 
     Text
-    BtrfsSubvolume::Impl::do_umount_text(const MountPoint* mount_point, Tense tense) const
+    BtrfsSubvolume::Impl::do_unmount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
