@@ -23,6 +23,7 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Devicegraph.h"
@@ -265,6 +266,32 @@ namespace storage
     MountPoint::Impl::get_mount_type() const
     {
 	return get_mountable()->get_impl().get_mount_type();
+    }
+
+
+    vector<MountByType>
+    MountPoint::Impl::possible_mount_bys() const
+    {
+	vector<MountByType> ret;
+
+	const Filesystem* filesystem = get_filesystem();
+
+	for (MountByType mount_by_type : filesystem->get_impl().possible_mount_bys())
+	    ret.push_back(mount_by_type);
+
+	if (is_blk_filesystem(filesystem))
+	{
+	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(filesystem);
+	    vector<const BlkDevice*> blk_devices = blk_filesystem->get_blk_devices();
+
+	    // TODO handle several devices
+
+	    if (!blk_devices.empty())
+		for (MountByType mount_by_type : blk_devices[0]->get_impl().possible_mount_bys())
+		    ret.push_back(mount_by_type);
+	}
+
+	return ret;
     }
 
 

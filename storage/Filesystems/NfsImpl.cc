@@ -185,6 +185,13 @@ namespace storage
     }
 
 
+    vector<MountByType>
+    Nfs::Impl::possible_mount_bys() const
+    {
+	return { MountByType::DEVICE };
+    }
+
+
     uint64_t
     Nfs::Impl::used_features() const
     {

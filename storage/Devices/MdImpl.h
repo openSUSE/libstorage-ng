@@ -105,6 +105,8 @@ namespace storage
 
 	static bool is_valid_sysfs_name(const string& name);
 
+	virtual vector<MountByType> possible_mount_bys() const override;
+
 	static string find_free_numeric_name(const Devicegraph* devicegraph);
 
 	static bool activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir);

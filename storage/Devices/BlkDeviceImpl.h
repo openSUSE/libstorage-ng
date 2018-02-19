@@ -70,6 +70,14 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
+	/**
+	 * The implementation in BlkDevice looks at udev paths and ids thus
+	 * should be fine for existing devices. But for devices that can be
+	 * created likely special handling is needed. E.g. Md does not have a
+	 * udev id until created.
+	 */
+	virtual vector<MountByType> possible_mount_bys() const;
+
 	bool is_active() const { return active; }
 	void set_active(bool active) { Impl::active = active; }
 

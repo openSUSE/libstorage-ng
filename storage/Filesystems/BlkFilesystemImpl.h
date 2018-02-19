@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -84,6 +84,8 @@ namespace storage
 	void set_tune_options(const string& tune_options);
 
 	virtual MountByType get_default_mount_by() const override;
+
+	virtual vector<MountByType> possible_mount_bys() const override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;

@@ -274,6 +274,13 @@ namespace storage
     }
 
 
+    vector<MountByType>
+    Md::Impl::possible_mount_bys() const
+    {
+	return { MountByType::DEVICE, MountByType::ID };
+    }
+
+
     bool
     Md::Impl::activate_mds(const ActivateCallbacks* activate_callbacks, const TmpDir& tmp_dir)
     {
