@@ -79,7 +79,7 @@ namespace storage
 		    return action;
 	    }
 
-	    return nullptr; 
+	    return nullptr;
 	}
 
 
@@ -121,12 +121,12 @@ namespace storage
 		    return action;
 	    }
 
-	    return nullptr; 
+	    return nullptr;
 	}
 
 
     protected:
-    
+
 	const CompoundAction::Impl* compound_action;
 
     };
@@ -134,4 +134,3 @@ namespace storage
 }
 
 #endif
-

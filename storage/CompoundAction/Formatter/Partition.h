@@ -49,7 +49,7 @@ namespace storage
 	Text create_pv_text() const;
 	Text encrypted_pv_text() const;
 	Text pv_text() const;
-	
+
 	Text create_encrypted_with_swap_text() const;
 	Text create_with_swap_text() const;
 
@@ -75,4 +75,3 @@ namespace storage
 }
 
 #endif
-

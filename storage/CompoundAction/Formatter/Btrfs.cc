@@ -30,11 +30,11 @@ namespace storage
 {
 
     CompoundAction::Formatter::Btrfs::Btrfs(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action), 
+	CompoundAction::Formatter(compound_action),
 	btrfs(to_btrfs(compound_action->get_target_device()))
     {}
 
-    
+
     string
     CompoundAction::Formatter::Btrfs::blk_devices_string_representation() const
     {
@@ -44,8 +44,8 @@ namespace storage
 
 	return boost::algorithm::join(names, ", ");
     }
-    
-    
+
+
     Text
     CompoundAction::Formatter::Btrfs::text() const
     {
@@ -71,7 +71,7 @@ namespace storage
 	    return default_text();
     }
 
-    
+
     Text
     CompoundAction::Formatter::Btrfs::delete_text() const
     {
@@ -86,7 +86,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::create_and_mount_text() const
     {
-	// TRANSLATORS: 
+	// TRANSLATORS:
 	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 	// %2$s is replaced by mount point (e.g. /home)
         Text text = _("Create file system btrfs on %1$s and mount at %2$s");
@@ -100,7 +100,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::create_text() const
     {
-	// TRANSLATORS: 
+	// TRANSLATORS:
 	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
         Text text = _("Create file system btrfs on %1$s");
 
@@ -136,4 +136,3 @@ namespace storage
     }
 
 }
-

@@ -61,7 +61,7 @@ namespace storage
 	{
 	    if (vg->get_lvm_pvs().size() > 0)
 		return create_with_pvs_text();
-	    
+
 	    else
 		return create_text();
 	}
@@ -101,4 +101,3 @@ namespace storage
     }
 
 }
-

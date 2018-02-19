@@ -35,7 +35,7 @@ namespace storage
 	lv(to_lvm_lv(compound_action->get_target_device()))
     {}
 
-    
+
     Text
     CompoundAction::Formatter::LvmLv::text() const
     {
@@ -98,8 +98,8 @@ namespace storage
 	// %3$s is replaced by volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
@@ -114,8 +114,8 @@ namespace storage
 	// %3$s is replaced by volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
@@ -134,8 +134,8 @@ namespace storage
 	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
@@ -155,8 +155,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -172,8 +172,8 @@ namespace storage
 	// %3$s is replaced by volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
@@ -192,8 +192,8 @@ namespace storage
 	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
@@ -213,8 +213,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -230,8 +230,8 @@ namespace storage
 	// %3$s is replaced by volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
@@ -250,8 +250,8 @@ namespace storage
 	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
@@ -271,8 +271,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -288,8 +288,8 @@ namespace storage
 	// %3$s is replaced by volume group name (e.g. system)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str());
     }
@@ -308,8 +308,8 @@ namespace storage
 	// %5$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
@@ -329,8 +329,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -349,12 +349,11 @@ namespace storage
 	// %4$s is replaced by mount point (e.g. /home)
 	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
-	return sformat(text, 
-		       lv->get_name().c_str(), 
+	return sformat(text,
+		       lv->get_name().c_str(),
 		       lv->get_size_string().c_str(),
 		       lv->get_lvm_vg()->get_vg_name().c_str(),
 		       mount_point->get_path().c_str());
     }
 
 }
-
