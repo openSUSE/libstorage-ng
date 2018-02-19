@@ -155,6 +155,30 @@ namespace storage
     }
 
 
+    void
+    Mountable::Impl::insert_mount_action(vector<Action::Base*>& actions) const
+    {
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    if (mount_point->is_active())
+		actions.push_back(new Action::Mount(mount_point->get_sid()));
+	}
+    }
+
+
+    void
+    Mountable::Impl::insert_unmount_action(vector<Action::Base*>& actions) const
+    {
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    if (mount_point->is_active())
+		actions.push_back(new Action::Unmount(mount_point->get_sid()));
+	}
+    }
+
+
     vector<FstabEntry*>
     Mountable::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
     {

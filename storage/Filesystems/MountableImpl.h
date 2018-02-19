@@ -101,6 +101,16 @@ namespace storage
 	virtual const Mountable* get_non_impl() const override { return to_mountable(Device::Impl::get_non_impl()); }
 
 	/**
+	 * Add mount action for all active mount points. Likely always used on RHS.
+	 */
+	virtual void insert_mount_action(vector<Action::Base*>& actions) const;
+
+	/**
+	 * Add unmount action for all active mount points. Likely always used on LHS.
+	 */
+	virtual void insert_unmount_action(vector<Action::Base*>& actions) const;
+
+	/**
 	 * Find the fstab entry for the Mountable. Normally just looks for the
 	 * device but for Btrfs and BtrfsSubvolume also the subvol option has
 	 * to fit.
