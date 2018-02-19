@@ -83,6 +83,15 @@ namespace storage
 	void set_default_mount_by();
 
 	/**
+	 * Returns the possible mount-by methods for the mount point.
+	 *
+	 * LABEL is included even if the filesystem label is not set.
+	 *
+	 * @throw Exception
+	 */
+	std::vector<MountByType> possible_mount_bys() const;
+
+	/**
 	 * Get the mount options.
 	 */
 	const std::vector<std::string>& get_mount_options() const;

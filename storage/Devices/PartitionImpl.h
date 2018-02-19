@@ -72,6 +72,8 @@ namespace storage
 
 	virtual bool is_usable_as_blk_device() const override;
 
+	virtual vector<MountByType> possible_mount_bys() const override;
+
 	unsigned int get_number() const;
 	void set_number(unsigned int number);
 

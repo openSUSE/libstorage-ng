@@ -132,6 +132,13 @@ namespace storage
     }
 
 
+    vector<MountByType>
+    Partition::Impl::possible_mount_bys() const
+    {
+	return get_partitionable()->get_impl().possible_mount_bys();
+    }
+
+
     void
     Partition::Impl::check(const CheckCallbacks* check_callbacks) const
     {

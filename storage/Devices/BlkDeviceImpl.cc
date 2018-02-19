@@ -197,6 +197,21 @@ namespace storage
     }
 
 
+    vector<MountByType>
+    BlkDevice::Impl::possible_mount_bys() const
+    {
+	vector<MountByType> ret = { MountByType::DEVICE };
+
+	if (!udev_paths.empty())
+	    ret.push_back(MountByType::PATH);
+
+	if (!udev_ids.empty())
+	    ret.push_back(MountByType::ID);
+
+	return ret;
+    }
+
+
     string
     BlkDevice::Impl::get_mount_by_name(MountByType mount_by_type) const
     {

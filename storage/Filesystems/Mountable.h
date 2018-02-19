@@ -48,10 +48,36 @@ namespace storage
 
 
     /**
-     * The key by which the mount program identifies a mountable
+     * The key by which the mount program identifies a mountable. Some types
+     * address the filesystem while others address the underlying device.
      */
     enum class MountByType {
-	DEVICE, UUID, LABEL, ID, PATH
+
+	/**
+	 * The kernel device name or a link in /dev (but not in
+	 * /dev/disk). For NFS the server and path.
+	 */
+	DEVICE,
+
+	/**
+	 * Filesystem UUID.
+	 */
+	UUID,
+
+	/**
+	 * Filesystem label.
+	 */
+	LABEL,
+
+	/**
+	 * One of the links in /dev/disk/by-id.
+	 */
+	ID,
+
+	/**
+	 * One of the links in /dev/disk/by-path.
+	 */
+	PATH
     };
 
 

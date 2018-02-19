@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,6 +56,8 @@ namespace storage
 	virtual void print(std::ostream& out) const override;
 
 	virtual FsType get_mount_type() const override { return get_type(); }
+
+	virtual vector<MountByType> possible_mount_bys() const = 0;
 
 	virtual SpaceInfo detect_space_info() const;
 	virtual SpaceInfo detect_space_info_on_disk() const;

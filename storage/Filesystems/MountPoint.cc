@@ -88,6 +88,13 @@ namespace storage
     }
 
 
+    vector<MountByType>
+    MountPoint::possible_mount_bys() const
+    {
+	return get_impl().possible_mount_bys();
+    }
+
+
     void
     MountPoint::set_default_mount_by()
     {

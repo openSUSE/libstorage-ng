@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -140,6 +140,21 @@ namespace storage
 	    return MountByType::DEVICE;
 	else
 	    return get_storage()->get_default_mount_by();
+    }
+
+
+    vector<MountByType>
+    BlkFilesystem::Impl::possible_mount_bys() const
+    {
+	vector<MountByType> ret;
+
+	if (supports_uuid())
+	    ret.push_back(MountByType::UUID);
+
+	if (supports_label())
+	    ret.push_back(MountByType::LABEL);
+
+	return ret;
     }
 
 

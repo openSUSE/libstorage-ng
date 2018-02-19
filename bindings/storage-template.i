@@ -90,4 +90,5 @@
 %template(VectorPartitionSlot) std::vector<PartitionSlot>;
 
 %template(VectorPtType) std::vector<PtType>;
+%template(VectorMountByType) std::vector<MountByType>;
 

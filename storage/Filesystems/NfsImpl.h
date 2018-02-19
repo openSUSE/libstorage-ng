@@ -71,6 +71,8 @@ namespace storage
 
 	virtual MountByType get_default_mount_by() const override;
 
+	virtual vector<MountByType> possible_mount_bys() const override;
+
 	virtual uint64_t used_features() const override;
 
 	virtual bool equal(const Device::Impl& rhs) const override;
