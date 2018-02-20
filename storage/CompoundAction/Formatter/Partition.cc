@@ -48,7 +48,7 @@ namespace storage
 	    if (has_create<storage::Partition>() && has_create<storage::Encryption>())
 		return create_encrypted_pv_text();
 
-	    else if (has_create<storage::Partition>()) 
+	    else if (has_create<storage::Partition>())
 		return create_pv_text();
 
 	    else if (has_create<storage::Encryption>())
@@ -110,7 +110,7 @@ namespace storage
 	}
     }
 
-    
+
     Text
     CompoundAction::Formatter::Partition::delete_text() const
     {
@@ -179,8 +179,8 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) for swap");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str());
     }
 
@@ -193,8 +193,8 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create partition %1$s (%2$s) for swap");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str());
     }
 
@@ -211,8 +211,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -230,8 +230,8 @@ namespace storage
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_displayname().c_str());
     }
@@ -261,8 +261,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -280,8 +280,8 @@ namespace storage
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_displayname().c_str());
     }
@@ -328,8 +328,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -347,8 +347,8 @@ namespace storage
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -379,8 +379,8 @@ namespace storage
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
@@ -398,8 +398,8 @@ namespace storage
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       filesystem->get_displayname().c_str());
     }
@@ -416,11 +416,10 @@ namespace storage
 	// %3$s is replaced by mount point (e.g. /home)
 	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
-	return sformat(text, 
-		       partition->get_name().c_str(), 
+	return sformat(text,
+		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
 		       mount_point->get_path().c_str());
     }
 
 }
-

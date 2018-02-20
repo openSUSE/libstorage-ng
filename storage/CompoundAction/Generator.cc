@@ -41,7 +41,7 @@ namespace storage
 	for(auto& commit_action : actiongraph->get_commit_actions())
 	{
 	    auto target = CompoundAction::Impl::get_target_device(actiongraph, commit_action);
-	    
+
 	    auto compound_action = find_by_target_device(compound_actions, target);
 
 	    if (compound_action)
@@ -54,19 +54,19 @@ namespace storage
 		compound_actions.push_back(compound_action);
 	    }
 	}
-	
+
 	return compound_actions;
     }
 
-    
+
     CompoundAction*
     CompoundAction::Generator::find_by_target_device(const vector<CompoundAction*>& compound_actions, const Device* device)
     {
 	auto begin = compound_actions.begin();
 	auto end = compound_actions.end();
 
-	auto it = find_if(begin, end, 
-		[device](CompoundAction* a) -> bool 
+	auto it = find_if(begin, end,
+		[device](CompoundAction* a) -> bool
 		{
 		    return a->get_target_device() == device;
 		});
@@ -78,4 +78,3 @@ namespace storage
     }
 
 }
-

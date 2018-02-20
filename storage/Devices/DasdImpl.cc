@@ -192,7 +192,7 @@ namespace storage
 	    if (range_file.get<int>() <= 1)
 		continue;
 
-	    Dasd* dasd = Dasd::create(prober.get_probed(), name);
+	    Dasd* dasd = Dasd::create(prober.get_system(), name);
 	    dasd->get_impl().probe_pass_1a(prober);
 	}
     }

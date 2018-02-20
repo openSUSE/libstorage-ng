@@ -296,7 +296,7 @@ namespace storage
 	    else
 		dm_table_name = next_free_cr_auto_name(system_info);
 
-	    Luks* luks = Luks::create(prober.get_probed(), dm_table_name);
+	    Luks* luks = Luks::create(prober.get_system(), dm_table_name);
 	    luks->get_impl().uuid = uuid;
 	    luks->get_impl().set_active(it != cmd_dmsetup_table.end());
 	    luks->set_in_etc_crypttab(crypttab_entry);
@@ -308,8 +308,8 @@ namespace storage
 		luks->get_impl().set_crypttab_blk_device_name(crypttab_entry->get_block_device());
 	    }
 
-	    prober.add_holder(blk_device, luks, [](Devicegraph* probed, Device* a, Device* b) {
-		User::create(probed, a, b);
+	    prober.add_holder(blk_device, luks, [](Devicegraph* system, Device* a, Device* b) {
+		User::create(system, a, b);
 	    });
 
 	    luks->get_impl().probe_pass_1a(prober);

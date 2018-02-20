@@ -126,13 +126,13 @@ namespace storage
     {
 	for (const CmdPvs::Pv& pv : prober.get_system_info().getCmdPvs().get_pvs())
 	{
-	    LvmPv* lvm_pv = LvmPv::create(prober.get_probed());
+	    LvmPv* lvm_pv = LvmPv::create(prober.get_system());
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
 
 	    if (!pv.vg_uuid.empty())
 	    {
-		LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), pv.vg_uuid);
-		Subdevice::create(prober.get_probed(), lvm_pv, lvm_vg);
+		LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_system(), pv.vg_uuid);
+		Subdevice::create(prober.get_system(), lvm_pv, lvm_vg);
 	    }
 	}
     }
@@ -144,8 +144,8 @@ namespace storage
 	const CmdPvs& cmd_pvs = prober.get_system_info().getCmdPvs();
 	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
-	prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
-	    User::create(probed, a, b);
+	prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+	    User::create(system, a, b);
 	});
     }
 

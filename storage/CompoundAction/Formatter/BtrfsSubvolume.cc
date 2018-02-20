@@ -33,14 +33,14 @@ namespace storage
 	subvolume(to_btrfs_subvolume(compound_action->get_target_device()))
     {}
 
-    
+
     const BlkDevice*
     CompoundAction::Formatter::BtrfsSubvolume::get_blk_device() const
     {
-	return subvolume->get_btrfs()->get_impl().get_blk_device(); 
+	return subvolume->get_btrfs()->get_impl().get_blk_device();
     }
 
-    
+
     Text
     CompoundAction::Formatter::BtrfsSubvolume::text() const
     {
@@ -60,7 +60,7 @@ namespace storage
 	    return default_text();
     }
 
-    
+
     Text
     CompoundAction::Formatter::BtrfsSubvolume::delete_text() const
     {
@@ -97,4 +97,3 @@ namespace storage
     }
 
 }
-

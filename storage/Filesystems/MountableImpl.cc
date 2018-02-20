@@ -155,6 +155,30 @@ namespace storage
     }
 
 
+    void
+    Mountable::Impl::insert_mount_action(vector<Action::Base*>& actions) const
+    {
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    if (mount_point->is_active())
+		actions.push_back(new Action::Mount(mount_point->get_sid()));
+	}
+    }
+
+
+    void
+    Mountable::Impl::insert_unmount_action(vector<Action::Base*>& actions) const
+    {
+	if (has_mount_point())
+	{
+	    const MountPoint* mount_point = get_mount_point();
+	    if (mount_point->is_active())
+		actions.push_back(new Action::Unmount(mount_point->get_sid()));
+	}
+    }
+
+
     vector<FstabEntry*>
     Mountable::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
     {
@@ -209,7 +233,7 @@ namespace storage
 
 
     Text
-    Mountable::Impl::do_umount_text(const MountPoint* mount_point, Tense tense) const
+    Mountable::Impl::do_unmount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
@@ -226,7 +250,7 @@ namespace storage
 
 
     void
-    Mountable::Impl::do_umount(CommitData& commit_data, MountPoint* mount_point) const
+    Mountable::Impl::do_unmount(CommitData& commit_data, MountPoint* mount_point) const
     {
 	immediate_deactivate(mount_point);
     }
@@ -380,7 +404,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line);
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("umount failed"));
+	    ST_THROW(Exception("unmount failed"));
 
 	if (exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);

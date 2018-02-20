@@ -217,14 +217,14 @@ namespace storage
 		case LvType::THIN_POOL:
 		case LvType::RAID:
 		{
-		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_probed(), lv.vg_uuid);
+		    LvmVg* lvm_vg = LvmVg::Impl::find_by_uuid(prober.get_system(), lv.vg_uuid);
 		    lvm_lv = lvm_vg->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
 		}
 		break;
 
 		case LvType::THIN:
 		{
-		    LvmLv* thin_pool = LvmLv::Impl::find_by_uuid(prober.get_probed(), lv.pool_uuid);
+		    LvmLv* thin_pool = LvmLv::Impl::find_by_uuid(prober.get_system(), lv.pool_uuid);
 		    lvm_lv = thin_pool->create_lvm_lv(lv.lv_name, lv.lv_type, lv.size);
 		}
 		break;

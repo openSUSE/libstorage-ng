@@ -119,8 +119,8 @@ namespace storage
 	virtual Text do_mount_text(Tense tense) const;
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options);
 
-	virtual Text do_umount_text(Tense tense) const;
-	virtual void do_umount(CommitData& commit_data);
+	virtual Text do_unmount_text(Tense tense) const;
+	virtual void do_unmount(CommitData& commit_data);
 
 	virtual Text do_add_to_etc_fstab_text(Tense tense) const;
 	virtual void do_add_to_etc_fstab(CommitData& commit_data) const;
@@ -179,11 +179,11 @@ namespace storage
 	};
 
 
-	class Umount : public Delete
+	class Unmount : public Delete
 	{
 	public:
 
-	    Umount(sid_t sid) : Delete(sid) {}
+	    Unmount(sid_t sid) : Delete(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
@@ -231,6 +231,20 @@ namespace storage
 
 	};
 
+    }
+
+
+    inline bool
+    is_mount(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Mount>(action);
+    }
+
+
+    inline bool
+    is_unmount(const Action::Base* action)
+    {
+	return is_action_of_type<const Action::Unmount>(action);
     }
 
 }

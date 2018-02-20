@@ -52,7 +52,7 @@ namespace storage
     private:
 
 	const Actiongraph* actiongraph;
-    
+
     };
 
 }

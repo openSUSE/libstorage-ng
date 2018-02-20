@@ -131,6 +131,7 @@ namespace storage
 	Stopwatch stopwatch;
 
 	get_actions();
+	remove_duplicates();
 	set_special_actions();
 	add_dependencies();
 	remove_only_syncs();
@@ -330,6 +331,50 @@ namespace storage
 	    const Device* d_lhs = lhs->get_impl()[v_lhs];
 
 	    d_lhs->get_impl().add_delete_actions(*this);
+	}
+    }
+
+
+    /**
+     * It is required in many cases to deactivate a mount point. This function
+     * removes duplicate mount and unmount actions while copying the
+     * dependencies. Thus the code inserting mount and unmount actions does
+     * not have to check for duplicates.
+     */
+    void
+    Actiongraph::Impl::remove_duplicates()
+    {
+	vector<pair<vertex_descriptor, vertex_descriptor>> duplicates;
+
+	boost::iterator_range<vertex_iterator> range = vertices();
+
+	for (vertex_iterator it1 = range.begin(); it1 != range.end(); ++it1)
+	{
+	    const Action::Base* action1 = graph[*it1].get();
+
+	    for (vertex_iterator it2 = next(it1); it2 != range.end(); ++it2)
+	    {
+		const Action::Base* action2 = graph[*it2].get();
+
+		if (action1->sid == action2->sid)
+		{
+		    if ((is_mount(action1) && is_mount(action2)) ||
+			(is_unmount(action1) && is_unmount(action2)))
+			duplicates.push_back(make_pair(*it1, *it2));
+		}
+	    }
+	}
+
+	for (pair<vertex_descriptor, vertex_descriptor> duplicate : duplicates)
+	{
+	    for (vertex_descriptor parent : parents(duplicate.second))
+		add_edge(parent, duplicate.first);
+
+	    for (vertex_descriptor child : children(duplicate.second))
+		add_edge(duplicate.first, child);
+
+	    clear_vertex(duplicate.second, graph);
+	    remove_vertex(duplicate.second, graph);
 	}
     }
 

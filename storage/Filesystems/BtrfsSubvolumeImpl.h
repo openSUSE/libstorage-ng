@@ -119,7 +119,7 @@ namespace storage
 
 	virtual Text do_mount_text(const MountPoint* mount_point, Tense tense) const override;
 
-	virtual Text do_umount_text(const MountPoint* mount_point, Tense tense) const override;
+	virtual Text do_unmount_text(const MountPoint* mount_point, Tense tense) const override;
 
 	virtual Text do_add_to_etc_fstab_text(const MountPoint* mount_point, Tense tense) const override;
 

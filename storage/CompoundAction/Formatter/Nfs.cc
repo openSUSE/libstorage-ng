@@ -46,7 +46,7 @@ namespace storage
 	    return default_text();
     }
 
-    
+
     Text
     CompoundAction::Formatter::Nfs::mount_text() const
     {
@@ -75,4 +75,3 @@ namespace storage
     }
 
 }
-

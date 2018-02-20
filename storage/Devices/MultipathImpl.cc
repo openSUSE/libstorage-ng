@@ -165,7 +165,7 @@ namespace storage
 
 	for (const string& dm_name : cmd_multipath.get_entries())
 	{
-	    Multipath* multipath = Multipath::create(prober.get_probed(), DEVMAPPERDIR "/" + dm_name);
+	    Multipath* multipath = Multipath::create(prober.get_system(), DEVMAPPERDIR "/" + dm_name);
 	    multipath->get_impl().probe_pass_1a(prober);
 	}
     }
@@ -198,9 +198,9 @@ namespace storage
 
 	for (const string& device : entry.devices)
 	{
-	    BlkDevice* blk_device = BlkDevice::Impl::find_by_any_name(prober.get_probed(), device,
+	    BlkDevice* blk_device = BlkDevice::Impl::find_by_any_name(prober.get_system(), device,
 								      prober.get_system_info());
-	    User::create(prober.get_probed(), blk_device, get_non_impl());
+	    User::create(prober.get_system(), blk_device, get_non_impl());
 	}
     }
 

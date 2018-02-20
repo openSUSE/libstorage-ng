@@ -151,7 +151,7 @@ namespace storage
 	    vector<JointEntry> joint_entries = join_entries(entry.second.first, entry.second.second);
 	    if (!joint_entries.empty())
 	    {
-		Nfs* nfs = Nfs::create(prober.get_probed(), name_parts.first, name_parts.second);
+		Nfs* nfs = Nfs::create(prober.get_system(), name_parts.first, name_parts.second);
 		joint_entries[0].add_to(nfs);
 
 		if (nfs->get_mount_point()->is_active())

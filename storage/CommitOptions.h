@@ -25,7 +25,7 @@
 namespace storage
 {
 
-    // TODO move root_prefix here? only needed in do_mount and do_umount
+    // TODO move root_prefix here? only needed in do_mount and do_unmount
 
     class CommitOptions
     {

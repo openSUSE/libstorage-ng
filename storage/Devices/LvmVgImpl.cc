@@ -101,7 +101,7 @@ namespace storage
     {
 	for (const CmdVgs::Vg& vg : prober.get_system_info().getCmdVgs().get_vgs())
 	{
-	    LvmVg* lvm_vg = LvmVg::create(prober.get_probed(), vg.vg_name);
+	    LvmVg* lvm_vg = LvmVg::create(prober.get_system(), vg.vg_name);
 	    lvm_vg->get_impl().set_uuid(vg.vg_uuid);
 	    lvm_vg->get_impl().probe_pass_1a(prober);
 	}
