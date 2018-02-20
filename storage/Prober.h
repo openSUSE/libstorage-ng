@@ -48,15 +48,15 @@ namespace storage
     public:
 
 	/**
-	 * The constructor probes the system and places the result in probed.
+	 * The constructor probes the system and places the result in system.
 	 */
-	Prober(Devicegraph* probed, SystemInfo& system_info);
+	Prober(Devicegraph* system, SystemInfo& system_info);
 
-	Devicegraph* get_probed() { return probed; }
+	Devicegraph* get_system() { return system; }
 
 	SystemInfo& get_system_info() { return system_info; }
 
-	typedef std::function<void(Devicegraph* probed, Device* a, Device* b)> add_holder_func_t;
+	typedef std::function<void(Devicegraph* system, Device* a, Device* b)> add_holder_func_t;
 
 	/**
 	 * Adds a holder by calling add_holder_func. If the BlkDevice 'name'
@@ -67,7 +67,7 @@ namespace storage
 
     private:
 
-	Devicegraph* probed;
+	Devicegraph* system;
 
 	SystemInfo& system_info;
 

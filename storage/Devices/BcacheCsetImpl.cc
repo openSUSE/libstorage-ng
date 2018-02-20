@@ -103,7 +103,7 @@ namespace storage
 	    if (!is_valid_uuid(uuid))
 		continue;
 
-	    BcacheCset* bcache_cset = BcacheCset::create(prober.get_probed());
+	    BcacheCset* bcache_cset = BcacheCset::create(prober.get_system());
 	    bcache_cset->get_impl().set_uuid(uuid);
 	}
     }
@@ -127,8 +127,8 @@ namespace storage
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
 		string dev = DEVDIR "/block/" + dev_file.get<string>();
 
-		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
-		    User::create(probed, b, a);
+		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		    User::create(system, b, a);
 		});
 	    }
 
@@ -137,8 +137,8 @@ namespace storage
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
 		string dev = DEVDIR "/block/" + dev_file.get<string>();
 
-		prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
-		    User::create(probed, a, b);
+		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		    User::create(system, a, b);
 		});
 	    }
 	}

@@ -346,17 +346,17 @@ namespace storage
 
 	    if (entry.is_container)
 	    {
-		MdContainer* md_container = MdContainer::create(prober.get_probed(), name);
+		MdContainer* md_container = MdContainer::create(prober.get_system(), name);
 		md_container->get_impl().probe_pass_1a(prober);
 	    }
 	    else if (entry.has_container)
 	    {
-		MdMember* md_member = MdMember::create(prober.get_probed(), name);
+		MdMember* md_member = MdMember::create(prober.get_system(), name);
 		md_member->get_impl().probe_pass_1a(prober);
 	    }
 	    else
 	    {
-		Md* md = Md::create(prober.get_probed(), name);
+		Md* md = Md::create(prober.get_system(), name);
 		md->get_impl().probe_pass_1a(prober);
 	    }
 	}
@@ -389,8 +389,8 @@ namespace storage
 
 	for (const ProcMdstat::Device& device : entry.devices)
 	{
-	    prober.add_holder(device.name, get_non_impl(), [&device](Devicegraph* probed, Device* a, Device* b) {
-		MdUser* md_user = MdUser::create(probed, a, b);
+	    prober.add_holder(device.name, get_non_impl(), [&device](Devicegraph* system, Device* a, Device* b) {
+		MdUser* md_user = MdUser::create(system, a, b);
 		md_user->set_spare(device.spare);
 		md_user->set_faulty(device.faulty);
 	    });

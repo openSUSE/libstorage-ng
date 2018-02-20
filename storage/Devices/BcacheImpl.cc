@@ -93,7 +93,7 @@ namespace storage
 	    if (!is_valid_name(name))
 		continue;
 
-	    Bcache* bcache = Bcache::create(prober.get_probed(), name);
+	    Bcache* bcache = Bcache::create(prober.get_system(), name);
 	    bcache->get_impl().probe_pass_1a(prober);
 	}
     }
@@ -118,8 +118,8 @@ namespace storage
 	const File dev_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/bcache/../dev");
 	string dev = DEVDIR "/block/" + dev_file.get<string>();
 
-	prober.add_holder(dev, get_non_impl(), [](Devicegraph* probed, Device* a, Device* b) {
-	    User::create(probed, a, b);
+	prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+	    User::create(system, a, b);
 	});
     }
 

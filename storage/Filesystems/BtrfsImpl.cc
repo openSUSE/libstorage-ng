@@ -269,7 +269,7 @@ namespace storage
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)
 	{
-	    BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(prober.get_probed(), subvolume.path);
+	    BtrfsSubvolume* btrfs_subvolume = BtrfsSubvolume::create(prober.get_system(), subvolume.path);
 	    btrfs_subvolume->get_impl().set_id(subvolume.id);
 
 	    subvolumes_by_id[subvolume.id] = btrfs_subvolume;
@@ -279,7 +279,7 @@ namespace storage
 	{
 	    const BtrfsSubvolume* child = subvolumes_by_id[subvolume.id];
 	    const BtrfsSubvolume* parent = subvolumes_by_id[subvolume.parent_id];
-	    Subdevice::create(prober.get_probed(), parent, child);
+	    Subdevice::create(prober.get_system(), parent, child);
 	}
 
 	for (const CmdBtrfsSubvolumeList::Entry& subvolume : cmd_btrfs_subvolume_list)

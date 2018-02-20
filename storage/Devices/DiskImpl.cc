@@ -119,7 +119,7 @@ namespace storage
 	    if (range_file.get<int>() <= 1)
 		continue;
 
-	    Disk* disk = Disk::create(prober.get_probed(), name);
+	    Disk* disk = Disk::create(prober.get_system(), name);
 	    disk->get_impl().probe_pass_1a(prober);
 	}
     }

@@ -159,11 +159,6 @@ namespace storage
 	// The system devicegraph is created and used for probing since it is
 	// needed in EnsureMounted.
 
-	// TODO The change from using probed to using system should be
-	// reflected at many places, e.g. variable names and file
-	// names. Ideally probed should just be a read-only copy of system not
-	// further used in the library. Or find a better solution.
-
 	Devicegraph* probed = create_devicegraph("system");
 
 	switch (environment.get_probe_mode())

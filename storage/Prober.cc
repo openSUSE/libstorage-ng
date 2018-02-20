@@ -46,8 +46,8 @@
 namespace storage
 {
 
-    Prober::Prober(Devicegraph* probed, SystemInfo& system_info)
-	: probed(probed), system_info(system_info)
+    Prober::Prober(Devicegraph* system, SystemInfo& system_info)
+	: system(system), system_info(system_info)
     {
 	/**
 	 * Difficulties:
@@ -111,7 +111,7 @@ namespace storage
 	    LvmPv::Impl::probe_lvm_pvs(*this);
 	    LvmLv::Impl::probe_lvm_lvs(*this);
 
-	    for (LvmVg* lvm_vg : LvmVg::get_all(probed))
+	    for (LvmVg* lvm_vg : LvmVg::get_all(system))
 		lvm_vg->get_impl().calculate_reserved_extents(*this);
 	}
 
@@ -134,9 +134,9 @@ namespace storage
 
 	y2mil("prober pass 1b");
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
+	for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
 	{
-	    Device* device = probed->get_impl()[vertex];
+	    Device* device = system->get_impl()[vertex];
 	    device->get_impl().probe_pass_1b(*this);
 	}
 
@@ -144,9 +144,9 @@ namespace storage
 
 	y2mil("prober pass 1c");
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : probed->get_impl().vertices())
+	for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
 	{
-	    Device* device = probed->get_impl()[vertex];
+	    Device* device = system->get_impl()[vertex];
 	    if (is_partitionable(device))
 	    {
 		Partitionable* partitionable = to_partitionable(device);
@@ -164,7 +164,7 @@ namespace storage
 
 	y2mil("prober pass 2");
 
-	for (BlkDevice* blk_device : BlkDevice::get_all(probed))
+	for (BlkDevice* blk_device : BlkDevice::get_all(system))
 	{
 	    if (blk_device->has_children())
 		continue;
@@ -206,10 +206,10 @@ namespace storage
     void
     Prober::add_holder(const string& name, Device* b, add_holder_func_t add_holder_func)
     {
-	if (BlkDevice::Impl::exists_by_any_name(probed, name, system_info))
+	if (BlkDevice::Impl::exists_by_any_name(system, name, system_info))
 	{
-	    BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, name, system_info);
-	    add_holder_func(probed, a, b);
+	    BlkDevice* a = BlkDevice::Impl::find_by_any_name(system, name, system_info);
+	    add_holder_func(system, a, b);
 	}
 	else
 	{
@@ -225,8 +225,8 @@ namespace storage
 	{
 	    try
 	    {
-		BlkDevice* a = BlkDevice::Impl::find_by_any_name(probed, pending_holder.name, system_info);
-		pending_holder.add_holder_func(probed, a, pending_holder.b);
+		BlkDevice* a = BlkDevice::Impl::find_by_any_name(system, pending_holder.name, system_info);
+		pending_holder.add_holder_func(system, a, pending_holder.b);
 	    }
 	    catch (const Exception& e)
 	    {

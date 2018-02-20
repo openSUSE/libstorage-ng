@@ -116,8 +116,8 @@ namespace storage
 	const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(get_sysfs_name());
 
 	prober.add_holder(DEVDIR "/" + entry.container_name, get_non_impl(),
-			  [&entry](Devicegraph* probed, Device* a, Device* b) {
-	    MdSubdevice* md_subdevice = MdSubdevice::create(probed, a, b);
+			  [&entry](Devicegraph* system, Device* a, Device* b) {
+	    MdSubdevice* md_subdevice = MdSubdevice::create(system, a, b);
 	    md_subdevice->set_member(entry.container_member);
 	});
     }
