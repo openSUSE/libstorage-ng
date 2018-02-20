@@ -429,9 +429,6 @@ namespace storage
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
 
-	    virtual void add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
-					  Actiongraph::Impl& actiongraph) const override;
-
 	    Side get_side() const { return resize_mode == ResizeMode::GROW ? RHS : LHS; }
 
 	    const ResizeMode resize_mode;
