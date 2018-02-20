@@ -1,0 +1,4 @@
+1 - Unmount /dev/sda1 at /test -> 2
+2 - Shrink ext4 on /dev/sda1 from 8.00 GiB to 6.00 GiB -> 3
+3 - Shrink partition /dev/sda1 from 8.00 GiB to 6.00 GiB -> 4
+4 - Mount /dev/sda1 at /test ->
