@@ -73,26 +73,25 @@ namespace storage
 
 	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(blk_device->get_name()));
 	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("ntfsresize --info failed"));
+	    return resize_info;
 
 	string fstr = " might resize at ";
 	string::size_type pos;
 	string stdout = boost::join(cmd.stdout(), "\n");
-	if ((pos = stdout.find(fstr)) != string::npos)
-	{
-	    resize_info.resize_ok = true;
+	if ((pos = stdout.find(fstr)) == string::npos)
+	    return resize_info;
 
-	    y2mil("pos:" << pos);
-	    pos = stdout.find_first_not_of(" \t\n", pos + fstr.size());
-	    y2mil("pos:" << pos);
-	    string number = stdout.substr(pos, stdout.find_first_not_of("0123456789", pos));
-	    number >> resize_info.min_size;
+	resize_info.resize_ok = true;
 
-	    // see ntfsresize(8) for += 100 MiB
-	    resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
+	y2mil("pos:" << pos);
+	pos = stdout.find_first_not_of(" \t\n", pos + fstr.size());
+	y2mil("pos:" << pos);
+	string number = stdout.substr(pos, stdout.find_first_not_of("0123456789", pos));
+	number >> resize_info.min_size;
 
-	    resize_info.max_size = 256 * TiB - 64 * KiB;
-	}
+	// see ntfsresize(8) for += 100 MiB
+	resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
+	resize_info.max_size = 256 * TiB - 64 * KiB;
 
 	resize_info.check();
 

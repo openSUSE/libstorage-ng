@@ -107,6 +107,10 @@ namespace storage
 	std::string get_displayname() const;
 
 	/**
+	 * Detect the resize info of the device.
+	 *
+	 * If the device holds an NTFS it must not be mounted.
+	 *
 	 * @throw Exception
 	 */
 	ResizeInfo detect_resize_info() const;

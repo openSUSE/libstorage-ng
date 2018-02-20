@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -74,19 +74,23 @@ namespace storage
             if ( entry )
             {
                 const string & device = entry->get_device();
+		FsType fs_type = entry->get_fs_type();
 
-                if ( entry->get_fs_type() == FsType::UNKNOWN ||
-                     device == "rootfs" ||
-                     device == "/dev/root" )
-                {
-                    // Get rid of all the useless stuff that clutters /proc/mounts
-                    delete entry;
-                }
-                else
-                {
-                    data.insert( make_pair( device, entry ) );
-                }
-            }
+		if (boost::starts_with(device, "/dev/") && device != "/dev/root")
+		{
+		    data.insert( make_pair( device, entry ) );
+		}
+		else if (fs_type == FsType::NFS || fs_type == FsType::NFS4 ||
+			 fs_type == FsType::TMPFS)
+		{
+		    data.insert( make_pair( device, entry ) );
+		}
+		else
+		{
+		    // Get rid of all the useless stuff that clutters /proc/mounts
+		    delete entry;
+		}
+	    }
         }
     }
 
