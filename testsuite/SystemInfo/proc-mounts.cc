@@ -121,8 +121,9 @@ BOOST_AUTO_TEST_CASE(parse1)
 BOOST_AUTO_TEST_CASE(parse2)
 {
     vector<string> input_mount = {
-	"server:/data /data nfs rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4 0 0",
-	"/dev/mapper/system-test /test/mountpoint\\040with\\040spaces ext4 rw,relatime,commit=600 0 0"
+	"/dev/mapper/system-test /test/mountpoint\\040with\\040spaces ext4 rw,relatime,commit=600 0 0",
+	"/dev/sdb1 /test fuseblk rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,blksize=4096 0 0",
+	"server:/data /data nfs rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4 0 0"
     };
 
     vector<string> input_swap = {
@@ -131,6 +132,7 @@ BOOST_AUTO_TEST_CASE(parse2)
 
     vector<string> output = {
         "data[/dev/mapper/system-test] -> /dev/mapper/system-test  /test/mountpoint\\040with\\040spaces  ext4  rw,relatime,commit=600  0  0",
+        "data[/dev/sdb1] -> /dev/sdb1  /test  fuseblk  rw,nosuid,nodev,relatime,user_id=0,group_id=0,allow_other,blksize=4096  0  0",	
         "data[server:/data] -> server:/data  /data  nfs  rw,nosuid,relatime,vers=3,rsize=8192,wsize=8192,namlen=255,hard,nolock,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=1.2.3.4,mountvers=3,mountport=635,mountproto=udp,local_lock=all,addr=1.2.3.4  0  0",
         ""
     };
