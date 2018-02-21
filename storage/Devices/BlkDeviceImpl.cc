@@ -22,6 +22,7 @@
 
 
 #include <boost/algorithm/string.hpp>
+#include <boost/range/adaptor/reversed.hpp>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/HumanString.h"
@@ -365,6 +366,41 @@ namespace storage
     }
 
 
+    namespace
+    {
+
+	vector<const Device*>
+	devices_to_resize(const Device* device)
+	{
+	    vector<const Device*> ret;
+
+	    for (const Device* child : device->get_children())
+	    {
+		if (is_blk_device(child) && !is_md(child))
+		{
+		    ret.push_back(child);
+
+		    vector<const Device*> tmp = devices_to_resize(child);
+		    ret.insert(ret.end(), tmp.begin(), tmp.end());
+		}
+
+		if (is_lvm_pv(child))
+		{
+		    ret.push_back(child);
+		}
+
+		if (is_filesystem(child))
+		{
+		    ret.push_back(child);
+		}
+	    }
+
+	    return ret;
+	}
+
+    }
+
+
     void
     BlkDevice::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
@@ -372,22 +408,70 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (lhs.get_size() != get_size())
+	// The lowest underlying blk device handles the resize, so Partitions
+	// and LvmLvs but not Luks.
+
+	if (lhs.get_size() != get_size() && (is_partition(get_non_impl()) || is_lvm_lv(get_non_impl())))
 	{
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;
 
-	    actiongraph.add_vertex(new Action::Resize(get_sid(), resize_mode));
+	    vector<const Device*> devices_to_resize_lhs = devices_to_resize(lhs.get_non_impl());
+	    vector<const Device*> devices_to_resize_rhs = devices_to_resize(get_non_impl());
 
-	    for (const Device* child : get_non_impl()->get_children())
+	    const BlkFilesystem* blk_filesystem_lhs = nullptr;
+	    const BlkFilesystem* blk_filesystem_rhs = nullptr;
+
+	    for (const Device* device_to_resize : devices_to_resize_lhs)
 	    {
-		// Only add a resize action for children that do not detect
-		// their resize themself and that are new on RHS.
-
-		if (is_filesystem(child) || is_lvm_pv(child))
-		    if (actiongraph.get_devicegraph(LHS)->device_exists(child->get_sid()))
-			actiongraph.add_vertex(new Action::Resize(child->get_sid(), resize_mode));
+		if (is_blk_filesystem(device_to_resize))
+		    blk_filesystem_lhs = to_blk_filesystem(device_to_resize);
 	    }
+
+	    for (const Device* device_to_resize : devices_to_resize_rhs)
+	    {
+		if (is_blk_filesystem(device_to_resize))
+		    blk_filesystem_rhs = to_blk_filesystem(device_to_resize);
+	    }
+
+	    // Only tmp unmounts are inserted in the actiongraph. tmp mounts
+	    // are simple handled in the do_resize() functions.
+
+	    bool need_tmp_unmount = false;
+
+	    if (blk_filesystem_rhs)
+	    {
+		if (!blk_filesystem_rhs->get_impl().supports_mounted_resize(resize_mode))
+		    need_tmp_unmount = true;
+	    }
+
+	    vector<Action::Base*> actions;
+
+	    if (need_tmp_unmount && blk_filesystem_lhs)
+	    {
+		blk_filesystem_lhs->get_impl().insert_unmount_action(actions);
+	    }
+
+	    if (resize_mode == ResizeMode::SHRINK)
+	    {
+		for (const Device* device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
+		    actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+	    }
+
+	    actions.push_back(new Action::Resize(get_sid(), resize_mode));
+
+	    if (resize_mode == ResizeMode::GROW)
+	    {
+		for (const Device* device_to_resize : devices_to_resize_rhs)
+		    actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+	    }
+
+	    if (need_tmp_unmount && blk_filesystem_rhs)
+	    {
+		blk_filesystem_rhs->get_impl().insert_mount_action(actions);
+	    }
+
+	    actiongraph.add_chain(actions);
 	}
 
 	if (!lhs.is_active() && is_active())
