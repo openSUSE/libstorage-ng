@@ -40,10 +40,10 @@ BOOST_AUTO_TEST_CASE(test1)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda", 320 * GiB);
 
-    BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::MSDOS);
+    BOOST_CHECK_EQUAL(sda->get_default_partition_table_type(), PtType::GPT);
 
     BOOST_CHECK_EQUAL(sda->get_possible_partition_table_types(),
-		      vector<PtType>({ PtType::MSDOS, PtType::GPT }));
+		      vector<PtType>({ PtType::GPT, PtType::MSDOS }));
 }
 
 
@@ -149,8 +149,8 @@ BOOST_AUTO_TEST_CASE(test7)
     Dasd* dasda = Dasd::create(devicegraph, "/dev/dasda", 4 * GiB);
     dasda->set_type(DasdType::FBA);
 
-    BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::MSDOS);
+    BOOST_CHECK_EQUAL(dasda->get_default_partition_table_type(), PtType::GPT);
 
     BOOST_CHECK_EQUAL(dasda->get_possible_partition_table_types(),
-		      vector<PtType>({ PtType::MSDOS, PtType::GPT, PtType::IMPLICIT }));
+		      vector<PtType>({ PtType::GPT, PtType::MSDOS, PtType::IMPLICIT }));
 }

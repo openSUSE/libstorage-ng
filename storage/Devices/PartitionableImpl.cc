@@ -173,25 +173,14 @@ namespace storage
 	// ECKD DASDs are handled completely and FBA DASDs partly in Dasd
 	// class.
 
-	const Arch& arch = get_devicegraph()->get_storage()->get_arch();
-
 	unsigned long long int num_sectors = get_region().get_length();
 	bool size_ok_for_msdos = num_sectors <= UINT32_MAX;
 	y2mil("num-sectors:" << num_sectors << " size-ok-for-msdos:" << size_ok_for_msdos);
 
-	PtType best = PtType::MSDOS;
-
-	if (arch.is_efiboot() || arch.is_ia64() || !size_ok_for_msdos)
-	    best = PtType::GPT;
-
+	PtType best = PtType::GPT;
 	vector<PtType> ret = { best };
 
-	if (best == PtType::MSDOS)
-	    ret.push_back(PtType::GPT);
-
-	// For a small disk attached to a EFI machine MS-DOS is possible
-	// (e.g. use-case USB stick).
-	if (best == PtType::GPT && size_ok_for_msdos)
+	if (size_ok_for_msdos)
 	    ret.push_back(PtType::MSDOS);
 
 	return ret;
