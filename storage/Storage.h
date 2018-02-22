@@ -133,14 +133,11 @@ namespace storage
     };
 
 
-    class CommitCallbacks
+    class CommitCallbacks : public Callbacks
     {
     public:
 
 	virtual ~CommitCallbacks() {}
-
-	virtual void message(const std::string& message) const = 0;
-	virtual bool error(const std::string& message, const std::string& what) const = 0;
 
     };
 
@@ -320,14 +317,14 @@ namespace storage
 	/**
 	 * The actiongraph must be valid.
 	 *
-	 * @throw Exception
+	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
 	 *
-	 * @throw Exception
+	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitCallbacks* commit_callbacks = nullptr) ST_DEPRECATED;
 
