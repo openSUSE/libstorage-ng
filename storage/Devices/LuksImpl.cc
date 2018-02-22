@@ -426,14 +426,12 @@ namespace storage
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name()) +
 	    " --key-file -";
 
-	SystemCmd::Options cmd_options(cmd_line);
+	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	cmd_options.stdin_text = get_password();
 
 	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create Luks failed"));
 
 	probe_uuid();
     }
@@ -446,9 +444,7 @@ namespace storage
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode erase " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete Luks failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	// cryptsetup erase does not remove the signature, thus also use
 	// generic wipefs.
@@ -467,9 +463,7 @@ namespace storage
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(luks_rhs->get_impl().get_size() / (512 * B));
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize Luks failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -481,14 +475,12 @@ namespace storage
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) + " " +
 	    quote(get_dm_table_name()) + " --key-file -";
 
-	SystemCmd::Options cmd_options(cmd_line);
+	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	cmd_options.stdin_text = get_password();
 
 	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("activate Luks failed"));
     }
 
 
@@ -497,9 +489,7 @@ namespace storage
     {
 	string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(get_dm_table_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("deactivate Luks failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

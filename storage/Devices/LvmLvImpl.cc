@@ -769,9 +769,7 @@ namespace storage
 
 	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create LvmLv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -935,9 +933,7 @@ namespace storage
 	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +
 	    to_string(lvm_lv_rhs->get_region().get_length());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize LvmLV failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1005,9 +1001,7 @@ namespace storage
 
 	string cmd_line = LVREMOVEBIN " --force " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete LvmLv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1075,9 +1069,7 @@ namespace storage
 
 	string cmd_line = LVCHANGEBIN " --activate y " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("activate LvmLv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1145,9 +1137,7 @@ namespace storage
 
 	string cmd_line = LVCHANGEBIN " --activate n " + quote(lvm_vg->get_vg_name() + "/" + lv_name);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("deactivate LvmLv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

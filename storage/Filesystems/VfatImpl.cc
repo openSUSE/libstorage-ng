@@ -85,9 +85,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create vfat failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	// uuid is included in mkfs output
 
@@ -103,9 +101,7 @@ namespace storage
 	string cmd_line = FATLABELBIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label vfat failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -121,9 +117,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize vfat failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

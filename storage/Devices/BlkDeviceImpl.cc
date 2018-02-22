@@ -690,9 +690,7 @@ namespace storage
     {
 	string cmd_line = WIPEFSBIN " --all " + quote(get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("wipefs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

@@ -69,9 +69,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create Reiserfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	// uuid is included in mkfs output
 
@@ -89,9 +87,7 @@ namespace storage
 	string cmd_line = TUNEREISERFSBIN " -l " + quote(get_label()) + " " +
 	    quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label Reiserfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -102,9 +98,7 @@ namespace storage
 
 	string cmd_line = TUNEREISERFSBIN " " + get_tune_options() + " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-tune-options Reiserfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -122,9 +116,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize Reiserfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

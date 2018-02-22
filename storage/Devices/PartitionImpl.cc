@@ -701,9 +701,7 @@ namespace storage
 
 	SystemCmd(UDEVADMBIN_SETTLE);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create partition failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -827,9 +825,7 @@ namespace storage
 	    }
 	}
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set partition id failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -867,9 +863,7 @@ namespace storage
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " boot " + (is_boot() ? "on" : "off");
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set boot failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -907,9 +901,7 @@ namespace storage
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " set " +
 	    to_string(get_number()) + " legacy_boot " + (is_legacy_boot() ? "on" : "off");
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set legacy_boot failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -998,9 +990,7 @@ namespace storage
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " rm " +
 	    to_string(get_number());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete partition failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1018,9 +1008,7 @@ namespace storage
 	string cmd_line = EFIBOOTMGRBIN " --verbose --delete --disk " +
 	    quote(partitionable->get_name()) + " --part " + to_string(get_number());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete partition in efi boot mgr failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1090,9 +1078,7 @@ namespace storage
 
 	wait_for_devices({ get_non_impl() });
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize partition failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

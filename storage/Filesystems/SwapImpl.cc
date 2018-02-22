@@ -95,9 +95,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create swap failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	// TODO uuid is included in mkswap output
 
@@ -122,9 +120,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize swap failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -135,9 +131,7 @@ namespace storage
 
 	string cmd_line = SWAPLABELBIN " -L " + quote(get_label()) + " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label swap failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -148,9 +142,7 @@ namespace storage
 
 	string cmd_line = SWAPLABELBIN " -U " + quote(get_uuid()) + " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-uuid swap failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -163,9 +155,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("swapon failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(true);
@@ -179,9 +169,7 @@ namespace storage
 
 	string cmd_line = SWAPOFFBIN " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("swapoff failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);

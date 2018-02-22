@@ -862,9 +862,7 @@ namespace storage
 	wait_for_devices(std::add_const<const Md::Impl&>::type(*this).get_devices());
 	// wait_for_devices(std::as_const(*this).get_devices()); // C++17
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create md raid failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_uuid();
     }
@@ -1021,9 +1019,7 @@ namespace storage
     {
 	string cmd_line = MDADMBIN " --remove " + quote(get_name()) + " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("reduce md failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	// Thanks to udev "md-raid-assembly.rules" running "parted <disk>
 	// print" readds the device to the md if the signature is still
@@ -1041,9 +1037,7 @@ namespace storage
 	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
 	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("extend md failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -1072,9 +1066,7 @@ namespace storage
     {
 	string cmd_line = MDADMBIN " --stop " + quote(get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("deactivate md raid failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

@@ -93,9 +93,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create xfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_uuid();
     }
@@ -111,9 +109,7 @@ namespace storage
 
         string cmd_line = XFSGROWFSBIN " " + ensure_mounted.get_any_mount_point();
 
-        SystemCmd cmd(cmd_line);
-        if (cmd.retcode() != 0)
-            ST_THROW(Exception("resize Xfs failed"));
+        SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -125,9 +121,7 @@ namespace storage
 	string cmd_line = XFSADMINBIN " -L " + quote(get_label().empty() ? "--" : get_label()) + " " +
 	    quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label xfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

@@ -272,9 +272,7 @@ namespace storage
 
 	wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create LvmPv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -341,9 +339,7 @@ namespace storage
 
 	wait_for_devices({ blk_device });
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize LvmPv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -371,9 +367,7 @@ namespace storage
 
 	string cmd_line = PVREMOVEBIN " " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete LvmPv failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

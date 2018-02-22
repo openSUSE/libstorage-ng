@@ -297,9 +297,7 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel msdos";
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create msdos failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	SystemCmd(UDEVADMBIN_SETTLE);
     }

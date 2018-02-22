@@ -68,9 +68,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create jfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_uuid();
     }
@@ -84,9 +82,7 @@ namespace storage
 	string cmd_line = TUNEJFSBIN " -L " + quote(get_label()) + " " +
 	    quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label jfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

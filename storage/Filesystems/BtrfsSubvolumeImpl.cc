@@ -462,9 +462,7 @@ namespace storage
 
 	string cmd_line = BTRFSBIN " subvolume create " + quote(full_path);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create BtrfsSubvolume failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_id(ensure_mounted.get_any_mount_point());
     }
@@ -588,9 +586,7 @@ namespace storage
 	string cmd_line = CHATTRBIN " " + string(nocow ? "+" : "-") + "C " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set nocow failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -623,9 +619,7 @@ namespace storage
 	string cmd_line = BTRFSBIN " subvolume set-default " + to_string(id) + " " +
 	    quote(ensure_mounted.get_any_mount_point());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set default btrfs subvolume failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -658,9 +652,7 @@ namespace storage
 	string cmd_line = BTRFSBIN " subvolume delete " +
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete BtrfsSubvolume failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
