@@ -85,7 +85,7 @@ namespace storage
      * also means that the callbacks may change anytime when e.g. udev
      * changes.
      */
-    class ActivateCallbacks
+    class ActivateCallbacks : public Callbacks
     {
     public:
 
@@ -287,7 +287,7 @@ namespace storage
 	 *
 	 * This function is only intended for the installation system.
 	 *
-	 * @throw Exception
+	 * @throw Aborted, Exception
 	 */
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
