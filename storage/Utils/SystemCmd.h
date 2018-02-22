@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 
 #include <string>
 #include <vector>
+#include <functional>
 #include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Exception.h"
@@ -60,7 +61,8 @@ namespace storage
 	{
 	    Options(const string& command, ThrowBehaviour throw_behaviour = NoThrow)
 		: command(command), throw_behaviour(throw_behaviour), stdin_text(),
-		  mockup_key(), log_line_limit(1000) {}
+		  mockup_key(), log_line_limit(1000),
+		  verify([](int exit_code){ return exit_code == 0; }) {}
 
 	    /**
 	     * The command to be executed.
@@ -86,6 +88,13 @@ namespace storage
 	     * Limit for logged lines.
 	     */
 	    unsigned int log_line_limit;
+
+	    /**
+	     * If throw_behaviour is DoThrow this function is used
+	     * additionally to verify if the command succeeded and if not an
+	     * exception is thrown.
+	     */
+	    std::function<bool(int)> verify;
 
 	};
 

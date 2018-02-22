@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -79,6 +79,21 @@ namespace storage
 	    ST_CAUGHT( exception );
 	    cleanup();
 	    ST_RETHROW( exception );
+	}
+
+	if (do_throw() && !options.verify(_cmdRet))
+	{
+	    string s = "command '" + command() + "' failed:\n\n";
+
+	    if (!stdout().empty())
+		s += "stdout:\n" + boost::join(stdout(), "\n") + "\n\n";
+
+	    if (!stderr().empty())
+		s += "stderr:\n" + boost::join(stderr(), "\n") + "\n\n";
+
+	    s += "exit code:\n" + to_string(_cmdRet);
+
+	    ST_THROW(Exception(s));
 	}
     }
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -38,7 +38,11 @@ namespace storage
 
     CmdBtrfsFilesystemShow::CmdBtrfsFilesystemShow()
     {
-	SystemCmd cmd( BTRFSBIN " filesystem show", SystemCmd::DoThrow );
+	SystemCmd::Options cmd_options(BTRFSBIN " filesystem show");
+	cmd_options.throw_behaviour = SystemCmd::DoThrow;
+	cmd_options.verify = [](int) { return true; };
+
+	SystemCmd cmd(cmd_options);
 
 	if ( cmd.retcode() == 0 && !cmd.stdout().empty() )
 	    parse( cmd.stdout() );

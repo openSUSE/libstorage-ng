@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,8 +43,12 @@ namespace storage
 	: device(device), label(PtType::UNKNOWN), region(), implicit(false),
 	  gpt_enlarge(false), gpt_pmbr_boot(false), logical_sector_size(0), physical_sector_size(0)
     {
-	SystemCmd cmd(PARTEDBIN " --script --machine " + quote(device) + " unit s print",
-		      SystemCmd::DoThrow);
+	SystemCmd::Options options(PARTEDBIN " --script --machine " + quote(device) +
+				   " unit s print");
+	options.throw_behaviour = SystemCmd::DoThrow;
+	options.verify = [](int) { return true; };
+
+	SystemCmd cmd(options);
 
 	// No check for exit status since parted 3.1 exits with 1 if no
 	// partition table is found.
