@@ -66,4 +66,7 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
         system("dot -Tsvg < action.gv > action.svg")
 
     if not skip_commit:
-        storage.commit(my_commit_callbacks)
+        try:
+            storage.commit(my_commit_callbacks)
+        except Exception as exception:
+            print(exception.what())
