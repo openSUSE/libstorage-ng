@@ -388,7 +388,7 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("mount failed"));
 
-	if (exists_in_system())
+	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(true);
     }
 
@@ -406,7 +406,7 @@ namespace storage
 	if (cmd.retcode() != 0)
 	    ST_THROW(Exception("unmount failed"));
 
-	if (exists_in_system())
+	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);
     }
 
