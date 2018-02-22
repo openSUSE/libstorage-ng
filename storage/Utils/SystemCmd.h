@@ -300,7 +300,7 @@ namespace storage
      * distinguishable from other error cases (command installed, but failed
      * for some reason).
      **/
-    class CommandNotFoundException: public SystemCmdException
+    class CommandNotFoundException : public SystemCmdException
     {
     public:
 	CommandNotFoundException( const SystemCmd * sysCmd )

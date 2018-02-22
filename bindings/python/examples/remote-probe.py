@@ -9,7 +9,7 @@ from storage import set_logger, get_logfile_logger, get_stdout_logger
 
 
 host = "localhost"
-port = "22";
+port = "22"
 save_mockup = False
 save_devicegraph = False
 
@@ -70,7 +70,7 @@ def doit():
 
     environment = Environment(True, ProbeMode_STANDARD_WRITE_MOCKUP if save_mockup else ProbeMode_STANDARD, TargetMode_DIRECT)
     if save_mockup:
-        environment.set_mockup_filename("mockup.xml");
+        environment.set_mockup_filename("mockup.xml")
 
     storage = Storage(environment)
     storage.probe()
@@ -82,7 +82,7 @@ def doit():
     print(probed)
 
     if save_devicegraph:
-        probed.save("devicegraph.xml");
+        probed.save("devicegraph.xml")
 
 
 def usage():
