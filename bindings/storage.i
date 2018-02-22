@@ -27,6 +27,7 @@ use_ostream(storage::PartitionSlot);
 %include "storage-catches.i"
 
 %feature("director") storage::ActivateCallbacks;
+%feature("director") storage::ProbeCallbacks;
 %feature("director") storage::CheckCallbacks;
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
@@ -47,6 +48,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Utils/Topology.h"
 #include "storage/Utils/Alignment.h"
 #include "storage/Utils/Remote.h"
+#include "storage/Utils/Callbacks.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 
@@ -127,6 +129,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Utils/Topology.h"
 %include "../../storage/Utils/Alignment.h"
 %include "../../storage/Utils/Remote.h"
+%include "../../storage/Utils/Callbacks.h"
 %include "../../storage/FreeInfo.h"
 %include "../../storage/UsedFeatures.h"
 
