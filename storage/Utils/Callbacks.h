@@ -39,11 +39,16 @@ namespace storage
 
 	/**
 	 * Callback for progress messages.
+	 *
+	 * message is translated.
 	 */
 	virtual void message(const std::string& message) const = 0;
 
 	/**
 	 * Callback for errors.
+	 *
+	 * message is translated. what is usually not translated and may be
+	 * empty.
 	 *
 	 * If it returns true the error is ignored as good as possible.
 	 */

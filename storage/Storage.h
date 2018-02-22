@@ -285,6 +285,9 @@ namespace storage
 	 * the other hand after calling activate() the system should be
 	 * probed.
 	 *
+	 * If an error reported via activate_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
 	 * This function is only intended for the installation system.
 	 *
 	 * @throw Aborted, Exception
@@ -310,6 +313,9 @@ namespace storage
 	 * Probe the system and replace the probed, system and staging
 	 * devicegraphs.
 	 *
+	 * If an error reported via probe_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
 	 * @throw Aborted, Exception
 	 */
 	void probe(const ProbeCallbacks* probe_callbacks = nullptr);
@@ -317,12 +323,18 @@ namespace storage
 	/**
 	 * The actiongraph must be valid.
 	 *
+	 * If an error reported via commit_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
 	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
+	 *
+	 * If an error reported via commit_callbacks is not ignored the
+	 * function throws Aborted.
 	 *
 	 * @throw Aborted, Exception
 	 */
