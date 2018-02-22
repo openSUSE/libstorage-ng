@@ -38,6 +38,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 
@@ -111,16 +112,24 @@ namespace storage
 	    if (!cmd_stat.is_blk())
 		continue;
 
-	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
+	    try
+	    {
+		const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
 
-	    const File range_file = system_info.getFile(SYSFSDIR + udevadminfo.get_path() +
-							"/ext_range");
+		const File range_file = system_info.getFile(SYSFSDIR + udevadminfo.get_path() +
+							    "/ext_range");
+		if (range_file.get<int>() <= 1)
+		    continue;
 
-	    if (range_file.get<int>() <= 1)
-		continue;
-
-	    Disk* disk = Disk::create(prober.get_system(), name);
-	    disk->get_impl().probe_pass_1a(prober);
+		Disk* disk = Disk::create(prober.get_system(), name);
+		disk->get_impl().probe_pass_1a(prober);
+	    }
+	    catch (const Exception& exception)
+	    {
+		// TRANSLATORS: error message
+		error_callback(prober.get_probe_callbacks(), sformat(_("Probing disk %s failed"),
+								     name.c_str()), exception);
+	    }
 	}
     }
 

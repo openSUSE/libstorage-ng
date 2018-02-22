@@ -148,7 +148,7 @@ namespace storage
 
 
     void
-    Storage::Impl::probe()
+    Storage::Impl::probe(const ProbeCallbacks* probe_callbacks)
     {
 	y2mil("probe begin");
 
@@ -164,17 +164,17 @@ namespace storage
 	switch (environment.get_probe_mode())
 	{
 	    case ProbeMode::STANDARD: {
-		probe_helper(probed);
+		probe_helper(probe_callbacks, probed);
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH: {
-		probe_helper(probed);
+		probe_helper(probe_callbacks, probed);
 		probed->save(environment.get_devicegraph_filename());
 	    } break;
 
 	    case ProbeMode::STANDARD_WRITE_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::RECORD);
-		probe_helper(probed);
+		probe_helper(probe_callbacks, probed);
 		Mockup::save(environment.get_mockup_filename());
 	    } break;
 
@@ -188,7 +188,7 @@ namespace storage
 	    case ProbeMode::READ_MOCKUP: {
 		Mockup::set_mode(Mockup::Mode::PLAYBACK);
 		Mockup::load(environment.get_mockup_filename());
-		probe_helper(probed);
+		probe_helper(probe_callbacks, probed);
 		Mockup::occams_razor();
 	    } break;
 	}
@@ -205,13 +205,13 @@ namespace storage
 
 
     void
-    Storage::Impl::probe_helper(Devicegraph* probed)
+    Storage::Impl::probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* probed)
     {
 	SystemInfo system_info;
 
 	arch = system_info.getArch();
 
-	Prober prober(probed, system_info);
+	Prober prober(probe_callbacks, probed, system_info);
     }
 
 

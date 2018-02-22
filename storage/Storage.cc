@@ -219,9 +219,9 @@ namespace storage
 
 
     void
-    Storage::probe()
+    Storage::probe(const ProbeCallbacks* probe_callbacks)
     {
-	get_impl().probe();
+	get_impl().probe(probe_callbacks);
     }
 
     void

@@ -44,8 +44,6 @@ namespace storage
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
 	SystemCmd cmd(cmd_options);
-	if (cmd.retcode() != 0)
-	    ST_THROW(SystemCmdException(&cmd, "lsattr failed, retcode:" + to_string(cmd.retcode())));
 
 	parse(cmd.stdout());
     }

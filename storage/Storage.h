@@ -33,6 +33,8 @@
 
 #include "storage/Filesystems/Mountable.h"
 #include "storage/CommitOptions.h"
+#include "storage/Utils/Callbacks.h"
+
 
 namespace storage
 {
@@ -83,7 +85,7 @@ namespace storage
      * also means that the callbacks may change anytime when e.g. udev
      * changes.
      */
-    class ActivateCallbacks
+    class ActivateCallbacks : public Callbacks
     {
     public:
 
@@ -111,6 +113,15 @@ namespace storage
     };
 
 
+    class ProbeCallbacks : public Callbacks
+    {
+    public:
+
+	virtual ~ProbeCallbacks() {}
+
+    };
+
+
     class CheckCallbacks
     {
     public:
@@ -122,14 +133,11 @@ namespace storage
     };
 
 
-    class CommitCallbacks
+    class CommitCallbacks : public Callbacks
     {
     public:
 
 	virtual ~CommitCallbacks() {}
-
-	virtual void message(const std::string& message) const = 0;
-	virtual bool error(const std::string& message, const std::string& what) const = 0;
 
     };
 
@@ -277,9 +285,12 @@ namespace storage
 	 * the other hand after calling activate() the system should be
 	 * probed.
 	 *
+	 * If an error reported via activate_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
 	 * This function is only intended for the installation system.
 	 *
-	 * @throw Exception
+	 * @throw Aborted, Exception
 	 */
 	void activate(const ActivateCallbacks* activate_callbacks) const;
 
@@ -299,23 +310,33 @@ namespace storage
 	DeactivateStatus deactivate() const;
 
 	/**
-	 * Probe the system and replace the probed and staging devicegraphs.
+	 * Probe the system and replace the probed, system and staging
+	 * devicegraphs.
 	 *
-	 * @throw Exception
+	 * If an error reported via probe_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
+	 * @throw Aborted, Exception
 	 */
-	void probe();
+	void probe(const ProbeCallbacks* probe_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
 	 *
-	 * @throw Exception
+	 * If an error reported via commit_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
+	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
 	 *
-	 * @throw Exception
+	 * If an error reported via commit_callbacks is not ignored the
+	 * function throws Aborted.
+	 *
+	 * @throw Aborted, Exception
 	 */
 	void commit(const CommitCallbacks* commit_callbacks = nullptr) ST_DEPRECATED;
 

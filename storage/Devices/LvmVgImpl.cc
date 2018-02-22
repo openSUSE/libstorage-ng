@@ -499,9 +499,7 @@ namespace storage
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create LvmVg failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -527,9 +525,7 @@ namespace storage
     {
 	string cmd_line = VGREMOVEBIN " " + quote(vg_name);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("delete LvmVg failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -600,9 +596,7 @@ namespace storage
     {
 	string cmd_line = VGREDUCEBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("reduce LvmVg failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -611,9 +605,7 @@ namespace storage
     {
 	string cmd_line = VGEXTENDBIN " " + quote(vg_name) + " " + quote(lvm_pv->get_blk_device()->get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("extend LvmVg failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

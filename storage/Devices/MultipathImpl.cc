@@ -315,9 +315,7 @@ namespace storage
     {
 	string cmd_line = MULTIPATHBIN " -f " + quote(get_name());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("deactivate multipath failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

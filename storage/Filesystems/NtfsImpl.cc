@@ -129,9 +129,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create ntfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	probe_uuid();
     }
@@ -145,9 +143,7 @@ namespace storage
 	string cmd_line = NTFSLABELBIN " " + quote(blk_device->get_name()) + " " +
 	    quote(get_label());
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set-label ntfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
@@ -164,9 +160,7 @@ namespace storage
 
 	wait_for_devices();
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("resize ntfs failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 }

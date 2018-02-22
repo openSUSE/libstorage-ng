@@ -22,7 +22,7 @@ using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(test_hihi)
+BOOST_AUTO_TEST_CASE(test_create1)
 {
     set_logger(get_stdout_logger());
 
@@ -66,7 +66,7 @@ BOOST_AUTO_TEST_CASE(test_hihi)
 }
 
 
-BOOST_AUTO_TEST_CASE(test_hoho)
+BOOST_AUTO_TEST_CASE(test_create2)
 {
     set_logger(get_stdout_logger());
 

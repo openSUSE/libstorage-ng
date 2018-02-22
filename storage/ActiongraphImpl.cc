@@ -28,6 +28,7 @@
 #include <boost/graph/graphviz.hpp>
 
 #include "storage/Utils/Stopwatch.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
@@ -582,10 +583,7 @@ namespace storage
 
 	    y2mil("Commit Action \"" << text.native << "\" [" << action->details() << "]");
 
-	    if (commit_callbacks)
-	    {
-		commit_callbacks->message(text.translated);
-	    }
+	    message_callback(commit_callbacks, text);
 
 	    if (action->nop)
 		continue;
@@ -594,14 +592,9 @@ namespace storage
 	    {
 		action->commit(commit_data, commit_options);
 	    }
-	    catch (const Exception& e)
+	    catch (const Exception& exception)
 	    {
-		ST_CAUGHT(e);
-
-		if (!commit_callbacks || !commit_callbacks->error(text.translated, e.what()))
-		    ST_RETHROW(e);
-
-		y2mil("user decides to continue after error");
+		error_callback(commit_callbacks, text, exception);
 	    }
 	}
 

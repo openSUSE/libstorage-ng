@@ -91,7 +91,7 @@ namespace storage
 
 	DeactivateStatus deactivate() const;
 
-	void probe();
+	void probe(const ProbeCallbacks* probe_callbacks);
 
 	void commit(const CommitOptions& commit_options, const CommitCallbacks* commit_callbacks);
 
@@ -99,7 +99,7 @@ namespace storage
 
     private:
 
-	void probe_helper(Devicegraph* probed);
+	void probe_helper(const ProbeCallbacks* probe_callbacks, Devicegraph* system);
 
 	Storage& storage;
 

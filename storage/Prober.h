@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,7 @@ namespace storage
     using std::vector;
 
 
+    class ProbeCallbacks;
     class Devicegraph;
     class SystemInfo;
     class Device;
@@ -50,7 +51,9 @@ namespace storage
 	/**
 	 * The constructor probes the system and places the result in system.
 	 */
-	Prober(Devicegraph* system, SystemInfo& system_info);
+	Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info);
+
+	const ProbeCallbacks* get_probe_callbacks() const { return probe_callbacks; }
 
 	Devicegraph* get_system() { return system; }
 
@@ -66,6 +69,8 @@ namespace storage
 	void add_holder(const string& name, Device* b, add_holder_func_t add_holder_func);
 
     private:
+
+	const ProbeCallbacks* probe_callbacks;
 
 	Devicegraph* system;
 

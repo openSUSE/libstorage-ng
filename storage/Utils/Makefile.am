@@ -38,6 +38,8 @@ libutils_la_SOURCES =					\
 	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
 	JsonFile.h		JsonFile.cc		\
+	Callbacks.h					\
+	CallbacksImpl.cc 	CallbacksImpl.h		\
 	SnapperConfig.h		SnapperConfig.cc	\
 	CDgD.h						\
 	Swig.h						\
@@ -58,5 +60,6 @@ pkginclude_HEADERS =		\
 	Region.h		\
 	Topology.h		\
 	Alignment.h		\
-	Remote.h
+	Remote.h		\
+	Callbacks.h
 

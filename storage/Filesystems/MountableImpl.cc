@@ -384,9 +384,7 @@ namespace storage
 
 	cmd_line += " " + quote(get_mount_name()) + " " + quote(real_mount_point);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("mount failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(true);
@@ -402,9 +400,7 @@ namespace storage
 
 	string cmd_line = UMOUNTBIN " " + quote(real_mount_point);
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("unmount failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	if (mount_point->exists_in_system())
 	    redirect_to_system(mount_point)->set_active(false);

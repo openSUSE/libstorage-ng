@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -418,6 +418,16 @@ namespace storage
 
 	std::string _seen;
 	std::string _expected;
+    };
+
+
+    class Aborted : public Exception
+    {
+    public:
+
+	Aborted(const std::string& message) : Exception(message) {}
+	virtual ~Aborted() noexcept {}
+
     };
 
 }

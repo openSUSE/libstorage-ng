@@ -25,6 +25,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/StorageImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Devices/DiskImpl.h"
@@ -46,8 +47,8 @@
 namespace storage
 {
 
-    Prober::Prober(Devicegraph* system, SystemInfo& system_info)
-	: system(system), system_info(system_info)
+    Prober::Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info)
+	: probe_callbacks(probe_callbacks), system(system), system_info(system_info)
     {
 	/**
 	 * Difficulties:
@@ -88,116 +89,265 @@ namespace storage
 
 	y2mil("prober pass 1a");
 
-	Disk::Impl::probe_disks(*this);
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing disks"));
 
-	Dasd::Impl::probe_dasds(*this);
-
-	Multipath::Impl::probe_multipaths(*this);
-
-	DmRaid::Impl::probe_dm_raids(*this);
-
-	if (system_info.getBlkid().any_md())
+	try
 	{
-	    // TODO check whether md tools are installed
-
-	    Md::Impl::probe_mds(*this);
+	    Disk::Impl::probe_disks(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing disks failed"), exception);
 	}
 
-	if (system_info.getBlkid().any_lvm())
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing DASDs"));
+
+	try
 	{
-	    // TODO check whether lvm tools are installed
-
-	    LvmVg::Impl::probe_lvm_vgs(*this);
-	    LvmPv::Impl::probe_lvm_pvs(*this);
-	    LvmLv::Impl::probe_lvm_lvs(*this);
-
-	    for (LvmVg* lvm_vg : LvmVg::get_all(system))
-		lvm_vg->get_impl().calculate_reserved_extents(*this);
+	    Dasd::Impl::probe_dasds(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing DASDs failed"), exception);
 	}
 
-	if (system_info.getBlkid().any_luks())
-	{
-	    // TODO check whether cryptsetup tools are installed
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing multipath"));
 
-	    Luks::Impl::probe_lukses(*this);
+	try
+	{
+	    Multipath::Impl::probe_multipaths(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing multipath failed"), exception);
 	}
 
-	if (system_info.getBlkid().any_bcache())
-	{
-	    // TODO check whether bcache-tools are installed
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing DM RAIDs"));
 
-	    Bcache::Impl::probe_bcaches(*this);
-	    BcacheCset::Impl::probe_bcache_csets(*this);
+	try
+	{
+	    DmRaid::Impl::probe_dm_raids(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing DM RAIDs failed"), exception);
+	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing MD RAIDs"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_md())
+	    {
+		// TODO check whether md tools are installed
+
+		Md::Impl::probe_mds(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing MD RAIDs failed"), exception);
+	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing LVM"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_lvm())
+	    {
+		// TODO check whether lvm tools are installed
+
+		LvmVg::Impl::probe_lvm_vgs(*this);
+		LvmPv::Impl::probe_lvm_pvs(*this);
+		LvmLv::Impl::probe_lvm_lvs(*this);
+
+		for (LvmVg* lvm_vg : LvmVg::get_all(system))
+		    lvm_vg->get_impl().calculate_reserved_extents(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing LVM failed"), exception);
+	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing LUKS"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_luks())
+	    {
+		// TODO check whether cryptsetup tools are installed
+
+		Luks::Impl::probe_lukses(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
+	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing bcache"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_bcache())
+	    {
+		// TODO check whether bcache-tools are installed
+
+		Bcache::Impl::probe_bcaches(*this);
+		BcacheCset::Impl::probe_bcache_csets(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing bcache failed"), exception);
 	}
 
 	// Pass 1b
 
 	y2mil("prober pass 1b");
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing device relationships"));
+
+	try
 	{
-	    Device* device = system->get_impl()[vertex];
-	    device->get_impl().probe_pass_1b(*this);
+	    for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
+	    {
+		Device* device = system->get_impl()[vertex];
+		device->get_impl().probe_pass_1b(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
 	}
 
 	// Pass 1c
 
 	y2mil("prober pass 1c");
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing partitions"));
+
+	try
 	{
-	    Device* device = system->get_impl()[vertex];
-	    if (is_partitionable(device))
+	    for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
 	    {
-		Partitionable* partitionable = to_partitionable(device);
-		partitionable->get_impl().probe_pass_1c(*this);
+		Device* device = system->get_impl()[vertex];
+		if (is_partitionable(device))
+		{
+		    Partitionable* partitionable = to_partitionable(device);
+		    partitionable->get_impl().probe_pass_1c(*this);
+		}
 	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing partitions failed"), exception);
 	}
 
 	// Pass 1d
 
 	y2mil("prober pass 1d");
 
-	flush_pending_holders();
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing device relationships"));
+
+	try
+	{
+	    flush_pending_holders();
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
+	}
 
 	// Pass 2
 
 	y2mil("prober pass 2");
 
-	for (BlkDevice* blk_device : BlkDevice::get_all(system))
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing file systems"));
+
+	try
 	{
-	    if (blk_device->has_children())
-		continue;
-
-	    if (!blk_device->get_impl().is_active())
-		continue;
-
-	    const Blkid& blkid = system_info.getBlkid();
-	    Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
-	    if (it != blkid.end())
+	    for (BlkDevice* blk_device : BlkDevice::get_all(system))
 	    {
-		if (it->second.is_fs)
-		{
-		    if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
-			it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
-			it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
-			it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
-			it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
-			it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS)
-		    {
-			y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
-			      blk_device->get_name());
-			continue;
-		    }
+		if (blk_device->has_children())
+		    continue;
 
+		if (!blk_device->get_impl().is_active())
+		    continue;
+
+		const Blkid& blkid = system_info.getBlkid();
+		Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
+		if (it == blkid.end() || !it->second.is_fs)
+		    continue;
+
+		if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
+		    it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
+		    it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
+		    it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
+		    it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
+		    it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS)
+		{
+		    y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
+			  blk_device->get_name());
+		    continue;
+		}
+
+		try
+		{
 		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
 		    blk_filesystem->get_impl().probe_pass_2a(*this);
 		    blk_filesystem->get_impl().probe_pass_2b(*this);
 		}
+		catch (const Exception& exception)
+		{
+		    // TRANSLATORS: error message
+		    error_callback(probe_callbacks, sformat(_("Probing file system on %s failed"),
+							    blk_device->get_name().c_str()), exception);
+		}
 	    }
 	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing file systems failed"), exception);
+	}
 
-	Nfs::Impl::probe_nfses(*this);
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing NFS"));
+
+	try
+	{
+	    Nfs::Impl::probe_nfses(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing NFS failed"), exception);
+	}
 
 	y2mil("prober done");
     }
@@ -228,11 +378,11 @@ namespace storage
 		BlkDevice* a = BlkDevice::Impl::find_by_any_name(system, pending_holder.name, system_info);
 		pending_holder.add_holder_func(system, a, pending_holder.b);
 	    }
-	    catch (const Exception& e)
+	    catch (const Exception& exception)
 	    {
 		y2err("failed to find " << pending_holder.name << " for "
 		      << pending_holder.b->get_displayname());
-		ST_RETHROW(e);
+		ST_RETHROW(exception);
 	    }
 	}
 

@@ -220,9 +220,7 @@ namespace storage
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("create gpt failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
 	SystemCmd(UDEVADMBIN_SETTLE);
     }
@@ -264,9 +262,7 @@ namespace storage
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
 	    " disk_set pmbr_boot " + (is_pmbr_boot() ? "on" : "off");
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("set pmbr boot failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 

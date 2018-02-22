@@ -25,6 +25,17 @@ class MyActivateCallbacks(ActivateCallbacks):
         else:
             return PairBoolString(True, "wrong")
 
+    def message(self, message):
+        print("message callback")
+        print(message)
+
+    def error(self, message, what):
+        print("error callback")
+        print(message)
+        print(what)
+        return True
+
+
 my_activate_callbacks = MyActivateCallbacks()
 
 environment = Environment(False)
