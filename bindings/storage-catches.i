@@ -245,7 +245,7 @@
 %catches(storage::Exception) storage::Storage::get_staging() const;
 %catches(storage::Exception) storage::Storage::get_system();
 %catches(storage::Exception) storage::Storage::get_system() const;
-%catches(storage::Exception) storage::Storage::probe();
+%catches(storage::Aborted, storage::Exception) storage::Storage::probe(const ProbeCallbacks *probe_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);
 

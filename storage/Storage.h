@@ -33,6 +33,8 @@
 
 #include "storage/Filesystems/Mountable.h"
 #include "storage/CommitOptions.h"
+#include "storage/Utils/Callbacks.h"
+
 
 namespace storage
 {
@@ -108,6 +110,15 @@ namespace storage
 	bool md;
 	bool lvm_lv;
 	bool luks;
+    };
+
+
+    class ProbeCallbacks : public Callbacks
+    {
+    public:
+
+	virtual ~ProbeCallbacks() {}
+
     };
 
 
@@ -299,11 +310,12 @@ namespace storage
 	DeactivateStatus deactivate() const;
 
 	/**
-	 * Probe the system and replace the probed and staging devicegraphs.
+	 * Probe the system and replace the probed, system and staging
+	 * devicegraphs.
 	 *
-	 * @throw Exception
+	 * @throw Aborted, Exception
 	 */
-	void probe();
+	void probe(const ProbeCallbacks* probe_callbacks = nullptr);
 
 	/**
 	 * The actiongraph must be valid.
