@@ -31,7 +31,12 @@ my_probe_callbacks = MyProbeCallbacks()
 environment = Environment(False)
 
 storage = Storage(environment)
-storage.probe(my_probe_callbacks)
+
+try:
+    storage.probe(my_probe_callbacks)
+except Exception as exception:
+    print(exception.what())
+    exit(1)
 
 probed = storage.get_probed()
 

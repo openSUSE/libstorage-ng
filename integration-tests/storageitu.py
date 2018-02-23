@@ -52,6 +52,7 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
 			                     GraphvizFlags_SID | GraphvizFlags_SIZE);
         system("dot -Tsvg < staging.gv > staging.svg")
 
+    commit_options = CommitOptions(False)
     my_commit_callbacks = MyCommitCallbacks()
 
     actiongraph = storage.calculate_actiongraph()
@@ -67,6 +68,6 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
 
     if not skip_commit:
         try:
-            storage.commit(my_commit_callbacks)
+            storage.commit(commit_options, my_commit_callbacks)
         except Exception as exception:
             print(exception.what())
