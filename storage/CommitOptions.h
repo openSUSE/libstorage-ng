@@ -26,6 +26,7 @@ namespace storage
 {
 
     // TODO move root_prefix here? only needed in do_mount and do_unmount
+    // TODO but now force_rw should also be used in immediate_activate
 
     class CommitOptions
     {

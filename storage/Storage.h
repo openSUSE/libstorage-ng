@@ -285,6 +285,9 @@ namespace storage
 	 * the other hand after calling activate() the system should be
 	 * probed.
 	 *
+	 * The message callback is unreliable since certain subsystems can be
+	 * activated automatically (e.g. MD RAIDs by udev).
+	 *
 	 * If an error reported via activate_callbacks is not ignored the
 	 * function throws Aborted.
 	 *
