@@ -20,7 +20,7 @@ print(staging)
 
 partition = Partition.find_by_name(staging, "/dev/sdb1")
 
-partition.set_id(ID_RAID)
+partition.set_id(ID_LINUX if partition.get_id() != ID_LINUX else ID_RAID)
 
 print(staging)
 
