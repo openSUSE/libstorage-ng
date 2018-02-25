@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-02-25 02:06+0000\n"
+"PO-Revision-Date: 2018-02-25 13:06+0000\n"
 "Last-Translator: Ruta Reknere <ruta.reknere@nordtext.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sv/>\n"
@@ -1187,7 +1187,7 @@ msgstr "Anger alternativ 'skriva utan kopiering' för delvolym %1$s på %2$s"
 #: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Anger skyddsbootflagga MBR  från GPT på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1195,20 +1195,18 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:629
-#, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "Krymp %1$s till %2$s"
+msgstr "Krymp %1$s på %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:274
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Formatera krypterad enhet %1$s (%2$s) för %4$s med %3$s"
+msgstr "Krymp krypterad enhet på %1$s från %2$s till %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1216,30 +1214,27 @@ msgstr "Formatera krypterad enhet %1$s (%2$s) för %4$s med %3$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:369
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymp den logiska volymen %1$s till %2$s"
+msgstr "Krymp logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:882
-#, fuzzy, c-format
-#| msgid "Shrink partition %1$s to %2$s"
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Krymp partitionen %1$s till %2$s"
+msgstr "Krymp partition %1$s från %2$s till %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:291
-#, fuzzy, c-format
-#| msgid "Shrink logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Krymp den logiska volymen %1$s till %2$s"
+msgstr "Krymp fysisk volym på %1$s från %2$s till %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by filesystem (e.g. ext4),
@@ -1247,20 +1242,18 @@ msgstr "Krymp den logiska volymen %1$s till %2$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:635
-#, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "Krymper %1$s till %2$s"
+msgstr "Krymper %1$s på %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/EncryptionImpl.cc:279
-#, fuzzy, c-format
-#| msgid "Format encrypted device %1$s (%2$s) for %4$s with %3$s"
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Formatera krypterad enhet %1$s (%2$s) för %4$s med %3$s"
+msgstr "Krymper krypterad enhet på %1$s från %2$s till %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1268,30 +1261,27 @@ msgstr "Formatera krypterad enhet %1$s (%2$s) för %4$s med %3$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmLvImpl.cc:375
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymper den logiska volymen %1$s till %2$s"
+msgstr "Krymper logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/PartitionImpl.cc:887
-#, fuzzy, c-format
-#| msgid "Shrinking partition %1$s to %2$s"
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Krymper partitionen %1$s till %2$s"
+msgstr "Krymper partition %1$s från %2$s till %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
 #: ../storage/Devices/LvmPvImpl.cc:296
-#, fuzzy, c-format
-#| msgid "Shrinking logical volume %1$s to %2$s"
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Krymper den logiska volymen %1$s till %2$s"
+msgstr "Krymper fysisk volym på %1$s från %2$s till %3$s"
 
 # SLE12
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
@@ -1314,10 +1304,9 @@ msgstr "TiB"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:220
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "Monterar %1$s på %2$s"
+msgstr "Avmontera %1$s vid %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1325,19 +1314,17 @@ msgstr "Monterar %1$s på %2$s"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Tar bort undervolym %1$s på enhet %2$s"
+msgstr "Avmontera delvolym %1$s på %2$s i %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #: ../storage/Filesystems/MountableImpl.cc:224
-#, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "Monterar %1$s på %2$s"
+msgstr "Avmonterar %1$s vid %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1345,33 +1332,30 @@ msgstr "Monterar %1$s på %2$s"
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
 #: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
-#, fuzzy, c-format
-#| msgid "Removing subvolume %1$s on device %2$s"
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Tar bort undervolym %1$s på enhet %2$s"
+msgstr "Avmonterar delvolym %1$s på %2$s i %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:289
-#, fuzzy, c-format
-#| msgid "Update entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "Uppdatera posten för monteringspunkten %1$s i %2$s"
+msgstr "Uppdatera monteringspunkt %1$s för %2$s i /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #: ../storage/Filesystems/MountableImpl.cc:293
-#, fuzzy, c-format
-#| msgid "Updating entry for mount point %1$s in %2$s"
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "Uppdaterar posten för monteringspunkten %1$s i %2$s"
+msgstr "Uppdaterar monteringspunkt %1$s för %2$s i /etc/fstab"
 
 #. TRANSLATORS: first snapshot description
 #: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
-msgstr ""
+msgstr "första rotfilsystem"
 
 # SLE12
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
