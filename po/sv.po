@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-09-12 20:00+0200\n"
-"PO-Revision-Date: 2018-02-25 13:06+0000\n"
+"PO-Revision-Date: 2018-02-26 12:37+0000\n"
 "Last-Translator: Ruta Reknere <ruta.reknere@nordtext.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sv/>\n"
@@ -1082,10 +1082,9 @@ msgstr "Ange id för partition %1$s som 0x%2$02X"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
 #: ../storage/Filesystems/BlkFilesystemImpl.cc:524
-#, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
+#, c-format
 msgid "Set label of %1$s to %2$s"
-msgstr "Ange etiketten på %1$s som %2$s"
+msgstr "Ange etiketten för %1$s till %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
