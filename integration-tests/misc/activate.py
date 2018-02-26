@@ -3,6 +3,7 @@
 # requirements: something to activate, e.g. LUKS and LVM
 
 
+from sys import exit
 from storage import *
 from storageitu import *
 
@@ -33,7 +34,7 @@ class MyActivateCallbacks(ActivateCallbacks):
         print("error callback")
         print(message)
         print(what)
-        return True
+        return False
 
 
 my_activate_callbacks = MyActivateCallbacks()
@@ -42,5 +43,8 @@ environment = Environment(False)
 
 storage = Storage(environment)
 
-storage.activate(my_activate_callbacks)
-
+try:
+    storage.activate(my_activate_callbacks)
+except Exception as exception:
+    print(exception.what())
+    exit(1)
