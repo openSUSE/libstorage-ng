@@ -421,6 +421,11 @@ namespace storage
     };
 
 
+    // TODO It should be possible to catch all exception derived from
+    // Exception except of Aborted, see code in activate_* and
+    // error_callback. Or use some other method to abort function with
+    // callbacks.
+
     class Aborted : public Exception
     {
     public:
