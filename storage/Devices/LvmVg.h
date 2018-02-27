@@ -84,9 +84,14 @@ namespace storage
 
 	/**
 	 * Set the extent size of the volume group. This can modify the size
-	 * of the logical volumes.
+	 * of the logical volumes. Due to rounding the size of logical volumes
+	 * can become zero or the volume group can become overcommitted.
 	 *
-	 * @throw InvalidExtentSize
+	 * Setting the extent size is unsupported if the volume group is
+	 * already created on-disk (it is only supported by LVM for special
+	 * cases).
+	 *
+	 * @throw InvalidExtentSize, Exception
 	 */
 	void set_extent_size(unsigned long long extent_size);
 

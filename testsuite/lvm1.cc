@@ -157,3 +157,58 @@ BOOST_AUTO_TEST_CASE(chunk_size_too_small)
     BOOST_CHECK_EQUAL(messages[0], "Chunk size is too small for thin pool logical volume "
 		      "thin-pool in volume group test.");
 }
+
+
+BOOST_AUTO_TEST_CASE(change_extent_size)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* staging = storage.get_staging();
+
+    Disk* sda = Disk::create(staging, "/dev/sda", 1 * TiB);
+
+    LvmVg* lvm_vg = LvmVg::create(staging, "test");
+    lvm_vg->add_lvm_pv(sda);
+
+    LvmLv* normal1 = lvm_vg->create_lvm_lv("normal1", LvType::NORMAL, 1 * GiB);
+    LvmLv* normal2 = lvm_vg->create_lvm_lv("normal2", LvType::NORMAL, 6 * MiB);
+
+    // one extent (4 MiB per default) for metadata per PV
+    BOOST_CHECK_EQUAL(lvm_vg->get_size(), 1 * TiB - 4 * MiB);
+    BOOST_CHECK_EQUAL(normal1->get_size(), 1 * GiB);
+    BOOST_CHECK_EQUAL(normal2->get_size(), 4 * MiB);
+
+    lvm_vg->set_extent_size(128 * MiB);
+
+    // one extent (now 128 MiB) for metadata per PV
+    BOOST_CHECK_EQUAL(lvm_vg->get_size(), 1 * TiB - 128 * MiB);
+    BOOST_CHECK_EQUAL(normal1->get_size(), 1 * GiB);
+    BOOST_CHECK_EQUAL(normal2->get_size(), 0 * MiB);
+}
+
+
+BOOST_AUTO_TEST_CASE(set_invalid_extent_size)
+{
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* staging = storage.get_staging();
+
+    Disk* sda = Disk::create(staging, "/dev/sda", 1 * TiB);
+
+    LvmVg* lvm_vg = LvmVg::create(staging, "test");
+    lvm_vg->add_lvm_pv(sda);
+
+    LvmLv* normal1 = lvm_vg->create_lvm_lv("normal1", LvType::NORMAL, 1 * GiB);
+    LvmLv* normal2 = lvm_vg->create_lvm_lv("normal2", LvType::NORMAL, 6 * MiB);
+
+    // one extent (4 MiB per default) for metadata per PV
+    BOOST_CHECK_EQUAL(lvm_vg->get_size(), 1 * TiB - 4 * MiB);
+    BOOST_CHECK_EQUAL(normal1->get_size(), 1 * GiB);
+    BOOST_CHECK_EQUAL(normal2->get_size(), 4 * MiB);
+
+    BOOST_CHECK_THROW(lvm_vg->set_extent_size(48 * MiB), InvalidExtentSize);
+}

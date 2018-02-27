@@ -174,7 +174,7 @@
 %catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(Devicegraph *devicegraph, const std::string &vg_name);
 %catches(storage::LvmVgNotFoundByVgName) storage::LvmVg::find_by_vg_name(const Devicegraph *devicegraph, const std::string &vg_name);
 %catches(storage::Exception) storage::LvmVg::get_lvm_lv(const std::string &lv_name);
-%catches(storage::InvalidExtentSize) storage::LvmVg::set_extent_size(unsigned long long extent_size);
+%catches(storage::InvalidExtentSize, storage::Exception) storage::LvmVg::set_extent_size(unsigned long long extent_size);
 %catches(storage::WrongNumberOfChildren) storage::Md::add_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::Md::compare_by_number(const Md *lhs, const Md *rhs);
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
