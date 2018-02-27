@@ -34,6 +34,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/User.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/CallbacksImpl.h"
 
 
 namespace storage
@@ -105,39 +106,58 @@ namespace storage
     {
 	y2mil("activate_multipaths");
 
-	if (!CmdMultipath(true).looks_like_real_multipath())
+	try
 	{
-	    y2mil("does not look like real multipath");
+	    if (!CmdMultipath(true).looks_like_real_multipath())
+	    {
+		y2mil("does not look like real multipath");
+		return false;
+	    }
+
+	    if (!activate_callbacks->multipath())
+	    {
+		y2mil("user canceled activation of multipath");
+		return false;
+	    }
+	    else
+	    {
+		y2mil("user allowed activation of multipath");
+	    }
+
+	    // TRANSLATORS: progress message
+	    message_callback(activate_callbacks, _("Activating multipath"));
+
+	    try
+	    {
+		SystemCmd cmd1(MULTIPATHBIN, SystemCmd::DoThrow);
+
+		SystemCmd(UDEVADMBIN_SETTLE);
+
+		SystemCmd cmd2(MULTIPATHDBIN, SystemCmd::DoThrow);
+
+		SystemCmd(UDEVADMBIN_SETTLE);
+
+		return true;
+	    }
+	    catch (const Exception& exception)
+	    {
+		// TRANSLATORS: error message
+		error_callback(activate_callbacks, _("Activating multipath failed"), exception);
+
+		return false;
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
+	    if (typeid(exception) == typeid(Aborted))
+		ST_RETHROW(exception);
+
+	    // Ignore failure to detect whether multipath needs to be activated.
+
 	    return false;
 	}
-
-	if (!activate_callbacks->multipath())
-	{
-	    y2mil("user canceled activation of multipath");
-	    return false;
-	}
-	else
-	{
-	    y2mil("user allowed activation of multipath");
-	}
-
-	string cmd_line1 = MULTIPATHBIN;
-
-	SystemCmd cmd1(cmd_line1);
-	if (cmd1.retcode() != 0)
-	    ST_THROW(Exception("activate multipath failed"));
-
-	SystemCmd(UDEVADMBIN_SETTLE);
-
-	string cmd_line2 = MULTIPATHDBIN;
-
-	SystemCmd cmd2(cmd_line2);
-	if (cmd2.retcode() != 0)
-	    ST_THROW(Exception("activate multipath failed"));
-
-	SystemCmd(UDEVADMBIN_SETTLE);
-
-	return true;
     }
 
 

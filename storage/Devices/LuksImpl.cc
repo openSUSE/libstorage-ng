@@ -23,6 +23,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
@@ -148,6 +149,9 @@ namespace storage
 		y2mil("user allowed activation of luks " << uuid);
 	    }
 
+	    // TRANSLATORS: progress message
+	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid.c_str()));
+
 	    if (attempt == 1)
 	    {
 		dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
@@ -165,22 +169,31 @@ namespace storage
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
 		quote(dm_name) + " --key-file -";
 
-	    SystemCmd::Options cmd_options(cmd_line);
+	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = tmp.second;
+	    cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
-	    SystemCmd cmd(cmd_options);
-
-	    // check for wrong password
-	    if (cmd.retcode() == 2)
+	    try
 	    {
-		attempt++;
-		continue;
+		SystemCmd cmd(cmd_options);
+
+		// check for wrong password
+		if (cmd.retcode() == 2)
+		{
+		    attempt++;
+		    continue;
+		}
+
+		return true;
 	    }
+	    catch (const Exception& exception)
+	    {
+		// TRANSLATORS: error message
+		error_callback(activate_callbacks, sformat(_("Activating LUKS %s failed"), uuid.c_str()),
+			       exception);
 
-	    if (cmd.retcode() != 0)
-		ST_THROW(Exception("activate Luks failed"));
-
-	    return true;
+		return false;
+	    }
 	}
     }
 
@@ -190,42 +203,56 @@ namespace storage
     {
 	y2mil("activate_lukses");
 
-	SystemInfo system_info;
-
-	bool ret = false;
-
-	for (const Blkid::value_type& key_value1 : system_info.getBlkid())
+	try
 	{
-	    if (!key_value1.second.is_luks)
-		continue;
+	    SystemInfo system_info;
 
-	    // major and minor of the device holding the luks
-	    dev_t majorminor = system_info.getCmdUdevadmInfo(key_value1.first).get_majorminor();
+	    bool ret = false;
 
-	    const CmdDmsetupTable& dmsetup_table = system_info.getCmdDmsetupTable();
-	    CmdDmsetupTable::const_iterator it = dmsetup_table.find_using(majorminor);
-	    if (it != dmsetup_table.end())
-		continue;
+	    for (const Blkid::value_type& key_value1 : system_info.getBlkid())
+	    {
+		if (!key_value1.second.is_luks)
+		    continue;
 
-	    y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
-		  key_value1.second.luks_uuid);
+		// major and minor of the device holding the luks
+		dev_t majorminor = system_info.getCmdUdevadmInfo(key_value1.first).get_majorminor();
 
-	    // TODO During a second loop of Storage::Impl::activate() the
-	    // library should not bother the user with popups to lukses where
-	    // an activation was canceled by the user. Maybe the library
-	    // should also remember the passwords (map<uuid, password>) in
-	    // case the activation is run again, e.g. after deactivation and
-	    // reprobe.
+		const CmdDmsetupTable& dmsetup_table = system_info.getCmdDmsetupTable();
+		CmdDmsetupTable::const_iterator it = dmsetup_table.find_using(majorminor);
+		if (it != dmsetup_table.end())
+		    continue;
 
-	    if (activate_luks(activate_callbacks, system_info, key_value1.first,
-			      key_value1.second.luks_uuid))
-		ret = true;
+		y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
+		      key_value1.second.luks_uuid);
+
+		// TODO During a second loop of Storage::Impl::activate() the
+		// library should not bother the user with popups to lukses where
+		// an activation was canceled by the user. Maybe the library
+		// should also remember the passwords (map<uuid, password>) in
+		// case the activation is run again, e.g. after deactivation and
+		// reprobe.
+
+		if (activate_luks(activate_callbacks, system_info, key_value1.first,
+				  key_value1.second.luks_uuid))
+		    ret = true;
+	    }
+
+	    if (ret)
+		SystemCmd(UDEVADMBIN_SETTLE);
+
+	    return ret;
 	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
 
-	if (ret)
-	    SystemCmd(UDEVADMBIN_SETTLE);
+	    if (typeid(exception) == typeid(Aborted))
+		ST_RETHROW(exception);
 
-	return ret;
+	    // Ignore failure to detect whether LUKSes needs to be activated.
+
+	    return false;
+	}
     }
 
 
