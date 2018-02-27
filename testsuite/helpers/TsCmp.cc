@@ -205,13 +205,17 @@ namespace storage
 
 	if (access("/usr/bin/dot", X_OK) == 0)
 	{
-	    storage.get_probed()->write_graphviz(name + "-probed.gv", GraphvizFlags::SID);
+	    storage.get_probed()->write_graphviz(name + "-probed.gv", GraphvizFlags::CLASSNAME |
+						 GraphvizFlags::NAME | GraphvizFlags::SID |
+						 GraphvizFlags::SIZE);
 	    system(("dot -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
 
-	    storage.get_staging()->write_graphviz(name + "-staging.gv", GraphvizFlags::SID);
+	    storage.get_staging()->write_graphviz(name + "-staging.gv", GraphvizFlags::CLASSNAME |
+						  GraphvizFlags::NAME | GraphvizFlags::SID |
+						  GraphvizFlags::SIZE);
 	    system(("dot -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
 
-	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID);
+	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID | GraphvizFlags::NAME);
 	    system(("dot -Tsvg < " + name + "-action.gv > " + name + "-action.svg").c_str());
 	}
 
