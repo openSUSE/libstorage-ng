@@ -149,12 +149,24 @@ namespace storage
     {
 	// see vgcreate(8) for valid values
 
+	unsigned long long old_extent_size = region.get_block_size();
+
 	if (!is_power_of_two(extent_size) || !is_multiple_of(extent_size, 128 * KiB))
 	    ST_THROW(InvalidExtentSize(extent_size));
 
 	region.set_block_size(extent_size);
 
-	// TODO adjust lvm lvs
+	calculate_region();
+
+	for (LvmLv* lvm_lv : get_lvm_lvs())
+	{
+	    Region region = lvm_lv->get_region();
+
+	    region.set_block_size(extent_size);
+	    region.set_length(region.get_length() * old_extent_size / extent_size);
+
+	    lvm_lv->set_region(region);
+	}
     }
 
 
