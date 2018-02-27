@@ -39,6 +39,7 @@
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/OutputProcessor.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/AppUtil.h"
 
 
 #define SYSCALL_FAILED( SYSCALL_MSG ) \
@@ -183,6 +184,7 @@ namespace storage
 	else
 	{
 	    y2mil("SystemCmd Executing:\"" << command() << "\"");
+	    y2mil("timestamp " << timestamp());
 	    _execInBackground = false;
 	    ret = doExecute();
 	}
