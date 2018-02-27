@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 on MSDOS
+# requirements: partition /dev/sdb1 on MS-DOS
 
 
 from storage import *
