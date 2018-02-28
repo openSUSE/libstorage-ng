@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -413,6 +413,23 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 	if (strftime(buf, sizeof(buf), "%F %T %Z", &t2) == 0)
 	    return string("unknown");
 	return string(buf);
+    }
+
+
+    string
+    timestamp()
+    {
+	// CLOCK_MONOTONIC seems to be the time used in dmesg. /proc/uptime,
+	// sysinfo(2) and CLOCK_BOOTTIME are different when it comes to
+	// handling suspend.
+
+	struct timespec tmp1;
+	clock_gettime(CLOCK_MONOTONIC, &tmp1);
+	double t1 = tmp1.tv_sec + 1.0e-9 * tmp1.tv_nsec;
+
+	time_t t2 = time(0);
+
+	return "[" + to_string(t1) + "], " + datetime(t2, true) + ", " + datetime(t2, false);
     }
 
 

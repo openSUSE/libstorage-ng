@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -100,6 +100,13 @@ void classic(StreamType& stream)
 
     string hostname();
     string datetime(time_t t1, bool utc = true);
+
+
+    /**
+     * Return a string with the time in various forms, e.g. uptime and UTC, to
+     * allow easy synchronisation between different logs, e.g. dmesg.
+     */
+    string timestamp();
 
     string generated_string();
 

@@ -46,6 +46,7 @@ namespace storage
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);
+	y2mil("timestamp " << timestamp());
 
 	create_devicegraph("probed");
 	copy_devicegraph("probed", "staging");
