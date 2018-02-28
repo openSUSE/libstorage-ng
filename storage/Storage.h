@@ -91,8 +91,16 @@ namespace storage
 
 	virtual ~ActivateCallbacks() {}
 
-	virtual bool multipath() const = 0;
+	/**
+	 * Decide whether multipath should be activated.
+	 *
+	 * The looks_like_real_multipath paramter is not reliable.
+	 */
+	virtual bool multipath(bool looks_like_real_multipath) const = 0;
 
+	/**
+	 * Decide whether the LUKS with uuid should be activated.
+	 */
 	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
 
     };

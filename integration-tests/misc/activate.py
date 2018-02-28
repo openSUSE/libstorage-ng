@@ -15,9 +15,9 @@ class MyActivateCallbacks(ActivateCallbacks):
     def __init__(self):
         super(MyActivateCallbacks, self).__init__()
 
-    def multipath(self):
+    def multipath(self, looks_like_real_multipath):
         print("multipath callback")
-        return True
+        return looks_like_real_multipath
 
     def luks(self, uuid, attempt):
         print("luks callback uuid:%s attempt:%d" % (uuid, attempt))
