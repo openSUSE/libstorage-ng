@@ -153,9 +153,14 @@ namespace storage
     {
 	y2mil("probe begin");
 
-	remove_devicegraph("probed");
-	remove_devicegraph("staging");
-	remove_devicegraph("system");
+	if (exist_devicegraph("probed"))
+	    remove_devicegraph("probed");
+
+	if (exist_devicegraph("staging"))
+	    remove_devicegraph("staging");
+
+	if (exist_devicegraph("system"))
+	    remove_devicegraph("system");
 
 	// The system devicegraph is created and used for probing since it is
 	// needed in EnsureMounted.
