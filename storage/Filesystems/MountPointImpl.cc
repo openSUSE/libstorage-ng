@@ -345,36 +345,38 @@ namespace storage
 
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
-	if (!lhs.active && active)
+	vector<Action::Base*> actions;
+
+	if (lhs.in_etc_fstab && !in_etc_fstab)
 	{
-	    Action::Base* action = new Action::Mount(get_sid());
-	    actiongraph.add_vertex(action);
+	    actions.push_back(new Action::RemoveFromEtcFstab(get_sid()));
 	}
-	else if (lhs.active && !active)
+
+	if ((lhs.active && !active) || (lhs.path != path))
 	{
-	    Action::Base* action = new Action::Unmount(get_sid());
-	    actiongraph.add_vertex(action);
+	    actions.push_back(new Action::Unmount(get_sid()));
+	}
+
+	if (lhs.in_etc_fstab && in_etc_fstab)
+	{
+	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
+		lhs.freq != freq || lhs.passno != passno || lhs.path != path)
+	    {
+		actions.push_back(new Action::UpdateInEtcFstab(get_sid()));
+	    }
+	}
+
+	if ((!lhs.active && active) || (lhs.path != path))
+	{
+	    actions.push_back(new Action::Mount(get_sid()));
 	}
 
 	if (!lhs.in_etc_fstab && in_etc_fstab)
 	{
-	    Action::Base* action = new Action::AddToEtcFstab(get_sid());
-	    actiongraph.add_vertex(action);
+	    actions.push_back(new Action::AddToEtcFstab(get_sid()));
 	}
-	else if (lhs.in_etc_fstab && !in_etc_fstab)
-	{
-	    Action::Base* action = new Action::RemoveFromEtcFstab(get_sid());
-	    actiongraph.add_vertex(action);
-	}
-	else if (lhs.in_etc_fstab && in_etc_fstab)
-	{
-	    if (lhs.mount_by != mount_by || lhs.mount_options != mount_options ||
-		lhs.freq != freq || lhs.passno != passno)
-	    {
-		Action::Base* action = new Action::UpdateInEtcFstab(get_sid());
-		actiongraph.add_vertex(action);
-	    }
-	}
+
+	actiongraph.add_chain(actions);
     }
 
 
