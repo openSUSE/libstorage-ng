@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -97,17 +97,20 @@ namespace storage
 	if (!options.empty())
 	    cmd_line += " -o " + boost::join(options, ",");
 
-	SystemCmd cmd(cmd_line);
-	if (cmd.retcode() != 0)
-	    ST_THROW(Exception("tmp mount failed"));
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
     TmpMount::~TmpMount()
     {
-	SystemCmd cmd(UMOUNTBIN " " + quote(get_fullname()));
-	if (cmd.retcode() != 0)
+	try
 	{
+	    SystemCmd cmd(UMOUNTBIN " " + quote(get_fullname()), SystemCmd::DoThrow);
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
 	    y2err("tmp unmount '" << get_fullname() << "' failed");
 	}
     }
