@@ -144,9 +144,12 @@ namespace storage
 	const CmdPvs& cmd_pvs = prober.get_system_info().getCmdPvs();
 	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
-	prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
-	    User::create(system, a, b);
-	});
+	if (!pv.missing)
+	{
+	    prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		User::create(system, a, b);
+	    });
+	}
     }
 
 
