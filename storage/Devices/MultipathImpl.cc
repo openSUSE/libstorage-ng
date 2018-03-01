@@ -110,14 +110,16 @@ namespace storage
 	{
 	    bool looks_like_real_multipath = CmdMultipath(true).looks_like_real_multipath();
 
+	    y2mil("looks-like-real-multipath:" << looks_like_real_multipath);
+
 	    if (!activate_callbacks->multipath(looks_like_real_multipath))
 	    {
-		y2mil("user canceled activation of multipath");
+		y2mil("user does want multipath");
 		return false;
 	    }
 	    else
 	    {
-		y2mil("user allowed activation of multipath");
+		y2mil("user does not want multipath");
 	    }
 
 	    // TRANSLATORS: progress message
