@@ -100,6 +100,8 @@ namespace storage
 
 	/**
 	 * Decide whether the LUKS with uuid should be activated.
+	 *
+	 * TODO Add label parameter for LUKS2.
 	 */
 	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
 
