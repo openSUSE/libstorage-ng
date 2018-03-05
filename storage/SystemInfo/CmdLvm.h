@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,12 +59,14 @@ namespace storage
 
 	struct Pv
 	{
-	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid() {}
+	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), missing(false) {}
 
 	    string pv_name;
 	    string pv_uuid;
 	    string vg_name;
 	    string vg_uuid;
+
+	    bool missing;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdPvs& cmd_pvs);

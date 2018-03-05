@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -101,6 +101,8 @@ namespace storage
 	if (pv_attr.size() < 3)
 	    ST_THROW(ParseException("bad pv_attr", pv_attr, "a--"));
 
+	pv.missing = pv_attr[2] == 'm';
+
 	pvs.push_back(pv);
     }
 
@@ -133,6 +135,9 @@ namespace storage
     {
 	s << "pv-name:" << pv.pv_name << " pv-uuid:" << pv.pv_uuid << " vg-name:"
 	  << pv.vg_name << " vg-uuid:" << pv.vg_uuid;
+
+	if (pv.missing)
+	    s << " missing";
 
 	return s;
     }

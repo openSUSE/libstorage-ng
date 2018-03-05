@@ -458,7 +458,16 @@ namespace storage
 	string full_dirname = dirname(full_path);
 
 	if (access(full_dirname.c_str(), R_OK) != 0)
+	{
 	    createPath(full_dirname);
+	}
+	else if (access(full_path.c_str(), R_OK) == 0)
+	{
+	    // TODO rmdir can fail if the directory is not empty. But removing
+	    // normal files should not be done.
+
+	    rmdir(full_path.c_str());
+	}
 
 	string cmd_line = BTRFSBIN " subvolume create " + quote(full_path);
 

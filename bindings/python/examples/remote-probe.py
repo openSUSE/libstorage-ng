@@ -73,7 +73,12 @@ def doit():
         environment.set_mockup_filename("mockup.xml")
 
     storage = Storage(environment)
-    storage.probe()
+
+    try:
+        storage.probe()
+    except Exception as exception:
+        print(exception.what())
+        exit(1)
 
     print()
 
