@@ -37,5 +37,5 @@ BOOST_AUTO_TEST_CASE(probe)
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_XFS | UF_EXT4 | UF_SWAP| UF_LVM);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_XFS | UF_EXT4 | UF_SWAP | UF_LVM);
 }
