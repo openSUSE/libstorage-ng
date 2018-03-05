@@ -114,12 +114,12 @@ namespace storage
 
 	    if (!activate_callbacks->multipath(looks_like_real_multipath))
 	    {
-		y2mil("user does want multipath");
+		y2mil("user does not want multipath");
 		return false;
 	    }
 	    else
 	    {
-		y2mil("user does not want multipath");
+		y2mil("user does want multipath");
 	    }
 
 	    // TRANSLATORS: progress message
