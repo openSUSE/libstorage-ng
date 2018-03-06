@@ -90,6 +90,7 @@ namespace storage
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 
+	static void probe_blk_filesystems(Prober& prober);
 	virtual void probe_pass_2a(Prober& prober);
 	virtual void probe_pass_2b(Prober& prober);
 
