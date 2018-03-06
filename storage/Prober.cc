@@ -62,7 +62,7 @@ namespace storage
 	 * Solution:
 	 *
 	 * Pass 1a: Probe partitionables (Disks, DASDs, Multipath and MDs) (without their
-	 *          partitions), LVM, LUKS, bcache, ...
+	 *          partitions), LVM, bcache, ...
 	 *
 	 *          Includes most attributes, e.g. name, size
 	 *
@@ -70,15 +70,18 @@ namespace storage
 	 *          holders are saved in a list of pending holders.
 	 *
 	 *          After this step it is known if partitionables are used for
-	 *          something else than partitions (except of filesystems).
+	 *          something else than partitions (except of LUKS and
+	 *          filesystems).
 	 *
 	 * Pass 1c: Probe partitions of partitionables. Includes attributes of
 	 *          pass 1a for partitions.
 	 *
+	 * Pass 1d: Probe LUKS
+	 *
 	 *          After this step all BlkDevices, LvmVgs, LvmPvs, ... are
 	 *          known.
 	 *
-	 * Pass 1d: The list of pendings holders is flushed.
+	 * Pass 1e: The list of pendings holders is flushed.
 	 *
 	 * Pass 1e: Probe some remaining attributes.
 	 *
@@ -183,24 +186,6 @@ namespace storage
 	}
 
 	// TRANSLATORS: progress message
-	message_callback(probe_callbacks, _("Probing LUKS"));
-
-	try
-	{
-	    if (system_info.getBlkid().any_luks())
-	    {
-		// TODO check whether cryptsetup tools are installed
-
-		Luks::Impl::probe_lukses(*this);
-	    }
-	}
-	catch (const Exception& exception)
-	{
-	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
-	}
-
-	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing bcache"));
 
 	try
@@ -268,6 +253,28 @@ namespace storage
 	// Pass 1d
 
 	y2mil("prober pass 1d");
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing LUKS"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_luks())
+	    {
+		// TODO check whether cryptsetup tools are installed
+
+		Luks::Impl::probe_lukses(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
+	}
+
+	// Pass 1e
+
+	y2mil("prober pass 1e");
 
 	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing device relationships"));
