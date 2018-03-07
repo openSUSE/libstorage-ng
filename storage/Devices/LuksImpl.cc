@@ -294,9 +294,9 @@ namespace storage
 	 * all LUKSes with UUID and underlying block device. For some LUKSes
 	 * this is already all available information.
 	 *
-	 * Only search for LUKSes on block devices with without
-	 * children. Otherwise e.g. LUKSes directly on multipath devices would
-	 * be detected several times.
+	 * Only search for LUKSes on block devices without children. Otherwise
+	 * e.g. LUKSes directly on multipath devices would be detected several
+	 * times.
 	 */
 
 	for (BlkDevice* blk_device : BlkDevice::get_all(prober.get_system()))
