@@ -124,8 +124,16 @@ namespace storage
     void
     LvmPv::Impl::probe_lvm_pvs(Prober& prober)
     {
-	for (const CmdPvs::Pv& pv : prober.get_system_info().getCmdPvs().get_pvs())
+	const CmdPvs& cmd_pvs = prober.get_system_info().getCmdPvs();
+
+	for (const CmdPvs::Pv& pv : cmd_pvs.get_pvs())
 	{
+	    // Duplicate PVs are not inserted. Only the one not reported as
+	    // duplicate by pvs is.
+
+	    if (pv.duplicate)
+		continue;
+
 	    LvmPv* lvm_pv = LvmPv::create(prober.get_system());
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
 
@@ -142,13 +150,19 @@ namespace storage
     LvmPv::Impl::probe_pass_1b(Prober& prober)
     {
 	const CmdPvs& cmd_pvs = prober.get_system_info().getCmdPvs();
-	const CmdPvs::Pv& pv = cmd_pvs.find_by_pv_uuid(uuid);
 
-	if (!pv.missing)
+	for (const CmdPvs::Pv& pv : cmd_pvs.get_pvs())
 	{
-	    prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
-		User::create(system, a, b);
-	    });
+	    // In the case of duplicates there are several PVs with the same
+	    // UUID. All underlying devices must be marked as parents,
+	    // otherwise the underlying devices would look unused.
+
+	    if (pv.pv_uuid == uuid && !pv.missing)
+	    {
+		prober.add_holder(pv.pv_name, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		    User::create(system, a, b);
+		});
+	    }
 	}
     }
 

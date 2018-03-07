@@ -17,25 +17,28 @@ using namespace std;
 using namespace storage;
 
 
+// TODO also check the check functions
+
+
 BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("md-imsm1-mockup.xml");
+    environment.set_mockup_filename("lvm-errors1-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
 
     const Devicegraph* probed = storage.get_probed();
-    probed->check();
+    // probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("md-imsm1-devicegraph.xml");
-    staging->check();
+    staging->load("lvm-errors1-devicegraph.xml");
+    // staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT4 | UF_SWAP | UF_MDRAID);
+    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), (uint64_t)(UF_LVM));
 }

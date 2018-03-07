@@ -18,7 +18,7 @@ void
 check(const vector<string>& input, const vector<string>& output)
 {
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
-    Mockup::set_command(PVSBIN " --reportformat json --units b --nosuffix --options pv_name,"
+    Mockup::set_command(PVSBIN " --reportformat json --units b --nosuffix --all --options pv_name,"
 			"pv_uuid,vg_name,vg_uuid,pv_attr", input);
 
     CmdPvs cmd_pvs;

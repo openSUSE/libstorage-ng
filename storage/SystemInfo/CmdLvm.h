@@ -59,7 +59,7 @@ namespace storage
 
 	struct Pv
 	{
-	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), missing(false) {}
+	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), missing(false), duplicate(false) {}
 
 	    string pv_name;
 	    string pv_uuid;
@@ -67,6 +67,7 @@ namespace storage
 	    string vg_uuid;
 
 	    bool missing;
+	    bool duplicate;
 	};
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdPvs& cmd_pvs);

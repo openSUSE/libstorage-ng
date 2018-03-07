@@ -65,8 +65,8 @@ namespace storage
 
     CmdPvs::CmdPvs()
     {
-	SystemCmd cmd(PVSBIN " " COMMON_LVM_OPTIONS " --options pv_name,pv_uuid,vg_name,vg_uuid,"
-		      "pv_attr");
+	SystemCmd cmd(PVSBIN " " COMMON_LVM_OPTIONS " --all --options pv_name,pv_uuid,"
+		      "vg_name,vg_uuid,pv_attr");
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
@@ -93,6 +93,9 @@ namespace storage
 	get_child_value(object, "pv_name", pv.pv_name);
 	get_child_value(object, "pv_uuid", pv.pv_uuid);
 
+	if (pv.pv_uuid.empty())
+	    return;
+
 	get_child_value(object, "vg_name", pv.vg_name);
 	get_child_value(object, "vg_uuid", pv.vg_uuid);
 
@@ -102,6 +105,7 @@ namespace storage
 	    ST_THROW(ParseException("bad pv_attr", pv_attr, "a--"));
 
 	pv.missing = pv_attr[2] == 'm';
+	pv.duplicate = pv_attr[0] == 'd';
 
 	pvs.push_back(pv);
     }
@@ -138,6 +142,9 @@ namespace storage
 
 	if (pv.missing)
 	    s << " missing";
+
+	if (pv.duplicate)
+	    s << " duplicate";
 
 	return s;
     }
