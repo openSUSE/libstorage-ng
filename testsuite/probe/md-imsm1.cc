@@ -12,10 +12,6 @@
 
 #include "testsuite/helpers/TsCmp.h"
 
-#include "storage/Devices/Md.h"
-#include "storage/Devices/MdContainer.h"
-#include "storage/Devices/MdMember.h"
-
 
 using namespace std;
 using namespace storage;
