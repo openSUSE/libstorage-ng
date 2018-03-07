@@ -33,7 +33,8 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
