@@ -287,26 +287,35 @@ namespace storage
 	SystemInfo& system_info = prober.get_system_info();
 	const CmdDmsetupTable& cmd_dmsetup_table = system_info.getCmdDmsetupTable();
 	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+	const Blkid& blkid = system_info.getBlkid();
 
 	/*
 	 * The main source for probing LUKSes is the blkid output. It contains
 	 * all LUKSes with UUID and underlying block device. For some LUKSes
 	 * this is already all available information.
+	 *
+	 * Only search for LUKSes on block devices without children. Otherwise
+	 * e.g. LUKSes directly on multipath devices would be detected several
+	 * times.
 	 */
 
-	const Blkid& blkid = system_info.getBlkid();
-	for (const Blkid::value_type& entry : blkid)
+	for (BlkDevice* blk_device : BlkDevice::get_all(prober.get_system()))
 	{
-	    if (!entry.second.is_luks)
+	    if (blk_device->has_children())
 		continue;
 
-	    string uuid = entry.second.luks_uuid;
+	    if (!blk_device->get_impl().is_active())
+		continue;
 
-	    string blk_device = entry.first;
+	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), system_info);
+	    if (it1 == blkid.end() || !it1->second.is_luks)
+		continue;
 
-	    dev_t majorminor = system_info.getCmdUdevadmInfo(blk_device).get_majorminor();
+	    string uuid = it1->second.luks_uuid;
 
-	    CmdDmsetupTable::const_iterator it = cmd_dmsetup_table.find_using(majorminor);
+	    dev_t majorminor = system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor();
+
+	    CmdDmsetupTable::const_iterator it2 = cmd_dmsetup_table.find_using(majorminor);
 
 	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
 										    "", majorminor);
@@ -316,8 +325,8 @@ namespace storage
 	     * from crypttab and 3. auto-generated.
 	     */
 	    string dm_table_name;
-	    if (it != cmd_dmsetup_table.end())
-		dm_table_name = it->first;
+	    if (it2 != cmd_dmsetup_table.end())
+		dm_table_name = it2->first;
 	    else if (crypttab_entry)
 		dm_table_name = crypttab_entry->get_crypt_device();
 	    else
@@ -325,7 +334,7 @@ namespace storage
 
 	    Luks* luks = Luks::create(prober.get_system(), dm_table_name);
 	    luks->get_impl().uuid = uuid;
-	    luks->get_impl().set_active(it != cmd_dmsetup_table.end());
+	    luks->get_impl().set_active(it2 != cmd_dmsetup_table.end());
 	    luks->set_in_etc_crypttab(crypttab_entry);
 
 	    if (crypttab_entry)
@@ -335,7 +344,7 @@ namespace storage
 		luks->get_impl().set_crypttab_blk_device_name(crypttab_entry->get_block_device());
 	    }
 
-	    prober.add_holder(blk_device, luks, [](Devicegraph* system, Device* a, Device* b) {
+	    prober.add_holder(blk_device->get_name(), luks, [](Devicegraph* system, Device* a, Device* b) {
 		User::create(system, a, b);
 	    });
 

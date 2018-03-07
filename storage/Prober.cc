@@ -62,7 +62,7 @@ namespace storage
 	 * Solution:
 	 *
 	 * Pass 1a: Probe partitionables (Disks, DASDs, Multipath and MDs) (without their
-	 *          partitions), LVM, LUKS, bcache, ...
+	 *          partitions), LVM, bcache, ...
 	 *
 	 *          Includes most attributes, e.g. name, size
 	 *
@@ -70,15 +70,18 @@ namespace storage
 	 *          holders are saved in a list of pending holders.
 	 *
 	 *          After this step it is known if partitionables are used for
-	 *          something else than partitions (except of filesystems).
+	 *          something else than partitions (except of LUKS and
+	 *          filesystems).
 	 *
 	 * Pass 1c: Probe partitions of partitionables. Includes attributes of
 	 *          pass 1a for partitions.
 	 *
+	 * Pass 1d: Probe LUKS
+	 *
 	 *          After this step all BlkDevices, LvmVgs, LvmPvs, ... are
 	 *          known.
 	 *
-	 * Pass 1d: The list of pendings holders is flushed.
+	 * Pass 1e: The list of pendings holders is flushed.
 	 *
 	 * Pass 1e: Probe some remaining attributes.
 	 *
@@ -183,24 +186,6 @@ namespace storage
 	}
 
 	// TRANSLATORS: progress message
-	message_callback(probe_callbacks, _("Probing LUKS"));
-
-	try
-	{
-	    if (system_info.getBlkid().any_luks())
-	    {
-		// TODO check whether cryptsetup tools are installed
-
-		Luks::Impl::probe_lukses(*this);
-	    }
-	}
-	catch (const Exception& exception)
-	{
-	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
-	}
-
-	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing bcache"));
 
 	try
@@ -270,6 +255,28 @@ namespace storage
 	y2mil("prober pass 1d");
 
 	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing LUKS"));
+
+	try
+	{
+	    if (system_info.getBlkid().any_luks())
+	    {
+		// TODO check whether cryptsetup tools are installed
+
+		Luks::Impl::probe_lukses(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
+	}
+
+	// Pass 1e
+
+	y2mil("prober pass 1e");
+
+	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing device relationships"));
 
 	try
@@ -291,44 +298,7 @@ namespace storage
 
 	try
 	{
-	    for (BlkDevice* blk_device : BlkDevice::get_all(system))
-	    {
-		if (blk_device->has_children())
-		    continue;
-
-		if (!blk_device->get_impl().is_active())
-		    continue;
-
-		const Blkid& blkid = system_info.getBlkid();
-		Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
-		if (it == blkid.end() || !it->second.is_fs)
-		    continue;
-
-		if (it->second.fs_type != FsType::EXT2 && it->second.fs_type != FsType::EXT3 &&
-		    it->second.fs_type != FsType::EXT4 && it->second.fs_type != FsType::BTRFS &&
-		    it->second.fs_type != FsType::REISERFS && it->second.fs_type != FsType::XFS &&
-		    it->second.fs_type != FsType::SWAP && it->second.fs_type != FsType::NTFS &&
-		    it->second.fs_type != FsType::VFAT && it->second.fs_type != FsType::ISO9660 &&
-		    it->second.fs_type != FsType::UDF && it->second.fs_type != FsType::JFS)
-		{
-		    y2war("detected unsupported filesystem " << toString(it->second.fs_type) << " on " <<
-			  blk_device->get_name());
-		    continue;
-		}
-
-		try
-		{
-		    BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
-		    blk_filesystem->get_impl().probe_pass_2a(*this);
-		    blk_filesystem->get_impl().probe_pass_2b(*this);
-		}
-		catch (const Exception& exception)
-		{
-		    // TRANSLATORS: error message
-		    error_callback(probe_callbacks, sformat(_("Probing file system on %s failed"),
-							    blk_device->get_name().c_str()), exception);
-		}
-	    }
+	    BlkFilesystem::Impl::Impl::probe_blk_filesystems(*this);
 	}
 	catch (const Exception& exception)
 	{
