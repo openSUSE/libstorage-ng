@@ -34,6 +34,7 @@
 #include "storage/FindBy.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -74,8 +75,11 @@ namespace storage
     {
 	Device::Impl::check(check_callbacks);
 
-	if (!has_single_parent_of_type<const BlkDevice>())
-	    ST_THROW(Exception("LvmPv has no BlkDevice parent"));
+	if (check_callbacks)
+	{
+	    if (!has_single_parent_of_type<const BlkDevice>())
+		check_callbacks->error(sformat("Physical volume %s is broken.", uuid.c_str()));
+	}
     }
 
 
