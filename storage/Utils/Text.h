@@ -38,8 +38,10 @@ namespace storage
      * Simple class to keep a native and a translated string in
      * parallel. Purpose is to be able to log user messages in English.
      */
-    struct Text
+    class Text
     {
+    public:
+
 	Text() : native(), translated() {}
 	Text(const string& native, const string& translated) : native(native), translated(translated) {}
 
