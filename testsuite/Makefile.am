@@ -7,7 +7,8 @@ SUBDIRS = helpers . Utils SystemInfo probe dependencies sorting freeinfo 	\
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
-LDADD = ../storage/libstorage-ng.la -lboost_unit_test_framework
+LDADD = ../storage/libstorage-ng.la helpers/libhelpers.la			\
+	-lboost_unit_test_framework
 
 check_PROGRAMS =								\
 	copy.test coverage-tests.test default-partition-table.test disk.test	\
