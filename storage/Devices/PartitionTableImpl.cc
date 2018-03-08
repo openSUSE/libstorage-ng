@@ -502,7 +502,7 @@ namespace storage
 	};
 
 	std::function<int(Actiongraph::Impl::vertex_descriptor)> key_fnc2 =
-	    [&actiongraph, &devicegraph_lhs](Actiongraph::Impl::vertex_descriptor vertex) {
+	    [&actiongraph](Actiongraph::Impl::vertex_descriptor vertex) {
 	    const Action::RenameIn* action = dynamic_cast<const Action::RenameIn*>(actiongraph[vertex]);
 	    const Partition* partition_lhs = to_partition(action->get_renamed_blk_device(actiongraph, LHS));
 	    const Partition* partition_rhs = to_partition(action->get_renamed_blk_device(actiongraph, RHS));
