@@ -221,7 +221,7 @@ namespace storage
     Mountable::Impl::do_mount(CommitData& commit_data, const CommitOptions& commit_options,
 			      MountPoint* mount_point) const
     {
-	immediate_activate(mount_point);
+	immediate_activate(mount_point, commit_options.force_rw);
 
 	if (mount_point->get_path() == "/")
 	{

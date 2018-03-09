@@ -12,6 +12,8 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 
+#include "testsuite/helpers/CheckCallbacksRecorder.h"
+
 
 using namespace std;
 using namespace storage;
@@ -110,26 +112,6 @@ BOOST_AUTO_TEST_CASE(lvm_vg_overcommitted)
     lvm_vg->create_lvm_lv("normal2", LvType::NORMAL, 600 * GiB);
 
     BOOST_CHECK(lvm_vg->is_overcommitted());
-}
-
-
-class CheckCallbacksRecorder : public CheckCallbacks
-{
-public:
-
-    CheckCallbacksRecorder(vector<string>& messages) : messages(messages) { messages.clear(); }
-
-    virtual void error(const string& message) const override;
-
-    vector<string>& messages;
-
-};
-
-
-void
-CheckCallbacksRecorder::error(const string& message) const
-{
-    messages.push_back(message);
 }
 
 
