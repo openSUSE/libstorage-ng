@@ -310,13 +310,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 
     string
-    udevAppendPart(const string& s, unsigned num)
-    {
-	return s + "-part" + to_string(num);
-    }
-
-
-    string
     udevEncode(const string& s)
     {
 	string r = s;
