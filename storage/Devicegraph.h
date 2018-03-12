@@ -189,7 +189,15 @@ namespace storage
 	 */
 	const Device* find_device(sid_t sid) const;
 
+	/**
+	 * Check whether the device with sid exists.
+	 */
 	bool device_exists(sid_t sid) const;
+
+	/**
+	 * Check whether the holder with source sid and target sid exists.
+	 */
+	bool holder_exists(sid_t source_sid, sid_t target_sid) const;
 
 	void clear();
 
