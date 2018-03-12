@@ -239,7 +239,7 @@ namespace storage
 		if (boost::starts_with(blk_device, "LABEL=") && blk_device.substr(6) == label)
 		    return entry;
 
-		if (boost::starts_with(blk_device, "/dev/disk/by-label/") && blk_device.substr(19) == label)
+		if (boost::starts_with(blk_device, "/dev/disk/by-label/") && blk_device.substr(19) == udev_encode(label))
 		    return entry;
 	    }
 

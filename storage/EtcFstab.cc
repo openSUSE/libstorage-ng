@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017] SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -583,17 +583,17 @@ namespace storage
 	for (const string& udev_id : blk_device->get_udev_ids())
 	    device_aliases.push_back("/dev/disk/by-id/" + udev_id);
 
-        if (!blk_filesystem->get_label().empty())
-        {
-            device_aliases.push_back("LABEL=" + blk_filesystem->get_label());
-            device_aliases.push_back("/dev/disk/by-label/" + blk_filesystem->get_label());
-        }
+	if (!blk_filesystem->get_label().empty())
+	{
+	    device_aliases.push_back("LABEL=" + blk_filesystem->get_label());
+	    device_aliases.push_back("/dev/disk/by-label/" + udev_encode(blk_filesystem->get_label()));
+	}
 
-        if (!blk_filesystem->get_uuid().empty())
-        {
-            device_aliases.push_back("UUID=" + blk_filesystem->get_uuid());
-            device_aliases.push_back("/dev/disk/by-uuid/" + blk_filesystem->get_uuid());
-        }
+	if (!blk_filesystem->get_uuid().empty())
+	{
+	    device_aliases.push_back("UUID=" + blk_filesystem->get_uuid());
+	    device_aliases.push_back("/dev/disk/by-uuid/" + blk_filesystem->get_uuid());
+	}
 
 	return device_aliases;
     }

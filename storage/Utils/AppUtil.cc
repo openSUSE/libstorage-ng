@@ -318,7 +318,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 	while (true)
 	{
-	    pos = r.find_first_of(" '\\/", pos);
+	    pos = r.find_first_of(" '\\/$", pos);
 	    if (pos == string::npos)
 		break;
 
