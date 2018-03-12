@@ -310,7 +310,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 
     string
-    udevEncode(const string& s)
+    udev_encode(const string& s)
     {
 	string r = s;
 
@@ -334,7 +334,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 
     string
-    udevDecode(const string& s)
+    udev_decode(const string& s)
     {
 	string r = s;
 
