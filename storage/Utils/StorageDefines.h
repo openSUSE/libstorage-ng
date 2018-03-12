@@ -31,7 +31,6 @@
 
 #define SYSFSDIR "/sys"
 
-#define SYSCONFIGFILE "/etc/sysconfig/storage"
 
 #define SHBIN "/bin/sh"
 
