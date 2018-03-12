@@ -123,6 +123,15 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	/**
+	 * Check whether the volume group is partial (one or more physical
+	 * volumes belonging to the volume group are missing from the system
+	 * (see vgs(8)).
+	 */
+	bool is_partial() const;
+
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
+
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 
@@ -135,6 +144,9 @@ namespace storage
 	    const override;
 	virtual void do_reduce(const LvmPv* lvm_pv) const;
 	virtual void do_extend(const LvmPv* lvm_pv) const;
+
+	Text do_reduce_missing_text(Tense tense) const;
+	void do_reduce_missing() const;
 
 	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
 
@@ -190,6 +202,23 @@ namespace storage
 	bool is_my_lvm_lv_using_extents(const Device* device) const;
 
     };
+
+
+    namespace Action
+    {
+
+	class ReduceMissing : public Modify
+	{
+	public:
+
+	    ReduceMissing(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
+    }
 
 }
 

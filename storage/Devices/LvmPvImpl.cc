@@ -267,6 +267,16 @@ namespace storage
     }
 
 
+    void
+    LvmPv::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	if (!has_blk_device())
+	    return;
+
+	Device::Impl::add_delete_actions(actiongraph);
+    }
+
+
     Text
     LvmPv::Impl::do_create_text(Tense tense) const
     {
