@@ -32,6 +32,7 @@
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 #define FSTAB_COLUMN_COUNT	6
@@ -413,21 +414,21 @@ namespace storage
     MountByType EtcFstab::get_mount_by( const string & device )
     {
 	if ( boost::starts_with( device, "UUID=" ) ||
-	     boost::starts_with( device, "/dev/disk/by-uuid/" ) )
+	     boost::starts_with( device, DEV_DISK_BY_UUID_DIR "/" ) )
 	{
 	    return MountByType::UUID;
 	}
 
 	if ( boost::starts_with( device, "LABEL=" ) ||
-	     boost::starts_with( device, "/dev/disk/by-label/" ) )
+	     boost::starts_with( device, DEV_DISK_BY_LABEL_DIR "/" ) )
 	{
 	    return MountByType::LABEL;
 	}
 
-	if ( boost::starts_with( device, "/dev/disk/by-id/" ) )
+	if ( boost::starts_with( device, DEV_DISK_BY_ID_DIR "/" ) )
 	    return MountByType::ID;
 
-	if ( boost::starts_with( device, "/dev/disk/by-path/" ) )
+	if ( boost::starts_with( device, DEV_DISK_BY_PATH_DIR "/" ) )
 	    return MountByType::PATH;
 
 	return MountByType::DEVICE;
@@ -578,21 +579,21 @@ namespace storage
 	vector<string> device_aliases = { blk_device->get_name() };
 
 	for (const string& udev_path : blk_device->get_udev_paths())
-	    device_aliases.push_back("/dev/disk/by-path/" + udev_path);
+	    device_aliases.push_back(DEV_DISK_BY_PATH_DIR "/" + udev_path);
 
 	for (const string& udev_id : blk_device->get_udev_ids())
-	    device_aliases.push_back("/dev/disk/by-id/" + udev_id);
+	    device_aliases.push_back(DEV_DISK_BY_ID_DIR "/" + udev_id);
 
 	if (!blk_filesystem->get_label().empty())
 	{
 	    device_aliases.push_back("LABEL=" + blk_filesystem->get_label());
-	    device_aliases.push_back("/dev/disk/by-label/" + udev_encode(blk_filesystem->get_label()));
+	    device_aliases.push_back(DEV_DISK_BY_LABEL_DIR "/" + udev_encode(blk_filesystem->get_label()));
 	}
 
 	if (!blk_filesystem->get_uuid().empty())
 	{
 	    device_aliases.push_back("UUID=" + blk_filesystem->get_uuid());
-	    device_aliases.push_back("/dev/disk/by-uuid/" + blk_filesystem->get_uuid());
+	    device_aliases.push_back(DEV_DISK_BY_UUID_DIR "/" + blk_filesystem->get_uuid());
 	}
 
 	return device_aliases;

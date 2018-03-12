@@ -230,14 +230,14 @@ namespace storage
 
 	    case MountByType::ID:
 		if (!get_udev_ids().empty())
-		    ret = DEVDIR "/disk/by-id/" + get_udev_ids().front();
+		    ret = DEV_DISK_BY_ID_DIR "/" + get_udev_ids().front();
 		else
 		    y2err("no udev-id defined, using fallback");
 		break;
 
 	    case MountByType::PATH:
 		if (!get_udev_paths().empty())
-		    ret = DEVDIR "/disk/by-path/" + get_udev_paths().front();
+		    ret = DEV_DISK_BY_PATH_DIR "/" + get_udev_paths().front();
 		else
 		    y2err("no udev-path defined, using fallback");
 		break;
