@@ -27,6 +27,7 @@
 
 #include "storage/EtcCrypttab.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
 
@@ -227,23 +228,23 @@ namespace storage
 
 	    if (!uuid.empty())
 	    {
-		if (boost::starts_with(blk_device, "UUID=") && blk_device.substr(5) == uuid)
+		if (blk_device == "UUID=" + uuid)
 		    return entry;
 
-		if (boost::starts_with(blk_device, "/dev/disk/by-uuid/") && blk_device.substr(18) == uuid)
+		if (blk_device == DEV_DISK_BY_UUID_DIR "/" + uuid)
 		    return entry;
 	    }
 
 	    if (!label.empty())
 	    {
-		if (boost::starts_with(blk_device, "LABEL=") && blk_device.substr(6) == label)
+		if (blk_device == "LABEL=" + label)
 		    return entry;
 
-		if (boost::starts_with(blk_device, "/dev/disk/by-label/") && blk_device.substr(19) == udev_encode(label))
+		if (blk_device == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label))
 		    return entry;
 	    }
 
-	    if (boost::starts_with(blk_device, "/dev/"))
+	    if (boost::starts_with(blk_device, DEVDIR "/"))
 	    {
 		if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
 		    return entry;
