@@ -125,21 +125,14 @@ namespace storage
     }
 
 
-    Region
-    DasdPt::Impl::get_usable_region() const
+    pair<unsigned long long, unsigned long long>
+    DasdPt::Impl::unusable_sectors() const
     {
 	const unsigned long sectors_per_track = 12; // TODO
 
-	Region device_region = get_partitionable()->get_region();
-
 	// The first two tracks are unusable for partitions.
 
-	unsigned long long first_usable_sector = 2 * sectors_per_track;
-	unsigned long long last_usable_sector = device_region.get_end();
-	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
-			     device_region.get_block_size());
-
-	return device_region.intersection(usable_region);
+	return make_pair(2 * sectors_per_track, 0);
     }
 
 

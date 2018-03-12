@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -116,11 +116,24 @@ namespace storage
 	virtual const Partition* get_extended() const;
 
 	/**
+	 * Number of unusable sectors at the front and back of the
+	 * partitionable (due to e.g. data for partition table or
+	 * unaddressable by partition table).
+	 */
+	virtual pair<unsigned long long, unsigned long long> unusable_sectors() const = 0;
+
+	/**
+	 * Returns if the partition table has a usable region. Also see
+	 * get_usable_region().
+	 */
+	bool has_usable_region() const;
+
+	/**
 	 * Returns the usable region of the partition table. This is the
 	 * region of the partitionable not used for the partition table data
 	 * or MBR gap.
 	 */
-	virtual Region get_usable_region() const = 0;
+	Region get_usable_region() const;
 
 	virtual Alignment get_alignment(AlignType align_type) const;
 
