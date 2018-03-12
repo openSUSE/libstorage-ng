@@ -29,8 +29,12 @@
 #define DEVMDDIR "/dev/md"
 #define DEVMAPPERDIR "/dev/mapper"
 
-#define SYSFSDIR "/sys"
+#define DEV_DISK_BY_ID_DIR DEVDIR "/disk/by-id"
+#define DEV_DISK_BY_PATH_DIR DEVDIR "/disk/by-path"
+#define DEV_DISK_BY_UUID_DIR DEVDIR "/disk/by-uuid"
+#define DEV_DISK_BY_LABEL_DIR DEVDIR "/disk/by-label"
 
+#define SYSFSDIR "/sys"
 
 #define SHBIN "/bin/sh"
 
