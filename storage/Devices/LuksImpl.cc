@@ -360,7 +360,7 @@ namespace storage
 
 	if (is_active())
 	{
-	    const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	    const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
 	}
     }

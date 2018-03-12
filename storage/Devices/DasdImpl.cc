@@ -100,8 +100,8 @@ namespace storage
     Dasd::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEVDIR "/dasd([a-z]+)", regex::extended), 4, ' '),
-	    NameSchema(regex(DEVDIR "/vd([a-z]+)", regex::extended), 4, ' ')
+	    NameSchema(regex(DEV_DIR "/dasd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEV_DIR "/vd([a-z]+)", regex::extended), 4, ' ')
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
@@ -177,16 +177,16 @@ namespace storage
     void
     Dasd::Impl::probe_dasds(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
 	{
-	    string name = DEVDIR "/" + short_name;
+	    string name = DEV_DIR "/" + short_name;
 
-	    if (!boost::starts_with(name, DEVDIR "/dasd"))
+	    if (!boost::starts_with(name, DEV_DIR "/dasd"))
 		continue;
 
 	    const CmdUdevadmInfo udevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
 
-	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + udevadminfo.get_path() +
+	    const File range_file = prober.get_system_info().getFile(SYSFS_DIR + udevadminfo.get_path() +
 								     "/ext_range");
 
 	    if (range_file.get<int>() <= 1)
@@ -203,7 +203,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	const File rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 								      "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 

@@ -128,7 +128,7 @@ checkNormalFile(const string& Path_Cv)
     string
     make_dev_block_name(dev_t majorminor)
     {
-	return sformat(DEVDIR "/block/%d:%d", gnu_dev_major(majorminor),
+	return sformat(DEV_DIR "/block/%d:%d", gnu_dev_major(majorminor),
 		       gnu_dev_minor(majorminor));
     }
 
@@ -310,14 +310,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 
     string
-    udevAppendPart(const string& s, unsigned num)
-    {
-	return s + "-part" + to_string(num);
-    }
-
-
-    string
-    udevEncode(const string& s)
+    udev_encode(const string& s)
     {
 	string r = s;
 
@@ -325,7 +318,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 	while (true)
 	{
-	    pos = r.find_first_of(" '\\/", pos);
+	    pos = r.find_first_of(" '\\/$", pos);
 	    if (pos == string::npos)
 		break;
 
@@ -341,7 +334,7 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
 
 
     string
-    udevDecode(const string& s)
+    udev_decode(const string& s)
     {
 	string r = s;
 

@@ -25,13 +25,16 @@
 #define STORAGE_STORAGE_DEFINES_H
 
 
-#define DEVDIR "/dev"
-#define DEVMDDIR "/dev/md"
-#define DEVMAPPERDIR "/dev/mapper"
+#define DEV_DIR "/dev"
+#define DEV_MD_DIR "/dev/md"
+#define DEV_MAPPER_DIR "/dev/mapper"
 
-#define SYSFSDIR "/sys"
+#define DEV_DISK_BY_ID_DIR DEV_DIR "/disk/by-id"
+#define DEV_DISK_BY_PATH_DIR DEV_DIR "/disk/by-path"
+#define DEV_DISK_BY_UUID_DIR DEV_DIR "/disk/by-uuid"
+#define DEV_DISK_BY_LABEL_DIR DEV_DIR "/disk/by-label"
 
-#define SYSCONFIGFILE "/etc/sysconfig/storage"
+#define SYSFS_DIR "/sys"
 
 #define SHBIN "/bin/sh"
 

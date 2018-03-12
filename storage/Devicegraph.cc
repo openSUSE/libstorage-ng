@@ -306,6 +306,13 @@ namespace storage
     }
 
 
+    bool
+    Devicegraph::holder_exists(sid_t source_sid, sid_t target_sid) const
+    {
+	return get_impl().holder_exists(source_sid, target_sid);
+    }
+
+
     Holder*
     Devicegraph::find_holder(sid_t source_sid, sid_t target_sid)
     {

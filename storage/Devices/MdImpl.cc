@@ -79,15 +79,15 @@ namespace storage
     // that case and not /dev/md<some big number> the number must be
     // considered in find_free_numeric_name().
 
-    const regex Md::Impl::numeric_name_regex(DEVDIR "/md/?([0-9]+)", regex::extended);
+    const regex Md::Impl::numeric_name_regex(DEV_DIR "/md/?([0-9]+)", regex::extended);
 
 
     // mdadm(8) states that any string for the names is allowed. That is
     // not correct: A '/' is reported as invalid by mdadm itself. A ' '
     // does not work, e.g. the links in /dev/md/ are broken.
 
-    const regex Md::Impl::format1_name_regex(DEVMDDIR "/([^/ ]+)", regex::extended);
-    const regex Md::Impl::format2_name_regex(DEVMDDIR "_([^/ ]+)", regex::extended);
+    const regex Md::Impl::format1_name_regex(DEV_MD_DIR "/([^/ ]+)", regex::extended);
+    const regex Md::Impl::format2_name_regex(DEV_MD_DIR "_([^/ ]+)", regex::extended);
 
 
     Md::Impl::Impl(const string& name)
@@ -99,7 +99,7 @@ namespace storage
 
 	if (is_numeric())
 	{
-	    string::size_type pos = string(DEVDIR).size() + 1;
+	    string::size_type pos = string(DEV_DIR).size() + 1;
 	    set_sysfs_name(name.substr(pos));
 	    set_sysfs_path("/devices/virtual/block/" + name.substr(pos));
 	}
@@ -140,7 +140,7 @@ namespace storage
     Md::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEVDIR "/md([0-9]+)", regex::extended), 4, '0')
+	    NameSchema(regex(DEV_DIR "/md([0-9]+)", regex::extended), 4, '0')
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
@@ -159,7 +159,7 @@ namespace storage
 
 	unsigned int free_number = first_missing_number(mds, 0);
 
-	return DEVDIR "/md" + to_string(free_number);
+	return DEV_DIR "/md" + to_string(free_number);
     }
 
 
@@ -327,9 +327,9 @@ namespace storage
     void
     Md::Impl::probe_mds(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
 	{
-	    string name = DEVDIR "/" + short_name;
+	    string name = DEV_DIR "/" + short_name;
 	    if (!is_valid_sysfs_name(name))
 		continue;
 
@@ -340,7 +340,7 @@ namespace storage
 
 	    const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(name);
 	    if (!mdadm_detail.devname.empty())
-		name = DEVMDDIR "/" + mdadm_detail.devname;
+		name = DEV_MD_DIR "/" + mdadm_detail.devname;
 
 	    const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(short_name);
 

@@ -45,7 +45,7 @@ namespace storage
     Partition*
     Partition::create(Devicegraph* devicegraph, const string& name, const Region& region, PartitionType type)
     {
-	if (!boost::starts_with(name, DEVDIR "/"))
+	if (!boost::starts_with(name, DEV_DIR "/"))
 	    ST_THROW(Exception("invalid partition name"));
 
 	Partition* ret = new Partition(new Partition::Impl(name, region, type));

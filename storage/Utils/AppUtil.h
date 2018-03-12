@@ -83,10 +83,8 @@ std::map<string,string> makeMap( const std::list<string>& l,
                                  const string& delim = "=",
 				 const string& removeSur = " \t\n" );
 
-    string udevAppendPart(const string&, unsigned num);
-
-    string udevEncode(const string&);
-    string udevDecode(const string&);
+    string udev_encode(const string&);
+    string udev_decode(const string&);
 
     string normalizeDevice(const string& dev);
 

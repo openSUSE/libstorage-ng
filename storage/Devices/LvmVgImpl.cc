@@ -20,6 +20,8 @@
  */
 
 
+#include <algorithm>
+
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/Math.h"
@@ -485,6 +487,31 @@ namespace storage
     }
 
 
+    bool
+    LvmVg::Impl::is_partial() const
+    {
+	vector<const LvmPv*> lvm_pvs = get_lvm_pvs();
+
+	return any_of(lvm_pvs.begin(), lvm_pvs.end(), [](const LvmPv* lvm_pv) {
+	    return !lvm_pv->has_blk_device();
+	});
+    }
+
+
+    void
+    LvmVg::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Action::Base*> actions;
+
+	if (is_partial())
+	    actions.push_back(new Action::ReduceMissing(get_sid()));
+
+	actions.push_back(new Action::Delete(get_sid()));
+
+	actiongraph.add_chain(actions);
+    }
+
+
     Text
     LvmVg::Impl::do_create_text(Tense tense) const
     {
@@ -621,6 +648,30 @@ namespace storage
     }
 
 
+    Text
+    LvmVg::Impl::do_reduce_missing_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by volume group name (e.g. system)
+			   _("Reduce volume group %1$s by missing physical volumes"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by volume group name (e.g. system)
+			   _("Reducing volume group %1$s by missing physical volumes"));
+
+	return sformat(text, vg_name.c_str());
+    }
+
+
+    void
+    LvmVg::Impl::do_reduce_missing() const
+    {
+	string cmd_line = VGREDUCEBIN " " + quote(vg_name) + " --removemissing --force";
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
     void
     LvmVg::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
     {
@@ -735,6 +786,27 @@ namespace storage
 	    return false;
 
 	return lvm_lv->get_lvm_vg()->get_sid() == get_sid();
+    }
+
+
+    namespace Action
+    {
+
+	Text
+	ReduceMissing::text(const CommitData& commit_data) const
+	{
+	    const LvmVg* lvm_vg = to_lvm_vg(get_device(commit_data.actiongraph, LHS));
+	    return lvm_vg->get_impl().do_reduce_missing_text(commit_data.tense);
+	}
+
+
+	void
+	ReduceMissing::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const LvmVg* lvm_vg = to_lvm_vg(get_device(commit_data.actiongraph, LHS));
+	    lvm_vg->get_impl().do_reduce_missing();
+	}
+
     }
 
 }

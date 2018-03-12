@@ -52,7 +52,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
 
-	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
+	set_dm_table_name(name.substr(strlen(DEV_MAPPER_DIR "/")));
     }
 
 
@@ -62,7 +62,7 @@ namespace storage
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid Multipath name"));
 
-	set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
+	set_dm_table_name(name.substr(strlen(DEV_MAPPER_DIR "/")));
     }
 
 
@@ -97,7 +97,7 @@ namespace storage
     bool
     Multipath::Impl::is_valid_name(const string& name)
     {
-	return boost::starts_with(name, DEVMAPPERDIR "/");
+	return boost::starts_with(name, DEV_MAPPER_DIR "/");
     }
 
 
@@ -183,7 +183,7 @@ namespace storage
 
 	for (const string& dm_name : cmd_multipath.get_entries())
 	{
-	    Multipath* multipath = Multipath::create(prober.get_system(), DEVMAPPERDIR "/" + dm_name);
+	    Multipath* multipath = Multipath::create(prober.get_system(), DEV_MAPPER_DIR "/" + dm_name);
 	    multipath->get_impl().probe_pass_1a(prober);
 	}
     }
@@ -194,7 +194,7 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	const File rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 								      "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 

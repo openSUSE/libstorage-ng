@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-26 19:29+0100\n"
+"POT-Creation-Date: 2018-03-12 11:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1566,6 +1566,18 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reduce volume group %1$s by missing physical volumes"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr ""
 
 #. TRANSLATORS: name of object
