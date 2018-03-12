@@ -1189,7 +1189,7 @@ namespace storage
     string
     LvmLv::Impl::make_name(const string& vg_name, const string& lv_name)
     {
-	return DEVDIR "/" + vg_name + "/" + lv_name;
+	return DEV_DIR "/" + vg_name + "/" + lv_name;
     }
 
 

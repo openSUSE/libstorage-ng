@@ -86,8 +86,8 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
-	const File logical_block_size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
+	const File logical_block_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 									      "/queue/logical_block_size");
 
 	// size is always in 512 byte blocks
@@ -96,17 +96,17 @@ namespace storage
 	unsigned long long c = a * 512 / b;
 	set_region(Region(0, c, b));
 
-	const File alignment_offset_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	const File alignment_offset_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 									    "/alignment_offset");
 	topology.set_alignment_offset(alignment_offset_file.get<int>());
 
-	const File optimal_io_size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	const File optimal_io_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 									   "/queue/optimal_io_size");
 	topology.set_optimal_io_size(optimal_io_size_file.get<int>());
 
 	if (get_dm_table_name().empty())
 	{
-	    const File range_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() +
+	    const File range_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 								     "/ext_range");
 	    range = range_file.get<int>();
 	}
@@ -263,7 +263,7 @@ namespace storage
     string
     Partitionable::Impl::partition_name(int number) const
     {
-	if (boost::starts_with(get_name(), DEVMAPPERDIR "/"))
+	if (boost::starts_with(get_name(), DEV_MAPPER_DIR "/"))
 	    return get_name() + "-part" + to_string(number);
 	else if (isdigit(get_name().back()))
 	    return get_name() + "p" + to_string(number);

@@ -244,7 +244,7 @@ namespace storage
 		    return entry;
 	    }
 
-	    if (boost::starts_with(blk_device, DEVDIR "/"))
+	    if (boost::starts_with(blk_device, DEV_DIR "/"))
 	    {
 		if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
 		    return entry;

@@ -861,7 +861,7 @@ namespace storage
                 else if (is_lvm_vg(device))
 		{
                     const LvmVg* lvm_vg = to_lvm_vg(device);
-                    ret += DEVDIR "/" + lvm_vg->get_vg_name() + "\\n";
+                    ret += DEV_DIR "/" + lvm_vg->get_vg_name() + "\\n";
 		}
 	    }
 

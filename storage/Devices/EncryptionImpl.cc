@@ -46,7 +46,7 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEVMAPPERDIR "/" + dm_table_name), password(), mount_by(MountByType::DEVICE),
+	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name), password(), mount_by(MountByType::DEVICE),
 	  in_etc_crypttab(true)
     {
 	set_dm_table_name(dm_table_name);

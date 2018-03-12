@@ -128,7 +128,7 @@ checkNormalFile(const string& Path_Cv)
     string
     make_dev_block_name(dev_t majorminor)
     {
-	return sformat(DEVDIR "/block/%d:%d", gnu_dev_major(majorminor),
+	return sformat(DEV_DIR "/block/%d:%d", gnu_dev_major(majorminor),
 		       gnu_dev_minor(majorminor));
     }
 

@@ -98,7 +98,7 @@ namespace storage
     void
     BcacheCset::Impl::probe_bcache_csets(Prober& prober)
     {
-	for (const string& uuid : prober.get_system_info().getDir(SYSFSDIR "/fs/bcache"))
+	for (const string& uuid : prober.get_system_info().getDir(SYSFS_DIR "/fs/bcache"))
 	{
 	    if (!is_valid_uuid(uuid))
 		continue;
@@ -117,7 +117,7 @@ namespace storage
 
 	Device::Impl::probe_pass_1b(prober);
 
-	string path = SYSFSDIR "/fs/bcache/" + uuid;
+	string path = SYSFS_DIR "/fs/bcache/" + uuid;
 
 	const Dir& dir = prober.get_system_info().getDir(path);
 	for (const string& name : dir)
@@ -125,7 +125,7 @@ namespace storage
 	    if (regex_match(name, bdev_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
-		string dev = DEVDIR "/block/" + dev_file.get<string>();
+		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
 		    User::create(system, b, a);
@@ -135,7 +135,7 @@ namespace storage
 	    if (regex_match(name, cache_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
-		string dev = DEVDIR "/block/" + dev_file.get<string>();
+		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
 		    User::create(system, a, b);

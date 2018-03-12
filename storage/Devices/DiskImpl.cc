@@ -81,12 +81,12 @@ namespace storage
     Disk::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEVDIR "/sd([a-z]+)", regex::extended), 4, ' '),
-	    NameSchema(regex(DEVDIR "/vd([a-z]+)", regex::extended), 4, ' '),
-	    NameSchema(regex(DEVDIR "/mmcblk([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEVDIR "/rsxx([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEVDIR "/pmem([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEVDIR "/nvme([0-9]+)n([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/sd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEV_DIR "/vd([a-z]+)", regex::extended), 4, ' '),
+	    NameSchema(regex(DEV_DIR "/mmcblk([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/rsxx([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/pmem([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended), 3, '0'),
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
@@ -98,13 +98,13 @@ namespace storage
     {
 	SystemInfo& system_info = prober.get_system_info();
 
-	for (const string& short_name : system_info.getDir(SYSFSDIR "/block"))
+	for (const string& short_name : system_info.getDir(SYSFS_DIR "/block"))
 	{
-	    string name = DEVDIR "/" + short_name;
+	    string name = DEV_DIR "/" + short_name;
 
 	    if (Md::Impl::is_valid_sysfs_name(name) || Bcache::Impl::is_valid_name(name) ||
-		boost::starts_with(name, DEVDIR "/loop") || boost::starts_with(name, DEVDIR "/dasd") ||
-		boost::starts_with(name, DEVDIR "/dm-"))
+		boost::starts_with(name, DEV_DIR "/loop") || boost::starts_with(name, DEV_DIR "/dasd") ||
+		boost::starts_with(name, DEV_DIR "/dm-"))
 		continue;
 
 	    // skip disks without node in /dev (bsc #1076971)
@@ -116,7 +116,7 @@ namespace storage
 	    {
 		const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
 
-		const File range_file = system_info.getFile(SYSFSDIR + udevadminfo.get_path() +
+		const File range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
 							    "/ext_range");
 		if (range_file.get<int>() <= 1)
 		    continue;
@@ -141,7 +141,7 @@ namespace storage
 
 	SystemInfo& system_info = prober.get_system_info();
 
-	const File rotational_file = system_info.getFile(SYSFSDIR + get_sysfs_path() +
+	const File rotational_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() +
 							 "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 

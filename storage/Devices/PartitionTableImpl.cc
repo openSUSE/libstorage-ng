@@ -114,8 +114,8 @@ namespace storage
 	partition->get_impl().update_sysfs_name_and_path();
 	partition->get_impl().update_udev_paths_and_ids();
 
-	if (boost::starts_with(name, DEVMAPPERDIR "/"))
-	    partition->set_dm_table_name(name.substr(strlen(DEVMAPPERDIR "/")));
+	if (boost::starts_with(name, DEV_MAPPER_DIR "/"))
+	    partition->set_dm_table_name(name.substr(strlen(DEV_MAPPER_DIR "/")));
 
 	return partition;
     }

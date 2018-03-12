@@ -61,7 +61,7 @@ namespace storage
     Bcache::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEVDIR "/bcache([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/bcache([0-9]+)", regex::extended), 3, '0'),
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
@@ -78,7 +78,7 @@ namespace storage
     bool
     Bcache::Impl::is_valid_name(const string& name)
     {
-	static regex name_regex(DEVDIR "/bcache[0-9]+", regex::extended);
+	static regex name_regex(DEV_DIR "/bcache[0-9]+", regex::extended);
 
 	return regex_match(name, name_regex);
     }
@@ -87,9 +87,9 @@ namespace storage
     void
     Bcache::Impl::probe_bcaches(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFSDIR "/block"))
+	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
 	{
-	    string name = DEVDIR "/" + short_name;
+	    string name = DEV_DIR "/" + short_name;
 	    if (!is_valid_name(name))
 		continue;
 
@@ -104,7 +104,7 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const File size_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/size");
+	const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
     }
@@ -115,8 +115,8 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1b(prober);
 
-	const File dev_file = prober.get_system_info().getFile(SYSFSDIR + get_sysfs_path() + "/bcache/../dev");
-	string dev = DEVDIR "/block/" + dev_file.get<string>();
+	const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
+	string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 	prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
 	    User::create(system, a, b);
