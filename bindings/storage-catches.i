@@ -150,6 +150,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Device::compare_by_name(const Device *lhs, const Device *rhs);
+%catches(storage::Exception) storage::Device::copy_to_devicegraph(Devicegraph *devicegraph) const;
 %catches(storage::Exception) storage::Device::detect_resize_info() const;
 %catches(storage::Exception) storage::Devicegraph::check(const CheckCallbacks *check_callbacks=nullptr) const;
 %catches(storage::DeviceNotFoundBySid) storage::Devicegraph::find_device(sid_t sid);
@@ -165,6 +166,7 @@
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::DmRaid::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Filesystem::detect_space_info() const;
+%catches(storage::Exception) storage::Holder::copy_to_devicegraph(Devicegraph *devicegraph) const;
 %catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,6 +48,33 @@ namespace storage
 	    return false;
 
 	return equal(rhs);
+    }
+
+
+    Holder*
+    Holder::Impl::copy_to_devicegraph(Devicegraph* devicegraph) const
+    {
+	sid_t source_sid = get_source_sid();
+	sid_t target_sid = get_target_sid();
+
+	if (!devicegraph->device_exists(source_sid))
+	    ST_THROW(Exception("source device does not exist"));
+
+	if (!devicegraph->device_exists(target_sid))
+	    ST_THROW(Exception("target device does not exist"));
+
+	if (devicegraph->holder_exists(source_sid, target_sid))
+	    ST_THROW(Exception("holder already exists"));
+
+	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().find_vertex(source_sid);
+	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().find_vertex(target_sid);
+
+	Holder* holder = get_non_impl()->clone();
+
+	Devicegraph::Impl::edge_descriptor edge = devicegraph->get_impl().add_edge(source, target, holder);
+	holder->get_impl().set_devicegraph_and_edge(devicegraph, edge);
+
+	return holder;
     }
 
 
