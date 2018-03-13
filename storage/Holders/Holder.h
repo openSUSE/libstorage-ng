@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -66,6 +66,21 @@ namespace storage
 
 	bool operator==(const Holder& rhs) const;
 	bool operator!=(const Holder& rhs) const;
+
+	/**
+	 * Copies the holder to the devicegraph. Does not copy devices. The
+	 * purpose of the function is to restore parts of the probed
+	 * devicegraph in the staging devicegraph that were previously
+	 * deleted.
+	 *
+	 * Source and target devices must already exist in devicegraph. Holder
+	 * must not exist in devicegraph.
+	 *
+	 * @see Device::copy_to_devicegraph()
+	 *
+	 * @throw Exception
+	 */
+	Holder* copy_to_devicegraph(Devicegraph* devicegraph) const;
 
     public:
 

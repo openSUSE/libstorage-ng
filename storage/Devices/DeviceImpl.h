@@ -102,6 +102,8 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
+	Device* copy_to_devicegraph(Devicegraph* dest) const;
+
 	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
 	bool exists_in_probed() const;
 	bool exists_in_staging() const;

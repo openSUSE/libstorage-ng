@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -50,6 +50,8 @@ namespace storage
 	bool operator==(const Impl& rhs) const;
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
+	Holder* copy_to_devicegraph(Devicegraph* dest) const;
+
 	virtual Impl* clone() const = 0;
 
 	virtual const char* get_classname() const = 0;
@@ -65,6 +67,9 @@ namespace storage
 	const Devicegraph* get_devicegraph() const { return devicegraph; }
 
 	Devicegraph::Impl::edge_descriptor get_edge() const { return edge; }
+
+	virtual Holder* get_non_impl() { return devicegraph->get_impl()[edge]; }
+	virtual const Holder* get_non_impl() const { return devicegraph->get_impl()[edge]; }
 
 	Device* get_source();
 	const Device* get_source() const;

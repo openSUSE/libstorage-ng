@@ -66,6 +66,21 @@ namespace storage
     }
 
 
+    Device*
+    Device::Impl::copy_to_devicegraph(Devicegraph* devicegraph) const
+    {
+	if (exists_in_devicegraph(devicegraph))
+	    ST_THROW(Exception("device already exists"));
+
+	Device* device = get_non_impl()->clone();
+
+	Devicegraph::Impl::vertex_descriptor vertex = devicegraph->get_impl().add_vertex(device);
+	device->get_impl().set_devicegraph_and_vertex(devicegraph, vertex);
+
+	return device;
+    }
+
+
     bool
     Device::Impl::exists_in_devicegraph(const Devicegraph* devicegraph) const
     {

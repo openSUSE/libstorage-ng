@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -60,6 +60,13 @@ namespace storage
     Holder::operator!=(const Holder& rhs) const
     {
 	return get_impl().operator!=(rhs.get_impl());
+    }
+
+
+    Holder*
+    Holder::copy_to_devicegraph(Devicegraph* devicegraph) const
+    {
+	return get_impl().copy_to_devicegraph(devicegraph);
     }
 
 
