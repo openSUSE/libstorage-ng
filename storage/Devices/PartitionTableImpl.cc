@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -261,6 +261,32 @@ namespace storage
     }
 
 
+    bool
+    PartitionTable::Impl::has_usable_region() const
+    {
+	Region region = get_partitionable()->get_region();
+
+	pair<unsigned long long, unsigned long long> tmp = unusable_sectors();
+
+	return region.get_length() > tmp.first + tmp.second;
+    }
+
+
+    Region
+    PartitionTable::Impl::get_usable_region() const
+    {
+	Region region = get_partitionable()->get_region();
+
+	pair<unsigned long long, unsigned long long> tmp = unusable_sectors();
+
+	if (region.get_length() <= tmp.first + tmp.second)
+	    ST_THROW(Exception("no usable region"));
+
+	return Region(tmp.first, region.get_length() - (tmp.first + tmp.second),
+		      region.get_block_size());
+    }
+
+
     Alignment
     PartitionTable::Impl::get_alignment(AlignType align_type) const
     {
@@ -284,7 +310,7 @@ namespace storage
 	vector<const Partition*> partitions = get_partitions();
 	sort(partitions.begin(), partitions.end(), Partition::compare_by_number);
 
-	if (true)
+	if (has_usable_region())
 	{
 	    PartitionSlot slot;
 

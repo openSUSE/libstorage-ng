@@ -98,10 +98,10 @@ namespace storage
     }
 
 
-    Region
-    Msdos::Impl::get_usable_region() const
+    pair<unsigned long long, unsigned long long>
+    Msdos::Impl::unusable_sectors() const
     {
-	Region device_region = get_partitionable()->get_region();
+	Region region = get_partitionable()->get_region();
 
 	// Reserve one sector or minimal-mbr-gap (per default 1 MiB) for the
 	// MBR and the MBR gap, see
@@ -110,12 +110,16 @@ namespace storage
 	// but for disks with an alignment offset it can be required to
 	// explicitely reserve it.
 
-	unsigned long long first_usable_sector = max(1ULL, device_region.to_blocks(minimal_mbr_gap));
-	unsigned long long last_usable_sector = UINT32_MAX - 1;
-	Region usable_region(first_usable_sector, last_usable_sector - first_usable_sector + 1,
-				   device_region.get_block_size());
+	unsigned long long at_front = max(1ULL, region.to_blocks(minimal_mbr_gap));
 
-	return device_region.intersection(usable_region);
+	// The MS-DOS partition table can only address 2^32 sectors. We allow
+	// a maximum of UINT32_MAX for length. As a consequence end is maximal
+	// UINT32_MAX - 1 (assuming start can be 0).
+
+	unsigned long long at_back = region.get_length() > UINT32_MAX ?
+	    region.get_length() - UINT32_MAX : 0;
+
+	return make_pair(at_front, at_back);
     }
 
 

@@ -77,7 +77,7 @@ namespace storage
 
 	virtual unsigned int max_primary() const override;
 
-	virtual Region get_usable_region() const override;
+	virtual pair<unsigned long long, unsigned long long> unusable_sectors() const override;
 
 	virtual Alignment get_alignment(AlignType align_type) const override;
 
