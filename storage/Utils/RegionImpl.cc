@@ -71,7 +71,10 @@ namespace storage
     unsigned long long
     Region::Impl::get_end() const
     {
-	// TODO check if region is empty
+#if 0
+	if (empty())
+	    ST_THROW(Exception("empty region"));
+#endif
 
 	return start + length - 1;
     }

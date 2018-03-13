@@ -79,25 +79,24 @@ namespace storage
     }
 
 
-    Region
-    ImplicitPt::Impl::get_usable_region() const
+    pair<unsigned long long, unsigned long long>
+    ImplicitPt::Impl::unusable_sectors() const
     {
 	// The usable region matches the implicit partition. The start and end
 	// values must match what the kernel does.
 
 	const Dasd* dasd = to_dasd(get_partitionable());
 
-	unsigned long long start = 0;
+	unsigned long long at_front = 0;
 
 	if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
-	    start = 3;
+	    at_front = 3;
 	else if (dasd->get_type() == DasdType::FBA)
-	    start = 2;
+	    at_front = 2;
 	else
-	    ST_THROW(Exception("usable region is unknown for device " + dasd->get_name()));
+	    ST_THROW(Exception("unusable sectors is unknown for device " + dasd->get_name()));
 
-	return Region(start, dasd->get_region().get_length() - start,
-		      dasd->get_region().get_block_size());
+	return make_pair(at_front, 0);
     }
 
 
