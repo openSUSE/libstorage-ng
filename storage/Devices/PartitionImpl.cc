@@ -518,6 +518,9 @@ namespace storage
 	    case PartitionType::PRIMARY:
 	    case PartitionType::EXTENDED:
 	    {
+		if (!partition_table->get_impl().has_usable_region())
+		    return get_region();
+
 		Region tmp = partition_table->get_impl().get_usable_region();
 
 		unsigned long long start = tmp.get_start();

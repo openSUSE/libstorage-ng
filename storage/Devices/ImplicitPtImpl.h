@@ -76,7 +76,7 @@ namespace storage
 
 	virtual unsigned int max_primary() const override;
 
-	virtual Region get_usable_region() const override;
+	virtual pair<unsigned long long, unsigned long long> unusable_sectors() const override;
 
 	virtual vector<PartitionSlot> get_unused_partition_slots(AlignPolicy align_policy,
 								 AlignType align_type) const override;

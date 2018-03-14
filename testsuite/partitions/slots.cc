@@ -375,3 +375,25 @@ BOOST_AUTO_TEST_CASE(test_gpt2)
     BOOST_CHECK_EQUAL(slots[0].logical_slot, false);
     BOOST_CHECK_EQUAL(slots[0].logical_possible, false);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_small_disk)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1, 512));
+
+    BOOST_CHECK_EQUAL(sda->get_range(), 256);
+
+    PartitionTable* gpt = sda->create_partition_table(PtType::GPT);
+
+    vector<PartitionSlot> slots = gpt->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 0);
+}

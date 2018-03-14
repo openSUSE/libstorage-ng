@@ -107,7 +107,7 @@ namespace storage
 	unsigned long get_minimal_mbr_gap() const { return minimal_mbr_gap; }
 	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
 
-	virtual Region get_usable_region() const override;
+	virtual pair<unsigned long long, unsigned long long> unusable_sectors() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;

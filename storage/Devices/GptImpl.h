@@ -81,7 +81,7 @@ namespace storage
 	bool is_pmbr_boot() const { return pmbr_boot; }
 	void set_pmbr_boot(bool pmbr_boot) { Impl::pmbr_boot = pmbr_boot; }
 
-	virtual Region get_usable_region() const override;
+	virtual pair<unsigned long long, unsigned long long> unusable_sectors() const override;
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;

@@ -66,6 +66,8 @@ namespace storage
     /**
      * A start/length pair with a block size.
      *
+     * The equation end = start + length - 1 holds.
+     *
      * Comparing Regions with different block_sizes will throw an exception.
      */
     class Region
