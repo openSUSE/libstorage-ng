@@ -69,6 +69,40 @@ namespace storage
 	void set_tune_options(const std::string& tune_options);
 
 	/**
+	 * Checks whether shrinking the filesystem is supported.
+	 */
+	bool supports_shrink() const;
+
+	/**
+	 * Checks whether growing the filesystem is supported.
+	 */
+	bool supports_grow() const;
+
+	/**
+	 * Checks whether shrinking the filesystem while being mounted is
+	 * supported.
+	 */
+	bool supports_mounted_shrink() const;
+
+	/**
+	 * Checks whether growing the filesystem while being mounted is
+	 * supported.
+	 */
+	bool supports_mounted_grow() const;
+
+	/**
+	 * Checks whether shrinking the filesystem while being unmounted is
+	 * supported.
+	 */
+	bool supports_unmounted_shrink() const;
+
+	/**
+	 * Checks whether growing the filesystem while being unmounted is
+	 * supported.
+	 */
+	bool supports_unmounted_grow() const;
+
+	/**
 	 * Set the ResizeInfo. Only use for testsuites.
 	 */
 	void set_resize_info(const ResizeInfo& resize_info);

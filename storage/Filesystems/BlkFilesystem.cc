@@ -145,6 +145,48 @@ namespace storage
     }
 
 
+    bool
+    BlkFilesystem::supports_shrink() const
+    {
+	return get_impl().supports_shrink();
+    }
+
+
+    bool
+    BlkFilesystem::supports_grow() const
+    {
+	return get_impl().supports_grow();
+    }
+
+
+    bool
+    BlkFilesystem::supports_mounted_shrink() const
+    {
+	return get_impl().supports_mounted_shrink();
+    }
+
+
+    bool
+    BlkFilesystem::supports_mounted_grow() const
+    {
+	return get_impl().supports_mounted_grow();
+    }
+
+
+    bool
+    BlkFilesystem::supports_unmounted_shrink() const
+    {
+	return get_impl().supports_unmounted_shrink();
+    }
+
+
+    bool
+    BlkFilesystem::supports_unmounted_grow() const
+    {
+	return get_impl().supports_unmounted_grow();
+    }
+
+
     void
     BlkFilesystem::set_resize_info(const ResizeInfo& resize_info)
     {
