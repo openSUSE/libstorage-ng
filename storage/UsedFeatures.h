@@ -27,36 +27,40 @@
 #include <stdint.h>
 
 
-enum : uint64_t
+namespace storage
 {
-    UF_EXT2 = 1 << 0,
-    UF_EXT3 = 1 << 1,
-    UF_EXT4 = 1 << 2,
-    UF_BTRFS = 1 << 3,
-    UF_XFS = 1 << 4,
-    UF_REISERFS = 1 << 5,
-    UF_SWAP = 1 << 6,
-    UF_NTFS = 1 << 7,
-    UF_VFAT = 1 << 8,
-    UF_NFS = 1 << 9,
-    UF_JFS = 1 << 10,
 
-    UF_LUKS = 1 << 11,
+    enum : uint64_t
+    {
+	UF_EXT2 = 1 << 0,
+	UF_EXT3 = 1 << 1,
+	UF_EXT4 = 1 << 2,
+	UF_BTRFS = 1 << 3,
+	UF_XFS = 1 << 4,
+	UF_REISERFS = 1 << 5,
+	UF_SWAP = 1 << 6,
+	UF_NTFS = 1 << 7,
+	UF_VFAT = 1 << 8,
+	UF_NFS = 1 << 9,
+	UF_JFS = 1 << 10,
 
-    UF_LVM = 1 << 12,
-    UF_MDRAID = 1 << 13,
-    UF_DMRAID = 1 << 14,
-    UF_MULTIPATH = 1 << 15,
-    UF_BCACHE = 1 << 16,
+	UF_LUKS = 1 << 11,
 
-    UF_ISCSI = 1 << 17,
-    UF_FCOE = 1 << 18,
-    UF_FC = 1 << 19,
-    UF_DASD = 1 << 20,
+	UF_LVM = 1 << 12,
+	UF_MDRAID = 1 << 13,
+	UF_DMRAID = 1 << 14,
+	UF_MULTIPATH = 1 << 15,
+	UF_BCACHE = 1 << 16,
 
-    UF_QUOTA = 1 << 21,
-    UF_SNAPSHOTS = 1 << 22
-};
+	UF_ISCSI = 1 << 17,
+	UF_FCOE = 1 << 18,
+	UF_FC = 1 << 19,
+	UF_DASD = 1 << 20,
 
+	UF_QUOTA = 1 << 21,
+	UF_SNAPSHOTS = 1 << 22
+    };
+
+}
 
 #endif
