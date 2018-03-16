@@ -891,10 +891,12 @@ namespace storage
     void
     Md::Impl::do_delete() const
     {
+	string cmd_line = MDADMBIN " --zero-superblock ";
+
 	for (const BlkDevice* blk_device : get_devices())
-	{
-	    blk_device->get_impl().wipe_device();
-	}
+	    cmd_line += " " + quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
