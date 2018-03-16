@@ -249,7 +249,8 @@ namespace storage
 
 	    if (entry.number > 4)
 		entry.type = PartitionType::LOGICAL;
-	    else if (contains(vector<unsigned int>({ 0x05, 0x0f, 0x1f, 0x85 }), entry.id))
+	    // see https://github.com/torvalds/linux/blob/master/include/linux/genhd.h#L32
+	    else if (contains(vector<unsigned int>({ 0x05, 0x0f, 0x85 }), entry.id))
 		entry.type = PartitionType::EXTENDED;
 	}
 
