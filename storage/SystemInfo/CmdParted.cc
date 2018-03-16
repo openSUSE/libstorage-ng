@@ -249,7 +249,7 @@ namespace storage
 
 	    if (entry.number > 4)
 		entry.type = PartitionType::LOGICAL;
-	    else if (contains(vector<unsigned int>({ 0x05, 0x0f, 0x1f }), entry.id))
+	    else if (contains(vector<unsigned int>({ 0x05, 0x0f, 0x1f, 0x85 }), entry.id))
 		entry.type = PartitionType::EXTENDED;
 	}
 
