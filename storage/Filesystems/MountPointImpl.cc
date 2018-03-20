@@ -213,6 +213,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    MountPoint::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     bool
     MountPoint::Impl::has_mountable() const
     {

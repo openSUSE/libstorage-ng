@@ -579,9 +579,17 @@ namespace storage
 	    {
 		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
 
-		unsigned long long data_size = lvm_vg->get_impl().number_of_free_extents({ get_sid() }) * extent_size;
+		unsigned long long free_extents = lvm_vg->get_impl().number_of_free_extents({ get_sid() });
 
-		resize_info.combine(ResizeInfo(true, extent_size, data_size));
+		unsigned long long data_size = free_extents * extent_size;
+
+		resize_info.combine(ResizeInfo(true, 0, extent_size, data_size));
+
+		if (get_region().get_length() <= 1)
+		    resize_info.reasons |= RB_MIN_SIZE_FOR_LVM_LV;
+
+		if (get_region().get_length() >= free_extents)
+		    resize_info.reasons |= RB_NO_SPACE_IN_LVM_VG;
 
 		resize_info.combine_block_size(max(1U, stripes) * extent_size);
 
@@ -601,7 +609,11 @@ namespace storage
 		    unsigned long long data_size = (lvm_vg->get_impl().number_of_free_extents() +
 						    number_of_extents()) * extent_size;
 
-		    ResizeInfo resize_info(true, tmp_lvm_lv->get_size(), data_size);
+		    ResizeInfo resize_info(true, RB_SHRINK_NOT_SUPPORTED_FOR_LVM_LV_TYPE,
+					   tmp_lvm_lv->get_size(), data_size);
+
+		    if (get_region().get_length() * extent_size >= data_size)
+			resize_info.reasons |= RB_NO_SPACE_IN_LVM_VG;
 
 		    resize_info.combine_block_size(max(1U, stripes) * extent_size);
 
@@ -611,7 +623,13 @@ namespace storage
 		{
 		    unsigned long long data_size = lvm_vg->get_impl().max_size_for_lvm_lv(lv_type, { get_sid() });
 
-		    ResizeInfo resize_info(true, extent_size, data_size);
+		    ResizeInfo resize_info(true, 0, extent_size, data_size);
+
+		    if (get_region().get_length() <= 1)
+			resize_info.reasons |= RB_MIN_SIZE_FOR_LVM_LV;
+
+		    if (get_region().get_length() * extent_size >= data_size)
+			resize_info.reasons |= RB_NO_SPACE_IN_LVM_VG;
 
 		    resize_info.combine_block_size(max(1U, stripes) * extent_size);
 
@@ -627,7 +645,13 @@ namespace storage
 
 		unsigned long long data_size = thin_pool->max_size_for_lvm_lv(LvType::THIN);
 
-		resize_info.combine(ResizeInfo(true, extent_size, data_size));
+		resize_info.combine(ResizeInfo(true, 0, extent_size, data_size));
+
+		if (get_region().get_length() <= 1)
+		    resize_info.reasons |= RB_MIN_SIZE_FOR_LVM_LV;
+
+		if (get_region().get_length() * extent_size >= data_size)
+		    resize_info.reasons |= RB_MAX_SIZE_FOR_LVM_LV_THIN;
 
 		resize_info.combine_block_size(extent_size);
 
@@ -636,7 +660,7 @@ namespace storage
 
 	    default:
 	    {
-		return ResizeInfo(false);
+		return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_FOR_LVM_LV_TYPE);
 	    }
 	}
     }

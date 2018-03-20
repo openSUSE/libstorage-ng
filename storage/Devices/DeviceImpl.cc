@@ -235,13 +235,6 @@ namespace storage
     }
 
 
-    ResizeInfo
-    Device::Impl::detect_resize_info() const
-    {
-	return ResizeInfo(false);
-    }
-
-
     void
     Device::Impl::parent_has_new_region(const Device* parent)
     {

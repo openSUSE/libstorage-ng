@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,24 +36,26 @@ namespace storage
     using namespace std;
 
 
-    ResizeInfo::ResizeInfo(bool resize_ok, unsigned long long min_size,
+    ResizeInfo::ResizeInfo(bool resize_ok, uint32_t reasons, unsigned long long min_size,
 			   unsigned long long max_size)
-	: resize_ok(resize_ok), min_size(min_size), max_size(max_size), block_size(1 * B)
+	: resize_ok(resize_ok), reasons(reasons), min_size(min_size), max_size(max_size),
+	  block_size(1 * B)
     {
 	check();
     }
 
 
-    ResizeInfo::ResizeInfo(bool resize_ok)
-	: ResizeInfo(resize_ok, 0 * B, std::numeric_limits<unsigned long long>::max() * B)
+    ResizeInfo::ResizeInfo(bool resize_ok, uint32_t reasons)
+	: ResizeInfo(resize_ok, reasons, 0 * B, std::numeric_limits<unsigned long long>::max() * B)
     {
     }
 
 
     ResizeInfo::ResizeInfo(const xmlNode* node)
-	: ResizeInfo(false)
+	: ResizeInfo(false, 0)
     {
 	getChildValue(node, "resize-ok", resize_ok);
+	getChildValue(node, "reasons", reasons);
 	getChildValue(node, "min-size", min_size);
 	getChildValue(node, "max-size", max_size);
 	getChildValue(node, "block-size", block_size);
@@ -64,6 +66,7 @@ namespace storage
     ResizeInfo::save(xmlNode* node) const
     {
 	setChildValue(node, "resize-ok", resize_ok);
+	setChildValue(node, "reasons", reasons);
 	setChildValue(node, "min-size", min_size);
 	setChildValue(node, "max-size", max_size);
 	setChildValue(node, "block-size", block_size);
@@ -74,6 +77,8 @@ namespace storage
     ResizeInfo::combine(ResizeInfo extra_resize_info)
     {
 	resize_ok = resize_ok && extra_resize_info.resize_ok;
+
+	reasons = reasons | extra_resize_info.reasons;
 
 	combine_min(extra_resize_info.min_size);
 	combine_max(extra_resize_info.max_size);
@@ -134,15 +139,21 @@ namespace storage
 	min_size = round_up(min_size, block_size);
 	max_size = round_down(max_size, block_size);
 
-	resize_ok = resize_ok && max_size > min_size;
+	if (min_size >= max_size)
+	{
+	    resize_ok = false;
+
+	    // It is too late for specific error here.
+	    reasons |= RB_MIN_MAX_ERROR;
+	}
     }
 
 
     std::ostream&
     operator<<(std::ostream& out, const ResizeInfo& resize_info)
     {
-	return out << "resize-ok:" << resize_info.resize_ok << " min-size:"
-		   << resize_info.min_size << " max-size:" << resize_info.max_size
+	return out << "resize-ok:" << resize_info.resize_ok << " reasons:" << resize_info.reasons
+		   << " min-size:" << resize_info.min_size << " max-size:" << resize_info.max_size
 		   << " block-size:" << resize_info.block_size;
     }
 

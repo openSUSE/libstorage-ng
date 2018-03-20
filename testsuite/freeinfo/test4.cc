@@ -42,7 +42,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     Partition* sda2 = msdos->create_partition("/dev/sda2", Region(40 * spg, 20 * spg, 512), PartitionType::PRIMARY);
     BlkFilesystem* fs1 = sda2->create_blk_filesystem(FsType::EXT4);
-    fs1->get_impl().set_resize_info(ResizeInfo(true, 50 * MiB, 4 * TiB));
+    fs1->get_impl().set_resize_info(ResizeInfo(true, 0, 50 * MiB, 4 * TiB));
 
     Partition* sda3 = msdos->create_partition("/dev/sda3", Region(80 * spg, 40 * spg, 512), PartitionType::PRIMARY);
     sda3->create_blk_filesystem(FsType::SWAP);

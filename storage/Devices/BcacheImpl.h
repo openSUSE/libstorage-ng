@@ -62,6 +62,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	virtual void save(xmlNode* node) const override;
 
 	virtual uint64_t used_features() const override;

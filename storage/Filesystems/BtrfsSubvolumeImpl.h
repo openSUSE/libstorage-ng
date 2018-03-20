@@ -60,6 +60,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	virtual void probe_pass_2a(Prober& prober, const string& mount_point);
 	virtual void probe_pass_2b(Prober& prober, const string& mount_point);
 

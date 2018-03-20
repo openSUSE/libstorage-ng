@@ -61,7 +61,7 @@ namespace storage
     ResizeInfo
     Swap::Impl::detect_resize_info() const
     {
-	return ResizeInfo(true, min_size(), max_size());
+	return ResizeInfo(true, 0, min_size(), max_size());
     }
 
 

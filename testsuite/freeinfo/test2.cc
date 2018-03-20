@@ -37,7 +37,7 @@ BOOST_AUTO_TEST_CASE(modify)
 	Partition* partition = Partition::find_by_name(staging, "/dev/sdb1");
 
 	BlkFilesystem* blk_filesystem = partition->get_blk_filesystem();
-	blk_filesystem->set_resize_info(ResizeInfo(true, 1500 * KiB, 3000 * MiB));
+	blk_filesystem->set_resize_info(ResizeInfo(true, 0, 1500 * KiB, 3000 * MiB));
 	blk_filesystem->set_content_info(ContentInfo(true, false, 2));
 
 	ResizeInfo resize_info = blk_filesystem->detect_resize_info();

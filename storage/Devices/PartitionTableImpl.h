@@ -73,6 +73,8 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override = 0;
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	/**
 	 * Returns whether the partition type is supported for the partition
 	 * table. PRIMARY is supported for GPT and DASD.

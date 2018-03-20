@@ -362,6 +362,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    BtrfsSubvolume::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     BtrfsSubvolume::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {

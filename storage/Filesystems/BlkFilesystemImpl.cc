@@ -306,7 +306,17 @@ namespace storage
 
 	if (!exists_in_system())
 	{
-	    return ResizeInfo(true, min_size(), max_size());
+	    ResizeInfo resize_info(true, 0, min_size(), max_size());
+
+	    unsigned long long blk_device_size = get_blk_device()->get_size();
+
+	    if (blk_device_size <= min_size())
+		resize_info.reasons |= RB_MIN_SIZE_FOR_FILESYSTEM;
+
+	    if (blk_device_size >= max_size())
+		resize_info.reasons |= RB_MAX_SIZE_FOR_FILESYSTEM;
+
+	    return resize_info;
 	}
 
 	if (!resize_info.has_value())
@@ -332,7 +342,7 @@ namespace storage
 	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
 
-	ResizeInfo resize_info(true, min_size(), max_size());
+	ResizeInfo resize_info(true, 0, min_size(), max_size());
 
 	unsigned long long blk_device_size = get_blk_device()->get_size();
 
@@ -342,6 +352,7 @@ namespace storage
 	if (!supports_shrink())
 	{
 	    resize_info.min_size = blk_device_size;
+	    resize_info.reasons |= RB_SHRINK_NOT_SUPPORTED_BY_FILESYSTEM;
 	}
 	else
 	{
@@ -350,17 +361,35 @@ namespace storage
 
 	    resize_info.min_size += used_size_on_disk();
 
+	    // Often the a filesystem cannot be shrunk to the value reported
+	    // by statvfs. Thus add a 50% safety margin.
+
+	    resize_info.min_size *= 1.5;
+
+	    if (resize_info.min_size >= blk_device_size)
+		resize_info.reasons |= RB_FILESYSTEM_FULL;
+
 	    // But the min-size must never be bigger than the blk device size.
 
 	    resize_info.min_size = min(resize_info.min_size, blk_device_size);
+
+	    if (blk_device_size <= min_size())
+		resize_info.reasons |= RB_MIN_SIZE_FOR_FILESYSTEM;
 	}
 
 	if (!supports_grow())
 	{
 	    resize_info.max_size = blk_device_size;
+	    resize_info.reasons |= RB_GROW_NOT_SUPPORTED_BY_FILESYSTEM;
+	}
+	else
+	{
+	    if (blk_device_size >= max_size())
+		resize_info.reasons |= RB_MAX_SIZE_FOR_FILESYSTEM;
 	}
 
-	resize_info.check();
+	if (resize_info.min_size >= resize_info.max_size)
+	    resize_info.reasons |= RB_FILESYSTEM_FULL;
 
 	return resize_info;
     }

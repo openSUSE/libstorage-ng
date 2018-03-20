@@ -233,6 +233,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Nfs::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     Nfs::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {

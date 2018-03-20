@@ -67,21 +67,19 @@ namespace storage
 
 	wait_for_devices();
 
-	ResizeInfo resize_info(false);
-
 	// TODO filesystem must not be mounted
 
 	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(blk_device->get_name()));
 	if (cmd.retcode() != 0)
-	    return resize_info;
+	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
 
 	string fstr = " might resize at ";
 	string::size_type pos;
 	string stdout = boost::join(cmd.stdout(), "\n");
 	if ((pos = stdout.find(fstr)) == string::npos)
-	    return resize_info;
+	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
 
-	resize_info.resize_ok = true;
+	ResizeInfo resize_info(true, 0);
 
 	y2mil("pos:" << pos);
 	pos = stdout.find_first_not_of(" \t\n", pos + fstr.size());
@@ -93,7 +91,8 @@ namespace storage
 	resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
 	resize_info.max_size = 256 * TiB - 64 * KiB;
 
-	resize_info.check();
+	if (resize_info.min_size >= resize_info.max_size)
+	    resize_info.reasons |= RB_FILESYSTEM_FULL;
 
 	return resize_info;
     }

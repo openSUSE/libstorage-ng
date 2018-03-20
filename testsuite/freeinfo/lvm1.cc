@@ -79,14 +79,14 @@ BOOST_AUTO_TEST_CASE(test2)
     normal->set_stripes(2);
 
     BlkFilesystem* fs1 = normal->create_blk_filesystem(FsType::EXT4);
-    fs1->get_impl().set_resize_info(ResizeInfo(true, 33 * MiB, 4 * TiB));
+    fs1->get_impl().set_resize_info(ResizeInfo(true, 0, 33 * MiB, 4 * TiB));
 
     LvmLv* thin_pool = lvm_vg->create_lvm_lv("thin-pool", LvType::THIN_POOL, 60 * MiB);
 
     LvmLv* thin = thin_pool->create_lvm_lv("thin", LvType::THIN, 1 * GiB);
 
     BlkFilesystem* fs2 = thin->create_blk_filesystem(FsType::EXT4);
-    fs2->get_impl().set_resize_info(ResizeInfo(true, 33 * MiB, 4 * TiB));
+    fs2->get_impl().set_resize_info(ResizeInfo(true, 0, 33 * MiB, 4 * TiB));
 
     lvm_vg->get_impl().set_reserved_extents(2);
 
