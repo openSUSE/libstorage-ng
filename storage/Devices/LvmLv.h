@@ -110,8 +110,17 @@ namespace storage
 
 	/**
 	 * Return volume group this logical volume belongs to.
+	 *
+	 * @throw Exception
 	 */
 	const LvmVg* get_lvm_vg() const;
+
+	/**
+	 * Return the thin pool for a thin logical volume.
+	 *
+	 * @throw Exception
+	 */
+	const LvmLv* get_thin_pool() const;
 
 	/**
 	 * Return the max size in bytes for a new logical volume of type
