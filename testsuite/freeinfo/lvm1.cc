@@ -43,6 +43,7 @@ BOOST_AUTO_TEST_CASE(test1)
     {
 	ResizeInfo resize_info = thin_pool->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 4 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, (32 * GiB - 4 * MiB) - 2 * 32 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.block_size, 4 * MiB);
@@ -51,6 +52,7 @@ BOOST_AUTO_TEST_CASE(test1)
     {
 	ResizeInfo resize_info = thin->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 4 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 16 * PiB - 4 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.block_size, 4 * MiB);
@@ -79,14 +81,14 @@ BOOST_AUTO_TEST_CASE(test2)
     normal->set_stripes(2);
 
     BlkFilesystem* fs1 = normal->create_blk_filesystem(FsType::EXT4);
-    fs1->get_impl().set_resize_info(ResizeInfo(true, 33 * MiB, 4 * TiB));
+    fs1->get_impl().set_resize_info(ResizeInfo(true, 0, 33 * MiB, 4 * TiB));
 
     LvmLv* thin_pool = lvm_vg->create_lvm_lv("thin-pool", LvType::THIN_POOL, 60 * MiB);
 
     LvmLv* thin = thin_pool->create_lvm_lv("thin", LvType::THIN, 1 * GiB);
 
     BlkFilesystem* fs2 = thin->create_blk_filesystem(FsType::EXT4);
-    fs2->get_impl().set_resize_info(ResizeInfo(true, 33 * MiB, 4 * TiB));
+    fs2->get_impl().set_resize_info(ResizeInfo(true, 0, 33 * MiB, 4 * TiB));
 
     lvm_vg->get_impl().set_reserved_extents(2);
 
@@ -96,6 +98,7 @@ BOOST_AUTO_TEST_CASE(test2)
     {
 	ResizeInfo resize_info = normal->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 40 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, (2 * (128 - 4) - 2 * 4 - 60 - 4) * MiB);
 	BOOST_CHECK_EQUAL(resize_info.block_size, 8 * MiB);
@@ -104,6 +107,7 @@ BOOST_AUTO_TEST_CASE(test2)
     {
 	ResizeInfo resize_info = thin_pool->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, RB_SHRINK_NOT_SUPPORTED_FOR_LVM_LV_TYPE);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 60 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, (2 * (128 - 4) - 2 * 4 - 40) * MiB);
 	BOOST_CHECK_EQUAL(resize_info.block_size, 4 * MiB);
@@ -112,6 +116,7 @@ BOOST_AUTO_TEST_CASE(test2)
     {
 	ResizeInfo resize_info = thin->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 36 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 4 * TiB);
 	BOOST_CHECK_EQUAL(resize_info.block_size, 4 * MiB);

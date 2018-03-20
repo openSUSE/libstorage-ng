@@ -78,6 +78,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    PartitionTable::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     PartitionTable::Impl::save(xmlNode* node) const
     {

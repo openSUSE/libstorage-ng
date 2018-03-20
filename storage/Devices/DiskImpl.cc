@@ -168,6 +168,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Disk::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     Disk::Impl::save(xmlNode* node) const
     {

@@ -135,7 +135,7 @@ namespace storage
 	virtual void probe_pass_1b(Prober& prober);
 	virtual void probe_pass_1c(Prober& prober);
 
-	virtual ResizeInfo detect_resize_info() const;
+	virtual ResizeInfo detect_resize_info() const = 0;
 
 	virtual void parent_has_new_region(const Device* parent);
 

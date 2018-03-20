@@ -75,6 +75,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Bcache::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     bool
     Bcache::Impl::is_valid_name(const string& name)
     {

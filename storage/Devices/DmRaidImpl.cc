@@ -186,6 +186,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    DmRaid::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     DmRaid::Impl::save(xmlNode* node) const
     {

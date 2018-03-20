@@ -476,14 +476,14 @@ namespace storage
     {
 	if (is_implicit_pt(get_partition_table()))
 	{
-	    return ResizeInfo(false);
+	    return ResizeInfo(false, RB_ON_IMPLICIT_PARTITION_TABLE);
 	}
 
 	if (type == PartitionType::EXTENDED)
 	{
 	    // TODO resize is technical possible but would be a new feature.
 
-	    return ResizeInfo(false);
+	    return ResizeInfo(false, RB_EXTENDED_PARTITION);
 	}
 
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
@@ -491,6 +491,9 @@ namespace storage
 	// minimal size is one sector
 
 	resize_info.combine_min(get_region().get_block_size());
+
+	if (get_region().get_length() <= 1)
+	    resize_info.reasons |= RB_MIN_SIZE_FOR_PARTITION;
 
 	// maximal size is limited by used space behind partition
 
@@ -500,6 +503,9 @@ namespace storage
 	    surrounding.get_end() - get_region().get_end();
 
 	resize_info.combine_max(surrounding.to_bytes(unused_sectors_behind_partition));
+
+	if (get_region().get_end() >= surrounding.get_end())
+	    resize_info.reasons |= RB_NO_SPACE_BEHIND_PARTITION;
 
 	resize_info.combine_block_size(get_region().get_block_size());
 

@@ -151,6 +151,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Encryption::Impl::detect_resize_info() const
+    {
+	return BlkDevice::Impl::detect_resize_info();
+    }
+
+
     const BlkDevice*
     Encryption::Impl::get_blk_device() const
     {

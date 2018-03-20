@@ -52,6 +52,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     {
 	ResizeInfo resize_info = sda1->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 512);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 30 * GiB);
     }
@@ -59,6 +60,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     {
 	ResizeInfo resize_info = sda2->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 32 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 40 * GiB);
     }
@@ -66,6 +68,7 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     {
 	ResizeInfo resize_info = sda3->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 40 * KiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 80 * GiB);
     }
@@ -106,6 +109,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = sda1->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 5 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 20 * GiB);
     }
@@ -113,6 +117,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = lvm_lv1->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 4 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 9 * GiB - 4 * MiB);
     }
@@ -120,6 +125,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = lvm_lv2->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 32 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 9 * GiB - 4 * MiB);
     }
@@ -127,6 +133,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = sda2->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 34 * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 20 * GiB);
     }
@@ -134,6 +141,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = sda3->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 512);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 110 * GiB - 16.5 * KiB);
     }

@@ -174,7 +174,7 @@ namespace storage
     ResizeInfo
     LvmPv::Impl::detect_resize_info() const
     {
-	ResizeInfo resize_info(true);
+	ResizeInfo resize_info(true, 0);
 
 	// A physical volume must have at least one extent and space for
 	// metadata.

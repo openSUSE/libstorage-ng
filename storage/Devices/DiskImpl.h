@@ -63,6 +63,8 @@ namespace storage
 
 	virtual void save(xmlNode* node) const override;
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	bool is_rotational() const { return rotational; }
 	void set_rotational(bool rotational) { Impl::rotational = rotational; }
 

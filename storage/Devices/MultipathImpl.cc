@@ -294,6 +294,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Multipath::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     Multipath::Impl::process_udev_ids(vector<string>& udev_ids) const
     {

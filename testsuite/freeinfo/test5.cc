@@ -21,10 +21,11 @@ using namespace std;
 using namespace storage;
 
 
+const unsigned long long spm = MiB / 512;	// sectors per MiB
 const unsigned long long spg = GiB / 512;	// sectors per GiB
 
 
-BOOST_AUTO_TEST_CASE(test_msdos)
+BOOST_AUTO_TEST_CASE(test_msdos1)
 {
     set_logger(get_stdout_logger());
 
@@ -38,14 +39,11 @@ BOOST_AUTO_TEST_CASE(test_msdos)
 
     PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
 
-    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(10 * spg, 10 * spg, 512), PartitionType::PRIMARY);
+    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(1 * spm, 1, 512), PartitionType::PRIMARY);
 
-    Partition* sda2 = msdos->create_partition("/dev/sda2", Region(40 * spg, 20 * spg, 512), PartitionType::PRIMARY);
-    BlkFilesystem* fs1 = sda2->create_blk_filesystem(FsType::EXT4);
-    fs1->get_impl().set_resize_info(ResizeInfo(true, 0, 50 * MiB, 4 * TiB));
+    Partition* sda2 = msdos->create_partition("/dev/sda2", Region(1 * spg, 1 * spg, 512), PartitionType::PRIMARY);
 
-    Partition* sda3 = msdos->create_partition("/dev/sda3", Region(80 * spg, 40 * spg, 512), PartitionType::PRIMARY);
-    sda3->create_blk_filesystem(FsType::SWAP);
+    Partition* sda3 = msdos->create_partition("/dev/sda3", Region(2 * spg, 1 * spg, 512), PartitionType::PRIMARY);
 
     storage.remove_devicegraph("system");
     storage.copy_devicegraph("staging", "system");
@@ -53,21 +51,24 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     {
 	ResizeInfo resize_info = sda1->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
+	BOOST_CHECK_EQUAL(resize_info.reasons, RB_MIN_SIZE_FOR_PARTITION);
 	BOOST_CHECK_EQUAL(resize_info.min_size, 512);
-	BOOST_CHECK_EQUAL(resize_info.max_size, 30 * GiB);
+	BOOST_CHECK_EQUAL(resize_info.max_size, 1 * GiB - 1 * MiB);
     }
 
     {
 	ResizeInfo resize_info = sda2->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
-	BOOST_CHECK_EQUAL(resize_info.min_size, 50 * MiB);
-	BOOST_CHECK_EQUAL(resize_info.max_size, 40 * GiB);
+	BOOST_CHECK_EQUAL(resize_info.reasons, RB_NO_SPACE_BEHIND_PARTITION);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 512);
+	BOOST_CHECK_EQUAL(resize_info.max_size, 1 * GiB);
     }
 
     {
 	ResizeInfo resize_info = sda3->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
-	BOOST_CHECK_EQUAL(resize_info.min_size, 40 * KiB);
-	BOOST_CHECK_EQUAL(resize_info.max_size, 80 * GiB);
+	BOOST_CHECK_EQUAL(resize_info.reasons, 0);
+	BOOST_CHECK_EQUAL(resize_info.min_size, 512);
+	BOOST_CHECK_EQUAL(resize_info.max_size, 158 * GiB);
     }
 }

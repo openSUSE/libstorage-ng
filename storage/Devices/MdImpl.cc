@@ -228,6 +228,13 @@ namespace storage
     }
 
 
+    ResizeInfo
+    Md::Impl::detect_resize_info() const
+    {
+	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+    }
+
+
     void
     Md::Impl::set_md_level(MdLevel md_level)
     {

@@ -54,6 +54,8 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	virtual ResizeInfo detect_resize_info() const override;
+
 	static bool valid_path(const string& path);
 	static string normalize_path(const string& path);
 
