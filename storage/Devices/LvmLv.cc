@@ -167,6 +167,13 @@ namespace storage
     }
 
 
+    const LvmLv*
+    LvmLv::get_thin_pool() const
+    {
+	return get_impl().get_thin_pool();
+    }
+
+
     unsigned long long
     LvmLv::max_size_for_lvm_lv(LvType lv_type) const
     {

@@ -170,6 +170,8 @@
 %catches(storage::Exception) storage::ImplicitPt::create_implicit_partition();
 %catches(storage::Exception) storage::LvmLv::create_lvm_lv(const std::string &lv_name, LvType lv_type, unsigned long long size);
 %catches(storage::Exception) storage::LvmLv::get_lvm_lv(const std::string &lv_name);
+%catches(storage::Exception) storage::LvmLv::get_lvm_vg() const;
+%catches(storage::Exception) storage::LvmLv::get_thin_pool() const;
 %catches(storage::Exception) storage::LvmLv::set_chunk_size(unsigned long long chunk_size);
 %catches(storage::Exception) storage::LvmLv::set_stripe_size(unsigned long long stripe_size);
 %catches(storage::Exception) storage::LvmLv::set_stripes(unsigned int stripes);

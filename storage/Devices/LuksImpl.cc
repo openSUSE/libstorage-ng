@@ -167,7 +167,7 @@ namespace storage
 	    }
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(name) + " " +
-		quote(dm_name) + " --key-file -";
+		quote(dm_name) + " --tries 1 --key-file -";
 
 	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	    cmd_options.stdin_text = tmp.second;
@@ -460,7 +460,7 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name()) +
-	    " --key-file -";
+	    " --tries 1 --key-file -";
 
 	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	cmd_options.stdin_text = get_password();
@@ -509,7 +509,7 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) + " " +
-	    quote(get_dm_table_name()) + " --key-file -";
+	    quote(get_dm_table_name()) + " --tries 1 --key-file -";
 
 	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	cmd_options.stdin_text = get_password();
