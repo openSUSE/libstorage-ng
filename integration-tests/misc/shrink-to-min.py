@@ -32,7 +32,7 @@ if not resize_info.resize_ok:
 new_length = int(resize_info.min_size / region.get_block_size())
 
 if new_length == region.get_length():
-    print("already minimal size")
+    print("already minimum size")
     exit(0)
 
 region.set_length(new_length)
