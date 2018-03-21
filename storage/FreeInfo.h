@@ -46,10 +46,11 @@ namespace storage
     {
 
 	/**
-	 * The device does not support resizing. This is the case for Disks,
-	 * Dasds, Mds, DmRaids, Multipaths, PartitionTables, LvmVgs, Bcaches,
-	 * BcacheCsets, BtrfsSubvolumes, Nfses MountPoints, so basically
-	 * everything except Partitions and LvmLvs.
+	 * The device or one of its descendants that also needs resizing does
+	 * not support resizing. This is the case for Disks, Dasds, Mds,
+	 * DmRaids, Multipaths, PartitionTables, LvmVgs, Bcaches, BcacheCsets,
+	 * BtrfsSubvolumes, Nfses MountPoints, so basically everything except
+	 * Partitions, LvmLvs and Lukses.
 	 *
 	 * Blocks shrink and grow.
 	 */

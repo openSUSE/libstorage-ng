@@ -83,6 +83,9 @@ Additionally at least for ext4 the used space can change during resize. Thus
 after shrinking to the min-size a second shrink to an even smaller min-size
 might be possible. The estimate of resize2fs is in no way better.
 
+For btrfs the 'btrfs inspect-internal min-dev-size' is also broken (see bsc
+#1058852).
+
 For proper support all filesystems should provide programs that report the
 accurate minimal and maximal possible size for resizing.
 
