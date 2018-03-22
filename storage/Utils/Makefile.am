@@ -23,7 +23,8 @@ libutils_la_SOURCES =					\
 	Enum.h						\
 	GraphUtils.h					\
 	HumanString.h		HumanString.cc		\
-	Lock.cc 		Lock.h			\
+	Lock.cc			Lock.h			\
+	LockImpl.cc 		LockImpl.h		\
 	OutputProcessor.cc	OutputProcessor.h	\
 	Region.cc 		Region.h		\
 	RegionImpl.cc 		RegionImpl.h		\
@@ -57,6 +58,7 @@ pkginclude_HEADERS =		\
 	Logger.h		\
 	Exception.h		\
 	HumanString.h		\
+	Lock.h			\
 	Region.h		\
 	Topology.h		\
 	Alignment.h		\

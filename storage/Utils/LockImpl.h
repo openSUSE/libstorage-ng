@@ -21,40 +21,37 @@
  */
 
 
-#ifndef STORAGE_LOCK_H
-#define STORAGE_LOCK_H
+#ifndef STORAGE_LOCK_IMPL_H
+#define STORAGE_LOCK_IMPL_H
 
 
-#include <unistd.h>
-#include <sys/types.h>
+#include <boost/noncopyable.hpp>
 
-#include "storage/Utils/Exception.h"
+#include "storage/Utils/Lock.h"
 
 
 namespace storage
 {
 
     /**
-     * Exception indicating that getting the lock failed.
+     * Implement a system-wide read-only or read-write lock.
      */
-    class LockException : public Exception
+    class Lock : private boost::noncopyable
     {
 
     public:
 
-	LockException(pid_t locker_pid);
+	Lock(bool read_only, bool disable = false);
 
-	/**
-	 * pid of process holding lock or 0 if it could not be determined.
-	 */
-	pid_t get_locker_pid() const;
+	~Lock() noexcept;
 
     private:
 
-	const pid_t locker_pid;
+	const bool disabled;
+	int fd;
 
     };
-
 }
+
 
 #endif

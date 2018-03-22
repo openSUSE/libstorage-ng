@@ -163,8 +163,8 @@ make %{?_smp_mflags} check LOCALEDIR=%{buildroot}%{_datadir}/locale
 find %{buildroot} -type f -name "*.la" -delete -print
 find %{buildroot} -type f -name "*.pyc" -delete -print
 
-install -d -m 755 %{buildroot}/run/libstorage
-touch %{buildroot}/run/libstorage/lock
+install -d -m 755 %{buildroot}/run/libstorage-ng
+touch %{buildroot}/run/libstorage-ng/lock
 
 %fdupes -s %{buildroot}
 
@@ -181,7 +181,7 @@ touch %{buildroot}/run/libstorage/lock
 %defattr(-,root,root)
 %doc AUTHORS LICENSE
 %{_libdir}/libstorage-ng.so.*
-%ghost /run/libstorage
+%ghost /run/libstorage-ng
 
 %files devel
 %defattr(-,root,root)
