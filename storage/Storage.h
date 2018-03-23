@@ -160,7 +160,7 @@ namespace storage
 	/**
 	 * Construct Storage object. Does not call activate() nor probe().
 	 *
-	 * @throw Exception
+	 * @throw LockException, Exception
 	 */
 	Storage(const Environment& environment);
 

@@ -49,6 +49,7 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Utils/Alignment.h"
 #include "storage/Utils/Remote.h"
 #include "storage/Utils/Callbacks.h"
+#include "storage/Utils/Lock.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 
@@ -130,6 +131,7 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Utils/Alignment.h"
 %include "../../storage/Utils/Remote.h"
 %include "../../storage/Utils/Callbacks.h"
+%include "../../storage/Utils/Lock.h"
 %include "../../storage/FreeInfo.h"
 %include "../../storage/UsedFeatures.h"
 
