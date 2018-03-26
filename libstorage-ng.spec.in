@@ -61,7 +61,7 @@ This package contains libstorage-ng, a library for storage management.
 %package lang
 Summary:        Languages for package %{name}
 Group:          System/Localization
-Supplements:    packageand(bundle-lang-other:%{name})
+Supplements:    %{name}
 Provides:       %{name}-lang-all = %{version}
 BuildArch:      noarch
 
