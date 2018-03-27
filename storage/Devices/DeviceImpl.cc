@@ -466,6 +466,49 @@ namespace storage
 	}
 
 
+	void
+	Resize::add_dependencies(Actiongraph::Impl::vertex_descriptor vertex,
+				 Actiongraph::Impl& actiongraph) const
+	{
+	    Modify::add_dependencies(vertex, actiongraph);
+
+	    // The disabled dependencies are already created in
+	    // Action.cc. TODO Should be more consistent.
+
+	    /*
+	    const Devicegraph* devicegraph_lhs = actiongraph.get_devicegraph(LHS);
+	    const Device* device_lhs = devicegraph_lhs->find_device(actiongraph[vertex]->sid);
+	    */
+
+	    const Devicegraph* devicegraph_rhs = actiongraph.get_devicegraph(RHS);
+	    const Device* device_rhs = devicegraph_rhs->find_device(actiongraph[vertex]->sid);
+
+	    for (Actiongraph::Impl::vertex_descriptor tmp : actiongraph.vertices())
+	    {
+		Action::Base* action = actiongraph[tmp];
+
+		if (is_create(action) && is_child(device_rhs, action->sid))
+		    actiongraph.add_edge(vertex, tmp);
+
+		/*
+		if (is_delete(action) && is_child(device_lhs, action->sid))
+		    actiongraph.add_edge(tmp, vertex);
+		*/
+	    }
+	}
+
+
+	bool
+	Resize::is_child(const Device* device, sid_t sid) const
+	{
+	    vector<const Device*> children = device->get_impl().get_children_of_type<const Device>();
+
+	    return any_of(children.begin(), children.end(), [sid](const Device* child) {
+		return child->get_sid() == sid;
+	    });
+	}
+
+
 	Text
 	Reallot::text(const CommitData& commit_data) const
 	{
