@@ -435,7 +435,7 @@ namespace storage
 	    }
 
 	    // Only tmp unmounts are inserted in the actiongraph. tmp mounts
-	    // are simple handled in the do_resize() functions.
+	    // are simply handled in the do_resize() functions.
 
 	    bool need_tmp_unmount = false;
 
