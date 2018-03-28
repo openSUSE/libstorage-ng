@@ -435,7 +435,7 @@ namespace storage
 	    }
 
 	    // Only tmp unmounts are inserted in the actiongraph. tmp mounts
-	    // are simple handled in the do_resize() functions.
+	    // are simply handled in the do_resize() functions.
 
 	    bool need_tmp_unmount = false;
 
@@ -445,17 +445,22 @@ namespace storage
 		    need_tmp_unmount = true;
 	    }
 
+	    // Only insert mount and resize actions if the devices exist in
+	    // LHS and RHS.
+
 	    vector<Action::Base*> actions;
 
 	    if (need_tmp_unmount && blk_filesystem_lhs)
 	    {
-		blk_filesystem_lhs->get_impl().insert_unmount_action(actions);
+		if (blk_filesystem_lhs->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
+		    blk_filesystem_lhs->get_impl().insert_unmount_action(actions);
 	    }
 
 	    if (resize_mode == ResizeMode::SHRINK)
 	    {
 		for (const Device* device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
-		    actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+		    if (device_to_resize->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
+			actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
 	    }
 
 	    actions.push_back(new Action::Resize(get_sid(), resize_mode));
@@ -463,12 +468,14 @@ namespace storage
 	    if (resize_mode == ResizeMode::GROW)
 	    {
 		for (const Device* device_to_resize : devices_to_resize_rhs)
-		    actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+		    if (device_to_resize->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
+			actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
 	    }
 
 	    if (need_tmp_unmount && blk_filesystem_rhs)
 	    {
-		blk_filesystem_rhs->get_impl().insert_mount_action(actions);
+		if (blk_filesystem_rhs->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
+		    blk_filesystem_rhs->get_impl().insert_mount_action(actions);
 	    }
 
 	    actiongraph.add_chain(actions);
