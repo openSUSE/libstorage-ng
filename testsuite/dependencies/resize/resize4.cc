@@ -15,7 +15,8 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     set_logger(get_stdout_logger());
 
-    //
+    // Check that filesystems on a grown blk device are deleted before and
+    // created after the blk device is resized.
 
     TsCmpActiongraph cmp("resize4");
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
