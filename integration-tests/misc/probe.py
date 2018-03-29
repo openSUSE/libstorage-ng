@@ -28,9 +28,14 @@ set_logger(get_logfile_logger())
 
 my_probe_callbacks = MyProbeCallbacks()
 
-environment = Environment(False)
+environment = Environment(True)
 
-storage = Storage(environment)
+try:
+    storage = Storage(environment)
+except LockException as exception:
+    print(exception.what())
+    print("locker pid %d" % exception.get_locker_pid())
+    exit(1)
 
 try:
     storage.probe(my_probe_callbacks)
