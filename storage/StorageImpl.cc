@@ -35,14 +35,16 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Actiongraph.h"
 #include "storage/Prober.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
 {
 
     Storage::Impl::Impl(Storage& storage, const Environment& environment)
-	: storage(storage), environment(environment), arch(false), default_mount_by(MountByType::UUID),
-	  tmp_dir("libstorage-XXXXXX")
+	: storage(storage), environment(environment), arch(false),
+	  lock(environment.is_read_only(), !environment.get_impl().is_do_lock()),
+	  default_mount_by(MountByType::UUID), tmp_dir("libstorage-XXXXXX")
     {
 	y2mil("constructed Storage with " << environment);
 	y2mil("libstorage-ng version " VERSION);

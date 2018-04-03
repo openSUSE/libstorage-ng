@@ -28,6 +28,7 @@
 #include <map>
 
 #include "storage/Utils/FileUtils.h"
+#include "storage/Utils/LockImpl.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 #include "storage/SystemInfo/Arch.h"
@@ -106,6 +107,8 @@ namespace storage
 	const Environment environment;
 
 	Arch arch;
+
+	Lock lock;
 
 	map<string, Devicegraph> devicegraphs;
 
