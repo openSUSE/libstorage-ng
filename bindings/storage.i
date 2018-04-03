@@ -12,6 +12,8 @@
 %rename("==") "operator==";
 %rename("!=") "operator!=";
 
+%typedef int pid_t;
+
 use_ostream(storage::Devicegraph);
 use_ostream(storage::Device);
 use_ostream(storage::Holder);
