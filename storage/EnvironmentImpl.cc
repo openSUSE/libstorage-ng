@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,6 +58,26 @@ namespace storage
     Environment::Impl::set_mockup_filename(const string& mockup_filename)
     {
 	Impl::mockup_filename = mockup_filename;
+    }
+
+
+    bool
+    Environment::Impl::is_do_lock() const
+    {
+	switch (probe_mode)
+	{
+	    case ProbeMode::STANDARD:
+	    case ProbeMode::STANDARD_WRITE_DEVICEGRAPH:
+	    case ProbeMode::STANDARD_WRITE_MOCKUP:
+		return true;
+
+	    case ProbeMode::NONE:
+	    case ProbeMode::READ_DEVICEGRAPH:
+	    case ProbeMode::READ_MOCKUP:
+		return false;
+	}
+
+	return true;
     }
 
 

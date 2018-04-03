@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,6 +57,8 @@ namespace storage
 	void set_mockup_filename(const string& mockup_filename);
 
 	bool is_debug_credentials() const { return false; }
+
+	bool is_do_lock() const;
 
 	friend std::ostream& operator<<(std::ostream& out, const Impl& environment);
 
