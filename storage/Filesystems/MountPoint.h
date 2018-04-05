@@ -109,8 +109,10 @@ namespace storage
 	void set_default_mount_options();
 
 	int get_freq() const;
+	void set_freq(int freq);
 
 	int get_passno() const;
+	void set_passno(int freq);
 
 	/**
 	 * Return whether the mount point is active (mounted).
