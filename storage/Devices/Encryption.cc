@@ -63,7 +63,7 @@ namespace storage
 
 
     void
-    Encryption::set_mount_by(const MountByType mount_by)
+    Encryption::set_mount_by(MountByType mount_by)
     {
 	get_impl().set_mount_by(mount_by);
     }

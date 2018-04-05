@@ -82,7 +82,7 @@ namespace storage
 
 
     void
-    MountPoint::set_mount_by(const MountByType mount_by)
+    MountPoint::set_mount_by(MountByType mount_by)
     {
 	get_impl().set_mount_by(mount_by);
     }

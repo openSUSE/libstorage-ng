@@ -74,7 +74,7 @@ namespace storage
 	/**
 	 * Set the mount-by method.
 	 */
-	void set_mount_by(const MountByType mount_by);
+	void set_mount_by(MountByType mount_by);
 
 	/**
 	 * Set the mount-by method to the global default, see

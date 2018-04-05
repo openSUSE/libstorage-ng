@@ -63,7 +63,7 @@ namespace storage
 	void set_path(const string& path);
 
 	MountByType get_mount_by() const { return mount_by; }
-	void set_mount_by(const MountByType mount_by) { Impl::mount_by = mount_by; }
+	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
 	vector<MountByType> possible_mount_bys() const;
 
