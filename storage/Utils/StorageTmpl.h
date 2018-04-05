@@ -181,12 +181,22 @@ namespace storage
 
 
     // might become C++ standard, see
-    // http://en.cppreference.com/w/cpp/experimental/vector/erase_if
-    template <typename Type, typename Predicate>
+    // http://en.cppreference.com/w/cpp/experimental/vector/erase
+    template <class T, class U>
     void
-    erase_if(vector<Type>& v, Predicate pred)
+    erase(vector<T>& c, const U& value)
     {
-	v.erase(remove_if(v.begin(), v.end(), pred), v.end());
+	c.erase(remove(c.begin(), c.end(), value), c.end());
+    }
+
+
+    // might become C++ standard, see
+    // http://en.cppreference.com/w/cpp/experimental/vector/erase_if
+    template <class T, class Predicate>
+    void
+    erase_if(vector<T>& c, Predicate pred)
+    {
+	c.erase(remove_if(c.begin(), c.end(), pred), c.end());
     }
 
 
