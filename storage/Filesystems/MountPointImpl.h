@@ -63,7 +63,7 @@ namespace storage
 	void set_path(const string& path);
 
 	MountByType get_mount_by() const { return mount_by; }
-	void set_mount_by(const MountByType mount_by) { Impl::mount_by = mount_by; }
+	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
 	vector<MountByType> possible_mount_bys() const;
 
@@ -76,8 +76,10 @@ namespace storage
 	void set_default_mount_options();
 
 	int get_freq() const { return freq; }
+	void set_freq(int freq) { Impl::freq = freq; }
 
 	int get_passno() const { return passno; }
+	void set_passno(int passno) { Impl::passno = passno; }
 
 	bool is_in_etc_fstab() const { return in_etc_fstab; }
 	void set_in_etc_fstab(bool in_etc_fstab) { Impl::in_etc_fstab = in_etc_fstab; }

@@ -82,7 +82,7 @@ namespace storage
 
 
     void
-    MountPoint::set_mount_by(const MountByType mount_by)
+    MountPoint::set_mount_by(MountByType mount_by)
     {
 	get_impl().set_mount_by(mount_by);
     }
@@ -130,10 +130,24 @@ namespace storage
     }
 
 
+    void
+    MountPoint::set_freq(int freq)
+    {
+	get_impl().set_freq(freq);
+    }
+
+
     int
     MountPoint::get_passno() const
     {
 	return get_impl().get_passno();
+    }
+
+
+    void
+    MountPoint::set_passno(int passno)
+    {
+	get_impl().set_passno(passno);
     }
 
 

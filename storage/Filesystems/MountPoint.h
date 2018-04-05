@@ -74,7 +74,7 @@ namespace storage
 	/**
 	 * Set the mount-by method.
 	 */
-	void set_mount_by(const MountByType mount_by);
+	void set_mount_by(MountByType mount_by);
 
 	/**
 	 * Set the mount-by method to the global default, see
@@ -108,9 +108,32 @@ namespace storage
 	 */
 	void set_default_mount_options();
 
+	/**
+	 * Get the freq field from fstab(5). The freq field is used by the
+	 * dump(8) command to determine which filesystems need to be
+	 * dumped. The field is likely obsolete.
+	 */
 	int get_freq() const;
 
+	/**
+	 * Set the freq field.
+	 *
+	 * @see get_freq().
+	 */
+	void set_freq(int freq);
+
+	/**
+	 * Get the passno field from fstab(5). The passno field is used by the
+	 * fsck(8) program to determine the order in which filesystem checks
+	 * are done at reboot time.
+	 */
 	int get_passno() const;
+
+	/**
+	 *
+	 * @see get_passno().
+	 */
+	void set_passno(int passno);
 
 	/**
 	 * Return whether the mount point is active (mounted).
