@@ -25,6 +25,7 @@
 #define STORAGE_LOCK_IMPL_H
 
 
+#include <vector>
 #include <boost/noncopyable.hpp>
 
 #include "storage/Utils/Lock.h"
@@ -33,8 +34,18 @@
 namespace storage
 {
 
+    using namespace std;
+
+
     /**
      * Implement a system-wide read-only or read-write lock.
+     *
+     * Implemented using traditional ("process-associated") locks (for locks
+     * across processes) and a global list (for locks within a single
+     * process).
+     *
+     * An implementation using only open file descriptor (OFD) locks would be
+     * simpler but does not provide the pid of the process holding a lock.
      */
     class Lock : private boost::noncopyable
     {
@@ -47,8 +58,18 @@ namespace storage
 
     private:
 
+	const bool read_only;
 	const bool disabled;
-	int fd;
+
+	/**
+	 * Locks within the same process.
+	 */
+	static vector<const Lock*> locks;
+
+	/**
+	 * File descriptor for system-wide lock.
+	 */
+	static int fd;
 
     };
 }

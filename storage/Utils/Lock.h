@@ -45,7 +45,10 @@ namespace storage
 	LockException(pid_t locker_pid);
 
 	/**
-	 * pid of process holding lock or 0 if it could not be determined.
+	 * pid of one of the process holding a lock. The pid is 0 if it could
+	 * not be determined, -1 if the lock is held by a open file descriptor
+	 * lock and -2 if the lock is held by the same process. Note that the
+	 * pid may already be out of date by the time the function returns.
 	 */
 	pid_t get_locker_pid() const;
 
