@@ -109,6 +109,17 @@ namespace storage
 	void set_default_mount_options();
 
 	/**
+	 * Get the filesystem type used to mount the device, as specified in
+	 * fstab(5) and/or in the mount(8) command.
+	 */
+	FsType get_mount_type() const;
+
+	/**
+	 * Set the filesystem type to be used to mount the device.
+	 */
+	void set_mount_type(FsType mount_type);
+
+	/**
 	 * Get the freq field from fstab(5). The freq field is used by the
 	 * dump(8) command to determine which filesystems need to be
 	 * dumped. The field is likely obsolete.

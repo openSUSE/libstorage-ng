@@ -455,6 +455,8 @@ namespace storage
 	bool is_in_etc_fstab() const { return fstab_entry; }
 	bool is_active() const { return mount_entry; }
 
+	FsType get_fs_type() const;
+
 	MountPoint* add_to(Mountable* mountable) const;
 
 	const FstabEntry* fstab_entry;

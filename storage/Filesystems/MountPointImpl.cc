@@ -269,10 +269,10 @@ namespace storage
     }
 
 
-    FsType
-    MountPoint::Impl::get_mount_type() const
+    void
+    MountPoint::Impl::set_default_mount_type()
     {
-	return get_mountable()->get_impl().get_mount_type();
+	set_mount_type(get_mountable()->get_impl().get_default_mount_type());
     }
 
 

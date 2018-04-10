@@ -52,7 +52,7 @@ namespace storage
     // Strings must match /etc/fstab and output of blkid - hopefully they are
     // always the same.
     const vector<string> EnumTraits<FsType>::names({
-	"unknown", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
+	"unknown", "auto", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
 	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix"
     });
 
@@ -85,6 +85,7 @@ namespace storage
 	User::create(devicegraph, get_non_impl(), mount_point);
 
 	mount_point->set_default_mount_by();
+	mount_point->get_impl().set_default_mount_type();
 	mount_point->set_default_mount_options();
 
 	return mount_point;
@@ -282,7 +283,7 @@ namespace storage
 	entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
 	entry->set_mount_point(mount_point->get_path());
 	entry->set_mount_opts(mount_point->get_impl().get_mount_options());
-	entry->set_fs_type(get_mount_type());
+	entry->set_fs_type(mount_point->get_mount_type());
 	entry->set_fsck_pass(mount_point->get_passno());
 	entry->set_dump_pass(mount_point->get_freq());
 
@@ -319,7 +320,7 @@ namespace storage
 	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
 	    entry->set_mount_point(mount_point->get_path());
 	    entry->set_mount_opts(mount_point->get_impl().get_mount_options());
-	    entry->set_fs_type(get_mount_type());
+	    entry->set_fs_type(mount_point->get_mount_type());
 	    entry->set_fsck_pass(mount_point->get_passno());
 	    entry->set_dump_pass(mount_point->get_freq());
 
@@ -374,7 +375,7 @@ namespace storage
 	do_pre_mount();
 	wait_for_devices();
 
-	string cmd_line = MOUNTBIN " -t " + toString(get_mount_type());
+	string cmd_line = MOUNTBIN " -t " + toString(mount_point->get_mount_type());
 
 	MountOpts mount_opts = mount_point->get_impl().get_mount_options();
 	if (force_rw)

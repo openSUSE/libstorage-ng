@@ -99,7 +99,10 @@ namespace storage
 
 	string get_mount_by_name() const;
 
-	FsType get_mount_type() const;
+	FsType get_mount_type() const { return mount_type; }
+	void set_mount_type(FsType mount_type) { Impl::mount_type = mount_type; }
+
+	void set_default_mount_type();
 
 	virtual MountPoint* get_non_impl() override { return to_mount_point(Device::Impl::get_non_impl()); }
 	virtual const MountPoint* get_non_impl() const override { return to_mount_point(Device::Impl::get_non_impl()); }
@@ -149,6 +152,8 @@ namespace storage
 	string path;
 
 	MountByType mount_by;
+
+	FsType mount_type;
 
 	MountOpts mount_options;
 

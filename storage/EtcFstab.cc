@@ -636,6 +636,19 @@ namespace storage
     }
 
 
+    FsType
+    JointEntry::get_fs_type() const
+    {
+	if (fstab_entry)
+	    return fstab_entry->get_fs_type();
+
+	if (mount_entry)
+	    return mount_entry->get_fs_type();
+
+	return FsType::UNKNOWN;
+    }
+
+
     MountPoint*
     JointEntry::add_to(Mountable* mountable) const
     {
@@ -645,6 +658,7 @@ namespace storage
 	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
 
 	mount_point->set_mount_by(get_mount_by());
+	mount_point->set_mount_type(get_fs_type());
 	mount_point->set_mount_options(get_mount_options());
 
 	mount_point->set_in_etc_fstab(is_in_etc_fstab());

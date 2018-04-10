@@ -123,6 +123,18 @@ namespace storage
     }
 
 
+    FsType
+    MountPoint::get_mount_type() const
+    {
+	return get_impl().get_mount_type();
+    }
+
+    void
+    MountPoint::set_mount_type(FsType mount_type)
+    {
+	get_impl().set_mount_type(mount_type);
+    }
+
     int
     MountPoint::get_freq() const
     {
