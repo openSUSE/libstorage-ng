@@ -32,6 +32,8 @@ for mount_point in mount_points:
     if mount_point.is_in_etc_fstab():
         print("in-etc-fstab", "  ", end='')
 
+    print(get_fs_type_name(mount_point.get_mount_type()), "  ", end='')
+
     print(",".join(mount_point.get_mount_options()), "  ", end='')
 
     if is_nfs(mount_point.get_filesystem()):

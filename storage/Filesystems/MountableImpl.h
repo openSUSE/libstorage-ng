@@ -87,7 +87,7 @@ namespace storage
 	 */
 	virtual string get_mount_by_name(MountByType mount_by_type) const = 0;
 
-	virtual FsType get_mount_type() const = 0;
+	virtual FsType get_default_mount_type() const = 0;
 
 	virtual vector<string> get_mount_options() const { return vector<string>(); }
 

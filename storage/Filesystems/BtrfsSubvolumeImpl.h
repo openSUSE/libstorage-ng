@@ -88,7 +88,7 @@ namespace storage
 	virtual Filesystem* get_filesystem() override;
 	virtual const Filesystem* get_filesystem() const override;
 
-	virtual FsType get_mount_type() const override { return FsType::BTRFS; }
+	virtual FsType get_default_mount_type() const override { return FsType::BTRFS; }
 
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name(MountByType mount_by_type) const override;

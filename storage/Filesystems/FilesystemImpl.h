@@ -55,7 +55,7 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual FsType get_mount_type() const override { return get_type(); }
+	virtual FsType get_default_mount_type() const override { return get_type(); }
 
 	virtual vector<MountByType> possible_mount_bys() const = 0;
 
