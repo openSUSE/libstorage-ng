@@ -73,6 +73,11 @@ namespace storage
 	if (getChildValue(node, "mount-options", tmp))
 	    mount_options.parse(tmp);
 
+	if (getChildValue(node, "mount-type", tmp))
+	    mount_type = toValueWithFallback(tmp, FsType::UNKNOWN);
+	else
+	    mount_type = FsType::UNKNOWN;
+
 	getChildValue(node, "active", active);
 	getChildValue(node, "in-etc-fstab", in_etc_fstab);
 
@@ -101,6 +106,7 @@ namespace storage
 	if (!mount_options.empty())
 	    setChildValue(node, "mount-options", mount_options.format());
 
+	setChildValue(node, "mount-type", toString(mount_type));
 	setChildValue(node, "active", active);
 	setChildValue(node, "in-etc-fstab", in_etc_fstab);
 
