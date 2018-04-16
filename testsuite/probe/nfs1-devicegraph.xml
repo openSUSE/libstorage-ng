@@ -11,6 +11,7 @@
       <sid>43</sid>
       <path>/test1</path>
       <mount-by>device</mount-by>
+      <mount-type>nfs</mount-type>
       <active>false</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
@@ -29,6 +30,7 @@
       <sid>45</sid>
       <path>/test2</path>
       <mount-by>device</mount-by>
+      <mount-type>nfs</mount-type>
       <mount-options>rw,relatime,vers=3,rsize=65536,wsize=65536,namlen=255,hard,proto=tcp6,timeo=600,retrans=2,sec=sys,mountaddr=2620:113:80c0:8080:10:160:0:111,mountvers=3,mountport=635,mountproto=udp6,local_lock=none,addr=2620:113:80c0:8080:10:160:0:111</mount-options>
       <active>true</active>
       <in-etc-fstab>false</in-etc-fstab>
@@ -48,6 +50,7 @@
       <sid>47</sid>
       <path>/test3</path>
       <mount-by>device</mount-by>
+      <mount-type>auto</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>

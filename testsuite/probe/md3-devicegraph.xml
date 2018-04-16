@@ -514,6 +514,7 @@
       <sid>74</sid>
       <path>/test2</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -526,6 +527,7 @@
       <sid>76</sid>
       <path>/test4</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -538,6 +540,7 @@
       <sid>78</sid>
       <path>/test0</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -550,6 +553,7 @@
       <sid>80</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -562,6 +566,7 @@
       <sid>82</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -574,6 +579,7 @@
       <sid>84</sid>
       <path>/test5</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -586,6 +592,7 @@
       <sid>86</sid>
       <path>/test3</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -598,6 +605,7 @@
       <sid>88</sid>
       <path>/test1</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>

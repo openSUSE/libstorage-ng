@@ -84,6 +84,7 @@
       <sid>48</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext4</mount-type>
       <mount-options>acl,user_xattr</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -98,6 +99,7 @@
       <sid>50</sid>
       <path>/home</path>
       <mount-by>device</mount-by>
+      <mount-type>xfs</mount-type>
       <mount-options>nofail</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>

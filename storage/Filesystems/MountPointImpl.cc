@@ -49,8 +49,8 @@ namespace storage
 
 
     MountPoint::Impl::Impl(const string& path)
-	: Device::Impl(), path(path), mount_by(MountByType::DEVICE), freq(0), passno(0),
-	  active(true), in_etc_fstab(true)
+	: Device::Impl(), path(path), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
+	  freq(0), passno(0), active(true), in_etc_fstab(true)
     {
 #if 0
 	if (!valid_path(path))
@@ -60,8 +60,8 @@ namespace storage
 
 
     MountPoint::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), path(), mount_by(MountByType::DEVICE), freq(0), passno(0),
-	  active(true), in_etc_fstab(true)
+	: Device::Impl(node), path(), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
+	  freq(0), passno(0), active(true), in_etc_fstab(true)
     {
 	string tmp;
 
@@ -75,8 +75,6 @@ namespace storage
 
 	if (getChildValue(node, "mount-type", tmp))
 	    mount_type = toValueWithFallback(tmp, FsType::UNKNOWN);
-	else
-	    mount_type = FsType::UNKNOWN;
 
 	getChildValue(node, "active", active);
 	getChildValue(node, "in-etc-fstab", in_etc_fstab);
@@ -171,9 +169,9 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return path == rhs.path && mount_by == rhs.mount_by && mount_options == rhs.mount_options &&
-	    freq == rhs.freq && passno == rhs.passno && active ==  rhs.active &&
-	    in_etc_fstab == rhs.in_etc_fstab;
+	return path == rhs.path && mount_by == rhs.mount_by && mount_type == rhs.mount_type &&
+	    mount_options == rhs.mount_options && freq == rhs.freq && passno == rhs.passno &&
+	    active == rhs.active && in_etc_fstab == rhs.in_etc_fstab;
     }
 
 
@@ -187,6 +185,8 @@ namespace storage
 	storage::log_diff(log, "path", path, rhs.path);
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
+
+	storage::log_diff_enum(log, "mount-type", mount_type, rhs.mount_type);
 
 	storage::log_diff(log, "mount-options", mount_options.get_opts(), rhs.mount_options.get_opts());
 
@@ -206,6 +206,8 @@ namespace storage
 	out << " path:" << path;
 
 	out << " mount-by:" << toString(mount_by);
+
+	out << " mount-type:" << toString(mount_type);
 
 	out << " mount-options:" << mount_options.get_opts();
 
@@ -272,6 +274,16 @@ namespace storage
     MountPoint::Impl::get_mount_by_name() const
     {
 	return get_mountable()->get_impl().get_mount_by_name(get_mount_by());
+    }
+
+
+    void
+    MountPoint::Impl::set_mount_type(FsType mount_type)
+    {
+	if (mount_type == FsType::UNKNOWN)
+	    ST_THROW(Exception("illegal mount type"));
+
+	Impl::mount_type = mount_type;
     }
 
 

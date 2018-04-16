@@ -72,6 +72,7 @@
       <sid>47</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
@@ -245,6 +246,7 @@
       <sid>80</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
@@ -254,6 +256,7 @@
       <sid>81</sid>
       <path>/.snapshots</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/.snapshots</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -264,6 +267,7 @@
       <sid>82</sid>
       <path>/boot/grub2/i386-pc</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/boot/grub2/i386-pc</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -274,6 +278,7 @@
       <sid>83</sid>
       <path>/boot/grub2/x86_64-efi</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/boot/grub2/x86_64-efi</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -284,6 +289,7 @@
       <sid>84</sid>
       <path>/home</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/home</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -294,6 +300,7 @@
       <sid>85</sid>
       <path>/opt</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/opt</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -304,6 +311,7 @@
       <sid>86</sid>
       <path>/srv</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/srv</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -314,6 +322,7 @@
       <sid>87</sid>
       <path>/tmp</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/tmp</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -324,6 +333,7 @@
       <sid>88</sid>
       <path>/usr/local</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/usr/local</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -334,6 +344,7 @@
       <sid>89</sid>
       <path>/var/cache</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/cache</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -344,6 +355,7 @@
       <sid>90</sid>
       <path>/var/crash</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/crash</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -354,6 +366,7 @@
       <sid>91</sid>
       <path>/var/lib/libvirt/images</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/libvirt/images</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -364,6 +377,7 @@
       <sid>92</sid>
       <path>/var/lib/machines</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/machines</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -374,6 +388,7 @@
       <sid>93</sid>
       <path>/var/lib/mailman</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/mailman</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -384,6 +399,7 @@
       <sid>94</sid>
       <path>/var/lib/mariadb</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/mariadb</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -394,6 +410,7 @@
       <sid>95</sid>
       <path>/var/lib/mysql</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/mysql</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -404,6 +421,7 @@
       <sid>96</sid>
       <path>/var/lib/named</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/named</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -414,6 +432,7 @@
       <sid>97</sid>
       <path>/var/lib/pgsql</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/lib/pgsql</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -424,6 +443,7 @@
       <sid>98</sid>
       <path>/var/log</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/log</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -434,6 +454,7 @@
       <sid>99</sid>
       <path>/var/opt</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/opt</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -444,6 +465,7 @@
       <sid>100</sid>
       <path>/var/spool</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/spool</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -454,6 +476,7 @@
       <sid>101</sid>
       <path>/var/tmp</path>
       <mount-by>uuid</mount-by>
+      <mount-type>btrfs</mount-type>
       <mount-options>subvol=@/var/tmp</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
