@@ -142,7 +142,7 @@ namespace storage
 		    }
 		    catch (const std::exception& e)
 		    {
-			ep = std::make_exception_ptr(e);
+			ep = std::current_exception();
 			std::rethrow_exception(ep);
 		    }
 		}
