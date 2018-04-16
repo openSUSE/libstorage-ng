@@ -19,7 +19,7 @@
       <stdout>/dev/sr0: UUID="2017-06-10-03-24-41-00" LABEL="openSUSE-Tumbleweed-DVD-x86_6400" TYPE="iso9660" PTUUID="4682d882" PTTYPE="dos"</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sda'</name>

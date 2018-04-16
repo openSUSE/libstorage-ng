@@ -14,7 +14,7 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/usr/bin/df --block-size=1 --output=size,used,avail,fstype '/test2'</name>

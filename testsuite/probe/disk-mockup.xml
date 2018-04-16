@@ -366,7 +366,7 @@
       <stdout>1:0s:33554431s:33554432s:ext4::;</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

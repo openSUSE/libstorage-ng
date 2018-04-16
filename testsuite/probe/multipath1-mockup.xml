@@ -82,7 +82,7 @@
       <stdout>                         000cc040 4fd356c0  02030000 0000a000</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
       <stdout>36005076305ffc73a00000000000013b5 dm-3 IBM,2107900</stdout>
       <stdout>size=1.0G features='1 retain_attached_hw_handler' hwhandler='1 alua' wp=rw</stdout>
       <stdout>`-+- policy='service-time 0' prio=50 status=active</stdout>

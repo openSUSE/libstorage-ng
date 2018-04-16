@@ -32,7 +32,7 @@
       <stdout>cr-test1: 0 58599424 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:17 4096</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/mapper/cr-test1'</name>

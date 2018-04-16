@@ -38,7 +38,7 @@ namespace storage
 
     CmdMultipath::CmdMultipath(bool test)
     {
-	string cmd_line = MULTIPATHBIN " -d -v 2+";
+	string cmd_line = MULTIPATHBIN " -d -v 2";
 	if (!test)
 	    cmd_line += " -ll";
 

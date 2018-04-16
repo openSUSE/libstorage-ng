@@ -817,7 +817,7 @@
       <stdout>2:16777216s:33552383s:16775168s:::;</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

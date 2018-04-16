@@ -37,7 +37,7 @@
       <stdout>/dev/sdc:isw:isw_ddgdcbibhd_test2:stripe:ok:16767488:16781576</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
       <stderr>bash: /sbin/multipath: No such file or directory</stderr>
     </Command>
     <Command>
