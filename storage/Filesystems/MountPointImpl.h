@@ -100,7 +100,7 @@ namespace storage
 	string get_mount_by_name() const;
 
 	FsType get_mount_type() const { return mount_type; }
-	void set_mount_type(FsType mount_type) { Impl::mount_type = mount_type; }
+	void set_mount_type(FsType mount_type);
 
 	void set_default_mount_type();
 

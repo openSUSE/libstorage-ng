@@ -177,6 +177,7 @@
       <sid>57</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -189,6 +190,7 @@
       <sid>59</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext4</mount-type>
       <mount-options>acl,user_xattr</mount-options>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>

@@ -115,7 +115,10 @@ namespace storage
 	FsType get_mount_type() const;
 
 	/**
-	 * Set the filesystem type to be used to mount the device.
+	 * Set the filesystem type to be used to mount the device. Setting the
+	 * filesystem type to FsType::UNKNOWN is not allowed.
+	 *
+	 * @throw Exception
 	 */
 	void set_mount_type(FsType mount_type);
 

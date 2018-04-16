@@ -142,6 +142,7 @@
       <sid>53</sid>
       <path>/</path>
       <mount-by>device</mount-by>
+      <mount-type>ext4</mount-type>
       <mount-options>data=ordered,acl,user_xattr</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -156,6 +157,7 @@
       <sid>55</sid>
       <path>swap</path>
       <mount-by>device</mount-by>
+      <mount-type>swap</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
@@ -169,6 +171,7 @@
       <sid>57</sid>
       <path>/home</path>
       <mount-by>device</mount-by>
+      <mount-type>xfs</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>

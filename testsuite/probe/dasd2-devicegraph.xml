@@ -162,6 +162,7 @@
       <sid>56</sid>
       <path>/boot/zipl</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext2</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -174,6 +175,7 @@
       <sid>58</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext4</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>
@@ -186,6 +188,7 @@
       <sid>60</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
       <passno>0</passno>

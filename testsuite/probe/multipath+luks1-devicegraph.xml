@@ -244,6 +244,7 @@
       <sid>58</sid>
       <path>/boot/zipl</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext2</mount-type>
       <mount-options>acl,user_xattr</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -258,6 +259,7 @@
       <sid>60</sid>
       <path>/</path>
       <mount-by>uuid</mount-by>
+      <mount-type>ext4</mount-type>
       <mount-options>data=ordered,acl,user_xattr</mount-options>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -272,6 +274,7 @@
       <sid>62</sid>
       <path>swap</path>
       <mount-by>uuid</mount-by>
+      <mount-type>swap</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
       <freq>0</freq>
