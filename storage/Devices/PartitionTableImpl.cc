@@ -391,14 +391,19 @@ namespace storage
 	    const Region& extended_region = get_extended()->get_region();
 	    for (const Region& unused_region : extended_region.unused_regions(used_regions))
 	    {
-		// Keep space for EBRs.
+		// Keep space for EBRs. Normally space for two EBRs is needed,
+		// one for the new partition and one for the partition behind
+		// the new partition. The latter is not needed if the new
+		// partition is at the end of the extended partition.
 
-		if (unused_region.get_length() <= Msdos::Impl::num_ebrs)
+		bool at_end = unused_region.get_end() == extended_region.get_end();
+
+		if (unused_region.get_length() <= (at_end ? 1 : 2) * Msdos::Impl::num_ebrs)
 		    continue;
 
 		Region adjusted_region = unused_region;
-		adjusted_region.adjust_start(+Msdos::Impl::num_ebrs);
-		adjusted_region.adjust_length(-Msdos::Impl::num_ebrs);
+		adjusted_region.adjust_start(+ Msdos::Impl::num_ebrs);
+		adjusted_region.adjust_length(- (at_end ? 1 : 2) * Msdos::Impl::num_ebrs);
 
 		slot.region = adjusted_region;
 		if (alignment.get_impl().align_region_in_place(slot.region, align_policy))
