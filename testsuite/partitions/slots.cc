@@ -397,3 +397,64 @@ BOOST_AUTO_TEST_CASE(test_small_disk)
 
     BOOST_CHECK_EQUAL(slots.size(), 0);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_msdos5)
+{
+    // Check that space for EBRs is reserved when creating logical partitions,
+    // esp. logical partitions between existing logical partitions.
+
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 1953525168, 512));
+
+    PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
+
+    msdos->create_partition("/dev/sda4", Region(2048, 31457280, 512), PartitionType::EXTENDED);
+
+    msdos->create_partition("/dev/sda5", Region(2103296, 4194304, 512), PartitionType::LOGICAL);
+    msdos->create_partition("/dev/sda6", Region(12593152, 8388608, 512), PartitionType::LOGICAL);
+
+    vector<PartitionSlot> slots = msdos->get_unused_partition_slots();
+
+    BOOST_CHECK_EQUAL(slots.size(), 4);
+
+    BOOST_CHECK_EQUAL(slots[1].region.get_start(), 4096);
+    BOOST_CHECK_EQUAL(slots[1].region.get_length(), 2099072);
+    BOOST_CHECK_EQUAL(slots[1].number, 7);
+    BOOST_CHECK_EQUAL(slots[1].name, "/dev/sda7");
+    BOOST_CHECK_EQUAL(slots[1].primary_slot, false);
+    BOOST_CHECK_EQUAL(slots[1].primary_possible, false);
+    BOOST_CHECK_EQUAL(slots[1].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[1].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[1].logical_slot, true);
+    BOOST_CHECK_EQUAL(slots[1].logical_possible, true);
+
+    BOOST_CHECK_EQUAL(slots[2].region.get_start(), 6299648);
+    BOOST_CHECK_EQUAL(slots[2].region.get_length(), 6293376);
+    BOOST_CHECK_EQUAL(slots[2].number, 7);
+    BOOST_CHECK_EQUAL(slots[2].name, "/dev/sda7");
+    BOOST_CHECK_EQUAL(slots[2].primary_slot, false);
+    BOOST_CHECK_EQUAL(slots[2].primary_possible, false);
+    BOOST_CHECK_EQUAL(slots[2].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[2].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[2].logical_slot, true);
+    BOOST_CHECK_EQUAL(slots[2].logical_possible, true);
+
+    BOOST_CHECK_EQUAL(slots[3].region.get_start(), 20983808);
+    BOOST_CHECK_EQUAL(slots[3].region.get_length(), 10475520);
+    BOOST_CHECK_EQUAL(slots[3].number, 7);
+    BOOST_CHECK_EQUAL(slots[3].name, "/dev/sda7");
+    BOOST_CHECK_EQUAL(slots[3].primary_slot, false);
+    BOOST_CHECK_EQUAL(slots[3].primary_possible, false);
+    BOOST_CHECK_EQUAL(slots[3].extended_slot, false);
+    BOOST_CHECK_EQUAL(slots[3].extended_possible, false);
+    BOOST_CHECK_EQUAL(slots[3].logical_slot, true);
+    BOOST_CHECK_EQUAL(slots[3].logical_possible, true);
+}
