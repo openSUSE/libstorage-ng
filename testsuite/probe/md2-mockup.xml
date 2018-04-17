@@ -637,7 +637,7 @@
       <stdout>MD_UUID=c8440826:8e55745c:d7e14cdd:ac26716d</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

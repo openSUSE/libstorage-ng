@@ -461,7 +461,7 @@
       <stdout>2:3051520s:33554431s:30502912s:btrfs::boot, type=83;</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>

@@ -168,7 +168,7 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
       <stderr>bash: /sbin/multipath: No such file or directory</stderr>
       <exit-code>127</exit-code>
     </Command>

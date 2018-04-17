@@ -171,7 +171,7 @@
       <stdout>MD_DEVICE_sdb12_DEV=/dev/sdb12</stdout>
     </Command>
     <Command>
-      <name>/sbin/multipath -d -v 2+ -ll</name>
+      <name>/sbin/multipath -d -v 2 -ll</name>
       <stderr>bash: /sbin/multipath: No such file or directory</stderr>
     </Command>
     <Command>
