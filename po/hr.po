@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 20:00+0200\n"
+"POT-Creation-Date: 2018-04-18 10:20+0200\n"
 "PO-Revision-Date: 2011-04-03 15:43+0200\n"
 "Last-Translator: Krešimir Jozić <kjozic@gmail.com>\n"
 "Language-Team: Croatian <kde-i18n-doc@kde.org>\n"
@@ -17,13 +17,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 1.0\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
 msgstr ""
@@ -32,14 +30,46 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:475
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, c-format
+msgid "Activating LUKS %s"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Activating LUKS %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Activating LVM"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Activating LVM failed"
+msgstr ""
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr ""
@@ -48,33 +78,54 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:480
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Activating multipath"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Activating multipath failed"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
-#| msgid "Extend %1$s to %2$s"
 msgid "Add %1$s to %2$s"
 msgstr "Proširi %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:824
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
@@ -82,9 +133,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:253
 #, fuzzy, c-format
-#| msgid "Set mount point of %1$s to %2$s"
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "Postavi točku montiranja od %1$s na %2$s"
 
@@ -92,33 +141,28 @@ msgstr "Postavi točku montiranja od %1$s na %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
+#. %2$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
-#| msgid "Extending %1$s to %2$s"
 msgid "Adding %1$s to %2$s"
 msgstr "Proširujem %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:827
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
@@ -126,9 +170,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:257
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
@@ -136,26 +178,38 @@ msgstr "Promijeni točku montiranja od %1$s na %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:482
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:54
 msgid "B"
 msgstr "B"
 
+#. TRANSLATORS: name of object
+msgid "Bcache"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Bcache Cache Set"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Btrfs"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Btrfs Subvolume"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:769
 #, fuzzy, c-format
 msgid "Clear boot flag of partition %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:810
 #, fuzzy, c-format
 msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Stvaram particiju %1$s"
@@ -163,28 +217,24 @@ msgstr "Stvaram particiju %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
 #, fuzzy, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:772
 #, fuzzy, c-format
 msgid "Clearing boot flag of partition %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:813
 #, fuzzy, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "Stvaram particiju %1$s"
@@ -192,82 +242,218 @@ msgstr "Stvaram particiju %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:531
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:503
 #, fuzzy, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:212
 #, fuzzy, c-format
 msgid "Create DASD partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:201
 #, fuzzy, c-format
-#| msgid "Create %1$s"
 msgid "Create GPT on %1$s"
 msgstr "Napravi %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
+msgstr "Stvaram %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create LVM volume device over %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:720
 #, fuzzy, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:276
 #, fuzzy, c-format
-msgid "Create MSDOS partition table on %1$s"
+msgid "Create MS-DOS partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) for swap"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) with %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:233
 #, fuzzy, c-format
 msgid "Create encryption layer device on %1$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:538
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create extended partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
-#: ../storage/Devices/DiskImpl.cc:227
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Create file system btrfs on %1$s"
+msgstr "Stvaram %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, c-format
+msgid "Create file system btrfs on %1$s and mount at %2$s"
+msgstr ""
+
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create implicit partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Create implicit partition table on %1$s"
+msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:550
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create logical partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -276,30 +462,68 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:298
 #, fuzzy, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:511
+#. %2$s is replaced by size (e.g. 2 GiB)
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) as %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) as LVM physical volume"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) for swap"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) with %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:249
 #, fuzzy, c-format
 msgid "Create physical volume on %1$s"
 msgstr "Stvaram %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:526
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create primary partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -307,40 +531,71 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:386
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) with %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:508
 #, fuzzy, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "Smanji Windows particiju %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:215
 #, fuzzy, c-format
 msgid "Creating DASD partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:204
 #, fuzzy, c-format
-#| msgid "Creating %1$s"
 msgid "Creating GPT on %1$s"
 msgstr "Stvaram %1$s"
 
@@ -348,37 +603,45 @@ msgstr "Stvaram %1$s"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:725
 #, fuzzy, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:279
 #, fuzzy, c-format
-msgid "Creating MSDOS partition table on %1$s"
+msgid "Creating MS-DOS partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:236
 #, c-format
 msgid "Creating encryption layer device on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:542
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating implicit partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Creating implicit partition table on %1$s"
+msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:554
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Creating logical partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -387,30 +650,26 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:303
 #, fuzzy, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:515
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Creating partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:252
 #, fuzzy, c-format
 msgid "Creating physical volume on %1$s"
 msgstr "Stvaram %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:530
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -418,31 +677,56 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
 #, fuzzy, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:390
 #, fuzzy, c-format
 msgid "Creating volume group %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: name of object
+msgid "DASD"
+msgstr ""
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "DASD Partition Table"
+msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS: name of object
+msgid "DM RAID"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#: ../storage/Devices/MdImpl.cc:975
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:326
 #, c-format
 msgid "Deactivate encryption layer device on %1$s"
 msgstr ""
@@ -451,7 +735,6 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:511
 #, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -459,25 +742,36 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#: ../storage/Devices/MultipathImpl.cc:298
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Deactivate multipath %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#: ../storage/Devices/MdImpl.cc:980
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:329
 #, c-format
 msgid "Deactivating encryption layer device on %1$s"
 msgstr ""
@@ -486,7 +780,6 @@ msgstr ""
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:516
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
@@ -494,34 +787,43 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#: ../storage/Devices/MultipathImpl.cc:302
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Deactivating multipath %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:676
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:245
 #, fuzzy, c-format
 msgid "Delete DASD partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:277
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Delete GPT on %1$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
@@ -529,85 +831,135 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:796
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Delete MD %1$s %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:309
 #, fuzzy, c-format
-msgid "Delete MSDOS partition table on %1$s"
+msgid "Delete MS-DOS partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:248
 #, c-format
 msgid "Delete encryption layer device on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete extended partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Delete file system btrfs on %1$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete implicit partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Delete implicit partition table on %1$s"
+msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete logical partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:439
 #, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:841
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:351
 #, fuzzy, c-format
 msgid "Delete physical volume on %1$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete primary partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:420
 #, fuzzy, c-format
 msgid "Delete volume group %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:681
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "Smanji Windows particiju %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:248
 #, fuzzy, c-format
 msgid "Deleting DASD partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:280
 #, fuzzy, c-format
 msgid "Deleting GPT on %1$s"
 msgstr "Stvaram particiju %1$s"
@@ -616,105 +968,248 @@ msgstr "Stvaram particiju %1$s"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:801
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Deleting MD %1$s %2$s (%3$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:312
 #, fuzzy, c-format
-msgid "Deleting MSDOS partition table on %1$s"
+msgid "Deleting MS-DOS partition table on %1$s"
 msgstr "Stvaram particiju %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:251
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting extended partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting implicit partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Deleting implicit partition table on %1$s"
+msgstr "Stvaram particiju %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting logical partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:444
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:845
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-#| msgid "Delete partition %1$s (%2$s)"
 msgid "Deleting partition %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:354
 #, fuzzy, c-format
 msgid "Deleting physical volume on %1$s"
 msgstr "Stvaram %1$s"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting primary partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
 #, fuzzy, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:424
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
+#. TRANSLATORS: name of object
+msgid "Disk"
+msgstr ""
+
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:122
 #, fuzzy
-#| msgid "EB"
 msgid "E"
 msgstr "EB"
 
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:119
 msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:116
 msgid "EiB"
 msgstr "EiB"
 
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s)"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s) with %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: name of object
+msgid "Encryption"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext2"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext3"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) with %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:89
 msgid "G"
 msgstr "G"
 
 #. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:86
 msgid "GB"
 msgstr "GB"
 
+#. TRANSLATORS: name of object
+msgid "GPT"
+msgstr ""
+
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:83
 msgid "GiB"
 msgstr "GiB"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:645
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -723,7 +1218,6 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/EncryptionImpl.cc:288
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -733,16 +1227,14 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:385
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:896
+#. %2$s is replaced by old size (e.g. 1 GiB),
+#. %3$s is replaced by new size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -751,17 +1243,33 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmPvImpl.cc:305
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:651
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -770,7 +1278,6 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/EncryptionImpl.cc:293
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -780,16 +1287,14 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:391
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:901
+#. %2$s is replaced by old size (e.g. 1 GiB),
+#. %3$s is replaced by new size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -798,45 +1303,126 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmPvImpl.cc:310
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: name of object
+msgid "ISO 9660"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Implicit Partition Table"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "JFS"
+msgstr ""
+
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:61
 msgid "KiB"
 msgstr "KiB"
 
+#. TRANSLATORS: name of object
+msgid "LUKS"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "LVM Logical Volume"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "LVM Physical Volume"
+msgstr ""
+
+msgid "LVM Volume Group"
+msgstr ""
+
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:78
 msgid "M"
 msgstr "M"
 
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:75
 msgid "MB"
 msgstr "MB"
 
+#. TRANSLATORS: name of object
+msgid "MD RAID"
+msgstr ""
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "MS-DOS Partition Table"
+msgstr "Stvaram particiju %1$s"
+
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:72
 msgid "MiB"
 msgstr "MiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:173
 #, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
 msgid "Mount %1$s at %2$s"
 msgstr "Montiram %1$s na %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount NFS %1$s on %2$s"
+msgstr "Montiram %1$s na %2$s"
+
+#. TRANSLATORS: name of object
+msgid "Mount Point"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount file system btrfs on %1$s at %2$s"
+msgstr "Montiram %1$s na %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount partition %1$s (%2$s) at %3$s"
+msgstr "Ukloni particiju %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
 #, fuzzy, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Uklanjam %1$s"
@@ -844,9 +1430,7 @@ msgstr "Uklanjam %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:177
 #, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
 msgid "Mounting %1$s at %2$s"
 msgstr "Montiram %1$s na %2$s"
 
@@ -854,47 +1438,179 @@ msgstr "Montiram %1$s na %2$s"
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
 #, fuzzy, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
 
+#. TRANSLATORS: name of object
+msgid "Multipath"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "NFS"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "NTFS"
+msgstr ""
+
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:111
 msgid "P"
 msgstr "P"
 
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:108
 msgid "PB"
 msgstr "PB"
 
+#. TRANSLATORS: name of object
+msgid "Partition"
+msgstr ""
+
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:105
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: progress message
+msgid "Probing DASDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing DASDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing DM RAIDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing DM RAIDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing LUKS"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing LUKS failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing LVM"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing LVM failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing MD RAIDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing MD RAIDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing NFS"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing NFS failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing bcache failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing device relationships"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing device relationships failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing disk %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing disks"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing disks failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing file system on %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing file systems"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing file systems failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing multipath"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing multipath failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing partitions"
+msgstr "Ukloni particiju %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+msgid "Probing partitions failed"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reduce volume group %1$s by missing physical volumes"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reducing volume group %1$s by missing physical volumes"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Reiserfs"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "Ukloni %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:855
 #, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
@@ -902,9 +1618,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:327
 #, fuzzy, c-format
-#| msgid "Set mount point of %1$s to %2$s"
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "Postavi točku montiranja od %1$s na %2$s"
 
@@ -912,33 +1626,28 @@ msgstr "Postavi točku montiranja od %1$s na %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
+#. %2$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
 msgid "Removing %1$s from %2$s"
 msgstr "Montiram %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
@@ -946,9 +1655,7 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:331
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
@@ -956,21 +1663,17 @@ msgstr "Promijeni točku montiranja od %1$s na %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
-#: ../storage/Devices/LvmLvImpl.cc:338
 #, fuzzy, c-format
-#| msgid "Extend %1$s to %2$s"
 msgid "Rename %1$s to %2$s"
 msgstr "Proširi %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Devices/EncryptionImpl.cc:367
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
@@ -979,16 +1682,13 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:580
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Devices/EncryptionImpl.cc:371
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
@@ -997,24 +1697,19 @@ msgstr ""
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:585
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:550
 #, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
 msgid "Set UUID of %1$s to %2$s"
 msgstr "Postavi oznaku diska %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:761
 #, fuzzy, c-format
 msgid "Set boot flag of partition %1$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1022,7 +1717,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
 #, fuzzy, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -1030,7 +1724,6 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:672
 #, fuzzy, c-format
 msgid "Set id of partition %1$s to %2$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1039,7 +1732,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:654
 #, fuzzy, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1047,7 +1739,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:640
 #, fuzzy, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1055,15 +1746,12 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:524
 #, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
 msgid "Set label of %1$s to %2$s"
 msgstr "Postavi oznaku diska %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:802
 #, fuzzy, c-format
 msgid "Set legacy boot flag of partition %1$s"
 msgstr "Stvaram particiju %1$s"
@@ -1071,30 +1759,31 @@ msgstr "Stvaram particiju %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set tune options of %1$s"
+msgstr "Smanji Windows particiju %1$s na %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:554
 #, fuzzy, c-format
-#| msgid "Set mount point of %1$s to %2$s"
 msgid "Setting UUID of %1$s to %2$s"
 msgstr "Postavi točku montiranja od %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:764
 #, fuzzy, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1102,7 +1791,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
 #, fuzzy, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "Ukloni particiju %1$s (%2$s)"
@@ -1110,7 +1798,6 @@ msgstr "Ukloni particiju %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:676
 #, fuzzy, c-format
 msgid "Setting id of partition %1$s to %2$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1119,7 +1806,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:659
 #, fuzzy, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1127,7 +1813,6 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:644
 #, fuzzy, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1135,15 +1820,12 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:528
 #, fuzzy, c-format
-#| msgid "Set label on %1$s to %2$s"
 msgid "Setting label of %1$s to %2$s"
 msgstr "Postavi oznaku diska %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:805
 #, fuzzy, c-format
 msgid "Setting legacy boot flag of partition %1$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1151,26 +1833,28 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:521
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting tune options of %1$s"
+msgstr "Smanji Windows particiju %1$s na %2$s"
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:629
 #, fuzzy, c-format
-#| msgid "Shrink %1$s to %2$s"
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "Smanji %1$s na %2$s"
 
@@ -1178,7 +1862,6 @@ msgstr "Smanji %1$s na %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/EncryptionImpl.cc:274
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -1188,16 +1871,14 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:369
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:882
+#. %2$s is replaced by old size (e.g. 2 GiB),
+#. %3$s is replaced by new size (e.g. 1 GiB)
 #, fuzzy, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1206,19 +1887,34 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmPvImpl.cc:291
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Smanjujem %1$s na %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Smanjujem %1$s na %2$s"
+
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:635
 #, fuzzy, c-format
-#| msgid "Shrinking %1$s to %2$s"
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "Smanjujem %1$s na %2$s"
 
@@ -1226,7 +1922,6 @@ msgstr "Smanjujem %1$s na %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/EncryptionImpl.cc:279
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -1236,16 +1931,14 @@ msgstr ""
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:375
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:887
+#. %2$s is replaced by old size (e.g. 2 GiB),
+#. %3$s is replaced by new size (e.g. 1 GiB)
 #, fuzzy, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "Smanji Windows particiju %1$s na %2$s"
@@ -1254,40 +1947,73 @@ msgstr "Smanji Windows particiju %1$s na %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmPvImpl.cc:296
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr ""
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Smanjujem %1$s na %2$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Smanjujem %1$s na %2$s"
+
+#. TRANSLATORS: name of object
+msgid "Swap"
+msgstr ""
+
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:100
 msgid "T"
 msgstr "T"
 
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:97
 msgid "TB"
 msgstr "TB"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:94
 msgid "TiB"
 msgstr "TiB"
+
+#. TRANSLATORS: name of object
+msgid "UDF"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:220
 #, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
 msgid "Unmount %1$s at %2$s"
+msgstr "Montiram %1$s na %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Unmount NFS %1$s at %2$s"
+msgstr "Montiram %1$s na %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "Montiram %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Uklanjam %1$s"
@@ -1295,9 +2021,7 @@ msgstr "Uklanjam %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:224
 #, fuzzy, c-format
-#| msgid "Mounting %1$s to %2$s"
 msgid "Unmounting %1$s at %2$s"
 msgstr "Montiram %1$s na %2$s"
 
@@ -1305,7 +2029,6 @@ msgstr "Montiram %1$s na %2$s"
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
 #, fuzzy, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
 msgstr "Uklanjam %1$s"
@@ -1313,32 +2036,33 @@ msgstr "Uklanjam %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:289
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:293
 #, fuzzy, c-format
-#| msgid "Change mount point of %1$s to %2$s"
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "Promijeni točku montiranja od %1$s na %2$s"
 
+#. TRANSLATORS: name of object
+msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "XFS"
+msgstr ""
+
 #. TRANSLATORS: first snapshot description
-#: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
 msgstr ""
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:67
 msgid "k"
 msgstr "k"
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:64
 msgid "kB"
 msgstr "kB"

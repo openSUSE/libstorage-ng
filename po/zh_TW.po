@@ -11,11 +11,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-12 20:00+0200\n"
+"POT-Creation-Date: 2018-04-18 10:20+0200\n"
 "PO-Revision-Date: 2018-02-02 06:32+0000\n"
 "Last-Translator: Emily Dong <Emily.Dong@excel-gits.com>\n"
-"Language-Team: Chinese (Taiwan) "
-"<https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
+"Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +24,6 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:311
 #, c-format
 msgid "Activate encryption layer device on %1$s"
 msgstr "在 %1$s 上啟動加密層裝置"
@@ -34,14 +32,46 @@ msgstr "在 %1$s 上啟動加密層裝置"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:475
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, c-format
+msgid "Activating LUKS %s"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Activating LUKS %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Activating LVM"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Activating LVM failed"
+msgstr ""
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:314
 #, c-format
 msgid "Activating encryption layer device on %1$s"
 msgstr "正在 %1$s 上啟用加密層裝置"
@@ -50,32 +80,54 @@ msgstr "正在 %1$s 上啟用加密層裝置"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:480
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "正在啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Activating multipath"
+msgstr "正在停用多重路徑 %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Activating multipath failed"
+msgstr "正在停用多重路徑 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在啟用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:466 ../storage/Devices/MdImpl.cc:899
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Add %1$s to %2$s"
 msgstr "將 %1$s 新增至 %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:824
 #, c-format
 msgid "Add %1$s to /etc/mdadm.conf"
 msgstr "將 %1$s 新增至 /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:341
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr "將 %1$s 上的加密層裝置新增至 /etc/crypttab"
@@ -83,7 +135,6 @@ msgstr "將 %1$s 上的加密層裝置新增至 /etc/crypttab"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:253
 #, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "將 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
@@ -92,32 +143,28 @@ msgstr "將 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:477
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "將 %3$s 上子磁碟區 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:470 ../storage/Devices/MdImpl.cc:903
+#. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Adding %1$s to %2$s"
 msgstr "正在將 %1$s 新增至 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:827
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
 msgstr "正在將 %1$s 新增至 /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:344
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr "正在將 %1$s 上的加密層裝置新增至 /etc/crypttab"
@@ -125,7 +172,6 @@ msgstr "正在將 %1$s 上的加密層裝置新增至 /etc/crypttab"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:257
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "正在將 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
@@ -134,26 +180,38 @@ msgstr "正在將 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:482
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "正在將 %3$s 上子磁碟區 %2$s 的裝載點 %1$s 新增至 /etc/fstab"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:54
 msgid "B"
 msgstr "B"
 
+#. TRANSLATORS: name of object
+msgid "Bcache"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Bcache Cache Set"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Btrfs"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Btrfs Subvolume"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:769
 #, c-format
 msgid "Clear boot flag of partition %1$s"
 msgstr "清除分割區 %1$s 的開機旗標"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:810
 #, c-format
 msgid "Clear legacy boot flag of partition %1$s"
 msgstr "清除分割區 %1$s 的舊開機旗標"
@@ -161,28 +219,24 @@ msgstr "清除分割區 %1$s 的舊開機旗標"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:527
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "清除 %2$s 上子磁碟區 %1$s 的「不在寫入時複製」選項"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:245
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
 msgstr "清除 %1$s 上 GPT 的保護性 MBR 開機旗標"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:772
 #, c-format
 msgid "Clearing boot flag of partition %1$s"
 msgstr "正在清除分割區 %1$s 的開機旗標"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:813
 #, c-format
 msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "正在清除分割區 %1$s 的舊開機旗標"
@@ -190,81 +244,218 @@ msgstr "正在清除分割區 %1$s 的舊開機旗標"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:531
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "正在清除 %2$s 上子磁碟區 %1$s 的「不在寫入時複製」選項"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:248
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr "正在清除 %1$s 上 GPT 的保護性 MBR 開機旗標"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:503
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "在 %2$s (%3$s) 上建立 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:212
 #, c-format
 msgid "Create DASD partition table on %1$s"
 msgstr "在 %1$s 上建立 DASD 分割區表"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:201
 #, c-format
 msgid "Create GPT on %1$s"
 msgstr "在 %1$s 上建立 GPT"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
+msgstr "在 %1$s 上建立實體磁碟區"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create LVM volume device over %1$s (%2$s)"
+msgstr "建立磁碟區群組 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:720
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s)"
 msgstr "建立 MD %1$s  %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:276
-#, c-format
-msgid "Create MSDOS partition table on %1$s"
+#, fuzzy, c-format
+msgid "Create MS-DOS partition table on %1$s"
 msgstr "在 %1$s 上建立 MSDOS 分割區表"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s)"
+msgstr "建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
+msgstr "建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) for swap"
+msgstr "建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted partition %1$s (%2$s) with %3$s"
+msgstr "建立延伸分割區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:233
 #, c-format
 msgid "Create encryption layer device on %1$s"
 msgstr "在 %1$s 上建立加密層裝置"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:538
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
 msgstr "建立延伸分割區 %1$s (%2$s)"
 
-#: ../storage/Devices/DiskImpl.cc:227
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Create file system btrfs on %1$s"
+msgstr "在 %1$s 上建立實體磁碟區"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, c-format
+msgid "Create file system btrfs on %1$s and mount at %2$s"
+msgstr ""
+
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "建立硬碟 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create implicit partition %1$s (%2$s)"
+msgstr "建立邏輯分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Create implicit partition table on %1$s"
+msgstr "在 %1$s 上建立 DASD 分割區表"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:550
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create logical partition %1$s (%2$s)"
 msgstr "建立邏輯分割區 %1$s (%2$s)"
@@ -273,30 +464,68 @@ msgstr "建立邏輯分割區 %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:298
 #, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:511
+#. %2$s is replaced by size (e.g. 2 GiB)
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "建立分割區 %1$s (%2$s)"
 
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) as %3$s"
+msgstr "建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) as LVM physical volume"
+msgstr "建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) for swap"
+msgstr "建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create partition %1$s (%2$s) with %3$s"
+msgstr "建立分割區 %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:249
 #, c-format
 msgid "Create physical volume on %1$s"
 msgstr "在 %1$s 上建立實體磁碟區"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:526
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Create primary partition %1$s (%2$s)"
 msgstr "建立主分割區 %1$s (%2$s)"
@@ -304,39 +533,71 @@ msgstr "建立主分割區 %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:389
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "在 %2$s 上建立子磁碟區 %1$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
+msgstr "在 %2$s 上建立子磁碟區 %1$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正於 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正於 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:386
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "建立磁碟區群組 %1$s (%2$s)"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) with %3$s"
+msgstr "建立磁碟區群組 %1$s (%2$s)"
+
 # SLE12
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:508
 #, c-format
 msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "正於 %2$s (%3$s) 上建立 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:215
 #, c-format
 msgid "Creating DASD partition table on %1$s"
 msgstr "正於 %1$s 上建立 DASD 分割區"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:204
 #, c-format
 msgid "Creating GPT on %1$s"
 msgstr "正於 %1$s 上建立 GPT"
@@ -345,37 +606,45 @@ msgstr "正於 %1$s 上建立 GPT"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:725
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s)"
 msgstr "正在建立 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:279
-#, c-format
-msgid "Creating MSDOS partition table on %1$s"
+#, fuzzy, c-format
+msgid "Creating MS-DOS partition table on %1$s"
 msgstr "正於 %1$s 上建立 MSDOS 分割區表"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:236
 #, c-format
 msgid "Creating encryption layer device on %1$s"
 msgstr "正於 %1$s 上建立加密層裝置"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:542
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "正在建立延伸分割區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating implicit partition %1$s (%2$s)"
+msgstr "正在建立邏輯分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Creating implicit partition table on %1$s"
+msgstr "正於 %1$s 上建立 DASD 分割區"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:554
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating logical partition %1$s (%2$s)"
 msgstr "正在建立邏輯分割區 %1$s (%2$s)"
@@ -384,30 +653,26 @@ msgstr "正在建立邏輯分割區 %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:303
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "正於 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:515
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating partition %1$s (%2$s)"
 msgstr "正在建立分割區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:252
 #, c-format
 msgid "Creating physical volume on %1$s"
 msgstr "正於 %1$s 上建立實體磁碟區"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:530
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "正在建立主分割區 %1$s (%2$s)"
@@ -415,31 +680,56 @@ msgstr "正在建立主分割區 %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:393
 #, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "正於 %2$s 上建立子磁碟區 %1$s"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正於 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正於 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:390
 #, c-format
 msgid "Creating volume group %1$s (%2$s)"
 msgstr "正在建立磁碟區群組 %1$s (%2$s)"
+
+#. TRANSLATORS: name of object
+msgid "DASD"
+msgstr ""
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "DASD Partition Table"
+msgstr "在 %1$s 上建立 DASD 分割區表"
+
+#. TRANSLATORS: name of object
+msgid "DM RAID"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#: ../storage/Devices/MdImpl.cc:975
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "停用 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:326
 #, c-format
 msgid "Deactivate encryption layer device on %1$s"
 msgstr "停用 %1$s 上的加密層裝置"
@@ -448,7 +738,6 @@ msgstr "停用 %1$s 上的加密層裝置"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:511
 #, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
@@ -456,23 +745,36 @@ msgstr "停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#: ../storage/Devices/MultipathImpl.cc:298
 #, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
 msgstr "停用多重路徑 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#: ../storage/Devices/MdImpl.cc:980
 #, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "正在停用 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:329
 #, c-format
 msgid "Deactivating encryption layer device on %1$s"
 msgstr "正在停用 %1$s 上的加密層裝置"
@@ -481,7 +783,6 @@ msgstr "正在停用 %1$s 上的加密層裝置"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:516
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
@@ -489,30 +790,42 @@ msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
 #. %2$s is replaced by size (e.g. 1 TiB)
-#: ../storage/Devices/MultipathImpl.cc:302
 #, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
 msgstr "正在停用多重路徑 %1$s (%2$s)"
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在停用磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:676
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "刪除 %2$s (%3$s) 上的 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:245
 #, c-format
 msgid "Delete DASD partition table on %1$s"
 msgstr "刪除 %1$s 上的 DASD 分割區表"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:277
 #, c-format
 msgid "Delete GPT on %1$s"
 msgstr "刪除 %1$s 上的 GPT"
@@ -521,85 +834,136 @@ msgstr "刪除 %1$s 上的 GPT"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:796
 #, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
 msgstr "刪除 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:309
-#, c-format
-msgid "Delete MSDOS partition table on %1$s"
+#, fuzzy, c-format
+msgid "Delete MS-DOS partition table on %1$s"
 msgstr "刪除 %1$s 上的 MSDOS 分割區表"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:248
 #, c-format
 msgid "Delete encryption layer device on %1$s"
 msgstr "刪除 %1$s 上的加密層裝置"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete extended partition %1$s (%2$s)"
+msgstr "建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#, fuzzy, c-format
+msgid "Delete file system btrfs on %1$s"
+msgstr "刪除 %1$s 上的實體磁碟區"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete implicit partition %1$s (%2$s)"
+msgstr "刪除分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Delete implicit partition table on %1$s"
+msgstr "刪除 %1$s 上的 DASD 分割區表"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete logical partition %1$s (%2$s)"
+msgstr "建立邏輯分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:439
 #, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:841
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "刪除分割區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:351
 #, c-format
 msgid "Delete physical volume on %1$s"
 msgstr "刪除 %1$s 上的實體磁碟區"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete primary partition %1$s (%2$s)"
+msgstr "建立主分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:599
+#. TRANSLATORS:
+#. %1$s is replaced by subvolume path (e.g. var/log),
+#. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "刪除 %2$s 上的子磁碟區 %1$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:420
 #, c-format
 msgid "Delete volume group %1$s (%2$s)"
 msgstr "刪除磁碟區群組 %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem name (e.g. ext4),
+#. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:681
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "正在刪除 %2$s (%3$s) 上的 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/DasdPtImpl.cc:248
 #, c-format
 msgid "Deleting DASD partition table on %1$s"
 msgstr "正在刪除 %1$s 上的 DASD 分割區"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:280
 #, c-format
 msgid "Deleting GPT on %1$s"
 msgstr "正在刪除 %1$s 上的 GPT"
@@ -608,106 +972,252 @@ msgstr "正在刪除 %1$s 上的 GPT"
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/MdImpl.cc:801
 #, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
 msgstr "正在刪除 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/MsdosImpl.cc:312
-#, c-format
-msgid "Deleting MSDOS partition table on %1$s"
+#, fuzzy, c-format
+msgid "Deleting MS-DOS partition table on %1$s"
 msgstr "正在刪除 %1$s 上的 MSDOS 分割區表"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:251
 #, c-format
 msgid "Deleting encryption layer device on %1$s"
 msgstr "正在刪除 %1$s 上的加密層裝置"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting extended partition %1$s (%2$s)"
+msgstr "正在建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/dasda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting implicit partition %1$s (%2$s)"
+msgstr "正在刪除分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/dasda)
+#, fuzzy, c-format
+msgid "Deleting implicit partition table on %1$s"
+msgstr "正在刪除 %1$s 上的 DASD 分割區"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting logical partition %1$s (%2$s)"
+msgstr "正在建立邏輯分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#: ../storage/Devices/LvmLvImpl.cc:444
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "正在刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:845
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deleting partition %1$s (%2$s)"
 msgstr "正在刪除分割區 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/LvmPvImpl.cc:354
 #, c-format
 msgid "Deleting physical volume on %1$s"
 msgstr "正在刪除 %1$s 上的實體磁碟區"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting primary partition %1$s (%2$s)"
+msgstr "正在建立主分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:603
 #, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "正在刪除 %2$s 上的子磁碟區 %1$s"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "正在刪除磁碟區群組 %3$s 上的邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Devices/LvmVgImpl.cc:424
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "正在刪除磁碟區群組 %1$s (%2$s)"
 
+#. TRANSLATORS: name of object
+msgid "Disk"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:122
 msgid "E"
 msgstr "E"
 
 # SLE12
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:119
 msgid "EB"
 msgstr "EB"
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:116
 msgid "EiB"
 msgstr "EiB"
 
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s)"
+msgstr "建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt partition %1$s (%2$s) with %3$s"
+msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
+
+#. TRANSLATORS: name of object
+msgid "Encryption"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext2"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext3"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home),
+#. %5$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home),
+#. %4$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
+msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) with %3$s"
+msgstr "建立分割區 %1$s (%2$s)"
+
 # SLE12
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:89
 msgid "G"
 msgstr "G"
 
 #. TRANSLATORS: symbol for "giga bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:86
 msgid "GB"
 msgstr "GB"
 
+#. TRANSLATORS: name of object
+msgid "GPT"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:83
 msgid "GiB"
 msgstr "GiB"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:645
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr "將 %2$s 上的 %1$s 從 %3$s 增大到 %4$s"
@@ -716,7 +1226,6 @@ msgstr "將 %2$s 上的 %1$s 從 %3$s 增大到 %4$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/EncryptionImpl.cc:288
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr "將 %1$s 上的加密層裝置從 %2$s 增大到 %3$s"
@@ -726,16 +1235,14 @@ msgstr "將 %1$s 上的加密層裝置從 %2$s 增大到 %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:385
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:896
+#. %2$s is replaced by old size (e.g. 1 GiB),
+#. %3$s is replaced by new size (e.g. 2 GiB)
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
@@ -744,17 +1251,33 @@ msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmPvImpl.cc:305
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "將 %1$s 上的實體磁碟區從 %2$s 增大到 %3$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
+
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:651
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr "將 %2$s 上的 %1$s 從 %3$s 增大到 %4$s"
@@ -763,7 +1286,6 @@ msgstr "將 %2$s 上的 %1$s 從 %3$s 增大到 %4$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/EncryptionImpl.cc:293
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr "將 %1$s 上的加密層裝置從 %2$s 增大到 %3$s"
@@ -773,16 +1295,14 @@ msgstr "將 %1$s 上的加密層裝置從 %2$s 增大到 %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmLvImpl.cc:391
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/PartitionImpl.cc:901
+#. %2$s is replaced by old size (e.g. 1 GiB),
+#. %3$s is replaced by new size (e.g. 2 GiB)
 #, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "正在將分割區 %1$s 從 %2$s 增大到 %3$s"
@@ -791,45 +1311,127 @@ msgstr "正在將分割區 %1$s 從 %2$s 增大到 %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 1GiB),
 #. %3$s is replaced by new size (e.g. 2GiB)
-#: ../storage/Devices/LvmPvImpl.cc:310
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "正在將 %1$s 上的實體磁碟區從 %2$s 增大到 %3$s"
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 1GiB),
+#. %4$s is replaced by new size (e.g. 2GiB)
+#, fuzzy, c-format
+msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 增大到 %4$s"
+
+#. TRANSLATORS: name of object
+msgid "ISO 9660"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Implicit Partition Table"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "JFS"
+msgstr ""
+
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:61
 msgid "KiB"
 msgstr "KiB"
 
+#. TRANSLATORS: name of object
+msgid "LUKS"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "LVM Logical Volume"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "LVM Physical Volume"
+msgstr ""
+
+msgid "LVM Volume Group"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:78
 msgid "M"
 msgstr "M"
 
 #. TRANSLATORS: symbol for "mega bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:75
 msgid "MB"
 msgstr "MB"
 
+#. TRANSLATORS: name of object
+msgid "MD RAID"
+msgstr ""
+
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "MS-DOS Partition Table"
+msgstr "在 %1$s 上建立 MSDOS 分割區表"
+
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:72
 msgid "MiB"
 msgstr "MiB"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:173
 #, c-format
 msgid "Mount %1$s at %2$s"
 msgstr "將 %1$s 裝載到 %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by volume group name (e.g. system),
+#. %4$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
+msgstr "在磁碟區群組 %3$s 上建立邏輯磁碟區 %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount NFS %1$s on %2$s"
+msgstr "將 %1$s 裝載到 %2$s"
+
+#. TRANSLATORS: name of object
+msgid "Mount Point"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount file system btrfs on %1$s at %2$s"
+msgstr "正在將 %1$s 裝載到 %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced by partition name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2GiB),
+#. %3$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount partition %1$s (%2$s) at %3$s"
+msgstr "將分割區 %1$s 從 %2$s 增大到 %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:439
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "將 %2$s 上的子磁碟區 %1$s 裝載到 %3$s"
@@ -837,7 +1439,6 @@ msgstr "將 %2$s 上的子磁碟區 %1$s 裝載到 %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:177
 #, c-format
 msgid "Mounting %1$s at %2$s"
 msgstr "正在將 %1$s 裝載到 %2$s"
@@ -846,50 +1447,183 @@ msgstr "正在將 %1$s 裝載到 %2$s"
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:444
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "正在將 %2$s 上的子磁碟區 %1$s 裝載到 %3$s"
 
+#. TRANSLATORS: name of object
+msgid "Multipath"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "NFS"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "NTFS"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:111
 msgid "P"
 msgstr "P"
 
 # SLE12
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:108
 msgid "PB"
 msgstr "PB"
 
+#. TRANSLATORS: name of object
+msgid "Partition"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:105
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: progress message
+msgid "Probing DASDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing DASDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing DM RAIDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing DM RAIDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing LUKS"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing LUKS failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing LVM"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing LVM failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing MD RAIDs"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing MD RAIDs failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing NFS"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing NFS failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing bcache failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing device relationships"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing device relationships failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing disk %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing disks"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing disks failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing file system on %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing file systems"
+msgstr "首個根文件系統"
+
+#. TRANSLATORS: error message
+msgid "Probing file systems failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing multipath"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing multipath failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing partitions"
+msgstr "正在建立分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+msgid "Probing partitions failed"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reduce volume group %1$s by missing physical volumes"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by volume group name (e.g. system)
+#, c-format
+msgid "Reducing volume group %1$s by missing physical volumes"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Reiserfs"
+msgstr ""
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:454 ../storage/Devices/MdImpl.cc:887
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sdd),
+#. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Remove %1$s from %2$s"
 msgstr "從 %2$s 移除 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:855
 #, c-format
 msgid "Remove %1$s from /etc/mdadm.conf"
 msgstr "從 /etc/mdadm.conf 移除 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:391
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr "從 /etc/crypttab 移除 %1$s 上的加密層裝置"
@@ -897,7 +1631,6 @@ msgstr "從 /etc/crypttab 移除 %1$s 上的加密層裝置"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:327
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "從 /etc/fstab 移除 %2$s 的裝載點 %1$s"
@@ -906,32 +1639,28 @@ msgstr "從 /etc/fstab 移除 %2$s 的裝載點 %1$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:496
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "從 /etc/fstab 移除 %3$s 上子磁碟區 %2$s 的裝載點 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by volume group name (e.g. system)
+#. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
-#. %2$s is replaced by device name (e.g. /dev/md0)
-#: ../storage/Devices/LvmVgImpl.cc:458 ../storage/Devices/MdImpl.cc:891
+#. %2$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Removing %1$s from %2$s"
 msgstr "正在從 %2$s 移除 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
-#: ../storage/Devices/MdImpl.cc:858
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
 msgstr "正在從 /etc/mdadm.conf 移除 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Devices/EncryptionImpl.cc:394
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr "正在從 /etc/crypttab 移除 %1$s 上的加密層裝置"
@@ -939,7 +1668,6 @@ msgstr "正在從 /etc/crypttab 移除 %1$s 上的加密層裝置"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:331
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "正在從 /etc/fstab 移除 %2$s 的裝載點 %1$s"
@@ -948,12 +1676,10 @@ msgstr "正在從 /etc/fstab 移除 %2$s 的裝載點 %1$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by subvolume path (e.g. home),
 #. %3$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:501
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "正在從 /etc/fstab 移除 %3$s 上子磁碟區 %2$s 的裝載點 %1$s"
 
-#: ../storage/Devices/LvmLvImpl.cc:338
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "將 %1$s 重新命名為 %2$s"
@@ -961,7 +1687,6 @@ msgstr "將 %1$s 重新命名為 %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Devices/EncryptionImpl.cc:367
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr "在 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
@@ -970,7 +1695,6 @@ msgstr "在 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:580
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "在 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
@@ -978,7 +1702,6 @@ msgstr "在 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Devices/EncryptionImpl.cc:371
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr "正於 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
@@ -987,7 +1710,6 @@ msgstr "正於 /etc/crypttab 中將加密層裝置從 %1$s 重新命名為 %2$s"
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:585
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "正於 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
@@ -995,14 +1717,12 @@ msgstr "正於 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:550
 #, c-format
 msgid "Set UUID of %1$s to %2$s"
 msgstr "將 %1$s 上的 UUID 設定為 %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:761
 #, c-format
 msgid "Set boot flag of partition %1$s"
 msgstr "設定分割區 %1$s 的開機旗標"
@@ -1010,7 +1730,6 @@ msgstr "設定分割區 %1$s 的開機旗標"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:563
 #, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "將預設子磁碟區設定為 %2$s 上的子磁碟區 %1$s"
@@ -1018,7 +1737,6 @@ msgstr "將預設子磁碟區設定為 %2$s 上的子磁碟區 %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:672
 #, c-format
 msgid "Set id of partition %1$s to %2$s"
 msgstr "將分割區 %1$s 的 ID 設定為 %2$s"
@@ -1028,7 +1746,6 @@ msgstr "將分割區 %1$s 的 ID 設定為 %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:654
 #, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
 msgstr "將分割區 %1$s 的 ID 設定為 %2$s (0x%3$02X)"
@@ -1036,7 +1753,6 @@ msgstr "將分割區 %1$s 的 ID 設定為 %2$s (0x%3$02X)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:640
 #, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr "將分割區 %1$s 的 ID 設定為 0x%2$02X"
@@ -1044,14 +1760,12 @@ msgstr "將分割區 %1$s 的 ID 設定為 0x%2$02X"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:524
 #, c-format
 msgid "Set label of %1$s to %2$s"
 msgstr "將 %1$s 的標籤設定為 %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:802
 #, c-format
 msgid "Set legacy boot flag of partition %1$s"
 msgstr "設定分割區 %1$s 的舊開機旗標"
@@ -1059,29 +1773,31 @@ msgstr "設定分割區 %1$s 的舊開機旗標"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:517
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "為 %2$s 上的子磁碟區 %1$s 設定選項「不在寫入時複製」"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:237
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr "在 %1$s 上設定 GPT 的保護性 MBR 開機旗標"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Set tune options of %1$s"
+msgstr "將分割區 %1$s 的 ID 設定為 %2$s"
+
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:554
 #, c-format
 msgid "Setting UUID of %1$s to %2$s"
 msgstr "正在將 %1$s 的 UUID 設定為 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:764
 #, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "正在設定分割區 %1$s 的開機旗標"
@@ -1089,7 +1805,6 @@ msgstr "正在設定分割區 %1$s 的開機旗標"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:567
 #, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "正在將預設子磁碟區設定為 %2$s 上的子磁碟區 %1$s"
@@ -1097,7 +1812,6 @@ msgstr "正在將預設子磁碟區設定為 %2$s 上的子磁碟區 %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#: ../storage/Devices/PartitionImpl.cc:676
 #, c-format
 msgid "Setting id of partition %1$s to %2$s"
 msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s"
@@ -1107,7 +1821,6 @@ msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:659
 #, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
 msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s (0x%3$02X)"
@@ -1115,7 +1828,6 @@ msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s (0x%3$02X)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#: ../storage/Devices/PartitionImpl.cc:644
 #, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr "正在將分割區 %1$s 的 ID 設定為 0x%2$02X"
@@ -1123,14 +1835,12 @@ msgstr "正在將分割區 %1$s 的 ID 設定為 0x%2$02X"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by label (e.g. ROOT)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:528
 #, c-format
 msgid "Setting label of %1$s to %2$s"
 msgstr "正在將 %1$s 的標籤設定為 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#: ../storage/Devices/PartitionImpl.cc:805
 #, c-format
 msgid "Setting legacy boot flag of partition %1$s"
 msgstr "正在設定分割區 %1$s 的舊開機旗標"
@@ -1138,24 +1848,27 @@ msgstr "正在設定分割區 %1$s 的舊開機旗標"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:521
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "正在為 %2$s 上的子磁碟區 %1$s 設定選項「不在寫入時複製」"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#: ../storage/Devices/GptImpl.cc:240
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
 msgstr "正在為 %1$s 上的 GPT 設定保護性 MBR 開機旗標"
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1)
+#, fuzzy, c-format
+msgid "Setting tune options of %1$s"
+msgstr "正在將分割區 %1$s 的 ID 設定為 %2$s"
+
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:629
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "將 %2$s 上的 %1$s 從 %3$s 縮減到 %4$s"
@@ -1164,7 +1877,6 @@ msgstr "將 %2$s 上的 %1$s 從 %3$s 縮減到 %4$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/EncryptionImpl.cc:274
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr "將 %1$s 上的加密層裝置從 %2$s 縮減到 %3$s"
@@ -1174,16 +1886,14 @@ msgstr "將 %1$s 上的加密層裝置從 %2$s 縮減到 %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:369
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:882
+#. %2$s is replaced by old size (e.g. 2 GiB),
+#. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "將分割區 %1$s 從 %2$s 縮減到 %3$s"
@@ -1192,17 +1902,33 @@ msgstr "將分割區 %1$s 從 %2$s 縮減到 %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmPvImpl.cc:291
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "將 %1$s 上的實體磁碟區從 %2$s 縮減到 %3$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "正在將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "正在將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
+
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by filesystem (e.g. ext4),
+#. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Filesystems/BlkFilesystemImpl.cc:635
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "正在將 %2$s 上的 %1$s 從 %3$s 縮減到 %4$s"
@@ -1211,7 +1937,6 @@ msgstr "正在將 %2$s 上的 %1$s 從 %3$s 縮減到 %4$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/EncryptionImpl.cc:279
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr "正在將 %1$s 上的加密層裝置從 %2$s 縮減到 %3$s"
@@ -1221,16 +1946,14 @@ msgstr "正在將 %1$s 上的加密層裝置從 %2$s 縮減到 %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmLvImpl.cc:375
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "正在將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/PartitionImpl.cc:887
+#. %2$s is replaced by old size (e.g. 2 GiB),
+#. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "正在將分割區 %1$s 從 %2$s 縮減到 %3$s"
@@ -1239,41 +1962,75 @@ msgstr "正在將分割區 %1$s 從 %2$s 縮減到 %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2GiB),
 #. %3$s is replaced by new size (e.g. 1GiB)
-#: ../storage/Devices/LvmPvImpl.cc:296
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "正在將 %1$s 上的實體磁碟區從 %2$s 縮減到 %3$s"
 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "正在將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by logical volume name (e.g. root),
+#. %2$s is replaced by volume group name (e.g. system),
+#. %3$s is replaced by old size (e.g. 2GiB),
+#. %4$s is replaced by new size (e.g. 1GiB)
+#, fuzzy, c-format
+msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "正在將磁碟區群組 %2$s 上的邏輯磁碟區 %1$s 從 %3$s 縮減到 %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Swap"
+msgstr ""
+
 # SLE12
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:100
 msgid "T"
 msgstr "T"
 
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:97
 msgid "TB"
 msgstr "TB"
 
 # SLE12
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:94
 msgid "TiB"
 msgstr "TiB"
+
+#. TRANSLATORS: name of object
+msgid "UDF"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:220
 #, c-format
 msgid "Unmount %1$s at %2$s"
 msgstr "正在將 %1$s 從 %2$s 卸載"
+
+#. TRANSLATORS:
+#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Unmount NFS %1$s at %2$s"
+msgstr "正在將 %1$s 從 %2$s 卸載"
+
+#. TRANSLATORS:
+#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced by mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Unmount file system btrfs on %1$s at %2$s"
+msgstr "正在從 %2$s 卸載 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:458
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "正在 %3$s 處卸載 %2$s 上的子磁碟區 %1$s"
@@ -1281,7 +2038,6 @@ msgstr "正在 %3$s 處卸載 %2$s 上的子磁碟區 %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#: ../storage/Filesystems/MountableImpl.cc:224
 #, c-format
 msgid "Unmounting %1$s at %2$s"
 msgstr "正在從 %2$s 卸載 %1$s"
@@ -1290,7 +2046,6 @@ msgstr "正在從 %2$s 卸載 %1$s"
 #. %1$s is replaced by subvolume path (e.g. home),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by mount point (e.g. /home)
-#: ../storage/Filesystems/BtrfsSubvolumeImpl.cc:463
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
 msgstr "正在從 %3$s 卸載 %2$s 上的子磁碟區 %1$s"
@@ -1298,7 +2053,6 @@ msgstr "正在從 %3$s 卸載 %2$s 上的子磁碟區 %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:289
 #, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "在 /etc/fstab 中更新 %2$s 的裝載點 %1$s"
@@ -1306,23 +2060,27 @@ msgstr "在 /etc/fstab 中更新 %2$s 的裝載點 %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#: ../storage/Filesystems/MountableImpl.cc:293
 #, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "正於 /etc/fstab 中更新 %2$s 的裝載點 %1$s"
 
+#. TRANSLATORS: name of object
+msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "XFS"
+msgstr ""
+
 #. TRANSLATORS: first snapshot description
-#: ../storage/Utils/SnapperConfig.cc:58
 msgid "first root filesystem"
 msgstr "首個根文件系統"
 
 # SLE12
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:67
 msgid "k"
 msgstr "k"
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
-#: ../storage/Utils/HumanString.cc:64
 msgid "kB"
 msgstr "kB"
