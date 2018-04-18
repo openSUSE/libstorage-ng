@@ -1,8 +1,10 @@
 
-Do not edit the PO files here. Changes will be overwritten.
+After adding or modifying messages run 'make merge' and commit the pot and po
+files.
 
-The POT file libstorage-ng.pot is used by Weblate. Weblate also places
-translations here.
+Translations themself are done in Weblate.
+
+Do not edit the translations here. Changes will be overwritten by Weblate.
 
 https://l10n.opensuse.org/projects/libstorage-ng/
 
