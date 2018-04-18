@@ -10,9 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-02-26 12:37+0000\n"
-"Last-Translator: Ruta Reknere <ruta.reknere@nordtext.com>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-master/sv/>\n"
+"PO-Revision-Date: 2018-04-18 15:06+0000\n"
+"Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,15 +39,15 @@ msgstr "Aktivera den logiska volymen %1$s (%2$s) i volymgrupp %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
+msgstr "Aktivera den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 
@@ -84,23 +85,21 @@ msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 
 # SLE12
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Avaktiverar multipath %1$s (%2$s)"
+msgstr "Avaktiverar multipath"
 
 # SLE12
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Avaktiverar multipath %1$s (%2$s)"
+msgstr "Avaktivering av multipath har misslyckats"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
+msgstr "Aktiverar den tunna logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
