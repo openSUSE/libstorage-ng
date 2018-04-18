@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-18 12:38+0000\n"
-"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
+"PO-Revision-Date: 2018-04-18 16:01+0000\n"
+"Last-Translator: Jakub Muzik <JakubMu@virtus.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/cs/>\n"
 "Language: cs\n"
@@ -68,11 +68,11 @@ msgstr "Aktivace LUKS %s selhala"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "Aktivuje se LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "Aktivace LVM selhala"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -89,30 +89,29 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Aktivuje se logický svazek %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Deaktivuji multipath %1$s (%2$s)"
+msgstr "Aktivuje se multipath"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Deaktivuji multipath %1$s (%2$s)"
+msgstr "Aktivace multipath selhala"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktivuje se logický svazek %1$s (%2$s) ve skupině svazků %3$s"
+msgstr "Aktivuje se tenký logický svazek  %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktivuje se logický svazek %1$s (%2$s) ve skupině svazků %3$s"
+msgstr ""
+"Aktivuje se logický svazek thin fondu %1$s (%2$s) ve skupině svazků %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -198,15 +197,16 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Sada mezipaměti Bcache"
 
 #. TRANSLATORS: name of object
+#, fuzzy
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Dílčí svazek Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -282,9 +282,9 @@ msgstr "Vytvořit GPT na %1$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr "Vytvořit logický svazek LVM %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -292,40 +292,46 @@ msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit logický svazek LVM %1$s (%2$s) na skupině svazků %3$s pro bod "
+"připojení %4$s se systémem souborů %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit logický svazek LVM %1$s (%2$s) na skupině svazků %3$s pro "
+"stránkování"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s se systémem "
+"souborů %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "Vytváří se fyzický svazek na %1$s"
+msgstr "Vytvořit fyzický svazek LVM přes šifrovaný %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "Vytvořit skupinu svazků %1$s (%2$s)"
+msgstr "Vytvořit zařízení svazku LVM přes %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -337,17 +343,18 @@ msgstr "Vytvořit hlavní adresář (MD) %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr "Vytváří se tabulka oddílů typu MSDOS na %1$s"
+msgstr "Vytvořit tabulku oddílů typu MS-DOS na %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit šifrovaný logický svazek LVM %1$s (%2$s) na skupině svazků %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -355,56 +362,64 @@ msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit šifrovaný logický svazek LVM %1$s (%2$s) na skupině svazků %3$s pro "
+"bod připojení %4$s se systémem souborů %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit šifrovaný logický svazek LVM %1$s (%2$s) na skupině svazků %3$s pro "
+"stránkování"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Vytvořit logický svazek %1$s (%2$s) na skupině svazků %3$s"
+msgstr ""
+"Vytvořit šifrovaný logický svazek LVM %1$s (%2$s) na skupině svazků %3$s se "
+"systémem souborů %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
+msgstr "Vytvořit šifrovaný oddíl %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
+msgstr "Vytvořit šifrovaný oddíl %1$s (%2$s) jako fyzický svazek LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
+msgstr ""
+"Vytvořit šifrovaný oddíl %1$s (%2$s) pro bod připojení %3$s se systémem "
+"souborů %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
+msgstr "Vytvořit šifrovaný oddíl %1$s (%2$s) pro stránkování"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
