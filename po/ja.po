@@ -11,15 +11,16 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2017-11-04 02:04+0000\n"
+"PO-Revision-Date: 2018-04-18 14:03+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.13.1\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -33,41 +34,41 @@ msgstr "%1$s 上の暗号化レイヤデバイスの有効化"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) の有効化"
+msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s (%2$s) の有効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の有効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の有効化"
 
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "LUKS %s を有効化しています"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "LUKS %s の有効化に失敗しました"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "LVM を有効化しています"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "LVM の有効化に失敗しました"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -84,30 +85,28 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "マルチパス %1$s (%2$s) を無効化しています"
+msgstr "マルチパスを有効化しています"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "マルチパス %1$s (%2$s) を無効化しています"
+msgstr "マルチパスの有効化に失敗しました"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を有効化しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を有効化しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -189,19 +188,19 @@ msgstr "B"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Bcache キャッシュセット"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Btrfs サブボリューム"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -277,9 +276,9 @@ msgstr "%1$s に対する GPT の作成"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s (%2$s) の作成"
+msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
