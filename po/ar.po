@@ -7,14 +7,16 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-01-30 18:00+0000\n"
+"PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
-"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-master/ar/>\n"
+"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
@@ -35,35 +37,38 @@ msgstr "تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) بم�
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
+msgstr ""
+"تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
+msgstr ""
+"تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة التخزين "
+"%3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "يتم الآن تنشيط LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "فشل تنشيط LUKS %s"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "يتم الآن تنشيط LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "فشل تنشيط LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -80,30 +85,32 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "يتم الآن تنشيط تعدد المسارات"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "فشل تنشيط تعدد المسارات"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
+msgstr ""
+"يتم الآن تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
+msgstr ""
+"يتم الآن تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -185,19 +192,19 @@ msgstr "B"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "مجموعة ذاكرة التخزين المؤقت Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "وحدة التخزين الفرعية Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -273,9 +280,9 @@ msgstr "إنشاء GPT على %1$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -283,40 +290,46 @@ msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بم�
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية LVM %4$s%1$s (‏%2$s) بمجموعة وحدات التخزين %3$s "
+"لـ %4$s مع %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s "
+"للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s مع "
+"%4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "إنشاء وحدة نخزين فعلية %1$s"
+msgstr "إنشاء وحدة نخزين فعلية على القسم المشفر %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s)"
+msgstr "إنشاء مجموعة وحدات تخزين LVM %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -328,17 +341,17 @@ msgstr "إنشاء MD‏ %1$s %2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr "إنشاء جدول لقسم MSDOS على %1$s"
+msgstr "إنشاء جدول لقسم MS-DOS على %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -346,64 +359,69 @@ msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بم�
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
+"%3$s لـ %4$s مع %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
+"%3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "إنشاء قسم مشفر %1$s (‏%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "إنشاء قسم مشفر %1$s (‏%2$s) كوحدة تخزين فعلية LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "إنشاء قسم مشفر %1$s (‏%2$s) للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "إنشاء قسم مشفر %1$s (‏%2$s) مع %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -420,16 +438,16 @@ msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr "إنشاء وحدة نخزين فعلية %1$s"
+msgstr "إنشاء نظام الملفات btrfs على %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "إنشاء نظام الملفات btrfs على %1$s والتركيب في %2$s"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -438,15 +456,15 @@ msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr "إنشاء القسم المنطقي %1$s (‏%2$s)"
+msgstr "إنشاء القسم الضمني%1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr "إنشاء حدول قسم DASD على %1$s"
+msgstr "إنشاء جدول قسم ضمني على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -477,40 +495,40 @@ msgstr "إنشاء القسم %1$s (‏%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s) كـ %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s) كوحدة تخزين فعلية LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s) لـ %3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s) للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "إنشاء القسم %1$s (‏%2$s) مع %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -538,25 +556,29 @@ msgstr "إنشاء وحدة التخزين الفرعية %1$s على %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "إنشاء وحدة التخزين الفرعية %1$s على %2$s"
+msgstr ""
+"إنشاء وحدة التخزين الفرعية %1$s على %2$s بالخيار \"عدم النسخ عند الكتابة\""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"إنشاء مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدات التخزين "
+"%3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -572,9 +594,9 @@ msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s)"
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s)"
+msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s) مع %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -606,9 +628,9 @@ msgstr "يتم الآن إنشاء MD‏ %1$s %2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr "يتم الآن إنشاء جدول للقسم MSDOS على %1$s"
+msgstr "يتم الآن إنشاء جدول للقسم MS-DOS على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -626,15 +648,15 @@ msgstr "يتم الآن إنشاء قسم موسع %1$s (‏%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم منطقي %1$s (‏%2$s)"
+msgstr "يتم الآن إنشاء قسم ضمني %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "يتم الآن إنشاء جدول لقسم DASD على %1$s"
+msgstr "يتم الآن إنشاء جدول لقسم ضمني على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -682,17 +704,21 @@ msgstr "يتم الآن إنشاء وحدة تخزين فرعية %1$s على %2
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن إنشاء مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
+"وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -703,16 +729,15 @@ msgstr "يتم الآن إنشاء مجموعة وحدات تخزين %1$s (‏%
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "DASD Partition Table"
-msgstr "إنشاء حدول قسم DASD على %1$s"
+msgstr "جدول قسم DASD"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -747,17 +772,21 @@ msgstr "إلغاء تنشيط تعدد المسارات %1$s (‏%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"إلغاء تنشيط مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -792,17 +821,21 @@ msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
+"وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
+"وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -834,9 +867,9 @@ msgstr "حذف MD ‏%1$s ‏%2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete MS-DOS partition table on %1$s"
-msgstr "حذف جدول قسم MSDOS‏ على %1$s"
+msgstr "حذف جدول قسم MS-DOS‏ على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -847,35 +880,35 @@ msgstr "حذف جهاز طبقة تشفير على %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr "إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "حذف قسم موسع %1$s (‏%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete file system btrfs on %1$s"
-msgstr "حذف وحدة التخزين المنطقية على %1$s"
+msgstr "حذف نظام الملفات btrfs على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "حذف قسم %1$s (‏%2$s)"
+msgstr "حذف قسم ضمني %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "حذف جدول قسم DASD على %1$s"
+msgstr "حذف جدول قسم ضمني على %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr "إنشاء القسم المنطقي %1$s (‏%2$s)"
+msgstr "حذف القسم المنطقي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -904,9 +937,9 @@ msgstr "حذف وحدة التخزين المنطقية على %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr "إنشاء القسم الأساسي %1$s (‏%2$s)"
+msgstr "حذف القسم الأساسي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -922,17 +955,20 @@ msgstr "حذف وحدة التخزين الفرعية %1$s على %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن حذف وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن حذف وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين "
+"%3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -971,9 +1007,9 @@ msgstr "يتم الآن حذف MD‏ %1$s ‏%2$s (‏%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
-msgstr "يتم الآن حذف جدول قسم MSDOS على %1$s"
+msgstr "يتم الآن حذف جدول قسم MS-DOS على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -984,29 +1020,29 @@ msgstr "يتم الآن حذف جهاز طبقة تشفير على %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم موسع %1$s (‏%2$s)"
+msgstr "يتم الآن حذف قسم موسع %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr "يتم الآن حذف قسم %1$s (‏%2$s)"
+msgstr "يتم الآن حذف القسم الضمني %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr "يتم الآن حذف قسم DASD على %1$s"
+msgstr "يتم الآن حذف جدول قسم ضمني على %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم منطقي %1$s (‏%2$s)"
+msgstr "يتم الآن حذف قسم منطقي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1032,9 +1068,9 @@ msgstr "يتم الآن حذف وحدة التخزين الفعلية على %1$
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم أساسي %1$s (‏%2$s)"
+msgstr "يتم الآن حذف قسم أساسي %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1047,17 +1083,21 @@ msgstr "يتم الآن حذف وحدة تخزين فرعية %1$s على %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن حذف وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "يتم الآن حذف وحدة التخزين المنطقية %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr ""
+"يتم الآن حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
+"التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1068,7 +1108,7 @@ msgstr "يتم الآن حذف مجموعة وحدات التخزين %1$s (‏%
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "القرص"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
@@ -1086,9 +1126,9 @@ msgstr "EiB"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr "تشفير وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1096,58 +1136,62 @@ msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بم�
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "زيادة حجم وحدة التخزين المنطقية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"تشفير وحدة التخزين المنطقية %1$s (%2$s) في مجموعة وحدات التخزين %3$s لـ %4$s "
+"بـ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"تشفير وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ "
+"%4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s)"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "تشفير القسم %1$s (‏%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "زيادة حجم قسم %1$s من %2$s إلى %3$s"
+msgstr "تشفير قسم %1$s (%2$s) لـ %3$s بـ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "زيادة حجم قسم %1$s من %2$s إلى %3$s"
+msgstr "تشفير قسم %1$s (%2$s) بـ %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "تشفير"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1155,35 +1199,39 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ "
+"%4$s بـ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ "
+"%4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "زيادة حجم قسم %1$s من %2$s إلى %3$s"
+msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "إنشاء القسم %1$s (‏%2$s)"
+msgstr "تنسيق القسم %1$s (‏%2$s) بـ %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1195,7 +1243,7 @@ msgstr "GB"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 msgid "GiB"
@@ -1248,18 +1296,22 @@ msgstr "زيادة حجم وحدة التخزين الفعلية على %1$s م�
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "زيادة حجم وحدة التخزين المنطقية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"زيادة حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من "
+"%3$s إلى %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "زيادة حجم وحدة التخزين المنطقية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
+"s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1308,30 +1360,34 @@ msgstr "تتم الآن زيادة حجم وحدة التخزين الفعلية
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "زيادة حجم وحدة التخزين المنطقية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
+"s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "زيادة حجم وحدة التخزين المنطقية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"تتم الآن زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
+"التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "جدول قسم ضمني"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
@@ -1339,18 +1395,18 @@ msgstr "KiB"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
-msgstr ""
+msgstr "وحدة التخزين المنطقية LVM"
 
 #. TRANSLATORS: name of object
 msgid "LVM Physical Volume"
-msgstr ""
+msgstr "وحدة التخزين الفعلية LVM"
 
 msgid "LVM Volume Group"
-msgstr ""
+msgstr "مجموعة وحدات التخزين LVM"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1362,12 +1418,11 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "إنشاء جدول لقسم MSDOS على %1$s"
+msgstr "جدول لقسم MS-DOS"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -1385,35 +1440,37 @@ msgstr "توصيل %1$s في %2$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s"
+msgstr ""
+"تركيب وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s عند "
+"%4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "توصيل %1$s في %2$s"
+msgstr "توصيل NFS %1$s على %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "نقطة التوصيل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "يتم الآن توصيل %1$s في %2$s"
+msgstr "توصيل نظام الملفات btrfs على %1$s عند %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "زيادة حجم قسم %1$s من %2$s إلى %3$s"
+msgstr "توصيل قسم %1$s (%2$s) عند %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -1440,15 +1497,15 @@ msgstr "يتم الآن توصيل وحدة التخزين الفرعية %1$s �
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "تعدد المسارات"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -1460,7 +1517,7 @@ msgstr "PB"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "قسم"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
@@ -1468,127 +1525,125 @@ msgstr "PiB"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "يتم الآن بحث DASD"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "فشل بحث DASD"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "يتم الآن بحث DM RAID"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "فشل بحث DM RAID"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "يتم الآن بحث LUKS"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "فشل بحث LUKS"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "يتم الآن بحث LVM"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "فشل بحث LVM"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "يتم الآن بحث MD RAID"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "فشل بحث MD RAID"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "بحث NFS"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "فشل بحث NFS"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "يتم الآن بحث bcache"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "فشل بحث bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "يتم الآن بحث علاقات الجهاز"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "فشل بحث علاقات الجهاز"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "فشل بحث القرص %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "يتم الآن فحص الأقراص"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "فشل بحث الأقراص"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "فشل بحث نظام الملفات على %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing file systems"
-msgstr "نظام ملفات الجذر الأول"
+msgstr "بحث أنظمة الملفات"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "فشل بحث أنظمة الملفات"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "يحث تعدد المسارات"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "فشل بحث تعدد المسارات"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "يتم الآن إنشاء قسم %1$s (‏%2$s)"
+msgstr "بحث الأقسام"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "فشل بحث الأقسام"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "تقليل حجم مجموعة وحدات التخزين %1$s عن طريق تفادي وحدات التخزين الفعلية"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1768,9 +1823,9 @@ msgstr "تعيين علامة تشغيل MBR للحماية الخاصة بـ GP
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "تعيين معرف القسم %1$s على %2$s"
+msgstr "تعيين خيارات الضبط %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1842,9 +1897,9 @@ msgstr "يتم الآن إعداد علامة تشغيل MBR للحماية ال
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "يتم الآن تعيين معرف القسم %1$s على %2$s"
+msgstr "يتم الآن تعيين خيارات ضبط %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1893,18 +1948,22 @@ msgstr "تقليص حجم وحدة التخزين الفعلية على %1$s م�
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من "
+"%3$s إلى %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"تقليص حجم مجمع وحدة التخزين المنطقية التابع %1$s في مجموعة وحدات التخزين %2$"
+"s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1953,22 +2012,26 @@ msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"يتم الآن تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
+"التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+msgstr ""
+"يتم الآن تقليص حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
+"التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "تبادل"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -1984,7 +2047,7 @@ msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1996,16 +2059,16 @@ msgstr "يتم الآن إلغاء توصيل %1$s من %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "يتم الآن إلغاء توصيل %1$s من %2$s"
+msgstr "يتم الآن إلغاء توصيل NFS %1$s من %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "يتم الآن إلغاء توصيل %1$s بـ %2$s"
+msgstr "يتم الآن إلغاء توصيل نظام الملفات btrfs على%1$s من %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2046,11 +2109,11 @@ msgstr "يتم الآن تحديث نقطة التوصيل %1$s الخاصة ب�
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
