@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-18 20:02+0000\n"
+"PO-Revision-Date: 2018-04-19 17:02+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
@@ -88,14 +88,12 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Logisches Volume %1$s (%2$s) in Volume-Gruppe %3$s wird aktiviert"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Multipath-Komponente %1$s (%2$s) wird deaktiviert"
+msgstr "Multipath wird aktiviert"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Multipath-Komponente %1$s (%2$s) wird deaktiviert"
+msgstr "Aktivierung von Multipath fehlgeschlagen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
