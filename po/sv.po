@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-18 15:06+0000\n"
+"PO-Revision-Date: 2018-04-19 13:06+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sv/>\n"
@@ -105,9 +105,9 @@ msgstr "Aktiverar den tunna logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
+msgstr "Aktiverar den tunna logiska poolvolymen %1$s (%2$s) i volymgruppen %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -285,9 +285,9 @@ msgstr "Skapa GPT på %1$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -295,41 +295,41 @@ msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s för swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "Skapa fysisk volym på %1$s"
+msgstr "Skapa fysisk LVM-volym över krypterad %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "Skapa volymgrupp %1$s (%2$s)"
+msgstr "Skapa LVM-volymenhet %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -343,17 +343,17 @@ msgstr "Skapa MD %1$s %2$s (%3$s)"
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr "Skapa partitionstabell MSDOS på %1$s"
+msgstr "Skapa MS-DOS-partitionstabell på %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -361,64 +361,64 @@ msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa krypterad logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s för swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Skapa krypterad partition %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Skapa utökad partition %1$s (%2$s) som fysisk LVM-volym"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Skapa utökad partition %1$s (%2$s) för swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Skapa utökad partition %1$s (%2$s) med %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -435,9 +435,9 @@ msgstr "Skapa utökad partition %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr "Skapa fysisk volym på %1$s"
+msgstr "Skapa filsystemet btrfs på %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -455,16 +455,16 @@ msgstr "Skapa hårddisk %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr "Skapa logiska partitionen %1$s (%2$s)"
+msgstr "Skapa en underförstådd partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr "Skapa partitionstabell DASD på %1$s"
+msgstr "Skapa underförstådd partitionstabell på %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -498,9 +498,9 @@ msgstr "Skapa partition %1$s (%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) som %3$s"
 
 # SLE12
 #. TRANSLATORS:
