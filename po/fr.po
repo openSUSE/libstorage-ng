@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-20 18:02+0000\n"
-"Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
+"PO-Revision-Date: 2018-04-20 23:02+0000\n"
+"Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fr/>\n"
 "Language: fr\n"
@@ -1735,29 +1735,28 @@ msgstr ""
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "Échec du sondage du disque %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "Sondage des disques"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "Échec du sondage des disques"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "Échec du sondage des systèmes de fichiers sur %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing file systems"
-msgstr "premier système de fichiers racine"
+msgstr "Sondage des systèmes de fichiers"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "Échec du sondage des systèmes de fichiers"
 
 #. TRANSLATORS: progress message
 #, fuzzy
@@ -1770,13 +1769,12 @@ msgstr ""
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "Effacement de la partition %1$s"
+msgstr "Sondage des partitions"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "Échec du sondage des partitions"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -1792,7 +1790,7 @@ msgstr "Réduction du groupe de volumes %1$s de %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "ReiserFS"
 
 # TLABEL storage_2002_08_07_0216__34
 #. TRANSLATORS: displayed before action,
@@ -2130,7 +2128,7 @@ msgstr "Réduire le volume physique sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr "Réduire le volume logique %1$s du groupe de volumes %2$s de %3$s à %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2139,7 +2137,7 @@ msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s 
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr "Réduire le volume logique %1$s du groupe de volumes %2$s de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__78
 #. TRANSLATORS: displayed during action,
@@ -2205,7 +2203,7 @@ msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s 
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -2221,7 +2219,7 @@ msgstr "Tio"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed before action,
@@ -2235,17 +2233,17 @@ msgstr "Démonter %1$s de %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Démonter %1$s de %2$s"
+msgstr "Démonter le NFS %1$s de %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Démontage de %1$s de %2$s"
+msgstr "Démonter le système de fichiers Btrfs %1$s de %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
@@ -2291,11 +2289,11 @@ msgstr "Mise à jour du point de montage %1$s de %2$s dans /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
