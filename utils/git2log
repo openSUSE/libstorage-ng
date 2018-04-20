@@ -61,6 +61,7 @@ my $opt_format = 'internal';		# obs, internal
 my $opt_merge_msg_before = 1;		# log auto generated pr merge message before the commit messages (vs. after)
 my $opt_join_author = 1;		# join consecutive commit messages as long as they are by the same author
 my $opt_keep_date = 1;			# don't join consecutive commit messages if they have different time stamps
+my $opt_default_email = 'opensuse-packaging@opensuse.org';	# default email to use in changelog
 
 GetOptions(
   'help'          => sub { usage 0 },
@@ -76,6 +77,7 @@ GetOptions(
   'join-author!'  => \$opt_join_author,
   'keep-date!'    => \$opt_keep_date,
   'log|changelog' => \$opt_log,
+  'default-email=s' => \$opt_default_email,
 ) || usage 1;
 
 # ensure we are used correctly
@@ -176,6 +178,8 @@ Create changelog and project version from git repo.
   --no-join-author    Keep consecutive commits by the same author separate.
   --keep-date         Join consecutive commits only if they have the same date. (default)
   --no-keep-date      Join consecutive commits even if dates differ.
+  --default-email     Use this email in changelog entries if no other suitable email could be
+                      determined (default: opensuse-packaging\@opensuse.org).
   --help              Print this help text.
   usage
 
@@ -492,10 +496,12 @@ sub add_head_tag
 # Adjust time stamps in entire git log.
 #
 # The time stamps of the git commits are not necessarily ordered by date.
-# But the generated changelog is required to have a monotonic time.
+# But the generated changelog is required to have a strictly monotonic time.
 #
 # We do this by going through the log in reverse and rewriting any dates we
 # find whenever the date decreases.
+#
+# A minimum time difference of 1 second beween entries is maintained.
 #
 # Not very subtle but it works.
 #
@@ -508,10 +514,14 @@ sub fix_dates
     if(/^(Date:\s+)(\S+)(\s+\S+)/) {
       if(defined $last_date && $2 < $last_date) {
         $_ = "$1$last_date$3\n";
-        next;
       }
+      else {
+        $last_date = $2;
+      }
+
+      # ensure a minimal time gap of 1 second
+      $last_date += 1;
     }
-    $last_date = $2;
   }
 }
 
@@ -804,8 +814,7 @@ sub format_log
   # step 9
   # - generate final log message
   #
-  # note: non-(open)suse email addresses are replaced by a generic
-  # 'opensuse-packaging@opensuse.org'
+  # note: non-(open)suse email addresses are replaced by $opt_default_email
 
   my $formated_log;
 
@@ -825,7 +834,7 @@ sub format_log
       $auth =~ s/>.*$//;
       # replace non-suse e-mail addresses with a generic one
       if($auth !~ /\@(suse\.(com|cz|de)|opensuse\.org)$/) {
-        $auth = 'opensuse-packaging@opensuse.org'
+        $auth = $opt_default_email;
       }
       $formated_log .= " - $auth\n\n";
     }
