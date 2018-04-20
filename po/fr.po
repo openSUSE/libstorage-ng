@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-20 13:07+0000\n"
+"PO-Revision-Date: 2018-04-20 18:02+0000\n"
 "Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fr/>\n"
@@ -1247,16 +1247,18 @@ msgstr ""
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Créer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"avec le système de fichiers %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s)"
-msgstr "Créer la partition %1$s (%2$s)"
+msgstr "Chiffrer la partition %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
@@ -1264,34 +1266,36 @@ msgstr "Créer la partition %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Formater la partition %1$s (%2$s) pour %4$s avec %3$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "Formater la partition %1$s (%2$s) avec %3$s"
+msgstr "Chiffrer la partition %1$s (%2$s) avec le système de fichiers %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "Chiffrement"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1299,9 +1303,11 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Formater le volume logique %1$s (%2$s) pour %4$s avec %3$s"
+msgstr ""
+"Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"pour le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
@@ -1309,9 +1315,11 @@ msgstr "Formater le volume logique %1$s (%2$s) pour %4$s avec %3$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Créer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"avec le système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
@@ -1319,9 +1327,11 @@ msgstr "Créer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Formater la partition %1$s (%2$s) pour %4$s avec %3$s"
+msgstr ""
+"Formater la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
@@ -1344,7 +1354,7 @@ msgstr "Go"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 # TLABEL wizard_2002_01_04_0147__10
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
@@ -1402,9 +1412,11 @@ msgstr "Agrandir le volume physique %1$s de %2$s à %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandir le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s "
+"à %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -1412,9 +1424,11 @@ msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandir le volume logique de pool léger %1$s sur le groupe de volumes %2$s "
+"de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS: displayed during action,
@@ -1467,9 +1481,11 @@ msgstr "Agrandissement du volume physique sur %1$s de %2$s à %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandissement du volume logique léger %1$s sur le groupe de volumes %2$s de "
+"%3$s à %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed during action,
@@ -1477,21 +1493,23 @@ msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandissement du volume logique de pool léger %1$s sur le groupe de volumes "
+"%2$s de %3$s à %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "Table de partitions implicites"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 # TLABEL wizard_2002_01_04_0147__8
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
@@ -1500,24 +1518,21 @@ msgstr "Kio"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 # TLABEL partitioning_2002_01_04_0147__389
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "LVM Logical Volume"
-msgstr "Volume logique"
+msgstr "Volume logique LVM"
 
 # TLABEL partitioning_2002_01_04_0147__389
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "LVM Physical Volume"
-msgstr "Volume logique"
+msgstr "Volume physique LVM"
 
 # TLABEL partitioning_2002_01_04_0147__409
-#, fuzzy
 msgid "LVM Volume Group"
-msgstr "Groupe de volumes"
+msgstr "Groupe de volumes LVM"
 
 # TLABEL partitioning_2002_01_04_0147__116
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1535,9 +1550,8 @@ msgid "MD RAID"
 msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "Créer la table de partitions MSDOS sur %1$s"
+msgstr "Table de partitions MS-DOS"
 
 # TLABEL backup_2002_03_14_2340__150
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
@@ -1558,17 +1572,19 @@ msgstr "Monter %1$s sur %2$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Créer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Monter le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s au "
+"point de montage %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "Monter %1$s sur %2$s"
+msgstr "Monter le système NFS %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__241
 #. TRANSLATORS: name of object
@@ -1579,18 +1595,18 @@ msgstr "Point de montage"
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "Montage de %1$s sur %2$s"
+msgstr "Monter le système de fichiers btrfs sur %1$s au point de montage %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "Formater la partition %1$s (%2$s) avec %3$s"
+msgstr "Monter la partition %1$s (%2$s) au point de montage %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS: displayed before action,
@@ -1619,17 +1635,16 @@ msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "Montage du sous-volume %1$s de %2$s sur %3$s"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Multipath"
-msgstr "DM Multipath"
+msgstr "Multipath"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 # TLABEL backup_2002_03_14_2340__147
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
@@ -1653,63 +1668,61 @@ msgstr "Pio"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "Sondage des DASD"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "Échec du sondage des DASD"
 
 # TLABEL partitioning_2002_01_04_0147__465
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing DM RAIDs"
-msgstr "DM RAID"
+msgstr "Sondage des systèmes DM RAID"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "Échec du sondage des systèmes DM RAID"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "Sondage de LUKS"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "Échec du sondage de LUKS"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "Sondage de LVM"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "Échec du sondage de LVM"
 
 # TLABEL partitioning_2002_01_04_0147__465
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing MD RAIDs"
-msgstr "MD RAID"
+msgstr "Sondage des systèmes MD RAID"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "Échec du sondage des systèmes MD RAID"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "Sondage de NFS"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "Échec du sondage NFS"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "Sondage de bcache"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "Échec du sondage de bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
