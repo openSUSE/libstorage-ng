@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -99,8 +99,26 @@ namespace storage
 	MdLevel get_md_level() const;
 	void set_md_level(MdLevel md_level);
 
+	/**
+	 * Get the parity of the MD RAID. Only meaningful for RAID5, RAID6 and
+	 * RAID10.
+	 */
 	MdParity get_md_parity() const;
+
+	/**
+	 * Set the parity of the MD RAID. Only meaningful for RAID5, RAID6 and
+	 * RAID10 and for MD RAIDs not created on disk yet.
+	 */
 	void set_md_parity(MdParity md_parity);
+
+	/**
+	 * Get the allowed parities for the MD RAID. Only meaningful for
+	 * RAID5, RAID6 and RAID10. So far depends on the MD RAID level and
+	 * the number of devices.
+	 *
+	 * @throw Exception
+	 */
+	std::vector<MdParity> get_allowed_md_parities() const;
 
 	unsigned long get_chunk_size() const;
 	void set_chunk_size(unsigned long chunk_size);

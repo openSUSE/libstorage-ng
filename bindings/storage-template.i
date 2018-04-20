@@ -91,4 +91,5 @@
 
 %template(VectorPtType) std::vector<PtType>;
 %template(VectorMountByType) std::vector<MountByType>;
+%template(VectorMdParity) std::vector<MdParity>;
 

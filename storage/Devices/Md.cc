@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -174,6 +174,13 @@ namespace storage
     Md::set_md_parity(MdParity md_parity)
     {
 	get_impl().set_md_parity(md_parity);
+    }
+
+
+    vector<MdParity>
+    Md::get_allowed_md_parities() const
+    {
+	return get_impl().get_allowed_md_parities();
     }
 
 

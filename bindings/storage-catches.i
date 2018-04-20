@@ -185,6 +185,7 @@
 %catches(storage::Exception) storage::Md::create(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Md::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::Exception) storage::Md::get_allowed_md_parities() const;
 %catches(storage::Exception) storage::Md::get_number() const;
 %catches(storage::Exception) storage::Md::remove_device(BlkDevice *blk_device);
 %catches(storage::Exception) storage::MdContainer::create(Devicegraph *devicegraph, const std::string &name);
