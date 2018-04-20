@@ -88,6 +88,8 @@ namespace storage
 	MdParity get_md_parity() const { return md_parity; }
 	void set_md_parity(MdParity md_parity) { Impl::md_parity = md_parity; }
 
+	vector<MdParity> get_allowed_md_parities() const;
+
 	unsigned long get_chunk_size() const { return chunk_size; }
 	void set_chunk_size(unsigned long chunk_size);
 
@@ -99,6 +101,8 @@ namespace storage
 	void set_metadata(const string& metadata) { Impl::metadata = metadata; }
 
 	unsigned int minimal_number_of_devices() const;
+
+	unsigned int number_of_devices() const;
 
 	bool is_in_etc_mdadm() const { return in_etc_mdadm; }
 	void set_in_etc_mdadm(bool in_etc_mdadm) { Impl::in_etc_mdadm = in_etc_mdadm; }

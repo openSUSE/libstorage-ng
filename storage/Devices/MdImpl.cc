@@ -247,6 +247,45 @@ namespace storage
     }
 
 
+    vector<MdParity>
+    Md::Impl::get_allowed_md_parities() const
+    {
+	switch (md_level)
+	{
+	    case MdLevel::UNKNOWN:
+		return { };
+
+	    case MdLevel::RAID0:
+	    case MdLevel::RAID1:
+	    case MdLevel::RAID4:
+		return { };
+
+	    case MdLevel::RAID5:
+		return { MdParity::DEFAULT, MdParity::LEFT_ASYMMETRIC, MdParity::LEFT_SYMMETRIC,
+			 MdParity::RIGHT_ASYMMETRIC, MdParity::RIGHT_SYMMETRIC, MdParity::FIRST,
+			 MdParity::LAST };
+
+	    case MdLevel::RAID6:
+		return { MdParity::DEFAULT, MdParity::LEFT_ASYMMETRIC, MdParity::LEFT_SYMMETRIC,
+			 MdParity::RIGHT_ASYMMETRIC, MdParity::RIGHT_SYMMETRIC, MdParity::FIRST,
+			 MdParity::LAST, MdParity::LEFT_ASYMMETRIC_6, MdParity::LEFT_SYMMETRIC_6,
+			 MdParity::RIGHT_ASYMMETRIC_6, MdParity::RIGHT_SYMMETRIC_6, MdParity::FIRST_6 };
+
+	    case MdLevel::RAID10:
+		if (number_of_devices() <= 2)
+		    return { MdParity::DEFAULT, MdParity::NEAR_2, MdParity::OFFSET_2, MdParity::FAR_2 };
+		else
+		    return { MdParity::DEFAULT, MdParity::NEAR_2, MdParity::OFFSET_2, MdParity::FAR_2,
+			     MdParity::NEAR_3, MdParity::OFFSET_3, MdParity::FAR_3 };
+
+	    case MdLevel::CONTAINER:
+		return { };
+	}
+
+	return { };
+    }
+
+
     void
     Md::Impl::set_chunk_size(unsigned long chunk_size)
     {
@@ -674,6 +713,18 @@ namespace storage
 	    default:
 		return 0;
 	}
+    }
+
+
+    unsigned int
+    Md::Impl::number_of_devices() const
+    {
+	vector<const BlkDevice*> devices = get_devices();
+
+	return std::count_if(devices.begin(), devices.end(), [](const BlkDevice* blk_device) {
+	    const MdUser* md_user = blk_device->get_impl().get_single_out_holder_of_type<const MdUser>();
+	    return !md_user->is_spare();
+	});
     }
 
 
