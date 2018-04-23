@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-23 07:43+0000\n"
+"PO-Revision-Date: 2018-04-23 10:02+0000\n"
 "Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fr/>\n"
@@ -2210,7 +2210,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr "Swap"
+msgstr "Échange"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -2242,7 +2242,7 @@ msgstr "Démonter %1$s de %2$s"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Démonter le NFS %1$s de %2$s"
+msgstr "Démonter le système de fichiers NFS %1$s de %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
@@ -2250,7 +2250,7 @@ msgstr "Démonter le NFS %1$s de %2$s"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Démonter le système de fichiers Btrfs %1$s de %2$s"
+msgstr "Démonter le système de fichiers Btrfs sur %1$s au point de montage %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
