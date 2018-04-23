@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-20 23:02+0000\n"
-"Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
+"PO-Revision-Date: 2018-04-23 07:43+0000\n"
+"Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fr/>\n"
 "Language: fr\n"
@@ -1726,11 +1726,11 @@ msgstr "Échec du sondage de bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "Sondage des relations de périphériques"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "Échec du sondage des relations de périphériques"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1759,13 +1759,12 @@ msgid "Probing file systems failed"
 msgstr "Échec du sondage des systèmes de fichiers"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing multipath"
-msgstr "DM Multipath"
+msgstr "Sondage Multipath"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "Échec du sondage Multipath"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: progress message
@@ -1778,15 +1777,15 @@ msgstr "Échec du sondage des partitions"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr "Réduire le groupe de volumes %1$s de %2$s"
+msgstr "Réduire le groupe de volumes %1$s en ignorant les volumes physiques"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr "Réduction du groupe de volumes %1$s de %2$s"
+msgstr "Réduction du groupe de volumes %1$s en ignorant les volumes physiques"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
@@ -1989,9 +1988,9 @@ msgstr "Définir le fanion de démarrage du MBR protecteur de la table de partit
 # TLABEL storage_2002_08_07_0216__33
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "Définition du point de montage de %1$s sur %2$s"
+msgstr "Définir les options de réglage de %1$s"
 
 # TLABEL storage_2002_08_07_0216__32
 #. TRANSLATORS: displayed during action,
@@ -2072,9 +2071,9 @@ msgstr "Définition du fanion de démarrage du MBR protecteur de la table de par
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "Définition du type de partition %1$s sur %2$X"
+msgstr "Définition des options de réglage de %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2126,18 +2125,22 @@ msgstr "Réduire le volume physique sur %1$s de %2$s à %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduire le volume logique %1$s du groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduire le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à "
+"%4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduire le volume logique %1$s du groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduire le volume logique de pool léger %1$s du groupe de volumes %2$s de %3$"
+"s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__78
 #. TRANSLATORS: displayed during action,
@@ -2188,18 +2191,22 @@ msgstr "Réduction du volume physique sur %1$s de %2$s à %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduction du volume logique léger %1$s sur le groupe de volumes %2$s de %3$s "
+"à %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduction du volume logique de pool léger %1$s sur le groupe de volumes %2$s "
+"de %3$s à %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
