@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-20 09:57+0000\n"
+"PO-Revision-Date: 2018-04-23 06:01+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) "
 "<https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
@@ -1388,7 +1388,7 @@ msgstr "MiB"
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Mount %1$s at %2$s"
-msgstr "將 %1$s 裝載到 %2$s"
+msgstr "將 %1$s 掛接到 %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1397,7 +1397,7 @@ msgstr "將 %1$s 裝載到 %2$s"
 #. %4$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "在位於 %4$s 的磁碟區群組 %3$s 上掛接 LVM 邏輯磁碟區 %1$s (%2$s)"
+msgstr "將 LVM 邏輯磁碟區 %1$s (%2$s) 掛接到磁碟區群組 %3$s 的 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
@@ -1415,7 +1415,7 @@ msgstr "掛接點"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "在位於 %2$s 的 %1$s 上掛接檔案系統"
+msgstr "將檔案系統掛接到 %1$s 上的 %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1423,7 +1423,7 @@ msgstr "在位於 %2$s 的 %1$s 上掛接檔案系統"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "在 %3$s 處掛接分割區 %1$s (%2$s)"
+msgstr "將分割區 %1$s (%2$s) 掛接到 %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -1431,14 +1431,14 @@ msgstr "在 %3$s 處掛接分割區 %1$s (%2$s)"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "將 %2$s 上的子磁碟區 %1$s 裝載到 %3$s"
+msgstr "將子磁碟區 %1$s 掛接到 %2$s 上的 %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Mounting %1$s at %2$s"
-msgstr "正在將 %1$s 裝載到 %2$s"
+msgstr "正在將 %1$s 掛接到 %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -1446,7 +1446,7 @@ msgstr "正在將 %1$s 裝載到 %2$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "正在將 %2$s 上的子磁碟區 %1$s 裝載到 %3$s"
+msgstr "正在將子磁碟區 %1$s 掛接到 %2$s 上的 %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
@@ -2020,7 +2020,7 @@ msgstr "卸載 %2$s 處的 NFS %1$s"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "卸載 %2$s 處 %1$s 上的檔案系統 btrfs"
+msgstr "卸載 %1$s 上 %2$s 處的檔案系統 btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2028,7 +2028,7 @@ msgstr "卸載 %2$s 處 %1$s 上的檔案系統 btrfs"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "正在 %3$s 處卸載 %2$s 上的子磁碟區 %1$s"
+msgstr "正在卸載 %2$s 上 %3$s 處的子磁碟區 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2043,7 +2043,7 @@ msgstr "正在從 %2$s 卸載 %1$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "正在從 %3$s 卸載 %2$s 上的子磁碟區 %1$s"
+msgstr "正在卸載 %2$s 上 %3$s 處的子磁碟區 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
