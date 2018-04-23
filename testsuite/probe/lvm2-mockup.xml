@@ -474,11 +474,6 @@
       <stdout>E: USEC_INITIALIZED=14057865</stdout>
     </Command>
     <Command>
-      <name>/sbin/udevadm info '/dev/system/pool'</name>
-      <stderr>Unknown device, --name=, --path=, or absolute path in /dev/ or /sys expected.</stderr>
-      <exit-code>4</exit-code>
-    </Command>
-    <Command>
       <name>/sbin/udevadm info '/dev/system/root'</name>
       <stdout>P: /devices/virtual/block/dm-3</stdout>
       <stdout>N: dm-3</stdout>

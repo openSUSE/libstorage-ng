@@ -176,6 +176,8 @@ namespace storage
 	 * Some blk devices can be inactive, e.g. MDs, LVM LVs or LUKSes.
 	 *
 	 * TODO But active has different meanings for those subsystems.
+	 *
+	 * This active here means that the device node exists.
 	 */
 	bool active;
 
