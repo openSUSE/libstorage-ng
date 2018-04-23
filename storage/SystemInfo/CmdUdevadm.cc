@@ -45,9 +45,9 @@ namespace storage
 	// events. So always run 'udevadm settle'.
 	SystemCmd(UDEVADMBIN_SETTLE);
 
-	SystemCmd cmd(UDEVADMBIN " info " + quote(file));
-	if (cmd.retcode() == 0)
-	    parse(cmd.stdout());
+	SystemCmd cmd(UDEVADMBIN " info " + quote(file), SystemCmd::DoThrow);
+
+	parse(cmd.stdout());
     }
 
 
