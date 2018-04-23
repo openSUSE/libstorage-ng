@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-18 10:20+0200\n"
-"PO-Revision-Date: 2018-04-19 13:06+0000\n"
+"PO-Revision-Date: 2018-04-24 01:06+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sv/>\n"
@@ -54,7 +54,7 @@ msgstr "Aktiverar den logiska volymen %1$s (%2$s) i volymgruppen %3$s"
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "Aktiverar LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -506,9 +506,9 @@ msgstr "Skapa partition %1$s (%2$s) som %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) som fysisk LVM-volym"
 
 # SLE12
 #. TRANSLATORS:
@@ -516,26 +516,26 @@ msgstr "Skapa partition %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) för %3$s med %4$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) för swap"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) med %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -566,25 +566,26 @@ msgstr "Skapa delvolym %1$s på %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Skapa delvolym %1$s på %2$s"
+msgstr ""
+"Skapa delvolym %1$s på %2$s med alternativet \"ingen kopia vid skrivning\""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapar logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapar tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapar logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapar tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -602,9 +603,9 @@ msgstr "Skapa volymgrupp %1$s (%2$s)"
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr "Skapa volymgrupp %1$s (%2$s)"
+msgstr "Skapa volymgrupp %1$s (%2$s) med %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -640,9 +641,9 @@ msgstr "Skapar MD %1$s %2$s (%3$s)"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr "Skapar partitionstabell MSDOS på %1$s"
+msgstr "Skapar MSDOS-partitionstabell på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -661,16 +662,16 @@ msgstr "Skapar utökad partition %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "Skapar logisk partition %1$s (%2$s)"
+msgstr "Skapar underförstådd partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "Skapar partitionstabell DASD på %1$s"
+msgstr "Skapar underförstådd partitionstabell på %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -722,17 +723,17 @@ msgstr "Skapar delvolym %1$s på %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapar logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapar tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapar logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapar tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -748,9 +749,8 @@ msgstr ""
 
 # SLE12
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "DASD Partition Table"
-msgstr "Skapa partitionstabell DASD på %1$s"
+msgstr "DASD-partitionstabell"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
@@ -791,17 +791,17 @@ msgstr "Avaktivera multipath %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Avaktivera logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Avaktivera tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Avaktivera logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Avaktivera tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -837,17 +837,17 @@ msgstr "Avaktiverar multipath %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Avaktivera logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Avaktivera tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Avaktivera logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Avaktivera tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -881,9 +881,9 @@ msgstr "Ta bort MD %1$s %2$s (%3$s)"
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete MS-DOS partition table on %1$s"
-msgstr "Ta bort partitionstabell MSDOS på %1$s"
+msgstr "Ta bort MSDOS-partitionstabell på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -894,37 +894,37 @@ msgstr "Ta bort krypterad enhet på %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr "Skapa utökad partition %1$s (%2$s)"
+msgstr "Ta bort utökad partition %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete file system btrfs on %1$s"
-msgstr "Ta bort fysisk volym på %1$s"
+msgstr "Ta bort filsystemet btrfs på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "Ta bort partitionen %1$s (%2$s)"
+msgstr "Ta bort underförstådd partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "Ta bort partitionstabell DASD på %1$s"
+msgstr "Ta bort underförstådd partitionstabell på %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr "Skapa logiska partitionen %1$s (%2$s)"
+msgstr "Ta bort logisk partitionen %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -954,9 +954,9 @@ msgstr "Ta bort fysisk volym på %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr "Skapa primär partition %1$s (%2$s)"
+msgstr "Ta bort primär partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -973,17 +973,17 @@ msgstr "Ta bort delvolym %1$s på %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Ta bort logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Ta bort tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Ta bort logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Ta bort tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1025,9 +1025,9 @@ msgstr "Tar bort MD %1$s %2$s (%3$s)"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
-msgstr "Tar bort partitionstabell MSDOS på %1$s"
+msgstr "Tar bort MSDOS-partitionstabell på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1038,31 +1038,31 @@ msgstr "Tar bort krypterad enhet på %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr "Skapar utökad partition %1$s (%2$s)"
+msgstr "Tar bort utökad partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr "Tar bort partitionen %1$s (%2$s)"
+msgstr "Tar bort underförstådd partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr "Tar bort partitionstabell DASD på %1$s"
+msgstr "Tar bort underförstådd partitionstabell DASD på %1$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr "Skapar logisk partition %1$s (%2$s)"
+msgstr "Tar bort logisk partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1089,9 +1089,9 @@ msgstr "Tar bort fysisk volym på %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr "Skapar primär partition %1$s (%2$s)"
+msgstr "Tar bort primär partition %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1105,17 +1105,17 @@ msgstr "Tar bort delvolym %1$s på %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Ta bort logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Ta bort tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Ta bort logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Ta bort tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1147,9 +1147,9 @@ msgstr "EiB"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Kryptera logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1157,43 +1157,44 @@ msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Öka logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr ""
+"Kryptera logisk LVM-volym %1$s i volymgrupp %2$s från %3$s till %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s)"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Kryptera partition %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Öka partition %1$s från %2$s till %3$s"
+msgstr "Kryptera partition %1$s från %2$s till %3$s med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "Öka partition %1$s från %2$s till %3$s"
+msgstr "Kryptera partition %1$s från (%2$s) med %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
@@ -1217,36 +1218,36 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Formatera logisk volym %1$s (%2$s) i volymgrupp %3$s för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Formatera logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Öka partition %1$s från %2$s till %3$s"
+msgstr "Formatera partition %1$s från %2$s till %3$s med %4$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "Skapa partition %1$s (%2$s)"
+msgstr "Skapa partition %1$s (%2$s) med %3$s"
 
 # SLE12
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
@@ -1314,18 +1315,18 @@ msgstr "Öka fysisk volym på %1$s från %2$s till %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Ökar logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Ökar tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Ökar logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Ökar tunn logisk poolvolym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1374,18 +1375,18 @@ msgstr "Ökar fysisk volym på %1$s från %2$s till %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Ökar logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Ökar tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Ökar logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Ökar tunn logisk poolvolym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1433,9 +1434,8 @@ msgstr ""
 
 # SLE12
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "Skapa partitionstabell MSDOS på %1$s"
+msgstr "MSDOS-partitionstabell"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -1453,16 +1453,16 @@ msgstr "Montera %1$s på %2$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s"
+msgstr "Montera logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s på %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "Montera %1$s på %2$s"
+msgstr "Montera NFS %1$s på %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
@@ -1471,17 +1471,17 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "Monterar %1$s på %2$s"
+msgstr "Monterar filsystem btrfs i %1$s på %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "Öka partition %1$s från %2$s till %3$s"
+msgstr "Montera partition %1$s från %2$s till %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1622,9 +1622,8 @@ msgid "Probing file system on %s failed"
 msgstr ""
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing file systems"
-msgstr "första rotfilsystem"
+msgstr "Testar filsystem"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
@@ -1640,9 +1639,8 @@ msgstr ""
 
 # SLE12
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "Skapar partition %1$s (%2$s)"
+msgstr "Testar partition"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
@@ -1844,9 +1842,9 @@ msgstr "Ange skyddsbootflagga MBR för GPT på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "Ange id för partition %1$s som %2$s"
+msgstr "Ange justeringsalternativ för %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1920,9 +1918,9 @@ msgstr "Anger skyddsbootflagga MBR  från GPT på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "Anger id för partitionen %1$s som %2$s"
+msgstr "Anger justeringsalternativ för %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1971,18 +1969,19 @@ msgstr "Krymp fysisk volym på %1$s från %2$s till %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymper logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Krymper tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymper logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr ""
+"Krymper tunn logisk poolvolym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2031,18 +2030,18 @@ msgstr "Krymper fysisk volym på %1$s från %2$s till %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymper logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Krymper tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Krymper logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Krymper tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2076,16 +2075,16 @@ msgstr "Avmontera %1$s vid %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Avmontera %1$s vid %2$s"
+msgstr "Avmontera NFS %1$s vid %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Avmonterar %1$s vid %2$s"
+msgstr "Avmonterar filsystem btrfs %1$s vid %2$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
