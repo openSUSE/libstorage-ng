@@ -60,6 +60,8 @@ namespace storage
 	: BlkDevice::Impl(make_name(vg_name, lv_name)), lv_name(lv_name), lv_type(lv_type),
 	  uuid(), stripes(lv_type == LvType::THIN ? 0 : 1), stripe_size(0), chunk_size(0)
     {
+	set_active(lv_type != LvType::THIN_POOL);
+
 	set_dm_table_name(make_dm_table_name(vg_name, lv_name));
     }
 
@@ -262,7 +264,7 @@ namespace storage
 	    ST_CHECK_PTR(lvm_lv);
 
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
-	    lvm_lv->get_impl().set_active(lv.active);
+	    lvm_lv->get_impl().set_active(lv.active && lv.lv_type != LvType::THIN_POOL);
 	    lvm_lv->get_impl().probe_pass_1a(prober);
 	}
     }

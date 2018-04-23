@@ -38,6 +38,7 @@
     <LvmLv>
       <sid>45</sid>
       <name>/dev/system/pool</name>
+      <active>false</active>
       <region>
         <length>3840</length>
         <block-size>4194304</block-size>
