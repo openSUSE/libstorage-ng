@@ -6,6 +6,8 @@ DEPENDENCIES =							\
 	${top_srcdir}/bindings/storage-template.i		\
 	${top_srcdir}/storage/Version.h				\
 	${top_srcdir}/storage/Graphviz.h			\
+	${top_srcdir}/storage/SimpleEtcFstab.h			\
+	${top_srcdir}/storage/SimpleEtcCrypttab.h		\
 	${top_srcdir}/storage/Actiongraph.h			\
 	${top_srcdir}/storage/Devicegraph.h			\
 	${top_srcdir}/storage/Devices/BlkDevice.h		\
