@@ -20,9 +20,11 @@ libstorage_ng_la_SOURCES =						\
 	FindBy.h							\
 	Redirect.h							\
 	Graphviz.h			Graphviz.cc			\
-	EtcCrypttab.h			EtcCrypttab.cc			\
 	EtcFstab.h			EtcFstab.cc			\
+	EtcCrypttab.h			EtcCrypttab.cc			\
 	EtcMdadm.h			EtcMdadm.cc			\
+	SimpleEtcFstab.h		SimpleEtcFstab.cc		\
+	SimpleEtcCrypttab.h		SimpleEtcCrypttab.cc		\
 	FreeInfo.h			FreeInfo.cc			\
 	UsedFeatures.h							\
 	Version.h							\
@@ -51,6 +53,8 @@ pkginclude_HEADERS =		\
 	Devicegraph.h		\
 	Actiongraph.h		\
 	Graphviz.h		\
+	SimpleEtcFstab.h	\
+	SimpleEtcCrypttab.h	\
 	FreeInfo.h		\
 	UsedFeatures.h		\
 	CompoundAction.h	\

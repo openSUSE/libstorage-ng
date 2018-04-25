@@ -35,6 +35,8 @@
 %exceptionclass storage::WrongNumberOfParents;
 
 %catches(storage::ParseException, storage::OverflowException) storage::humanstring_to_byte(const std::string &str, bool classic);
+%catches(storage::Exception) storage::read_simple_etc_crypttab(const std::string &filename);
+%catches(storage::Exception) storage::read_simple_etc_fstab(const std::string &filename);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(Device *device);

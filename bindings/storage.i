@@ -108,6 +108,8 @@ use_ostream(storage::PartitionSlot);
 #include "storage/SystemInfo/Arch.h"
 
 #include "storage/Graphviz.h"
+#include "storage/SimpleEtcFstab.h"
+#include "storage/SimpleEtcCrypttab.h"
 #include "storage/Devicegraph.h"
 #include "storage/Actiongraph.h"
 #include "storage/Environment.h"
@@ -190,6 +192,8 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/SystemInfo/Arch.h"
 
 %include "../../storage/Graphviz.h"
+%include "../../storage/SimpleEtcFstab.h"
+%include "../../storage/SimpleEtcCrypttab.h"
 %include "../../storage/Devicegraph.h"
 %include "../../storage/Actiongraph.h"
 %include "../../storage/Environment.h"

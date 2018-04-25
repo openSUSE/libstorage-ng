@@ -29,7 +29,6 @@
 #include <vector>
 
 #include "storage/Utils/ColumnConfigFile.h"
-#include "storage/Utils/Enum.h"
 #include "storage/Filesystems/Filesystem.h"
 
 #define ETC_FSTAB "/etc/fstab"
