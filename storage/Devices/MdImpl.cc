@@ -48,6 +48,7 @@
 #include "storage/Utils/Math.h"
 #include "storage/UsedFeatures.h"
 #include "storage/EtcMdadm.h"
+#include "storage/Utils/CallbacksImpl.h"
 
 
 namespace storage
@@ -373,38 +374,42 @@ namespace storage
     void
     Md::Impl::probe_mds(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
+	SystemInfo& system_info = prober.get_system_info();
+
+	for (const string& short_name : prober.get_sys_block_entries().mds)
 	{
 	    string name = DEV_DIR "/" + short_name;
-	    if (!is_valid_sysfs_name(name))
-		continue;
 
-	    // workaround for https://bugzilla.suse.com/show_bug.cgi?id=1030896
-	    const ProcMdstat& proc_mdstat = prober.get_system_info().getProcMdstat();
-	    if (!proc_mdstat.has_entry(short_name))
-		continue;
-
-	    const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(name);
-	    if (!mdadm_detail.devname.empty())
-		name = DEV_MD_DIR "/" + mdadm_detail.devname;
-
-	    const ProcMdstat::Entry& entry = prober.get_system_info().getProcMdstat().get_entry(short_name);
-
-	    if (entry.is_container)
+	    try
 	    {
-		MdContainer* md_container = MdContainer::create(prober.get_system(), name);
-		md_container->get_impl().probe_pass_1a(prober);
+		const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(name);
+		if (!mdadm_detail.devname.empty())
+		    name = DEV_MD_DIR "/" + mdadm_detail.devname;
+
+		const ProcMdstat::Entry& entry = system_info.getProcMdstat().get_entry(short_name);
+
+		if (entry.is_container)
+		{
+		    MdContainer* md_container = MdContainer::create(prober.get_system(), name);
+		    md_container->get_impl().probe_pass_1a(prober);
+		}
+		else if (entry.has_container)
+		{
+		    MdMember* md_member = MdMember::create(prober.get_system(), name);
+		    md_member->get_impl().probe_pass_1a(prober);
+		}
+		else
+		{
+		    Md* md = Md::create(prober.get_system(), name);
+		    md->get_impl().probe_pass_1a(prober);
+		}
 	    }
-	    else if (entry.has_container)
-	    {
-		MdMember* md_member = MdMember::create(prober.get_system(), name);
-		md_member->get_impl().probe_pass_1a(prober);
-	    }
-	    else
-	    {
-		Md* md = Md::create(prober.get_system(), name);
-		md->get_impl().probe_pass_1a(prober);
-	    }
+	    catch (const Exception& exception)
+            {
+                // TRANSLATORS: error message
+                error_callback(prober.get_probe_callbacks(), sformat(_("Probing MD RAID %s failed"),
+								     name.c_str()), exception);
+            }
 	}
     }
 

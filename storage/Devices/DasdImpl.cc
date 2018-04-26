@@ -35,6 +35,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/CallbacksImpl.h"
 
 
 namespace storage
@@ -177,23 +178,21 @@ namespace storage
     void
     Dasd::Impl::probe_dasds(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
+	for (const string& short_name : prober.get_sys_block_entries().dasds)
 	{
 	    string name = DEV_DIR "/" + short_name;
 
-	    if (!boost::starts_with(name, DEV_DIR "/dasd"))
-		continue;
-
-	    const CmdUdevadmInfo udevadminfo = prober.get_system_info().getCmdUdevadmInfo(name);
-
-	    const File range_file = prober.get_system_info().getFile(SYSFS_DIR + udevadminfo.get_path() +
-								     "/ext_range");
-
-	    if (range_file.get<int>() <= 1)
-		continue;
-
-	    Dasd* dasd = Dasd::create(prober.get_system(), name);
-	    dasd->get_impl().probe_pass_1a(prober);
+	    try
+            {
+		Dasd* dasd = Dasd::create(prober.get_system(), name);
+		dasd->get_impl().probe_pass_1a(prober);
+            }
+            catch (const Exception& exception)
+            {
+                // TRANSLATORS: error message
+                error_callback(prober.get_probe_callbacks(), sformat(_("Probing DASD %s failed"),
+								     name.c_str()), exception);
+            }
 	}
     }
 
