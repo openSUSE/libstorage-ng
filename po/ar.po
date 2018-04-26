@@ -6,17 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
-"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ar/>\n"
+"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-master/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
-"&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
 "X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
@@ -39,8 +37,7 @@ msgstr "تنشيط وحدة التخزين المنطقية %1$s (‏%2$s) بم�
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
+msgstr "تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -48,9 +45,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة التخزين "
-"%3$s"
+msgstr "تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -98,9 +93,7 @@ msgstr "فشل تنشيط تعدد المسارات"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة "
-"التخزين %3$s"
+msgstr "يتم الآن تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -108,9 +101,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة "
-"التخزين %3$s"
+msgstr "يتم الآن تنشيط مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدة التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -292,9 +283,7 @@ msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) �
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM %4$s%1$s (‏%2$s) بمجموعة وحدات التخزين %3$s "
-"لـ %4$s مع %5$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM %4$s%1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ %4$s مع %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -302,9 +291,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s "
-"للتبادل"
+msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -313,9 +300,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s مع "
-"%4$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -361,9 +346,7 @@ msgstr "إنشاء وحدة التخزين المنطقية LVM %1$s (‏%2$s) �
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
-"%3$s لـ %4$s مع %5$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ %4$s مع %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -371,8 +354,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s للتبادل"
+msgstr "إنشاء وحدة التخزين المنطقية %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s للتبادل"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -381,9 +363,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين "
-"%3$s مع %4$s"
+msgstr "إنشاء وحدة التخزين المنطقية LVM المشفرة %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s مع %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -558,8 +538,7 @@ msgstr "إنشاء وحدة التخزين الفرعية %1$s على %2$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"إنشاء وحدة التخزين الفرعية %1$s على %2$s بالخيار \"عدم النسخ عند الكتابة\""
+msgstr "إنشاء وحدة التخزين الفرعية %1$s على %2$s بالخيار \"عدم النسخ عند الكتابة\""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -567,8 +546,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr "إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -576,9 +554,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"إنشاء مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدات التخزين "
-"%3$s"
+msgstr "إنشاء مجمع وحدة التخزين المنطقية التابع %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -706,9 +682,7 @@ msgstr "يتم الآن إنشاء وحدة تخزين فرعية %1$s على %2
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
-"التخزين %3$s"
+msgstr "يتم الآن إنشاء وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -716,9 +690,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن إنشاء مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
-"وحدات التخزين %3$s"
+msgstr "يتم الآن إنشاء مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -774,9 +746,7 @@ msgstr "إلغاء تنشيط تعدد المسارات %1$s (‏%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
-"التخزين %3$s"
+msgstr "إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -784,9 +754,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"إلغاء تنشيط مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
-"التخزين %3$s"
+msgstr "إلغاء تنشيط مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -823,9 +791,7 @@ msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
-"وحدات التخزين %3$s"
+msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -833,9 +799,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة "
-"وحدات التخزين %3$s"
+msgstr "يتم الآن إلغاء تنشيط وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -957,8 +921,7 @@ msgstr "حذف وحدة التخزين الفرعية %1$s على %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
+msgstr "حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -966,9 +929,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين "
-"%3$s"
+msgstr "حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1085,9 +1046,7 @@ msgstr "يتم الآن حذف وحدة تخزين فرعية %1$s على %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
-"التخزين %3$s"
+msgstr "يتم الآن حذف وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1095,9 +1054,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"يتم الآن حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات "
-"التخزين %3$s"
+msgstr "يتم الآن حذف مجمع وحدة التخزين المنطقية التابعة %1$s (‏%2$s) في مجموعة وحدات التخزين %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1138,9 +1095,7 @@ msgstr "تشفير وحدة التخزين المنطقية LVM %1$s (‏%2$s) �
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"تشفير وحدة التخزين المنطقية %1$s (%2$s) في مجموعة وحدات التخزين %3$s لـ %4$s "
-"بـ %5$s"
+msgstr "تشفير وحدة التخزين المنطقية %1$s (%2$s) في مجموعة وحدات التخزين %3$s لـ %4$s بـ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1149,9 +1104,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"تشفير وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ "
-"%4$s"
+msgstr "تشفير وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1201,9 +1154,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ "
-"%4$s بـ %5$s"
+msgstr "تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s لـ %4$s بـ %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1212,9 +1163,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ "
-"%4$s"
+msgstr "تنسيق وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s بـ %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1298,9 +1247,7 @@ msgstr "زيادة حجم وحدة التخزين الفعلية على %1$s م�
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"زيادة حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من "
-"%3$s إلى %4$s"
+msgstr "زيادة حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1309,9 +1256,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+msgstr "زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1362,9 +1307,7 @@ msgstr "تتم الآن زيادة حجم وحدة التخزين الفعلية
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+msgstr "زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1373,9 +1316,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"تتم الآن زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
-"التخزين %2$s من %3$s إلى %4$s"
+msgstr "تتم الآن زيادة حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1442,9 +1383,7 @@ msgstr "توصيل %1$s في %2$s"
 #. %4$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr ""
-"تركيب وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s عند "
-"%4$s"
+msgstr "تركيب وحدة التخزين المنطقية LVM %1$s (‏%2$s) بمجموعة وحدات التخزين %3$s عند %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
@@ -1523,6 +1462,11 @@ msgstr "قسم"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "فشل بحث DASD"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "يتم الآن بحث DASD"
@@ -1555,6 +1499,11 @@ msgstr "يتم الآن بحث LVM"
 msgid "Probing LVM failed"
 msgstr "فشل بحث LVM"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "فشل بحث MD RAID"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "يتم الآن بحث MD RAID"
@@ -1574,6 +1523,11 @@ msgstr "فشل بحث NFS"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "يتم الآن بحث bcache"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "فشل بحث bcache"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1599,6 +1553,11 @@ msgstr "يتم الآن فحص الأقراص"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "فشل بحث الأقراص"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "فشل بحث LVM"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1950,9 +1909,7 @@ msgstr "تقليص حجم وحدة التخزين الفعلية على %1$s م�
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من "
-"%3$s إلى %4$s"
+msgstr "تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1961,9 +1918,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"تقليص حجم مجمع وحدة التخزين المنطقية التابع %1$s في مجموعة وحدات التخزين %2$"
-"s من %3$s إلى %4$s"
+msgstr "تقليص حجم مجمع وحدة التخزين المنطقية التابع %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2014,9 +1969,7 @@ msgstr "يتم الآن تقليص حجم وحدة التخزين الفعلية
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"يتم الآن تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
-"التخزين %2$s من %3$s إلى %4$s"
+msgstr "يتم الآن تقليص حجم وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2025,9 +1978,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"يتم الآن تقليص حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات "
-"التخزين %2$s من %3$s إلى %4$s"
+msgstr "يتم الآن تقليص حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

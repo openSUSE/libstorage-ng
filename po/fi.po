@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-02-23 00:02+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-master/fi/>\n"
@@ -1471,6 +1471,11 @@ msgstr ""
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing DASD %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr ""
@@ -1503,6 +1508,11 @@ msgstr ""
 msgid "Probing LVM failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing MD RAID %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr ""
@@ -1521,6 +1531,11 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing bcache %s failed"
 msgstr ""
 
 #. TRANSLATORS: error message
@@ -1547,6 +1562,11 @@ msgstr ""
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "ensimmäinen juuritiedostojärjestelmä"
 
 #. TRANSLATORS: error message
 #, c-format

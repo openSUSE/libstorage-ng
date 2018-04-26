@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2009-08-14 15:05+0200\n"
 "Last-Translator: Olav Pettershagen <olav.pet@gmail.com>\n"
 "Language-Team: Norwegian Bokmål <opensuse-translation@opensuse.org>\n"
@@ -1467,6 +1467,11 @@ msgstr ""
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing DASD %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr ""
@@ -1499,6 +1504,11 @@ msgstr ""
 msgid "Probing LVM failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing MD RAID %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr ""
@@ -1517,6 +1527,11 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing bcache %s failed"
 msgstr ""
 
 #. TRANSLATORS: error message
@@ -1543,6 +1558,11 @@ msgstr ""
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Opprett RAID-partisjon %1$s (%2$s)"
 
 #. TRANSLATORS: error message
 #, c-format

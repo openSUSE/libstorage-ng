@@ -12,11 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-19 00:03+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
-"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/hu/>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -53,9 +52,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) aktiválása a(z) %3$s kötetcsoportb
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) aktiválása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) aktiválása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -113,9 +110,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) aktiválása a(z) %3$s kötetcsoportb
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) aktiválása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) aktiválása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -300,9 +295,7 @@ msgstr "%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$"
-"s számára a(z) %5$s fájlrendszerrel"
+msgstr "%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$s számára a(z) %5$s fájlrendszerrel"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -311,9 +304,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a "
-"lapozófájlhoz"
+msgstr "%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a lapozófájlhoz"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -323,9 +314,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$"
-"s fájlrendszerrel"
+msgstr "%1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$s fájlrendszerrel"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -362,9 +351,7 @@ msgstr "MS-DOS partíciós tábla létrehozása a(z) %1$s eszközön"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -375,9 +362,7 @@ msgstr ""
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban a(z) %4$s csatlakoztatási ponthoz (%5$s fájlrendszer)"
+msgstr "Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a(z) %4$s csatlakoztatási ponthoz (%5$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -386,9 +371,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban a lapozófájlhoz"
+msgstr "Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban a lapozófájlhoz"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -398,9 +381,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban (%4$s fájlrendszer)"
+msgstr "Titkosított %1$s LVM logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -426,9 +407,7 @@ msgstr "%1$s titkosított partíció (%2$s) létrehozása LVM fizikai kötetkén
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"%1$s titkosított partíció (%2$s) létrehozása a(z) %3$s csatlakoztatási "
-"ponthoz (%4$s fájlrendszer)"
+msgstr "%1$s titkosított partíció (%2$s) létrehozása a(z) %3$s csatlakoztatási ponthoz (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -472,9 +451,7 @@ msgstr "Btrfs fájlrendszer létrehozása a(z) %1$s eszközön"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
-"Btrfs fájlrendszer létrehozása a(z) %1$s eszközön, és csatlakoztatása a(z) "
-"%2$s csatlakoztatási ponton"
+msgstr "Btrfs fájlrendszer létrehozása a(z) %1$s eszközön, és csatlakoztatása a(z) %2$s csatlakoztatási ponton"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -547,9 +524,7 @@ msgstr "%1$s partíció (%2$s) létrehozása LVM fizikai kötetként"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"%1$s partíció (%2$s) létrehozása a(z) %3$s csatlakoztatási ponthoz %4$s "
-"fájlrendszerrel"
+msgstr "%1$s partíció (%2$s) létrehozása a(z) %3$s csatlakoztatási ponthoz %4$s fájlrendszerrel"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -597,9 +572,7 @@ msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" "
-"beállítással"
+msgstr "%1$s alkötet létrehozása a(z) %2$s eszközön \"íráskor nincs másolás\" beállítással"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -617,9 +590,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoport
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -764,9 +735,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoport
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) létrehozása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) létrehozása a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -832,9 +801,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsopor
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) inaktiválása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -881,9 +848,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsopor
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) inaktiválása a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) inaktiválása a(z) %3$s kötetcsoportban"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -1020,9 +985,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) törlése a(z) %3$s kötetcsoportban"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) törlése a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) törlése a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1154,9 +1117,7 @@ msgstr "%1$s vékony logikai kötet (%2$s) törlése a(z) %3$s kötetcsoportban"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet (%2$s) törlése a(z) %3$s "
-"kötetcsoportban"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet (%2$s) törlése a(z) %3$s kötetcsoportban"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1200,9 +1161,7 @@ msgstr "%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban a(z) %4$"
-"s csatlakoztatási pontnál (%5$s fájlrendszer)"
+msgstr "%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban a(z) %4$s csatlakoztatási pontnál (%5$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1212,9 +1171,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban (%4$s "
-"fájlrendszer)"
+msgstr "%1$s LVM logikai kötet (%2$s) titkosítása a(z) %3$s kötetcsoportban (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1232,9 +1189,7 @@ msgstr "%1$s partíció (%2$s) titkosítása"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"%1$s partíció (%2$s) titkosítása a(z) %3$s csatlakoztatási pontnál (%4$s "
-"fájlrendszer)"
+msgstr "%1$s partíció (%2$s) titkosítása a(z) %3$s csatlakoztatási pontnál (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1270,9 +1225,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) formázása a(z) %3$s kötetcsoportban a(z) %4$s "
-"csatlakoztatási ponthoz (%5$s fájlrendszer)"
+msgstr "%1$s LVM logikai kötet (%2$s) formázása a(z) %3$s kötetcsoportban a(z) %4$s csatlakoztatási ponthoz (%5$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1282,9 +1235,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) formázása a(z) %3$s kötetcsoportban (%4$s "
-"fájlrendszer)"
+msgstr "%1$s LVM logikai kötet (%2$s) formázása a(z) %3$s kötetcsoportban (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1294,9 +1245,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"%1$s partíció (%2$s) formázása a(z) %3$s csatlakoztatási pontnál (%4$s "
-"fájlrendszer)"
+msgstr "%1$s partíció (%2$s) formázása a(z) %3$s csatlakoztatási pontnál (%4$s fájlrendszer)"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1379,9 +1328,7 @@ msgstr "Fizikai kötet növelése a(z) %1$s eszközön, régi méret: %2$s, új 
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$"
-"s, új méret: %4$s"
+msgstr "%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
@@ -1391,9 +1338,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet növelése a(z) %2$s "
-"kötetcsoportban, régi méret: %3$s, új méret: %4$s"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -1448,9 +1393,7 @@ msgstr "Fizikai kötet növelés a(z) %1$s eszközön, régi méret: %2$s, új m
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$"
-"s, új méret: %4$s"
+msgstr "%1$s vékony logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új méret: %4$s"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -1460,9 +1403,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Vékony készlethez tartozó %1$s logikai kötet növelése a(z) %2$s "
-"kötetcsoportban, régi méret: %3$s, új méret: %4$s"
+msgstr "Vékony készlethez tartozó %1$s logikai kötet növelése a(z) %2$s kötetcsoportban, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1537,9 +1478,7 @@ msgstr "%1$s csatlakoztatása a(z) %2$s csatlakoztatási ponton"
 #. %4$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr ""
-"%1$s LVM logikai kötet (%2$s) csatlakoztatása a(z) %3$s kötetcsoportban a(z) "
-"%4$s csatlakoztatási ponton"
+msgstr "%1$s LVM logikai kötet (%2$s) csatlakoztatása a(z) %3$s kötetcsoportban a(z) %4$s csatlakoztatási ponton"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
@@ -1557,9 +1496,7 @@ msgstr "Csatlakoztatási pont"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr ""
-"Btrfs fájlrendszer csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
-"csatlakoztatási ponton"
+msgstr "Btrfs fájlrendszer csatlakoztatása a(z) %1$s eszközön a(z) %2$s csatlakoztatási ponton"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS:
@@ -1622,6 +1559,11 @@ msgstr "Partíció"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "DASD ellenőrzése sikertelen"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "DASD ellenőrzése"
@@ -1654,6 +1596,11 @@ msgstr "LVM ellenőrzése"
 msgid "Probing LVM failed"
 msgstr "LVM ellenőrzése sikertelen"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "MD RAID ellenőrzése sikertelen"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "MD RAID ellenőrzése"
@@ -1673,6 +1620,11 @@ msgstr "NFS ellenőrzése sikertelen"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Bcache ellenőrzése"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "Bcache ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1698,6 +1650,11 @@ msgstr "Lemezek ellenőrzése"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "Lemezek ellenőrzése sikertelen"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "LVM ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2052,9 +2009,7 @@ msgstr "A(z) %1$s eszközön lévő fizikai kötet méretének csökkentése %2$
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"A(z) %2$s kötetcsoportban lévő %1$s vékony logikai kötet méretének "
-"csökkentése, régi méret: %3$s, új méret: %4$s"
+msgstr "A(z) %2$s kötetcsoportban lévő %1$s vékony logikai kötet méretének csökkentése, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2063,9 +2018,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"A(z) %2$s kötetcsoportban lévő, vékony készlethez tartozó %1$s logikai kötet "
-"méretének csökkentése, régi méret: %3$s, új méret: %4$s"
+msgstr "A(z) %2$s kötetcsoportban lévő, vékony készlethez tartozó %1$s logikai kötet méretének csökkentése, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2116,9 +2069,7 @@ msgstr "A(z) %1$s eszközön lévő fizikai kötet méretének csökkentése %2$
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"A(z) %2$s kötetcsoportban lévő %1$s vékony logikai kötet méretének "
-"csökkentése, régi méret: %3$s, új méret: %4$s"
+msgstr "A(z) %2$s kötetcsoportban lévő %1$s vékony logikai kötet méretének csökkentése, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2127,9 +2078,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"A(z) %2$s kötetcsoportban lévő, vékony készlethez tartozó %1$s logikai kötet "
-"méretének csökkentése, régi méret: %3$s, új méret: %4$s"
+msgstr "A(z) %2$s kötetcsoportban lévő, vékony készlethez tartozó %1$s logikai kötet méretének csökkentése, régi méret: %3$s, új méret: %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2170,9 +2119,7 @@ msgstr "%1$s NFS leválasztása a(z) %2$s csatlakoztatási ponton"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr ""
-"Btrfs fájlrendszer leválasztása a(z) %1$s eszközön a(z) %2$s csatlakoztatási "
-"ponton"
+msgstr "Btrfs fájlrendszer leválasztása a(z) %1$s eszközön a(z) %2$s csatlakoztatási ponton"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),

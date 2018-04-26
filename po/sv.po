@@ -9,11 +9,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-24 11:13+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sv/>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -568,8 +567,7 @@ msgstr "Skapa delvolym %1$s på %2$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"Skapa delvolym %1$s på %2$s med alternativet \"ingen kopia vid skrivning\""
+msgstr "Skapa delvolym %1$s på %2$s med alternativet \"ingen kopia vid skrivning\""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1159,8 +1157,7 @@ msgstr "Kryptera logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Kryptera logisk LVM-volym %1$s i volymgrupp %2$s från %3$s till %4$s med %5$s"
+msgstr "Kryptera logisk LVM-volym %1$s i volymgrupp %2$s från %3$s till %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1539,6 +1536,11 @@ msgstr "Partition"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "Sökning av DASD:er misslyckades"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "Söker DASD:er"
@@ -1571,6 +1573,11 @@ msgstr "Söker LVM"
 msgid "Probing LVM failed"
 msgstr "Det gick inte att söka LVM"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "Det gick inte att söka MD RAID:er"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "Söker MD RAID:er"
@@ -1590,6 +1597,11 @@ msgstr "Det gick inte att söka NFS"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Söker bcache"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "Det gick inte att söka bcache"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1615,6 +1627,11 @@ msgstr "Söker diskar"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "Det gick inte att söka diskar"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Det gick inte att söka LVM"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1980,8 +1997,7 @@ msgstr "Krymper tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Krymper tunn logisk poolvolym %1$s i volymgrupp %2$s från %3$s till %4$s"
+msgstr "Krymper tunn logisk poolvolym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
