@@ -32,6 +32,8 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
+#include "storage/Utils/CallbacksImpl.h"
+#include "storage/Storage.h"
 
 
 namespace storage
@@ -94,14 +96,21 @@ namespace storage
     void
     Bcache::Impl::probe_bcaches(Prober& prober)
     {
-	for (const string& short_name : prober.get_system_info().getDir(SYSFS_DIR "/block"))
+	for (const string& short_name : prober.get_sys_block_entries().bcaches)
 	{
 	    string name = DEV_DIR "/" + short_name;
-	    if (!is_valid_name(name))
-		continue;
 
-	    Bcache* bcache = Bcache::create(prober.get_system(), name);
-	    bcache->get_impl().probe_pass_1a(prober);
+	    try
+	    {
+		Bcache* bcache = Bcache::create(prober.get_system(), name);
+		bcache->get_impl().probe_pass_1a(prober);
+	    }
+	    catch (const Exception& exception)
+	    {
+		// TRANSLATORS: error message
+		error_callback(prober.get_probe_callbacks(), sformat(_("Probing bcache %s failed"),
+								     name.c_str()), exception);
+	    }
 	}
     }
 

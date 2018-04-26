@@ -96,31 +96,12 @@ namespace storage
     void
     Disk::Impl::probe_disks(Prober& prober)
     {
-	SystemInfo& system_info = prober.get_system_info();
-
-	for (const string& short_name : system_info.getDir(SYSFS_DIR "/block"))
+	for (const string& short_name : prober.get_sys_block_entries().disks)
 	{
 	    string name = DEV_DIR "/" + short_name;
 
-	    if (Md::Impl::is_valid_sysfs_name(name) || Bcache::Impl::is_valid_name(name) ||
-		boost::starts_with(name, DEV_DIR "/loop") || boost::starts_with(name, DEV_DIR "/dasd") ||
-		boost::starts_with(name, DEV_DIR "/dm-"))
-		continue;
-
-	    // skip disks without node in /dev (bsc #1076971)
-	    const CmdStat cmd_stat = system_info.getCmdStat(name);
-	    if (!cmd_stat.is_blk())
-		continue;
-
 	    try
 	    {
-		const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
-
-		const File range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
-							    "/ext_range");
-		if (range_file.get<int>() <= 1)
-		    continue;
-
 		Disk* disk = Disk::create(prober.get_system(), name);
 		disk->get_impl().probe_pass_1a(prober);
 	    }

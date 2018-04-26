@@ -41,6 +41,27 @@ namespace storage
     class Device;
 
 
+    struct SysBlockEntries
+    {
+	vector<string> disks;
+	vector<string> dasds;
+	vector<string> mds;
+	vector<string> bcaches;
+    };
+
+
+    /**
+     * Read entries in /sys/block and based on the name and further
+     * information place the name (excluding starting /dev) one of the vectors
+     * in SysBlockEntries.
+     *
+     * Note: It is important that additional check as to whether create a Node
+     * in the devicegraph are done in probe_sys_block_entries since the result
+     * is also used for other functions (e.g. light_probe).
+     */
+    SysBlockEntries probe_sys_block_entries(SystemInfo& system_info);
+
+
     /**
      * Class for probing.
      */
@@ -68,6 +89,8 @@ namespace storage
 	 */
 	void add_holder(const string& name, Device* b, add_holder_func_t add_holder_func);
 
+	const SysBlockEntries& get_sys_block_entries() const { return sys_block_entries; }
+
     private:
 
 	const ProbeCallbacks* probe_callbacks;
@@ -75,6 +98,8 @@ namespace storage
 	Devicegraph* system;
 
 	SystemInfo& system_info;
+
+	SysBlockEntries sys_block_entries;
 
 	struct pending_holder_t
 	{

@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Prober.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -46,6 +48,78 @@
 
 namespace storage
 {
+
+
+    SysBlockEntries
+    probe_sys_block_entries(SystemInfo& system_info)
+    {
+	SysBlockEntries sys_block_entries;
+
+	for (const string& short_name : system_info.getDir(SYSFS_DIR "/block"))
+	{
+	    if (boost::starts_with(short_name, "loop") || boost::starts_with(short_name, "dm-"))
+		continue;
+
+	    string name = DEV_DIR "/" + short_name;
+
+	    if (Md::Impl::is_valid_sysfs_name(name))
+	    {
+		// workaround for bsc #1030896
+		const ProcMdstat& proc_mdstat = system_info.getProcMdstat();
+		if (!proc_mdstat.has_entry(short_name))
+		    continue;
+
+		sys_block_entries.mds.push_back(short_name);
+
+		continue;
+	    }
+
+	    if (Bcache::Impl::is_valid_name(name))
+	    {
+		sys_block_entries.bcaches.push_back(short_name);
+
+		continue;
+	    }
+
+	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
+
+	    const File range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
+							"/ext_range");
+
+	    if (boost::starts_with(short_name, "dasd"))
+	    {
+		if (range_file.get<int>() <= 1)
+		    continue;
+
+		sys_block_entries.dasds.push_back(short_name);
+
+		continue;
+	    }
+
+	    if (true)		// for disks all remaining names are allowed
+	    {
+		// skip disks without node in /dev (bsc #1076971)
+		const CmdStat cmd_stat = system_info.getCmdStat(name);
+		if (!cmd_stat.is_blk())
+		    continue;
+
+		if (range_file.get<int>() <= 1)
+		    continue;
+
+		sys_block_entries.disks.push_back(short_name);
+
+		continue;
+	    }
+	}
+
+	y2mil("sys_block_entries.disks " << sys_block_entries.disks);
+	y2mil("sys_block_entries.dasds " << sys_block_entries.dasds);
+	y2mil("sys_block_entries.mds " << sys_block_entries.mds);
+	y2mil("sys_block_entries.bcaches " << sys_block_entries.bcaches);
+
+	return sys_block_entries;
+    }
+
 
     Prober::Prober(const ProbeCallbacks* probe_callbacks, Devicegraph* system, SystemInfo& system_info)
 	: probe_callbacks(probe_callbacks), system(system), system_info(system_info)
@@ -87,6 +161,16 @@ namespace storage
 	 *
 	 * Pass 2:  Probe filesystems and mount points.
 	 */
+
+	try
+	{
+	    sys_block_entries = probe_sys_block_entries(system_info);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing failed"), exception);
+	}
 
 	// Pass 1a
 
