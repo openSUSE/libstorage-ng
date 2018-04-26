@@ -69,5 +69,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Utils/Topology.h			\
 	${top_srcdir}/storage/Utils/Alignment.h			\
 	${top_srcdir}/storage/Utils/Remote.h			\
-	${top_srcdir}/storage/Utils/Callbacks.h
+	${top_srcdir}/storage/Utils/Callbacks.h			\
+	${top_srcdir}/storage/Utils/LightProbe.h		\
+	${top_srcdir}/storage/Utils/Lock.h
 

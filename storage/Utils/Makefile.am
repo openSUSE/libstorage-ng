@@ -35,6 +35,7 @@ libutils_la_SOURCES =					\
 	StorageTmpl.h					\
 	StorageTypes.h					\
 	SystemCmd.cc		SystemCmd.h		\
+	LightProbe.cc		LightProbe.h		\
 	Mockup.cc		Mockup.h		\
 	Remote.cc		Remote.h		\
 	XmlFile.h		XmlFile.cc		\
@@ -61,6 +62,7 @@ pkginclude_HEADERS =		\
 	Lock.h			\
 	Region.h		\
 	Topology.h		\
+	LightProbe.h		\
 	Alignment.h		\
 	Remote.h		\
 	Callbacks.h
