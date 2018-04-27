@@ -11,9 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-18 23:15+0000\n"
+"PO-Revision-Date: 2018-04-27 10:58+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1467,9 +1468,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "DASD の検出に失敗しました"
+msgstr "DASD %s の検出に失敗しました"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1504,9 +1505,9 @@ msgid "Probing LVM failed"
 msgstr "LVM の検出に失敗しました"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "MD RAID の検出に失敗しました"
+msgstr "MD RAID %s の検出に失敗しました"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1529,9 +1530,9 @@ msgid "Probing bcache"
 msgstr "bcache を検出しています"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "bcache の検出に失敗しました"
+msgstr "bcache %s の検出に失敗しました"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1559,9 +1560,8 @@ msgid "Probing disks failed"
 msgstr "ディスクの検出に失敗しました"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "LVM の検出に失敗しました"
+msgstr "検出に失敗しました"
 
 #. TRANSLATORS: error message
 #, c-format
