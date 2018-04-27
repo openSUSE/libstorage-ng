@@ -15,9 +15,10 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-20 08:44+0000\n"
+"PO-Revision-Date: 2018-04-27 09:38+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1472,9 +1473,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Bevoelen DASD's is mislukt"
+msgstr "Aftasten DASD %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1509,9 +1510,9 @@ msgid "Probing LVM failed"
 msgstr "Bevoelen LVM is mislukt"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Bevoelen MD RAID's is mislukt"
+msgstr "Aftasten MD RAID %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1534,9 +1535,9 @@ msgid "Probing bcache"
 msgstr "Bcache bevoelen"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Bevoelen bcache is mislukt"
+msgstr "Aftasten bcache %s is mislukt"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1564,9 +1565,8 @@ msgid "Probing disks failed"
 msgstr "Bevoelen schijven is mislukt"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Bevoelen LVM is mislukt"
+msgstr "Aftasten is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
