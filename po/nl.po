@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-27 09:38+0000\n"
+"PO-Revision-Date: 2018-04-27 12:01+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/nl/>\n"
@@ -1479,35 +1479,35 @@ msgstr "Aftasten DASD %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr "DASD's bevoelen"
+msgstr "DASD's aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr "Bevoelen DASD's is mislukt"
+msgstr "Aftasten DASD's is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr "DM RAID's bevoelen"
+msgstr "DM RAID's aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr "Bevoelen DM RAID's is mislukt"
+msgstr "Aftasten DM RAID's is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr "LUKS bevoelen"
+msgstr "LUKS aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr "Bevoelen LUKS is mislukt"
+msgstr "Aftasten LUKS is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr "LVM bevoelen"
+msgstr "LVM aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr "Bevoelen LVM is mislukt"
+msgstr "Aftasten LVM is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1516,23 +1516,23 @@ msgstr "Aftasten MD RAID %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr "MD RAID's bevoelen"
+msgstr "MD RAID's aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr "Bevoelen MD RAID's is mislukt"
+msgstr "Aftasten MD RAID's is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr "NFS bevoelen"
+msgstr "NFS aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr "Bevoelen NFS is mislukt"
+msgstr "Aftasten NFS is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr "Bcache bevoelen"
+msgstr "Bcache aftasten"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1541,28 +1541,28 @@ msgstr "Aftasten bcache %s is mislukt"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr "Bevoelen bcache is mislukt"
+msgstr "Aftasten bcache is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr "Apparaatrelaties bevoelen"
+msgstr "Apparaatrelaties aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr "Bevoelen apparaatrelaties is mislukt"
+msgstr "Aftasten apparaatrelaties is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr "Bevoelen schijf %s is mislukt"
+msgstr "Aftasten schijf %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr "Schijven bevoelen"
+msgstr "Schijven aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr "Bevoelen schijven is mislukt"
+msgstr "Aftasten schijven is mislukt"
 
 #. TRANSLATORS: error message
 msgid "Probing failed"
@@ -1571,31 +1571,31 @@ msgstr "Aftasten is mislukt"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr "Bevoelen van bestandssysteem op %s is mislukt"
+msgstr "Aftasten van bestandssysteem op %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
-msgstr "Bestandssystemen bevoelen"
+msgstr "Bestandssystemen aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr "Bevoelen bestandssystemen is mislukt"
+msgstr "Aftasten bestandssystemen is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr "Multipad bevoelen"
+msgstr "Multipad aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr "Bevoelen multipad is mislukt"
+msgstr "Aftasten multipad is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing partitions"
-msgstr "Partities bevoelen"
+msgstr "Partities aftasten"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr "Bevoelen partities is mislukt"
+msgstr "Aftasten partities is mislukt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
