@@ -14,11 +14,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-20 08:44+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,8 +109,7 @@ msgstr "Logisch volume %1$s (%2$s) wordt geactiveerd op volumegroep %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Thin pool logisch volume %1$s (%2$s) wordt geactiveerd op volumegroep %3$s"
+msgstr "Thin pool logisch volume %1$s (%2$s) wordt geactiveerd op volumegroep %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -294,9 +292,7 @@ msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s aanmaken"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s "
-"aanmaken"
+msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s aanmaken"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -359,9 +355,7 @@ msgstr "Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s aanmaken"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met "
-"%5$s aanmaken"
+msgstr "Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s aanmaken"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -369,9 +363,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor swap "
-"aanmaken"
+msgstr "Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor swap aanmaken"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -380,9 +372,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s "
-"aanmaken"
+msgstr "Versleuteld LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s aanmaken"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1114,9 +1104,7 @@ msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s versleutelen"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s "
-"versleutelen"
+msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s versleutelen"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1125,8 +1113,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s versleutelen"
+msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s met %4$s versleutelen"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1176,9 +1163,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s "
-"formatteren"
+msgstr "LVM logisch volume %1$s (%2$s) op volumegroep %3$s voor %4$s met %5$s formatteren"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1271,8 +1256,7 @@ msgstr "Fysiek volume op %1$s vergroten van %2$s naar %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s vergroten van %3$s naar %4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s vergroten van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1281,9 +1265,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin pool logisch volume %1$s op volumegroep %2$s vergroten van %3$s naar "
-"%4$s"
+msgstr "Thin pool logisch volume %1$s op volumegroep %2$s vergroten van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1334,9 +1316,7 @@ msgstr "Fysiek volume op %1$s vergroten van %2$s naar %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s wordt vergroot van %3$s naar "
-"%4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s wordt vergroot van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1345,9 +1325,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s wordt vergroot van %3$s naar "
-"%4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s wordt vergroot van %3$s naar %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1493,6 +1471,11 @@ msgstr "Partitie"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "Bevoelen DASD's is mislukt"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "DASD's bevoelen"
@@ -1525,6 +1508,11 @@ msgstr "LVM bevoelen"
 msgid "Probing LVM failed"
 msgstr "Bevoelen LVM is mislukt"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "Bevoelen MD RAID's is mislukt"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "MD RAID's bevoelen"
@@ -1544,6 +1532,11 @@ msgstr "Bevoelen NFS is mislukt"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Bcache bevoelen"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "Bevoelen bcache is mislukt"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1569,6 +1562,11 @@ msgstr "Schijven bevoelen"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "Bevoelen schijven is mislukt"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Bevoelen LVM is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1920,8 +1918,7 @@ msgstr "Fysiek volume op %1$s inkrimpen van %2$s naar %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s inkrimpen van %3$s naar %4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s inkrimpen van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1930,8 +1927,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s inkrimpen van %3$s naar %4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s inkrimpen van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1982,9 +1978,7 @@ msgstr "Fysiek volume op %1$s inkrimpen van %2$s naar %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s naar "
-"%4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s naar %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1993,9 +1987,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s naar "
-"%4$s"
+msgstr "Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s naar %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

@@ -7,17 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-23 12:04+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
-"Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/pl/>\n"
+"Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-master/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
-"|| n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
@@ -48,8 +46,7 @@ msgstr "Aktywuj cienki wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Aktywuj wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
+msgstr "Aktywuj wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -97,8 +94,7 @@ msgstr "Aktywowanie usługi multipath nie powiodło się"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Aktywowanie cienkiego woluminu logicznego %1$s (%2$s) w grupie woluminów %3$s"
+msgstr "Aktywowanie cienkiego woluminu logicznego %1$s (%2$s) w grupie woluminów %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -106,9 +102,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Aktywowanie woluminu logicznego %1$s (%2$s) cienkiej puli w grupie woluminów "
-"%3$s"
+msgstr "Aktywowanie woluminu logicznego %1$s (%2$s) cienkiej puli w grupie woluminów %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -290,9 +284,7 @@ msgstr "Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla punktu "
-"montowania %4$s z systemem plików %5$s"
+msgstr "Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla punktu montowania %4$s z systemem plików %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -300,9 +292,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s na potrzeby "
-"obszaru wymiany"
+msgstr "Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s na potrzeby obszaru wymiany"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -311,9 +301,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z systemem "
-"plików %4$s"
+msgstr "Utwórz wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -349,8 +337,7 @@ msgstr "Utwórz tablicę partycji MSDOS na urządzeniu %1$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s"
+msgstr "Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -360,9 +347,7 @@ msgstr ""
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s "
-"dla punktu montowania %4$s z systemem plików %5$s"
+msgstr "Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla punktu montowania %4$s z systemem plików %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -370,9 +355,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s "
-"na potrzeby obszaru wymiany"
+msgstr "Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s na potrzeby obszaru wymiany"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -381,9 +364,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z "
-"systemem plików %4$s"
+msgstr "Utwórz szyfrowany wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -406,9 +387,7 @@ msgstr "Utwórz szyfrowaną partycję %1$s (%2$s) jako wolumen fizyczny LVM"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Utwórz szyfrowaną partycję %1$s (%2$s) dla punktu montowania %3$s z systemem "
-"plików %4$s"
+msgstr "Utwórz szyfrowaną partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -449,9 +428,7 @@ msgstr "Utwórz system plików btrfs na urządzeniu %1$s"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
-"Utwórz system plików btrfs na urządzeniu %1$s i zamontuj go w punkcie "
-"montowania %2$s"
+msgstr "Utwórz system plików btrfs na urządzeniu %1$s i zamontuj go w punkcie montowania %2$s"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -517,8 +494,7 @@ msgstr "Utwórz partycję %1$s (%2$s) jako wolumen fizyczny LVM"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Utwórz partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików %4$s"
+msgstr "Utwórz partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -563,9 +539,7 @@ msgstr "Utwórz podwolumin %1$s na urządzeniu %2$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr ""
-"Utwórz podwolumen %1$s na urządzeniu %2$s z opcją 'no copy on write' (brak "
-"kopiowania przy zapisie)"
+msgstr "Utwórz podwolumen %1$s na urządzeniu %2$s z opcją 'no copy on write' (brak kopiowania przy zapisie)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -581,8 +555,7 @@ msgstr "Utwórz cienki wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Utwórz wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
+msgstr "Utwórz wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -710,8 +683,7 @@ msgstr "Tworzenie podwoluminu %1$s na urządzeniu %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Tworzenie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów %3$s"
+msgstr "Tworzenie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -719,9 +691,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Tworzenie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie wolumenów "
-"%3$s"
+msgstr "Tworzenie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -785,8 +755,7 @@ msgstr "Dezaktywuj cienki wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Dezaktywuj wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
+msgstr "Dezaktywuj wolumen logiczny %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -823,9 +792,7 @@ msgstr "Dezaktywowanie usługi multipath %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Dezaktywowanie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów "
-"%3$s"
+msgstr "Dezaktywowanie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -833,9 +800,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Dezaktywowanie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie "
-"wolumenów %3$s"
+msgstr "Dezaktywowanie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie wolumenów %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1082,8 +1047,7 @@ msgstr "Usuwanie podwoluminu %1$s na urządzeniu %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Usuwanie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów (%3$s)"
+msgstr "Usuwanie cienkiego wolumenu logicznego %1$s (%2$s) w grupie wolumenów (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1091,9 +1055,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Usuwanie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie wolumenów "
-"(%3$s)"
+msgstr "Usuwanie wolumenu logicznego %1$s (%2$s) cienkiej puli w grupie wolumenów (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1134,9 +1096,7 @@ msgstr "Zaszyfruj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Zaszyfruj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla "
-"punktu montowania %4$s z systemem plików %5$s"
+msgstr "Zaszyfruj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla punktu montowania %4$s z systemem plików %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1145,9 +1105,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Zaszyfruj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z "
-"systemem plików %4$s"
+msgstr "Zaszyfruj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1163,9 +1121,7 @@ msgstr "Zaszyfruj partycję %1$s (%2$s)"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Zaszyfruj partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików "
-"%4$s"
+msgstr "Zaszyfruj partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1199,9 +1155,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Sformatuj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla "
-"punktu montowania %4$s z systemem plików %5$s"
+msgstr "Sformatuj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s dla punktu montowania %4$s z systemem plików %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1210,9 +1164,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Sformatuj wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s z systemem "
-"plików %4$s"
+msgstr "Sformatuj wolumen logiczny %1$s (%2$s) w grupie wolumenów %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1221,9 +1173,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Sformatuj partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików "
-"%4$s"
+msgstr "Sformatuj partycję %1$s (%2$s) dla punktu montowania %3$s z systemem plików %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1298,9 +1248,7 @@ msgstr "Zwiększ rozmiar woluminu fizycznego na urządzeniu %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zwiększ rozmiar cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s z "
-"%3$s na %4$s"
+msgstr "Zwiększ rozmiar cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1309,9 +1257,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zwiększ rozmiar wolumenu logicznego %1$s cienkiej puli w grupie wolumenów %2$"
-"s z %3$s na %4$s"
+msgstr "Zwiększ rozmiar wolumenu logicznego %1$s cienkiej puli w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1362,9 +1308,7 @@ msgstr "Zwiększanie rozmiaru woluminu fizycznego na urządzeniu %1$s z %2$s na 
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zwiększanie rozmiaru cienkiego wolumenu logicznego %1$s w grupie wolumenów "
-"%2$s z %3$s na %4$s"
+msgstr "Zwiększanie rozmiaru cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1373,9 +1317,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zwiększanie rozmiaru wolumenu logicznego %1$s cienkiej puli w grupie "
-"wolumenów %2$s z %3$s na %4$s"
+msgstr "Zwiększanie rozmiaru wolumenu logicznego %1$s cienkiej puli w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1442,9 +1384,7 @@ msgstr "Zamontuj urządzenie %1$s w %2$s"
 #. %4$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr ""
-"Zamontuj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s w punkcie "
-"montowania %4$s"
+msgstr "Zamontuj wolumen logiczny LVM %1$s (%2$s) w grupie wolumenów %3$s w punkcie montowania %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
@@ -1523,6 +1463,11 @@ msgstr "Partycja"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "Skanowanie DASD nie powiodło się"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "Skanowanie DASD"
@@ -1555,6 +1500,11 @@ msgstr "Skanowanie LVM"
 msgid "Probing LVM failed"
 msgstr "Skanowanie LVM nie powiodło się"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "Skanowanie MD RAID nie powiodło się"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "Skanowanie MD RAID"
@@ -1574,6 +1524,11 @@ msgstr "Skanowanie NFS nie powiodło się"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Skanowanie bcache"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "Skanowanie bcache nie powiodło się"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1599,6 +1554,11 @@ msgstr "Skanowanie dysków"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "Skanowanie dysków nie powiodło się"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Skanowanie LVM nie powiodło się"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1950,9 +1910,7 @@ msgstr "Zmniejsz rozmiar woluminu fizycznego %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmniejsz rozmiar cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s "
-"z %3$s na %4$s"
+msgstr "Zmniejsz rozmiar cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1961,9 +1919,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmniejsz rozmiar wolumenu logicznego %1$s cienkiej puli w grupie wolumenów "
-"%2$s z %3$s na %4$s"
+msgstr "Zmniejsz rozmiar wolumenu logicznego %1$s cienkiej puli w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2014,9 +1970,7 @@ msgstr "Zmniejszanie rozmiaru woluminu fizycznego %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmniejszanie rozmiaru cienkiego wolumenu logicznego %1$s w grupie wolumenów "
-"%2$s z %3$s na %4$s"
+msgstr "Zmniejszanie rozmiaru cienkiego wolumenu logicznego %1$s w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2025,9 +1979,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmniejszanie rozmiaru wolumenu logicznego %1$s cienkiej puli w grupie "
-"wolumenów %2$s z %3$s na %4$s"
+msgstr "Zmniejszanie rozmiaru wolumenu logicznego %1$s cienkiej puli w grupie wolumenów %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

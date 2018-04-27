@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-12 11:25+0100\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1462,6 +1462,11 @@ msgstr ""
 msgid "PiB"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing DASD %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr ""
@@ -1494,6 +1499,11 @@ msgstr ""
 msgid "Probing LVM failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing MD RAID %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr ""
@@ -1512,6 +1522,11 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing bcache %s failed"
 msgstr ""
 
 #. TRANSLATORS: error message
@@ -1537,6 +1552,10 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing failed"
 msgstr ""
 
 #. TRANSLATORS: error message

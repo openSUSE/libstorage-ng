@@ -4,17 +4,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2018-04-23 11:09+0000\n"
 "Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
@@ -101,8 +99,7 @@ msgstr "Включение «тонкого» логического тома %1
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Включение логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+msgstr "Включение логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -284,9 +281,7 @@ msgstr "Создать логический том LVM %1$s (%2$s) в групп
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Создать логический том LVM %1$s (%2$s) в группе томов %3$s для точки "
-"монтирования %4$s с файловой системой %5$s"
+msgstr "Создать логический том LVM %1$s (%2$s) в группе томов %3$s для точки монтирования %4$s с файловой системой %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -303,9 +298,7 @@ msgstr "Создать логический том LVM %1$s (%2$s) в групп
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Создать логический том %1$s (%2$s) в группе томов %3$s с файловой системой "
-"%4$s"
+msgstr "Создать логический том %1$s (%2$s) в группе томов %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -341,8 +334,7 @@ msgstr "Создать таблицу разделов MS-DOS на %1$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s"
+msgstr "Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -352,9 +344,7 @@ msgstr ""
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s для "
-"точки монтирования %4$s с файловой системой %5$s"
+msgstr "Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s для точки монтирования %4$s с файловой системой %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -362,9 +352,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s для "
-"подкачки"
+msgstr "Создать зашифрованный логический том LVM %1$s (%2$s) в группе томов %3$s для подкачки"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -373,9 +361,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Создать зашифрованный логический том %1$s (%2$s) в группе томов %3$s с "
-"файловой системой %4$s"
+msgstr "Создать зашифрованный логический том %1$s (%2$s) в группе томов %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -398,9 +384,7 @@ msgstr "Создать зашифрованный раздел %1$s (%2$s) ка�
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Создать зашифрованный раздел %1$s (%2$s) для точки монтирования %3$s с "
-"файловой системой %4$s"
+msgstr "Создать зашифрованный раздел %1$s (%2$s) для точки монтирования %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -507,9 +491,7 @@ msgstr "Создать раздел %1$s (%2$s) как физический то
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Создать раздел %1$s (%2$s) для точки монтирования %3$s с файловой системой "
-"%4$s"
+msgstr "Создать раздел %1$s (%2$s) для точки монтирования %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -706,8 +688,7 @@ msgstr "Создание «тонкого» логического тома %1$s
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Создание логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+msgstr "Создание логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -816,8 +797,7 @@ msgstr "Отключение «тонкого» логического тома 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Отключение логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+msgstr "Отключение логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1072,8 +1052,7 @@ msgstr "Удаление «тонкого» логического тома %1$s
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Удаление логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+msgstr "Удаление логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1114,9 +1093,7 @@ msgstr "Зашифровать логический том LVM %1$s (%2$s) в г
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Зашифровать логический том %1$s (%2$s) в группе томов %3$s для точки "
-"монтирования %4$s с файловой системой %5$s"
+msgstr "Зашифровать логический том %1$s (%2$s) в группе томов %3$s для точки монтирования %4$s с файловой системой %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1125,9 +1102,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Зашифровать логический том %1$s (%2$s) в группе томов %3$s для точки "
-"монтирования %4$s"
+msgstr "Зашифровать логический том %1$s (%2$s) в группе томов %3$s для точки монтирования %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1143,9 +1118,7 @@ msgstr "Зашифровать раздел %1$s (%2$s)"
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Зашифровать раздел %1$s (%2$s) для точки монтирования %3$s с файловой "
-"системой %4$s"
+msgstr "Зашифровать раздел %1$s (%2$s) для точки монтирования %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1179,9 +1152,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Форматировать логический том LVM %1$s (%2$s) в группе томов %3$s для точки "
-"монтирования %4$s с файловой системой %5$s"
+msgstr "Форматировать логический том LVM %1$s (%2$s) в группе томов %3$s для точки монтирования %4$s с файловой системой %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1190,9 +1161,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Форматировать логический том LVM %1$s (%2$s) в группе томов %3$s с файловой "
-"системой %4$s"
+msgstr "Форматировать логический том LVM %1$s (%2$s) в группе томов %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1201,9 +1170,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr ""
-"Форматировать раздел %1$s (%2$s) для точки монтирования %3$s с файловой "
-"системой %4$s"
+msgstr "Форматировать раздел %1$s (%2$s) для точки монтирования %3$s с файловой системой %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1278,8 +1245,7 @@ msgstr "Увеличить физический том на %1$s с %2$s до %3
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Увеличить «тонкий» логический том %1$s в группе томов %2$s с %3$s до %4$s"
+msgstr "Увеличить «тонкий» логический том %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1288,9 +1254,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Увеличить логический том «тонкого» пула %1$s в группе томов %2$s с %3$s до "
-"%4$s"
+msgstr "Увеличить логический том «тонкого» пула %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1341,8 +1305,7 @@ msgstr "Увеличение физического тома на %1$s с %2$s �
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Увеличение «тонкого» логического тома %1$s в группе томов %2$s с %3$s до %4$s"
+msgstr "Увеличение «тонкого» логического тома %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1351,9 +1314,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Увеличение логического тома «тонкого» пула %1$s в группе томов %2$s с %3$s "
-"до %4$s"
+msgstr "Увеличение логического тома «тонкого» пула %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1499,6 +1460,11 @@ msgstr "Раздел"
 msgid "PiB"
 msgstr "ПиБ"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing DASD %s failed"
+msgstr "Ошибка проверки DASD"
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr "Проверка DASD"
@@ -1531,6 +1497,11 @@ msgstr "Проверка LVM"
 msgid "Probing LVM failed"
 msgstr "Ошибка проверки LVM"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing MD RAID %s failed"
+msgstr "Ошибка проверки MD RAID"
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr "Проверка MD RAID"
@@ -1550,6 +1521,11 @@ msgstr "Ошибка проверки NFS"
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Проверка bcache"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing bcache %s failed"
+msgstr "Ошибка проверки bcache"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1575,6 +1551,11 @@ msgstr "Проверка дисков"
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr "Ошибка проверки дисков"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Ошибка проверки LVM"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1926,8 +1907,7 @@ msgstr "Уменьшить физический том на %1$s с %2$s до %3
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Уменьшить «тонкий» логический том %1$s в группе томов %2$s с %3$s до %4$s"
+msgstr "Уменьшить «тонкий» логический том %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1936,9 +1916,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Уменьшить логический том «тонкого» пула %1$s в группе томов %2$s с %3$s до "
-"%4$s"
+msgstr "Уменьшить логический том «тонкого» пула %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1989,8 +1967,7 @@ msgstr "Уменьшение физического тома на %1$s с %2$s �
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Уменьшение «тонкого» логического тома %1$s в группе томов %2$s с %3$s до %4$s"
+msgstr "Уменьшение «тонкого» логического тома %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1999,9 +1976,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Уменьшение логического тома «тонкого» пула %1$s в группе томов %2$s с %3$s "
-"до %4$s"
+msgstr "Уменьшение логического тома «тонкого» пула %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-18 10:20+0200\n"
+"POT-Creation-Date: 2018-04-26 20:33+0200\n"
 "PO-Revision-Date: 2003-09-23 10:33+0200\n"
 "Last-Translator: Kevin Donnelly <kevin@dotmon.com>\n"
 "Language-Team: Welsh <i18n@suse.de>\n"
@@ -1477,6 +1477,11 @@ msgstr ""
 msgid "PiB"
 msgstr "GB"
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing DASD %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
 msgstr ""
@@ -1509,6 +1514,11 @@ msgstr ""
 msgid "Probing LVM failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing MD RAID %s failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
 msgstr ""
@@ -1527,6 +1537,11 @@ msgstr ""
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing bcache %s failed"
 msgstr ""
 
 #. TRANSLATORS: error message
@@ -1553,6 +1568,11 @@ msgstr ""
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing failed"
+msgstr "Creu pwyntiau gosod"
 
 #. TRANSLATORS: error message
 #, c-format
