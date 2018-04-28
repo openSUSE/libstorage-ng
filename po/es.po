@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-28 22:18+0000\n"
+"PO-Revision-Date: 2018-04-28 22:26+0000\n"
 "Last-Translator: Ioannes Andreas <ioannes@tuta.io>\n"
 "Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/es/>\n"
@@ -1479,7 +1479,7 @@ msgstr "PB"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr "Sondeo de DASD%s fallido"
+msgstr "Sondeo de DASD %s fallido"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1516,7 +1516,7 @@ msgstr "Error al sondear LVM"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Sondeo de MD RAID%s fallido"
+msgstr "Sondeo de MD RAID %s fallido"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
