@@ -17,9 +17,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-18 15:11+0000\n"
-"Last-Translator: Juan Sarria <juansarriam@gmail.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-master/es/>\n"
+"PO-Revision-Date: 2018-04-28 22:18+0000\n"
+"Last-Translator: Ioannes Andreas <ioannes@tuta.io>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1476,9 +1477,9 @@ msgid "PiB"
 msgstr "PB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Error al sondear los DASD"
+msgstr "Sondeo de DASD%s fallido"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1513,9 +1514,9 @@ msgid "Probing LVM failed"
 msgstr "Error al sondear LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Error al sondear los RAID MD"
+msgstr "Sondeo de MD RAID%s fallido"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1538,9 +1539,9 @@ msgid "Probing bcache"
 msgstr "Sondeando bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Error al sondear bcache"
+msgstr "Sondeo de bcache %s fallido"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1568,9 +1569,8 @@ msgid "Probing disks failed"
 msgstr "Error al sondear los discos"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Error al sondear LVM"
+msgstr "Sondeo fallido"
 
 #. TRANSLATORS: error message
 #, c-format
