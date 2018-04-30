@@ -13,9 +13,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-18 21:07+0000\n"
-"Last-Translator: Davide Aiello <davidea@novilinguists.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-master/it/>\n"
+"PO-Revision-Date: 2018-04-30 08:25+0000\n"
+"Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1616,9 +1617,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Rilevamento dei DASD non riuscito"
+msgstr "Rilevamento del DASD %s non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1653,9 +1654,9 @@ msgid "Probing LVM failed"
 msgstr "Rilevamento di LVM non riuscito"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Rilevamento dei RAID MD non riuscito"
+msgstr "Rilevamento del RAID MD %s non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1678,9 +1679,9 @@ msgid "Probing bcache"
 msgstr "Rilevamento bcache in corso"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Rilevamento bcache non riuscito"
+msgstr "Rilevamento bcache %s non riuscito"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1708,9 +1709,8 @@ msgid "Probing disks failed"
 msgstr "Rilevamento dei dischi non riuscito"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Rilevamento di LVM non riuscito"
+msgstr "Rilevamento non riuscito"
 
 #. TRANSLATORS: error message
 #, c-format
