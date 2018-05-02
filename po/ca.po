@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-05-02 14:03+0000\n"
+"PO-Revision-Date: 2018-05-02 17:00+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ca/>\n"
@@ -262,7 +262,7 @@ msgstr "Crea %1$s a %2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Create DASD partition table on %1$s"
-msgstr "Crea una taula de particions DASD a %1$s"
+msgstr "Crea una taula de particions de DASD a %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -589,7 +589,7 @@ msgstr "Creant %1$s a %2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
-msgstr "Creant una taula de particions DASD a %1$s"
+msgstr "Creant una taula de particions de DASD a %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -708,7 +708,7 @@ msgstr "DASD"
 
 #. TRANSLATORS: name of object
 msgid "DASD Partition Table"
-msgstr "Taula de particions DASD"
+msgstr "Taula de particions de DASD"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
@@ -816,7 +816,7 @@ msgstr "Suprimeix %1$s de %2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Delete DASD partition table on %1$s"
-msgstr "Suprimeix la taula de particions DASD de %1$s"
+msgstr "Suprimeix la taula de particions de DASD de %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -953,7 +953,7 @@ msgstr "Suprimint %1$s de %2$s (%3$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Deleting DASD partition table on %1$s"
-msgstr "Suprimint la taula de particions DASD de %1$s"
+msgstr "Suprimint la taula de particions de DASD de %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1468,15 +1468,15 @@ msgstr "PiB"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr "Ha fallat sondar DASD %s"
+msgstr "Ha fallat sondar el DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr "Sondant DASD"
+msgstr "Sondant els DASD"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr "Ha fallat sondar DASD"
+msgstr "Ha fallat sondar els DASD"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
