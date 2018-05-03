@@ -12,9 +12,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-24 13:24+0000\n"
-"Last-Translator: Samanta Magalhaes <samanta@texttrans.com>\n"
-"Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/libstorage/ng-master/pt_BR/>\n"
+"PO-Revision-Date: 2018-05-03 19:32+0000\n"
+"Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
+"Language-Team: Portuguese (Brazil) "
+"<https://l10n.opensuse.org/projects/libstorage/ng-master/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1468,9 +1469,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Falha ao investigar DASDs"
+msgstr "Falha ao investigar DASDs %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1505,9 +1506,9 @@ msgid "Probing LVM failed"
 msgstr "Falha ao investigar LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Falha ao investigar MD RAIDs"
+msgstr "Falha ao investigar MD RAID %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1530,9 +1531,9 @@ msgid "Probing bcache"
 msgstr "Investigando bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Falha ao investigar bcache"
+msgstr "Falha ao investigar bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1560,9 +1561,8 @@ msgid "Probing disks failed"
 msgstr "Falha ao investigar discos"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Falha ao investigar LVM"
+msgstr "Falha ao investigar"
 
 #. TRANSLATORS: error message
 #, c-format
