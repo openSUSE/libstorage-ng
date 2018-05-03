@@ -658,7 +658,12 @@ namespace storage
 	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
 
 	mount_point->set_mount_by(get_mount_by());
-	mount_point->set_mount_type(get_fs_type());
+
+	// In some cases the fs_type is unknown, e.g. a NTFS included in
+	// /proc/mounts (as fuseblk) but not in /etc/fstab.
+	if (get_fs_type() != FsType::UNKNOWN)
+	    mount_point->set_mount_type(get_fs_type());
+
 	mount_point->set_mount_options(get_mount_options());
 
 	mount_point->set_in_etc_fstab(is_in_etc_fstab());
