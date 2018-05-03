@@ -50,10 +50,12 @@ namespace storage
 
 
     // Strings must match /etc/fstab and output of blkid - hopefully they are
-    // always the same.
+    // always the same. Some names are not used in the output of blkid,
+    // e.g. unknown, auto, tmpfs and ntfs-3g.
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "auto", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
-	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix"
+	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix",
+	"ntfs-3g"
     });
 
 
