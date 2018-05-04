@@ -11,9 +11,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-23 10:02+0000\n"
-"Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-master/fr/>\n"
+"PO-Revision-Date: 2018-05-04 15:16+0000\n"
+"Last-Translator: Benoît Monin <benoit.monin@gmx.fr>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1599,9 +1600,9 @@ msgid "PiB"
 msgstr "Pio"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Échec du sondage des DASD"
+msgstr "Échec du sondage du DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1637,9 +1638,9 @@ msgid "Probing LVM failed"
 msgstr "Échec du sondage de LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Échec du sondage des systèmes MD RAID"
+msgstr "Échec du sondage du système MD RAID %s"
 
 # TLABEL partitioning_2002_01_04_0147__465
 #. TRANSLATORS: progress message
@@ -1663,9 +1664,9 @@ msgid "Probing bcache"
 msgstr "Sondage de bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Échec du sondage de bcache"
+msgstr "Échec du sondage du bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1693,9 +1694,8 @@ msgid "Probing disks failed"
 msgstr "Échec du sondage des disques"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Échec du sondage de LVM"
+msgstr "Échec du sondage"
 
 #. TRANSLATORS: error message
 #, c-format
