@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-05-02 09:06+0000\n"
+"PO-Revision-Date: 2018-05-09 09:05+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -187,19 +187,19 @@ msgstr "B"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Sada vyrovnávacej pamäte Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Podzväzok Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -434,7 +434,7 @@ msgstr "Vytvoriť fyzický zväzok na %1$s"
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "Vytvoriť súborový systém btrfs na %1$s a pripojiť k %2$s"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -708,7 +708,7 @@ msgstr "Vytvorenie skupiny zväzkov %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -717,7 +717,7 @@ msgstr "Vytvoriť tabuľku oddielov DASD na %1$s"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1073,7 +1073,7 @@ msgstr "Mazanie skupiny zväzkov %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
@@ -1140,11 +1140,11 @@ msgstr "Zväčšiť oddiel %1$s z %2$s na %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "Šifrovanie"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
