@@ -12,9 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-23 06:01+0000\n"
+"PO-Revision-Date: 2018-05-14 07:34+0000\n"
 "Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
-"Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
+"Language-Team: Chinese (Taiwan) "
+"<https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1479,9 +1480,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "查探 DASD 失敗"
+msgstr "查探 DASD %s 失敗"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1516,9 +1517,9 @@ msgid "Probing LVM failed"
 msgstr "查探 LVM 失敗"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "查探 MD RAID 失敗"
+msgstr "查探 MD RAID %s 失敗"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1541,9 +1542,9 @@ msgid "Probing bcache"
 msgstr "正在查探 bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "查探 bcache 失敗"
+msgstr "查探 bcache %s 失敗"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1571,9 +1572,8 @@ msgid "Probing disks failed"
 msgstr "查探磁碟失敗"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "查探 LVM 失敗"
+msgstr "查探失敗"
 
 #. TRANSLATORS: error message
 #, c-format
