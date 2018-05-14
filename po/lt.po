@@ -1904,7 +1904,7 @@ msgstr "Sumažinti %2$s grupės %1$s loginį tomą nuo %3$s iki %4$s"
 #. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Sumažinti %1$s nuo %3$s iki %4$s"
+msgstr "Sumažinti %1$s nuo %2$s iki %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
