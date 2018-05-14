@@ -124,10 +124,12 @@ namespace storage
 	    parted.get_label() == PtType::DASD)
 	{
 	    if (get_region().get_block_size() != parted.get_region().get_block_size())
-		ST_THROW(Exception("different block size reported by kernel and parted"));
+		ST_THROW(Exception(sformat("different block size reported by kernel and parted for %s",
+					   get_name().c_str())));
 
 	    if (get_region().get_length() != parted.get_region().get_length())
-		ST_THROW(Exception("different size reported by kernel and parted"));
+		ST_THROW(Exception(sformat("different size reported by kernel and parted for %s",
+					   get_name().c_str())));
 
 	    PtType label = parted.get_label();
 
