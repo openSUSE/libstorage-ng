@@ -13,9 +13,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-04-26 20:33+0200\n"
-"PO-Revision-Date: 2018-04-19 00:03+0000\n"
+"PO-Revision-Date: 2018-05-15 17:19+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
-"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-master/hu/>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1560,9 +1561,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "DASD ellenőrzése sikertelen"
+msgstr "%s DASD ellenőrzése sikertelen"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1597,9 +1598,9 @@ msgid "Probing LVM failed"
 msgstr "LVM ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "MD RAID ellenőrzése sikertelen"
+msgstr "%s MD RAID ellenőrzése sikertelen"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1622,9 +1623,9 @@ msgid "Probing bcache"
 msgstr "Bcache ellenőrzése"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Bcache ellenőrzése sikertelen"
+msgstr "%s bcache ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1652,9 +1653,8 @@ msgid "Probing disks failed"
 msgstr "Lemezek ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "LVM ellenőrzése sikertelen"
+msgstr "Sikertelen ellenőrzés"
 
 #. TRANSLATORS: error message
 #, c-format
