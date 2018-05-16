@@ -44,9 +44,11 @@ namespace storage
 
 
     Gpt::Impl::Impl(const xmlNode* node)
-	: PartitionTable::Impl(node), enlarge(false), pmbr_boot(false)
+	: PartitionTable::Impl(node), undersized(false), backup_broken(false), pmbr_boot(false)
     {
-	getChildValue(node, "enlarge", enlarge);
+	getChildValue(node, "undersized", undersized);
+	getChildValue(node, "backup-broken", backup_broken);
+
 	getChildValue(node, "pmbr-boot", pmbr_boot);
     }
 
@@ -68,7 +70,9 @@ namespace storage
 
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 
-	enlarge = parted.is_gpt_enlarge();
+	undersized = parted.is_gpt_undersized();
+	backup_broken = parted.is_gpt_backup_broken();
+
 	pmbr_boot = parted.is_gpt_pmbr_boot();
     }
 
@@ -78,7 +82,9 @@ namespace storage
     {
 	PartitionTable::Impl::save(node);
 
-	setChildValueIf(node, "enlarge", enlarge, enlarge);
+	setChildValueIf(node, "undersized", undersized, undersized);
+	setChildValueIf(node, "backup-broken", backup_broken, backup_broken);
+
 	setChildValueIf(node, "pmbr-boot", pmbr_boot, pmbr_boot);
     }
 
@@ -136,7 +142,8 @@ namespace storage
 	if (!PartitionTable::Impl::equal(rhs))
 	    return false;
 
-	return enlarge == rhs.enlarge && pmbr_boot == rhs.pmbr_boot;
+	return undersized == rhs.undersized && backup_broken == rhs.backup_broken &&
+	    pmbr_boot == rhs.pmbr_boot;
     }
 
 
@@ -147,7 +154,9 @@ namespace storage
 
 	PartitionTable::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "enlarge", enlarge, rhs.enlarge);
+	storage::log_diff(log, "undersized", undersized, rhs.undersized);
+	storage::log_diff(log, "backup-broken", backup_broken, rhs.backup_broken);
+
 	storage::log_diff(log, "pmbr-boot", pmbr_boot, rhs.pmbr_boot);
     }
 
@@ -157,8 +166,11 @@ namespace storage
     {
 	PartitionTable::Impl::print(out);
 
-	if (is_enlarge())
-	    out << " enlarge";
+	if (is_undersized())
+	    out << " undersized";
+
+	if (is_backup_broken())
+	    out << " backup-broken";
 
 	if (is_pmbr_boot())
 	    out << " pmbr-boot";
@@ -214,6 +226,50 @@ namespace storage
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) + " mklabel gpt";
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	SystemCmd(UDEVADMBIN_SETTLE);
+    }
+
+
+    Text
+    Gpt::Impl::do_repair_text(Tense tense) const
+    {
+	const Partitionable* partitionable = get_partitionable();
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Repair GPT on %1$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda)
+			   _("Repairing GPT on %1$s"));
+
+	return sformat(text, partitionable->get_displayname().c_str());
+    }
+
+
+    void
+    Gpt::Impl::do_repair() const
+    {
+	// The interface to parted to make a GPT use the complete device is
+	// very clumsy. Depending on whether the backup GPT is also broken we
+	// need to answer different questions from parted. Improvements are
+	// not in sight (see bsc #946673).
+
+	// Note: If only the backup GPT is broken parted has no troubles in
+	// script mode so no repair is needed (and this action must not be
+	// called).
+
+	const Partitionable* partitionable = get_partitionable();
+
+	y2mil("undersized:" << undersized << " backup-broken:" << backup_broken);
+
+	string answers = backup_broken ? "'OK\\nFix\\n'" : "'Fix\\n'";
+
+	string cmd_line(ECHOBIN " -e -n " + answers + " | " PARTEDBIN " ---pretend-input-tty " +
+			quote(partitionable->get_name()) + " print");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
@@ -280,6 +336,22 @@ namespace storage
 
     namespace Action
     {
+
+	Text
+	Repair::text(const CommitData& commit_data) const
+	{
+	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
+	    return gpt->get_impl().do_repair_text(commit_data.tense);
+	}
+
+
+	void
+	Repair::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Gpt* gpt = to_gpt(get_device(commit_data.actiongraph, RHS));
+	    gpt->get_impl().do_repair();
+	}
+
 
 	Text
 	SetPmbrBoot::text(const CommitData& commit_data) const

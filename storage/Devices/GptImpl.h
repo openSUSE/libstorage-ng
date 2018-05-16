@@ -43,7 +43,8 @@ namespace storage
     public:
 
 	Impl()
-	    : PartitionTable::Impl(), enlarge(false), pmbr_boot(false) {}
+	    : PartitionTable::Impl(), undersized(false), backup_broken(false),
+	      pmbr_boot(false) {}
 
 	Impl(const xmlNode* node);
 
@@ -75,8 +76,9 @@ namespace storage
 
 	virtual unsigned int max_primary() const override;
 
-	bool is_enlarge() const { return enlarge; }
-	void set_enlarge(bool enlarge) { Impl::enlarge = enlarge; }
+	bool is_undersized() const { return undersized; }
+
+	bool is_backup_broken() const { return backup_broken; }
 
 	bool is_pmbr_boot() const { return pmbr_boot; }
 	void set_pmbr_boot(bool pmbr_boot) { Impl::pmbr_boot = pmbr_boot; }
@@ -86,6 +88,9 @@ namespace storage
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 
+	virtual Text do_repair_text(Tense tense) const;
+	virtual void do_repair() const;
+
 	virtual Text do_set_pmbr_boot_text(Tense tense) const;
 	virtual void do_set_pmbr_boot() const;
 
@@ -93,7 +98,16 @@ namespace storage
 
     private:
 
-	bool enlarge;
+	/**
+	 * The GPT does not use the complete device.
+	 */
+	bool undersized;
+
+	/**
+	 * The backup GPT is broken.
+	 */
+	bool backup_broken;
+
 	bool pmbr_boot;
 
     };
@@ -101,6 +115,18 @@ namespace storage
 
     namespace Action
     {
+
+	class Repair : public Modify
+	{
+	public:
+
+	    Repair(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
 
 	class SetPmbrBoot : public Modify
 	{

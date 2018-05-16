@@ -237,7 +237,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_of_windows)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse_gpt_enlarge)
+BOOST_AUTO_TEST_CASE(parse_gpt_undersized)
 {
     vector<string> stdout = {
 	"BYT;",
@@ -249,7 +249,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_enlarge)
     };
 
     vector<string> output = {
-	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-enlarge"
+	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-undersized"
     };
 
     check("/dev/sdc", stdout, stderr, output);
@@ -275,7 +275,7 @@ BOOST_AUTO_TEST_CASE(parse_uncommon_ordering)
 }
 
 
-BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
+BOOST_AUTO_TEST_CASE(parse_gpt_backup_broken)
 {
     vector<string> stdout = {
 	"BYT;",
@@ -287,7 +287,7 @@ BOOST_AUTO_TEST_CASE(parse_gpt_fix_backup)
     };
 
     vector<string> output = {
-	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-fix-backup"
+	"device:/dev/sdc label:GPT region:[0, 160086528, 512 B] gpt-backup-broken"
     };
 
     check("/dev/sdc", stdout, stderr, output);

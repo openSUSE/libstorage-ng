@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -92,12 +92,12 @@ namespace storage
 	 * partition table at the end of the disk might need to be moved to the
 	 * new actual end of the disk. This function returns that flag.
 	 */
-	bool is_gpt_enlarge() const { return gpt_enlarge; }
+	bool is_gpt_undersized() const { return gpt_undersized; }
 
 	/**
 	 * Special for GPT disk labels: True if the backup GPT is broken.
 	 */
-	bool is_gpt_fix_backup() const { return gpt_fix_backup; }
+	bool is_gpt_backup_broken() const { return gpt_backup_broken; }
 
 	/**
 	 * Special for GPT disk labels: True if the protective MBR boot flag is set.
@@ -124,8 +124,8 @@ namespace storage
 	PtType label;
 	Region region;
 	bool implicit;
-	bool gpt_enlarge;
-	bool gpt_fix_backup;
+	bool gpt_undersized;
+	bool gpt_backup_broken;
 	bool gpt_pmbr_boot;
 	vector<Entry> entries;
 	vector<string> stderr;
