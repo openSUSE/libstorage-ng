@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 20:33+0200\n"
+"POT-Creation-Date: 2018-05-16 20:28+0200\n"
 "PO-Revision-Date: 2018-02-02 15:00+0000\n"
 "Last-Translator: Arvin Schnell <aschnell@suse.com>\n"
 "Language-Team: Afrikaans <https://l10n.opensuse.org/projects/libstorage/ng-master/af/>\n"
@@ -1724,6 +1724,18 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Verwyder van inskrywing vir hegpunt %1$s uit %2$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repair GPT on %1$s"
+msgstr "Skep van %s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repairing GPT on %1$s"
+msgstr "Skep van %s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),

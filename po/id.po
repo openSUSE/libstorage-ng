@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 20:33+0200\n"
+"POT-Creation-Date: 2018-05-16 20:28+0200\n"
 "PO-Revision-Date: 2017-11-03 14:02+0700\n"
 "Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/master/id/>\n"
@@ -1719,6 +1719,18 @@ msgstr "Mengubah nama perangkat loop terenkripsi dari %1$s menjadi %2$s di /etc/
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Mengubah nama %1$s dari %2$s menjadi %3$s di /etc/fstab"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repair GPT on %1$s"
+msgstr "Membuat GPT pada %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repairing GPT on %1$s"
+msgstr "Membuat GPT pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
