@@ -233,6 +233,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/dasda'</name>
+      <stdout>61b0</stdout>
+    </Command>
   </Commands>
   <Files>
     <File>

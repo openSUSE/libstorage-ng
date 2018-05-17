@@ -646,6 +646,10 @@
       <stdout>61b0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/dasda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
       <exit-code>1</exit-code>
     </Command>
