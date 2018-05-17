@@ -38,9 +38,6 @@ namespace storage
 	static Gpt* create(Devicegraph* devicegraph);
 	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
-	bool is_enlarge() const;
-	void set_enlarge(bool enlarge);
-
 	/**
 	 * Query the protective MBR boot flag.
 	 */

@@ -78,20 +78,6 @@ namespace storage
 
 
     bool
-    Gpt::is_enlarge() const
-    {
-	return get_impl().is_enlarge();
-    }
-
-
-    void
-    Gpt::set_enlarge(bool enlarge)
-    {
-	get_impl().set_enlarge(enlarge);
-    }
-
-
-    bool
     Gpt::is_pmbr_boot() const
     {
 	return get_impl().is_pmbr_boot();

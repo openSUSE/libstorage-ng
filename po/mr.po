@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 20:33+0200\n"
+"POT-Creation-Date: 2018-05-16 20:28+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: \"( अमेय पाळंदे ) Ameya Palande\" <2ameya@gmail.com>\n"
 "Language-Team: Marathi <i18n@suse.de>\n"
@@ -1725,6 +1725,18 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr " काढत आहे एन्ट्री माउंट पॉइंट साठी %1$s मध्ये %2$s "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repair GPT on %1$s"
+msgstr " निर्माण चालू%1$s "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repairing GPT on %1$s"
+msgstr " निर्माण चालू%1$s "
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),

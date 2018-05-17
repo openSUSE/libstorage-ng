@@ -12,11 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 20:33+0200\n"
+"POT-Creation-Date: 2018-05-16 20:28+0200\n"
 "PO-Revision-Date: 2018-05-15 17:19+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
-"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/hu/>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1809,6 +1808,18 @@ msgstr "Titkosításiréteg-eszköz átnevezése az /etc/crypttab fájlban, rég
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "%1$s csatlakoztatási pont átnevezése az /etc/fstab fájlban, régi név: %2$s, új név: %3$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repair GPT on %1$s"
+msgstr "GPT létrehozása a(z) %1$s eszközön"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repairing GPT on %1$s"
+msgstr "GPT létrehozása a(z) %1$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),

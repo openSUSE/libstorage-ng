@@ -38,6 +38,8 @@
 
 #define SHBIN "/bin/sh"
 
+#define ECHOBIN "/usr/bin/echo"
+
 #define UNAMEBIN "/usr/bin/uname"
 #define GETCONFBIN "/usr/bin/getconf"
 

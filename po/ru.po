@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 20:33+0200\n"
+"POT-Creation-Date: 2018-05-16 20:28+0200\n"
 "PO-Revision-Date: 2018-04-23 11:09+0000\n"
 "Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-master/ru/>\n"
@@ -1709,6 +1709,18 @@ msgstr "Переименование зашифрованного устройс
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
 msgstr "Переименование точки монтирования %1$s из %2$s в %3$s в /etc/fstab"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repair GPT on %1$s"
+msgstr "Создание GPT на %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda)
+#, fuzzy, c-format
+msgid "Repairing GPT on %1$s"
+msgstr "Создание GPT на %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),

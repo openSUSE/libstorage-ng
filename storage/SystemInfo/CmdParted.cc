@@ -41,7 +41,8 @@ namespace storage
 
     Parted::Parted(const string& device)
 	: device(device), label(PtType::UNKNOWN), region(), implicit(false),
-	  gpt_enlarge(false), gpt_pmbr_boot(false), logical_sector_size(0), physical_sector_size(0)
+	  gpt_undersized(false), gpt_backup_broken(false), gpt_pmbr_boot(false),
+	  logical_sector_size(0), physical_sector_size(0)
     {
 	SystemCmd::Options options(PARTEDBIN " --script --machine " + quote(device) +
 				   " unit s print");
@@ -83,8 +84,8 @@ namespace storage
     Parted::parse(const vector<string>& stdout, const vector<string>& stderr)
     {
 	implicit = false;
-	gpt_enlarge = false;
-	gpt_fix_backup = false;
+	gpt_undersized = false;
+	gpt_backup_broken = false;
 	gpt_pmbr_boot = false;
 	entries.clear();
 
@@ -264,10 +265,10 @@ namespace storage
     void
     Parted::scan_stderr(const vector<string>& stderr)
     {
-	gpt_enlarge = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
+	gpt_undersized = find_if(stderr, string_contains("fix the GPT to use all")) != stderr.end();
 
-	gpt_fix_backup = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
-							 "primary appears OK")) != stderr.end();
+	gpt_backup_broken = find_if(stderr, string_contains("backup GPT table is corrupt, but the "
+							    "primary appears OK")) != stderr.end();
     }
 
 
@@ -363,11 +364,11 @@ namespace storage
 	if (parted.implicit)
 	    s << " implicit";
 
-	if (parted.gpt_enlarge)
-	    s << " gpt-enlarge";
+	if (parted.gpt_undersized)
+	    s << " gpt-undersized";
 
-	if (parted.gpt_fix_backup)
-	    s << " gpt-fix-backup";
+	if (parted.gpt_backup_broken)
+	    s << " gpt-backup-broken";
 
 	if (parted.gpt_pmbr_boot)
 	    s << " gpt-pmbr-boot";
