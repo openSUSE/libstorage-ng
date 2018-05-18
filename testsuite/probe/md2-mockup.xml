@@ -598,6 +598,18 @@
       <stdout>61b0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md0'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md1'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md2'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
       <stdout>61b0</stdout>
     </Command>

@@ -744,6 +744,18 @@
       <stdout>61b0</stdout>
     </Command>
     <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md125'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md126'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/md127'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/sr0'</name>
       <stdout>61b0</stdout>
     </Command>

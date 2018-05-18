@@ -62,6 +62,12 @@ namespace storage
 
 	    string name = DEV_DIR "/" + short_name;
 
+	    // skip devices without node in /dev (bsc #1076971) - check must
+	    // happen before 'udevadm info' call
+	    const CmdStat cmd_stat = system_info.getCmdStat(name);
+	    if (!cmd_stat.is_blk())
+		continue;
+
 	    if (Md::Impl::is_valid_sysfs_name(name))
 	    {
 		// workaround for bsc #1030896
@@ -98,11 +104,6 @@ namespace storage
 
 	    if (true)		// for disks all remaining names are allowed
 	    {
-		// skip disks without node in /dev (bsc #1076971)
-		const CmdStat cmd_stat = system_info.getCmdStat(name);
-		if (!cmd_stat.is_blk())
-		    continue;
-
 		if (range_file.get<int>() <= 1)
 		    continue;
 
