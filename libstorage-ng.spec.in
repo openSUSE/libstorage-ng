@@ -89,6 +89,10 @@ Obsoletes:      libstorage %(echo `seq -s " " -f "libstorage%.f" 9`)
 %ifarch s390 s390x
 Requires:       s390-tools
 %endif
+# Old version of libdmraid cannot be used. Upgrading from SLE11 to SLE15
+# does not remove old version, so it needs to be marked as conflict.
+# For more info, see https://bugzilla.suse.com/show_bug.cgi?id=1088570#c35
+Conflicts:      libdmraid.so.1.0.0.rc16(libdmraid.so.1.0.0.rc16)(64bit)
 
 %description -n %{libname}
 This package contains libstorage-ng, a library for storage management.
