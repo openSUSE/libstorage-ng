@@ -120,6 +120,8 @@ namespace storage
 
 	bool exists_in(const Device* device, Side side) const;
 
+	const Device* find_device(sid_t sid, Side side) const;
+
 	bool empty() const;
 
 	size_t num_actions() const;

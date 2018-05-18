@@ -77,6 +77,7 @@ namespace storage
 	virtual unsigned int max_primary() const override;
 
 	bool is_undersized() const { return undersized; }
+	void set_undersized(bool undersized) { Impl::undersized = undersized; }
 
 	bool is_backup_broken() const { return backup_broken; }
 

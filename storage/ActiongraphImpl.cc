@@ -150,6 +150,13 @@ namespace storage
     }
 
 
+    const Device*
+    Actiongraph::Impl::find_device(sid_t sid, Side side) const
+    {
+	return get_devicegraph(side)->find_device(sid);
+    }
+
+
     bool
     Actiongraph::Impl::empty() const
     {

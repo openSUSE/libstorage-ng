@@ -39,6 +39,16 @@ namespace storage
 	static Gpt* load(Devicegraph* devicegraph, const xmlNode* node);
 
 	/**
+	 * Get all GPTs.
+	 */
+	static std::vector<Gpt*> get_all(Devicegraph* devicegraph);
+
+	/**
+	 * @copydoc get_all()
+	 */
+	static std::vector<const Gpt*> get_all(const Devicegraph* devicegraph);
+
+	/**
 	 * Query the protective MBR boot flag.
 	 */
 	bool is_pmbr_boot() const;
