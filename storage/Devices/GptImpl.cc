@@ -131,6 +131,12 @@ namespace storage
 	    Action::Base* action = new Action::SetPmbrBoot(get_sid());
 	    actiongraph.add_vertex(action);
 	}
+
+	if (!undersized && lhs.undersized)
+	{
+	    Action::Repair* repair = new Action::Repair(get_sid());
+	    actiongraph.add_vertex(repair);
+	}
     }
 
 

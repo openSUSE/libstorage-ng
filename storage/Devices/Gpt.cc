@@ -77,6 +77,20 @@ namespace storage
     }
 
 
+    vector<Gpt*>
+    Gpt::get_all(Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<Gpt>();
+    }
+
+
+    vector<const Gpt*>
+    Gpt::get_all(const Devicegraph* devicegraph)
+    {
+	return devicegraph->get_impl().get_devices_of_type<const Gpt>();
+    }
+
+
     bool
     Gpt::is_pmbr_boot() const
     {

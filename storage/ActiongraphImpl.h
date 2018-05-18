@@ -120,6 +120,8 @@ namespace storage
 
 	bool exists_in(const Device* device, Side side) const;
 
+	const Device* find_device(sid_t sid, Side side) const;
+
 	bool empty() const;
 
 	size_t num_actions() const;
@@ -179,6 +181,8 @@ namespace storage
 	map<sid_t, vertex_descriptor> last_action_on_partition_table;
 
     private:
+
+	void set_gpt_undersized();
 
 	void get_actions();
 	void remove_duplicates();

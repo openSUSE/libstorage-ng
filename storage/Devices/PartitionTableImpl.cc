@@ -27,6 +27,7 @@
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Devices/MsdosImpl.h"
+#include "storage/Devices/GptImpl.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -460,6 +461,7 @@ namespace storage
 
 	struct AllActions
 	{
+	    vector<Actiongraph::Impl::vertex_descriptor> repair_actions;
 	    vector<Actiongraph::Impl::vertex_descriptor> shrink_actions;
 	    vector<Actiongraph::Impl::vertex_descriptor> delete_actions;
 	    vector<Actiongraph::Impl::vertex_descriptor> rename_in_actions;
@@ -525,6 +527,19 @@ namespace storage
 
 		all_actions_per_partition_table[sid].rename_in_actions.push_back(vertex);
 	    }
+
+	    const Action::Repair* repair_action = dynamic_cast<const Action::Repair*>(action);
+	    if (repair_action)
+	    {
+		const Device* device = repair_action->get_device(actiongraph, RHS);
+		if (is_partition_table(device))
+		{
+		    const PartitionTable* partition_table = to_partition_table(device);
+		    sid_t sid = partition_table->get_sid();
+
+		    all_actions_per_partition_table[sid].repair_actions.push_back(vertex);
+		}
+	    }
 	}
 
 	// Some functions used for sorting actions by partition number.
@@ -564,6 +579,9 @@ namespace storage
 	    AllActions& all_actions = tmp.second;
 
 	    vector<Actiongraph::Impl::vertex_descriptor> actions;
+
+	    actions.insert(actions.end(), all_actions.repair_actions.begin(),
+			   all_actions.repair_actions.end());
 
 	    all_actions.shrink_actions = sort_by_key(all_actions.shrink_actions, key_fnc1);
 	    actions.insert(actions.end(), all_actions.shrink_actions.begin(),

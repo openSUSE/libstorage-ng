@@ -1,0 +1,2 @@
+1 - Repair GPT on /dev/sdb -> 2
+2 - Create partition /dev/sdb1 (1.00 TiB) ->
