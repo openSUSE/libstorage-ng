@@ -182,6 +182,8 @@ namespace storage
 
     private:
 
+	void set_gpt_undersized();
+
 	void get_actions();
 	void remove_duplicates();
 	void set_special_actions();

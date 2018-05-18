@@ -32,6 +32,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Devices/GptImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
@@ -125,6 +126,8 @@ namespace storage
     Actiongraph::Impl::Impl(const Storage& storage, Devicegraph* lhs, Devicegraph* rhs)
 	: storage(storage), lhs(lhs), rhs(rhs)
     {
+	set_gpt_undersized();
+
 	CheckCallbacksLogger check_callbacks_logger;
 
 	storage.check(&check_callbacks_logger);
@@ -140,6 +143,40 @@ namespace storage
 	calculate_order();
 
 	y2mil("stopwatch " << stopwatch << " for actiongraph generation");
+    }
+
+
+    void
+    Actiongraph::Impl::set_gpt_undersized()
+    {
+	// Set the undersized attribute to false for GPTs where either a
+	// partition is created or grown since those operations might need the
+	// GPT to cover the whole device. Without the code here the library
+	// user would be responsible to set the attribute.
+
+	for (Gpt* gpt : Gpt::get_all(rhs))
+	{
+	    if (gpt->get_impl().is_undersized() && gpt->exists_in_devicegraph(lhs))
+	    {
+		auto might_require_repair = [this](const Partition* partition_rhs)
+		{
+		    // Check if the partition is created.
+		    if (!exists_in(partition_rhs, LHS))
+			return true;
+
+		    // Check if the partition is grown.
+		    const Partition* partition_lhs = to_partition(find_device(partition_rhs->get_sid(), LHS));
+		    if (partition_lhs->get_size() < partition_rhs->get_size())
+			return true;
+
+		    return false;
+		};
+
+		vector<Partition*> partitions = gpt->get_partitions();
+		if (any_of(partitions.begin(), partitions.end(), might_require_repair))
+		    gpt->get_impl().set_undersized(false);
+	    }
+	}
     }
 
 
