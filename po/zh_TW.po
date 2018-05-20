@@ -12,9 +12,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 20:28+0200\n"
-"PO-Revision-Date: 2018-05-14 07:34+0000\n"
-"Last-Translator: Grace Yu <grace.yu@excel-gits.com>\n"
-"Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
+"PO-Revision-Date: 2018-05-20 16:52+0000\n"
+"Last-Translator: Peter Pan <pan93412@gmail.com>\n"
+"Language-Team: Chinese (Taiwan) "
+"<https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1729,15 +1730,15 @@ msgstr "正於 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "正於 %1$s 上建立 GPT"
+msgstr "正於 %1$s 上修復 GPT"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "正於 %1$s 上建立 GPT"
+msgstr "正於 %1$s 上修復 GPT"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
