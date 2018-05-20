@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 20:28+0200\n"
-"PO-Revision-Date: 2018-05-20 16:52+0000\n"
+"PO-Revision-Date: 2018-05-20 19:01+0000\n"
 "Last-Translator: Peter Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) "
 "<https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
@@ -1732,7 +1732,7 @@ msgstr "正於 /etc/fstab 中將裝載點 %1$s 從 %2$s 重新命名為 %3$s"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Repair GPT on %1$s"
-msgstr "正於 %1$s 上修復 GPT"
+msgstr "於 %1$s 上修復 GPT"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
