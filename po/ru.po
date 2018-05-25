@@ -5,14 +5,16 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 20:28+0200\n"
-"PO-Revision-Date: 2018-04-23 11:09+0000\n"
-"Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-master/ru/>\n"
+"PO-Revision-Date: 2018-05-25 09:15+0000\n"
+"Last-Translator: Alex Minton <alex239@gmail.com>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
@@ -1461,9 +1463,9 @@ msgid "PiB"
 msgstr "ПиБ"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Ошибка проверки DASD"
+msgstr "Ошибка проверки DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -1498,9 +1500,9 @@ msgid "Probing LVM failed"
 msgstr "Ошибка проверки LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Ошибка проверки MD RAID"
+msgstr "Ошибка проверки MD RAID %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -1523,9 +1525,9 @@ msgid "Probing bcache"
 msgstr "Проверка bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Ошибка проверки bcache"
+msgstr "Ошибка проверки bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -1553,9 +1555,8 @@ msgid "Probing disks failed"
 msgstr "Ошибка проверки дисков"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Ошибка проверки LVM"
+msgstr "Ошибка проверки"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -1712,15 +1713,15 @@ msgstr "Переименование точки монтирования %1$s и
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "Создание GPT на %1$s"
+msgstr "Починить GPT на %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "Создание GPT на %1$s"
+msgstr "Починка GPT на %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
