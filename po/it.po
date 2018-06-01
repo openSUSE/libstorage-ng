@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-05-16 20:28+0200\n"
-"PO-Revision-Date: 2018-05-17 12:55+0000\n"
+"PO-Revision-Date: 2018-06-01 16:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/it/>\n"
@@ -152,7 +152,8 @@ msgstr "Aggiungi il punto di montaggio %1$s di %2$s a /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Aggiungi il punto di montaggio %1$s del sotto-volume %2$s su %3$s a /etc/fstab"
+msgstr ""
+"Aggiungi il punto di montaggio %1$s del sottovolume %2$s su %3$s a /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -189,7 +190,9 @@ msgstr "Aggiunta del punto di montaggio %1$s di %2$s a /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Aggiunta del punto di montaggio %1$s del sotto-volume %2$s su %3$s a /etc/fstab"
+msgstr ""
+"Aggiunta del punto di montaggio %1$s del sottovolume %2$s su %3$s a "
+"/etc/fstab"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -209,7 +212,7 @@ msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr "Sotto-volume Btrfs"
+msgstr "Sottovolume Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -228,7 +231,8 @@ msgstr "Cancellare l'obsoleto flag di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Cancellare l'opzione \"no copy on write\" per il sotto-volume %1$s su %2$s"
+msgstr ""
+"Cancellare l'opzione \"no copy on write\" per il sottovolume %1$s su %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -253,7 +257,9 @@ msgstr "Cancellazione dell'obsoleto flag di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Cancellazione dell'opzione \"no copy on write\" per il sotto-volume %1$s su %2$s"
+msgstr ""
+"Cancellazione dell'opzione \"no copy on write\" per il sottovolume %1$s su "
+"%2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -581,14 +587,14 @@ msgstr "Creare la partizione primaria %1$s (%2$s)"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
-msgstr "Creare il sotto-volume %1$s su %2$s"
+msgstr "Creare il sottovolume %1$s su %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Creare il sotto-volume %1$s su %2$s con l'opzione 'no copy on write'"
+msgstr "Creare il sottovolume %1$s su %2$s con l'opzione 'no copy on write'"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -738,7 +744,7 @@ msgstr "Creazione della partizione primaria %1$s (%2$s)"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Creating subvolume %1$s on %2$s"
-msgstr "Creazione del sotto-volume %1$s su %2$s"
+msgstr "Creazione del sottovolume %1$s su %2$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1001,7 +1007,7 @@ msgstr "Elimina la partizione primaria %1$s (%2$s)"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
-msgstr "Eliminare il sotto-volume %1$s su %2$s"
+msgstr "Eliminare il sottovolume %1$s su %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1138,7 +1144,7 @@ msgstr "Eliminazione della partizione primaria %1$s (%2$s)"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Deleting subvolume %1$s on %2$s"
-msgstr "Eliminazione del sotto-volume %1$s su %2$s"
+msgstr "Eliminazione del sottovolume %1$s su %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1571,7 +1577,7 @@ msgstr "Monta la partizione %1$s (%2$s) in %3$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
-msgstr "Monta il sotto-volume %1$s su %2$s in %3$s"
+msgstr "Monta il sottovolume %1$s su %2$s in %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1586,7 +1592,7 @@ msgstr "Montaggio di %1$s da %2$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
-msgstr "Montaggio del sotto-volume %1$s su %2$s in %3$s"
+msgstr "Montaggio del sottovolume %1$s su %2$s in %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
@@ -1792,7 +1798,9 @@ msgstr "Rimuovere il punto di montaggio %1$s di %2$s da /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Rimuovere il punto di montaggio %1$s del sotto-volume %2$s su %3$s da /etc/fstab"
+msgstr ""
+"Rimuovere il punto di montaggio %1$s del sottovolume %2$s su %3$s da "
+"/etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1829,7 +1837,9 @@ msgstr "Rimozione del punto di montaggio %1$s di %2$s da /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Rimozione del punto di montaggio %1$s del sotto-volume %2$s su %3$s da /etc/fstab"
+msgstr ""
+"Rimozione del punto di montaggio %1$s del sottovolume %2$s su %3$s da "
+"/etc/fstab"
 
 #, c-format
 msgid "Rename %1$s to %2$s"
@@ -1895,7 +1905,7 @@ msgstr "Impostare il flag di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "Impostare il sotto-volume %1$s su %2$s come sotto-volume predefinito"
+msgstr "Impostare il sottovolume %1$s su %2$s come sottovolume predefinito"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1937,7 +1947,7 @@ msgstr "Impostare il flag obsoleto di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Impostare l'opzione 'no copy on write' per il sotto-volume %1$s su %2$s"
+msgstr "Impostare l'opzione 'no copy on write' per il sottovolume %1$s su %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1969,7 +1979,7 @@ msgstr "Impostazione del flag di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "Impostazione del sotto-volume %1$s su %2$s come sotto-volume predefinito"
+msgstr "Impostazione del sottovolume %1$s su %2$s come sottovolume predefinito"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2011,7 +2021,8 @@ msgstr "Impostazione del flag obsoleto di avvio della partizione %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Impostazione dell'opzione 'no copy on write' per il sotto-volume %1$s su %2$s"
+msgstr ""
+"Impostazione dell'opzione 'no copy on write' per il sottovolume %1$s su %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -2193,7 +2204,7 @@ msgstr "Smonta il file system btrfs su %1$s da %2$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Smonta il sotto-volume %1$s su %2$s da %3$s"
+msgstr "Smonta il sottovolume %1$s su %2$s da %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2209,7 +2220,7 @@ msgstr "Smontaggio di %1$s da %2$s"
 #. %3$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Smontaggio del sotto-volume %1$s su %2$s da %3$s"
+msgstr "Smontaggio del sottovolume %1$s su %2$s da %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
