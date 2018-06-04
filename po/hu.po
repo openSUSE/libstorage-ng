@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-05-15 17:19+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-master/hu/>\n"
@@ -1683,6 +1683,11 @@ msgstr "Partíciók ellenőrzése"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "Partíciók ellenőrzése sikertelen"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "Partíciók ellenőrzése sikertelen"
 
 #. TRANSLATORS: displayed before action,

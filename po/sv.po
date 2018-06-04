@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-04-24 11:13+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-master/sv/>\n"
@@ -1661,6 +1661,11 @@ msgstr "Testar partition"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "Det gick inte att söka partitionerna"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "Det gick inte att söka partitionerna"
 
 #. TRANSLATORS: displayed before action,

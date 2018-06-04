@@ -5,11 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-05-24 05:34+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -336,8 +335,7 @@ msgstr "Vytvoriť tabuľku oddielov MS-DOS na %1$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vytvoriť šifrovaný logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr "Vytvoriť šifrovaný logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -347,9 +345,7 @@ msgstr ""
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre %4$"
-"s s %5$s"
+msgstr "Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre %4$s s %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -357,9 +353,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre "
-"swap"
+msgstr "Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s pre swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -368,8 +362,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
+msgstr "Vytvoriť šifrovaný logický zväzok %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -696,8 +689,7 @@ msgstr "Vytvorenie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vytvorenie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr "Vytvorenie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -761,8 +753,7 @@ msgstr "Deaktivovať tenký logický zväzok %1$s (%2$s) na skupine zväzkov %3$
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Deaktivovať tenký logický zväzok fondu %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr "Deaktivovať tenký logický zväzok fondu %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -799,8 +790,7 @@ msgstr "Deaktivovanie multipath %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Deaktivovanie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr "Deaktivovanie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -808,9 +798,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Deaktivovanie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov "
-"%3$s"
+msgstr "Deaktivovanie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1065,8 +1053,7 @@ msgstr "Vymazanie tenkého logického zväzku %1$s (%2$s) na skupine zväzkov %3
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Vymazanie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov %3$s"
+msgstr "Vymazanie tenkého logického zväzku fondu %1$s (%2$s) na skupine zväzkov %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1107,9 +1094,7 @@ msgstr "Šifrovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Šifrovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s pre %4$s s "
-"%5$s"
+msgstr "Šifrovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s pre %4$s s %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1168,9 +1153,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Formátovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s pre %4$s s "
-"%5$s"
+msgstr "Formátovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s pre %4$s s %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1179,8 +1162,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Formátovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
+msgstr "Formátovať logický zväzok LVM %1$s (%2$s) na skupine zväzkov %3$s s %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1264,8 +1246,7 @@ msgstr "Zväčšiť fyzický zväzok na %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zväčšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
+msgstr "Zväčšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1274,8 +1255,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zväčšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
+msgstr "Zväčšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1326,9 +1306,7 @@ msgstr "Zväčšenie fyzického zväzku na %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zväčšenie tenk0ho logického zväzku %1$s na skupine zväzkov %2$s z %3$s na "
-"%4$s"
+msgstr "Zväčšenie tenk0ho logického zväzku %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1337,9 +1315,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zväčšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2$s z %3$s "
-"na %4$s"
+msgstr "Zväčšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1608,6 +1584,11 @@ msgstr "Kontrola oddielov"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "Kontrola oddielov zlyhala"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "Kontrola oddielov zlyhala"
 
 #. TRANSLATORS: displayed before action,
@@ -1943,8 +1924,7 @@ msgstr "Zmenšiť fyzický zväzok na %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmenšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
+msgstr "Zmenšiť tenký logický zväzok %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1953,9 +1933,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmenšiť tenký logický zväzok fondu %1$s na skupine zväzkov %2$s z %3$s na "
-"%4$s"
+msgstr "Zmenšiť tenký logický zväzok fondu %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2006,9 +1984,7 @@ msgstr "Zmenšenie fyzického zväzku na %1$s z %2$s na %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmenšenie tenkého logického zväzku %1$s na skupine zväzkov %2$s z %3$s na "
-"%4$s"
+msgstr "Zmenšenie tenkého logického zväzku %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2017,9 +1993,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Zmenšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2$s z %3$s "
-"na %4$s"
+msgstr "Zmenšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2$s z %3$s na %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
