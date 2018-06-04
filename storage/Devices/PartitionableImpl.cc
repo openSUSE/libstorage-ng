@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,6 +37,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/Prober.h"
@@ -119,36 +120,45 @@ namespace storage
 	if (has_children() || !is_active() || get_size() == 0)
 	    return;
 
-	const Parted& parted = prober.get_system_info().getParted(get_name());
-	if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
-	    parted.get_label() == PtType::DASD)
+	try
 	{
-	    if (get_region().get_block_size() != parted.get_region().get_block_size())
-		ST_THROW(Exception(sformat("different block size reported by kernel and parted for %s",
-					   get_name().c_str())));
-
-	    if (get_region().get_length() != parted.get_region().get_length())
-		ST_THROW(Exception(sformat("different size reported by kernel and parted for %s",
-					   get_name().c_str())));
-
-	    PtType label = parted.get_label();
-
-	    // parted reports DASD partition table for implicit partition
-	    // tables. Convert that to implicit partition table.
-
-	    if (is_dasd(get_non_impl()))
+	    const Parted& parted = prober.get_system_info().getParted(get_name());
+	    if (parted.get_label() == PtType::MSDOS || parted.get_label() == PtType::GPT ||
+		parted.get_label() == PtType::DASD)
 	    {
-		const Dasd* dasd = to_dasd(get_non_impl());
+		if (get_region().get_block_size() != parted.get_region().get_block_size())
+		    ST_THROW(Exception(sformat("different block size reported by kernel and parted for %s",
+					       get_name().c_str())));
 
-		if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
-		    label = PtType::IMPLICIT;
+		if (get_region().get_length() != parted.get_region().get_length())
+		    ST_THROW(Exception(sformat("different size reported by kernel and parted for %s",
+					       get_name().c_str())));
 
-		if (dasd->get_type() == DasdType::FBA && parted.is_implicit())
-		    label = PtType::IMPLICIT;
+		PtType label = parted.get_label();
+
+		// parted reports DASD partition table for implicit partition
+		// tables. Convert that to implicit partition table.
+
+		if (is_dasd(get_non_impl()))
+		{
+		    const Dasd* dasd = to_dasd(get_non_impl());
+
+		    if (dasd->get_type() == DasdType::ECKD && dasd->get_format() == DasdFormat::LDL)
+			label = PtType::IMPLICIT;
+
+		    if (dasd->get_type() == DasdType::FBA && parted.is_implicit())
+			label = PtType::IMPLICIT;
+		}
+
+		PartitionTable* partition_table = create_partition_table(label);
+		partition_table->get_impl().probe_pass_1c(prober);
 	    }
-
-	    PartitionTable* partition_table = create_partition_table(label);
-	    partition_table->get_impl().probe_pass_1c(prober);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(prober.get_probe_callbacks(), sformat(_("Probing partitions on %s failed"),
+								 get_name().c_str()), exception);
 	}
     }
 
