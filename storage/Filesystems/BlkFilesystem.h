@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -107,6 +107,11 @@ namespace storage
 	 */
 	void set_resize_info(const ResizeInfo& resize_info);
 
+	/**
+	 * Detect the content info of the filesystem.
+	 *
+	 * @throw Exception
+	 */
 	ContentInfo detect_content_info() const;
 
 	/**
