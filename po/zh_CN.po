@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-05-11 16:46+0000\n"
 "Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_CN/>\n"
@@ -1588,6 +1588,11 @@ msgstr "正在探测分区"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "探测分区失败"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "探测分区失败"
 
 #. TRANSLATORS: displayed before action,

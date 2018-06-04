@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2017-07-26 22:00+0000\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/master/da/>\n"
@@ -1592,6 +1592,11 @@ msgstr "Opret RAID-partition %1$s (%2$s)"
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
+msgstr "Opret RAID-partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)

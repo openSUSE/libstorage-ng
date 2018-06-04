@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2001-07-17 16:27+0200\n"
 "Last-Translator: James Ogley <ogley@suse.co.uk>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -1603,6 +1603,11 @@ msgstr "Create partition %1$s (%2$s)"
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
+msgstr "Create partition %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)

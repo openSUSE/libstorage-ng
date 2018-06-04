@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -1600,6 +1600,11 @@ msgstr "Yakha ukuhlukaniswa kwamaphathishini %1$s (%2$s)"
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
 msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
+msgstr "Yakha ukuhlukaniswa kwamaphathishini %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)

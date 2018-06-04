@@ -10,11 +10,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-05-17 18:49+0000\n"
 "Last-Translator: Benoît Monin <benoit.monin@gmx.fr>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1725,6 +1724,11 @@ msgstr "Sondage des partitions"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "Échec du sondage des partitions"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "Échec du sondage des partitions"
 
 #. TRANSLATORS: displayed before action,

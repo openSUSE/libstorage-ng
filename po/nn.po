@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2005-08-11 20:37+0200\n"
 "Last-Translator: nynorsk <i18n@suse.de>\n"
 "Language-Team:  nn <i18n@suse.de>\n"
@@ -1587,6 +1587,11 @@ msgstr ""
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing partitions on %s failed"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,

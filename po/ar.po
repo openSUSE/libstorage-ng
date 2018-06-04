@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-master/ar/>\n"
@@ -1586,6 +1586,11 @@ msgstr "بحث الأقسام"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
+msgstr "فشل بحث الأقسام"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
 msgstr "فشل بحث الأقسام"
 
 #. TRANSLATORS: displayed before action,

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-16 20:28+0200\n"
+"POT-Creation-Date: 2018-06-04 11:24+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -1863,6 +1863,12 @@ msgstr "צור מחיצה מורחבת %2 (%3)"
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
 msgstr ""
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing partitions on %s failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
