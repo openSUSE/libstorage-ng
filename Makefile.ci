@@ -6,7 +6,7 @@
 .PHONY: package
 package: obs-package-from-git
 	./$^ \
-		-P YaST:storage-ng -p libstorage-ng \
+		-P YaST:Head -p libstorage-ng \
 		-o .obsdir \
 		-c 'make -f Makefile.repo && make package'
 
