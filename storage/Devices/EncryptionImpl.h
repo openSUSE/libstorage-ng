@@ -61,7 +61,7 @@ namespace storage
 	 * with the DeviceMapper name, since the kernel device names for
 	 * Encryption devices are inferred from their DeviceMapper names.
 	 */
-	void set_dm_table_name(const string& dm_table_name);
+	virtual void set_dm_table_name(const string& dm_table_name);
 
 	virtual EncryptionType get_type() const { return EncryptionType::UNKNOWN; }
 
