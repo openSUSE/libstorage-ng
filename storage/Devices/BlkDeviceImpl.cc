@@ -307,26 +307,33 @@ namespace storage
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	try
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device)
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	    {
-		if (blk_device->get_name() == name)
-		    return blk_device;
+		BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
+		if (blk_device)
+		{
+		    if (blk_device->get_name() == name)
+			return blk_device;
+		}
+	    }
+
+	    dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	    {
+		BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
+		if (blk_device && blk_device->get_impl().active)
+		{
+		    if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+			return blk_device;
+		}
 	    }
 	}
-
-	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
-
-	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	catch (const Exception& exception)
 	{
-	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device && blk_device->get_impl().active)
-	    {
-		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
-		    return blk_device;
-	    }
+	    ST_THROW(DeviceNotFoundByName(name));
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
@@ -340,26 +347,33 @@ namespace storage
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
 
-	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	try
 	{
-	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device)
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	    {
-		if (blk_device->get_name() == name)
-		    return blk_device;
+		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+		if (blk_device)
+		{
+		    if (blk_device->get_name() == name)
+			return blk_device;
+		}
+	    }
+
+	    dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	    {
+		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+		if (blk_device && blk_device->get_impl().active)
+		{
+		    if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+			return blk_device;
+		}
 	    }
 	}
-
-	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
-
-	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	catch (const Exception& exception)
 	{
-	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device && blk_device->get_impl().active)
-	    {
-		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
-		    return blk_device;
-	    }
+	    ST_THROW(DeviceNotFoundByName(name));
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
