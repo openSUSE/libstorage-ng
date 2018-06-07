@@ -87,6 +87,13 @@ namespace storage
 	set_mount_by(get_storage()->get_default_mount_by());
     }
 
+    void
+    Encryption::Impl::set_dm_table_name(const string& dm_table_name)
+    {
+	BlkDevice::Impl::set_dm_table_name(dm_table_name);
+	BlkDevice::Impl::set_name(DEV_MAPPER_DIR "/" + dm_table_name);
+    }
+
 
     void
     Encryption::Impl::set_crypt_options(const CryptOpts& crypt_options)
