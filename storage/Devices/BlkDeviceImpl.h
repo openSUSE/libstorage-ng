@@ -98,7 +98,7 @@ namespace storage
 	string get_mount_by_name(MountByType mount_by_type) const;
 
 	const string& get_dm_table_name() const { return dm_table_name; }
-	void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
+	virtual void set_dm_table_name(const string& dm_table_name) { Impl::dm_table_name = dm_table_name; }
 
 	BlkFilesystem* create_blk_filesystem(FsType fs_type);
 

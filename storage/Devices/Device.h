@@ -196,6 +196,9 @@ namespace storage
 	 */
 	static bool compare_by_name(const Device* lhs, const Device* rhs);
 
+	Devicegraph* get_devicegraph();
+	const Devicegraph* get_devicegraph() const;
+
     public:
 
 	class Impl;

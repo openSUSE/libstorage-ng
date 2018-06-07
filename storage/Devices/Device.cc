@@ -418,4 +418,18 @@ namespace storage
 	return out;
     }
 
+
+    Devicegraph*
+    Device::get_devicegraph()
+    {
+	return get_impl().get_devicegraph();
+    }
+
+
+    const Devicegraph*
+    Device::get_devicegraph() const
+    {
+	return get_impl().get_devicegraph();
+    }
+
 }

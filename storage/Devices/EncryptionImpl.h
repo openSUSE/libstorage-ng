@@ -56,6 +56,13 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_dm_table_name(); }
 
+	/**
+	 * Redefined from BlkDeviceImpl to ensure the device name is in sync
+	 * with the DeviceMapper name, since the kernel device names for
+	 * Encryption devices are inferred from their DeviceMapper names.
+	 */
+	virtual void set_dm_table_name(const string& dm_table_name) override;
+
 	virtual EncryptionType get_type() const { return EncryptionType::UNKNOWN; }
 
 	const string& get_password() const { return password; }
