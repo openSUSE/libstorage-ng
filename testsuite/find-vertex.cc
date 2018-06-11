@@ -5,6 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "storage/Devices/Disk.h"
+#include "storage/Devices/Gpt.h"
 #include "storage/Devices/Partition.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Environment.h"
@@ -17,6 +18,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(find_vertex)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -25,11 +28,12 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     Disk* sda = Disk::create(devicegraph, "/dev/sda");
 
-    Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 262144), PartitionType::PRIMARY);
-    Subdevice::create(devicegraph, sda, sda1);
+    Gpt* gpt = to_gpt(sda->create_partition_table(PtType::GPT));
 
-    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 2);
-    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 1);
+    Partition* sda1 = gpt->create_partition("/dev/sda1", Region(2048, 1000000, 512), PartitionType::PRIMARY);
+
+    BOOST_CHECK_EQUAL(devicegraph->num_devices(), 3);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
 
     BOOST_CHECK_EQUAL(BlkDevice::find_by_name(devicegraph, "/dev/sda"), sda);
     BOOST_CHECK_EQUAL(BlkDevice::find_by_name(devicegraph, "/dev/sda1"), sda1);
