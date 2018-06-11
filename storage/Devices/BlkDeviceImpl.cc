@@ -333,7 +333,7 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_THROW(DeviceNotFoundByName(name));
+	    ST_CAUGHT(exception);
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
@@ -373,7 +373,7 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
-	    ST_THROW(DeviceNotFoundByName(name));
+	    ST_CAUGHT(exception);
 	}
 
 	ST_THROW(DeviceNotFoundByName(name));
