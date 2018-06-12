@@ -3,21 +3,22 @@
 # Copyright (C) 2002 SuSE Linux AG.
 # Copyright (C) 1999-2001 SuSE GmbH.
 # I Made Wiryana <made@nakula.rvs.uni-bielefeld.de>, 1999.
-# Arif Budiman <arifpedia@gmail.com>, 2016-2017.
+# Arif Budiman <arifpedia@gmail.com>, 2016-2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-04 11:24+0200\n"
-"PO-Revision-Date: 2017-11-03 14:02+0700\n"
+"PO-Revision-Date: 2018-06-12 05:41+0000\n"
 "Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
-"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/master/id/>\n"
+"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -37,35 +38,35 @@ msgstr "Aktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Mengaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Mengaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Mengaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Mengaktifkan volume logical pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "Mengaktivasi LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "Gagal mengaktivasi LUKS %s"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "Mengaktivasi LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "Gagal mengaktivasi LVM"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -82,30 +83,28 @@ msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Mengaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Menonaktifkan multipath %1$s (%2$s)"
+msgstr "Mengaktifkan multipath"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Menonaktifkan multipath %1$s (%2$s)"
+msgstr "Gagal mengaktifkan multipath"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Mengaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Mengaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Mengaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Mengaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -187,19 +186,19 @@ msgstr "B"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Bcache Cache Set"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Subvolume Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -275,9 +274,9 @@ msgstr "Buat GPT pada %1$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -285,40 +284,42 @@ msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan "
+"%5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
-msgstr "Buat volume fisik pada %1$s"
+msgstr "Buat volume physical LVM melalui %1$s (%2$s) terenkripsi"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
-msgstr "Buat grup volume %1$s (%2$s)"
+msgstr "Buat perangkat volume LVM melalui %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -330,17 +331,17 @@ msgstr "Buat MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create MS-DOS partition table on %1$s"
-msgstr "Buat tabel partisi MSDOS pada %1$s"
+msgstr "Buat tabel partisi MS-DOS pada %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -348,64 +349,70 @@ msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Buat volume logical terenkripsi %1$s (%2$s) pada grup volume %3$s untuk %4$s "
+"dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s untuk "
+"swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s dengan "
+"%4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Buat partisi terenkripsi %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Buat partisi terenkripsi %1$s (%2$s) sebagai volume physical LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Buat partisi terenkripsi %1$s (%2$s) untuk %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Buat partisi terenkripsi %1$s (%2$s) untuk swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Buat partisi terenkripsi %1$s (%2$s) dengan %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -422,16 +429,16 @@ msgstr "Buat partisi extended %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create file system btrfs on %1$s"
-msgstr "Buat volume fisik pada %1$s"
+msgstr "Buat sistem berkas btrfs pada %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "Buat sistem berkas btfrs pada %1$s dan mengaitkannya di %2$s"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -440,15 +447,15 @@ msgstr "Buat hard disk %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition %1$s (%2$s)"
-msgstr "Buat partisi logical %1$s (%2$s)"
+msgstr "Buat partisi implisit %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Create implicit partition table on %1$s"
-msgstr "Buat tabel partisi DASD pada %1$s"
+msgstr "Buat tabel partisi implisit pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -479,40 +486,40 @@ msgstr "Buat partisi %1$s (%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Buat partisi %1$s (%2$s) sebagai %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Buat partisi %1$s (%2$s) sebagai volume physical LVM"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Buat partisi %1$s (%2$s) untuk %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) for swap"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Buat partisi %1$s (%2$s) untuk swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Buat partisi %1$s (%2$s) dengan %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -540,25 +547,25 @@ msgstr "Buat subvolume %1$s pada %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Buat subvolume %1$s pada %2$s"
+msgstr "Buat subvolume %1$s pada %2$s dengan opsi 'no copy on write'"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Membuat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Membuat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Buat volume logical pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -574,9 +581,9 @@ msgstr "Buat grup volume %1$s (%2$s)"
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
-msgstr "Buat grup volume %1$s (%2$s)"
+msgstr "Buat grup volume %1$s (%2$s) dengan %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -608,9 +615,9 @@ msgstr "Membuat MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MS-DOS partition table on %1$s"
-msgstr "Membuat tabel partisi MSDOS pada %1$s"
+msgstr "Membuat tabel partisi MS-DOS pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -628,15 +635,15 @@ msgstr "Membuat partisi extended %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
-msgstr "Membuat partisi logical %1$s (%2$s)"
+msgstr "Membuat partisi implisit %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating implicit partition table on %1$s"
-msgstr "Membuat tabel partisi DASD pada %1$s"
+msgstr "Membuat tabel partisi implisit pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -684,17 +691,17 @@ msgstr "Membuat subvolume %1$s pada %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Membuat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Membuat volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Membuat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Membuat volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -705,16 +712,15 @@ msgstr "Membuat grup volume %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "DASD Partition Table"
-msgstr "Buat tabel partisi DASD pada %1$s"
+msgstr "Tabel partisi DASD"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -749,17 +755,17 @@ msgstr "Nonaktifkan multipath %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menonaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Nonaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menonaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Nonaktifkan volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -794,17 +800,18 @@ msgstr "Menonaktifkan multipath %1$s (%2$s)"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menonaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Menonaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menonaktifkan volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Menonaktifkan volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -836,9 +843,9 @@ msgstr "Hapus MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete MS-DOS partition table on %1$s"
-msgstr "Hapus tabel partisi MSDOS pada %1$s"
+msgstr "Hapus tabel partisi MS-DOS pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -849,35 +856,35 @@ msgstr "Hapus perangkat loop terenkripsi pada %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete extended partition %1$s (%2$s)"
-msgstr "Buat partisi extended %1$s (%2$s)"
+msgstr "Hapus partisi extended %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete file system btrfs on %1$s"
-msgstr "Hapus volume fisik pada %1$s"
+msgstr "Hapus sistem berkas btrfs pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
-msgstr "Hapus partisi %1$s (%2$s)"
+msgstr "Hapus partisi implisit %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete implicit partition table on %1$s"
-msgstr "Hapus tabel partisi DASD pada %1$s"
+msgstr "Hapus tabel partisi implisit pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete logical partition %1$s (%2$s)"
-msgstr "Buat partisi logical %1$s (%2$s)"
+msgstr "Hapus partisi logical %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -906,9 +913,9 @@ msgstr "Hapus volume fisik pada %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete primary partition %1$s (%2$s)"
-msgstr "Buat partisi primary %1$s (%2$s)"
+msgstr "Hapus partisi primary %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -924,17 +931,17 @@ msgstr "Hapus subvolume %1$s pada %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menghapus volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Hapus volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menghapus volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Hapus volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -973,9 +980,9 @@ msgstr "Menghapus MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
-msgstr "Menghapus tabel partisi MSDOS pada %1$s"
+msgstr "Menghapus tabel partisi MS-DOS pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -986,29 +993,29 @@ msgstr "Menghapus perangkat loop terenkripsi pada %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
-msgstr "Membuat partisi extended %1$s (%2$s)"
+msgstr "Menghapus partisi extended %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
-msgstr "Menghapus partisi %1$s (%2$s)"
+msgstr "Menghapus partisi implisit %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/dasda)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting implicit partition table on %1$s"
-msgstr "Menghapus tabel partisi DASD pada %1$s"
+msgstr "Menghapus tabel partisi implisit pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
-msgstr "Membuat partisi logical %1$s (%2$s)"
+msgstr "Menghapus partisi logical %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1034,9 +1041,9 @@ msgstr "Menghapus volume fisik pada %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
-msgstr "Membuat partisi primary %1$s (%2$s)"
+msgstr "Menghapus partisi primary %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -1049,17 +1056,17 @@ msgstr "Menghapus subvolume %1$s pada %2$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menghapus volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Menghapus volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Menghapus volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Menghapus volume logical thin %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1070,7 +1077,7 @@ msgstr "Menghapus grup volume %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "Disk"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 msgid "E"
@@ -1088,9 +1095,9 @@ msgstr "EiB"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1098,58 +1105,61 @@ msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Perbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s "
+"dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s)"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Enkripsi partisi %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Perbesar partisi %1$s dari %2$s ke %3$s"
+msgstr "Enkripsi partisi %1$s (%2$s) untuk %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
-msgstr "Perbesar partisi %1$s dari %2$s ke %3$s"
+msgstr "Enkripsi partisi %1$s (%2$s) dengan %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "Enkripsi"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1157,35 +1167,37 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home),
 #. %5$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr ""
+"Format volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s "
+"dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Format volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home),
 #. %4$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Perbesar partisi %1$s dari %2$s ke %3$s"
+msgstr "Format partisi %1$s (%2$s) untuk %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "Buat partisi %1$s (%2$s)"
+msgstr "Format partisi %1$s (%2$s) dengan %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1197,7 +1209,7 @@ msgstr "GB"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 msgid "GiB"
@@ -1250,18 +1262,21 @@ msgstr "Perbesar volume fisik pada %1$s dari %2$s ke %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Perbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Perbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
+"%4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1310,30 +1325,33 @@ msgstr "Memperbesar volume fisik pada %1$s dari %2$s ke %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Memperbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Memperbesar volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Memperbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
+"%4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "Tabel Partisi Implisit"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
@@ -1341,18 +1359,18 @@ msgstr "KiB"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
-msgstr ""
+msgstr "Volume Logical LVM"
 
 #. TRANSLATORS: name of object
 msgid "LVM Physical Volume"
-msgstr ""
+msgstr "Volume Physical LVM"
 
 msgid "LVM Volume Group"
-msgstr ""
+msgstr "Grup Volume LVM"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1364,12 +1382,11 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "MS-DOS Partition Table"
-msgstr "Buat tabel partisi MSDOS pada %1$s"
+msgstr "Tabel Partisi MS-DOS"
 
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
@@ -1387,35 +1404,35 @@ msgstr "Kaitkan %1$s di %2$s"
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system),
 #. %4$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Buat volume logical %1$s (%2$s) pada grup volume %3$s"
+msgstr "Kaitkan volume logical LVM %1$s (%2$s) pada grup volume %3$s di %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount NFS %1$s on %2$s"
-msgstr "Kaitkan %1$s di %2$s"
+msgstr "Kaitkan NFS %1$s di %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "Titik Kait"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
-msgstr "Mengaitkan %1$s di %2$s"
+msgstr "Kaitkan sistem berkas pada %1$s di %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
-msgstr "Perbesar partisi %1$s dari %2$s ke %3$s"
+msgstr "Kaitkan partisi %1$s (%2$s) di %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -1442,15 +1459,15 @@ msgstr "Mengaitkan subvolume %1$s pada %2$s di %3$s"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "Multipath"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -1462,7 +1479,7 @@ msgstr "PB"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "Partisi"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
@@ -1471,151 +1488,148 @@ msgstr "PiB"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr ""
+msgstr "Gagal memeriksa DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "Memeriksa DASDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "Gagal memeriksa DASDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "Memeriksa DM RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "Gagal memeriksa DM RAIDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "Memeriksa LUKS"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "Gagal memeriksa LUKS"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "Memeriksa LVM"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "Gagal memeriksa LVM"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr ""
+msgstr "Gagal memeriksa MD RAID %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "Memeriksa MD RAIDs"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "Gagal memeriksa MD RAIDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "Memeriksa NFS"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "Gagal memeriksa NFS"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "Memeriksa bcache"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing bcache %s failed"
-msgstr ""
+msgstr "Gagal memeriksa bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "Gagal memeriksa bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "Memeriksa hubungan perangkat"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "Gagal memeriksa hubungan perangkat"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "Gagal memeriksa disk %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "Memeriksa disk"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "Gagal memeriksa disk"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "sistem berkas root pertama"
+msgstr "Gagal memeriksa"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "Gagal memeriksa sistem berkas pada %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing file systems"
-msgstr "sistem berkas root pertama"
+msgstr "Memeriksa sistem berkas"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "Gagal memeriksa sistem berkas"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "Memeriksa multipath"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "Gagal mmeriksa multipath"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing partitions"
-msgstr "Membuat partisi %1$s (%2$s)"
+msgstr "Memeriksa partisi"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "Gagal memeriksa partisi"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "Membuat partisi %1$s (%2$s)"
+msgstr "Gagal memeriksa partisi pada %s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Kurangi grup volume %1$s dengan melewatkan volume physical"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Mengurangi grup volume %1$s dengan melewatkan volume physical"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1727,15 +1741,15 @@ msgstr "Mengubah nama %1$s dari %2$s menjadi %3$s di /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "Membuat GPT pada %1$s"
+msgstr "Perbaiki GPT pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "Membuat GPT pada %1$s"
+msgstr "Memperbaiki GPT pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1807,9 +1821,9 @@ msgstr "Atur tanda pelindung boot MBR di GPT pada %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s"
-msgstr "Atur id partisi %1$s ke %2$s"
+msgstr "Atur opsi tune %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1881,9 +1895,9 @@ msgstr "Mengatur tanda pelindung boot MBR di GPT pada %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s"
-msgstr "Mengatur id partisi %1$s ke %2$s"
+msgstr "Mengatur opsi tune %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1932,18 +1946,21 @@ msgstr "Kecilkan volume fisik pada %1$s dari %2$s ke %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Mengecilkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Mengecilkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
+"%4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1992,22 +2009,25 @@ msgstr "Mengecilkan volume fisik pada %1$s dari %2$s ke %3$s"
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Mengecilkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Mengecilkan volume logical %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr ""
+"Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
+"%4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
 msgid "T"
@@ -2023,7 +2043,7 @@ msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2035,16 +2055,16 @@ msgstr "Lepas kaitan %1$s dari %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "Lepas kaitan %1$s dari %2$s"
+msgstr "Lepas kaitan NFS %1$s di %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced by mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Melepas kaitan %1$s di %2$s"
+msgstr "Melepas kaitan sistem berkas btrfs %1$s di %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. home),
@@ -2085,11 +2105,11 @@ msgstr "Memperbarui titik kait %1$s dari %2$s di /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
