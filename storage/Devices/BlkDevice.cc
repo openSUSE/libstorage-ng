@@ -141,6 +141,13 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::is_active() const
+    {
+	return get_impl().is_active();
+    }
+
+
     const string&
     BlkDevice::get_sysfs_name() const
     {

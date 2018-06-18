@@ -61,6 +61,8 @@ namespace storage
 
 	std::string get_size_string() const;
 
+	bool is_active() const;
+
 	const std::string& get_sysfs_name() const;
 	const std::string& get_sysfs_path() const;
 
