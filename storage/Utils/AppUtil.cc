@@ -42,7 +42,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageTypes.h"
-#include "storage/SystemInfo/Arch.h"
+#include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/LoggerImpl.h"
 
 
@@ -172,6 +172,28 @@ checkNormalFile(const string& Path_Cv)
 	      << " free:" << stat_vfs.free);
 
 	return stat_vfs;
+    }
+
+
+    bool
+    has_kernel_holders(const string& name, SystemInfo& system_info)
+    {
+	const CmdUdevadmInfo& cmd_udevadm_info = system_info.getCmdUdevadmInfo(name);
+
+	string sysfs_path = cmd_udevadm_info.get_path();
+
+	if (!system_info.getDir(SYSFS_DIR + sysfs_path + "/holders").empty())
+	    return true;
+
+	if (cmd_udevadm_info.get_device_type() == CmdUdevadmInfo::DeviceType::PARTITION)
+	{
+	    sysfs_path = dirname(sysfs_path);
+
+	    if (!system_info.getDir(SYSFS_DIR + sysfs_path + "/holders").empty())
+		return true;
+	}
+
+	return false;
     }
 
 
