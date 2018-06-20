@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +28,8 @@
 #include <string>
 #include <vector>
 
+#include "storage/Utils/Enum.h"
+
 
 namespace storage
 {
@@ -39,6 +42,8 @@ namespace storage
 
     public:
 
+	enum class DeviceType { UNKNOWN, DISK, PARTITION };
+
 	CmdUdevadmInfo(const string& file);
 
 	const string& get_path() const { return path; }
@@ -47,6 +52,8 @@ namespace storage
 	dev_t get_majorminor() const { return majorminor; }
 	unsigned int get_major() const { return gnu_dev_major(majorminor); }
 	unsigned int get_minor() const { return gnu_dev_minor(majorminor); }
+
+	DeviceType get_device_type() const { return device_type; }
 
 	const vector<string>& get_by_path_links() const { return by_path_links; }
 	const vector<string>& get_by_id_links() const { return by_id_links; }
@@ -64,10 +71,14 @@ namespace storage
 
 	dev_t majorminor;
 
+	DeviceType device_type;
+
 	vector<string> by_path_links;
 	vector<string> by_id_links;
 
     };
+
+    template <> struct EnumTraits<CmdUdevadmInfo::DeviceType> { static const vector<string> names; };
 
 }
 

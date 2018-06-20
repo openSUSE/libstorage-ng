@@ -214,12 +214,13 @@ namespace storage
 		if (!key_value1.second.is_luks)
 		    continue;
 
-		// major and minor of the device holding the luks
-		dev_t majorminor = system_info.getCmdUdevadmInfo(key_value1.first).get_majorminor();
+		// Check whether the block device has holders (as reported in
+		// /sys by the kernel). In that case it is either already
+		// activated (the LUKS is already opened) or it is used by
+		// something else, e.g. multipath. In any case it must be
+		// skipped.
 
-		const CmdDmsetupTable& dmsetup_table = system_info.getCmdDmsetupTable();
-		CmdDmsetupTable::const_iterator it = dmsetup_table.find_using(majorminor);
-		if (it != dmsetup_table.end())
+		if (has_kernel_holders(key_value1.first, system_info))
 		    continue;
 
 		y2mil("inactive luks name:" << key_value1.first << " uuid:" <<

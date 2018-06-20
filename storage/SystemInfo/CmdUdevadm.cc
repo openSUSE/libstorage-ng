@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,8 +36,14 @@ namespace storage
     using namespace std;
 
 
+    const vector<string> EnumTraits<CmdUdevadmInfo::DeviceType>::names({
+	"unknown", "disk", "partition"
+    });
+
+
     CmdUdevadmInfo::CmdUdevadmInfo(const string& file)
-	: file(file), path(), name(), majorminor(0), by_path_links(), by_id_links()
+	: file(file), path(), name(), majorminor(0), device_type(DeviceType::UNKNOWN),
+	  by_path_links(), by_id_links()
     {
 	// Without emptying the udev queue 'udevadm info' can display old data
 	// or even complain about unknown devices. Even during probing this
@@ -71,6 +78,9 @@ namespace storage
 	    if (boost::starts_with(line, "E: MINOR="))
 		line.substr(9) >> minor;
 
+	    if (boost::starts_with(line, "E: DEVTYPE="))
+		device_type = toValueWithFallback(line.substr(11), DeviceType::UNKNOWN);
+
 	    if (boost::starts_with(line, "S: disk/by-path/"))
 		by_path_links.push_back(line.substr(16));
 
@@ -92,7 +102,8 @@ namespace storage
     {
 	s << "file:" << cmdudevadminfo.file << " path:" << cmdudevadminfo.get_path()
 	  << " name:" << cmdudevadminfo.get_name() << " majorminor:"
-	  << cmdudevadminfo.get_major() << ":" << cmdudevadminfo.get_minor();
+	  << cmdudevadminfo.get_major() << ":" << cmdudevadminfo.get_minor()
+	  << " device-type:" << toString(cmdudevadminfo.get_device_type());
 
 	if (!cmdudevadminfo.by_path_links.empty())
 	    s << " by-path-links:" << cmdudevadminfo.by_path_links;

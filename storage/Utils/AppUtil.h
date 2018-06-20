@@ -45,6 +45,7 @@ namespace storage
     using std::regex;
 
     class Arch;
+    class SystemInfo;
 
 
 void createPath(const string& Path_Cv);
@@ -72,6 +73,12 @@ bool setStatMode(const string& Path_Cv, mode_t val );
 
     StatVfs detect_stat_vfs(const string& path);
 
+    /**
+     * Check if the block device has holders as reported by the kernel in
+     * /sys. If the block device is a partition the disk is also check for
+     * holders.
+     */
+    bool has_kernel_holders(const string& name, SystemInfo& system_info);
 
 string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 
