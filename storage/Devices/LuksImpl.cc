@@ -216,8 +216,9 @@ namespace storage
 
 		// Check whether the block device has holders (as reported in
 		// /sys by the kernel). In that case it is either already
-		// activated or used by something else, e.g. multipath, and
-		// must be skipped.
+		// activated (the LUKS is already opened) or it is used by
+		// something else, e.g. multipath. In any case it must be
+		// skipped.
 
 		if (has_kernel_holders(key_value1.first, system_info))
 		    continue;
