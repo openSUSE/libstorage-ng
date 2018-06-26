@@ -111,7 +111,7 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_vfat(rhs)->get_impl().get_blk_device();
 
-	string cmd_line = FATRESIZE " " + quote(blk_device->get_name());
+	string cmd_line = FATRESIZEBIN " " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 
