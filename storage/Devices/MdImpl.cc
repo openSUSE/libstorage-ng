@@ -22,7 +22,7 @@
 
 
 #include <ctype.h>
-#include <boost/math/common_factor_rt.hpp>
+#include <boost/integer/common_factor_rt.hpp>
 
 #include "storage/Devices/MdImpl.h"
 #include "storage/Devices/MdContainerImpl.h"
@@ -190,8 +190,8 @@ namespace storage
 		    unsigned long long tmp = 1 * KiB;
 		    for (const BlkDevice* blk_device : get_devices())
 		    {
-			tmp = boost::math::lcm(tmp, (unsigned long long)
-					       blk_device->get_region().get_block_size());
+			tmp = boost::integer::lcm(tmp, (unsigned long long)
+						  blk_device->get_region().get_block_size());
 		    }
 
 		    if (!is_multiple_of(chunk_size, tmp))
