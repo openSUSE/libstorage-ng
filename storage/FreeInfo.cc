@@ -22,7 +22,7 @@
 
 
 #include <limits>
-#include <boost/math/common_factor_rt.hpp>
+#include <boost/integer/common_factor_rt.hpp>
 
 #include "storage/Utils/HumanString.h"
 #include "storage/Utils/XmlFile.h"
@@ -110,7 +110,7 @@ namespace storage
     void
     ResizeInfo::combine_block_size(unsigned long long extra_block_size)
     {
-	block_size = boost::math::lcm(block_size, extra_block_size);
+	block_size = boost::integer::lcm(block_size, extra_block_size);
 
 	check();
     }

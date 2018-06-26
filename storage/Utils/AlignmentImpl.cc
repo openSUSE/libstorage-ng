@@ -20,7 +20,7 @@
  */
 
 
-#include <boost/math/common_factor_rt.hpp>
+#include <boost/integer/common_factor_rt.hpp>
 
 #include "storage/Utils/AlignmentImpl.h"
 #include "storage/Utils/ExceptionImpl.h"
@@ -50,7 +50,7 @@ namespace storage
 	}
 
 	if (extra_grain > 0)
-	    grain = boost::math::lcm(grain, extra_grain);
+	    grain = boost::integer::lcm(grain, extra_grain);
 
 	return grain;
     }

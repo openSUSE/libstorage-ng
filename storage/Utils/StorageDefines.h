@@ -111,7 +111,7 @@
 #define XFSGROWFSBIN  "/usr/sbin/xfs_growfs"
 #define REISERFSRESIZEBIN "/sbin/resize_reiserfs"
 #define EXT2RESIZEBIN "/sbin/resize2fs"
-#define FATRESIZE     "/usr/sbin/fatresize"
+#define FATRESIZEBIN "/usr/sbin/fatresize"
 
 #define TUNE2FSBIN     "/sbin/tune2fs"
 #define TUNEREISERFSBIN "/sbin/reiserfstune"
