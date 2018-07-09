@@ -194,7 +194,7 @@ namespace storage
     Gpt::Impl::is_partition_id_supported(unsigned int id) const
     {
 	static const vector<unsigned int> supported_ids = {
-	    ID_UNKNOWN, ID_LINUX, ID_SWAP, ID_LVM, ID_RAID, ID_ESP, ID_BIOS_BOOT, ID_PREP,
+	    ID_UNKNOWN, ID_LINUX, ID_SWAP, ID_LVM, ID_RAID, ID_IRST, ID_ESP, ID_BIOS_BOOT, ID_PREP,
 	    ID_WINDOWS_BASIC_DATA, ID_MICROSOFT_RESERVED
 	};
 

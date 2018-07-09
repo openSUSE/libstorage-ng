@@ -808,6 +808,10 @@ namespace storage
 		    cmd_line += "raid on";
 		    break;
 
+		case ID_IRST:
+		    cmd_line += "irst on";
+		    break;
+
 		case ID_ESP:
 		    cmd_line += "esp on";
 		    break;
@@ -1163,6 +1167,7 @@ namespace storage
 	    case ID_SWAP: return "Linux Swap";
 	    case ID_LINUX: return "Linux";
 	    case ID_LVM: return "Linux LVM";
+	    case ID_IRST: return "Intel RST";
 	    case ID_RAID: return "Linux RAID";
 	    case ID_ESP: return "EFI System Partition";
 	    case ID_BIOS_BOOT: return "BIOS Boot Partition";
