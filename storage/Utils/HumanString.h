@@ -49,6 +49,7 @@ namespace storage
      */
     int num_suffixes();
 
+
     /**
      * Return a suffix.
      *

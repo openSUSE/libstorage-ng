@@ -215,6 +215,8 @@ namespace storage
 	    entry.id = ID_RAID;
 	else if (contains(flags, "lvm"))
 	    entry.id = ID_LVM;
+	else if (contains(flags, "irst"))
+	    entry.id = ID_IRST;
 	else if (contains(flags, "prep"))
 	    entry.id = ID_PREP;
 	else if (contains(flags, "esp"))

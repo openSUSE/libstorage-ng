@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,11 +35,35 @@ namespace storage
     class Partitionable;
 
 
-    //! Partition type (primary, extended, logical)
+    /**
+     * Enum with partition types.
+     */
     enum class PartitionType {
-	PRIMARY, EXTENDED, LOGICAL
+
+	/**
+	 * Primary partition. For all partition table types.
+	 *
+	 * The type PRIMARY is also used for partitions on partition tables
+	 * that have no partition type.
+	 */
+	PRIMARY,
+
+	/**
+	 * Extended partition. Only for MS-DOS.
+	 */
+	EXTENDED,
+
+	/**
+	 * Logical partition. Only for MS-DOS.
+	 */
+	LOGICAL
+
     };
 
+
+    /**
+     * Convert PartitionType to string.
+     */
     std::string get_partition_type_name(PartitionType partition_type);
 
 
@@ -65,10 +89,10 @@ namespace storage
 	ID_DOS16 = 0x06,
 
 	/** Only for MS-DOS. */
-	ID_DOS32 = 0x0c,
+	ID_NTFS = 0x07,
 
 	/** Only for MS-DOS. */
-	ID_NTFS = 0x07,
+	ID_DOS32 = 0x0c,
 
 	/** Only for MS-DOS. */
 	ID_EXTENDED = 0x0f,
@@ -79,11 +103,14 @@ namespace storage
 	/** PPC PReP Boot partition, for MS-DOS and GPT. */
 	ID_PREP = 0x41,
 
+	/** Swap partition, for MS-DOS, GPT and DASD. */
+	ID_SWAP = 0x82,
+
 	/** For MS-DOS, GPT, DASD and implicit. */
 	ID_LINUX = 0x83,
 
-	/** Swap partition, for MS-DOS, GPT and DASD. */
-	ID_SWAP = 0x82,
+	/** Intel Rapid Start Technology, for MS-DOS and GPT. */
+	ID_IRST = 0x84,
 
 	/** LVM partition, for MS-DOS, GPT and DASD. */
 	ID_LVM = 0x8e,
