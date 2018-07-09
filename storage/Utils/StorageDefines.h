@@ -136,6 +136,7 @@
 #define MKFSREISERFSBIN "/sbin/mkreiserfs"
 #define MKFSEXT2BIN    "/sbin/mke2fs"
 #define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
+#define MKFSF2FSBIN "/usr/sbin/mkfs.f2fs"
 
 
 #endif

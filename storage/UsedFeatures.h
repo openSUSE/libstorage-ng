@@ -43,6 +43,7 @@ namespace storage
 	UF_VFAT = 1 << 8,
 	UF_NFS = 1 << 9,
 	UF_JFS = 1 << 10,
+	UF_F2FS = 1 << 23,
 
 	UF_LUKS = 1 << 11,
 

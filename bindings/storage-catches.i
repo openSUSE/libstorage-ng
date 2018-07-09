@@ -68,6 +68,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext3(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext4(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext4(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_f2fs(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_f2fs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_filesystem(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_filesystem(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(Holder *holder);
