@@ -65,6 +65,7 @@ namespace storage
 	virtual bool supports_unmounted_grow() const = 0;
 
 	virtual bool supports_label() const = 0;
+	virtual bool supports_modify_label() const { return false; }
 	virtual unsigned int max_labelsize() const = 0;
 
 	const string& get_label() const { return label; }

@@ -44,8 +44,6 @@
 #define GETCONFBIN "/usr/bin/getconf"
 
 #define PARTEDBIN "/usr/sbin/parted"
-#define ADDPARTBIN "/usr/sbin/addpart"
-#define DELPARTBIN "/usr/sbin/delpart"
 
 #define MDADMBIN "/sbin/mdadm"
 
@@ -69,7 +67,6 @@
 #define VGCHANGEBIN "/sbin/vgchange"
 
 #define CRYPTSETUPBIN "/sbin/cryptsetup"
-#define LOSETUPBIN "/sbin/losetup"
 #define MULTIPATHBIN "/sbin/multipath"
 #define MULTIPATHDBIN "/sbin/multipathd"
 #define DMSETUPBIN "/sbin/dmsetup"
@@ -85,7 +82,6 @@
 #define DDBIN "/bin/dd"
 
 #define BLKIDBIN "/sbin/blkid"
-#define BLOCKDEVBIN "/sbin/blockdev"
 #define LSSCSIBIN "/usr/bin/lsscsi"
 
 #define LSBIN "/bin/ls"
@@ -102,7 +98,6 @@
 #define UDEVADMBIN "/sbin/udevadm"
 #define UDEVADMBIN_SETTLE UDEVADMBIN " settle --timeout=20"
 
-#define MODPROBEBIN "/sbin/modprobe"
 #define RPCBINDBIN     "/sbin/rpcbind"
 
 #define EFIBOOTMGRBIN "/usr/sbin/efibootmgr"
@@ -121,13 +116,6 @@
 #define FATLABELBIN	"/usr/sbin/fatlabel"
 #define SWAPLABELBIN   "/sbin/swaplabel"
 
-#define FSCKBIN        "/sbin/fsck"
-#define FSCKEXT2BIN    "/sbin/fsck.ext2"
-#define FSCKEXT3BIN    "/sbin/fsck.ext3"
-#define FSCKEXT4BIN    "/sbin/fsck.ext4"
-#define XFSREPAIRBIN   "/usr/sbin/xfs_repair"
-#define FSCKREISERBIN  "/sbin/reiserfsck"
-
 #define MKSWAPBIN      "/sbin/mkswap"
 #define MKFSXFSBIN     "/sbin/mkfs.xfs"
 #define MKFSJFSBIN "/sbin/mkfs.jfs"
@@ -136,6 +124,7 @@
 #define MKFSREISERFSBIN "/sbin/mkreiserfs"
 #define MKFSEXT2BIN    "/sbin/mke2fs"
 #define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
+#define MKFSF2FSBIN "/usr/sbin/mkfs.f2fs"
 
 
 #endif

@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,12 +20,13 @@
  */
 
 
-#ifndef STORAGE_EXT_IMPL_H
-#define STORAGE_EXT_IMPL_H
+#ifndef STORAGE_F2FS_IMPL_H
+#define STORAGE_F2FS_IMPL_H
 
 
-#include "storage/Filesystems/Ext.h"
+#include "storage/Filesystems/F2fs.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -35,27 +35,27 @@ namespace storage
     using namespace std;
 
 
-    template <> struct DeviceTraits<Ext> { static const char* classname; };
+    template <> struct DeviceTraits<F2fs> { static const char* classname; };
 
 
-    class Ext::Impl : public BlkFilesystem::Impl
+    class F2fs::Impl : public BlkFilesystem::Impl
     {
 
     public:
 
-	virtual bool supports_mounted_shrink() const override { return false; }
-	virtual bool supports_mounted_grow() const override { return true; }
+	virtual unsigned long long min_size() const override { return 29 * MiB; }
+	virtual unsigned long long max_size() const override { return 16 * TiB; }
 
-	virtual bool supports_unmounted_shrink() const override { return true; }
-	virtual bool supports_unmounted_grow() const override { return true; }
+	virtual bool supports_mounted_shrink() const override { return false; }
+	virtual bool supports_mounted_grow() const override { return false; }
+
+	virtual bool supports_unmounted_shrink() const override { return false; }
+	virtual bool supports_unmounted_grow() const override { return false; }
 
 	virtual bool supports_label() const override { return true; }
-	virtual bool supports_modify_label() const override { return true; }
-	virtual unsigned int max_labelsize() const override { return 16; }
+	virtual unsigned int max_labelsize() const override { return 511; }
 
 	virtual bool supports_uuid() const override { return true; }
-
-	virtual void probe_pass_2b(Prober& prober) override;
 
     public:
 
@@ -64,15 +64,19 @@ namespace storage
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return DeviceTraits<Ext>::classname; }
+	virtual FsType get_type() const override { return FsType::F2FS; }
+
+	virtual const char* get_classname() const override { return DeviceTraits<F2fs>::classname; }
+
+	virtual string get_pretty_classname() const override;
+
+	virtual string get_displayname() const override { return "f2fs"; }
+
+	virtual Impl* clone() const override { return new Impl(*this); }
+
+	virtual uint64_t used_features() const override;
 
 	virtual void do_create() override;
-
-	virtual void do_set_label() const override;
-
-	virtual void do_set_tune_options() const override;
-
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
 
     };
 

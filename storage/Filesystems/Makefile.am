@@ -42,7 +42,9 @@ libfilesystems_la_SOURCES =				\
 	Swap.h			Swap.cc			\
 	SwapImpl.h		SwapImpl.cc		\
 	Nfs.h			Nfs.cc			\
-	NfsImpl.h		NfsImpl.cc
+	NfsImpl.h		NfsImpl.cc		\
+	F2fs.h			F2fs.cc			\
+	F2fsImpl.h		F2fsImpl.cc
 
 pkgincludedir = $(includedir)/storage/Filesystems
 
@@ -64,5 +66,6 @@ pkginclude_HEADERS =		\
 	Iso9660.h		\
 	Udf.h			\
 	Swap.h			\
-	Nfs.h
+	Nfs.h			\
+	F2fs.h
 

@@ -53,6 +53,7 @@ namespace storage
 	virtual bool supports_unmounted_grow() const override { return false; }
 
 	virtual bool supports_label() const override { return true; }
+	virtual bool supports_modify_label() const override { return true; }
 	virtual unsigned int max_labelsize() const override { return 16; }
 
 	virtual bool supports_uuid() const override { return true; }

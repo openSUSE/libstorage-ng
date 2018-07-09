@@ -51,7 +51,6 @@ namespace storage
 void createPath(const string& Path_Cv);
 bool checkNormalFile(const string& Path_Cv);
 bool checkDir(const string& Path_Cv);
-void checkBinPaths(const Arch& arch, bool instsys);
 bool getStatMode(const string& Path_Cv, mode_t& val );
 bool setStatMode(const string& Path_Cv, mode_t val );
 

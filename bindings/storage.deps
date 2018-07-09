@@ -50,6 +50,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/Swap.h		\
 	${top_srcdir}/storage/Filesystems/Xfs.h			\
 	${top_srcdir}/storage/Filesystems/Jfs.h			\
+	${top_srcdir}/storage/Filesystems/F2fs.h		\
 	${top_srcdir}/storage/Environment.h			\
 	${top_srcdir}/storage/Holders/Holder.h			\
 	${top_srcdir}/storage/Holders/Subdevice.h		\

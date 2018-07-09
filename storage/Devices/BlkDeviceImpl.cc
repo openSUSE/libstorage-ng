@@ -41,6 +41,7 @@
 #include "storage/Filesystems/Reiserfs.h"
 #include "storage/Filesystems/Xfs.h"
 #include "storage/Filesystems/Jfs.h"
+#include "storage/Filesystems/F2fs.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
@@ -588,7 +589,8 @@ namespace storage
 	{ FsType::UDF, &Udf::create },
 	{ FsType::VFAT, &Vfat::create },
 	{ FsType::XFS, &Xfs::create },
-	{ FsType::JFS, &Jfs::create }
+	{ FsType::JFS, &Jfs::create },
+	{ FsType::F2FS, &F2fs::create }
     };
 
 

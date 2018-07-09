@@ -47,11 +47,6 @@ libutils_la_SOURCES =					\
 	Swig.h						\
 	StorageDefines.h
 
-$(srcdir)/gen-pathlist.cc: StorageDefines.h
-	grep BIN $< | sed -e "s/^[^ ]*[ ]\+//" -e "s/ .*/,/" > $@
-
-BUILT_SOURCES = gen-pathlist.cc
-
 pkgincludedir = $(includedir)/storage/Utils
 
 pkginclude_HEADERS =		\
