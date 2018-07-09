@@ -456,31 +456,6 @@ makeMap( const list<string>& l, const string& delim, const string& removeSur )
     }
 
 
-    void
-    checkBinPaths(const Arch& arch, bool instsys)
-    {
-	y2mil("arch:" << arch << " instsys:" << instsys);
-
-	set<string> paths = {
-#include "gen-pathlist.cc"
-	};
-
-	if (!arch.is_s390())
-	{
-	    paths.erase(DASDVIEWBIN);
-	    paths.erase(DASDFMTBIN);
-	}
-
-	LogLevel log_level = instsys ? storage::LogLevel::ERROR : storage::LogLevel::MILESTONE;
-	for (const string& name : paths)
-        {
-            if (access(name.c_str(), X_OK) != 0)
-                y2log_op(log_level, __FILE__, __LINE__, __FUNCTION__, "error accessing " <<
-			 name);
-	}
-    }
-
-
 const string app_ws = " \t\n";
 
 
