@@ -35,11 +35,35 @@ namespace storage
     class Partitionable;
 
 
-    //! Partition type (primary, extended, logical)
+    /**
+     * Enum with partition types.
+     */
     enum class PartitionType {
-	PRIMARY, EXTENDED, LOGICAL
+
+	/**
+	 * Primary partition. For all partition table types.
+	 *
+	 * The type PRIMARY is also used for partitions on partition tables
+	 * that have no partition type.
+	 */
+	PRIMARY,
+
+	/**
+	 * Extended partition. Only for MS-DOS.
+	 */
+	EXTENDED,
+
+	/**
+	 * Logical partition. Only for MS-DOS.
+	 */
+	LOGICAL
+
     };
 
+
+    /**
+     * Convert PartitionType to string.
+     */
     std::string get_partition_type_name(PartitionType partition_type);
 
 
