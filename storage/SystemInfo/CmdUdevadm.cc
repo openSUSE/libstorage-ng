@@ -88,6 +88,12 @@ namespace storage
 		by_id_links.push_back(line.substr(14));
 	}
 
+	if (path.empty())
+	    ST_THROW(Exception("no path information found in udevadm info output"));
+
+	if (name.empty())
+	    ST_THROW(Exception("no name information found in udevadm info output"));
+
 	majorminor = makedev(major, minor);
 
 	sort(by_path_links.begin(), by_path_links.end());
