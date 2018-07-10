@@ -118,15 +118,16 @@ namespace storage
 
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
-	 * block device is found via the name a second search via the major
-	 * and minor number is done. This requires system lookups and is also
-	 * the reason the function needs an SystemInfo object and must be used
-	 * on the probed devicegraph.
+	 * block device is found via the name a second search via the sysfs
+	 * path is done. This requires system lookups and is also the reason
+	 * the function needs an SystemInfo object and must be used on the
+	 * probed devicegraph.
 	 *
-	 * Steffen suggested to use the sysfs name instead of major and minor
-	 * number for the second lookup.
-	 *
-	 * Should only be used for and during probing.
+
+	 * Using the sysfs path is simpler compared to using the major:minor
+	 * numbers since the latter are not included in the devicegraph. This
+	 * is esp. relevant when not used during probing (where the system
+	 * lookup is not cached),
 	 */
 	static bool exists_by_any_name(const Devicegraph* devicegraph, const string& name,
 				       SystemInfo& system_info);

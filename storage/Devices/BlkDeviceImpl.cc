@@ -285,16 +285,23 @@ namespace storage
 	    }
 	}
 
-	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
-
-	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	try
 	{
-	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
-	    if (blk_device && blk_device->get_impl().active)
+	    string sysfs_path = system_info.getCmdUdevadmInfo(name).get_path();
+
+	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	    {
-		if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
-		    return true;
+		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+		if (blk_device && blk_device->get_impl().active)
+		{
+		    if (blk_device->get_sysfs_path() == sysfs_path)
+			return true;
+		}
 	    }
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
 	}
 
 	return false;
@@ -308,26 +315,26 @@ namespace storage
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
 
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return blk_device;
+	    }
+	}
+
 	try
 	{
-	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
-	    {
-		BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
-		if (blk_device)
-		{
-		    if (blk_device->get_name() == name)
-			return blk_device;
-		}
-	    }
-
-	    dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+	    string sysfs_path = system_info.getCmdUdevadmInfo(name).get_path();
 
 	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	    {
 		BlkDevice* blk_device = dynamic_cast<BlkDevice*>(devicegraph->get_impl()[vertex]);
 		if (blk_device && blk_device->get_impl().active)
 		{
-		    if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    if (blk_device->get_sysfs_path() == sysfs_path)
 			return blk_device;
 		}
 	    }
@@ -348,26 +355,26 @@ namespace storage
 	if (!devicegraph->get_impl().is_system() && !devicegraph->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong devicegraph"));
 
+	for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
+	{
+	    const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
+	    if (blk_device)
+	    {
+		if (blk_device->get_name() == name)
+		    return blk_device;
+	    }
+	}
+
 	try
 	{
-	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
-	    {
-		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
-		if (blk_device)
-		{
-		    if (blk_device->get_name() == name)
-			return blk_device;
-		}
-	    }
-
-	    dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+	    string sysfs_path = system_info.getCmdUdevadmInfo(name).get_path();
 
 	    for (Devicegraph::Impl::vertex_descriptor vertex : devicegraph->get_impl().vertices())
 	    {
 		const BlkDevice* blk_device = dynamic_cast<const BlkDevice*>(devicegraph->get_impl()[vertex]);
 		if (blk_device && blk_device->get_impl().active)
 		{
-		    if (system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor() == majorminor)
+		    if (blk_device->get_sysfs_path() == sysfs_path)
 			return blk_device;
 		}
 	    }
