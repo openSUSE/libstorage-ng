@@ -31,6 +31,8 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LuksImpl.h"
+#include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
@@ -712,6 +714,48 @@ namespace storage
     BlkDevice::Impl::get_encryption() const
     {
 	return get_single_child_of_type<const Encryption>();
+    }
+
+
+    Bcache*
+    BlkDevice::Impl::create_bcache(const string& name)
+    {
+	Devicegraph* devicegraph = get_devicegraph();
+
+	// TODO reuse code with create_encryption
+
+	vector<Devicegraph::Impl::edge_descriptor> out_edges =
+	    devicegraph->get_impl().out_edges(get_vertex());
+
+	Bcache* bcache = Bcache::create(devicegraph, name);
+	Devicegraph::Impl::vertex_descriptor bcache_vertex = bcache->get_impl().get_vertex();
+
+	User::create(devicegraph, get_non_impl(), bcache);
+
+	for (Devicegraph::Impl::edge_descriptor out_edge : out_edges)
+	{
+	    devicegraph->get_impl().set_source(out_edge, bcache_vertex);
+	}
+
+	bcache->get_impl().parent_has_new_region(get_non_impl());
+
+	return bcache;
+    }
+
+
+    BcacheCset*
+    BlkDevice::Impl::create_bcache_cset()
+    {
+	if (num_children() != 0)
+	    ST_THROW(WrongNumberOfChildren(num_children(), 0));
+
+	Devicegraph* devicegraph = get_devicegraph();
+
+	BcacheCset* bcache_cset = BcacheCset::create(devicegraph);
+
+	User::create(devicegraph, get_non_impl(), bcache_cset);
+
+	return bcache_cset;
     }
 
 

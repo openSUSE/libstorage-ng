@@ -33,6 +33,7 @@
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTableImpl.h"
 #include "storage/Devices/GptImpl.h"
+#include "storage/Devices/BcacheImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
@@ -461,6 +462,8 @@ namespace storage
 	}
 
 	PartitionTable::Impl::run_dependency_manager(*this);
+
+	Bcache::Impl::run_dependency_manager(*this);
 
 	for (vertex_descriptor vertex : vertices())
 	{

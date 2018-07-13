@@ -267,6 +267,20 @@ namespace storage
     }
 
 
+    Bcache*
+    BlkDevice::create_bcache(const std::string& name)
+    {
+	return get_impl().create_bcache(name);
+    }
+
+
+    BcacheCset*
+    BlkDevice::create_bcache_cset()
+    {
+	return get_impl().create_bcache_cset();
+    }
+
+
     bool
     BlkDevice::compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs)
     {

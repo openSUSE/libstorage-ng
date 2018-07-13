@@ -116,6 +116,10 @@ namespace storage
 	Encryption* get_encryption();
 	const Encryption* get_encryption() const;
 
+	Bcache* create_bcache(const std::string& name);
+
+	BcacheCset* create_bcache_cset();
+
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the sysfs

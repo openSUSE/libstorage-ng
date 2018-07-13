@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,6 +22,7 @@
 
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/FindBy.h"
 
 
 namespace storage
@@ -107,6 +108,20 @@ namespace storage
     BcacheCset::get_all(Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<BcacheCset>();
+    }
+
+
+    BcacheCset*
+    BcacheCset::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<BcacheCset>(devicegraph, uuid);
+    }
+
+
+    const BcacheCset*
+    BcacheCset::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    {
+	return storage::find_by_uuid<const BcacheCset>(devicegraph, uuid);
     }
 
 

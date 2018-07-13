@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,7 +52,7 @@ namespace storage
 	const BlkDevice* get_blk_device() const;
 
 	/**
-	 * Returns true if a cache is attached.
+	 * Returns true if a BcacheCset is attached.
 	 */
 	bool has_bcache_cset() const;
 
@@ -60,6 +60,13 @@ namespace storage
 	 * Get the BcacheCset used as cache.
 	 */
 	const BcacheCset* get_bcache_cset() const;
+
+	/**
+	 * Attach a BcacheCset to the Bcache.
+	 *
+	 * @throw Exception
+	 */
+	void attach_bcache_cset(BcacheCset* bcache_cset);
 
 	/**
 	 * Get all Bcaches.
@@ -70,6 +77,18 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Bcache*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Find a Bcache by its name.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
+	static Bcache* find_by_name(Devicegraph* devicegraph, const std::string& name);
+
+	/**
+	 * @copydoc find_by_name
+	 */
+	static const Bcache* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
 	 * Compare (less than) two Bcaches by number.
