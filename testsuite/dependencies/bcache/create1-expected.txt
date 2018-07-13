@@ -1,0 +1,9 @@
+1a - Create Bcache cache set on /dev/sdc (4.00 GiB) -> 2a 3a
+
+2a - Create Bcache /dev/bcache0 (8.00 GiB) -> 2b 3a
+2b - Attach Bcache cache set on /dev/sdc to Bcache /dev/bcache0 (8.00 GiB) -> 2c
+2c - Create ext4 on /dev/bcache0 (8.00 GiB) ->
+
+3a - Create Bcache /dev/bcache1 (8.00 GiB) -> 3b
+3b - Attach Bcache cache set on /dev/sdc to Bcache /dev/bcache1 (8.00 GiB) -> 3c
+3c - Create xfs on /dev/bcache1 (8.00 GiB) ->
