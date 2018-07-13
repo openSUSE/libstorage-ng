@@ -275,34 +275,6 @@ namespace storage
     }
 
 
-    namespace
-    {
-
-	/**
-	 * Returns input sorted by the default comparison of the return value of
-	 * the key function fnc of each value in input.
-	 */
-	template<typename ValueType, typename KeyType>
-	vector<ValueType>
-	sort_by_key(const vector<ValueType>& input, std::function<KeyType(ValueType)> fnc)
-	{
-	    typedef typename vector<ValueType>::size_type size_type;
-
-	    map<KeyType, size_type> tmp;
-
-	    for (size_type i = 0; i < input.size(); ++i)
-		tmp[fnc(input[i])] = i;
-
-	    vector<ValueType> output;
-
-	    for (const auto& t : tmp)
-		output.push_back(input[t.second]);
-
-	    return output;
-	}
-    }
-
-
     void
     Bcache::Impl::run_dependency_manager(Actiongraph::Impl& actiongraph)
     {
