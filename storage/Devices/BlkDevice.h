@@ -35,6 +35,8 @@ namespace storage
 
     class Region;
     class Encryption;
+    class Bcache;
+    class BcacheCset;
 
 
     //! An abstract Block Device.
@@ -191,6 +193,19 @@ namespace storage
 	 * @throw WrongNumberOfChildren, DeviceHasWrongType
 	 */
 	const Encryption* get_encryption() const;
+
+	/**
+	 * Creates an Bcache on the blk device. If the blk device has children
+	 * the children will become children of the bcache device.
+	 */
+	Bcache* create_bcache(const std::string& name);
+
+	/**
+	 * Creates an BcacheCset on the blk device.
+	 *
+	 * @throw WrongNumberOfChildren
+	 */
+	BcacheCset* create_bcache_cset();
 
 	/**
 	 * Compare (less than) two BlkDevices by DM table name.

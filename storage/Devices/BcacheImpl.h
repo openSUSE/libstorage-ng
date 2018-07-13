@@ -25,7 +25,7 @@
 
 
 #include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/Enum.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 
@@ -43,8 +43,7 @@ namespace storage
     {
     public:
 
-	Impl(const string& name)
-	    : BlkDevice::Impl(name) {}
+	Impl(const string& name);
 
 	Impl(const xmlNode* node);
 
@@ -76,12 +75,59 @@ namespace storage
 
 	const BcacheCset* get_bcache_cset() const;
 
+	void attach_bcache_cset(BcacheCset* bcache_cset);
+
+	void update_sysfs_name_and_path();
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual void parent_has_new_region(const Device* parent) override;
+
+	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
+
+	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
+
+	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
+
+	Text do_attach_bcache_cset_text(Tense tense) const;
+	void do_attach_bcache_cset() const;
+
+    private:
+
+	static const unsigned long long metadata_size = 8 * KiB;
+
+	void calculate_region();
+
     };
+
+
+    namespace Action
+    {
+
+	class AttachBcacheCset : public Modify
+	{
+	public:
+
+	    AttachBcacheCset(sid_t sid)
+		: Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
+    }
 
 }
 

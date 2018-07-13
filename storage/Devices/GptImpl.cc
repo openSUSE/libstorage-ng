@@ -274,7 +274,7 @@ namespace storage
 
 	string answers = backup_broken ? "'OK\\nFix\\n'" : "'Fix\\n'";
 
-	string cmd_line(ECHOBIN " -e -n " + answers + " | " PARTEDBIN " ---pretend-input-tty " +
+	string cmd_line(ECHO_BIN " -e -n " + answers + " | " PARTEDBIN " ---pretend-input-tty " +
 			quote(partitionable->get_name()) + " print");
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

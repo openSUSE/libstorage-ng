@@ -1,0 +1,10 @@
+1a - Delete xfs on /dev/bcache1 (8.00 GiB) -> 1b
+1b - Deactivate Bcache /dev/bcache1 (8.00 GiB) -> 1c
+1c - Delete Bcache /dev/bcache1 (8.00 GiB) -> 2c 3a
+
+2a - Delete ext4 on /dev/bcache0 (8.00 GiB) -> 2b
+2b - Deactivate Bcache /dev/bcache0 (8.00 GiB) -> 2c
+2c - Delete Bcache /dev/bcache0 (8.00 GiB) -> 3a
+
+3a - Deactivate Bcache cache set on /dev/sdc (4.00 GiB) -> 3b
+3b - Delete Bcache cache set on /dev/sdc (4.00 GiB) ->

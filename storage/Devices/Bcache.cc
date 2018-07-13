@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -103,6 +103,13 @@ namespace storage
     }
 
 
+    void
+    Bcache::attach_bcache_cset(BcacheCset* bcache_cset)
+    {
+	get_impl().attach_bcache_cset(bcache_cset);
+    }
+
+
     vector<Bcache*>
     Bcache::get_all(Devicegraph* devicegraph)
     {
@@ -114,6 +121,20 @@ namespace storage
     Bcache::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const Bcache>();
+    }
+
+
+    Bcache*
+    Bcache::find_by_name(Devicegraph* devicegraph, const string& name)
+    {
+	return to_bcache(BlkDevice::find_by_name(devicegraph, name));
+    }
+
+
+    const Bcache*
+    Bcache::find_by_name(const Devicegraph* devicegraph, const string& name)
+    {
+	return to_bcache(BlkDevice::find_by_name(devicegraph, name));
     }
 
 

@@ -24,7 +24,6 @@
 #define STORAGE_BCACHE_CSET_IMPL_H
 
 
-#include "storage/Utils/Region.h"
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -84,12 +83,20 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	static BcacheCset* find_by_uuid(Devicegraph* devicegraph, const string& uuid);
-	static const BcacheCset* find_by_uuid(const Devicegraph* devicegraph, const string& uuid);
+	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
+
+	virtual Text do_create_text(Tense tense) const override;
+	virtual void do_create() override;
+
+	virtual Text do_delete_text(Tense tense) const override;
+	virtual void do_delete() const override;
+
+	virtual Text do_deactivate_text(Tense tense) const override;
+	virtual void do_deactivate() const override;
 
     private:
 
-	string uuid;
+	string uuid;		// TODO called "set uuid" in make-bcache output
 
     };
 

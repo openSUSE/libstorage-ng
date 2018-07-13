@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -67,6 +67,18 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const BcacheCset*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Find a BcacheCset by its UUID.
+	 *
+	 * @throw DeviceNotFound, DeviceHasWrongType
+	 */
+	static BcacheCset* find_by_uuid(Devicegraph* devicegraph, const std::string& uuid);
+
+	/**
+	 * @copydoc find_by_uuid
+	 */
+	static const BcacheCset* find_by_uuid(const Devicegraph* devicegraph, const std::string& uuid);
 
 	/**
 	 * Compare (less than) two BcacheCsets by UUID.

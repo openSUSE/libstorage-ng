@@ -38,7 +38,7 @@
 
 #define SHBIN "/bin/sh"
 
-#define ECHOBIN "/usr/bin/echo"
+#define ECHO_BIN "/usr/bin/echo"
 
 #define UNAMEBIN "/usr/bin/uname"
 #define GETCONFBIN "/usr/bin/getconf"
@@ -73,6 +73,8 @@
 #define DMRAIDBIN "/sbin/dmraid"
 #define BTRFSBIN "/sbin/btrfs"
 #define WIPEFSBIN "/sbin/wipefs"
+
+#define MAKE_BCACHE_BIN "/usr/sbin/make-bcache"
 
 #define MOUNTBIN "/bin/mount"
 #define UMOUNTBIN "/bin/umount"

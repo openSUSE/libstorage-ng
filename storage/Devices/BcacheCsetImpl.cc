@@ -21,17 +21,18 @@
 
 
 #include <regex>
+#include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/UsedFeatures.h"
-#include "storage/FindBy.h"
 #include "storage/Prober.h"
 
 
@@ -39,6 +40,9 @@ namespace storage
 {
 
     using namespace std;
+
+
+    // TODO bucket size?
 
 
     const char* DeviceTraits<BcacheCset>::classname = "BcacheCset";
@@ -204,17 +208,130 @@ namespace storage
     }
 
 
-    BcacheCset*
-    BcacheCset::Impl::find_by_uuid(Devicegraph* devicegraph, const string& uuid)
+    void
+    BcacheCset::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	return storage::find_by_uuid<BcacheCset>(devicegraph, uuid);
+	vector<Action::Base*> actions;
+
+	actions.push_back(new Action::Deactivate(get_sid()));
+
+	actions.push_back(new Action::Delete(get_sid()));
+
+	actiongraph.add_chain(actions);
     }
 
 
-    const BcacheCset*
-    BcacheCset::Impl::find_by_uuid(const Devicegraph* devicegraph, const string& uuid)
+    Text
+    BcacheCset::Impl::do_create_text(Tense tense) const
     {
-	return storage::find_by_uuid<const BcacheCset>(devicegraph, uuid);
+	// TODO handle multiple BlkDevices
+
+	const BlkDevice* blk_device = get_blk_devices()[0];
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Create Bcache cache set on %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Creating Bcache cache set %1$s (%2$s)"));
+
+	return sformat(text, blk_device->get_name().c_str(),
+		       blk_device->get_size_string().c_str());
+    }
+
+
+    void
+    BcacheCset::Impl::do_create()
+    {
+	static regex set_uuid_regex("Set UUID:[ \t]*([a-f0-9-]{36})", regex::extended);
+
+	// TODO handle multiple BlkDevices?
+
+	const BlkDevice* blk_device = get_blk_devices()[0];
+
+	string cmd_line = MAKE_BCACHE_BIN " -C " + quote(blk_device->get_name());
+
+	wait_for_devices({ blk_device });
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	for (const string& line : cmd.stdout())
+	{
+	    smatch match;
+
+	    if (regex_match(line, match, set_uuid_regex) && match.size() == 2)
+	    {
+		uuid = match[1];
+		y2mil("found set-uuid " << uuid);
+		break;
+	    }
+	}
+    }
+
+
+    Text
+    BcacheCset::Impl::do_delete_text(Tense tense) const
+    {
+	// TODO handle multiple BlkDevices
+
+	const BlkDevice* blk_device = get_blk_devices()[0];
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Delete Bcache cache set on %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Deleting Bcache cache set on %1$s (%2$s)"));
+
+	return sformat(text, blk_device->get_name().c_str(),
+		       blk_device->get_size_string().c_str());
+    }
+
+
+    void
+    BcacheCset::Impl::do_delete() const
+    {
+        for (const BlkDevice* blk_device : get_blk_devices())
+	    blk_device->get_impl().wipe_device();
+    }
+
+
+    Text
+    BcacheCset::Impl::do_deactivate_text(Tense tense) const
+    {
+	// TODO handle multiple BlkDevices
+
+	const BlkDevice* blk_device = get_blk_devices()[0];
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Deactivate Bcache cache set on %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by size (e.g. 2 GiB)
+			   _("Deactivating Bcache cache set on %1$s (%2$s)"));
+
+	return sformat(text, blk_device->get_name().c_str(),
+		       blk_device->get_size_string().c_str());
+    }
+
+
+    void
+    BcacheCset::Impl::do_deactivate() const
+    {
+	string cmd_line = ECHO_BIN " 1 > " + quote(SYSFS_DIR "/fs/bcache/" + get_uuid() + "/stop");
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	sleep(1);		// TODO
     }
 
 }
