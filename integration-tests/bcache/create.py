@@ -35,5 +35,5 @@ bcache1.create_blk_filesystem(FsType_EXT4)
 
 print(staging)
 
-commit(storage, skip_print_actiongraph = False, skip_save_graphs = False)
+commit(storage)
 

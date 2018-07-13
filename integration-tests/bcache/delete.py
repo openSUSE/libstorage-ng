@@ -29,5 +29,5 @@ sdc1.remove_descendants()
 
 print(staging)
 
-commit(storage, skip_print_actiongraph = False)
+commit(storage)
 
