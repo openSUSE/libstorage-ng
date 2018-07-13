@@ -135,6 +135,7 @@ AC_OUTPUT(
 	integration-tests/luks/Makefile
 	integration-tests/md/Makefile
 	integration-tests/lvm/Makefile
+	integration-tests/bcache/Makefile
 	integration-tests/misc/Makefile
 	bindings/Makefile
 	bindings/python/Makefile
