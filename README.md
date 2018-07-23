@@ -96,6 +96,17 @@ For a more detailed description about the handling of version numbers and change
 look [here](https://github.com/openSUSE/linuxrc-devtools/blob/master/workflow.md).
 
 
+Package Versions
+----------------
+
+Versioning follows [YaST](http://yastgithubio.readthedocs.io/en/latest/versioning)'s versioning scheme.
+
+Currently this means
+
+- 4.1.X for the `master` branch submitted to `Factory` and `SLE-15-SP1`
+- 3.3.X for the `SLE-15-GA` branch submitted to `SLE-15:Update`
+
+
 Code Documentation
 ------------------
 
