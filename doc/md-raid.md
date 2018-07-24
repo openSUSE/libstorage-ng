@@ -1,3 +1,36 @@
+RAID
+====
+
+This is a collection of *various* notes.
+
+See also:
+- <https://www.suse.com/documentation/sles-15/book_storage/data/part_software_raid.html>
+- <https://www.suse.com/documentation/sles-15/book_storage/data/sec_raid_yast.html>
+
+States of Operation
+-------------------
+
+A RAID array, once it has been set up, has 3 possible states:
+
+1. working normally: all devices are present
+2. working but degraded: some devices are missing but the data is still
+   accessible
+3. not working: too many devices are missing
+
+(yes, it's a simplification)
+
+YaST simplifies this even more: it treats the two "working" states as the
+same. (That's, uh, surprising.)
+
+In SLE12, YaST just ignores non-working RAIDs. In SLE15, it pops up some
+warning dialogs (with a bug if I select Abort).
+
+YaST does not provide any assistance in recovering from a worse state to a
+better state. You have to be very careful with `mdadm` not to break things
+even further.
+
+Other Notes, FIXME: categorize
+------------------------------
 
 For MD RAIDs already on disk only a few operations are supported:
 
