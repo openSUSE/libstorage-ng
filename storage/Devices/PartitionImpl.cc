@@ -477,7 +477,7 @@ namespace storage
 
 	    if (boost::starts_with(udev_id, "dm-uuid-mpath") ||
 		boost::starts_with(udev_id, "dm-uuid-DMRAID"))
-		udev_ids.push_back("dm-uuid" + addition + udev_id.substr(7));
+		udev_ids.push_back("dm-uuid" + addition + udev_id.substr(strlen("dm-uuid")));
 	    else
 		udev_ids.push_back(udev_id + addition);
 	}
