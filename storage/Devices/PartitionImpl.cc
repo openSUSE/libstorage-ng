@@ -21,6 +21,8 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
@@ -457,16 +459,28 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	string postfix = "-part" + to_string(get_number());
+	string addition = "-part" + to_string(get_number());
 
 	vector<string> udev_paths;
 	for (const string& udev_path : partitionable->get_udev_paths())
-	    udev_paths.push_back(udev_path + postfix);
+	{
+	    udev_paths.push_back(udev_path + addition);
+	}
 	set_udev_paths(udev_paths);
 
 	vector<string> udev_ids;
 	for (const string& udev_id : partitionable->get_udev_ids())
-	    udev_ids.push_back(udev_id + postfix);
+	{
+	    // The partition link for udev id links starting with dm-uuid is
+	    // special for multipath and dmraid (see bsc #1099394). Handling
+	    // dmraid here is optional since the links are not whitelisted.
+
+	    if (boost::starts_with(udev_id, "dm-uuid-mpath") ||
+		boost::starts_with(udev_id, "dm-uuid-DMRAID"))
+		udev_ids.push_back("dm-uuid" + addition + udev_id.substr(strlen("dm-uuid")));
+	    else
+		udev_ids.push_back(udev_id + addition);
+	}
 	set_udev_ids(udev_ids);
     }
 
