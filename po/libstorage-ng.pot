@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 14:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1520,6 +1520,19 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing Stray Block Devices failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr ""
@@ -1994,6 +2007,10 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
 msgstr ""
 
 #. TRANSLATORS: name of object

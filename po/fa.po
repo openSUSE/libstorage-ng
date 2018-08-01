@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opensuse-i 18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2013-09-12 11:05+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1517,6 +1517,19 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing Stray Block Devices failed"
+msgstr ""
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr ""
@@ -1991,6 +2004,10 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
 msgstr ""
 
 #. TRANSLATORS: name of object

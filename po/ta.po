@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -1533,6 +1533,20 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr ""
@@ -2010,6 +2024,10 @@ msgstr "தருக்கரீதியான அளவு %1$sலிருந
 #, fuzzy, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sலிருந்து %2$sக்கு சுருக்கப்படுகிறது"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"

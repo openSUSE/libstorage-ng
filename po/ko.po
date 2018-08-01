@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-05-14 06:18+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-master/ko/>\n"
@@ -1626,6 +1626,20 @@ msgstr "NFS 검색 중"
 msgid "Probing NFS failed"
 msgstr "NFS 검색하지 못함"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "bcache %s 검색하지 못함"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "DASD 검색하지 못함"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "bcache 검색 중"
@@ -2106,6 +2120,10 @@ msgstr "볼륨 그룹 %2$s에서 씬 풀 논리적 볼륨 %1$s을(를) %3$s에�
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "볼륨 그룹 %2$s에서 씬 풀 논리적 볼륨 %1$s을(를) %3$s에서 %4$s(으)로 축소 중"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
