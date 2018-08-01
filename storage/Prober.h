@@ -45,6 +45,7 @@ namespace storage
     {
 	vector<string> disks;
 	vector<string> dasds;
+	vector<string> stray_blk_devices;
 	vector<string> mds;
 	vector<string> bcaches;
     };

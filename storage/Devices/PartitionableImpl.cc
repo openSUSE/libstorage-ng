@@ -87,15 +87,7 @@ namespace storage
     {
 	BlkDevice::Impl::probe_pass_1a(prober);
 
-	const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
-	const File logical_block_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									      "/queue/logical_block_size");
-
-	// size is always in 512 byte blocks
-	unsigned long long a = size_file.get<unsigned long long>();
-	unsigned long long b = logical_block_size_file.get<unsigned long long>();
-	unsigned long long c = a * 512 / b;
-	set_region(Region(0, c, b));
+	BlkDevice::Impl::probe_size(prober);
 
 	const File alignment_offset_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
 									    "/alignment_offset");
