@@ -34,6 +34,7 @@
 #include <list>
 #include <map>
 #include <regex>
+#include <utility>
 
 
 namespace storage
@@ -43,6 +44,7 @@ namespace storage
     using std::list;
     using std::map;
     using std::regex;
+    using std::pair;
 
     class Arch;
     class SystemInfo;
@@ -132,7 +134,8 @@ void classic(StreamType& stream)
      */
     struct NameSchema
     {
-	NameSchema(regex re, size_t w, char c) : re(re), w(w), c(c) {}
+	NameSchema(regex re, const vector<pair<size_t, char>>& pad_infos)
+	    : re(re), pad_infos(pad_infos) {}
 
 	/**
 	 * Regular expression matching the name schema.
@@ -140,14 +143,9 @@ void classic(StreamType& stream)
 	const regex re;
 
 	/**
-	 * Width to which the sub-match will be padded.
+	 * Width and char to which the sub-matchs will be padded.
 	 */
-	const size_t w;
-
-	/**
-	 * Char with which the sub-match will be padded.
-	 */
-	const char c;
+	const vector<pair<size_t, char>> pad_infos;
     };
 
 

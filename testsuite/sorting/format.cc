@@ -14,9 +14,9 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(format)
 {
     static const vector<NameSchema> name_schemata = {
-	NameSchema(regex("/dev/sd([a-z]+)", regex::extended), 4, ' '),
-	NameSchema(regex("/dev/md([0-9]+)", regex::extended), 3, '0'),
-	NameSchema(regex("/dev/nvme([0-9]+)n([0-9]+)", regex::extended), 3, '0'),
+	NameSchema(regex("/dev/sd([a-z]+)", regex::extended), { { 4, ' ' } }),
+	NameSchema(regex("/dev/md([0-9]+)", regex::extended), { { 3, '0' } }),
+	NameSchema(regex("/dev/nvme([0-9]+)n([0-9]+)", regex::extended), { { 3, '0' }, { 3, '0' } }),
     };
 
     BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/sda", name_schemata), "/dev/sd   a");
