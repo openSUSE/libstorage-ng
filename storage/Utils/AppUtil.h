@@ -143,15 +143,21 @@ void classic(StreamType& stream)
 	const regex re;
 
 	/**
-	 * Width and char to which the sub-matchs will be padded.
+	 * Width and char to which the sub-matches of the regular
+	 * expression will be padded.
 	 */
 	const vector<pair<size_t, char>> pad_infos;
     };
 
 
     /**
-     * Formats the string s to the first matching name schema: All sub-matchs
+     * Formats the string s to the first matching name schema: All sub-matches
      * will be padded as defined in the name schema.
+     *
+     * This can be used to sort device names. E.g. if it is desired to
+     * have "sdb" before "sdaa" the names can be transformed to "sd b"
+     * and "sdaa" and be sorted alphabetical. Used by
+     * Device::get_sort_key().
      */
     string
     format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata);
