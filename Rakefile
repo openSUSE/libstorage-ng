@@ -29,3 +29,14 @@ desc 'Build a tarball for OBS'
 task :tarball do
   sh "make -f Makefile.ci package"
 end
+
+task :update_package_location do
+  # read the spec file from "package" dir if ".obsdir" does not exist yet
+  if !File.exist?(".obsdir")
+    Packaging.configuration { |conf| conf.package_dir = "package" }
+  end
+end
+
+# update the "build_dependencies:*" tasks to read the alternative spec file
+task :"build_dependencies:list" => :update_package_location
+task :"build_dependencies:install" => :update_package_location
