@@ -34,11 +34,16 @@ LT_INIT([disable-static pic-only])
 PKG_CHECK_MODULES(XML, libxml-2.0 >= 2.4)
 AC_SUBST([XML_CFLAGS])
 AC_SUBST([XML_LIBS])
-CXXFLAGS="${CXXFLAGS} ${XML_CFLAGS}"
-CFLAGS="${CFLAGS} ${XML_CFLAGS}"
 
 AC_CHECK_HEADER([boost/config.hpp],[],
 		[AC_MSG_ERROR([boost/config.hpp not found, install e.g. boost-devel])])
+
+PKG_CHECK_MODULES(JSON_C, json-c, , [AC_MSG_ERROR([json-c library not found, install e.g. libjson-c-devel])])
+AC_SUBST([JSON_C_CFLAGS])
+AC_SUBST([JSON_C_LIBS])
+
+CXXFLAGS="${CXXFLAGS} ${XML_CFLAGS} ${JSON_C_CFLAGS}"
+CFLAGS="${CFLAGS} ${XML_CFLAGS} ${JSON_C_CFLAGS}"
 
 AC_SUBST(VERSION)
 AC_SUBST(LIBVERSION)
