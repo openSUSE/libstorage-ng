@@ -14,7 +14,7 @@ using namespace storage;
 BOOST_FIXTURE_TEST_SUITE(btrfs_subvolume_sentence, test::CompoundActionFixture)
 
 // test for https://bugzilla.suse.com/show_bug.cgi?id=1099181
-BOOST_AUTO_TEST_CASE(test_sentence_on_entrypted_not_mounted)
+BOOST_AUTO_TEST_CASE(test_sentence_on_encrypted_not_mounted)
 {
     initialize_with_devicegraph("devicegraph.xml");
 
