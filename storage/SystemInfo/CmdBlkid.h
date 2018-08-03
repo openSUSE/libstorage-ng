@@ -42,6 +42,9 @@ namespace storage
     class SystemInfo;
 
 
+    /**
+     * Run and parse the "blkid" command.
+     */
     class Blkid
     {
     public:

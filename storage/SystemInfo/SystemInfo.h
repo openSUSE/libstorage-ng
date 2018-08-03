@@ -55,7 +55,9 @@ namespace storage
 {
     using std::map;
 
-
+    /**
+     * Encapsulates system access, also for testsuite mocking
+     */
     class SystemInfo : private boost::noncopyable
     {
 
