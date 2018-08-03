@@ -18,7 +18,7 @@ Requirements
 
 Some required tools for compiling and testing libstorage-ng are:
 
-gcc-c++ boost-devel libxml2-devel libtool doxygen graphviz python3-devel ruby
+gcc-c++ boost-devel libjson-c-devel libxml2-devel libtool doxygen graphviz python3-devel ruby
 ruby-devel rubygem-test-unit swig >= 3.0.3 and != 3.0.8 (from
 [YaST:storage-ng](https://build.opensuse.org/project/show/YaST:storage-ng))
 

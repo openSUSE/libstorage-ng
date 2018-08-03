@@ -350,7 +350,6 @@ namespace storage
 	return sformat(text,
 		       partition->get_name().c_str(),
 		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
 		       filesystem->get_displayname().c_str());
     }
 
