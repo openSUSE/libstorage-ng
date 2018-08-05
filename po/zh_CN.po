@@ -10,9 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-04 11:24+0200\n"
-"PO-Revision-Date: 2018-05-11 16:46+0000\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
-"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_CN/>\n"
+"PO-Revision-Date: 2018-08-05 06:00+0000\n"
+"Last-Translator: Marguerite Su <i@marguerite.su>\n"
+"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage"
+"/ng-master/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1591,9 +1592,9 @@ msgid "Probing partitions failed"
 msgstr "探测分区失败"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "探测分区失败"
+msgstr "检测 %s 上的分区失败"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -1721,15 +1722,15 @@ msgstr "正在将 /etc/fstab 里的挂载点 %1$s 从 %2$s 重命名为 %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "正在 %1$s 上创建 GPT"
+msgstr "修复 %1$s 上的 GPT"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "正在 %1$s 上创建 GPT"
+msgstr "正在修复 %1$s 上的 GPT"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
