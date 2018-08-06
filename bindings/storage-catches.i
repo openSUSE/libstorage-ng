@@ -118,6 +118,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partitionable(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(Holder *holder);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_subdevice(const Holder *holder);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_swap(Device *device);
@@ -259,4 +261,6 @@
 %catches(storage::Aborted, storage::Exception) storage::Storage::probe(const ProbeCallbacks *probe_callbacks=nullptr);
 %catches(storage::Exception) storage::Storage::remove_devicegraph(const std::string &name);
 %catches(storage::Exception) storage::Storage::restore_devicegraph(const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
+%catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::StrayBlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 

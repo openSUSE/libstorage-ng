@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-06-12 05:41+0000\n"
 "Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
-"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/id/>\n"
+"Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-master/id/>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -286,9 +285,7 @@ msgstr "Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan "
-"%5$s"
+msgstr "Buat volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -351,9 +348,7 @@ msgstr "Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Buat volume logical terenkripsi %1$s (%2$s) pada grup volume %3$s untuk %4$s "
-"dengan %5$s"
+msgstr "Buat volume logical terenkripsi %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -361,9 +356,7 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr ""
-"Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s untuk "
-"swap"
+msgstr "Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s untuk swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -372,9 +365,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s dengan "
-"%4$s"
+msgstr "Buat volume logical LVM terenkripsi %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -810,8 +801,7 @@ msgstr "Menonaktifkan volume logical thin %1$s (%2$s) pada grup volume %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr ""
-"Menonaktifkan volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
+msgstr "Menonaktifkan volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1107,9 +1097,7 @@ msgstr "Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s "
-"dengan %5$s"
+msgstr "Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1118,8 +1106,7 @@ msgstr ""
 #. %4$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr ""
-"Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
+msgstr "Enkripsi volume logical LVM %1$s (%2$s) pada grup volume %3$s dengan %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1169,9 +1156,7 @@ msgstr "Ext4"
 #. %5$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr ""
-"Format volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s "
-"dengan %5$s"
+msgstr "Format volume logical LVM %1$s (%2$s) pada grup volume %3$s untuk %4$s dengan %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1264,8 +1249,7 @@ msgstr "Perbesar volume fisik pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Perbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Perbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1274,9 +1258,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Perbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
-"%4$s"
+msgstr "Perbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1327,8 +1309,7 @@ msgstr "Memperbesar volume fisik pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Memperbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Memperbesar volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1337,9 +1318,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Memperbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
-"%4$s"
+msgstr "Memperbesar volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1542,6 +1521,20 @@ msgstr "Memeriksa NFS"
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
 msgstr "Gagal memeriksa NFS"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "Gagal memeriksa bcache %s"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "Gagal memeriksa DASDs"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -1948,8 +1941,7 @@ msgstr "Kecilkan volume fisik pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1958,9 +1950,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
-"%4$s"
+msgstr "Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2011,8 +2001,7 @@ msgstr "Mengecilkan volume fisik pada %1$s dari %2$s ke %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr ""
-"Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
+msgstr "Mengecilkan volume logical thin %1$s pada grup volume %2$s dari %3$s ke %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2021,9 +2010,11 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr "Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
 msgstr ""
-"Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$s ke "
-"%4$s"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

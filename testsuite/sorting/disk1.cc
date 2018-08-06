@@ -44,6 +44,10 @@ BOOST_AUTO_TEST_CASE(disk_sorting1)
     Disk* vdb = Disk::create(staging, "/dev/vdb");
     Disk* vdaa = Disk::create(staging, "/dev/vdaa");
 
+    Disk* xvda = Disk::create(staging, "/dev/xvda");
+    Disk* xvdb = Disk::create(staging, "/dev/xvdb");
+    Disk* xvdaa = Disk::create(staging, "/dev/xvdaa");
+
     Disk* pmem0 = Disk::create(staging, "/dev/pmem0");
     Disk* pmem10 = Disk::create(staging, "/dev/pmem10");
     Disk* pmem2 = Disk::create(staging, "/dev/pmem2");
@@ -52,6 +56,6 @@ BOOST_AUTO_TEST_CASE(disk_sorting1)
     sort(all.begin(), all.end(), Disk::compare_by_name);
 
     BOOST_CHECK_EQUAL(all, vector<Disk*>({
-	pmem0, pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa
+	pmem0, pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdaa, xvda, xvdb, xvdaa
     }));
 }

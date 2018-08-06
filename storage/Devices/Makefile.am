@@ -37,6 +37,8 @@ libdevices_la_SOURCES =					\
 	ImplicitPtImpl.h	ImplicitPtImpl.cc	\
 	Partition.h		Partition.cc		\
 	PartitionImpl.h		PartitionImpl.cc	\
+	StrayBlkDevice.h	StrayBlkDevice.cc	\
+	StrayBlkDeviceImpl.h	StrayBlkDeviceImpl.cc	\
 	LvmPv.h			LvmPv.cc		\
 	LvmPvImpl.h		LvmPvImpl.cc		\
 	LvmVg.h			LvmVg.cc		\
@@ -70,6 +72,7 @@ pkginclude_HEADERS =		\
 	DasdPt.h		\
 	ImplicitPt.h		\
 	Partition.h		\
+	StrayBlkDevice.h	\
 	LvmPv.h			\
 	LvmVg.h			\
 	LvmLv.h			\

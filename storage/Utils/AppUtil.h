@@ -34,6 +34,7 @@
 #include <list>
 #include <map>
 #include <regex>
+#include <utility>
 
 
 namespace storage
@@ -43,6 +44,7 @@ namespace storage
     using std::list;
     using std::map;
     using std::regex;
+    using std::pair;
 
     class Arch;
     class SystemInfo;
@@ -132,7 +134,8 @@ void classic(StreamType& stream)
      */
     struct NameSchema
     {
-	NameSchema(regex re, size_t w, char c) : re(re), w(w), c(c) {}
+	NameSchema(regex re, const vector<pair<size_t, char>>& pad_infos)
+	    : re(re), pad_infos(pad_infos) {}
 
 	/**
 	 * Regular expression matching the name schema.
@@ -140,20 +143,21 @@ void classic(StreamType& stream)
 	const regex re;
 
 	/**
-	 * Width to which the sub-match will be padded.
+	 * Width and char to which the sub-matches of the regular
+	 * expression will be padded.
 	 */
-	const size_t w;
-
-	/**
-	 * Char with which the sub-match will be padded.
-	 */
-	const char c;
+	const vector<pair<size_t, char>> pad_infos;
     };
 
 
     /**
-     * Formats the string s to the first matching name schema: All sub-matchs
+     * Formats the string s to the first matching name schema: All sub-matches
      * will be padded as defined in the name schema.
+     *
+     * This can be used to sort device names. E.g. if it is desired to
+     * have "sdb" before "sdaa" the names can be transformed to "sd b"
+     * and "sdaa" and be sorted alphabetical. Used by
+     * Device::get_sort_key().
      */
     string
     format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata);
