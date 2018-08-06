@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -214,7 +214,7 @@ namespace storage
 	{
 	    if (it != table.majorminors.begin())
 		s << " ";
-	    s << gnu_dev_major(*it) << ":" << gnu_dev_minor(*it);
+	    s << major(*it) << ":" << minor(*it);
 	}
 	s << ">";
 

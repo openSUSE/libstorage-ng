@@ -25,6 +25,8 @@
 #define STORAGE_CMD_UDEVADM_H
 
 
+#include <sys/sysmacros.h>
+
 #include <string>
 #include <vector>
 
@@ -50,8 +52,8 @@ namespace storage
 	const string& get_name() const { return name; }
 
 	dev_t get_majorminor() const { return majorminor; }
-	unsigned int get_major() const { return gnu_dev_major(majorminor); }
-	unsigned int get_minor() const { return gnu_dev_minor(majorminor); }
+	unsigned int get_major() const { return major(majorminor); }
+	unsigned int get_minor() const { return minor(majorminor); }
 
 	DeviceType get_device_type() const { return device_type; }
 
