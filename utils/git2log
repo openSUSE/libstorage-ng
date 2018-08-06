@@ -258,6 +258,8 @@ sub get_version
 #
 # Only tags recognized by is_formatted_tag() are considered.
 #
+# Tags inside merge commits are ignored.
+#
 # The parsed logs is stored in $config->{log}, an array of log sections.
 # Each section is a hash with these keys:
 #   - 'tags': array of tags for this section
@@ -268,11 +270,20 @@ sub get_tags
 {
   my $log_entry;
 
+  # the end of the merge commit if in a merge
+  my $merge;
+
   for (@{$config->{raw_log}}) {
     if(/^commit (\S+)( \((.*)\))?/) {
       my $commit = $1;
       my $tag_list = $3;
       my $xtag;
+
+      # we have reached the end of the merge commit
+      undef $merge if $merge && $commit =~ /^$merge/;
+
+      # ignore tag info inside a merge commit
+      $tag_list = "" if $merge;
 
       for my $t (split /, /, $tag_list) {
         if($t =~ /tag: (\S+)/) {
@@ -292,6 +303,10 @@ sub get_tags
       else {
         $log_entry = { commit => $commit } if !$log_entry;
       }
+    }
+    elsif(!$merge && /^Merge: (\S+)/) {
+      # remember end of merge
+      $merge = $1;
     }
 
     push @{$log_entry->{lines}}, $_ if $log_entry;
