@@ -46,6 +46,7 @@
 #include "storage/Devices/DasdPt.h"
 #include "storage/Devices/ImplicitPt.h"
 #include "storage/Devices/Partition.h"
+#include "storage/Devices/StrayBlkDevice.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/LvmVg.h"
@@ -677,6 +678,7 @@ namespace storage
 	{ "DasdPt", &DasdPt::load },
 	{ "ImplicitPt", &ImplicitPt::load },
 	{ "Partition", &Partition::load },
+	{ "StrayBlkDevice", &StrayBlkDevice::load },
 	{ "LvmPv", &LvmPv::load },
 	{ "LvmVg", &LvmVg::load },
 	{ "LvmLv", &LvmLv::load },
@@ -967,6 +969,8 @@ namespace storage
 		else if (is_partition_table(device))
 		    out << "color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
 		else if (is_partition(device))
+		    out << "color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
+		else if (is_stray_blk_device(device))
 		    out << "color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
 		else if (is_lvm_pv(device))
 		    out << "color=\"#66dd22\", fillcolor=\"#bbff99\"";

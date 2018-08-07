@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-05-10 06:32+0000\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
 "Language-Team: Lithuanian <https://l10n.opensuse.org/projects/libstorage/ng-master/lt/>\n"
@@ -1528,6 +1528,20 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "Kuriamas RAID skaidinys %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "Kuriamas RAID skaidinys %1$s (%2$s)"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr ""
@@ -2005,6 +2019,10 @@ msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 #, fuzzy, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"

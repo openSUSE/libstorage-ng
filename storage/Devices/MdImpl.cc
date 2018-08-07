@@ -141,7 +141,7 @@ namespace storage
     Md::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEV_DIR "/md([0-9]+)", regex::extended), 4, '0')
+	    NameSchema(regex(DEV_DIR "/md([0-9]+)", regex::extended), { { 4, '0' } })
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);

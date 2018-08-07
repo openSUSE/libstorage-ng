@@ -12,11 +12,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-06-04 18:29+0000\n"
 "Last-Translator: Vojtech Zeisek <Vojtech.Zeisek@opensuse.org>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/cs/>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1529,6 +1528,20 @@ msgstr "Testování NFS"
 msgid "Probing NFS failed"
 msgstr "Testování NFS selhalo"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "Testování bcache %s selhalo"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "Testování DASD selhalo"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Testování bcache"
@@ -2006,6 +2019,10 @@ msgstr "Zmenšuje se tenký logický svazek %1$s na skupině svazků %2$s z %3$s
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Zmenšuje se logický svazek tenkého fondu %1$s na skupině svazků %2$s z %3$s na %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"

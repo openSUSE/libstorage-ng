@@ -503,14 +503,16 @@ const string app_ws = " \t\n";
 	{
 	    smatch match;
 
-	    if (regex_match(s, match, name_schema.re))
+	    if (regex_match(s, match, name_schema.re) && match.size() - 1 == name_schema.pad_infos.size())
 	    {
 		string ret = s;
 
 		for (size_t i = match.size() - 1; i > 0; --i)
 		{
+		    const pair<size_t, char>& pad_info = name_schema.pad_infos[i - 1];
+
 		    ret.replace(match.position(i), match.length(i),
-				pad_front(match.str(i), name_schema.w, name_schema.c));
+				pad_front(match.str(i), pad_info.first, pad_info.second));
 		}
 
 		return ret;

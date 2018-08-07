@@ -16,11 +16,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-06-07 11:17+0000\n"
 "Last-Translator: jc sl <trcs@gmx.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/es/>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1534,6 +1533,20 @@ msgstr "Sondeando NFS"
 msgid "Probing NFS failed"
 msgstr "Error al sondear NFS"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "Sondeo de bcache %s fallido"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "Error al sondear los DASD"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Sondeando bcache"
@@ -2011,6 +2024,10 @@ msgstr "Reduciendo volumen lógico ligero %1$s en el grupo de volúmenes %2$s de
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Reduciendo volumen lógico de grupo ligero %1$s en el grupo de volúmenes %2$s de %3$s a %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"

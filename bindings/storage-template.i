@@ -48,6 +48,9 @@
 %template(VectorPartitionPtr) std::vector<Partition*>;
 %template(VectorConstPartitionPtr) std::vector<const Partition*>;
 
+%template(VectorStrayBlkDevicePtr) std::vector<StrayBlkDevice*>;
+%template(VectorConstStrayBlkDevicePtr) std::vector<const StrayBlkDevice*>;
+
 %template(VectorEncryptionPtr) std::vector<Encryption*>;
 %template(VectorConstEncryptionPtr) std::vector<const Encryption*>;
 

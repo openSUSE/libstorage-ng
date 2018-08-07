@@ -41,6 +41,7 @@
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
+#include "storage/Devices/StrayBlkDeviceImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -102,6 +103,16 @@ namespace storage
 		continue;
 	    }
 
+	    if (boost::starts_with(short_name, "xvd"))
+	    {
+		if (range_file.get<int>() > 1)
+		    sys_block_entries.disks.push_back(short_name);
+		else
+		    sys_block_entries.stray_blk_devices.push_back(short_name);
+
+		continue;
+	    }
+
 	    if (true)		// for disks all remaining names are allowed
 	    {
 		if (range_file.get<int>() <= 1)
@@ -115,6 +126,7 @@ namespace storage
 
 	y2mil("sys_block_entries.disks " << sys_block_entries.disks);
 	y2mil("sys_block_entries.dasds " << sys_block_entries.dasds);
+	y2mil("sys_block_entries.stray_blk_devices " << sys_block_entries.stray_blk_devices);
 	y2mil("sys_block_entries.mds " << sys_block_entries.mds);
 	y2mil("sys_block_entries.bcaches " << sys_block_entries.bcaches);
 
@@ -201,6 +213,19 @@ namespace storage
 	{
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing DASDs failed"), exception);
+	}
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing Stray Block Devices"));
+
+	try
+	{
+	    StrayBlkDevice::Impl::probe_stray_blk_devices(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing Stray Block Devices failed"), exception);
 	}
 
 	// TRANSLATORS: progress message

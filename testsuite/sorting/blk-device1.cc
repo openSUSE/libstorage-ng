@@ -13,6 +13,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Bcache.h"
+#include "storage/Devices/StrayBlkDevice.h"
 #include "storage/Utils/HumanString.h"
 
 
@@ -54,6 +55,12 @@ BOOST_AUTO_TEST_CASE(blk_device_sorting1)
     Partition* sdb10 = sdb_pt->create_partition("/dev/sdb10", Region(101 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
     Partition* sdb2 = sdb_pt->create_partition("/dev/sdb2", Region(201 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
 
+    Disk* xvdb = Disk::create(staging, "/dev/xvdb");
+    PartitionTable* xvdb_pt = xvdb->create_partition_table(PtType::GPT);
+    Partition* xvdb1 = xvdb_pt->create_partition("/dev/xvdb1", Region(1 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
+    Partition* xvdb10 = xvdb_pt->create_partition("/dev/xvdb10", Region(101 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
+    Partition* xvdb2 = xvdb_pt->create_partition("/dev/xvdb2", Region(201 * 2048, 100 * 2048, 512), PartitionType::PRIMARY);
+
     Md* md_a10 = Md::create(staging, "/dev/md/a10");
     Md* md_a2 = Md::create(staging, "/dev/md/a2");
 
@@ -70,6 +77,9 @@ BOOST_AUTO_TEST_CASE(blk_device_sorting1)
     Bcache* bcache2 = Bcache::create(staging, "/dev/bcache2");
     Bcache* bcache10 = Bcache::create(staging, "/dev/bcache10");
 
+    StrayBlkDevice* xvdc2 = StrayBlkDevice::create(staging, "/dev/xvdc2");
+    StrayBlkDevice* xvdc10 = StrayBlkDevice::create(staging, "/dev/xvdc10");
+
     vector<BlkDevice*> all = BlkDevice::get_all(staging);
     sort(all.begin(), all.end(), BlkDevice::compare_by_name);
 
@@ -79,6 +89,8 @@ BOOST_AUTO_TEST_CASE(blk_device_sorting1)
 	md_b, md_b1, md_b2, md_b10,	// sorted numerically
 	sda, sda1, sda2, sda10,
 	sdb, sdb1, sdb2, sdb10,
-	test_aa, test_b
+	test_aa, test_b,
+	xvdb, xvdb1, xvdb2, xvdb10,
+	xvdc2, xvdc10
     }));
 }

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-master/ar/>\n"
@@ -1520,6 +1520,20 @@ msgstr "بحث NFS"
 msgid "Probing NFS failed"
 msgstr "فشل بحث NFS"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "فشل بحث bcache"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "فشل بحث DASD"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "يتم الآن بحث bcache"
@@ -1996,6 +2010,10 @@ msgstr "يتم الآن تقليص حجم وحدة التخزين المنطقي
 #, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "يتم الآن تقليص حجم مجمع وحدة التخزين المنطقية التابعة %1$s في مجموعة وحدات التخزين %2$s من %3$s إلى %4$s"
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-04 11:24+0200\n"
+"POT-Creation-Date: 2018-08-01 12:09+0200\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -1793,6 +1793,22 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing Stray Block Device %s failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#. TRANSLATORS: progress message
+msgid "Probing Stray Block Devices"
+msgstr ""
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing Stray Block Devices failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr ""
@@ -2318,6 +2334,10 @@ msgstr "צור %5 %1 %2 (עבור %3 עם %4("
 #, fuzzy, c-format
 msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "צור %5 %1 %2 (עבור %3 עם %4("
+
+#. TRANSLATORS: name of object
+msgid "Stray Block Device"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
