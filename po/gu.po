@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: i18n@suse.de\n"
 "Language-Team: Gujarati <i18n@suse.de>\n"
@@ -177,6 +177,22 @@ msgstr " માઉન્ટ પોઇન્ટ %1$s માટેની એન્
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #, fuzzy
 msgid "B"
@@ -255,6 +271,20 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr " સ્વેપ લોજિકલ વોલ્યૂમ %1$s (%2$s) બનાવો "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr " સ્વેપ લોજિકલ વોલ્યૂમ %1$s (%2$s) બનાવો "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -584,6 +614,20 @@ msgid "Creating %1$s on %2$s (%3$s)"
 msgstr " પાર્ટીશનના પ્રકાર %1$s ને %2$X પર સેટ કરો "
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, fuzzy, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -714,6 +758,20 @@ msgid "DM RAID"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
@@ -757,6 +815,20 @@ msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) ને %3$s દ્
 #, fuzzy, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) ને %3$s દ્વારા ફોર્મેટ કરી રહ્યા છીએ "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -810,6 +882,20 @@ msgstr " લોજિકલ વોલ્યૂમ %1$s (%2$s) ને %3$s દ્
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr " પાર્ટીશન %1$s (%2$s) ને કાઢી નાખો "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને કાઢી નાખો "
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -947,6 +1033,20 @@ msgstr " વોલ્યૂમ જૂથ %1$s ને %2$s દ્વારા ઘ
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr " પાર્ટીશનના પ્રકાર %1$s ને %2$X પર સેટ કરો "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને કાઢી નાખો "
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr " પાર્ટીશન %1$s (%2$s) ને બનાવો "
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1149,6 +1249,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
 msgstr ""
 
 #. TRANSLATORS:

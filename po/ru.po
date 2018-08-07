@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2018-06-08 21:45+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-master/ru/>\n"
@@ -175,6 +175,22 @@ msgstr "Добавление точки монтирования %1$s для %2$
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "Добавление точки монтирования %1$s подтома %2$s на %3$s в /etc/fstab"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "Б"
@@ -252,6 +268,20 @@ msgstr "Снятие защитного флага MBR с GPT на %1$s"
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "Создать %1$s на %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr "Создать жёсткий диск %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr "Создать логический раздел %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -581,6 +611,20 @@ msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "Создание %1$s на %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr "Создание раздела %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr "Создание логического раздела %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -710,6 +754,20 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr "Отключить multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr "Отключить multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
@@ -753,6 +811,20 @@ msgstr "Отключить «тонкий» логический том %1$s (%2
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Отключить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr "Отключение multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr "Отключение multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -806,6 +878,20 @@ msgstr "Отключение логического тома «тонкого» 
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "Удалить %1$s на %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr "Удалить раздел %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr "Удалить логический раздел %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -943,6 +1029,20 @@ msgstr "Удалить группу томов %1$s (%2$s)"
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "Удаление %1$s на %2$s (%3$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr "Удаление раздела %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr "Удаление логического раздела %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1143,6 +1243,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),

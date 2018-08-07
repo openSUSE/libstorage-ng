@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2018-06-04 18:29+0000\n"
 "Last-Translator: Vojtech Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-master/cs/>\n"
@@ -183,6 +183,22 @@ msgstr "Přidává se přípojný bod %1$s z %2$s k /etc/fstab"
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "Přidávání přípojného bodu %1$s podsvazku %2$s na %3$s do /etc/fstab"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
@@ -260,6 +276,20 @@ msgstr "Vyčištění ochranného příznaku MBR boot GPT na %1$s"
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "Vytvořit %1$s na %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr "Vytvořit pevný disk %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr "Vytvořit logický oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -590,6 +620,20 @@ msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "Vytvořit %1$s na %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr "Vytvořit oddíl %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr "Vytvořit logický oddíl %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -719,6 +763,20 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr "Deaktivovat multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr "Deaktivovat multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
@@ -762,6 +820,20 @@ msgstr "Deaktivovat tenký logický svazek %1$s (%2$s) na skupině svazků %3$s"
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Deaktivovat logický svazek tenkého fondu %1$s (%2$s) na skupině svazků %3$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr "Deaktivuji multipath %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr "Deaktivuji multipath %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -815,6 +887,20 @@ msgstr "Deaktivovat logický svazek tenkého fondu %1$s (%2$s) na skupině svazk
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "Odstranit %1$s na %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr "Odstranit oddíl %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr "Odstranit logický oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -953,6 +1039,20 @@ msgstr "Zrušit skupinu svazků %1$s (%2$s)"
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "Odstraňuje se %1$s na %2$s (%3$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr "Odstraňuji oddíl %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr "Odstraňuje se logický oddíl %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1153,6 +1253,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),

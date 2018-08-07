@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2018-06-08 18:49+0000\n"
 "Last-Translator: Benoît Monin <benoit.monin@gmx.fr>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-master/fr/>\n"
@@ -190,6 +190,23 @@ msgstr "Ajout du point de montage %1$s de %2$s à /etc/fstab"
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "Ajout du point de montage %1$s du sous-volume %2$s sur %3$s à /etc/fstab"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr "Configuration du type de partition %1$s sur %2$s (%3$X)"
+
 # TLABEL backup_2002_03_14_2340__147
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -272,6 +289,21 @@ msgstr "Effacement du fanion de démarrage du MBR protecteur de la table de part
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "Créer %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr "Créer le volume logique %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr "Créer la partition logique %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -628,6 +660,20 @@ msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "Création de %1$s sur %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr "Création de la partition %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr "Création de la partition logique %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -766,6 +812,22 @@ msgstr "Table de partition DASD"
 msgid "DM RAID"
 msgstr "DM RAID"
 
+# TLABEL partitioning_2002_01_04_0147__422
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr "Désactiver le multipath %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr "Désactiver le multipath %1$s (%2$s)"
+
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -814,6 +876,22 @@ msgstr "Désactiver le volume logique léger %1$s (%2$s) sur le groupe de volume
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Désactiver le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr "Désactivation du multipath %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr "Désactivation du multipath %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
@@ -871,6 +949,21 @@ msgstr "Désactivation du volume logique de pool léger %1$s (%2$s) sur le group
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "Supprimer %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_03_14_2340__25
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr "Effacer le volume logique %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr "Supprimer la partition raid %1$s (%2$s)"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed before action,
@@ -1024,6 +1117,21 @@ msgstr "Supprimer le groupe de volumes %1$s (%2$s)"
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "Suppression de %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__422
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr "Suppression de la partition %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr "Suppression de la partition logique %1$s (%2$s)"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
@@ -1244,6 +1352,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2415,10 +2527,6 @@ msgstr "ko"
 #~ msgid "Create file-based device %1$s of file %2$s (%3$s) as %5$s with %4$s"
 #~ msgstr "Créer le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
 
-# TLABEL partitioning_2002_01_04_0147__351
-#~ msgid "Create logical volume %1$s (%2$s)"
-#~ msgstr "Créer le volume logique %1$s (%2$s)"
-
 # TLABEL partitioning_2002_03_14_2340__121
 #~ msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
 #~ msgstr "Créer le volume logique %1$s (%2$s) pour %4$s avec %3$s"
@@ -2512,10 +2620,6 @@ msgstr "ko"
 
 #~ msgid "Delete file-based device %1$s (%2$s)"
 #~ msgstr "Effacer le périphérique basé sur fichier %1$s (%2$s)"
-
-# TLABEL partitioning_2002_03_14_2340__25
-#~ msgid "Delete logical volume %1$s (%2$s)"
-#~ msgstr "Effacer le volume logique %1$s (%2$s)"
 
 #~ msgid "Delete software RAID %1$s (%2$s)"
 #~ msgstr "Effacer le RAID logiciel %1$s (%2$s)"
@@ -2848,10 +2952,6 @@ msgstr "ko"
 #~ msgid "Setting type of multipath partition %1$s to %2$X"
 #~ msgstr "Définition du type de partition multipath %1$s en %2$X"
 
-# SLE12
-#~ msgid "Setting type of partition %1$s to %2$s (%3$X)"
-#~ msgstr "Configuration du type de partition %1$s sur %2$s (%3$X)"
-
 # TLABEL wizard_2002_01_04_0147__19
 #~ msgid "Setting up encrypted dm device on %1$s"
 #~ msgstr "Configuration du périphérique dm chiffré sur %1$s"
@@ -3027,9 +3127,6 @@ msgstr "ko"
 
 #~ msgid "Create extended raid partition %1$s (%2$s)"
 #~ msgstr "Créer la partition raid étendue %1$s (%2$s)"
-
-#~ msgid "Delete raid partition %1$s (%2$s)"
-#~ msgstr "Supprimer la partition raid %1$s (%2$s)"
 
 #~ msgid "Deleting raid partition %1$s"
 #~ msgstr "Suppression de la partition raid %1$s"

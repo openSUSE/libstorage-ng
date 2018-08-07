@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -212,6 +212,22 @@ msgstr "%1 aygıtının bağlama noktasını %2 yap"
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #, fuzzy
 msgid "B"
@@ -294,6 +310,22 @@ msgstr ""
 #, fuzzy, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr "Mantıksal yığın oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed before action,
@@ -697,6 +729,22 @@ msgstr "Mantıksal yığın oluştur"
 msgid "Creating %1$s on %2$s (%3$s)"
 msgstr "Mantıksal yığın oluştur"
 
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -854,6 +902,22 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 msgid "DM RAID"
 msgstr ""
 
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
 # include/partitioning/lvm_ui_dialogs.ycp:319
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -913,6 +977,22 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #, fuzzy, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed during action,
@@ -982,6 +1062,22 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed before action,
@@ -1138,6 +1234,22 @@ msgstr "Mantıksal yığın oluştur"
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "%3 olan Windows %1 (%2) bölümünün boyutunu %4 olarak değiştir"
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed during action,
@@ -1380,6 +1492,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
 msgstr ""
 
 # please, check %1, %2, %3.
