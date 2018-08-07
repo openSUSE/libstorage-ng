@@ -30,6 +30,7 @@
 #include <sys/stat.h>
 #include <sys/statvfs.h>
 #include <sys/types.h>
+#include <sys/sysmacros.h>
 #include <sys/utsname.h>
 #include <dirent.h>
 #include <string>
@@ -128,8 +129,7 @@ checkNormalFile(const string& Path_Cv)
     string
     make_dev_block_name(dev_t majorminor)
     {
-	return sformat(DEV_DIR "/block/%d:%d", gnu_dev_major(majorminor),
-		       gnu_dev_minor(majorminor));
+	return sformat(DEV_DIR "/block/%d:%d", major(majorminor), minor(majorminor));
     }
 
 
