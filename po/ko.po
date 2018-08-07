@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2018-05-14 06:18+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-master/ko/>\n"
@@ -184,6 +184,22 @@ msgstr "마운트 포인트 %2$s의 %1$s을(를) /etc/fstab에 추가 중"
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "/etc/fstab에 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %1$s 추가 중"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #  10^3 bytes
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -266,6 +282,22 @@ msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 지우는 중"
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
 msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+
+# SLE12
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr "하드 디스크 %1$s(%2$s) 생성"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
+msgstr "%1$s(%2$s) 논리적 파티션 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -622,6 +654,22 @@ msgstr "%2$s(%3$s)에서 %1$s 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr "파티션 %1$s(%2$s) 생성 중"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr "%1$s(%2$s) 논리적 파티션을 생성 중"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -761,6 +809,22 @@ msgstr "DASD 파티션 테이블"
 msgid "DM RAID"
 msgstr "DM RAID"
 
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr "다중경로 파티션 %1$s(%2$s) 비활성화"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr "다중경로 파티션 %1$s(%2$s) 비활성화"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
@@ -806,6 +870,22 @@ msgstr "볼륨 그룹 %3$s에 씬 논리적 볼륨 %1$s(%2$s) 비활성화"
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "볼륨 그룹 %3$s에 씬 풀 논리적 볼륨 %1$s(%2$s) 비활성화"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr "%1$s 다중경로(%2$s) 비활성화 중"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
+msgstr "%1$s 다중경로(%2$s) 비활성화 중"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
@@ -862,6 +942,22 @@ msgstr "볼륨 그룹 %3$s에 씬 풀 논리적 볼륨 %1$s(%2$s) 비활성화 �
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
 msgstr "%2$s(%3$s)에 %1$s 삭제"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr "%1$s (%2$s) 파티션을 삭제"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
+msgstr "논리적 파티션 %1$s(%2$s) 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1010,6 +1106,22 @@ msgstr "볼륨 그룹 %1$s(%2$s) 삭제"
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
 msgstr "%2$s(%3$s)에 %1$s 삭제 중"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr "%1$s(%2$s) 파티션 삭제 중"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
+msgstr "논리적 파티션 %1$s(%2$s) 삭제 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1224,6 +1336,10 @@ msgstr "Ext3"
 #. TRANSLATORS: name of object
 msgid "Ext4"
 msgstr "Ext4"
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),

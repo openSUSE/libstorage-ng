@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-01 12:09+0200\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
 "PO-Revision-Date: 2012-02-12 09:27+0100\n"
 "Last-Translator: Karl Eichwalder <ke@suse.de>\n"
 "Language-Team: Esperanto <i18n@suse.de>\n"
@@ -175,6 +175,22 @@ msgstr ""
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+msgstr ""
+
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr ""
@@ -251,6 +267,20 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Create %1$s on %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Create Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Create Bcache cache set on %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
@@ -581,6 +611,20 @@ msgid "Creating %1$s on %2$s (%3$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Creating Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Creating Bcache cache set %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Creating DASD partition table on %1$s"
@@ -710,6 +754,20 @@ msgid "DM RAID"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deactivate Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deactivate Bcache cache set on %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
@@ -752,6 +810,20 @@ msgstr ""
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deactivating Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deactivating Bcache cache set on %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -805,6 +877,20 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Delete %1$s on %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Delete Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Delete Bcache cache set on %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
@@ -942,6 +1028,20 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Deleting %1$s on %2$s (%3$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deleting Bcache %1$s (%2$s)"
+msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, c-format
+msgid "Deleting Bcache cache set on %1$s (%2$s)"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
@@ -1142,6 +1242,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "F2FS"
 msgstr ""
 
 #. TRANSLATORS:
