@@ -81,12 +81,13 @@ namespace storage
     Disk::Impl::get_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEV_DIR "/sd([a-z]+)", regex::extended), 4, ' '),
-	    NameSchema(regex(DEV_DIR "/vd([a-z]+)", regex::extended), 4, ' '),
-	    NameSchema(regex(DEV_DIR "/mmcblk([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEV_DIR "/rsxx([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEV_DIR "/pmem([0-9]+)", regex::extended), 3, '0'),
-	    NameSchema(regex(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended), 3, '0'),
+	    NameSchema(regex(DEV_DIR "/sd([a-z]+)", regex::extended), { { 4, ' ' } }),
+	    NameSchema(regex(DEV_DIR "/vd([a-z]+)", regex::extended), { { 4, ' ' } }),
+	    NameSchema(regex(DEV_DIR "/mmcblk([0-9]+)", regex::extended), { { 3, '0' } }),
+	    NameSchema(regex(DEV_DIR "/rsxx([0-9]+)", regex::extended), { { 3, '0' } }),
+	    NameSchema(regex(DEV_DIR "/pmem([0-9]+)", regex::extended), { { 3, '0' } }),
+	    NameSchema(regex(DEV_DIR "/nvme([0-9]+)n([0-9]+)", regex::extended), { { 3, '0' }, { 3, '0' } }),
+	    NameSchema(regex(DEV_DIR "/xvd([a-z]+)", regex::extended), { { 4, ' ' } }),
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
