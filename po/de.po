@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 07:51+0200\n"
-"PO-Revision-Date: 2018-05-05 16:43+0000\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"PO-Revision-Date: 2018-08-07 12:42+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-master/de/>\n"
 "Language: de\n"
@@ -1636,18 +1636,17 @@ msgid "Probing NFS failed"
 msgstr "Untersuchen von NFS fehlgeschlagen"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Untersuchen von bcache %s fehlgeschlagen"
+msgstr "Untersuchung des Stray Block Device %s fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Stray Block Devices werden unersucht"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Untersuchung von DASDs fehlgeschlagen"
+msgstr "Untersuchung von Stray Block Devices fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2127,7 +2126,7 @@ msgstr "Logisches Thin Pool Volume %1$s in Volume-Gruppe %2$s wird von %3$s auf 
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray Block Device"
 
 #. TRANSLATORS: name of object
 msgid "Swap"

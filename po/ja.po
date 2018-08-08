@@ -10,10 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 07:51+0200\n"
-"PO-Revision-Date: 2018-08-07 12:04+0000\n"
+"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"PO-Revision-Date: 2018-08-07 22:29+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -187,7 +188,7 @@ msgstr "%3$s 内にあるサブボリューム %2$s のマウントポイント 
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -195,7 +196,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -278,16 +279,16 @@ msgstr "%2$s (%3$s) に対する %1$s の作成"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "ハードディスク %1$s (%2$s) の作成"
+msgstr "Bcache %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "論理パーティション %1$s (%2$s) の作成"
+msgstr "Bcache キャッシュセット %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -619,16 +620,16 @@ msgstr "%2$s (%3$s) に %1$s を作成しています"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "パーティション %1$s (%2$s) を作成しています"
+msgstr "Bcache %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "論理パーティション %1$s (%2$s) を作成しています"
+msgstr "Bcache キャッシュセット %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -762,16 +763,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "マルチパス %1$s (%2$s) の無効化"
+msgstr "Bcache %1$s (%2$s) の無効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "マルチパス %1$s (%2$s) の無効化"
+msgstr "Bcache キャッシュセット %1$s (%2$s) の無効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -821,16 +822,16 @@ msgstr "ボリュームグループ %3$s に対する thin プール論理ボリ
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "マルチパス %1$s (%2$s) を無効化しています"
+msgstr "Bcache %1$s (%2$s) を無効化しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "マルチパス %1$s (%2$s) を無効化しています"
+msgstr "Bcache キャッシュセット %1$s (%2$s) を無効化しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -888,16 +889,16 @@ msgstr "%2$s (%3$s) の %1$s の削除"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "パーティション %1$s (%2$s) の削除"
+msgstr "Bcache %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "論理パーティション %1$s (%2$s) の削除"
+msgstr "Bcache キャッシュセット %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1039,16 +1040,16 @@ msgstr "%2$s (%3$s) 内の %1$s を削除しています"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "パーティション %1$s (%2$s) を削除しています"
+msgstr "Bcache %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "論理パーティション %1$s (%2$s) を削除しています"
+msgstr "Bcache キャッシュセット %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1256,7 +1257,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
