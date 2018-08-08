@@ -55,7 +55,7 @@ namespace storage
     const vector<string> EnumTraits<FsType>::names({
 	"unknown", "auto", "reiserfs", "ext2", "ext3", "ext4", "btrfs", "vfat", "xfs", "jfs", "hfs",
 	"ntfs", "swap", "hfsplus", "nfs", "nfs4", "tmpfs", "iso9660", "udf", "nilfs2", "minix",
-	"ntfs-3g", "f2fs"
+	"ntfs-3g", "f2fs", "exfat"
     });
 
 

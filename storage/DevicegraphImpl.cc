@@ -60,6 +60,7 @@
 #include "storage/Filesystems/Ext4.h"
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
+#include "storage/Filesystems/Exfat.h"
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/Reiserfs.h"
@@ -691,6 +692,7 @@ namespace storage
 	{ "Ext4", &Ext4::load },
 	{ "Ntfs", &Ntfs::load },
 	{ "Vfat", &Vfat::load },
+	{ "Exfat", &Exfat::load },
 	{ "Btrfs", &Btrfs::load },
 	{ "BtrfsSubvolume", &BtrfsSubvolume::load },
 	{ "Reiserfs", &Reiserfs::load },

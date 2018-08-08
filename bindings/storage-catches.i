@@ -60,6 +60,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_dm_raid(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_encryption(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_exfat(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_exfat(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_ext2(Device *device);

@@ -33,6 +33,7 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Filesystems/Ext4.h		\
 	${top_srcdir}/storage/Filesystems/Ntfs.h		\
 	${top_srcdir}/storage/Filesystems/Vfat.h		\
+	${top_srcdir}/storage/Filesystems/Exfat.h		\
 	${top_srcdir}/storage/Filesystems/Iso9660.h		\
 	${top_srcdir}/storage/Filesystems/Udf.h			\
 	${top_srcdir}/storage/Filesystems/Nfs.h 		\
