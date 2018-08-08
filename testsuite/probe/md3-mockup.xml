@@ -15,6 +15,16 @@
       <stdout>md1</stdout>
     </Command>
     <Command>
+      <name>/bin/ls -1l --sort=none '/dev/md'</name>
+      <stdout>total 0</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:31 test2 -> ../md127</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:41 test3 -> ../md126</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:41 test3p1 -> ../md126p1</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:31 test4 -> ../md_test4</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:31 test5 -> ../md_test5</stdout>
+      <stdout>lrwxrwxrwx 1 root root 8 Aug  7 13:31 test5p1 -> ../md_test5p1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/blkid -c '/dev/null'</name>
       <stdout>/dev/sda1: UUID="2fd6a519-1b93-42dc-bc8f-99ac033a17a9" TYPE="ext4" PTTYPE="dos" PARTLABEL="primary" PARTUUID="7ec989ba-839c-4991-8a13-b66eab52c828"</stdout>
       <stdout>/dev/sda2: PARTLABEL="primary" PARTUUID="2a68a80b-94f7-4770-abf5-058f9660e791"</stdout>
