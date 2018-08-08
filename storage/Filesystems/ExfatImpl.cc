@@ -46,8 +46,8 @@ namespace storage
     string
     Exfat::Impl::get_pretty_classname() const
     {
-	// TRANSLATORS: name of object
-	return _("EXFAT").translated;
+	// TRANSLATORS: name of a filesystem object in the storage devicegraph
+	return _("exFAT").translated;
     }
 
 
