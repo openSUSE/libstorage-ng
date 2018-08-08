@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2018-04-24 11:13+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-master/sv/>\n"
@@ -1245,6 +1245,10 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)

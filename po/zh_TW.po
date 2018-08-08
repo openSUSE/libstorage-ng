@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2018-06-07 16:25+0000\n"
 "Last-Translator: Peter Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_TW/>\n"
@@ -1183,6 +1183,10 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)

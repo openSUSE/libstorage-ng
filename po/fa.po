@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opensuse-i 18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2013-09-12 11:05+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1170,6 +1170,10 @@ msgstr ""
 
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
+msgstr ""
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
 msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)

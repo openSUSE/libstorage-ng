@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2018-06-08 21:45+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-master/ru/>\n"
@@ -1172,6 +1172,10 @@ msgstr "Э"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "ЭБ"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"

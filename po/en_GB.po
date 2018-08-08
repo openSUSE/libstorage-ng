@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2001-07-17 16:27+0200\n"
 "Last-Translator: James Ogley <ogley@suse.co.uk>\n"
 "Language-Team: English <i18n@suse.de>\n"
@@ -1181,6 +1181,10 @@ msgstr "kB"
 #, fuzzy
 msgid "EB"
 msgstr "kB"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy

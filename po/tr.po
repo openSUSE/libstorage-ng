@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -1398,6 +1398,10 @@ msgstr "kB"
 #, fuzzy
 msgid "EB"
 msgstr "kB"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 # include/ui/wizard_misc.ycp:27
 # include/ui/common_functions.ycp:39

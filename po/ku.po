@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memory.ku.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 07:51+0200\n"
 "PO-Revision-Date: 2005-09-23 00:15+0200\n"
 "Last-Translator: Kurdish Team <i18n@suse.de>\n"
 "Language-Team: Kurdish Team <i18n@suse.de>\n"
@@ -1176,6 +1176,10 @@ msgstr "B"
 #, fuzzy
 msgid "EB"
 msgstr "B"
+
+#. TRANSLATORS: name of object
+msgid "EXFAT"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
