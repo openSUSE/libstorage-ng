@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.uk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 07:51+0200\n"
+"POT-Creation-Date: 2018-08-08 10:57+0200\n"
 "PO-Revision-Date: 2018-02-23 14:15+0000\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.opensuse.org/projects/libstorage/ng-master/uk/>\n"
@@ -1182,10 +1182,6 @@ msgstr "E"
 msgid "EB"
 msgstr "EB"
 
-#. TRANSLATORS: name of object
-msgid "EXFAT"
-msgstr ""
-
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
 msgstr "EiB"
@@ -2217,6 +2213,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"
+msgstr ""
+
+#. TRANSLATORS: name of a filesystem object in the storage devicegraph
+msgid "exFAT"
 msgstr ""
 
 #. TRANSLATORS: first snapshot description

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 07:51+0200\n"
+"POT-Creation-Date: 2018-08-08 10:57+0200\n"
 "PO-Revision-Date: 2002-07-23 18:27+0200\n"
 "Last-Translator: Damir Bjelobradic <Nagual@lugbih.org>\n"
 "Language-Team: Bosnian <i18n@suse.de>\n"
@@ -1183,10 +1183,6 @@ msgstr "MB"
 msgid "EB"
 msgstr "MB"
 
-#. TRANSLATORS: name of object
-msgid "EXFAT"
-msgstr ""
-
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
 msgid "EiB"
@@ -2227,6 +2223,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"
+msgstr ""
+
+#. TRANSLATORS: name of a filesystem object in the storage devicegraph
+msgid "exFAT"
 msgstr ""
 
 #. TRANSLATORS: first snapshot description

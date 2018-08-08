@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 07:51+0200\n"
+"POT-Creation-Date: 2018-08-08 10:57+0200\n"
 "PO-Revision-Date: 2018-06-04 15:15+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-master/ca/>\n"
@@ -1177,10 +1177,6 @@ msgstr "E"
 msgid "EB"
 msgstr "EB"
 
-#. TRANSLATORS: name of object
-msgid "EXFAT"
-msgstr ""
-
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
 msgstr "EiB"
@@ -2209,6 +2205,10 @@ msgstr "VFAT"
 #. TRANSLATORS: name of object
 msgid "XFS"
 msgstr "XFS"
+
+#. TRANSLATORS: name of a filesystem object in the storage devicegraph
+msgid "exFAT"
+msgstr ""
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
