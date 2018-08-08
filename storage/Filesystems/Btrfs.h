@@ -43,6 +43,10 @@ namespace storage
     };
 
 
+    /**
+     * Class to represent a btrfs filesystem
+     * https://en.wikipedia.org/wiki/Btrfs in the devicegraph.
+     */
     class Btrfs : public BlkFilesystem
     {
     public:

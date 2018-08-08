@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an XFS filesystem
+     * https://en.wikipedia.org/wiki/Xfs in the devicegraph.
+     */
     class Xfs : public BlkFilesystem
     {
     public:

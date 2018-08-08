@@ -35,7 +35,7 @@ namespace storage
 
 
     /**
-     * Class to represent a btrfs subvolume.
+     * Class to represent a btrfs subvolume in the devicegraph.
      */
     class BtrfsSubvolume : public Mountable
     {

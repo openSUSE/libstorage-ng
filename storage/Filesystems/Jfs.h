@@ -30,6 +30,11 @@
 namespace storage
 {
 
+    /**
+     * Class to represent a JFS filesystem
+     * https://en.wikipedia.org/wiki/JFS_(file_system) in the
+     * devicegraph.
+     */
     class Jfs : public BlkFilesystem
     {
     public:

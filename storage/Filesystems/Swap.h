@@ -30,6 +30,9 @@
 namespace storage
 {
 
+    /**
+     * Class to represent a swap filesystem in the devicegraph.
+     */
     class Swap : public BlkFilesystem
     {
     public:

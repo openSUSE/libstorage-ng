@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an NTFS filesystem
+     * https://en.wikipedia.org/wiki/NTFS in the devicegraph.
+     */
     class Ntfs : public BlkFilesystem
     {
     public:

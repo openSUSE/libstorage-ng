@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an exFAT filesystem
+     * https://en.wikipedia.org/wiki/ExFAT in the devicegraph.
+     */
     class Exfat : public BlkFilesystem
     {
     public:

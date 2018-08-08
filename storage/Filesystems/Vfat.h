@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an VFAT filesystem
+     * https://en.wikipedia.org/wiki/Vfat in the devicegraph.
+     */
     class Vfat : public BlkFilesystem
     {
     public:

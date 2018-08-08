@@ -30,6 +30,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent a ReiserFS filesystem
+     * https://en.wikipedia.org/wiki/ReiserFS in the devicegraph.
+     */
     class Reiserfs : public BlkFilesystem
     {
     public:

@@ -31,7 +31,8 @@ namespace storage
 {
 
     /**
-     * Class to represent F2fs
+     * Class to represent a F2FS (https://en.wikipedia.org/wiki/F2FS)
+     * in the devicegraph.
      */
     class F2fs : public BlkFilesystem
     {
