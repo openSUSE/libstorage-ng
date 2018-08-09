@@ -15,9 +15,10 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-08 10:57+0200\n"
-"PO-Revision-Date: 2018-06-04 12:26+0000\n"
+"PO-Revision-Date: 2018-08-10 00:01+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -191,7 +192,7 @@ msgstr "Aankoppelpunt %1$s van subvolume %2$s op %3$s wordt toegevoegd aan /etc/
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Bcache-cacheset op %1$s koppelen aan Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -199,7 +200,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Bcache-cacheset op %1$s wordt gekoppeld aan Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -282,16 +283,16 @@ msgstr "%1$s op %2$s (%3$s) aanmaken"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "Vaste schijf %1$s (%2$s) aanmaken"
+msgstr "Bcache %1$s (%2$s) aanmaken"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "Logische partitie %1$s (%2$s) aanmaken"
+msgstr "Bcache-cacheset aanmaken op %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -624,16 +625,16 @@ msgstr "%1$s op %2$s (%3$s) wordt aangemaakt"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "Partitie %1$s (%2$s) wordt aangemaakt"
+msgstr "Bcache %1$s (%2$s) wordt aangemaakt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "Logische partitie %1$s (%2$s) wordt aangemaakt"
+msgstr "Bcache-cacheset %1$s (%2$s) wordt aangemaakt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -767,16 +768,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Multipath %1$s (%2$s) deactiveren"
+msgstr "Bcache %1$s (%2$s) deactiveren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Multipath %1$s (%2$s) deactiveren"
+msgstr "Bcache-cacheset op %1$s (%2$s) deactiveren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -826,16 +827,16 @@ msgstr "Thin pool logisch volume %1$s (%2$s) deactiveren op volumegroep %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Multipath %1$s (%2$s) deactiveren"
+msgstr "Bcache %1$s (%2$s) wordt gedeactiveerd"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Multipath %1$s (%2$s) deactiveren"
+msgstr "DBcache-cacheset op %1$s (%2$s) wordt gedeactiveerd"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -893,16 +894,16 @@ msgstr "%1$s op %2$s (%3$s) verwijderen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Partitie %1$s (%2$s) verwijderen"
+msgstr "Bcache %1$s (%2$s) verwijderen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Logische partitie %1$s (%2$s) verwijderen"
+msgstr "Bcache-cacheset op %1$s (%2$s) verwijderen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1044,16 +1045,16 @@ msgstr "%1$s op %2$s (%3$s) verwijderen"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Partitie %1$s (%2$s) verwijderen"
+msgstr "Bcache %1$s (%2$s) wordt verwijderd"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Logische partitie %1$s (%2$s) wordt verwijderd"
+msgstr "Bcache-cacheset op %1$s (%2$s) wordt verwijderd"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1257,7 +1258,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1634,18 +1635,17 @@ msgid "Probing NFS failed"
 msgstr "Aftasten NFS is mislukt"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Aftasten bcache %s is mislukt"
+msgstr "Aftasten Stray-blokapparaat %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Stray-blokapparaten worden afgetast"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Aftasten DASD's is mislukt"
+msgstr "Aftasten Stray-blokapparaten is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2125,7 +2125,7 @@ msgstr "Thin logisch volume %1$s op volumegroep %2$s wordt ingekrompen van %3$s 
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray-blokapparaat"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2215,7 +2215,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
