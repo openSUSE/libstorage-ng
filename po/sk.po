@@ -2204,6 +2204,10 @@ msgstr "VFAT"
 msgid "XFS"
 msgstr "XFS"
 
+#. TRANSLATORS: name of a filesystem object in the storage devicegraph
+msgid "exFAT"
+msgstr ""
+
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
 msgstr "prvý koreňový súborový systém"

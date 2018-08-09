@@ -35,6 +35,8 @@ libfilesystems_la_SOURCES =				\
 	NtfsImpl.h		NtfsImpl.cc		\
 	Vfat.h			Vfat.cc			\
 	VfatImpl.h		VfatImpl.cc		\
+	Exfat.h			Exfat.cc		\
+	ExfatImpl.h		ExfatImpl.cc		\
 	Iso9660.h		Iso9660.cc		\
 	Iso9660Impl.h		Iso9660Impl.cc		\
 	Udf.h			Udf.cc			\
@@ -63,6 +65,7 @@ pkginclude_HEADERS =		\
 	Xfs.h 			\
 	Ntfs.h 			\
 	Vfat.h			\
+	Exfat.h			\
 	Iso9660.h		\
 	Udf.h			\
 	Swap.h			\

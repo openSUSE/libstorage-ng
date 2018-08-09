@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-08-08 10:57+0200\n"
 "PO-Revision-Date: 2018-05-06 20:25+0000\n"
 "Last-Translator: Konstantina Tsolakoglou <konstantina@accountant.com>\n"
 "Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-master/el/>\n"
@@ -2204,6 +2204,10 @@ msgstr "VFAT"
 #. TRANSLATORS: name of object
 msgid "XFS"
 msgstr "XFS"
+
+#. TRANSLATORS: name of a filesystem object in the storage devicegraph
+msgid "exFAT"
+msgstr ""
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"

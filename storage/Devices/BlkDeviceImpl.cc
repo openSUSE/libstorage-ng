@@ -47,6 +47,7 @@
 #include "storage/Filesystems/Swap.h"
 #include "storage/Filesystems/Ntfs.h"
 #include "storage/Filesystems/Vfat.h"
+#include "storage/Filesystems/Exfat.h"
 #include "storage/Filesystems/Iso9660.h"
 #include "storage/Filesystems/Udf.h"
 #include "storage/SystemInfo/SystemInfo.h"
@@ -612,6 +613,7 @@ namespace storage
 	{ FsType::SWAP, &Swap::create },
 	{ FsType::UDF, &Udf::create },
 	{ FsType::VFAT, &Vfat::create },
+	{ FsType::EXFAT, &Exfat::create },
 	{ FsType::XFS, &Xfs::create },
 	{ FsType::JFS, &Jfs::create },
 	{ FsType::F2FS, &F2fs::create }

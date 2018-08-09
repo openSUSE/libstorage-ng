@@ -31,6 +31,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an Ext2 filesystem
+     * https://en.wikipedia.org/wiki/Ext2 in the devicegraph.
+     */
     class Ext2 : public Ext
     {
     public:

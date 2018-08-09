@@ -31,6 +31,10 @@
 namespace storage
 {
 
+    /**
+     * Class to represent an Ext4 filesystem
+     * https://en.wikipedia.org/wiki/Ext4 in the devicegraph.
+     */
     class Ext4 : public Ext
     {
     public:

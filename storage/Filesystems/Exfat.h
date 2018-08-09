@@ -20,8 +20,8 @@
  */
 
 
-#ifndef STORAGE_JFS_H
-#define STORAGE_JFS_H
+#ifndef STORAGE_EXFAT_H
+#define STORAGE_EXFAT_H
 
 
 #include "storage/Filesystems/BlkFilesystem.h"
@@ -31,16 +31,15 @@ namespace storage
 {
 
     /**
-     * Class to represent a JFS filesystem
-     * https://en.wikipedia.org/wiki/JFS_(file_system) in the
-     * devicegraph.
+     * Class to represent an exFAT filesystem
+     * https://en.wikipedia.org/wiki/ExFAT in the devicegraph.
      */
-    class Jfs : public BlkFilesystem
+    class Exfat : public BlkFilesystem
     {
     public:
 
-	static Jfs* create(Devicegraph* devicegraph);
-	static Jfs* load(Devicegraph* devicegraph, const xmlNode* node);
+	static Exfat* create(Devicegraph* devicegraph);
+	static Exfat* load(Devicegraph* devicegraph, const xmlNode* node);
 
     public:
 
@@ -49,29 +48,29 @@ namespace storage
 	Impl& get_impl();
 	const Impl& get_impl() const;
 
-	virtual Jfs* clone() const override;
+	virtual Exfat* clone() const override;
 
     protected:
 
-	Jfs(Impl* impl);
+	Exfat(Impl* impl);
 
     };
 
 
-    bool is_jfs(const Device* device);
+    bool is_exfat(const Device* device);
 
     /**
-     * Converts pointer to Device to pointer to Jfs.
+     * Converts pointer to Device to pointer to Exfat.
      *
-     * @return Pointer to Jfs.
+     * @return Pointer to Exfat.
      * @throw DeviceHasWrongType, NullPointerException
      */
-    Jfs* to_jfs(Device* device);
+    Exfat* to_exfat(Device* device);
 
     /**
-     * @copydoc to_jfs(Device*)
+     * @copydoc to_exfat(Device*)
      */
-    const Jfs* to_jfs(const Device* device);
+    const Exfat* to_exfat(const Device* device);
 
 }
 
