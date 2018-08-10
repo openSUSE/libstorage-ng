@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-07 14:12+0200\n"
-"PO-Revision-Date: 2018-08-09 14:51+0000\n"
+"PO-Revision-Date: 2018-08-10 15:20+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -191,7 +191,7 @@ msgstr "Pripojiť sadu vyrovnávacej pamäte Bcache na %1$s k Bcache %2$s (%3$s)
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Pripojenie sady vyrovnávacej pamäte Bcache na %1$s k Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -758,16 +758,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Deaktivovať multipath %1$s (%2$s)"
+msgstr "Deaktivovať Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Deaktivovať multipath %1$s (%2$s)"
+msgstr "Deaktivovať sadu vyrovnávacej pamäte Bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -817,16 +817,16 @@ msgstr "Deaktivovať tenký logický zväzok fondu %1$s (%2$s) na skupine zväzk
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Deaktivovanie multipath %1$s (%2$s)"
+msgstr "Deaktivovanie Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Deaktivovanie multipath %1$s (%2$s)"
+msgstr "Deaktivovanie sady vyrovnávacej pamäte Bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -884,16 +884,16 @@ msgstr "Vymazať %1$s na %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Zmazať oddiel %1$s (%2$s)"
+msgstr "Vymazať Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Vymazať logický oddiel %1$s (%2$s)"
+msgstr "Vymazať sadu vyrovnávacej pamäte Bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -976,7 +976,7 @@ msgstr "Vymazať logický zväzok %1$s (%2$s) na skupine zväzkov %3$s"
 #. %2$s is replaced by size (e.g. 2GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
-msgstr "Zmazať oddiel %1$s (%2$s)"
+msgstr "Vymazať oddiel %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1035,16 +1035,16 @@ msgstr "Mazanie %1$s on %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Mazanie oddielu %1$s (%2$s)"
+msgstr "Vymazanie Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Vymazanie logického oddielu %1$s (%2$s)"
+msgstr "Vymazanie sady vyrovnávacej pamäte Bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1248,7 +1248,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1625,18 +1625,17 @@ msgid "Probing NFS failed"
 msgstr "Kontrola NFS zlyhala"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Kontrola bcache %s zlyhala"
+msgstr "Kontrola blokových zariadení Stray %s zlyhala"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Kontrola blokových zariadení Stray"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Kontrola DASD zlyhala"
+msgstr "Kontrola blokových zariadení Stray"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2116,7 +2115,7 @@ msgstr "Zmenšenie tenkého logického zväzku fondu %1$s na skupine zväzkov %2
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Blokové zariadenie Stray"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2206,7 +2205,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
