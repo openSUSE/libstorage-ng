@@ -13,9 +13,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-08 10:57+0200\n"
-"PO-Revision-Date: 2018-06-04 16:12+0000\n"
+"PO-Revision-Date: 2018-08-13 16:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-master/it/>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -196,7 +197,7 @@ msgstr "Aggiunta del punto di montaggio %1$s del sottovolume %2$s su %3$s a /etc
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Collegare il set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -204,7 +205,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Collegamento del set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -287,18 +288,18 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "Crea il disco fisso %1$s (%2$s)"
+msgstr "Creare Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "Creare la partizione logica %1$s (%2$s)"
+msgstr "Creare il set di cache Bcache su %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -670,18 +671,18 @@ msgstr "Creazione di %1$s su %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "Creazione della partizione %1$s (%2$s)"
+msgstr "Creazione Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "Creazione della partizione logica %1$s (%2$s)"
+msgstr "Creazione del set di cache Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -831,18 +832,18 @@ msgstr "RAID DM"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Disattivare il multipath %1$s (%2$s)"
+msgstr "Disattivare Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Disattivare il multipath %1$s (%2$s)"
+msgstr "Disattivare il set di cache Bcache su %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -898,18 +899,18 @@ msgstr "Disattiva volume logico pool thin %1$s (%2$s) sul gruppo di volumi %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Disattivazione del multipath %1$s (%2$s)"
+msgstr "Disattivazione Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Disattivazione del multipath %1$s (%2$s)"
+msgstr "Disattivazione del set di cache Bcache su %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -975,18 +976,18 @@ msgstr "Eliminare %1$s su %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Eliminare la partizione %1$s (%2$s)"
+msgstr "Eliminare Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Elimina la partizione logica %1$s (%2$s)"
+msgstr "Elimina il set di cache Bcache su %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1140,18 +1141,18 @@ msgstr "Eliminazione di %1$s su %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Eliminazione della partizione %1$s (%2$s)"
+msgstr "Eliminazione Bcache %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Eliminazione della partizione logica %1$s (%2$s)"
+msgstr "Eliminazione del set di cache Bcache su %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1377,7 +1378,7 @@ msgstr "Est4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1800,20 +1801,21 @@ msgstr "Rlevamento di NFS non riuscito"
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Rilevamento bcache %s non riuscito"
+msgstr "Rilevamento del dispositivo a blocchi Stray %s non riuscito"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Rilevamento di dispositivi a blocchi Stray"
 
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Rilevamento dei DASD non riuscito"
+msgstr "Rilevamento di dispositivi a blocchi Stray fallito"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr "Rilevamento bcache in corso"
+msgstr "Rilevamento bcache"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2381,7 +2383,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: first snapshot description
 msgid "first root filesystem"
