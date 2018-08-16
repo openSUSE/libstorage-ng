@@ -66,7 +66,22 @@ namespace storage
 	    string line = *it1;
 	    y2mil("mp line:" << line);
 
-	    if (boost::starts_with(line, "create:"))
+            // ignore entries not intended for dm-multipath
+	    if (boost::contains(line, " [nvme]:"))
+	    {
+	        ++it1;
+		continue;
+	    }
+
+            // not the kind of line we are looking for
+	    if (!boost::contains(line, ","))
+	    {
+	        ++it1;
+		continue;
+	    }
+
+            // lines sometimes start with these; remove them
+	    if (boost::starts_with(line, "create: ") || boost::starts_with(line, ": "))
 		line = extractNthWord(1, line, true);
 
 	    string name = extractNthWord(0, line);
