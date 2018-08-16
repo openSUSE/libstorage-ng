@@ -66,25 +66,32 @@ namespace storage
 	    string line = *it1;
 	    y2mil("mp line:" << line);
 
-            // ignore entries not intended for dm-multipath
-	    if (boost::contains(line, " [nvme]:"))
+            // not the kind of line we are looking for
+	    if (!valid_section_start(line))
 	    {
 	        ++it1;
 		continue;
 	    }
 
-            // not the kind of line we are looking for
-	    if (!boost::contains(line, ","))
-	    {
-	        ++it1;
-		continue;
-	    }
+            // ignore entries not intended for dm-multipath
+            if (boost::contains(line, " [nvme]:"))
+            {
+                ++it1;
+                continue;
+            }
 
             // lines sometimes start with these; remove them
 	    if (boost::starts_with(line, "create: ") || boost::starts_with(line, ": "))
 		line = extractNthWord(1, line, true);
 
 	    string name = extractNthWord(0, line);
+
+            if(name.empty())
+            {
+                ++it1;
+                continue;
+            }
+
 	    y2mil("mp name:" << name);
 
 	    bool has_alias = boost::starts_with(extractNthWord(1, line), "(");
@@ -99,12 +106,12 @@ namespace storage
 
 	    ++it1;
 
-	    if (it1 != lines.end())
+	    if (it1 != lines.end() && !valid_section_start(*it1))
 		++it1;
 
 	    while (it1 != lines.end())
 	    {
-		if (it1->empty() || isalnum((*it1)[0]))
+		if (it1->empty() || valid_section_start(*it1))
 		    break;
 
 		if (regex_search(*it1, lun))
@@ -123,6 +130,20 @@ namespace storage
 	}
 
 	y2mil(*this);
+    }
+
+
+    bool
+    CmdMultipath::valid_section_start(const string& line)
+    {
+        // It's not really clear what kind of line starts a new section (a
+        // new multipath device description) in the output of 'multipath -d -v 2'.
+        if (boost::contains(line, ","))
+        {
+	    return true;
+        }
+
+        return false;
     }
 
 
