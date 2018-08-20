@@ -21,7 +21,7 @@ Name:           libstorage-ng
 Version:        @VERSION@
 Release:        0
 Summary:        Library for storage management
-License:        GPL-2.0
+License:        GPL-2.0-only
 Group:          System/Libraries
 Url:            http://github.com/openSUSE/libstorage-ng
 Source:         libstorage-ng-%{version}.tar.xz
