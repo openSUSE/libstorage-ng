@@ -414,6 +414,7 @@ namespace storage
 		else
 		{
 		    Md* md = Md::create(prober.get_system(), name);
+		    md->get_impl().set_active(!entry.inactive);
 		    md->get_impl().probe_pass_1a(prober);
 		}
 	    }
