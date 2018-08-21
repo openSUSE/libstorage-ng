@@ -17,10 +17,8 @@ A RAID array, once it has been set up, has 3 possible states:
    accessible
 3. not working: too many devices are missing
 
-(yes, it's a simplification)
-
-YaST simplifies this even more: it treats the two "working" states as the
-same. (That's, uh, surprising.)
+Yes, it's a simplification. YaST simplifies this even more: it treats the two
+"working" states as the same.
 
 In SLE12, YaST just ignores non-working RAIDs. In SLE15, it pops up some
 warning dialogs (with a bug if I select Abort).
