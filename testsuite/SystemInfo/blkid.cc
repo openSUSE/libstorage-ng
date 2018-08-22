@@ -42,10 +42,12 @@ BOOST_AUTO_TEST_CASE(parse1)
 	"/dev/mapper/system-btrfs: LABEL=\"BTRFS\" UUID=\"946de1e3-ab5a-49d2-8c9d-057f1613d395\" UUID_SUB=\"8fd5c226-d060-4049-90e6-1df5c865fdf4\" TYPE=\"btrfs\" ",
 	"/dev/mapper/system-giant: LABEL=\"GIANT\" UUID=\"0857a01f-c58e-464a-b74b-cd46992873e7\" TYPE=\"xfs\" ",
 	"/dev/mapper/system-root: LABEL=\"ROOT\" UUID=\"31e381c9-5b35-4045-8d01-9274a30e1298\" TYPE=\"ext3\" ",
-	"/dev/mapper/system-swap: LABEL=\"SWAP\" UUID=\"fd39c3f9-2990-435d-8eed-e56b6dc2e592\" TYPE=\"swap\" "
+	"/dev/mapper/system-swap: LABEL=\"SWAP\" UUID=\"fd39c3f9-2990-435d-8eed-e56b6dc2e592\" TYPE=\"swap\" ",
+	"/dev/mapper/docker-254:3-266193-pool: UUID=\"b8965f68-1e7c-4fac-982b-5859dca91de5\" TYPE=\"ext4\" "
     };
 
     vector<string> output = {
+	"data[/dev/mapper/docker-254:3-266193-pool] -> is-fs:true fs-type:ext4 fs-uuid:b8965f68-1e7c-4fac-982b-5859dca91de5",
 	"data[/dev/mapper/system-abuild] -> is-fs:true fs-type:ext4 fs-uuid:16337c60-fc2a-4b87-8199-4f511fa06c65 fs-label:ABUILD",
 	"data[/dev/mapper/system-btrfs] -> is-fs:true fs-type:btrfs fs-uuid:946de1e3-ab5a-49d2-8c9d-057f1613d395 fs-label:BTRFS",
 	"data[/dev/mapper/system-giant] -> is-fs:true fs-type:xfs fs-uuid:0857a01f-c58e-464a-b74b-cd46992873e7 fs-label:GIANT",

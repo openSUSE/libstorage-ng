@@ -60,7 +60,7 @@ namespace storage
 
 	for (vector<string>::const_iterator it = lines.begin(); it != lines.end(); ++it)
 	{
-	    string::size_type pos = it->find(":");
+	    string::size_type pos = it->find(": ");
 	    if (pos == string::npos)
 		continue;
 
