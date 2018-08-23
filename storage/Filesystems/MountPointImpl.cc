@@ -49,13 +49,14 @@ namespace storage
 
 
     MountPoint::Impl::Impl(const string& path)
-	: Device::Impl(), path(path), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
+	: Device::Impl(), mount_by(MountByType::DEVICE), mount_type(FsType::UNKNOWN),
 	  freq(0), passno(0), active(true), in_etc_fstab(true)
     {
 #if 0
 	if (!valid_path(path))
 	    ST_THROW(InvalidMountPointPath(path));
 #endif
+	set_path(path);
     }
 
 
@@ -65,7 +66,8 @@ namespace storage
     {
 	string tmp;
 
-	getChildValue(node, "path", path);
+	if (getChildValue(node, "path", tmp))
+	    set_path(tmp);
 
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
@@ -136,7 +138,7 @@ namespace storage
 	    ST_THROW(InvalidMountPointPath(path));
 #endif
 
-	Impl::path = path;
+	Impl::path = normalize_path(path);
     }
 
 
@@ -144,13 +146,6 @@ namespace storage
     MountPoint::Impl::valid_path(const string& path)
     {
 	return path == "swap" || boost::starts_with(path, "/");
-    }
-
-
-    string
-    MountPoint::Impl::normalize_path(const string& path)
-    {
-	return path;		// TODO
     }
 
 

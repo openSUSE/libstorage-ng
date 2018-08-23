@@ -67,6 +67,11 @@ namespace storage
 	void set_path(const std::string& path);
 
 	/**
+	 * Return normalized form of path.
+	 */
+	static std::string normalize_path(const std::string& path);
+
+	/**
 	 * Get the mount-by method.
 	 */
 	MountByType get_mount_by() const;
