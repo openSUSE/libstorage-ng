@@ -196,12 +196,11 @@ namespace storage
 			    const string & mount_point,
 			    FsType	   fs_type ):
 	device( device ),
-	mount_point( mount_point ),
 	fs_type( fs_type ),
 	dump_pass( 0 ),
 	fsck_pass( 0 )
     {
-
+        set_mount_point(mount_point);
     }
 
 
@@ -210,6 +209,10 @@ namespace storage
 
     }
 
+    void FstabEntry::set_mount_point( const string & new_val )
+    {
+        _mount_point = MountPoint::normalize_path(new_val);
+    }
 
     bool FstabEntry::validate()
     {
@@ -218,10 +221,10 @@ namespace storage
         if ( device.empty() )
         {
             ok = false;
-            y2err( "No device specified for entry " << mount_point );
+            y2err( "No device specified for entry " << get_mount_point() );
         }
 
-        if ( mount_point.empty() )
+        if ( get_mount_point().empty() )
         {
             ok = false;
             y2err( "No mount point specified for entry " << device );
@@ -237,7 +240,7 @@ namespace storage
 
 	int col = 0;
 	set_column( col++, EtcFstab::fstab_encode( device      ) );
-	set_column( col++, EtcFstab::fstab_encode( mount_point ) );
+	set_column( col++, EtcFstab::fstab_encode( get_mount_point() ) );
 
         if ( fs_type != FsType::UNKNOWN )
             set_column( col++, toString( fs_type ) );
@@ -247,7 +250,7 @@ namespace storage
                 col++; // just leave the old content
             else
             {
-                y2err( "File system type unknown for " << device << " at " << mount_point );
+                y2err( "File system type unknown for " << device << " at " << get_mount_point() );
                 set_column( col++, "unknown" );
             }
         }
@@ -275,7 +278,7 @@ namespace storage
 
 	int col = 0;
 	device	    = EtcFstab::fstab_decode( get_column( col++ ) );
-	mount_point = EtcFstab::fstab_decode( get_column( col++ ) );
+	set_mount_point( EtcFstab::fstab_decode( get_column( col++ ) ) );
 
 	bool ok = toValue( get_column( col++ ), fs_type );
 
@@ -603,11 +606,11 @@ namespace storage
     string
     JointEntry::get_mount_point() const
     {
-	if (fstab_entry)
-	    return fstab_entry->get_mount_point();
-
 	if (mount_entry)
 	    return mount_entry->get_mount_point();
+
+	if (fstab_entry)
+	    return fstab_entry->get_mount_point();
 
 	ST_THROW(Exception("neither fstab nor mount entry set"));
     }
@@ -688,7 +691,14 @@ namespace storage
 	    string path = mount_entry->get_mount_point();
 
 	    vector<JointEntry>::iterator it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
-		return tmp.is_in_etc_fstab() && tmp.fstab_entry->get_mount_point() == path;
+                bool in_fstab = tmp.is_in_etc_fstab();
+                if (in_fstab && tmp.fstab_entry->get_mount_point() != path)
+                {
+                    y2war("mount points for " << tmp.fstab_entry->get_device()
+                          << " differ: fstab(" << tmp.fstab_entry->get_mount_point()
+                          << ") != proc(" << path << ")");
+                }
+		return in_fstab;
 	    });
 
 	    if (it != ret.end())

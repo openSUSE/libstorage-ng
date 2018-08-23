@@ -249,7 +249,7 @@ namespace storage
 	// Getters; see man fstab(5)
 
 	const string &	  get_device()	    const { return device;	}
-	const string &	  get_mount_point() const { return mount_point; }
+	const string &	  get_mount_point() const { return _mount_point; }
 	FsType		  get_fs_type()	    const { return fs_type;	}
 	const MountOpts & get_mount_opts()  const { return mount_opts;	}
 	int		  get_dump_pass()   const { return dump_pass;	}
@@ -258,7 +258,7 @@ namespace storage
 	// Setters
 
 	void set_device	    ( const string &	new_val ) { device	= new_val; }
-	void set_mount_point( const string &	new_val ) { mount_point = new_val; }
+	void set_mount_point( const string &	new_val );
 	void set_fs_type    ( FsType		new_val ) { fs_type	= new_val; }
 	void set_mount_opts ( const MountOpts & new_val ) { mount_opts	= new_val; }
 	void set_dump_pass  ( int		new_val ) { dump_pass	= new_val; }
@@ -272,7 +272,7 @@ namespace storage
     private:
 
 	string	  device;	// including UUID= or LABEL=
-	string	  mount_point;
+	string	  _mount_point;	// always use get/set_mount_point()
 	FsType	  fs_type;	// see Filesystems/Filesystem.h
 	MountOpts mount_opts;
 	int	  dump_pass;	// historic
