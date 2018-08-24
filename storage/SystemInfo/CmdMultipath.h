@@ -68,6 +68,7 @@ namespace storage
     private:
 
 	void parse(const vector<string>& lines);
+        bool valid_section_start(const string& line);
 
 	map<string, Entry> data;
 
