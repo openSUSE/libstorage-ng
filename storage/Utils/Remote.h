@@ -34,6 +34,9 @@
 namespace storage
 {
 
+    /**
+     * A result of an unnamed command: stdout + stderr + exit_code.
+     */
     struct RemoteCommand
     {
 	RemoteCommand() : stdout(), stderr(), exit_code(0) {}
@@ -49,6 +52,9 @@ namespace storage
     };
 
 
+    /**
+     * Contents of an unnamed file (vector of lines)
+     */
     struct RemoteFile
     {
 	RemoteFile() : content() {}

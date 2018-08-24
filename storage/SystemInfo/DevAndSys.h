@@ -41,6 +41,9 @@ namespace storage
     using std::map;
 
 
+    /**
+     * A sequence of file names found in a pathname.
+     */
     class Dir
     {
     public:
@@ -67,6 +70,11 @@ namespace storage
     };
 
 
+    /**
+     * A sequence of lines, constructed from a pathname.
+     *
+     * Trailing newlines are not included.
+     */
     class File
     {
     public:
