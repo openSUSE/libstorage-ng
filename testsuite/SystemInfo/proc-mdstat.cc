@@ -138,3 +138,25 @@ BOOST_AUTO_TEST_CASE(parse5)
 
     check(input, output);
 }
+
+BOOST_AUTO_TEST_CASE(parse_inactive_noncontainer)
+{
+    vector<string> input = {
+	"Personalities : [raid6] [raid5] [raid4] ",
+	"md126 : inactive sde1[0](S)",
+	"      101340 blocks super 1.0",
+	"       ",
+	"md127 : active raid5 sdb1[5] sdc1[1] sda1[4]",
+	"      2094848 blocks super 1.0 level 5, 128k chunk, algorithm 2 [3/3] [UUU]",
+	"      bitmap: 0/1 pages [0KB], 65536KB chunk",
+	"",
+	"unused devices: <none>"
+    };
+
+    vector<string> output = {
+	"data[md126] -> md-level:unknown super:1.0 size:103772160 read-only inactive devices:</dev/sde1(S)>",
+	"data[md127] -> md-level:RAID5 md-parity:left-symmetric super:1.0 chunk-size:131072 size:2145124352 devices:</dev/sda1 /dev/sdb1 /dev/sdc1>"
+    };
+
+    check(input, output);
+}

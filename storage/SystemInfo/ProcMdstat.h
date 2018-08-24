@@ -110,7 +110,9 @@ namespace storage
 
     };
 
-
+    /**
+     * Parse (the --export variant of) mdadm --detail
+     */
     class MdadmDetail
     {
     public:
