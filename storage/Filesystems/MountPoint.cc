@@ -74,6 +74,33 @@ namespace storage
     }
 
 
+    // Notes
+    //
+    // - boost::filesystem::path::canonical() is not what we want as this
+    //   works with existing files (ours might not yet exist) and resolves
+    //   symlinks (which is too restrictive)
+    //
+    // - boost::filesystem::path::lexically_normal() is also not what we
+    //   want as it behaves a bit weird for our purpose; it changes e.g.
+    //   '/foo/' into '/foo/.'
+    //
+    // - if you change this function keep in mind that 'swap' is a special
+    //   valid path argument in libstorage-ng
+    //
+    string
+    MountPoint::normalize_path(const string& path)
+    {
+        string tmp = regex_replace(path, regex("/+"), "/");
+
+        if (tmp != "/")
+        {
+            tmp = regex_replace(tmp, regex("/$"), "");
+        }
+
+	return tmp;
+    }
+
+
     MountByType
     MountPoint::get_mount_by() const
     {

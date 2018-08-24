@@ -57,7 +57,6 @@ namespace storage
 	virtual ResizeInfo detect_resize_info() const override;
 
 	static bool valid_path(const string& path);
-	static string normalize_path(const string& path);
 
 	const string& get_path() const { return path; }
 	void set_path(const string& path);
