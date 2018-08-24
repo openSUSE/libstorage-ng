@@ -79,3 +79,66 @@ BOOST_AUTO_TEST_CASE(parse2)
 
     check(input, output);
 }
+
+
+// entries might be prefixed with ': '
+BOOST_AUTO_TEST_CASE(parse3)
+{
+    vector<string> input = {
+	": QEMU_HARDDISK_38ffda4567ec4e2785ab dm-0 ATA,QEMU HARDDISK",
+	"size=60G features='0' hwhandler='0' wp=rw",
+	"|-+- policy='service-time 0' prio=1 status=active",
+	"| `- 0:0:0:0 sda 8:0  active ready running",
+	"`-+- policy='service-time 0' prio=1 status=enabled",
+	"  `- 0:0:1:0 sdb 8:16 active ready running"
+    };
+
+    vector<string> output = {
+	"data[QEMU_HARDDISK_38ffda4567ec4e2785ab] -> vendor:ATA model:QEMU HARDDISK devices:</dev/sda /dev/sdb>"
+    };
+
+    check(input, output);
+}
+
+
+// entries might be prefixed with 'create: '
+BOOST_AUTO_TEST_CASE(parse4)
+{
+    vector<string> input = {
+	"create: QEMU_HARDDISK_38ffda4567ec4e2785ab dm-0 ATA,QEMU HARDDISK",
+	"size=60G features='0' hwhandler='0' wp=rw",
+	"|-+- policy='service-time 0' prio=1 status=active",
+	"| `- 0:0:0:0 sda 8:0  active ready running",
+	"`-+- policy='service-time 0' prio=1 status=enabled",
+	"  `- 0:0:1:0 sdb 8:16 active ready running"
+    };
+
+    vector<string> output = {
+	"data[QEMU_HARDDISK_38ffda4567ec4e2785ab] -> vendor:ATA model:QEMU HARDDISK devices:</dev/sda /dev/sdb>"
+    };
+
+    check(input, output);
+}
+
+
+// nvme entries are ignored
+BOOST_AUTO_TEST_CASE(parse5)
+{
+    vector<string> input = {
+	"nvme-subsys0:NQN:nqn.2014.08.org.nvmexpress:19e519e5032BEHFSH7001190    HWE36P43016M000N                         (nvme.19e5-30333242454846534837303031313930-48574533365034333031364d3030304e-00000001) [nvme]:nvme0n1 NVMe,HWE36P43016M000N,2.52",
+	"size=3125627568 features='n/a' hwhandler='n/a' wp=rw",
+	"`-+- policy='n/a' prio=n/a status=n/a",
+	"QEMU_HARDDISK_38ffda4567ec4e2785ab dm-0 ATA,QEMU HARDDISK",
+	"size=60G features='0' hwhandler='0' wp=rw",
+	"|-+- policy='service-time 0' prio=1 status=active",
+	"| `- 0:0:0:0 sda 8:0  active ready running",
+	"`-+- policy='service-time 0' prio=1 status=enabled",
+	"  `- 0:0:1:0 sdb 8:16 active ready running"
+    };
+
+    vector<string> output = {
+	"data[QEMU_HARDDISK_38ffda4567ec4e2785ab] -> vendor:ATA model:QEMU HARDDISK devices:</dev/sda /dev/sdb>"
+    };
+
+    check(input, output);
+}
