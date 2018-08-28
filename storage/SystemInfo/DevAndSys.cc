@@ -221,7 +221,16 @@ namespace storage
 
     MdLinks::MdLinks()
     {
-	map<string, string> links = getDirLinks("/dev/md");
+        map<string, string> links;
+	try
+	{
+	    links = getDirLinks("/dev/md");
+	}
+	catch (const Exception&)
+	{
+	    // OK, no /dev/md at all
+	}
+
 	for (const map<string, string>::value_type& it : links)
 	{
 	    string::size_type pos = it.second.find_first_not_of("./");

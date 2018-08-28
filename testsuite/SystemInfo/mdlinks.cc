@@ -2,8 +2,8 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE libstorage
 
+#include <numeric>
 #include <boost/test/unit_test.hpp>
-#include <boost/algorithm/string.hpp>
 
 #include "storage/SystemInfo/DevAndSys.h"
 #include "storage/Utils/Mockup.h"
@@ -28,11 +28,31 @@ check(const vector<string>& input, const vector<string>& output)
     parsed << mdlinks;
 
     string lhs = parsed.str();
-    string rhs = boost::join(output, "\n") + "\n";
+    string rhs = accumulate(output.begin(), output.end(), ""s,
+                            [](auto a, auto b) { return a + b + "\n"; });
 
     BOOST_CHECK_EQUAL(lhs, rhs);
 }
 
+void
+check_error(const vector<string>& input, const vector<string>& error_input, const vector<string>& output)
+{
+    Mockup::set_mode(Mockup::Mode::PLAYBACK);
+    Mockup::Command command(input, error_input, 1);
+    Mockup::set_command(LSBIN " -1l --sort=none " + quote("/dev/md"), command);
+
+    MdLinks mdlinks;
+
+    ostringstream parsed;
+    parsed.setf(std::ios::boolalpha);
+    parsed << mdlinks;
+
+    string lhs = parsed.str();
+    string rhs = accumulate(output.begin(), output.end(), ""s,
+                            [](auto a, auto b) { return a + b + "\n"; });
+
+    BOOST_CHECK_EQUAL(lhs, rhs);
+}
 
 BOOST_AUTO_TEST_CASE(parse1)
 {
@@ -46,6 +66,19 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     check(input, output);
+}
+
+BOOST_AUTO_TEST_CASE(parse_missing)
+{
+    vector<string> input = {};
+
+    vector<string> error_input = {
+        "/bin/ls: cannot access '/dev/md': No such file or directory"
+    };
+
+    vector<string> output = {};
+
+    check_error(input, error_input, output);
 }
 
 

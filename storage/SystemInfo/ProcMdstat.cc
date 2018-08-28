@@ -113,10 +113,6 @@ namespace storage
 	    if( (pos=line.find_first_not_of( app_ws ))!=string::npos && pos!=0 )
 		line.erase( 0, pos );
 	}
-	else
-	{
-	    entry.is_container = true;
-	}
 
 	while( (pos=line.find_first_not_of( app_ws ))==0 )
 	{
@@ -161,6 +157,10 @@ namespace storage
 	    string::size_type pos2 = line2.find_first_of(app_ws, pos1);
 	    entry.super = string(line2, pos1, pos2 - pos1);
 
+	    if (entry.super == "external:ddf" || entry.super == "external:imsm")
+	    {
+		entry.is_container = true;
+	    }
 	    if (!entry.is_container && boost::starts_with(entry.super, "external:"))
 	    {
 		string::size_type pos1 = entry.super.find_first_of("/");

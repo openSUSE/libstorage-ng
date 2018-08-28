@@ -375,6 +375,7 @@ namespace storage
     Md::Impl::probe_mds(Prober& prober)
     {
 	SystemInfo& system_info = prober.get_system_info();
+	const MdLinks& md_links = system_info.getMdLinks();
 
 	for (const string& short_name : prober.get_sys_block_entries().mds)
 	{
@@ -383,8 +384,20 @@ namespace storage
 	    try
 	    {
 		const MdadmDetail& mdadm_detail = system_info.getMdadmDetail(name);
+
 		if (!mdadm_detail.devname.empty())
-		    name = DEV_MD_DIR "/" + mdadm_detail.devname;
+		{
+		    MdLinks::const_iterator it = md_links.find(short_name);
+		    if (it != md_links.end())
+		    {
+			// the mapping is backwards so we must iterate the result
+			const vector<string>& links = it->second;
+			if (std::find(links.begin(), links.end(), mdadm_detail.devname) != links.end())
+			{
+			    name = DEV_MD_DIR "/" + mdadm_detail.devname;
+			}
+		    }
+		}
 
 		const ProcMdstat::Entry& entry = system_info.getProcMdstat().get_entry(short_name);
 
@@ -401,6 +414,7 @@ namespace storage
 		else
 		{
 		    Md* md = Md::create(prober.get_system(), name);
+		    md->get_impl().set_active(!entry.inactive);
 		    md->get_impl().probe_pass_1a(prober);
 		}
 	    }
