@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-08 10:57+0200\n"
-"PO-Revision-Date: 2018-08-13 19:01+0000\n"
+"PO-Revision-Date: 2018-09-02 12:01+0000\n"
 "Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/cs/>\n"
@@ -1636,17 +1636,17 @@ msgstr "Testování NFS selhalo"
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Test extra blokového zařízení %s selhal"
+msgstr "Test bludného bloku na zařízení %s selhal"
 
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing Stray Block Devices"
-msgstr "Testuji extra blokové zařízení"
+msgstr "Testuji bludné bloky na zařízeních"
 
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Test extra blokového zařízení selhal"
+msgstr "Test bludných bloků na zařízeních selhal"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2129,7 +2129,7 @@ msgstr "Zmenšuje se logický svazek tenkého fondu %1$s na skupině svazků %2$
 #. TRANSLATORS: name of object
 #, fuzzy
 msgid "Stray Block Device"
-msgstr "Extra blokové zařízení"
+msgstr "Zařízení s bludnými bloky"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
