@@ -209,3 +209,19 @@ BOOST_AUTO_TEST_CASE(parse_ddf)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_luks)
+{
+    vector<string> input = {
+	"/dev/sdb1: UUID=\"b329b40b-e5f0-4f8e-814d-b6afb7f0ce64\" TYPE=\"crypto_LUKS\" PARTUUID=\"02cabc90-ca73-4302-928e-a924cda495bc\"",
+	"/dev/sdb2: UUID=\"332cd185-9d1b-479c-ade6-a9fb6e4e536d\" LABEL=\"master-plan\" TYPE=\"crypto_LUKS\" PARTUUID=\"20e9945b-1b57-4f46-89d8-b6321be05df3\""
+    };
+
+    vector<string> output = {
+	"data[/dev/sdb1] -> is-luks:true luks-uuid:b329b40b-e5f0-4f8e-814d-b6afb7f0ce64",
+	"data[/dev/sdb2] -> is-luks:true luks-uuid:332cd185-9d1b-479c-ade6-a9fb6e4e536d luks-label:master-plan"
+    };
+
+    check(input, output);
+}

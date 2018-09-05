@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -127,6 +127,10 @@ namespace storage
 		it1 = m.find("UUID");
 		if (it1 != m.end())
 		    entry.luks_uuid = it1->second;
+
+		it1 = m.find("LABEL");
+		if (it1 != m.end())
+		    entry.luks_label = it1->second;
 	    }
 
 	    if (entry.is_bcache)
@@ -250,6 +254,8 @@ namespace storage
 	    s << "is-luks:" << entry.is_luks;
 	    if (!entry.luks_uuid.empty())
 		s << " luks-uuid:" << entry.luks_uuid;
+	    if (!entry.luks_label.empty())
+		s << " luks-label:" << entry.luks_label;
 	}
 
 	if (entry.is_bcache)
