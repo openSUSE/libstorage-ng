@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -56,7 +56,7 @@ namespace storage
 	{
 	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(), fs_journal_uuid(),
 		      is_journal(false), journal_uuid(), is_md(false), is_lvm(false),
-		      is_luks(false), luks_uuid(), is_bcache(false), bcache_uuid() {}
+		      is_luks(false), luks_uuid(), luks_label(), is_bcache(false), bcache_uuid() {}
 
 	    bool is_fs;
 	    FsType fs_type;
@@ -73,6 +73,7 @@ namespace storage
 
 	    bool is_luks;
 	    string luks_uuid;
+	    string luks_label;
 
 	    bool is_bcache;
 	    string bcache_uuid;
