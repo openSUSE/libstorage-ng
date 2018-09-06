@@ -32,6 +32,8 @@
 #include <sstream>
 #include <boost/algorithm/string.hpp>
 
+extern char **environ;
+
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Stopwatch.h"
 #include "storage/Utils/LoggerImpl.h"
@@ -324,11 +326,12 @@ namespace storage
 		}
 	    }
 	    y2deb("sout:" << _pfds[1].fd << " serr:" << (_combineOutput?-1:_pfds[2].fd));
+
+	    const vector<const char*> env = make_env();
+
 	    switch( (_cmdPid=fork()) )
 	    {
 		case 0: // child process
-		    setenv( "LC_ALL", "C", 1 );
-		    setenv( "LANGUAGE", "C", 1 );
 
 		    if ( dup2( sin[0], STDIN_FILENO )<0 )
 		    {
@@ -359,13 +362,13 @@ namespace storage
 			SYSCALL_FAILED_NOTHROW( "close( stderr ) failed in child process" );
 		    }
 		    closeOpenFds();
-		    _cmdRet = execl(SHBIN, SHBIN, "-c", command().c_str(), nullptr);
+		    _cmdRet = execle(SHBIN, SHBIN, "-c", command().c_str(), nullptr, &env[0]);
 
-		    // execl() should not return. If we get here, it failed.
+		    // execle() should not return. If we get here, it failed.
 		    // Throwing an exception here would not make any sense, however:
 		    // We are in the forked child process, and there is nothing
 		    // to return to that could make use of an exception.
-		    y2err("execl() failed: THIS SHOULD NOT HAPPEN \"SHBIN\" Ret:" <<
+		    y2err("execle() failed: THIS SHOULD NOT HAPPEN \"SHBIN\" Ret:" <<
 			  _cmdRet << " errno: " << errno);
 		    y2err( "Exiting child process" );
 		    exit(127); // same as "command not found" in the shell
@@ -704,6 +707,27 @@ namespace storage
 	    for (unsigned i = lineCount - options.log_line_limit / 2; i < lineCount; ++i)
 		y2mil("stdout:" << stdout()[i]);
 	}
+    }
+
+
+    vector<const char*>
+    SystemCmd::make_env() const
+    {
+	vector<const char*> env;
+
+	for (char** v = environ; *v != NULL; ++v)
+	{
+	    if (strncmp(*v, "LC_ALL=", strlen("LC_ALL=")) != 0 &&
+		strncmp(*v, "LANGUAGE=", strlen("LANGUAGE=")) != 0)
+		env.push_back(*v);
+	}
+
+	env.push_back("LC_ALL=C");
+	env.push_back("LANGUAGE=C");
+
+	env.push_back(nullptr);
+
+	return env;
     }
 
 

@@ -231,6 +231,16 @@ namespace storage
 
 	static bool _testmode;
 
+	/**
+	 * Constructs the environment for the child process.
+	 *
+	 * Must not be called after exec since allocating the memory
+	 * for the vector is not allowed then (in a multithreaded
+	 * program), see fork(2) and signal-safety(7). So simply call
+	 * it right before fork.
+	 */
+	vector<const char*> make_env() const;
+
     };
 
 
