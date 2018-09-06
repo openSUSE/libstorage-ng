@@ -25,6 +25,7 @@ join(const vector<string>& input)
     return boost::join(input, "\n") + "\n";
 }
 
+
 class Fixture
 {
 public:
@@ -158,4 +159,20 @@ BOOST_AUTO_TEST_CASE(non_exec_throw)
 {
     BOOST_CHECK_THROW({SystemCmd cmd( "/etc/fstab", SystemCmd::ThrowBehaviour::DoThrow);},
 		      SystemCmdException);
+}
+
+
+BOOST_AUTO_TEST_CASE(env)
+{
+    vector<string> stdout = {
+	"C ++"
+    };
+
+    setenv("LC_ALL", "en_US", 1);	// will be overridden
+    setenv("FUNNY", "++", 1);		// will not be overridden
+
+    SystemCmd cmd("echo $LC_ALL $FUNNY");
+
+    BOOST_CHECK(cmd.retcode() == 0);
+    BOOST_CHECK_EQUAL(join(cmd.stdout()), join(stdout));
 }
