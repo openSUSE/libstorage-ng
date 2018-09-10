@@ -415,13 +415,29 @@ namespace storage
     {
 	y2mil("EnsureMounted " << *mountable);
 
-	bool need_mount = false;
+	if (mount_needed())
+	{
+	    y2mil("mount is needed");
 
+	    do_mount(read_only);
+	}
+    }
+
+
+    EnsureMounted::~EnsureMounted()
+    {
+	y2mil("~EnsureMounted " << *mountable);
+    }
+
+
+    bool
+    EnsureMounted::mount_needed()
+    {
 	if (mountable->get_impl().get_devicegraph()->get_impl().is_system())
 	{
 	    // Called on system devicegraph.
 
-	    need_mount = !mountable_has_active_mount_point();
+	    return !mountable_has_active_mount_point();
 	}
 	else
 	{
@@ -433,7 +449,7 @@ namespace storage
 		// Mountable in the system devicegraph.
 
 		mountable = redirect_to_system(mountable);
-		need_mount = !mountable_has_active_mount_point();
+		return !mountable_has_active_mount_point();
 	    }
 	    else
 	    {
@@ -445,20 +461,20 @@ namespace storage
 		if (mountable->exists_in_system())
 		{
 		    mountable = redirect_to_system(mountable);
-		    need_mount = !mountable_has_active_mount_point();
+		    return !mountable_has_active_mount_point();
 		}
 		else
 		{
-		    need_mount = true;
+		    return true;
 		}
 	    }
 	}
+    }
 
-	y2mil("EnsureMounted need_mount:" << need_mount);
 
-	if (!need_mount)
-	    return;
-
+    void
+    EnsureMounted::do_mount(bool read_only)
+    {
 	const Storage* storage = mountable->get_impl().get_storage();
 
 	mountable->get_impl().do_pre_mount();

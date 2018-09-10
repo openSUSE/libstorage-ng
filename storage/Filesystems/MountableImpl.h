@@ -161,6 +161,11 @@ namespace storage
     };
 
 
+    /**
+     * Class to ensure that a mountable is mounted. If mounting is
+     * required the constructor does mounting and the destructor does
+     * unmounting.
+     */
     class EnsureMounted : boost::noncopyable
     {
 
@@ -169,9 +174,16 @@ namespace storage
 	/**
 	 * Ensures that the blk mountable is mounted somewhere.
 	 *
-	 * The mode is not enforced.
+	 * The flag read_only is not enforced.
+	 *
+	 * BlkFilesystems must exist in the system
+	 * devicegraph. Otherwise an exception in thrown.
+	 *
+	 * If mounting is required and fails an exception is thrown.
 	 */
 	EnsureMounted(const Mountable* mountable, bool read_only = true);
+
+	~EnsureMounted();
 
 	/**
 	 * Returns any mountpoint of the mountable.
@@ -179,6 +191,18 @@ namespace storage
 	string get_any_mount_point() const;
 
     private:
+
+	/**
+	 * Check whether mounting is required.
+	 *
+	 * May also redirect the mountable to the system devicegraph.
+	 */
+	bool mount_needed();
+
+	/**
+	 * Mount the mountable.
+	 */
+	void do_mount(bool read_only);
 
 	bool mountable_has_active_mount_point() const;
 
