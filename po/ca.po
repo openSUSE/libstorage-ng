@@ -8,11 +8,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-08-14 17:01+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2210,10 +2209,6 @@ msgstr "XFS"
 msgid "exFAT"
 msgstr "exFAT"
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "primer sistema de fitxers d'arrel"
-
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
 msgstr "k"
@@ -2221,3 +2216,6 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "first root filesystem"
+#~ msgstr "primer sistema de fitxers d'arrel"

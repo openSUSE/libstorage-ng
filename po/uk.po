@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.uk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-02-23 14:15+0000\n"
 "Last-Translator: Andriy Bandura <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <https://l10n.opensuse.org/projects/libstorage/ng-master/uk/>\n"
@@ -2219,10 +2219,6 @@ msgstr ""
 msgid "exFAT"
 msgstr ""
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "перша коренева файлова система"
-
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
 msgstr "КБ"
@@ -2230,3 +2226,6 @@ msgstr "КБ"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "КБ"
+
+#~ msgid "first root filesystem"
+#~ msgstr "перша коренева файлова система"

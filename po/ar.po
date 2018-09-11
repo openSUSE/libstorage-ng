@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-master/ar/>\n"
@@ -2209,10 +2209,6 @@ msgstr "XFS"
 msgid "exFAT"
 msgstr ""
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "نظام ملفات الجذر الأول"
-
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
 msgstr "k"
@@ -2220,3 +2216,6 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "first root filesystem"
+#~ msgstr "نظام ملفات الجذر الأول"

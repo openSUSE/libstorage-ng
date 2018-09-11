@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-05-09 20:29+0000\n"
 "Last-Translator: Mariusz Fik <fisiu@opensuse.org>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-master/pl/>\n"
@@ -2209,10 +2209,6 @@ msgstr "XFS"
 msgid "exFAT"
 msgstr ""
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "pierwszy system plików root"
-
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
 msgstr "k"
@@ -2220,3 +2216,6 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "first root filesystem"
+#~ msgstr "pierwszy system plików root"
