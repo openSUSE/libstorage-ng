@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,16 +57,14 @@ SnapperConfig::pre_mount()
     if ( ! sanity_check() )
         return;
 
-    // TRANSLATORS: first snapshot description
-    Text snapshot_description = _("first root filesystem");
-
     // See also
     // https://github.com/openSUSE/snapper/blob/master/client/installation-helper.cc
 
     vector<string> args = {
         "--step", "1",
         "--device", get_parent_device_name(),
-        "--description", snapshot_description.translated
+	// as of bsc #1092757 snapshot descriptions are not translated
+        "--description", "first root filesystem"
     };
 
     installation_helper( args );
