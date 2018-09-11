@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2017-07-26 22:00+0000\n"
 "Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
 "Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/master/da/>\n"
@@ -2212,10 +2212,6 @@ msgstr ""
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
-
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
 msgstr ""
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-05-14 06:18+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-master/ko/>\n"
@@ -2336,10 +2336,6 @@ msgstr "XFS"
 msgid "exFAT"
 msgstr ""
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "첫 번째 루트 파일 시스템"
-
 #  10^3 bytes
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
@@ -2349,3 +2345,6 @@ msgstr "K"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "first root filesystem"
+#~ msgstr "첫 번째 루트 파일 시스템"

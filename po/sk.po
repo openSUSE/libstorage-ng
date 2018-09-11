@@ -5,11 +5,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-07 14:12+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-08-10 15:20+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
-"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sk/>\n"
+"Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-master/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2207,10 +2206,6 @@ msgstr "XFS"
 msgid "exFAT"
 msgstr "exFAT"
 
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
-msgstr "prvý koreňový súborový systém"
-
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
 msgstr "k"
@@ -2218,3 +2213,6 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "first root filesystem"
+#~ msgstr "prvý koreňový súborový systém"

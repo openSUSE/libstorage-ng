@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-08 10:57+0200\n"
+"POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2010-07-10 14:26+0200\n"
 "Last-Translator: Leandro Regueiro <leandro.regueiro@gmail.com>\n"
 "Language-Team: Galego <proxecto@trasno.net>\n"
@@ -2218,10 +2218,6 @@ msgstr ""
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
-
-#. TRANSLATORS: first snapshot description
-msgid "first root filesystem"
 msgstr ""
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
