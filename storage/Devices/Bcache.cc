@@ -49,7 +49,7 @@ namespace storage
 
 
     Bcache::Bcache(Impl* impl)
-	: BlkDevice(impl)
+	: Partitionable(impl)
     {
     }
 

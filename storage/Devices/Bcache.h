@@ -24,7 +24,7 @@
 #define STORAGE_BCACHE_H
 
 
-#include "storage/Devices/BlkDevice.h"
+#include "storage/Devices/Partitionable.h"
 
 
 namespace storage
@@ -37,7 +37,7 @@ namespace storage
      * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
      * device.
      */
-    class Bcache : public BlkDevice
+    class Bcache : public Partitionable
     {
     public:
 
