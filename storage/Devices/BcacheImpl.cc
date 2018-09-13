@@ -54,14 +54,14 @@ namespace storage
 
 
     Bcache::Impl::Impl(const string& name)
-	: BlkDevice::Impl(name)
+	: Partitionable::Impl(name)
     {
 	update_sysfs_name_and_path();
     }
 
 
     Bcache::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node)
+	: Partitionable::Impl(node)
     {
     }
 
@@ -88,7 +88,7 @@ namespace storage
     void
     Bcache::Impl::save(xmlNode* node) const
     {
-	BlkDevice::Impl::save(node);
+	Partitionable::Impl::save(node);
     }
 
 
@@ -133,7 +133,7 @@ namespace storage
     void
     Bcache::Impl::probe_pass_1a(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1a(prober);
+	Partitionable::Impl::probe_pass_1a(prober);
 
 	const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 
@@ -144,7 +144,7 @@ namespace storage
     void
     Bcache::Impl::probe_pass_1b(Prober& prober)
     {
-	BlkDevice::Impl::probe_pass_1b(prober);
+	Partitionable::Impl::probe_pass_1b(prober);
 
 	const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
 	string dev = DEV_DIR "/block/" + dev_file.get<string>();
@@ -158,7 +158,7 @@ namespace storage
     uint64_t
     Bcache::Impl::used_features() const
     {
-	return UF_BCACHE | BlkDevice::Impl::used_features();
+	return UF_BCACHE | Partitionable::Impl::used_features();
     }
 
 
@@ -232,7 +232,7 @@ namespace storage
     {
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
-	return BlkDevice::Impl::equal(rhs);
+	return Partitionable::Impl::equal(rhs);
     }
 
 
@@ -241,14 +241,14 @@ namespace storage
     {
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
-	BlkDevice::Impl::log_diff(log, rhs);
+	Partitionable::Impl::log_diff(log, rhs);
     }
 
 
     void
     Bcache::Impl::print(std::ostream& out) const
     {
-	BlkDevice::Impl::print(out);
+	Partitionable::Impl::print(out);
     }
 
 

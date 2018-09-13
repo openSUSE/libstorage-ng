@@ -27,7 +27,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/Bcache.h"
-#include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/PartitionableImpl.h"
 
 
 namespace storage
@@ -39,7 +39,7 @@ namespace storage
     template <> struct DeviceTraits<Bcache> { static const char* classname; };
 
 
-    class Bcache::Impl : public BlkDevice::Impl
+    class Bcache::Impl : public Partitionable::Impl
     {
     public:
 
