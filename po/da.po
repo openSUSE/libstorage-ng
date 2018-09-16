@@ -7,15 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-11 14:46+0200\n"
-"PO-Revision-Date: 2017-07-26 22:00+0000\n"
-"Last-Translator: Martin Eilsøe <martin@eilsoe.dk>\n"
-"Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/master/da/>\n"
+"PO-Revision-Date: 2018-09-16 16:01+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
+"Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.13.1\n"
+"X-Generator: Weblate 2.18\n"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -2191,9 +2192,9 @@ msgstr "Fjerner underdiskområde %1$s på enheden %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "Opdatér indgang for monteringspunktet %1$s i %2$s"
+msgstr "Opdater indgang for monteringspunktet %1$s i %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
