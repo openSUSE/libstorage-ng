@@ -96,6 +96,7 @@ namespace storage
 	unsigned long get_default_chunk_size() const;
 
 	const string& get_uuid() const { return uuid; }
+	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
 	const string& get_metadata() const { return metadata; }
 	void set_metadata(const string& metadata) { Impl::metadata = metadata; }

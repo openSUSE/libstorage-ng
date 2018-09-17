@@ -205,6 +205,13 @@ namespace storage
     }
 
 
+    void
+    Md::set_uuid(const string& uuid)
+    {
+	get_impl().set_uuid(uuid);
+    }
+
+
     const string&
     Md::get_metadata() const
     {
