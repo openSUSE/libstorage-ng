@@ -124,6 +124,12 @@ namespace storage
 	void set_chunk_size(unsigned long chunk_size);
 
 	const std::string& get_uuid() const;
+	
+	/**
+	 * Set uuid for testing purposes. The real uuid is not modified during
+	 * the commit phase.
+	*/
+	void set_uuid(const std::string& uuid);
 
 	/**
 	 * A string like "1.0" for Linux RAID, "imsm" or "ddf" for BIOS RAID
