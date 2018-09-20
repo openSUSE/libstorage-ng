@@ -1,3 +1,2 @@
-FROM yastdevel/cpp
-RUN zypper --non-interactive install swig graphviz python3-devel libxml2-devel libjson-c-devel libboost_test-devel
+FROM yastdevel/libstorage-ng
 COPY . /usr/src/app

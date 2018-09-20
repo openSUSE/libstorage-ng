@@ -5,8 +5,17 @@
 # exit on error immediately, print the executed commands
 set -e -x
 
+# use ccache for faster rebuilds
+export PATH="/usr/lib64/ccache:$PATH"
+# set 2GB cache size
+ccache --set-config=max_size=2.0G
+# print the initial ccache statistics
+ccache -s
+
 # fetch the full history so the log can be generated correctly
-git fetch --unshallow
+if [ `git rev-parse --is-shallow-repository` = "true" ]; then
+  git fetch --unshallow
+fi
 
 # generate the .tar.xz source tarball and the *.changes file
 utils/make_package
@@ -27,3 +36,6 @@ rpm -iv --force --nodeps /usr/src/packages/RPMS/**/*.rpm
 rpm -Uv --force --nodeps /usr/src/packages/RPMS/**/*.rpm
 # get the plain package names and remove all packages at once
 rpm -ev --nodeps `rpm -q --qf '%{NAME} ' -p /usr/src/packages/RPMS/**/*.rpm`
+
+# print the final ccache statistics
+ccache -s
