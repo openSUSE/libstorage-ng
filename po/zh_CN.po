@@ -10,9 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-11 14:46+0200\n"
-"PO-Revision-Date: 2018-05-11 16:46+0000\n"
-"Last-Translator: Dingzhong Chen <wsxy162@gmail.com>\n"
-"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage/ng-master/zh_CN/>\n"
+"PO-Revision-Date: 2018-09-24 07:01+0000\n"
+"Last-Translator: Marguerite Su <i@marguerite.su>\n"
+"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage"
+"/ng-master/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -186,7 +187,7 @@ msgstr "正在添加 %3$s 上子卷 %2$s 的挂载点 %1$s 到 /etc/fstab"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "将设定在 %1$s 上的 Bcache 缓存连接到 Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -194,7 +195,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "正在将设定在 %1$s 上的 Bcache 缓存连接到 Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -277,16 +278,16 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "创建硬盘 %1$s (%2$s)"
+msgstr "创建 Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "创建逻辑分区 %1$s(%2$s)"
+msgstr "创建在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -618,16 +619,16 @@ msgstr "正在 %2$s (%3$s) 上创建 %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "正在创建分区 %1$s(%2$s)"
+msgstr "正在创建 Bcache %1$s(%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "正在创建逻辑分区 %1$s(%2$s)"
+msgstr "正在创建在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -761,16 +762,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "反激活多路径设备 %1$s(%2$s)"
+msgstr "反激活 Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "反激活多路径设备 %1$s(%2$s)"
+msgstr "取消激活在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -820,16 +821,16 @@ msgstr "反激活卷组 %3$s 上的瘦池逻辑卷 %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "正在反激活多路径设备 %1$s(%2$s)"
+msgstr "正在反激活 Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "正在反激活多路径设备 %1$s(%2$s)"
+msgstr "正在反激活在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -887,16 +888,16 @@ msgstr "删除 %2$s (%3$s) 上的 %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "删除分区 %1$s(%2$s)"
+msgstr "删除 Bcache %1$s(%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "删除逻辑分区 %1$s (%2$s)"
+msgstr "删除在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1038,16 +1039,16 @@ msgstr "正在删除 %2$s (%3$s) 上的 %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "正在删除分区 %1$s(%2$s)"
+msgstr "正在删除 Bcache %1$s(%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "正在删除逻辑分区 %1$s (%2$s)"
+msgstr "正在删除在 %1$s (%2$s) 上的 Bcache 缓存"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1251,7 +1252,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1628,18 +1629,17 @@ msgid "Probing NFS failed"
 msgstr "探测 NFS 失败"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "探测 bcache %s 失败"
+msgstr "探测离散区块设备 %s 失败"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "正在探测离散区块设备"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "探测 DASD 失败"
+msgstr "探测离散区块设备失败"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2119,7 +2119,7 @@ msgstr "正在将卷组 %2$s 上的瘦池逻辑卷 %1$s 从 %3$s 缩减至 %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "离散区块设备"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2209,7 +2209,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
