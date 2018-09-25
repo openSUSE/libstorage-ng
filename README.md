@@ -134,3 +134,26 @@ See especially the class hierarchy:
 ```sh
 xdg-open doc/autodocs/html/inherits.html
 ```
+
+Travis CI
+---------
+
+For continuous integration at GiHub the [Travis CI](https://travis-ci.org/openSUSE/libstorage-ng)
+service is used. To have the required build environment we use the
+[yastdevel/libstorage-ng](https://hub.docker.com/r/yastdevel/libstorage-ng/)
+docker image. See the [Travis documentation](https://docs.travis-ci.com/) for more details.
+
+To speed up the builds there we use the [ccache](https://ccache.samba.org/) tool and
+the [Travis caching](https://docs.travis-ci.com/user/caching/) support.
+
+### Travis Cache Cleanup
+
+The cache is maintained automatically and does not need any intervention. However,
+in a very rare case you might need to clear the cache and start from scratch.
+
+- You can directly remove the [cache archive at Travis](https://travis-ci.org/openSUSE/libstorage-ng/caches),
+  but this requires the appropriate access permissions.
+- If you are not allowed to remove the cache at Travis then temporarily uncomment the cache cleanup
+  code in the [.travis.sh](https://github.com/openSUSE/libstorage-ng/blob/master/.travis.sh) file.
+  After the cache is cleared you can remove this temporary commit, Travis will use empty cache
+  for the next build.
