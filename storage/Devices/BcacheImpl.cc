@@ -22,6 +22,7 @@
 
 #include <regex>
 
+#include "storage/Utils/Algorithm.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
@@ -82,6 +83,19 @@ namespace storage
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
+    string
+    Bcache::Impl::find_free_name(const Devicegraph* devicegraph)
+    {
+	vector<const Bcache*> bcaches = get_all(devicegraph);
+
+	sort(bcaches.begin(), bcaches.end(), compare_by_number);
+
+	unsigned int free_number = first_missing_number(bcaches, 0);
+
+	return DEV_DIR "/bcache" + to_string(free_number);
     }
 
 

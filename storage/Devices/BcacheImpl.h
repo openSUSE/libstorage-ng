@@ -75,6 +75,8 @@ namespace storage
 
 	const BcacheCset* get_bcache_cset() const;
 
+	static string find_free_name(const Devicegraph* devicegraph);
+
 	void attach_bcache_cset(BcacheCset* bcache_cset);
 
 	void update_sysfs_name_and_path();

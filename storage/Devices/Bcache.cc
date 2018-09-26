@@ -138,6 +138,13 @@ namespace storage
     }
 
 
+    string
+    Bcache::find_free_name(const Devicegraph* devicegraph)
+    {
+	return Bcache::Impl::find_free_name(devicegraph);
+    }
+
+
     bool
     Bcache::compare_by_number(const Bcache* lhs, const Bcache* rhs)
     {
