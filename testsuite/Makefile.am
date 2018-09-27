@@ -16,7 +16,7 @@ check_PROGRAMS =								\
 	fstab.test crypttab.test output.test probe.test range.test stable.test	\
 	relatives.test mount-opts.test etc-mdadm.test mount-by.test btrfs.test	\
 	md1.test md2.test md3.test md4.test encryption1.test lvm1.test		\
-	graphviz.test copy-individual.test mountpoint.test
+	graphviz.test copy-individual.test mountpoint.test bcache1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
