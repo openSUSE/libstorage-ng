@@ -75,9 +75,9 @@ BOOST_AUTO_TEST_CASE(test_byte_to_humanstring)
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", 123456789, true, 4, false), "117.7376 MiB");
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", 123456789, false, 4, false), "117,7376 Mio");
 
-    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1000*1024, false, 2, false), "1,000.00 KiB");
-    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 1000*1024, false, 2, false), "1.000,00 KiB");
-    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", 1000*1024, false, 2, false), "1'000.00 KiB");
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 1000 * KiB, false, 2, false), "1,000.00 KiB");
+    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 1000 * KiB, false, 2, false), "1.000,00 KiB");
+    BOOST_CHECK_EQUAL(test("de_CH.UTF-8", 1000 * KiB, false, 2, false), "1'000.00 KiB");
 
     BOOST_CHECK_EQUAL(test("en_GB.UTF-8", 50 * MiB, false, 2, false), "50.00 MiB");
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", 50 * MiB, false, 2, false), "50,00 MiB");
