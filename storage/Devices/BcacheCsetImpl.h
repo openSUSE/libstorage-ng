@@ -52,7 +52,7 @@ namespace storage
 
 	virtual const char* get_classname() const override { return DeviceTraits<BcacheCset>::classname; }
 
-	virtual string get_displayname() const override { return get_uuid(); }
+	virtual string get_displayname() const override { return "bcache cache"; }
 
 	virtual string get_pretty_classname() const override;
 
