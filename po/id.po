@@ -4,13 +4,14 @@
 # Copyright (C) 1999-2001 SuSE GmbH.
 # I Made Wiryana <made@nakula.rvs.uni-bielefeld.de>, 1999.
 # Arif Budiman <arifpedia@gmail.com>, 2016-2018.
+# Kukuh Syafaat <cho2@opensuse.org>, 2018.
 msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-11 14:46+0200\n"
 "PO-Revision-Date: 2018-10-05 12:59+0000\n"
-"Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
+"Last-Translator: Kukuh Syafaat <syafaatkukuh@gmail.com>\n"
 "Language-Team: Indonesian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/id/>\n"
 "Language: id\n"
@@ -194,7 +195,7 @@ msgstr "Pasang cache Bcache yang ditetapkan pada %1$s ke Bcache %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Memasang cache Bcache yang ditetapkan pada %1$s ke Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -277,16 +278,16 @@ msgstr "Buat %1$s pada %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "Buat hard disk %1$s (%2$s)"
+msgstr "Buat Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "Buat partisi logical %1$s (%2$s)"
+msgstr "Buat cache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -618,16 +619,16 @@ msgstr "Membuat %1$s pada %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "Membuat partisi %1$s (%2$s)"
+msgstr "Membuat Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "Membuat partisi logical %1$s (%2$s)"
+msgstr "Membuat cache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -761,16 +762,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Nonaktifkan multipath %1$s (%2$s)"
+msgstr "Nonaktifkan Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Nonaktifkan multipath %1$s (%2$s)"
+msgstr "Nonaktifkan cache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -820,16 +821,16 @@ msgstr "Nonaktifkan volume logical thin pool %1$s (%2$s) pada grup volume %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Menonaktifkan multipath %1$s (%2$s)"
+msgstr "Menonaktifkan Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Menonaktifkan multipath %1$s (%2$s)"
+msgstr "Menonaktifkan cache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -887,16 +888,16 @@ msgstr "Hapus %1$s pada %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Hapus partisi %1$s (%2$s)"
+msgstr "Hapus Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Hapus partisi logical %1$s (%2$s)"
+msgstr "Hapus pcache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1038,16 +1039,16 @@ msgstr "Menghapus %1$s pada %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Menghapus partisi %1$s (%2$s)"
+msgstr "Menghapus Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Menghapus partisi logical %1$s (%2$s)"
+msgstr "Menghapus cache Bcache yang ditetapkan pada %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1251,7 +1252,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1628,18 +1629,17 @@ msgid "Probing NFS failed"
 msgstr "Gagal memeriksa NFS"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Gagal memeriksa bcache %s"
+msgstr "Gagal memeriksa Stray Block Device %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Memeriksa Stray Block Device"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Gagal memeriksa DASDs"
+msgstr "Gagal memeriksa Stray Block Device"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2119,7 +2119,7 @@ msgstr "Mengecilkan volume logical thin pool %1$s pada grup volume %2$s dari %3$
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray Block Device"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2209,7 +2209,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"
