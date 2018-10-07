@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-11 14:46+0200\n"
-"PO-Revision-Date: 2018-09-26 15:01+0000\n"
+"PO-Revision-Date: 2018-10-07 15:01+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/nl/>\n"
@@ -763,7 +763,7 @@ msgstr "DASD-partitietabel"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr "DM RAID"
+msgstr "DM-RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1294,7 +1294,7 @@ msgstr "Partitie %1$s (%2$s) voor %3$s met %4$s formatteren"
 #. %3$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "Partitie %1$s (%2$s) met %3$s formatteren"
+msgstr "Partitie %1$s (%2$s) formatteren met %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1473,7 +1473,7 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr "MD RAID"
+msgstr "MD-RAID"
 
 #. TRANSLATORS: name of object
 msgid "MS-DOS Partition Table"
