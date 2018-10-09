@@ -108,14 +108,14 @@ namespace storage
     }
 
 
-    template<>
-    int
-    File::get<int>() const
+    template<typename T>
+    T
+    File::get() const
     {
 	if (content.empty())
 	    ST_THROW(Exception("empty file " + path));
 
-	int ret;
+	T ret;
 	content.front() >> ret;
 
 	// TODO error checking
@@ -124,20 +124,10 @@ namespace storage
     }
 
 
-    template<>
-    unsigned long long
-    File::get<unsigned long long>() const
-    {
-	if (content.empty())
-	    ST_THROW(Exception("empty file " + path));
-
-	unsigned long long ret;
-	content.front() >> ret;
-
-	// TODO error checking
-
-	return ret;
-    }
+    // specialization using shared one from above
+    template int File::get<int>() const;
+    template unsigned long long File::get<unsigned long long>() const;
+    template unsigned File::get<unsigned>() const;
 
 
     template<>

@@ -39,6 +39,11 @@ namespace storage
     using std::vector;
 
 
+    /**
+     *  EnumTraits can be used for mapping of enum to string and vice versa. Order of
+     *  strings in EnumTraits have to match order in Enum itself. For mapping is that used
+     *  methods like toString or toValue. For examples see e.g. Disk Device or any other usage.
+     */
     template <typename EnumType> struct EnumTraits {};
 
 

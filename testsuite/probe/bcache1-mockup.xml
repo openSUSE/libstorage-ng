@@ -1067,5 +1067,41 @@
       <name>/sys/fs/bcache/acb129b8-b55e-45bb-aa99-41a6f0a0ef07/cache0/../dev</name>
       <content>254:16</content>
     </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/bcache/cache_mode</name>
+      <content>[writethrough] writeback writearound none</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/bcache/writeback_percent</name>
+      <content>10</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/bcache/sequential_cutoff</name>
+      <content>8M</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache/cache_mode</name>
+      <content>writethrough [writeback] writearound none</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache/writeback_percent</name>
+      <content>20</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache/sequential_cutoff</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/bcache/cache_mode</name>
+      <content>writethrough writeback [writearound] none</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/bcache/writeback_percent</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/bcache/sequential_cutoff</name>
+      <content>1k</content>
+    </File>
   </Files>
 </Mockup>

@@ -110,6 +110,48 @@ namespace storage
     }
 
 
+    CacheMode
+    Bcache::get_cache_mode() const
+    {
+	return get_impl().get_cache_mode();
+    }
+
+
+    void
+    Bcache::set_cache_mode(CacheMode mode)
+    {
+	get_impl().set_cache_mode(mode);
+    }
+
+
+    unsigned long long
+    Bcache::get_sequential_cutoff() const
+    {
+	return get_impl().get_sequential_cutoff();
+    }
+
+
+    void
+    Bcache::set_sequential_cutoff(unsigned long long size)
+    {
+	get_impl().set_sequential_cutoff(size);
+    }
+
+
+    unsigned
+    Bcache::get_writeback_percent() const
+    {
+	return get_impl().get_writeback_percent();
+    }
+
+
+    void
+    Bcache::set_writeback_percent(unsigned percent)
+    {
+	get_impl().set_writeback_percent(percent);
+    }
+
+
     vector<Bcache*>
     Bcache::get_all(Devicegraph* devicegraph)
     {
@@ -121,6 +163,13 @@ namespace storage
     Bcache::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const Bcache>();
+    }
+
+
+    void
+    Bcache::reassign_numbers(Devicegraph* devicegraph)
+    {
+	return Bcache::Impl::reassign_numbers(devicegraph);
     }
 
 
