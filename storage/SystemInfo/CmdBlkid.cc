@@ -22,6 +22,7 @@
 
 
 #include <algorithm>
+#include <ctype.h>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/AppUtil.h"
@@ -65,7 +66,7 @@ namespace storage
 		continue;
 
 	    string device = string(*it, 0, pos);
-	    list<string> l = splitString(string(*it, pos + 1), " \t\n", true, true, "\"");
+	    list<string> l = split_line(string(*it, pos + 1));
 
 	    Entry entry;
 
@@ -146,6 +147,61 @@ namespace storage
 	}
 
 	y2mil(*this);
+    }
+
+
+    list<string>
+    Blkid::split_line( const string & line )
+    {
+        list<string> result;
+
+        string::size_type start = 0;
+        const string::size_type len = line.length();
+
+        while ( start < len )
+        {
+            // Skip leading whitespace
+            while ( isspace( line[start] ) && start < len - 1 )
+                ++start;
+
+            string::size_type end = start;
+
+            while ( end < len )
+            {
+                if ( isspace( line[end] ) )
+                    break;
+
+                if ( line[end] == '"' ) // found a quoted block
+                {
+                    ++end;              // skip opening quote
+
+                    // Find the end of the quoted block
+                    while ( end < len - 1 )
+                    {
+                        if ( line[++end] == '"' &&      // quote
+                             line[end - 1] != '\\' )    // but not an escaped quote
+                            break;
+
+                        // Notice that line[end - 1] is safe:
+                        //
+                        // If we are at the start of this segment, it will point to
+                        // the opening quote. If there would be no opening quote,
+                        // we wouldn't be in this branch at all.
+                    }
+                }
+
+                ++end;
+            }
+
+            // Add the segment we just found to the result
+            if ( start < end && start < len )
+                result.push_back( line.substr( start, end - start ) );
+
+            // Start over with the next segment
+            start = end + 1;
+        }
+
+        return result;
     }
 
 

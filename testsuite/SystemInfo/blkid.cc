@@ -33,6 +33,35 @@ check(const vector<string>& input, const vector<string>& output)
 }
 
 
+void
+check_split_line( const string & input, const string & output )
+{
+    string result = boost::join( Blkid::split_line( input ), "|" );
+
+    BOOST_CHECK_EQUAL( result, output );
+}
+
+
+BOOST_AUTO_TEST_CASE(split_line)
+{
+    check_split_line( "aaa bbb ccc", "aaa|bbb|ccc" );
+    check_split_line( "  aaa   bbb   ccc  ", "aaa|bbb|ccc" );
+    check_split_line( "", "" );
+    check_split_line( "aa=\"xxx\" bb=\"yyy\" cc=\"zzz\"", "aa=\"xxx\"|bb=\"yyy\"|cc=\"zzz\"" );
+    check_split_line( "  aa=\"xxx\"   bb=\"yyy\"   cc=\"zzz\"  ", "aa=\"xxx\"|bb=\"yyy\"|cc=\"zzz\"" );
+
+    // Whitespace in quoted strings
+    check_split_line( "aa=\"x  x x\" bb=\"yy y\" cc=\"zzz\"", "aa=\"x  x x\"|bb=\"yy y\"|cc=\"zzz\"" );
+    check_split_line( "aa=\"x  x x\" bb=\"yy y", "aa=\"x  x x\"|bb=\"yy y" );
+
+    // Escaped quote in string
+    check_split_line( "aa=\"x\\\"xx\" bb=\"yyy\"", "aa=\"x\\\"xx\"|bb=\"yyy\"");
+
+    // Escaped quote in string and at the end and not properly terminated
+    check_split_line( "aa=\"x\\\"xx\" bb=\"yyy\\\"", "aa=\"x\\\"xx\"|bb=\"yyy\\\"");
+}
+
+
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
@@ -221,6 +250,40 @@ BOOST_AUTO_TEST_CASE(parse_luks)
     vector<string> output = {
 	"data[/dev/sdb1] -> is-luks:true luks-uuid:b329b40b-e5f0-4f8e-814d-b6afb7f0ce64",
 	"data[/dev/sdb2] -> is-luks:true luks-uuid:332cd185-9d1b-479c-ade6-a9fb6e4e536d luks-label:master-plan"
+    };
+
+    check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(split_weird_uuid_line)
+{
+    // bsc#1102572
+    string input  = "/dev/sdb: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"";
+    string output = "/dev/sdb:|UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\"|TYPE=\"ddf_raid_member\"";
+
+    check_split_line( input, output );
+}
+
+
+BOOST_AUTO_TEST_CASE(weird_uuid)
+{
+     // bsc#1102572
+    vector<string> input = {
+        "/dev/sdb: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"",
+        "/dev/sda: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"",
+        "/dev/md126: PTUUID=\"361b9912\" PTTYPE=\"dos\"",
+        "/dev/md126p1: LABEL=\"LINSERV\" UUID=\"88B5-20E8\" TYPE=\"vfat\" PARTUUID=\"361b9912-01\"",
+        "/dev/md126p2: LABEL=\"RAID1\" UUID=\"BAE2-F35E\" TYPE=\"vfat\" PARTUUID=\"361b9912-02\""
+    };
+
+    vector<string> output = {
+        // Alpha-sorted by map key, thus the different order than in the input
+	"data[/dev/md126p1] -> is-fs:true fs-type:vfat fs-uuid:88B5-20E8 fs-label:LINSERV",
+	"data[/dev/md126p2] -> is-fs:true fs-type:vfat fs-uuid:BAE2-F35E fs-label:RAID1",
+        // No output for /dev/md126 because it's irrelevant (partitionable device, nothing else)
+	"data[/dev/sda] -> is-md:true",
+	"data[/dev/sdb] -> is-md:true"
     };
 
     check(input, output);
