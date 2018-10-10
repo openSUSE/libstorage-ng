@@ -50,11 +50,11 @@ namespace storage
     class SystemInfo;
 
 
-void createPath(const string& Path_Cv);
-bool checkNormalFile(const string& Path_Cv);
-bool checkDir(const string& Path_Cv);
-bool getStatMode(const string& Path_Cv, mode_t& val );
-bool setStatMode(const string& Path_Cv, mode_t val );
+    void createPath(const string& Path_Cv);
+    bool checkNormalFile(const string& Path_Cv);
+    bool checkDir(const string& Path_Cv);
+    bool getStatMode(const string& Path_Cv, mode_t& val );
+    bool setStatMode(const string& Path_Cv, mode_t val );
 
     string dirname(const string& name);
     string basename(const string& name);
@@ -81,15 +81,15 @@ bool setStatMode(const string& Path_Cv, mode_t val );
      */
     bool has_kernel_holders(const string& name, SystemInfo& system_info);
 
-string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
+    string extractNthWord(int Num_iv, const string& Line_Cv, bool GetRest_bi = false);
 
-std::list<string> splitString( const string& s, const string& delChars=" \t\n",
-                          bool multipleDelim=true, bool skipEmpty=true,
-			  const string& quotes="" );
+    std::list<string> splitString( const string& s, const string& delChars=" \t\n",
+                                   bool multipleDelim=true, bool skipEmpty=true,
+                                   const string& quotes="" );
 
-std::map<string,string> makeMap( const std::list<string>& l,
-                                 const string& delim = "=",
-				 const string& removeSur = " \t\n" );
+    std::map<string,string> makeMap( const std::list<string>& l,
+                                     const string& delim = "=",
+                                     const string& removeSur = " \t\n" );
 
     string udev_encode(const string&);
     string udev_decode(const string&);
@@ -97,11 +97,11 @@ std::map<string,string> makeMap( const std::list<string>& l,
     string normalizeDevice(const string& dev);
 
 
-template<class StreamType>
-void classic(StreamType& stream)
-{
-    stream.imbue(std::locale::classic());
-}
+    template<class StreamType>
+    void classic(StreamType& stream)
+    {
+        stream.imbue(std::locale::classic());
+    }
 
 
     string hostname();
@@ -162,7 +162,7 @@ void classic(StreamType& stream)
     format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata);
 
 
-extern const string app_ws;
+    extern const string app_ws;
 
 }
 
