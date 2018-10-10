@@ -33,6 +33,35 @@ check(const vector<string>& input, const vector<string>& output)
 }
 
 
+void
+check_split_line( const string & input, const string & output )
+{
+    string result = boost::join( Blkid::split_line( input ), "|" );
+
+    BOOST_CHECK_EQUAL( result, output );
+}
+
+
+BOOST_AUTO_TEST_CASE(split_line)
+{
+    check_split_line( "aaa bbb ccc", "aaa|bbb|ccc" );
+    check_split_line( "  aaa   bbb   ccc  ", "aaa|bbb|ccc" );
+    check_split_line( "", "" );
+    check_split_line( "aa=\"xxx\" bb=\"yyy\" cc=\"zzz\"", "aa=\"xxx\"|bb=\"yyy\"|cc=\"zzz\"" );
+    check_split_line( "  aa=\"xxx\"   bb=\"yyy\"   cc=\"zzz\"  ", "aa=\"xxx\"|bb=\"yyy\"|cc=\"zzz\"" );
+
+    // Whitespace in quoted strings
+    check_split_line( "aa=\"x  x x\" bb=\"yy y\" cc=\"zzz\"", "aa=\"x  x x\"|bb=\"yy y\"|cc=\"zzz\"" );
+    check_split_line( "aa=\"x  x x\" bb=\"yy y", "aa=\"x  x x\"|bb=\"yy y" );
+
+    // Escaped quote in string
+    check_split_line( "aa=\"x\\\"xx\" bb=\"yyy\"", "aa=\"x\\\"xx\"|bb=\"yyy\"");
+
+    // Escaped quote in string and at the end and not properly terminated
+    check_split_line( "aa=\"x\\\"xx\" bb=\"yyy\\\"", "aa=\"x\\\"xx\"|bb=\"yyy\\\"");
+}
+
+
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
@@ -224,6 +253,16 @@ BOOST_AUTO_TEST_CASE(parse_luks)
     };
 
     check(input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(split_weird_uuid_line)
+{
+    // bsc#1102572
+    string input  = "/dev/sdb: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"";
+    string output = "/dev/sdb:|UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\"|TYPE=\"ddf_raid_member\"";
+
+    check_split_line( input, output );
 }
 
 

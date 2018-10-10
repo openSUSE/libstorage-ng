@@ -27,6 +27,7 @@
 
 #include <string>
 #include <map>
+#include <list>
 #include <vector>
 
 #include "storage/Filesystems/Filesystem.h"
@@ -36,6 +37,7 @@ namespace storage
 {
     using std::string;
     using std::map;
+    using std::list;
     using std::vector;
 
 
@@ -102,6 +104,8 @@ namespace storage
 	bool any_lvm() const;
 	bool any_luks() const;
 	bool any_bcache() const;
+
+        static list<string> split_line( const string & line );
 
     private:
 
