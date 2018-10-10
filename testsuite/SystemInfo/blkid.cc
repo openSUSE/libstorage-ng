@@ -225,3 +225,27 @@ BOOST_AUTO_TEST_CASE(parse_luks)
 
     check(input, output);
 }
+
+
+BOOST_AUTO_TEST_CASE(weird_uuid)
+{
+     // bsc#1102572
+    vector<string> input = {
+        "/dev/sdb: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"",
+        "/dev/sda: UUID=\"LSI     M-^@M-^FM-!^F^W4^R\\\"HM-^@M- ^XM-.kwM-T\" TYPE=\"ddf_raid_member\"",
+        "/dev/md126: PTUUID=\"361b9912\" PTTYPE=\"dos\"",
+        "/dev/md126p1: LABEL=\"LINSERV\" UUID=\"88B5-20E8\" TYPE=\"vfat\" PARTUUID=\"361b9912-01\"",
+        "/dev/md126p2: LABEL=\"RAID1\" UUID=\"BAE2-F35E\" TYPE=\"vfat\" PARTUUID=\"361b9912-02\""
+    };
+
+    vector<string> output = {
+        // Alpha-sorted by map key, thus the different order than in the input
+	"data[/dev/md126p1] -> is-fs:true fs-type:vfat fs-uuid:88B5-20E8 fs-label:LINSERV",
+	"data[/dev/md126p2] -> is-fs:true fs-type:vfat fs-uuid:BAE2-F35E fs-label:RAID1",
+        // No output for /dev/md126 because it's irrelevant (partitionable device, nothing else)
+	"data[/dev/sda] -> is-md:true",
+	"data[/dev/sdb] -> is-md:true"
+    };
+
+    check(input, output);
+}
