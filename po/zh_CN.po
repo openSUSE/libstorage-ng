@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-09-11 14:46+0200\n"
-"PO-Revision-Date: 2018-09-24 07:01+0000\n"
+"PO-Revision-Date: 2018-10-12 12:01+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage"
 "/ng-master/zh_CN/>\n"
@@ -1288,7 +1288,7 @@ msgstr "格式化 %3$s (%4$s) 的分区 %1$s (%2$s)"
 #. %3$s is replaced by file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "格式化包含 %3$s 的分区 %1$s (%2$s)"
+msgstr "使用 %3$s 格式化分区 %1$s (%2$s)"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1502,7 +1502,7 @@ msgstr "将 NFS %1$s 挂载到 %2$s 上"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr "安装点"
+msgstr "挂载点"
 
 #. TRANSLATORS:
 #. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
