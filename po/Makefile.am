@@ -15,7 +15,7 @@ MOFILES = $(POFILES:.po=.mo)
 all: $(MOFILES)
 
 $(PACKAGE).pot: $(SRCFILES)
-	$(XGETTEXT) --sort-output --no-wrap --add-comments=TRANSLATORS: --no-location \
+	$(XGETTEXT) --sort-output --add-comments=TRANSLATORS: --no-location \
 	    --keyword=_ --keyword=_:1,2 --foreign-user \
 	    --copyright-holder="SUSE Linux GmbH, Nuernberg" \
 	    --default-domain=$(PACKAGE) --output=$(PACKAGE).pot $(SRCFILES)
@@ -27,8 +27,8 @@ merge: $(PACKAGE).pot
 	files='$(POFILES)'; \
 	for file in $$files; do \
 	    base=`basename $$file`; \
-	    echo "$(MSGMERGE) --no-wrap --update $$base $(PACKAGE).pot"; \
-	    $(MSGMERGE) --no-wrap --update $$base $(PACKAGE).pot; \
+	    echo "$(MSGMERGE) --update $$base $(PACKAGE).pot"; \
+	    $(MSGMERGE) --update $$base $(PACKAGE).pot; \
 	done
 
 install-data-local: $(MOFILES)
