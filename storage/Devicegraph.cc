@@ -29,6 +29,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Utils/GraphUtils.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Devices/Bcache.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/Disk.h"
 #include "storage/Devices/Md.h"
@@ -339,8 +340,8 @@ namespace storage
     void
     Devicegraph::remove_device(sid_t sid)
     {
-	const Device* device = find_device(sid);
-	get_impl().remove_vertex(device->get_impl().get_vertex());
+	Device* device = find_device(sid);
+	remove_device(device);
     }
 
 
@@ -348,6 +349,8 @@ namespace storage
     Devicegraph::remove_device(Device* device)
     {
 	get_impl().remove_vertex(device->get_impl().get_vertex());
+        // ensure that bcache numbers are correct
+	Bcache::reassign_numbers(this);
     }
 
 
@@ -356,6 +359,8 @@ namespace storage
     {
 	for (Device* device : devices)
 	    get_impl().remove_vertex(device->get_impl().get_vertex());
+	// ensure that bcache numbers are correct
+	Bcache::reassign_numbers(this);
     }
 
 

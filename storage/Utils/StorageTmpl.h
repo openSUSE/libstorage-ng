@@ -127,7 +127,7 @@ namespace storage
 	static_assert(!std::is_enum<Type>::value, "is enum");
 
 	if (lhs != rhs)
-	    log << " " << text << ":" << lhs << "-->" << rhs;
+	    log << " " << text << ":" << lhs << "-->" << rhs << "\n";
     }
 
 
@@ -139,7 +139,7 @@ namespace storage
 	if (lhs != rhs)
 	{
 	    boost::io::ios_all_saver ias(log);
-	    log << " " << text << ":" << std::showbase << std::hex << lhs << "-->" << rhs;
+	    log << " " << text << ":" << std::showbase << std::hex << lhs << "-->" << rhs << "\n";
 	}
     }
 
@@ -150,7 +150,7 @@ namespace storage
 	static_assert(std::is_enum<Type>::value, "not enum");
 
 	if (lhs != rhs)
-	    log << " " << text << ":" << toString(lhs) << "-->" << toString(rhs);
+	    log << " " << text << ":" << toString(lhs) << "-->" << toString(rhs) << "\n";
     }
 
 
@@ -160,9 +160,9 @@ namespace storage
 	if (lhs != rhs)
 	{
 	    if (rhs)
-		log << " -->" << text;
+		log << " -->" << text << "\n";
 	    else
-		log << " " << text << "-->";
+		log << " " << text << "-->" << "\n";
 	}
     }
 

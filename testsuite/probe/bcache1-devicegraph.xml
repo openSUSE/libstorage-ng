@@ -102,6 +102,9 @@
       </region>
       <topology/>
       <range>128</range>
+      <cache-mode>writethrough</cache-mode>
+      <writeback-percent>10</writeback-percent>
+      <sequential-cutoff>8388608</sequential-cutoff>
     </Bcache>
     <Bcache>
       <sid>51</sid>
@@ -114,6 +117,9 @@
       </region>
       <topology/>
       <range>128</range>
+      <cache-mode>writeback</cache-mode>
+      <writeback-percent>20</writeback-percent>
+      <sequential-cutoff>0</sequential-cutoff>
     </Bcache>
     <Bcache>
       <sid>52</sid>
@@ -126,6 +132,9 @@
       </region>
       <topology/>
       <range>128</range>
+      <cache-mode>writearound</cache-mode>
+      <writeback-percent>0</writeback-percent>
+      <sequential-cutoff>1024</sequential-cutoff>
     </Bcache>
     <BcacheCset>
       <sid>53</sid>

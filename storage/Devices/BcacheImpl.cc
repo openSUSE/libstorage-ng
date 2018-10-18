@@ -24,6 +24,7 @@
 
 #include "storage/Utils/Algorithm.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
@@ -45,25 +46,36 @@ namespace storage
     using namespace std;
 
 
-    // TODO rename after delete (in memory)
     // TODO handle attach and detach
     // TODO synchronization after actions
-    // TODO cache-mode
+    // TODO write sequential_cutoff and writeback_percent persistently to survive reboot
 
 
     const char* DeviceTraits<Bcache>::classname = "Bcache";
 
+    const vector<string> EnumTraits<CacheMode>::names({
+	"writethrough", "writeback", "writearound", "none"
+    });
 
     Bcache::Impl::Impl(const string& name)
-	: Partitionable::Impl(name)
+	: Partitionable::Impl(name), cache_mode(CacheMode::WRITETHROUGH),
+          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
     {
 	update_sysfs_name_and_path();
     }
 
 
     Bcache::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node)
+	: Partitionable::Impl(node), cache_mode(CacheMode::WRITETHROUGH),
+          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
     {
+	string tmp;
+
+	cache_mode = CacheMode::WRITETHROUGH;
+	if (getChildValue(node, "cache-mode", tmp))
+	    cache_mode = toValueWithFallback(tmp, CacheMode::WRITETHROUGH);
+	getChildValue(node, "writeback-percent", writeback_percent);
+	getChildValue(node, "sequential-cutoff", sequential_cutoff);
     }
 
 
@@ -86,6 +98,34 @@ namespace storage
     }
 
 
+    void
+    Bcache::Impl::reassign_numbers(Devicegraph* devicegraph)
+    {
+	// not many bcache devices expected (<10), so lets just do tail-recursive
+	// algorithm. It finds free name and ensure that all devices
+	// with higher number are not in memory. And if there is a memory one,
+	// then rename it to free name and run again. It always terminate as each step remove one
+	// in-memory bcache that has hole before till all in-memory caches occupy the lowest
+	// available numbers.
+	const string free_name = find_free_name(devicegraph);
+	unsigned free_number = device_to_name_and_number(free_name).second;
+
+	vector<Bcache*> bcaches = get_all(devicegraph);
+
+	sort(bcaches.begin(), bcaches.end(), compare_by_number);
+
+	for(Bcache* bcache: bcaches)
+	{
+	    if (bcache->get_number() > free_number && !bcache->exists_in_probed())
+	    {
+		bcache->get_impl().set_number(free_number);
+		reassign_numbers(devicegraph);
+		return;
+	    }
+	}
+    }
+
+
     string
     Bcache::Impl::find_free_name(const Devicegraph* devicegraph)
     {
@@ -103,6 +143,10 @@ namespace storage
     Bcache::Impl::save(xmlNode* node) const
     {
 	Partitionable::Impl::save(node);
+
+	setChildValue(node, "cache-mode", toString(cache_mode));
+	setChildValue(node, "writeback-percent", writeback_percent);
+	setChildValue(node, "sequential-cutoff", sequential_cutoff);
     }
 
 
@@ -144,14 +188,72 @@ namespace storage
     }
 
 
+    static CacheMode
+    parse_mode(File cache_mode_file)
+    {
+	string modes = cache_mode_file.get<string>();
+	regex rgx("\\[(.*)\\]");
+	smatch match;
+	if ( regex_search(modes, match, rgx) )
+	{
+	    return toValueWithFallback(match[1], CacheMode::WRITETHROUGH);
+	}
+	else
+	{
+	    y2err("Cannot parse cache_mode file: '" << modes << "'");
+	    return CacheMode::WRITETHROUGH;
+	}
+    }
+
+    // mapping between human string of libstorage-ng and bcache sysfs sizes
+    static const map<std::string, unsigned long long> size_mapping = {
+	{ "k", KiB },
+	{ "M", MiB },
+	{ "G", GiB }
+    };
+
+    static unsigned long long parse_size(File file)
+    {
+	string size_s = file.get<string>();
+	regex rgx("(\\d+\\.?\\d*)([kMG])?");
+	smatch match;
+	unsigned long long result = 0;
+	if ( regex_search(size_s, match, rgx) )
+	{
+	    unsigned long long multi = 1;
+	    auto unit = size_mapping.find(match[2]);
+	    if (unit != size_mapping.end())
+		multi = unit->second;
+
+	    result = stof(match[1]) * multi;
+	}
+	else
+	{
+	    y2err("Cannot parse size '" << size_s << "'");
+	}
+
+	return result;
+    }
+
     void
     Bcache::Impl::probe_pass_1a(Prober& prober)
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File size_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
+
+	const File cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
+	set_cache_mode(parse_mode(cache_mode_file));
+
+	const File writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
+	set_writeback_percent(writeback_percent_file.get<unsigned>());
+
+	const File sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
+	set_sequential_cutoff(parse_size(sequential_cutoff_file));
     }
 
 
@@ -180,6 +282,17 @@ namespace storage
     Bcache::Impl::get_number() const
     {
 	return device_to_name_and_number(get_name()).second;
+    }
+
+
+    void
+    Bcache::Impl::set_number(unsigned int number)
+    {
+	std::pair<string, unsigned int> pair = device_to_name_and_number(get_name());
+
+	set_name(name_and_number_to_device(pair.first, number));
+
+	update_sysfs_name_and_path();
     }
 
 
@@ -246,7 +359,12 @@ namespace storage
     {
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
-	return Partitionable::Impl::equal(rhs);
+	if (!Partitionable::Impl::equal(rhs))
+            return false;
+
+        return cache_mode == rhs.cache_mode
+            && writeback_percent == rhs.writeback_percent
+            && sequential_cutoff == rhs.sequential_cutoff;
     }
 
 
@@ -256,6 +374,10 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	Partitionable::Impl::log_diff(log, rhs);
+
+        storage::log_diff(log, "cache-mode", toString(cache_mode), toString(rhs.cache_mode));
+        storage::log_diff(log, "writeback-percent", writeback_percent, rhs.writeback_percent);
+        storage::log_diff(log, "sequential-cutoff", sequential_cutoff, rhs.sequential_cutoff);
     }
 
 
@@ -263,6 +385,10 @@ namespace storage
     Bcache::Impl::print(std::ostream& out) const
     {
 	Partitionable::Impl::print(out);
+
+        out << " cache mode:" << toString(cache_mode)
+            << " writeback percent:" << writeback_percent << "%"
+            << " sequential cutoff:" << sequential_cutoff;
     }
 
 
@@ -415,7 +541,21 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	sleep(1);
+        // TODO: is it enough? check with Coly how to recognize it
+	sleep(1); // give bcache some time to finish its async operation, so bcache device exists
+
+	// TODO: Action for edit attributes will be needed if edit of existing bcache is allowed
+	cmd_line = ECHO_BIN " " + quote(toString(cache_mode)) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/cache_mode");
+
+	SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
+
+	cmd_line = ECHO_BIN " " + to_string(writeback_percent) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/writeback_percent");
+
+	SystemCmd cmd3(cmd_line, SystemCmd::DoThrow);
+
+	cmd_line = ECHO_BIN " " + to_string(sequential_cutoff) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/sequential_cutoff");
+
+	SystemCmd cmd4(cmd_line, SystemCmd::DoThrow);
     }
 
 

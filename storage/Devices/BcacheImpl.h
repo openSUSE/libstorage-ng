@@ -24,6 +24,7 @@
 #define STORAGE_BCACHE_IMPL_H
 
 
+#include "storage/Utils/Enum.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/Bcache.h"
@@ -38,6 +39,7 @@ namespace storage
 
     template <> struct DeviceTraits<Bcache> { static const char* classname; };
 
+    template <> struct EnumTraits<CacheMode> { static const vector<string> names; };
 
     class Bcache::Impl : public Partitionable::Impl
     {
@@ -68,6 +70,7 @@ namespace storage
 	virtual uint64_t used_features() const override;
 
 	unsigned int get_number() const;
+	void set_number(unsigned int number);
 
 	const BlkDevice* get_blk_device() const;
 
@@ -77,9 +80,20 @@ namespace storage
 
 	static string find_free_name(const Devicegraph* devicegraph);
 
+	static void reassign_numbers(Devicegraph* devicegraph);
+
 	void attach_bcache_cset(BcacheCset* bcache_cset);
 
 	void update_sysfs_name_and_path();
+
+	CacheMode get_cache_mode() const { return cache_mode; }
+	void set_cache_mode(CacheMode mode) { cache_mode = mode; }
+
+	unsigned long long get_sequential_cutoff() const { return sequential_cutoff; }
+	void set_sequential_cutoff(unsigned long long size) { sequential_cutoff = size; }
+
+	unsigned get_writeback_percent() const { return writeback_percent; }
+	void set_writeback_percent(unsigned percent) { writeback_percent = percent; }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -111,6 +125,11 @@ namespace storage
 
 	void calculate_region();
 
+	CacheMode cache_mode;
+
+	unsigned long long sequential_cutoff;
+
+	unsigned writeback_percent;
     };
 
 

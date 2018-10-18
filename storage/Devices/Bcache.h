@@ -34,6 +34,14 @@ namespace storage
 
 
     /**
+     * The Cache mode attribute.
+     */
+    enum class CacheMode {
+	WRITETHROUGH, WRITEBACK, WRITEAROUND, NONE
+    };
+
+
+    /**
      * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
      * device.
      */
@@ -69,6 +77,42 @@ namespace storage
 	void attach_bcache_cset(BcacheCset* bcache_cset);
 
 	/**
+	 * Returns cache mode attribute.
+	 */
+	CacheMode get_cache_mode() const;
+
+	/**
+	 * Sets cache mode attribute
+	 *
+	 * @param[in] mode target cache mode
+	 */
+	void set_cache_mode(CacheMode mode);
+
+	/**
+	 * Returns size of sequential_cutoff attribute.
+	 */
+	unsigned long long get_sequential_cutoff() const;
+
+	/**
+	 * Sets sequential_cutoff attribute
+	 *
+	 * @param[in] size size in a bytes
+	 */
+	void set_sequential_cutoff(unsigned long long size);
+
+	/**
+	 * Returns percent of writeback dirty pages.
+	 */
+	unsigned get_writeback_percent() const;
+
+	/**
+	 * Sets writeback percent attribute
+	 *
+	 * @param[in] percent target cache mode
+	 */
+	void set_writeback_percent(unsigned percent);
+
+	/**
 	 * Get all Bcaches.
 	 */
 	static std::vector<Bcache*> get_all(Devicegraph* devicegraph);
@@ -77,6 +121,18 @@ namespace storage
 	 * @copydoc get_all()
 	 */
 	static std::vector<const Bcache*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Fix the numeric ids of bcache devices so that there are no holes in the id sequence
+	 * for in-memory bcache devices. Called automatically when a device is deleted and
+	 * a hole can appear.
+	 *
+	 * Following rules apply to bcaches:
+	 * - An existing bcache keeps its number until reboot
+	 * - A newly created device always uses the lowest available number
+	 *   So the devices in memory always fill holes in the numbering sequence
+	 */
+	static void reassign_numbers(Devicegraph* devicegraph);
 
 	/**
 	 * Find a Bcache by its name.
