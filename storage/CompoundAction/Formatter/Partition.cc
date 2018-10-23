@@ -40,27 +40,27 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::text() const
     {
-	if (has_delete<storage::Partition>())
+	if (deleting())
 	    return delete_text();
 
 	else if (has_create<storage::LvmPv>())
 	{
-	    if (has_create<storage::Partition>() && has_create<storage::Encryption>())
+	    if (creating() && encrypting())
 		return create_encrypted_pv_text();
 
-	    else if (has_create<storage::Partition>())
+	    else if (creating())
 		return create_pv_text();
 
-	    else if (has_create<storage::Encryption>())
+	    else if (encrypting())
 		return encrypted_pv_text();
 
 	    else
 		return pv_text();
 	}
 
-	else if (has_create<storage::BlkFilesystem>() && is_swap(get_created_filesystem()))
+	else if (formatting() && is_swap(get_created_filesystem()))
 	{
-	    if (has_create<storage::Encryption>())
+	    if (encrypting())
 		return create_encrypted_with_swap_text();
 
 	    else
@@ -69,40 +69,40 @@ namespace storage
 
 	else
 	{
-	    if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    if (creating() && encrypting() && formatting() && mounting())
 		return create_encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	    else if (creating() && encrypting() && formatting())
 		return create_encrypted_with_fs_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>())
+	    else if (creating() && encrypting())
 		return create_encrypted_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (creating() && formatting() && mounting())
 		return create_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>())
+	    else if (creating() && formatting())
 		return create_with_fs_text();
 
-	    else if (has_create<storage::Partition>())
+	    else if (creating())
 		return create_text();
 
-	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (encrypting() && formatting() && mounting())
 		return encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	    else if (encrypting() && formatting())
 		return encrypted_with_fs_text();
 
-	    else if (has_create<storage::Encryption>())
+	    else if (encrypting())
 		return encrypted_text();
 
-	    else if (has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (formatting() && mounting())
 		return fs_and_mount_point_text();
 
-	    else if (has_create<storage::BlkFilesystem>())
+	    else if (formatting())
 		return fs_text();
 
-	    else if (has_create<storage::MountPoint>())
+	    else if (mounting())
 		return mount_point_text();
 
 	    else
