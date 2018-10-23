@@ -75,6 +75,12 @@ namespace storage
         bool formatting() const { return has_create<storage::BlkFilesystem>(); }
         bool mounting()   const { return has_create<storage::MountPoint>();    }
 
+        // Getters for better code readability
+
+        string get_device_name()     const { return partition->get_name();        }
+        string get_size()            const { return partition->get_size_string(); }
+        string get_mount_point()     const { return get_created_filesystem()->get_mount_point()->get_path(); }
+        string get_filesystem_type() const { return get_created_filesystem()->get_displayname(); }
 
     private:
 
