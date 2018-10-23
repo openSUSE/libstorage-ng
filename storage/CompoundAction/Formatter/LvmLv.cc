@@ -21,7 +21,6 @@
 
 
 #include "storage/CompoundAction/Formatter/LvmLv.h"
-#include "storage/Devices/LvmVg.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Filesystems/Swap.h"
@@ -39,49 +38,49 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmLv::text() const
     {
-	if (has_create<storage::BlkFilesystem>() && is_swap(get_created_filesystem()))
+	if (formatting() && is_swap(get_created_filesystem()))
 	{
-	    if (has_create<storage::Encryption>())
+	    if (encrypting())
 		return create_encrypted_with_swap_text();
 
 	    else
 		return create_with_swap_text();
 	}
 
-	else if (has_create<storage::LvmLv>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	else if (creating() && encrypting() && formatting() && mounting())
 	    return create_encrypted_with_fs_and_mount_point_text();
 
-	else if (has_create<storage::LvmLv>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	else if (creating() && encrypting() && formatting())
 	    return create_encrypted_with_fs_text();
 
-	else if (has_create<storage::LvmLv>() && has_create<storage::Encryption>())
+	else if (creating() && encrypting())
 	    return create_encrypted_text();
 
-	else if (has_create<storage::LvmLv>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	else if (creating() && formatting() && mounting())
 	    return create_with_fs_and_mount_point_text();
 
-	else if (has_create<storage::LvmLv>() && has_create<storage::BlkFilesystem>())
+	else if (creating() && formatting())
 	    return create_with_fs_text();
 
-	else if (has_create<storage::LvmLv>())
+	else if (creating())
 	    return create_text();
 
-	else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	else if (encrypting() && formatting() && mounting())
 	    return encrypted_with_fs_and_mount_point_text();
 
-	else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	else if (encrypting() && formatting())
 	    return encrypted_with_fs_text();
 
-	else if (has_create<storage::Encryption>())
+	else if (encrypting())
 	    return encrypted_text();
 
-	else if (has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	else if (formatting() && mounting())
 	    return fs_and_mount_point_text();
 
-	else if (has_create<storage::BlkFilesystem>())
+	else if (formatting())
 	    return fs_text();
 
-	else if (has_create<storage::MountPoint>())
+	else if (mounting())
 	    return mount_point_text();
 
 	else
@@ -99,9 +98,9 @@ namespace storage
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str());
     }
 
 
@@ -115,17 +114,15 @@ namespace storage
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -135,19 +132,17 @@ namespace storage
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -156,10 +151,10 @@ namespace storage
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -173,17 +168,15 @@ namespace storage
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::create_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -193,19 +186,17 @@ namespace storage
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::create_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -214,10 +205,10 @@ namespace storage
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -231,17 +222,15 @@ namespace storage
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -251,19 +240,17 @@ namespace storage
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -272,10 +259,10 @@ namespace storage
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -289,17 +276,15 @@ namespace storage
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -309,19 +294,17 @@ namespace storage
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -330,17 +313,17 @@ namespace storage
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::LvmLv::mount_point_text() const
     {
-	auto mount_point = get_created_mount_point();
+	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
 	// %1$s is replaced by logical volume name (e.g. root),
@@ -350,10 +333,10 @@ namespace storage
 	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
 	return sformat(text,
-		       lv->get_name().c_str(),
-		       lv->get_size_string().c_str(),
-		       lv->get_lvm_vg()->get_vg_name().c_str(),
-		       mount_point->get_path().c_str());
+		       get_lv_name().c_str(),
+		       get_size().c_str(),
+		       get_vg_name().c_str(),
+		       mount_point.c_str());
     }
 
 }

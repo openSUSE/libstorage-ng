@@ -26,6 +26,7 @@
 
 #include "storage/CompoundAction/Formatter.h"
 #include "storage/Devices/LvmLv.h"
+#include "storage/Devices/LvmVg.h"
 
 
 namespace storage
@@ -57,6 +58,16 @@ namespace storage
 	Text fs_and_mount_point_text() const;
 	Text fs_text() const;
 	Text mount_point_text() const;
+
+        // Predicates for better code readability
+
+        bool creating()      const { return has_create<storage::LvmLv>(); }
+
+        // Getters for better code readability
+
+        string get_lv_name() const { return lv->get_name();                  }
+        string get_vg_name() const { return lv->get_lvm_vg()->get_vg_name(); }
+        string get_size()    const { return lv->get_size_string();           }
 
     private:
 
