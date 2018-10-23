@@ -66,9 +66,19 @@ namespace storage
 	Text fs_text() const;
 	Text mount_point_text() const;
 
+        // Predicates for better code readability
+
+        bool creating()   const { return has_create<storage::Partition>();     }
+        bool deleting()   const { return has_delete<storage::Partition>();     }
+
+        // Getters for better code readability
+
+        string get_device_name()     const { return partition->get_name();        }
+        string get_size()            const { return partition->get_size_string(); }
+
     private:
 
-	const storage::Partition* partition;
+	const storage::Partition * partition;
 
     };
 

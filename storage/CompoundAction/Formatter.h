@@ -28,6 +28,8 @@
 
 #include "storage/CompoundActionImpl.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Filesystems/MountPoint.h"
+#include "storage/Devices/Encryption.h"
 #include "storage/Utils/Text.h"
 
 
@@ -124,6 +126,17 @@ namespace storage
 	    return nullptr;
 	}
 
+
+        // Predicates
+
+        bool encrypting() const { return has_create<storage::Encryption>();    }
+        bool formatting() const { return has_create<storage::BlkFilesystem>(); }
+        bool mounting()   const { return has_create<storage::MountPoint>();    }
+
+        // Getters
+
+        string get_mount_point()     const { return get_created_filesystem()->get_mount_point()->get_path(); }
+        string get_filesystem_type() const { return get_created_filesystem()->get_displayname(); }
 
     protected:
 

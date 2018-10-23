@@ -22,9 +22,7 @@
 
 #include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Devices/Encryption.h"
 #include "storage/Devices/PartitionImpl.h"
-#include "storage/Filesystems/MountPoint.h"
 #include "storage/Filesystems/Swap.h"
 
 
@@ -40,27 +38,27 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::text() const
     {
-	if (has_delete<storage::Partition>())
+	if (deleting())
 	    return delete_text();
 
 	else if (has_create<storage::LvmPv>())
 	{
-	    if (has_create<storage::Partition>() && has_create<storage::Encryption>())
+	    if (creating() && encrypting())
 		return create_encrypted_pv_text();
 
-	    else if (has_create<storage::Partition>())
+	    else if (creating())
 		return create_pv_text();
 
-	    else if (has_create<storage::Encryption>())
+	    else if (encrypting())
 		return encrypted_pv_text();
 
 	    else
 		return pv_text();
 	}
 
-	else if (has_create<storage::BlkFilesystem>() && is_swap(get_created_filesystem()))
+	else if (formatting() && is_swap(get_created_filesystem()))
 	{
-	    if (has_create<storage::Encryption>())
+	    if (encrypting())
 		return create_encrypted_with_swap_text();
 
 	    else
@@ -69,40 +67,40 @@ namespace storage
 
 	else
 	{
-	    if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    if (creating() && encrypting() && formatting() && mounting())
 		return create_encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	    else if (creating() && encrypting() && formatting())
 		return create_encrypted_with_fs_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::Encryption>())
+	    else if (creating() && encrypting())
 		return create_encrypted_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (creating() && formatting() && mounting())
 		return create_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Partition>() && has_create<storage::BlkFilesystem>())
+	    else if (creating() && formatting())
 		return create_with_fs_text();
 
-	    else if (has_create<storage::Partition>())
+	    else if (creating())
 		return create_text();
 
-	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (encrypting() && formatting() && mounting())
 		return encrypted_with_fs_and_mount_point_text();
 
-	    else if (has_create<storage::Encryption>() && has_create<storage::BlkFilesystem>())
+	    else if (encrypting() && formatting())
 		return encrypted_with_fs_text();
 
-	    else if (has_create<storage::Encryption>())
+	    else if (encrypting())
 		return encrypted_text();
 
-	    else if (has_create<storage::BlkFilesystem>() && has_create<storage::MountPoint>())
+	    else if (formatting() && mounting())
 		return fs_and_mount_point_text();
 
-	    else if (has_create<storage::BlkFilesystem>())
+	    else if (formatting())
 		return fs_text();
 
-	    else if (has_create<storage::MountPoint>())
+	    else if (mounting())
 		return mount_point_text();
 
 	    else
@@ -119,7 +117,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Delete partition %1$s (%2$s)");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
@@ -131,7 +129,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical volume");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
@@ -143,7 +141,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create partition %1$s (%2$s) as LVM physical volume");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
@@ -155,7 +153,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create LVM physical volume over encrypted %1$s (%2$s)");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
@@ -167,7 +165,7 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create LVM volume device over %1$s (%2$s)");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
@@ -180,8 +178,8 @@ namespace storage
 	Text text = _("Create encrypted partition %1$s (%2$s) for swap");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str());
     }
 
 
@@ -194,16 +192,14 @@ namespace storage
 	Text text = _("Create partition %1$s (%2$s) for swap");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::create_encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -212,18 +208,16 @@ namespace storage
 	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::create_encrypted_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -231,9 +225,9 @@ namespace storage
 	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -245,15 +239,13 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s)");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::create_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -262,18 +254,16 @@ namespace storage
 	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::create_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -281,9 +271,9 @@ namespace storage
 	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -300,8 +290,8 @@ namespace storage
 	    // %3$s is replaced by partition id string (e.g. Linux LVM)
 	    Text text = _("Create partition %1$s (%2$s) as %3$s");
 
-	    return sformat(text, partition->get_name().c_str(),
-			   partition->get_size_string().c_str(), tmp.c_str());
+	    return sformat(text, get_device_name().c_str(),
+			   get_size().c_str(), tmp.c_str());
 	}
 	else
 	{
@@ -310,8 +300,8 @@ namespace storage
 	    // %2$s is replaced by size (e.g. 2 GiB)
 	    Text text = _("Create partition %1$s (%2$s)");
 
-	    return sformat(text, partition->get_name().c_str(),
-			   partition->get_size_string().c_str());
+	    return sformat(text, get_device_name().c_str(),
+			   get_size().c_str());
 	}
     }
 
@@ -319,8 +309,6 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::encrypted_with_fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -329,18 +317,16 @@ namespace storage
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::encrypted_with_fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -348,9 +334,9 @@ namespace storage
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
@@ -362,15 +348,13 @@ namespace storage
 	// %2$s is replaced by size (e.g. 2GiB),
 	Text text = _("Encrypt partition %1$s (%2$s)");
 
-	return sformat(text, partition->get_name().c_str(), partition->get_size_string().c_str());
+	return sformat(text, get_device_name().c_str(), get_size().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::fs_and_mount_point_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -379,18 +363,16 @@ namespace storage
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_mount_point()->get_path().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_mount_point().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::fs_text() const
     {
-	auto filesystem = get_created_filesystem();
-
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
 	// %2$s is replaced by size (e.g. 2GiB),
@@ -398,16 +380,16 @@ namespace storage
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       filesystem->get_displayname().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+		       get_filesystem_type().c_str());
     }
 
 
     Text
     CompoundAction::Formatter::Partition::mount_point_text() const
     {
-	auto mount_point = get_created_mount_point();
+	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
 	// %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -416,9 +398,9 @@ namespace storage
 	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
 	return sformat(text,
-		       partition->get_name().c_str(),
-		       partition->get_size_string().c_str(),
-		       mount_point->get_path().c_str());
+		       get_device_name().c_str(),
+		       get_size().c_str(),
+                       mount_point.c_str());
     }
 
 }
