@@ -22,9 +22,7 @@
 
 #include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Devices/Encryption.h"
 #include "storage/Devices/PartitionImpl.h"
-#include "storage/Filesystems/MountPoint.h"
 #include "storage/Filesystems/Swap.h"
 
 
