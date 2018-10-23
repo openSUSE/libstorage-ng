@@ -26,6 +26,7 @@
 
 #include "storage/CompoundAction/Formatter.h"
 #include "storage/Devices/Partition.h"
+#include "storage/Filesystems/MountPoint.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 
 
@@ -68,15 +69,16 @@ namespace storage
 
         // Predicates for better code readability
 
-        bool creating()   const { has_create<storage::Partition>();     }
-        bool deleting()   const { has_delete<storage::Partition>();     }
-        bool encrypting() const { has_create<storage::Encryption>();    }
-        bool formatting() const { has_create<storage::BlkFilesystem>(); }
-        bool mounting()   const { has_create<storage::MountPoint>();    }
+        bool creating()   const { return has_create<storage::Partition>();     }
+        bool deleting()   const { return has_delete<storage::Partition>();     }
+        bool encrypting() const { return has_create<storage::Encryption>();    }
+        bool formatting() const { return has_create<storage::BlkFilesystem>(); }
+        bool mounting()   const { return has_create<storage::MountPoint>();    }
+
 
     private:
 
-	const storage::Partition* partition;
+	const storage::Partition * partition;
 
     };
 
