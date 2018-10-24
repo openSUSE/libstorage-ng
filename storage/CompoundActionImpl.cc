@@ -25,6 +25,7 @@
 #include "storage/CompoundActionImpl.h"
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CompoundAction/Formatter/Partition.h"
+#include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/CompoundAction/Formatter/LvmLv.h"
 #include "storage/CompoundAction/Formatter/LvmVg.h"
 #include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
@@ -105,6 +106,9 @@ namespace storage
     {
 	if (is_partition(target_device))
 	    return CompoundAction::Formatter::Partition(this).string_representation();
+
+	if (is_stray_blk_device(target_device))
+	    return CompoundAction::Formatter::StrayBlkDevice(this).string_representation();
 
 	else if (is_lvm_lv(target_device))
 	    return CompoundAction::Formatter::LvmLv(this).string_representation();

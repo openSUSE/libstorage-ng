@@ -47,6 +47,7 @@ namespace storage
 	class LvmVg;
 	class Nfs;
 	class Partition;
+	class StrayBlkDevice;
 
 	Formatter(const CompoundAction::Impl* compound_action);
 	virtual ~Formatter();

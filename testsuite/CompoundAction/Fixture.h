@@ -38,6 +38,8 @@ namespace storage
 		sda2 = gpt->create_partition("/dev/sda2", Region(2048, 500 * 2048, 512), PartitionType::PRIMARY);
 	    }
 
+
+
 	    void
 	    initialize_with_devicegraph(string devicegraph_file)
 	    {
@@ -72,6 +74,15 @@ namespace storage
 
 		return nullptr;
 	    }
+
+
+            void
+            copy_staging_to_probed()
+            {
+                storage->remove_devicegraph("system");
+                storage->copy_devicegraph("staging", "system");
+            }
+
 
 	    shared_ptr<Storage> storage;
 	    Devicegraph* staging;

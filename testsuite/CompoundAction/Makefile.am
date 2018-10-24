@@ -10,9 +10,16 @@ AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../../storage/libstorage-ng.la libcompoundactionfixture.la -lboost_unit_test_framework
 
-check_PROGRAMS = btrfs-subvolume-sentence.test lvm-vg-sentence.test lvm-lv-sentence.test \
-		 nfs-sentence.test partition-sentence.test is-delete.test encrypted-sentence.test
-		 
+check_PROGRAMS =                                \
+	btrfs-subvolume-sentence.test           \
+	encrypted-sentence.test                 \
+	is-delete.test                          \
+	lvm-lv-sentence.test                    \
+	lvm-vg-sentence.test                    \
+	nfs-sentence.test                       \
+	partition-sentence.test                 \
+	stray-blk-device-sentence.test
+
 AM_DEFAULT_SOURCE_EXT = .cc
 
 TESTS = $(check_PROGRAMS)
