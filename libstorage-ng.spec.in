@@ -183,7 +183,7 @@ touch %{buildroot}/run/libstorage-ng/lock
 
 %files -n %{libname}
 %defattr(-,root,root)
-%doc AUTHORS LICENSE
+%license AUTHORS LICENSE
 %{_libdir}/libstorage-ng.so.*
 %ghost /run/libstorage-ng
 
