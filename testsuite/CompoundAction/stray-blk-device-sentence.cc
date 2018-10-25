@@ -3,7 +3,6 @@
 #define BOOST_TEST_MODULE libstorage
 
 #include <boost/test/unit_test.hpp>
-#include <iostream>
 
 #include "storage/Devices/StrayBlkDevice.h"
 #include "storage/Devices/Encryption.h"
@@ -45,8 +44,6 @@ namespace storage
 }
 
 using namespace storage;
-using std::cout;
-using std::endl;
 
 
 BOOST_FIXTURE_TEST_SUITE(stray_blk_device_sentence, test::StrayBlkDeviceFixture)
