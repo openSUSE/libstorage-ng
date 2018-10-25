@@ -30,9 +30,11 @@ namespace storage
 {
 
     CompoundAction::Formatter::Partition::Partition(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action),
+	CompoundAction::Formatter(compound_action, "Partition"),
 	partition(to_partition(compound_action->get_target_device()))
-    {}
+    {
+
+    }
 
 
     Text

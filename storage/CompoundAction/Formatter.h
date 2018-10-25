@@ -32,6 +32,8 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Utils/Text.h"
 
+using std::string;
+
 
 namespace storage
 {
@@ -49,10 +51,11 @@ namespace storage
 	class Partition;
 	class StrayBlkDevice;
 
-	Formatter(const CompoundAction::Impl* compound_action);
+	Formatter(const CompoundAction::Impl* compound_action,
+                  const string & device_classname = string() );
 	virtual ~Formatter();
 
-	std::string string_representation() const;
+	string string_representation() const;
 
     private:
 
@@ -64,7 +67,15 @@ namespace storage
 
 	const MountPoint* get_created_mount_point() const;
 
+        const char * get_device_classname() const;
+
 	Text default_text() const;
+
+        // See also the template has_create()
+        bool has_create(const string &classname) const;
+
+        // See also the template has_delete()
+        bool has_delete(const string &classname) const;
 
 	template <typename Type>
 	bool has_action() const
@@ -76,7 +87,7 @@ namespace storage
 	template <typename Type>
 	const Action::Base* get_action() const
 	{
-	    for(auto action : compound_action->get_commit_actions())
+	    for (auto action : _compound_action->get_commit_actions())
 	    {
 		if (is_action_of_type<const Type>(action))
 		    return action;
@@ -86,6 +97,7 @@ namespace storage
 	}
 
 
+        // See also has_create(const string&)
 	template <typename Type>
 	bool has_create() const
 	{
@@ -96,9 +108,9 @@ namespace storage
 	template <typename Type>
 	const Action::Base* get_create() const
 	{
-	    for(auto action : compound_action->get_commit_actions())
+	    for (auto action : _compound_action->get_commit_actions())
 	    {
-		auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+		auto device = CompoundAction::Impl::device(_compound_action->get_actiongraph(), action);
 		if (is_create(action) && is_device_of_type<const Type>(device))
 		    return action;
 	    }
@@ -107,6 +119,7 @@ namespace storage
 	}
 
 
+        // See also has_delete(const string&)
 	template <typename Type>
 	bool has_delete() const
 	{
@@ -117,9 +130,9 @@ namespace storage
 	template <typename Type>
 	const Action::Base* get_delete() const
 	{
-	    for(auto action : compound_action->get_commit_actions())
+	    for (auto action : _compound_action->get_commit_actions())
 	    {
-		auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+		auto device = CompoundAction::Impl::device(_compound_action->get_actiongraph(), action);
 		if (storage::is_delete(action) && is_device_of_type<const Type>(device))
 		    return action;
 	    }
@@ -130,9 +143,11 @@ namespace storage
 
         // Predicates
 
-        bool encrypting() const { return has_create<storage::Encryption>();    }
-        bool formatting() const { return has_create<storage::BlkFilesystem>(); }
-        bool mounting()   const { return has_create<storage::MountPoint>();    }
+        virtual bool creating()   const { return _creating;   }
+        virtual bool deleting()   const { return _deleting;   }
+        virtual bool encrypting() const { return _encrypting; }
+        virtual bool formatting() const { return _formatting; }
+        virtual bool mounting()   const { return _mounting;   }
 
         // Getters
 
@@ -141,8 +156,13 @@ namespace storage
 
     protected:
 
-	const CompoundAction::Impl* compound_action;
-
+	const CompoundAction::Impl* _compound_action;
+        string     _device_classname;
+        bool       _creating;
+        bool       _deleting;
+        bool       _encrypting;
+        bool       _formatting;
+        bool       _mounting;
     };
 
 }

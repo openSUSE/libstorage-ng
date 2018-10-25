@@ -55,16 +55,12 @@ namespace storage
 	Text fs_text() const;
 	Text mount_point_text() const;
 
-
-        // Getters for better code readability
-
         string get_device_name()     const { return stray_blk_device->get_name();        }
         string get_size()            const { return stray_blk_device->get_size_string(); }
 
     private:
 
 	const storage::StrayBlkDevice * stray_blk_device;
-
     };
 
 }
