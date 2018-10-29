@@ -22,7 +22,6 @@
 
 #include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/Devices/LvmPv.h"
-#include "storage/Devices/PartitionImpl.h"
 #include "storage/Filesystems/Swap.h"
 
 
