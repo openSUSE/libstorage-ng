@@ -149,6 +149,8 @@ namespace storage
 	// Calculate the index of the suffix to use. The index increases by 1
 	// when the number of leading zeros decreases by 10.
 
+	static_assert(sizeof(size) == 8, "unsigned long long not 64 bit");
+
 	int i = size > 0 ? (64 - (clz(size) + 1)) / 10 : 0;
 
 	if ((i == 0) || (omit_zeroes && is_multiple_of(size, 1ULL << 10 * i)))
