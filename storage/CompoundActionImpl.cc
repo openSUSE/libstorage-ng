@@ -24,13 +24,14 @@
 
 #include "storage/CompoundActionImpl.h"
 #include "storage/CompoundAction/Generator.h"
-#include "storage/CompoundAction/Formatter/Partition.h"
-#include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
+#include "storage/CompoundAction/Formatter/Bcache.h"
+#include "storage/CompoundAction/Formatter/Btrfs.h"
+#include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
 #include "storage/CompoundAction/Formatter/LvmLv.h"
 #include "storage/CompoundAction/Formatter/LvmVg.h"
-#include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
-#include "storage/CompoundAction/Formatter/Btrfs.h"
 #include "storage/CompoundAction/Formatter/Nfs.h"
+#include "storage/CompoundAction/Formatter/Partition.h"
+#include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Devices/PartitionTable.h"
 #include "storage/Devices/Partitionable.h"
@@ -45,20 +46,20 @@ namespace storage
 {
 
     CompoundAction::Impl::Impl(const Actiongraph* actiongraph)
-    : actiongraph(actiongraph), target_device(nullptr), commit_actions(0) 
+    : actiongraph(actiongraph), target_device(nullptr), commit_actions(0)
     {}
 
-    
+
     CompoundAction::Impl::~Impl() {}
 
-    
+
     const Actiongraph*
     CompoundAction::Impl::get_actiongraph() const
     {
 	return actiongraph;
     }
 
-    
+
     void CompoundAction::Impl::set_target_device(const Device* device)
     {
 	this->target_device = device;
@@ -125,11 +126,14 @@ namespace storage
 	else if (is_nfs(target_device))
 	    return CompoundAction::Formatter::Nfs(this).string_representation();
 
+	else if (is_bcache(target_device))
+	    return CompoundAction::Formatter::Bcache(this).string_representation();
+
 	else
-	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");	
+	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");
     }
-	
-    
+
+
     bool
     CompoundAction::Impl::is_delete() const
     {
@@ -144,7 +148,7 @@ namespace storage
 
 
     // static methods
-    
+
 
     const Device*
     CompoundAction::Impl::get_target_device(const Actiongraph* actiongraph, const Action::Base* action)
@@ -173,7 +177,7 @@ namespace storage
 
 	return device;
     }
-    
+
 
     const Device*
     CompoundAction::Impl::get_target_device(const PartitionTable* partition_table)
@@ -199,12 +203,12 @@ namespace storage
     const Device*
     CompoundAction::Impl::get_target_device(const BlkFilesystem* blk_filesystem)
     {
-	auto blk_devices = blk_filesystem->get_blk_devices(); 
+	auto blk_devices = blk_filesystem->get_blk_devices();
 
 	if (blk_devices.size() > 1)
 	    // BtrFS with several devices
 	    return blk_filesystem;
-	    
+
 	return get_target_device(blk_devices.front());
     }
 
@@ -223,7 +227,7 @@ namespace storage
 	    return device(actiongraph, dynamic_cast<const Action::Create*>(action));
 
 	else if (storage::is_modify(action))
-	    return device(actiongraph, dynamic_cast<const Action::Modify*>(action)); 
+	    return device(actiongraph, dynamic_cast<const Action::Modify*>(action));
 
 	else if (storage::is_delete(action))
 	    return device(actiongraph, dynamic_cast<const Action::Delete*>(action));
@@ -246,16 +250,16 @@ namespace storage
 	try
 	{
 	    return action->get_device(actiongraph->get_impl(), RHS);
-	
+
 	}
 	catch(const DeviceNotFound& e)
 	{
-	
+
 	    return action->get_device(actiongraph->get_impl(), LHS);
 	}
     }
 
-    
+
     const Device*
     CompoundAction::Impl::device(const Actiongraph* actiongraph, const Action::Delete* action)
     {

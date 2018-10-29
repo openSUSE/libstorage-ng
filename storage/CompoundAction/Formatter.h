@@ -43,6 +43,7 @@ namespace storage
 
     public:
 
+	class Bcache;
 	class Btrfs;
 	class BtrfsSubvolume;
 	class LvmLv;
@@ -52,7 +53,7 @@ namespace storage
 	class StrayBlkDevice;
 
 	Formatter(const CompoundAction::Impl* compound_action,
-                  const string & device_classname = string() );
+		  const string & device_classname = string() );
 	virtual ~Formatter();
 
 	string string_representation() const;
@@ -67,15 +68,15 @@ namespace storage
 
 	const MountPoint* get_created_mount_point() const;
 
-        const char * get_device_classname() const;
+	const char * get_device_classname() const;
 
 	Text default_text() const;
 
-        // See also the template has_create()
-        bool has_create(const string &classname) const;
+	// See also the template has_create()
+	bool has_create(const string &classname) const;
 
-        // See also the template has_delete()
-        bool has_delete(const string &classname) const;
+	// See also the template has_delete()
+	bool has_delete(const string &classname) const;
 
 	template <typename Type>
 	bool has_action() const
@@ -97,7 +98,7 @@ namespace storage
 	}
 
 
-        // See also has_create(const string&)
+	// See also has_create(const string&)
 	template <typename Type>
 	bool has_create() const
 	{
@@ -119,7 +120,7 @@ namespace storage
 	}
 
 
-        // See also has_delete(const string&)
+	// See also has_delete(const string&)
 	template <typename Type>
 	bool has_delete() const
 	{
@@ -141,28 +142,28 @@ namespace storage
 	}
 
 
-        // Predicates
+	// Predicates
 
-        virtual bool creating()   const { return _creating;   }
-        virtual bool deleting()   const { return _deleting;   }
-        virtual bool encrypting() const { return _encrypting; }
-        virtual bool formatting() const { return _formatting; }
-        virtual bool mounting()   const { return _mounting;   }
+	virtual bool creating()	  const { return _creating;   }
+	virtual bool deleting()	  const { return _deleting;   }
+	virtual bool encrypting() const { return _encrypting; }
+	virtual bool formatting() const { return _formatting; }
+	virtual bool mounting()	  const { return _mounting;   }
 
-        // Getters
+	// Getters
 
-        string get_mount_point()     const { return get_created_filesystem()->get_mount_point()->get_path(); }
-        string get_filesystem_type() const { return get_created_filesystem()->get_displayname(); }
+	string get_mount_point()     const { return get_created_filesystem()->get_mount_point()->get_path(); }
+	string get_filesystem_type() const { return get_created_filesystem()->get_displayname(); }
 
     protected:
 
 	const CompoundAction::Impl* _compound_action;
-        string     _device_classname;
-        bool       _creating;
-        bool       _deleting;
-        bool       _encrypting;
-        bool       _formatting;
-        bool       _mounting;
+	string  _device_classname;
+	bool	_creating;
+	bool	_deleting;
+	bool	_encrypting;
+	bool	_formatting;
+	bool	_mounting;
     };
 
 }
