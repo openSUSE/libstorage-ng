@@ -30,7 +30,7 @@ namespace storage
 {
 
     CompoundAction::Formatter::LvmLv::LvmLv(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action),
+	CompoundAction::Formatter(compound_action, "LvmLv"),
 	lv(to_lvm_lv(compound_action->get_target_device()))
     {}
 
