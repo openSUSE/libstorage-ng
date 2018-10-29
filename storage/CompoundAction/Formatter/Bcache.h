@@ -43,6 +43,9 @@ namespace storage
 
 	Text text() const override;
 
+        Text bcache_text() const;
+        Text bcache_cset_text() const;
+
         Text format_as_swap_text() const;
         Text format_as_encrypted_swap_text() const;
         Text encrypted_pv_text() const;
@@ -60,7 +63,8 @@ namespace storage
 
     private:
 
-	const storage::Bcache * bcache;
+	const storage::Bcache     * bcache;
+        const storage::BcacheCset * bcache_cset;
     };
 
 }

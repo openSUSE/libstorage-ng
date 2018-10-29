@@ -20,10 +20,14 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/CompoundAction/Formatter/Bcache.h"
 #include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/Swap.h"
+
 
 
 namespace storage
@@ -31,12 +35,30 @@ namespace storage
 
     CompoundAction::Formatter::Bcache::Bcache(const CompoundAction::Impl* compound_action) :
 	CompoundAction::Formatter(compound_action, "Bcache"),
-	bcache(to_bcache(compound_action->get_target_device()))
-    {}
+	bcache(to_bcache(compound_action->get_target_device())),
+        bcache_cset(bcache->get_bcache_cset())
+    {
+    }
 
 
     Text
     CompoundAction::Formatter::Bcache::text() const
+    {
+        Text text = bcache_text();
+        Text cset_text = bcache_cset_text();
+
+        if ( ! cset_text.translated.empty() )
+        {
+            text += Text( "\n", "\n" );
+            text += cset_text;
+        }
+
+        return text;
+    }
+
+
+    Text
+    CompoundAction::Formatter::Bcache::bcache_text() const
     {
 	if ( has_create<storage::LvmPv>() )
 	{
@@ -75,6 +97,36 @@ namespace storage
 	    else
 		return default_text();
 	}
+    }
+
+
+    Text
+    CompoundAction::Formatter::Bcache::bcache_cset_text() const
+    {
+        Text dev_list_text;
+
+        for ( const BlkDevice * device: bcache_cset->get_blk_devices() )
+        {
+            if ( ! dev_list_text.translated.empty() )
+                dev_list_text += Text( ", ", ", " );
+
+            // TRANSLATORS:
+            // %1$s is replaced by the device name (e.g. /dev/sdc1),
+            // %2$s is replaced by the size (e.g. 60 GiB)
+            Text dev_text = _("%1$s (%2$s)");
+
+            dev_list_text += sformat(dev_text,
+                                     device->get_name().c_str(),
+                                     device->get_size_string().c_str());
+        }
+
+	// TRANSLATORS:
+	// %1$s is replaced by the bcache device name (e.g. /dev/bcache0),
+	// %2$s is replaced by a list of cache devices with size
+        // (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+        Text text = _( "Cache %1$s with %2$s" );
+
+        return sformat(text, get_device_name().c_str(), dev_list_text.translated.c_str());
     }
 
 

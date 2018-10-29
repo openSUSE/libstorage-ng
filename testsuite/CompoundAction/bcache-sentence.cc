@@ -116,7 +116,11 @@ BOOST_AUTO_TEST_CASE( test1 )
     
     BOOST_CHECK_EQUAL( compound_action1->sentence(),
 		       "Create encrypted Bcache /dev/bcache1 on /dev/sdb (512 GiB) from /dev/sdg (160.00 GiB), /dev/sdh (64 MiB) for /home with XFS" );
-    
+
+#if 1
+    cout << "\naction0:\n" << compound_action0->sentence() << "\n" << endl;
+    cout << "\naction1:\n" << compound_action1->sentence() << "\n" << endl;
+#endif
 }
 
 

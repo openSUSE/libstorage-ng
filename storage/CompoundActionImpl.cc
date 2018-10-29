@@ -33,10 +33,11 @@
 #include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/ActiongraphImpl.h"
-#include "storage/Devices/PartitionTable.h"
-#include "storage/Devices/Partitionable.h"
+#include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/LvmPv.h"
+#include "storage/Devices/PartitionTable.h"
+#include "storage/Devices/Partitionable.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/Exception.h"
@@ -126,7 +127,7 @@ namespace storage
 	else if (is_nfs(target_device))
 	    return CompoundAction::Formatter::Nfs(this).string_representation();
 
-	else if (is_bcache(target_device))
+	else if (is_bcache(target_device) || is_bcache_cset(target_device))
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
 
 	else
