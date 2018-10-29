@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -47,7 +47,20 @@ namespace storage
 
 	virtual Msdos* clone() const override;
 
+	/**
+	 * Get the size of the MBR gap (see
+	 * https://en.wikipedia.org/wiki/BIOS_boot_partition). Here
+	 * the MBR gap includes the 512 bytes for the MBR itself.
+	 *
+	 * @see set_minimal_mbr_gap()
+	 */
 	unsigned long get_minimal_mbr_gap() const;
+
+	/**
+	 * Set the size of the MBR gap.
+	 *
+	 * @see get_minimal_mbr_gap()
+	 */
 	void set_minimal_mbr_gap(unsigned long minimal_mbr_gap);
 
     protected:
