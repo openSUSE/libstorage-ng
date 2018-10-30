@@ -154,6 +154,7 @@ namespace storage
         //   the RAID is built from and their sizes: e.g.
         //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create encrypted %1$s %2$s (%3$s) for swap\nfrom %4$s" );
+        text += _( "\nare you serious?!" );
 
 	return sformat( text,
                         get_md_level().c_str(),

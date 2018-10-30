@@ -272,7 +272,8 @@ BOOST_AUTO_TEST_CASE( test_create_encrypted_swap )
 
     string expected =
         "Create encrypted RAID1 /dev/md1 (511.87 GiB) for swap\n"
-        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)";
+        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)"
+        "\nare you serious?!";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
