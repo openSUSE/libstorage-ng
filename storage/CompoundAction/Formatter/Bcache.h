@@ -43,14 +43,20 @@ namespace storage
 
 	Text text() const override;
 
-        Text bcache_text() const;
-        Text bcache_cset_text() const;
+	Text bcache_text() const;
+	Text bcache_cset_text() const;
 
-        Text format_as_swap_text() const;
-        Text format_as_encrypted_swap_text() const;
-        Text encrypted_pv_text() const;
-	Text pv_text() const;
+	Text delete_text() const;
 
+	Text create_encrypted_with_swap_text() const;
+	Text create_with_swap_text() const;
+
+	Text create_encrypted_with_fs_and_mount_point_text() const;
+	Text create_encrypted_with_fs_text() const;
+	Text create_encrypted_text() const;
+	Text create_with_fs_and_mount_point_text() const;
+	Text create_with_fs_text() const;
+	Text create_text() const;
 	Text encrypted_with_fs_and_mount_point_text() const;
 	Text encrypted_with_fs_text() const;
 	Text encrypted_text() const;
@@ -58,13 +64,14 @@ namespace storage
 	Text fs_text() const;
 	Text mount_point_text() const;
 
-        string get_device_name()     const { return bcache->get_name();        }
-        string get_size()            const { return bcache->get_size_string(); }
+	string get_bcache_name() const { return bcache->get_name(); }
+	string get_device_name() const { return bcache->get_blk_device()->get_name(); }
+	string get_size()	 const { return bcache->get_size_string(); }
 
     private:
 
-	const storage::Bcache     * bcache;
-        const storage::BcacheCset * bcache_cset;
+	const storage::Bcache	  * bcache;
+	const storage::BcacheCset * bcache_cset;
     };
 
 }

@@ -23,15 +23,8 @@
 #define TiB		(1024L*GiB)
 
 
-// DEBUG
-// DEBUG
-// DEBUG
-#include <iostream>
 using std::cout;
 using std::endl;
-// DEBUG
-// DEBUG
-// DEBUG
 
 
 namespace storage
@@ -45,7 +38,10 @@ namespace storage
 		disk1(0),
 		ssd0(0),
 		ssd1(0),
-		ssd2(0)
+                bcache0(0),
+                bcache1(0),
+                cset0(0),
+                cset1(0)
 	    {
                 init_disks();
             }
@@ -58,21 +54,46 @@ namespace storage
 		staging = storage->get_staging();
 
 		disk0 = Disk::create( staging, "/dev/sda", Region( 0,   2*TiB, BLOCK_SIZE ) );
-		disk1 = Disk::create( staging, "/dev/sdb", Region( 0, 512*MiB, BLOCK_SIZE ) );
+		disk1 = Disk::create( staging, "/dev/sdb", Region( 0, 512*GiB, BLOCK_SIZE ) );
 
 		ssd0  = Disk::create( staging, "/dev/sdf", Region( 0, 128*MiB, BLOCK_SIZE ) );
 		ssd1  = Disk::create( staging, "/dev/sdg", Region( 0, 160*MiB, BLOCK_SIZE ) );
-		ssd2  = Disk::create( staging, "/dev/sdh", Region( 0,  64*MiB, BLOCK_SIZE ) );
 
 		copy_staging_to_probed();
 	    }
 
 
-	    Disk * disk0;
-	    Disk * disk1;
-	    Disk * ssd0;
-	    Disk * ssd1;
-	    Disk * ssd2;
+            void init_bcaches()
+            {
+                init_bcache0();
+                init_bcache1();
+            }
+
+
+            void init_bcache0()
+            {
+                cset0 = ssd0->create_bcache_cset();
+                bcache0 = disk0->create_bcache( "/dev/bcache0" );
+                bcache0->attach_bcache_cset( cset0 );
+            }
+
+
+            void init_bcache1()
+            {
+                cset1 = ssd1->create_bcache_cset();
+                bcache1 = disk1->create_bcache( "/dev/bcache1" );
+                bcache1->attach_bcache_cset( cset1 );
+            }
+
+
+	    Disk       * disk0;
+ 	    Disk       * disk1;
+	    Disk       * ssd0;
+	    Disk       * ssd1;
+            Bcache     * bcache0;
+            Bcache     * bcache1;
+            BcacheCset * cset0;
+            BcacheCset * cset1;
 	};
     }
 }
@@ -82,44 +103,129 @@ using namespace storage;
 BOOST_FIXTURE_TEST_SUITE( bcache_sentence, test::BCacheFixture )
 
 
-BOOST_AUTO_TEST_CASE( test1 )
+BOOST_AUTO_TEST_CASE( test_create )
 {
-    BcacheCset * cset0 = ssd0->create_bcache_cset();
-    Bcache * bcache0 = disk0->create_bcache( "/dev/bcache0" );
-    bcache0->attach_bcache_cset( cset0 );
+    init_bcaches();
 
     BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
     ext4->create_mount_point( "/data" );
-
-    
-    BcacheCset * cset1 = ssd1->create_bcache_cset();
-    BcacheCset * cset2 = ssd2->create_bcache_cset();
-
-    Bcache * bcache1 = disk1->create_bcache( "/dev/bcache1" );
-    bcache1->attach_bcache_cset( cset1 );
-    bcache1->attach_bcache_cset( cset2 );
 
     Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
     BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
     xfs->create_mount_point( "/home" );
 
+    const Actiongraph	 * actiongraph = storage->calculate_actiongraph();
+    const CompoundAction * compound_action0 = find_compound_action_by_target( actiongraph, bcache0 );
+    const CompoundAction * compound_action1 = find_compound_action_by_target( actiongraph, bcache1 );
+
+    BOOST_REQUIRE( compound_action0 ) ;
+    BOOST_REQUIRE( compound_action1 ) ;
+
+    string expected0 =
+        "Create bcache /dev/bcache0 on /dev/sda (2.00 TiB) for /data with ext4\n"
+        "/dev/bcache0 is cached by /dev/sdf (128.00 MiB)";
+
+    BOOST_CHECK_EQUAL( compound_action0->sentence(), expected0 );
+
+
+    string expected1 =
+        "Create encrypted bcache /dev/bcache1 on /dev/sdb (512.00 GiB) for /home with xfs\n"
+        "/dev/bcache1 is cached by /dev/sdg (160.00 MiB)";
+
+    BOOST_CHECK_EQUAL( compound_action1->sentence(), expected1 );
+
+#if 0
+    cout << "\nexpected0:\n" << expected0 << "\n" << endl;
+    cout << "\naction0:\n"   << compound_action0->sentence() << "\n" << endl;
+
+    cout << "\nexpected1:\n" << expected1 << "\n" << endl;
+    cout << "\naction1:\n"   << compound_action1->sentence() << "\n" << endl;
+#endif
+}
+
+
+BOOST_AUTO_TEST_CASE( test_format )
+{
+    init_bcaches();
+    copy_staging_to_probed();
+
+    BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
+    ext4->create_mount_point( "/data" );
+
+    Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
+    BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
+    xfs->create_mount_point( "/home" );
 
     const Actiongraph	 * actiongraph = storage->calculate_actiongraph();
     const CompoundAction * compound_action0 = find_compound_action_by_target( actiongraph, bcache0 );
     const CompoundAction * compound_action1 = find_compound_action_by_target( actiongraph, bcache1 );
-    
+
     BOOST_REQUIRE( compound_action0 ) ;
     BOOST_REQUIRE( compound_action1 ) ;
 
-    BOOST_CHECK_EQUAL( compound_action0->sentence(),
-		       "Create Bcache /dev/bcache0 on /dev/sda (2.00 TiB) from /dev/sdf (128.00 GiB) for /data with ext4" );
-    
-    BOOST_CHECK_EQUAL( compound_action1->sentence(),
-		       "Create encrypted Bcache /dev/bcache1 on /dev/sdb (512 GiB) from /dev/sdg (160.00 GiB), /dev/sdh (64 MiB) for /home with XFS" );
+    string expected0 =
+        "Format bcache /dev/bcache0 on /dev/sda (2.00 TiB) for /data with ext4\n"
+        "/dev/bcache0 is cached by /dev/sdf (128.00 MiB)";
 
-#if 1
-    cout << "\naction0:\n" << compound_action0->sentence() << "\n" << endl;
-    cout << "\naction1:\n" << compound_action1->sentence() << "\n" << endl;
+    BOOST_CHECK_EQUAL( compound_action0->sentence(), expected0 );
+
+
+    string expected1 =
+        "Encrypt bcache /dev/bcache1 on /dev/sdb (512.00 GiB) for /home with xfs\n"
+        "/dev/bcache1 is cached by /dev/sdg (160.00 MiB)";
+
+    BOOST_CHECK_EQUAL( compound_action1->sentence(), expected1 );
+
+#if 0
+    cout << "\nexpected0:\n" << expected0 << "\n" << endl;
+    cout << "\naction0:\n"   << compound_action0->sentence() << "\n" << endl;
+
+    cout << "\nexpected1:\n" << expected1 << "\n" << endl;
+    cout << "\naction1:\n"   << compound_action1->sentence() << "\n" << endl;
+#endif
+}
+
+
+BOOST_AUTO_TEST_CASE( test_mount )
+{
+    init_bcaches();
+
+    BlkFilesystem * ext4 = bcache0->create_blk_filesystem( FsType::EXT4 );
+
+    Encryption * encryption = bcache1->create_encryption( "cr_bcache1" );
+    BlkFilesystem * xfs = encryption->create_blk_filesystem( FsType::XFS );
+    
+    copy_staging_to_probed();
+    
+    ext4->create_mount_point( "/data" );
+    xfs->create_mount_point( "/home" );
+
+    const Actiongraph	 * actiongraph = storage->calculate_actiongraph();
+    const CompoundAction * compound_action0 = find_compound_action_by_target( actiongraph, bcache0 );
+    const CompoundAction * compound_action1 = find_compound_action_by_target( actiongraph, bcache1 );
+
+    BOOST_REQUIRE( compound_action0 ) ;
+    BOOST_REQUIRE( compound_action1 ) ;
+
+    string expected0 =
+        "Mount bcache /dev/bcache0 on /dev/sda (2.00 TiB) at /data\n"
+        "/dev/bcache0 is cached by /dev/sdf (128.00 MiB)";
+
+    BOOST_CHECK_EQUAL( compound_action0->sentence(), expected0 );
+
+
+    string expected1 =
+        "Mount bcache /dev/bcache1 on /dev/sdb (512.00 GiB) at /home\n"
+        "/dev/bcache1 is cached by /dev/sdg (160.00 MiB)";
+
+    BOOST_CHECK_EQUAL( compound_action1->sentence(), expected1 );
+
+#if 0
+    cout << "\nexpected0:\n" << expected0 << "\n" << endl;
+    cout << "\naction0:\n"   << compound_action0->sentence() << "\n" << endl;
+
+    cout << "\nexpected1:\n" << expected1 << "\n" << endl;
+    cout << "\naction1:\n"   << compound_action1->sentence() << "\n" << endl;
 #endif
 }
 
