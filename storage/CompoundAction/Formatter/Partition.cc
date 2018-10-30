@@ -115,8 +115,8 @@ namespace storage
     CompoundAction::Formatter::Partition::delete_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Delete partition %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -127,8 +127,8 @@ namespace storage
     CompoundAction::Formatter::Partition::create_encrypted_pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical volume");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -139,8 +139,8 @@ namespace storage
     CompoundAction::Formatter::Partition::create_pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create partition %1$s (%2$s) as LVM physical volume");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -151,8 +151,8 @@ namespace storage
     CompoundAction::Formatter::Partition::encrypted_pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create LVM physical volume over encrypted %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -163,8 +163,8 @@ namespace storage
     CompoundAction::Formatter::Partition::pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create LVM volume device over %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -175,8 +175,8 @@ namespace storage
     CompoundAction::Formatter::Partition::create_encrypted_with_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) for swap");
 
 	return sformat(text,
@@ -189,8 +189,8 @@ namespace storage
     CompoundAction::Formatter::Partition::create_with_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create partition %1$s (%2$s) for swap");
 
 	return sformat(text,
@@ -203,10 +203,10 @@ namespace storage
     CompoundAction::Formatter::Partition::create_encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
@@ -221,9 +221,9 @@ namespace storage
     CompoundAction::Formatter::Partition::create_encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
@@ -237,8 +237,8 @@ namespace storage
     CompoundAction::Formatter::Partition::create_encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -249,10 +249,10 @@ namespace storage
     CompoundAction::Formatter::Partition::create_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
@@ -267,9 +267,9 @@ namespace storage
     CompoundAction::Formatter::Partition::create_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
@@ -287,9 +287,9 @@ namespace storage
 	if (!tmp.empty())
 	{
 	    // TRANSLATORS:
-	    // %1$s is replaced by partition name (e.g. /dev/sda1),
-	    // %2$s is replaced by size (e.g. 2 GiB),
-	    // %3$s is replaced by partition id string (e.g. Linux LVM)
+	    // %1$s is replaced with the partition name (e.g. /dev/sda1),
+	    // %2$s is replaced with the size (e.g. 2 GiB),
+	    // %3$s is replaced with the partition id string (e.g. Linux LVM)
 	    Text text = _("Create partition %1$s (%2$s) as %3$s");
 
 	    return sformat(text, get_device_name().c_str(),
@@ -298,8 +298,8 @@ namespace storage
 	else
 	{
 	    // TRANSLATORS:
-	    // %1$s is replaced by partition name (e.g. /dev/sda1),
-	    // %2$s is replaced by size (e.g. 2 GiB)
+	    // %1$s is replaced with the partition name (e.g. /dev/sda1),
+	    // %2$s is replaced with the size (e.g. 2 GiB)
 	    Text text = _("Create partition %1$s (%2$s)");
 
 	    return sformat(text, get_device_name().c_str(),
@@ -312,10 +312,10 @@ namespace storage
     CompoundAction::Formatter::Partition::encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
@@ -330,9 +330,9 @@ namespace storage
     CompoundAction::Formatter::Partition::encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
@@ -346,8 +346,8 @@ namespace storage
     CompoundAction::Formatter::Partition::encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
 	Text text = _("Encrypt partition %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -358,10 +358,10 @@ namespace storage
     CompoundAction::Formatter::Partition::fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
 	return sformat(text,
@@ -376,9 +376,9 @@ namespace storage
     CompoundAction::Formatter::Partition::fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
 	return sformat(text,
@@ -394,9 +394,9 @@ namespace storage
 	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the mount point (e.g. /home)
 	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
 	return sformat(text,

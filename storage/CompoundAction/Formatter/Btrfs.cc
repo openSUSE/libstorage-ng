@@ -76,7 +76,7 @@ namespace storage
     CompoundAction::Formatter::Btrfs::delete_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
         Text text = _("Delete file system btrfs on %1$s");
 
         return sformat(text, blk_devices_string_representation().c_str());
@@ -87,8 +87,8 @@ namespace storage
     CompoundAction::Formatter::Btrfs::create_and_mount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-	// %2$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Create file system btrfs on %1$s and mount at %2$s");
 
         return sformat(text,
@@ -101,7 +101,7 @@ namespace storage
     CompoundAction::Formatter::Btrfs::create_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
         Text text = _("Create file system btrfs on %1$s");
 
         return sformat(text, blk_devices_string_representation().c_str());
@@ -112,8 +112,8 @@ namespace storage
     CompoundAction::Formatter::Btrfs::mount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-	// %2$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Mount file system btrfs on %1$s at %2$s");
 
         return sformat(text,
@@ -126,8 +126,8 @@ namespace storage
     CompoundAction::Formatter::Btrfs::unmount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-	// %2$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Unmount file system btrfs on %1$s at %2$s");
 
         return sformat(text,

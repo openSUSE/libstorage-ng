@@ -51,8 +51,8 @@ namespace storage
     CompoundAction::Formatter::Nfs::mount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-	// %2$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Mount NFS %1$s on %2$s");
 
         return sformat(text,
@@ -65,8 +65,8 @@ namespace storage
     CompoundAction::Formatter::Nfs::unmount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-	// %2$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Unmount NFS %1$s at %2$s");
 
         return sformat(text,

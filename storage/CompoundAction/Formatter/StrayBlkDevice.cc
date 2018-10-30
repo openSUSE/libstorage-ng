@@ -81,8 +81,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::format_as_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB)
 	Text text = _("Format partition %1$s (%2$s) as swap");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -93,8 +93,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::format_as_encrypted_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB)
 	Text text = _("Format partition %1$s (%2$s) as encryped swap");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -104,8 +104,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::encrypted_pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB)
 	Text text = _("Create LVM physical volume over encrypted %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -116,8 +116,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::pv_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB)
 	Text text = _("Create LVM physical volume over %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -128,9 +128,9 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
@@ -146,8 +146,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
@@ -162,8 +162,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
 	Text text = _("Encrypt partition %1$s (%2$s)");
 
 	return sformat(text, get_device_name().c_str(), get_size().c_str());
@@ -174,9 +174,9 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
+	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
@@ -192,8 +192,8 @@ namespace storage
     CompoundAction::Formatter::StrayBlkDevice::fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
 	// %3$s is replaced by file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
@@ -210,9 +210,9 @@ namespace storage
 	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
-	// %1$s is replaced by partition name (e.g. /dev/sda1),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the partition name (e.g. /dev/sda1),
+	// %2$s is replaced with the size (e.g. 2GiB),
+	// %3$s is replaced with the mount point (e.g. /home)
 	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
 	return sformat(text,

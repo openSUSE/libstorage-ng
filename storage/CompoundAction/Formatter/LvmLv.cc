@@ -92,9 +92,9 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_encrypted_with_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
 	return sformat(text,
@@ -108,9 +108,9 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_with_swap_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
 	return sformat(text,
@@ -124,11 +124,11 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the mount point (e.g. /home),
+	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
@@ -144,10 +144,10 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
@@ -162,9 +162,9 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
@@ -178,11 +178,11 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the mount point (e.g. /home),
+	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
@@ -198,10 +198,10 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
@@ -216,9 +216,9 @@ namespace storage
     CompoundAction::Formatter::LvmLv::create_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
@@ -232,11 +232,11 @@ namespace storage
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the mount point (e.g. /home),
+	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
@@ -252,10 +252,10 @@ namespace storage
     CompoundAction::Formatter::LvmLv::encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
@@ -270,9 +270,9 @@ namespace storage
     CompoundAction::Formatter::LvmLv::encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s");
 
 	return sformat(text,
@@ -286,11 +286,11 @@ namespace storage
     CompoundAction::Formatter::LvmLv::fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by mount point (e.g. /home),
-	// %5$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the mount point (e.g. /home),
+	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
 	return sformat(text,
@@ -306,10 +306,10 @@ namespace storage
     CompoundAction::Formatter::LvmLv::fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by file system name (e.g. ext4)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
 	return sformat(text,
@@ -326,10 +326,10 @@ namespace storage
 	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
-	// %1$s is replaced by logical volume name (e.g. root),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by volume group name (e.g. system),
-	// %4$s is replaced by mount point (e.g. /home)
+	// %1$s is replaced with the logical volume name (e.g. root),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the volume group name (e.g. system),
+	// %4$s is replaced with the mount point (e.g. /home)
 	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
 	return sformat(text,

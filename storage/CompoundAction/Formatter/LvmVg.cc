@@ -36,7 +36,7 @@ namespace storage
 
 
     CompoundAction::Formatter::LvmVg::LvmVg(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action),
+	CompoundAction::Formatter(compound_action, "LvmVg"),
 	vg(to_lvm_vg(compound_action->get_target_device()))
     {}
 
@@ -57,7 +57,7 @@ namespace storage
     Text
     CompoundAction::Formatter::LvmVg::text() const
     {
-	if (has_create<storage::LvmVg>())
+	if ( creating() )
 	{
 	    if (vg->get_lvm_pvs().size() > 0)
 		return create_with_pvs_text();
@@ -75,9 +75,9 @@ namespace storage
     CompoundAction::Formatter::LvmVg::create_with_pvs_text() const
     {
 	// TRANSLATORS: displayed before action,
-	// %1$s is replaced by volume group name (e.g. system),
-	// %2$s is replaced by size (e.g. 2GiB),
-	// %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+	// %1$s is replaced with the volume group name (e.g. system),
+	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 	Text text = _("Create volume group %1$s (%2$s) with %3$s");
 
 	return sformat(text,
@@ -91,8 +91,8 @@ namespace storage
     CompoundAction::Formatter::LvmVg::create_text() const
     {
 	// TRANSLATORS: displayed before action,
-	// %1$s is replaced by volume group name (e.g. system),
-	// %2$s is replaced by size (e.g. 2GiB),
+	// %1$s is replaced with the volume group name (e.g. system),
+	// %2$s is replaced with the size (e.g. 2 GiB),
 	Text text = _("Create volume group %1$s (%2$s)");
 
 	return sformat(text,
