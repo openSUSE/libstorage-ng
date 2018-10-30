@@ -131,7 +131,7 @@ namespace storage
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
 
 	else
-	    return boost::algorithm::join(get_commit_actions_as_strings(), " and ");
+	    return boost::algorithm::join(get_commit_actions_as_strings(), "\n");
     }
 
 
