@@ -30,7 +30,7 @@ namespace storage
 {
 
     CompoundAction::Formatter::Btrfs::Btrfs(const CompoundAction::Impl* compound_action) :
-	CompoundAction::Formatter(compound_action),
+	CompoundAction::Formatter(compound_action, "Btrfs"),
 	btrfs(to_btrfs(compound_action->get_target_device()))
     {}
 
@@ -49,22 +49,22 @@ namespace storage
     Text
     CompoundAction::Formatter::Btrfs::text() const
     {
-	if (has_delete<storage::Btrfs>())
+	if ( deleting() )
 	    return delete_text();
 
-	else if (has_create<storage::Btrfs>())
+	else if ( creating() )
 	{
-	    if (has_create<storage::MountPoint>())
+	    if ( mounting() )
 		return create_and_mount_text();
 
 	    else
 		return create_text();
 	}
 
-	else if (has_create<storage::MountPoint>())
+	else if ( mounting() )
 	    return mount_text();
 
-	else if (has_delete<storage::MountPoint>())
+	else if ( has_delete<storage::MountPoint>() )
 	    return unmount_text();
 
 	else
