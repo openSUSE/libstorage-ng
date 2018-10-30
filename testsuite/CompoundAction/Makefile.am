@@ -17,6 +17,7 @@ check_PROGRAMS =				\
 	is-delete.test				\
 	lvm-lv-sentence.test			\
 	lvm-vg-sentence.test			\
+	md-sentence.test			\
 	nfs-sentence.test			\
 	partition-sentence.test			\
 	stray-blk-device-sentence.test
