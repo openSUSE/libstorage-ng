@@ -97,13 +97,12 @@ BOOST_AUTO_TEST_CASE( test_create )
     BOOST_REQUIRE( compound_action ) ;
 
     string expected =
-        "Create RAID 0 /dev/md0 (1023.75 GiB) for /data with ext4\n"
-        "from /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB), /dev/sdd (512 GiB)";
+        "Create RAID6 /dev/md0 (1023.75 GiB) for /data with ext4\n"
+        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB), /dev/sdc (512.00 GiB), /dev/sdd (512.00 GiB)";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
-
-#if 1
+#if 0
     cout << "\nEXPECTED:\n\n" << expected << "\n" << endl;
     cout << "\nACTUAL:\n\n"   << compound_action->sentence() << "\n" << endl;
 #endif

@@ -29,6 +29,7 @@
 #include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
 #include "storage/CompoundAction/Formatter/LvmLv.h"
 #include "storage/CompoundAction/Formatter/LvmVg.h"
+#include "storage/CompoundAction/Formatter/Md.h"
 #include "storage/CompoundAction/Formatter/Nfs.h"
 #include "storage/CompoundAction/Formatter/Partition.h"
 #include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
@@ -109,7 +110,7 @@ namespace storage
 	if (is_partition(target_device))
 	    return CompoundAction::Formatter::Partition(this).string_representation();
 
-	if (is_stray_blk_device(target_device))
+	else if (is_stray_blk_device(target_device))
 	    return CompoundAction::Formatter::StrayBlkDevice(this).string_representation();
 
 	else if (is_lvm_lv(target_device))
@@ -129,6 +130,9 @@ namespace storage
 
 	else if (is_bcache(target_device) || is_bcache_cset(target_device))
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
+
+	else if (is_md(target_device))
+	    return CompoundAction::Formatter::Md(this).string_representation();
 
 	else
 	    return boost::algorithm::join(get_commit_actions_as_strings(), "\n");

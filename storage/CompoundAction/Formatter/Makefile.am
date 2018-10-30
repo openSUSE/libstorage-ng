@@ -11,6 +11,7 @@ libcompformatter_la_SOURCES =				\
 	BtrfsSubvolume.h	BtrfsSubvolume.cc	\
 	Btrfs.h			Btrfs.cc		\
 	Nfs.h			Nfs.cc			\
+	Md.h			Md.cc			\
 	StrayBlkDevice.h	StrayBlkDevice.cc	\
 	Bcache.h		Bcache.cc
 

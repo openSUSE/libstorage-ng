@@ -49,6 +49,7 @@ namespace storage
 	class LvmLv;
 	class LvmVg;
 	class Nfs;
+        class Md;
 	class Partition;
 	class StrayBlkDevice;
 
