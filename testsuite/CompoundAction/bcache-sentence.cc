@@ -13,15 +13,11 @@
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
+#include "storage/Utils/HumanString.h"
 
 #include "testsuite/CompoundAction/Fixture.h"
 
-#define BLOCK_SIZE	1024L
-#define kiB             1L
-#define MiB		(1024L*kiB)
-#define GiB		(1024L*MiB)
-#define TiB		(1024L*GiB)
-
+#define BLOCK_SIZE	512L
 
 using std::cout;
 using std::endl;
@@ -53,11 +49,11 @@ namespace storage
 		storage = shared_ptr<Storage>(new Storage(environment));
 		staging = storage->get_staging();
 
-		disk0 = Disk::create( staging, "/dev/sda", Region( 0,   2*TiB, BLOCK_SIZE ) );
-		disk1 = Disk::create( staging, "/dev/sdb", Region( 0, 512*GiB, BLOCK_SIZE ) );
+		disk0 = Disk::create( staging, "/dev/sda", Region( 0,   2*TiB / BLOCK_SIZE, BLOCK_SIZE ) );
+		disk1 = Disk::create( staging, "/dev/sdb", Region( 0, 512*GiB / BLOCK_SIZE, BLOCK_SIZE ) );
 
-		ssd0  = Disk::create( staging, "/dev/sdf", Region( 0, 128*MiB, BLOCK_SIZE ) );
-		ssd1  = Disk::create( staging, "/dev/sdg", Region( 0, 160*MiB, BLOCK_SIZE ) );
+		ssd0  = Disk::create( staging, "/dev/sdf", Region( 0, 128*MiB / BLOCK_SIZE, BLOCK_SIZE ) );
+		ssd1  = Disk::create( staging, "/dev/sdg", Region( 0, 160*MiB / BLOCK_SIZE, BLOCK_SIZE ) );
 
 		copy_staging_to_probed();
 	    }
