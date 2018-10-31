@@ -119,22 +119,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Bcache::bcache_cset_text() const
     {
-	Text dev_list_text;
-
-	for ( const BlkDevice * device: bcache_cset->get_blk_devices() )
-	{
-	    if ( ! dev_list_text.translated.empty() )
-		dev_list_text += Text( ", ", ", " );
-
-	    // TRANSLATORS:
-	    // %1$s is replaced with the the device name (e.g. /dev/sdc1),
-	    // %2$s is replaced with the the size (e.g. 60 GiB)
-	    Text dev_text = _( "%1$s (%2$s)" );
-
-	    dev_list_text += sformat( dev_text,
-                                      device->get_name().c_str(),
-                                      device->get_size_string().c_str() );
-	}
+	Text dev_list_text = format_devices_text( bcache_cset->get_blk_devices() );
 
 	// TRANSLATORS:
 	// %1$s is replaced with the the bcache name (e.g. /dev/bcache0),

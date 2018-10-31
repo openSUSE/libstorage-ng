@@ -137,4 +137,35 @@ namespace storage
 	return first_action->text(commit_data);
     }
 
+
+    Text
+    CompoundAction::Formatter::format_devices_text(const std::vector<const BlkDevice *> &devices)
+    {
+	std::vector<const BlkDevice *> sorted_devices = devices;
+	std::sort( sorted_devices.begin(), sorted_devices.end(),
+		   [](const BlkDevice * a, const BlkDevice * b) -> bool
+		       {
+			   return a->get_name() < b->get_name();
+		       });
+
+	Text text;
+
+	for ( const BlkDevice * device: sorted_devices )
+	{
+	    if ( ! text.translated.empty() )
+		text += Text( ", ", ", " );
+
+	    // TRANSLATORS:
+	    // %1$s is replaced with the the device name (e.g. /dev/sdc1),
+	    // %2$s is replaced with the the size (e.g. 60 GiB)
+	    Text dev_text = _( "%1$s (%2$s)" );
+
+	    text += sformat( dev_text,
+			     device->get_name().c_str(),
+			     device->get_size_string().c_str() );
+	}
+
+	return text;
+    }
+
 }

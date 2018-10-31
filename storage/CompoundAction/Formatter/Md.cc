@@ -99,31 +99,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Md::devices_text() const
     {
-	std::vector<const BlkDevice *> devices = md->get_devices();
-	std::sort( devices.begin(), devices.end(),
-		   [](const BlkDevice * a, const BlkDevice * b) -> bool
-		       {
-			   return a->get_name() < b->get_name();
-		       });
-
-	Text text;
-
-	for ( const BlkDevice * device: devices )
-	{
-	    if ( ! text.translated.empty() )
-		text += Text( ", ", ", " );
-
-	    // TRANSLATORS:
-	    // %1$s is replaced with the the device name (e.g. /dev/sdc1),
-	    // %2$s is replaced with the the size (e.g. 60 GiB)
-	    Text dev_text = _( "%1$s (%2$s)" );
-
-	    text += sformat( dev_text,
-			     device->get_name().c_str(),
-			     device->get_size_string().c_str() );
-	}
-
-	return text;
+        return format_devices_text( md->get_devices() );
     }
 
 
