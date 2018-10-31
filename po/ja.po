@@ -10,16 +10,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 14:46+0200\n"
+"POT-Creation-Date: 2018-10-31 15:05+0100\n"
 "PO-Revision-Date: 2018-08-09 14:03+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 2.18\n"
+
+msgid ""
+"\n"
+"are you serious?!"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the the size (e.g. 60 GiB)
+#, fuzzy, c-format
+msgid "%1$s (%2$s)"
+msgstr "%1$s の %2$s への追加"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the a list of cache devices with size
+#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#, c-format
+msgid "%1$s is cached by %2$s"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -41,7 +62,8 @@ msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の有効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の有効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -49,7 +71,9 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の有効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の有効"
+"化"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -81,7 +105,8 @@ msgstr "%1$s 上の暗号化レイヤデバイスを有効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を有効化しています"
 
 #. TRANSLATORS: progress message
 msgid "Activating multipath"
@@ -97,7 +122,9 @@ msgstr "マルチパスの有効化に失敗しました"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を有効化していま"
+"す"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -105,7 +132,9 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を有効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を有効化し"
+"ています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -142,7 +171,9 @@ msgstr "マウントポイント %1$s (%2$s) の /etc/fstab への追加"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s の /etc/fstab への追加"
+msgstr ""
+"%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s の /etc/fstab への追"
+"加"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -179,7 +210,9 @@ msgstr "マウントポイント %1$s (%2$s) を /etc/fstab に追加してい�
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s を /etc/fstab に追加しています"
+msgstr ""
+"%3$s 内にあるサブボリューム %2$s のマウントポイント %1$s を /etc/fstab に追加"
+"しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -195,7 +228,8 @@ msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
+msgstr ""
+"%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -234,7 +268,8 @@ msgstr "パーティション %1$s の legacy boot フラグの消去"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの消去"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの消去"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -259,13 +294,68 @@ msgstr "パーティション %1$s の legacy boot フラグを消去してい�
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s  に対して 'no copy on write' オプションを消去しています"
+msgstr ""
+"%2$s 内のサブボリューム %1$s  に対して 'no copy on write' オプションを消去し"
+"ています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr "%1$s 内の GPT の protective MBR boot フラグを消去しています"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "パーティション %1$s (%2$s) の作成 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid "Create %1$s %2$s (%3$s) from %4$s"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "パーティション %1$s (%2$s) の作成 (%3$s 向け, %4$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -302,50 +392,63 @@ msgid "Create GPT on %1$s"
 msgstr "%1$s に対する GPT の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s 向け %5$s)"
+msgid ""
+"Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s "
+"向け %5$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (スワップ向け)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (ス"
+"ワップ向け)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over %1$s (%2$s)"
+msgstr "暗号化された %1$s (%2$s)に対する LVM 物理ボリュームの作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "暗号化された %1$s (%2$s)に対する LVM 物理ボリュームの作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "%1$s (%2$s) に対する LVM ボリュームデバイスの作成"
@@ -365,74 +468,212 @@ msgid "Create MS-DOS partition table on %1$s"
 msgstr "%1$s に対する MS-DOS パーティションテーブルの作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s)"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "パーティション %1$s (%2$s) の作成 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for swap"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s)\n"
+"from %4$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (スワップ向け)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) の作成"
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+"の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s 向け %5$s)"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
+"%4$s with %5$s"
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+"の作成 (%4$s 向け %5$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) の作成 (スワップ向け)"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+"の作成 (スワップ向け)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s)"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
+"%4$s"
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+"の作成 (%4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (スワップ向け)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "暗号化パーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
 msgstr "LVM 物理ボリュームとして暗号化パーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s 向け %4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "暗号化パーティション %1$s (%2$s) の作成 (スワップ向け)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
 msgstr "暗号化パーティション %1$s (%2$s) の作成 (%3$s)"
@@ -451,14 +692,14 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "拡張パーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "%1$s に対するファイルシステム btrfs の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "%1$s に対するファイルシステム btrfs の作成および %2$s へのマウント"
@@ -499,47 +740,47 @@ msgstr "ボリュームグループ %3$s に対する論理ボリューム %1$s 
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "パーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
 msgstr "%3$s としてパーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "LVM 物理ボリュームとしてパーティション %1$s (%2$s) の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "パーティション %1$s (%2$s) の作成 (%3$s 向け, %4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "パーティション %1$s (%2$s) の作成 (スワップ向け)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
 msgstr "パーティション %1$s (%2$s) の作成 (%3$s)"
@@ -561,18 +802,19 @@ msgstr "プライマリパーティション %1$s (%2$s) の作成"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "%2$s に対するサブボリューム %1$s の作成"
 
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "'no copy on write' オプション付きで %2$s に対するサブボリューム %1$s の作成"
+msgstr ""
+"'no copy on write' オプション付きで %2$s に対するサブボリューム %1$s の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -580,7 +822,8 @@ msgstr "'no copy on write' オプション付きで %2$s に対するサブボ�
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の作成"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -588,22 +831,23 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の作成"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "ボリュームグループ %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "%3$s に対するボリュームグループ %1$s (%2$s) の作成"
@@ -695,7 +939,8 @@ msgstr "論理パーティション %1$s (%2$s) を作成しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に論理ボリューム %1$s (%2$s) を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に論理ボリューム %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -730,7 +975,8 @@ msgstr "%2$s 内にサブボリューム %1$s を作成しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に thin 論理ボリューム %1$s (%2$s) を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に thin 論理ボリューム %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -738,7 +984,9 @@ msgstr "ボリュームグループ %3$s 内に thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内に thin プール論理ボリューム %1$s (%2$s) を作成しています"
+msgstr ""
+"ボリュームグループ %3$s 内に thin プール論理ボリューム %1$s (%2$s) を作成して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -808,7 +1056,8 @@ msgstr "マルチパス %1$s (%2$s) の無効化"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の無効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の無効化"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -816,7 +1065,9 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の無効化"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の無効"
+"化"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -852,7 +1103,8 @@ msgstr "%1$s 内の暗号化ループデバイスを無効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を無効化しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
@@ -867,7 +1119,9 @@ msgstr "マルチパス %1$s (%2$s) を無効化しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を無効化していま"
+"す"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -875,7 +1129,17 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を無効化しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を無効化し"
+"ています"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete %1$s %2$s (%3$s)"
+msgstr "%2$s (%3$s) の %1$s の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -925,6 +1189,14 @@ msgstr "MD %1$s %2$s (%3$s) の削除"
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "%1$s に対する MS-DOS パーティションテーブルの削除"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s on %2$s (%3$s)"
+msgstr "%2$s (%3$s) の %1$s の削除"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
@@ -939,7 +1211,7 @@ msgid "Delete extended partition %1$s (%2$s)"
 msgstr "拡張パーティション %1$s (%2$s) の削除"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "%1$s に対するファイルシステム btrfs の削除"
@@ -976,8 +1248,8 @@ msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s)
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "パーティション %1$s (%2$s) の削除"
@@ -999,8 +1271,8 @@ msgstr "プライマリパーティション %1$s (%2$s) の削除"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "%2$s 内のサブボリューム %1$s の削除"
@@ -1011,7 +1283,8 @@ msgstr "%2$s 内のサブボリューム %1$s の削除"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の削除"
+msgstr ""
+"ボリュームグループ %3$s に対する thin 論理ボリューム %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1019,7 +1292,8 @@ msgstr "ボリュームグループ %3$s に対する thin 論理ボリューム
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の削除"
+msgstr ""
+"ボリュームグループ %3$s に対する thin プール論理ボリューム %1$s (%2$s) の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1115,7 +1389,8 @@ msgstr "論理パーティション %1$s (%2$s) を削除しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の論理ボリューム %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1150,7 +1425,8 @@ msgstr "%2$s 内のサブボリューム %1$s を削除しています"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin 論理ボリューム %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1158,7 +1434,9 @@ msgstr "ボリュームグループ %3$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を削除しています"
+msgstr ""
+"ボリュームグループ %3$s 内の thin プール論理ボリューム %1$s (%2$s) を削除して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1184,52 +1462,113 @@ msgid "EiB"
 msgstr "EiB"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s)"
+msgstr "MD %1$s %2$s (%3$s) の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
+msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 (%4$s 向け, %5$s)"
+msgid ""
+"Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
+"%5$s"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 "
+"(%4$s 向け, %5$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 (%4$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の暗号化 "
+"(%4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s)"
+msgstr "%2$s (%3$s) に対する %1$s の作成"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "パーティション %1$s (%2$s) の暗号化"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s 向け, %4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
 msgstr "パーティション %1$s (%2$s) の暗号化 (%3$s)"
@@ -1255,37 +1594,94 @@ msgid "F2FS"
 msgstr "F2FS"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
-#, c-format
-msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマット (%4$s 向け, %5$s)"
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s 向け, %4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) with %4$s"
+msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, c-format
+msgid ""
+"Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマッ"
+"ト (%4$s 向け, %5$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマット (%4$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) のフォーマッ"
+"ト (%4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s 向け, %4$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encryped swap"
+msgstr "パーティション %1$s (%2$s) の作成 (スワップ向け)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as swap"
+msgstr "パーティション %1$s (%2$s) の作成 (スワップ向け)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s 向け, %4$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
 msgstr "パーティション %1$s (%2$s) のフォーマット (%3$s)"
@@ -1330,7 +1726,8 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ拡�
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s へ拡大"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s へ拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1355,7 +1752,9 @@ msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ拡大"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への拡大"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への"
+"拡大"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1363,8 +1762,11 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
-msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から %4$s への拡大"
+msgid ""
+"Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から "
+"%4$s への拡大"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1390,7 +1792,9 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s に拡�
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s に拡大しています"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s に拡大して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1415,7 +1819,9 @@ msgstr "%1$s 内の物理ボリュームを %2$s から %3$s に拡大してい�
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s に拡大しています"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s に拡"
+"大しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1423,8 +1829,11 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
-msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から %4$s に拡大しています"
+msgid ""
+"Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から "
+"%4$s に拡大しています"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1477,6 +1886,15 @@ msgstr "MS-DOS パーティションテーブル"
 msgid "MiB"
 msgstr "MiB"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount %1$s %2$s (%3$s) at %4$s"
+msgstr "%1$s に対する %2$s へのマウント"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
@@ -1485,17 +1903,19 @@ msgid "Mount %1$s at %2$s"
 msgstr "%1$s に対する %2$s へのマウント"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の %4$s へのマウント"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の %4$s への"
+"マウント"
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount NFS %1$s on %2$s"
 msgstr "NFS %1$s の %2$s へのマウント"
@@ -1505,16 +1925,25 @@ msgid "Mount Point"
 msgstr "マウントポイント"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
+msgstr "%2$s 内のサブボリューム %1$s に対する %3$s へのマウント"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
 msgstr "ファイルシステム btrfs %1$s の %2$s へのマウント"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "パーティション %1$s (%2$s) の %3$s へのマウント"
@@ -1723,7 +2152,8 @@ msgstr "存在しない物理ボリュームによるボリュームグループ
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr "存在しない物理ボリュームによってボリュームグループ %1$s を縮小しています"
+msgstr ""
+"存在しない物理ボリュームによってボリュームグループ %1$s を縮小しています"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
@@ -1764,7 +2194,9 @@ msgstr "マウントポイント %1$s (%2$s) の /etc/fstab からの削除"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s に対する /etc/fstab からの削除"
+msgstr ""
+"%3$s 内のサブボリューム %2$s のマウントポイント %1$s に対する /etc/fstab から"
+"の削除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -1801,7 +2233,9 @@ msgstr "マウントポイント %1$s (%2$s) を /etc/fstab から削除して�
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab から削除しています"
+msgstr ""
+"%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab から削除し"
+"ています"
 
 #, c-format
 msgid "Rename %1$s to %2$s"
@@ -1812,7 +2246,8 @@ msgstr "%1$s に対する %2$s への名称変更"
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
+msgstr ""
+"暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での %2$s への名称変更"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1820,14 +2255,16 @@ msgstr "暗号化レイヤデバイス %1$s に対する /etc/crypttab 内での
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
+msgstr ""
+"マウントポイント %1$s に対する /etc/fstab 内での %2$s から %3$s への名称変更"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名称変更しています"
+msgstr ""
+"暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名称変更しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -1835,7 +2272,8 @@ msgstr "暗号化レイヤデバイス %1$s を /etc/crypttab 内で %2$s に名
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "マウントポイント %1$s を /etc/fstab 内で %2$s から %3$s に名称変更しています"
+msgstr ""
+"マウントポイント %1$s を /etc/fstab 内で %2$s から %3$s に名称変更しています"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1909,7 +2347,8 @@ msgstr "パーティション %1$s に対する legacy boot フラグの設定"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの設定"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対する 'no copy on write' オプションの設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1983,7 +2422,9 @@ msgstr "パーティション %1$s に対して legacy boot フラグを設定�
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを設定しています"
+msgstr ""
+"%2$s 内のサブボリューム %1$s に対して 'no copy on write' オプションを設定して"
+"います"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -2021,7 +2462,8 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s へ縮�
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内にある論理ボリューム %1$s を %3$s から %4$s へ縮小"
+msgstr ""
+"ボリュームグループ %2$s 内にある論理ボリューム %1$s を %3$s から %4$s へ縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2046,7 +2488,9 @@ msgstr "%1$s にある物理ボリュームを %2$s から %3$s へ縮小"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への縮小"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s の %3$s から %4$s への"
+"縮小"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2054,8 +2498,11 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から %4$s への縮小"
+msgid ""
+"Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s の %3$s から "
+"%4$s への縮小"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2081,7 +2528,9 @@ msgstr "%1$s にある暗号化レイヤデバイスを %2$s から %3$s まで�
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s まで縮小しています"
+msgstr ""
+"ボリュームグループ %2$s 内の論理ボリューム %1$s を %3$s から %4$s まで縮小し"
+"ています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2105,8 +2554,11 @@ msgstr "%1$s 内の物理ボリュームを %2$s から %3$s まで縮小して�
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s まで縮小しています"
+msgid ""
+"Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"ボリュームグループ %2$s 内の thin 論理ボリューム %1$s を %3$s から %4$s まで"
+"縮小しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2114,8 +2566,12 @@ msgstr "ボリュームグループ %2$s 内の thin 論理ボリューム %1$s 
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から %4$s まで縮小しています"
+msgid ""
+"Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
+"%4$s"
+msgstr ""
+"ボリュームグループ %2$s 内の thin プール論理ボリューム %1$s を %3$s から "
+"%4$s まで縮小しています"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
@@ -2149,15 +2605,15 @@ msgid "Unmount %1$s at %2$s"
 msgstr "%1$s に対する %2$s からのマウント解除"
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount NFS %1$s at %2$s"
 msgstr "%1$s に対する %2$s からの NFS マウント解除"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "ファイルシステム btrfs %1$s の %2$s からのマウント解除"
