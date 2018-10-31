@@ -347,7 +347,8 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %3$s is replaced with the size (e.g. 2 GiB),
 	Text text = _( "Encrypt bcache %1$s on %2$s (%3$s)" );
 
 	return sformat( text,
