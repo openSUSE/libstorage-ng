@@ -37,6 +37,7 @@ namespace storage
 	bcache( to_bcache( compound_action->get_target_device() ) ),
 	bcache_cset( bcache->get_bcache_cset() )
     {
+        // NOP
     }
 
 

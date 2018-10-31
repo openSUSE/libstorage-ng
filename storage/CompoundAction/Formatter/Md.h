@@ -37,7 +37,7 @@ namespace storage
 
     public:
 
-	Md(const CompoundAction::Impl* compound_action);
+	Md( const CompoundAction::Impl* compound_action );
 
     private:
 
@@ -65,10 +65,10 @@ namespace storage
 	string get_md_name()  const { return md->get_name(); }
 	string get_size()     const { return md->get_size_string(); }
 
-        string get_md_level() const
-        {
-            return get_md_level_name( md->get_md_level() );
-        }
+	string get_md_level() const
+	{
+	    return get_md_level_name( md->get_md_level() );
+	}
 
     private:
 

@@ -23,15 +23,15 @@ namespace storage
 	    void
 	    initialize_probed_with_three_strays()
 	    {
-		Environment environment(true, ProbeMode::NONE, TargetMode::IMAGE);
-		storage = shared_ptr<Storage>(new Storage(environment));
+		Environment environment( true, ProbeMode::NONE, TargetMode::IMAGE );
+		storage = shared_ptr<Storage>( new Storage( environment ) );
 		staging = storage->get_staging();
 
                 // StrayBlkDevice regions always start at 0
 
-		stray1 = StrayBlkDevice::create(staging, "/dev/vda1", Region(0,    4 * 2048, 512));
-		stray2 = StrayBlkDevice::create(staging, "/dev/vda2", Region(0,  500 * 2048, 512));
-		stray3 = StrayBlkDevice::create(staging, "/dev/vda3", Region(0, 4096 * 2048, 512));
+		stray1 = StrayBlkDevice::create( staging, "/dev/vda1", Region( 0,    4 * 2048, 512 ) );
+		stray2 = StrayBlkDevice::create( staging, "/dev/vda2", Region( 0,  500 * 2048, 512 ) );
+		stray3 = StrayBlkDevice::create( staging, "/dev/vda3", Region( 0, 4096 * 2048, 512 ) );
 
                 copy_staging_to_probed();
 	    }
@@ -62,7 +62,7 @@ BOOST_AUTO_TEST_CASE( test_format_and_mount )
     BOOST_REQUIRE( compound_action) ;
 
     BOOST_CHECK_EQUAL( compound_action->sentence(),
-                       "Format partition /dev/vda3 (4.00 GiB) for /home with ext4");
+                       "Format partition /dev/vda3 (4.00 GiB) for /home with ext4" );
 }
 
 
@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE( test_format_no_mount )
     BOOST_REQUIRE( compound_action) ;
 
     BOOST_CHECK_EQUAL( compound_action->sentence(),
-                       "Format partition /dev/vda3 (4.00 GiB) with ext4");
+                       "Format partition /dev/vda3 (4.00 GiB) with ext4" );
 }
 
 
@@ -118,7 +118,7 @@ BOOST_AUTO_TEST_CASE( test_swap )
     BOOST_REQUIRE( compound_action) ;
 
     BOOST_CHECK_EQUAL( compound_action->sentence(),
-                       "Format partition /dev/vda3 (4.00 GiB) as swap");
+                       "Format partition /dev/vda3 (4.00 GiB) as swap" );
 }
 
 
@@ -136,7 +136,7 @@ BOOST_AUTO_TEST_CASE( test_encrypted_swap )
     BOOST_REQUIRE( compound_action) ;
 
     BOOST_CHECK_EQUAL( compound_action->sentence(),
-                       "Format partition /dev/vda3 (4.00 GiB) as encryped swap");
+                       "Format partition /dev/vda3 (4.00 GiB) as encryped swap" );
 }
 
 
@@ -144,7 +144,7 @@ BOOST_AUTO_TEST_CASE( test_lvm_pv )
 {
     initialize_probed_with_three_strays();
 
-    LvmVg * lvm_vg = LvmVg::create(staging, "test-vg");
+    LvmVg * lvm_vg = LvmVg::create( staging, "test-vg" );
     lvm_vg->add_lvm_pv( stray3 );
 
     const Actiongraph    * actiongraph     = storage->calculate_actiongraph();
@@ -161,12 +161,12 @@ BOOST_AUTO_TEST_CASE( test_encrypted_pv )
 {
     initialize_probed_with_three_strays();
 
-    Encryption * encryption = stray3->create_encryption("cr_vda3");
-    LvmVg * lvm_vg = LvmVg::create(staging, "test-vg");
+    Encryption * encryption = stray3->create_encryption( "cr_vda3" );
+    LvmVg * lvm_vg = LvmVg::create( staging, "test-vg" );
     lvm_vg->add_lvm_pv( encryption );
 
     const Actiongraph    * actiongraph     = storage->calculate_actiongraph();
-    const CompoundAction * compound_action = find_compound_action_by_target(actiongraph, stray3);
+    const CompoundAction * compound_action = find_compound_action_by_target( actiongraph, stray3 );
 
     BOOST_REQUIRE( compound_action );
 

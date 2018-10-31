@@ -37,15 +37,15 @@ namespace storage
 
     public:
 
-	StrayBlkDevice(const CompoundAction::Impl* compound_action);
+	StrayBlkDevice( const CompoundAction::Impl* compound_action );
 
     private:
 
 	Text text() const override;
 
-        Text format_as_swap_text() const;
-        Text format_as_encrypted_swap_text() const;
-        Text encrypted_pv_text() const;
+	Text format_as_swap_text() const;
+	Text format_as_encrypted_swap_text() const;
+	Text encrypted_pv_text() const;
 	Text pv_text() const;
 
 	Text encrypted_with_fs_and_mount_point_text() const;
@@ -55,8 +55,8 @@ namespace storage
 	Text fs_text() const;
 	Text mount_point_text() const;
 
-        string get_device_name()     const { return stray_blk_device->get_name();        }
-        string get_size()            const { return stray_blk_device->get_size_string(); }
+	string get_device_name() const { return stray_blk_device->get_name();	     }
+	string get_size()	 const { return stray_blk_device->get_size_string(); }
 
     private:
 

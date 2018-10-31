@@ -99,12 +99,12 @@ namespace storage
     Text
     CompoundAction::Formatter::Md::devices_text() const
     {
-        std::vector<const BlkDevice *> devices = md->get_devices();
-        std::sort( devices.begin(), devices.end(),
-                   [](const BlkDevice * a, const BlkDevice * b) -> bool
-                   {
-                       return a->get_name() < b->get_name();
-                   });
+	std::vector<const BlkDevice *> devices = md->get_devices();
+	std::sort( devices.begin(), devices.end(),
+		   [](const BlkDevice * a, const BlkDevice * b) -> bool
+		       {
+			   return a->get_name() < b->get_name();
+		       });
 
 	Text text;
 
@@ -119,11 +119,11 @@ namespace storage
 	    Text dev_text = _( "%1$s (%2$s)" );
 
 	    text += sformat( dev_text,
-                             device->get_name().c_str(),
-                             device->get_size_string().c_str() );
+			     device->get_name().c_str(),
+			     device->get_size_string().c_str() );
 	}
 
-        return text;
+	return text;
     }
 
 
@@ -137,9 +137,9 @@ namespace storage
 	Text text = _( "Delete %1$s %2$s (%3$s)" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str() );
     }
 
 
@@ -150,17 +150,17 @@ namespace storage
 	// %1$s is replaced with the md level (e.g. RAID1),
 	// %2$s is replaced with the md name (e.g. /dev/md0)
 	// %3$s is replaced with the size (e.g. 2 GiB)
-        // %4$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %4$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create encrypted %1$s %2$s (%3$s) for swap\nfrom %4$s" );
-        text += _( "\nare you serious?!" );
+	text += _( "\nare you serious?!" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -171,16 +171,16 @@ namespace storage
 	// %1$s is replaced with the md level (e.g. RAID1),
 	// %2$s is replaced with the md name (e.g. /dev/md0)
 	// %3$s is replaced with the size (e.g. 2 GiB)
-        // %4$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %4$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create %1$s %2$s (%3$s) for swap\nfrom %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -193,18 +193,18 @@ namespace storage
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
-        // %6$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %6$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\nfrom %6$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_mount_point().c_str(),
+			get_filesystem_type().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -216,17 +216,17 @@ namespace storage
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
-        // %5$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %5$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create encrypted %1$s %2$s (%3$s) with %4$s\nfrom %5$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_filesystem_type().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -237,16 +237,16 @@ namespace storage
 	// %1$s is replaced with the md name (e.g. /dev/md0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
 	// %3$s is replaced with the size (e.g. 2 GiB)
-        // %4$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %4$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create encrypted %1$s %2$s (%3$s)\nfrom %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -259,18 +259,18 @@ namespace storage
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
-        // %6$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %6$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create %1$s %2$s (%3$s) for %4$s with %5$s\nfrom %6$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_mount_point().c_str(),
+			get_filesystem_type().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -282,17 +282,17 @@ namespace storage
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
-        // %5$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %5$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create %1$s %2$s (%3$s) with %4$s\nfrom %5$s" );
 
 	return sformat ( text,
-                         get_md_level().c_str(),
-                         get_md_name().c_str(),
-                         get_size().c_str(),
-                         get_filesystem_type().c_str(),
-                         devices_text().translated.c_str() );
+			 get_md_level().c_str(),
+			 get_md_name().c_str(),
+			 get_size().c_str(),
+			 get_filesystem_type().c_str(),
+			 devices_text().translated.c_str() );
     }
 
 
@@ -303,16 +303,16 @@ namespace storage
 	// %1$s is replaced with the md level (e.g. RAID1),
 	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
-        // %4$s is replaced with a comma-spearated list of the devices
-        //   the RAID is built from and their sizes: e.g.
-        //   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+	// %4$s is replaced with a comma-spearated list of the devices
+	//   the RAID is built from and their sizes: e.g.
+	//   /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
 	Text text = _( "Create %1$s %2$s (%3$s) from %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        devices_text().translated.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			devices_text().translated.c_str() );
     }
 
 
@@ -328,11 +328,11 @@ namespace storage
 	Text text = _( "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_mount_point().c_str(),
+			get_filesystem_type().c_str() );
     }
 
 
@@ -347,10 +347,10 @@ namespace storage
 	Text text = _( "Encrypt %1$s %2$s (%3$s) with %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_filesystem_type().c_str() );
     }
 
 
@@ -363,9 +363,9 @@ namespace storage
 	Text text = _( "Encrypt %1$s %2$s (%3$s)" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str() );
     }
 
 
@@ -381,11 +381,11 @@ namespace storage
 	Text text = _( "Format %1$s %2$s (%3$s) for %4$s with %5$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_mount_point().c_str(),
+			get_filesystem_type().c_str() );
     }
 
 
@@ -400,10 +400,10 @@ namespace storage
 	Text text = _( "Format %1$s %2$s (%3$s) with %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			get_filesystem_type().c_str() );
     }
 
 
@@ -420,10 +420,10 @@ namespace storage
 	Text text = _( "Mount %1$s %2$s (%3$s) at %4$s" );
 
 	return sformat( text,
-                        get_md_level().c_str(),
-                        get_md_name().c_str(),
-                        get_size().c_str(),
-                        mount_point.c_str() );
+			get_md_level().c_str(),
+			get_md_name().c_str(),
+			get_size().c_str(),
+			mount_point.c_str() );
     }
 
 }
