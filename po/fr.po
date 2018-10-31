@@ -10,10 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 14:46+0200\n"
+"POT-Creation-Date: 2018-10-31 15:05+0100\n"
 "PO-Revision-Date: 2018-06-08 18:49+0000\n"
 "Last-Translator: Benoît Monin <benoit.monin@gmx.fr>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,6 +22,26 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 2.18\n"
 "X-Poedit-Language: French\n"
+
+msgid ""
+"\n"
+"are you serious?!"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the the size (e.g. 60 GiB)
+#, fuzzy, c-format
+msgid "%1$s (%2$s)"
+msgstr "Ajouter %1$s à %2$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the a list of cache devices with size
+#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#, c-format
+msgid "%1$s is cached by %2$s"
+msgstr ""
 
 # TLABEL wizard_2002_01_04_0147__19
 #. TRANSLATORS: displayed before action,
@@ -44,7 +65,8 @@ msgstr "Activer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Activer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Activer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -52,7 +74,9 @@ msgstr "Activer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Activer le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Activer le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes "
+"%3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -103,7 +127,8 @@ msgstr "Échec de l'activation de multipath"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Activation du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Activation du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -111,7 +136,9 @@ msgstr "Activation du volume logique léger %1$s (%2$s) sur le groupe de volumes
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Activation du volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Activation du volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -149,7 +176,8 @@ msgstr "Ajouter le point de montage %1$s de %2$s à /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Ajouter le point de montage %1$s du sous-volume %2$s sur %3$s à /etc/fstab"
+msgstr ""
+"Ajouter le point de montage %1$s du sous-volume %2$s sur %3$s à /etc/fstab"
 
 # TLABEL partitioning_2002_01_04_0147__78
 #. TRANSLATORS: displayed during action,
@@ -188,7 +216,8 @@ msgstr "Ajout du point de montage %1$s de %2$s à /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr "Ajout du point de montage %1$s du sous-volume %2$s sur %3$s à /etc/fstab"
+msgstr ""
+"Ajout du point de montage %1$s du sous-volume %2$s sur %3$s à /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -252,7 +281,9 @@ msgstr "Effacer l'option 'no copy on write' du sous-volume %1$s sur %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clear protective MBR boot flag of GPT on %1$s"
-msgstr "Effacer le fanion de démarrage du MBR protecteur de la table de partitions GPT sur %1$s"
+msgstr ""
+"Effacer le fanion de démarrage du MBR protecteur de la table de partitions "
+"GPT sur %1$s"
 
 # TLABEL update_2002_01_04_0147__20
 #. TRANSLATORS: displayed during action,
@@ -273,13 +304,74 @@ msgstr "Effacement du fanion de démarrage legacy de la partition %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Effacement de l'option 'no copy on write' pour le sous-volume %1$s sur %2$s"
+msgstr ""
+"Effacement de l'option 'no copy on write' pour le sous-volume %1$s sur %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr "Effacement du fanion de démarrage du MBR protecteur de la table de partitions GPT sur %1$s"
+msgstr ""
+"Effacement du fanion de démarrage du MBR protecteur de la table de "
+"partitions GPT sur %1$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Créer le volume %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid "Create %1$s %2$s (%3$s) from %4$s"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr ""
+"Créer la partition %1$s (%2$s) pour le point de montage %4$s avec le système "
+"de fichiers %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
@@ -320,55 +412,70 @@ msgstr "Créer la table de partitions GPT sur %1$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour le point de montage %4$s avec le système de fichiers %5$s"
+msgid ""
+"Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr ""
+"Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour "
+"le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour l'échange"
+msgstr ""
+"Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour "
+"l'échange"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s avec le système de fichier %4$s"
+msgstr ""
+"Créer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s avec "
+"le système de fichier %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over %1$s (%2$s)"
+msgstr "Créer le volume physique LVM sur la partition chiffrée %1$s (%2$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "Créer le volume physique LVM sur la partition chiffrée %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "Créer le périphérique de volume LVM sur la partition %1$s (%2$s)"
@@ -388,83 +495,237 @@ msgstr "Créer le MD %1$s %2$s (%3$s)"
 msgid "Create MS-DOS partition table on %1$s"
 msgstr "Créer la table de partition MS-DOS sur %1$s"
 
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s)"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Créer le volume %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr ""
+"Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s)\n"
+"from %4$s"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) pour le point de montage %3$s avec "
+"le système de fichiers %4$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Créer le volume chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Créer la partition chiffrée %1$s (%2$s) pour l'échange"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) pour le point de montage %3$s avec "
+"le système de fichiers %4$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$s pour le point de montage %4$s avec le système de fichiers %5$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
+"%4$s with %5$s"
+msgstr ""
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s pour le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
-msgstr "Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$s pour l'échange"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgstr ""
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s pour l'échange"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes %3$s avec le système de fichiers %4$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
+"%4$s"
+msgstr ""
+"Créer le volume logique LVM chiffré %1$s (%2$s) sur le groupe de volumes "
+"%3$s avec le système de fichiers %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Créer le volume chiffré %1$s (%2$s) pour %4$s avec %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Créer la partition chiffrée %1$s (%2$s) pour l'échange"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) pour le point de montage %3$s avec "
+"le système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "Créer la partition chiffrée %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
-msgstr "Créer la partition chiffrée %1$s (%2$s) en tant que volume physique LVM"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) en tant que volume physique LVM"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Créer la partition chiffrée %1$s (%2$s) pour le point de montage %3$s avec le système de fichiers %4$s"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) pour le point de montage %3$s avec "
+"le système de fichiers %4$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "Créer la partition chiffrée %1$s (%2$s) pour l'échange"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
-msgstr "Créer la partition chiffrée %1$s (%2$s) avec le système de fichiers %3$s"
+msgstr ""
+"Créer la partition chiffrée %1$s (%2$s) avec le système de fichiers %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS: displayed before action,
@@ -483,17 +744,18 @@ msgstr "Créer la partition étendue %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "Créer le système de fichiers btrfs sur %1$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr "Créer un système de fichiers btrfs sur %1$s et le monter à l'emplacement %2$s"
+msgstr ""
+"Créer un système de fichiers btrfs sur %1$s et le monter à l'emplacement %2$s"
 
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
@@ -533,49 +795,51 @@ msgstr "Créer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Créer la partition %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
 msgstr "Créer la partition %1$s (%2$s) en tant que %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "Créer la partition %1$s (%2$s) en tant que volume physique LVM"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Créer la partition %1$s (%2$s) pour le point de montage %4$s avec le système de fichiers %3$s"
+msgstr ""
+"Créer la partition %1$s (%2$s) pour le point de montage %4$s avec le système "
+"de fichiers %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__104
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "Créer la partition %1$s (%2$s) pour l'échange"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
 msgstr "Créer la partition %1$s (%2$s) avec le système de fichiers %3$s"
@@ -599,19 +863,20 @@ msgstr "Créer la partition primaire %1$s (%2$s)"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Créer le sous-volume %1$s sur %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
-msgstr "Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'écriture"
+msgstr ""
+"Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'écriture"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -620,7 +885,8 @@ msgstr "Créer le sous-volume %1$s sur %2$s avec l'option Pas de copie pour l'é
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Créer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Créer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -629,23 +895,25 @@ msgstr "Créer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Créer le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Créer le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes "
+"%3$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Créer le groupe de volumes %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "Créer le groupe de volumes %1$s (%2$s) avec %3$s"
@@ -781,7 +1049,8 @@ msgstr "Création du sous-volume %1$s sur %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Création du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Création du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed during action,
@@ -790,7 +1059,9 @@ msgstr "Création du volume logique léger %1$s (%2$s) sur le groupe de volumes 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Création du volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Création du volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -867,7 +1138,8 @@ msgstr "Désactiver le multipath %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Désactiver le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Désactiver le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -875,7 +1147,9 @@ msgstr "Désactiver le volume logique léger %1$s (%2$s) sur le groupe de volume
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Désactiver le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Désactiver le volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS: displayed during action,
@@ -915,7 +1189,8 @@ msgstr "Désactivation de la couche de chiffrement sur %1$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Désactivation du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Désactivation du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS: displayed during action,
@@ -931,7 +1206,9 @@ msgstr "Désactivation du multipath %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Désactivation du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Désactivation du volume logique léger %1$s (%2$s) sur le groupe de volumes "
+"%3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -939,7 +1216,18 @@ msgstr "Désactivation du volume logique léger %1$s (%2$s) sur le groupe de vol
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Désactivation du volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Désactivation du volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete %1$s %2$s (%3$s)"
+msgstr "Supprimer %1$s sur %2$s (%3$s)"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
@@ -995,6 +1283,15 @@ msgstr "Supprimer le MD %1$s %2$s (%3$s)"
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "Supprimer la table de partition MS-DOS sur %1$s"
 
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s on %2$s (%3$s)"
+msgstr "Supprimer %1$s sur %2$s (%3$s)"
+
 # TLABEL wizard_2002_01_04_0147__19
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1012,7 +1309,7 @@ msgstr "Supprimer la partition étendue %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__162
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "Supprimer le système de fichiers btrfs sur %1$s"
@@ -1053,8 +1350,8 @@ msgstr "Supprimer le volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Supprimer la partition %1$s (%2$s)"
@@ -1078,8 +1375,8 @@ msgstr "Supprimer la partition principale %1$s (%2$s)"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Supprimer le sous-volume %1$s sur %2$s"
@@ -1091,7 +1388,8 @@ msgstr "Supprimer le sous-volume %1$s sur %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Supprimer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Supprimer le volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__25
 #. TRANSLATORS: displayed before action,
@@ -1100,7 +1398,9 @@ msgstr "Supprimer le volume logique léger %1$s (%2$s) sur le groupe de volumes 
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Supprimer le volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Supprimer le volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1207,7 +1507,8 @@ msgstr "Suppression de la partition logique %1$s (%2$s)"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Suppression du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Suppression du volume logique %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #. TRANSLATORS: displayed during action,
@@ -1246,7 +1547,8 @@ msgstr "Suppression du sous-volume %1$s sur %2$s"
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Suppression du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Suppression du volume logique léger %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__25
 #. TRANSLATORS: displayed during action,
@@ -1255,7 +1557,9 @@ msgstr "Suppression du volume logique léger %1$s (%2$s) sur le groupe de volume
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Suppression du volume logique de pool léger %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Suppression du volume logique de pool léger %1$s (%2$s) sur le groupe de "
+"volumes %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
@@ -1281,58 +1585,135 @@ msgstr "Eo"
 msgid "EiB"
 msgstr "Eio"
 
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s)"
+msgstr "Créer le MD %1$s %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
+
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s"
+msgstr ""
+"Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour le point de montage %4$s avec le système de fichiers %5$s"
+msgid ""
+"Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
+"%5$s"
+msgstr ""
+"Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"pour le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s avec le système de fichiers %4$s"
+msgstr ""
+"Chiffrer le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"avec le système de fichiers %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s)"
+msgstr "Créer %1$s sur %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "Chiffrer la partition %1$s (%2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le système de fichiers %4$s"
+msgstr ""
+"Chiffrer la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
 msgstr "Chiffrer la partition %1$s (%2$s) avec le système de fichiers %3$s"
@@ -1357,41 +1738,108 @@ msgstr "Ext4"
 msgid "F2FS"
 msgstr ""
 
+# TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "Formater le périphérique %1$s (%2$s) pour %4$s avec %3$s"
+
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) with %4$s"
+msgstr ""
+"Formater la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
-msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s pour le point de montage %4$s avec le système de fichiers %5$s"
+msgid ""
+"Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr ""
+"Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"pour le point de montage %4$s avec le système de fichiers %5$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
-msgstr "Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s avec le système de fichiers %4$s"
+msgstr ""
+"Formater le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s "
+"avec le système de fichiers %4$s"
+
+# TLABEL partitioning_2002_03_14_2340__121
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Formater le périphérique %1$s (%2$s) pour %4$s avec %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr ""
+"Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+
+# TLABEL partitioning_2002_01_04_0147__104
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encryped swap"
+msgstr "Formater la partition RAID %1$s (%2$s) d'échange (swap)"
+
+# TLABEL partitioning_2002_01_04_0147__104
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as swap"
+msgstr "Formater la partition RAID %1$s (%2$s) d'échange (swap)"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
-msgstr "Formater la partition %1$s (%2$s) pour le point de montage %3$s avec le système de fichiers %4$s"
+msgstr ""
+"Formater la partition %1$s (%2$s) pour le point de montage %3$s avec le "
+"système de fichiers %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
 msgstr "Formater la partition %1$s (%2$s) avec %3$s"
@@ -1441,7 +1889,8 @@ msgstr "Agrandir la couche de chiffrement sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandir le volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandir le volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS: displayed before action,
@@ -1468,7 +1917,9 @@ msgstr "Agrandir le volume physique %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandir le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandir le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s "
+"à %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed before action,
@@ -1477,8 +1928,11 @@ msgstr "Agrandir le volume logique léger %1$s sur le groupe de volumes %2$s de 
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
-msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandir le volume logique de pool léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgid ""
+"Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"Agrandir le volume logique de pool léger %1$s sur le groupe de volumes %2$s "
+"de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS: displayed during action,
@@ -1506,7 +1960,9 @@ msgstr "Agrandissement de la couche de chiffrement sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandissement du volume logique %1$s sur le groupe de volumes %2$s de %3$s "
+"à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS: displayed during action,
@@ -1533,7 +1989,9 @@ msgstr "Agrandissement du volume physique sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Agrandissement du volume logique léger %1$s sur le groupe de volumes %2$s de "
+"%3$s à %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS: displayed during action,
@@ -1542,8 +2000,11 @@ msgstr "Agrandissement du volume logique léger %1$s sur le groupe de volumes %2
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
-msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Agrandissement du volume logique de pool léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgid ""
+"Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"Agrandissement du volume logique de pool léger %1$s sur le groupe de volumes "
+"%2$s de %3$s à %4$s"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
@@ -1605,6 +2066,16 @@ msgid "MiB"
 msgstr "Mio"
 
 # TLABEL partitioning_2002_01_04_0147__425
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount %1$s %2$s (%3$s) at %4$s"
+msgstr "Monter %1$s sur %2$s"
+
+# TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
@@ -1614,18 +2085,20 @@ msgstr "Monter %1$s sur %2$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
-msgstr "Monter le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s au point de montage %4$s"
+msgstr ""
+"Monter le volume logique LVM %1$s (%2$s) sur le groupe de volumes %3$s au "
+"point de montage %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount NFS %1$s on %2$s"
 msgstr "Monter le système NFS %1$s sur %2$s"
@@ -1635,19 +2108,29 @@ msgstr "Monter le système NFS %1$s sur %2$s"
 msgid "Mount Point"
 msgstr "Point de montage"
 
+# TLABEL partitioning_2002_01_04_0147__421
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
+msgstr "Monter le sous-volume %1$s de %2$s sur %3$s"
+
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
 msgstr "Monter le système de fichiers btrfs sur %1$s au point de montage %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "Monter la partition %1$s (%2$s) au point de montage %3$s"
@@ -1911,7 +2394,8 @@ msgstr "Supprimer le point de montage %1$s de %2$s de /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Supprimer le point de montage %1$s du sous-volume %2$s sur %3$s de /etc/fstab"
+msgstr ""
+"Supprimer le point de montage %1$s du sous-volume %2$s sur %3$s de /etc/fstab"
 
 # TLABEL storage_2002_08_07_0216__34
 #. TRANSLATORS: displayed during action,
@@ -1952,7 +2436,9 @@ msgstr "Suppression du point de montage %1$s de %2$s de /etc/fstab"
 #. %3$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
-msgstr "Suppression du point de montage %1$s du sous-volume %2$s sur %3$s de /etc/fstab"
+msgstr ""
+"Suppression du point de montage %1$s du sous-volume %2$s sur %3$s de /etc/"
+"fstab"
 
 # TLABEL storage_2002_08_07_0216__34
 #, c-format
@@ -1980,7 +2466,8 @@ msgstr "Renommer le point de montage %1$s de %2$s en %3$s dans /etc/fstab"
 #. %2$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
-msgstr "Renommage de la couche de chiffrement de %1$s en %2$s dans /etc/crypttab"
+msgstr ""
+"Renommage de la couche de chiffrement de %1$s en %2$s dans /etc/crypttab"
 
 # TLABEL storage_2002_08_07_0216__33
 #. TRANSLATORS: displayed during action,
@@ -2079,7 +2566,9 @@ msgstr "Définir l'option 'no copy on write' pour le sous-volume %1$s sur %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr "Définir le fanion de démarrage du MBR protecteur de la table de partitions GPT sur %1$s"
+msgstr ""
+"Définir le fanion de démarrage du MBR protecteur de la table de partitions "
+"GPT sur %1$s"
 
 # TLABEL storage_2002_08_07_0216__33
 #. TRANSLATORS: displayed before action,
@@ -2156,13 +2645,16 @@ msgstr "Définition du fanion de démarrage legacy de la partition %1$s"
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr "Définition de l'option 'no copy on write' pour le sous-volume %1$s sur %2$s"
+msgstr ""
+"Définition de l'option 'no copy on write' pour le sous-volume %1$s sur %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr "Définition du fanion de démarrage du MBR protecteur de la table de partitions GPT sur %1$s"
+msgstr ""
+"Définition du fanion de démarrage du MBR protecteur de la table de "
+"partitions GPT sur %1$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
@@ -2196,7 +2688,8 @@ msgstr "Réduire la couche de chiffrement sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduire le volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduire le volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed before action,
@@ -2223,7 +2716,9 @@ msgstr "Réduire le volume physique sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduire le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduire le volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à "
+"%4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2231,8 +2726,11 @@ msgstr "Réduire le volume logique léger %1$s sur le groupe de volumes %2$s de 
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduire le volume logique de pool léger %1$s du groupe de volumes %2$s de %3$s à %4$s"
+msgid ""
+"Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"Réduire le volume logique de pool léger %1$s du groupe de volumes %2$s de "
+"%3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__78
 #. TRANSLATORS: displayed during action,
@@ -2259,7 +2757,8 @@ msgstr "Réduction de la couche de chiffrement sur %1$s de %2$s à %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgstr ""
+"Réduction du volume logique %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS: displayed during action,
@@ -2284,8 +2783,11 @@ msgstr "Réduction du volume physique sur %1$s de %2$s à %3$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgid ""
+"Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgstr ""
+"Réduction du volume logique léger %1$s sur le groupe de volumes %2$s de %3$s "
+"à %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2293,8 +2795,12 @@ msgstr "Réduction du volume logique léger %1$s sur le groupe de volumes %2$s d
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
-msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Réduction du volume logique de pool léger %1$s sur le groupe de volumes %2$s de %3$s à %4$s"
+msgid ""
+"Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
+"%4$s"
+msgstr ""
+"Réduction du volume logique de pool léger %1$s sur le groupe de volumes %2$s "
+"de %3$s à %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
@@ -2330,19 +2836,20 @@ msgstr "Démonter %1$s de %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount NFS %1$s at %2$s"
 msgstr "Démonter le système de fichiers NFS %1$s de %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "Démonter le système de fichiers Btrfs sur %1$s au point de montage %2$s"
+msgstr ""
+"Démonter le système de fichiers Btrfs sur %1$s au point de montage %2$s"
 
 # TLABEL partitioning_2002_01_04_0147__92
 #. TRANSLATORS: displayed before action,
@@ -2472,7 +2979,9 @@ msgstr "ko"
 #~ msgstr "Mise à jour d'une entrée pour point de montage %1$s dans %2$s"
 
 #~ msgid "(Progress bar will not move. May take very long. DO NOT ABORT!)"
-#~ msgstr "(La barre de progression ne bougera pas. Cela peut durer très longtemps. NE PAS INTERROMPRE !)"
+#~ msgstr ""
+#~ "(La barre de progression ne bougera pas. Cela peut durer très longtemps. "
+#~ "NE PAS INTERROMPRE !)"
 
 # TLABEL storage_2002_08_07_0216__33
 #~ msgid "Change mount point of %1$s to %2$s"
@@ -2492,7 +3001,9 @@ msgstr "ko"
 
 # SLE12
 #~ msgid "Create GPT PReP volume %1$s (%2$s)"
-#~ msgstr "Créer un volume pour l'architecture PReP avec partitionnement GPT %1$s (%2$s)"
+#~ msgstr ""
+#~ "Créer un volume pour l'architecture PReP avec partitionnement GPT %1$s "
+#~ "(%2$s)"
 
 # SLE12
 #~ msgid "Create PReP volume %1$s (%2$s)"
@@ -2502,19 +3013,23 @@ msgstr "ko"
 #~ msgid "Create boot volume %1$s (%2$s) with %3$s"
 #~ msgstr "Créer la partition de démarrage %1$s (%2$s) avec %3$s"
 
-#~ msgid "Create encrypted file-based device %1$s of file %2$s (%3$s) as %5$s with %4$s"
-#~ msgstr "Créer le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+#~ msgid ""
+#~ "Create encrypted file-based device %1$s of file %2$s (%3$s) as %5$s with "
+#~ "%4$s"
+#~ msgstr ""
+#~ "Créer le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en "
+#~ "tant que %5$s avec %4$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #~ msgid "Create encrypted multipath partition %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Créer la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+#~ msgstr ""
+#~ "Créer la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
 
-#~ msgid "Create encrypted software RAID %1$s (%2$s) from %5$s for %4$s with %3$s"
-#~ msgstr "Créer le RAID logiciel chiffré %1$s (%2$s) à partir de %5$s pour %4$s avec %3$s"
-
-# TLABEL partitioning_2002_03_14_2340__121
-#~ msgid "Create encrypted volume %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Créer le volume chiffré %1$s (%2$s) pour %4$s avec %3$s"
+#~ msgid ""
+#~ "Create encrypted software RAID %1$s (%2$s) from %5$s for %4$s with %3$s"
+#~ msgstr ""
+#~ "Créer le RAID logiciel chiffré %1$s (%2$s) à partir de %5$s pour %4$s "
+#~ "avec %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__422
 #~ msgid "Create extended RAID partition %1$s (%2$s)"
@@ -2528,7 +3043,9 @@ msgstr "ko"
 #~ msgstr "Créer le périphérique basé sur fichier %1$s du fichier %2$s (%3$s)"
 
 #~ msgid "Create file-based device %1$s of file %2$s (%3$s) as %5$s with %4$s"
-#~ msgstr "Créer le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+#~ msgstr ""
+#~ "Créer le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que "
+#~ "%5$s avec %4$s"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #~ msgid "Create logical volume %1$s (%2$s) for %4$s with %3$s"
@@ -2547,7 +3064,8 @@ msgstr "ko"
 
 # TLABEL partitioning_2002_03_14_2340__121
 #~ msgid "Create software RAID %1$s (%2$s) from %5$s for %4$s with %3$s"
-#~ msgstr "Créer le RAID logiciel %1$s (%2$s) à partir de %5$s pour %4$s avec %3$s"
+#~ msgstr ""
+#~ "Créer le RAID logiciel %1$s (%2$s) à partir de %5$s pour %4$s avec %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #~ msgid "Create subvolume %1$s on device %2$s"
@@ -2563,10 +3081,6 @@ msgstr "ko"
 # TLABEL partitioning_2002_01_04_0147__422
 #~ msgid "Create swap multipath partition %1$s (%2$s)"
 #~ msgstr "Créer la partition d'échange multipath %1$s (%2$s)"
-
-# TLABEL partitioning_2002_03_14_2340__121
-#~ msgid "Create volume %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Créer le volume %1$s (%2$s) pour %4$s avec %3$s"
 
 # TLABEL packages_2002_01_04_0147__198
 #~ msgid "Creating %1$s"
@@ -2722,32 +3236,28 @@ msgstr "ko"
 #~ msgstr "Formater le volume Btrfs de %1$s (périphériques utilisés : %2$s)"
 
 #~ msgid "Format Btrfs volume of size %1$s for %3$s (used devices:%2$s)"
-#~ msgstr "Formater le volume Btrfs de %1$s pour %3$s (périphériques utilisés : %2$s)"
+#~ msgstr ""
+#~ "Formater le volume Btrfs de %1$s pour %3$s (périphériques utilisés : %2$s)"
 
 # TLABEL partitioning_2002_01_04_0147__421
 #~ msgid "Format RAID partition %1$s (%2$s) for %4$s with %3$s"
 #~ msgstr "Formater la partition RAID %1$s (%2$s) pour %4$s avec %3$s"
 
-# TLABEL partitioning_2002_01_04_0147__104
-#~ msgid "Format RAID partition %1$s (%2$s) for swap"
-#~ msgstr "Formater la partition RAID %1$s (%2$s) d'échange (swap)"
-
 # TLABEL partitioning_2002_01_04_0147__421
 #~ msgid "Format RAID partition %1$s (%2$s) with %3$s"
 #~ msgstr "Formater la partition RAID %1$s (%2$s) avec %3$s"
-
-# TLABEL partitioning_2002_03_14_2340__121
-#~ msgid "Format device %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Formater le périphérique %1$s (%2$s) pour %4$s avec %3$s"
 
 #~ msgid "Format device %1$s (%2$s) with %3$s"
 #~ msgstr "Formater le périphérique %1$s (%2$s) avec %3$s"
 
 #~ msgid "Format device mapper volume %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Formater le volume d'assignation de périphérique %1$s (%2$s) pour %4$s avec %3$s"
+#~ msgstr ""
+#~ "Formater le volume d'assignation de périphérique %1$s (%2$s) pour %4$s "
+#~ "avec %3$s"
 
 #~ msgid "Format device mapper volume %1$s (%2$s) with %3$s"
-#~ msgstr "Formater le volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
+#~ msgstr ""
+#~ "Formater le volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
 
 #~ msgid "Format encrypted RAID partition %1$s (%2$s) for %4$s with %3$s"
 #~ msgstr "Formater la partition RAID chiffrée %1$s (%2$s) pour %4$s avec %3$s"
@@ -2756,16 +3266,22 @@ msgstr "ko"
 #~ msgstr "Formater le périphérique chiffré %1$s (%2$s) pour %4$s avec %3$s"
 
 #~ msgid "Format encrypted device mapper volume %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Formater le volume chiffré d'assignation de périphérique %1$s (%2$s) pour %4$s avec %3$s"
+#~ msgstr ""
+#~ "Formater le volume chiffré d'assignation de périphérique %1$s (%2$s) pour "
+#~ "%4$s avec %3$s"
 
-#~ msgid "Format encrypted file-based device %1$s of %2$s (%3$s) as %5$s with %4$s"
-#~ msgstr "Formater le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
+#~ msgid ""
+#~ "Format encrypted file-based device %1$s of %2$s (%3$s) as %5$s with %4$s"
+#~ msgstr ""
+#~ "Formater le périphérique basé sur fichier chiffré %1$s de %2$s (%3$s) en "
+#~ "tant que %5$s avec %4$s"
 
 #~ msgid "Format encrypted logical volume %1$s (%2$s) for %4$s with %3$s"
 #~ msgstr "Formater le volume logique chiffré %1$s (%2$s) pour %4$s avec %3$s"
 
 #~ msgid "Format encrypted multipath partition %1$s (%2$s) for %4$s with %3$s"
-#~ msgstr "Formater la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
+#~ msgstr ""
+#~ "Formater la partition multipath chiffrée %1$s (%2$s) pour %4$s avec %3$s"
 
 #~ msgid "Format encrypted partition %1$s (%2$s) for %4$s with %3$s"
 #~ msgstr "Formater la partition chiffrée %1$s (%2$s) pour %4$s avec %3$s"
@@ -2774,10 +3290,9 @@ msgstr "ko"
 #~ msgstr "Formater le RAID logiciel chiffré %1$s (%2$s) pour %4$s avec %3$s"
 
 #~ msgid "Format file-based device %1$s of %2$s (%3$s) as %5$s with %4$s"
-#~ msgstr "Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que %5$s avec %4$s"
-
-#~ msgid "Format file-based device %1$s of %2$s (%3$s) with %4$s"
-#~ msgstr "Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+#~ msgstr ""
+#~ "Formater le périphérique basé sur fichier %1$s de %2$s (%3$s) en tant que "
+#~ "%5$s avec %4$s"
 
 #~ msgid "Format logical volume %1$s (%2$s) for swap"
 #~ msgstr "Formater le volume logique %1$s (%2$s) d'échange"
@@ -2815,10 +3330,12 @@ msgstr "ko"
 #~ msgstr "Formatage du périphérique %1$s (%2$s) avec %3$s"
 
 #~ msgid "Formatting device mapper volume %1$s (%2$s) with %3$s "
-#~ msgstr "Formatage du volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
+#~ msgstr ""
+#~ "Formatage du volume d'assignation de périphérique %1$s (%2$s) avec %3$s"
 
 #~ msgid "Formatting file-based device %1$s of %2$s (%3$s) with %4$s "
-#~ msgstr "Formatage du périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
+#~ msgstr ""
+#~ "Formatage du périphérique basé sur fichier %1$s de %2$s (%3$s) avec %4$s"
 
 #~ msgid "Formatting logical volume %1$s (%2$s) with %3$s"
 #~ msgstr "Formatage du volume logique %1$s (%2$s) avec %3$s"
@@ -3018,8 +3535,10 @@ msgstr "ko"
 #~ "par cet outil.\n"
 #~ " \n"
 #~ " Vous pouvez utiliser les partitions du disque %1$s telles quelles.\n"
-#~ " Vous pouvez les formater et leur assigner des points de montage. En revanche,\n"
-#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des partitions de ce\n"
+#~ " Vous pouvez les formater et leur assigner des points de montage. En "
+#~ "revanche,\n"
+#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des "
+#~ "partitions de ce\n"
 #~ "disque avec cet outil."
 
 #~ msgid ""
@@ -3048,8 +3567,10 @@ msgstr "ko"
 #~ "    as well."
 #~ msgstr ""
 #~ "Vous disposez des options suivantes :\n"
-#~ "  - Repartitionner votre système pour que le nombre de partitions maximum\n"
-#~ "    autorisées soient utilisées. Pour repartitionner, utiliser votre système\n"
+#~ "  - Repartitionner votre système pour que le nombre de partitions "
+#~ "maximum\n"
+#~ "    autorisées soient utilisées. Pour repartitionner, utiliser votre "
+#~ "système\n"
 #~ "    d'exploitation existant.\n"
 #~ "  - Utiliser LVM puisqu'il peut fournir un nombre arbitraire et\n"
 #~ "    flexible de partitions de type block devices. Cela nécessite aussi\n"
@@ -3062,7 +3583,8 @@ msgstr "ko"
 #~ msgstr ""
 #~ "Votre disque %1$s contient %2$lu partitions. Le pilote de noyau\n"
 #~ "ne peut pas gérer plus de %3$lu partitions.\n"
-#~ "Les partitions dont le numéro est supérieur à %3$lu ne sont pas accessibles."
+#~ "Les partitions dont le numéro est supérieur à %3$lu ne sont pas "
+#~ "accessibles."
 
 # TLABEL partitioning_2002_01_04_0147__46
 #~ msgid "Executing fdasd for disk %1$s"
@@ -3083,28 +3605,38 @@ msgstr "ko"
 #~ " table de partition.\n"
 #~ " \n"
 #~ " Vous pouvez utiliser les partitions du disque %1$s telles quelles.\n"
-#~ " Vous pouvez les formater et leur assigner des points de montage. En revanche,\n"
-#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des partitions de ce\n"
+#~ " Vous pouvez les formater et leur assigner des points de montage. En "
+#~ "revanche,\n"
+#~ " vous ne pouvez pas ajouter, modifier, redimensionner ou supprimer des "
+#~ "partitions de ce\n"
 #~ "disque avec cet outil."
 
 #~ msgid ""
-#~ "You are running on the Intel(R) Matrix Storage Manager compatible platform.\n"
+#~ "You are running on the Intel(R) Matrix Storage Manager compatible "
+#~ "platform.\n"
 #~ "\n"
 #~ "Following MD compatible RAID devices were detected:\n"
 #~ "%1$s\n"
-#~ "If they are clean devices or contain partitions then you can choose to use\n"
-#~ "MD Partitionable RAID sysbsystem to handle them. In case of clean device you\n"
+#~ "If they are clean devices or contain partitions then you can choose to "
+#~ "use\n"
+#~ "MD Partitionable RAID sysbsystem to handle them. In case of clean device "
+#~ "you\n"
 #~ "will be able to install system on it and boot from such RAID.\n"
 #~ "Do you want MD Partitionable RAID subsystem to manage those partitions?"
 #~ msgstr ""
-#~ "Votre système est une plateforme compatible avec le Intel(R) Matrix Storage Manager.\n"
+#~ "Votre système est une plateforme compatible avec le Intel(R) Matrix "
+#~ "Storage Manager.\n"
 #~ "\n"
 #~ "Les périphériques RAID compatibles MD suivants ont été detectés :\n"
 #~ "%1$s\n"
-#~ "S'il s'agit de périphériques vierges ou qui contiennent des partitions, alors vous pouvez\n"
-#~ "choisir d'utiliser le sous-système MD RAID partitionnable pour les gérer. Dans le cas d'un\n"
-#~ "périphérique vierge vous pourrez installer le système dessus et démarrer depuis un tel RAID.\n"
-#~ "Voulez-vous que le sous-système MD RAID partitionnable gère ces partitions ?"
+#~ "S'il s'agit de périphériques vierges ou qui contiennent des partitions, "
+#~ "alors vous pouvez\n"
+#~ "choisir d'utiliser le sous-système MD RAID partitionnable pour les gérer. "
+#~ "Dans le cas d'un\n"
+#~ "périphérique vierge vous pourrez installer le système dessus et démarrer "
+#~ "depuis un tel RAID.\n"
+#~ "Voulez-vous que le sous-système MD RAID partitionnable gère ces "
+#~ "partitions ?"
 
 #~ msgid ""
 #~ "The partitioning on disk %1$s is not readable by\n"

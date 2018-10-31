@@ -10,17 +10,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 14:46+0200\n"
+"POT-Creation-Date: 2018-10-31 15:05+0100\n"
 "PO-Revision-Date: 2018-05-10 06:32+0000\n"
 "Last-Translator: Mindaugas Baranauskas <opensuse.lietuviu.kalba@gmail.com>\n"
-"Language-Team: Lithuanian <https://l10n.opensuse.org/projects/libstorage/ng-master/lt/>\n"
+"Language-Team: Lithuanian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3;\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 0 : n%10>=2 && (n%100<10 || n"
+"%100>=20) ? 1 : n%10==0 || (n%100>10 && n%100<20) ? 2 : 3;\n"
 "X-Generator: Weblate 2.18\n"
 "<http: //10n.opensuse.org/projects/libstorage/master/lt/>\n"
+
+msgid ""
+"\n"
+"are you serious?!"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the the size (e.g. 60 GiB)
+#, fuzzy, c-format
+msgid "%1$s (%2$s)"
+msgstr "Pridėti %1$s prie „%2$s“"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the a list of cache devices with size
+#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#, c-format
+msgid "%1$s is cached by %2$s"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -174,7 +196,8 @@ msgstr ""
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "Pridedamas %2$s prijungimo vietos prie %1$s įrašas /etc/fstab rinkmenoje"
+msgstr ""
+"Pridedamas %2$s prijungimo vietos prie %1$s įrašas /etc/fstab rinkmenoje"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -270,6 +293,59 @@ msgstr ""
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Sukurti %4$s tipo %1$s (%2$s) skaidinį, jungiamą prie %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid "Create %1$s %2$s (%3$s) from %4$s"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "Sukurti %4$s tipo %1$s (%2$s) skaidinį, jungiamą prie %3$s"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
@@ -305,50 +381,58 @@ msgid "Create GPT on %1$s"
 msgstr "Sukurti GPT ties %1$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over %1$s (%2$s)"
+msgstr "Kuriamas loginis tomas %1$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "Kuriamas loginis tomas %1$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "Sukurti tomą %1$s (%2$s)"
@@ -368,74 +452,204 @@ msgid "Create MS-DOS partition table on %1$s"
 msgstr "Sukurti %1$s MS-DOS skaidinių lentelę"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s)"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Sukurti %4$s tipo %1$s (%2$s) skaidinį, jungiamą prie %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s)\n"
+"from %4$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
+"%4$s with %5$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
+"%4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
@@ -454,14 +668,14 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "Sukurti išplėstąjį skaidinį %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, fuzzy, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "Kuriamas loginis tomas %1$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
@@ -502,47 +716,47 @@ msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Sukurti %1$s (%2$s) skaidinį"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
 msgstr "Sukurti %3$s tipo %1$s (%2$s) skaidinį"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "Sukurti %1$s (%2$s) kaip LVM fizinį tomą"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Sukurti %4$s tipo %1$s (%2$s) skaidinį, jungiamą prie %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "Sukurti %1$s (%2$s) skaidinį kaip mainų sritį"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
 msgstr "Sukurti %3$s tipo %1$s (%2$s) skaidinį"
@@ -564,15 +778,15 @@ msgstr "Sukurti %1$s (%2$s) pagrindinį skaidinį"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Sukurti %2$s įrenginio %1$s potomį"
 
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
 msgstr "Sukurti potomį %1$s įrenginyje %2$s"
@@ -597,16 +811,16 @@ msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Sukurti %1$s (%2$s) tomų grupę"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "Sukurti %1$s (%2$s) tomų grupę iš %3$s"
@@ -881,6 +1095,14 @@ msgstr "Suženklinamas loginis tomas %1$s (%2$s) kaip %3$s"
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Suženklinamas loginis tomas %1$s (%2$s) kaip %3$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete %1$s %2$s (%3$s)"
+msgstr "Šalinti %1$s tipo %2$s (%3$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
@@ -929,6 +1151,14 @@ msgstr "Šalinti skaidinį %1$s (%2$s)"
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "Šalinti %1$s MS-DOS skaidinių lentelę"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s on %2$s (%3$s)"
+msgstr "Šalinti %1$s tipo %2$s (%3$s)"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, fuzzy, c-format
@@ -943,7 +1173,7 @@ msgid "Delete extended partition %1$s (%2$s)"
 msgstr "Šalinti %1$s (%2$s) išplėstąjį skaidinį"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, fuzzy, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "Trinamas loginis tomas %1$s"
@@ -980,8 +1210,8 @@ msgstr "Šalinti loginį tomą %1$s (%2$s)"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Šalinti skaidinį %1$s (%2$s)"
@@ -1003,8 +1233,8 @@ msgstr "Kuriamas RAID skaidinys %1$s (%2$s)"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Sukurti potomį %1$s įrenginyje %2$s"
@@ -1188,52 +1418,108 @@ msgid "EiB"
 msgstr "EiB"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s)"
+msgstr "Sukurti tomą %1$s (%2$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
+msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
+"%5$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s)"
+msgstr "Sukurti %1$s ties %2$s (%3$s)"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "Kuriamas RAID skaidinys %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
 msgstr "Suženklinti skaidinį %1$s (%2$s) kaip %3$s"
@@ -1259,37 +1545,90 @@ msgid "F2FS"
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "Suženklinti %1$s (%2$s) skaidinį, jungiamą ties %3$s, kaip %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) with %4$s"
+msgstr "Suženklinti %1$s (%2$s) skaidinį, jungiamą ties %3$s, kaip %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid ""
+"Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Suženklinti %1$s (%2$s) skaidinį, jungiamą ties %3$s, kaip %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Suženklinti %1$s (%2$s) skaidinį, jungiamą ties %3$s, kaip %4$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encryped swap"
+msgstr "Sukurti %1$s (%2$s) skaidinį kaip mainų sritį"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as swap"
+msgstr "Sukurti %1$s (%2$s) skaidinį kaip mainų sritį"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Suženklinti %1$s (%2$s) skaidinį, jungiamą ties %3$s, kaip %4$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
 msgstr "Suženklinti %1$s (%2$s) skaidinį kaip %3$s"
@@ -1325,7 +1664,8 @@ msgstr "Padidinti %1$s tipo %2$s nuo %3$s iki %4$s"
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
+msgstr ""
+"Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1367,7 +1707,8 @@ msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
-msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: displayed during action,
@@ -1385,7 +1726,8 @@ msgstr "Suženklinti skaidinį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
 #. %3$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
+msgstr ""
+"Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -1427,7 +1769,8 @@ msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
-msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: name of object
@@ -1481,6 +1824,15 @@ msgstr "MS-DOS skaidinių lentelė"
 msgid "MiB"
 msgstr "MiB"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount %1$s %2$s (%3$s) at %4$s"
+msgstr "Prijungti %1$s prie %2$s"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
@@ -1489,17 +1841,17 @@ msgid "Mount %1$s at %2$s"
 msgstr "Prijungti %1$s prie %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
 msgstr "Sukurti loginį tomą %1$s (%2$s) jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount NFS %1$s on %2$s"
 msgstr "%1$s prijungiamas prie %2$s"
@@ -1509,16 +1861,25 @@ msgid "Mount Point"
 msgstr "Prijungimo vieta"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
+msgstr "Sukurti operacinės sistemos paleidimo tomą %1$s (%2$s) kaip %3$s"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
 msgstr "%1$s prijungiamas prie %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "Prijungti %1$s (%2$s) skaidinį ties %3$s"
@@ -2019,7 +2380,8 @@ msgstr "Sumažinti %1$s tipo %2$s nuo %3$s iki %4$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
+msgstr ""
+"Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2061,7 +2423,8 @@ msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2079,7 +2442,8 @@ msgstr "%1$s sumažinamas iki %2$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
+msgstr ""
+"Suženklinti šifruotą įrenginį %1$s (%2$s), jungiamą prie %4$s kaip %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2112,7 +2476,8 @@ msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2121,7 +2486,9 @@ msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
+"%4$s"
 msgstr "Sumažinamas loginis tomas %1$s iki %2$s"
 
 #. TRANSLATORS: name of object
@@ -2156,15 +2523,15 @@ msgid "Unmount %1$s at %2$s"
 msgstr "Atjungti %1$s nuo %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Unmount NFS %1$s at %2$s"
 msgstr "Atjungti NFS %1$s nuo %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "%1$s prijungiamas prie %2$s"

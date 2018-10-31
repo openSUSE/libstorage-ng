@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST2 (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-09-11 14:46+0200\n"
+"POT-Creation-Date: 2018-10-31 15:05+0100\n"
 "PO-Revision-Date: 2004-03-31 11:34+0200\n"
 "Last-Translator: opensuse-translations@opensuse.org\n"
 "Language-Team: Serbian <i18n@suse.de>\n"
@@ -15,7 +15,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : (n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : (n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid ""
+"\n"
+"are you serious?!"
+msgstr ""
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the the size (e.g. 60 GiB)
+#, fuzzy, c-format
+msgid "%1$s (%2$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the a list of cache devices with size
+#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#, c-format
+msgid "%1$s is cached by %2$s"
+msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -266,6 +287,59 @@ msgstr ""
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid "Create %1$s %2$s (%3$s) from %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "Izbaci"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
@@ -302,50 +376,58 @@ msgid "Create GPT on %1$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create LVM physical volume over %1$s (%2$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "Izbaci"
@@ -366,74 +448,204 @@ msgid "Create MS-DOS partition table on %1$s"
 msgstr "Одабир софтвера..."
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s)\n"
+"from %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#. %6$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
+"from %6$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %4$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) for swap\n"
+"from %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md name (e.g. /dev/md0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#. %5$s is replaced with a comma-spearated list of the devices
+#. the RAID is built from and their sizes: e.g.
+#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#, fuzzy, c-format
+msgid ""
+"Create encrypted %1$s %2$s (%3$s) with %4$s\n"
+"from %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
+"%4$s with %5$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
+msgid ""
+"Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with "
+"%4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
 msgstr "Izbaci"
@@ -452,14 +664,14 @@ msgid "Create extended partition %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, fuzzy, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
@@ -501,47 +713,47 @@ msgstr "Izbaci"
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by partition id string (e.g. Linux LVM)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
 msgstr "Izbaci"
@@ -563,15 +775,15 @@ msgstr "Izbaci"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
 msgstr "Izbaci"
@@ -596,16 +808,16 @@ msgstr "Izbaci"
 #. %1$s is replaced by volume group name (e.g. system),
 #. %2$s is replaced by size (e.g. 2GiB)
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the volume group name (e.g. system),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "Izbaci"
@@ -893,6 +1105,14 @@ msgstr "Izbaci"
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Izbaci"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0)
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete %1$s %2$s (%3$s)"
+msgstr "Izbaci"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
@@ -945,6 +1165,15 @@ msgstr ""
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "Одабир софтвера..."
 
+#  Frame caption for software selection
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s on %2$s (%3$s)"
+msgstr "Одабир софтвера..."
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
@@ -960,7 +1189,7 @@ msgstr "Izbaci"
 
 #  Frame caption for software selection
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
 #, fuzzy, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "Одабир софтвера..."
@@ -1000,8 +1229,8 @@ msgstr ""
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Одабир софтвера..."
@@ -1023,8 +1252,8 @@ msgstr "Izbaci"
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #. TRANSLATORS:
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced with the subvolume path (e.g. var/log),
+#. %2$s is replaced with the block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Izbaci"
@@ -1221,52 +1450,108 @@ msgid "EiB"
 msgstr "тив"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid ""
+"Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with "
+"%5$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s)"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
 msgstr "Izbaci"
@@ -1292,37 +1577,90 @@ msgid "F2FS"
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home),
-#. %5$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
-msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format %1$s %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid ""
+"Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home),
-#. %4$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home),
+#. %5$s is replaced with the file system name (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the file system type (e.g. ext4)
+#, fuzzy, c-format
+msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as encryped swap"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Format partition %1$s (%2$s) as swap"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home),
+#. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) for %3$s with %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by file system name (e.g. ext4)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
 msgstr "Izbaci"
@@ -1403,7 +1741,8 @@ msgstr "Izbaci"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
-msgid "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS: displayed during action,
@@ -1463,7 +1802,8 @@ msgstr "Izbaci"
 #. %3$s is replaced by old size (e.g. 1GiB),
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, fuzzy, c-format
-msgid "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS: name of object
@@ -1521,6 +1861,15 @@ msgstr "Одабир софтвера..."
 msgid "MiB"
 msgstr "тив"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the md level (e.g. RAID1),
+#. %2$s is replaced with the md name (e.g. /dev/md0),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount %1$s %2$s (%3$s) at %4$s"
+msgstr "Izbaci"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2GiB)
@@ -1529,17 +1878,17 @@ msgid "Mount %1$s at %2$s"
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by volume group name (e.g. system),
-#. %4$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the logical volume name (e.g. root),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the volume group name (e.g. system),
+#. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount NFS %1$s on %2$s"
 msgstr "Izbaci"
@@ -1549,16 +1898,25 @@ msgid "Mount Point"
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
+#. %2$s is replaced with the device name (e.g. /dev/sda1),
+#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %4$s is replaced with the mount point (e.g. /home)
+#, fuzzy, c-format
+msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
+msgstr "Izbaci"
+
+#. TRANSLATORS:
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the partition name (e.g. /dev/sda1),
+#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "Izbaci"
@@ -2117,7 +2475,8 @@ msgstr "Izbaci"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS: displayed during action,
@@ -2168,7 +2527,8 @@ msgstr ""
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS: displayed during action,
@@ -2177,7 +2537,9 @@ msgstr "Izbaci"
 #. %3$s is replaced by old size (e.g. 2GiB),
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, fuzzy, c-format
-msgid "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
+msgid ""
+"Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
+"%4$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS: name of object
@@ -2214,15 +2576,15 @@ msgid "Unmount %1$s at %2$s"
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced by nfs name (e.g. 99.99.00.00:path),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount NFS %1$s at %2$s"
 msgstr "Izbaci"
 
 #. TRANSLATORS:
-#. %1$s is replaced by name of devices separated by comma (e.g. /dev/sda1, /dev/sda2),
-#. %2$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "Izbaci"
