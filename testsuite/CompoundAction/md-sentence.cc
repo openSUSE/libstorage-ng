@@ -12,15 +12,11 @@
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
+#include "storage/Utils/HumanString.h"
 
 #include "testsuite/CompoundAction/Fixture.h"
 
 #define BLOCK_SIZE	1024L
-#define kiB             1L
-#define MiB		(1024L*kiB)
-#define GiB		(1024L*MiB)
-#define TiB		(1024L*GiB)
-
 
 using std::cout;
 using std::endl;
@@ -50,7 +46,8 @@ namespace storage
                     device_name += 'a' + i;
 
                     // cout << "Creating disk " << device_name << endl;
-                    Disk * disk = Disk::create( staging, device_name, Region( 0, 512*GiB, BLOCK_SIZE ) );
+                    Disk * disk = Disk::create( staging, device_name,
+                                                Region( 0, 512*GiB / BLOCK_SIZE, BLOCK_SIZE ) );
                     disks.push_back( disk );
                 }
 
