@@ -320,8 +320,8 @@ namespace storage
     CompoundAction::Formatter::Md::encrypted_with_fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
@@ -340,8 +340,8 @@ namespace storage
     CompoundAction::Formatter::Md::encrypted_with_fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Encrypt %1$s %2$s (%3$s) with %4$s" );
@@ -358,8 +358,9 @@ namespace storage
     CompoundAction::Formatter::Md::encrypted_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
+	// %3$s is replaced with the size (e.g. 2 GiB),
 	Text text = _( "Encrypt %1$s %2$s (%3$s)" );
 
 	return sformat( text,
@@ -373,8 +374,8 @@ namespace storage
     CompoundAction::Formatter::Md::fs_and_mount_point_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
@@ -393,8 +394,8 @@ namespace storage
     CompoundAction::Formatter::Md::fs_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the file system type (e.g. ext4)
 	Text text = _( "Format %1$s %2$s (%3$s) with %4$s" );
@@ -413,8 +414,8 @@ namespace storage
 	string mount_point = get_created_mount_point()->get_path();
 
 	// TRANSLATORS:
-	// %1$s is replaced with the md name (e.g. /dev/md0),
-	// %2$s is replaced with the device name (e.g. /dev/sda1),
+	// %1$s is replaced with the md level (e.g. RAID1),
+	// %2$s is replaced with the md name (e.g. /dev/md0),
 	// %3$s is replaced with the size (e.g. 2 GiB),
 	// %4$s is replaced with the mount point (e.g. /home)
 	Text text = _( "Mount %1$s %2$s (%3$s) at %4$s" );
