@@ -22,6 +22,7 @@
 
 #include "storage/CompoundAction/Formatter.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Devices/DeviceImpl.h"
 
 
 namespace storage
@@ -29,8 +30,17 @@ namespace storage
 
     using std::string;
 
-    CompoundAction::Formatter::Formatter(const CompoundAction::Impl* compound_action)
-    : compound_action(compound_action) {}
+    CompoundAction::Formatter::Formatter(const CompoundAction::Impl* compound_action,
+                                         const string & device_classname)
+    : _compound_action(compound_action)
+    , _device_classname(device_classname)
+    {
+        _creating   = has_create(_device_classname);
+        _deleting   = has_delete(_device_classname);
+        _formatting = has_create<storage::BlkFilesystem>();
+        _encrypting = has_create<storage::Encryption>();
+        _mounting   = has_create<storage::MountPoint>();
+    }
 
 
     CompoundAction::Formatter::~Formatter() {}
@@ -42,6 +52,53 @@ namespace storage
 	return text().translated;
     }
 
+
+    bool
+    CompoundAction::Formatter::has_create(const string &device_classname) const
+    {
+        if (device_classname.empty())
+            return false;
+
+        for (const Action::Base * action : _compound_action->get_commit_actions())
+        {
+            const Action::Create * create_action = dynamic_cast<const Action::Create *>(action);
+
+            if (create_action)
+            {
+                const Device * device = create_action->get_device(_compound_action->get_actiongraph()->get_impl());
+
+                if (device &&  device->get_impl().get_classname() == device_classname)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    bool
+    CompoundAction::Formatter::has_delete(const string &device_classname) const
+    {
+        if (device_classname.empty())
+            return false;
+
+        for (const Action::Base * action : _compound_action->get_commit_actions())
+        {
+            const Action::Delete * delete_action = dynamic_cast<const Action::Delete *>(action);
+
+            if (delete_action)
+            {
+                Device * device = delete_action->get_device(_compound_action->get_actiongraph()->get_impl());
+
+                if (device &&  device->get_impl().get_classname() == device_classname)
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+
     const BlkFilesystem*
     CompoundAction::Formatter::get_created_filesystem() const
     {
@@ -49,7 +106,7 @@ namespace storage
 
 	if (action)
 	{
-	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+	    auto device = CompoundAction::Impl::device(_compound_action->get_actiongraph(), action);
 	    return to_blk_filesystem(device);
 	}
 
@@ -64,7 +121,7 @@ namespace storage
 
 	if (action)
 	{
-	    auto device = CompoundAction::Impl::device(compound_action->get_actiongraph(), action);
+	    auto device = CompoundAction::Impl::device(_compound_action->get_actiongraph(), action);
 	    return to_mount_point(device);
 	}
 
@@ -75,9 +132,37 @@ namespace storage
     Text
     CompoundAction::Formatter::default_text() const
     {
-	const CommitData commit_data(compound_action->get_actiongraph()->get_impl(), Tense::SIMPLE_PRESENT);
-	auto first_action = compound_action->get_commit_actions().front();
+	const CommitData commit_data(_compound_action->get_actiongraph()->get_impl(), Tense::SIMPLE_PRESENT);
+	auto first_action = _compound_action->get_commit_actions().front();
 	return first_action->text(commit_data);
+    }
+
+
+    Text
+    CompoundAction::Formatter::format_devices_text(const std::vector<const BlkDevice *> &devices)
+    {
+	std::vector<const BlkDevice *> sorted_devices = devices;
+	std::sort( sorted_devices.begin(), sorted_devices.end(),
+                   BlkDevice::compare_by_name );
+
+	Text text;
+
+	for ( const BlkDevice * device: sorted_devices )
+	{
+	    if ( ! text.translated.empty() )
+		text += Text( ", ", ", " );
+
+	    // TRANSLATORS:
+	    // %1$s is replaced with the the device name (e.g. /dev/sdc1),
+	    // %2$s is replaced with the the size (e.g. 60 GiB)
+	    Text dev_text = _( "%1$s (%2$s)" );
+
+	    text += sformat( dev_text,
+			     device->get_name().c_str(),
+			     device->get_size_string().c_str() );
+	}
+
+	return text;
     }
 
 }

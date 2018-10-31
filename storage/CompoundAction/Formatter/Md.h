@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) 2018 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,35 +20,31 @@
  */
 
 
-#ifndef STORAGE_FORMATTER_PARTITION_H
-#define STORAGE_FORMATTER_PARTITION_H
+#ifndef STORAGE_FORMATTER_MD_H
+#define STORAGE_FORMATTER_MD_H
 
 
 #include "storage/CompoundAction/Formatter.h"
-#include "storage/Devices/Partition.h"
+#include "storage/Devices/Md.h"
 #include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
 {
 
-    class CompoundAction::Formatter::Partition : public CompoundAction::Formatter
+    class CompoundAction::Formatter::Md: public CompoundAction::Formatter
     {
 
     public:
 
-	Partition(const CompoundAction::Impl* compound_action);
+	Md( const CompoundAction::Impl* compound_action );
 
     private:
 
 	Text text() const override;
+	Text devices_text() const;
 
 	Text delete_text() const;
-
-	Text create_encrypted_pv_text() const;
-	Text create_pv_text() const;
-	Text encrypted_pv_text() const;
-	Text pv_text() const;
 
 	Text create_encrypted_with_swap_text() const;
 	Text create_with_swap_text() const;
@@ -66,13 +62,17 @@ namespace storage
 	Text fs_text() const;
 	Text mount_point_text() const;
 
-        string get_device_name()     const { return partition->get_name();        }
-        string get_size()            const { return partition->get_size_string(); }
+	string get_md_name()  const { return md->get_name(); }
+	string get_size()     const { return md->get_size_string(); }
+
+	string get_md_level() const
+	{
+	    return get_md_level_name( md->get_md_level() );
+	}
 
     private:
 
-	const storage::Partition * partition;
-
+	const storage::Md * md;
     };
 
 }

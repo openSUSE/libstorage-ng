@@ -34,14 +34,15 @@ libstorage_ng_la_SOURCES =						\
 
 libstorage_ng_la_LDFLAGS = -version-info @LIBVERSION_INFO@
 
-libstorage_ng_la_LIBADD =			\
-	CompoundAction/libcompoundaction.la	\
-	Devices/libdevices.la			\
-	Filesystems/libfilesystems.la		\
-	Holders/libholders.la			\
-	Utils/libutils.la			\
-	SystemInfo/libsystem-info.la		\
-	$(XML_LIBS)				\
+libstorage_ng_la_LIBADD =				\
+	CompoundAction/libcompoundaction.la		\
+	CompoundAction/Formatter/libcompformatter.la	\
+	Devices/libdevices.la			        \
+	Filesystems/libfilesystems.la		        \
+	Holders/libholders.la			        \
+	Utils/libutils.la			        \
+	SystemInfo/libsystem-info.la		        \
+	$(XML_LIBS)				        \
 	$(JSON_C_LIBS)
 
 pkgincludedir = $(includedir)/storage

@@ -97,6 +97,7 @@ AC_OUTPUT(
 	storage/Makefile
 	storage/Version.h:storage/Version.h.in
 	storage/CompoundAction/Makefile
+	storage/CompoundAction/Formatter/Makefile
 	storage/Devices/Makefile
 	storage/Filesystems/Makefile
 	storage/Holders/Makefile

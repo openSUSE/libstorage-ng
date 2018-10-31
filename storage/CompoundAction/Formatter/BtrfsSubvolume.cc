@@ -65,8 +65,8 @@ namespace storage
     CompoundAction::Formatter::BtrfsSubvolume::delete_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by subvolume path (e.g. var/log),
-	// %2$s is replaced by block device name (e.g. /dev/sda1)
+	// %1$s is replaced with the subvolume path (e.g. var/log),
+	// %2$s is replaced with the block device name (e.g. /dev/sda1)
         Text text = _("Delete subvolume %1$s on %2$s");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
@@ -77,8 +77,8 @@ namespace storage
     CompoundAction::Formatter::BtrfsSubvolume::create_with_no_copy_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by subvolume path (e.g. var/log),
-	// %2$s is replaced by block device name (e.g. /dev/sda1)
+	// %1$s is replaced with the subvolume path (e.g. var/log),
+	// %2$s is replaced with the block device name (e.g. /dev/sda1)
         Text text = _("Create subvolume %1$s on %2$s with option 'no copy on write'");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
@@ -89,8 +89,8 @@ namespace storage
     CompoundAction::Formatter::BtrfsSubvolume::create_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced by subvolume path (e.g. var/log),
-	// %2$s is replaced by block device name (e.g. /dev/sda1)
+	// %1$s is replaced with the subvolume path (e.g. var/log),
+	// %2$s is replaced with the block device name (e.g. /dev/sda1)
         Text text = _("Create subvolume %1$s on %2$s");
 
         return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());

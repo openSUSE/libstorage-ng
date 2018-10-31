@@ -38,7 +38,7 @@ namespace storage
     {
 	vector<CompoundAction*> compound_actions;
 
-	for(auto& commit_action : actiongraph->get_commit_actions())
+	for (auto& commit_action : actiongraph->get_commit_actions())
 	{
 	    auto target = CompoundAction::Impl::get_target_device(actiongraph, commit_action);
 
