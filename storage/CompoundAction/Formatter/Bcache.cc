@@ -280,10 +280,11 @@ namespace storage
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Create bcache %1$s on %2$s (%3$s) with %4$s" );
 
-	return sformat ( text,
-                         get_device_name().c_str(),
-                         get_size().c_str(),
-                         get_filesystem_type().c_str() );
+	return sformat( text,
+                        get_bcache_name().c_str(),
+                        get_device_name().c_str(),
+                        get_size().c_str(),
+                        get_filesystem_type().c_str() );
     }
 
 
