@@ -143,10 +143,7 @@ namespace storage
     {
 	std::vector<const BlkDevice *> sorted_devices = devices;
 	std::sort( sorted_devices.begin(), sorted_devices.end(),
-		   [](const BlkDevice * a, const BlkDevice * b) -> bool
-		       {
-			   return a->get_name() < b->get_name();
-		       });
+                   BlkDevice::compare_by_name );
 
 	Text text;
 
