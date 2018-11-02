@@ -52,6 +52,8 @@ namespace storage
 	 */
 	static std::vector<const Luks*> get_all(const Devicegraph* devicegraph);
 
+	const std::string& get_uuid() const;
+
     public:
 
 	class Impl;

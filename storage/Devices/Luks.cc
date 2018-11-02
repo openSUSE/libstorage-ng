@@ -90,6 +90,12 @@ namespace storage
     }
 
 
+    const string&
+    Luks::get_uuid() const
+    {
+	return get_impl().get_uuid();
+    }
+
     bool
     is_luks(const Device* device)
     {
