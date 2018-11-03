@@ -10,10 +10,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-31 15:05+0100\n"
-"PO-Revision-Date: 2018-10-12 12:01+0000\n"
+"PO-Revision-Date: 2018-11-03 06:12+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
-"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
-"libstorage/ng-master/zh_CN/>\n"
+"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage"
+"/ng-master/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,13 +25,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"您确定吗？！"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "添加 %1$s 到 %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -39,7 +41,7 @@ msgstr "添加 %1$s 到 %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s 由 %2$s 缓存"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -296,11 +298,11 @@ msgstr "正在清除 %1$s 上 GPT 的保护性 MBR 引导旗标"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "创建 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "从 %6$s 创建 %1$s %2$s (%3$s) 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -309,11 +311,11 @@ msgstr "创建 %3$s (%4$s) 的分区 %1$s (%2$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "从 %4$s 创建 %1$s %2$s (%3$s) 用作 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -322,9 +324,9 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "从 %4$s 创建 %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -334,11 +336,11 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "创建 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "从 %5$s 创建 %1$s %2$s (%3$s) 格式为 %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -413,9 +415,9 @@ msgstr "在包含 %4$s 的卷组 %3$s 上创建 LVM 逻辑卷 %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "在加密的 %1$s 上创建 LVM 物理卷 (%2$s)"
+msgstr "在 %1$s (%2$s) 上创建 LVM 物理卷"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -449,9 +451,9 @@ msgstr "在 %1$s 上创建 MS-DOS 分区表"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "在 %2$s (%3$s) 上创建 bcache %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -459,26 +461,26 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "创建 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "在 %2$s (%3$s) 上创建 bcache %1$s 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "在 %2$s (%3$s) 上创建 bcache %1$s 用作 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "在 %2$s (%3$s) 上创建 bcache %1$s 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -487,11 +489,11 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
+msgstr "从 %4$s 创建加密 %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -502,11 +504,11 @@ msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
+msgstr "从 %6$s 创建加密 %1$s %2$s (%3$s) 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -515,11 +517,11 @@ msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "创建加密的分区 %1$s (%2$s) 以作为交换分区"
+msgstr "从 %4$s 创建加密 %1$s %2$s (%3$s) 用作 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -529,11 +531,11 @@ msgstr "创建加密的分区 %1$s (%2$s) 以作为交换分区"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
+msgstr "从 %5$s 创建加密 %1$s %2$s (%3$s) 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -579,9 +581,9 @@ msgstr "在包含 %4$s 的卷组 %3$s 上创建加密 LVM 逻辑卷 %1$s (%2$s)"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "在 %2$s (%3$s) 上创建加密 bcache %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -589,26 +591,26 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
+msgstr "在 %2$s (%3$s) 上创建加密 bcache %1$s 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "创建加密的分区 %1$s (%2$s) 以作为交换分区"
+msgstr "在 %2$s (%3$s) 上创建加密 bcache %1$s 用作 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "创建 %3$s (%4$s) 的加密分区 %1$s (%2$s)"
+msgstr "在 %2$s (%3$s) 上创建加密 bcache %1$s 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1092,9 +1094,9 @@ msgstr "正在反激活卷组 %3$s 上的瘦池逻辑卷 %1$s (%2$s)"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "删除 %2$s (%3$s) 上的 %1$s"
+msgstr "删除 %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1148,9 +1150,9 @@ msgstr "删除 %1$s 上的 MS-DOS 分区表"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "删除 %2$s (%3$s) 上的 %1$s"
+msgstr "删除 %2$s (%3$s) 上的 bcache %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1414,9 +1416,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "创建 MD %1$s %2$s (%3$s)"
+msgstr "加密 %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1424,18 +1426,18 @@ msgstr "创建 MD %1$s %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "加密 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "加密 %1$s %2$s (%3$s) 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "加密 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "加密 %1$s %2$s (%3$s) 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1470,9 +1472,9 @@ msgstr "在包含 %4$s 的卷组 %3$s 上加密 LVM 逻辑卷 %1$s (%2$s)"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "加密 %2$s (%3$s) 上的 bcache %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1480,18 +1482,18 @@ msgstr "在 %2$s (%3$s) 上创建 %1$s"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "加密 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "加密 %2$s (%3$s) 上的 bcache %1$s 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "加密 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "加密 %2$s (%3$s) 上的 bcache %1$s 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1543,18 +1545,18 @@ msgstr "F2FS"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "格式化 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "格式化 %1$s %2$s (%3$s) 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "格式化 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "格式化 %1$s %2$s (%3$s) 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1582,32 +1584,32 @@ msgstr "在包含 %4$s 的卷组 %3$s 上格式化 LVM 逻辑卷 %1$s (%2$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "格式化 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "格式化 %2$s (%3$s) 上的 bcache %1$s 用作 %4$s 格式为 %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "格式化 %3$s (%4$s) 的分区 %1$s (%2$s)"
+msgstr "格式化 %2$s (%3$s) 上的 bcache %1$s 格式为 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "创建分区 %1$s (%2$s) 以作为交换分区"
+msgstr "创建分区 %1$s (%2$s) 用作加密 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "创建分区 %1$s (%2$s) 以作为交换分区"
+msgstr "格式化分区 %1$s (%2$s) 用作 swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1820,9 +1822,9 @@ msgstr "MiB"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "将 %1$s 挂载到 %2$s"
+msgstr "挂载 %1$s %2$s (%3$s) 到 %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1856,9 +1858,9 @@ msgstr "挂载点"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "将 %2$s 上的子卷 %1$s 挂载到 %3$s"
+msgstr "挂载 %2$s (%3$s) 上的 bcache %1$s 到 %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
