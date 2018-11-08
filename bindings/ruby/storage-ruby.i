@@ -37,3 +37,6 @@
 
 %include "../storage.i"
 
+// Tell SWIG to keep track of mappings between C/C++ structs/classes
+// See Object Tracking section at http://www.swig.org/Doc1.3/Ruby.html#Ruby_nn60
+%trackobjects;
