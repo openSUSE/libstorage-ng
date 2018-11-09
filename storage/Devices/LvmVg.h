@@ -73,6 +73,11 @@ namespace storage
 
 	unsigned long long get_size() const;
 
+	/**
+	 * Returns the size of the volume group as a localised string.
+	 *
+	 * @return size as string
+	 */
 	std::string get_size_string() const;
 
 	/**

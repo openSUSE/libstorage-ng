@@ -61,6 +61,11 @@ namespace storage
 	 */
 	void set_size(unsigned long long size);
 
+	/**
+	 * Returns the size of the block device as a localised string.
+	 *
+	 * @return size as string
+	 */
 	std::string get_size_string() const;
 
 	bool is_active() const;
