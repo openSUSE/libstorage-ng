@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-31 15:05+0100\n"
-"PO-Revision-Date: 2018-08-10 15:20+0000\n"
+"PO-Revision-Date: 2018-11-10 15:51+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -21,13 +21,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"myslíte to vážne?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "Pridať %1$s k %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -35,7 +37,7 @@ msgstr "Pridať %1$s k %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s je uložený do vyrovnávacej pamäte %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -297,11 +299,13 @@ msgstr "Vyčistenie ochranného MBR príznaku štartu systému z GPT na %1$s"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Vytvoriť oddiel %1$s (%2$s) pre %3$s s %4$s"
+msgstr ""
+"Vytvoriť %1$s %2$s (%3$s) pre %4$s pre %5$s\n"
+"z %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -310,11 +314,13 @@ msgstr "Vytvoriť oddiel %1$s (%2$s) pre %3$s s %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Vytvoriť %1$s na %2$s (%3$s)"
+msgstr ""
+"Vytvoriť %1$s %2$s (%3$s) pre swap\n"
+"z %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -323,9 +329,9 @@ msgstr "Vytvoriť %1$s na %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "Vytvoriť %1$s na %2$s (%3$s)"
+msgstr "Vytvoriť %1$s %2$s (%3$s) z %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
