@@ -45,6 +45,7 @@ namespace storage
 	UF_JFS = 1 << 10,
 	UF_F2FS = 1 << 23,
 	UF_EXFAT = 1 << 24,
+	UF_UDF = 1 << 25,
 
 	UF_LUKS = 1 << 11,
 

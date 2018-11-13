@@ -43,7 +43,9 @@ namespace storage
 
     public:
 
-	virtual unsigned long long min_size() const override { return 0 * B; }
+	virtual unsigned long long min_size() const override { return 256 * KiB; }
+
+	// TODO depends on block size
 	virtual unsigned long long max_size() const override { return 2 * TiB; }
 
 	virtual bool supports_mounted_shrink() const override { return false; }
@@ -73,6 +75,10 @@ namespace storage
 	virtual string get_displayname() const override { return "udf"; }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
+
+	virtual uint64_t used_features() const override;
+
+	virtual void do_create() override;
 
     };
 

@@ -21,7 +21,9 @@
 
 
 #include "storage/Filesystems/UdfImpl.h"
-#include "storage/FreeInfo.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -44,6 +46,29 @@ namespace storage
     {
 	// TRANSLATORS: name of object
 	return _("UDF").translated;
+    }
+
+
+    uint64_t
+    Udf::Impl::used_features() const
+    {
+	return UF_UDF | BlkFilesystem::Impl::used_features();
+    }
+
+
+    void
+    Udf::Impl::do_create()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = MKFS_UDF_BIN " " + get_mkfs_options() + " --label " + quote(get_label()) +
+	    " " + quote(blk_device->get_name());
+
+	wait_for_devices();
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	probe_uuid();
     }
 
 }
