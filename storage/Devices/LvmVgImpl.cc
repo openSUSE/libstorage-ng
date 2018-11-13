@@ -64,6 +64,7 @@ namespace storage
     string
     LvmVg::Impl::get_pretty_classname() const
     {
+	// TRANSLATORS: name of object
 	return _("LVM Volume Group").translated;
     }
 

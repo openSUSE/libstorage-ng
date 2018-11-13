@@ -262,8 +262,17 @@ namespace storage
     Text
     Disk::Impl::do_create_text(Tense tense) const
     {
-	return sformat(_("Create hard disk %1$s (%2$s)"), get_displayname().c_str(),
-		       get_size_string().c_str());
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g. /dev/vda),
+			   // %2$s is replaced by the size (e.g. 20 GiB)
+			   _("Create hard disk %1$s (%2$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the device name (e.g. /dev/vda),
+			   // %2$s is replaced by the size (e.g. 20 GiB)
+			   _("Creating hard disk %1$s (%2$s)"));
+
+	return sformat(text, get_displayname().c_str(), get_size_string().c_str());
     }
 
 }
