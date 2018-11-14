@@ -44,9 +44,7 @@ namespace storage
     public:
 
 	virtual unsigned long long min_size() const override { return 256 * KiB; }
-
-	// TODO depends on block size
-	virtual unsigned long long max_size() const override { return 2 * TiB; }
+	virtual unsigned long long max_size() const override;
 
 	virtual bool supports_mounted_shrink() const override { return false; }
 	virtual bool supports_mounted_grow() const override { return false; }

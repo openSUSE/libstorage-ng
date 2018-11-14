@@ -23,6 +23,8 @@
 #include "storage/Filesystems/UdfImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Region.h"
+#include "storage/Utils/Math.h"
 #include "storage/UsedFeatures.h"
 
 
@@ -38,6 +40,23 @@ namespace storage
     Udf::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node)
     {
+    }
+
+
+    unsigned long long
+    Udf::Impl::max_size() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	unsigned int block_size = blk_device->get_region().get_block_size();
+
+	if (block_size < 512 * B || block_size > 4 * KiB || !is_power_of_two(block_size))
+	    ST_THROW(InvalidBlockSize(block_size));
+
+	// max_size is e.g. 2 TiB for 512 B block size and 16 TiB for
+	// 4 KiB block size.
+
+	return 4 * GiB * block_size;
     }
 
 
