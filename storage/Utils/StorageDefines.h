@@ -129,6 +129,7 @@
 #define MKFSBTRFSBIN   "/sbin/mkfs.btrfs"
 #define MKFSF2FSBIN "/usr/sbin/mkfs.f2fs"
 #define MKFS_EXFAT_BIN "/sbin/mkfs.exfat"
+#define MKFS_UDF_BIN "/usr/sbin/mkfs.udf"
 
 
 #endif

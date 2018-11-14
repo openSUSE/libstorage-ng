@@ -21,7 +21,11 @@
 
 
 #include "storage/Filesystems/UdfImpl.h"
-#include "storage/FreeInfo.h"
+#include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Region.h"
+#include "storage/Utils/Math.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
@@ -39,11 +43,51 @@ namespace storage
     }
 
 
+    unsigned long long
+    Udf::Impl::max_size() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	unsigned int block_size = blk_device->get_region().get_block_size();
+
+	if (block_size < 512 * B || block_size > 4 * KiB || !is_power_of_two(block_size))
+	    ST_THROW(InvalidBlockSize(block_size));
+
+	// max_size is e.g. 2 TiB for 512 B block size and 16 TiB for
+	// 4 KiB block size.
+
+	return 4 * GiB * block_size;
+    }
+
+
     string
     Udf::Impl::get_pretty_classname() const
     {
 	// TRANSLATORS: name of object
 	return _("UDF").translated;
+    }
+
+
+    uint64_t
+    Udf::Impl::used_features() const
+    {
+	return UF_UDF | BlkFilesystem::Impl::used_features();
+    }
+
+
+    void
+    Udf::Impl::do_create()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = MKFS_UDF_BIN " " + get_mkfs_options() + " --label " + quote(get_label()) +
+	    " " + quote(blk_device->get_name());
+
+	wait_for_devices();
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+
+	probe_uuid();
     }
 
 }
