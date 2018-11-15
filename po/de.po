@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-31 15:05+0100\n"
-"PO-Revision-Date: 2018-09-11 11:56+0000\n"
+"PO-Revision-Date: 2018-11-15 17:02+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
@@ -29,13 +29,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"ist das Ihr Ernst?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "%1$s zu %2$s hinzufügen"
+msgstr "%1$s  (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -43,7 +45,7 @@ msgstr "%1$s zu %2$s hinzufügen"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s wird von %2$s zwischengespeichert"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
