@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2010] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,7 +44,7 @@ namespace storage
 	const string& get_name() const { return name; }
 
 	bool reload();
-	bool save();
+	void save();
 
 	void log_content() const;
 

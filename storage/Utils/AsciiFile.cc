@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -88,13 +88,13 @@ namespace storage
     }
 
 
-    bool
+    void
     AsciiFile::save()
     {
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	{
 	    Mockup::set_file(name, lines);
-	    return true;
+	    return;
 	}
 
 	if (Mockup::get_mode() == Mockup::Mode::RECORD)
@@ -106,7 +106,8 @@ namespace storage
 	{
 	    y2mil("deleting file " << name);
 
-	    return unlink(name.c_str()) == 0 || errno == ENOENT;
+	    if (unlink(name.c_str()) != 0 && errno != ENOENT)
+		ST_THROW(IOException(sformat("Deleting file %s failed.", name.c_str())));
 	}
 	else
 	{
@@ -116,11 +117,12 @@ namespace storage
 	    classic(file);
 
 	    for (const string& line : lines)
-	    	file << line << std::endl;
+		file << line << '\n';
 
 	    file.close();
 
-	    return file.good();
+	    if (!file.good())
+		ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
 	}
     }
 

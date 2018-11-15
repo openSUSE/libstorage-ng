@@ -260,9 +260,10 @@ public:
      * Write the contents to 'filename' or, if 'filename' is empty, to the
      * original file that was used in the constructor or during the last
      * read().
-     * Return 'true' if success, 'false' if error.
+     *
+     * Throws an IOException if writing fails.
      **/
-    bool write( const string & filename = "" );
+    void write( const string & filename = "" );
 
     /**
      * Parse 'lines' and replace the current content with it.

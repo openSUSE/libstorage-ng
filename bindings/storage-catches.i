@@ -15,6 +15,7 @@
 %exceptionclass storage::HolderHasWrongType;
 %exceptionclass storage::HolderNotFound;
 %exceptionclass storage::HolderNotFoundBySids;
+%exceptionclass storage::IOException;
 %exceptionclass storage::IndexOutOfRangeException;
 %exceptionclass storage::InvalidBlockSize;
 %exceptionclass storage::InvalidExtentSize;
