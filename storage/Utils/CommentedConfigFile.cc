@@ -29,6 +29,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AsciiFile.h"
+#include "storage/Utils/AppUtil.h"
 
 
 #define WHITESPACE " \t"
@@ -132,7 +133,7 @@ bool CommentedConfigFile::read( const string & filename )
 }
 
 
-bool CommentedConfigFile::write( const string & new_filename )
+void CommentedConfigFile::write( const string & new_filename )
 {
     string name = new_filename;
 
@@ -142,12 +143,12 @@ bool CommentedConfigFile::write( const string & new_filename )
         this->filename = name;
 
     if ( name.empty() ) // Support for mocking:
-        return true;    // Pretend everything worked just fine.
+        return;         // Pretend everything worked just fine.
 
     std::ofstream file( name, std::ofstream::out | std::ofstream::trunc );
 
     if ( ! file.is_open() )
-        return false;
+	ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
 
     string_vec lines = format_lines();
 
@@ -157,7 +158,10 @@ bool CommentedConfigFile::write( const string & new_filename )
     if ( diff_enabled )
         save_orig( lines );
 
-    return true;
+    file.close();
+
+    if ( !file.good() )
+	ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
 }
 
 

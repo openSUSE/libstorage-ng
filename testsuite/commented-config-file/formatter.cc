@@ -2,14 +2,17 @@
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MODULE commented-config-file
 
-#include <boost/test/unit_test.hpp>
+#include <stdio.h>
 #include <iostream>
 #include <fstream>
-#include <stdio.h>
+#include <boost/test/unit_test.hpp>
+
+#include "storage/Utils/Exception.h"
 
 #define protected public
 #define private   public
 #include "storage/Utils/CommentedConfigFile.h"
+
 
 using namespace storage;
 
@@ -79,9 +82,7 @@ BOOST_AUTO_TEST_CASE( write_to_file )
     subject.parse( input );
 
     string filename = "formatter-test.out";
-    bool success = subject.write( filename );
-
-    BOOST_CHECK_EQUAL( success, true );
+    BOOST_CHECK_NO_THROW( subject.write( filename ) );
 
     string_vec lines = read_lines( filename );
 
@@ -92,7 +93,5 @@ BOOST_AUTO_TEST_CASE( write_to_file )
 
     remove( filename.c_str() );
 
-    success = subject.write( "/wrglbrmpf/doesntexist/x.out" );
-    BOOST_CHECK_EQUAL( success, false );
+    BOOST_CHECK_THROW( subject.write( "/wrglbrmpf/doesntexist/x.out" ), IOException);
 }
-

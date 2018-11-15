@@ -359,6 +359,19 @@ namespace storage
 
 
     /**
+     * Exception class for IO errors.
+     */
+    class IOException : public Exception
+    {
+    public:
+
+	IOException(const std::string& msg) : Exception(msg) {}
+	virtual ~IOException() noexcept {}
+
+    };
+
+
+    /**
      * Exception class for parse errors, e.g. when parsing the output of
      * external commands like "parted".
      */
