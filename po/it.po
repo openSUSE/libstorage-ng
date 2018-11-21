@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-31 15:05+0100\n"
-"PO-Revision-Date: 2018-10-31 20:04+0000\n"
+"PO-Revision-Date: 2018-11-21 14:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/it/>\n"
@@ -43,7 +43,7 @@ msgstr "%1$s (%2$s)"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s è messo in cache da %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -318,11 +318,13 @@ msgstr ""
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Crea la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr ""
+"Crea %1$s %2$s (%3$s) per %4$s con %5$s\n"
+"a partire da %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -331,11 +333,13 @@ msgstr "Crea la partizione %1$s (%2$s) per %3$s con %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr ""
+"Crea %1$s %2$s (%3$s) per lo swap\n"
+"a partire da %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -344,9 +348,9 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Crea %1$s %2$s (%3$s) a partire da %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -356,11 +360,13 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Crea la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr ""
+"Crea %1$s %2$s (%3$s) con %4$s\n"
+"a partire da %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -451,9 +457,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "Crea il volume fisico LVM su %1$s cifrata (%2$s)"
+msgstr "Crea il volume fisico LVM su %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -487,9 +493,9 @@ msgstr "Crea la tabella delle partizioni MS-DOS su %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Crea la bcache %1$s su %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -497,26 +503,26 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Crea la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Crea la bcache %1$s su %2$s (%3$s) per %4$s con %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Crea la bcache %1$s su %2$s (%3$s) per lo swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Crea la bcache %1$s su %2$s (%3$s) con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -527,11 +533,13 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
+msgstr ""
+"Crea e cifra %1$s %2$s (%3$s)\n"
+"a partire da %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -544,11 +552,13 @@ msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
+msgstr ""
+"Crea e cifra %1$s %2$s (%3$s) per %4$s con %5$s\n"
+"a partire da %6$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
