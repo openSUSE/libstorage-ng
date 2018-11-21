@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-10-31 15:05+0100\n"
-"PO-Revision-Date: 2018-11-21 14:03+0000\n"
+"PO-Revision-Date: 2018-11-21 17:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/it/>\n"
@@ -538,7 +538,7 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
 msgstr ""
-"Crea e cifra %1$s %2$s (%3$s)\n"
+"Crea e cifra %1$s da %2$s (%3$s)\n"
 "a partire da %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
@@ -557,7 +557,7 @@ msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
-"Crea e cifra %1$s %2$s (%3$s) per %4$s con %5$s\n"
+"Crea e cifra %1$s da %2$s (%3$s) per %4$s con %5$s\n"
 "a partire da %6$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
@@ -569,11 +569,13 @@ msgstr ""
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per swap"
+msgstr ""
+"Crea %1$s cifrato %2$s (%3$s) per lo swap\n"
+"a partire da %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -585,11 +587,13 @@ msgstr "Crea la partizione cifrata %1$s (%2$s) per swap"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
+msgstr ""
+"Crea e cifra %1$s da %2$s (%3$s) con %4$s\n"
+"a partire da %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -650,9 +654,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Crea bcache cifrata %1$s su %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -662,9 +666,9 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
+msgstr "Crea bcache cifrata %1$s su %2$s (%3$s) per %4$s con %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -672,9 +676,9 @@ msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per swap"
+msgstr "Crea bcache cifrata %1$s su %2$s (%3$s) per lo swap"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -683,9 +687,9 @@ msgstr "Crea la partizione cifrata %1$s (%2$s) per swap"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Crea la partizione cifrata %1$s (%2$s) per %3$s con %4$s"
+msgstr "Crea bcache cifrata %1$s su %2$s (%3$s) con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1230,9 +1234,9 @@ msgstr ""
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "Eliminare %1$s su %2$s (%3$s)"
+msgstr "Elimina %1$s %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1296,9 +1300,9 @@ msgstr "Elimina la tabella delle partizioni MS-DOS su %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "Eliminare %1$s su %2$s (%3$s)"
+msgstr "Elimina la bcache %1$s su %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1590,9 +1594,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "Creare l'MD %1$s %2$s (%3$s)"
+msgstr "Cifra %1$s %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1602,9 +1606,9 @@ msgstr "Creare l'MD %1$s %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Cifra %1$s %2$s (%3$s) per %4$s con %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1613,9 +1617,9 @@ msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Cifra %1$s %2$s (%3$s) con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1659,9 +1663,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "Creare %1$s su %2$s (%3$s)"
+msgstr "Cifra la bcache %1$s su %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1671,9 +1675,9 @@ msgstr "Creare %1$s su %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Cifra la bcache %1$s su %2$s (%3$s) per %4$s con %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1682,9 +1686,9 @@ msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Cifra la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Cifra la bcache %1$s su %2$s (%3$s) con %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1742,9 +1746,9 @@ msgstr "F2FS"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Formatta %1$s %2$s (%3$s) per %4$s con %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1753,9 +1757,9 @@ msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Formatta %1$s %2$s (%3$s) con %4$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1792,9 +1796,9 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Formatta la bcache %1$s su %2$s (%3$s) per %4$s con %5$s"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -1803,23 +1807,23 @@ msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Formatta la partizione %1$s (%2$s) per %3$s con %4$s"
+msgstr "Formatta la bcache %1$s su %2$s (%3$s) con %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "Crea la partizione %1$s (%2$s) per swap"
+msgstr "Formatta la partizione %1$s (%2$s) come swap cifrato"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "Crea la partizione %1$s (%2$s) per swap"
+msgstr "Formatta la partizione %1$s (%2$s) come swap"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2474
@@ -2076,9 +2080,9 @@ msgstr "MiB"
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "Monta %1$s da %2$s"
+msgstr "Monta %1$s %2$s (%3$s) su %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2117,9 +2121,9 @@ msgstr "Punto di montaggio"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "Monta il sottovolume %1$s su %2$s in %3$s"
+msgstr "Monta la bcache %1$s su %2$s (%3$s) su %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
