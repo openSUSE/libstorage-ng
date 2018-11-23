@@ -12,10 +12,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-23 13:11+0000\n"
+"PO-Revision-Date: 2018-11-23 16:05+0000\n"
 "Last-Translator: Luiz Fernando Ranghetti <elchevive68@gmail.com>\n"
-"Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
-"libstorage/ng-master/pt_BR/>\n"
+"Language-Team: Portuguese (Brazil) "
+"<https://l10n.opensuse.org/projects/libstorage/ng-master/pt_BR/>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -916,9 +916,9 @@ msgstr "Criando partição estendida %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Criar disco rígido %1$s (%2$s)"
+msgstr "Criando disco rígido %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1135,9 +1135,9 @@ msgstr ""
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "Remover %1$s em %2$s (%3$s)"
+msgstr "Remover %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1439,9 +1439,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Removendo grupo de volume %1$s (%2$s)"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Partição"
+msgstr "Partição de diagnóstico"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1456,9 +1455,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Partição"
+msgstr "Partição do sistema EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1468,9 +1466,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "Criara MD %1$s %2$s (%3$s)"
+msgstr "Criptografar %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1478,18 +1476,18 @@ msgstr "Criara MD %1$s %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Criptografar partição %1$s (%2$s) para %3$s com %4$s"
+msgstr "Criptografar %1$s %2$s (%3$s) para %4$s com %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "Criptografar partição %1$s (%2$s) para %3$s com %4$s"
+msgstr "Criptografar %1$s %2$s (%3$s) com %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1600,18 +1598,18 @@ msgstr "F2FS"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Formatar partição %1$s (%2$s) para %3$s com %4$s"
+msgstr "Formatar %1$s %2$s (%3$s) para %4$s com %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "Formatar partição %1$s (%2$s) para %3$s com %4$s"
+msgstr "Formatar %1$s %2$s (%3$s) com %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1658,16 +1656,16 @@ msgstr "Formatar partição %1$s (%2$s) para %3$s com %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "Criar partição %1$s (%2$s) para troca"
+msgstr "Formatar partição %1$s (%2$s) como swap criptografado"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "Criar partição %1$s (%2$s) para troca"
+msgstr "Formatar partição %1$s (%2$s) como swap"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1842,7 +1840,7 @@ msgstr "Tabela de Partição Implícita"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1870,20 +1868,19 @@ msgstr "Grupo de Volumes LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "Investigando LVM"
+msgstr "LVM Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Swap Linux"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1907,16 +1904,16 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Partição reservada Microsoft"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "Montar %1$s em %2$s"
+msgstr "Montar %1$s %2$s (%3$s) em %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1943,7 +1940,7 @@ msgstr "Montar NFS %1$s em %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr "Ponto de Montagem"
+msgstr "Ponto de montagem"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2682,7 +2679,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Partição de dados Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
