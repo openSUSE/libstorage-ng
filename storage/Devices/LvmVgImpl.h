@@ -82,7 +82,7 @@ namespace storage
 
 	unsigned long long get_size() const;
 
-	string get_size_string() const;
+	Text get_size_text() const;
 
 	unsigned long long get_extent_size() const { return region.get_block_size(); }
 	void set_extent_size(unsigned long long extent_size);

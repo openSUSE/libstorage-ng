@@ -21,11 +21,11 @@
 
 
 #include <vector>
-
 #include <boost/algorithm/string/join.hpp>
 
 #include "storage/CompoundAction/Formatter/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

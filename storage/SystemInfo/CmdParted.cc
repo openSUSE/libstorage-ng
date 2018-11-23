@@ -32,6 +32,7 @@
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Devices/PartitionTableImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

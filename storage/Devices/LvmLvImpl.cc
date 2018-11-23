@@ -40,6 +40,7 @@
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 using namespace std;
@@ -88,6 +89,7 @@ namespace storage
 
 	getChildValue(node, "chunk-size", chunk_size);
     }
+
 
     string
     LvmLv::Impl::get_pretty_classname() const
@@ -142,7 +144,7 @@ namespace storage
 		if (!is_multiple_of(number_of_extents(), stripes))
 		    check_callbacks->error(sformat("Number of extents not a multiple of stripes "
 						   "of logical volume %s in volume group %s.",
-						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+						   lv_name, lvm_vg->get_vg_name()));
 	    }
 
 	    if (stripe_size > 0)
@@ -150,14 +152,14 @@ namespace storage
 		if (stripe_size > lvm_vg->get_extent_size())
 		    check_callbacks->error(sformat("Stripe size is greater then the extent size "
 						   "of logical volume %s in volume group %s.",
-						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+						   lv_name, lvm_vg->get_vg_name()));
 	    }
 
 	    // the constant 265289728 is calculated from the LVM sources
 	    if (lv_type == LvType::THIN_POOL && chunk_size > 0 && get_size() > chunk_size * 265289728)
 		check_callbacks->error(sformat("Chunk size is too small for thin pool logical "
-					       "volume %s in volume group %s.", lv_name.c_str(),
-					       lvm_vg->get_vg_name().c_str()));
+					       "volume %s in volume group %s.", lv_name,
+					       lvm_vg->get_vg_name()));
 	}
     }
 
@@ -756,8 +758,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -799,7 +800,7 @@ namespace storage
 	    case LvType::RAID:
 	    {
 		ST_THROW(UnsupportedException(sformat("creating LvmLv with type %s is unsupported",
-						      toString(lv_type).c_str())));
+						      toString(lv_type))));
 	    }
 	    break;
 	}
@@ -825,8 +826,12 @@ namespace storage
     Text
     LvmLv::Impl::do_rename_text(const Impl& lhs, Tense tense) const
     {
-        return sformat(_("Rename %1$s to %2$s"), lhs.get_displayname().c_str(),
-		       get_displayname().c_str());
+	// TRANSLATORS:
+	// %1$s is replaced with the old logical volume name (e.g. foo),
+	// %2$s is replaced with the new logical volume name (e.g. bar)
+	Text text = _("Rename %1$s to %2$s");
+
+	return sformat(text, lhs.get_displayname(), get_displayname());
     }
 
 
@@ -961,9 +966,9 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, lv_name.c_str(), lvm_vg->get_vg_name().c_str(),
-		       lvm_lv_lhs->get_size_string().c_str(),
-		       lvm_lv_rhs->get_size_string().c_str());
+	return sformat(text, lv_name, lvm_vg->get_vg_name(),
+		       lvm_lv_lhs->get_impl().get_size_text(),
+		       lvm_lv_rhs->get_impl().get_size_text());
     }
 
 
@@ -1038,8 +1043,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -1106,8 +1110,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -1174,8 +1177,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 

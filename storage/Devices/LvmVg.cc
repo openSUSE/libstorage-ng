@@ -26,6 +26,7 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -35,7 +36,7 @@ namespace storage
 
 
     LvmVgNotFoundByVgName::LvmVgNotFoundByVgName(const string& vg_name)
-	: DeviceNotFound(sformat("LvmVg not found, vg-name:%s", vg_name.c_str()))
+	: DeviceNotFound(sformat("LvmVg not found, vg-name:%s", vg_name))
     {
     }
 
@@ -108,7 +109,7 @@ namespace storage
     std::string
     LvmVg::get_size_string() const
     {
-	return get_impl().get_size_string();
+	return get_impl().get_size_text().translated;
     }
 
 

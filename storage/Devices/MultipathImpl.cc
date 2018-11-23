@@ -35,6 +35,7 @@
 #include "storage/Holders/User.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -331,7 +332,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 1 TiB)
 			   _("Deactivating multipath %1$s (%2$s)"));
 
-	return sformat(text, get_displayname().c_str(), get_size_string().c_str());
+	return sformat(text, get_displayname(), get_size_text());
     }
 
 

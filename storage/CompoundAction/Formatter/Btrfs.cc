@@ -24,6 +24,7 @@
 
 #include "storage/CompoundAction/Formatter/Btrfs.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

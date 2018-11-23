@@ -35,6 +35,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Storage.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -78,7 +79,7 @@ namespace storage
 	if (check_callbacks)
 	{
 	    if (!has_single_parent_of_type<const BlkDevice>())
-		check_callbacks->error(sformat("Physical volume %s is broken.", uuid.c_str()));
+		check_callbacks->error(sformat("Physical volume %s is broken.", uuid));
 	}
     }
 
@@ -290,7 +291,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Creating physical volume on %1$s"));
 
-	return sformat(text, blk_device->get_name().c_str());
+	return sformat(text, blk_device->get_name());
     }
 
 
@@ -352,9 +353,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, blk_device->get_name().c_str(),
-		       blk_device_lhs->get_size_string().c_str(),
-		       blk_device_rhs->get_size_string().c_str());
+	return sformat(text, blk_device->get_name(), blk_device_lhs->get_impl().get_size_text(),
+		       blk_device_rhs->get_impl().get_size_text());
     }
 
 
@@ -387,7 +387,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Deleting physical volume on %1$s"));
 
-	return sformat(text, blk_device->get_name().c_str());
+	return sformat(text, blk_device->get_name());
     }
 
 

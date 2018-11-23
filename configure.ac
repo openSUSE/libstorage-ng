@@ -13,9 +13,9 @@ LIBVERSION_REVISON=`expr $LIBVERSION_PATCHLEVEL`
 LIBVERSION_AGE=`expr $LIBVERSION_MINOR`
 LIBVERSION_INFO=$LIBVERSION_CURRENT:$LIBVERSION_REVISON:$LIBVERSION_AGE
 
-CWARNS="-Wall -Wextra -Wformat=2 -Wmissing-prototypes"
+CWARNS="-Wall -Wextra -Wformat -Wmissing-prototypes"
 CFLAGS="${CFLAGS} ${CWARNS}"
-CXXWARNS="-Wall -Wextra -Wformat=2 -Wnon-virtual-dtor -Wno-unused-parameter -Wsuggest-override"
+CXXWARNS="-Wall -Wextra -Wformat -Wnon-virtual-dtor -Wno-unused-parameter -Wsuggest-override"
 CXXFLAGS="${CXXFLAGS} -std=c++14 ${CXXWARNS}"
 
 AM_INIT_AUTOMAKE(libstorage-ng, $VERSION)

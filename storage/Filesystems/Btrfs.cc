@@ -25,6 +25,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Holders/Subdevice.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -34,7 +35,7 @@ namespace storage
 
 
     BtrfsSubvolumeNotFoundByPath::BtrfsSubvolumeNotFoundByPath(const string& path)
-	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path.c_str()))
+	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path))
     {
     }
 

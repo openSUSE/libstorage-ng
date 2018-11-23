@@ -24,6 +24,7 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Filesystems/Swap.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -282,7 +283,7 @@ namespace storage
     Text
     CompoundAction::Formatter::Partition::create_text() const
     {
-	string tmp = id_to_string(partition->get_id());
+	Text tmp = id_to_text(partition->get_id());
 
 	if (!tmp.empty())
 	{
@@ -292,8 +293,7 @@ namespace storage
 	    // %3$s is replaced with the partition id string (e.g. Linux LVM)
 	    Text text = _("Create partition %1$s (%2$s) as %3$s");
 
-	    return sformat(text, get_device_name().c_str(),
-			   get_size().c_str(), tmp.c_str());
+	    return sformat(text, get_device_name(), get_size(), tmp);
 	}
 	else
 	{

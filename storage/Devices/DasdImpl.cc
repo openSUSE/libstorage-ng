@@ -36,6 +36,7 @@
 #include "storage/Prober.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -117,7 +118,7 @@ namespace storage
 	    if (has_children() && !has_single_child_of_type<const PartitionTable>())
 	    {
 		check_callbacks->error(sformat("DASD %s used without a partition table.",
-                                               get_displayname().c_str()));
+                                               get_displayname()));
 	    }
 	}
     }
@@ -191,7 +192,7 @@ namespace storage
             {
                 // TRANSLATORS: error message
                 error_callback(prober.get_probe_callbacks(), sformat(_("Probing DASD %s failed"),
-								     name.c_str()), exception);
+								     name), exception);
             }
 	}
     }

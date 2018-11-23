@@ -30,6 +30,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -82,7 +83,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing Stray Block Device %s failed"),
-								     name.c_str()), exception);
+								     name), exception);
 	    }
 	}
     }

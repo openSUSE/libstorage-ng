@@ -25,6 +25,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
 #include "storage/FreeInfo.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

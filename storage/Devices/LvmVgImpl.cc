@@ -37,6 +37,7 @@
 #include "storage/Storage.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -94,7 +95,7 @@ namespace storage
 	{
 	    if (is_overcommitted())
 		check_callbacks->error(sformat("Volume group %s is overcommitted.",
-					       vg_name.c_str()));
+					       vg_name));
 	}
     }
 
@@ -140,10 +141,13 @@ namespace storage
     }
 
 
-    string
-    LvmVg::Impl::get_size_string() const
+    Text
+    LvmVg::Impl::get_size_text() const
     {
-	return byte_to_humanstring(get_size(), false, 2, false);
+	// TODO see BlkDevice::Impl::get_size_text()
+
+	return Text(byte_to_humanstring(get_size(), true, 2, false),
+		    byte_to_humanstring(get_size(), false, 2, false));
     }
 
 
@@ -529,7 +533,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Creating volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+	return sformat(text, vg_name, get_size_text());
     }
 
 
@@ -559,7 +563,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Deleting volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+	return sformat(text, vg_name, get_size_text());
     }
 
 
@@ -610,7 +614,7 @@ namespace storage
 	const LvmPv* lvm_pv = to_lvm_pv(device);
 	const BlkDevice* blk_device = lvm_pv->get_blk_device();
 
-	return sformat(text, blk_device->get_name().c_str(), vg_name.c_str());
+	return sformat(text, blk_device->get_name(), vg_name);
     }
 
 
@@ -663,7 +667,7 @@ namespace storage
 			   // %1$s is replaced by volume group name (e.g. system)
 			   _("Reducing volume group %1$s by missing physical volumes"));
 
-	return sformat(text, vg_name.c_str());
+	return sformat(text, vg_name);
     }
 
 

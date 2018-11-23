@@ -25,6 +25,7 @@
 #include "storage/Devices/DeviceImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

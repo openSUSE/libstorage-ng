@@ -116,10 +116,6 @@ namespace storage
 
     string generated_string();
 
-    string sformat(const string& format, va_list ap);
-
-    string sformat(const string& format, ...);
-
 
     /**
      * Pads the string s to at least width w with char c at the front.

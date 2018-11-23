@@ -47,6 +47,7 @@
 #include "storage/EtcMdadm.h"
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CommitOptions.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -793,7 +794,7 @@ namespace storage
 	fout.close();
 
 	if (!fout.good())
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
     }
 
 }

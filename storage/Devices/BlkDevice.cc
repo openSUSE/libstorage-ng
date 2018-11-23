@@ -137,7 +137,7 @@ namespace storage
     string
     BlkDevice::get_size_string() const
     {
-	return get_impl().get_size_string();
+	return get_impl().get_size_text().translated;
     }
 
 

@@ -41,6 +41,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -110,7 +111,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing disk %s failed"),
-								     name.c_str()), exception);
+								     name), exception);
 	    }
 	}
     }
@@ -272,7 +273,7 @@ namespace storage
 			   // %2$s is replaced by the size (e.g. 20 GiB)
 			   _("Creating hard disk %1$s (%2$s)"));
 
-	return sformat(text, get_displayname().c_str(), get_size_string().c_str());
+	return sformat(text, get_displayname(), get_size_text());
     }
 
 }

@@ -33,6 +33,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/EtcCrypttab.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -150,7 +151,7 @@ namespace storage
 	    }
 
 	    // TRANSLATORS: progress message
-	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid.c_str()));
+	    message_callback(activate_callbacks, sformat(_("Activating LUKS %s"), uuid));
 
 	    if (attempt == 1)
 	    {
@@ -189,7 +190,7 @@ namespace storage
 	    catch (const Exception& exception)
 	    {
 		// TRANSLATORS: error message
-		error_callback(activate_callbacks, sformat(_("Activating LUKS %s failed"), uuid.c_str()),
+		error_callback(activate_callbacks, sformat(_("Activating LUKS %s failed"), uuid),
 			       exception);
 
 		return false;

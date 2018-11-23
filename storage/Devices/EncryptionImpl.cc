@@ -29,6 +29,7 @@
 #include "storage/Action.h"
 #include "storage/StorageImpl.h"
 #include "storage/EnvironmentImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -309,7 +310,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Creating encryption layer device on %1$s"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 
@@ -324,7 +325,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Deleting encryption layer device on %1$s"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 
@@ -371,8 +372,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, get_name().c_str(), encryption_lhs->get_size_string().c_str(),
-		       encryption_rhs->get_size_string().c_str());
+	return sformat(text, get_name(), encryption_lhs->get_impl().get_size_text(),
+		       encryption_rhs->get_impl().get_size_text());
     }
 
 
@@ -387,7 +388,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Activating encryption layer device on %1$s"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 
@@ -402,7 +403,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Deactivating encryption layer device on %1$s"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 
@@ -417,7 +418,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Adding encryption layer device on %1$s to /etc/crypttab"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 
@@ -444,8 +445,8 @@ namespace storage
 			   // %2$s is replaced by device name (e.g. /dev/sda5)
 			   _("Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"));
 
-	return sformat(text,  blk_device_lhs->get_displayname().c_str(),
-		       blk_device_rhs->get_displayname().c_str());
+	return sformat(text, blk_device_lhs->get_displayname(),
+		       blk_device_rhs->get_displayname());
     }
 
 
@@ -467,7 +468,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Removing encryption layer device on %1$s from /etc/crypttab"));
 
-	return sformat(text, get_blk_device()->get_displayname().c_str());
+	return sformat(text, get_blk_device()->get_displayname());
     }
 
 

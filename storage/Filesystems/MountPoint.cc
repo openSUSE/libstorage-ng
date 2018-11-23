@@ -22,6 +22,7 @@
 
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -31,7 +32,7 @@ namespace storage
 
 
     InvalidMountPointPath::InvalidMountPointPath(const string& path)
-        : Exception(sformat("invalid path '%s' for mount point", path.c_str()))
+        : Exception(sformat("invalid path '%s' for mount point", path))
     {
     }
 
