@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-10-31 22:49+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -30,8 +30,8 @@ msgstr ""
 "本当によろしいですか？"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -237,6 +237,11 @@ msgstr ""
 msgid "B"
 msgstr "B"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "パーティション"
+
 #. TRANSLATORS: name of object
 msgid "Bcache"
 msgstr "Bcache"
@@ -410,7 +415,9 @@ msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム 
 #, c-format
 msgid ""
 "Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s 向け, %5$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s "
+"向け, %5$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -577,7 +584,9 @@ msgstr ""
 msgid ""
 "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for "
 "%4$s with %5$s"
-msgstr "ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) の作成 (%4$s 向け, %5$s)"
+msgstr ""
+"ボリュームグループ %3$s に対する暗号化された LVM 論理ボリューム %1$s (%2$s) "
+"の作成 (%4$s 向け, %5$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -702,6 +711,9 @@ msgstr "%1$s に対するファイルシステム btrfs の作成"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "%1$s に対するファイルシステム btrfs の作成および %2$s へのマウント"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "ハードディスク %1$s (%2$s) の作成"
@@ -910,6 +922,13 @@ msgstr "%1$s に暗号化レイヤデバイスを作成しています"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "拡張パーティション %1$s (%2$s) を作成しています"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "ハードディスク %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1443,6 +1462,11 @@ msgstr ""
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "ボリュームグループ %1$s (%2$s) を削除しています"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "パーティション"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "ディスク"
@@ -1454,6 +1478,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "パーティション"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1841,6 +1870,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "暗黙のパーティションテーブル"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1861,8 +1894,26 @@ msgstr "LVM 論理ボリューム"
 msgid "LVM Physical Volume"
 msgstr "LVM 物理ボリューム"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "LVM ボリュームグループ"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "LVM を検出しています"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1883,6 +1934,10 @@ msgstr "MS-DOS パーティションテーブル"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1988,6 +2043,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "パーティション"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2235,6 +2295,9 @@ msgstr ""
 "%3$s 内のサブボリューム %2$s のマウントポイント %1$s を /etc/fstab から削除し"
 "ています"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "%1$s に対する %2$s への名称変更"
@@ -2656,6 +2719,10 @@ msgstr "マウントポイント %1$s (%2$s) を /etc/fstab で更新してい�
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

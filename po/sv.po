@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-04-24 11:13+0000\n"
 "Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -27,8 +27,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Lägg till %1$s i %2$s"
@@ -226,6 +226,11 @@ msgstr ""
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "Partition"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -703,6 +708,9 @@ msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "Skapa filsystemet btrfs på %1$s och montera på %2$s"
 
 # SLE12
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Skapa hårddisk %1$s (%2$s)"
@@ -929,6 +937,14 @@ msgstr "Skapar krypterad enhet på %1$s"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Skapar utökad partition %1$s (%2$s)"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Skapa hårddisk %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1474,6 +1490,11 @@ msgstr "Ta bort tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Tar bort volymgrupp %1$s (%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "Partition"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "Disk"
@@ -1487,6 +1508,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "Partition"
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
@@ -1865,6 +1891,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "Underförstådd partitionstabell"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1885,8 +1915,26 @@ msgstr "Logisk LVM-volym"
 msgid "LVM Physical Volume"
 msgstr "Fysisk LVM-volym"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "LVM-volymgrupp"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "Söker LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1909,6 +1957,10 @@ msgstr "MSDOS-partitionstabell"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2017,6 +2069,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "Partition"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2263,6 +2320,9 @@ msgstr "Tar bort monteringspunkt %1$s på %2$s från /etc/fstab"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Tar bort monteringspunkt %1$s på delvolym %2$s på %3$s från /etc/fstab"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Byt namn på %1$s till %2$s"
@@ -2675,6 +2735,10 @@ msgstr "Uppdaterar monteringspunkt %1$s för %2$s i /etc/fstab"
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

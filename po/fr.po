@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-11-06 22:03+0000\n"
 "Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -240,6 +240,12 @@ msgstr "Configuration du type de partition %1$s sur %2$s (%3$X)"
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "o"
+
+# TLABEL packages_2002_01_04_0147__160
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "Partition"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -749,6 +755,9 @@ msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 "Créer un système de fichiers btrfs sur %1$s et le monter à l'emplacement %2$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Créer le disque dur %1$s (%2$s)"
@@ -975,6 +984,13 @@ msgstr "Création de la couche de chiffrement sur %1$s"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Création de la partition étendue %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Créer le disque dur %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1560,6 +1576,12 @@ msgstr ""
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Suppression du groupe de volumes %1$s (%2$s)"
 
+# TLABEL packages_2002_01_04_0147__160
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "Partition"
+
 # TLABEL packages_2002_01_04_0147__12
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1572,6 +1594,12 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "Eo"
+
+# TLABEL packages_2002_01_04_0147__160
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "Partition"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1995,6 +2023,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "Table de partitions implicites"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -2019,8 +2051,26 @@ msgid "LVM Physical Volume"
 msgstr "Volume physique LVM"
 
 # TLABEL partitioning_2002_01_04_0147__409
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "Groupe de volumes LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "Sondage de LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 # TLABEL partitioning_2002_01_04_0147__116
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -2045,6 +2095,10 @@ msgstr "Table de partitions MS-DOS"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "Mio"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
@@ -2163,6 +2217,12 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "Po"
+
+# TLABEL packages_2002_01_04_0147__160
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "Partition"
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of object
@@ -2422,6 +2482,9 @@ msgstr ""
 "fstab"
 
 # TLABEL storage_2002_08_07_0216__34
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Renommer %1$s en %2$s"
@@ -2877,6 +2940,10 @@ msgstr "Mise à jour du point de montage %1$s de %2$s dans /etc/fstab"
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

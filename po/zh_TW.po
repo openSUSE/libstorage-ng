@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-08-13 17:01+0000\n"
 "Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -29,8 +29,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "將 %1$s 新增至 %2$s"
@@ -222,6 +222,11 @@ msgstr "正在將設定在 %1$s 上的 Bcache 快取連接到 Bcache %2$s (%3$s)
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "分割區"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -677,6 +682,9 @@ msgstr "在 %1$s 上建立檔案系統 btrfs"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "在 %1$s 上建立檔案系統 btrfs 並掛接於 %2$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "建立硬碟 %1$s (%2$s)"
@@ -883,6 +891,13 @@ msgstr "正於 %1$s 上建立加密層裝置"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "正在建立延伸分割區 %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "建立硬碟 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1399,6 +1414,11 @@ msgstr "正在刪除磁碟區群組 %3$s 上的簡易池邏輯磁碟區 %1$s (%2
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "正在刪除磁碟區群組 %1$s (%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "分割區"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "磁碟"
@@ -1412,6 +1432,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "分割區"
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
@@ -1782,6 +1807,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "隱含分割區表"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1802,8 +1831,26 @@ msgstr "LVM 邏輯磁碟區"
 msgid "LVM Physical Volume"
 msgstr "LVM 實體磁碟區"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "LVM 磁碟區群組"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "正在查探 LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1825,6 +1872,10 @@ msgstr "MS-DOS 分割區表"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1930,6 +1981,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "分割區"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2173,6 +2229,9 @@ msgstr "正在從 /etc/fstab 移除 %2$s 的裝載點 %1$s"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "正在從 /etc/fstab 移除 %3$s 上子磁碟區 %2$s 的裝載點 %1$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "將 %1$s 重新命名為 %2$s"
@@ -2580,6 +2639,10 @@ msgstr "正於 /etc/fstab 中更新 %2$s 的裝載點 %1$s"
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

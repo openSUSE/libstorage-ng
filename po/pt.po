@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2011-11-10 23:28+0100\n"
 "Last-Translator: Elisio Catana <ecatana@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Extender %1$s para %2$s"
@@ -220,6 +220,10 @@ msgstr ""
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+msgid "BIOS Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -674,6 +678,9 @@ msgstr "A criar Volume Lógico %1$s"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Criar volume swap %1$s (%2$s)"
@@ -879,6 +886,13 @@ msgstr "Definir dispositivo de loop cifrado em %1$s"
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Criar partição extendida %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Criar volume swap %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1395,6 +1409,10 @@ msgstr "Remover volume lógico %1$s (%2$s)"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "A reduzir grupo de volumes %1$s por %2$s"
 
+#. TRANSLATORS: name of partition type
+msgid "Diagnostics Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1406,6 +1424,10 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+msgid "EFI System Partition"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1773,6 +1795,10 @@ msgstr ""
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr ""
@@ -1793,7 +1819,24 @@ msgstr ""
 msgid "LVM Physical Volume"
 msgstr ""
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1816,6 +1859,10 @@ msgstr "A criar partição raid %1$s"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1919,6 +1966,10 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+msgid "PReP Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2164,6 +2215,9 @@ msgstr "A remover entrada para o ponto de montagem de %1$s para %2$s"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "A remover entrada para o ponto de montagem de %1$s para %2$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Remover %1$s do %2$s"
@@ -2566,6 +2620,10 @@ msgstr "A actualizar entrada para o ponto de montagem de %1$s em %2$s"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
 msgstr ""
 
 #. TRANSLATORS: name of object
