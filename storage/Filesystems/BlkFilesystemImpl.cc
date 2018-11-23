@@ -41,6 +41,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -225,7 +226,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system on %s failed"),
-								     blk_device->get_name().c_str()), exception);
+								     blk_device->get_name()), exception);
 	    }
 	}
     }
@@ -714,8 +715,8 @@ namespace storage
 			   // %3$s is replaced by size (e.g. 2GiB)
 			   _("Creating %1$s on %2$s (%3$s)"));
 
-	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
-		       blk_device->get_size_string().c_str());
+	return sformat(text, get_displayname(), blk_device->get_name(),
+		       blk_device->get_impl().get_size_text());
     }
 
 
@@ -734,7 +735,7 @@ namespace storage
 			   // %2$s is replaced by label (e.g. ROOT)
 			   _("Setting label of %1$s to %2$s"));
 
-	return sformat(text, blk_device->get_name().c_str(), label.c_str());
+	return sformat(text, blk_device->get_name(), label);
     }
 
 
@@ -760,7 +761,7 @@ namespace storage
 			   // %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 			   _("Setting UUID of %1$s to %2$s"));
 
-	return sformat(text, blk_device->get_name().c_str(), uuid.c_str());
+	return sformat(text, blk_device->get_name(), uuid);
     }
 
 
@@ -784,7 +785,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1)
 			   _("Setting tune options of %1$s"));
 
-	return sformat(text, blk_device->get_name().c_str(), uuid.c_str());
+	return sformat(text, blk_device->get_name(), uuid);
     }
 
 
@@ -815,8 +816,8 @@ namespace storage
 			   // %3$s is replaced by device name (e.g. /dev/sda5)
 			   _("Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), blk_device_lhs->get_name().c_str(),
-		       blk_device_rhs->get_name().c_str());
+	return sformat(text, mount_point->get_path(), blk_device_lhs->get_name(),
+		       blk_device_rhs->get_name());
     }
 
 
@@ -885,9 +886,9 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
-		       blk_device_lhs->get_size_string().c_str(),
-		       blk_device_rhs->get_size_string().c_str());
+	return sformat(text, get_displayname(), blk_device->get_name(),
+		       blk_device_lhs->get_impl().get_size_text(),
+		       blk_device_rhs->get_impl().get_size_text());
     }
 
 
@@ -910,8 +911,8 @@ namespace storage
 			   // %3$s is replaced by size (e.g. 2GiB)
 			   _("Deleting %1$s on %2$s (%3$s)"));
 
-	return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str(),
-		       blk_device->get_size_string().c_str());
+	return sformat(text, get_displayname(), blk_device->get_name(),
+		       blk_device->get_impl().get_size_text());
     }
 
 

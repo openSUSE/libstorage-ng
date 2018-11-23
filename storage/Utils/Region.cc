@@ -22,6 +22,7 @@
 
 
 #include "storage/Utils/RegionImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

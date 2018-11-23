@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016,2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -43,7 +43,10 @@ namespace storage
     public:
 
 	Text() : native(), translated() {}
+	Text(const char* native, const char* translated) : native(native), translated(translated) {}
 	Text(const string& native, const string& translated) : native(native), translated(translated) {}
+
+	bool empty() { return native.empty(); }
 
 	void clear();
 
@@ -60,11 +63,9 @@ namespace storage
      */
     struct UntranslatedText : public Text
     {
+	UntranslatedText(const char* native) : Text(native, native) {}
 	UntranslatedText(const string& native) : Text(native, native) {}
     };
-
-
-    Text sformat(const Text& format, ...);
 
 
     Text _(const char* msgid);

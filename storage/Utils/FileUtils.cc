@@ -31,6 +31,7 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

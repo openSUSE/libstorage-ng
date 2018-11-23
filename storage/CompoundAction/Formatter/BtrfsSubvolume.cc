@@ -23,6 +23,7 @@
 #include "storage/CompoundAction/Formatter/BtrfsSubvolume.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

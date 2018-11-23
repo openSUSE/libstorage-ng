@@ -29,7 +29,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AsciiFile.h"
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Format.h"
 
 
 #define WHITESPACE " \t"
@@ -148,7 +148,7 @@ void CommentedConfigFile::write( const string & new_filename )
     std::ofstream file( name, std::ofstream::out | std::ofstream::trunc );
 
     if ( ! file.is_open() )
-	ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
+	ST_THROW(IOException(sformat("Saving file %s failed.", name)));
 
     string_vec lines = format_lines();
 
@@ -161,7 +161,7 @@ void CommentedConfigFile::write( const string & new_filename )
     file.close();
 
     if ( !file.good() )
-	ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
+	ST_THROW(IOException(sformat("Saving file %s failed.", name)));
 }
 
 

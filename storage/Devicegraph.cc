@@ -43,6 +43,7 @@
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -62,13 +63,13 @@ namespace storage
 
 
     DeviceNotFoundByName::DeviceNotFoundByName(const string& name)
-	: DeviceNotFound(sformat("device not found, name:%s", name.c_str()))
+	: DeviceNotFound(sformat("device not found, name:%s", name))
     {
     }
 
 
     DeviceNotFoundByUuid::DeviceNotFoundByUuid(const string& uuid)
-	: DeviceNotFound(sformat("device not found, uuid:%s", uuid.c_str()))
+	: DeviceNotFound(sformat("device not found, uuid:%s", uuid))
     {
     }
 

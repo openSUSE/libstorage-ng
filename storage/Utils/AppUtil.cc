@@ -22,7 +22,6 @@
 
 
 #include <errno.h>
-#include <stdarg.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include <glob.h>
@@ -45,6 +44,7 @@
 #include "storage/Utils/StorageTypes.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -376,33 +376,6 @@ namespace storage
 	}
 
 	return r;
-    }
-
-
-    string
-    sformat(const string& format, va_list ap)
-    {
-	char* result;
-
-	if (vasprintf(&result, format.c_str(), ap) == -1)
-	    return string();
-
-	string str(result);
-	free(result);
-	return str;
-    }
-
-
-    string
-    sformat(const string& format, ...)
-    {
-	va_list ap;
-
-	va_start(ap, format);
-	string s = sformat(format, ap);
-	va_end(ap);
-
-	return s;
     }
 
 

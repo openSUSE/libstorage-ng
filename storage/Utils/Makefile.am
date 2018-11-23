@@ -12,6 +12,7 @@ libutils_la_SOURCES =					\
 	ColumnConfigFile.cc	ColumnConfigFile.h	\
 	Diff.cc			Diff.h			\
 	Text.cc			Text.h			\
+	Format.h					\
 	Stopwatch.cc		Stopwatch.h		\
 	LinesIterator.cc	LinesIterator.h		\
 	Math.cc			Math.h			\

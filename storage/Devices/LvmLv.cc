@@ -23,6 +23,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -32,7 +33,7 @@ namespace storage
 
 
     LvmLvNotFoundByLvName::LvmLvNotFoundByLvName(const string& lv_name)
-	: DeviceNotFound(sformat("LvmLv not found, lv-name:%s", lv_name.c_str()))
+	: DeviceNotFound(sformat("LvmLv not found, lv-name:%s", lv_name))
     {
     }
 

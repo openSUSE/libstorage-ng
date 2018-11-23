@@ -192,7 +192,7 @@ namespace storage
     }
 
 
-    string id_to_string(unsigned int id);
+    Text id_to_text(unsigned int id);
 
 }
 

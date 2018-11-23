@@ -53,6 +53,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -169,7 +170,7 @@ namespace storage
 	Device::Impl::check(check_callbacks);
 
 	if (region.get_block_size() == 0)
-	    ST_THROW(Exception(sformat("block size is zero for %s", get_name().c_str())));
+	    ST_THROW(Exception(sformat("block size is zero for %s", get_name())));
 
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("BlkDevice has invalid name"));
@@ -210,10 +211,13 @@ namespace storage
     }
 
 
-    string
-    BlkDevice::Impl::get_size_string() const
+    Text
+    BlkDevice::Impl::get_size_text() const
     {
-	return byte_to_humanstring(get_size(), false, 2, false);
+	// TODO but maybe ByteCount
+
+	return Text(byte_to_humanstring(get_size(), true, 2, false),
+		    byte_to_humanstring(get_size(), false, 2, false));
     }
 
 

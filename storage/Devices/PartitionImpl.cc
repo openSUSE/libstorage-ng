@@ -42,6 +42,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -380,8 +381,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_type_supported(type))
-	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type).c_str(),
-				       toString(partition_table->get_type()).c_str())));
+	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type),
+				       toString(partition_table->get_type()))));
 
 	Impl::type = type;
     }
@@ -394,7 +395,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_id_supported(id))
 	    ST_THROW(Exception(sformat("illegal partition id %d on %s", id,
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	Impl::id = id;
     }
@@ -407,7 +408,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	if (boot && !Impl::boot)
 	{
@@ -428,7 +429,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	Impl::legacy_boot = legacy_boot;
     }
@@ -664,7 +665,7 @@ namespace storage
 	    }
 	}
 
-	return sformat(text, get_name().c_str(), get_size_string().c_str());
+	return sformat(text, get_name(), get_size_text());
     }
 
 
@@ -733,7 +734,7 @@ namespace storage
     {
 	const PartitionTable* partition_table = get_partition_table();
 
-	string tmp = id_to_string(get_id());
+	Text tmp = id_to_text(get_id());
 
 	if (partition_table->get_impl().are_partition_id_values_standardized())
 	{
@@ -748,7 +749,7 @@ namespace storage
 				   // %1$s is replaced by partition name (e.g. /dev/sda1),
 				   // 0x%2$02X is replaced by partition id (e.g. 0x8E)
 				   _("Setting id of partition %1$s to 0x%2$02X"));
-		return sformat(text, get_name().c_str(), get_id());
+		return sformat(text, get_name(), get_id());
 	    }
 	    else
 	    {
@@ -763,14 +764,14 @@ namespace storage
 				   // %2$s is replaced by partition id string (e.g. Linux LVM),
 				   // 0x%3$02X is replaced by partition id (e.g. 0x8E)
 				   _("Setting id of partition %1$s to %2$s (0x%3$02X)"));
-		return sformat(text, get_name().c_str(), tmp.c_str(), get_id());
+		return sformat(text, get_name(), tmp, get_id());
 	    }
 	}
 	else
 	{
 	    if (tmp.empty())
 		ST_THROW(Exception(sformat("partition id %d of %s does not have text representation",
-					   get_id(), get_name().c_str())));
+					   get_id(), get_name())));
 
 	    Text text = tenser(tense,
 			       // TRANSLATORS: displayed before action,
@@ -781,7 +782,7 @@ namespace storage
 			       // %1$s is replaced by partition name (e.g. /dev/sda1),
 			       // %2$s is replaced by partition id string (e.g. Linux LVM)
 			       _("Setting id of partition %1$s to %2$s"));
-	    return sformat(text, get_name().c_str(), tmp.c_str());
+	    return sformat(text, get_name(), tmp);
 	}
     }
 
@@ -878,7 +879,7 @@ namespace storage
 			  // %1$s is replaced by partition name (e.g. /dev/sda1)
 			  _("Clearing boot flag of partition %1$s"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 
@@ -916,7 +917,7 @@ namespace storage
 			  // %1$s is replaced by partition name (e.g. /dev/sda1)
 			  _("Clearing legacy boot flag of partition %1$s"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 
@@ -1003,7 +1004,7 @@ namespace storage
 	    }
 	}
 
-	return sformat(text, get_name().c_str(), get_size_string().c_str());
+	return sformat(text, get_name(), get_size_text());
     }
 
 
@@ -1082,8 +1083,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, get_name().c_str(), partition_lhs->get_size_string().c_str(),
-		       partition_rhs->get_size_string().c_str());
+	return sformat(text, get_name(), partition_lhs->get_impl().get_size_text(),
+		       partition_rhs->get_impl().get_size_text());
     }
 
 
@@ -1169,8 +1170,8 @@ namespace storage
     }
 
 
-    string
-    id_to_string(unsigned int id)
+    Text
+    id_to_text(unsigned int id)
     {
 	// For every id used on GPT or DASD (where
 	// is_partition_id_value_standardized returns false) a text is required
@@ -1178,20 +1179,52 @@ namespace storage
 
 	switch (id)
 	{
-	    case ID_SWAP: return "Linux Swap";
-	    case ID_LINUX: return "Linux";
-	    case ID_LVM: return "Linux LVM";
-	    case ID_IRST: return "Intel RST";
-	    case ID_RAID: return "Linux RAID";
-	    case ID_ESP: return "EFI System Partition";
-	    case ID_BIOS_BOOT: return "BIOS Boot Partition";
-	    case ID_PREP: return "PReP Boot Partition";
-	    case ID_WINDOWS_BASIC_DATA: return "Windows Data Partition";
-	    case ID_MICROSOFT_RESERVED: return "Microsoft Reserved Partition";
-	    case ID_DIAG: return "Diagnostics Partition";
+	    case ID_SWAP:
+		// TRANSLATORS: name of partition type
+		return _("Linux Swap");
+
+	    case ID_LINUX:
+		// TRANSLATORS: name of partition type
+		return _("Linux");
+
+	    case ID_LVM:
+		// TRANSLATORS: name of partition type
+		return _("Linux LVM");
+
+	    case ID_IRST:
+		// TRANSLATORS: name of partition type
+		return _("Intel RST");
+
+	    case ID_RAID:
+		// TRANSLATORS: name of partition type
+		return _("Linux RAID");
+
+	    case ID_ESP:
+		// TRANSLATORS: name of partition type
+		return _("EFI System Partition");
+
+	    case ID_BIOS_BOOT:
+		// TRANSLATORS: name of partition type
+		return _("BIOS Boot Partition");
+
+	    case ID_PREP:
+		// TRANSLATORS: name of partition type
+		return _("PReP Boot Partition");
+
+	    case ID_WINDOWS_BASIC_DATA:
+		// TRANSLATORS: name of partition type
+		return _("Windows Data Partition");
+
+	    case ID_MICROSOFT_RESERVED:
+		// TRANSLATORS: name of partition type
+		return _("Microsoft Reserved Partition");
+
+	    case ID_DIAG:
+		// TRANSLATORS: name of partition type
+		return _("Diagnostics Partition");
 	}
 
-	return "";
+	return Text();
     }
 
 }
