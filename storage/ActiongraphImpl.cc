@@ -794,7 +794,7 @@ namespace storage
 	fout.close();
 
 	if (!fout.good())
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
     }
 
 }
