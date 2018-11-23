@@ -118,7 +118,7 @@ namespace storage
      * e.g. sformat("/dev/block/%d:%d", major, minor).
      *
      * Unfortunately the compile-time checks of the format string and
-     * the arguments does not work. Neither gcc nor clang does support
+     * the arguments do not work. Neither gcc nor clang does support
      * the required attributes (format and format_arg) for anything
      * else than char* or even variadic templates. That is also the
      * reason why reporting format errors using exceptions is
