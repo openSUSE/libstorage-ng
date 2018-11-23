@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-05-15 17:19+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s hozzáadása a(z) %2$s eszközhöz"
@@ -240,6 +240,11 @@ msgstr ""
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "Partíció"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -759,6 +764,9 @@ msgstr ""
 "Btrfs fájlrendszer létrehozása a(z) %1$s eszközön, és csatlakoztatása a(z) "
 "%2$s csatlakoztatási ponton"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "%1$s merevlemez (%2$s) létrehozása"
@@ -986,6 +994,13 @@ msgstr "Titkosításiréteg-eszköz létrehozása a(z) %1$s eszközön"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "%1$s kiterjesztett partíció (%2$s) létrehozása"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "%1$s merevlemez (%2$s) létrehozása"
 
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed during action,
@@ -1548,6 +1563,11 @@ msgstr ""
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "%1$s kötetcsoport törlése (%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "Partíció"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "Lemez"
@@ -1559,6 +1579,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "Partíció"
 
 # /usr/lib/YaST2/clients/sw_single.ycp:41
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
@@ -2006,6 +2031,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "Implicit partíciós tábla"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -2027,8 +2056,26 @@ msgstr "LVM logikai kötet"
 msgid "LVM Physical Volume"
 msgstr "LVM fizikai kötet"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "LVM kötetcsoport"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "LVM ellenőrzése"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 # /usr/lib/YaST2/clients/sw_single.ycp:36
 # include/installation_ui.ycp:390
@@ -2055,6 +2102,10 @@ msgstr "MS-DOS partíciós tábla"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2172,6 +2223,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "Partíció"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2426,6 +2482,9 @@ msgstr ""
 "A(z) %3$s eszközön lévő %2$s alkötet %1$s csatlakoztatási pontjának "
 "eltávolítása az /etc/fstab fájlból"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "%1$s átnevezése, új név: %2$s"
@@ -2882,6 +2941,10 @@ msgstr ""
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

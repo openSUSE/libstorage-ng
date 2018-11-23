@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-04-18 13:36+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "إضافة %1$s إلى %2$s"
@@ -229,6 +229,11 @@ msgstr ""
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "قسم"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -697,6 +702,9 @@ msgstr "إنشاء نظام الملفات btrfs على %1$s"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "إنشاء نظام الملفات btrfs على %1$s والتركيب في %2$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
@@ -906,6 +914,13 @@ msgstr "يتم الآن إعداد جهاز طبقة التشفير على %1$s"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "يتم الآن إنشاء قسم موسع %1$s (‏%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1445,6 +1460,11 @@ msgstr ""
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "يتم الآن حذف مجموعة وحدات التخزين %1$s (‏%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "قسم"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "القرص"
@@ -1456,6 +1476,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "قسم"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1843,6 +1868,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "جدول قسم ضمني"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1863,8 +1892,26 @@ msgstr "وحدة التخزين المنطقية LVM"
 msgid "LVM Physical Volume"
 msgstr "وحدة التخزين الفعلية LVM"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "مجموعة وحدات التخزين LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "يتم الآن بحث LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1885,6 +1932,10 @@ msgstr "جدول لقسم MS-DOS"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1990,6 +2041,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "قسم"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2239,6 +2295,9 @@ msgstr ""
 "يتم الآن إزالة نقطة التركيب %1$s من وحدة التخزين الفرعية %2$s على %3$s من /"
 "etc/fstab"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "إعادة تسمية %1$s إلى %2$s"
@@ -2659,6 +2718,10 @@ msgstr "يتم الآن تحديث نقطة التوصيل %1$s الخاصة ب�
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

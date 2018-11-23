@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Greek (libstorage)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-05-06 20:25+0000\n"
 "Last-Translator: Konstantina Tsolakoglou <konstantina@accountant.com>\n"
 "Language-Team: Greek <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -20,8 +20,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Προσθήκη %1$s σε %2$s"
@@ -215,6 +215,11 @@ msgstr ""
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "Κατάτμηση"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -669,6 +674,9 @@ msgstr "Δημιουργία συστήματος αρχείων btrfs στο %1
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Δημιουργία σκληρού δίσκου %1$s (%2$s)"
@@ -874,6 +882,13 @@ msgstr "Ορισμός κρυπτογραφημένης loop device στο %1$s"
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Δημιουργία εκτεταμένης κατάτμησης %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Δημιουργία σκληρού δίσκου %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1389,6 +1404,11 @@ msgstr "Αφαίρεση του λογικού τόμου %1$s (%2$s)"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Διαγραφή ομάδας τομέων %1$s (%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "Κατάτμηση"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "Δίσκος"
@@ -1400,6 +1420,11 @@ msgstr "Ε"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "Κατάτμηση"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1767,6 +1792,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1787,8 +1816,25 @@ msgstr "Λογικός τόμος LVM"
 msgid "LVM Physical Volume"
 msgstr "Φυσικός τόμος LVM"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "Ομάδα τόμων LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1810,6 +1856,10 @@ msgstr "Δημιουργία κατάτμησης RAID %1$s"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1913,6 +1963,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "Κατάτμηση"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2158,6 +2213,9 @@ msgstr "Μετακίνηση σημείου προσάρτησης του %1$s �
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Μετακίνηση σημείου προσάρτησης του %1$s σε %2$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Αφαίρεση του%1$s  από το %2$s"
@@ -2561,6 +2619,10 @@ msgstr "Ενημέρωση σημείου προσάρτησης του %1$s σ�
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2006-07-12 07:32+0200\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi82@gmail.com>\n"
 "Language-Team: Vietnamese <i18n@suse.de>\n"
@@ -26,8 +26,8 @@ msgstr ""
 # Type: select
 # Description
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "kiểu nội suy cần dùng"
@@ -235,6 +235,10 @@ msgstr ""
 #, fuzzy
 msgid "B"
 msgstr "MB"
+
+#. TRANSLATORS: name of partition type
+msgid "BIOS Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -765,6 +769,9 @@ msgstr ""
 
 # Type: select
 # Description
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "kiểu nội suy cần dùng"
@@ -1011,6 +1018,15 @@ msgstr "Đang dò tìm thiết bị..."
 #. %2$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
+msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
 msgstr "kiểu nội suy cần dùng"
 
 # Type: select
@@ -1610,6 +1626,10 @@ msgstr "kiểu nội suy cần dùng"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "kiểu nội suy cần dùng"
 
+#. TRANSLATORS: name of partition type
+msgid "Diagnostics Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1623,6 +1643,10 @@ msgstr "MB"
 #, fuzzy
 msgid "EB"
 msgstr "MB"
+
+#. TRANSLATORS: name of partition type
+msgid "EFI System Partition"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
@@ -2061,6 +2085,10 @@ msgstr ""
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr ""
@@ -2082,7 +2110,24 @@ msgstr ""
 msgid "LVM Physical Volume"
 msgstr ""
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -2107,6 +2152,10 @@ msgstr "Đang xóa %1"
 #, fuzzy
 msgid "MiB"
 msgstr "MB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 # Type: select
 # Description
@@ -2227,6 +2276,10 @@ msgstr ""
 #, fuzzy
 msgid "PB"
 msgstr "MB"
+
+#. TRANSLATORS: name of partition type
+msgid "PReP Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2485,6 +2538,9 @@ msgstr ""
 
 # Type: select
 # Description
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "kiểu nội suy cần dùng"
@@ -2943,6 +2999,10 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
 msgstr ""
 
 #. TRANSLATORS: name of object

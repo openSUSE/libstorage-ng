@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -22,8 +22,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "%2$গুলিতে %1$গুলি প্রসারিত করুন "
@@ -218,6 +218,10 @@ msgstr ""
 #, fuzzy
 msgid "B"
 msgstr "kB"
+
+#. TRANSLATORS: name of partition type
+msgid "BIOS Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -672,6 +676,9 @@ msgstr "লজিক্যাল ভলিউম %1$-গুলি সৃষ্�
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr " সোয়াপ লজিক্যাল ভলিউম %1$(2%$গুলি)গুলির সৃষ্টি করুন"
@@ -877,6 +884,13 @@ msgstr "%1$গুলিতে এনক্রিপটেড লুপ ডিভ
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "প্রসারিত পার্টিশান %1$গুলি (%2$ গুলি) সৃষ্টি করুন"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr " সোয়াপ লজিক্যাল ভলিউম %1$(2%$গুলি)গুলির সৃষ্টি করুন"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1393,6 +1407,10 @@ msgstr "লজিক্যাল ভলিউম %1$-গুলি(2%$গুল�
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr " %2$গুলির দ্বারা ভলিউম গ্রুপ %1$গুলি হ্রাস করছে "
 
+#. TRANSLATORS: name of partition type
+msgid "Diagnostics Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1406,6 +1424,10 @@ msgstr "kB"
 #, fuzzy
 msgid "EB"
 msgstr "kB"
+
+#. TRANSLATORS: name of partition type
+msgid "EFI System Partition"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
@@ -1776,6 +1798,10 @@ msgstr ""
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr ""
@@ -1796,7 +1822,24 @@ msgstr ""
 msgid "LVM Physical Volume"
 msgstr ""
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1820,6 +1863,10 @@ msgstr "পার্টিশান %1$s সৃষ্টি করছে"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1925,6 +1972,10 @@ msgstr "IP"
 #, fuzzy
 msgid "PB"
 msgstr "KiB"
+
+#. TRANSLATORS: name of partition type
+msgid "PReP Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2171,6 +2222,9 @@ msgstr " %2$-গুলি থেকে মাউন্ট পয়েন্ট ল
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr " %2$-গুলি থেকে মাউন্ট পয়েন্ট লিপিব্ধকরণ %1$-গুলিকে অপসারণ করছে "
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "%1$গুলিকে %2$গুলি থেকে অপসারণ করুন"
@@ -2575,6 +2629,10 @@ msgstr "মাউন্ট পয়েন্ট লিপিব্ধকরণ %1$
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
 msgstr ""
 
 #. TRANSLATORS: name of object

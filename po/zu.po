@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -21,8 +21,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Yandisa i-%1$s uyise ku-%2$s"
@@ -217,6 +217,10 @@ msgstr ""
 #, fuzzy
 msgid "B"
 msgstr "i-kB"
+
+#. TRANSLATORS: name of partition type
+msgid "BIOS Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -671,6 +675,9 @@ msgstr "Ukwakha ivolumu ehlelekile %1$s"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Yakha ivolumu enengqondo yokushintshanisa %1$s (%2$s)"
@@ -876,6 +883,13 @@ msgstr "Ukusetha idivayisi ye-loop efakwe amakhodi okuphepha kwi-%1$s"
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Yakha ukuhlukaniswa kwamaphathishini andisiwe %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Yakha ivolumu enengqondo yokushintshanisa %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1392,6 +1406,10 @@ msgstr "Susa ivolumu enengqondo %1$s (%2$s)"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Ukunciphisa iqembu levolumu %1$s nge-%2$s"
 
+#. TRANSLATORS: name of partition type
+msgid "Diagnostics Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1405,6 +1423,10 @@ msgstr "i-kB"
 #, fuzzy
 msgid "EB"
 msgstr "i-kB"
+
+#. TRANSLATORS: name of partition type
+msgid "EFI System Partition"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
@@ -1777,6 +1799,10 @@ msgstr ""
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr ""
@@ -1797,7 +1823,24 @@ msgstr ""
 msgid "LVM Physical Volume"
 msgstr ""
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1821,6 +1864,10 @@ msgstr "Ukwakha ukuhlukaniswa kwamaphathishini %1$s"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "i-MiB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1926,6 +1973,10 @@ msgstr "I-PC"
 #, fuzzy
 msgid "PB"
 msgstr "i-KiB"
+
+#. TRANSLATORS: name of partition type
+msgid "PReP Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2172,6 +2223,9 @@ msgstr "Ukususa i-entry yendawo yokuxhakathisa i-%1$s kwi-%2$s"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Ukususa i-entry yendawo yokuxhakathisa i-%1$s kwi-%2$s"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Susa i-%1$s kwi-%2$s"
@@ -2578,6 +2632,10 @@ msgstr "Ukuvuselela i-entry yendawo yokuxhakathisa i-%1$s kwi-%2$s"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
 msgstr ""
 
 #. TRANSLATORS: name of object

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-02-02 15:00+0000\n"
 "Last-Translator: Arvin Schnell <aschnell@suse.com>\n"
 "Language-Team: Afrikaans <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -23,8 +23,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
 msgstr "Bywerk van %s na %s"
@@ -219,6 +219,10 @@ msgstr ""
 #, fuzzy
 msgid "B"
 msgstr "GG"
+
+#. TRANSLATORS: name of partition type
+msgid "BIOS Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -673,6 +677,9 @@ msgstr "Skep van profiel VAR1"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr ""
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, fuzzy, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Skep omruil- logiese volume %1$s (%2$s)"
@@ -878,6 +885,13 @@ msgstr "Opstel van geënkripteerde lustoestel op %1$s"
 #, fuzzy, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Skep uitgebreide partisie%1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Skep omruil- logiese volume %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1394,6 +1408,10 @@ msgstr "Skrap logiese volume %1$s (%2$s)"
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Verminder van volumegroep %1$s met %2$s"
 
+#. TRANSLATORS: name of partition type
+msgid "Diagnostics Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr ""
@@ -1406,6 +1424,10 @@ msgstr ""
 #, fuzzy
 msgid "EB"
 msgstr "KiG"
+
+#. TRANSLATORS: name of partition type
+msgid "EFI System Partition"
+msgstr ""
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
@@ -1776,6 +1798,10 @@ msgstr ""
 msgid "Implicit Partition Table"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr ""
@@ -1796,7 +1822,24 @@ msgstr ""
 msgid "LVM Physical Volume"
 msgstr ""
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux LVM"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
 msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1820,6 +1863,10 @@ msgstr "Skep van %s"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MiG"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1925,6 +1972,10 @@ msgstr "IP"
 #, fuzzy
 msgid "PB"
 msgstr "IP"
+
+#. TRANSLATORS: name of partition type
+msgid "PReP Boot Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2171,6 +2222,9 @@ msgstr "Verwyder van inskrywing vir hegpunt %1$s uit %2$s"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, fuzzy, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Verwyder uit gunstelinge"
@@ -2575,6 +2629,10 @@ msgstr "Bywerk van AppArmor-profiele in %s."
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
 msgstr ""
 
 #. TRANSLATORS: name of object

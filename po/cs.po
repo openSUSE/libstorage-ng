@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-31 15:05+0100\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
 "PO-Revision-Date: 2018-11-08 19:01+0000\n"
 "Last-Translator: Vojtech Zeisek <Vojtech.Zeisek@opensuse.org>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -32,8 +32,8 @@ msgstr ""
 "myslíte to vážně?!"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the the size (e.g. 60 GiB)
+#. %1$s is replaced with the device name (e.g. /dev/sdc1),
+#. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -228,6 +228,11 @@ msgstr "Připojuji sadu pamětí Bcache na %1$s k Bcache %2$s (%3$s)"
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "BIOS Boot Partition"
+msgstr "Oddíl"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -713,6 +718,9 @@ msgstr "Vytvořit systém souborů btrfs na %1$s"
 msgid "Create file system btrfs on %1$s and mount at %2$s"
 msgstr "Vytvořit systém souborů btrfs na %1$s a připojit na %2$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Vytvořit pevný disk %1$s (%2$s)"
@@ -921,6 +929,13 @@ msgstr "Vytváří se zařízení šifrované vrstvy na %1$s"
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/vda),
+#. %2$s is replaced by the size (e.g. 20 GiB)
+#, fuzzy, c-format
+msgid "Creating hard disk %1$s (%2$s)"
+msgstr "Vytvořit pevný disk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1442,6 +1457,11 @@ msgstr ""
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Odstraňuji skupinu svazků %1$s (%2$s)"
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Diagnostics Partition"
+msgstr "Oddíl"
+
 #. TRANSLATORS: name of object
 msgid "Disk"
 msgstr "Disk"
@@ -1453,6 +1473,11 @@ msgstr "E"
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 msgid "EB"
 msgstr "EB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "EFI System Partition"
+msgstr "Oddíl"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1835,6 +1860,10 @@ msgstr "ISO 9660"
 msgid "Implicit Partition Table"
 msgstr "Implicitní tabulka oddílů"
 
+#. TRANSLATORS: name of partition type
+msgid "Intel RST"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "JFS"
 msgstr "JFS"
@@ -1855,8 +1884,26 @@ msgstr "Logický svazek LVM"
 msgid "LVM Physical Volume"
 msgstr "Fyzický svazek LVM"
 
+#. TRANSLATORS: name of object
 msgid "LVM Volume Group"
 msgstr "Skupina svazků LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "Linux LVM"
+msgstr "Testování LVM"
+
+#. TRANSLATORS: name of partition type
+msgid "Linux RAID"
+msgstr ""
+
+#. TRANSLATORS: name of partition type
+msgid "Linux Swap"
+msgstr ""
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1877,6 +1924,10 @@ msgstr "Tabulka oddílů typu MS-DOS"
 #. TRANSLATORS: symbol for "mebi bytes" (best keep untranslated)
 msgid "MiB"
 msgstr "MB"
+
+#. TRANSLATORS: name of partition type
+msgid "Microsoft Reserved Partition"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1982,6 +2033,11 @@ msgstr "P"
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
 msgid "PB"
 msgstr "PB"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "PReP Boot Partition"
+msgstr "Oddíl"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2226,6 +2282,9 @@ msgstr "Odstraňuje se přípojný bod %1$s z %2$s z /etc/fstab"
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Odstraňuje se přípojný bod %1$s podsvazku %2$s na %3$s z /etc/fstab"
 
+#. TRANSLATORS:
+#. %1$s is replaced with the old logical volume name (e.g. foo),
+#. %2$s is replaced with the new logical volume name (e.g. bar)
 #, c-format
 msgid "Rename %1$s to %2$s"
 msgstr "Přejmenovat %1$s na %2$s"
@@ -2640,6 +2699,10 @@ msgstr "Aktualizuje se přípojný bod %1$s z %2$s v /etc/fstab"
 #. TRANSLATORS: name of object
 msgid "VFAT"
 msgstr "VFAT"
+
+#. TRANSLATORS: name of partition type
+msgid "Windows Data Partition"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "XFS"
