@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-10-31 22:49+0000\n"
+"PO-Revision-Date: 2018-11-23 23:55+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/ja/>\n"
@@ -238,9 +238,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "パーティション"
+msgstr "BIOS Boot パーティション"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -926,9 +925,9 @@ msgstr "拡張パーティション %1$s (%2$s) を作成しています"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "ハードディスク %1$s (%2$s) の作成"
+msgstr "ハードディスク %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1463,9 +1462,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "ボリュームグループ %1$s (%2$s) を削除しています"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "パーティション"
+msgstr "診断パーティション"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1480,9 +1478,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "パーティション"
+msgstr "EFI システムパーティション"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1872,7 +1869,7 @@ msgstr "暗黙のパーティションテーブル"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1900,20 +1897,19 @@ msgstr "LVM ボリュームグループ"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "LVM を検出しています"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux スワップ"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1937,7 +1933,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft 予約パーティション"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2045,9 +2041,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "パーティション"
+msgstr "PRep Boot パーティション"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2722,7 +2717,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows データパーティション"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
