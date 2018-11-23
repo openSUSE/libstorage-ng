@@ -273,7 +273,7 @@ namespace storage
 			   // %2$s is replaced by the size (e.g. 20 GiB)
 			   _("Creating hard disk %1$s (%2$s)"));
 
-	return sformat(text, get_displayname().c_str(), get_size_string().c_str());
+	return sformat(text, get_displayname(), get_size_text());
     }
 
 }

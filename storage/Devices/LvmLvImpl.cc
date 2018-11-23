@@ -757,8 +757,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -962,9 +961,9 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, lv_name.c_str(), lvm_vg->get_vg_name().c_str(),
-		       lvm_lv_lhs->get_size_string().c_str(),
-		       lvm_lv_rhs->get_size_string().c_str());
+	return sformat(text, lv_name, lvm_vg->get_vg_name(),
+		       lvm_lv_lhs->get_impl().get_size_text(),
+		       lvm_lv_rhs->get_impl().get_size_text());
     }
 
 
@@ -1039,8 +1038,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -1107,8 +1105,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 
@@ -1175,8 +1172,7 @@ namespace storage
 		break;
 	}
 
-	return sformat(text, lv_name.c_str(), get_size_string().c_str(),
-		       lvm_vg->get_vg_name().c_str());
+	return sformat(text, lv_name, get_size_text(), lvm_vg->get_vg_name());
     }
 
 

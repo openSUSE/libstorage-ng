@@ -87,7 +87,7 @@ namespace storage
 	unsigned long long get_size() const;
 	void set_size(unsigned long long size);
 
-	string get_size_string() const;
+	Text get_size_text() const;
 
 	const vector<string>& get_udev_paths() const { return udev_paths; }
 	void set_udev_paths(const vector<string>& udev_paths) { Impl::udev_paths = udev_paths; }

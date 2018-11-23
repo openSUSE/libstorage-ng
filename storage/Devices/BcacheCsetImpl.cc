@@ -239,8 +239,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2 GiB)
 			   _("Creating Bcache cache set %1$s (%2$s)"));
 
-	return sformat(text, blk_device->get_name().c_str(),
-		       blk_device->get_size_string().c_str());
+	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }
 
 
@@ -290,8 +289,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2 GiB)
 			   _("Deleting Bcache cache set on %1$s (%2$s)"));
 
-	return sformat(text, blk_device->get_name().c_str(),
-		       blk_device->get_size_string().c_str());
+	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }
 
 
@@ -320,8 +318,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2 GiB)
 			   _("Deactivating Bcache cache set on %1$s (%2$s)"));
 
-	return sformat(text, blk_device->get_name().c_str(),
-		       blk_device->get_size_string().c_str());
+	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }
 
 

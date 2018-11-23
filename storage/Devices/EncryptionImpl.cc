@@ -372,8 +372,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, get_name().c_str(), encryption_lhs->get_size_string().c_str(),
-		       encryption_rhs->get_size_string().c_str());
+	return sformat(text, get_name(), encryption_lhs->get_impl().get_size_text(),
+		       encryption_rhs->get_impl().get_size_text());
     }
 
 

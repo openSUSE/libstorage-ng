@@ -665,7 +665,7 @@ namespace storage
 	    }
 	}
 
-	return sformat(text, get_name().c_str(), get_size_string().c_str());
+	return sformat(text, get_name(), get_size_text());
     }
 
 
@@ -1004,7 +1004,7 @@ namespace storage
 	    }
 	}
 
-	return sformat(text, get_name().c_str(), get_size_string().c_str());
+	return sformat(text, get_name(), get_size_text());
     }
 
 
@@ -1083,8 +1083,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, get_name().c_str(), partition_lhs->get_size_string().c_str(),
-		       partition_rhs->get_size_string().c_str());
+	return sformat(text, get_name(), partition_lhs->get_impl().get_size_text(),
+		       partition_rhs->get_impl().get_size_text());
     }
 
 

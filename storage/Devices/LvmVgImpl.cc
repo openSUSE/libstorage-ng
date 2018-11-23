@@ -141,10 +141,13 @@ namespace storage
     }
 
 
-    string
-    LvmVg::Impl::get_size_string() const
+    Text
+    LvmVg::Impl::get_size_text() const
     {
-	return byte_to_humanstring(get_size(), false, 2, false);
+	// TODO see BlkDevice::Impl::get_size_text()
+
+	return Text(byte_to_humanstring(get_size(), true, 2, false),
+		    byte_to_humanstring(get_size(), false, 2, false));
     }
 
 
@@ -530,7 +533,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Creating volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+	return sformat(text, vg_name, get_size_text());
     }
 
 
@@ -560,7 +563,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Deleting volume group %1$s (%2$s)"));
 
-	return sformat(text, vg_name.c_str(), get_size_string().c_str());
+	return sformat(text, vg_name, get_size_text());
     }
 
 

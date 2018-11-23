@@ -353,9 +353,8 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, blk_device->get_name().c_str(),
-		       blk_device_lhs->get_size_string().c_str(),
-		       blk_device_rhs->get_size_string().c_str());
+	return sformat(text, blk_device->get_name(), blk_device_lhs->get_impl().get_size_text(),
+		       blk_device_rhs->get_impl().get_size_text());
     }
 
 

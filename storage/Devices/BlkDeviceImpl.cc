@@ -211,10 +211,13 @@ namespace storage
     }
 
 
-    string
-    BlkDevice::Impl::get_size_string() const
+    Text
+    BlkDevice::Impl::get_size_text() const
     {
-	return byte_to_humanstring(get_size(), false, 2, false);
+	// TODO but maybe ByteCount
+
+	return Text(byte_to_humanstring(get_size(), true, 2, false),
+		    byte_to_humanstring(get_size(), false, 2, false));
     }
 
 

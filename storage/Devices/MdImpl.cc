@@ -881,8 +881,8 @@ namespace storage
 			   // %3$s is replaced by size (e.g. 2GiB)
 			   _("Creating MD %1$s %2$s (%3$s)"));
 
-	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
-		       get_size_string().c_str());
+	return sformat(text, get_md_level_name(md_level), get_displayname(),
+		       get_size_text());
     }
 
 
@@ -957,8 +957,7 @@ namespace storage
 			   // %3$s is replaced by size (e.g. 2GiB)
 			   _("Deleting MD %1$s %2$s (%3$s)"));
 
-	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
-		       get_size_string().c_str());
+	return sformat(text, get_md_level_name(md_level), get_displayname(), get_size_text());
     }
 
 
@@ -1132,8 +1131,7 @@ namespace storage
 			   // %3$s is replaced by size (e.g. 2 GiB)
 			   _("Deactivating MD %1$s %2$s (%3$s)"));
 
-	return sformat(text, get_md_level_name(md_level).c_str(), get_displayname().c_str(),
-		       get_size_string().c_str());
+	return sformat(text, get_md_level_name(md_level), get_displayname(), get_size_text());
     }
 
 

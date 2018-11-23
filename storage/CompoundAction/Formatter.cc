@@ -154,13 +154,11 @@ namespace storage
 		text += Text( ", ", ", " );
 
 	    // TRANSLATORS:
-	    // %1$s is replaced with the the device name (e.g. /dev/sdc1),
-	    // %2$s is replaced with the the size (e.g. 60 GiB)
+	    // %1$s is replaced with the device name (e.g. /dev/sdc1),
+	    // %2$s is replaced with the size (e.g. 60 GiB)
 	    Text dev_text = _( "%1$s (%2$s)" );
 
-	    text += sformat( dev_text,
-			     device->get_name().c_str(),
-			     device->get_size_string().c_str() );
+	    text += sformat(dev_text, device->get_name(), device->get_size_string());
 	}
 
 	return text;
