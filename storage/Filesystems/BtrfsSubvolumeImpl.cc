@@ -445,7 +445,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
 
-        return sformat(text, path.c_str(), blk_device->get_name().c_str());
+        return sformat(text, path, blk_device->get_name());
     }
 
 
@@ -500,7 +500,7 @@ namespace storage
 			   // %3$s is replaced by mount point (e.g. /home)
 			   _("Mounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path.c_str(), get_mount_name().c_str(), mount_point->get_path().c_str());
+	return sformat(text, path, get_mount_name(), mount_point->get_path());
     }
 
 
@@ -519,7 +519,7 @@ namespace storage
 			  // %3$s is replaced by mount point (e.g. /home)
 			  _("Unmounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path.c_str(), get_mount_name().c_str(), mount_point->get_path().c_str());
+	return sformat(text, path, get_mount_name(), mount_point->get_path());
     }
 
 
@@ -538,7 +538,7 @@ namespace storage
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
 			   _("Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), path.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path(), path, get_mount_name());
     }
 
 
@@ -557,7 +557,7 @@ namespace storage
 			   // %3$s is replaced by device name (e.g. /dev/sda1)
 			   _("Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), path.c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path(), path, get_mount_name());
     }
 
 
@@ -589,7 +589,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
 
-        return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str());
+        return sformat(text, get_displayname(), blk_device->get_name());
     }
 
 
@@ -622,7 +622,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
 
-        return sformat(text, get_displayname().c_str(), blk_device->get_name().c_str());
+        return sformat(text, get_displayname(), blk_device->get_name());
     }
 
 
@@ -655,7 +655,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
 
-        return sformat(text, path.c_str(), blk_device->get_name().c_str());
+        return sformat(text, path, blk_device->get_name());
     }
 
 

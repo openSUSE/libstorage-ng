@@ -185,7 +185,7 @@ namespace storage
 		    if (chunk_size < 4 * KiB)
 		    {
 			check_callbacks->error(sformat("Chunk size of MD %s is smaller than 4 KiB.",
-						       get_name().c_str()));
+						       get_name()));
 		    }
 
 		    unsigned long long tmp = 1 * KiB;
@@ -199,7 +199,7 @@ namespace storage
 		    {
 			check_callbacks->error(sformat("Chunk size of MD %s is not a multiple of "
 						       "the sector size of the devices.",
-						       get_name().c_str()));
+						       get_name()));
 		    }
 		}
 		break;
@@ -212,13 +212,13 @@ namespace storage
 		    if (chunk_size < get_devicegraph()->get_storage()->get_arch().get_page_size())
 		    {
 			check_callbacks->error(sformat("Chunk size of MD %s is smaller than the "
-						       "page size.", get_name().c_str()));
+						       "page size.", get_name()));
 		    }
 
 		    if (!is_power_of_two(chunk_size))
 		    {
 			check_callbacks->error(sformat("Chunk size of MD %s is not a power of two.",
-						       get_name().c_str()));
+						       get_name()));
 		    }
 		}
 		break;
@@ -423,7 +423,7 @@ namespace storage
             {
                 // TRANSLATORS: error message
                 error_callback(prober.get_probe_callbacks(), sformat(_("Probing MD RAID %s failed"),
-								     name.c_str()), exception);
+								     name), exception);
             }
 	}
     }
@@ -984,7 +984,7 @@ namespace storage
 			   // %1$s is replaced by md name (e.g. /dev/md0)
 			   _("Adding %1$s to /etc/mdadm.conf"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 
@@ -1015,7 +1015,7 @@ namespace storage
 			   // %1$s is replaced by md name (e.g. /dev/md0)
 			   _("Removing %1$s from /etc/mdadm.conf"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 
@@ -1065,7 +1065,7 @@ namespace storage
 		ST_THROW(LogicException("invalid value for reallot_mode"));
 	}
 
-	return sformat(text, to_blk_device(device)->get_name().c_str(), get_displayname().c_str());
+	return sformat(text, to_blk_device(device)->get_name(), get_displayname());
     }
 
 

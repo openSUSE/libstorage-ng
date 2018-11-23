@@ -35,7 +35,7 @@ namespace storage
 
 
     BtrfsSubvolumeNotFoundByPath::BtrfsSubvolumeNotFoundByPath(const string& path)
-	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path.c_str()))
+	: DeviceNotFound(sformat("btrfs subvolume not found, path:%s", path))
     {
     }
 

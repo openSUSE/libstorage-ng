@@ -223,7 +223,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda)
 			   _("Creating GPT on %1$s"));
 
-	return sformat(text, partitionable->get_displayname().c_str());
+	return sformat(text, partitionable->get_displayname());
     }
 
 
@@ -253,7 +253,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda)
 			   _("Repairing GPT on %1$s"));
 
-	return sformat(text, partitionable->get_displayname().c_str());
+	return sformat(text, partitionable->get_displayname());
     }
 
 
@@ -308,7 +308,7 @@ namespace storage
 			  // %1$s is replaced by device name (e.g. /dev/sda)
 			  _("Clearing protective MBR boot flag of GPT on %1$s"));
 
-	return sformat(text, partitionable->get_name().c_str());
+	return sformat(text, partitionable->get_name());
     }
 
 
@@ -337,7 +337,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda)
 			   _("Deleting GPT on %1$s"));
 
-	return sformat(text, partitionable->get_displayname().c_str());
+	return sformat(text, partitionable->get_displayname());
     }
 
 

@@ -63,13 +63,13 @@ namespace storage
 
 
     DeviceNotFoundByName::DeviceNotFoundByName(const string& name)
-	: DeviceNotFound(sformat("device not found, name:%s", name.c_str()))
+	: DeviceNotFound(sformat("device not found, name:%s", name))
     {
     }
 
 
     DeviceNotFoundByUuid::DeviceNotFoundByUuid(const string& uuid)
-	: DeviceNotFound(sformat("device not found, uuid:%s", uuid.c_str()))
+	: DeviceNotFound(sformat("device not found, uuid:%s", uuid))
     {
     }
 

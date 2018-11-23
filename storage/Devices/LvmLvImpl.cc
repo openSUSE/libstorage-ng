@@ -143,7 +143,7 @@ namespace storage
 		if (!is_multiple_of(number_of_extents(), stripes))
 		    check_callbacks->error(sformat("Number of extents not a multiple of stripes "
 						   "of logical volume %s in volume group %s.",
-						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+						   lv_name, lvm_vg->get_vg_name()));
 	    }
 
 	    if (stripe_size > 0)
@@ -151,14 +151,14 @@ namespace storage
 		if (stripe_size > lvm_vg->get_extent_size())
 		    check_callbacks->error(sformat("Stripe size is greater then the extent size "
 						   "of logical volume %s in volume group %s.",
-						   lv_name.c_str(), lvm_vg->get_vg_name().c_str()));
+						   lv_name, lvm_vg->get_vg_name()));
 	    }
 
 	    // the constant 265289728 is calculated from the LVM sources
 	    if (lv_type == LvType::THIN_POOL && chunk_size > 0 && get_size() > chunk_size * 265289728)
 		check_callbacks->error(sformat("Chunk size is too small for thin pool logical "
-					       "volume %s in volume group %s.", lv_name.c_str(),
-					       lvm_vg->get_vg_name().c_str()));
+					       "volume %s in volume group %s.", lv_name,
+					       lvm_vg->get_vg_name()));
 	}
     }
 
@@ -799,7 +799,7 @@ namespace storage
 	    case LvType::RAID:
 	    {
 		ST_THROW(UnsupportedException(sformat("creating LvmLv with type %s is unsupported",
-						      toString(lv_type).c_str())));
+						      toString(lv_type))));
 	    }
 	    break;
 	}

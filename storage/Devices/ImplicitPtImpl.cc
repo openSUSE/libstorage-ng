@@ -207,7 +207,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/dasda)
 			   _("Creating implicit partition table on %1$s"));
 
-	return sformat(text, partitionable->get_displayname().c_str());
+	return sformat(text, partitionable->get_displayname());
     }
 
 
@@ -224,7 +224,7 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/dasda)
 			   _("Deleting implicit partition table on %1$s"));
 
-	return sformat(text, partitionable->get_displayname().c_str());
+	return sformat(text, partitionable->get_displayname());
     }
 
 }

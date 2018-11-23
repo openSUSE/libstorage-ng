@@ -381,8 +381,8 @@ namespace storage
 	const PartitionTable* partition_table = get_partition_table();
 
 	if (!partition_table->get_impl().is_partition_type_supported(type))
-	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type).c_str(),
-				       toString(partition_table->get_type()).c_str())));
+	    ST_THROW(Exception(sformat("illegal partition type %s on %s", toString(type),
+				       toString(partition_table->get_type()))));
 
 	Impl::type = type;
     }
@@ -395,7 +395,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_id_supported(id))
 	    ST_THROW(Exception(sformat("illegal partition id %d on %s", id,
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	Impl::id = id;
     }
@@ -408,7 +408,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	if (boot && !Impl::boot)
 	{
@@ -429,7 +429,7 @@ namespace storage
 
 	if (!partition_table->get_impl().is_partition_legacy_boot_flag_supported())
 	    ST_THROW(Exception(sformat("set_boot not supported on %s",
-				       toString(partition_table->get_type()).c_str())));
+				       toString(partition_table->get_type()))));
 
 	Impl::legacy_boot = legacy_boot;
     }
@@ -749,7 +749,7 @@ namespace storage
 				   // %1$s is replaced by partition name (e.g. /dev/sda1),
 				   // 0x%2$02X is replaced by partition id (e.g. 0x8E)
 				   _("Setting id of partition %1$s to 0x%2$02X"));
-		return sformat(text, get_name().c_str(), get_id());
+		return sformat(text, get_name(), get_id());
 	    }
 	    else
 	    {
@@ -771,7 +771,7 @@ namespace storage
 	{
 	    if (tmp.empty())
 		ST_THROW(Exception(sformat("partition id %d of %s does not have text representation",
-					   get_id(), get_name().c_str())));
+					   get_id(), get_name())));
 
 	    Text text = tenser(tense,
 			       // TRANSLATORS: displayed before action,
@@ -879,7 +879,7 @@ namespace storage
 			  // %1$s is replaced by partition name (e.g. /dev/sda1)
 			  _("Clearing boot flag of partition %1$s"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 
@@ -917,7 +917,7 @@ namespace storage
 			  // %1$s is replaced by partition name (e.g. /dev/sda1)
 			  _("Clearing legacy boot flag of partition %1$s"));
 
-	return sformat(text, get_name().c_str());
+	return sformat(text, get_name());
     }
 
 

@@ -183,7 +183,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing bcache %s failed"),
-								     name.c_str()), exception);
+								     name), exception);
 	    }
 	}
     }

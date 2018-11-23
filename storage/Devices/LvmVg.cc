@@ -36,7 +36,7 @@ namespace storage
 
 
     LvmVgNotFoundByVgName::LvmVgNotFoundByVgName(const string& vg_name)
-	: DeviceNotFound(sformat("LvmVg not found, vg-name:%s", vg_name.c_str()))
+	: DeviceNotFound(sformat("LvmVg not found, vg-name:%s", vg_name))
     {
     }
 

@@ -121,11 +121,11 @@ namespace storage
 	    {
 		if (get_region().get_block_size() != parted.get_region().get_block_size())
 		    ST_THROW(Exception(sformat("different block size reported by kernel and parted for %s",
-					       get_name().c_str())));
+					       get_name())));
 
 		if (get_region().get_length() != parted.get_region().get_length())
 		    ST_THROW(Exception(sformat("different size reported by kernel and parted for %s",
-					       get_name().c_str())));
+					       get_name())));
 
 		PtType label = parted.get_label();
 
@@ -151,7 +151,7 @@ namespace storage
 	{
 	    // TRANSLATORS: error message
 	    error_callback(prober.get_probe_callbacks(), sformat(_("Probing partitions on %s failed"),
-								 get_name().c_str()), exception);
+								 get_name()), exception);
 	}
     }
 

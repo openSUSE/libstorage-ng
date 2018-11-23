@@ -217,7 +217,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Mounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name().c_str(), mount_point->get_path().c_str());
+	return sformat(text, get_mount_name(), mount_point->get_path());
     }
 
 
@@ -249,7 +249,7 @@ namespace storage
 			   // %2$s is replaced by size (e.g. 2GiB)
 			   _("Unmounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name().c_str(), mount_point->get_path().c_str());
+	return sformat(text, get_mount_name(), mount_point->get_path());
     }
 
 
@@ -273,7 +273,7 @@ namespace storage
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Adding mount point %1$s of %2$s to /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path(), get_mount_name());
     }
 
 
@@ -309,7 +309,7 @@ namespace storage
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Updating mount point %1$s of %2$s in /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path(), get_mount_name());
     }
 
 
@@ -346,7 +346,7 @@ namespace storage
 			   // %2$s is replaced by device name (e.g. /dev/sda1)
 			   _("Removing mount point %1$s of %2$s from /etc/fstab"));
 
-	return sformat(text, mount_point->get_path().c_str(), get_mount_name().c_str());
+	return sformat(text, mount_point->get_path(), get_mount_name());
     }
 
 

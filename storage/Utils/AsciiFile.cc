@@ -108,7 +108,7 @@ namespace storage
 	    y2mil("deleting file " << name);
 
 	    if (unlink(name.c_str()) != 0 && errno != ENOENT)
-		ST_THROW(IOException(sformat("Deleting file %s failed.", name.c_str())));
+		ST_THROW(IOException(sformat("Deleting file %s failed.", name)));
 	}
 	else
 	{
@@ -123,7 +123,7 @@ namespace storage
 	    file.close();
 
 	    if (!file.good())
-		ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
+		ST_THROW(IOException(sformat("Saving file %s failed.", name)));
 	}
     }
 

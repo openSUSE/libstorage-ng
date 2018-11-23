@@ -746,7 +746,7 @@ namespace storage
 
 		map<string, device_load_fnc>::const_iterator it = device_load_registry.find(classname);
 		if (it == device_load_registry.end())
-		    ST_THROW(Exception(sformat("unknown device class name %s", classname.c_str())));
+		    ST_THROW(Exception(sformat("unknown device class name %s", classname)));
 
 		const Device* device = it->second(devicegraph, device_node);
 		Device::Impl::raise_global_sid(device->get_sid());
@@ -762,7 +762,7 @@ namespace storage
 
 		map<string, holder_load_fnc>::const_iterator it = holder_load_registry.find(classname);
 		if (it == holder_load_registry.end())
-		    ST_THROW(Exception(sformat("unknown holder class name %s", classname.c_str())));
+		    ST_THROW(Exception(sformat("unknown holder class name %s", classname)));
 
 		it->second(devicegraph, holder_node);
 	    }
@@ -800,7 +800,7 @@ namespace storage
 	}
 
 	if (!xml.save(filename))
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
     }
 
 
@@ -1071,7 +1071,7 @@ namespace storage
 	fout.close();
 
 	if (!fout.good())
-	    ST_THROW(Exception(sformat("failed to write '%s'", filename.c_str())));
+	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
     }
 
 }

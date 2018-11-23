@@ -32,7 +32,7 @@ namespace storage
 
 
     NfsNotFoundByServerAndPath::NfsNotFoundByServerAndPath(const string& server, const string& path)
-	: DeviceNotFound(sformat("Nfs not found, server:%s path:", server.c_str(), path.c_str()))
+	: DeviceNotFound(sformat("Nfs not found, server:%s path:", server, path))
     {
     }
 

@@ -95,7 +95,7 @@ namespace storage
 	{
 	    if (is_overcommitted())
 		check_callbacks->error(sformat("Volume group %s is overcommitted.",
-					       vg_name.c_str()));
+					       vg_name));
 	}
     }
 
@@ -614,7 +614,7 @@ namespace storage
 	const LvmPv* lvm_pv = to_lvm_pv(device);
 	const BlkDevice* blk_device = lvm_pv->get_blk_device();
 
-	return sformat(text, blk_device->get_name().c_str(), vg_name.c_str());
+	return sformat(text, blk_device->get_name(), vg_name);
     }
 
 
@@ -667,7 +667,7 @@ namespace storage
 			   // %1$s is replaced by volume group name (e.g. system)
 			   _("Reducing volume group %1$s by missing physical volumes"));
 
-	return sformat(text, vg_name.c_str());
+	return sformat(text, vg_name);
     }
 
 

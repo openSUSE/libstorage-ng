@@ -170,7 +170,7 @@ namespace storage
 	Device::Impl::check(check_callbacks);
 
 	if (region.get_block_size() == 0)
-	    ST_THROW(Exception(sformat("block size is zero for %s", get_name().c_str())));
+	    ST_THROW(Exception(sformat("block size is zero for %s", get_name())));
 
 	if (!is_valid_name(get_name()))
 	    ST_THROW(Exception("BlkDevice has invalid name"));
