@@ -36,6 +36,7 @@
 #include "storage/Prober.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

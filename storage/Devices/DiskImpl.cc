@@ -41,6 +41,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

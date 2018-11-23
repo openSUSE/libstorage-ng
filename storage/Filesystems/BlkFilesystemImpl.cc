@@ -41,6 +41,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

@@ -80,6 +80,7 @@
 #include "storage/Holders/MdSubdevice.h"
 #include "storage/Storage.h"
 #include "storage/FreeInfo.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

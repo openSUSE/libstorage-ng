@@ -28,6 +28,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/FreeInfo.h"
 #include "storage/Storage.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

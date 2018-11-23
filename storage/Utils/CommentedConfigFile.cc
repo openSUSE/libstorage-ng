@@ -29,7 +29,7 @@
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AsciiFile.h"
-#include "storage/Utils/AppUtil.h"
+#include "storage/Utils/Format.h"
 
 
 #define WHITESPACE " \t"

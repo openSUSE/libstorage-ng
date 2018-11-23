@@ -35,6 +35,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Storage.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

@@ -35,6 +35,7 @@
 #include "storage/Holders/User.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

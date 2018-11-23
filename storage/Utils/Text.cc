@@ -22,7 +22,6 @@
 
 
 #include <libintl.h>
-#include <stdarg.h>
 
 #include "storage/Utils/Text.h"
 #include "storage/Utils/AppUtil.h"
@@ -47,24 +46,6 @@ namespace storage
 	native += a.native;
 	translated += a.translated;
 	return *this;
-    }
-
-
-    Text
-    sformat(const Text& format, ...)
-    {
-	Text text;
-	va_list ap;
-
-	va_start(ap, format);
-	text.native = sformat(format.native, ap);
-	va_end(ap);
-
-	va_start(ap, format);
-	text.translated = sformat(format.translated, ap);
-	va_end(ap);
-
-	return text;
     }
 
 

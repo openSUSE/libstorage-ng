@@ -47,6 +47,7 @@
 #include "storage/EtcMdadm.h"
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CommitOptions.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

@@ -49,6 +49,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/EtcMdadm.h"
 #include "storage/Utils/CallbacksImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

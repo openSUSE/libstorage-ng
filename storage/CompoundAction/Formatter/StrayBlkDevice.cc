@@ -23,6 +23,7 @@
 #include "storage/CompoundAction/Formatter/StrayBlkDevice.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Filesystems/Swap.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

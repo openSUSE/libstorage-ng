@@ -24,6 +24,7 @@
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/PartitionImpl.h"
 #include "storage/Filesystems/Swap.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

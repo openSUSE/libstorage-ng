@@ -38,6 +38,7 @@
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

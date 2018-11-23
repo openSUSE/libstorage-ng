@@ -23,6 +23,7 @@
 #include "storage/Devices/LvmLvImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Action.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

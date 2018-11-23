@@ -36,6 +36,7 @@
 #include "storage/Actiongraph.h"
 #include "storage/Prober.h"
 #include "storage/EnvironmentImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

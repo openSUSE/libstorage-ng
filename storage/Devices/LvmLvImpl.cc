@@ -40,6 +40,7 @@
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 using namespace std;

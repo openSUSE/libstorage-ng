@@ -43,6 +43,7 @@
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

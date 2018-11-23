@@ -22,6 +22,7 @@
 
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

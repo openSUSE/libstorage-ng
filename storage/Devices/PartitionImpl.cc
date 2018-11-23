@@ -42,6 +42,7 @@
 #include "storage/FreeInfo.h"
 #include "storage/Utils/XmlFile.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

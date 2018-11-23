@@ -37,6 +37,7 @@
 #include "storage/Storage.h"
 #include "storage/FindBy.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

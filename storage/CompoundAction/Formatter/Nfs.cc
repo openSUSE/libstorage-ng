@@ -22,6 +22,7 @@
 
 #include "storage/CompoundAction/Formatter/Nfs.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

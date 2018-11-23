@@ -24,6 +24,7 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Filesystems/Swap.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage

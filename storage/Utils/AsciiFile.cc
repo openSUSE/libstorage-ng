@@ -28,6 +28,7 @@
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
