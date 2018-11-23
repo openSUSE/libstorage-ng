@@ -90,6 +90,7 @@ namespace storage
 	getChildValue(node, "chunk-size", chunk_size);
     }
 
+
     string
     LvmLv::Impl::get_pretty_classname() const
     {
@@ -825,8 +826,12 @@ namespace storage
     Text
     LvmLv::Impl::do_rename_text(const Impl& lhs, Tense tense) const
     {
-        return sformat(_("Rename %1$s to %2$s"), lhs.get_displayname().c_str(),
-		       get_displayname().c_str());
+	// TRANSLATORS:
+	// %1$s is replaced with the old logical volume name (e.g. foo),
+	// %2$s is replaced with the new logical volume name (e.g. bar)
+	Text text = _("Rename %1$s to %2$s");
+
+	return sformat(text, lhs.get_displayname(), get_displayname());
     }
 
 
