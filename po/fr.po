@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-06 22:03+0000\n"
+"PO-Revision-Date: 2018-11-24 11:02+0000\n"
 "Last-Translator: Antoine Belvire <antoine.belvire@opensuse.org>\n"
 "Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fr/>\n"
@@ -243,9 +243,8 @@ msgstr "o"
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Partition"
+msgstr "Partition de démarrage BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -988,9 +987,9 @@ msgstr "Création de la partition étendue %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Créer le disque dur %1$s (%2$s)"
+msgstr "Création du disque dur %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1578,9 +1577,8 @@ msgstr "Suppression du groupe de volumes %1$s (%2$s)"
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Partition"
+msgstr "Partition de diagnostique"
 
 # TLABEL packages_2002_01_04_0147__12
 #. TRANSLATORS: name of object
@@ -1597,9 +1595,8 @@ msgstr "Eo"
 
 # TLABEL packages_2002_01_04_0147__160
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Partition"
+msgstr "Partition système EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -2025,7 +2022,7 @@ msgstr "Table de partitions implicites"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -2057,20 +2054,19 @@ msgstr "Groupe de volumes LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "Sondage de LVM"
+msgstr "LVM Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Swap Linux"
 
 # TLABEL partitioning_2002_01_04_0147__116
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -2098,7 +2094,7 @@ msgstr "Mio"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Partition réservée Microsoft"
 
 # TLABEL partitioning_2002_01_04_0147__425
 #. TRANSLATORS:
@@ -2943,7 +2939,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Partition de données Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
