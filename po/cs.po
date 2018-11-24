@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-08 19:01+0000\n"
-"Last-Translator: Vojtech Zeisek <Vojtech.Zeisek@opensuse.org>\n"
+"PO-Revision-Date: 2018-11-24 11:01+0000\n"
+"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/cs/>\n"
 "Language: cs\n"
@@ -230,9 +230,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Oddíl"
+msgstr "Zaváděcí oddíl BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -933,9 +932,9 @@ msgstr "Vytvořit rozšířený oddíl %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Vytvořit pevný disk %1$s (%2$s)"
+msgstr "Vytvářím pevný disk %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1458,9 +1457,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Odstraňuji skupinu svazků %1$s (%2$s)"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Oddíl"
+msgstr "Diagnostický oddíl"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1475,9 +1473,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Oddíl"
+msgstr "Systémový oddíl EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1862,7 +1859,7 @@ msgstr "Implicitní tabulka oddílů"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1890,20 +1887,19 @@ msgstr "Skupina svazků LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "Testování LVM"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1927,7 +1923,7 @@ msgstr "MB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Reservovaný oddíl Microsoft"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2035,9 +2031,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Oddíl"
+msgstr "Zaváděcí oddíl PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2702,7 +2697,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Oddíl dat Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
