@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-24 19:06+0000\n"
+"PO-Revision-Date: 2018-11-25 19:00+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/sk/>\n"
@@ -225,9 +225,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Oddiel"
+msgstr "Štartovací oddiel BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -1445,9 +1444,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Mazanie skupiny zväzkov %1$s (%2$s)"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Oddiel"
+msgstr "Diagnostický oddiel"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1462,9 +1460,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Oddiel"
+msgstr "Systémový oddiel EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1909,7 +1906,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Rezervovaný oddiel Microsoft"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2015,9 +2012,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Oddiel"
+msgstr "Štartovací oddiel PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2677,7 +2673,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Dátový oddiel Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
