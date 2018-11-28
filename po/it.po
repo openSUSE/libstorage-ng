@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-21 17:03+0000\n"
+"PO-Revision-Date: 2018-11-28 17:44+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/it/>\n"
@@ -29,6 +29,8 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"ma siamo seri?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -237,9 +239,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Partizione"
+msgstr "Partizione d'avvio del BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -998,9 +999,9 @@ msgstr "Creazione della partizione estesa %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Crea il disco fisso %1$s (%2$s)"
+msgstr "Creazione del disco fisso %1$s (%2$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1590,9 +1591,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Eliminazione del gruppo di volumi %1$s (%2$s)"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Partizione"
+msgstr "Partizione per diagnostica"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1607,9 +1607,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Partizione"
+msgstr "Partizione sistema EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -2053,7 +2052,7 @@ msgstr "Tabella delle partizioni implicite"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -2083,20 +2082,19 @@ msgstr "Gruppo di volumi LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "Rilevamento di LVM in corso"
+msgstr "LVM Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "RAID Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Swap Linux"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -2124,7 +2122,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Partizione riservata Microsoft"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2239,9 +2237,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Partizione"
+msgstr "Partizione d'avvio PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2310,19 +2307,17 @@ msgid "Probing NFS failed"
 msgstr "Rlevamento di NFS non riuscito"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Rilevamento del dispositivo a blocchi Stray %s non riuscito"
+msgstr "Rilevamento del dispositivo a blocchi \"senza padrone\" %s non riuscito"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing Stray Block Devices"
-msgstr "Rilevamento di dispositivi a blocchi Stray"
+msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Rilevamento di dispositivi a blocchi Stray fallito"
+msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2827,7 +2822,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Dispositivo a blocchi \"senza padrone\""
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2915,7 +2910,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Partizione dati Windows"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
