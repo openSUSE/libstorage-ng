@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-02-23 00:02+0000\n"
+"PO-Revision-Date: 2018-12-02 22:02+0000\n"
 "Last-Translator: Tommi Nieminen <software@legisign.org>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/fi/>\n"
@@ -27,13 +27,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"oletko tosissasi?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "Laajenna %1$s kokoon %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -41,13 +43,13 @@ msgstr "Laajenna %1$s kokoon %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s on välimuisti laitteille %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Aseta salattu silmukkalaite %1$s"
+msgstr "Ota käyttöön salaustaso laitteella %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -61,9 +63,9 @@ msgstr "Aktivoi looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
+msgstr "Ota käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -76,52 +78,50 @@ msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "Otetaan käyttöön LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "LUKS-laitteen%s käyttöönotto epäonnistui"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
-msgstr ""
+msgstr "Otetaan käyttöön LVM"
 
 #. TRANSLATORS: error message
 msgid "Activating LVM failed"
-msgstr ""
+msgstr "LVM:n käyttöönotto epäonnistui"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Asetetaan salattu silmukkalaite %1$s"
+msgstr "Otetaan käyttöön salaustaso laitteella %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
+msgstr "Otetaan käyttöön looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Luo multipath-osio %1$s (%2$s)"
+msgstr "Otetaan käyttöön multipath"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Luo multipath-osio %1$s (%2$s)"
+msgstr "Multipathin käyttöönotto epäonnistui"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
+msgstr "Otetaan käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -137,9 +137,9 @@ msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s to %2$s"
-msgstr "Laajenna %1$s kokoon %2$s"
+msgstr "Lisää %1$s taltioryhmään %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -151,7 +151,7 @@ msgstr "Lisää %1$s tiedostoon /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "Lisää laitteen %1$s salaustaso /etc/crypttab-tiedostoon"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -189,14 +189,14 @@ msgstr "Lisätään %1$s tiedostoon /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "Lisätään laitteen %1$s salaustaso /etc/crypttab-tiedostoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "Lisätään liitoskohdalle %1$s merkintä hakemistoon %2$s"
+msgstr "Lisätään laitteen %2$s liitoskohta %1$s /etc/fstab-tiedostoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -213,7 +213,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -221,7 +221,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -229,23 +229,23 @@ msgstr "B"
 
 #. TRANSLATORS: name of partition type
 msgid "BIOS Boot Partition"
-msgstr ""
+msgstr "BIOS-käynnistysosio"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
-msgstr ""
+msgstr "Bcache"
 
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
-msgstr ""
+msgstr "Bcache-välimuistijoukko"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
-msgstr ""
+msgstr "Btrfs"
 
 #. TRANSLATORS: name of object
 msgid "Btrfs Subvolume"
-msgstr ""
+msgstr "Btrfs-alitaltio"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
