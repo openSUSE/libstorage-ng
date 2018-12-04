@@ -139,7 +139,7 @@ namespace storage
     {
     public:
 
-	EtcCrypttab(const string& filename = ETC_CRYPTTAB);
+	EtcCrypttab(const string& filename = ETC_CRYPTTAB, int permissions = DEFAULT_PERMISSIONS);
 	virtual ~EtcCrypttab();
 
 	// using inherited read() and write() unchanged
@@ -199,6 +199,10 @@ namespace storage
          * Dump the current contents to the log.
          **/
         void log();
+
+    private:
+
+	static const int DEFAULT_PERMISSIONS = 0640;
     };
 
 }

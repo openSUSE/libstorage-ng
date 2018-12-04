@@ -23,11 +23,17 @@
 
 #include <unistd.h>
 #include <fstream>
+#include <stdio.h>
+#include <fcntl.h>
+/* Not technically required, but needed on some UNIX distributions */
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageTypes.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -35,8 +41,8 @@ namespace storage
     using namespace std;
 
 
-    AsciiFile::AsciiFile(const string& name, bool remove_empty)
-	: name(name), remove_empty(remove_empty)
+    AsciiFile::AsciiFile(const string& name, bool remove_empty, int permissions)
+	: name(name), remove_empty(remove_empty), permissions(permissions)
     {
 	reload();
     }
@@ -113,16 +119,23 @@ namespace storage
 	{
 	    y2mil("saving file " << name);
 
-	    ofstream file(name);
-	    classic(file);
+	    FILE* file = fdopen(open(name.c_str(), O_WRONLY | O_TRUNC | O_CREAT, permissions), "w");
+
+	    if (!file)
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name.c_str(), strerror(errno))));
 
 	    for (const string& line : lines)
-		file << line << '\n';
+	    {
+		string line_with_break = line + "\n";
 
-	    file.close();
+		fputs(line_with_break.c_str(), file);
 
-	    if (!file.good())
-		ST_THROW(IOException(sformat("Saving file %s failed.", name.c_str())));
+		if (ferror(file))
+		    ST_THROW(IOException(sformat("Saving file %s failed: %s", name.c_str(), strerror(errno))));
+	    }
+
+	    if(fclose(file) == EOF)
+		y2war("closing file " << name << "failed");
 	}
     }
 

@@ -97,8 +97,8 @@ string_vec ColumnConfigFile::Entry::split( const string & line ) const
 
 
 
-ColumnConfigFile::ColumnConfigFile():
-    CommentedConfigFile(),
+ColumnConfigFile::ColumnConfigFile(int permissions) :
+    CommentedConfigFile(permissions),
     max_column_width( DEFAULT_MAX_COLUMN_WIDTH ),
     pad_columns( true )
 {

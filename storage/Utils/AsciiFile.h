@@ -39,11 +39,15 @@ namespace storage
     {
     public:
 
-	explicit AsciiFile(const string& name, bool remove_empty = false);
+	explicit AsciiFile(const string& name, bool remove_empty = false, int permissions = DEFAULT_PERMISSIONS);
 
 	const string& get_name() const { return name; }
 
 	bool reload();
+
+	/**
+	 * @throw IOException
+	 */
 	void save();
 
 	void log_content() const;
@@ -55,10 +59,15 @@ namespace storage
 	vector<string>& get_lines() { return lines; }
 	const vector<string>& get_lines() const { return lines; }
 
+	void set_lines(const vector<string>& lines) { this->lines = lines; }
+
     protected:
+
+	static const int DEFAULT_PERMISSIONS = 0666;
 
 	const string name;
 	const bool remove_empty;
+	const int permissions;
 
 	vector<string> lines;
 
