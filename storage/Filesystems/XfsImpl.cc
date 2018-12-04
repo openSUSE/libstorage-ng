@@ -107,9 +107,9 @@ namespace storage
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-        string cmd_line = XFSGROWFSBIN " " + ensure_mounted.get_any_mount_point();
+	string cmd_line = XFSGROWFSBIN " " + quote(ensure_mounted.get_any_mount_point());
 
-        SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
