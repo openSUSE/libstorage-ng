@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,12 @@
  */
 
 
+#include <stdio.h>
+#include <fcntl.h>
+/* Not technically required, but needed on some UNIX distributions */
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include <iostream>
 
 #include "storage/Utils/Logger.h"
@@ -33,20 +39,20 @@ namespace storage
     typedef typename std::underlying_type<LogLevel>::type log_level_underlying_type;
 
 
-    static Logger* my_logger = nullptr;
+    static Logger* current_logger = nullptr;
 
 
     Logger*
     get_logger()
     {
-	return my_logger;
+	return current_logger;
     }
 
 
     void
     set_logger(Logger* logger)
     {
-	my_logger = logger;
+	current_logger = logger;
     }
 
 
@@ -89,18 +95,34 @@ namespace storage
     class LogfileLogger : public Logger
     {
     public:
+	LogfileLogger(const std::string& filename, int permissions = DEFAULT_PERMISSIONS);
 
 	virtual void write(LogLevel log_level, const std::string& component, const std::string& file,
 			   int line, const std::string& function, const std::string& content) override;
 
+    private:
+
+	static const int DEFAULT_PERMISSIONS = 0640;
+
+	const std::string filename;
+	const int permissions;
     };
+
+
+
+    LogfileLogger::LogfileLogger(const string& filename, int permissions) :
+	filename(filename),
+	permissions(permissions)
+    {
+    }
 
 
     void
     LogfileLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
 			 int line, const std::string& function, const std::string& content)
     {
-	FILE* f = fopen("/var/log/libstorage-ng.log", "ae");
+	FILE* f = fdopen(open(filename.c_str(), O_WRONLY | O_APPEND | O_CREAT, permissions), "a");
+
 	if (f)
 	{
 	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
@@ -113,9 +135,9 @@ namespace storage
 
 
     Logger*
-    get_logfile_logger()
+    get_logfile_logger(const std::string& filename)
     {
-	static LogfileLogger logfile_logger;
+	static LogfileLogger logfile_logger(filename);
 
 	return &logfile_logger;
     }
