@@ -202,7 +202,13 @@ namespace storage
 
     private:
 
-	static const int DEFAULT_PERMISSIONS = 0640;
+	/**
+	 * libstorage-ng does not write cleartext passwords in crypttab file,
+	 * but other tools or admins might add cleartext passwords in there.
+	 * Therefore, this file should not be world-readable, otherwise it might
+	 * expose cleartext passwords to unprivileged users.
+	 */
+	static const int DEFAULT_PERMISSIONS = 0600;
     };
 
 }

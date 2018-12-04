@@ -520,6 +520,7 @@ protected:
 
 private:
 
+    // By default, file permissions are only limited by umask value
     static const int DEFAULT_PERMISSIONS = 0666;
 
     string	    filename;

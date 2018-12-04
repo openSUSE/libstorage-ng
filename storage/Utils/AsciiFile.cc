@@ -120,7 +120,12 @@ namespace storage
 	{
 	    y2mil("saving file " << name);
 
-	    FILE* file = fdopen(open(name.c_str(), O_WRONLY | O_TRUNC | O_CREAT, permissions), "w");
+	    int fd = open(name.c_str(), O_WRONLY | O_TRUNC | O_CREAT | O_CLOEXEC, permissions);
+
+	    if (fd < 0)
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name, strerror(errno))));
+
+	    FILE* file = fdopen(fd, "we");
 
 	    if (!file)
 		ST_THROW(IOException(sformat("Opening file %s failed: %s", name, strerror(errno))));
@@ -130,13 +135,13 @@ namespace storage
 		string line_with_break = line + "\n";
 
 		fputs(line_with_break.c_str(), file);
-
-		if (ferror(file))
-		    ST_THROW(IOException(sformat("Saving file %s failed: %s", name, strerror(errno))));
 	    }
 
-	    if(fclose(file) == EOF)
-		y2war("closing file " << name << "failed");
+	    if (ferror(file))
+		ST_THROW(IOException(sformat("Saving file %s failed: %s", name, strerror(errno))));
+
+	    if (fclose(file) != 0)
+		ST_THROW(IOException(sformat("Closing file %s failed: %s", name, strerror(errno))));
 	}
     }
 

@@ -102,6 +102,7 @@ namespace storage
 
     private:
 
+	// log file should not be world-readable
 	static const int DEFAULT_PERMISSIONS = 0640;
 
 	const std::string filename;
@@ -121,15 +122,20 @@ namespace storage
     LogfileLogger::write(LogLevel log_level, const std::string& component, const std::string& file,
 			 int line, const std::string& function, const std::string& content)
     {
-	FILE* f = fdopen(open(filename.c_str(), O_WRONLY | O_APPEND | O_CREAT, permissions), "a");
+	int fd = open(filename.c_str(), O_WRONLY | O_APPEND | O_CREAT | O_CLOEXEC, permissions);
 
-	if (f)
+	if (fd >= 0)
 	{
-	    fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
-		    static_cast<log_level_underlying_type>(log_level), component.c_str(),
-		    file.c_str(), function.c_str(), line, content.c_str());
+	    FILE* f = fdopen(fd, "ae");
 
-	    fclose(f);
+	    if (f)
+	    {
+		fprintf(f, "%s <%d> [%s] %s(%s):%d %s\n", datetime(time(nullptr)).c_str(),
+			static_cast<log_level_underlying_type>(log_level), component.c_str(),
+			file.c_str(), function.c_str(), line, content.c_str());
+
+		fclose(f);
+	    }
 	}
     }
 
