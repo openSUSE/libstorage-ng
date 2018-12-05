@@ -25,9 +25,9 @@
  */
 
 
-#include <sstream>
-#include <string.h>	// strerror()
 #include <stdio.h>
+#include <string.h>
+#include <sstream>
 
 #include "storage/Utils/Exception.h"
 #include "storage/Utils/AppUtil.h"
@@ -108,14 +108,14 @@ namespace storage
     std::string
     Exception::strErrno( int errno_r )
     {
-	return strerror( errno_r );
+	return stringerror( errno_r );
     }
 
 
     std::string
     Exception::strErrno( int errno_r, const std::string & msg )
     {
-	return msg + ": " + strErrno( errno_r );
+	return msg + ": " + stringerror( errno_r );
     }
 
 

@@ -49,7 +49,7 @@ namespace storage
 	{
 	    free(t);
 
-	    ST_THROW(Exception(sformat("mkdtemp failed, %s", strerror(errno))));
+	    ST_THROW(Exception(sformat("mkdtemp failed, %s", stringerror(errno))));
 	}
 
 	name = string(&t[strlen(t) - name.size()]);
@@ -68,7 +68,7 @@ namespace storage
     {
 	if (rmdir(get_fullname().c_str()) != 0)
 	{
-	    y2err("rmdir '" << get_fullname() << "' failed, " << strerror(errno));
+	    y2err("rmdir '" << get_fullname() << "' failed, " << stringerror(errno));
 	}
     }
 
