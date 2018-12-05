@@ -23,12 +23,18 @@
 
 #include <unistd.h>
 #include <fstream>
+#include <stdio.h>
+#include <fcntl.h>
+/* Not technically required, but needed on some UNIX distributions */
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/AsciiFile.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Utils/StorageTypes.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -36,8 +42,8 @@ namespace storage
     using namespace std;
 
 
-    AsciiFile::AsciiFile(const string& name, bool remove_empty)
-	: name(name), remove_empty(remove_empty)
+    AsciiFile::AsciiFile(const string& name, bool remove_empty, int permissions)
+	: name(name), remove_empty(remove_empty), permissions(permissions)
     {
 	reload();
     }
@@ -114,16 +120,28 @@ namespace storage
 	{
 	    y2mil("saving file " << name);
 
-	    ofstream file(name);
-	    classic(file);
+	    int fd = open(name.c_str(), O_WRONLY | O_TRUNC | O_CREAT | O_CLOEXEC, permissions);
+
+	    if (fd < 0)
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name, strerror(errno))));
+
+	    FILE* file = fdopen(fd, "we");
+
+	    if (!file)
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name, strerror(errno))));
 
 	    for (const string& line : lines)
-		file << line << '\n';
+	    {
+		string line_with_break = line + "\n";
 
-	    file.close();
+		fputs(line_with_break.c_str(), file);
+	    }
 
-	    if (!file.good())
-		ST_THROW(IOException(sformat("Saving file %s failed.", name)));
+	    if (ferror(file))
+		ST_THROW(IOException(sformat("Saving file %s failed: %s", name, strerror(errno))));
+
+	    if (fclose(file) != 0)
+		ST_THROW(IOException(sformat("Closing file %s failed: %s", name, strerror(errno))));
 	}
     }
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2018] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -82,10 +82,13 @@ namespace storage
 
     /**
      * Returns a Logger that logs to the standard libstorage log file
-     * ("/var/log/libstorage.log"). Do not use this function for production
-     * code but only for examples and test-cases.
+     * ("/var/log/libstorage.log") or to a given file. Do not use this
+     * function for production code but only for examples and test-cases.
+     *
+     * Note that this method only uses the given filename the first time that
+     * is called.
      */
-    Logger* get_logfile_logger();
+    Logger* get_logfile_logger(const std::string& filename = "/var/log/libstorage.log");
 
 
     /**

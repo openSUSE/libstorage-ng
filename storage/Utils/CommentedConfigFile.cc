@@ -20,7 +20,6 @@
  */
 
 
-#include <fstream>
 #include <algorithm>
 #include <boost/algorithm/string.hpp>
 
@@ -38,7 +37,8 @@
 using namespace storage;
 
 
-CommentedConfigFile::CommentedConfigFile():
+CommentedConfigFile::CommentedConfigFile(int permissions) :
+    permissions(permissions),
     comment_marker( "#" ),
     diff_enabled( false )
 {
@@ -138,30 +138,25 @@ void CommentedConfigFile::write( const string & new_filename )
     string name = new_filename;
 
     if ( new_filename.empty() )
-        name = this->filename;
+	name = this->filename;
     else
-        this->filename = name;
+	this->filename = name;
 
     if ( name.empty() ) // Support for mocking:
-        return;         // Pretend everything worked just fine.
-
-    std::ofstream file( name, std::ofstream::out | std::ofstream::trunc );
-
-    if ( ! file.is_open() )
-	ST_THROW(IOException(sformat("Saving file %s failed.", name)));
+	return;		// Pretend everything worked just fine.
 
     string_vec lines = format_lines();
 
-    for ( size_t i=0; i < lines.size(); ++i )
-        file << lines[i] << "\n"; // no endl: Don't flush after every line
-
     if ( diff_enabled )
-        save_orig( lines );
+	save_orig( lines );
 
-    file.close();
+    AsciiFile ascii_file(filename,
+			 true, // removes the existing file if it is empty
+			 permissions);
 
-    if ( !file.good() )
-	ST_THROW(IOException(sformat("Saving file %s failed.", name)));
+    ascii_file.set_lines(lines);
+
+    ascii_file.save();
 }
 
 

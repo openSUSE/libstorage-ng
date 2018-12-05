@@ -242,7 +242,7 @@ public:
      * right away because that would call virtual methods indirectly that
      * cannot be called in the constructor.
      **/
-    CommentedConfigFile();
+    CommentedConfigFile(int permissions = DEFAULT_PERMISSIONS);
 
     /**
      * Destructor. This deletes all entries.
@@ -261,7 +261,7 @@ public:
      * original file that was used in the constructor or during the last
      * read().
      *
-     * Throws an IOException if writing fails.
+     * @throw IOException
      **/
     void write( const string & filename = "" );
 
@@ -520,9 +520,13 @@ protected:
 
 private:
 
+    // By default, file permissions are only limited by umask value
+    static const int DEFAULT_PERMISSIONS = 0666;
+
     string	    filename;
+    int 	    permissions;
     string	    comment_marker;
-    bool            diff_enabled;
+    bool	    diff_enabled;
 
     string_vec	    header_comments;
     vector<Entry *> entries;

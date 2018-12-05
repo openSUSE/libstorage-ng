@@ -66,8 +66,8 @@ namespace storage
 		y2err("creating directory for lock-file failed: " << strerror(errno));
 	    }
 
-	    fd = open(LOCK_DIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC,
-		      S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH | S_IWOTH);
+	    fd = open(LOCK_DIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC, 0600);
+
 	    if (fd < 0)
 	    {
 		// Opening lock-file failed.
