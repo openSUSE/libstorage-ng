@@ -139,7 +139,7 @@ namespace storage
     {
     public:
 
-	EtcCrypttab(const string& filename = ETC_CRYPTTAB);
+	EtcCrypttab(const string& filename = ETC_CRYPTTAB, int permissions = DEFAULT_PERMISSIONS);
 	virtual ~EtcCrypttab();
 
 	// using inherited read() and write() unchanged
@@ -199,6 +199,16 @@ namespace storage
          * Dump the current contents to the log.
          **/
         void log();
+
+    private:
+
+	/**
+	 * libstorage-ng does not write cleartext passwords in crypttab file,
+	 * but other tools or admins might add cleartext passwords in there.
+	 * Therefore, this file should not be world-readable, otherwise it might
+	 * expose cleartext passwords to unprivileged users.
+	 */
+	static const int DEFAULT_PERMISSIONS = 0600;
     };
 
 }

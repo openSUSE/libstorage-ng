@@ -117,7 +117,7 @@ public:
     };
 
 
-    ColumnConfigFile();
+    ColumnConfigFile(int permissions = DEFAULT_PERMISSIONS);
     virtual ~ColumnConfigFile();
 
     /**
@@ -187,6 +187,11 @@ protected:
     vector<int> max_column_widths;
     int         max_column_width;
     bool        pad_columns;
+
+private:
+
+    // By default, file permissions are only limited by umask value
+    static const int DEFAULT_PERMISSIONS = 0666;
 };
 
 } // namespace storage
