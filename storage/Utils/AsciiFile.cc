@@ -120,14 +120,12 @@ namespace storage
 	    y2mil("saving file " << name);
 
 	    int fd = open(name.c_str(), O_WRONLY | O_TRUNC | O_CREAT | O_CLOEXEC, permissions);
-
 	    if (fd < 0)
-		ST_THROW(IOException(sformat("Opening file %s failed: %s", name.c_str(), strerror(errno))));
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name.c_str(), stringerror(errno))));
 
 	    FILE* file = fdopen(fd, "we");
-
 	    if (!file)
-		ST_THROW(IOException(sformat("Opening file %s failed: %s", name.c_str(), strerror(errno))));
+		ST_THROW(IOException(sformat("Opening file %s failed: %s", name.c_str(), stringerror(errno))));
 
 	    for (const string& line : lines)
 	    {
@@ -137,10 +135,10 @@ namespace storage
 	    }
 
 	    if (ferror(file))
-		ST_THROW(IOException(sformat("Saving file %s failed: %s", name.c_str(), strerror(errno))));
+		ST_THROW(IOException(sformat("Saving file %s failed: %s", name.c_str(), stringerror(errno))));
 
 	    if (fclose(file) != 0)
-		ST_THROW(IOException(sformat("Closing file %s failed: %s", name.c_str(), strerror(errno))));
+		ST_THROW(IOException(sformat("Closing file %s failed: %s", name.c_str(), stringerror(errno))));
 	}
     }
 

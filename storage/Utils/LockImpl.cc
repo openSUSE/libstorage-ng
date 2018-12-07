@@ -63,7 +63,7 @@ namespace storage
 
 	    if (mkdir(LOCK_DIR, 0755) == -1 && errno != EEXIST)
 	    {
-		y2err("creating directory for lock-file failed: " << strerror(errno));
+		y2err("creating directory for lock-file failed: " << stringerror(errno));
 	    }
 
 	    fd = open(LOCK_DIR "/lock", (read_only ? O_RDONLY : O_WRONLY) | O_CREAT | O_CLOEXEC, 0600);
@@ -71,7 +71,7 @@ namespace storage
 	    if (fd < 0)
 	    {
 		// Opening lock-file failed.
-		y2err("opening lock-file failed: " << strerror(errno));
+		y2err("opening lock-file failed: " << stringerror(errno));
 		ST_THROW(LockException(0));
 	    }
 
@@ -97,7 +97,7 @@ namespace storage
 		    default:
 			// Some other error.
 			close(fd);
-			y2err("getting lock failed: " << strerror(errno));
+			y2err("getting lock failed: " << stringerror(errno));
 			ST_THROW(LockException(0));
 		}
 	    }

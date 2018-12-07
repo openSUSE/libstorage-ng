@@ -105,6 +105,8 @@ void classic(StreamType& stream)
 }
 
 
+    string stringerror(int errnum);
+
     string hostname();
     string datetime(time_t t1, bool utc = true);
 
