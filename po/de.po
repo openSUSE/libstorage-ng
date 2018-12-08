@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-11-15 17:02+0000\n"
+"PO-Revision-Date: 2018-12-08 15:29+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
@@ -231,9 +231,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Partition"
+msgstr "BIOS-Boot-Partition"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -312,11 +311,11 @@ msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s wird gelöscht"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr "%1$s %2$s (%3$s) für %4$s mit %5$s von %6$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -325,11 +324,13 @@ msgstr "Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr ""
+"%1$s %2$s (%3$s) für swap\n"
+"von %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -338,9 +339,9 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "%1$s %2$s (%3$s) von %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -350,11 +351,13 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr ""
+"%1$s %2$s (%3$s) mit %4$s \n"
+"von %5$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -434,10 +437,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr ""
-"Physisches LVM-Volume über verschlüsselte Partition %1$s (%2$s) erstellen"
+msgstr "Physisches LVM-Volume über %1$s (%2$s) erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -472,9 +474,9 @@ msgstr "MS-DOS-Partitionstabelle auf %1$s erstellen"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "Bcache %1$s auf %2$s (%3$s) erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -482,26 +484,26 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr "Bcache %1$s auf %2$s (%3$s) für %4$s mit %5$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "Bcache %1$s auf %2$s (%3$s) für swap erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -510,11 +512,13 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr ""
+"Verschlüsselte %1$s %2$s (%3$s)\n"
+"von %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -525,11 +529,13 @@ msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr ""
+"Verschlüsselte %1$s %2$s (%3$s) für %4$s mit %5$s\n"
+"von %6$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -538,11 +544,13 @@ msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für Auslagerung erstellen"
+msgstr ""
+"Verschlüsselte %1$s %2$s (%3$s) für swap\n"
+"von %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -552,11 +560,13 @@ msgstr "Verschlüsselte Partition %1$s (%2$s) für Auslagerung erstellen"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr ""
+"Verschlüsselte %1$s %2$s (%3$s) mit %4$s\n"
+"von %5$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -610,9 +620,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "Verschlüsseltes bcache %1$s auf %2$s (%3$s) erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -620,26 +630,26 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr "Verschlüsseltes bcache %1$s auf %2$s (%3$s) für %4$s mit %5$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für Auslagerung erstellen"
+msgstr "Verschlüsseltes bcache %1$s auf %2$s (%3$s) für swap erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Verschlüsselte Partition %1$s (%2$s) für %3$s mit %4$s erstellen"
+msgstr "Verschlüsseltes bcache %1$s auf %2$s (%3$s) mit %4$s erstellen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -919,9 +929,9 @@ msgstr "Erweiterte Partition wird auf %1$s (%2$s) erstellt"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Festplatte %1$s (%2$s) erstellen"
+msgstr "Festplatte %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1139,9 +1149,9 @@ msgstr ""
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "%1$s auf %2$s (%3$s) löschen"
+msgstr "%1$s  %2$s (%3$s) löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1195,9 +1205,9 @@ msgstr "MS-DOS-Partitionstabelle auf %1$s löschen"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "%1$s auf %2$s (%3$s) löschen"
+msgstr "Bcache %1$s auf %2$s (%3$s) löschen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1443,9 +1453,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Volume-Gruppe %1$s (%2$s) wird gelöscht"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Partition"
+msgstr "Diagnose-Partition"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1460,9 +1469,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Partition"
+msgstr "EFI-System-Partition"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1472,9 +1480,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "MD %1$s %2$s (%3$s) erstellen"
+msgstr "%1$s %2$s (%3$s) verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1482,18 +1490,18 @@ msgstr "MD %1$s %2$s (%3$s) erstellen"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s verschlüsseln"
+msgstr "%1$s %2$s (%3$s) für %4$s mit %5$s verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s verschlüsseln"
+msgstr "%1$s %2$s (%3$s) mit %4$s verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1531,9 +1539,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "Bcache %1$s auf %2$s (%3$s) verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1541,18 +1549,18 @@ msgstr "%1$s auf %2$s (%3$s) erstellen"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s verschlüsseln"
+msgstr "Bcache %1$s auf %2$s (%3$s) für %4$s mit %5$s verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s verschlüsseln"
+msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s verschlüsseln"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1604,18 +1612,18 @@ msgstr "F2FS"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s formatieren"
+msgstr "%1$s %2$s (%3$s) für %4$s mit %5$s formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s formatieren"
+msgstr "%1$s %2$s (%3$s) mit %4$s formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1646,32 +1654,32 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s formatieren"
+msgstr "Bcache %1$s auf %2$s (%3$s) für %4$s mit %5$s formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Partition %1$s (%2$s) für %3$s mit %4$s formatieren"
+msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "Partition %1$s (%2$s) für Auslagerung erstellen"
+msgstr "Partition %1$s (%2$s) als verschlüsselte swap formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "Partition %1$s (%2$s) für Auslagerung erstellen"
+msgstr "Partition %1$s (%2$s) als swap formatieren"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1849,7 +1857,7 @@ msgstr "Implizite Partitionstabelle"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1877,20 +1885,19 @@ msgstr "LVM Volume Gruppe"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "LVM wird untersucht"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1914,16 +1921,16 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft reservierte Partition"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "%1$s mit %2$s einhängen"
+msgstr "%1$s %2$s (%3$s) bei %4$s einhängen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1958,9 +1965,9 @@ msgstr "Mountpoint"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "Subvolume %1$s auf %2$s bei %3$s einhängen"
+msgstr "Bcache %1$s auf %2$s (%3$s) bei %4$s einhängen"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -2021,9 +2028,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Partition"
+msgstr "PReP-Boot-Partition"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2696,7 +2702,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows-Daten-Partition"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
