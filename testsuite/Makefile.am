@@ -15,12 +15,12 @@ check_PROGRAMS =								\
 	dynamic.test ensure-mounted.test environment.test find-vertex.test	\
 	fstab.test crypttab.test output.test probe.test range.test stable.test	\
 	relatives.test mount-opts.test etc-mdadm.test mount-by.test btrfs.test	\
-	md1.test md2.test md3.test md4.test encryption1.test lvm1.test		\
-	graphviz.test copy-individual.test mountpoint.test
+	md1.test md2.test md3.test md4.test encryption1.test encryption2.test	\
+	lvm1.test graphviz.test copy-individual.test mountpoint.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
 TESTS = $(check_PROGRAMS)
 
-EXTRA_DIST = probe.xml
+EXTRA_DIST = probe.xml wrong-luks.xml luks-no-header.xml
 
