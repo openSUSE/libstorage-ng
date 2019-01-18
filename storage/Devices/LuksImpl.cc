@@ -77,7 +77,7 @@ namespace storage
 	if (!has_single_parent_of_type<const BlkDevice>())
 	    ST_THROW(Exception("Luks has no BlkDevice parent"));
 
-	if (get_size() + metadata_size > get_blk_device()->get_size())
+	if (get_size() > get_blk_device()->get_size())
 	    ST_THROW(Exception("Luks bigger than parent BlkDevice"));
     }
 
