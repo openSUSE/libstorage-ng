@@ -31,7 +31,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LuksImpl.h"
-#include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BackedBcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Holders/FilesystemUser.h"
@@ -738,7 +738,7 @@ namespace storage
     }
 
 
-    Bcache*
+    BackedBcache*
     BlkDevice::Impl::create_bcache(const string& name)
     {
 	Devicegraph* devicegraph = get_devicegraph();
@@ -748,7 +748,7 @@ namespace storage
 	vector<Devicegraph::Impl::edge_descriptor> out_edges =
 	    devicegraph->get_impl().out_edges(get_vertex());
 
-	Bcache* bcache = Bcache::create(devicegraph, name);
+	BackedBcache* bcache = BackedBcache::create(devicegraph, name);
 	Devicegraph::Impl::vertex_descriptor bcache_vertex = bcache->get_impl().get_vertex();
 
 	User::create(devicegraph, get_non_impl(), bcache);

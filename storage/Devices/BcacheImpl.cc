@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,23 +22,19 @@
 
 #include <regex>
 
+#include "storage/Devices/BcacheImpl.h"
+#include "storage/Devices/BackedBcache.h"
+#include "storage/Devices/FlashBcache.h"
 #include "storage/Utils/Algorithm.h"
 #include "storage/Utils/AppUtil.h"
-#include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageDefines.h"
-#include "storage/Utils/XmlFile.h"
+#include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/HumanString.h"
-#include "storage/Holders/User.h"
-#include "storage/Devices/BcacheImpl.h"
-#include "storage/Devices/BcacheCset.h"
-#include "storage/Devicegraph.h"
+#include "storage/Utils/Format.h"
+#include "storage/Utils/CallbacksImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
-#include "storage/Prober.h"
-#include "storage/Utils/CallbacksImpl.h"
 #include "storage/Storage.h"
-#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -48,35 +44,20 @@ namespace storage
 
 
     // TODO handle attach and detach
-    // TODO synchronization after actions
-    // TODO write sequential_cutoff and writeback_percent persistently to survive reboot
-
 
     const char* DeviceTraits<Bcache>::classname = "Bcache";
 
-    const vector<string> EnumTraits<CacheMode>::names({
-	"writethrough", "writeback", "writearound", "none"
-    });
 
     Bcache::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), cache_mode(CacheMode::WRITETHROUGH),
-          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
+	: Partitionable::Impl(name)
     {
 	update_sysfs_name_and_path();
     }
 
 
     Bcache::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), cache_mode(CacheMode::WRITETHROUGH),
-          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
+	: Partitionable::Impl(node)
     {
-	string tmp;
-
-	cache_mode = CacheMode::WRITETHROUGH;
-	if (getChildValue(node, "cache-mode", tmp))
-	    cache_mode = toValueWithFallback(tmp, CacheMode::WRITETHROUGH);
-	getChildValue(node, "writeback-percent", writeback_percent);
-	getChildValue(node, "sequential-cutoff", sequential_cutoff);
     }
 
 
@@ -140,17 +121,6 @@ namespace storage
     }
 
 
-    void
-    Bcache::Impl::save(xmlNode* node) const
-    {
-	Partitionable::Impl::save(node);
-
-	setChildValue(node, "cache-mode", toString(cache_mode));
-	setChildValue(node, "writeback-percent", writeback_percent);
-	setChildValue(node, "sequential-cutoff", sequential_cutoff);
-    }
-
-
     ResizeInfo
     Bcache::Impl::detect_resize_info() const
     {
@@ -167,6 +137,21 @@ namespace storage
     }
 
 
+    static bool
+    is_backed(Prober& prober, const string& short_name)
+    {
+	string dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/dev";
+	File dev_file = prober.get_system_info().getFile(dev_path);
+	string majorminor = dev_file.get<string>();
+
+	string backing_dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/bcache/../dev";
+	File backing_dev_file = prober.get_system_info().getFile(backing_dev_path);
+	string backing_majorminor = backing_dev_file.get<string>();
+
+	return majorminor != backing_majorminor;
+    }
+
+
     void
     Bcache::Impl::probe_bcaches(Prober& prober)
     {
@@ -176,7 +161,13 @@ namespace storage
 
 	    try
 	    {
-		Bcache* bcache = Bcache::create(prober.get_system(), name);
+		Bcache* bcache;
+
+		if(is_backed(prober, short_name))
+		    bcache = BackedBcache::create(prober.get_system(), name);
+		else
+		    bcache = FlashBcache::create(prober.get_system(), name);
+
 		bcache->get_impl().probe_pass_1a(prober);
 	    }
 	    catch (const Exception& exception)
@@ -189,53 +180,6 @@ namespace storage
     }
 
 
-    static CacheMode
-    parse_mode(File cache_mode_file)
-    {
-	string modes = cache_mode_file.get<string>();
-	regex rgx("\\[(.*)\\]");
-	smatch match;
-	if ( regex_search(modes, match, rgx) )
-	{
-	    return toValueWithFallback(match[1], CacheMode::WRITETHROUGH);
-	}
-	else
-	{
-	    y2err("Cannot parse cache_mode file: '" << modes << "'");
-	    return CacheMode::WRITETHROUGH;
-	}
-    }
-
-    // mapping between human string of libstorage-ng and bcache sysfs sizes
-    static const map<std::string, unsigned long long> size_mapping = {
-	{ "k", KiB },
-	{ "M", MiB },
-	{ "G", GiB }
-    };
-
-    static unsigned long long parse_size(File file)
-    {
-	string size_s = file.get<string>();
-	regex rgx("(\\d+\\.?\\d*)([kMG])?");
-	smatch match;
-	unsigned long long result = 0;
-	if ( regex_search(size_s, match, rgx) )
-	{
-	    unsigned long long multi = 1;
-	    auto unit = size_mapping.find(match[2]);
-	    if (unit != size_mapping.end())
-		multi = unit->second;
-
-	    result = stof(match[1]) * multi;
-	}
-	else
-	{
-	    y2err("Cannot parse size '" << size_s << "'");
-	}
-
-	return result;
-    }
-
     void
     Bcache::Impl::probe_pass_1a(Prober& prober)
     {
@@ -246,29 +190,6 @@ namespace storage
 	const File size_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
-
-	const File cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
-	set_cache_mode(parse_mode(cache_mode_file));
-
-	const File writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
-	set_writeback_percent(writeback_percent_file.get<unsigned>());
-
-	const File sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
-	set_sequential_cutoff(parse_size(sequential_cutoff_file));
-    }
-
-
-    void
-    Bcache::Impl::probe_pass_1b(Prober& prober)
-    {
-	Partitionable::Impl::probe_pass_1b(prober);
-
-	const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
-	string dev = DEV_DIR "/block/" + dev_file.get<string>();
-
-	prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
-	    User::create(system, a, b);
-	});
     }
 
 
@@ -297,52 +218,15 @@ namespace storage
     }
 
 
-    const BlkDevice*
-    Bcache::Impl::get_blk_device() const
-    {
-	// TODO, write some generic helper
-
-	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
-	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
-
-	vector<const BlkDevice*> ret = devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
-
-	return ret.front();
-    }
-
-
-    bool
-    Bcache::Impl::has_bcache_cset() const
-    {
-	// TODO, write some generic helper
-
-	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
-	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
-
-	vector<const BcacheCset*> ret = devicegraph.filter_devices_of_type<const BcacheCset>(devicegraph.parents(vertex));
-
-	return !ret.empty();
-    }
-
-
     const BcacheCset*
     Bcache::Impl::get_bcache_cset() const
     {
-	// TODO, write some generic helper
-
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	vector<const BcacheCset*> ret = devicegraph.filter_devices_of_type<const BcacheCset>(devicegraph.parents(vertex));
 
 	return ret.front();
-    }
-
-
-    void
-    Bcache::Impl::attach_bcache_cset(BcacheCset* bcache_cset)
-    {
-	User::create(get_devicegraph(), bcache_cset, get_non_impl());
     }
 
 
@@ -351,68 +235,6 @@ namespace storage
     {
 	set_sysfs_name(get_name().substr(strlen(DEV_DIR "/")));
 	set_sysfs_path("/devices/virtual/block/" + get_sysfs_name());
-    }
-
-
-
-    bool
-    Bcache::Impl::equal(const Device::Impl& rhs_base) const
-    {
-	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
-
-	if (!Partitionable::Impl::equal(rhs))
-            return false;
-
-        return cache_mode == rhs.cache_mode
-            && writeback_percent == rhs.writeback_percent
-            && sequential_cutoff == rhs.sequential_cutoff;
-    }
-
-
-    void
-    Bcache::Impl::log_diff(std::ostream& log, const Device::Impl& rhs_base) const
-    {
-	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
-
-	Partitionable::Impl::log_diff(log, rhs);
-
-        storage::log_diff(log, "cache-mode", toString(cache_mode), toString(rhs.cache_mode));
-        storage::log_diff(log, "writeback-percent", writeback_percent, rhs.writeback_percent);
-        storage::log_diff(log, "sequential-cutoff", sequential_cutoff, rhs.sequential_cutoff);
-    }
-
-
-    void
-    Bcache::Impl::print(std::ostream& out) const
-    {
-	Partitionable::Impl::print(out);
-
-        out << " cache mode:" << toString(cache_mode)
-            << " writeback percent:" << writeback_percent << "%"
-            << " sequential cutoff:" << sequential_cutoff;
-    }
-
-
-    void
-    Bcache::Impl::parent_has_new_region(const Device* parent)
-    {
-	calculate_region();
-    }
-
-
-    void
-    Bcache::Impl::calculate_region()
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	unsigned long long size = blk_device->get_size();
-
-	if (size > metadata_size)
-	    size -= metadata_size;
-	else
-	    size = 0 * B;
-
-	set_size(size);
     }
 
 
@@ -483,192 +305,6 @@ namespace storage
 		       all_actions.create_actions.end());
 
 	actiongraph.add_chain(actions);
-    }
-
-
-    void
-    Bcache::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	actions.push_back(new Action::Create(get_sid()));
-
-	if (has_bcache_cset())
-	    actions.push_back(new Action::AttachBcacheCset(get_sid()));
-
-	actiongraph.add_chain(actions);
-    }
-
-
-    void
-    Bcache::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
-    {
-	vector<Action::Base*> actions;
-
-	if (is_active())
-	    actions.push_back(new Action::Deactivate(get_sid()));
-
-	actions.push_back(new Action::Delete(get_sid()));
-
-	actiongraph.add_chain(actions);
-    }
-
-
-    Text
-    Bcache::Impl::do_create_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Create Bcache %1$s (%2$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Creating Bcache %1$s (%2$s)"));
-
-	return sformat(text, get_name(), get_size_text());
-    }
-
-
-    void
-    Bcache::Impl::do_create()
-    {
-	const BlkDevice* blk_device = get_blk_device();
-
-	string cmd_line = MAKE_BCACHE_BIN " -B " + quote(blk_device->get_name());
-
-	wait_for_devices({ blk_device });
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-
-        // TODO: is it enough? check with Coly how to recognize it
-	sleep(1); // give bcache some time to finish its async operation, so bcache device exists
-
-	// TODO: Action for edit attributes will be needed if edit of existing bcache is allowed
-	cmd_line = ECHO_BIN " " + quote(toString(cache_mode)) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/cache_mode");
-
-	SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
-
-	cmd_line = ECHO_BIN " " + to_string(writeback_percent) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/writeback_percent");
-
-	SystemCmd cmd3(cmd_line, SystemCmd::DoThrow);
-
-	cmd_line = ECHO_BIN " " + to_string(sequential_cutoff) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/sequential_cutoff");
-
-	SystemCmd cmd4(cmd_line, SystemCmd::DoThrow);
-    }
-
-
-    Text
-    Bcache::Impl::do_delete_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Delete Bcache %1$s (%2$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deleting Bcache %1$s (%2$s)"));
-
-	return sformat(text, get_name(), get_size_text());
-    }
-
-
-    void
-    Bcache::Impl::do_delete() const
-    {
-	get_blk_device()->get_impl().wipe_device();
-    }
-
-
-    Text
-    Bcache::Impl::do_deactivate_text(Tense tense) const
-    {
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivate Bcache %1$s (%2$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivating Bcache %1$s (%2$s)"));
-
-	return sformat(text, get_displayname(), get_size_text());
-    }
-
-
-    void
-    Bcache::Impl::do_deactivate() const
-    {
-	string cmd_line = ECHO_BIN " 1 > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/stop");
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-
-	sleep(1);		// TODO
-    }
-
-
-    Text
-    Bcache::Impl::do_attach_bcache_cset_text(Tense tense) const
-    {
-	// TODO handle multiple BlkDevices of BcacheCset
-
-	const BcacheCset* bcache_cset = get_bcache_cset();
-
-	const BlkDevice* blk_device = bcache_cset->get_blk_devices()[0];
-
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"));
-
-	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
-    }
-
-
-    void
-    Bcache::Impl::do_attach_bcache_cset() const
-    {
-	const BcacheCset* bcache_cset = get_bcache_cset();
-
-	string cmd_line = ECHO_BIN " " + quote(bcache_cset->get_uuid()) + " > " +
-	    quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/attach");
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-
-	sleep(1);		// TODO
-    }
-
-
-    namespace Action
-    {
-
-	Text
-	AttachBcacheCset::text(const CommitData& commit_data) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    return bcache->get_impl().do_attach_bcache_cset_text(commit_data.tense);
-	}
-
-
-	void
-	AttachBcacheCset::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
-	    bcache->get_impl().do_attach_bcache_cset();
-	}
-
     }
 
 }

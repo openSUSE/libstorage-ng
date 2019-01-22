@@ -54,6 +54,8 @@
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/Bcache.h"
+#include "storage/Devices/BackedBcache.h"
+#include "storage/Devices/FlashBcache.h"
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Filesystems/Ext2.h"
 #include "storage/Filesystems/Ext3.h"
@@ -686,7 +688,8 @@ namespace storage
 	{ "LvmLv", &LvmLv::load },
 	{ "Encryption", &Encryption::load },
 	{ "Luks", &Luks::load },
-	{ "Bcache", &Bcache::load },
+	{ "BackedBcache", &BackedBcache::load },
+	{ "FlashBcache", &FlashBcache::load },
 	{ "BcacheCset", &BcacheCset::load },
 	{ "Ext2", &Ext2::load },
 	{ "Ext3", &Ext3::load },

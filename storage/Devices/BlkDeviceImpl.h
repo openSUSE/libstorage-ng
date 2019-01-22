@@ -116,7 +116,7 @@ namespace storage
 	Encryption* get_encryption();
 	const Encryption* get_encryption() const;
 
-	Bcache* create_bcache(const std::string& name);
+	BackedBcache* create_bcache(const std::string& name);
 
 	BcacheCset* create_bcache_cset();
 

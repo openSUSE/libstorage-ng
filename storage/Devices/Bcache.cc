@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,7 @@
 
 
 #include "storage/Devices/BcacheImpl.h"
-#include "storage/Devicegraph.h"
+#include "storage/Devices/DeviceImpl.h"
 
 
 namespace storage
@@ -30,34 +30,9 @@ namespace storage
     using namespace std;
 
 
-    Bcache*
-    Bcache::create(Devicegraph* devicegraph, const string& name)
-    {
-	Bcache* ret = new Bcache(new Bcache::Impl(name));
-	ret->Device::create(devicegraph);
-	return ret;
-    }
-
-
-    Bcache*
-    Bcache::load(Devicegraph* devicegraph, const xmlNode* node)
-    {
-	Bcache* ret = new Bcache(new Bcache::Impl(node));
-	ret->Device::load(devicegraph);
-	return ret;
-    }
-
-
     Bcache::Bcache(Impl* impl)
 	: Partitionable(impl)
     {
-    }
-
-
-    Bcache*
-    Bcache::clone() const
-    {
-	return new Bcache(get_impl().clone());
     }
 
 
@@ -82,73 +57,10 @@ namespace storage
     }
 
 
-    const BlkDevice*
-    Bcache::get_blk_device() const
-    {
-	return get_impl().get_blk_device();
-    }
-
-
-    bool
-    Bcache::has_bcache_cset() const
-    {
-	return get_impl().has_bcache_cset();
-    }
-
-
     const BcacheCset*
     Bcache::get_bcache_cset() const
     {
 	return get_impl().get_bcache_cset();
-    }
-
-
-    void
-    Bcache::attach_bcache_cset(BcacheCset* bcache_cset)
-    {
-	get_impl().attach_bcache_cset(bcache_cset);
-    }
-
-
-    CacheMode
-    Bcache::get_cache_mode() const
-    {
-	return get_impl().get_cache_mode();
-    }
-
-
-    void
-    Bcache::set_cache_mode(CacheMode mode)
-    {
-	get_impl().set_cache_mode(mode);
-    }
-
-
-    unsigned long long
-    Bcache::get_sequential_cutoff() const
-    {
-	return get_impl().get_sequential_cutoff();
-    }
-
-
-    void
-    Bcache::set_sequential_cutoff(unsigned long long size)
-    {
-	get_impl().set_sequential_cutoff(size);
-    }
-
-
-    unsigned
-    Bcache::get_writeback_percent() const
-    {
-	return get_impl().get_writeback_percent();
-    }
-
-
-    void
-    Bcache::set_writeback_percent(unsigned percent)
-    {
-	get_impl().set_writeback_percent(percent);
     }
 
 

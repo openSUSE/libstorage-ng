@@ -51,6 +51,10 @@ libdevices_la_SOURCES =					\
 	LuksImpl.h		LuksImpl.cc		\
 	Bcache.h		Bcache.cc		\
 	BcacheImpl.h		BcacheImpl.cc		\
+	BackedBcache.h		BackedBcache.cc		\
+	BackedBcacheImpl.h	BackedBcacheImpl.cc	\
+	FlashBcache.h		FlashBcache.cc		\
+	FlashBcacheImpl.h	FlashBcacheImpl.cc	\
 	BcacheCset.h		BcacheCset.cc		\
 	BcacheCsetImpl.h	BcacheCsetImpl.cc
 
@@ -79,5 +83,7 @@ pkginclude_HEADERS =		\
 	Encryption.h		\
 	Luks.h			\
 	Bcache.h		\
+	BackedBcache.h		\
+	FlashBcache.h		\
 	BcacheCset.h
 

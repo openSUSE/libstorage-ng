@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -124,8 +124,9 @@ namespace storage
     void
     BcacheCset::Impl::probe_pass_1b(Prober& prober)
     {
-	static regex bdev_regex("bdev[0-9]+", regex::extended);
 	static regex cache_regex("cache[0-9]+", regex::extended);
+	static regex bdev_regex("bdev[0-9]+", regex::extended);
+	static regex volume_regex("volume[0-9]+", regex::extended);
 
 	Device::Impl::probe_pass_1b(prober);
 
@@ -134,6 +135,16 @@ namespace storage
 	const Dir& dir = prober.get_system_info().getDir(path);
 	for (const string& name : dir)
 	{
+	    if (regex_match(name, cache_regex))
+	    {
+		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
+		string dev = DEV_DIR "/block/" + dev_file.get<string>();
+
+		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		    User::create(system, a, b);
+		});
+	    }
+
 	    if (regex_match(name, bdev_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
@@ -144,13 +155,13 @@ namespace storage
 		});
 	    }
 
-	    if (regex_match(name, cache_regex))
+	    if (regex_match(name, volume_regex))
 	    {
 		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
-		    User::create(system, a, b);
+		    User::create(system, b, a);
 		});
 	    }
 	}

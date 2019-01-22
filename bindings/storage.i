@@ -100,6 +100,8 @@ use_ostream(storage::PartitionSlot);
 #include "storage/Devices/Encryption.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/Bcache.h"
+#include "storage/Devices/BackedBcache.h"
+#include "storage/Devices/FlashBcache.h"
 #include "storage/Devices/BcacheCset.h"
 
 #include "storage/Holders/Holder.h"
@@ -188,6 +190,8 @@ use_ostream(storage::PartitionSlot);
 %include "../../storage/Devices/Encryption.h"
 %include "../../storage/Devices/Luks.h"
 %include "../../storage/Devices/Bcache.h"
+%include "../../storage/Devices/BackedBcache.h"
+%include "../../storage/Devices/FlashBcache.h"
 %include "../../storage/Devices/BcacheCset.h"
 
 %include "../../storage/Holders/Holder.h"

@@ -57,6 +57,12 @@
 %template(VectorLuksPtr) std::vector<Luks*>;
 %template(VectorConstLuksPtr) std::vector<const Luks*>;
 
+%template(VectorBackedBcachePtr) std::vector<BackedBcache*>;
+%template(VectorConstBackedBcachePtr) std::vector<const BackedBcache*>;
+
+%template(VectorFlashBcachePtr) std::vector<FlashBcache*>;
+%template(VectorConstFlashBcachePtr) std::vector<const FlashBcache*>;
+
 %template(VectorBcachePtr) std::vector<Bcache*>;
 %template(VectorConstBcachePtr) std::vector<const Bcache*>;
 

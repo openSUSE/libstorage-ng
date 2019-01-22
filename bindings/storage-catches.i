@@ -39,6 +39,8 @@
 %catches(storage::Exception) storage::light_probe();
 %catches(storage::Exception) storage::read_simple_etc_crypttab(const std::string &filename);
 %catches(storage::Exception) storage::read_simple_etc_fstab(const std::string &filename);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_backed_bcache(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_backed_bcache(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_bcache_cset(Device *device);
@@ -77,6 +79,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_filesystem(const Device *device);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(Holder *holder);
 %catches(storage::HolderHasWrongType, storage::NullPointerException) storage::to_filesystem_user(const Holder *holder);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_flash_bcache(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_flash_bcache(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_gpt(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_implicit_pt(Device *device);
@@ -141,7 +145,7 @@
 %catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, Devicegraph *lhs, Devicegraph *rhs);
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
-%catches(storage::Exception) storage::Bcache::attach_bcache_cset(BcacheCset *bcache_cset);
+%catches(storage::Exception) storage::BackedBcache::attach_bcache_cset(BcacheCset *bcache_cset);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(Devicegraph *devicegraph, const std::string &uuid);

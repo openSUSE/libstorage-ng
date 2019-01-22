@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,8 @@
 
 
 #include "storage/Devices/Partitionable.h"
+#include "storage/Devices/Device.h"
+#include "storage/Devicegraph.h"
 
 
 namespace storage
@@ -32,85 +34,21 @@ namespace storage
 
     class BcacheCset;
 
-
     /**
-     * The Cache mode attribute.
-     */
-    enum class CacheMode {
-	WRITETHROUGH, WRITEBACK, WRITEAROUND, NONE
-    };
-
-
-    /**
-     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
-     * device.
+     * Abstract class. See BackedBcache and FlashBcache.
      */
     class Bcache : public Partitionable
     {
     public:
 
-	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name);
-	static Bcache* load(Devicegraph* devicegraph, const xmlNode* node);
-
 	unsigned int get_number() const;
 
 	/**
-	 * Get the BlkDevice used as backing device.
-	 */
-	const BlkDevice* get_blk_device() const;
-
-	/**
-	 * Returns true if a BcacheCset is attached.
-	 */
-	bool has_bcache_cset() const;
-
-	/**
-	 * Get the BcacheCset used as cache.
+	 * Get the BcacheCset associated with this Bcache device.
+	 * Note that for a BackedBcache, the BcacheCset is used for caching, but for a
+	 * FlashBcache it represents the cset in which the bcache is created.
 	 */
 	const BcacheCset* get_bcache_cset() const;
-
-	/**
-	 * Attach a BcacheCset to the Bcache.
-	 *
-	 * @throw Exception
-	 */
-	void attach_bcache_cset(BcacheCset* bcache_cset);
-
-	/**
-	 * Returns cache mode attribute.
-	 */
-	CacheMode get_cache_mode() const;
-
-	/**
-	 * Sets cache mode attribute
-	 *
-	 * @param[in] mode target cache mode
-	 */
-	void set_cache_mode(CacheMode mode);
-
-	/**
-	 * Returns size of sequential_cutoff attribute.
-	 */
-	unsigned long long get_sequential_cutoff() const;
-
-	/**
-	 * Sets sequential_cutoff attribute
-	 *
-	 * @param[in] size size in a bytes
-	 */
-	void set_sequential_cutoff(unsigned long long size);
-
-	/**
-	 * Returns percent of writeback dirty pages.
-	 */
-	unsigned get_writeback_percent() const;
-
-	/**
-	 * Sets writeback percent attribute
-	 *
-	 * @param[in] percent target cache mode
-	 */
-	void set_writeback_percent(unsigned percent);
 
 	/**
 	 * Get all Bcaches.
@@ -162,8 +100,6 @@ namespace storage
 
 	Impl& get_impl();
 	const Impl& get_impl() const;
-
-	virtual Bcache* clone() const override;
 
     protected:
 

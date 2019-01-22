@@ -35,7 +35,7 @@ namespace storage
 
     class Region;
     class Encryption;
-    class Bcache;
+    class BackedBcache;
     class BcacheCset;
 
 
@@ -200,10 +200,10 @@ namespace storage
 	const Encryption* get_encryption() const;
 
 	/**
-	 * Creates an Bcache on the blk device. If the blk device has children
+	 * Creates a Backed Bcache on the blk device. If the blk device has children
 	 * the children will become children of the bcache device.
 	 */
-	Bcache* create_bcache(const std::string& name);
+	BackedBcache* create_bcache(const std::string& name);
 
 	/**
 	 * Creates an BcacheCset on the blk device.

@@ -267,7 +267,7 @@ namespace storage
     }
 
 
-    Bcache*
+    BackedBcache*
     BlkDevice::create_bcache(const std::string& name)
     {
 	return get_impl().create_bcache(name);

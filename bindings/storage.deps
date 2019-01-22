@@ -26,6 +26,8 @@ DEPENDENCIES =							\
 	${top_srcdir}/storage/Devices/Encryption.h		\
 	${top_srcdir}/storage/Devices/Luks.h			\
 	${top_srcdir}/storage/Devices/Bcache.h			\
+	${top_srcdir}/storage/Devices/BackedBcache.h		\
+	${top_srcdir}/storage/Devices/FlashBcache.h		\
 	${top_srcdir}/storage/Devices/BcacheCset.h		\
 	${top_srcdir}/storage/Filesystems/Ext.h			\
 	${top_srcdir}/storage/Filesystems/Ext2.h		\
