@@ -12,6 +12,7 @@ LDADD = ../../storage/libstorage-ng.la libcompoundactionfixture.la -lboost_unit_
 
 check_PROGRAMS =				\
 	bcache-sentence.test			\
+	flash-bcache-sentence.test		\
 	btrfs-subvolume-sentence.test		\
 	encrypted-sentence.test			\
 	is-delete.test				\
