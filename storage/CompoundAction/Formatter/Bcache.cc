@@ -23,8 +23,8 @@
 #include <boost/algorithm/string.hpp>
 
 #include "storage/CompoundAction/Formatter/Bcache.h"
-#include "storage/Devices/BcacheImpl.h"
-#include "storage/Devices/BcacheCsetImpl.h"
+#include "storage/Devices/BackedBcache.h"
+#include "storage/Devices/FlashBcache.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Utils/Format.h"
 
@@ -32,8 +32,15 @@
 namespace storage
 {
 
+    static string
+    target_classname(const CompoundAction::Impl* compound_action)
+    {
+	return compound_action->get_target_device()->get_impl().get_classname();
+    }
+
+
     CompoundAction::Formatter::Bcache::Bcache( const CompoundAction::Impl* compound_action ):
-	CompoundAction::Formatter( compound_action, "Bcache" ),
+	CompoundAction::Formatter( compound_action, target_classname(compound_action) ),
 	bcache( to_bcache( compound_action->get_target_device() ) ),
 	bcache_cset( bcache->get_bcache_cset() )
     {
@@ -119,6 +126,10 @@ namespace storage
     Text
     CompoundAction::Formatter::Bcache::bcache_cset_text() const
     {
+	// Text related to cset is not shown for Flash-only bcache devices
+	if(is_flash_bcache(bcache))
+	    return Text();
+
 	Text dev_list_text = format_devices_text( bcache_cset->get_blk_devices() );
 
 	// TRANSLATORS:
@@ -398,6 +409,15 @@ namespace storage
                         get_device_name().c_str(),
                         get_size().c_str(),
                         mount_point.c_str() );
+    }
+
+
+    const BlkDevice*
+    CompoundAction::Formatter::Bcache::get_blk_device() const {
+	if(is_backed_bcache(bcache))
+	    return static_cast<const storage::BackedBcache*>(bcache)->get_backing_device();
+	else
+	    return static_cast<const storage::FlashBcache*>(bcache)->get_bcache_cset()->get_blk_devices().front();
     }
 
 }

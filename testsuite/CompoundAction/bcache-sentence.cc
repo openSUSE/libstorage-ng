@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 #include <iostream>
 
-#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BackedBcache.h"
 #include "storage/Devices/BcacheCset.h"
 #include "storage/Devices/Encryption.h"
 
@@ -82,14 +82,14 @@ namespace storage
             }
 
 
-	    Disk       * disk0;
- 	    Disk       * disk1;
-	    Disk       * ssd0;
-	    Disk       * ssd1;
-            Bcache     * bcache0;
-            Bcache     * bcache1;
-            BcacheCset * cset0;
-            BcacheCset * cset1;
+	    Disk* 		disk0;
+	    Disk* 		disk1;
+	    Disk* 		ssd0;
+	    Disk* 		ssd1;
+	    BackedBcache* 	bcache0;
+	    BackedBcache* 	bcache1;
+	    BcacheCset* 	cset0;
+	    BcacheCset* 	cset1;
 	};
     }
 }
