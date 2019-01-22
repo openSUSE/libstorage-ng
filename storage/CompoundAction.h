@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +40,12 @@ namespace storage
     class Actiongraph;
     class Device;
 
+    /**
+     * A Compound Action groups several related actions from an actiongraph.
+     *
+     * For example, when a partition is created and then formatted and mounted,
+     * a Compound Action is created with all that individual actions.
+     */
     class CompoundAction : private boost::noncopyable
     {
 
@@ -53,6 +59,16 @@ namespace storage
 	std::string sentence() const;
 	
 	bool is_delete() const;
+
+	/**
+	 * @throw DeviceNotFound
+	 */
+	static CompoundAction* find_by_target_device(Actiongraph* actiongraph, const Device* device);
+
+	/**
+	 * @throw DeviceNotFound
+	 */
+	static const CompoundAction* find_by_target_device(const Actiongraph* actiongraph, const Device* device);
 
     public:
 
