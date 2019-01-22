@@ -4,7 +4,8 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BackedBcache.h"
+#include "storage/Devices/FlashBcache.h"
 #include "storage/Devicegraph.h"
 #include "storage/Storage.h"
 #include "storage/Environment.h"
@@ -22,11 +23,11 @@ BOOST_AUTO_TEST_CASE(free_name)
 
     Devicegraph* staging = storage.get_staging();
 
-    Bcache::create(staging, "/dev/bcache0");
+    BackedBcache::create(staging, "/dev/bcache0");
 
     BOOST_CHECK_EQUAL(Bcache::find_free_name(staging), "/dev/bcache1");
 
-    Bcache::create(staging, "/dev/bcache1");
+    FlashBcache::create(staging, "/dev/bcache1");
 
     BOOST_CHECK_EQUAL(Bcache::find_free_name(staging), "/dev/bcache2");
 }
@@ -45,8 +46,8 @@ BOOST_AUTO_TEST_CASE(reassign_numbers)
 
     Devicegraph* staging = storage.get_staging();
 
-    const Bcache *new_bcache1 = Bcache::create(staging, "/dev/bcache3");
-    const Bcache *new_bcache2 = Bcache::create(staging, "/dev/bcache4");
+    const BackedBcache *new_bcache1 = BackedBcache::create(staging, "/dev/bcache3");
+    const BackedBcache *new_bcache2 = BackedBcache::create(staging, "/dev/bcache4");
 
     // a bit hidden, but remove_device does call reassign_numbers,
     // so we are sure that after removal of bcache, they have correct numbers.

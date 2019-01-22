@@ -12,7 +12,7 @@
 #include "storage/Devices/Md.h"
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
-#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BackedBcache.h"
 #include "storage/Devices/StrayBlkDevice.h"
 #include "storage/Utils/HumanString.h"
 
@@ -74,8 +74,8 @@ BOOST_AUTO_TEST_CASE(blk_device_sorting1)
     LvmLv* test_aa = test->create_lvm_lv("aa", LvType::NORMAL, 1 * GiB);
     LvmLv* test_b = test->create_lvm_lv("b", LvType::NORMAL, 1 * GiB);
 
-    Bcache* bcache2 = Bcache::create(staging, "/dev/bcache2");
-    Bcache* bcache10 = Bcache::create(staging, "/dev/bcache10");
+    Bcache* bcache2 = BackedBcache::create(staging, "/dev/bcache2");
+    Bcache* bcache10 = BackedBcache::create(staging, "/dev/bcache10");
 
     StrayBlkDevice* xvdc2 = StrayBlkDevice::create(staging, "/dev/xvdc2");
     StrayBlkDevice* xvdc10 = StrayBlkDevice::create(staging, "/dev/xvdc10");

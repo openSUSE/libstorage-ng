@@ -39,7 +39,7 @@
       <range>256</range>
       <transport>SATA</transport>
     </Disk>
-    <Bcache>
+    <BackedBcache>
       <sid>45</sid>
       <name>/dev/bcache0</name>
       <sysfs-name>bcache0</sysfs-name>
@@ -48,8 +48,8 @@
         <length>16775152</length>
         <block-size>512</block-size>
       </region>
-    </Bcache>
-    <Bcache>
+    </BackedBcache>
+    <BackedBcache>
       <sid>46</sid>
       <name>/dev/bcache1</name>
       <sysfs-name>bcache1</sysfs-name>
@@ -58,7 +58,7 @@
         <length>16775152</length>
         <block-size>512</block-size>
       </region>
-    </Bcache>
+    </BackedBcache>
     <BcacheCset>
       <sid>47</sid>
     </BcacheCset>
