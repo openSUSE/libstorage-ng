@@ -166,6 +166,23 @@ BOOST_AUTO_TEST_CASE(parse_dasd_good2)
 }
 
 
+BOOST_AUTO_TEST_CASE(parse_dasd_good3)
+{
+    vector<string> input = {
+	"BYT;",
+        "/dev/dasda:144540s:dasd:512:1024:dasd:IBM S390 DASD drive:;",
+        "1:6s:144539s:144534s:::;"
+    };
+
+    vector<string> output = {
+        "device:/dev/dasda label:DASD region:[0, 72270, 1024 B]",
+        "number:1 region:[3, 72267, 1024 B] type:primary id:0x83"
+    };
+
+    check("/dev/dasda", input, output);
+}
+
+
 BOOST_AUTO_TEST_CASE(parse_loop_good)
 {
     vector<string> input = {

@@ -278,20 +278,23 @@ namespace storage
     void
     Parted::fix_dasd_sector_size()
     {
-	if (label == PtType::DASD && logical_sector_size == 512 && physical_sector_size == 4096)
+        // see do_resize() and do_create() in PartitionImpl.cc
+	if (label == PtType::DASD && logical_sector_size == 512 &&
+	    (physical_sector_size == 4096 || physical_sector_size == 1024 || physical_sector_size == 2048))
 	{
-	    y2mil("fixing sector size reported by parted");
+	    int factor = physical_sector_size / logical_sector_size;
+	    y2mil("fixing sector size reported by parted by factor:" << factor);
 
-	    region.set_length(region.get_length() / 8);
-	    region.set_block_size(region.get_block_size() * 8);
+	    region.set_length(region.get_length() / factor);
+	    region.set_block_size(region.get_block_size() * factor);
 
 	    for (Entry& entry : entries)
 	    {
 		Region& region = entry.region;
 
-		region.set_start(region.get_start() / 8);
-		region.set_length(region.get_length() / 8);
-		region.set_block_size(region.get_block_size() * 8);
+		region.set_start(region.get_start() / factor);
+		region.set_length(region.get_length() / factor);
+		region.set_block_size(region.get_block_size() * factor);
 	    }
 	}
     }
