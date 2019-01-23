@@ -720,6 +720,10 @@ namespace storage
 	// See fix_dasd_sector_size() in class Parted.
 	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
 	    cmd_line += to_string(get_region().get_start() * 8) + " " + to_string(get_region().get_end() * 8 + 7);
+	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 2048)
+	    cmd_line += to_string(get_region().get_start() * 4) + " " + to_string(get_region().get_end() * 4 + 3);
+	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 1024)
+	    cmd_line += to_string(get_region().get_start() * 2) + " " + to_string(get_region().get_end() * 2 + 1);
 	else
 	    cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
 
@@ -1101,6 +1105,10 @@ namespace storage
 	// See fix_dasd_sector_size() in class Parted.
 	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
 	    cmd_line += to_string(partition_rhs->get_region().get_end() * 8 + 7);
+	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 2048)
+	    cmd_line += to_string(get_region().get_start() * 4) + " " + to_string(get_region().get_end() * 4 + 3);
+	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 1024)
+	    cmd_line += to_string(get_region().get_start() * 2) + " " + to_string(get_region().get_end() * 2 + 1);
 	else
 	    cmd_line += to_string(partition_rhs->get_region().get_end());
 
