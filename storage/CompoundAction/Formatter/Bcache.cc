@@ -27,6 +27,7 @@
 #include "storage/Devices/FlashBcache.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -415,9 +416,16 @@ namespace storage
     const BlkDevice*
     CompoundAction::Formatter::Bcache::get_blk_device() const {
 	if(is_backed_bcache(bcache))
-	    return static_cast<const storage::BackedBcache*>(bcache)->get_backing_device();
+	    return to_backed_bcache(bcache)->get_backing_device();
 	else
-	    return static_cast<const storage::FlashBcache*>(bcache)->get_bcache_cset()->get_blk_devices().front();
+	{
+	    vector<const BlkDevice*> caching_devices = to_flash_bcache(bcache)->get_bcache_cset()->get_blk_devices();
+
+	    if(caching_devices.empty())
+		ST_THROW(Exception("no caching device"));
+
+	    return caching_devices.front();
+	}
     }
 
 }
