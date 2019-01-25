@@ -16,7 +16,7 @@
 #
 
 
-%define libname %{name}1
+%define libname %{name}2
 Name:           libstorage-ng
 Version:        @VERSION@
 Release:        0
