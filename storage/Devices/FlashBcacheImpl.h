@@ -48,6 +48,8 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
+	virtual BcacheType get_type() const override { return BcacheType::FLASHONLY; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual Text do_create_text(Tense tense) const override;

@@ -43,6 +43,11 @@ namespace storage
     using namespace std;
 
 
+    const vector<string> EnumTraits<BcacheType>::names({
+	"backed", "flash-only"
+    });
+
+
     // TODO handle attach and detach
 
     const char* DeviceTraits<Bcache>::classname = "Bcache";

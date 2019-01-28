@@ -34,12 +34,23 @@ namespace storage
 
     class BcacheCset;
 
+
+    //! Bcache Type.
+    enum class BcacheType {
+	BACKED, FLASHONLY
+    };
+
+    std::string get_bcache_type_name(BcacheType type);
+
+
     /**
      * Abstract class. See BackedBcache and FlashBcache.
      */
     class Bcache : public Partitionable
     {
     public:
+
+	BcacheType get_type() const;
 
 	unsigned int get_number() const;
 

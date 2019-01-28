@@ -30,6 +30,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/ActiongraphImpl.h"
 #include "storage/Prober.h"
+#include "storage/Utils/Enum.h"
 
 
 namespace storage
@@ -37,6 +38,8 @@ namespace storage
 
     using namespace std;
 
+
+    template <> struct EnumTraits<BcacheType> { static const vector<string> names; };
 
     template <> struct DeviceTraits<Bcache> { static const char* classname; };
 
@@ -47,6 +50,8 @@ namespace storage
 	Impl(const string& name);
 
 	Impl(const xmlNode* node);
+
+	virtual BcacheType get_type() const = 0;
 
 	virtual const char* get_classname() const override { return "Bcache"; }
 

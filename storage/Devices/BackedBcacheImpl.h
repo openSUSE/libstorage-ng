@@ -58,6 +58,8 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
+	virtual BcacheType get_type() const override { return BcacheType::BACKED; }
+
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1b(Prober& prober) override;
 

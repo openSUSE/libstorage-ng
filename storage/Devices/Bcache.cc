@@ -30,6 +30,13 @@ namespace storage
     using namespace std;
 
 
+    string
+    get_bcache_type_name(BcacheType type)
+    {
+	return toString(type);
+    }
+
+
     Bcache::Bcache(Impl* impl)
 	: Partitionable(impl)
     {
@@ -47,6 +54,13 @@ namespace storage
     Bcache::get_impl() const
     {
 	return dynamic_cast<const Impl&>(Device::get_impl());
+    }
+
+
+    BcacheType
+    Bcache::get_type() const
+    {
+	return get_impl().get_type();
     }
 
 
