@@ -129,7 +129,7 @@ namespace storage
 	else if (is_nfs(target_device))
 	    return CompoundAction::Formatter::Nfs(this).string_representation();
 
-	else if (is_bcache(target_device) || is_bcache_cset(target_device))
+	else if (is_bcache(target_device))
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
 
 	else if (is_md(target_device))

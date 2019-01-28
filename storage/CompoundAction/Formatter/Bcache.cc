@@ -42,8 +42,7 @@ namespace storage
 
     CompoundAction::Formatter::Bcache::Bcache( const CompoundAction::Impl* compound_action ):
 	CompoundAction::Formatter( compound_action, target_classname(compound_action) ),
-	bcache( to_bcache( compound_action->get_target_device() ) ),
-	bcache_cset( bcache->get_bcache_cset() )
+	bcache( to_bcache( compound_action->get_target_device() ) )
     {
         // NOP
     }
@@ -131,7 +130,11 @@ namespace storage
 	if(is_flash_bcache(bcache))
 	    return Text();
 
-	Text dev_list_text = format_devices_text( bcache_cset->get_blk_devices() );
+	// A Backed Bcache could not have an associated caching set
+	if(!to_backed_bcache(bcache)->has_bcache_cset())
+	    return Text();
+
+	Text dev_list_text = format_devices_text( bcache->get_bcache_cset()->get_blk_devices() );
 
 	// TRANSLATORS:
 	// %1$s is replaced with the the bcache name (e.g. /dev/bcache0),

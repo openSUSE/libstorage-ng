@@ -66,19 +66,23 @@ namespace storage
             }
 
 
-            void init_bcache0()
+            void init_bcache0(bool cset = true)
             {
                 cset0 = ssd0->create_bcache_cset();
                 bcache0 = disk0->create_bcache( "/dev/bcache0" );
-                bcache0->attach_bcache_cset( cset0 );
+
+		if(cset)
+		    bcache0->attach_bcache_cset( cset0 );
             }
 
 
-            void init_bcache1()
+            void init_bcache1(bool cset = true)
             {
                 cset1 = ssd1->create_bcache_cset();
                 bcache1 = disk1->create_bcache( "/dev/bcache1" );
-                bcache1->attach_bcache_cset( cset1 );
+
+		if(cset)
+		    bcache1->attach_bcache_cset( cset1 );
             }
 
 
@@ -137,6 +141,25 @@ BOOST_AUTO_TEST_CASE( test_create )
     cout << "\nexpected1:\n" << expected1 << "\n" << endl;
     cout << "\naction1:\n"   << compound_action1->sentence() << "\n" << endl;
 #endif
+}
+
+
+BOOST_AUTO_TEST_CASE(test_create_without_cset)
+{
+    init_disks();
+    init_bcache0(false);
+
+    BlkFilesystem* ext4 = bcache0->create_blk_filesystem(FsType::EXT4);
+    ext4->create_mount_point("/data");
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    const CompoundAction* compound_action = find_compound_action_by_target(actiongraph, bcache0);
+
+    BOOST_REQUIRE(compound_action);
+
+    string expected = "Create bcache /dev/bcache0 on /dev/sda (2.00 TiB) for /data with ext4";
+
+    BOOST_CHECK_EQUAL(compound_action->sentence(), expected);
 }
 
 

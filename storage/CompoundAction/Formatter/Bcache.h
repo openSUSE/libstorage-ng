@@ -76,8 +76,7 @@ namespace storage
 
     private:
 
-	const storage::Bcache	  * bcache;
-	const storage::BcacheCset * bcache_cset;
+	const storage::Bcache* bcache;
     };
 
 }
