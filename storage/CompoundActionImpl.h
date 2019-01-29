@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -78,6 +78,9 @@ namespace storage
 	static const Device* device(const Actiongraph* actiongraph, const Action::Create* action);
 	static const Device* device(const Actiongraph* actiongraph, const Action::Modify* action);
 	static const Device* device(const Actiongraph* actiongraph, const Action::Delete* action);
+
+	static CompoundAction* find_by_target_device(Actiongraph* actiongraph, const Device* device);
+	static const CompoundAction* find_by_target_device(const Actiongraph* actiongraph, const Device* device);
 
     private:
 	

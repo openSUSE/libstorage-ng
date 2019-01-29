@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,6 +51,19 @@ namespace storage
     CompoundAction::is_delete() const
     {
 	return get_impl().is_delete();
+    }
+
+    CompoundAction*
+    CompoundAction::find_by_target_device(Actiongraph* actiongraph, const Device* device)
+    {
+	return CompoundAction::Impl::find_by_target_device(actiongraph, device);
+    }
+
+
+    const CompoundAction*
+    CompoundAction::find_by_target_device(const Actiongraph* actiongraph, const Device* device)
+    {
+	return CompoundAction::Impl::find_by_target_device(actiongraph, device);
     }
 
 }

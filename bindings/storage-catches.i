@@ -167,6 +167,8 @@
 %catches(storage::Exception) storage::BlkFilesystem::detect_content_info() const;
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path) const;
+%catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(Actiongraph *actiongraph, const Device *device);
+%catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(const Actiongraph *actiongraph, const Device *device);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::Exception) storage::Device::compare_by_name(const Device *lhs, const Device *rhs);
