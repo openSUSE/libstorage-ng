@@ -144,6 +144,25 @@ BOOST_AUTO_TEST_CASE( test_create )
 }
 
 
+BOOST_AUTO_TEST_CASE(test_create_without_cset)
+{
+    init_disks();
+    init_bcache0(false); // without catching set
+
+    BlkFilesystem* ext4 = bcache0->create_blk_filesystem(FsType::EXT4);
+    ext4->create_mount_point("/data");
+
+    const Actiongraph* actiongraph = storage->calculate_actiongraph();
+    const CompoundAction* compound_action = find_compound_action_by_target(actiongraph, bcache0);
+
+    BOOST_REQUIRE(compound_action);
+
+    string expected = "Create bcache /dev/bcache0 on /dev/sda (2.00 TiB) for /data with ext4";
+
+    BOOST_CHECK_EQUAL(compound_action->sentence(), expected);
+}
+
+
 BOOST_AUTO_TEST_CASE( test_format )
 {
     init_bcaches();
