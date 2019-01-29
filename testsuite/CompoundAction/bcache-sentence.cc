@@ -66,30 +66,34 @@ namespace storage
             }
 
 
-            void init_bcache0()
+            void init_bcache0(bool cset = true)
             {
                 cset0 = ssd0->create_bcache_cset();
                 bcache0 = disk0->create_bcache( "/dev/bcache0" );
-                bcache0->attach_bcache_cset( cset0 );
+
+		if(cset)
+		    bcache0->attach_bcache_cset( cset0 );
             }
 
 
-            void init_bcache1()
+            void init_bcache1(bool cset = true)
             {
                 cset1 = ssd1->create_bcache_cset();
                 bcache1 = disk1->create_bcache( "/dev/bcache1" );
-                bcache1->attach_bcache_cset( cset1 );
+
+		if(cset)
+		    bcache1->attach_bcache_cset( cset1 );
             }
 
 
-	    Disk       * disk0;
- 	    Disk       * disk1;
-	    Disk       * ssd0;
-	    Disk       * ssd1;
-            Bcache     * bcache0;
-            Bcache     * bcache1;
-            BcacheCset * cset0;
-            BcacheCset * cset1;
+	    Disk* 	disk0;
+	    Disk* 	disk1;
+	    Disk* 	ssd0;
+	    Disk* 	ssd1;
+	    Bcache* 	bcache0;
+	    Bcache* 	bcache1;
+	    BcacheCset* cset0;
+	    BcacheCset* cset1;
 	};
     }
 }
