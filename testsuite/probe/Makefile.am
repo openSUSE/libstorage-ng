@@ -11,7 +11,7 @@ check_PROGRAMS =								\
 	disk.test multipath1.test multipath+luks1.test md1.test md2.test	\
 	md3.test lvm1.test lvm2.test lvm-errors1.test luks+lvm1.test		\
 	lvm+luks1.test luks1.test luks2.test 					\
-	bcache1.test btrfs1.test dasd1.test dasd2.test				\
+	bcache1.test bcache2.test btrfs1.test dasd1.test dasd2.test		\
 	external-journal.test							\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test
 
@@ -32,6 +32,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	luks2-mockup.xml luks2-devicegraph.xml					\
 	lvm+luks1-mockup.xml lvm+luks1-devicegraph.xml				\
 	bcache1-mockup.xml bcache1-devicegraph.xml				\
+	bcache2-mockup.xml bcache2-devicegraph.xml				\
 	btrfs1-mockup.xml btrfs1-devicegraph.xml				\
 	dasd1-mockup.xml dasd1-devicegraph.xml					\
 	dasd2-mockup.xml dasd2-devicegraph.xml					\
