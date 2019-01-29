@@ -10,21 +10,23 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2018-04-24 11:13+0000\n"
-"Last-Translator: Martin Devenney <devenneymartin@gmail.com>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/sv/>\n"
+"PO-Revision-Date: 2019-01-30 02:46+0000\n"
+"Last-Translator: Sven Åhr <anders.ahr@gmail.com>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"menar du allvar?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -39,7 +41,7 @@ msgstr "Lägg till %1$s i %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%1$s är cachat av %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -212,7 +214,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Bifoga Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -220,7 +222,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "Bifogar Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
 
 # SLE12
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
@@ -1647,8 +1649,9 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of object
+#, fuzzy
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1892,8 +1895,9 @@ msgid "Implicit Partition Table"
 msgstr "Underförstådd partitionstabell"
 
 #. TRANSLATORS: name of partition type
+#, fuzzy
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1920,8 +1924,9 @@ msgid "LVM Volume Group"
 msgstr "LVM-volymgrupp"
 
 #. TRANSLATORS: name of partition type
+#, fuzzy
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 #, fuzzy
@@ -1929,12 +1934,14 @@ msgid "Linux LVM"
 msgstr "Söker LVM"
 
 #. TRANSLATORS: name of partition type
+#, fuzzy
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
+#, fuzzy
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 # SLE12
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
@@ -1960,7 +1967,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft Reserved-partition"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2149,7 +2156,7 @@ msgstr "Det gick inte att söka bcache"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "Avsöker enstaka blockenheter"
 
 #. TRANSLATORS: error message
 #, fuzzy
@@ -2648,7 +2655,7 @@ msgstr "Krymper tunn logisk volym %1$s i volymgrupp %2$s från %3$s till %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Enstaka blockenhet"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2738,15 +2745,16 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows-datapartition"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
 msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
+#, fuzzy
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 # SLE12
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
