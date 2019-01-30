@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -42,6 +42,7 @@
 #include "storage/Filesystems/BlkFilesystem.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/Exception.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -128,7 +129,7 @@ namespace storage
 	else if (is_nfs(target_device))
 	    return CompoundAction::Formatter::Nfs(this).string_representation();
 
-	else if (is_bcache(target_device) || is_bcache_cset(target_device))
+	else if (is_bcache(target_device))
 	    return CompoundAction::Formatter::Bcache(this).string_representation();
 
 	else if (is_md(target_device))
@@ -269,6 +270,26 @@ namespace storage
     CompoundAction::Impl::device(const Actiongraph* actiongraph, const Action::Delete* action)
     {
 	return action->get_device(actiongraph->get_impl());
+    }
+
+
+    CompoundAction*
+    CompoundAction::Impl::find_by_target_device(Actiongraph* actiongraph, const Device* device)
+    {
+	return const_cast<CompoundAction*>(find_by_target_device(static_cast<const Actiongraph*>(actiongraph), device));
+    }
+
+
+    const CompoundAction*
+    CompoundAction::Impl::find_by_target_device(const Actiongraph* actiongraph, const Device* device)
+    {
+	for (auto action : actiongraph->get_compound_actions())
+	{
+	    if (action->get_target_device() == device)
+		return action;
+	}
+
+	ST_THROW(DeviceNotFound(sformat("target device not found, sid:%d", device->get_sid())));
     }
 
 }

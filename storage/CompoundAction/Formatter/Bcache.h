@@ -26,7 +26,6 @@
 
 #include "storage/CompoundAction/Formatter.h"
 #include "storage/Devices/Bcache.h"
-#include "storage/Filesystems/BlkFilesystem.h"
 
 
 namespace storage
@@ -65,13 +64,18 @@ namespace storage
 	Text mount_point_text() const;
 
 	string get_bcache_name() const { return bcache->get_name(); }
-	string get_device_name() const { return bcache->get_blk_device()->get_name(); }
 	string get_size()	 const { return bcache->get_size_string(); }
+	string get_device_name() const { return get_blk_device()->get_name(); }
+
+	/**
+	 * Block device associated to the Bcache. Normally it is the backing device,
+	 * but for a Flash-only Bcache, it represents its caching device.
+	 */
+	const BlkDevice* get_blk_device() const;
 
     private:
 
-	const storage::Bcache	  * bcache;
-	const storage::BcacheCset * bcache_cset;
+	const storage::Bcache* bcache;
     };
 
 }

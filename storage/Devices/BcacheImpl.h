@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,11 +24,14 @@
 #define STORAGE_BCACHE_IMPL_H
 
 
-#include "storage/Utils/Enum.h"
-#include "storage/Utils/StorageTmpl.h"
-#include "storage/Utils/HumanString.h"
-#include "storage/Devices/Bcache.h"
 #include "storage/Devices/PartitionableImpl.h"
+#include "storage/Devices/Bcache.h"
+#include "storage/Devices/BcacheCset.h"
+#include "storage/Devicegraph.h"
+#include "storage/ActiongraphImpl.h"
+#include "storage/Prober.h"
+#include "storage/Utils/Enum.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -39,17 +42,20 @@ namespace storage
 
     template <> struct DeviceTraits<Bcache> { static const char* classname; };
 
+    template <> struct EnumTraits<BcacheType> { static const vector<string> names; };
+
     template <> struct EnumTraits<CacheMode> { static const vector<string> names; };
+
 
     class Bcache::Impl : public Partitionable::Impl
     {
     public:
 
-	Impl(const string& name);
+	Impl(const string& name, BcacheType type);
 
 	Impl(const xmlNode* node);
 
-	virtual const char* get_classname() const override { return "Bcache"; }
+	virtual const char* get_classname() const override { return DeviceTraits<Bcache>::classname; }
 
 	virtual string get_pretty_classname() const override;
 
@@ -72,7 +78,7 @@ namespace storage
 	unsigned int get_number() const;
 	void set_number(unsigned int number);
 
-	const BlkDevice* get_blk_device() const;
+	const BlkDevice* get_backing_device() const;
 
 	bool has_bcache_cset() const;
 
@@ -85,6 +91,8 @@ namespace storage
 	void attach_bcache_cset(BcacheCset* bcache_cset);
 
 	void update_sysfs_name_and_path();
+
+	BcacheType get_type() const { return type; }
 
 	CacheMode get_cache_mode() const { return cache_mode; }
 	void set_cache_mode(CacheMode mode) { cache_mode = mode; }
@@ -129,9 +137,11 @@ namespace storage
 
 	unsigned long long sequential_cutoff;
 
-	unsigned writeback_percent;
-    };
+	BcacheType type;
 
+	unsigned writeback_percent;
+
+    };
 
     namespace Action
     {

@@ -200,7 +200,7 @@ namespace storage
 	const Encryption* get_encryption() const;
 
 	/**
-	 * Creates an Bcache on the blk device. If the blk device has children
+	 * Creates a Bcache on the blk device. If the blk device has children
 	 * the children will become children of the bcache device.
 	 */
 	Bcache* create_bcache(const std::string& name);

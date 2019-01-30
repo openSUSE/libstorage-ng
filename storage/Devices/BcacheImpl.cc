@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,8 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/ExceptionImpl.h"
+#include "storage/Utils/StorageTmpl.h"
 
 
 namespace storage
@@ -54,29 +56,48 @@ namespace storage
 
     const char* DeviceTraits<Bcache>::classname = "Bcache";
 
+    const vector<string> EnumTraits<BcacheType>::names({
+	"backed", "flash-only"
+    });
+
     const vector<string> EnumTraits<CacheMode>::names({
 	"writethrough", "writeback", "writearound", "none"
     });
 
-    Bcache::Impl::Impl(const string& name)
-	: Partitionable::Impl(name), cache_mode(CacheMode::WRITETHROUGH),
-          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
+    Bcache::Impl::Impl(const string& name, BcacheType type)
+	: Partitionable::Impl(name), cache_mode(CacheMode::NONE),
+	  sequential_cutoff(0), type(type), writeback_percent(0)
     {
+	if(get_type() == BcacheType::BACKED)
+	{
+	    cache_mode = CacheMode::WRITETHROUGH;
+	    sequential_cutoff = 8 * MiB;
+	    writeback_percent = 10;
+	}
+
 	update_sysfs_name_and_path();
     }
 
 
     Bcache::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), cache_mode(CacheMode::WRITETHROUGH),
-          sequential_cutoff(8 * MiB), writeback_percent(10) // bcache defaults
+	: Partitionable::Impl(node), cache_mode(CacheMode::NONE),
+          sequential_cutoff(0), type(BcacheType::BACKED), writeback_percent(0)
     {
 	string tmp;
+	
+	if(getChildValue(node, "type", tmp))
+	    type = toValueWithFallback(tmp, BcacheType::BACKED);
 
-	cache_mode = CacheMode::WRITETHROUGH;
-	if (getChildValue(node, "cache-mode", tmp))
-	    cache_mode = toValueWithFallback(tmp, CacheMode::WRITETHROUGH);
-	getChildValue(node, "writeback-percent", writeback_percent);
-	getChildValue(node, "sequential-cutoff", sequential_cutoff);
+	if(get_type() == BcacheType::BACKED)
+	{
+	    cache_mode = CacheMode::WRITETHROUGH;
+
+	    if(getChildValue(node, "cache-mode", tmp))
+		cache_mode = toValueWithFallback(tmp, CacheMode::WRITETHROUGH);
+
+	    getChildValue(node, "writeback-percent", writeback_percent);
+	    getChildValue(node, "sequential-cutoff", sequential_cutoff);
+	}
     }
 
 
@@ -145,9 +166,14 @@ namespace storage
     {
 	Partitionable::Impl::save(node);
 
-	setChildValue(node, "cache-mode", toString(cache_mode));
-	setChildValue(node, "writeback-percent", writeback_percent);
-	setChildValue(node, "sequential-cutoff", sequential_cutoff);
+	setChildValue(node, "type", toString(type));
+
+	if(get_type() == BcacheType::BACKED)
+	{
+	    setChildValue(node, "cache-mode", toString(cache_mode));
+	    setChildValue(node, "writeback-percent", writeback_percent);
+	    setChildValue(node, "sequential-cutoff", sequential_cutoff);
+	}
     }
 
 
@@ -167,6 +193,21 @@ namespace storage
     }
 
 
+    static bool
+    is_backed(Prober& prober, const string& short_name)
+    {
+	string dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/dev";
+	File dev_file = prober.get_system_info().getFile(dev_path);
+	string majorminor = dev_file.get<string>();
+
+	string backing_dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/bcache/../dev";
+	File backing_dev_file = prober.get_system_info().getFile(backing_dev_path);
+	string backing_majorminor = backing_dev_file.get<string>();
+
+	return majorminor != backing_majorminor;
+    }
+
+
     void
     Bcache::Impl::probe_bcaches(Prober& prober)
     {
@@ -176,7 +217,9 @@ namespace storage
 
 	    try
 	    {
-		Bcache* bcache = Bcache::create(prober.get_system(), name);
+		BcacheType type = is_backed(prober, short_name) ? BcacheType::BACKED : BcacheType::FLASH_ONLY;
+
+		Bcache* bcache = Bcache::create(prober.get_system(), name, type);
 		bcache->get_impl().probe_pass_1a(prober);
 	    }
 	    catch (const Exception& exception)
@@ -247,14 +290,17 @@ namespace storage
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
 
-	const File cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
-	set_cache_mode(parse_mode(cache_mode_file));
+	if(get_type() == BcacheType::BACKED)
+	{
+	    const File cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
+	    set_cache_mode(parse_mode(cache_mode_file));
 
-	const File writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
-	set_writeback_percent(writeback_percent_file.get<unsigned>());
+	    const File writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
+	    set_writeback_percent(writeback_percent_file.get<unsigned>());
 
-	const File sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
-	set_sequential_cutoff(parse_size(sequential_cutoff_file));
+	    const File sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
+	    set_sequential_cutoff(parse_size(sequential_cutoff_file));
+	}
     }
 
 
@@ -263,12 +309,16 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1b(prober);
 
-	const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
-	string dev = DEV_DIR "/block/" + dev_file.get<string>();
+	if(get_type() == BcacheType::BACKED)
+	{
+	    // Creating relationship with its backing device
+	    const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
+	    string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
-	prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
-	    User::create(system, a, b);
-	});
+	    prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
+		User::create(system, a, b);
+	    });
+	}
     }
 
 
@@ -298,9 +348,10 @@ namespace storage
 
 
     const BlkDevice*
-    Bcache::Impl::get_blk_device() const
+    Bcache::Impl::get_backing_device() const
     {
-	// TODO, write some generic helper
+	if(get_type() == BcacheType::FLASH_ONLY)
+	    ST_THROW(Exception("Flash-only Bcache has no backing device"));
 
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
@@ -342,6 +393,9 @@ namespace storage
     void
     Bcache::Impl::attach_bcache_cset(BcacheCset* bcache_cset)
     {
+	if(get_type() == BcacheType::FLASH_ONLY)
+	    ST_THROW(Exception("A Caching Set cannot be attached to a Flash-only Bcache"));
+
 	User::create(get_devicegraph(), bcache_cset, get_non_impl());
     }
 
@@ -363,7 +417,8 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
             return false;
 
-        return cache_mode == rhs.cache_mode
+        return type == rhs.type
+	    && cache_mode == rhs.cache_mode
             && writeback_percent == rhs.writeback_percent
             && sequential_cutoff == rhs.sequential_cutoff;
     }
@@ -376,6 +431,7 @@ namespace storage
 
 	Partitionable::Impl::log_diff(log, rhs);
 
+        storage::log_diff(log, "type", toString(type), toString(rhs.type));
         storage::log_diff(log, "cache-mode", toString(cache_mode), toString(rhs.cache_mode));
         storage::log_diff(log, "writeback-percent", writeback_percent, rhs.writeback_percent);
         storage::log_diff(log, "sequential-cutoff", sequential_cutoff, rhs.sequential_cutoff);
@@ -387,9 +443,14 @@ namespace storage
     {
 	Partitionable::Impl::print(out);
 
-        out << " cache mode:" << toString(cache_mode)
-            << " writeback percent:" << writeback_percent << "%"
-            << " sequential cutoff:" << sequential_cutoff;
+	out << " type:" << toString(type);
+
+	if(get_type() == BcacheType::BACKED)
+	{
+	    out << " cache mode:" << toString(cache_mode)
+		<< " writeback percent:" << writeback_percent << "%"
+		<< " sequential cutoff:" << sequential_cutoff;
+	}
     }
 
 
@@ -403,16 +464,19 @@ namespace storage
     void
     Bcache::Impl::calculate_region()
     {
-	const BlkDevice* blk_device = get_blk_device();
+	if(get_type() == BcacheType::BACKED)
+	{
+	    const BlkDevice* blk_device = get_backing_device();
 
-	unsigned long long size = blk_device->get_size();
+	    unsigned long long size = blk_device->get_size();
 
-	if (size > metadata_size)
-	    size -= metadata_size;
-	else
-	    size = 0 * B;
+	    if (size > metadata_size)
+		size -= metadata_size;
+	    else
+		size = 0 * B;
 
-	set_size(size);
+	    set_size(size);
+	}
     }
 
 
@@ -489,28 +553,38 @@ namespace storage
     void
     Bcache::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	// TODO Flash-only Bache
 
-	actions.push_back(new Action::Create(get_sid()));
+	if(get_type() == BcacheType::BACKED)
+	{
+	    vector<Action::Base*> actions;
 
-	if (has_bcache_cset())
-	    actions.push_back(new Action::AttachBcacheCset(get_sid()));
+	    actions.push_back(new Action::Create(get_sid()));
 
-	actiongraph.add_chain(actions);
+	    if (has_bcache_cset())
+		actions.push_back(new Action::AttachBcacheCset(get_sid()));
+
+	    actiongraph.add_chain(actions);
+	}
     }
 
 
     void
     Bcache::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	vector<Action::Base*> actions;
+	// TODO Flash-only Bache
 
-	if (is_active())
-	    actions.push_back(new Action::Deactivate(get_sid()));
+	if(get_type() == BcacheType::BACKED)
+	{
+	    vector<Action::Base*> actions;
 
-	actions.push_back(new Action::Delete(get_sid()));
+	    if (is_active())
+		actions.push_back(new Action::Deactivate(get_sid()));
 
-	actiongraph.add_chain(actions);
+	    actions.push_back(new Action::Delete(get_sid()));
+
+	    actiongraph.add_chain(actions);
+	}
     }
 
 
@@ -534,29 +608,34 @@ namespace storage
     void
     Bcache::Impl::do_create()
     {
-	const BlkDevice* blk_device = get_blk_device();
+	// TODO Flash-only Bache
 
-	string cmd_line = MAKE_BCACHE_BIN " -B " + quote(blk_device->get_name());
+	if(get_type() == BcacheType::BACKED)
+	{
+	    const BlkDevice* blk_device = get_backing_device();
 
-	wait_for_devices({ blk_device });
+	    string cmd_line = MAKE_BCACHE_BIN " -B " + quote(blk_device->get_name());
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	    wait_for_devices({ blk_device });
 
-        // TODO: is it enough? check with Coly how to recognize it
-	sleep(1); // give bcache some time to finish its async operation, so bcache device exists
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	// TODO: Action for edit attributes will be needed if edit of existing bcache is allowed
-	cmd_line = ECHO_BIN " " + quote(toString(cache_mode)) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/cache_mode");
+	    // TODO: is it enough? check with Coly how to recognize it
+	    sleep(1); // give bcache some time to finish its async operation, so bcache device exists
 
-	SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
+	    // TODO: Action for edit attributes will be needed if edit of existing bcache is allowed
+	    cmd_line = ECHO_BIN " " + quote(toString(cache_mode)) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/cache_mode");
 
-	cmd_line = ECHO_BIN " " + to_string(writeback_percent) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/writeback_percent");
+	    SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
 
-	SystemCmd cmd3(cmd_line, SystemCmd::DoThrow);
+	    cmd_line = ECHO_BIN " " + to_string(writeback_percent) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/writeback_percent");
 
-	cmd_line = ECHO_BIN " " + to_string(sequential_cutoff) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/sequential_cutoff");
+	    SystemCmd cmd3(cmd_line, SystemCmd::DoThrow);
 
-	SystemCmd cmd4(cmd_line, SystemCmd::DoThrow);
+	    cmd_line = ECHO_BIN " " + to_string(sequential_cutoff) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/sequential_cutoff");
+
+	    SystemCmd cmd4(cmd_line, SystemCmd::DoThrow);
+	}
     }
 
 
@@ -580,7 +659,10 @@ namespace storage
     void
     Bcache::Impl::do_delete() const
     {
-	get_blk_device()->get_impl().wipe_device();
+	// TODO Flash-only Bache
+
+	if(get_type() == BcacheType::BACKED)
+	    get_backing_device()->get_impl().wipe_device();
     }
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,7 +21,7 @@
 
 
 #include "storage/Devices/BcacheImpl.h"
-#include "storage/Devicegraph.h"
+#include "storage/Devices/DeviceImpl.h"
 
 
 namespace storage
@@ -33,7 +33,14 @@ namespace storage
     Bcache*
     Bcache::create(Devicegraph* devicegraph, const string& name)
     {
-	Bcache* ret = new Bcache(new Bcache::Impl(name));
+	return Bcache::create(devicegraph, name, BcacheType::BACKED);
+    }
+
+
+    Bcache*
+    Bcache::create(Devicegraph* devicegraph, const string& name, BcacheType type)
+    {
+	Bcache* ret = new Bcache(new Bcache::Impl(name, type));
 	ret->Device::create(devicegraph);
 	return ret;
     }
@@ -75,6 +82,13 @@ namespace storage
     }
 
 
+    BcacheType
+    Bcache::get_type() const
+    {
+	return get_impl().get_type();
+    }
+
+
     unsigned int
     Bcache::get_number() const
     {
@@ -83,9 +97,16 @@ namespace storage
 
 
     const BlkDevice*
+    Bcache::get_backing_device() const
+    {
+	return get_impl().get_backing_device();
+    }
+
+
+    const BlkDevice*
     Bcache::get_blk_device() const
     {
-	return get_impl().get_blk_device();
+	return get_backing_device();
     }
 
 

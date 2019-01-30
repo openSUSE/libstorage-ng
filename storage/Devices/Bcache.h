@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,9 @@
 
 
 #include "storage/Devices/Partitionable.h"
+#include "storage/Devices/Device.h"
+#include "storage/Devicegraph.h"
+#include "storage/Utils/Swig.h"
 
 
 namespace storage
@@ -34,43 +37,73 @@ namespace storage
 
 
     /**
+     * Bcache types
+     */
+    enum class BcacheType {
+	BACKED, FLASH_ONLY
+    };
+
+
+    /**
      * The Cache mode attribute.
      */
     enum class CacheMode {
 	WRITETHROUGH, WRITEBACK, WRITEAROUND, NONE
     };
 
-
     /**
-     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a>
-     * device.
+     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">Bcache</a> device.
+     *
+     * Bcache technology supports two kinds of bcache devices. Bcache devices with a backing
+     * device and also Bcache devices directly created over a caching set (without backing device
+     * associated to it). This second type is known as Flash-only Bcache.
      */
     class Bcache : public Partitionable
     {
     public:
 
 	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name);
+	static Bcache* create(Devicegraph* devicegraph, const std::string& dm_name, BcacheType type);
 	static Bcache* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	BcacheType get_type() const;
 
 	unsigned int get_number() const;
 
 	/**
 	 * Get the BlkDevice used as backing device.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
+	 *
+	 * @throw Exception
 	 */
-	const BlkDevice* get_blk_device() const;
+	const BlkDevice* get_backing_device() const;
 
 	/**
-	 * Returns true if a BcacheCset is attached.
+	 * @copydoc get_backing_device
+	 */
+	const BlkDevice* get_blk_device() const ST_DEPRECATED;
+
+	/**
+	 * Returns true if a caching set is attached.
+	 *
+	 * Note that a Flash-only Bcache is created over a caching set, so this method should
+	 * always return true for Flash-only Bcache devices.
 	 */
 	bool has_bcache_cset() const;
 
 	/**
-	 * Get the BcacheCset used as cache.
+	 * Get the caching set associated with this Bcache device.
+	 *
+	 * Note that a Bcache device can be created without a caching set associated to it.
+	 * In case of a Flash-only Bcache, there is always a caching set holding it.
 	 */
 	const BcacheCset* get_bcache_cset() const;
 
 	/**
-	 * Attach a BcacheCset to the Bcache.
+	 * Attach a caching set to the Bcache.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 *
 	 * @throw Exception
 	 */
@@ -78,11 +111,15 @@ namespace storage
 
 	/**
 	 * Returns cache mode attribute.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 */
 	CacheMode get_cache_mode() const;
 
 	/**
-	 * Sets cache mode attribute
+	 * Sets cache mode attribute.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 *
 	 * @param[in] mode target cache mode
 	 */
@@ -90,11 +127,15 @@ namespace storage
 
 	/**
 	 * Returns size of sequential_cutoff attribute.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 */
 	unsigned long long get_sequential_cutoff() const;
 
 	/**
-	 * Sets sequential_cutoff attribute
+	 * Sets sequential_cutoff attribute.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 *
 	 * @param[in] size size in a bytes
 	 */
@@ -102,11 +143,15 @@ namespace storage
 
 	/**
 	 * Returns percent of writeback dirty pages.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 */
 	unsigned get_writeback_percent() const;
 
 	/**
-	 * Sets writeback percent attribute
+	 * Sets writeback percent attribute.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
 	 *
 	 * @param[in] percent target cache mode
 	 */

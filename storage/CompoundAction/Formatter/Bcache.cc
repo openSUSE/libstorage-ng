@@ -24,9 +24,9 @@
 
 #include "storage/CompoundAction/Formatter/Bcache.h"
 #include "storage/Devices/BcacheImpl.h"
-#include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Filesystems/Swap.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -34,8 +34,7 @@ namespace storage
 
     CompoundAction::Formatter::Bcache::Bcache( const CompoundAction::Impl* compound_action ):
 	CompoundAction::Formatter( compound_action, "Bcache" ),
-	bcache( to_bcache( compound_action->get_target_device() ) ),
-	bcache_cset( bcache->get_bcache_cset() )
+	bcache( to_bcache( compound_action->get_target_device() ) )
     {
         // NOP
     }
@@ -119,7 +118,15 @@ namespace storage
     Text
     CompoundAction::Formatter::Bcache::bcache_cset_text() const
     {
-	Text dev_list_text = format_devices_text( bcache_cset->get_blk_devices() );
+	// Text related to cset is not shown for Flash-only bcache devices
+	if(bcache->get_type() == BcacheType::FLASH_ONLY)
+	    return Text();
+
+	// A Bcache might not have an associated caching set
+	if(!bcache->has_bcache_cset())
+	    return Text();
+
+	Text dev_list_text = format_devices_text( bcache->get_bcache_cset()->get_blk_devices() );
 
 	// TRANSLATORS:
 	// %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -398,6 +405,22 @@ namespace storage
                         get_device_name().c_str(),
                         get_size().c_str(),
                         mount_point.c_str() );
+    }
+
+
+    const BlkDevice*
+    CompoundAction::Formatter::Bcache::get_blk_device() const {
+	if(bcache->get_type() == BcacheType::BACKED)
+	    return bcache->get_backing_device();
+	else
+	{
+	    vector<const BlkDevice*> caching_devices = bcache->get_bcache_cset()->get_blk_devices();
+
+	    if(caching_devices.empty())
+		ST_THROW(Exception("Flash-only Bcache without caching device"));
+
+	    return caching_devices.front();
+	}
     }
 
 }

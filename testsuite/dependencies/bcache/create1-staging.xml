@@ -42,6 +42,7 @@
     <Bcache>
       <sid>45</sid>
       <name>/dev/bcache0</name>
+      <type>backed</type>
       <sysfs-name>bcache0</sysfs-name>
       <sysfs-path>/devices/virtual/block/bcache0</sysfs-path>
       <region>
@@ -52,6 +53,7 @@
     <Bcache>
       <sid>46</sid>
       <name>/dev/bcache1</name>
+      <type>backed</type>
       <sysfs-name>bcache1</sysfs-name>
       <sysfs-path>/devices/virtual/block/bcache1</sysfs-path>
       <region>
