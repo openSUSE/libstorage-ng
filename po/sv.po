@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2019-01-30 02:46+0000\n"
+"PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: Sven Åhr <anders.ahr@gmail.com>\n"
 "Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/sv/>\n"
@@ -31,9 +31,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "Lägg till %1$s i %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -230,9 +230,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "Partition"
+msgstr "BIOS-startpartition"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -315,11 +314,13 @@ msgstr "Tar bort skyddsbootflagga MBR från GPT på %1$s"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Skapa partition %1$s (%2$s) för %3$s med %4$s"
+msgstr ""
+"Skapa %1$s %2$s (%3$s) för %4$s med %5$s\n"
+"från %6$s"
 
 # SLE12
 #. TRANSLATORS:
@@ -329,11 +330,13 @@ msgstr "Skapa partition %1$s (%2$s) för %3$s med %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr ""
+"Skapa %1$s %2$s (%3$s) för växling\n"
+"från %4$s"
 
 # SLE12
 #. TRANSLATORS:
@@ -343,9 +346,9 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Skapa %1$s %2$s (%3$s) från %4$s"
 
 # SLE12
 #. TRANSLATORS:
@@ -356,11 +359,13 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Skapa partition %1$s (%2$s) för %3$s med %4$s"
+msgstr ""
+"Skapa %1$s %2$s (%3$s) med %4$s\n"
+"från %5$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -375,17 +380,17 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "Skapa hårddisk %1$s (%2$s)"
+msgstr "Skapa Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "Skapa logiska partitionen %1$s (%2$s)"
+msgstr "Skapa Bcache-cacheuppsättning på %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -439,9 +444,9 @@ msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "Skapa fysisk LVM-volym över krypterad %1$s (%2$s)"
+msgstr "Skapa fysisk LVM-volym över %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -479,9 +484,9 @@ msgstr "Skapa MS-DOS-partitionstabell på %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Skapa bcache %1$s på %2$s (%3$s)"
 
 # SLE12
 #. TRANSLATORS:
@@ -490,18 +495,18 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Skapa partition %1$s (%2$s) för %3$s med %4$s"
+msgstr "Skapa bcache %1$s på %2$s (%3$s) för %4$s med %5$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Skapa bcache %1$s på %2$s (%3$s) för byte"
 
 # SLE12
 #. TRANSLATORS:
@@ -509,9 +514,9 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Skapa bcache %1$s på %2$s (%3$s) med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -520,11 +525,13 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
+msgstr ""
+"Skapa krypterad %1$s %2$s (%3$s)\n"
+"från %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -535,11 +542,13 @@ msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
+msgstr ""
+"Skapa krypterad %1$s %2$s (%3$s) för %4$s med %5$s\n"
+"från %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -548,11 +557,13 @@ msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för swap"
+msgstr ""
+"Skapa krypterad %1$s %2$s (%3$s) för byte\n"
+"från %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -562,11 +573,13 @@ msgstr "Skapa utökad partition %1$s (%2$s) för swap"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
+msgstr ""
+"Skapa krypterad %1$s %2$s (%3$s) med %4$s\n"
+"från %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -614,9 +627,9 @@ msgstr "Skapa logisk volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Skapa krypterad bcache %1$s på %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -624,26 +637,26 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
+msgstr "Skapa krypterad bcache %1$s på %2$s (%3$s) för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "Skapa utökad partition %1$s (%2$s) för swap"
+msgstr "Skapa krypterad bcache %1$s på %2$s (%3$s) för byte"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Skapa utökad partition %1$s (%2$s) för %3$s med %4$s"
+msgstr "Skapa krypterad %1$s på %2$s (%3$s) med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -886,17 +899,17 @@ msgstr "Skapar %1$s på %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "Skapar partition %1$s (%2$s)"
+msgstr "Skapar Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "Skapar logisk partition %1$s (%2$s)"
+msgstr "Skapar Bcache-cacheuppsättning %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -944,9 +957,9 @@ msgstr "Skapar utökad partition %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "Skapa hårddisk %1$s (%2$s)"
+msgstr "Skapar hårddisk %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1050,17 +1063,17 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Avaktivera multipath %1$s (%2$s)"
+msgstr "Inaktivera Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Avaktivera multipath %1$s (%2$s)"
+msgstr "Inaktivera Bcache-cacheuppsättning på %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1113,17 +1126,17 @@ msgstr "Avaktivera tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Avaktiverar multipath %1$s (%2$s)"
+msgstr "Inaktiverar Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Avaktiverar multipath %1$s (%2$s)"
+msgstr "Inaktiverar Bcache-cacheuppsättning på %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1175,9 +1188,9 @@ msgstr "Avaktivera tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "Ta bort %1$s på %2$s (%3$s)"
+msgstr "Radera %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1190,17 +1203,17 @@ msgstr "Ta bort %1$s på %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Ta bort partitionen %1$s (%2$s)"
+msgstr "Radera Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Ta bort logisk partitionen %1$s (%2$s)"
+msgstr "Ta bort Bcache-cacheuppsättning på %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1234,9 +1247,9 @@ msgstr "Ta bort MSDOS-partitionstabell på %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "Ta bort %1$s på %2$s (%3$s)"
+msgstr "Radera bcache %1$s on %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1357,17 +1370,17 @@ msgstr "Tar bort %1$s på %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Tar bort partitionen %1$s (%2$s)"
+msgstr "Tar bort Bcache %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Tar bort logisk partition %1$s (%2$s)"
+msgstr "Tar bort Bcache-cacheuppsättning på %1$s (%2$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1493,9 +1506,8 @@ msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Tar bort volymgrupp %1$s (%2$s)"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "Partition"
+msgstr "Diagnostikpartition"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1512,9 +1524,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "Partition"
+msgstr "EFI-systempartition"
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
@@ -1526,9 +1537,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "Skapa MD %1$s %2$s (%3$s)"
+msgstr "Kryptera %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1536,18 +1547,18 @@ msgstr "Skapa MD %1$s %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Kryptera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Kryptera %1$s %2$s (%3$s) för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "Kryptera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Kryptera %1$s %2$s (%3$s) med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1584,9 +1595,9 @@ msgstr "Skapa logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "Skapa %1$s på %2$s (%3$s)"
+msgstr "Kryptera bcache %1$s på %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1594,18 +1605,18 @@ msgstr "Skapa %1$s på %2$s (%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Kryptera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Kryptera bcache %1$s på %2$s (%3$s) för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Kryptera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Kryptera bcache %1$s på %2$s (%3$s) med %4$s"
 
 # SLE12
 #. TRANSLATORS:
@@ -1649,7 +1660,6 @@ msgid "Ext4"
 msgstr "Ext4"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "F2FS"
 msgstr "F2FS"
 
@@ -1659,18 +1669,18 @@ msgstr "F2FS"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "Formatera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Formatera %1$s %2$s (%3$s) för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "Formatera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Formatera %1$s %2$s (%3$s) med %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1698,34 +1708,34 @@ msgstr "Formatera logisk LVM-volym %1$s (%2$s) i volymgrupp %3$s med %4$s"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "Formatera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Formatera bcache %1$s på %2$s (%3$s) för %4$s med %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "Formatera partition %1$s från %2$s till %3$s med %4$s"
+msgstr "Formatera bcache %1$s på %2$s (%3$s) med %4$s"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "Skapa partition %1$s (%2$s) för swap"
+msgstr "Formatera partition %1$s (%2$s) som krypterat byte"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "Skapa partition %1$s (%2$s) för swap"
+msgstr "Formatera partition %1$s (%2$s) som byte"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1895,7 +1905,6 @@ msgid "Implicit Partition Table"
 msgstr "Underförstådd partitionstabell"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Intel RST"
 msgstr "Intel RST"
 
@@ -1924,22 +1933,18 @@ msgid "LVM Volume Group"
 msgstr "LVM-volymgrupp"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux"
 msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "Söker LVM"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux RAID"
 msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux Swap"
 msgstr "Linux Swap"
 
@@ -1967,16 +1972,16 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr "Microsoft Reserved-partition"
+msgstr "Microsoft-reserverad partition"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "Montera %1$s på %2$s"
+msgstr "Montera %1$s %2$s (%3$s) vid %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2011,9 +2016,9 @@ msgstr "Monteringspunkt"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "Montera delvolym %1$s på %2$s på %3$s"
+msgstr "Montera bcache %1$s på %2$s (%3$s) i %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -2078,9 +2083,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "Partition"
+msgstr "PReP-startpartition"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2092,9 +2096,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "Sökning av DASD:er misslyckades"
+msgstr "Sökning av DASD %s misslyckades"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -2129,9 +2133,9 @@ msgid "Probing LVM failed"
 msgstr "Det gick inte att söka LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "Det gick inte att söka MD RAID:er"
+msgstr "Sökning av MD RAID %s misslyckades"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -2150,27 +2154,26 @@ msgid "Probing NFS failed"
 msgstr "Det gick inte att söka NFS"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Det gick inte att söka bcache"
+msgstr "Sökning av enstaka blockenhet %s misslyckades"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
 msgstr "Avsöker enstaka blockenheter"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "Sökning av DASD:er misslyckades"
+msgstr "Sökning av enstaka blockenheter misslyckades"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
 msgstr "Söker bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "Det gick inte att söka bcache"
+msgstr "Sökning av bcache %s misslyckades"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -2198,9 +2201,8 @@ msgid "Probing disks failed"
 msgstr "Det gick inte att söka diskar"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "Det gick inte att söka LVM"
+msgstr "Sökning misslyckades"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2233,9 +2235,9 @@ msgid "Probing partitions failed"
 msgstr "Det gick inte att söka partitionerna"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "Det gick inte att söka partitionerna"
+msgstr "Sökning av partitioner på %s misslyckades"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2366,15 +2368,15 @@ msgstr "Byter namn på monteringspunkt %1$s från %2$s till %3$s i /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "Skapar GPT på %1$s"
+msgstr "Reparera GPT på %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "Skapar GPT på %1$s"
+msgstr "Reparerar GPT på %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2752,7 +2754,6 @@ msgid "XFS"
 msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
-#, fuzzy
 msgid "exFAT"
 msgstr "exFAT"
 
