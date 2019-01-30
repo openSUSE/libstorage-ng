@@ -350,13 +350,13 @@ namespace storage
     const BlkDevice*
     Bcache::Impl::get_backing_device() const
     {
-	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(Exception("Flash-only Bcache has no backing device"));
-
 	const Devicegraph::Impl& devicegraph = get_devicegraph()->get_impl();
 	Devicegraph::Impl::vertex_descriptor vertex = get_vertex();
 
 	vector<const BlkDevice*> ret = devicegraph.filter_devices_of_type<const BlkDevice>(devicegraph.parents(vertex));
+
+	if(ret.empty())
+	    ST_THROW(DeviceNotFound("No backing device"));
 
 	return ret.front();
     }
@@ -394,7 +394,10 @@ namespace storage
     Bcache::Impl::attach_bcache_cset(BcacheCset* bcache_cset)
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(Exception("A Caching Set cannot be attached to a Flash-only Bcache"));
+	    ST_THROW(LogicException("A Caching Set cannot be attached to a Flash-only Bcache"));
+
+	if(has_bcache_cset())
+	    ST_THROW(LogicException("The Bcache is already associated to a Caching Set"));
 
 	User::create(get_devicegraph(), bcache_cset, get_non_impl());
     }
