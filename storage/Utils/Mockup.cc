@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -25,6 +25,7 @@
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/Utils/LoggerImpl.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -57,7 +58,8 @@ namespace storage
 	    getChildValue(command_node, "stderr", command.stderr);
 	    getChildValue(command_node, "exit-code", command.exit_code);
 
-	    commands[name] = command;
+	    if (!commands.emplace(name, command).second)
+		ST_THROW(Exception(sformat("command \"%s\" already loaded for mockup", name)));
 	}
 
 	const xmlNode* files_node = getChildNode(mockup_node, "Files");
@@ -72,7 +74,8 @@ namespace storage
 	    File file;
 	    getChildValue(file_node, "content", file.content);
 
-	    files[name] = file;
+	    if (!files.emplace(name, file).second)
+		ST_THROW(Exception(sformat("file \"%s\" already loaded for mockup", name)));
 	}
     }
 
