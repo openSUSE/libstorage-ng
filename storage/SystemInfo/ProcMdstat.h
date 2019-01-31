@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017,2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -110,6 +110,7 @@ namespace storage
 
     };
 
+
     /**
      * Parse (the --export variant of) mdadm --detail
      */
@@ -123,6 +124,12 @@ namespace storage
 	string devname;
 	string metadata;
 	MdLevel level;
+
+	/**
+	 * Mapping from device name to role (a number or
+	 * spare). Faulty devices are also marked as spare by mdadm here.
+	 */
+	map<string, string> roles;
 
 	friend std::ostream& operator<<(std::ostream& s, const MdadmDetail& mdadm_detail);
 
