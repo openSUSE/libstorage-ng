@@ -75,7 +75,7 @@ namespace storage
 	 *
 	 * This method does not make sense for Flash-only Bcache devices.
 	 *
-	 * @throw Exception
+	 * @throw DeviceNotFound
 	 */
 	const BlkDevice* get_backing_device() const;
 
@@ -105,7 +105,7 @@ namespace storage
 	 *
 	 * This method does not make sense for Flash-only Bcache devices.
 	 *
-	 * @throw Exception
+	 * @throw LogicException, Exception
 	 */
 	void attach_bcache_cset(BcacheCset* bcache_cset);
 
