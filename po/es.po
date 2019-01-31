@@ -16,11 +16,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2019-01-25 15:14+0000\n"
 "Last-Translator: Patricia Pazos <pms.malaga@hermestrans.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/es/>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2134,6 +2134,16 @@ msgstr "Sondeo de dispositivos de bloque extraviados"
 #. TRANSLATORS: error message
 msgid "Probing Stray Block Devices failed"
 msgstr "Error al sondear dispositivos de bloque extraviados"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "Error al sondear las particiones"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "Error al sondear las particiones"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

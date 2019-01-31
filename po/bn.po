@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Bengali <i18n@suse.de>\n"
@@ -2056,6 +2056,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
+msgstr "পার্টিশান %1$s (%2$s) সৃষ্টি করুন"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "পার্টিশান %1$s (%2$s) সৃষ্টি করুন"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
 msgstr "পার্টিশান %1$s (%2$s) সৃষ্টি করুন"
 
 #. TRANSLATORS: progress message

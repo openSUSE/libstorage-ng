@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: installation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2006-11-03 14:26\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -2057,6 +2057,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
+msgstr "Yakha ukuhlukaniswa kwamaphathishini %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "Yakha ukuhlukaniswa kwamaphathishini %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
 msgstr "Yakha ukuhlukaniswa kwamaphathishini %1$s (%2$s)"
 
 #. TRANSLATORS: progress message

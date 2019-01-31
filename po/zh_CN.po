@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2018-12-02 02:22+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
-"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/libstorage"
-"/ng-master/zh_CN/>\n"
+"Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
+"libstorage/ng-master/zh_CN/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2049,6 +2049,16 @@ msgstr "正在探测离散区块设备"
 #. TRANSLATORS: error message
 msgid "Probing Stray Block Devices failed"
 msgstr "探测离散区块设备失败"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "探测分区失败"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "探测分区失败"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2018-11-23 23:55+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
 "Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2122,6 +2122,16 @@ msgstr "Stray ブロックデバイスを検出しています"
 #. TRANSLATORS: error message
 msgid "Probing Stray Block Devices failed"
 msgstr "Stray ブロックデバイスの検出に失敗しました"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "パーティションの検出に失敗しました"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "パーティションの検出に失敗しました"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

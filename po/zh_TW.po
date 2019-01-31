@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2018-08-13 17:01+0000\n"
 "Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -2066,6 +2066,16 @@ msgstr "正在查探雜散區塊裝置 (Stray Block Devices)"
 #. TRANSLATORS: error message
 msgid "Probing Stray Block Devices failed"
 msgstr "查探雜散區塊裝置 (Stray Block Devices) 失敗"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "查探分割區失敗"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "查探分割區失敗"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

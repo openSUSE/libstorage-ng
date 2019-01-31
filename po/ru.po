@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2018-10-02 14:06+0000\n"
 "Last-Translator: Alex Minton <alex239@gmail.com>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2121,6 +2121,16 @@ msgstr "Опрос блочных устройств"
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
 msgstr "Ошибка опроса блочных устройств"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "Ошибка проверки разделов"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "Ошибка проверки разделов"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

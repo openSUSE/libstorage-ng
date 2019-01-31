@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2006-07-12 07:32+0200\n"
 "Last-Translator: Phan Vĩnh Thịnh <teppi82@gmail.com>\n"
 "Language-Team: Vietnamese <i18n@suse.de>\n"
@@ -2364,6 +2364,20 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing Stray Block Devices failed"
+msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "kiểu nội suy cần dùng"
+
+# Type: select
+# Description
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
 msgstr "kiểu nội suy cần dùng"
 
 #. TRANSLATORS: progress message
