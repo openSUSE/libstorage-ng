@@ -4,9 +4,9 @@
 
 noinst_LTLIBRARIES = libhelpers.la
 
-libhelpers_la_SOURCES =							\
-	TsCmp.cc			TsCmp.h				\
-	CheckCallbacksRecorder.cc	CheckCallbacksRecorder.h
+libhelpers_la_SOURCES =						\
+	TsCmp.cc		TsCmp.h				\
+	CallbacksRecorder.cc	CallbacksRecorder.h
 
 noinst_PROGRAMS =	\
 	echoargs	\
