@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -460,6 +460,57 @@ namespace storage
 		md_user->set_spare(device.spare);
 		md_user->set_faulty(device.faulty);
 	    });
+	}
+    }
+
+
+    void
+    Md::Impl::probe_pass_1f(Prober& prober)
+    {
+	Devicegraph* system = prober.get_system();
+	SystemInfo& system_info = prober.get_system_info();
+
+	// The order/sort-key/role cannot be probed by looking at
+	// /proc/mdstat. As an example consider a RAID10 where the
+	// devices must be evenly split between two disk subsystems
+	// (https://fate.suse.com/313521). Let us simply call the
+	// devices sdc1, sdd1, sdc2, sdd2. If sdd1 fails and gets
+	// replaced by sdd3 using the role in /proc/mdstat would be
+	// wrong (sdd3[4] sdd2[3] sdc2[2] sdc1[0]). The role reported
+	// by 'mdadm --detail' seems to be fine.
+
+	// AFAIS probing the order for spare devices is not possible
+	// (and likely also not useful).
+
+	const MdadmDetail& mdadm_detail = prober.get_system_info().getMdadmDetail(get_name());
+
+	// Convert roles from map<name, role> to map<sid, role>.
+
+	map<sid_t, string> roles;
+
+	for (const map<string, string>::value_type& role : mdadm_detail.roles)
+	{
+	    BlkDevice* blk_device = BlkDevice::Impl::find_by_any_name(system, role.first, system_info);
+	    roles[blk_device->get_sid()] = role.second;
+	}
+
+	// Set sort-key for each (non spare or faulty) device based on
+	// the role. Since for libstorage-ng a sort-key of 0 means
+	// unknown (or should mean unknown) an offset of 1 is
+	// added.
+
+	for (MdUser* md_user : get_in_holders_of_type<MdUser>())
+	{
+	    sid_t sid = md_user->get_source()->get_sid();
+
+	    map<sid_t, string>::const_iterator it = roles.find(sid);
+	    if (it == roles.end() || it->second == "spare")
+		continue;
+
+	    unsigned int role = 0;
+	    it->second >> role;
+
+	    md_user->set_sort_key(role + 1);
 	}
     }
 

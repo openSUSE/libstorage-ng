@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -138,6 +138,12 @@ namespace storage
 
     void
     Device::Impl::probe_pass_1c(Prober& prober)
+    {
+    }
+
+
+    void
+    Device::Impl::probe_pass_1f(Prober& prober)
     {
     }
 

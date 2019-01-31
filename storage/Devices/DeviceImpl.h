@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -134,6 +134,7 @@ namespace storage
 	virtual void probe_pass_1a(Prober& prober);
 	virtual void probe_pass_1b(Prober& prober);
 	virtual void probe_pass_1c(Prober& prober);
+	virtual void probe_pass_1f(Prober& prober);
 
 	virtual ResizeInfo detect_resize_info() const = 0;
 
@@ -324,6 +325,16 @@ namespace storage
 	    const Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
 
 	    return devicegraph_impl.filter_devices_of_type<Type>(devicegraph_impl.parents(get_vertex()));
+	}
+
+	template<typename Type>
+	vector<Type*> get_in_holders_of_type()
+	{
+	    static_assert(!is_const<Type>::value, "Type must not be const");
+
+	    Devicegraph::Impl& devicegraph_impl = get_devicegraph()->get_impl();
+
+	    return devicegraph_impl.filter_holders_of_type<Type>(devicegraph_impl.in_edges(get_vertex()));
 	}
 
 	template<typename Type>

@@ -12,7 +12,7 @@
 #include "storage/Storage.h"
 #include "storage/Environment.h"
 
-#include "testsuite/helpers/CheckCallbacksRecorder.h"
+#include "testsuite/helpers/CallbacksRecorder.h"
 
 
 using namespace std;
@@ -131,12 +131,12 @@ BOOST_AUTO_TEST_CASE(chunk_size_too_small)
     LvmLv* thin_pool = lvm_vg->create_lvm_lv("thin-pool", LvType::THIN_POOL, 16 * TiB);
     thin_pool->set_chunk_size(64 * KiB);
 
-    vector<string> messages;
-    CheckCallbacksRecorder check_callbacks_recorder(messages);
+    vector<string> check_messages;
+    CheckCallbacksRecorder check_callbacks_recorder(check_messages);
     staging->check(&check_callbacks_recorder);
 
-    BOOST_CHECK_EQUAL(messages.size(), 1);
-    BOOST_CHECK_EQUAL(messages[0], "Chunk size is too small for thin pool logical volume "
+    BOOST_CHECK_EQUAL(check_messages.size(), 1);
+    BOOST_CHECK_EQUAL(check_messages[0], "Chunk size is too small for thin pool logical volume "
 		      "thin-pool in volume group test.");
 }
 

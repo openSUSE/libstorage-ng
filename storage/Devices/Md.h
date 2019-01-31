@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,7 +81,15 @@ namespace storage
 	 */
 	void remove_device(BlkDevice* blk_device);
 
+	/**
+	 * Return devices used for the MD RAID. For Mds of type
+	 * MdMember this does not include the MdContainer.
+	 */
 	std::vector<BlkDevice*> get_devices();
+
+	/**
+	 * @copydoc get_devices()
+	 */
 	std::vector<const BlkDevice*> get_devices() const;
 
 	/**
@@ -124,7 +132,7 @@ namespace storage
 	void set_chunk_size(unsigned long chunk_size);
 
 	const std::string& get_uuid() const;
-	
+
 	/**
 	 * Set uuid for testing purposes. The real uuid is not modified during
 	 * the commit phase.

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-01-31 10:33+0100\n"
 "PO-Revision-Date: 2018-11-28 20:03+0000\n"
 "Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2309,7 +2309,8 @@ msgstr "Rlevamento di NFS non riuscito"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "Rilevamento del dispositivo a blocchi \"senza padrone\" %s non riuscito"
+msgstr ""
+"Rilevamento del dispositivo a blocchi \"senza padrone\" %s non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
@@ -2318,6 +2319,16 @@ msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 #. TRANSLATORS: error message
 msgid "Probing Stray Block Devices failed"
 msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing additional attributes"
+msgstr "Rilevamento delle partizioni non riuscito"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing additional attributes failed"
+msgstr "Rilevamento delle partizioni non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
