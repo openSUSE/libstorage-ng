@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -170,7 +170,7 @@ namespace storage
 	 *
 	 * Pass 1e: The list of pendings holders is flushed.
 	 *
-	 * Pass 1e: Probe some remaining attributes.
+	 * Pass 1f: Probe some additional attributes.
 	 *
 	 * Pass 2:  Probe filesystems and mount points.
 	 */
@@ -397,6 +397,27 @@ namespace storage
 	{
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
+	}
+
+	// Pass 1f
+
+	y2mil("prober pass 1f");
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing additional attributes"));
+
+	try
+	{
+	    for (Devicegraph::Impl::vertex_descriptor vertex : system->get_impl().vertices())
+	    {
+		Device* device = system->get_impl()[vertex];
+		device->get_impl().probe_pass_1f(*this);
+	    }
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing additional attributes failed"), exception);
 	}
 
 	// Pass 2

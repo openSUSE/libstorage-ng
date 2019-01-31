@@ -220,10 +220,12 @@
     <MdUser>
       <source-sid>43</source-sid>
       <target-sid>47</target-sid>
+      <sort-key>1</sort-key>
     </MdUser>
     <MdUser>
       <source-sid>42</source-sid>
       <target-sid>47</target-sid>
+      <sort-key>2</sort-key>
     </MdUser>
     <MdSubdevice>
       <source-sid>46</source-sid>
@@ -233,10 +235,12 @@
     <MdUser>
       <source-sid>43</source-sid>
       <target-sid>48</target-sid>
+      <sort-key>1</sort-key>
     </MdUser>
     <MdUser>
       <source-sid>42</source-sid>
       <target-sid>48</target-sid>
+      <sort-key>2</sort-key>
     </MdUser>
     <MdSubdevice>
       <source-sid>46</source-sid>

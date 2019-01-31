@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -123,6 +123,7 @@ namespace storage
 	static void probe_mds(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1b(Prober& prober) override;
+	virtual void probe_pass_1f(Prober& prober) override;
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
