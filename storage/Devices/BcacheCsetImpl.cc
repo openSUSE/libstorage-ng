@@ -35,6 +35,8 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Prober.h"
 #include "storage/Utils/Format.h"
+#include "storage/Devicegraph.h"
+#include "storage/Utils/ExceptionImpl.h"
 
 
 namespace storage
@@ -263,7 +265,7 @@ namespace storage
 
 	const BlkDevice* blk_device = get_blk_devices()[0];
 
-	string cmd_line = MAKE_BCACHE_BIN " -C " + quote(blk_device->get_name());
+	string cmd_line = BCACHE_BIN " make -C " + quote(blk_device->get_name());
 
 	wait_for_devices({ blk_device });
 
@@ -336,11 +338,20 @@ namespace storage
     void
     BcacheCset::Impl::do_deactivate() const
     {
-	string cmd_line = ECHO_BIN " 1 > " + quote(SYSFS_DIR "/fs/bcache/" + get_uuid() + "/stop");
+	// TODO handle multiple caching devices?
+
+	if(get_blk_devices().empty())
+	    ST_THROW(DeviceNotFound("No caching devices"));
+
+	const BlkDevice* blk_device = get_blk_devices().front();
+
+	string cmd_line = BCACHE_BIN " unregister " + quote(blk_device->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	sleep(1);		// TODO
+	string cset_name = SYSFS_DIR "/fs/bcache/" + get_uuid();
+
+	wait_for_detach_devices({ cset_name });
     }
 
 }

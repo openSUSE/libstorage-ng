@@ -74,7 +74,7 @@
 #define BTRFSBIN "/sbin/btrfs"
 #define WIPEFSBIN "/sbin/wipefs"
 
-#define MAKE_BCACHE_BIN "/usr/sbin/make-bcache"
+#define BCACHE_BIN "/usr/sbin/bcache"
 
 #define MOUNTBIN "/bin/mount"
 #define UMOUNTBIN "/bin/umount"

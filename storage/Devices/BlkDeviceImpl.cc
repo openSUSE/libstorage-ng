@@ -867,4 +867,52 @@ namespace storage
 	}
     }
 
+
+    void
+    wait_for_detach_devices(const vector<const BlkDevice*>& blk_devices)
+    {
+	vector<string> dev_names;
+
+	for(const BlkDevice* dev : blk_devices)
+	{
+	    dev_names.push_back(dev->get_name());
+	}
+
+	wait_for_detach_devices(dev_names);
+    }
+
+
+    void
+    wait_for_detach_devices(const vector<string>& dev_names)
+    {
+	SystemCmd(UDEVADMBIN_SETTLE);
+
+	for (auto name : dev_names)
+	{
+	    bool exists = access(name.c_str(), R_OK) == 0;
+
+	    y2mil("name:" << name << " exists:" << exists);
+
+	    if (exists)
+	    {
+		// Waits a max of 5 seconds
+		for (int count = 0; count < 500; ++count)
+		{
+		    if((count % 100) == 0)
+			y2mil("waiting for detach " << name);
+
+		    usleep(10000);
+		    exists = access(name.c_str(), R_OK) == 0;
+		    if (!exists)
+			break;
+		}
+
+		y2mil("name:" << name << " exists:" << exists);
+	    }
+
+	    if (exists)
+		ST_THROW(Exception("wait_for_detach_devices failed " + name));
+	}
+    }
+
 }

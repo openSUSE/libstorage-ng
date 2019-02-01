@@ -221,6 +221,13 @@ namespace storage
      */
     void wait_for_devices(const vector<const BlkDevice*>& blk_devices);
 
+
+    /**
+     * Run "udevadm settle" and check non existence of all blk devices.
+     */
+    void wait_for_detach_devices(const vector<const BlkDevice*>& blk_devices);
+    void wait_for_detach_devices(const vector<string>& dev_names);
+
 }
 
 #endif
