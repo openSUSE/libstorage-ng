@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,11 +33,20 @@ namespace storage
     class Text;
     class Exception;
 
+
     /**
      * Call the message callback of callbacks.
      */
     void
     message_callback(const Callbacks* callbacks, const Text& message);
+
+
+    /**
+     * Call the error callback of callbacks and handle return value.
+     */
+    void
+    error_callback(const Callbacks* callbacks, const Text& message);
+
 
     /**
      * Call the error callback of callbacks and handle return value.

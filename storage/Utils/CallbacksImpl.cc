@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,6 +35,23 @@ namespace storage
 	if (callbacks)
 	{
 	    callbacks->message(message.translated);
+	}
+    }
+
+
+    void
+    error_callback(const Callbacks* callbacks, const Text& message)
+    {
+	if (callbacks)
+	{
+	    if (!callbacks->error(message.translated, ""))
+		ST_THROW(Aborted("aborted"));
+
+	    y2mil("user decides to continue after error");
+	}
+	else
+	{
+	    ST_THROW(Exception(message.native));
 	}
     }
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 10:33+0100\n"
+"POT-Creation-Date: 2019-02-01 10:19+0100\n"
 "PO-Revision-Date:  2005-05-17 19:57+0200\n"
 "Last-Translator: Aiet Kolkhi <aiet@qartuli.net>\n"
 "Language-Team: Georgian <i18n@suse.de>\n"
@@ -1406,6 +1406,30 @@ msgstr "%1 დანაყოფის შემოწმება"
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "%1 დანაყოფის შემოწმება"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a LUKS device next to a partition table on the\n"
+"device %1$s. The LUKS device will be ignored."
+msgstr ""
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a LVM logical volume next to a partition table on the\n"
+"device %1$s. The LVM logical volume will be ignored."
+msgstr ""
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a file system next to a partition table on the\n"
+"device %1$s. The file system will be ignored."
+msgstr ""
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"

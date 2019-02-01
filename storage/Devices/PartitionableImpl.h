@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,6 +58,13 @@ namespace storage
 	PtType get_default_partition_table_type() const;
 
 	virtual vector<PtType> get_possible_partition_table_types() const;
+
+	/**
+	 * Check if some other storage stuff (e.g. filesystem, LVM
+	 * logical volume) is found on the partitionable (next to a
+	 * partitiontable).
+	 */
+	void check_unambiguity(Prober& prober) const;
 
 	virtual void probe_pass_1a(Prober& prober) override;
 	virtual void probe_pass_1c(Prober& prober) override;
