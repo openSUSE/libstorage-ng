@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-31 10:33+0100\n"
+"POT-Creation-Date: 2019-02-01 10:19+0100\n"
 "PO-Revision-Date: 2018-05-14 06:18+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -1513,6 +1513,30 @@ msgstr "볼륨 그룹 %3$s에서 씬 풀 논리적 볼륨 %1$s(%2$s) 삭제 중"
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "볼륨 그룹 %1$s(%2$s) 삭제 중"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a LUKS device next to a partition table on the\n"
+"device %1$s. The LUKS device will be ignored."
+msgstr ""
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a LVM logical volume next to a partition table on the\n"
+"device %1$s. The LVM logical volume will be ignored."
+msgstr ""
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by the device name (e.g. /dev/sda)
+#, c-format
+msgid ""
+"Detected a file system next to a partition table on the\n"
+"device %1$s. The file system will be ignored."
+msgstr ""
 
 #. TRANSLATORS: name of partition type
 #, fuzzy
