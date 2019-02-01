@@ -764,6 +764,27 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::has_bcache() const
+    {
+	return has_single_child_of_type<const Bcache>();
+    }
+
+
+    Bcache*
+    BlkDevice::Impl::get_bcache()
+    {
+	return get_single_child_of_type<Bcache>();
+    }
+
+
+    const Bcache*
+    BlkDevice::Impl::get_bcache() const
+    {
+	return get_single_child_of_type<const Bcache>();
+    }
+
+
     BcacheCset*
     BlkDevice::Impl::create_bcache_cset()
     {
@@ -777,6 +798,27 @@ namespace storage
 	User::create(devicegraph, get_non_impl(), bcache_cset);
 
 	return bcache_cset;
+    }
+
+
+    bool
+    BlkDevice::Impl::has_bcache_cset() const
+    {
+	return has_single_child_of_type<const BcacheCset>();
+    }
+
+
+    BcacheCset*
+    BlkDevice::Impl::get_bcache_cset()
+    {
+	return get_single_child_of_type<BcacheCset>();
+    }
+
+
+    const BcacheCset*
+    BlkDevice::Impl::get_bcache_cset() const
+    {
+	return get_single_child_of_type<const BcacheCset>();
     }
 
 

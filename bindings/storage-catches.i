@@ -155,6 +155,10 @@
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType, storage::Exception) storage::BlkDevice::find_by_any_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFoundByName, storage::DeviceHasWrongType) storage::BlkDevice::find_by_name(const Devicegraph *devicegraph, const std::string &name);
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_bcache();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_bcache() const;
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_bcache_cset();
+%catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_bcache_cset() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem();
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_blk_filesystem() const;
 %catches(storage::WrongNumberOfChildren, storage::DeviceHasWrongType) storage::BlkDevice::get_encryption();

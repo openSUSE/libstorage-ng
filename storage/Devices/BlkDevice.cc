@@ -274,10 +274,52 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::has_bcache() const
+    {
+	return get_impl().has_bcache();
+    }
+
+
+    Bcache*
+    BlkDevice::get_bcache()
+    {
+	return get_impl().get_bcache();
+    }
+
+
+    const Bcache*
+    BlkDevice::get_bcache() const
+    {
+	return get_impl().get_bcache();
+    }
+
+
     BcacheCset*
     BlkDevice::create_bcache_cset()
     {
 	return get_impl().create_bcache_cset();
+    }
+
+
+    bool
+    BlkDevice::has_bcache_cset() const
+    {
+	return get_impl().has_bcache_cset();
+    }
+
+
+    BcacheCset*
+    BlkDevice::get_bcache_cset()
+    {
+	return get_impl().get_bcache_cset();
+    }
+
+
+    const BcacheCset*
+    BlkDevice::get_bcache_cset() const
+    {
+	return get_impl().get_bcache_cset();
     }
 
 

@@ -118,7 +118,17 @@ namespace storage
 
 	Bcache* create_bcache(const std::string& name);
 
+	bool has_bcache() const;
+
+	Bcache* get_bcache();
+	const Bcache* get_bcache() const;
+
 	BcacheCset* create_bcache_cset();
+
+	bool has_bcache_cset() const;
+
+	BcacheCset* get_bcache_cset();
+	const BcacheCset* get_bcache_cset() const;
 
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
