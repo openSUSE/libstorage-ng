@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -108,6 +108,53 @@ namespace storage
 
 
     void
+    Partitionable::Impl::check_unambiguity(Prober& prober) const
+    {
+	const Blkid& blkid = prober.get_system_info().getBlkid();
+
+	Blkid::const_iterator it = blkid.find_by_name(get_name(), prober.get_system_info());
+	if (it == blkid.end())
+	    return;
+
+	if (it->second.is_fs)
+	{
+	    y2err("found filesystem next to partition table on " << get_name());
+
+	    // TRANSLATORS: Error message displayed during probing,
+	    // %1$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a file system next to a partition table on the\n"
+				  "device %1$s. The file system will be ignored."), get_name());
+
+	    error_callback(prober.get_probe_callbacks(), text);
+	}
+
+	if (it->second.is_luks)
+	{
+	    y2err("found LUKS next to partition table on " << get_name());
+
+	    // TRANSLATORS: Error message displayed during probing,
+	    // %1$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a LUKS device next to a partition table on the\n"
+				  "device %1$s. The LUKS device will be ignored."), get_name());
+
+	    error_callback(prober.get_probe_callbacks(), text);
+	}
+
+	if (it->second.is_lvm)
+	{
+	    y2err("found LVM logical volume next to partition table on " << get_name());
+
+	    // TRANSLATORS: Error message displayed during probing,
+	    // %1$s is replaced by the device name (e.g. /dev/sda)
+	    Text text = sformat(_("Detected a LVM logical volume next to a partition table on the\n"
+				  "device %1$s. The LVM logical volume will be ignored."), get_name());
+
+	    error_callback(prober.get_probe_callbacks(), text);
+	}
+    }
+
+
+    void
     Partitionable::Impl::probe_pass_1c(Prober& prober)
     {
 	if (has_children() || !is_active() || get_size() == 0)
@@ -145,6 +192,8 @@ namespace storage
 
 		PartitionTable* partition_table = create_partition_table(label);
 		partition_table->get_impl().probe_pass_1c(prober);
+
+		check_unambiguity(prober);
 	    }
 	}
 	catch (const Exception& exception)

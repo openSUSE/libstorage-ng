@@ -419,6 +419,18 @@
       <stdout></stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda1</stdout>
+      <stdout>N: sda1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sda2'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda2</stdout>
+      <stdout>N: sda2</stdout>
+    </Command>
+    <Command>
       <name>/sbin/udevadm info '/dev/sdb'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb</stdout>
       <stdout>N: sdb</stdout>
@@ -521,6 +533,18 @@
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=7346118</stdout>
       <stdout></stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc2</stdout>
+      <stdout>N: sdc2</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdd'</name>

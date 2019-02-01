@@ -453,6 +453,18 @@
       <stdout>E: USEC_INITIALIZED=9986984</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdb1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1</stdout>
+      <stdout>N: sdb1</stdout>
+    </Command>>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdb2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb2</stdout>
+      <stdout>N: sdb2</stdout>
+    </Command>>
+    <Command>
       <name>/sbin/udevadm info '/dev/sdc'</name>
       <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc</stdout>
       <stdout>N: sdc</stdout>
@@ -502,6 +514,18 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=9989709</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdc2'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc2</stdout>
+      <stdout>N: sdc2</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sr0'</name>

@@ -461,6 +461,12 @@
       <stdout>E: USEC_INITIALIZED=1091470555</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sda1'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/sda1</stdout>
+      <stdout>N: sda1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/udevadm info '/dev/sdb'</name>
       <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb</stdout>
       <stdout>N: sdb</stdout>
@@ -563,6 +569,12 @@
       <stdout>E: SYSTEMD_READY=0</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=1091470133</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sdd'</name>
