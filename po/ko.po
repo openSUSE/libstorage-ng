@@ -8,17 +8,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-05-14 06:18+0000\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
-"Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ko/>\n"
+"Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ko/>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 "X-Poedit-Language: Korean\n"
 "X-Poedit-Country: KOREA, REPUBLIC OF\n"
 "X-Poedit-SourceCharset: utf-8\n"
@@ -27,13 +27,15 @@ msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"정말입니까?!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "%1$s을(를) %2$s(으)로 추가"
+msgstr "%1$s(%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -41,7 +43,7 @@ msgstr "%1$s을(를) %2$s(으)로 추가"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "%2$s을(를) 통해 %1$s이(가) 캐싱됨"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -211,7 +213,7 @@ msgstr "/etc/fstab에 %3$s에 있는 %2$s 하위 볼륨의 마운트 포인트 %
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "%1$s의 Bcache 캐시 세트를 Bcache %2$s(%3$s)에 연결"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -219,7 +221,7 @@ msgstr ""
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+msgstr "%1$s의 Bcache 캐시 세트를 Bcache %2$s(%3$s)에 연결"
 
 #  10^3 bytes
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
@@ -227,9 +229,8 @@ msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "파티션"
+msgstr "BIOS 부트 파티션"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -310,11 +311,13 @@ msgstr "%1$s에서 GPT의 보호 MBR 부팅 플래그 지우는 중"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "%4$s(으)로 %3$s용 %1$s(%2$s) 파티션 생성"
+msgstr ""
+"%6$s에서 %5$s을(를) 사용하여 %4$s의 %1$s %2$s(%3$s) \n"
+"생성"
 
 # SLE12
 #. TRANSLATORS:
@@ -324,11 +327,13 @@ msgstr "%4$s(으)로 %3$s용 %1$s(%2$s) 파티션 생성"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr ""
+"%4$s에서 스왑할 %1$s %2$s(%3$s)\n"
+"생성"
 
 # SLE12
 #. TRANSLATORS:
@@ -338,9 +343,9 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "%4$s에서 %1$s %2$s(%3$s) 생성"
 
 # SLE12
 #. TRANSLATORS:
@@ -351,11 +356,13 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "%4$s(으)로 %3$s용 %1$s(%2$s) 파티션 생성"
+msgstr ""
+"%5$s에서 %4$s을(를) 사용하여 %1$s %2$s(%3$s) \n"
+"생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -370,17 +377,17 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "하드 디스크 %1$s(%2$s) 생성"
+msgstr "Bcache %1$s(%2$s) 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "%1$s(%2$s) 논리적 파티션 생성"
+msgstr "%1$s(%2$s)의 Bcache 캐시 세트 생성"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -435,9 +442,9 @@ msgstr "볼륨 그룹 %3$s에서 %4$s(으)로 LVM 논리적 볼륨 %1$s(%2$s) �
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "암호화된 %1$s(%2$s)에 LVM 물리적 볼륨 생성"
+msgstr "%1$s(%2$s)을(를) 통해 LVN 물리적 볼륨 생성"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -475,9 +482,9 @@ msgstr "%1$s에 MS-DOS 파티션 테이블 생성"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "%2$s(%3$s)에 bcache %1$s 생성"
 
 # SLE12
 #. TRANSLATORS:
@@ -486,18 +493,18 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 %1$s(%2$s) 파티션 생성"
+msgstr "%5$s을(를) 사용하여 %4$s용으로 %2$s(%3$s)에 bcache %1$s 생성"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "스왑을 위해 %2$s(%3$s)에 bcache %1$s 생성"
 
 # SLE12
 #. TRANSLATORS:
@@ -505,9 +512,9 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "%4$s을(를) 사용하여 %2$s(%3$s)에 bcache %1$s 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -517,11 +524,13 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr ""
+"%4$s에서 암호화된 %1$s %2$s(%3$s)\n"
+"생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -533,11 +542,13 @@ msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr ""
+"%6$s에서 %5$s을(를) 사용하여 %4$s용으로 암호화된 %1$s %2$s(%3$s) \n"
+"생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -547,11 +558,13 @@ msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "스왑용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr ""
+"%4$s에서 스왑을 위해 암호화된 %1$s %2$s(%3$s)\n"
+"생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -562,11 +575,13 @@ msgstr "스왑용 암호화된 파티션 %1$s(%2$s) 생성"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr ""
+"%5$s에서 %4$s을(를) 사용하여 암호화된 %1$s %2$s(%3$s)\n"
+"생성"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -614,9 +629,9 @@ msgstr "볼륨 그룹 %3$s에서 %4$s(으)로 암호화된 LVM 논리적 볼륨 
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "%2$s(%3$s)에서 암호화된 bcache %1$s 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -625,18 +640,18 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr "%5$s을(를) 사용하여 %4$s용으로 %2$s(%3$s)에 암호화된 bcache %1$s 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "스왑용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr "스왑을 위해 %2$s(%3$s)에 암호화된 bcache %1$s 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -644,9 +659,9 @@ msgstr "스왑용 암호화된 파티션 %1$s(%2$s) 생성"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%4$s(으)로 %3$s용 암호화된 파티션 %1$s(%2$s) 생성"
+msgstr "%4$s(으)로 %2$s2(%3$s3)에 암호화된 파티션 %1$s 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS:
@@ -894,17 +909,17 @@ msgstr "%2$s(%3$s)에서 %1$s 생성"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "파티션 %1$s(%2$s) 생성 중"
+msgstr "Bcache %1$s(%2$s) 생성"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "%1$s(%2$s) 논리적 파티션을 생성 중"
+msgstr "Bcache 캐시 세트 %1$s(%2$s) 생성"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -953,7 +968,7 @@ msgstr "확장 파티션 %1$s(%2$s) 생성 중"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
 msgstr "하드 디스크 %1$s(%2$s) 생성"
 
@@ -1059,17 +1074,17 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "다중경로 파티션 %1$s(%2$s) 비활성화"
+msgstr "Bcache %1$s(%2$s) 비활성화"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "다중경로 파티션 %1$s(%2$s) 비활성화"
+msgstr "%1$s(%2$s)에서 Bcache 캐시 세트 비활성화"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1121,17 +1136,17 @@ msgstr "볼륨 그룹 %3$s에 씬 풀 논리적 볼륨 %1$s(%2$s) 비활성화"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "%1$s 다중경로(%2$s) 비활성화 중"
+msgstr "Bcache %1$s(%2$s) 비활성화"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "%1$s 다중경로(%2$s) 비활성화 중"
+msgstr "%1$s(%2$s)에서 Bcache 캐시 세트 비활성화"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
@@ -1185,9 +1200,9 @@ msgstr "볼륨 그룹 %3$s에 씬 풀 논리적 볼륨 %1$s(%2$s) 비활성화 �
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "%2$s(%3$s)에 %1$s 삭제"
+msgstr "%1$s %2$s(%3$s) 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -1202,17 +1217,17 @@ msgstr "%2$s(%3$s)에 %1$s 삭제"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "%1$s (%2$s) 파티션을 삭제"
+msgstr "Bcache %1$s(%2$s) 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "논리적 파티션 %1$s(%2$s) 삭제"
+msgstr "%1$s(%2$s)에서 Bcache 캐시 세트 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -1248,9 +1263,9 @@ msgstr "%1$s에서 MS-DOS 파티션 테이블 삭제"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "%2$s(%3$s)에 %1$s 삭제"
+msgstr "%2$s(%3$s)에서 bcache %1$s 삭제"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1375,17 +1390,17 @@ msgstr "%2$s(%3$s)에 %1$s 삭제 중"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "%1$s(%2$s) 파티션 삭제 중"
+msgstr "Bcache %1$s(%2$s) 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "논리적 파티션 %1$s(%2$s) 삭제 중"
+msgstr "%1$s(%2$s)에서 Bcache 캐시 세트 삭제"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1539,9 +1554,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "파티션"
+msgstr "진단 파티션"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1558,9 +1572,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "파티션"
+msgstr "EFI 시스템 파티션"
 
 # SLE12
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
@@ -1572,9 +1585,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "MD %1$s %2$s(%3$s) 생성"
+msgstr "%1$s %2$s(%3$s) 암호화"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1582,18 +1595,18 @@ msgstr "MD %1$s %2$s(%3$s) 생성"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 암호화"
+msgstr "%5$s을(를) 사용하여 %4$s용으로 %1$s %2$s(%3$s) 암호화"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 암호화"
+msgstr "%4$s을(를) 사용하여 %1$s %2$s(%3$s) 암호화"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1629,9 +1642,9 @@ msgstr "%4$s(으)로 볼륨 그룹 %3$s에 LVM 논리적 볼륨 %1$s(%2$s) 암�
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
+msgstr "%2$s(%3$s)에서 bcache %1$s 암호화"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1639,18 +1652,18 @@ msgstr "%2$s(%3$s)에서 %1$s을(를) 생성"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 암호화"
+msgstr "%5$s을(를) 사용하여 %4$s의 %2$s(%3$s)에서 bcache %1$s 암호화"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 암호화"
+msgstr "%4$s을(를) 사용하여 %2$s(%3$s)에서 bcache %1$s 암호화"
 
 # SLE12
 #. TRANSLATORS:
@@ -1695,7 +1708,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1703,18 +1716,18 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 포맷"
+msgstr "%5$s을(를) 사용하여 %4$s용으로 %1$s %2$s(%3$s) 포맷"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 포맷"
+msgstr "%4$s을(를) 사용하여 %1$s %2$s(%3$s) 포맷"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1742,34 +1755,34 @@ msgstr "%4$s(으)로 볼륨 그룹 %3$s에서 LVM 논리적 볼륨 %1$s(%2$s) �
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 포맷"
+msgstr "%5$s을(를) 사용하여 %4$s용으로 %2$s(%3$s)에서 bcache %1$s 포맷"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "%4$s(으)로 %3$s용 파티션 %1$s(%2$s) 포맷"
+msgstr "%4$s을(를) 사용하여 %2$s(%3$s)에서 bcache %1$s 포맷"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "스왑용 파티션 %1$s(%2$s) 생성"
+msgstr "%1$s (%2$s) 파티션을 암호화된 스왑으로 포맷"
 
 # SLE12
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "스왑용 파티션 %1$s(%2$s) 생성"
+msgstr "%1$s(%2$s) 파티션을 스왑으로 포맷"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1944,7 +1957,7 @@ msgstr "암시적 파티션 테이블"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1973,20 +1986,19 @@ msgstr "LVM 볼륨 그룹"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "LVM 검색 중"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux 스왑"
 
 #  label text, short for Megabyte (MB)
 #  label text sort for Megabyte (MB)
@@ -2026,16 +2038,16 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoft 예약된 파티션"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "%2$s에 %1$s 탑재"
+msgstr "%4$s에 %1$s %2$s(%3$s) 마운트"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2070,9 +2082,9 @@ msgstr "마운트 포인트"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "%2$s에서 %3$s에 하위 볼륨 %1$s 탑재"
+msgstr "%2$s(%3$s)에서 %4$s에 bcache %1$s 마운트"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -2137,9 +2149,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "파티션"
+msgstr "PReP 부트 파티션"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2209,18 +2220,17 @@ msgid "Probing NFS failed"
 msgstr "NFS 검색하지 못함"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "bcache %s 검색하지 못함"
+msgstr "부유 블록 장치 %s 검사 실패"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "부유 블록 장치 검사"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "DASD 검색하지 못함"
+msgstr "부유 블록 장치 검사 실패"
 
 #. TRANSLATORS: progress message
 #, fuzzy
@@ -2301,9 +2311,9 @@ msgid "Probing partitions failed"
 msgstr "파티션 검색하지 못함"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "파티션 검색하지 못함"
+msgstr "%s의 파티션 검사 실패"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2436,15 +2446,15 @@ msgstr "/etc/fstab의 마운트 포인트 %1$s을(를) %2$s에서 %3$s(으)로 �
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "%1$s에 GPT 생성 중"
+msgstr "%1$s에서 GPT 복구"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "%1$s에 GPT 생성 중"
+msgstr "%1$s에서 GPT 복구"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2727,7 +2737,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "부유 블록 장치"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2818,7 +2828,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows 데이터 파티션"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
@@ -2826,7 +2836,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #  10^3 bytes
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)

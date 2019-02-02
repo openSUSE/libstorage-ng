@@ -14,17 +14,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-11-23 20:01+0000\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/nl/>\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"PO-Revision-Date: 2019-02-02 12:52+0000\n"
+"Last-Translator: Eva van Rein <vistatec@globaltextware.nl>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
 
@@ -46,7 +46,7 @@ msgstr "%1$s (%2$s)"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr "%1$s wordt gecacht door %2$s"
+msgstr "%1$s wordt gebruikt voor cache door %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)

@@ -6,30 +6,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-04-18 13:36+0000\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
-"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ar/>\n"
+"Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ar/>\n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
 "are you serious?!"
 msgstr ""
+"\n"
+"هل أنت جاد؟!"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "إضافة %1$s إلى %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -37,7 +39,7 @@ msgstr "إضافة %1$s إلى %2$s"
 #. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
-msgstr ""
+msgstr "يتم تخزين %1$s مؤقتًا بالحجم %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -160,7 +162,7 @@ msgstr "إضافة جهاز طبقة التشفير في %1$s إلى /etc/cryptt
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr "إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
+msgstr "إضافة نقطة التوصيل %1$s من %2$s إلى /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -169,7 +171,7 @@ msgstr "إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
-"إضافة نقطة توصيل %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى /etc/fstab"
+"إضافة نقطة التوصيل %1$s لوحدة التخزين الفرعية %2$s في %3$s إلى /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -198,7 +200,7 @@ msgstr "تتم  الآن إضافة جهاز طبقة التشفير في %1$s �
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "تتم الآن إضافة نقطة التركيب %1$s من %2$s إلى /etc/fstab"
+msgstr "تتم الآن إضافة نقطة التوصيل %1$s من %2$s إلى /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -217,6 +219,7 @@ msgstr ""
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
 msgstr ""
+"قم بإلحاق مجموعة ذاكرات Bcache المؤقتة في %1$s بذاكرة Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -225,15 +228,15 @@ msgstr ""
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
 msgstr ""
+"جارٍ إلحاق مجموعة ذاكرات Bcache المؤقتة في %1$s بذاكرة Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
 msgstr "B"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "BIOS Boot Partition"
-msgstr "قسم"
+msgstr "قسم تشغيل BIOS"
 
 #. TRANSLATORS: name of object
 msgid "Bcache"
@@ -313,11 +316,13 @@ msgstr "يتم الآن مسح علامة تشغيل MBR للحماية في GPT
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "إنشاء القسم %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) لنقطة %4$s بنظام الملفات %5$s\n"
+"من %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -326,11 +331,13 @@ msgstr "إنشاء القسم %1$s (‏%2$s) لـ %3$s مع %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) للتبديل\n"
+"من %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -339,9 +346,9 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بإنشاء %1$s %2$s (%3$s) من %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -351,11 +358,13 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "إنشاء القسم %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) بالاسم %4$s\n"
+"من القائمة %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -368,16 +377,16 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache %1$s (%2$s)"
-msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
+msgstr "قم بإنشاء Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "إنشاء القسم المنطقي %1$s (‏%2$s)"
+msgstr "قم بإنشاء مجموعة ذاكرات Bcache المؤقتة في %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -436,9 +445,9 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
-msgstr "إنشاء وحدة نخزين فعلية على القسم المشفر %1$s (%2$s)"
+msgstr "قم بإنشاء وحدة تخزين فعلية لجهاز LVM بالقسم %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -472,9 +481,9 @@ msgstr "إنشاء جدول لقسم MS-DOS على %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بإنشاء bcache %1$s في %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -482,26 +491,26 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "إنشاء القسم %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr "قم بإنشاء bcache %1$s بالجهاز %2$s (%3$s) لنقطة التحميل %4$s بحجم %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بإنشاء bcache %1$s على %2$s (%3$s) للتبديل"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بإنشاء bcache %1$s في %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -510,11 +519,13 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
 "from %4$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s)\n"
+"المشفر من %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -525,11 +536,13 @@ msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
 #. %6$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) المشفر لنقطة التحميل %4$s بالنظام %5$s\n"
+"من %6$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -538,11 +551,13 @@ msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
 #. %4$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
 "from %4$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) للتبادل"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) المشفر للتبديل\n"
+"من القائمة %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -552,11 +567,13 @@ msgstr "إنشاء قسم مشفر %1$s (‏%2$s) للتبادل"
 #. %5$s is replaced with a comma-spearated list of the devices
 #. the RAID is built from and their sizes: e.g.
 #. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء %1$s %2$s (%3$s) المشفر %4$s\n"
+"من %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -607,9 +624,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بإنشاء ذاكرة bcache المشفرة %1$s في %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -617,26 +634,28 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr ""
+"قم بإنشاء ذاكرة bcache المشفرة %1$s في %2$s (%3$s) لنقطة التحميل %4$s بنظام "
+"الملفات %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) للتبادل"
+msgstr "قم بإنشاء bcache المشفرة %1$s في %2$s (%3$s) للتبديل"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "إنشاء قسم مشفر %1$s (‏%2$s) لـ %3$s مع %4$s"
+msgstr "قم بإنشاء bcache المشفرة %1$s في %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -865,16 +884,16 @@ msgstr "يتم الآن إنشاء %1$s على %2$s (‏%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم %1$s (‏%2$s)"
+msgstr "جارٍ إنشاء Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "يتم الآن إنشاء قسم منطقي %1$s (‏%2$s)"
+msgstr "جارٍ إنشاء مجموعة ذاكرات Bcache المؤقتة %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -918,9 +937,9 @@ msgstr "يتم الآن إنشاء قسم موسع %1$s (‏%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
 #. %2$s is replaced by the size (e.g. 20 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating hard disk %1$s (%2$s)"
-msgstr "إنشاء قرص صلب %1$s (‏%2$s)"
+msgstr "جارٍ إنشاء قرص صلب %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
@@ -1020,16 +1039,16 @@ msgstr "DM RAID"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "إلغاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "قم بإلغاء تنشيط Bcache %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "إلغاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "قم بإلغاء تنشيط مجموعة ذاكرات Bcache المؤقتة في %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1084,16 +1103,16 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "جارٍ تنشيط Bcache %1$s (‏%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "إلعاء تنشيط تعدد المسارات %1$s (‏%2$s)"
+msgstr "جارٍ إلغاء تنشيط مجموعة ذاكرات Bcache في %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1150,9 +1169,9 @@ msgstr ""
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s %2$s (%3$s)"
-msgstr "حذف %1$s‏ في %2$s (‏%3$s)"
+msgstr "قم بحذف %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
@@ -1165,16 +1184,16 @@ msgstr "حذف %1$s‏ في %2$s (‏%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache %1$s (%2$s)"
-msgstr "حذف قسم %1$s (‏%2$s)"
+msgstr "قم بحذف Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "حذف القسم المنطقي %1$s (‏%2$s)"
+msgstr "قم بحذف مجموعة ذاكرات Bcache المؤقتة في %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1206,9 +1225,9 @@ msgstr "حذف جدول قسم MS-DOS‏ على %1$s"
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
-msgstr "حذف %1$s‏ في %2$s (‏%3$s)"
+msgstr "قم بحذف bcache %1$s في %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1327,16 +1346,16 @@ msgstr "يتم الآن حذف %1$s على %2$s (‏%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "يتم الآن حذف قسم %1$s (‏%2$s)"
+msgstr "جارٍ حذف Bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "يتم الآن حذف قسم منطقي %1$s (‏%2$s)"
+msgstr "جارٍ حذف مجموعة ذاكرات Bcache المؤقتة في %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1485,9 +1504,8 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Diagnostics Partition"
-msgstr "قسم"
+msgstr "قسم التشخيص"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
@@ -1502,9 +1520,8 @@ msgid "EB"
 msgstr "EB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "EFI System Partition"
-msgstr "قسم"
+msgstr "قسم نظام EFI"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 msgid "EiB"
@@ -1514,9 +1531,9 @@ msgstr "EiB"
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
-msgstr "إنشاء MD‏ %1$s %2$s (‏%3$s)"
+msgstr "قم بتشفير %1$s %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1524,18 +1541,18 @@ msgstr "إنشاء MD‏ %1$s %2$s (‏%3$s)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "تشفير قسم %1$s (%2$s) لـ %3$s بـ %4$s"
+msgstr "قم بتشفير %1$s %2$s (%3$s) لنقطة التحميل %4$s بنظام الملفات %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
-msgstr "تشفير قسم %1$s (%2$s) لـ %3$s بـ %4$s"
+msgstr "قم بتشفيير %1$s %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1574,9 +1591,9 @@ msgstr ""
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
-msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
+msgstr "قم بتشفير bcache %1$s في %2$s (%3$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1584,18 +1601,19 @@ msgstr "إنشاء %1$s 1 على %2$s 2 (‏%3$s 3)"
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "تشفير قسم %1$s (%2$s) لـ %3$s بـ %4$s"
+msgstr ""
+"قم بتشفير bcache %1$s في %2$s (%3$s) لنقطة التحميل %4$s بنظام الملفات %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "تشفير قسم %1$s (%2$s) لـ %3$s بـ %4$s"
+msgstr "قم بتشفير bcache %1$s في %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1639,7 +1657,7 @@ msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1647,18 +1665,18 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) for %4$s with %5$s"
-msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
+msgstr "قم بتنسيق %1$s %2$s (%3$s) لنقطة التحميل %4$s بنظام الملفات %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
-msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
+msgstr "قم بتنسيق %1$s %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
@@ -1690,32 +1708,33 @@ msgstr ""
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s"
-msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
+msgstr ""
+"قم بتنسيق bcache %1$s في %2$s (%3$s) لنقطة التحميل %4$s بنظام الملفات %5$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
-#, fuzzy, c-format
+#, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
-msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
+msgstr "قم بتنسيق bcache %1$s في %2$s (%3$s) بنظام الملفات %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
-msgstr "إنشاء القسم %1$s (‏%2$s) للتبادل"
+msgstr "قم بتنسيق القسم %1$s (%2$s) كتبديل مشفر"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
 #. %2$s is replaced with the size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Format partition %1$s (%2$s) as swap"
-msgstr "إنشاء القسم %1$s (‏%2$s) للتبادل"
+msgstr "قم بتنسيق القسم %1$s (%2$s) كتبديل"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
@@ -1732,7 +1751,7 @@ msgstr "تنسيق قسم  %1$s  (%2$s 2) لـ %3$s بـ %4$s"
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
-msgstr "تنسيق القسم %1$s (‏%2$s) بـ %3$s"
+msgstr "تنسيق القسم %1$s (‏%2$s) بنظام الملفات %3$s"
 
 #. TRANSLATORS: symbol for "giga" (best keep untranslated)
 msgid "G"
@@ -1894,7 +1913,7 @@ msgstr "جدول قسم ضمني"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
@@ -1922,20 +1941,19 @@ msgstr "مجموعة وحدات التخزين LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "Linux LVM"
-msgstr "يتم الآن بحث LVM"
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 msgid "M"
@@ -1959,16 +1977,16 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "قسم Microsoft المحجوز"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
-msgstr "توصيل %1$s في %2$s"
+msgstr "قم بتوصيل %1$s %2$s (%3$s) في %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2004,9 +2022,9 @@ msgstr "نقطة التوصيل"
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
 #. %3$s is replaced with the size (e.g. 2 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
-msgstr "توصيل وحدة التخزين الفرعية %1$s على %2$s في %3$s"
+msgstr "قم بتوصيل bcache %1$s بالجهاز %2$s (%3$s) عند نقطة التوصيل %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
@@ -2067,9 +2085,8 @@ msgid "PB"
 msgstr "PB"
 
 #. TRANSLATORS: name of partition type
-#, fuzzy
 msgid "PReP Boot Partition"
-msgstr "قسم"
+msgstr "قسم تشغيل PReP"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
@@ -2080,9 +2097,9 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing DASD %s failed"
-msgstr "فشل بحث DASD"
+msgstr "فشل البحث عن DASD %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
@@ -2117,9 +2134,9 @@ msgid "Probing LVM failed"
 msgstr "فشل بحث LVM"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing MD RAID %s failed"
-msgstr "فشل بحث MD RAID"
+msgstr "فشل بحث MD RAID %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
@@ -2138,18 +2155,17 @@ msgid "Probing NFS failed"
 msgstr "فشل بحث NFS"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing Stray Block Device %s failed"
-msgstr "فشل بحث bcache"
+msgstr "فشل فحص جهاز الكتلي العشوائي %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing Stray Block Devices"
-msgstr ""
+msgstr "جارٍ فحص الأجهزة الكتلية العشوائية"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing Stray Block Devices failed"
-msgstr "فشل بحث DASD"
+msgstr "فشل فحص الأجهزة الكتلية العشوائية"
 
 #. TRANSLATORS: progress message
 #, fuzzy
@@ -2166,9 +2182,9 @@ msgid "Probing bcache"
 msgstr "يتم الآن بحث bcache"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing bcache %s failed"
-msgstr "فشل بحث bcache"
+msgstr "فشل بحث bcache %s"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
@@ -2196,9 +2212,8 @@ msgid "Probing disks failed"
 msgstr "فشل بحث الأقراص"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing failed"
-msgstr "فشل بحث LVM"
+msgstr "فشل البحث"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2230,9 +2245,9 @@ msgid "Probing partitions failed"
 msgstr "فشل بحث الأقسام"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing partitions on %s failed"
-msgstr "فشل بحث الأقسام"
+msgstr "فشل بحث الأقسام في %s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2279,7 +2294,7 @@ msgstr "إزالة جهاز طبقة تشفير على %1$s من /etc/crypttab"
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
-msgstr "إزالة نقطة التتركيب %1$s الخاصة بـ %2$s من /etc/fstab"
+msgstr "إزالة نقطة التوصيل %1$s الخاصة بـ %2$s من /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2288,7 +2303,7 @@ msgstr "إزالة نقطة التتركيب %1$s الخاصة بـ %2$s من /e
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
-"إزالة نقطة التركيب %1$s لوحدة التخزين الفرعية %2$s على %3$s من /etc/fstab"
+"إزالة نقطة التوصيل %1$s لوحدة التخزين الفرعية %2$s على %3$s من /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2317,7 +2332,7 @@ msgstr "تتم الآن إزالة جهاز طبقة تشفير على %1$s من
 #. %2$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
-msgstr "تتم الآن إزالة نقطة التركيب %1$s الخاصة بـ %2$s من /etc/fstab"
+msgstr "تتم الآن إزالة نقطة التوصيل %1$s الخاصة بـ %2$s من /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
@@ -2326,7 +2341,7 @@ msgstr "تتم الآن إزالة نقطة التركيب %1$s الخاصة ب�
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
-"يتم الآن إزالة نقطة التركيب %1$s من وحدة التخزين الفرعية %2$s على %3$s من /"
+"يتم الآن إزالة نقطة التوصيل %1$s من وحدة التخزين الفرعية %2$s على %3$s من /"
 "etc/fstab"
 
 #. TRANSLATORS:
@@ -2349,7 +2364,7 @@ msgstr "إعادة تسمية جهاز طبقة تشفير من %1$s إلى %2$s
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "إعادة تسمية نقطة التركيب %1$s من %2$s إلأى %3$s في /etc/fstab"
+msgstr "إعادة تسمية نقطة التوصيل %1$s من %2$s إلى %3$s في /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -2364,19 +2379,19 @@ msgstr "تتم الآن إعادة تسمية جهاز طبقة تشفير من 
 #. %3$s is replaced by device name (e.g. /dev/sda5)
 #, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "تتم الآن إعاة تسمية نقطة التركيب %1$s من %2$s إلى %3$s في /etc/fstab"
+msgstr "تتم الآن إعاة تسمية نقطة التوصيل %1$s من %2$s إلى %3$s في /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "يتم الآن إنشاء GPT على %1$s"
+msgstr "قم بإصلاح جدول التقسيم ذو المعرفات الفريدة الشامل في %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "يتم الآن إنشاء GPT على %1$s"
+msgstr "جارٍ إصلاح جدول التقسيم ذو المعرفات الفريدة الشامل في %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2669,7 +2684,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray Block Device"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
@@ -2755,7 +2770,7 @@ msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windows Data Partition"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
@@ -2763,7 +2778,7 @@ msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
 msgid "k"

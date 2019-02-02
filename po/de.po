@@ -13,17 +13,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-12-08 15:29+0000\n"
-"Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/de/>\n"
+"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"PO-Revision-Date: 2019-02-02 12:52+0000\n"
+"Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -1023,7 +1023,7 @@ msgstr "DASD-Partitionstabelle"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr "DM RAID"
+msgstr "DM-RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1934,7 +1934,7 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr "MD RAID"
+msgstr "MD-RAID"
 
 #. TRANSLATORS: name of object
 msgid "MS-DOS Partition Table"
