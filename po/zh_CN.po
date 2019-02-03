@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-12-02 02:22+0000\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -1416,7 +1416,7 @@ msgstr "正在删除卷组 %1$s (%2$s)"
 msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
-msgstr ""
+msgstr "在设备 %1$s 上检测到分区表邻近有 LUKS 设备。该 LUKS 设备将被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1424,7 +1424,7 @@ msgstr ""
 msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
-msgstr ""
+msgstr "在设备 %1$s 上检测到分区表邻近有 LVM 逻辑卷。该逻辑卷将被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1432,7 +1432,7 @@ msgstr ""
 msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
-msgstr ""
+msgstr "在设备 %1$s 上检测到分区表邻近有文件系统。该文件系统将被忽略。"
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2075,14 +2075,12 @@ msgid "Probing Stray Block Devices failed"
 msgstr "探测离散区块设备失败"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "探测分区失败"
+msgstr "正在检测额外属性"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "探测分区失败"
+msgstr "检测额外属性失败"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
