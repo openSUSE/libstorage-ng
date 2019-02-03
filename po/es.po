@@ -17,10 +17,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2019-01-25 15:14+0000\n"
-"Last-Translator: Patricia Pazos <pms.malaga@hermestrans.com>\n"
-"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/es/>\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
+"Last-Translator: jcsl <trcs@gmx.com>\n"
+"Language-Team: Spanish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1484,6 +1484,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Se ha detectado un dispositivo LUKS junto a una tabla de particiones en el\n"
+"dispositivo %1$s. El dispositivo LUKS será ignorado."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1492,6 +1494,9 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Se ha detectado un volumen lógico LVM junto a una tabla de particiones en "
+"el\n"
+"dispositivo %1$s. El volumen lógico LVM será ignorado."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1500,6 +1505,9 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Se ha detectado un sistema de archivos junto a una tabla de particiones en "
+"el\n"
+"dispositivo %1$s. El sistema de archivos será ignorado."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2160,14 +2168,12 @@ msgid "Probing Stray Block Devices failed"
 msgstr "Error al sondear dispositivos de bloque extraviados"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Error al sondear las particiones"
+msgstr "Sondeando atributos adicionales"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Error al sondear las particiones"
+msgstr "Error al sondear atributos adicionales"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
