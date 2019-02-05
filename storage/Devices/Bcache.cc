@@ -152,24 +152,10 @@ namespace storage
     }
 
 
-    void
-    Bcache::set_sequential_cutoff(unsigned long long size)
-    {
-	get_impl().set_sequential_cutoff(size);
-    }
-
-
     unsigned
     Bcache::get_writeback_percent() const
     {
 	return get_impl().get_writeback_percent();
-    }
-
-
-    void
-    Bcache::set_writeback_percent(unsigned percent)
-    {
-	get_impl().set_writeback_percent(percent);
     }
 
 

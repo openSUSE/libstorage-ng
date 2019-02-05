@@ -108,6 +108,9 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
+	virtual Bcache* get_non_impl() override { return to_bcache(Device::Impl::get_non_impl()); }
+	virtual const Bcache* get_non_impl() const override { return to_bcache(Device::Impl::get_non_impl()); }
+
 	virtual void parent_has_new_region(const Device* parent) override;
 
 	static void run_dependency_manager(Actiongraph::Impl& actiongraph);

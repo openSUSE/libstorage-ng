@@ -133,29 +133,11 @@ namespace storage
 	unsigned long long get_sequential_cutoff() const;
 
 	/**
-	 * Sets sequential_cutoff attribute.
-	 *
-	 * This method does not make sense for Flash-only Bcache devices.
-	 *
-	 * @param[in] size size in a bytes
-	 */
-	void set_sequential_cutoff(unsigned long long size);
-
-	/**
 	 * Returns percent of writeback dirty pages.
 	 *
 	 * This method does not make sense for Flash-only Bcache devices.
 	 */
 	unsigned get_writeback_percent() const;
-
-	/**
-	 * Sets writeback percent attribute.
-	 *
-	 * This method does not make sense for Flash-only Bcache devices.
-	 *
-	 * @param[in] percent target cache mode
-	 */
-	void set_writeback_percent(unsigned percent);
 
 	/**
 	 * Get all Bcaches.

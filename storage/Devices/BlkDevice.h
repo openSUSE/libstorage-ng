@@ -205,12 +205,36 @@ namespace storage
 	 */
 	Bcache* create_bcache(const std::string& name);
 
+	bool has_bcache() const;
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	Bcache* get_bcache();
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	const Bcache* get_bcache() const;
+
 	/**
 	 * Creates an BcacheCset on the blk device.
 	 *
 	 * @throw WrongNumberOfChildren
 	 */
 	BcacheCset* create_bcache_cset();
+
+	bool has_bcache_cset() const;
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	BcacheCset* get_bcache_cset();
+
+	/**
+	 * @throw WrongNumberOfChildren, DeviceHasWrongType
+	 */
+	const BcacheCset* get_bcache_cset() const;
 
 	/**
 	 * Compare (less than) two BlkDevices by DM table name.

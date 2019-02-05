@@ -764,6 +764,27 @@ namespace storage
     }
 
 
+    bool
+    BlkDevice::Impl::has_bcache() const
+    {
+	return has_single_child_of_type<const Bcache>();
+    }
+
+
+    Bcache*
+    BlkDevice::Impl::get_bcache()
+    {
+	return get_single_child_of_type<Bcache>();
+    }
+
+
+    const Bcache*
+    BlkDevice::Impl::get_bcache() const
+    {
+	return get_single_child_of_type<const Bcache>();
+    }
+
+
     BcacheCset*
     BlkDevice::Impl::create_bcache_cset()
     {
@@ -777,6 +798,27 @@ namespace storage
 	User::create(devicegraph, get_non_impl(), bcache_cset);
 
 	return bcache_cset;
+    }
+
+
+    bool
+    BlkDevice::Impl::has_bcache_cset() const
+    {
+	return has_single_child_of_type<const BcacheCset>();
+    }
+
+
+    BcacheCset*
+    BlkDevice::Impl::get_bcache_cset()
+    {
+	return get_single_child_of_type<BcacheCset>();
+    }
+
+
+    const BcacheCset*
+    BlkDevice::Impl::get_bcache_cset() const
+    {
+	return get_single_child_of_type<const BcacheCset>();
     }
 
 
@@ -822,6 +864,54 @@ namespace storage
 
 	    if (!exists)
 		ST_THROW(Exception("wait_for_devices failed " + name));
+	}
+    }
+
+
+    void
+    wait_for_detach_devices(const vector<const BlkDevice*>& blk_devices)
+    {
+	vector<string> dev_names;
+
+	for(const BlkDevice* dev : blk_devices)
+	{
+	    dev_names.push_back(dev->get_name());
+	}
+
+	wait_for_detach_devices(dev_names);
+    }
+
+
+    void
+    wait_for_detach_devices(const vector<string>& dev_names)
+    {
+	SystemCmd(UDEVADMBIN_SETTLE);
+
+	for (auto name : dev_names)
+	{
+	    bool exists = access(name.c_str(), R_OK) == 0;
+
+	    y2mil("name:" << name << " exists:" << exists);
+
+	    if (exists)
+	    {
+		// Waits a max of 5 seconds
+		for (int count = 0; count < 500; ++count)
+		{
+		    if((count % 100) == 0)
+			y2mil("waiting for detach " << name);
+
+		    usleep(10000);
+		    exists = access(name.c_str(), R_OK) == 0;
+		    if (!exists)
+			break;
+		}
+
+		y2mil("name:" << name << " exists:" << exists);
+	    }
+
+	    if (exists)
+		ST_THROW(Exception("wait_for_detach_devices failed " + name));
 	}
     }
 

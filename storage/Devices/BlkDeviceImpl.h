@@ -118,7 +118,17 @@ namespace storage
 
 	Bcache* create_bcache(const std::string& name);
 
+	bool has_bcache() const;
+
+	Bcache* get_bcache();
+	const Bcache* get_bcache() const;
+
 	BcacheCset* create_bcache_cset();
+
+	bool has_bcache_cset() const;
+
+	BcacheCset* get_bcache_cset();
+	const BcacheCset* get_bcache_cset() const;
 
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
@@ -210,6 +220,13 @@ namespace storage
      * Run "udevadm settle" and check existence of all blk devices.
      */
     void wait_for_devices(const vector<const BlkDevice*>& blk_devices);
+
+
+    /**
+     * Run "udevadm settle" and check non existence of all blk devices.
+     */
+    void wait_for_detach_devices(const vector<const BlkDevice*>& blk_devices);
+    void wait_for_detach_devices(const vector<string>& dev_names);
 
 }
 

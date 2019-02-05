@@ -615,29 +615,19 @@ namespace storage
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    const BlkDevice* blk_device = get_backing_device();
+	    const BlkDevice* backing_device = get_backing_device();
 
-	    string cmd_line = MAKE_BCACHE_BIN " -B " + quote(blk_device->get_name());
+	    string cmd_line = BCACHE_BIN " make -B " + quote(backing_device->get_name());
 
-	    wait_for_devices({ blk_device });
+	    wait_for_devices({ backing_device });
 
 	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	    // TODO: is it enough? check with Coly how to recognize it
-	    sleep(1); // give bcache some time to finish its async operation, so bcache device exists
+	    wait_for_devices({ get_non_impl() });
 
-	    // TODO: Action for edit attributes will be needed if edit of existing bcache is allowed
-	    cmd_line = ECHO_BIN " " + quote(toString(cache_mode)) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/cache_mode");
+	    cmd_line = BCACHE_BIN " set-cachemode " + quote(backing_device->get_name()) + " " + quote(toString(cache_mode));
 
 	    SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
-
-	    cmd_line = ECHO_BIN " " + to_string(writeback_percent) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/writeback_percent");
-
-	    SystemCmd cmd3(cmd_line, SystemCmd::DoThrow);
-
-	    cmd_line = ECHO_BIN " " + to_string(sequential_cutoff) + " > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/sequential_cutoff");
-
-	    SystemCmd cmd4(cmd_line, SystemCmd::DoThrow);
 	}
     }
 
@@ -689,11 +679,11 @@ namespace storage
     void
     Bcache::Impl::do_deactivate() const
     {
-	string cmd_line = ECHO_BIN " 1 > " + quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/stop");
+	string cmd_line = BCACHE_BIN " unregister " + quote(get_backing_device()->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	sleep(1);		// TODO
+	wait_for_detach_devices({ get_non_impl() });
     }
 
 
@@ -725,14 +715,9 @@ namespace storage
     void
     Bcache::Impl::do_attach_bcache_cset() const
     {
-	const BcacheCset* bcache_cset = get_bcache_cset();
-
-	string cmd_line = ECHO_BIN " " + quote(bcache_cset->get_uuid()) + " > " +
-	    quote(SYSFS_DIR "/" + get_sysfs_path() + "/bcache/attach");
+	string cmd_line = BCACHE_BIN " attach " + quote(get_bcache_cset()->get_uuid()) + " " + quote(get_backing_device()->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-
-	sleep(1);		// TODO
     }
 
 
