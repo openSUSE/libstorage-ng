@@ -13,10 +13,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2019-01-07 10:19+0000\n"
-"Last-Translator: Vojtěch Zeisek <Vojtech.Zeisek@opensuse.org>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/cs/>\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
+"Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1463,6 +1463,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Rozpoznána jednotka LUKS vedle tabulky oddílů jednotky\n"
+"%1$s. Jednotka LUKS bude ignorována."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1471,6 +1473,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Rozpoznán logický svazek LVM vedle tabulky oddílů jednotky\n"
+"%1$s. Logický svazek LVM bude ignorován."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1479,6 +1483,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Rozpoznán systém souborů vedle tabulky oddílů jednotky\n"
+"%1$s. Systém souborů bude ignorován."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2138,14 +2144,12 @@ msgid "Probing Stray Block Devices failed"
 msgstr "Test bludných bloků na zařízeních selhal"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Testování oddílů selhalo"
+msgstr "Testuji přídavné atributy"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Testování oddílů selhalo"
+msgstr "Testování přídavných atributů selhalo"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

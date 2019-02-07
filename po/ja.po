@@ -11,16 +11,16 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-11-23 23:55+0000\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -1468,6 +1468,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"デバイス %1$s 内のパーティションテーブルの直後に\n"
+"LUKS デバイスが見つかりました。この LUKS デバイスは無視されます。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1476,6 +1478,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"デバイス %1$s 内のパーティションテーブルの直後に\n"
+"LVM 論理ボリュームが見つかりました。この LVM 論理ボリュームは無視されます。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1484,6 +1488,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"デバイス %1$s 内のパーティションテーブルの直後に\n"
+"ファイルシステムが見つかりました。このファイルシステムは無視されます。"
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2148,14 +2154,12 @@ msgid "Probing Stray Block Devices failed"
 msgstr "Stray ブロックデバイスの検出に失敗しました"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "パーティションの検出に失敗しました"
+msgstr "追加の属性を検出しています"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "パーティションの検出に失敗しました"
+msgstr "追加属性の検出に失敗しました"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"

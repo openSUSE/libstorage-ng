@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-09-16 16:01+0000\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
-"Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/da/>\n"
+"Language-Team: Danish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/da/>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.18\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -982,7 +982,7 @@ msgstr "Opretter RAID-partition %1$s"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM-RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1872,7 +1872,7 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD-RAID"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -1921,7 +1921,7 @@ msgstr "Monterer %1$s til %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "Monteringspunkt"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1996,7 +1996,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "Partition"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 msgid "PiB"
