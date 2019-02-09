@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2019-02-07 05:52+0000\n"
+"PO-Revision-Date: 2019-02-11 13:00+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/sk/>\n"
@@ -1450,6 +1450,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Zistené zariadenie LUKS vedľa tabuľky oddielov\n"
+"na zariadení %1$s. Zariadenie LUKS bude ignorované."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1458,6 +1460,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Zistený logický zväzok LVM vedľa tabuľky oddielov\n"
+"na zariadení %1$s. Logický zväzok LVM bude ignorovaný."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1466,6 +1470,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Zistený súborový systém vedľa tabuľky oddielov\n"
+"na zariadení %1$s. Súborový systém bude ignorovaný."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
