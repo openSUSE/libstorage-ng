@@ -7,15 +7,15 @@ YaST is to make YaST catch up with storage trends of the last years, to
 provide new features and at the same time improve robustness and testability.
 
 The shortcomings of the old code are documented at
-https://github.com/openSUSE/libstorage/blob/master/doc/status-current-code.md. These
-shortcomings should be removed.
+https://github.com/openSUSE/libstorage/blob/SLE-12-SP4/doc/status-current-code.md.
+These shortcomings should be removed.
 
 
 Features and Bugs
 -----------------
 
 Some features and bugs blocked by the old code are listed at
-https://github.com/openSUSE/libstorage/blob/master/doc/blocked-features-and-bugs.md.
+https://github.com/openSUSE/libstorage/blob/SLE-12-SP4/doc/blocked-features-and-bugs.md.
 
 Additional some features have already been requests:
 

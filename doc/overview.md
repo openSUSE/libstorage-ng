@@ -23,7 +23,7 @@ partitions and two filesystems where one is encrypted:
 
 You might have seen the diagram above in YaST. But in libstorage-ng it is a
 direct dump of internal data structure instead of a [cumbersome
-transformation](https://github.com/openSUSE/libstorage/blob/master/storage/Graph.cc).
+transformation](https://github.com/openSUSE/libstorage/blob/SLE-12-SP4/storage/Graph.cc).
 
 The graph approach has several advantages compared to the list of list design
 of libstorage:
