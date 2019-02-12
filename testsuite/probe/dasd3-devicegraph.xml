@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- written by hand -->
+<Devicegraph>
+  <Devices>
+    <Dasd>
+      <sid>42</sid>
+      <name>/dev/vda</name>
+      <sysfs-name>vda</sysfs-name>
+      <sysfs-path>/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda</sysfs-path>
+      <region>
+        <length>1803060</length>
+        <block-size>4096</block-size>
+      </region>
+      <udev-path>ccw-0.0.0000</udev-path>
+      <topology/>
+      <range>256</range>
+      <bus-id></bus-id>
+      <rotational>true</rotational>
+      <type>ECKD</type>
+      <format>CDL</format>
+    </Dasd>
+    <DasdPt>
+      <sid>43</sid>
+    </DasdPt>
+  </Devices>
+  <Holders>
+    <User>
+      <source-sid>42</source-sid>
+      <target-sid>43</target-sid>
+    </User>
+  </Holders>
+</Devicegraph>

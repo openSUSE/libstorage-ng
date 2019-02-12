@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<!-- written by hand -->
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <stdout>vda</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid -c '/dev/null'</name>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/vda'</name>
+      <stdout>P: /devices/css0/0.0.0000/0.0.0000/virtio0/block/vda</stdout>
+      <stdout>N: vda</stdout>
+      <stdout>S: disk/by-path/ccw-0.0.0000</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/ccw-0.0.0000</stdout>
+      <stdout>E: DEVNAME=/dev/vda</stdout>
+      <stdout>E: DEVPATH=/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: ID_PATH=ccw-0.0.0000</stdout>
+      <stdout>E: ID_PATH_TAG=ccw-0_0_0000</stdout>
+      <stdout>E: MAJOR=254</stdout>
+      <stdout>E: MINOR=0</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/uname -m</name>
+      <stdout>s390x</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --machine '/dev/vda' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/vda:14424480s:dasd:512:4096:dasd:IBM S390 DASD drive:;</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2 -ll</name>
+    </Command>
+    <Command>
+      <name>/sbin/dmraid --sets=active -ccc</name>
+      <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/vda'</name>
+      <stdout>61b0</stdout>
+    </Command>
+  </Commands>
+  <Files>
+    <File>
+      <name>/etc/fstab</name>
+    </File>
+    <File>
+      <name>/proc/mounts</name>
+      <content>sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,nosuid,size=1015244k,nr_inodes=253811,mode=755 0 0</content>
+      <content>securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0</content>
+      <content>devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0</content>
+      <content>tmpfs /run tmpfs rw,nosuid,nodev,mode=755 0 0</content>
+      <content>tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0</content>
+      <content>cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd 0 0</content>
+      <content>pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/pids cgroup rw,nosuid,nodev,noexec,relatime,pids 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0</content>
+      <content>cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0</content>
+      <content>cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0</content>
+      <content>cgroup /sys/fs/cgroup/hugetlb cgroup rw,nosuid,nodev,noexec,relatime,hugetlb 0 0</content>
+      <content>cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0</content>
+      <content>cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0</content>
+      <content>cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0</content>
+      <content>systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=24,pgrp=1,timeout=0,minproto=5,maxproto=5,direct 0 0</content>
+      <content>mqueue /dev/mqueue mqueue rw,relatime 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs rw,relatime 0 0</content>
+      <content>tmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=204436k,mode=700 0 0</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size	Used	Priority</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/size</name>
+      <content>14424480</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/queue/logical_block_size</name>
+      <content>4096</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/queue/rotational</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0000/0.0.0000/virtio0/block/vda/ext_range</name>
+      <content>256</content>
+    </File>
+  </Files>
+</Mockup>
