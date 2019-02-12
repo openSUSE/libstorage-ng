@@ -54,6 +54,8 @@ namespace storage
     SysBlockEntries
     probe_sys_block_entries(SystemInfo& system_info)
     {
+	const Arch& arch = system_info.getArch();
+
 	SysBlockEntries sys_block_entries;
 
 	for (const string& short_name : system_info.getDir(SYSFS_DIR "/block"))
@@ -111,6 +113,21 @@ namespace storage
 		    sys_block_entries.stray_blk_devices.push_back(short_name);
 
 		continue;
+	    }
+
+	    // On S/390 disks using virtio-blk (name /dev/vd*) and
+	    // with a DASD partition table are considered DASDs. See
+	    // bsc #1112037. Might be fragile.
+
+	    if (arch.is_s390() && boost::starts_with(short_name, "vd"))
+	    {
+		const Parted& parted = system_info.getParted(name);
+		if (parted.get_label() == PtType::DASD)
+		{
+		    sys_block_entries.dasds.push_back(short_name);
+
+		    continue;
+		}
 	    }
 
 	    if (true)		// for disks all remaining names are allowed
