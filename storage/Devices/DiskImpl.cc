@@ -124,8 +124,8 @@ namespace storage
 
 	SystemInfo& system_info = prober.get_system_info();
 
-	const File rotational_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() +
-							 "/queue/rotational");
+	const File& rotational_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() +
+							  "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 
 	Lsscsi::Entry entry;

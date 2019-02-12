@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -203,11 +203,24 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-								      "/queue/rotational");
+	const File& rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
+								       "/queue/rotational");
 	rotational = rotational_file.get<bool>();
 
-	const Dasdview dasdview = prober.get_system_info().getDasdview(get_name());
+	// For DASDs using virtio-blk the dasdtool does not work. So
+	// it is assumed that those DASDs are CDL formatted ECKDs. See
+	// bsc #1112037. Might be fragile.
+
+	if (boost::starts_with(get_name(), DEV_DIR "/vd"))
+	{
+	    type = DasdType::ECKD;
+
+	    format = DasdFormat::CDL;
+
+	    return;
+	}
+
+	const Dasdview& dasdview = prober.get_system_info().getDasdview(get_name());
 
 	bus_id = dasdview.get_bus_id();
 

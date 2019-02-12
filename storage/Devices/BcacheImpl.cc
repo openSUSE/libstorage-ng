@@ -84,7 +84,7 @@ namespace storage
           sequential_cutoff(0), type(BcacheType::BACKED), writeback_percent(0)
     {
 	string tmp;
-	
+
 	if(getChildValue(node, "type", tmp))
 	    type = toValueWithFallback(tmp, BcacheType::BACKED);
 
@@ -197,11 +197,11 @@ namespace storage
     is_backed(Prober& prober, const string& short_name)
     {
 	string dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/dev";
-	File dev_file = prober.get_system_info().getFile(dev_path);
+	const File& dev_file = prober.get_system_info().getFile(dev_path);
 	string majorminor = dev_file.get<string>();
 
 	string backing_dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/bcache/../dev";
-	File backing_dev_file = prober.get_system_info().getFile(backing_dev_path);
+	const File& backing_dev_file = prober.get_system_info().getFile(backing_dev_path);
 	string backing_majorminor = backing_dev_file.get<string>();
 
 	return majorminor != backing_majorminor;
@@ -233,7 +233,7 @@ namespace storage
 
 
     static CacheMode
-    parse_mode(File cache_mode_file)
+    parse_mode(const File& cache_mode_file)
     {
 	string modes = cache_mode_file.get<string>();
 	regex rgx("\\[(.*)\\]");
@@ -249,6 +249,7 @@ namespace storage
 	}
     }
 
+
     // mapping between human string of libstorage-ng and bcache sysfs sizes
     static const map<std::string, unsigned long long> size_mapping = {
 	{ "k", KiB },
@@ -256,7 +257,9 @@ namespace storage
 	{ "G", GiB }
     };
 
-    static unsigned long long parse_size(File file)
+
+    static unsigned long long
+    parse_size(const File& file)
     {
 	string size_s = file.get<string>();
 	regex rgx("(\\d+\\.?\\d*)([kMG])?");
@@ -279,6 +282,7 @@ namespace storage
 	return result;
     }
 
+
     void
     Bcache::Impl::probe_pass_1a(Prober& prober)
     {
@@ -286,19 +290,19 @@ namespace storage
 
 	SystemInfo& system_info = prober.get_system_info();
 
-	const File size_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/size");
+	const File& size_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/size");
 
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    const File cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
+	    const File& cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
 	    set_cache_mode(parse_mode(cache_mode_file));
 
-	    const File writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
+	    const File& writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
 	    set_writeback_percent(writeback_percent_file.get<unsigned>());
 
-	    const File sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
+	    const File& sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
 	    set_sequential_cutoff(parse_size(sequential_cutoff_file));
 	}
     }
@@ -312,7 +316,7 @@ namespace storage
 	if(get_type() == BcacheType::BACKED)
 	{
 	    // Creating relationship with its backing device
-	    const File dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
+	    const File& dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
 	    string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 	    prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {

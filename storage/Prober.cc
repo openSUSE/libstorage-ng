@@ -54,6 +54,8 @@ namespace storage
     SysBlockEntries
     probe_sys_block_entries(SystemInfo& system_info)
     {
+	const Arch& arch = system_info.getArch();
+
 	SysBlockEntries sys_block_entries;
 
 	for (const string& short_name : system_info.getDir(SYSFS_DIR "/block"))
@@ -65,7 +67,7 @@ namespace storage
 
 	    // skip devices without node in /dev (bsc #1076971) - check must
 	    // happen before 'udevadm info' call
-	    const CmdStat cmd_stat = system_info.getCmdStat(name);
+	    const CmdStat& cmd_stat = system_info.getCmdStat(name);
 	    if (!cmd_stat.is_blk())
 		continue;
 
@@ -88,10 +90,10 @@ namespace storage
 		continue;
 	    }
 
-	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo& udevadminfo = system_info.getCmdUdevadmInfo(name);
 
-	    const File range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
-							"/ext_range");
+	    const File& range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
+							 "/ext_range");
 
 	    if (boost::starts_with(short_name, "dasd"))
 	    {
@@ -111,6 +113,21 @@ namespace storage
 		    sys_block_entries.stray_blk_devices.push_back(short_name);
 
 		continue;
+	    }
+
+	    // On S/390 disks using virtio-blk (name /dev/vd*) and
+	    // with a DASD partition table are considered DASDs. See
+	    // bsc #1112037. Might be fragile.
+
+	    if (arch.is_s390() && boost::starts_with(short_name, "vd"))
+	    {
+		const Parted& parted = system_info.getParted(name);
+		if (parted.get_label() == PtType::DASD)
+		{
+		    sys_block_entries.dasds.push_back(short_name);
+
+		    continue;
+		}
 	    }
 
 	    if (true)		// for disks all remaining names are allowed
