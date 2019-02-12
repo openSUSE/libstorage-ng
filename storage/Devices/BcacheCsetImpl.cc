@@ -139,7 +139,7 @@ namespace storage
 	{
 	    if (regex_match(name, cache_regex))
 	    {
-		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
+		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
@@ -149,7 +149,7 @@ namespace storage
 
 	    if (regex_match(name, bdev_regex))
 	    {
-		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
+		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
@@ -159,7 +159,7 @@ namespace storage
 
 	    if (regex_match(name, volume_regex))
 	    {
-		const File dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
+		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {

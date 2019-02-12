@@ -67,7 +67,7 @@ namespace storage
 
 	    // skip devices without node in /dev (bsc #1076971) - check must
 	    // happen before 'udevadm info' call
-	    const CmdStat cmd_stat = system_info.getCmdStat(name);
+	    const CmdStat& cmd_stat = system_info.getCmdStat(name);
 	    if (!cmd_stat.is_blk())
 		continue;
 
@@ -90,10 +90,10 @@ namespace storage
 		continue;
 	    }
 
-	    const CmdUdevadmInfo udevadminfo = system_info.getCmdUdevadmInfo(name);
+	    const CmdUdevadmInfo& udevadminfo = system_info.getCmdUdevadmInfo(name);
 
-	    const File range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
-							"/ext_range");
+	    const File& range_file = system_info.getFile(SYSFS_DIR + udevadminfo.get_path() +
+							 "/ext_range");
 
 	    if (boost::starts_with(short_name, "dasd"))
 	    {

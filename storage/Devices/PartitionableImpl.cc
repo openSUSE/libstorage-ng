@@ -90,18 +90,18 @@ namespace storage
 
 	BlkDevice::Impl::probe_size(prober);
 
-	const File alignment_offset_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									    "/alignment_offset");
+	const File& alignment_offset_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
+									     "/alignment_offset");
 	topology.set_alignment_offset(alignment_offset_file.get<int>());
 
-	const File optimal_io_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									   "/queue/optimal_io_size");
+	const File& optimal_io_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
+									    "/queue/optimal_io_size");
 	topology.set_optimal_io_size(optimal_io_size_file.get<int>());
 
 	if (get_dm_table_name().empty())
 	{
-	    const File range_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-								     "/ext_range");
+	    const File& range_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
+								      "/ext_range");
 	    range = range_file.get<int>();
 	}
     }
