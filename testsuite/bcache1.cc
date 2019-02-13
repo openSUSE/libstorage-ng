@@ -31,6 +31,7 @@ BOOST_AUTO_TEST_CASE(free_name)
     BOOST_CHECK_EQUAL(Bcache::find_free_name(staging), "/dev/bcache2");
 }
 
+
 BOOST_AUTO_TEST_CASE(reassign_numbers)
 {
     Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);

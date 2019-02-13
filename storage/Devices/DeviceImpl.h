@@ -146,13 +146,13 @@ namespace storage
 
 	/**
 	 * Add create actions for the Device.
-	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param actiongraph The Actiongraph for which actions are added.
 	 */
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const;
 
 	/**
 	 * Detect modifications to the Device and add actions as needed.
-	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param actiongraph The Actiongraph for which actions are added.
 	 * @param lhs Device on the left hand side of the comparison
 	 * leading to the actiongraph.
 	 */
@@ -160,7 +160,7 @@ namespace storage
 
 	/**
 	 * Add delete actions for the Device.
-	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param actiongraph The Actiongraph for which actions are added.
 	 */
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const;
 
@@ -387,7 +387,7 @@ namespace storage
 
 	/**
 	 * Detect reallot and add Action::Reallot as needed.
-	 * @param actiongraph The Actiongraph fow which actions are added.
+	 * @param actiongraph The Actiongraph for which actions are added.
 	 * @param lhs Device on the left hand side of the comparison
 	 * leading to the actiongraph.
 	 */

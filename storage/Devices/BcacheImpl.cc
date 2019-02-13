@@ -31,7 +31,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Holders/User.h"
 #include "storage/Devices/BcacheImpl.h"
-#include "storage/Devices/BcacheCset.h"
+#include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
@@ -592,6 +592,42 @@ namespace storage
 
 
     void
+    Bcache::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const
+    {
+	const Bcache* lhs_bcache = to_bcache(lhs);
+
+	// TODO Flash-only Bache
+
+	if(get_type() == BcacheType::BACKED)
+	{
+	    vector<Action::Base*> actions;
+
+	    if(lhs_bcache->has_bcache_cset() && has_bcache_cset())
+	    {
+		if(!lhs_bcache->get_bcache_cset()->get_impl().equal(get_bcache_cset()->get_impl()))
+		{
+		    actions.push_back(new Action::DetachBcacheCset(get_sid(), lhs_bcache->get_bcache_cset()));
+		    actions.push_back(new Action::AttachBcacheCset(get_sid()));
+		}
+	    }
+	    else if(lhs_bcache->has_bcache_cset() && !has_bcache_cset())
+	    {
+		actions.push_back(new Action::DetachBcacheCset(get_sid(), lhs_bcache->get_bcache_cset()));
+	    }
+	    else if(!lhs_bcache->has_bcache_cset() && has_bcache_cset())
+	    {
+		actions.push_back(new Action::AttachBcacheCset(get_sid()));
+	    }
+
+	    if(lhs_bcache->get_cache_mode() != get_cache_mode())
+		actions.push_back(new Action::UpdateCacheMode(get_sid()));
+
+	    actiongraph.add_chain(actions);
+	}
+    }
+
+
+    void
     Bcache::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
 	// TODO Flash-only Bache
@@ -740,6 +776,117 @@ namespace storage
     }
 
 
+    Text
+    Bcache::Impl::do_detach_bcache_cset_text(Tense tense, const BcacheCset* bcache_cset) const
+    {
+	// TODO handle multiple BlkDevices of BcacheCset
+
+	const BlkDevice* blk_device = bcache_cset->get_blk_devices()[0];
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/bcache0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by device name (e.g. /dev/sda1),
+			   // %2$s is replaced by device name (e.g. /dev/bcache0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"));
+
+	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
+    }
+
+
+    void
+    Bcache::Impl::do_detach_bcache_cset() const
+    {
+	string cmd_line = BCACHE_BIN " detach " + quote(get_backing_device()->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+    Text
+    Bcache::Impl::do_update_cache_mode_text(Tense tense) const
+    {
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by cache mode (e.g. writeback),
+			   // %2$s is replaced by device name (e.g. /dev/bcache0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Set cache mode to %1$s for Bcache %2$s (%3$s)"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by cache mode (e.g. writeback),
+			   // %2$s is replaced by device name (e.g. /dev/bcache0),
+			   // %3$s is replaced by size (e.g. 2 GiB)
+			   _("Setting cache mode to %1$s for Bcache %2$s (%3$s)"));
+
+	return sformat(text, toString(get_cache_mode()), get_name(), get_size_text());
+    }
+
+
+    void
+    Bcache::Impl::do_update_cache_mode() const
+    {
+	string cmd_line = BCACHE_BIN " set-cachemode " + quote(get_backing_device()->get_name()) + " " + quote(toString(get_cache_mode()));
+
+	SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Bcache::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    {
+	vector<Actiongraph::Impl::vertex_descriptor> bcache_actions;
+	vector<Actiongraph::Impl::vertex_descriptor> bcache_cset_actions;
+
+	// Look for the relevant actions
+	for (Actiongraph::Impl::vertex_descriptor vertex : actiongraph.vertices())
+	{
+	    const Action::Base* action = actiongraph[vertex];
+
+	    if (action_is_my_attach(action, actiongraph))
+		bcache_actions.push_back(vertex);
+	    else if (action_is_my_bcache_cset_create(action, actiongraph))
+		bcache_cset_actions.push_back(vertex);
+	}
+
+	if (!bcache_actions.empty() && !bcache_cset_actions.empty())
+	    actiongraph.add_chain({ bcache_cset_actions, bcache_actions });
+    }
+
+
+    bool
+    Bcache::Impl::action_is_my_attach(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
+    {
+	const Action::AttachBcacheCset* attach = dynamic_cast<const Action::AttachBcacheCset*>(action);
+	return attach && attach->sid == get_sid();
+    }
+
+
+    bool
+    Bcache::Impl::action_is_my_bcache_cset_create(const Action::Base* action, const Actiongraph::Impl& actiongraph) const
+    {
+	if (!has_bcache_cset())
+	    return false;
+
+	const Action::Create* create = dynamic_cast<const Action::Create*>(action);
+
+	if (!create)
+	    return false;
+
+	const Devicegraph* devicegraph = actiongraph.get_devicegraph(RHS);
+
+	const Device* device = devicegraph->find_device(create->sid);
+
+	if (!is_bcache_cset(device))
+	    return false;
+
+	return to_bcache_cset(device)->get_sid() == get_bcache_cset()->get_sid();
+    }
+
+
     namespace Action
     {
 
@@ -756,6 +903,38 @@ namespace storage
 	{
 	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
 	    bcache->get_impl().do_attach_bcache_cset();
+	}
+
+
+	Text
+	DetachBcacheCset::text(const CommitData& commit_data) const
+	{
+	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
+	    return bcache->get_impl().do_detach_bcache_cset_text(commit_data.tense, get_bcache_cset());
+	}
+
+
+	void
+	DetachBcacheCset::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
+	    bcache->get_impl().do_detach_bcache_cset();
+	}
+
+
+	Text
+	UpdateCacheMode::text(const CommitData& commit_data) const
+	{
+	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
+	    return bcache->get_impl().do_update_cache_mode_text(commit_data.tense);
+	}
+
+
+	void
+	UpdateCacheMode::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const Bcache* bcache = to_bcache(get_device(commit_data.actiongraph, RHS));
+	    bcache->get_impl().do_update_cache_mode();
 	}
 
     }

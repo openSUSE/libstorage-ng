@@ -118,6 +118,7 @@ namespace storage
 	static void run_dependency_manager(Actiongraph::Impl& actiongraph);
 
 	virtual void add_create_actions(Actiongraph::Impl& actiongraph) const override;
+	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 	virtual void add_delete_actions(Actiongraph::Impl& actiongraph) const override;
 
 	virtual Text do_create_text(Tense tense) const override;
@@ -132,11 +133,17 @@ namespace storage
 	Text do_attach_bcache_cset_text(Tense tense) const;
 	void do_attach_bcache_cset() const;
 
+	Text do_detach_bcache_cset_text(Tense tense, const BcacheCset* bcache_cset) const;
+	void do_detach_bcache_cset() const;
+
+	Text do_update_cache_mode_text(Tense tense) const;
+	void do_update_cache_mode() const;
+
+	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
+
     private:
 
 	static const unsigned long long metadata_size = 8 * KiB;
-
-	void calculate_region();
 
 	CacheMode cache_mode;
 
@@ -145,6 +152,18 @@ namespace storage
 	BcacheType type;
 
 	unsigned writeback_percent;
+
+	void calculate_region();
+
+	/**
+	 * Checks if the given action is attaching a bcache cset to this bcache.
+	 */
+	bool action_is_my_attach(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
+
+	/**
+	 * Checks if the given action is creating the bcache cset that this bcache needs.
+	 */
+	bool action_is_my_bcache_cset_create(const Action::Base* action, const Actiongraph::Impl& actiongraph) const;
 
     };
 
@@ -156,6 +175,37 @@ namespace storage
 	public:
 
 	    AttachBcacheCset(sid_t sid)
+		: Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
+
+	class DetachBcacheCset : public Modify
+	{
+	public:
+
+	    DetachBcacheCset(sid_t sid, const BcacheCset* bcache_cset)
+		: Modify(sid), bcache_cset(bcache_cset) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	    const BcacheCset* get_bcache_cset() const { return bcache_cset; }
+
+	private:
+
+	    const BcacheCset* bcache_cset;
+	};
+
+
+	class UpdateCacheMode : public Modify
+	{
+	public:
+
+	    UpdateCacheMode(sid_t sid)
 		: Modify(sid) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
