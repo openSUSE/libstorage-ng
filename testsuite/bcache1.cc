@@ -56,3 +56,27 @@ BOOST_AUTO_TEST_CASE(reassign_numbers)
     BOOST_CHECK_EQUAL(new_bcache1->get_name(), "/dev/bcache1");
     BOOST_CHECK_EQUAL(new_bcache2->get_name(), "/dev/bcache3");
 }
+
+
+BOOST_AUTO_TEST_CASE(remove_bcache_cset)
+{
+    Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+    environment.set_devicegraph_filename("probe/bcache1-devicegraph.xml");
+
+    Storage storage(environment);
+    storage.probe();
+    storage.check();
+
+    Devicegraph* staging = storage.get_staging();
+
+    Bcache* bcache1 = Bcache::find_by_name(staging, "/dev/bcache1");
+    Bcache* bcache2 = Bcache::find_by_name(staging, "/dev/bcache2");
+
+    BOOST_CHECK_EQUAL(bcache1->has_bcache_cset(), true);
+    BOOST_CHECK_EQUAL(bcache2->has_bcache_cset(), true);
+
+    bcache1->remove_bcache_cset();
+
+    BOOST_CHECK_EQUAL(bcache1->has_bcache_cset(), false);
+    BOOST_CHECK_EQUAL(bcache2->has_bcache_cset(), true);
+}

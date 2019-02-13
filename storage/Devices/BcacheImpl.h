@@ -90,6 +90,8 @@ namespace storage
 
 	void add_bcache_cset(BcacheCset* bcache_cset);
 
+	void remove_bcache_cset();
+
 	void update_sysfs_name_and_path();
 
 	BcacheType get_type() const { return type; }

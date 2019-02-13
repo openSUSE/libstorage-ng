@@ -110,6 +110,15 @@ namespace storage
 	void add_bcache_cset(BcacheCset* bcache_cset);
 
 	/**
+	 * Removes association with a caching set.
+	 *
+	 * This method does not make sense for Flash-only Bcache devices.
+	 *
+	 * @throw LogicException, Exception
+	 */
+	void remove_bcache_cset();
+
+	/**
 	 * Returns cache mode attribute.
 	 *
 	 * This method does not make sense for Flash-only Bcache devices.

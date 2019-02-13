@@ -131,6 +131,13 @@ namespace storage
     }
 
 
+    void
+    Bcache::remove_bcache_cset()
+    {
+	get_impl().remove_bcache_cset();
+    }
+
+
     CacheMode
     Bcache::get_cache_mode() const
     {

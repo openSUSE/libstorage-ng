@@ -408,6 +408,21 @@ namespace storage
 
 
     void
+    Bcache::Impl::remove_bcache_cset()
+    {
+	if(get_type() == BcacheType::FLASH_ONLY)
+	    ST_THROW(LogicException("A Caching Set cannot be detached from a Flash-only Bcache"));
+
+	if(!has_bcache_cset())
+	    ST_THROW(LogicException("The Bcache has not an associated Caching Set"));
+
+	User* user = to_user(get_devicegraph()->find_holder(get_bcache_cset()->get_sid(), get_sid()));
+
+	get_devicegraph()->remove_holder(user);
+    }
+
+
+    void
     Bcache::Impl::update_sysfs_name_and_path()
     {
 	set_sysfs_name(get_name().substr(strlen(DEV_DIR "/")));
