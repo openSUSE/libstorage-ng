@@ -395,7 +395,7 @@ namespace storage
 
 
     void
-    Bcache::Impl::attach_bcache_cset(BcacheCset* bcache_cset)
+    Bcache::Impl::add_bcache_cset(BcacheCset* bcache_cset)
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
 	    ST_THROW(LogicException("A Caching Set cannot be attached to a Flash-only Bcache"));

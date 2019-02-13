@@ -88,7 +88,7 @@ namespace storage
 
 	static void reassign_numbers(Devicegraph* devicegraph);
 
-	void attach_bcache_cset(BcacheCset* bcache_cset);
+	void add_bcache_cset(BcacheCset* bcache_cset);
 
 	void update_sysfs_name_and_path();
 

@@ -101,13 +101,13 @@ namespace storage
 	const BcacheCset* get_bcache_cset() const;
 
 	/**
-	 * Attach a caching set to the Bcache.
+	 * Associates a caching set to the Bcache.
 	 *
 	 * This method does not make sense for Flash-only Bcache devices.
 	 *
 	 * @throw LogicException, Exception
 	 */
-	void attach_bcache_cset(BcacheCset* bcache_cset);
+	void add_bcache_cset(BcacheCset* bcache_cset);
 
 	/**
 	 * Returns cache mode attribute.

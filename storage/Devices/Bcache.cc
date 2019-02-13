@@ -125,9 +125,9 @@ namespace storage
 
 
     void
-    Bcache::attach_bcache_cset(BcacheCset* bcache_cset)
+    Bcache::add_bcache_cset(BcacheCset* bcache_cset)
     {
-	get_impl().attach_bcache_cset(bcache_cset);
+	get_impl().add_bcache_cset(bcache_cset);
     }
 
 
