@@ -398,7 +398,7 @@ namespace storage
     Bcache::Impl::add_bcache_cset(BcacheCset* bcache_cset)
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(LogicException("A Caching Set cannot be attached to a Flash-only Bcache"));
+	    ST_THROW(LogicException("A Caching Set cannot be added to a Flash-only Bcache"));
 
 	if(has_bcache_cset())
 	    ST_THROW(LogicException("The Bcache is already associated to a Caching Set"));
@@ -411,10 +411,10 @@ namespace storage
     Bcache::Impl::remove_bcache_cset()
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(LogicException("A Caching Set cannot be detached from a Flash-only Bcache"));
+	    ST_THROW(LogicException("A Caching Set cannot be removed from a Flash-only Bcache"));
 
 	if(!has_bcache_cset())
-	    ST_THROW(LogicException("The Bcache has not an associated Caching Set"));
+	    ST_THROW(LogicException("The Bcache does not have an associated Caching Set"));
 
 	User* user = to_user(get_devicegraph()->find_holder(get_bcache_cset()->get_sid(), get_sid()));
 
