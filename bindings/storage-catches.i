@@ -141,11 +141,12 @@
 %catches(storage::Exception) storage::Actiongraph::Actiongraph(const Storage &storage, Devicegraph *lhs, Devicegraph *rhs);
 %catches(storage::Exception) storage::Actiongraph::write_graphviz(const std::string &filename, GraphvizFlags flags=GraphvizFlags::NAME, GraphvizFlags tooltip_flags=GraphvizFlags::NONE) const;
 %catches(storage::AlignError) storage::Alignment::align(const Region &region, AlignPolicy align_policy=AlignPolicy::ALIGN_START_AND_END) const;
-%catches(storage::LogicException, storage::Exception) storage::Bcache::attach_bcache_cset(BcacheCset *bcache_cset);
+%catches(storage::LogicException, storage::Exception) storage::Bcache::add_bcache_cset(BcacheCset *bcache_cset);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Bcache::find_by_name(const Devicegraph *devicegraph, const std::string &name);
 %catches(storage::DeviceNotFound) storage::Bcache::get_backing_device() const;
 %catches(storage::DeviceNotFound) storage::Bcache::get_blk_device() const;
+%catches(storage::LogicException, storage::Exception) storage::Bcache::remove_bcache_cset();
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(Devicegraph *devicegraph, const std::string &uuid);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::BcacheCset::find_by_uuid(const Devicegraph *devicegraph, const std::string &uuid);
 %catches(storage::WrongNumberOfChildren) storage::BlkDevice::create_bcache_cset();
