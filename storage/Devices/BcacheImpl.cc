@@ -596,7 +596,7 @@ namespace storage
     {
 	const Bcache* lhs_bcache = to_bcache(lhs);
 
-	// TODO Flash-only Bache
+	// TODO Flash-only Bcache
 
 	if(get_type() == BcacheType::BACKED)
 	{
@@ -831,7 +831,7 @@ namespace storage
     {
 	string cmd_line = BCACHE_BIN " set-cachemode " + quote(get_backing_device()->get_name()) + " " + quote(toString(get_cache_mode()));
 
-	SystemCmd cmd2(cmd_line, SystemCmd::DoThrow);
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
