@@ -22,6 +22,7 @@
 
 
 #include <glob.h>
+#include <algorithm>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
@@ -267,7 +268,15 @@ namespace storage
 
 	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
 	if (!joint_entries.empty())
-	    joint_entries[0].add_to(get_non_impl());
+	{
+	    y2war("fstab entries: " << fstab_entries);
+	    y2war("mount entries: " << mount_entries);
+	    if (joint_entries.size() > 1)
+		y2war("More than one entry for given aliases: " << aliases);
+	    // but at least if there are more try to find the shortest path
+	    // to avoid problems during upgrade (bsc#1118865)
+	    min_element(joint_entries.begin(), joint_entries.end(), cmp)->add_to(get_non_impl());
+	}
     }
 
 
