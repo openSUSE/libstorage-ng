@@ -690,16 +690,28 @@ namespace storage
 	{
 	    string path = mount_entry->get_mount_point();
 
+	    // for multiple mount points for same partition try at first identical path
+	    // and if not found, then any
 	    vector<JointEntry>::iterator it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
-                bool in_fstab = tmp.is_in_etc_fstab();
-                if (in_fstab && tmp.fstab_entry->get_mount_point() != path)
-                {
-                    y2war("mount points for " << tmp.fstab_entry->get_device()
-                          << " differ: fstab(" << tmp.fstab_entry->get_mount_point()
-                          << ") != proc(" << path << ")");
-                }
-		return in_fstab;
+		if (!tmp.is_in_etc_fstab())
+		    return false;
+
+		return tmp.fstab_entry->get_mount_point() == path;
 	    });
+
+	    if (it == ret.end())
+	    {
+		it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
+		    bool in_fstab = tmp.is_in_etc_fstab();
+		    if (in_fstab && tmp.fstab_entry->get_mount_point() != path)
+		    {
+			y2war("mount points for " << tmp.fstab_entry->get_device()
+			      << " differ: fstab(" << tmp.fstab_entry->get_mount_point()
+			      << ") != proc(" << path << ")");
+		    }
+		    return in_fstab;
+		});
+	    };
 
 	    if (it != ret.end())
 		it->mount_entry = mount_entry;
@@ -708,6 +720,13 @@ namespace storage
 	}
 
 	return ret;
+    }
+
+
+    bool cmp(const JointEntry &a, const JointEntry &b)
+    {
+        y2war("comparing " << a.get_mount_point() << " and " << b.get_mount_point());
+	return a.get_mount_point().size() < b.get_mount_point().size();
     }
 
 }

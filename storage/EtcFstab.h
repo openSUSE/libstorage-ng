@@ -470,6 +470,11 @@ namespace storage
     vector<JointEntry>
     join_entries(vector<const FstabEntry*> fstab_entries, vector<const FstabEntry*> mount_entries);
 
+
+    /**
+     * Compare join entries by its mount point lenght
+     */
+    bool cmp(const JointEntry &a, const JointEntry &b);
 }
 
 
