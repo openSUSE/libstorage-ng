@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -63,7 +63,10 @@ namespace storage
 	void
 	Create::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    get_device(commit_data.actiongraph)->get_impl().do_create();
+	    Device* device = get_device(commit_data.actiongraph);
+
+	    device->get_impl().do_create();
+	    device->get_impl().do_create_post_verify();
 	}
 
 

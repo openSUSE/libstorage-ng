@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -730,6 +730,20 @@ namespace storage
 	SystemCmd(UDEVADMBIN_SETTLE);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Partition::Impl::do_create_post_verify() const
+    {
+	// log some data about the partition that might be useful for debugging
+
+	const Partitionable* partitionable = get_partitionable();
+
+	string cmd_line = PARTEDBIN " --script --machine " + quote(partitionable->get_name()) +
+	    " unit s print";
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
 
 

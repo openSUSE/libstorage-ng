@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,7 @@
 #define SHBIN "/bin/sh"
 
 #define ECHO_BIN "/usr/bin/echo"
+#define CAT_BIN "/usr/bin/cat"
 
 #define UNAMEBIN "/usr/bin/uname"
 #define GETCONFBIN "/usr/bin/getconf"

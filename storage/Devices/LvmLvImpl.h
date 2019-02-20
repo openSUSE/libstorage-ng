@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -131,6 +131,7 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
+	virtual void do_create_post_verify() const override;
 
 	virtual Text do_rename_text(const Impl& lhs, Tense tense) const;
 	virtual void do_rename(const Impl& lhs) const;
