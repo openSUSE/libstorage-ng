@@ -346,6 +346,12 @@ namespace storage
     }
 
 
+    void
+    Device::Impl::do_create_post_verify() const
+    {
+    }
+
+
     Text
     Device::Impl::do_delete_text(Tense tense) const
     {

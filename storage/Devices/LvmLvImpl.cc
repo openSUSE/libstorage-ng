@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -820,6 +820,20 @@ namespace storage
 	cmd_line += " --name " + quote(lv_name) + " " + quote(lvm_vg->get_vg_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    LvmLv::Impl::do_create_post_verify() const
+    {
+	// log some data about the logical volume that might be useful for debugging
+
+	const LvmVg* lvm_vg = get_lvm_vg();
+
+	string cmd_line = LVSBIN " --options vg_name,lv_name,lv_uuid,lv_size --units b " +
+	    quote(lvm_vg->get_vg_name() + "/" + lv_name);
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
 
 

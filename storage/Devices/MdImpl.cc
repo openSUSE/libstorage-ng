@@ -993,6 +993,17 @@ namespace storage
     }
 
 
+    void
+    Md::Impl::do_create_post_verify() const
+    {
+	// log some data about the MD RAID that might be useful for debugging
+
+	string cmd_line = CAT_BIN " /proc/mdstat";
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
+    }
+
+
     Text
     Md::Impl::do_delete_text(Tense tense) const
     {

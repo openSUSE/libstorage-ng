@@ -173,6 +173,7 @@ namespace storage
 
 	virtual Text do_create_text(Tense tense) const;
 	virtual void do_create();
+	virtual void do_create_post_verify() const;
 
 	virtual Text do_delete_text(Tense tense) const;
 	virtual void do_delete() const;

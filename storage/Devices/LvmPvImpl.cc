@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -305,6 +305,20 @@ namespace storage
 	wait_for_devices({ blk_device });
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    LvmPv::Impl::do_create_post_verify() const
+    {
+	// log some data about the physical volume that might be useful for debugging
+
+	const BlkDevice* blk_device = get_blk_device();
+
+	string cmd_line = PVSBIN " --options pv_name,pv_uuid,pv_size,pe_start --units b " +
+	    quote(blk_device->get_name());
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
 
 

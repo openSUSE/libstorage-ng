@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -547,6 +547,18 @@ namespace storage
 	    cmd_line += " " + quote(lvm_pv->get_blk_device()->get_name());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    LvmVg::Impl::do_create_post_verify() const
+    {
+	// log some data about the volume group that might be useful for debugging
+
+	string cmd_line = VGSBIN " --options vg_name,vg_uuid,vg_size,vg_extent_size,"
+	    "vg_extent_count --units b " + quote(vg_name);
+
+	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
 
 
