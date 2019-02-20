@@ -137,6 +137,9 @@ BOOST_AUTO_TEST_CASE(test_humanstring_to_byte)
     BOOST_CHECK_EQUAL(test("de_DE.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("de_CH.UTF-8", "12345 GB", false), 13255342817280);
     BOOST_CHECK_EQUAL(test("fr_FR.UTF-8", "12345 Go", false), 13255342817280);
+
+    BOOST_CHECK_EQUAL(test("en_GB.UTF-8", ".5 GiB", false), 512 * MiB);
+    BOOST_CHECK_EQUAL(test("de_DE.UTF-8", ",5 GiB", false), 512 * MiB);
 }
 
 
