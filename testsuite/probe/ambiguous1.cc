@@ -31,12 +31,12 @@ BOOST_AUTO_TEST_CASE(probe)
     Storage storage(environment);
     storage.probe(&probe_callbacks_recorder);
 
-    const Devicegraph* probed = storage.get_probed();
-    probed->check();
-
     BOOST_CHECK_EQUAL(probe_messages.size(), 1);
     BOOST_CHECK_EQUAL(probe_messages[0], "Detected a file system next to a partition table on the\n"
 		      "device /dev/sda. The file system will be ignored.");
+
+    const Devicegraph* probed = storage.get_probed();
+    probed->check();
 
     Devicegraph* staging = storage.get_staging();
     staging->load("ambiguous1-devicegraph.xml");
