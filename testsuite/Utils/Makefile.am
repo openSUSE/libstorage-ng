@@ -8,7 +8,7 @@ LDADD = ../../storage/libstorage-ng.la -lboost_unit_test_framework
 
 check_PROGRAMS = enum.test udev-encoding.test humanstring.test region.test	\
 	exception.test topology.test alignment.test math.test systemcmd.test	\
-	dirname.test basename.test algorithm.test format.test
+	dirname.test basename.test algorithm.test format.test join.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
