@@ -52,8 +52,8 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"lv:{ lv-name:root lv-uuid:89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn lv-type:normal active:true size:34359738368 segments:<> }",
-	"lv:{ lv-name:swap lv-uuid:KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn lv-type:normal active:true size:2147483648 segments:<> }"
+	"lv:{ lv-name:root lv-uuid:89Crg8-K5dO-0Vvj-Vwur-vCLK-4efh-WCtRfN vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn lv-type:normal role:public active:true size:34359738368 segments:<> }",
+	"lv:{ lv-name:swap lv-uuid:KKC5tf-bWLp-sF2t-oVKQ-tE0w-xeQp-Up8bV0 vg-name:system vg-uuid:OMPzXF-m3am-1zIl-AVdQ-i5Wx-tmyN-cevmRn lv-type:normal role:public active:true size:2147483648 segments:<> }"
     };
 
     check(input, output);
@@ -76,8 +76,8 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"lv:{ lv-name:linear lv-uuid:dlSOFR-1IMP-RiWe-48Pl-3Qnb-WX5b-TVFjYW vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:normal active:true size:104857600 segments:<> }",
-	"lv:{ lv-name:striped lv-uuid:RECoSq-x9Hg-895X-PB4a-mowu-p4hJ-cSzmJi vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:normal active:true size:109051904 segments:<> }"
+	"lv:{ lv-name:linear lv-uuid:dlSOFR-1IMP-RiWe-48Pl-3Qnb-WX5b-TVFjYW vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:normal role:public active:true size:104857600 segments:<> }",
+	"lv:{ lv-name:striped lv-uuid:RECoSq-x9Hg-895X-PB4a-mowu-p4hJ-cSzmJi vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:normal role:public active:true size:109051904 segments:<> }"
     };
 
     check(input, output);
@@ -104,12 +104,12 @@ BOOST_AUTO_TEST_CASE(parse3)
     };
 
     vector<string> output = {
-	"lv:{ lv-name:[lvol0_pmspare] lv-uuid:JJBOpd-hNtd-WXVM-Eoxw-qxWW-0WJZ-FZMBDS vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown active:false size:4194304 segments:<> }",
-	"lv:{ lv-name:[thin-pool_tdata] lv-uuid:WNYD6Z-tPJM-QmjG-3bqA-elOR-oNti-azR4wY vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown active:true size:1073741824 segments:<> }",
-	"lv:{ lv-name:[thin-pool_tmeta] lv-uuid:s9FXve-chCq-TPNR-BnvO-iX0i-JJXO-gTyIKk vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown active:true size:4194304 segments:<> }",
-	"lv:{ lv-name:thin-pool lv-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin-pool active:true size:1073741824 segments:<> }",
-	"lv:{ lv-name:thin1 lv-uuid:nP2GgC-bMc6-D6cn-Yj8k-fkE8-Z9Qw-O4KPk6 vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin active:true size:2147483648 pool-name:thin-pool pool-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV segments:<> }",
-	"lv:{ lv-name:thin2 lv-uuid:SFGved-huXH-LpQF-PQNn-B3UP-WM74-h3lD1p vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin active:true size:3221225472 pool-name:thin-pool pool-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV segments:<> }"
+	"lv:{ lv-name:[lvol0_pmspare] lv-uuid:JJBOpd-hNtd-WXVM-Eoxw-qxWW-0WJZ-FZMBDS vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown role:private active:false size:4194304 segments:<> }",
+	"lv:{ lv-name:[thin-pool_tdata] lv-uuid:WNYD6Z-tPJM-QmjG-3bqA-elOR-oNti-azR4wY vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown role:private active:true size:1073741824 segments:<> }",
+	"lv:{ lv-name:[thin-pool_tmeta] lv-uuid:s9FXve-chCq-TPNR-BnvO-iX0i-JJXO-gTyIKk vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:unknown role:private active:true size:4194304 segments:<> }",
+	"lv:{ lv-name:thin-pool lv-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin-pool role:private active:true size:1073741824 segments:<> }",
+	"lv:{ lv-name:thin1 lv-uuid:nP2GgC-bMc6-D6cn-Yj8k-fkE8-Z9Qw-O4KPk6 vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin role:public active:true size:2147483648 pool-name:thin-pool pool-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV segments:<> }",
+	"lv:{ lv-name:thin2 lv-uuid:SFGved-huXH-LpQF-PQNn-B3UP-WM74-h3lD1p vg-name:test vg-uuid:1b9W8v-TNjH-1ca2-bR2T-43mZ-n5h9-NDpxBw lv-type:thin role:public active:true size:3221225472 pool-name:thin-pool pool-uuid:YKs2Du-ajnO-VGzP-graH-Ps1t-MO1l-ZvKkQV segments:<> }"
     };
 
     check(input, output);
@@ -141,7 +141,7 @@ BOOST_AUTO_TEST_CASE(parse4)
     };
 
     vector<string> output = {
-	"lv:{ lv-name:normal lv-uuid:3Kzffs-MSVL-qrEM-1Oca-t286-VtBJ-VIa2Xw vg-name:test vg-uuid:VVCY2u-fXvO-k2oG-hGOO-ezEb-Hzfr-lujlRx lv-type:normal active:true size:25769803776 segments:<stripes:1 stripes:2 stripe-size:65536 stripes:2 stripe-size:262144> }"
+	"lv:{ lv-name:normal lv-uuid:3Kzffs-MSVL-qrEM-1Oca-t286-VtBJ-VIa2Xw vg-name:test vg-uuid:VVCY2u-fXvO-k2oG-hGOO-ezEb-Hzfr-lujlRx lv-type:normal role:public active:true size:25769803776 segments:<stripes:1 stripes:2 stripe-size:65536 stripes:2 stripe-size:262144> }"
     };
 
     check(input, output);
