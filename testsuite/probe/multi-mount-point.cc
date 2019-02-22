@@ -22,7 +22,7 @@ BOOST_AUTO_TEST_CASE(probe)
     set_logger(get_stdout_logger());
 
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("multi_mount_point-mockup.xml");
+    environment.set_mockup_filename("multi-mount-point-mockup.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -31,7 +31,7 @@ BOOST_AUTO_TEST_CASE(probe)
     probed->check();
 
     Devicegraph* staging = storage.get_staging();
-    staging->load("multi_mount_point-devicegraph.xml");
+    staging->load("multi-mount-point-devicegraph.xml");
     staging->check();
 
     TsCmpDevicegraph cmp(*probed, *staging);

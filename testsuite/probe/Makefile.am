@@ -11,7 +11,7 @@ check_PROGRAMS =								\
 	disk.test multipath1.test multipath+luks1.test md1.test md2.test	\
 	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test			\
-	multi_mount_point.test							\
+	multi-mount-point.test							\
 	bcache1.test bcache2.test btrfs1.test dasd1.test dasd2.test dasd3.test	\
 	external-journal.test							\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
@@ -22,7 +22,7 @@ AM_DEFAULT_SOURCE_EXT = .cc
 TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
-	multi_mount_point-mockup.xml multi_mount_point-devicegraph.xml		\
+	multi-mount-point-mockup.xml multi-mount-point-devicegraph.xml		\
 	multipath1-mockup.xml multipath1-devicegraph.xml			\
 	multipath+luks1-mockup.xml multipath+luks1-devicegraph.xml		\
 	dmraid1-mockup.xml dmraid1-devicegraph.xml				\
