@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -913,6 +913,27 @@ namespace storage
 	    if (exists)
 		ST_THROW(Exception("wait_for_detach_devices failed " + name));
 	}
+    }
+
+
+    Text
+    join(const vector<const BlkDevice*>& blk_devices, JoinMode join_mode, size_t limit)
+    {
+	vector<const BlkDevice*> sorted_blk_devices = blk_devices;
+	sort(sorted_blk_devices.begin(), sorted_blk_devices.end(), BlkDevice::compare_by_name);
+
+	vector<Text> tmp;
+
+	for (const BlkDevice* blk_device : sorted_blk_devices)
+	{
+	    // TRANSLATORS:
+	    // %1$s is replaced with the device name (e.g. /dev/sdc1),
+	    // %2$s is replaced with the size (e.g. 60 GiB)
+	    tmp.push_back(sformat(_("%1$s (%2$s)"), blk_device->get_name(),
+				  blk_device->get_size_string()));
+	}
+
+	return join(tmp, join_mode, limit);
     }
 
 }
