@@ -526,14 +526,22 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Create volume group %1$s (%2$s)"),
+			   // %2$s is replaced by size (e.g. 2 GiB),
+			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+			   // /dev/sdb2 (1 GiB))
+			   _("Create volume group %1$s (%2$s) from %3$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
-			   _("Creating volume group %1$s (%2$s)"));
+			   // %2$s is replaced by size (e.g. 2 GiB),
+			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+			   // /dev/sdb2 (1 GiB))
+			   _("Creating volume group %1$s (%2$s) from %3$s"));
 
-	return sformat(text, vg_name, get_size_text());
+	vector<const BlkDevice*> blk_devices;
+	for (const LvmPv* lvm_pv : get_lvm_pvs())
+	    blk_devices.push_back(lvm_pv->get_blk_device());
+
+	return sformat(text, vg_name, get_size_text(), join(blk_devices, JoinMode::COMMA, 20));
     }
 
 

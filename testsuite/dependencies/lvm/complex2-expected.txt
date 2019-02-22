@@ -6,5 +6,5 @@
 6 - Create partition /dev/sdb4 (5.00 GiB) -> 7
 7 - Set id of partition /dev/sdb4 to Linux LVM -> 8
 8 - Create physical volume on /dev/sdb4 -> 9
-9 - Create volume group testvg2 (15.00 GiB) -> 10
+9 - Create volume group testvg2 (15.00 GiB) from /dev/sdb3 (10.00 GiB) and /dev/sdb4 (5.00 GiB) -> 10
 10 - Create logical volume lv2_1 (15.00 GiB) on volume group testvg2 ->
