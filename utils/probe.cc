@@ -19,6 +19,29 @@ bool display_devicegraph = false;
 bool save_devicegraph = false;
 bool save_mockup = false;
 bool load_mockup = false;
+bool ignore_probe_errors = false;
+
+
+class MyProbeCallbacks : public ProbeCallbacks
+{
+public:
+
+    virtual void
+    message(const std::string& message) const override
+    {
+	cerr << message << endl;
+    }
+
+
+    virtual bool
+    error(const std::string& message, const std::string& what) const override
+    {
+	cerr << message << endl;
+
+	return ignore_probe_errors;
+    }
+
+};
 
 
 void
@@ -36,8 +59,10 @@ doit()
 
     environment.set_mockup_filename("mockup.xml");
 
+    MyProbeCallbacks my_probecall_backs;
+
     Storage storage(environment);
-    storage.probe();
+    storage.probe(&my_probecall_backs);
 
     const Devicegraph* probed = storage.get_probed();
 
@@ -71,7 +96,8 @@ void usage() __attribute__ ((__noreturn__));
 void
 usage()
 {
-    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup]\n";
+    cerr << "probe [--display-devicegraph] [--save-devicegraph] [--save-mockup] [--load-mockup] "
+	"[--ignore-probe-errors]\n";
     exit(EXIT_FAILURE);
 }
 
@@ -84,6 +110,7 @@ main(int argc, char **argv)
 	{ "save-devicegraph",		no_argument,	0,	2 },
 	{ "save-mockup",		no_argument,	0,	3 },
 	{ "load-mockup",		no_argument,	0,	4 },
+	{ "ignore-probe-errors",	no_argument,	0,	5 },
 	{ 0, 0, 0, 0 }
     };
 
@@ -113,6 +140,10 @@ main(int argc, char **argv)
 
 	    case 4:
 		load_mockup = true;
+		break;
+
+	    case 5:
+		ignore_probe_errors = true;
 		break;
 
 	    default:
