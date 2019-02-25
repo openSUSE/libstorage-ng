@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -25,12 +25,35 @@ msgid ""
 "are you serious?!"
 msgstr ""
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
+msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
+
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
 msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
 
 #. TRANSLATORS:
@@ -40,6 +63,14 @@ msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr ""
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed before action,
@@ -503,9 +534,11 @@ msgstr "Mantıksal yığın oluştur"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
 msgstr "Mantıksal yığın oluştur"
 
 # clients/inst_rootpart.ycp:129
@@ -938,13 +971,20 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
+msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
 msgstr "Mantıksal yığın oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
@@ -995,14 +1035,16 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 msgid "Creating GPT on %1$s"
 msgstr "%1 biçimlendiriliyor"
 
-# include/partitioning/lvm_ui_dialogs.ycp:319
+# include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Yığın grubu oluştur"
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
+msgstr "Mantıksal yığın oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed during action,
@@ -1127,9 +1169,11 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # include/partitioning/lvm_ui_dialogs.ycp:319
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating volume group %1$s (%2$s)"
+msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "Yığın grubu oluştur"
 
 #. TRANSLATORS: name of object
@@ -1310,10 +1354,10 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+msgid "Delete %1$s on %2$s"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 
 # clients/inst_do_resize.ycp:450
@@ -1491,10 +1535,10 @@ msgstr "Mantıksal yığın oluştur"
 # include/partitioning/partition_defines.ycp:248
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+msgid "Deleting %1$s on %2$s"
 msgstr "%3 olan Windows %1 (%2) bölümünün boyutunu %4 olarak değiştir"
 
 # clients/inst_do_resize.ycp:450
@@ -1646,6 +1690,37 @@ msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Yığın grubu oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2474,22 +2549,6 @@ msgid "Probing NFS failed"
 msgstr ""
 
 # clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: error message
-#, fuzzy, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr ""
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: error message
-#, fuzzy
-msgid "Probing Stray Block Devices failed"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
-# clients/inst_custom_part.ycp:3254
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2576,6 +2635,24 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
 msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 #. TRANSLATORS: displayed before action,
@@ -2735,6 +2812,15 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
@@ -2813,6 +2899,15 @@ msgstr "%1 yığının adını %2 olarak değiştir"
 #, fuzzy, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Mantıksal yığın oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
@@ -3148,3 +3243,13 @@ msgstr "kB"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
+#, fuzzy
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:319
+#, fuzzy
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "Yığın grubu oluştur"

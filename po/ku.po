@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: memory.ku.po\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2005-09-23 00:15+0200\n"
 "Last-Translator: Kurdish Team <i18n@suse.de>\n"
 "Language-Team: Kurdish Team <i18n@suse.de>\n"
@@ -20,11 +20,33 @@ msgid ""
 "are you serious?!"
 msgstr ""
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, fuzzy, c-format
 msgid "%1$s (%2$s)"
+msgstr "%1$s Rake"
+
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
 msgstr "%1$s Rake"
 
 #. TRANSLATORS:
@@ -34,6 +56,13 @@ msgstr "%1$s Rake"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr ""
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "%1$s Rake"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -433,9 +462,11 @@ msgstr "%1$s Biafirîne"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
 msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed before action,
@@ -804,13 +835,19 @@ msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "%1$s diafirîne"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
+msgstr "%1$s Biafirîne"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
 msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed before action,
@@ -858,9 +895,11 @@ msgstr "%1$s diafirîne"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
 msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed during action,
@@ -962,9 +1001,11 @@ msgstr "%1$s diafirîne"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating volume group %1$s (%2$s)"
+msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: name of object
@@ -1108,10 +1149,10 @@ msgstr "Beş-kirina Nû Biafirîne"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+msgid "Delete %1$s on %2$s"
 msgstr "Beş-kirina Nû Biafirîne"
 
 #. TRANSLATORS: displayed before action,
@@ -1267,10 +1308,10 @@ msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+msgid "Deleting %1$s on %2$s"
 msgstr "Beş-kirina Nû Biafirîne"
 
 #. TRANSLATORS: displayed during action,
@@ -1403,6 +1444,35 @@ msgstr "%1$s diafirîne"
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "%1$s tê rakirin"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Beş-kirina Nû Biafirîne"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Beş-kirina Nû Biafirîne"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2063,20 +2133,6 @@ msgstr ""
 msgid "Probing NFS failed"
 msgstr ""
 
-#. TRANSLATORS: error message
-#, fuzzy, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "Beş-kirina Nû Biafirîne"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr ""
-
-#. TRANSLATORS: error message
-#, fuzzy
-msgid "Probing Stray Block Devices failed"
-msgstr "Beş-kirina Nû Biafirîne"
-
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2159,6 +2215,21 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "Beş-kirina Nû Biafirîne"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "Beş-kirina Nû Biafirîne"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "Beş-kirina Nû Biafirîne"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
 msgstr "Beş-kirina Nû Biafirîne"
 
 #. TRANSLATORS: displayed before action,
@@ -2314,6 +2385,14 @@ msgid "Set boot flag of partition %1$s"
 msgstr "%1 jê dibe"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "%1$s Biafirîne"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
@@ -2386,6 +2465,14 @@ msgstr "Beş-kirina Nû Biafirîne"
 #, fuzzy, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "%1 jê dibe"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "%1$s Biafirîne"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2678,3 +2765,11 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#, fuzzy
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "%1$s Biafirîne"
+
+#, fuzzy
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "%1$s Biafirîne"

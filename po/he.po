@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-01 10:19+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2004-08-09 10:24+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Hebrew <i18n@suse.de>\n"
@@ -21,6 +21,13 @@ msgid ""
 "are you serious?!"
 msgstr ""
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 #  Everything is OK --> actually do it.
 #  Change Header of progress bar to indicate the current situation.
 #  %1 will be replaced with the current device_name.
@@ -32,6 +39,25 @@ msgstr ""
 msgid "%1$s (%2$s)"
 msgstr "משנה גודל %1 ל %2 MB"
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+#  Everything is OK --> actually do it.
+#  Change Header of progress bar to indicate the current situation.
+#  %1 will be replaced with the current device_name.
+#  %2 with the new size in MB.
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
+msgstr "משנה גודל %1 ל %2 MB"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
@@ -39,6 +65,17 @@ msgstr "משנה גודל %1 ל %2 MB"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr ""
+
+#  Everything is OK --> actually do it.
+#  Change Header of progress bar to indicate the current situation.
+#  %1 will be replaced with the current device_name.
+#  %2 with the new size in MB.
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "משנה גודל %1 ל %2 MB"
 
 #  popup text
 #. TRANSLATORS: displayed before action,
@@ -495,9 +532,11 @@ msgstr "יצור כרך לוגי"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
 msgstr "יצור כרך לוגי"
 
 #  to translators: * Create swap partition 1.2 GB on hda1
@@ -909,13 +948,20 @@ msgstr "צור %5 %1 %2 (עבור %3 עם %4("
 
 #  popup heading 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s)"
+msgstr "יצור כרך לוגי"
+
+#  popup heading 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
 msgstr "יצור כרך לוגי"
 
 #  popup heading 
@@ -966,14 +1012,16 @@ msgstr "צור %1 מחיצות %2 ב %3"
 msgid "Creating GPT on %1$s"
 msgstr "מפרמט %1"
 
-#  popup header
+#  popup heading 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "צור קבוצת כרכים"
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
+msgstr "יצור כרך לוגי"
 
 #  to translators: * Create swap partition 1.2 GB on hda1
 #. TRANSLATORS: displayed during action,
@@ -1089,9 +1137,11 @@ msgstr "צור %5 %1 %2 (עבור %3 עם %4("
 #  popup header
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Creating volume group %1$s (%2$s)"
+msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "צור קבוצת כרכים"
 
 #. TRANSLATORS: name of object
@@ -1254,10 +1304,10 @@ msgstr "שנה גודל מחיצה %1 ל %2"
 #  to translators: * Resize partition hda1 to 1.8GB.
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+msgid "Delete %1$s on %2$s"
 msgstr "שנה גודל מחיצה %1 ל %2"
 
 #  to translators: * Resize partition hda1 to 1.8GB.
@@ -1435,10 +1485,10 @@ msgstr "יצור כרך לוגי"
 #  to translators: * Resize partition hda1 to 1.8GB.
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
 #, fuzzy, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+msgid "Deleting %1$s on %2$s"
 msgstr "שנה גודל מחיצה %1 ל %2"
 
 #  to translators: * Resize partition hda1 to 1.8GB.
@@ -1590,6 +1640,37 @@ msgstr "להסיר את הכרך הלוגי %1 ?"
 #, fuzzy, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "צור קבוצת כרכים"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2379,22 +2460,6 @@ msgid "Probing NFS failed"
 msgstr ""
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
-#. TRANSLATORS: error message
-#, fuzzy, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "צור מחיצה מורחבת %2 (%3)"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr ""
-
-#  to translators: * Create extended partition 1.2 GB (hda1)
-#. TRANSLATORS: error message
-#, fuzzy
-msgid "Probing Stray Block Devices failed"
-msgstr "צור מחיצה מורחבת %2 (%3)"
-
-#  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2481,6 +2546,24 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "צור מחיצה מורחבת %2 (%3)"
+
+#  to translators: * Create extended partition 1.2 GB (hda1)
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
 msgstr "צור מחיצה מורחבת %2 (%3)"
 
 #. TRANSLATORS: displayed before action,
@@ -2650,6 +2733,15 @@ msgstr "שנה גודל מחיצה %1 ל %2"
 
 #  popup heading 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "יצור כרך לוגי"
+
+#  popup heading 
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, fuzzy, c-format
@@ -2730,6 +2822,15 @@ msgstr "קבע את תווית הכרך %1 ל %2"
 #, fuzzy, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "שנה גודל מחיצה %1 ל %2"
+
+#  popup heading 
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "יצור כרך לוגי"
 
 #  popup heading 
 #. TRANSLATORS: displayed during action,
@@ -3082,3 +3183,13 @@ msgstr "בסדר"
 #, fuzzy
 msgid "kB"
 msgstr "מגה בייט"
+
+#  popup heading 
+#, fuzzy
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "יצור כרך לוגי"
+
+#  popup header
+#, fuzzy
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "צור קבוצת כרכים"
