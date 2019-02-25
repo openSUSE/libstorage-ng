@@ -233,7 +233,7 @@ namespace storage
 	}
 
 	// TRANSLATORS: progress message
-	message_callback(probe_callbacks, _("Probing Stray Block Devices"));
+	message_callback(probe_callbacks, _("Probing stray block devices"));
 
 	try
 	{
@@ -242,7 +242,7 @@ namespace storage
 	catch (const Exception& exception)
 	{
 	    // TRANSLATORS: error message
-	    error_callback(probe_callbacks, _("Probing Stray Block Devices failed"), exception);
+	    error_callback(probe_callbacks, _("Probing stray block devices failed"), exception);
 	}
 
 	// TRANSLATORS: progress message

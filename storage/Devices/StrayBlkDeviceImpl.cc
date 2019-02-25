@@ -82,7 +82,7 @@ namespace storage
 	    catch (const Exception& exception)
 	    {
 		// TRANSLATORS: error message
-		error_callback(prober.get_probe_callbacks(), sformat(_("Probing Stray Block Device %s failed"),
+		error_callback(prober.get_probe_callbacks(), sformat(_("Probing stray block device %s failed"),
 								     name), exception);
 	    }
 	}

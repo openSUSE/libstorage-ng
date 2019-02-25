@@ -26,6 +26,7 @@
 
 
 #include <string>
+#include <vector>
 
 
 namespace storage
@@ -70,6 +71,40 @@ namespace storage
 
     Text _(const char* msgid);
     Text _(const char* msgid, const char* msgid_plural, unsigned long int n);
+
+
+    /**
+     * Join mode for join function.
+     */
+    enum class JoinMode
+    {
+	/**
+	 * Join values with newlines.
+	 */
+	NEWLINE,
+
+	/**
+	 * Join values with commas.
+	 */
+	COMMA
+    };
+
+
+    /**
+     * See join(const vector<Text>&, JoinMode, size_t).
+     */
+    Text
+    join(const vector<string>& values, JoinMode join_mode, size_t limit);
+
+
+    /**
+     * Joins the values either with newlines or commas depending on
+     * the join_mode. The number of values included in the result is
+     * limited by limit. If values are omitted the result includes a
+     * text like "and 7 more".
+     */
+    Text
+    join(const vector<Text>& values, JoinMode join_mode, size_t limit);
 
 
     enum class Tense

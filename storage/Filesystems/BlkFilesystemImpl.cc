@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -904,24 +904,21 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_delete_text(Tense tense) const
     {
-	// TODO handle multiple BlkDevices
-
-	const BlkDevice* blk_device = get_blk_device();
+	const vector<const BlkDevice*> blk_devices = get_blk_devices();
 
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by size (e.g. 2GiB)
-			   _("Delete %1$s on %2$s (%3$s)"),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+			   // and /dev/sdb2 (1 GiB))
+			   _("Delete %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by size (e.g. 2GiB)
-			   _("Deleting %1$s on %2$s (%3$s)"));
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+			   // and /dev/sdb2 (1 GiB))
+			   _("Deleting %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), blk_device->get_name(),
-		       blk_device->get_impl().get_size_text());
+	return sformat(text, get_displayname(), join(blk_devices, JoinMode::COMMA, 10));
     }
 
 

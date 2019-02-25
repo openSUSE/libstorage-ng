@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -93,6 +93,12 @@ namespace storage
 
 	CmdLvs();
 
+	/**
+	 * Enum to represent the role reported by lvs. So far only
+	 * public and private are needed.
+	 */
+	enum class Role { PUBLIC, PRIVATE };
+
 	struct Segment
 	{
 	    Segment() : stripes(0), stripe_size(0), chunk_size(0) {}
@@ -105,14 +111,15 @@ namespace storage
 	struct Lv
 	{
 	    Lv() : lv_name(), lv_uuid(), vg_name(), vg_uuid(), lv_type(LvType::UNKNOWN),
-		   active(false), size(0), pool_name(), pool_uuid(), data_name(),
-		   data_uuid(), metadata_name(), metadata_uuid() {}
+		   role(Role::PRIVATE), active(false), size(0), pool_name(), pool_uuid(),
+		   data_name(), data_uuid(), metadata_name(), metadata_uuid() {}
 
 	    string lv_name;
 	    string lv_uuid;
 	    string vg_name;
 	    string vg_uuid;
 	    LvType lv_type;
+	    Role role;
 	    bool active;
 	    unsigned long long size;
 	    string pool_name;
@@ -139,6 +146,7 @@ namespace storage
 
 	void parse(const vector<string>& lines);
 	void parse(json_object* object) override;
+	Role parse_role(const string& role) const;
 
 	vector<Lv> lvs;
 

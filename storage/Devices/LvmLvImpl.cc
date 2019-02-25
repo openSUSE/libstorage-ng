@@ -234,6 +234,8 @@ namespace storage
 	    return lv.lv_type != LvType::THIN;
 	});
 
+	vector<string> unsupported_lvs;
+
 	for (const CmdLvs::Lv& lv : lvs)
 	{
 	    LvmLv* lvm_lv = nullptr;
@@ -258,7 +260,14 @@ namespace storage
 
 		case LvType::UNKNOWN:
 		{
-		    // unknown or lvm internal lvs (e.g. metadata) are ignored
+		    // private lvm lvs (e.g. metadata) are ignored,
+		    // for public ones the user is informed
+
+		    y2war("unsupported lvm_lv " << lv.vg_name << " " << lv.lv_name);
+
+		    if (lv.role == CmdLvs::Role::PUBLIC)
+			unsupported_lvs.push_back(DEV_DIR "/" + lv.vg_name + "/" + lv.lv_name);
+
 		    continue;
 		}
 	    }
@@ -268,6 +277,21 @@ namespace storage
 	    lvm_lv->get_impl().set_uuid(lv.lv_uuid);
 	    lvm_lv->get_impl().set_active(lv.active && lv.lv_type != LvType::THIN_POOL);
 	    lvm_lv->get_impl().probe_pass_1a(prober);
+	}
+
+	if (!unsupported_lvs.empty())
+	{
+	    sort(unsupported_lvs.begin(), unsupported_lvs.end());
+
+	    // TRANSLATORS: Error message displayed during probing,
+	    // %1$s is replaced by a list of device names joined by newlines (e.g.
+	    // /dev/test/cached\n/dev/test/snapshot)
+	    Text text = sformat(_("Detected LVM logical volumes of unsupported types:\n\n%1$s\n\n"
+				  "These logical volumes are ignored. Operations on the\n"
+				  "correponding volume groups may fail."),
+				join(unsupported_lvs, JoinMode::NEWLINE, 10));
+
+	    error_callback(prober.get_probe_callbacks(), text);
 	}
     }
 

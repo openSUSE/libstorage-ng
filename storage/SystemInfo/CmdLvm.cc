@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -188,6 +188,10 @@ namespace storage
 	get_child_value(object, "vg_name", lv.vg_name);
 	get_child_value(object, "vg_uuid", lv.vg_uuid);
 
+	string lv_role;
+	get_child_value(object, "lv_role", lv_role);
+	lv.role = parse_role(lv_role);
+
 	string lv_attr;
 	get_child_value(object, "lv_attr", lv_attr);
 
@@ -232,6 +236,16 @@ namespace storage
 	{
 	    it->segments.push_back(segment);
 	}
+    }
+
+
+    CmdLvs::Role
+    CmdLvs::parse_role(const string& role) const
+    {
+	vector<string> tmp;
+	boost::split(tmp, role, boost::is_any_of(","), boost::token_compress_on);
+
+	return contains(tmp, "public") ? Role::PUBLIC : Role::PRIVATE;
     }
 
 
@@ -286,6 +300,7 @@ namespace storage
     {
 	s << "lv-name:" << lv.lv_name << " lv-uuid:" << lv.lv_uuid << " vg-name:"
 	  << lv.vg_name << " vg-uuid:" << lv.vg_uuid << " lv-type:" << toString(lv.lv_type)
+	  << " role:" << (lv.role == CmdLvs::Role::PUBLIC ? "public" : "private")
 	  << " active:" << lv.active << " size:" << lv.size;
 
 	if (!lv.pool_name.empty())

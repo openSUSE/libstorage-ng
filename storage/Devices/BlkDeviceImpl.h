@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -227,6 +227,16 @@ namespace storage
      */
     void wait_for_detach_devices(const vector<const BlkDevice*>& blk_devices);
     void wait_for_detach_devices(const vector<string>& dev_names);
+
+
+    /**
+     * Joins the names of the block devices including the size using
+     * the join(const vector<Text>&, JoinMode, size_t) function. The
+     * block devices are sorted by name prior to joining.
+     */
+    Text
+    join(const vector<const BlkDevice*>& blk_devices, JoinMode join_mode, size_t limit);
+
 
 }
 
