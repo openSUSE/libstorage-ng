@@ -261,7 +261,7 @@ namespace storage
 		case LvType::UNKNOWN:
 		{
 		    // private lvm lvs (e.g. metadata) are ignored,
-		    // for public once the user is informed
+		    // for public ones the user is informed
 
 		    y2war("unsupported lvm_lv " << lv.vg_name << " " << lv.lv_name);
 

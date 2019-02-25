@@ -99,7 +99,7 @@ namespace storage
 
     /**
      * Joins the values either with newlines or commas depending on
-     * the join_mode. The number of values include in the result is
+     * the join_mode. The number of values included in the result is
      * limited by limit. If values are omitted the result includes a
      * text like "and 7 more".
      */
