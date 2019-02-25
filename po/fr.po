@@ -10,11 +10,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: Christine Gabriel <christine@stoquart.com>\n"
-"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fr/>\n"
+"Language-Team: French <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -30,12 +30,34 @@ msgstr ""
 "\n"
 "êtes-vous sérieux ?!"
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
+
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
+msgstr "Utilisation de %1$s en tant que %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -44,6 +66,13 @@ msgstr "%1$s (%2$s)"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr "%1$s est mis en cache par %2$s"
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "%1$s (%2$s)"
 
 # TLABEL wizard_2002_01_04_0147__19
 #. TRANSLATORS: displayed before action,
@@ -489,10 +518,12 @@ msgstr "Créer le périphérique de volume LVM sur la partition %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "Créer le MD %1$s %2$s (%3$s)"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
+msgstr "Créer le %1$s %2$s (%3$s) à partir de %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -903,14 +934,20 @@ msgstr ""
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Créer le groupe de volumes %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
+msgstr "Création du groupe de volumes %1$s (%2$s) à partir de %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -960,10 +997,12 @@ msgstr "Création de la table de partitions GPT sur %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Création du MD %1$s %2$s (%3$s)"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
+msgstr "Créer le %1$s %2$s (%3$s) à partir de %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1074,10 +1113,12 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
 #, c-format
-msgid "Creating volume group %1$s (%2$s)"
-msgstr "Création du groupe de volumes %1$s (%2$s)"
+msgid "Creating volume group %1$s (%2$s) from %3$s"
+msgstr "Création du groupe de volumes %1$s (%2$s) à partir de %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1241,10 +1282,10 @@ msgstr "Supprimer le %1$s %2$s (%3$s)"
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Delete %1$s on %2$s"
 msgstr "Supprimer %1$s sur %2$s (%3$s)"
 
 # TLABEL partitioning_2002_03_14_2340__25
@@ -1421,10 +1462,10 @@ msgstr "Supprimer le groupe de volumes %1$s (%2$s)"
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Deleting %1$s on %2$s"
 msgstr "Suppression de %1$s sur %2$s (%3$s)"
 
 # TLABEL partitioning_2002_01_04_0147__422
@@ -1576,6 +1617,36 @@ msgstr ""
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Suppression du groupe de volumes %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Attacher le cache Bcache défini sur %1$s au Bcache sur %2$s (%3$s)"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Attachement du cache Bcache défini sur %1$s au Bcache %2$s (%3$s)"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2315,19 +2386,6 @@ msgstr "Sondage de NFS"
 msgid "Probing NFS failed"
 msgstr "Échec du sondage NFS"
 
-#. TRANSLATORS: error message
-#, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "Échec du sondage du périphérique de blocs abandonnés %s"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr "Sondage des périphériques de blocs abandonnés"
-
-#. TRANSLATORS: error message
-msgid "Probing Stray Block Devices failed"
-msgstr "Échec du sondage des périphériques de blocs abandonnés"
-
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2410,6 +2468,21 @@ msgstr "Échec du sondage des partitions"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Échec du sondage des partitions sur %s"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "Échec du sondage du périphérique de blocs abandonnés %s"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "Sondage des périphériques de blocs abandonnés"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
+msgstr "Échec du sondage des périphériques de blocs abandonnés"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2581,6 +2654,14 @@ msgstr "Définir l'UUID de %1$s à %2$s"
 msgid "Set boot flag of partition %1$s"
 msgstr "Définir le fanion de démarrage de la partition %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Attacher le cache Bcache défini sur %1$s au Bcache sur %2$s (%3$s)"
+
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2665,6 +2746,15 @@ msgstr "Définition de l'UUID de %1$s à %2$s"
 #, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "Définition du fanion de démarrage de la partition %1$s"
+
+# SLE12
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Attachement du cache Bcache défini sur %1$s au Bcache %2$s (%3$s)"
 
 # TLABEL partitioning_2002_01_04_0147__351
 #. TRANSLATORS: displayed during action,
@@ -2993,6 +3083,17 @@ msgstr "k"
 msgid "kB"
 msgstr "ko"
 
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "Créer le MD %1$s %2$s (%3$s)"
+
+# TLABEL partitioning_2002_01_04_0147__351
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "Création du MD %1$s %2$s (%3$s)"
+
+#~ msgid "Creating volume group %1$s (%2$s)"
+#~ msgstr "Création du groupe de volumes %1$s (%2$s)"
+
 #~ msgid "first root filesystem"
 #~ msgstr "premier système de fichiers racine"
 
@@ -3188,9 +3289,6 @@ msgstr "ko"
 # TLABEL partitioning_2002_01_04_0147__351
 #~ msgid "Creating volume %1$s"
 #~ msgstr "Création du volume %1$s"
-
-#~ msgid "Creating volume group %1$s (%2$s) from %3$s"
-#~ msgstr "Création du groupe de volumes %1$s (%2$s) à partir de %3$s"
 
 # TLABEL partitioning_2002_01_04_0147__400
 # Shorten translated string; agreed by flermen 2001-01-27.
@@ -3631,9 +3729,6 @@ msgstr "ko"
 
 #~ msgid "Unmounting tmpfs"
 #~ msgstr "Démontage de tmpfs"
-
-#~ msgid "Use %1$s as %2$s"
-#~ msgstr "Utilisation de %1$s en tant que %2$s"
 
 #~ msgid ""
 #~ "You have the following options:\n"

@@ -9,11 +9,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: Sven Åhr <anders.ahr@gmail.com>\n"
-"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/sv/>\n"
+"Language-Team: Swedish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,11 +28,33 @@ msgstr ""
 "\n"
 "menar du allvar?!"
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
+
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
 msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
@@ -42,6 +64,13 @@ msgstr "%1$s (%2$s)"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr "%1$s är cachat av %2$s"
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -467,10 +496,12 @@ msgstr "Skapa LVM-volymenhet %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "Skapa MD %1$s %2$s (%3$s)"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
+msgstr "Skapa %1$s %2$s (%3$s) från %4$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -868,14 +899,21 @@ msgstr "Skapar tunn logisk volym %1$s (%2$s) i volymgrupp %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Skapa volymgrupp %1$s (%2$s)"
+
+# SLE12
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
+msgstr "Skapa volymgrupp %1$s (%2$s) med %3$s"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -928,10 +966,12 @@ msgstr "Skapar GPT på %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "Skapar MD %1$s %2$s (%3$s)"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
+msgstr "Skapa %1$s %2$s (%3$s) från %4$s"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1041,9 +1081,11 @@ msgstr "Skapar tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating volume group %1$s (%2$s)"
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "Skapar volymgrupp %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
@@ -1194,10 +1236,10 @@ msgstr "Radera %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Delete %1$s on %2$s"
 msgstr "Ta bort %1$s på %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
@@ -1361,10 +1403,10 @@ msgstr "Ta bort volymgrupp %1$s (%2$s)"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Deleting %1$s on %2$s"
 msgstr "Tar bort %1$s på %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
@@ -1504,6 +1546,35 @@ msgstr "Ta bort tunn logisk poolvolym %1$s (%2$s) i volymgrupp %3$s"
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Tar bort volymgrupp %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Bifoga Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr "Bifogar Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2177,19 +2248,6 @@ msgstr "Söker NFS"
 msgid "Probing NFS failed"
 msgstr "Det gick inte att söka NFS"
 
-#. TRANSLATORS: error message
-#, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "Sökning av enstaka blockenhet %s misslyckades"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr "Avsöker enstaka blockenheter"
-
-#. TRANSLATORS: error message
-msgid "Probing Stray Block Devices failed"
-msgstr "Sökning av enstaka blockenheter misslyckades"
-
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2272,6 +2330,21 @@ msgstr "Det gick inte att söka partitionerna"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Sökning av partitioner på %s misslyckades"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "Sökning av enstaka blockenhet %s misslyckades"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "Avsöker enstaka blockenheter"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
+msgstr "Sökning av enstaka blockenheter misslyckades"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2425,6 +2498,14 @@ msgstr "Ange UUID för %1$s som %2$s"
 msgid "Set boot flag of partition %1$s"
 msgstr "Ange bootflagga för partition %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Bifoga Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
+
 # SLE12
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2500,6 +2581,14 @@ msgstr "Anger UUID för %1$s som %2$s"
 #, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "Anger bootflagga för partitionen %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr "Bifogar Bcache-cacheuppsättning på %1$s till Bcache %2$s (%3$s)"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -2799,6 +2888,14 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+# SLE12
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "Skapa MD %1$s %2$s (%3$s)"
+
+# SLE12
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "Skapar MD %1$s %2$s (%3$s)"
 
 #~ msgid "first root filesystem"
 #~ msgstr "första rotfilsystem"

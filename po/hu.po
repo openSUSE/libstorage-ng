@@ -12,11 +12,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-11-23 14:23+0100\n"
+"POT-Creation-Date: 2019-02-25 15:22+0100\n"
 "PO-Revision-Date: 2019-02-02 12:52+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
-"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/hu/>\n"
+"Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,11 +31,33 @@ msgstr ""
 "\n"
 "Biztos?"
 
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$d is replaced by the number of elements omitted
+#, c-format
+msgid "%1$d more"
+msgstr ""
+
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
+
+#. TRANSLATORS: appended after list of value to indicate that some
+#. values have been omitted
+#. %1$s is replaced by list of values
+#. %2$s is replaced by the number of elements omitted
+#, c-format
+msgid "%1$s and %2$d more"
+msgstr ""
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s and %2$s"
 msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
@@ -45,6 +67,13 @@ msgstr "%1$s (%2$s)"
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr "A(z) %1$s gyorsítótárazását a(z) %2$s hajtja végre"
+
+#. TRANSLATORS: used to construct list of values
+#. %1$s is replaced by first value
+#. %2$s is replaced by second value
+#, fuzzy, c-format
+msgid "%1$s, %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -230,8 +259,8 @@ msgstr ""
 #, c-format
 msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
 msgstr ""
-"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s (%3$s)"
-" bcache-hez"
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -240,8 +269,8 @@ msgstr ""
 #, c-format
 msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
 msgstr ""
-"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s (%3$s)"
-" bcache-hez"
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -490,10 +519,12 @@ msgstr "LVM köteteszköz létrehozása a(z) %1$s partíción (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Create MD %1$s %2$s (%3$s)"
-msgstr "MD %1$s %2$s (%3$s) létrehozása"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create MD %1$s %2$s (%3$s) from %4$s"
+msgstr "%1$s %2$s (%3$s) partíció létrehozása a(z) %4$s eszközön"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -925,14 +956,20 @@ msgstr ""
 "kötetcsoportban"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
 #. %2$s is replaced with the size (e.g. 2 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "%1$s kötetcsoport (%2$s) létrehozása"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by volume group name (e.g. system),
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Create volume group %1$s (%2$s) from %3$s"
+msgstr "%1$s kötetcsoport (%2$s) létrehozása (%3$s fájlrendszer)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -982,10 +1019,12 @@ msgstr "GPT létrehozása a(z) %1$s eszközön"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating MD %1$s %2$s (%3$s)"
-msgstr "MD %1$s %2$s (%3$s) létrehozása"
+#. %3$s is replaced by size (e.g. 2 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
+msgstr "%1$s %2$s (%3$s) partíció létrehozása a(z) %4$s eszközön"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1096,9 +1135,11 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating volume group %1$s (%2$s)"
+#. %2$s is replaced by size (e.g. 2 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
+#. /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "%1$s kötetcsoport (%2$s) létrehozása"
 
 #. TRANSLATORS: name of object
@@ -1257,10 +1298,10 @@ msgstr "%1$s %2$s (%3$s) partíció törlése"
 # modules/inst_custom_part.ycp:623
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Delete %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Delete %1$s on %2$s"
 msgstr "A(z) %2$s eszközön lévő %1$s törlése (%3$s)"
 
 # modules/inst_custom_part.ycp:623
@@ -1428,10 +1469,10 @@ msgstr "%1$s (%2$s) kötetcsoport törlése"
 # SLE12
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Deleting %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
+#. and /dev/sdb2 (1 GiB))
+#, fuzzy, c-format
+msgid "Deleting %1$s on %2$s"
 msgstr "%1$s törlése a(z) %2$s eszközön (%3$s)"
 
 # modules/inst_custom_part.ycp:623
@@ -1574,6 +1615,39 @@ msgstr ""
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "%1$s kötetcsoport törlése (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr ""
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgstr ""
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
+
+#. TRANSLATORS: Error message displayed during probing,
+#. %1$s is replaced by a list of device names joined by newlines (e.g.
+#. /dev/test/cached\n/dev/test/snapshot)
+#, c-format
+msgid ""
+"Detected LVM logical volumes of unsupported types:\n"
+"\n"
+"%1$s\n"
+"\n"
+"These logical volumes are ignored. Operations on the\n"
+"correponding volume groups may fail."
+msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2320,19 +2394,6 @@ msgstr "NFS ellenőrzése"
 msgid "Probing NFS failed"
 msgstr "NFS ellenőrzése sikertelen"
 
-#. TRANSLATORS: error message
-#, c-format
-msgid "Probing Stray Block Device %s failed"
-msgstr "A(z) %s Stray blokkeszköz ellenőrzése sikertelen"
-
-#. TRANSLATORS: progress message
-msgid "Probing Stray Block Devices"
-msgstr "Stray blokkeszközök ellenőrzése"
-
-#. TRANSLATORS: error message
-msgid "Probing Stray Block Devices failed"
-msgstr "A Stray blokkeszközök ellenőrzése sikertelen"
-
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
@@ -2415,6 +2476,21 @@ msgstr "Partíciók ellenőrzése sikertelen"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Sikertelen a partíciók ellenőrzése a(z) %s eszközön"
+
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing stray block device %s failed"
+msgstr "A(z) %s Stray blokkeszköz ellenőrzése sikertelen"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing stray block devices"
+msgstr "Stray blokkeszközök ellenőrzése"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing stray block devices failed"
+msgstr "A Stray blokkeszközök ellenőrzése sikertelen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2587,6 +2663,16 @@ msgid "Set boot flag of partition %1$s"
 msgstr "%1$s partíció rendszerindítási jelzőjének beállítása"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr ""
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
 #. %2$s is replaced by block device name (e.g. /dev/sda1)
 #, c-format
@@ -2666,6 +2752,16 @@ msgstr "A(z) %1$s eszköz UUID-azonosítójának beállítása a(z) %2$s érték
 #, c-format
 msgid "Setting boot flag of partition %1$s"
 msgstr "A(z) %1$s partíció rendszerindítási jelzőjének beállítása"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by cache mode (e.g. writeback),
+#. %2$s is replaced by device name (e.g. /dev/bcache0),
+#. %3$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgstr ""
+"Bcache gyorsítótárkészlet csatlakoztatása a(z) %1$s eszközön a(z) %2$s "
+"(%3$s) bcache-hez"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2995,6 +3091,12 @@ msgstr "k"
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
 msgstr "kB"
+
+#~ msgid "Create MD %1$s %2$s (%3$s)"
+#~ msgstr "MD %1$s %2$s (%3$s) létrehozása"
+
+#~ msgid "Creating MD %1$s %2$s (%3$s)"
+#~ msgstr "MD %1$s %2$s (%3$s) létrehozása"
 
 #~ msgid "first root filesystem"
 #~ msgstr "első gyökérszintű fájlrendszer"
