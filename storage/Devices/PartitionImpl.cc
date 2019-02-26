@@ -108,7 +108,7 @@ namespace storage
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 	Parted::Entry entry;
 	if (!parted.get_entry(get_number(), entry))
-	    throw;
+	    ST_THROW(Exception("partition not found in parted output"));
 
 	id = entry.id;
 	boot = entry.boot;

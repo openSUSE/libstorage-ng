@@ -598,7 +598,7 @@ namespace storage
     {
 	vector<const BlkDevice*> blk_devices = get_blk_devices();
 	if (blk_devices.size() != 1)
-	    throw;
+	    ST_THROW(Exception("filesystems with multiple block devices not supported"));
 
 	return blk_devices.front();
     }
