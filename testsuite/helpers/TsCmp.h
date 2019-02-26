@@ -74,8 +74,15 @@ namespace storage
 	 * "<name>-expected.txt", compares the probed with the staging
 	 * devicegraph and verifies the resulting actiongraph. Additionally it
 	 * generates a picture of the actiongraph.
+	 *
+	 * If commit is set then also "<name>-mockup.xml" is loaded,
+	 * Mockup::mode is set to PLAYBACK and Storage::commit is
+	 * called. Thus all commands run during commit must be present
+	 * in the mockup file (otherwise an exception is raised). Due
+	 * to possible interaction of external programs and files this
+	 * is likely only useful for testing a few actions at once.
 	 */
-	TsCmpActiongraph(const string& name);
+	TsCmpActiongraph(const string& name, bool commit = false);
 
 	/**
 	 * Compares the actiongraph with the expected actiongraph.
