@@ -1,0 +1,1 @@
+1 - Create MD RAID10 /dev/md0 (15.98 GiB) from /dev/sda (8.00 GiB), /dev/sdb (8.00 GiB), /dev/sdc (8.00 GiB) and /dev/sdd (8.00 GiB) ->

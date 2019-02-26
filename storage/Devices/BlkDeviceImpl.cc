@@ -29,6 +29,7 @@
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
+#include "storage/Utils/Mockup.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
@@ -843,6 +844,9 @@ namespace storage
     {
 	SystemCmd(UDEVADMBIN_SETTLE);
 
+	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+	    return;
+
 	for (const BlkDevice* blk_device : blk_devices)
 	{
 	    string name = blk_device->get_name();
@@ -886,6 +890,9 @@ namespace storage
     wait_for_detach_devices(const vector<string>& dev_names)
     {
 	SystemCmd(UDEVADMBIN_SETTLE);
+
+	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
+	    return;
 
 	for (auto name : dev_names)
 	{

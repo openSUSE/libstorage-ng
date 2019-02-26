@@ -735,7 +735,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script --machine " + quote(partitionable->get_name()) +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
 	    " unit s print";
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
