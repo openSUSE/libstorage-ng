@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-01 10:19+0100\n"
-"PO-Revision-Date: 2018-12-20 18:00+0000\n"
+"PO-Revision-Date: 2019-03-02 19:03+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -1452,6 +1452,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Detectou um dispositivo LUKS ao lado de uma tabela de partições no\n"
+"dispositivo %1$s. O dispositivo LUKS será ignorado."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1460,6 +1462,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Detectou um volume lógico LVM ao lado de uma tabela de partições no\n"
+"dispositivo %1$s. O volume lógico do LVM será ignorado."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1468,6 +1472,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Detectou um sistema de arquivos ao lado de uma tabela de partições no\n"
+"dispositivo %1$s. O sistema de arquivos será ignorado."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2124,14 +2130,12 @@ msgid "Probing Stray Block Devices failed"
 msgstr "Sondando Dispositivos de Bloco Perdido falhou"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Falha ao investigar partições"
+msgstr "Sondando atributos adicionais"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Falha ao investigar partições"
+msgstr "A sondagem de atributos adicionais falhou"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
