@@ -45,37 +45,37 @@ namespace storage
 	    ST_THROW(Exception("Mockup node not found"));
 
 	const xmlNode* commands_node = getChildNode(mockup_node, "Commands");
-	if (!commands_node)
-	    ST_THROW(Exception("Commands node not found"));
-
-	for (const xmlNode* command_node : getChildNodes(commands_node))
+	if (commands_node)
 	{
-	    string name;
-	    getChildValue(command_node, "name", name);
+	    for (const xmlNode* command_node : getChildNodes(commands_node))
+	    {
+		string name;
+		getChildValue(command_node, "name", name);
 
-	    Command command;
-	    getChildValue(command_node, "stdout", command.stdout);
-	    getChildValue(command_node, "stderr", command.stderr);
-	    getChildValue(command_node, "exit-code", command.exit_code);
+		Command command;
+		getChildValue(command_node, "stdout", command.stdout);
+		getChildValue(command_node, "stderr", command.stderr);
+		getChildValue(command_node, "exit-code", command.exit_code);
 
-	    if (!commands.emplace(name, command).second)
-		ST_THROW(Exception(sformat("command \"%s\" already loaded for mockup", name)));
+		if (!commands.emplace(name, command).second)
+		    ST_THROW(Exception(sformat("command \"%s\" already loaded for mockup", name)));
+	    }
 	}
 
 	const xmlNode* files_node = getChildNode(mockup_node, "Files");
-	if (!files_node)
-	    ST_THROW(Exception("Files node not found"));
-
-	for (const xmlNode* file_node : getChildNodes(files_node))
+	if (files_node)
 	{
-	    string name;
-	    getChildValue(file_node, "name", name);
+	    for (const xmlNode* file_node : getChildNodes(files_node))
+	    {
+		string name;
+		getChildValue(file_node, "name", name);
 
-	    File file;
-	    getChildValue(file_node, "content", file.content);
+		File file;
+		getChildValue(file_node, "content", file.content);
 
-	    if (!files.emplace(name, file).second)
-		ST_THROW(Exception(sformat("file \"%s\" already loaded for mockup", name)));
+		if (!files.emplace(name, file).second)
+		    ST_THROW(Exception(sformat("file \"%s\" already loaded for mockup", name)));
+	    }
 	}
     }
 
@@ -91,26 +91,32 @@ namespace storage
 	xmlNode* comment = xmlNewComment(string(" " + generated_string() + " ").c_str());
 	xmlAddPrevSibling(mockup_node, comment);
 
-	xmlNode* commands_node = xmlNewChild(mockup_node, "Commands");
-
-	for (const map<string, Command>::value_type& it : commands)
+	if (!commands.empty())
 	{
-	    xmlNode* command_node = xmlNewChild(commands_node, "Command");
+	    xmlNode* commands_node = xmlNewChild(mockup_node, "Commands");
 
-	    setChildValue(command_node, "name", it.first);
-	    setChildValue(command_node, "stdout", it.second.stdout);
-	    setChildValue(command_node, "stderr", it.second.stderr);
-	    setChildValueIf(command_node, "exit-code", it.second.exit_code, it.second.exit_code != 0);
+	    for (const map<string, Command>::value_type& it : commands)
+	    {
+		xmlNode* command_node = xmlNewChild(commands_node, "Command");
+
+		setChildValue(command_node, "name", it.first);
+		setChildValue(command_node, "stdout", it.second.stdout);
+		setChildValue(command_node, "stderr", it.second.stderr);
+		setChildValueIf(command_node, "exit-code", it.second.exit_code, it.second.exit_code != 0);
+	    }
 	}
 
-	xmlNode* files_node = xmlNewChild(mockup_node, "Files");
-
-	for (const map<string, File>::value_type& it : files)
+	if (!files.empty())
 	{
-	    xmlNode* file_node = xmlNewChild(files_node, "File");
+	    xmlNode* files_node = xmlNewChild(mockup_node, "Files");
 
-	    setChildValue(file_node, "name", it.first);
-	    setChildValue(file_node, "content", it.second.content);
+	    for (const map<string, File>::value_type& it : files)
+	    {
+		xmlNode* file_node = xmlNewChild(files_node, "File");
+
+		setChildValue(file_node, "name", it.first);
+		setChildValue(file_node, "content", it.second.content);
+	    }
 	}
 
 	xml.save(filename);

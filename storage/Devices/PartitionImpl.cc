@@ -108,7 +108,7 @@ namespace storage
 	const Parted& parted = prober.get_system_info().getParted(partitionable->get_name());
 	Parted::Entry entry;
 	if (!parted.get_entry(get_number(), entry))
-	    throw;
+	    ST_THROW(Exception("partition not found in parted output"));
 
 	id = entry.id;
 	boot = entry.boot;
@@ -717,15 +717,10 @@ namespace storage
 	    }
 	}
 
-	// See fix_dasd_sector_size() in class Parted.
-	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
-	    cmd_line += to_string(get_region().get_start() * 8) + " " + to_string(get_region().get_end() * 8 + 7);
-	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 2048)
-	    cmd_line += to_string(get_region().get_start() * 4) + " " + to_string(get_region().get_end() * 4 + 3);
-	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 1024)
-	    cmd_line += to_string(get_region().get_start() * 2) + " " + to_string(get_region().get_end() * 2 + 1);
-	else
-	    cmd_line += to_string(get_region().get_start()) + " " + to_string(get_region().get_end());
+	unsigned long long factor = parted_sector_adjustment_factor();
+
+	cmd_line += to_string(get_region().get_start() * factor) + " " +
+	    to_string(get_region().get_end() * factor + (factor - 1));
 
 	SystemCmd(UDEVADMBIN_SETTLE);
 
@@ -740,7 +735,7 @@ namespace storage
 
 	const Partitionable* partitionable = get_partitionable();
 
-	string cmd_line = PARTEDBIN " --script --machine " + quote(partitionable->get_name()) +
+	string cmd_line = PARTEDBIN " --script " + quote(partitionable->get_name()) +
 	    " unit s print";
 
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
@@ -1111,20 +1106,13 @@ namespace storage
     {
 	const Partition* partition_rhs = to_partition(rhs);
 	const Partitionable* partitionable = get_partitionable();
-	const PartitionTable* partition_table = get_partition_table();
 
 	string cmd_line = PARTEDBIN " --script --ignore-busy " + quote(partitionable->get_name()) +
 	    " unit s resizepart " + to_string(get_number()) + " ";
 
-	// See fix_dasd_sector_size() in class Parted.
-	if (is_dasd_pt(partition_table) && get_region().get_block_size() == 4096)
-	    cmd_line += to_string(partition_rhs->get_region().get_end() * 8 + 7);
-	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 2048)
-	    cmd_line += to_string(get_region().get_start() * 4) + " " + to_string(get_region().get_end() * 4 + 3);
-	else if (is_dasd_pt(partition_table) && get_region().get_block_size() == 1024)
-	    cmd_line += to_string(get_region().get_start() * 2) + " " + to_string(get_region().get_end() * 2 + 1);
-	else
-	    cmd_line += to_string(partition_rhs->get_region().get_end());
+	unsigned long long factor = parted_sector_adjustment_factor();
+
+	cmd_line += to_string(partition_rhs->get_region().get_end() * factor + (factor - 1));
 
 	wait_for_devices({ get_non_impl() });
 
@@ -1189,6 +1177,35 @@ namespace storage
     Partition::Impl::default_id_for_type(PartitionType type)
     {
 	return type == PartitionType::EXTENDED ? ID_EXTENDED : ID_LINUX;
+    }
+
+
+    unsigned long long
+    Partition::Impl::parted_sector_adjustment_factor() const
+    {
+	// See fix_dasd_sector_size() in class Parted, bsc #866535 and bsc #1112037.
+
+	unsigned long long factor = 1;
+
+	if (boost::starts_with(get_name(), DEV_DIR "/dasd"))
+	{
+	    const PartitionTable* partition_table = get_partition_table();
+
+	    if (is_dasd_pt(partition_table))
+	    {
+		switch (get_region().get_block_size())
+		{
+		    case 4096: factor = 8; break;
+		    case 2048: factor = 4; break;
+		    case 1024: factor = 2; break;
+		}
+	    }
+	}
+
+	if (factor != 1)
+	    y2mil("adjusting parted sector by factor:" << factor);
+
+	return factor;
     }
 
 

@@ -160,7 +160,7 @@ autoreconf -fvi
 make %{?_smp_mflags}
 
 %check
-make %{?_smp_mflags} check LOCALEDIR=%{buildroot}%{_datadir}/locale
+make %{?_smp_mflags} check VERBOSE=1 LOCALEDIR=%{buildroot}%{_datadir}/locale
 
 %install
 %make_install

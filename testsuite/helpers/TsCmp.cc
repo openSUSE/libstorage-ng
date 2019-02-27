@@ -20,6 +20,7 @@
 #include "storage/Filesystems/Btrfs.h"
 #include "storage/Filesystems/BtrfsSubvolume.h"
 #include "storage/Filesystems/MountPoint.h"
+#include "storage/Utils/Mockup.h"
 #include "testsuite/helpers/TsCmp.h"
 
 
@@ -192,7 +193,7 @@ namespace storage
     }
 
 
-    TsCmpActiongraph::TsCmpActiongraph(const string& name)
+    TsCmpActiongraph::TsCmpActiongraph(const string& name, bool commit)
     {
 	Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
 	environment.set_devicegraph_filename(name + "-probed.xml");
@@ -224,6 +225,17 @@ namespace storage
 	const CommitData commit_data(actiongraph.get_impl(), Tense::SIMPLE_PRESENT);
 
 	cmp(commit_data, expected);
+
+	if (!commit)
+	    return;
+
+	Mockup::set_mode(Mockup::Mode::PLAYBACK);
+	Mockup::load(name + "-mockup.xml");
+
+	CommitOptions commit_options(false);
+
+	storage.calculate_actiongraph();
+	storage.commit(commit_options);
     }
 
 

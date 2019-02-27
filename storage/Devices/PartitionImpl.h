@@ -149,6 +149,8 @@ namespace storage
 	bool boot;
 	bool legacy_boot;
 
+	unsigned long long parted_sector_adjustment_factor() const;
+
     };
 
 

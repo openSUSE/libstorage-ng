@@ -1,0 +1,2 @@
+1 - Create partition /dev/dasda1 (199.97 MiB) ->
+2 - Create partition /dev/vda1 (199.97 MiB) ->
