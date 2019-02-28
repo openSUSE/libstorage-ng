@@ -73,6 +73,13 @@ On FBA DASDs the implicit partition table can be replaced by a MS-DOS partition
 table or GPT.
 
 
+virtio-blk DASDs
+----------------
+
+DASDs using virtio-blk must already have a DASD partition table and
+are assumed to be CDL ECKD DASDs (see bsc #1112037).
+
+
 Glossary
 --------
 
