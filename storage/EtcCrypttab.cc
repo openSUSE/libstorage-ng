@@ -246,8 +246,18 @@ namespace storage
 
 	    if (boost::starts_with(blk_device, DEV_DIR "/"))
 	    {
-		if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
-		    return entry;
+		try
+		{
+		    if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
+			return entry;
+		}
+		catch (const Exception& e)
+		{
+		    // The block device for the crypttab entry may not be available right
+		    // now so the exception is not necessarily an error. Likely the noauto
+		    // option is present but even that is not required.
+		    ST_CAUGHT(e);
+		}
 	    }
 	}
 
