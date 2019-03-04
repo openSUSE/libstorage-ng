@@ -32,6 +32,12 @@
 #include "storage/Utils/Remote.h"
 
 
+/**
+ * With Occam's Razor an exception is thrown when not all entries in
+ * the mockup are used and Mockup::occams_razor() is called (which is
+ * done after probing when reading the mockup). Enable only for
+ * development code but not for production code.
+ */
 // #define OCCAMS_RAZOR
 
 
