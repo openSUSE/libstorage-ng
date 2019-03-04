@@ -10,7 +10,7 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 check_PROGRAMS =								\
 	disk.test multipath1.test multipath+luks1.test md1.test md2.test	\
 	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
-	luks+lvm1.test lvm+luks1.test luks1.test luks2.test			\
+	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
 	multi-mount-point.test							\
 	bcache1.test bcache2.test btrfs1.test dasd1.test dasd2.test dasd3.test	\
 	external-journal.test							\
@@ -34,6 +34,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	luks+lvm1-mockup.xml luks+lvm1-devicegraph.xml				\
 	luks1-mockup.xml luks1-devicegraph.xml					\
 	luks2-mockup.xml luks2-devicegraph.xml					\
+	luks3-mockup.xml luks3-devicegraph.xml					\
 	lvm+luks1-mockup.xml lvm+luks1-devicegraph.xml				\
 	bcache1-mockup.xml bcache1-devicegraph.xml				\
 	bcache2-mockup.xml bcache2-devicegraph.xml				\
