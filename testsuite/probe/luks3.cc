@@ -17,6 +17,10 @@ using namespace std;
 using namespace storage;
 
 
+/**
+ * In this test for one entry in /etc/crypttab the block device does
+ * not exist, thus 'udevadm info' fails, which is OK. See bsc #1123342.
+ */
 BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());
