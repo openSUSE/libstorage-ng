@@ -251,12 +251,12 @@ namespace storage
 		    if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
 			return entry;
 		}
-		catch (const Exception& e)
+		catch (const Exception& exception)
 		{
 		    // The block device for the crypttab entry may not be available right
 		    // now so the exception is not necessarily an error. Likely the noauto
 		    // option is present but even that is not required.
-		    ST_CAUGHT(e);
+		    ST_CAUGHT(exception);
 		}
 	    }
 	}
