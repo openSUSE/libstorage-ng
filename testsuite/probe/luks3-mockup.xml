@@ -1,0 +1,283 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/bin/ls -1 --sort=none '/sys/block'</name>
+      <stdout>sdc</stdout>
+      <stdout>dm-5</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/blkid -c '/dev/null'</name>
+      <stdout>/dev/sdc1: UUID="9a80f55f-c8a8-4767-8852-92eccf494a58" TYPE="crypto_LUKS" PARTUUID="41f58dd7-bd8b-4a2b-af17-43b998b46719"</stdout>
+      <stdout>/dev/mapper/cr-test2: UUID="c3d92f3c-e127-4bcc-9274-7dd95a634aa6" TYPE="ext4"</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/dmraid --sets=active -ccc</name>
+      <stdout>no raid disks</stdout>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/sbin/dmsetup table</name>
+      <stdout>cr-test2: 0 2093056 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:33 4096</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/multipath -d -v 2 -ll</name>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/disk/by-uuid/39334baa-941f-42ab-a0a4-7c20a427aff2'</name>
+      <stderr>Unknown device, --name=, --path=, or absolute path in /dev/ or /sys expected.</stderr>
+      <exit-code>4</exit-code>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/mapper/cr-test2'</name>
+      <stdout>P: /devices/virtual/block/dm-5</stdout>
+      <stdout>N: dm-5</stdout>
+      <stdout>S: disk/by-id/dm-name-cr-test2</stdout>
+      <stdout>S: disk/by-id/dm-uuid-CRYPT-LUKS1-9a80f55fc8a84767885292eccf494a58-cr-test</stdout>
+      <stdout>S: disk/by-uuid/c3d92f3c-e127-4bcc-9274-7dd95a634aa6</stdout>
+      <stdout>S: mapper/cr-test2</stdout>
+      <stdout>E: DEVLINKS=/dev/mapper/cr-test2 /dev/disk/by-uuid/c3d92f3c-e127-4bcc-9274-7dd95a634aa6 /dev/disk/by-id/dm-name-cr-test2 /dev/disk/by-id/dm-uuid-CRYPT-LUKS1-9a80f55fc8a84767885292eccf494a58-cr-test</stdout>
+      <stdout>E: DEVNAME=/dev/dm-5</stdout>
+      <stdout>E: DEVPATH=/devices/virtual/block/dm-5</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: DM_ACTIVATION=1</stdout>
+      <stdout>E: DM_NAME=cr-test2</stdout>
+      <stdout>E: DM_SUSPENDED=0</stdout>
+      <stdout>E: DM_UDEV_DISABLE_LIBRARY_FALLBACK_FLAG=1</stdout>
+      <stdout>E: DM_UDEV_PRIMARY_SOURCE_FLAG=1</stdout>
+      <stdout>E: DM_UDEV_RULES_VSN=2</stdout>
+      <stdout>E: DM_UUID=CRYPT-LUKS1-9a80f55fc8a84767885292eccf494a58-cr-test</stdout>
+      <stdout>E: ID_FS_TYPE=ext4</stdout>
+      <stdout>E: ID_FS_USAGE=filesystem</stdout>
+      <stdout>E: ID_FS_UUID=c3d92f3c-e127-4bcc-9274-7dd95a634aa6</stdout>
+      <stdout>E: ID_FS_UUID_ENC=c3d92f3c-e127-4bcc-9274-7dd95a634aa6</stdout>
+      <stdout>E: ID_FS_VERSION=1.0</stdout>
+      <stdout>E: MAJOR=254</stdout>
+      <stdout>E: MINOR=5</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=1033800195886</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
+      <stdout>N: sdc</stdout>
+      <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: COMPAT_SYMLINK_GENERATION=2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0 /dev/disk/by-path/pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: DEVNAME=/dev/sdc</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc</stdout>
+      <stdout>E: DEVTYPE=disk</stdout>
+      <stdout>E: DM_MULTIPATH_DEVICE_PATH=0</stdout>
+      <stdout>E: DONT_DEL_PART_NODES=1</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=My_Passport_25E2</stdout>
+      <stdout>E: ID_MODEL_ENC=My\x20Passport\x2025E2</stdout>
+      <stdout>E: ID_MODEL_ID=25e2</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=fd21dd86-b327-4916-ade9-1ca063bd4359</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_14_0-usb-0_7_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=4004</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_INQUIRY=1</stdout>
+      <stdout>E: ID_SERIAL=WD_My_Passport_25E2_57584D31454135463654544A-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=57584D31454135463654544A</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=WD</stdout>
+      <stdout>E: ID_VENDOR_ENC=WD\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_VENDOR_ID=1058</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=32</stdout>
+      <stdout>E: MPATH_SBIN_PATH=/sbin</stdout>
+      <stdout>E: SCSI_MODEL=My_Passport_25E2</stdout>
+      <stdout>E: SCSI_MODEL_ENC=My\x20Passport\x2025E2</stdout>
+      <stdout>E: SCSI_REVISION=4004</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=WD</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=WD\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: USEC_INITIALIZED=7582220</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm info '/dev/sdc1'</name>
+      <stdout>P: /devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>N: sdc1</stdout>
+      <stdout>S: disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part1</stdout>
+      <stdout>S: disk/by-partuuid/41f58dd7-bd8b-4a2b-af17-43b998b46719</stdout>
+      <stdout>S: disk/by-path/pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0-part1</stdout>
+      <stdout>S: disk/by-uuid/9a80f55f-c8a8-4767-8852-92eccf494a58</stdout>
+      <stdout>E: COMPAT_SYMLINK_GENERATION=2</stdout>
+      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0-part1 /dev/disk/by-id/usb-WD_My_Passport_25E2_57584D31454135463654544A-0:0-part1 /dev/disk/by-partuuid/41f58dd7-bd8b-4a2b-af17-43b998b46719 /dev/disk/by-uuid/9a80f55f-c8a8-4767-8852-92eccf494a58</stdout>
+      <stdout>E: DEVNAME=/dev/sdc1</stdout>
+      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1</stdout>
+      <stdout>E: DEVTYPE=partition</stdout>
+      <stdout>E: DM_MULTIPATH_DEVICE_PATH=0</stdout>
+      <stdout>E: DONT_DEL_PART_NODES=1</stdout>
+      <stdout>E: ID_BUS=usb</stdout>
+      <stdout>E: ID_FS_TYPE=crypto_LUKS</stdout>
+      <stdout>E: ID_FS_USAGE=crypto</stdout>
+      <stdout>E: ID_FS_UUID=9a80f55f-c8a8-4767-8852-92eccf494a58</stdout>
+      <stdout>E: ID_FS_UUID_ENC=9a80f55f-c8a8-4767-8852-92eccf494a58</stdout>
+      <stdout>E: ID_FS_VERSION=1</stdout>
+      <stdout>E: ID_INSTANCE=0:0</stdout>
+      <stdout>E: ID_MODEL=My_Passport_25E2</stdout>
+      <stdout>E: ID_MODEL_ENC=My\x20Passport\x2025E2</stdout>
+      <stdout>E: ID_MODEL_ID=25e2</stdout>
+      <stdout>E: ID_PART_ENTRY_DISK=8:32</stdout>
+      <stdout>E: ID_PART_ENTRY_NUMBER=1</stdout>
+      <stdout>E: ID_PART_ENTRY_OFFSET=2048</stdout>
+      <stdout>E: ID_PART_ENTRY_SCHEME=gpt</stdout>
+      <stdout>E: ID_PART_ENTRY_SIZE=2097152</stdout>
+      <stdout>E: ID_PART_ENTRY_TYPE=a19d880f-05fc-4d3b-a006-743f0f84911e</stdout>
+      <stdout>E: ID_PART_ENTRY_UUID=41f58dd7-bd8b-4a2b-af17-43b998b46719</stdout>
+      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
+      <stdout>E: ID_PART_TABLE_UUID=fd21dd86-b327-4916-ade9-1ca063bd4359</stdout>
+      <stdout>E: ID_PATH=pci-0000:00:14.0-usb-0:7:1.0-scsi-0:0:0:0</stdout>
+      <stdout>E: ID_PATH_TAG=pci-0000_00_14_0-usb-0_7_1_0-scsi-0_0_0_0</stdout>
+      <stdout>E: ID_REVISION=4004</stdout>
+      <stdout>E: ID_SCSI=1</stdout>
+      <stdout>E: ID_SCSI_INQUIRY=1</stdout>
+      <stdout>E: ID_SERIAL=WD_My_Passport_25E2_57584D31454135463654544A-0:0</stdout>
+      <stdout>E: ID_SERIAL_SHORT=57584D31454135463654544A</stdout>
+      <stdout>E: ID_TYPE=disk</stdout>
+      <stdout>E: ID_USB_DRIVER=usb-storage</stdout>
+      <stdout>E: ID_USB_INTERFACES=:080650:</stdout>
+      <stdout>E: ID_USB_INTERFACE_NUM=00</stdout>
+      <stdout>E: ID_VENDOR=WD</stdout>
+      <stdout>E: ID_VENDOR_ENC=WD\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: ID_VENDOR_ID=1058</stdout>
+      <stdout>E: MAJOR=8</stdout>
+      <stdout>E: MINOR=33</stdout>
+      <stdout>E: PARTN=1</stdout>
+      <stdout>E: SCSI_MODEL=My_Passport_25E2</stdout>
+      <stdout>E: SCSI_MODEL_ENC=My\x20Passport\x2025E2</stdout>
+      <stdout>E: SCSI_REVISION=4004</stdout>
+      <stdout>E: SCSI_TPGS=0</stdout>
+      <stdout>E: SCSI_TYPE=disk</stdout>
+      <stdout>E: SCSI_VENDOR=WD</stdout>
+      <stdout>E: SCSI_VENDOR_ENC=WD\x20\x20\x20\x20\x20\x20</stdout>
+      <stdout>E: SUBSYSTEM=block</stdout>
+      <stdout>E: TAGS=:systemd:</stdout>
+      <stdout>E: UDISKS_IGNORE=1</stdout>
+      <stdout>E: USEC_INITIALIZED=1033768668818</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/bin/getconf PAGESIZE</name>
+      <stdout>4096</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/lsscsi --transport</name>
+      <stdout>[8:0:0:0]    disk    usb:2-7:1.0                     /dev/sdc </stdout>
+      <stdout>[8:0:0:1]    enclosu usb:2-7:1.0                     -        </stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/stat --format '%f' '/dev/sdc'</name>
+      <stdout>61b0</stdout>
+    </Command>
+    <Command>
+      <name>/usr/bin/test -d '/sys/firmware/efi/vars'</name>
+      <exit-code>1</exit-code>
+    </Command>
+    <Command>
+      <name>/usr/bin/uname -m</name>
+      <stdout>x86_64</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --machine '/dev/sdc' unit s print</name>
+      <stdout>BYT;</stdout>
+      <stdout>/dev/sdc:5860466688s:scsi:512:4096:gpt:WD My Passport 25E2:;</stdout>
+      <stdout>1:2048s:2099199s:2097152s:::;</stdout>
+    </Command>
+  </Commands>
+  <Files>
+    <File>
+      <name>/etc/crypttab</name>
+      <content>cr-test1  /dev/disk/by-uuid/39334baa-941f-42ab-a0a4-7c20a427aff2  none  noauto</content>
+      <content>cr-test2  /dev/disk/by-uuid/9a80f55f-c8a8-4767-8852-92eccf494a58</content>
+    </File>
+    <File>
+      <name>/etc/fstab</name>
+    </File>
+    <File>
+      <name>/proc/mounts</name>
+      <content>sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>proc /proc proc rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>devtmpfs /dev devtmpfs rw,nosuid,size=16295164k,nr_inodes=4073791,mode=755 0 0</content>
+      <content>securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0</content>
+      <content>devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0</content>
+      <content>tmpfs /run tmpfs rw,nosuid,nodev,mode=755 0 0</content>
+      <content>tmpfs /sys/fs/cgroup tmpfs ro,nosuid,nodev,noexec,mode=755 0 0</content>
+      <content>cgroup2 /sys/fs/cgroup/unified cgroup2 rw,nosuid,nodev,noexec,relatime,nsdelegate 0 0</content>
+      <content>cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,name=systemd 0 0</content>
+      <content>pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0</content>
+      <content>bpf /sys/fs/bpf bpf rw,nosuid,nodev,noexec,relatime,mode=700 0 0</content>
+      <content>cgroup /sys/fs/cgroup/net_cls,net_prio cgroup rw,nosuid,nodev,noexec,relatime,net_cls,net_prio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/perf_event cgroup rw,nosuid,nodev,noexec,relatime,perf_event 0 0</content>
+      <content>cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpu,cpuacct 0 0</content>
+      <content>cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0</content>
+      <content>cgroup /sys/fs/cgroup/hugetlb cgroup rw,nosuid,nodev,noexec,relatime,hugetlb 0 0</content>
+      <content>cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0</content>
+      <content>cgroup /sys/fs/cgroup/memory cgroup rw,nosuid,nodev,noexec,relatime,memory 0 0</content>
+      <content>cgroup /sys/fs/cgroup/pids cgroup rw,nosuid,nodev,noexec,relatime,pids 0 0</content>
+      <content>cgroup /sys/fs/cgroup/rdma cgroup rw,nosuid,nodev,noexec,relatime,rdma 0 0</content>
+      <content>cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0</content>
+      <content>hugetlbfs /dev/hugepages hugetlbfs rw,relatime,pagesize=2M 0 0</content>
+      <content>debugfs /sys/kernel/debug debugfs rw,relatime 0 0</content>
+      <content>systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=52,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=16940 0 0</content>
+      <content>mqueue /dev/mqueue mqueue rw,relatime 0 0</content>
+      <content>fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0</content>
+      <content>tmpfs /run/user/0 tmpfs rw,nosuid,nodev,relatime,size=3261064k,mode=700 0 0</content>
+      <content>gvfsd-fuse /run/user/0/gvfs fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=0,group_id=0 0 0</content>
+      <content>tracefs /sys/kernel/debug/tracing tracefs rw,relatime 0 0</content>
+      <content>none /sys/kernel/config configfs rw,relatime 0 0</content>
+    </File>
+    <File>
+      <name>/proc/swaps</name>
+      <content>Filename				Type		Size	Used	Priority</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/ext_range</name>
+      <content>256</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/queue/rotational</name>
+      <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/size</name>
+      <content>5860466688</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-5/size</name>
+      <content>2093056</content>
+    </File>
+  </Files>
+</Mockup>
