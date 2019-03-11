@@ -48,9 +48,11 @@ namespace storage
 
 
     LvmPv::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), uuid()
+	: Device::Impl(node), uuid(), pe_start(default_pe_start)
     {
 	getChildValue(node, "uuid", uuid);
+
+	getChildValue(node, "pe-start", pe_start);
     }
 
 
@@ -68,6 +70,8 @@ namespace storage
 	Device::Impl::save(node);
 
 	setChildValue(node, "uuid", uuid);
+
+	setChildValue(node, "pe-start", pe_start);
     }
 
 
@@ -102,6 +106,28 @@ namespace storage
     LvmPv::Impl::get_blk_device() const
     {
 	return get_single_parent_of_type<const BlkDevice>();
+    }
+
+
+    void
+    LvmPv::Impl::calculate_pe_start()
+    {
+	const BlkDevice* blk_device = get_blk_device();
+	const Topology& topology = blk_device->get_topology();
+
+	pe_start = max(default_pe_start, (unsigned long long) topology.get_optimal_io_size());
+    }
+
+
+    unsigned long long
+    LvmPv::Impl::get_usable_size() const
+    {
+	unsigned long long size = get_blk_device()->get_size();
+
+	if (pe_start >= size)
+	    return 0;
+
+	return size - pe_start;
     }
 
 
@@ -141,6 +167,7 @@ namespace storage
 
 	    LvmPv* lvm_pv = LvmPv::create(prober.get_system());
 	    lvm_pv->get_impl().set_uuid(pv.pv_uuid);
+	    lvm_pv->get_impl().set_pe_start(pv.pe_start);
 
 	    if (!pv.vg_uuid.empty())
 	    {
@@ -244,7 +271,7 @@ namespace storage
 	if (!Device::Impl::equal(rhs))
 	    return false;
 
-	return uuid == rhs.uuid;
+	return uuid == rhs.uuid && pe_start == rhs.pe_start;
     }
 
 
@@ -256,6 +283,8 @@ namespace storage
 	Device::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+
+	storage::log_diff(log, "pe-start", pe_start, rhs.pe_start);
     }
 
 
@@ -264,7 +293,7 @@ namespace storage
     {
 	Device::Impl::print(out);
 
-	out << " uuid:" << uuid;
+	out << " uuid:" << uuid << " pe-start:" << pe_start;
     }
 
 

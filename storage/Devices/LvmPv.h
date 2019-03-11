@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,8 +44,17 @@ namespace storage
 	static std::vector<const LvmPv*> get_all(const Devicegraph* devicegraph);
 
 	bool has_blk_device() const;
+
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
+
+	/**
+	 * Get the size of the PV usable for extents in bytes. Can be
+	 * 0 (if pe_start >= size of blk device).
+	 *
+	 * @throw Exception
+	 */
+	unsigned long long get_usable_size() const;
 
 	bool has_lvm_vg() const;
 	LvmVg* get_lvm_vg();

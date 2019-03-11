@@ -26,6 +26,7 @@
 
 #include "storage/Devices/LvmPv.h"
 #include "storage/Devices/DeviceImpl.h"
+#include "storage/Utils/HumanString.h"
 
 
 namespace storage
@@ -41,8 +42,10 @@ namespace storage
     {
     public:
 
+	static const unsigned long long default_pe_start = 1 * MiB;
+
 	Impl()
-	    : Device::Impl(), uuid() {}
+	    : Device::Impl(), uuid(), pe_start(default_pe_start) {}
 
 	Impl(const xmlNode* node);
 
@@ -65,6 +68,13 @@ namespace storage
 
 	BlkDevice* get_blk_device();
 	const BlkDevice* get_blk_device() const;
+
+	unsigned long long get_pe_start() const { return pe_start; }
+	void set_pe_start(unsigned long long pe_start) { Impl::pe_start = pe_start; }
+
+	void calculate_pe_start();
+
+	unsigned long long get_usable_size() const;
 
 	bool has_lvm_vg() const;
 
@@ -104,6 +114,13 @@ namespace storage
     private:
 
 	string uuid;
+
+	/**
+	 * Start of the extents on the underlying device. Invariant to resize.
+	 * Usually 1 MiB (default_pe_start), for details see implementation of
+	 * calculate_pe_start().
+	 */
+	unsigned long long pe_start;
 
     };
 

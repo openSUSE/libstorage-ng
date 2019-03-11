@@ -302,12 +302,10 @@ namespace storage
 
 	for (const LvmPv* lvm_pv : get_lvm_pvs())
 	{
-	    // TODO 1 MiB due to metadata and physical extent alignment, needs
-	    // more research.
+	    unsigned long long usable_size = lvm_pv->get_usable_size();
 
-	    unsigned long long size = lvm_pv->get_blk_device()->get_size();
-	    if (size >= 1 * MiB)
-		extent_count += (size - 1 * MiB) / extent_size;
+	    if (usable_size > 0)
+		extent_count += usable_size / extent_size;
 	}
 
 	region.set_length(extent_count);
@@ -335,6 +333,8 @@ namespace storage
 	    default:
 		ST_THROW(Exception("illegal number of children"));
 	}
+
+	lvm_pv->get_impl().calculate_pe_start();
 
 	Subdevice::create(devicegraph, lvm_pv, get_non_impl());
 
