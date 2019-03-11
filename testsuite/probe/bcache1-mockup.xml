@@ -91,14 +91,14 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
       <stdout>              "pv": [</stdout>
       <stdout>                  {"pv_name":"/dev/bcache0", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/bcache0p1", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
-      <stdout>                  {"pv_name":"/dev/bcache1", "pv_uuid":"f6ChpE-iVd2-HtzM-UdBO-wqfa-cwfY-QnnVBk", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
+      <stdout>                  {"pv_name":"/dev/bcache1", "pv_uuid":"f6ChpE-iVd2-HtzM-UdBO-wqfa-cwfY-QnnVBk", "vg_name":"", "vg_uuid":"", "pv_attr":"---", "pe_start":"1048576"},</stdout>
       <stdout>                  {"pv_name":"/dev/bcache2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/bcache2p1", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/my_vg/bcache2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
@@ -106,7 +106,7 @@
       <stdout>                  {"pv_name":"/dev/vda2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/vdb", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/vdc", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
-      <stdout>                  {"pv_name":"/dev/vdd1", "pv_uuid":"gRdH2t-ZrTe-myQe-clC8-7Klc-rXZD-iFPA44", "vg_name":"my_vg", "vg_uuid":"kMp8DS-5tQ9-piyc-RrhF-Rq4w-LfiL-GEMW7l", "pv_attr":"a--"},</stdout>
+      <stdout>                  {"pv_name":"/dev/vdd1", "pv_uuid":"gRdH2t-ZrTe-myQe-clC8-7Klc-rXZD-iFPA44", "vg_name":"my_vg", "vg_uuid":"kMp8DS-5tQ9-piyc-RrhF-Rq4w-LfiL-GEMW7l", "pv_attr":"a--", "pe_start":"1048576"},</stdout>
       <stdout>                  {"pv_name":"/dev/vdd2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/vdd3", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"}</stdout>
       <stdout>              ]</stdout>
