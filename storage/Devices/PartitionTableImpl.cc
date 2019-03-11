@@ -73,8 +73,8 @@ namespace storage
 	{
 	    string name = partitionable->get_impl().partition_name(entry.number);
 
-	    Partition* p = create_partition(name, entry.region, entry.type);
-	    p->get_impl().probe_pass_1a(prober);
+	    Partition* partition = create_partition(name, entry.region, entry.type);
+	    partition->get_impl().probe_pass_1a(prober);
 	}
     }
 
