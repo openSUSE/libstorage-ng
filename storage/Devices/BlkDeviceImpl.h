@@ -212,6 +212,10 @@ namespace storage
 	 */
 	Region region;
 
+	/**
+	 * The topology is used for 1. partition alignment and 2. LVM
+	 * alignment (in LvmPv::Impl::calculate_pe_start()).
+	 */
 	Topology topology;
 
 	vector<string> udev_paths;
