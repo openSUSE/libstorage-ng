@@ -196,12 +196,14 @@ namespace storage
     static bool
     is_backed(Prober& prober, const string& short_name)
     {
+	SystemInfo& system_info = prober.get_system_info();
+
 	string dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/dev";
-	const File& dev_file = prober.get_system_info().getFile(dev_path);
+	const File& dev_file = system_info.getFile(dev_path);
 	string majorminor = dev_file.get<string>();
 
 	string backing_dev_path = SYSFS_DIR "/devices/virtual/block/" + short_name + "/bcache/../dev";
-	const File& backing_dev_file = prober.get_system_info().getFile(backing_dev_path);
+	const File& backing_dev_file = system_info.getFile(backing_dev_path);
 	string backing_majorminor = backing_dev_file.get<string>();
 
 	return majorminor != backing_majorminor;
@@ -290,19 +292,18 @@ namespace storage
 
 	SystemInfo& system_info = prober.get_system_info();
 
-	const File& size_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/size");
-
+	const File& size_file = get_sysfs_file(system_info, "size");
 	set_region(Region(0, size_file.get<unsigned long long>(), 512));
 
 	if(get_type() == BcacheType::BACKED)
 	{
-	    const File& cache_mode_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/cache_mode");
+	    const File& cache_mode_file = get_sysfs_file(system_info, "bcache/cache_mode");
 	    set_cache_mode(parse_mode(cache_mode_file));
 
-	    const File& writeback_percent_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/writeback_percent");
+	    const File& writeback_percent_file = get_sysfs_file(system_info, "bcache/writeback_percent");
 	    set_writeback_percent(writeback_percent_file.get<unsigned>());
 
-	    const File& sequential_cutoff_file = system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/sequential_cutoff");
+	    const File& sequential_cutoff_file = get_sysfs_file(system_info, + "bcache/sequential_cutoff");
 	    set_sequential_cutoff(parse_size(sequential_cutoff_file));
 	}
     }
@@ -313,10 +314,12 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1b(prober);
 
-	if(get_type() == BcacheType::BACKED)
+	if (get_type() == BcacheType::BACKED)
 	{
+	    SystemInfo& system_info = prober.get_system_info();
+
 	    // Creating relationship with its backing device
-	    const File& dev_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/bcache/../dev");
+	    const File& dev_file = get_sysfs_file(system_info, "bcache/../dev");
 	    string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 	    prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {

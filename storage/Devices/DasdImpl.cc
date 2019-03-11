@@ -203,8 +203,9 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File& rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-								       "/queue/rotational");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File& rotational_file = get_sysfs_file(system_info, "queue/rotational");
 	rotational = rotational_file.get<bool>();
 
 	// For DASDs using virtio-blk the dasdtool does not work. So
@@ -220,7 +221,7 @@ namespace storage
 	    return;
 	}
 
-	const Dasdview& dasdview = prober.get_system_info().getDasdview(get_name());
+	const Dasdview& dasdview = system_info.getDasdview(get_name());
 
 	bus_id = dasdview.get_bus_id();
 
