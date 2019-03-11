@@ -119,7 +119,7 @@ namespace storage
 	    }
 	}
 
-	xml.save(filename);
+	xml.save_to_file(filename);
     }
 
 

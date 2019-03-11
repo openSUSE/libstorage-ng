@@ -799,7 +799,7 @@ namespace storage
 	    holder->save(holder_node);
 	}
 
-	if (!xml.save(filename))
+	if (!xml.save_to_file(filename))
 	    ST_THROW(Exception(sformat("failed to write '%s'", filename)));
     }
 

@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,8 +49,9 @@ namespace storage
 
 	~XmlFile();
 
-	bool save(const string& filename)
-	    { return xmlSaveFormatFile(filename.c_str(), doc, 1); }
+	bool save_to_file(const string& filename) const;
+
+	string save_to_string() const;
 
 	void setRootElement(xmlNode* node)
 	    { xmlDocSetRootElement(doc, node); }

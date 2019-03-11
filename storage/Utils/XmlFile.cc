@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2010-2014] Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,6 +49,27 @@ namespace storage
     XmlFile::~XmlFile()
     {
 	xmlFreeDoc(doc);
+    }
+
+
+    bool
+    XmlFile::save_to_file(const string& filename) const
+    {
+	return xmlSaveFormatFile(filename.c_str(), doc, 1);
+    }
+
+
+    string
+    XmlFile::save_to_string() const
+    {
+	xmlChar *xmlbuff;
+	int buffersize;
+
+	xmlDocDumpFormatMemory(doc, &xmlbuff, &buffersize, 1);
+	string s = (const char*) xmlbuff;
+	xmlFree(xmlbuff);
+
+	return s;
     }
 
 
