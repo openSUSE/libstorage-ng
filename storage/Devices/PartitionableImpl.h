@@ -25,7 +25,6 @@
 #define STORAGE_PARTITIONABLE_IMPL_H
 
 
-#include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/Partitionable.h"
 
@@ -46,9 +45,6 @@ namespace storage
     public:
 
 	void check(const CheckCallbacks* check_callbacks) const override;
-
-	const Topology& get_topology() const { return topology; }
-	void set_topology(const Topology& topology) { Impl::topology = topology; }
 
 	unsigned int get_range() const { return range; }
 	void set_range(unsigned int range) { Impl::range = range; }
@@ -88,18 +84,16 @@ namespace storage
     protected:
 
 	Impl(const string& name, unsigned int range = default_range)
-	    : BlkDevice::Impl(name), topology(), range(range) {}
+	    : BlkDevice::Impl(name), range(range) {}
 
 	Impl(const string& name, const Region& region, unsigned int range = default_range)
-	    : BlkDevice::Impl(name, region), topology(), range(range) {}
+	    : BlkDevice::Impl(name, region), range(range) {}
 
 	Impl(const xmlNode* node);
 
 	void save(xmlNode* node) const override;
 
     private:
-
-	Topology topology;
 
 	unsigned int range;
 

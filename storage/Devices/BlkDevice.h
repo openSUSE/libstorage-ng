@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -34,6 +34,7 @@ namespace storage
 {
 
     class Region;
+    class Topology;
     class Encryption;
     class Bcache;
     class BcacheCset;
@@ -67,6 +68,16 @@ namespace storage
 	 * @return size as string
 	 */
 	std::string get_size_string() const;
+
+	/**
+	 * Get the topology.
+	 */
+	const Topology& get_topology() const;
+
+	/**
+	 * Set the topology. Only useful for testsuites.
+	 */
+	void set_topology(const Topology& topology);
 
 	bool is_active() const;
 

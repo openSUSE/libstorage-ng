@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -138,6 +138,20 @@ namespace storage
     BlkDevice::get_size_string() const
     {
 	return get_impl().get_size_text().translated;
+    }
+
+
+    const Topology&
+    BlkDevice::get_topology() const
+    {
+	return get_impl().get_topology();
+    }
+
+
+    void
+    BlkDevice::set_topology(const Topology& topology)
+    {
+	get_impl().set_topology(topology);
     }
 
 
