@@ -160,8 +160,9 @@ namespace storage
 
 	virtual void probe_pass_1a(Prober& prober) override;
 
-	void probe_size(Prober& prober);
-	void probe_topology(Prober& prober);
+	virtual void probe_size(Prober& prober);
+
+	virtual void probe_topology(Prober& prober);
 
 	virtual ResizeInfo detect_resize_info() const override = 0;
 

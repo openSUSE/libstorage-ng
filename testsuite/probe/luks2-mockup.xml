@@ -488,12 +488,44 @@
       <content>5860466688</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/host6/target6:0:0/6:0:0:0/block/sdb/sdb1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/host6/target6:0:0/6:0:0:0/block/sdb/sdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/host6/target6:0:0/6:0:0:0/block/sdb/sdb3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.3/1-1.3:1.0/host6/target6:0:0/6:0:0:0/block/sdb/sdb4/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-6/size</name>
       <content>58599424</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-6/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-6/queue/optimal_io_size</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-8/size</name>
       <content>58601472</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-8/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-8/queue/optimal_io_size</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>

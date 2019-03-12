@@ -427,8 +427,24 @@
       <content>33554432</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-0/size</name>
       <content>16779264</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-0/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-0/queue/optimal_io_size</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>

@@ -366,6 +366,8 @@ namespace storage
 
 	    const File& size_file = get_sysfs_file(system_info, "size");
 	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
+
+	    probe_topology(prober);
 	}
     }
 
@@ -385,12 +387,12 @@ namespace storage
     void
     Luks::Impl::parent_has_new_region(const Device* parent)
     {
-	calculate_region();
+	calculate_region_and_topology();
     }
 
 
     void
-    Luks::Impl::calculate_region()
+    Luks::Impl::calculate_region_and_topology()
     {
 	const BlkDevice* blk_device = get_blk_device();
 
@@ -405,6 +407,13 @@ namespace storage
 	    size = 0 * B;
 
 	set_size(size);
+
+	// alignment_offset is 0 even is the underlying blk device
+	// (e.g. a partition) has alignment_offset !=
+	// 0. optimal_io_size is the same as for the underlying blk
+	// device.
+
+	set_topology(Topology(0, blk_device->get_topology().get_optimal_io_size()));
     }
 
 

@@ -908,6 +908,14 @@
       <content>41943040</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/vda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:07.0/virtio2/block/vda/vda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb/alignment_offset</name>
       <content>0</content>
     </File>
@@ -980,6 +988,18 @@
       <content>8388608</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0c.0/virtio7/block/vdd/vdd3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/bcache0/dev</name>
       <content>253:0</content>
     </File>
@@ -1006,6 +1026,10 @@
     <File>
       <name>/sys/devices/virtual/block/bcache0/size</name>
       <content>10485744</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache0/bcache0p1/alignment_offset</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache1/dev</name>
@@ -1062,6 +1086,10 @@
     <File>
       <name>/sys/devices/virtual/block/bcache2/size</name>
       <content>106480</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache2/bcache2p1/alignment_offset</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/fs/bcache/acb129b8-b55e-45bb-aa99-41a6f0a0ef07/bdev0/dev/dev</name>

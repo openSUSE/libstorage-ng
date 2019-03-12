@@ -508,6 +508,18 @@
       <content>14424480</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasdb/dasdb3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0004/0.0.0160/block/dasdc/alignment_offset</name>
       <content>0</content>
     </File>

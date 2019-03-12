@@ -352,5 +352,17 @@
       <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/size</name>
       <content>5860466688</content>
     </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1a.0/usb1/1-1/1-1.6/1-1.6:1.0/host7/target7:0:0/7:0:0:0/block/sdc/sdc3/alignment_offset</name>
+      <content>0</content>
+    </File>
   </Files>
 </Mockup>

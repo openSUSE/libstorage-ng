@@ -534,6 +534,14 @@
       <content>1310720</content>
     </File>
     <File>
+      <name>/sys/devices/vbd-51712/block/xvda/xvda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51712/block/xvda/xvda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/vbd-51728/block/xvdb/alignment_offset</name>
       <content>0</content>
     </File>
@@ -556,6 +564,14 @@
     <File>
       <name>/sys/devices/vbd-51728/block/xvdb/size</name>
       <content>125829120</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/xvdb1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/vbd-51728/block/xvdb/xvdb2/alignment_offset</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/vbd-51745/block/xvdc1/ext_range</name>

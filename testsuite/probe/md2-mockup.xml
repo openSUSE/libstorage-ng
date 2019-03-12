@@ -813,6 +813,14 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/md0/md0p1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/md0/md0p2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/md1/size</name>
       <content>16777088</content>
     </File>

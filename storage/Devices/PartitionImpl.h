@@ -64,6 +64,8 @@ namespace storage
 
 	virtual void probe_pass_1a(Prober& prober) override;
 
+	virtual void probe_topology(Prober& prober) override;
+
 	virtual void save(xmlNode* node) const override;
 
 	virtual bool has_dependency_manager() const override { return true; }
@@ -78,6 +80,8 @@ namespace storage
 	void set_number(unsigned int number);
 
 	virtual void set_region(const Region& region) override;
+
+	void calculate_topology();
 
 	PartitionType get_type() const { return type; }
 	void set_type(PartitionType type);
