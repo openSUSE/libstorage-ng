@@ -276,8 +276,20 @@
       <content>5860466688</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/sdc1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-5/size</name>
       <content>2093056</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-5/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-5/queue/optimal_io_size</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>

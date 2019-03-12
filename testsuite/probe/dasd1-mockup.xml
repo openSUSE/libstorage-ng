@@ -309,5 +309,17 @@
       <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/size</name>
       <content>14424480</content>
     </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3/alignment_offset</name>
+      <content>0</content>
+    </File>
   </Files>
 </Mockup>

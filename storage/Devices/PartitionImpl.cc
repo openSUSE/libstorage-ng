@@ -113,6 +113,26 @@ namespace storage
 	id = entry.id;
 	boot = entry.boot;
 	legacy_boot = entry.legacy_boot;
+
+	probe_topology(prober);
+    }
+
+
+    void
+    Partition::Impl::probe_topology(Prober& prober)
+    {
+	SystemInfo& system_info = prober.get_system_info();
+
+	const Partitionable* partitionable = get_partitionable();
+
+	const File& alignment_offset_file = get_sysfs_file(system_info, "alignment_offset");
+	const File& optimal_io_size_file = partitionable->get_impl().get_sysfs_file(system_info,
+										    "queue/optimal_io_size");
+
+	unsigned long long alignment_offset = alignment_offset_file.get<int>();
+	unsigned long long optimal_io_size = optimal_io_size_file.get<int>();
+
+	set_topology(Topology(alignment_offset, optimal_io_size));
     }
 
 
@@ -196,6 +216,25 @@ namespace storage
 	    ST_THROW(DifferentBlockSizes(region.get_block_size(), partitionable_region.get_block_size()));
 
 	BlkDevice::Impl::set_region(region);
+
+	calculate_topology();
+    }
+
+
+    void
+    Partition::Impl::calculate_topology()
+    {
+	// TODO The alignment_offset should also be calculated. But
+	// since all new partition are normally aligned anyway this is
+	// not so urgent. Would require to probe and save the
+	// physical_block_size.
+
+	const Partitionable* partitionable = get_partitionable();
+
+	unsigned long long alignment_offset = 0;
+	unsigned long optimal_io_size = partitionable->get_topology().get_optimal_io_size();
+
+	set_topology(Topology(alignment_offset, optimal_io_size));
     }
 
 

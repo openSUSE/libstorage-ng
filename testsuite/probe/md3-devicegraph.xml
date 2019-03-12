@@ -468,6 +468,9 @@
         <length>3352576</length>
         <block-size>512</block-size>
       </region>
+      <topology>
+        <optimal-io-size>1048576</optimal-io-size>
+      </topology>
       <udev-id>md-uuid-04ac694a:d5170a17:75bf9d81:6ec1f71f-part1</udev-id>
       <type>primary</type>
       <id>131</id>
@@ -485,6 +488,9 @@
         <length>3352576</length>
         <block-size>512</block-size>
       </region>
+      <topology>
+        <optimal-io-size>1048576</optimal-io-size>
+      </topology>
       <udev-id>md-uuid-d18642aa:6cec3364:52da8d3b:e6229373-part1</udev-id>
       <type>primary</type>
       <id>131</id>
@@ -502,6 +508,9 @@
         <length>3352576</length>
         <block-size>512</block-size>
       </region>
+      <topology>
+        <optimal-io-size>1048576</optimal-io-size>
+      </topology>
       <udev-id>md-uuid-0ea71d45:8bed4762:7e2112f0:67d0a563-part1</udev-id>
       <type>primary</type>
       <id>131</id>

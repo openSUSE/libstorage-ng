@@ -1110,6 +1110,22 @@
       <content>15974400</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:06.0/usb1/1-2/1-2:1.0/host3/target3:0:0/3:0:0:0/block/sdb/sdb4/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/alignment_offset</name>
       <content>0</content>
     </File>
@@ -1132,6 +1148,18 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/size</name>
       <content>104857600</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:0d.0/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda3/alignment_offset</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache0/alignment_offset</name>
@@ -1200,6 +1228,14 @@
     <File>
       <name>/sys/devices/virtual/block/bcache1/size</name>
       <content>2097152</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache1p1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/bcache1/bcache1p2/alignment_offset</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/bcache2/alignment_offset</name>

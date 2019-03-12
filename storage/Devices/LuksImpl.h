@@ -120,7 +120,7 @@ namespace storage
 
 	static const unsigned long long metadata_size = 2 * MiB;
 
-	void calculate_region();
+	void calculate_region_and_topology();
 
 	string uuid;
 

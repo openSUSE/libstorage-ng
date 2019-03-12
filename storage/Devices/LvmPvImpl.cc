@@ -115,6 +115,9 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 	const Topology& topology = blk_device->get_topology();
 
+	// The pe_start is simply optimal_io_size, even when the blk
+	// device, e.g. partition, is not properly aligned.
+
 	pe_start = max(default_pe_start, (unsigned long long) topology.get_optimal_io_size());
     }
 
@@ -207,10 +210,7 @@ namespace storage
 	// A physical volume must have at least one extent and space for
 	// metadata.
 
-	// TODO 1 MiB due to metadata and physical extent alignment, needs
-	// more research.
-
-	resize_info.min_size = 1 * MiB;
+	resize_info.min_size = get_pe_start();
 
 	if (has_lvm_vg())
 	{

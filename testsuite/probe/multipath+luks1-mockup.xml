@@ -765,6 +765,18 @@
       <content>14424480</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fc00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/alignment_offset</name>
       <content>0</content>
     </File>
@@ -881,8 +893,20 @@
       <content>2097152</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-1/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-2/size</name>
       <content>2090975</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-2/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-2/queue/optimal_io_size</name>
+      <content>0</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/dm-3/alignment_offset</name>
@@ -907,6 +931,14 @@
     <File>
       <name>/sys/devices/virtual/block/dm-4/size</name>
       <content>2093056</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-4/alignment_offset</name>
+      <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-4/queue/optimal_io_size</name>
+      <content>0</content>
     </File>
   </Files>
 </Mockup>
