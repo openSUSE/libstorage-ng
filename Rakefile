@@ -5,7 +5,7 @@
 
 require "packaging/tasks"
 require "packaging/configuration"
-# skip 'tarball' task because it's redefined here
+# Skip 'tarball' task because it's redefined here.
 Packaging::Tasks.load_tasks(:exclude => ["tarball.rake"])
 
 require "yast/tasks"
