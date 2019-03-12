@@ -59,12 +59,13 @@ namespace storage
 
 	struct Pv
 	{
-	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), missing(false), duplicate(false) {}
+	    Pv() : pv_name(), pv_uuid(), vg_name(), vg_uuid(), pe_start(0), missing(false), duplicate(false) {}
 
 	    string pv_name;
 	    string pv_uuid;
 	    string vg_name;
 	    string vg_uuid;
+	    unsigned long long pe_start;
 
 	    bool missing;
 	    bool duplicate;

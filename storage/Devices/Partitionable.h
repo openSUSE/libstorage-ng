@@ -27,7 +27,6 @@
 
 #include <vector>
 
-#include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/PartitionTable.h"
 
@@ -41,8 +40,8 @@ namespace storage
     {
     public:
 
-	const Topology& get_topology() const;
-	void set_topology(const Topology& topology);
+	const Topology& get_topology() const; // deprecated since also available in BlkDevice
+	void set_topology(const Topology& topology); // deprecated since also available in BlkDevice
 
 	unsigned int get_range() const;
 	void set_range(unsigned int range);

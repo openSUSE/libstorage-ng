@@ -33,13 +33,13 @@
       <stdout>  }</stdout>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
       <stdout>              "pv": [</stdout>
-      <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "pv_attr":"a--"}</stdout>
+      <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"h6d56s-qYq0-PWtG-Vso0-jWHR-mfH0-rohSdU", "vg_name":"system", "vg_uuid":"2honil-ni5v-B8ll-23M8-tfpQ-NC96-3hkLcL", "pv_attr":"a--", "pe_start":"1048576"}</stdout>
       <stdout>              ]</stdout>
       <stdout>          }</stdout>
       <stdout>      ]</stdout>

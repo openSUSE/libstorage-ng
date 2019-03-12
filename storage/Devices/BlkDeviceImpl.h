@@ -26,6 +26,7 @@
 
 
 #include "storage/Utils/Region.h"
+#include "storage/Utils/Topology.h"
 #include "storage/Devices/BlkDevice.h"
 #include "storage/Devices/DeviceImpl.h"
 
@@ -37,6 +38,7 @@ namespace storage
 
 
     class SystemInfo;
+    class File;
 
 
     template <> struct DeviceTraits<BlkDevice> { static const char* classname; };
@@ -70,6 +72,8 @@ namespace storage
 	const string& get_sysfs_path() const { return sysfs_path; }
 	void set_sysfs_path(const string& sysfs_path) { Impl::sysfs_path = sysfs_path; }
 
+	const File& get_sysfs_file(SystemInfo& system_info, const char* filename) const;
+
 	/**
 	 * The implementation in BlkDevice looks at udev paths and ids thus
 	 * should be fine for existing devices. But for devices that can be
@@ -88,6 +92,9 @@ namespace storage
 	void set_size(unsigned long long size);
 
 	Text get_size_text() const;
+
+	const Topology& get_topology() const { return topology; }
+	void set_topology(const Topology& topology) { Impl::topology = topology; }
 
 	const vector<string>& get_udev_paths() const { return udev_paths; }
 	void set_udev_paths(const vector<string>& udev_paths) { Impl::udev_paths = udev_paths; }
@@ -154,6 +161,7 @@ namespace storage
 	virtual void probe_pass_1a(Prober& prober) override;
 
 	void probe_size(Prober& prober);
+	void probe_topology(Prober& prober);
 
 	virtual ResizeInfo detect_resize_info() const override = 0;
 
@@ -203,6 +211,12 @@ namespace storage
 	 * size and sector size.
 	 */
 	Region region;
+
+	/**
+	 * The topology is used for 1. partition alignment and 2. LVM
+	 * alignment (in LvmPv::Impl::calculate_pe_start()).
+	 */
+	Topology topology;
 
 	vector<string> udev_paths;
 	vector<string> udev_ids;

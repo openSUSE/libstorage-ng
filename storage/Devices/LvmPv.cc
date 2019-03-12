@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -109,6 +109,13 @@ namespace storage
     LvmPv::get_blk_device() const
     {
 	return get_impl().get_blk_device();
+    }
+
+
+    unsigned long long
+    LvmPv::get_usable_size() const
+    {
+	return get_impl().get_usable_size();
     }
 
 

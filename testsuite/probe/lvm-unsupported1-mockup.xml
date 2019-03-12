@@ -141,7 +141,7 @@
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
@@ -151,8 +151,8 @@
       <stdout>                  {"pv_name":"/dev/loop2", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/loop3", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/loop4", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
-      <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"qTM1KY-Q7UQ-tLnz-MFW3-dGv5-imye-ykhkEm", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--"},</stdout>
-      <stdout>                  {"pv_name":"/dev/sdb1", "pv_uuid":"i9Gqqm-3I74-pz6N-zPID-NCla-Ps43-HWpirs", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--"},</stdout>
+      <stdout>                  {"pv_name":"/dev/sda1", "pv_uuid":"qTM1KY-Q7UQ-tLnz-MFW3-dGv5-imye-ykhkEm", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--", "pe_start":"1048576"},</stdout>
+      <stdout>                  {"pv_name":"/dev/sdb1", "pv_uuid":"i9Gqqm-3I74-pz6N-zPID-NCla-Ps43-HWpirs", "vg_name":"test", "vg_uuid":"UJ1d56-FqLr-CPPu-00BX-b0UL-r7F8-lCKrtk", "pv_attr":"a--", "pe_start":"1048576"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/cached", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/normal1", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>
       <stdout>                  {"pv_name":"/dev/test/normal1-snapshot", "pv_uuid":"", "vg_name":"", "vg_uuid":"", "pv_attr":"---"},</stdout>

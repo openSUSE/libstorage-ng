@@ -157,8 +157,9 @@ namespace storage
     {
 	Partitionable::Impl::probe_pass_1a(prober);
 
-	const File& rotational_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-								       "/queue/rotational");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File& rotational_file = get_sysfs_file(system_info, "queue/rotational");
 	rotational = rotational_file.get<bool>();
     }
 

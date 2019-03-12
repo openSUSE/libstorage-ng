@@ -52,13 +52,13 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
-      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr</name>
+      <name>/sbin/pvs --reportformat json --units b --nosuffix --all --options pv_name,pv_uuid,vg_name,vg_uuid,pv_attr,pe_start</name>
       <!-- output incomplete -->
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
       <stdout>          {</stdout>
       <stdout>              "pv": [</stdout>
-      <stdout>                  {"pv_name":"/dev/sda2", "pv_uuid":"QFKFMR-Lz4J-mm8p-gom1-48id-SQpF-OFVjF7", "vg_name":"system", "vg_uuid":"UIJPvy-619v-aB28-JClo-UALh-QUhR-q7yKm7", "pv_attr":"a--"}</stdout>
+      <stdout>                  {"pv_name":"/dev/sda2", "pv_uuid":"QFKFMR-Lz4J-mm8p-gom1-48id-SQpF-OFVjF7", "vg_name":"system", "vg_uuid":"UIJPvy-619v-aB28-JClo-UALh-QUhR-q7yKm7", "pv_attr":"a--", "pe_start":"1048576"}</stdout>
       <stdout>              ]</stdout>
       <stdout>          }</stdout>
       <stdout>      ]</stdout>

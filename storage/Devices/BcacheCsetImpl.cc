@@ -132,14 +132,16 @@ namespace storage
 
 	Device::Impl::probe_pass_1b(prober);
 
+	SystemInfo& system_info = prober.get_system_info();
+
 	string path = SYSFS_DIR "/fs/bcache/" + uuid;
 
-	const Dir& dir = prober.get_system_info().getDir(path);
+	const Dir& dir = system_info.getDir(path);
 	for (const string& name : dir)
 	{
 	    if (regex_match(name, cache_regex))
 	    {
-		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
+		const File& dev_file = system_info.getFile(path + "/" + name + "/../dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
@@ -149,7 +151,7 @@ namespace storage
 
 	    if (regex_match(name, bdev_regex))
 	    {
-		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/dev/dev");
+		const File& dev_file = system_info.getFile(path + "/" + name + "/dev/dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {
@@ -159,7 +161,7 @@ namespace storage
 
 	    if (regex_match(name, volume_regex))
 	    {
-		const File& dev_file = prober.get_system_info().getFile(path + "/" + name + "/../dev");
+		const File& dev_file = system_info.getFile(path + "/" + name + "/../dev");
 		string dev = DEV_DIR "/block/" + dev_file.get<string>();
 
 		prober.add_holder(dev, get_non_impl(), [](Devicegraph* system, Device* a, Device* b) {

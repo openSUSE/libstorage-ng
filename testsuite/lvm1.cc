@@ -21,6 +21,8 @@ using namespace storage;
 
 BOOST_AUTO_TEST_CASE(sizes1)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -94,6 +96,8 @@ BOOST_AUTO_TEST_CASE(sizes1)
 
 BOOST_AUTO_TEST_CASE(lvm_vg_overcommitted)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -117,6 +121,8 @@ BOOST_AUTO_TEST_CASE(lvm_vg_overcommitted)
 
 BOOST_AUTO_TEST_CASE(chunk_size_too_small)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -143,6 +149,8 @@ BOOST_AUTO_TEST_CASE(chunk_size_too_small)
 
 BOOST_AUTO_TEST_CASE(change_extent_size)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);
@@ -173,6 +181,8 @@ BOOST_AUTO_TEST_CASE(change_extent_size)
 
 BOOST_AUTO_TEST_CASE(set_invalid_extent_size)
 {
+    set_logger(get_stdout_logger());
+
     Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
 
     Storage storage(environment);

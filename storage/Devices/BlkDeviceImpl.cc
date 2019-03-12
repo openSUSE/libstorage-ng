@@ -71,8 +71,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const string& name, const Region& region)
-	: Device::Impl(), name(name), active(true), region(region), udev_paths(), udev_ids(),
-	  dm_table_name()
+	: Device::Impl(), name(name), active(true), region(region), topology(), udev_paths(),
+	  udev_ids(), dm_table_name()
     {
 	if (!is_valid_name(name))
 	    ST_THROW(Exception("invalid BlkDevice name"));
@@ -80,8 +80,8 @@ namespace storage
 
 
     BlkDevice::Impl::Impl(const xmlNode* node)
-	: Device::Impl(node), name(), active(true), region(0, 0, 512), udev_paths(), udev_ids(),
-	  dm_table_name()
+	: Device::Impl(node), name(), active(true), region(0, 0, 512), topology(), udev_paths(),
+	  udev_ids(), dm_table_name()
     {
 	if (!getChildValue(node, "name", name))
 	    ST_THROW(Exception("no name"));
@@ -92,6 +92,8 @@ namespace storage
 	getChildValue(node, "active", active);
 
 	getChildValue(node, "region", region);
+
+	getChildValue(node, "topology", topology);
 
 	getChildValue(node, "udev-path", udev_paths);
 	getChildValue(node, "udev-id", udev_ids);
@@ -132,15 +134,31 @@ namespace storage
     void
     BlkDevice::Impl::probe_size(Prober& prober)
     {
-	const File& size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() + "/size");
-	const File& logical_block_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									       "/queue/logical_block_size");
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File& size_file = get_sysfs_file(system_info, "size");
+	const File& logical_block_size_file = get_sysfs_file(system_info, "queue/logical_block_size");
 
 	// size is always in 512 byte blocks
 	unsigned long long a = size_file.get<unsigned long long>();
 	unsigned long long b = logical_block_size_file.get<unsigned long long>();
 	unsigned long long c = a * 512 / b;
 	set_region(Region(0, c, b));
+    }
+
+
+    void
+    BlkDevice::Impl::probe_topology(Prober& prober)
+    {
+	SystemInfo& system_info = prober.get_system_info();
+
+	const File& alignment_offset_file = get_sysfs_file(system_info, "alignment_offset");
+	const File& optimal_io_size_file = get_sysfs_file(system_info, "queue/optimal_io_size");
+
+	unsigned long long alignment_offset = alignment_offset_file.get<int>();
+	unsigned long long optimal_io_size = optimal_io_size_file.get<int>();
+
+	set_topology(Topology(alignment_offset, optimal_io_size));
     }
 
 
@@ -157,6 +175,8 @@ namespace storage
 	setChildValueIf(node, "active", active, !active);
 
 	setChildValue(node, "region", region);
+
+	setChildValue(node, "topology", topology);
 
 	setChildValueIf(node, "udev-path", udev_paths, !udev_paths.empty());
 	setChildValueIf(node, "udev-id", udev_ids, !udev_ids.empty());
@@ -219,6 +239,13 @@ namespace storage
 
 	return Text(byte_to_humanstring(get_size(), true, 2, false),
 		    byte_to_humanstring(get_size(), false, 2, false));
+    }
+
+
+    const File&
+    BlkDevice::Impl::get_sysfs_file(SystemInfo& system_info, const char* filename) const
+    {
+	return system_info.getFile(SYSFS_DIR + get_sysfs_path() + "/" + filename);
     }
 
 
@@ -548,8 +575,8 @@ namespace storage
 	    return false;
 
 	return name == rhs.name && sysfs_name == rhs.sysfs_name && sysfs_path == rhs.sysfs_path &&
-	    region == rhs.region && active == rhs.active && udev_paths == rhs.udev_paths &&
-	    udev_ids == rhs.udev_ids && dm_table_name == rhs.dm_table_name;
+	    region == rhs.region && topology == rhs.topology && active == rhs.active &&
+	    udev_paths == rhs.udev_paths && udev_ids == rhs.udev_ids && dm_table_name == rhs.dm_table_name;
     }
 
 
@@ -568,6 +595,8 @@ namespace storage
 	storage::log_diff(log, "active", active, rhs.active);
 
 	storage::log_diff(log, "region", region, rhs.region);
+
+	storage::log_diff(log, "topology", topology, rhs.topology);
 
 	storage::log_diff(log, "udev-paths", udev_paths, rhs.udev_paths);
 	storage::log_diff(log, "udev-ids", udev_ids, rhs.udev_ids);
@@ -592,7 +621,8 @@ namespace storage
 	if (!active)
 	    out << " active:" << active;
 
-	out << " region:" << get_region();
+	out << " region:" << get_region()
+	    << " topology:" << topology;
 
 	if (!udev_paths.empty())
 	    out << " udev-paths:" << udev_paths;

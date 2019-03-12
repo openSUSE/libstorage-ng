@@ -56,9 +56,8 @@ namespace storage
 
 
     Partitionable::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), topology(), range(0)
+	: BlkDevice::Impl(node), range(0)
     {
-	getChildValue(node, "topology", topology);
 	getChildValue(node, "range", range);
     }
 
@@ -78,7 +77,6 @@ namespace storage
     {
 	BlkDevice::Impl::save(node);
 
-	setChildValue(node, "topology", topology);
 	setChildValue(node, "range", range);
     }
 
@@ -89,19 +87,13 @@ namespace storage
 	BlkDevice::Impl::probe_pass_1a(prober);
 
 	BlkDevice::Impl::probe_size(prober);
-
-	const File& alignment_offset_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									     "/alignment_offset");
-	topology.set_alignment_offset(alignment_offset_file.get<int>());
-
-	const File& optimal_io_size_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-									    "/queue/optimal_io_size");
-	topology.set_optimal_io_size(optimal_io_size_file.get<int>());
+	BlkDevice::Impl::probe_topology(prober);
 
 	if (get_dm_table_name().empty())
 	{
-	    const File& range_file = prober.get_system_info().getFile(SYSFS_DIR + get_sysfs_path() +
-								      "/ext_range");
+	    SystemInfo& system_info = prober.get_system_info();
+
+	    const File& range_file = get_sysfs_file(system_info, "ext_range");
 	    range = range_file.get<int>();
 	}
     }
@@ -323,7 +315,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return topology == rhs.topology && range == rhs.range;
+	return range == rhs.range;
     }
 
 
@@ -334,7 +326,6 @@ namespace storage
 
 	BlkDevice::Impl::log_diff(log, rhs);
 
-	storage::log_diff(log, "topology", topology, rhs.topology);
 	storage::log_diff(log, "range", range, rhs.range);
     }
 
@@ -344,8 +335,7 @@ namespace storage
     {
 	BlkDevice::Impl::print(out);
 
-	out << " topology:" << topology
-	    << " range:" << range;
+	out << " range:" << range;
     }
 
 }

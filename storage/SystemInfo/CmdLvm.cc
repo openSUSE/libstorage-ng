@@ -66,7 +66,7 @@ namespace storage
     CmdPvs::CmdPvs()
     {
 	SystemCmd cmd(PVSBIN " " COMMON_LVM_OPTIONS " --all --options pv_name,pv_uuid,"
-		      "vg_name,vg_uuid,pv_attr");
+		      "vg_name,vg_uuid,pv_attr,pe_start");
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
 	    parse(cmd.stdout());
     }
@@ -107,6 +107,8 @@ namespace storage
 	pv.missing = pv_attr[2] == 'm';
 	pv.duplicate = pv_attr[0] == 'd';
 
+	get_child_value(object, "pe_start", pv.pe_start);
+
 	pvs.push_back(pv);
     }
 
@@ -137,8 +139,8 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdPvs::Pv& pv)
     {
-	s << "pv-name:" << pv.pv_name << " pv-uuid:" << pv.pv_uuid << " vg-name:"
-	  << pv.vg_name << " vg-uuid:" << pv.vg_uuid;
+	s << "pv-name:" << pv.pv_name << " pv-uuid:" << pv.pv_uuid << " vg-name:" << pv.vg_name
+	  << " vg-uuid:" << pv.vg_uuid << " pe-start:" << pv.pe_start;
 
 	if (pv.missing)
 	    s << " missing";
