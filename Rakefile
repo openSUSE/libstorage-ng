@@ -5,10 +5,8 @@
 
 require "packaging/tasks"
 require "packaging/configuration"
-# skip 'tarball' task because it's redefined here and 'check:changelog' task
-# because it makes no sense at this stage of the development
-Packaging::Tasks.load_tasks(:exclude => ["tarball.rake", "check_changelog.rake"])
-Rake::Task["package"].prerequisites.delete("check:changelog")
+# skip 'tarball' task because it's redefined here
+Packaging::Tasks.load_tasks(:exclude => ["tarball.rake"])
 
 require "yast/tasks"
 Yast::Tasks.submit_to(ENV.fetch("YAST_SUBMIT", "factory").to_sym)
