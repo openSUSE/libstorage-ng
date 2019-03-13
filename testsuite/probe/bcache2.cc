@@ -17,7 +17,7 @@ using namespace std;
 using namespace storage;
 
 
-// Test for probing with both types of Bcache devices: Backed and Flash-only.
+// Test for probing with both types of bcache devices: Backed and Flash-only.
 BOOST_AUTO_TEST_CASE(probe)
 {
     set_logger(get_stdout_logger());

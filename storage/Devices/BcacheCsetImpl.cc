@@ -248,11 +248,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Create Bcache cache set on %1$s (%2$s)"),
+			   _("Create bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Creating Bcache cache set %1$s (%2$s)"));
+			   _("Creating bcache cache set %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }
@@ -298,11 +298,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Delete Bcache cache set on %1$s (%2$s)"),
+			   _("Delete bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deleting Bcache cache set on %1$s (%2$s)"));
+			   _("Deleting bcache cache set on %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }
@@ -327,11 +327,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivate Bcache cache set on %1$s (%2$s)"),
+			   _("Deactivate bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivating Bcache cache set on %1$s (%2$s)"));
+			   _("Deactivating bcache cache set on %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
     }

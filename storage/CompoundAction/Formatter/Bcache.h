@@ -68,8 +68,8 @@ namespace storage
 	string get_device_name() const { return get_blk_device()->get_name(); }
 
 	/**
-	 * Block device associated to the Bcache. Normally it is the backing device,
-	 * but for a Flash-only Bcache, it represents its caching device.
+	 * Block device associated to the bcache. Normally it is the backing device,
+	 * but for a flash-only bcache, it represents its caching device.
 	 */
 	const BlkDevice* get_blk_device() const;
 

@@ -118,11 +118,11 @@ namespace storage
     Text
     CompoundAction::Formatter::Bcache::bcache_cset_text() const
     {
-	// Text related to cset is not shown for Flash-only bcache devices
+	// Text related to cset is not shown for flash-only bcache devices
 	if(bcache->get_type() == BcacheType::FLASH_ONLY)
 	    return Text();
 
-	// A Bcache might not have an associated caching set
+	// A bcache might not have an associated caching set
 	if(!bcache->has_bcache_cset())
 	    return Text();
 
@@ -417,7 +417,7 @@ namespace storage
 	    vector<const BlkDevice*> caching_devices = bcache->get_bcache_cset()->get_blk_devices();
 
 	    if(caching_devices.empty())
-		ST_THROW(Exception("Flash-only Bcache without caching device"));
+		ST_THROW(Exception("Flash-only bcache without caching device"));
 
 	    return caching_devices.front();
 	}
