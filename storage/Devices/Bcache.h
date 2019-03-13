@@ -52,11 +52,11 @@ namespace storage
     };
 
     /**
-     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">Bcache</a> device.
+     * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a> device.
      *
      * Bcache technology supports two kinds of bcache devices. Bcache devices with a backing
-     * device and also Bcache devices directly created over a caching set (without backing device
-     * associated to it). This second type is known as Flash-only Bcache.
+     * device and also bcache devices directly created over a caching set (without backing device
+     * associated to it). This second type is known as Flash-only bcache.
      */
     class Bcache : public Partitionable
     {
@@ -73,7 +73,7 @@ namespace storage
 	/**
 	 * Get the BlkDevice used as backing device.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 *
 	 * @throw DeviceNotFound
 	 */
@@ -87,23 +87,23 @@ namespace storage
 	/**
 	 * Returns true if a caching set is attached.
 	 *
-	 * Note that a Flash-only Bcache is created over a caching set, so this method should
-	 * always return true for Flash-only Bcache devices.
+	 * Note that a Flash-only bcache is created over a caching set, so this method should
+	 * always return true for Flash-only bcache devices.
 	 */
 	bool has_bcache_cset() const;
 
 	/**
-	 * Get the caching set associated with this Bcache device.
+	 * Get the caching set associated with this bcache device.
 	 *
-	 * Note that a Bcache device can be created without a caching set associated to it.
-	 * In case of a Flash-only Bcache, there is always a caching set holding it.
+	 * Note that a bcache device can be created without a caching set associated to it.
+	 * In case of a Flash-only bcache, there is always a caching set holding it.
 	 */
 	const BcacheCset* get_bcache_cset() const;
 
 	/**
-	 * Associates a caching set to the Bcache.
+	 * Associates a caching set to the bcache.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 *
 	 * @throw LogicException, Exception
 	 */
@@ -112,7 +112,7 @@ namespace storage
 	/**
 	 * Removes association with a caching set.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 *
 	 * @throw LogicException, Exception
 	 */
@@ -121,14 +121,14 @@ namespace storage
 	/**
 	 * Returns cache mode attribute.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 */
 	CacheMode get_cache_mode() const;
 
 	/**
 	 * Sets cache mode attribute.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 *
 	 * @param[in] mode target cache mode
 	 */
@@ -137,19 +137,19 @@ namespace storage
 	/**
 	 * Returns size of sequential_cutoff attribute.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 */
 	unsigned long long get_sequential_cutoff() const;
 
 	/**
 	 * Returns percent of writeback dirty pages.
 	 *
-	 * This method does not make sense for Flash-only Bcache devices.
+	 * This method does not make sense for Flash-only bcache devices.
 	 */
 	unsigned get_writeback_percent() const;
 
 	/**
-	 * Get all Bcaches.
+	 * Get all bcaches.
 	 */
 	static std::vector<Bcache*> get_all(Devicegraph* devicegraph);
 
@@ -171,7 +171,7 @@ namespace storage
 	static void reassign_numbers(Devicegraph* devicegraph);
 
 	/**
-	 * Find a Bcache by its name.
+	 * Find a bcache by its name.
 	 *
 	 * @throw DeviceNotFound, DeviceHasWrongType
 	 */
@@ -183,12 +183,12 @@ namespace storage
 	static const Bcache* find_by_name(const Devicegraph* devicegraph, const std::string& name);
 
 	/**
-	 * Find a free name for a Bcache.
+	 * Find a free name for a bcache.
 	 */
 	static std::string find_free_name(const Devicegraph* devicegraph);
 
 	/**
-	 * Compare (less than) two Bcaches by number.
+	 * Compare (less than) two bcaches by number.
 	 */
 	static bool compare_by_number(const Bcache* lhs, const Bcache* rhs);
 

@@ -401,10 +401,10 @@ namespace storage
     Bcache::Impl::add_bcache_cset(BcacheCset* bcache_cset)
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(LogicException("A Caching Set cannot be added to a Flash-only Bcache"));
+	    ST_THROW(LogicException("A Caching Set cannot be added to a flash-only bcache"));
 
 	if(has_bcache_cset())
-	    ST_THROW(LogicException("The Bcache is already associated to a Caching Set"));
+	    ST_THROW(LogicException("The bcache is already associated to a Caching Set"));
 
 	User::create(get_devicegraph(), bcache_cset, get_non_impl());
     }
@@ -414,10 +414,10 @@ namespace storage
     Bcache::Impl::remove_bcache_cset()
     {
 	if(get_type() == BcacheType::FLASH_ONLY)
-	    ST_THROW(LogicException("A Caching Set cannot be removed from a Flash-only Bcache"));
+	    ST_THROW(LogicException("A Caching Set cannot be removed from a flash-only bcache"));
 
 	if(!has_bcache_cset())
-	    ST_THROW(LogicException("The Bcache does not have an associated Caching Set"));
+	    ST_THROW(LogicException("The bcache does not have an associated Caching Set"));
 
 	User* user = to_user(get_devicegraph()->find_holder(get_bcache_cset()->get_sid(), get_sid()));
 
@@ -555,7 +555,7 @@ namespace storage
 	    [&actiongraph, &devicegraph_rhs](Actiongraph::Impl::vertex_descriptor vertex) {
 	    const Action::Base* action = actiongraph[vertex];
 	    const Bcache* bcache = to_bcache(devicegraph_rhs->find_device(action->sid));
-	    return bcache->get_number();
+	    return cache->get_number();
 	};
 
 	// Iterate over all bcaches with actions and build chain of
@@ -656,11 +656,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Create Bcache %1$s (%2$s)"),
+			   _("Create bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Creating Bcache %1$s (%2$s)"));
+			   _("Creating bcache %1$s (%2$s)"));
 
 	return sformat(text, get_name(), get_size_text());
     }
@@ -697,11 +697,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Delete Bcache %1$s (%2$s)"),
+			   _("Delete bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deleting Bcache %1$s (%2$s)"));
+			   _("Deleting bcache %1$s (%2$s)"));
 
 	return sformat(text, get_name(), get_size_text());
     }
@@ -724,11 +724,11 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivate Bcache %1$s (%2$s)"),
+			   _("Deactivate bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
 			   // %2$s is replaced by size (e.g. 2 GiB)
-			   _("Deactivating Bcache %1$s (%2$s)"));
+			   _("Deactivating bcache %1$s (%2$s)"));
 
 	return sformat(text, get_displayname(), get_size_text());
     }
@@ -759,12 +759,12 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"),
+			   _("Attach bcache cache set on %1$s to bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"));
+			   _("Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"));
 
 	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
     }
@@ -791,12 +791,12 @@ namespace storage
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"),
+			   _("Detach bcache cache set on %1$s from bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"));
+			   _("Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"));
 
 	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
     }
@@ -818,12 +818,12 @@ namespace storage
 			   // %1$s is replaced by cache mode (e.g. writeback),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Set cache mode to %1$s for Bcache %2$s (%3$s)"),
+			   _("Set cache mode to %1$s for bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by cache mode (e.g. writeback),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
 			   // %3$s is replaced by size (e.g. 2 GiB)
-			   _("Setting cache mode to %1$s for Bcache %2$s (%3$s)"));
+			   _("Setting cache mode to %1$s for bcache %2$s (%3$s)"));
 
 	return sformat(text, toString(get_cache_mode()), get_name(), get_size_text());
     }
