@@ -555,7 +555,7 @@ namespace storage
 	    [&actiongraph, &devicegraph_rhs](Actiongraph::Impl::vertex_descriptor vertex) {
 	    const Action::Base* action = actiongraph[vertex];
 	    const Bcache* bcache = to_bcache(devicegraph_rhs->find_device(action->sid));
-	    return cache->get_number();
+	    return bcache->get_number();
 	};
 
 	// Iterate over all bcaches with actions and build chain of
