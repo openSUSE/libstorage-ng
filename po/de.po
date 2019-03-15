@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-11-23 14:23+0100\n"
-"PO-Revision-Date: 2019-02-02 12:52+0000\n"
+"PO-Revision-Date: 2019-03-15 10:14+0000\n"
 "Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/de/>\n"
@@ -1455,27 +1455,33 @@ msgstr "Volume-Gruppe %1$s (%2$s) wird gelöscht"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"LUKS-Gerät neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. LUKS-Gerät wird ignoriert."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Logisches LVM-Volume neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. Logisches LVM-Volume wird ignoriert."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Dateisystem neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. Das Dateisystem wird ignoriert."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2138,12 +2144,12 @@ msgstr "Untersuchung von Stray Block Devices fehlgeschlagen"
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
-msgstr "Untersuchen von Partitionen fehlgeschlagen"
+msgstr "Zusätzliche Attribute werden untersucht"
 
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Untersuchen von Partitionen fehlgeschlagen"
+msgstr "Untersuchen von zusätzlichen Partitionen fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
