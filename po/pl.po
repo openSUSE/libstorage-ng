@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-02 12:52+0000\n"
+"PO-Revision-Date: 2019-03-15 10:14+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/pl/>\n"
@@ -1571,6 +1571,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Wykryto urządzenie LUKS obok tablicy partycji na urządzeniu %1$s.\n"
+"Urządzenie LUKS zostanie zignorowane."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1579,6 +1581,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Wykryto wolumin logiczny LVM obok tablicy partycji na urządzeniu %1$s.\n"
+"Wolumin logiczny LVM zostanie zignorowany."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1587,6 +1591,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Wykryto system plików obok tablicy partycji na urządzeniu %1$s.\n"
+"System plików zostanie zignorowany."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2259,14 +2265,12 @@ msgid "Probing NFS failed"
 msgstr "Skanowanie NFS nie powiodło się"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Skanowanie partycji nie powiodło się"
+msgstr "Skanowanie dodatkowych atrybutów"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Skanowanie partycji nie powiodło się"
+msgstr "Skanowanie dodatkowych atrybutów nie powiodło się"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2927,6 +2931,24 @@ msgstr "kB"
 
 #~ msgid "Creating MD %1$s %2$s (%3$s)"
 #~ msgstr "Tworzenie MD %1$s %2$s (%3$s)"
+
+#~ msgid "Creating volume group %1$s (%2$s)"
+#~ msgstr "Tworzenie grupy woluminów %1$s (%2$s)"
+
+#~ msgid "Delete %1$s on %2$s (%3$s)"
+#~ msgstr "Usuń %1$s na urządzeniu %2$s (%3$s)"
+
+#~ msgid "Deleting %1$s on %2$s (%3$s)"
+#~ msgstr "Usuwanie %1$s na urządzeniu %2$s (%3$s)"
+
+#~ msgid "Probing Stray Block Device %s failed"
+#~ msgstr "Skanowanie urządzenia blokowego typu Stray %s nie powiodło się"
+
+#~ msgid "Probing Stray Block Devices"
+#~ msgstr "Skanowanie urządzeń blokowych typu Stray"
+
+#~ msgid "Probing Stray Block Devices failed"
+#~ msgstr "Skanowanie urządzeń blokowych typu Stray nie powiodło się"
 
 #~ msgid "first root filesystem"
 #~ msgstr "pierwszy system plików root"

@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-02 12:52+0000\n"
+"PO-Revision-Date: 2019-03-15 10:14+0000\n"
 "Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
 "master/de/>\n"
@@ -1525,27 +1525,33 @@ msgstr ""
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"LUKS-Gerät neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. LUKS-Gerät wird ignoriert."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Logisches LVM-Volume neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. Logisches LVM-Volume wird ignoriert."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Dateisystem neben Partitionstabelle auf Gerät %1$s\n"
+"erkannt. Das Dateisystem wird ignoriert."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2195,12 +2201,12 @@ msgstr "Untersuchen von NFS fehlgeschlagen"
 #. TRANSLATORS: progress message
 #, fuzzy
 msgid "Probing additional attributes"
-msgstr "Untersuchen von Partitionen fehlgeschlagen"
+msgstr "Zusätzliche Attribute werden untersucht"
 
 #. TRANSLATORS: error message
 #, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Untersuchen von Partitionen fehlgeschlagen"
+msgstr "Untersuchen von zusätzlichen Partitionen fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2848,6 +2854,24 @@ msgstr "kB"
 
 #~ msgid "Creating MD %1$s %2$s (%3$s)"
 #~ msgstr "MD %1$s %2$s (%3$s) wird erstellt"
+
+#~ msgid "Creating volume group %1$s (%2$s)"
+#~ msgstr "Volume-Gruppe %1$s (%2$s) wird erstellt"
+
+#~ msgid "Delete %1$s on %2$s (%3$s)"
+#~ msgstr "%1$s auf %2$s (%3$s) löschen"
+
+#~ msgid "Deleting %1$s on %2$s (%3$s)"
+#~ msgstr "%1$s auf %2$s (%3$s) wird gelöscht"
+
+#~ msgid "Probing Stray Block Device %s failed"
+#~ msgstr "Untersuchung des Stray Block Device %s fehlgeschlagen"
+
+#~ msgid "Probing Stray Block Devices"
+#~ msgstr "Stray Block Devices werden unersucht"
+
+#~ msgid "Probing Stray Block Devices failed"
+#~ msgstr "Untersuchung von Stray Block Devices fehlgeschlagen"
 
 #~ msgid "first root filesystem"
 #~ msgstr "Erstes Root-Dateisystem"
