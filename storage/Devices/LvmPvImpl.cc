@@ -46,6 +46,8 @@ namespace storage
 
     const char* DeviceTraits<LvmPv>::classname = "LvmPv";
 
+    const unsigned long long LvmPv::Impl::default_pe_start;
+
 
     LvmPv::Impl::Impl(const xmlNode* node)
 	: Device::Impl(node), uuid(), pe_start(default_pe_start)
