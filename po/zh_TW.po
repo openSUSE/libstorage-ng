@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-02 12:52+0000\n"
-"Last-Translator: Yi-Jyun Pan <pan93412@gmail.com>\n"
+"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"Last-Translator: Emily Dong <Emily.Dong@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_TW/>\n"
 "Language: zh_TW\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "還有 %1$d 個"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -50,14 +50,14 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "列出 %1$s 個，還有 %2$d 個"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s 和 %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -70,9 +70,9 @@ msgstr "%2$s 已將 %1$s 快取"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s，%2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -474,9 +474,9 @@ msgstr "在 %1$s (%2$s) 上建立 LVM 磁碟區裝置"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "從 %4$s 建立 %1$s %2$s (%3$s)"
+msgstr "從 %4$s 建立 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -856,9 +856,9 @@ msgstr "建立磁碟區群組 %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "建立包含 %3$s 的磁碟區群組 %1$s (%2$s)"
+msgstr "從 %3$s 建立磁碟區群組 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -909,9 +909,9 @@ msgstr "正於 %1$s 上建立 GPT"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "從 %4$s 建立 %1$s %2$s (%3$s)"
+msgstr "從 %4$s 建立 MD %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1015,9 +1015,9 @@ msgstr "正於 %3$s 上建立簡易池邏輯磁碟區 %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "正在建立磁碟區群組 %1$s (%2$s)"
+msgstr "正在從 %3$s 建立磁碟區群組 %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1161,9 +1161,9 @@ msgstr "刪除 %1$s %2$s (%3$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "刪除 %2$s (%3$s) 上的 %1$s"
+msgstr "刪除 %2$s 上的 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1321,9 +1321,9 @@ msgstr "刪除磁碟區群組 %1$s (%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "正在刪除 %2$s (%3$s) 上的 %1$s"
+msgstr "正在刪除 %2$s 上的 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1460,17 +1460,17 @@ msgstr "正在刪除磁碟區群組 %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "將設定在 %1$s 上的 Bcache 快取連接到 Bcache %2$s (%3$s)"
+msgstr "將 %1$s 上設定的 Bcache 快取從 Bcache %2$s (%3$s) 解除關聯"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "正在將設定在 %1$s 上的 Bcache 快取連接到 Bcache %2$s (%3$s)"
+msgstr "正在將 %1$s 上設定的 Bcache 快取從 Bcache %2$s (%3$s) 解除關聯"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1484,6 +1484,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"已將類型不受支援的 LVM 邏輯磁碟區解除關聯：\n"
+"\n"
+"%1$s\n"
+"\n"
+"將忽略這些邏輯磁碟區。在對應磁碟區群組\n"
+"上執行操作可能會失敗。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1491,7 +1497,7 @@ msgstr ""
 msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
-msgstr ""
+msgstr "在裝置 %1$s 上的分割區表旁偵測到 LUKS 裝置。該 LUKS 裝置將被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1500,6 +1506,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"在裝置 %1$s 上的分割區表旁偵測到 LVM 邏輯磁碟區。\n"
+"該 LVM 邏輯磁碟區將被忽略。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1508,6 +1516,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"在裝置 %1$s 上的分割區表旁偵測到檔案系統。\n"
+"該檔案系統將被忽略。"
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2146,14 +2156,12 @@ msgid "Probing NFS failed"
 msgstr "查探 NFS 失敗"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing additional attributes"
-msgstr "查探分割區失敗"
+msgstr "正在查探其他屬性"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "查探分割區失敗"
+msgstr "查探其他屬性失敗"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2228,19 +2236,17 @@ msgid "Probing partitions on %s failed"
 msgstr "查探 %s 上分割區失敗"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "查探雜散區塊裝置 (Stray Block Device) %s 時失敗"
+msgstr "查探雜散區塊裝置 %s 失敗"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "正在查探雜散區塊裝置 (Stray Block Devices)"
+msgstr "正在查探雜散區塊裝置"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "查探雜散區塊裝置 (Stray Block Devices) 失敗"
+msgstr "查探雜散區塊裝置失敗"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2398,9 +2404,9 @@ msgstr "設定分割區 %1$s 的開機旗標"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "將設定在 %1$s 上的 Bcache 快取連接到 Bcache %2$s (%3$s)"
+msgstr "將 Bcache %2$s (%3$s) 的快取模式設定為 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2481,9 +2487,9 @@ msgstr "正在設定分割區 %1$s 的開機旗標"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "正在將設定在 %1$s 上的 Bcache 快取連接到 Bcache %2$s (%3$s)"
+msgstr "正在將 Bcache %2$s (%3$s) 的快取模式設定為 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),

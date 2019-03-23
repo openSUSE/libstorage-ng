@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-16 18:26+0000\n"
+"PO-Revision-Date: 2019-03-23 20:24+0000\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/sk/>\n"
@@ -29,7 +29,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "%1$d ďalších"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -44,7 +44,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s a %2$d ďalších"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -1512,6 +1512,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"Zistené logické zväzky LVM nepodporovaných typov:\n"
+"\n"
+"%1$s\n"
+"\n"
+"Tieto logické zväzky sa ignorujú.. Operácie\n"
+"na príslušných skupinách zväzkov môžu zlyhať."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2262,19 +2268,17 @@ msgid "Probing partitions on %s failed"
 msgstr "Kontrola oddielov na %s zlyhala"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Kontrola blokových zariadení Stray %s zlyhala"
+msgstr "Skúmanie zblúdilého blokového zariadenia %s zlyhalo"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
-msgstr "Kontrola blokových zariadení Stray"
+msgstr "Skúmanie zblúdilých blokových zariadení"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "Kontrola blokových zariadení Stray"
+msgstr "Skúmanie zblúdilých blokových zariadení zlyhalo"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2433,9 +2437,9 @@ msgstr "Nastaviť príznak štartu systému pre oddiel %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Pripojiť sadu vyrovnávacej pamäte Bcache na %1$s k Bcache %2$s (%3$s)"
+msgstr "Nastaviť režim vyrovnávacej pamäte na %1$s pre Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2515,10 +2519,9 @@ msgstr "Nastavenie príznaku štartu systému pre oddiel %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr ""
-"Pripojenie sady vyrovnávacej pamäte Bcache na %1$s k Bcache %2$s (%3$s)"
+msgstr "Nastavovanie režimu vyrovnávacej pamäte na %1$s pre Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2714,7 +2717,7 @@ msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr "Blokové zariadenie Stray"
+msgstr "Zblúdilé blokové zariadenie"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
