@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
 "Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/cs/>\n"
@@ -36,7 +36,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "a %1$d dalších"
+msgstr "dalších %1$d vynecháno"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -51,7 +51,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s a %2$d dalších"
+msgstr "%1$s a dalších %2$d vynecháno"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -494,7 +494,7 @@ msgstr "Vytvořit zařízení svazku LVM přes %1$s (%2$s)"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Vytvořit MD%1$s %2$s (%3$s) z %4$s"
+msgstr "Vytvořit MD %1$s %2$s (%3$s) z %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -947,7 +947,7 @@ msgstr "Vytváří se tabulka oddílů typu GUID (GPT) na %1$s"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Vytvořit MD %1$s %2$s (%3$s) z %4$s"
+msgstr "Vytvářím MD %1$s %2$s (%3$s) z %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1054,7 +1054,7 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Vytváří se skupina svazků %1$s (%2$s) z %3$s"
+msgstr "Vytvářím skupinu svazků %1$s (%2$s) z %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1363,7 +1363,7 @@ msgstr "Zrušit skupinu svazků %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Odstraňuje se %1$s na %2$s"
+msgstr "Odstraňuji %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1529,7 +1529,7 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Tyto logické svazky se ignorují. Operace na\n"
+"Tyto logické svazky jsou ignorovány. Operace na\n"
 "odpovídajících skupinách svazků mohou selhat."
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -2289,15 +2289,15 @@ msgstr "Testování oddílů na %s selhalo"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Test zařízení bludného bloku %s selhal"
+msgstr "Test blokového zařízení %s s ochranou proti bludnému zápisu selhal"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
-msgstr "Testuji zařízení bludných bloků"
+msgstr "Testuji bloková zařízení s ochranou proti bludným zápisům"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Test zařízení bludných bloků selhal"
+msgstr "Test blokových zařízení s ochranou proti bludným zápisům selhal"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2459,7 +2459,7 @@ msgstr "Nastavit boot příznak oddílu %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Nastavit režim cache na %1$s pro Bcache %2$s (%3$s)"
+msgstr "Nastavit režim kešování na %1$s pro Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2542,7 +2542,7 @@ msgstr "Nastavuji boot příznak oddílu %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Nastavuji režim cache na %1$s pro Bcache %2$s (%3$s)"
+msgstr "Nastavuji režim kešování na %1$s pro Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
