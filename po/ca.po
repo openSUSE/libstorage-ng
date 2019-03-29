@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ca/>\n"
@@ -1493,7 +1493,7 @@ msgstr "Suprimint el grup de volums %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Separa el conjunt de cau Bcau de %1$s de Bcau de %2$s (%3$s)"
+msgstr "Separa el conjunt de cau Bcau de %1$s de la Bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1501,7 +1501,7 @@ msgstr "Separa el conjunt de cau Bcau de %1$s de Bcau de %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Separant el conjunt de cau Bcau de %1$s de Bcau de %2$s (%3$s)"
+msgstr "Separant el conjunt de cau Bcau de %1$s de la Bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
