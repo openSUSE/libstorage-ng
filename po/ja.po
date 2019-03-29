@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-07 05:52+0000\n"
+"PO-Revision-Date: 2019-04-02 16:54+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-sle-15-sp1/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +34,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "さらに %1$d 件の項目"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -49,14 +49,14 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s と、さらに %2$d 件の項目"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s および %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -69,9 +69,9 @@ msgstr "%1$s は %2$s でキャッシュされています"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -494,9 +494,9 @@ msgstr "%1$s (%2$s) に対する LVM ボリュームデバイスの作成"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%4$s からの %1$s %2$s (%3$s) の作成"
+msgstr "%4$s からの MD %1$s %2$s (%3$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -886,9 +886,9 @@ msgstr "ボリュームグループ %1$s (%2$s) の作成"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "%3$s に対するボリュームグループ %1$s (%2$s) の作成"
+msgstr "%3$s からのボリュームグループ %1$s (%2$s) の作成"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -938,9 +938,9 @@ msgstr "%1$s に GPT を作成しています"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%4$s からの %1$s %2$s (%3$s) の作成"
+msgstr "%4$s からの MD %1$s %2$s (%3$s) の作成"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1048,9 +1048,9 @@ msgstr ""
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "ボリュームグループ %1$s (%2$s) を作成しています"
+msgstr "%3$s からボリュームグループ %1$s (%2$s) を作成しています"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1202,9 +1202,9 @@ msgstr "%1$s %2$s (%3$s) の削除"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "%2$s (%3$s) の %1$s の削除"
+msgstr "%2$s 内の %1$s の削除"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1363,9 +1363,9 @@ msgstr "ボリュームグループ %1$s (%2$s) の削除"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "%2$s (%3$s) 内の %1$s を削除しています"
+msgstr "%2$s 内の %1$s を削除しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1506,18 +1506,17 @@ msgstr "ボリュームグループ %1$s (%2$s) を削除しています"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続"
+msgstr "Bcache %2$s (%3$s) から Bcache キャッシュセット %1$s の接続を解除"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr ""
-"%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
+msgstr "Bcache %2$s (%3$s) から Bcache キャッシュセット %1$s の接続を解除しています"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1531,6 +1530,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"未対応の種類の LVM 論理ボリュームが検出されました:\n"
+"\n"
+"%1$s\n"
+"\n"
+"これらの論理ボリュームは無視されます。また、対応するボリューム\n"
+"グループに対する操作が失敗することがあります。"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2292,17 +2297,15 @@ msgid "Probing partitions on %s failed"
 msgstr "%s のパーティションの検出に失敗しました"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
 msgstr "Stray ブロックデバイス %s の検出に失敗しました"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
 msgstr "Stray ブロックデバイスを検出しています"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
 msgstr "Stray ブロックデバイスの検出に失敗しました"
 
@@ -2471,9 +2474,9 @@ msgstr "パーティション %1$s の boot フラグの設定"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続"
+msgstr "Bcache %2$s2 (%3$s3) に対するキャッシュモードを %1$s に設定"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2554,10 +2557,9 @@ msgstr "パーティション %1$s の boot フラグを設定しています"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr ""
-"%1$s にある Bcache キャッシュセットを Bcache %2$s (%3$s) に接続しています"
+msgstr "Bcache %2$s2 (%3$s3) に対するキャッシュモードを %1$s に設定しています"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
