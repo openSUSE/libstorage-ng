@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
-"Last-Translator: Iman Abd Elaziz <Iman.AbdelAziz@arabize.com>\n"
+"PO-Revision-Date: 2019-04-04 11:55+0000\n"
+"Last-Translator: George Yacoub <george.yacoub@arabize.com>\n"
 "Language-Team: Arabic <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ar/>\n"
 "Language: ar\n"
@@ -29,9 +29,9 @@ msgstr ""
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
 #. %1$d is replaced by the number of elements omitted
-#, c-format
+#, c-format, fuzzy
 msgid "%1$d more"
-msgstr "%1$d1 أكثر"
+msgstr "%1$d إضافي"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -44,14 +44,14 @@ msgstr "%1$s (%2$s)"
 #. values have been omitted
 #. %1$s is replaced by list of values
 #. %2$s is replaced by the number of elements omitted
-#, c-format
+#, c-format, fuzzy
 msgid "%1$s and %2$d more"
-msgstr "%1$s و%2$d أكثر"
+msgstr "%1$s و%2$d إضافي"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, c-format, fuzzy
 msgid "%1$s and %2$s"
 msgstr "%1$s و%2$s"
 
@@ -66,7 +66,7 @@ msgstr "يتم تخزين %1$s مؤقتًا بالحجم %2$s"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, c-format, fuzzy
 msgid "%1$s, %2$s"
 msgstr "%1$s، %2$s"
 
@@ -498,9 +498,9 @@ msgstr "إنشاء مجموعة وحدات تخزين LVM %1$s (‏%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "قم بإنشاء MD %1$s %2$s (%3$s) من %4$s"
+msgstr "قم بإنشاء أجهزة متعددة %1$s %2$s (%3$s) من %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -898,9 +898,9 @@ msgstr "إنشاء مجموعة وحدات تخزين %1$s (‏%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "قم بإنشاء مجموعة وحدات تخزين %1$s (‏%2$s) من %3$s"
+msgstr "قم بإنشاء مجموعة وحدات تخزين %1$s (%2$s) من %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -950,9 +950,9 @@ msgstr "يتم الآن إنشاء GPT على %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "يتم الآن إنشاء MD %1$s %2$s (%3$s) من %4$s"
+msgstr "يتم الآن إنشاء أجهزة متعددة %1$s %2$s (%3$s) من %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1061,9 +1061,9 @@ msgstr ""
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "يتم الآن إنشاء مجموعة وحدات تخزين  %1$s (%2$s) من %3$s"
+msgstr "يتم الآن إنشاء مجموعة وحدات تخزين %1$s (%2$s) من %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1218,9 +1218,9 @@ msgstr "قم بحذف %1$s %2$s (%3$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Delete %1$s on %2$s"
-msgstr "قم بحذف %1$s على %2$s"
+msgstr "قم بحذف %1$s من %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1380,9 +1380,9 @@ msgstr "حذف مجموعة وحدات التخزين %1$s (‏%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, c-format, fuzzy
 msgid "Deleting %1$s on %2$s"
-msgstr "يتم الآن حذف %1$s على %2$s"
+msgstr "يتم الآن حذف %1$s من %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1524,24 +1524,25 @@ msgstr "يتم الآن حذف مجموعة وحدات التخزين %1$s (‏%
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, c-format, fuzzy
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "قم بإزالة مجموعة ذاكرات Bcache المؤقتة في %1$s من ذاكرة %2$s2 (%3$s3)"
+msgstr ""
+"قم بإزالة مجموعة ذاكرات Bcache المؤقتة في %1$s من ذاكرة Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, c-format, fuzzy
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
 msgstr ""
-"يتم الآن إزالة مجموعة ذاكرات Bcache المؤقتة في %1$s من ذاكرة Bcache %2$s2 "
-"(%3$s3)"
+"يتم الآن إزالة مجموعة ذاكرات Bcache المؤقتة في %1$s من ذاكرة Bcache %2$s "
+"(%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
 #. /dev/test/cached\n/dev/test/snapshot)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected LVM logical volumes of unsupported types:\n"
 "\n"
@@ -1550,41 +1551,41 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"تم الكشف عن وحدات التخزين المنطقية LVM للأنواع غير المدعومة التالية:\n"
+"تم اكتشاف وحدات تخزين منطقية LVM بأنواع غير مدعومة:\n"
 "\n"
 "%1$s\n"
 "\n"
-"يتم تجاهل وحدات التخزين المنطقية هذه. وقد تفشل \n"
-"العمليات على مجموعات وحدات التخزين المقابلة."
+"يتم تجاهل وحدات التخزين المنطقية هذه. وقد تفشل العمليات\n"
+"بمجموعات وحدات التحزين المقابلة."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
-"تم الكشف عن جهاز LUKS بجوار جدول أقسام على\n"
-"الجهاز %1$s. سيتم تجاهل الجهاز LUKS."
+"تم اكتشاف جهاز LUKS بجانب جدول أقسام على \n"
+"الجهاز %1$s. سيتم تجاهل جهاز LUKS."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
-"تم الكشف عن وحدة تخزين منطقية LVM بجوار جدول أقسام على\n"
-"جهاز %1$s. سيتم تجاهل وحدة التخزين المنطقية LVM."
+"تم اكتشاف وحدة تخزين LVM منطقية بجانب جدول أقسام على \n"
+"الجهاز %1$s. سيتم تجاهل وحدة تخزين LVM المنطقية."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
-#, c-format
+#, c-format, fuzzy
 msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
-"تم الكشف عن نظام ملفات بجوار جدول أقسام على\n"
+"تم اكتشاف نظام ملفات بجانب جدول أقسام على\n"
 "الجهاز %1$s. سيتم تجاهل نظام الملفات."
 
 #. TRANSLATORS: name of partition type
@@ -2239,12 +2240,14 @@ msgid "Probing NFS failed"
 msgstr "فشل بحث NFS"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing additional attributes"
-msgstr "يتم الآن فحص السمات الإضافية"
+msgstr "يتم الآن بحث سمات إضافية"
 
 #. TRANSLATORS: error message
+#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "فشل فحص السمات الإضافية"
+msgstr "فشل بحث سمات إضافية"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2319,17 +2322,19 @@ msgid "Probing partitions on %s failed"
 msgstr "فشل بحث الأقسام في %s"
 
 #. TRANSLATORS: error message
-#, c-format
+#, c-format, fuzzy
 msgid "Probing stray block device %s failed"
-msgstr "فشل فحص جهاز الكتلي العشوائي %s"
+msgstr "فشل بحث الجهاز الكتلي العشوائي %s"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing stray block devices"
-msgstr "يتم الآن فحص الأجهزة الكتلية العشوائية"
+msgstr "يتم الآن بحث الأجهزة الكتلية العشوائية"
 
 #. TRANSLATORS: error message
+#, fuzzy
 msgid "Probing stray block devices failed"
-msgstr "فشل فحص الأجهزة الكتلية العشوائية"
+msgstr "فشل بحث الأجهزة الكتلية العشوائية"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2492,9 +2497,9 @@ msgstr "تعيين علامة تهيئة القسم %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, c-format, fuzzy
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "قم بتعيين نمط الذاكرة المؤقتة إلى %1$s لذاكرة Bcache %2$s (%3$s)"
+msgstr "قم بتعيين وضع الذاكرة المؤقتة إلى %1$s لذاكرة Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2575,9 +2580,9 @@ msgstr "يتم الآن تعيين علامة تشغيل للقسم %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, c-format, fuzzy
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "يتم الآن تعيين نمط الذاكرة المؤقتة إلى %1$s لذاكرة Bcache %2$s (%3$s)"
+msgstr "يتم الآن تعيين وضع الذاكرة المؤقتة إلى %1$s لذاكرة Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
