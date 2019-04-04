@@ -15,8 +15,8 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
+"Last-Translator: Eva van Rein <vistatec@globaltextware.nl>\n"
 "Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/nl/>\n"
 "Language: nl\n"
@@ -38,7 +38,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "%1$d meer"
+msgstr "Nog %1$d"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -53,7 +53,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s en %2$d meer"
+msgstr "%1$s en nog %2$d"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -492,7 +492,7 @@ msgstr "LVM volumeapparaat over %1$s (%2$s) aanmaken"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "MD %1$s %2$s (%3$s) uit %4$s aanmaken"
+msgstr "MD %1$s %2$s (%3$s) aanmaken uit %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -940,7 +940,7 @@ msgstr "GPT op %1$s wordt aangemaakt"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "MD %1$s %2$s (%3$s) wordt aangemaakt uit %4$s"
+msgstr "MD %1$s %2$s (%3$s) aanmaken uit %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1046,7 +1046,7 @@ msgstr "Thin logisch volume %1$s (%2$s) wordt aangemaakt op volumegroep %3$s"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Volumegroep %1$s (%2$s) wordt uit %3$s aangemaakt"
+msgstr "Volumegroep %1$s (%2$s) uit %3$s aanmaken"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1351,7 +1351,7 @@ msgstr "Volumegroep %1$s (%2$s) verwijderen"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "%1$s op %2$s wordt verwijderd"
+msgstr "%1$s op %2$s verwijderen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1490,7 +1490,7 @@ msgstr "Volumegroep %1$s (%2$s) verwijderen"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s afkoppelen van Bcache %2$s (%3$s)"
+msgstr "Bcache-cacheset op %1$s loskoppelen van Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1498,7 +1498,7 @@ msgstr "Bcache-cacheset op %1$s afkoppelen van Bcache %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s wordt afgekoppeld van Bcache %2$s (%3$s)"
+msgstr "Bcache-cacheset op %1$s wordt losgekoppeld van Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1512,12 +1512,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"LVM logische volumes van niet ondersteunde types gedetecteerd:\n"
+"LVM logische volumes van niet-ondersteunde typen gedetecteerd:\n"
 "\n"
 "%1$s\n"
 "\n"
 "Deze logische volumes worden genegeerd. Bewerkingen op de\n"
-"overeenkomstige volumegroepen kunnen mislukken."
+"bijbehorende volumegroepen mislukken mogelijk."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2272,7 +2272,7 @@ msgstr "Aftasten partities op %s is mislukt"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Aftasten stray-blokapparaat %s is mislukt"
+msgstr "Aftasten Stray-blokapparaat %s is mislukt"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
@@ -2280,7 +2280,7 @@ msgstr "Stray-blokapparaten worden afgetast"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Aftasten van stray-blokapparaten is mislukt"
+msgstr "Aftasten Stray-blokapparaten is mislukt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2444,7 +2444,7 @@ msgstr "Opstartvlag van partitie %1$s instellen"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Cachemodus op %1$s instellen voor Bcache %2$s (%3$s)"
+msgstr "Cachemodus instellen op %1$s voor Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2527,7 +2527,7 @@ msgstr "Opstartvlag van partitie %1$s instellen"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Cachemodus op %1$s wordt ingesteld voor Bcache %2$s (%3$s)"
+msgstr "Cachemodus wordt ingesteld op %1$s voor Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
