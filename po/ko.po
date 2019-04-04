@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ko/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "%1$d개 이상"
+msgstr "%1$d개 더보기"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -50,7 +50,7 @@ msgstr "%1$s(%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s 및 %2$d개 이상"
+msgstr "%1$s 및 %2$d개 더보기"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -981,7 +981,7 @@ msgstr "%1$s에 GPT 생성 중"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%4$s에서 MD %1$s1 %2$s2(%3$s3) 생성"
+msgstr "%4$s에서 MD %1$s %2$s(%3$s) 생성 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
@@ -1253,7 +1253,7 @@ msgstr "%1$s %2$s(%3$s) 삭제"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "%2$s에서 %1$s 삭제"
+msgstr "%2$s에서 %1$s1 삭제"
 
 #  to translators: * Create extended partition 1.2 GB (hda1)
 #. TRANSLATORS: displayed before action,
@@ -1577,7 +1577,7 @@ msgstr "볼륨 그룹 %1$s(%2$s) 삭제 중"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Bcache %2$s(%3$s)의 %1$s에서 Bcache 캐시 분리"
+msgstr "Bcache %2$s(%3$s)에서 %1$s의 Bcache 캐시 설정 분리"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1585,7 +1585,7 @@ msgstr "Bcache %2$s(%3$s)의 %1$s에서 Bcache 캐시 분리"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "%1$s의 Bcache 캐시를 Bcache %2$s(%3$s)에서 분리 중"
+msgstr "Bcache %2$s(%3$s)에서 %1$s의 Bcache 캐시 설정 분리 중"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1599,12 +1599,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"지원되지 않는 유형의 LVM 논리 볼륨이 감지됨:\n"
+"지원되지 않는 유형의 감지된 LVM 논리적 볼륨:\n"
 "\n"
 "%1$s\n"
 "\n"
-"이러한 논리 볼륨은 무시됩니다. 해당 볼륨 그룹에서의\n"
-"작업이 실패할 수 있습니다."
+"이 논리적 볼륨은 무시됩니다. 해당 볼륨\n"
+"그룹에서 작업이 실패할 수 있습니다."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1613,8 +1613,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
-"%1$s 장치에서 파티션 테이블 옆에 있는 LUKS 장치가\n"
-"감지되었습니다. LUKS 장치는 무시됩니다."
+"%1$s 장치에서 파티션 테이블 옆의 LUKS 장치를 감지했습니다.\n"
+"LUKS 장치가 무시됩니다."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1623,8 +1623,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
-"%1$s 장치에서 파티션 테이블 옆에 있는 LVM 논리 볼륨이\n"
-"감지되었습니다. LVM 논리 볼륨은 무시됩니다."
+"%1$s 장치에서 파티션 테이블 옆의 LVM 논리적 볼륨을 감지했습니다.\n"
+"LVM 논리적 볼륨이 무시됩니다."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1633,8 +1633,8 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
-"%1$s 장치에서 파티션 테이블 옆에 있는 파일 시스템이\n"
-"감지되었습니다. 파일 시스템은 무시됩니다."
+"%1$s 장치에서 파티션 테이블 옆의 파일 시스템을 감지했습니다.\n"
+"파일 시스템이 무시됩니다."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2308,7 +2308,7 @@ msgstr "추가 특성 검색 중"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr "추가 특성 검색 실패"
+msgstr "추가 특성 검색하지 못함"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2386,15 +2386,15 @@ msgstr "%s의 파티션 검사 실패"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr "부유 블록 장치 %s 검색 실패"
+msgstr "stray 블록 장치 %s1 검색하지 못함"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
-msgstr "부유 블록 장치 검색 중"
+msgstr "stray 블록 장치 검색 중"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "부유 블록 장치 검색 실패"
+msgstr "stray 블록 장치 검색하지 못함"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2556,7 +2556,7 @@ msgstr "%1$s 파티션의 부트 플래그 설정"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Bcache %2$s(%3$s)에 대한 캐시 모드를 %1$s(으)로 설정"
+msgstr "Bcache %2$s(%3$s)에 대해 캐시 모드를 %1$s(으)로 설정"
 
 # SLE12
 #. TRANSLATORS: displayed before action,
@@ -2640,7 +2640,7 @@ msgstr "%1$s 파티션의 부트 플래그 설정 중"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Bcache %2$s(%3$s3)에 대한 캐시 모드를 %1$s(으)로 설정 중"
+msgstr "Bcache %2$s(%3$s)에 대해 캐시 모드를 %1$s(으)로 설정 중"
 
 # SLE12
 #. TRANSLATORS: displayed during action,
