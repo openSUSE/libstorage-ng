@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/ru/>\n"
@@ -1200,7 +1200,7 @@ msgstr "Удалить раздел %1$s %2$s (%3$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Удалить %1$s на %2$s"
+msgstr "Удалить %1$s на устройствах %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1359,7 +1359,7 @@ msgstr "Удалить группу томов %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Удаление %1$s на %2$s"
+msgstr "Удаление %1$s на устройствах %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1499,7 +1499,9 @@ msgstr "Удаление группы томов %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Отключить кэш bcache на %1$s от bcache %2$s (%3$s)"
+msgstr ""
+"Отключить набор кэширования Bcache на устройстве %1$s от устройства Bcache "
+"%2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1507,7 +1509,9 @@ msgstr "Отключить кэш bcache на %1$s от bcache %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Отключение кэша bcache на %1$s от bcache %2$s (%3$s)"
+msgstr ""
+"Отключение набора кэширования Bcache на устройстве %1$s от устройства Bcache "
+"%2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1525,8 +1529,8 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Эти логические тома будут проигнорированы.\n"
-"Операции с соответствующими группами томов могут быть недоступны."
+"Эти логические тома будут пропущены. Операции с\n"
+"соответствующими группами томов могут завершиться ошибкой."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2467,7 +2471,7 @@ msgstr "Установить загрузочный флаг раздела %1$s
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Установить режим кэширования %1$s для bcache %2$s (%3$s)"
+msgstr "Установить режим кэширования %1$s для Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2549,7 +2553,7 @@ msgstr "Установка загрузочного флага раздела %1
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Установка режима кэширования %1$s для bcache %2$s (%3$s)"
+msgstr "Установка режима кэширования %1$s для Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
