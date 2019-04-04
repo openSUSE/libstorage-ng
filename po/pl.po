@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Ewelina Michalowska <ewelina.michalowska@stgambit.com>\n"
 "Language-Team: Polish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/pl/>\n"
@@ -47,7 +47,7 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s i jeszcze %2$d"
+msgstr "%1$s i %2$d więcej"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
@@ -974,7 +974,7 @@ msgstr "Tworzenie tablicy partycji GPT na urządzeniu %1$s"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Tworzenie MD %1$s %2$s (%3$s) z urządzeń %4$s"
+msgstr "Utwórz MD %1$s %2$s (%3$s) z urządzeń %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1235,7 +1235,7 @@ msgstr "Usuń %1$s %2$s (%3$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Usuń system plików %1$s na %2$s"
+msgstr "Usuń %1$s na urządzeniu %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1395,7 +1395,7 @@ msgstr "Usuń grupę woluminów %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Usuwanie systemu plików %1$s na %2$s"
+msgstr "Usuwanie %1$s na urządzeniu %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1563,12 +1563,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"Wykryto woluminy logiczne LVM nieobsługiwanego typu:\n"
+"Wykryto woluminy logiczne LVM nieobsługiwanych typów:\n"
 "\n"
 "%1$s\n"
 "\n"
-"Te woluminy logiczne zostaną zignorowane. Działania na\n"
-"odpowiadającej im grupie woluminów mogą się nie powieść."
+"Te woluminy logiczne są ignorowane. Operacje na odpowiadających\n"
+"im grupach woluminów mogą się nie powieść."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
