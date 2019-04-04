@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
 "Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/de/>\n"
@@ -2210,7 +2210,7 @@ msgstr "Zusätzliche Attribute werden untersucht"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr "Untersuchen von zusätzlichen Attributen fehlgeschlagen"
+msgstr "Untersuchung von zusätzlichen Attributen fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
