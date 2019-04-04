@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
-"Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
+"PO-Revision-Date: 2019-04-04 18:39+0000\n"
+"Last-Translator: Samanta Magalhaes <samanta@texttrans.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -886,7 +886,7 @@ msgstr "Criar grupo de volume %1$s (%2$s)"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Criar grupo de volumes %1$s (%2$s) com %3$s"
+msgstr "Criar grupo de volumes %1$s (%2$s) de %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -938,7 +938,7 @@ msgstr "Criando GPT em %1$s"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Criar MD %1$s %2$s (%3$s) de %4$s"
+msgstr "Criando MD %1$s %2$s (%3$s) de %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1045,7 +1045,7 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Criando grupo de volume %1$s (%2$s) de %3$s"
+msgstr "Criando grupo de volumes %1$s (%2$s) de %3$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1193,7 +1193,7 @@ msgstr "Remover %1$s %2$s (%3$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Remover %1$s em %2$s"
+msgstr "Remover %1$s de %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1352,7 +1352,7 @@ msgstr "Remover grupo de volume %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Removendo %1$s em %2$s"
+msgstr "Removendo %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1492,7 +1492,7 @@ msgstr "Removendo grupo de volume %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Desanexar o cache do Bcache definido em %1$s do Bcache %2$s (%3$s)"
+msgstr "Desanexar o cache Bcache definido em %1$s do Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -1500,7 +1500,7 @@ msgstr "Desanexar o cache do Bcache definido em %1$s do Bcache %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Desanexando o cache Bcache definido no %1$s Bcache para %2$s (%3$s)"
+msgstr "Desanexando o cache Bcache definido em %1$s do Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1518,8 +1518,8 @@ msgstr ""
 "\n"
 "%1$s\n"
 "\n"
-"Esses volumes lógicos são ignorados. As operações nos \n"
-"grupos de volumes correspondentes podem falhar."
+"Esses volumes lógicos serão ignorados. As operações nos\n"
+"grupos de volumes correspondentes poderão falhar."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2275,15 +2275,15 @@ msgstr "Falha ao investigar partições em %s"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing stray block device %s failed"
-msgstr "O dispositivo de bloqueio de desvio %s falhou"
+msgstr "Falha na sondagem do dispositivo de blocos de dispersão %s"
 
 #. TRANSLATORS: progress message
 msgid "Probing stray block devices"
-msgstr "Sondando dispositivos de bloco perdido"
+msgstr "Sondagem de dispositivos de blocos de dispersão"
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Sondando dispositivos de bloco perdido falhou"
+msgstr "Falha na sondagem de dispositivos de blocos de dispersão"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
@@ -2449,7 +2449,7 @@ msgstr "Definir indicador de inicialização da partição %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Definir o modo de cache para %1$s para Bcache %2$s (%3$s)"
+msgstr "Definir o modo de cache como %1$s para o Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2531,7 +2531,7 @@ msgstr "Definindo indicador de inicialização da partição %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Configurando o cache Bcache definido no %1$s Bcache para %2$s (%3$s)"
+msgstr "Definindo o modo de cache como %1$s para o Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
