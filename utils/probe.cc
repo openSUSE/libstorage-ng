@@ -59,10 +59,10 @@ doit()
 
     environment.set_mockup_filename("mockup.xml");
 
-    MyProbeCallbacks my_probecall_backs;
+    MyProbeCallbacks my_probe_callbacks;
 
     Storage storage(environment);
-    storage.probe(&my_probecall_backs);
+    storage.probe(&my_probe_callbacks);
 
     const Devicegraph* probed = storage.get_probed();
 
