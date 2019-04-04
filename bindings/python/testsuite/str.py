@@ -5,7 +5,7 @@ from storage import (Environment, ProbeMode_NONE, TargetMode_DIRECT, Storage, De
         PtType_GPT)
 
 
-class TestSid(unittest.TestCase):
+class TestStr(unittest.TestCase):
 
     def test_str(self):
 
