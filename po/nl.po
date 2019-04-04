@@ -15,10 +15,10 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-02-11 13:00+0000\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/nl/>\n"
+"PO-Revision-Date: 2019-04-04 15:04+0000\n"
+"Last-Translator: Eva van Rein <vistatec@globaltextware.nl>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
+"ng-sle-15-sp1/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr ""
+msgstr "Nog %1$d"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -53,14 +53,14 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr ""
+msgstr "%1$s en nog %2$d"
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s en %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -73,9 +73,9 @@ msgstr "%1$s wordt gebruikt voor cache door %2$s"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s (%2$s)"
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -490,9 +490,9 @@ msgstr "LVM volumeapparaat over %1$s (%2$s) aanmaken"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%1$s %2$s (%3$s) aanmaken uit %4$s"
+msgstr "MD %1$s %2$s (%3$s) aanmaken uit %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -886,9 +886,9 @@ msgstr "Volumegroep %1$s (%2$s) aanmaken"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Volumegroep %1$s (%2$s) met %3$s aanmaken"
+msgstr "Volumegroep %1$s (%2$s) uit %3$s aanmaken"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -938,9 +938,9 @@ msgstr "GPT op %1$s wordt aangemaakt"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "%1$s %2$s (%3$s) aanmaken uit %4$s"
+msgstr "MD %1$s %2$s (%3$s) aanmaken uit %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1044,9 +1044,9 @@ msgstr "Thin logisch volume %1$s (%2$s) wordt aangemaakt op volumegroep %3$s"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Volumegroep %1$s (%2$s) wordt aangemaakt"
+msgstr "Volumegroep %1$s (%2$s) uit %3$s aanmaken"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1190,9 +1190,9 @@ msgstr "%1$s %2$s (%3$s) verwijderen"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "%1$s op %2$s (%3$s) verwijderen"
+msgstr "%1$s op %2$s verwijderen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1349,9 +1349,9 @@ msgstr "Volumegroep %1$s (%2$s) verwijderen"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "%1$s op %2$s (%3$s) verwijderen"
+msgstr "%1$s op %2$s verwijderen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1488,17 +1488,17 @@ msgstr "Volumegroep %1$s (%2$s) verwijderen"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s aankoppelen aan Bcache %2$s (%3$s)"
+msgstr "Bcache-cacheset op %1$s loskoppelen van Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s wordt gekoppeld aan Bcache %2$s (%3$s)"
+msgstr "Bcache-cacheset op %1$s wordt losgekoppeld van Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1512,6 +1512,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"LVM logische volumes van niet-ondersteunde typen gedetecteerd:\n"
+"\n"
+"%1$s\n"
+"\n"
+"Deze logische volumes worden genegeerd. Bewerkingen op de\n"
+"bijbehorende volumegroepen mislukken mogelijk."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2264,17 +2270,15 @@ msgid "Probing partitions on %s failed"
 msgstr "Aftasten partities op %s is mislukt"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing stray block device %s failed"
 msgstr "Aftasten Stray-blokapparaat %s is mislukt"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing stray block devices"
 msgstr "Stray-blokapparaten worden afgetast"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing stray block devices failed"
 msgstr "Aftasten Stray-blokapparaten is mislukt"
 
@@ -2438,9 +2442,9 @@ msgstr "Opstartvlag van partitie %1$s instellen"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s aankoppelen aan Bcache %2$s (%3$s)"
+msgstr "Cachemodus instellen op %1$s voor Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2521,9 +2525,9 @@ msgstr "Opstartvlag van partitie %1$s instellen"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Bcache-cacheset op %1$s wordt gekoppeld aan Bcache %2$s (%3$s)"
+msgstr "Cachemodus wordt ingesteld op %1$s voor Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
