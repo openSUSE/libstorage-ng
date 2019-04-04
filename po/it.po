@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
+"PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Davide Aiello <davidea@novilinguists.com>\n"
 "Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/it/>\n"
@@ -37,7 +37,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "altri %1$d"
+msgstr "Altri %1$d"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -518,7 +518,7 @@ msgstr "Crea il dispositivo del volume LVM su %1$s (%2$s)"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Crea MD %1$s %2$s (%3$s) da %4$s"
+msgstr "Crea MD %1$s %2$s (%3$s) a partire da %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -958,7 +958,7 @@ msgstr "Creare il gruppo di volumi %1$s (%2$s)"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Crea gruppo di volumi %1$s (%2$s) da %3$s"
+msgstr "Crea gruppo di volumi %1$s (%2$s) a partire da %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1012,7 +1012,7 @@ msgstr "Creazione della tabella delle partizioni GPT su %1$s"
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Creazione di MD %1$s %2$s (%3$s) da %4$s"
+msgstr "Creazione MD %1$s %2$s (%3$s) a partire da %4$s in corso"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1133,7 +1133,7 @@ msgstr ""
 #. /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Creazione del gruppo di volumi %1$s (%2$s) da %3$s"
+msgstr "Creazione del gruppo di volumi %1$s (%2$s) a partire da %3$s in corso"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1479,7 +1479,7 @@ msgstr "Eliminare il gruppo di volumi %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Eliminazione di %1$s su %2$s"
+msgstr "Eliminazione di %1$s su %2$s in corso"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1645,7 +1645,8 @@ msgstr "Dissocia set di cache Bcache cache su %1$s da Bcache %2$s (%3$s)"
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Dissociazione del set di cache Bcache su %1$s da Bcache %2$s (%3$s)"
+msgstr ""
+"Dissociazione set di cache Bcache su %1$s da Bcache %2$s (%3$s) in corso"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1659,11 +1660,11 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"Rilevati volumi logici LVM di tipo non supportato:\n"
+"Rilevati volumi logici LVM di tipi non supportati:\n"
 "\n"
 "%1$s\n"
 "\n"
-"Questi volumi logici vengono ignorati. Le operazioni sui\n"
+"I volumi logici indicati verranno ignorati; le operazioni sui\n"
 "gruppi di volumi corrispondenti potrebbero non riuscire."
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -2414,11 +2415,11 @@ msgstr "Rlevamento di NFS non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing additional attributes"
-msgstr "Rilevamento di attributi aggiuntivi"
+msgstr "Rilevamento attributi aggiuntivi"
 
 #. TRANSLATORS: error message
 msgid "Probing additional attributes failed"
-msgstr "Rilevamento di attributi aggiuntivi non riuscito"
+msgstr "Rilevamento attributi aggiuntivi non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2503,7 +2504,7 @@ msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 
 #. TRANSLATORS: error message
 msgid "Probing stray block devices failed"
-msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" non riuscito"
+msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system)
