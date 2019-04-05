@@ -8,8 +8,6 @@
 
 %rename("empty?") "empty";
 
-%rename("to_s") "get_displayname";
-
 %rename("%(regex:/^(get_)(.*)/\\2/)s") "";
 %rename("%(regex:/^(set_)(.*)/\\2=/)s") "";
 %rename("%(regex:/^(is_)(.*)/\\2?/)s") "";
