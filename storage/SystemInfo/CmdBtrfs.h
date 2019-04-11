@@ -77,11 +77,6 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	/**
-	 * Return a vector of all filesystem UUIDs with btrfs.
-	 */
-	vector<string> get_uuids() const;
-
     private:
 
 	/**
@@ -106,7 +101,7 @@ namespace storage
 
 	typedef string key_t;
 
-	CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint);
+	CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point);
 
 	struct Entry
 	{
@@ -128,7 +123,7 @@ namespace storage
 
 	const_iterator find_entry_by_path(const string& path) const;
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:
@@ -150,12 +145,12 @@ namespace storage
 
 	typedef string key_t;
 
-	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint);
+	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point);
 
 	long get_id() const { return id; }
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault&
-					cmdbtrfssubvolumegetdefault);
+					cmd_btrfs_subvolume_get_default);
 
     private:
 

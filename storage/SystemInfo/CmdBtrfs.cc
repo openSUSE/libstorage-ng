@@ -114,19 +114,6 @@ namespace storage
     }
 
 
-    vector<string>
-    CmdBtrfsFilesystemShow::get_uuids() const
-    {
-	vector<string> ret;
-
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
-	    ret.push_back(it->first);
-
-	y2mil("ret:" << ret);
-	return ret;
-    }
-
-
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show)
     {
@@ -146,9 +133,9 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint)
+    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume list -a -p " + quote(mountpoint));
+	SystemCmd::Options cmd_options(BTRFSBIN " subvolume list -a -p " + quote(mount_point));
 	cmd_options.mockup_key = BTRFSBIN " subvolume list -a -p (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
@@ -205,9 +192,9 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list)
     {
-	for (const CmdBtrfsSubvolumeList::Entry& entry : cmdbtrfssubvolumelist)
+	for (const CmdBtrfsSubvolumeList::Entry& entry : cmd_btrfs_subvolume_list)
 	    s << entry;
 
 	return s;
@@ -224,10 +211,10 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint)
+    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
 	: id(BtrfsSubvolume::Impl::unknown_id)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume get-default " + quote(mountpoint));
+	SystemCmd::Options cmd_options(BTRFSBIN " subvolume get-default " + quote(mount_point));
 	cmd_options.mockup_key = BTRFSBIN " subvolume get-default (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
@@ -258,9 +245,9 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmdbtrfssubvolumegetdefault)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default)
     {
-	s << "id:" << cmdbtrfssubvolumegetdefault.id;
+	s << "id:" << cmd_btrfs_subvolume_get_default.id;
 
 	return s;
     }
