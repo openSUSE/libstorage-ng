@@ -116,6 +116,8 @@ namespace storage
     FilesystemUser*
     Btrfs::Impl::add_device(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
@@ -128,6 +130,8 @@ namespace storage
     void
     Btrfs::Impl::remove_device(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	FilesystemUser* filesystem_user = to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(),
 											    get_sid()));
 
