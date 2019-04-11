@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,6 +76,13 @@ namespace storage
 
     template <> struct EnumTraits<ProbeMode> { static const vector<string> names; };
     template <> struct EnumTraits<TargetMode> { static const vector<string> names; };
+
+
+    /**
+     * Temporary switch to enable multiple device support for btrfs
+     * (during probing).
+     */
+    bool support_btrfs_multiple_devices();
 
 }
 

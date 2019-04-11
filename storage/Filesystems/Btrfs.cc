@@ -78,6 +78,48 @@ namespace storage
     }
 
 
+    BtrfsRaidLevel
+    Btrfs::get_metadata_raid_level() const
+    {
+	return get_impl().get_metadata_raid_level();
+    }
+
+
+    void
+    Btrfs::set_metadata_raid_level(BtrfsRaidLevel metadata_raid_level)
+    {
+	get_impl().set_metadata_raid_level(metadata_raid_level);
+    }
+
+
+    BtrfsRaidLevel
+    Btrfs::get_data_raid_level() const
+    {
+	return get_impl().get_data_raid_level();
+    }
+
+
+    void
+    Btrfs::set_data_raid_level(BtrfsRaidLevel data_raid_level)
+    {
+	get_impl().set_data_raid_level(data_raid_level);
+    }
+
+
+    FilesystemUser*
+    Btrfs::add_device(BlkDevice* blk_device)
+    {
+	return get_impl().add_device(blk_device);
+    }
+
+
+    void
+    Btrfs::remove_device(BlkDevice* blk_device)
+    {
+	return get_impl().remove_device(blk_device);
+    }
+
+
     BtrfsSubvolume*
     Btrfs::get_top_level_btrfs_subvolume()
     {

@@ -63,6 +63,15 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
+	BtrfsRaidLevel get_metadata_raid_level() const { return metadata_raid_level; }
+	void set_metadata_raid_level(BtrfsRaidLevel metadata_raid_level) { Impl::metadata_raid_level = metadata_raid_level; }
+
+	BtrfsRaidLevel get_data_raid_level() const { return data_raid_level; }
+	void set_data_raid_level(BtrfsRaidLevel data_raid_level) { Impl::data_raid_level = data_raid_level; }
+
+	FilesystemUser* add_device(BlkDevice* blk_device);
+	void remove_device(BlkDevice* blk_device);
+
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;
 
@@ -85,6 +94,10 @@ namespace storage
         bool get_configure_snapper() const { return configure_snapper; }
         void set_configure_snapper(bool configure) { Impl::configure_snapper = configure; }
 
+	virtual bool equal(const Device::Impl& rhs) const override;
+	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
+	virtual void print(std::ostream& out) const override;
+
     public:
 
 	Impl();
@@ -92,6 +105,8 @@ namespace storage
         virtual ~Impl();
 
 	Impl(const xmlNode* node);
+
+	virtual void save(xmlNode* node) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
@@ -105,6 +120,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
+	static void probe_btrfses(Prober& prober);
 	virtual void probe_pass_2a(Prober& prober) override;
 	virtual void probe_pass_2b(Prober& prober) override;
 
@@ -120,10 +136,16 @@ namespace storage
 
 	virtual void do_set_label() const override;
 
+	virtual void do_pre_mount() const override;
+
     private:
 
         bool configure_snapper;
         SnapperConfig * snapper_config;
+
+	BtrfsRaidLevel metadata_raid_level;
+	BtrfsRaidLevel data_raid_level;
+
     };
 
 }

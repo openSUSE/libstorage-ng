@@ -127,7 +127,7 @@ Implemented:
 Missing:
 
 * tmpfs
-* btrfs multi-device support.
+* btrfs multi-device support (WIP).
 * On demand unmounting.
 
 
