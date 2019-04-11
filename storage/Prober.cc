@@ -448,7 +448,11 @@ namespace storage
 	try
 	{
 	    BlkFilesystem::Impl::Impl::probe_blk_filesystems(*this);
-	    Btrfs::Impl::Impl::probe_btrfses(*this);
+
+	    if (system_info.getBlkid().any_btrfs())
+	    {
+		Btrfs::Impl::Impl::probe_btrfses(*this);
+	    }
 	}
 	catch (const Exception& exception)
 	{
