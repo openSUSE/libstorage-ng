@@ -403,6 +403,9 @@ namespace storage
 	 * device udev paths, block device udev ids, filesystem label and
 	 * filesystem uuid. Unfortunately in /dev can be even more aliases not
 	 * included here.
+	 *
+	 * TODO It is in practice not possible to construct all aliases. Add
+	 * something like EtcCrypttab::find_by_block_device and use that instead.
 	 */
 	static vector<string> construct_device_aliases(const BlkDevice* blk_device,
 						       const BlkFilesystem* blk_filesystem);
