@@ -342,16 +342,16 @@ namespace storage
 
 	const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show = system_info.getCmdBtrfsFilesystemShow();
 
-	for (const CmdBtrfsFilesystemShow::value_type& tmp : cmd_btrfs_filesystem_show)
+	for (const CmdBtrfsFilesystemShow::value_type& detected_btrfs : cmd_btrfs_filesystem_show)
 	{
 	    try
 	    {
-		if (tmp.second.devices.empty())
+		if (detected_btrfs.second.devices.empty())
 		    ST_THROW(Exception("btrfs has no blk devices"));
 
 		vector<BlkDevice*> blk_devices;
 
-		for (const string& name : tmp.second.devices)
+		for (const string& name : detected_btrfs.second.devices)
 		    blk_devices.push_back(BlkDevice::find_by_any_name(system, name));
 
 		BlkFilesystem* blk_filesystem = nullptr;
@@ -374,7 +374,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system with UUID %s failed"),
-								     tmp.first, exception));
+								     detected_btrfs.first, exception));
 	    }
 	}
     }
