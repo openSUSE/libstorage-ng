@@ -170,8 +170,10 @@
 %catches(storage::Exception) storage::BlkDevice::set_region(const Region &region);
 %catches(storage::Exception) storage::BlkDevice::set_size(unsigned long long size);
 %catches(storage::Exception) storage::BlkFilesystem::detect_content_info() const;
+%catches(storage::WrongNumberOfChildren) storage::Btrfs::add_device(BlkDevice *blk_device);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path);
 %catches(storage::BtrfsSubvolumeNotFoundByPath) storage::Btrfs::find_btrfs_subvolume_by_path(const std::string &path) const;
+%catches(storage::Exception) storage::Btrfs::remove_device(BlkDevice *blk_device);
 %catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(Actiongraph *actiongraph, const Device *device);
 %catches(storage::DeviceNotFound) storage::CompoundAction::find_by_target_device(const Actiongraph *actiongraph, const Device *device);
 %catches(storage::DeviceNotFound, storage::DeviceHasWrongType) storage::Dasd::find_by_name(Devicegraph *devicegraph, const std::string &name);

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 #include <map>
 
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Filesystems/Btrfs.h"
 
 
 namespace storage
@@ -63,16 +64,18 @@ namespace storage
 	 */
 	struct Entry
 	{
+	    string uuid;
 	    vector<string> devices;
 	};
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow);
-	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+	typedef vector<Entry>::value_type value_type;
+	typedef vector<Entry>::const_iterator const_iterator;
 
-	/**
-	 * Return a vector of all filesystem UUIDs with btrfs.
-	 */
-	vector<string> get_uuids() const;
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show);
+	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:
 
@@ -83,9 +86,7 @@ namespace storage
 	 */
 	void parse(const vector<string>& lines);
 
-	typedef map<string, Entry>::const_iterator const_iterator;
-
-	map<string, Entry> data;
+	vector<Entry> data;
 
     };
 
@@ -100,7 +101,7 @@ namespace storage
 
 	typedef string key_t;
 
-	CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint);
+	CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point);
 
 	struct Entry
 	{
@@ -122,7 +123,7 @@ namespace storage
 
 	const_iterator find_entry_by_path(const string& path) const;
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
     private:
@@ -144,12 +145,12 @@ namespace storage
 
 	typedef string key_t;
 
-	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint);
+	CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point);
 
 	long get_id() const { return id; }
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault&
-					cmdbtrfssubvolumegetdefault);
+					cmd_btrfs_subvolume_get_default);
 
     private:
 
@@ -158,6 +159,35 @@ namespace storage
 	long id;
 
     };
+
+
+    /**
+     * Class to probe for btrfs RAID levels: Call "btrfs filesystem df
+     * <mount-point>".
+     */
+    class CmdBtrfsFilesystemDf
+    {
+    public:
+
+	typedef string key_t;
+
+	CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point);
+
+	BtrfsRaidLevel get_metadata_raid_level() const { return metadata_raid_level; }
+	BtrfsRaidLevel get_data_raid_level() const { return data_raid_level; }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemDf&
+					cmd_btrfs_filesystem_df);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	BtrfsRaidLevel metadata_raid_level;
+	BtrfsRaidLevel data_raid_level;
+
+    };
+
 }
 
 #endif

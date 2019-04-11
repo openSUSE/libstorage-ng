@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -676,6 +676,13 @@ namespace storage
 	    quote(ensure_mounted.get_any_mount_point() + "/" + path);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    BtrfsSubvolume::Impl::do_pre_mount() const
+    {
+	get_btrfs()->get_impl().do_pre_mount();
     }
 
 

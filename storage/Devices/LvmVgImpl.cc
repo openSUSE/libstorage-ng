@@ -315,6 +315,8 @@ namespace storage
     LvmPv*
     LvmVg::Impl::add_lvm_pv(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	Devicegraph* devicegraph = get_devicegraph();
 
 	LvmPv* lvm_pv = nullptr;
@@ -347,6 +349,8 @@ namespace storage
     void
     LvmVg::Impl::remove_lvm_pv(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	LvmPv* lvm_pv = blk_device->get_impl().get_single_child_of_type<LvmPv>();
 
 	LvmVg* lvm_vg = lvm_pv->get_impl().get_single_child_of_type<LvmVg>();

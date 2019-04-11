@@ -35,12 +35,20 @@ namespace storage
     class MdUser;
 
 
-    enum class MdLevel {
+    /**
+     * MD RAID levels.
+     */
+    enum class MdLevel
+    {
 	UNKNOWN, RAID0, RAID1, RAID4, RAID5, RAID6, RAID10, CONTAINER
     };
 
 
-    enum class MdParity {
+    /**
+     * MD parity algorithms.
+     */
+    enum class MdParity
+    {
 	DEFAULT, LEFT_ASYMMETRIC, LEFT_SYMMETRIC, RIGHT_ASYMMETRIC,
 	RIGHT_SYMMETRIC, FIRST, LAST, LEFT_ASYMMETRIC_6, LEFT_SYMMETRIC_6,
 	RIGHT_ASYMMETRIC_6, RIGHT_SYMMETRIC_6, FIRST_6, NEAR_2, OFFSET_2,
@@ -48,8 +56,15 @@ namespace storage
     };
 
 
+    /**
+     * Convert the MD RAID level md_level to a string.
+     */
     std::string get_md_level_name(MdLevel md_level);
 
+
+    /**
+     * Convert the MD parity algorithm md_parity to a string.
+     */
     std::string get_md_parity_name(MdParity md_parity);
 
 
@@ -104,7 +119,14 @@ namespace storage
 	 */
 	unsigned int get_number() const;
 
+	/**
+	 * Get the MD RAID level.
+	 */
 	MdLevel get_md_level() const;
+
+	/**
+	 * Set the MD RAID level.
+	 */
 	void set_md_level(MdLevel md_level);
 
 	/**

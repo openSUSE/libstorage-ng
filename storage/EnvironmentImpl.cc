@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <string.h>
 #include <ostream>
 
 #include "storage/EnvironmentImpl.h"
@@ -99,5 +100,13 @@ namespace storage
     const vector<string> EnumTraits<TargetMode>::names({
 	"DIRECT", "CHROOT", "IMAGE"
     });
+
+
+    bool
+    support_btrfs_multiple_devices()
+    {
+	const char* p = getenv("YAST_MULTIPLE_DEVICES_BTRFS");
+	return p && strcmp(p, "yes") == 0;
+    }
 
 }

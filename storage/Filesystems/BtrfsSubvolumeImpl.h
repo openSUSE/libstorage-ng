@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -135,6 +135,8 @@ namespace storage
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
+
+	virtual void do_pre_mount() const override;
 
     protected:
 

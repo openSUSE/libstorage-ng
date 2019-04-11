@@ -43,6 +43,7 @@
 #include "storage/Prober.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
+#include "storage/EnvironmentImpl.h"
 
 
 namespace storage
@@ -219,6 +220,11 @@ namespace storage
 
 	    try
 	    {
+		// btrfs is probed independently in probe_btrfses().
+
+		if (support_btrfs_multiple_devices() && it->second.fs_type == FsType::BTRFS)
+		    continue;
+
 		BlkFilesystem* blk_filesystem = blk_device->create_blk_filesystem(it->second.fs_type);
 		blk_filesystem->get_impl().probe_pass_2a(prober);
 		blk_filesystem->get_impl().probe_pass_2b(prober);
@@ -255,12 +261,25 @@ namespace storage
     {
 	SystemInfo& system_info = prober.get_system_info();
 
-	const BlkDevice* blk_device = get_blk_device();
+	vector<string> names;
+	vector<string> aliases;
 
-	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, get_non_impl());
+	for (const BlkDevice* blk_device : get_blk_devices())
+	{
+	    names.push_back(blk_device->get_name());
+
+	    // The algorithm for merging here is by far not the fastest but keeps the order as
+	    // needed by the testsuite.
+
+	    for (const string& alias : EtcFstab::construct_device_aliases(blk_device, get_non_impl()))
+	    {
+		if (find(aliases.begin(), aliases.end(), alias) == aliases.end())
+		    aliases.push_back(alias);
+	    }
+	}
 
 	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
-	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, names);
 
 	// The code here works only with one mount point per
 	// mountable. Anything else is not supported since rejected by the
@@ -597,10 +616,11 @@ namespace storage
     BlkFilesystem::Impl::get_blk_device() const
     {
 	vector<const BlkDevice*> blk_devices = get_blk_devices();
-	if (blk_devices.size() != 1)
-	    ST_THROW(Exception("filesystems with multiple block devices not supported"));
+	if (blk_devices.empty())
+	    ST_THROW(WrongNumberOfParents(0, 1));
 
-	return blk_devices.front();
+	// min_element is required for the testsuite
+	return *min_element(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
     }
 
 
@@ -708,43 +728,40 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_create_text(Tense tense) const
     {
-	// TODO handle multiple BlkDevices
-
-	const BlkDevice* blk_device = get_blk_device();
-
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by size (e.g. 2GiB)
-			   _("Create %1$s on %2$s (%3$s)"),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Create %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by size (e.g. 2GiB)
-			   _("Creating %1$s on %2$s (%3$s)"));
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Creating %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), blk_device->get_name(),
-		       blk_device->get_impl().get_size_text());
+	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
     }
 
 
     Text
     BlkFilesystem::Impl::do_set_label_text(Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by label (e.g. ROOT)
-			   _("Set label of %1$s to %2$s"),
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by label (e.g. ROOT)
+			   _("Set label of %1$s on %2$s to %3$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by label (e.g. ROOT)
-			   _("Setting label of %1$s to %2$s"));
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by label (e.g. ROOT)
+			   _("Setting label of %1$s on %2$s to %3$s"));
 
-	return sformat(text, blk_device->get_name(), label);
+	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10), label);
     }
 
 
@@ -758,19 +775,21 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_set_uuid_text(Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-			   _("Set UUID of %1$s to %2$s"),
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+			   _("Set UUID of %1$s on %2$s to %3$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-			   _("Setting UUID of %1$s to %2$s"));
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+			   _("Setting UUID of %1$s on %2$s to %3$s"));
 
-	return sformat(text, blk_device->get_name(), uuid);
+	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10), uuid);
     }
 
 
@@ -784,17 +803,19 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_set_tune_options_text(Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Set tune options of %1$s"),
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Set tune options of %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1)
-			   _("Setting tune options of %1$s"));
+			   // %1$s is replaced by file system name (e.g. ext4),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Setting tune options of %1$s on %2$s"));
 
-	return sformat(text, blk_device->get_name(), uuid);
+	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
     }
 
 
@@ -909,13 +930,13 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-			   // and /dev/sdb2 (1 GiB))
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Delete %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-			   // and /dev/sdb2 (1 GiB))
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Deleting %1$s on %2$s"));
 
 	return sformat(text, get_displayname(), join(blk_devices, JoinMode::COMMA, 10));

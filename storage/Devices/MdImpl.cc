@@ -625,6 +625,8 @@ namespace storage
     MdUser*
     Md::Impl::add_device(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	if (blk_device->num_children() != 0)
 	    ST_THROW(WrongNumberOfChildren(blk_device->num_children(), 0));
 
@@ -639,6 +641,8 @@ namespace storage
     void
     Md::Impl::remove_device(BlkDevice* blk_device)
     {
+	ST_CHECK_PTR(blk_device);
+
 	MdUser* md_user = to_md_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
 
 	get_devicegraph()->remove_holder(md_user);

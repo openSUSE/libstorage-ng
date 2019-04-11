@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <locale>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageTypes.h"
@@ -29,6 +30,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 
 
 namespace storage
@@ -77,9 +79,11 @@ namespace storage
 	    if( it!=lines.end() )
 	    {
 		y2mil( "uuid line:" << *it );
-		string uuid = extractNthWord( 3, *it );
-		y2mil( "uuid:" << uuid );
+
 		Entry entry;
+		entry.uuid = extractNthWord( 3, *it );
+		y2mil("uuid:" << entry.uuid);
+
 		++it;
 		while( it!=lines.end() && !boost::contains( *it, " uuid: " ) &&
 		       !boost::contains( *it, "devid " ) )
@@ -97,12 +101,12 @@ namespace storage
 
 		if ( entry.devices.empty() )
 		{
-		    ST_THROW( ParseException( "No devices for UUID " + uuid, "",
+		    ST_THROW( ParseException( "No devices for UUID " + entry.uuid, "",
 					      "devid  1 size 40.00GiB used 16.32GiB path /dev/sda2" ) );
 		}
 
-		y2mil( "devs:" << entry.devices );
-		data[ uuid ] = entry;
+		y2mil("devices:" << entry.devices);
+		data.push_back(entry);
 	    }
 	}
 
@@ -110,25 +114,11 @@ namespace storage
     }
 
 
-    vector<string>
-    CmdBtrfsFilesystemShow::get_uuids() const
-    {
-	vector<string> ret;
-
-	for (const_iterator it = data.begin(); it != data.end(); ++it)
-	    ret.push_back(it->first);
-
-	y2mil("ret:" << ret);
-	return ret;
-    }
-
-
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow)
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show)
     {
-	for (CmdBtrfsFilesystemShow::const_iterator it = cmdbtrfsfilesystemshow.data.begin();
-	     it != cmdbtrfsfilesystemshow.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const CmdBtrfsFilesystemShow::Entry& entry : cmd_btrfs_filesystem_show)
+	    s << entry;
 
 	return s;
     }
@@ -137,15 +127,15 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow::Entry& entry)
     {
-	s << entry.devices;
+	s << "uuid:" << entry.uuid << " devices:" << entry.devices << '\n';
 
 	return s;
     }
 
 
-    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mountpoint)
+    CmdBtrfsSubvolumeList::CmdBtrfsSubvolumeList(const key_t& key, const string& mount_point)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume list -a -p " + quote(mountpoint));
+	SystemCmd::Options cmd_options(BTRFSBIN " subvolume list -a -p " + quote(mount_point));
 	cmd_options.mockup_key = BTRFSBIN " subvolume list -a -p (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
@@ -202,9 +192,9 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmdbtrfssubvolumelist)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeList& cmd_btrfs_subvolume_list)
     {
-	for (const CmdBtrfsSubvolumeList::Entry& entry : cmdbtrfssubvolumelist)
+	for (const CmdBtrfsSubvolumeList::Entry& entry : cmd_btrfs_subvolume_list)
 	    s << entry;
 
 	return s;
@@ -221,10 +211,10 @@ namespace storage
     }
 
 
-    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mountpoint)
+    CmdBtrfsSubvolumeGetDefault::CmdBtrfsSubvolumeGetDefault(const key_t& key, const string& mount_point)
 	: id(BtrfsSubvolume::Impl::unknown_id)
     {
-	SystemCmd::Options cmd_options(BTRFSBIN " subvolume get-default " + quote(mountpoint));
+	SystemCmd::Options cmd_options(BTRFSBIN " subvolume get-default " + quote(mount_point));
 	cmd_options.mockup_key = BTRFSBIN " subvolume get-default (device:" + key + ")";
 	cmd_options.throw_behaviour = SystemCmd::DoThrow;
 
@@ -255,9 +245,62 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmdbtrfssubvolumegetdefault)
+    operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmd_btrfs_subvolume_get_default)
     {
-	s << "id:" << cmdbtrfssubvolumegetdefault.id;
+	s << "id:" << cmd_btrfs_subvolume_get_default.id;
+
+	return s;
+    }
+
+
+    CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
+	: metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
+    {
+	SystemCmd::Options cmd_options(BTRFSBIN " filesystem df " + quote(mount_point));
+	cmd_options.mockup_key = BTRFSBIN " filesystem df (device:" + key + ")";
+	cmd_options.throw_behaviour = SystemCmd::DoThrow;
+
+	SystemCmd cmd(cmd_options);
+	if (cmd.retcode() == 0)
+	    parse(cmd.stdout());
+	else
+	    ST_THROW(SystemCmdException(&cmd, "'btrfs filesystem df' failed, ret: " +
+					to_string(cmd.retcode())));
+    }
+
+
+    void
+    CmdBtrfsFilesystemDf::parse(const vector<string>& lines)
+    {
+	static const regex metadata_rx("Metadata, ([A-Za-z0-9]+):.*", regex::extended);
+	static const regex data_rx("Data, ([A-Za-z0-9]+):.*", regex::extended);
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (regex_match(line, match, metadata_rx) && match.size() == 2)
+	    {
+		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
+		metadata_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+	    }
+
+	    if (regex_match(line, match, data_rx) && match.size() == 2)
+	    {
+		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
+		data_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+	    }
+	}
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemDf& cmd_btrfs_filesystem_df)
+    {
+	s << "metadata-raid-level:" << toString(cmd_btrfs_filesystem_df.metadata_raid_level)
+	  << " data-raid-level:" << toString(cmd_btrfs_filesystem_df.data_raid_level);
 
 	return s;
     }

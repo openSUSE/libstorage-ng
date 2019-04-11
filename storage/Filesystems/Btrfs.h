@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,22 @@ namespace storage
 {
 
     class BtrfsSubvolume;
+    class FilesystemUser;
+
+
+    /**
+     * Btrfs RAID levels used for metadata and data.
+     */
+    enum class BtrfsRaidLevel
+    {
+        UNKNOWN, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10
+    };
+
+
+    /**
+     * Convert the btrfs RAID level btrfs_raid_level to a string.
+     */
+    std::string get_btrfs_raid_level_name(BtrfsRaidLevel btrfs_raid_level);
 
 
     class BtrfsSubvolumeNotFoundByPath : public DeviceNotFound
@@ -53,6 +69,40 @@ namespace storage
 
 	static Btrfs* create(Devicegraph* devicegraph);
 	static Btrfs* load(Devicegraph* devicegraph, const xmlNode* node);
+
+	/**
+	 * Get the metadata RAID level.
+	 */
+	BtrfsRaidLevel get_metadata_raid_level() const;
+
+	/**
+	 * Set the metadata RAID level.
+	 */
+	void set_metadata_raid_level(BtrfsRaidLevel metadata_raid_level);
+
+	/**
+	 * Get the data RAID level.
+	 */
+	BtrfsRaidLevel get_data_raid_level() const;
+
+	/**
+	 * Set the data RAID level.
+	 */
+	void set_data_raid_level(BtrfsRaidLevel data_raid_level);
+
+	/**
+	 * Add a block device to the btrfs.
+	 *
+	 * @throw WrongNumberOfChildren
+	 */
+	FilesystemUser* add_device(BlkDevice* blk_device);
+
+	/**
+	 * Remove a block device from the btrfs.
+	 *
+	 * @throw Exception
+	 */
+	void remove_device(BlkDevice* blk_device);
 
 	BtrfsSubvolume* get_top_level_btrfs_subvolume();
 	const BtrfsSubvolume* get_top_level_btrfs_subvolume() const;

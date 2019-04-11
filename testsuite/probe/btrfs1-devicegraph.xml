@@ -81,6 +81,8 @@
     <Btrfs>
       <sid>48</sid>
       <uuid>03b3f314-8d2f-4617-95a0-626812aba79e</uuid>
+      <metadata-raid-level>DUP</metadata-raid-level>
+      <data-raid-level>SINGLE</data-raid-level>
     </Btrfs>
     <BtrfsSubvolume>
       <sid>49</sid>

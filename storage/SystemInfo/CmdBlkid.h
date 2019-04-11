@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,6 +104,7 @@ namespace storage
 	bool any_lvm() const;
 	bool any_luks() const;
 	bool any_bcache() const;
+	bool any_btrfs() const;
 
         static list<string> split_line( const string & line );
 

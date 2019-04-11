@@ -43,6 +43,7 @@
 #include "storage/Devices/BcacheCsetImpl.h"
 #include "storage/Devices/StrayBlkDeviceImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/NfsImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 
@@ -447,6 +448,11 @@ namespace storage
 	try
 	{
 	    BlkFilesystem::Impl::Impl::probe_blk_filesystems(*this);
+
+	    if (system_info.getBlkid().any_btrfs())
+	    {
+		Btrfs::Impl::Impl::probe_btrfses(*this);
+	    }
 	}
 	catch (const Exception& exception)
 	{

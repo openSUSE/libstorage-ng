@@ -14,6 +14,22 @@
       <stdout>/dev/sr0: UUID="2017-03-14-10-21-10-00" LABEL="openSUSE-Tumbleweed-DVD-x86_6400" TYPE="iso9660" PTUUID="3d094a7b" PTTYPE="dos"</stdout>
     </Command>
     <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs filesystem df (device:/dev/sda2)</name>
+      <stdout>Data, single: total=8.00MiB, used=64.00KiB</stdout>
+      <stdout>System, DUP: total=8.00MiB, used=16.00KiB</stdout>
+      <stdout>Metadata, DUP: total=102.25MiB, used=112.00KiB</stdout>
+      <stdout>GlobalReserve, single: total=16.00MiB, used=0.00B</stdout>
+    </Command>
+    <Command>
+      <!-- output faked -->
+      <name>/sbin/btrfs filesystem show</name>
+      <stdout>Label: none  uuid: 03b3f314-8d2f-4617-95a0-626812aba79e</stdout>
+      <stdout>        Total devices 4 FS bytes used 384.00KiB</stdout>
+      <stdout>        devid    1 size 12.34GiB used 567.89MiB path /dev/sda2</stdout>
+      <stdout></stdout>
+    </Command>
+    <Command>
       <name>/sbin/btrfs subvolume get-default (device:/dev/sda2)</name>
       <stdout>ID 259 gen 289 top level 258 path @/.snapshots/1/snapshot</stdout>
     </Command>

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -260,6 +260,15 @@ namespace storage
     Blkid::any_bcache() const
     {
 	return std::any_of(data.begin(), data.end(), [](const value_type& value) { return value.second.is_bcache; });
+    }
+
+
+    bool
+    Blkid::any_btrfs() const
+    {
+	return std::any_of(data.begin(), data.end(), [](const value_type& value) {
+	    return value.second.is_fs && value.second.fs_type == FsType::BTRFS;
+	});
     }
 
 
