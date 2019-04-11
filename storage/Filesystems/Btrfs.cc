@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,6 +32,13 @@ namespace storage
 {
 
     using namespace std;
+
+
+    string
+    get_btrfs_raid_level_name(BtrfsRaidLevel btrfs_raid_level)
+    {
+	return toString(btrfs_raid_level);
+    }
 
 
     BtrfsSubvolumeNotFoundByPath::BtrfsSubvolumeNotFoundByPath(const string& path)

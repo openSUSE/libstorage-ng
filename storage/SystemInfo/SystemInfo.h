@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -109,6 +109,10 @@ namespace storage
 	// The device is only used for the cache-key.
 	const CmdBtrfsSubvolumeGetDefault& getCmdBtrfsSubvolumeGetDefault(const string& device, const string& mountpoint)
 	    { return cmdbtrfssubvolumegetdefaults.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mountpoint); }
+
+	// The device is only used for the cache-key.
+	const CmdBtrfsFilesystemDf& getCmdBtrfsFilesystemDf(const string& device, const string& mount_point)
+	    { return cmd_btrfs_filesystem_df.get(CmdBtrfsSubvolumeGetDefault::key_t(device), mount_point); }
 
 	const CmdPvs& getCmdPvs() { return cmdpvs.get(); }
 	const CmdVgs& getCmdVgs() { return cmdvgs.get(); }
@@ -243,6 +247,7 @@ namespace storage
 	LazyObject<CmdBtrfsFilesystemShow> cmdbtrfsfilesystemshow;
 	LazyObjectsWithKey<CmdBtrfsSubvolumeList, string> cmdbtrfssubvolumelists;
 	LazyObjectsWithKey<CmdBtrfsSubvolumeGetDefault, string> cmdbtrfssubvolumegetdefaults;
+	LazyObjectsWithKey<CmdBtrfsFilesystemDf, string> cmd_btrfs_filesystem_df;
 
 	LazyObject<CmdPvs> cmdpvs;
 	LazyObject<CmdVgs> cmdvgs;

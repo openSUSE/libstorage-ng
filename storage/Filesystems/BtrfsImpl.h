@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,8 @@ namespace storage
 
 
     template <> struct DeviceTraits<Btrfs> { static const char* classname; };
+
+    template <> struct EnumTraits<BtrfsRaidLevel> { static const vector<string> names; };
 
 
     class Btrfs::Impl : public BlkFilesystem::Impl

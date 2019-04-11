@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,6 +21,7 @@
  */
 
 
+#include <locale>
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/StorageTypes.h"
@@ -29,6 +30,7 @@
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/ExceptionImpl.h"
 #include "storage/SystemInfo/CmdBtrfs.h"
+#include "storage/Filesystems/BtrfsImpl.h"
 
 
 namespace storage
@@ -258,6 +260,59 @@ namespace storage
     operator<<(std::ostream& s, const CmdBtrfsSubvolumeGetDefault& cmdbtrfssubvolumegetdefault)
     {
 	s << "id:" << cmdbtrfssubvolumegetdefault.id;
+
+	return s;
+    }
+
+
+    CmdBtrfsFilesystemDf::CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point)
+	: metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
+    {
+	SystemCmd::Options cmd_options(BTRFSBIN " filesystem df " + quote(mount_point));
+	cmd_options.mockup_key = BTRFSBIN " filesystem df (device:" + key + ")";
+	cmd_options.throw_behaviour = SystemCmd::DoThrow;
+
+	SystemCmd cmd(cmd_options);
+	if (cmd.retcode() == 0)
+	    parse(cmd.stdout());
+	else
+	    ST_THROW(SystemCmdException(&cmd, "'btrfs filesystem df' failed, ret: " +
+					to_string(cmd.retcode())));
+    }
+
+
+    void
+    CmdBtrfsFilesystemDf::parse(const vector<string>& lines)
+    {
+	static const regex metadata_rx("Metadata, ([A-Za-z0-9]+):.*", regex::extended);
+	static const regex data_rx("Data, ([A-Za-z0-9]+):.*", regex::extended);
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (regex_match(line, match, metadata_rx) && match.size() == 2)
+	    {
+		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
+		metadata_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+	    }
+
+	    if (regex_match(line, match, data_rx) && match.size() == 2)
+	    {
+		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
+		data_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+	    }
+	}
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemDf& cmd_btrfs_filesystem_df)
+    {
+	s << "metadata-raid-level:" << toString(cmd_btrfs_filesystem_df.metadata_raid_level)
+	  << " data-raid-level:" << toString(cmd_btrfs_filesystem_df.data_raid_level);
 
 	return s;
     }

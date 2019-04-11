@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -30,6 +30,7 @@
 #include <map>
 
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Filesystems/Btrfs.h"
 
 
 namespace storage
@@ -66,6 +67,12 @@ namespace storage
 	    vector<string> devices;
 	};
 
+	typedef map<string, Entry>::value_type value_type;
+	typedef map<string, Entry>::const_iterator const_iterator;
+
+	const_iterator begin() const { return data.begin(); }
+	const_iterator end() const { return data.end(); }
+
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
@@ -82,8 +89,6 @@ namespace storage
 	 * This may throw a ParseException.
 	 */
 	void parse(const vector<string>& lines);
-
-	typedef map<string, Entry>::const_iterator const_iterator;
 
 	map<string, Entry> data;
 
@@ -158,6 +163,35 @@ namespace storage
 	long id;
 
     };
+
+
+    /**
+     * Class to probe for btrfs RAID levels: Call "btrfs filesystem df
+     * <mount-point>".
+     */
+    class CmdBtrfsFilesystemDf
+    {
+    public:
+
+	typedef string key_t;
+
+	CmdBtrfsFilesystemDf(const key_t& key, const string& mount_point);
+
+	BtrfsRaidLevel get_metadata_raid_level() const { return metadata_raid_level; }
+	BtrfsRaidLevel get_data_raid_level() const { return data_raid_level; }
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemDf&
+					cmd_btrfs_filesystem_df);
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	BtrfsRaidLevel metadata_raid_level;
+	BtrfsRaidLevel data_raid_level;
+
+    };
+
 }
 
 #endif

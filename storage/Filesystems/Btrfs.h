@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,21 @@ namespace storage
 {
 
     class BtrfsSubvolume;
+
+
+    /**
+     * Btrfs RAID levels used for metadata and data.
+     */
+    enum class BtrfsRaidLevel
+    {
+        UNKNOWN, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10
+    };
+
+
+    /**
+     * Convert the btrfs RAID level btrfs_raid_level to a string.
+     */
+    std::string get_btrfs_raid_level_name(BtrfsRaidLevel btrfs_raid_level);
 
 
     class BtrfsSubvolumeNotFoundByPath : public DeviceNotFound

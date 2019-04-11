@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -45,6 +45,11 @@ namespace storage
 
 
     const char* DeviceTraits<Btrfs>::classname = "Btrfs";
+
+
+    const vector<string> EnumTraits<BtrfsRaidLevel>::names({
+	"UNKNOWN", "SINGLE", "DUP", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+    });
 
 
     Btrfs::Impl::Impl()
