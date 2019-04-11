@@ -79,9 +79,11 @@ namespace storage
 	    if( it!=lines.end() )
 	    {
 		y2mil( "uuid line:" << *it );
-		string uuid = extractNthWord( 3, *it );
-		y2mil( "uuid:" << uuid );
+
 		Entry entry;
+		entry.uuid = extractNthWord( 3, *it );
+		y2mil("uuid:" << entry.uuid);
+
 		++it;
 		while( it!=lines.end() && !boost::contains( *it, " uuid: " ) &&
 		       !boost::contains( *it, "devid " ) )
@@ -99,12 +101,12 @@ namespace storage
 
 		if ( entry.devices.empty() )
 		{
-		    ST_THROW( ParseException( "No devices for UUID " + uuid, "",
+		    ST_THROW( ParseException( "No devices for UUID " + entry.uuid, "",
 					      "devid  1 size 40.00GiB used 16.32GiB path /dev/sda2" ) );
 		}
 
-		y2mil( "devs:" << entry.devices );
-		data[ uuid ] = entry;
+		y2mil("devices:" << entry.devices);
+		data.push_back(entry);
 	    }
 	}
 
@@ -126,11 +128,10 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow)
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show)
     {
-	for (CmdBtrfsFilesystemShow::const_iterator it = cmdbtrfsfilesystemshow.data.begin();
-	     it != cmdbtrfsfilesystemshow.data.end(); ++it)
-	    s << "data[" << it->first << "] -> " << it->second << '\n';
+	for (const CmdBtrfsFilesystemShow::Entry& entry : cmd_btrfs_filesystem_show)
+	    s << entry;
 
 	return s;
     }
@@ -139,7 +140,7 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow::Entry& entry)
     {
-	s << entry.devices;
+	s << "uuid:" << entry.uuid << " devices:" << entry.devices << '\n';
 
 	return s;
     }

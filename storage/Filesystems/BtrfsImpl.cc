@@ -346,12 +346,12 @@ namespace storage
 	{
 	    try
 	    {
-		if (detected_btrfs.second.devices.empty())
+		if (detected_btrfs.devices.empty())
 		    ST_THROW(Exception("btrfs has no blk devices"));
 
 		vector<BlkDevice*> blk_devices;
 
-		for (const string& name : detected_btrfs.second.devices)
+		for (const string& name : detected_btrfs.devices)
 		    blk_devices.push_back(BlkDevice::find_by_any_name(system, name));
 
 		BlkFilesystem* blk_filesystem = nullptr;
@@ -374,7 +374,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system with UUID %s failed"),
-								     detected_btrfs.first, exception));
+								     detected_btrfs.uuid, exception));
 	    }
 	}
     }

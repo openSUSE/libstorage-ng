@@ -64,16 +64,17 @@ namespace storage
 	 */
 	struct Entry
 	{
+	    string uuid;
 	    vector<string> devices;
 	};
 
-	typedef map<string, Entry>::value_type value_type;
-	typedef map<string, Entry>::const_iterator const_iterator;
+	typedef vector<Entry>::value_type value_type;
+	typedef vector<Entry>::const_iterator const_iterator;
 
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmdbtrfsfilesystemshow);
+	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
 	/**
@@ -90,7 +91,7 @@ namespace storage
 	 */
 	void parse(const vector<string>& lines);
 
-	map<string, Entry> data;
+	vector<Entry> data;
 
     };
 
