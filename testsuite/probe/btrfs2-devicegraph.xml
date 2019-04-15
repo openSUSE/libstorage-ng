@@ -280,10 +280,31 @@
       <path></path>
       <default-btrfs-subvolume>true</default-btrfs-subvolume>
     </BtrfsSubvolume>
-    <MountPoint>
+    <BtrfsSubvolume>
       <sid>65</sid>
+      <id>258</id>
+      <path>sub1</path>
+    </BtrfsSubvolume>
+    <BtrfsSubvolume>
+      <sid>66</sid>
+      <id>259</id>
+      <path>sub2</path>
+    </BtrfsSubvolume>
+    <MountPoint>
+      <sid>67</sid>
       <path>/test</path>
       <mount-by>device</mount-by>
+      <mount-type>btrfs</mount-type>
+      <active>true</active>
+      <in-etc-fstab>true</in-etc-fstab>
+      <freq>0</freq>
+      <passno>0</passno>
+    </MountPoint>
+    <MountPoint>
+      <sid>68</sid>
+      <path>/test/sub1</path>
+      <mount-by>device</mount-by>
+      <mount-options>subvol=sub1</mount-options>
       <mount-type>btrfs</mount-type>
       <active>true</active>
       <in-etc-fstab>true</in-etc-fstab>
@@ -376,9 +397,21 @@
       <source-sid>58</source-sid>
       <target-sid>63</target-sid>
     </FilesystemUser>
+    <Subdevice>
+      <source-sid>64</source-sid>
+      <target-sid>65</target-sid>
+    </Subdevice>
+    <Subdevice>
+      <source-sid>64</source-sid>
+      <target-sid>66</target-sid>
+    </Subdevice>
     <User>
       <source-sid>63</source-sid>
-      <target-sid>65</target-sid>
+      <target-sid>67</target-sid>
+    </User>
+    <User>
+      <source-sid>65</source-sid>
+      <target-sid>68</target-sid>
     </User>
   </Holders>
 </Devicegraph>

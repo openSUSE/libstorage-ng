@@ -257,14 +257,11 @@ namespace storage
 
 	const ProcMounts& proc_mounts = system_info.getProcMounts();
 
-	for (const string& name : names)
+	for (const FstabEntry* mount_entry : proc_mounts.get_by_names(names, system_info))
 	{
-	    for (const FstabEntry* mount_entry : proc_mounts.get_by_name(name, system_info))
-	    {
-		if (!mount_entry->get_mount_opts().has_subvol() ||
-		    mount_entry->get_mount_opts().has_subvol(default_id))
-		    ret.push_back(mount_entry);
-	    }
+	    if (!mount_entry->get_mount_opts().has_subvol() ||
+		mount_entry->get_mount_opts().has_subvol(default_id))
+		ret.push_back(mount_entry);
 	}
 
 	return ret;

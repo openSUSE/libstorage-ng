@@ -200,7 +200,7 @@ namespace storage
     vector<const FstabEntry*>
     Mountable::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
     {
-	return system_info.getProcMounts().get_by_name(names[0], system_info);
+	return system_info.getProcMounts().get_by_names(names, system_info);
     }
 
 

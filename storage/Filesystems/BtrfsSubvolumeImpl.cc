@@ -249,7 +249,7 @@ namespace storage
 
 	vector<const FstabEntry*> ret;
 
-	for (const FstabEntry* mount_entry : system_info.getProcMounts().get_by_name(names[0], system_info))
+	for (const FstabEntry* mount_entry : system_info.getProcMounts().get_by_names(names, system_info))
 	{
 	    if (mount_entry->get_mount_opts().has_subvol(id, path) && id != default_id)
 		ret.push_back(mount_entry);
@@ -293,12 +293,26 @@ namespace storage
 	SystemInfo& system_info = prober.get_system_info();
 
 	const Btrfs* btrfs = get_btrfs();
-	const BlkDevice* blk_device = btrfs->get_impl().get_blk_device();
 
-	vector<string> aliases = EtcFstab::construct_device_aliases(blk_device, btrfs);
+	vector<string> names;
+	vector<string> aliases;
+
+	for (const BlkDevice* blk_device : btrfs->get_blk_devices())
+	{
+	    names.push_back(blk_device->get_name());
+
+	    // The algorithm for merging here is by far not the fastest but keeps the order as
+	    // needed by the testsuite.
+
+	    for (const string& alias : EtcFstab::construct_device_aliases(blk_device, btrfs))
+	    {
+		if (find(aliases.begin(), aliases.end(), alias) == aliases.end())
+		    aliases.push_back(alias);
+	    }
+	}
 
 	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
-	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, aliases);
+	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, names);
 
 	// The code here works only with one mount point per
 	// mountable. Anything else is not supported since rejected by the
