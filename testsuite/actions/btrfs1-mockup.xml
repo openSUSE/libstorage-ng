@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/sbin/mkfs.btrfs --force --metadata=RAID1 --data=RAID0 --mixed '/dev/sda' '/dev/sdb' '/dev/sdc' '/dev/sdd'</name>
+    </Command>
+    <Command>
+      <name>/sbin/blkid -c '/dev/null' '/dev/sda'</name>
+      <stdout>/dev/sda: UUID="318eac77-bbe5-40b4-a8fd-b30ec45d0003" UUID_SUB="b62c72f0-2798-4a79-8307-c07a3781fbb2" TYPE="btrfs"</stdout>
+    </Command>
+  </Commands>
+</Mockup>

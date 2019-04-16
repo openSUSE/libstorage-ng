@@ -144,3 +144,23 @@ BOOST_AUTO_TEST_CASE(systemcmd_error)
 
     check_systemcmd_exception(input, stderr);
 }
+
+
+BOOST_AUTO_TEST_CASE(parse_missing)
+{
+    vector<string> input = {
+	"Label: none  uuid: b0749dbe-7de5-4719-9cb6-043dd5c70d00",
+	"        Total devices 4 FS bytes used 256.00KiB",
+	"        devid    1 size 2.00GiB used 417.12MiB path /dev/sdb1",
+	"        devid    2 size 2.00GiB used 417.12MiB path /dev/sdc1",
+	"        devid    3 size 2.00GiB used 417.12MiB path /dev/sdd1",
+	"        *** Some devices missing",
+	""
+    };
+
+    vector<string> output = {
+	"uuid:b0749dbe-7de5-4719-9cb6-043dd5c70d00 devices:</dev/sdb1 /dev/sdc1 /dev/sdd1>"
+    };
+
+    check(input, output);
+}

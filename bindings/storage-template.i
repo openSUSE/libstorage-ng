@@ -95,6 +95,7 @@
 %template(VectorPtType) std::vector<PtType>;
 %template(VectorMountByType) std::vector<MountByType>;
 %template(VectorMdParity) std::vector<MdParity>;
+%template(VectorBtrfsRaidLevel) std::vector<BtrfsRaidLevel>;
 
 %template(VectorSimpleEtcFstabEntry) std::vector<SimpleEtcFstabEntry>;
 %template(VectorSimpleEtcCrypttabEntry) std::vector<SimpleEtcCrypttabEntry>;

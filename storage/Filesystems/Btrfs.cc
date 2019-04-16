@@ -106,6 +106,20 @@ namespace storage
     }
 
 
+    vector<BtrfsRaidLevel>
+    Btrfs::get_allowed_metadata_raid_levels() const
+    {
+	return get_impl().get_allowed_metadata_raid_levels();
+    }
+
+
+    vector<BtrfsRaidLevel>
+    Btrfs::get_allowed_data_raid_levels() const
+    {
+	return get_impl().get_allowed_data_raid_levels();
+    }
+
+
     FilesystemUser*
     Btrfs::add_device(BlkDevice* blk_device)
     {
