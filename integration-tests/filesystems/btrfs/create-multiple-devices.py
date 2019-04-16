@@ -28,8 +28,8 @@ btrfs = to_btrfs(sdc1.create_blk_filesystem(FsType_BTRFS))
 btrfs.add_device(sdd1)
 
 btrfs.set_label("TEST")
-btrfs.set_metadata_raid_level(BtrfsRaidLevel_SINGLE)
-btrfs.set_data_raid_level(BtrfsRaidLevel_DUP)
+btrfs.set_metadata_raid_level(BtrfsRaidLevel_RAID1)
+btrfs.set_data_raid_level(BtrfsRaidLevel_RAID1)
 
 mount_point = btrfs.create_mount_point("/test")
 

@@ -53,13 +53,13 @@ namespace storage
 
 
     const vector<string> EnumTraits<BtrfsRaidLevel>::names({
-	"UNKNOWN", "SINGLE", "DUP", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
+	"UNKNOWN", "DEFAULT", "SINGLE", "DUP", "RAID0", "RAID1", "RAID5", "RAID6", "RAID10"
     });
 
 
     Btrfs::Impl::Impl()
 	: BlkFilesystem::Impl(), configure_snapper(false), snapper_config(nullptr),
-	  metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
+	  metadata_raid_level(BtrfsRaidLevel::DEFAULT), data_raid_level(BtrfsRaidLevel::DEFAULT)
     {
     }
 
@@ -110,6 +110,45 @@ namespace storage
 
 	if (num_children_of_type<const BtrfsSubvolume>() != 1)
 	    ST_THROW(Exception("top-level subvolume missing"));
+    }
+
+
+    vector<BtrfsRaidLevel>
+    Btrfs::Impl::get_allowed_metadata_raid_levels() const
+    {
+	vector<const BlkDevice*> devices = get_blk_devices();
+
+	// For some number of devies more RAID levels work, e.g. RAID5 with two
+	// devices, but are not recommended (warning in mkfs.btrfs output) and
+	// are also not mentioned in the btrfs wiki
+	// (https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices).
+
+	switch (devices.size())
+	{
+	    case 0:
+		return { };
+
+	    case 1:
+		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::DUP };
+
+	    case 2:
+		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::RAID0, BtrfsRaidLevel::RAID1 };
+
+	    case 3:
+		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::RAID0, BtrfsRaidLevel::RAID1,
+			 BtrfsRaidLevel::RAID5 };
+
+	    default:
+		return { BtrfsRaidLevel::SINGLE, BtrfsRaidLevel::RAID0, BtrfsRaidLevel::RAID1,
+			 BtrfsRaidLevel::RAID5, BtrfsRaidLevel::RAID6, BtrfsRaidLevel::RAID10 };
+	}
+    }
+
+
+    vector<BtrfsRaidLevel>
+    Btrfs::Impl::get_allowed_data_raid_levels() const
+    {
+	return get_allowed_metadata_raid_levels();
     }
 
 
@@ -495,9 +534,16 @@ namespace storage
     void
     Btrfs::Impl::do_create()
     {
-	string cmd_line = MKFSBTRFSBIN " --force " + get_mkfs_options();
+	string cmd_line = MKFSBTRFSBIN " --force";
 
-	// TODO metadata and data raid level
+	if (metadata_raid_level != BtrfsRaidLevel::DEFAULT)
+	    cmd_line += " --metadata=" + toString(metadata_raid_level);
+
+	if (data_raid_level != BtrfsRaidLevel::DEFAULT)
+	    cmd_line += " --data=" + toString(data_raid_level);
+
+	if (!get_mkfs_options().empty())
+	    cmd_line += " " + get_mkfs_options();
 
 	for (const BlkDevice* blk_device : get_blk_devices())
 	    cmd_line += " " + quote(blk_device->get_name());

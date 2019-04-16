@@ -69,6 +69,9 @@ namespace storage
 	BtrfsRaidLevel get_data_raid_level() const { return data_raid_level; }
 	void set_data_raid_level(BtrfsRaidLevel data_raid_level) { Impl::data_raid_level = data_raid_level; }
 
+	vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
+	vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
+
 	FilesystemUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);
 

@@ -41,7 +41,7 @@ namespace storage
      */
     enum class BtrfsRaidLevel
     {
-        UNKNOWN, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10
+	UNKNOWN, DEFAULT, SINGLE, DUP, RAID0, RAID1, RAID5, RAID6, RAID10
     };
 
 
@@ -89,6 +89,22 @@ namespace storage
 	 * Set the data RAID level.
 	 */
 	void set_data_raid_level(BtrfsRaidLevel data_raid_level);
+
+	/**
+	 * Get the allowed metadata RAID levels for the btrfs. So far
+	 * depends on the number of devices. Levels for which
+	 * mkfs.btrfs warns that they are not recommended are not
+	 * considered allowed here.
+	 */
+	std::vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
+
+	/**
+	 * Get the allowed data RAID levels for the btrfs. So far
+	 * depends on the number of devices. Levels for which
+	 * mkfs.btrfs warns that they are not recommended are not
+	 * considered allowed here.
+	 */
+	std::vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
 	/**
 	 * Add a block device to the btrfs.
