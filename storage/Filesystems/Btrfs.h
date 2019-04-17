@@ -94,7 +94,8 @@ namespace storage
 	 * Get the allowed metadata RAID levels for the btrfs. So far,
 	 * this depends on the number of devices. Levels for which
 	 * mkfs.btrfs warns that they are not recommended are not
-	 * considered allowed here.
+	 * considered allowed here. Additionally DEFAULT is allowed
+	 * when creating a btrfs.
 	 */
 	std::vector<BtrfsRaidLevel> get_allowed_metadata_raid_levels() const;
 
@@ -102,7 +103,8 @@ namespace storage
 	 * Get the allowed data RAID levels for the btrfs. So far,
 	 * this depends on the number of devices. Levels for which
 	 * mkfs.btrfs warns that they are not recommended are not
-	 * considered allowed here.
+	 * considered allowed here. Additionally DEFAULT is allowed
+	 * when creating a btrfs.
 	 */
 	std::vector<BtrfsRaidLevel> get_allowed_data_raid_levels() const;
 
