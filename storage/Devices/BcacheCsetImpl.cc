@@ -102,8 +102,7 @@ namespace storage
     bool
     BcacheCset::Impl::is_valid_uuid(const string& uuid)
     {
-	static regex uuid_regex("[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}",
-				regex::extended);
+	static const regex uuid_regex(UUID_REGEX, regex::extended);
 
 	return regex_match(uuid, uuid_regex);
     }
