@@ -58,14 +58,27 @@ namespace storage
 	CmdBtrfsFilesystemShow();
 
 	/**
+	 * Device of a btrfs filesystem.
+	 */
+	struct Device
+	{
+	    Device() : id(0), name() {}
+
+	    unsigned int id;
+	    string name;
+	};
+
+	/**
 	 * Entry for one btrfs filesystem. Since btrfs includes a volume
 	 * manager (independent of LVM or the device mapper), this may be
 	 * multiple devices for a single btrfs filesystem.
 	 */
 	struct Entry
 	{
+	    Entry() : uuid(), devices() {}
+
 	    string uuid;
-	    vector<string> devices;
+	    vector<Device> devices;
 	};
 
 	typedef vector<Entry>::value_type value_type;
@@ -76,6 +89,7 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
+	friend std::ostream& operator<<(std::ostream& s, const Device& device);
 
     private:
 

@@ -69,6 +69,10 @@ namespace storage
     void
     CmdBtrfsFilesystemShow::parse(const vector<string>& lines)
     {
+	static const regex uuid_regex("uuid: (" UUID_REGEX ")", regex::extended);
+
+	smatch match;
+
 	vector<string>::const_iterator it = lines.begin();
 
 	while (it != lines.end())
@@ -81,7 +85,11 @@ namespace storage
 		y2mil( "uuid line:" << *it );
 
 		Entry entry;
-		entry.uuid = extractNthWord( 3, *it );
+
+		if (!regex_search(*it, match, uuid_regex))
+		    ST_THROW(Exception("did not find uuid"));
+
+		entry.uuid = match[1];
 		y2mil("uuid:" << entry.uuid);
 
 		++it;
@@ -92,9 +100,15 @@ namespace storage
 		while( it!=lines.end() && boost::contains( *it, "devid " ) )
 		{
 		    y2mil( "devs line:" << *it );
-		    string device = extractNthWord( 7, *it );
-		    if ( !boost::contains( device, "/dev" ) )  // Allow /sys/dev or /proc/devices
-			ST_THROW( ParseException( "Not a valid device name", device, "/dev/..." ) );
+
+		    Device device;
+
+		    extractNthWord(1, *it) >> device.id;
+
+		    device.name = extractNthWord(7, *it);
+		    if (!boost::contains(device.name, DEV_DIR "/"))  // Allow /sys/dev or /proc/devices
+			ST_THROW( ParseException( "Not a valid device name", device.name, "/dev/..." ) );
+
 		    entry.devices.push_back( device );
 		    ++it;
 		}
@@ -106,6 +120,7 @@ namespace storage
 		}
 
 		y2mil("devices:" << entry.devices);
+
 		data.push_back(entry);
 	    }
 	}
@@ -118,7 +133,7 @@ namespace storage
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show)
     {
 	for (const CmdBtrfsFilesystemShow::Entry& entry : cmd_btrfs_filesystem_show)
-	    s << entry;
+	    s << entry << '\n';
 
 	return s;
     }
@@ -127,9 +142,14 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow::Entry& entry)
     {
-	s << "uuid:" << entry.uuid << " devices:" << entry.devices << '\n';
+	return s << "uuid:" << entry.uuid << " devices:" << entry.devices;
+    }
 
-	return s;
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdBtrfsFilesystemShow::Device& device)
+    {
+	return s << "{ id:" << device.id << " name:" << device.name << " }";
     }
 
 
