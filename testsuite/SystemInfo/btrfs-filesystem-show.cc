@@ -81,9 +81,9 @@ BOOST_AUTO_TEST_CASE(parse_good)
     };
 
     vector<string> output = {
-	"uuid:ea108250-d02c-41dd-b4d8-d4a707a5c649 devices:</dev/mapper/system-test>",
-	"uuid:d82229f2-f9e4-40fd-b15f-84e2d42e6d0d devices:</dev/mapper/system-testsuite>",
-	"uuid:653764e0-7ea2-4dbe-9fa1-866f3f7783c9 devices:</dev/mapper/system-btrfs>"
+	"uuid:ea108250-d02c-41dd-b4d8-d4a707a5c649 devices:<{ id:1 name:/dev/mapper/system-test }>",
+	"uuid:d82229f2-f9e4-40fd-b15f-84e2d42e6d0d devices:<{ id:1 name:/dev/mapper/system-testsuite }>",
+	"uuid:653764e0-7ea2-4dbe-9fa1-866f3f7783c9 devices:<{ id:1 name:/dev/mapper/system-btrfs }>"
     };
 
     check(input, output);
@@ -149,7 +149,7 @@ BOOST_AUTO_TEST_CASE(systemcmd_error)
 BOOST_AUTO_TEST_CASE(parse_missing)
 {
     vector<string> input = {
-	"Label: none  uuid: b0749dbe-7de5-4719-9cb6-043dd5c70d00",
+	"Label: 'hello world'  uuid: b0749dbe-7de5-4719-9cb6-043dd5c70d00",
 	"        Total devices 4 FS bytes used 256.00KiB",
 	"        devid    1 size 2.00GiB used 417.12MiB path /dev/sdb1",
 	"        devid    2 size 2.00GiB used 417.12MiB path /dev/sdc1",
@@ -159,7 +159,7 @@ BOOST_AUTO_TEST_CASE(parse_missing)
     };
 
     vector<string> output = {
-	"uuid:b0749dbe-7de5-4719-9cb6-043dd5c70d00 devices:</dev/sdb1 /dev/sdc1 /dev/sdd1>"
+	"uuid:b0749dbe-7de5-4719-9cb6-043dd5c70d00 devices:<{ id:1 name:/dev/sdb1 } { id:2 name:/dev/sdc1 } { id:3 name:/dev/sdd1 }>"
     };
 
     check(input, output);
