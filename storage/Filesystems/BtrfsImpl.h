@@ -141,6 +141,8 @@ namespace storage
 
 	virtual void do_pre_mount() const override;
 
+	void parse_mkfs_output(const vector<string>& stdout);
+
     private:
 
         bool configure_snapper;

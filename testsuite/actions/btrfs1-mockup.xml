@@ -5,11 +5,28 @@
       <name>/sbin/udevadm settle --timeout=20</name>
     </Command>
     <Command>
-      <name>/sbin/mkfs.btrfs --force --metadata=RAID1 --data=RAID0 --mixed '/dev/sda' '/dev/sdb' '/dev/sdc' '/dev/sdd'</name>
-    </Command>
-    <Command>
-      <name>/sbin/blkid -c '/dev/null' '/dev/sda'</name>
-      <stdout>/dev/sda: UUID="318eac77-bbe5-40b4-a8fd-b30ec45d0003" UUID_SUB="b62c72f0-2798-4a79-8307-c07a3781fbb2" TYPE="btrfs"</stdout>
+      <name>/sbin/mkfs.btrfs --force --metadata=RAID1 --data=RAID0 --nodiscard '/dev/sda' '/dev/sdb' '/dev/sdc' '/dev/sdd'</name>
+      <stdout>btrfs-progs v4.19.1 </stdout>
+      <stdout>See http://btrfs.wiki.kernel.org for more information.</stdout>
+      <stdout></stdout>
+      <stdout>Label:              (null)</stdout>
+      <stdout>UUID:               318eac77-bbe5-40b4-a8fd-b30ec45d0003</stdout>
+      <stdout>Node size:          16384</stdout>
+      <stdout>Sector size:        4096</stdout>
+      <stdout>Filesystem size:    31.99GiB</stdout>
+      <stdout>Block group profiles:</stdout>
+      <stdout>  Data:             RAID0             3.20GiB</stdout>
+      <stdout>  Metadata:         RAID1             1.00GiB</stdout>
+      <stdout>  System:           RAID1             8.00MiB</stdout>
+      <stdout>SSD detected:       no</stdout>
+      <stdout>Incompat features:  extref, skinny-metadata</stdout>
+      <stdout>Number of devices:  4</stdout>
+      <stdout>Devices:</stdout>
+      <stdout>   ID        SIZE  PATH</stdout>
+      <stdout>    1     8.00GiB  /dev/sda</stdout>
+      <stdout>    2     8.00GiB  /dev/sdb</stdout>
+      <stdout>    3     8.00GiB  /dev/sdc</stdout>
+      <stdout>    4     8.00GiB  /dev/sdd</stdout>
     </Command>
   </Commands>
 </Mockup>
