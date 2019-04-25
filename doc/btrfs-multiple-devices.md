@@ -51,8 +51,8 @@ Adding a device to an existing btrfs is easy.
 
   btrfs device add /dev/sdc1 /test
 
-Sometimes after that the RAID levels should be changed but that is not
-supported.
+Sometimes after that the RAID levels should be changed, e.g. from DUP
+to RAID1, but that is not supported (see above).
 
 
 Removing a Device
