@@ -294,6 +294,7 @@ namespace storage
     {
 	static const regex metadata_rx("Metadata, ([A-Za-z0-9]+):.*", regex::extended);
 	static const regex data_rx("Data, ([A-Za-z0-9]+):.*", regex::extended);
+	static const regex mixed_rx("Data\\+Metadata, ([A-Za-z0-9]+):.*", regex::extended);
 
 	smatch match;
 
@@ -309,6 +310,12 @@ namespace storage
 	    {
 		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
 		data_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
+	    }
+
+	    if (regex_match(line, match, mixed_rx) && match.size() == 2)
+	    {
+		string tmp = boost::to_upper_copy(match[1].str(), locale::classic());
+		metadata_raid_level = data_raid_level = toValueWithFallback(tmp, BtrfsRaidLevel::UNKNOWN);
 	    }
 	}
 
