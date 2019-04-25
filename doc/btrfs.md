@@ -34,3 +34,11 @@ library adds a mount point to the Btrfs object instead of the BtrfsSubvolume
 objects when the subvol option is the default subvolume. This behaviour looks
 more natural in the SUSE btrfs setup - but may change anytime if required.
 
+
+Modification to btrfs
+---------------------
+
+Modification to a btrfs filesystem need the filesystem to be
+mounted. libstorage-ng will temporarily mount the filesystem if
+needed.
+
