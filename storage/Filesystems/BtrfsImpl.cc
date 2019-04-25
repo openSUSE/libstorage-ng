@@ -410,7 +410,7 @@ namespace storage
 	    {
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system with UUID %s failed"),
-								     detected_btrfs.uuid, exception));
+								     detected_btrfs.uuid), exception);
 	    }
 	}
     }
@@ -532,6 +532,26 @@ namespace storage
 
 
     void
+    Btrfs::Impl::parse_mkfs_output(const vector<string>& stdout)
+    {
+	static const regex uuid_regex("UUID:[ \t]+(" UUID_REGEX ")", regex::extended);
+
+	smatch match;
+
+	for (const string& line : stdout)
+	{
+	    if (regex_match(line, match, uuid_regex) && match.size() == 2)
+	    {
+		set_uuid(match[1]);
+		return;
+	    }
+	}
+
+	ST_THROW(Exception("UUID not found in output of mkfs.btrfs"));
+    }
+
+
+    void
     Btrfs::Impl::do_create()
     {
 	string cmd_line = MKFSBTRFSBIN " --force";
@@ -552,9 +572,7 @@ namespace storage
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
 
-	// TODO uuid is included in mkfs output
-
-	probe_uuid();
+	parse_mkfs_output(cmd.stdout());
 
         // This would fit better in do_mount(), but that one is a const method
         // which would not allow to set the snapper_config member variable.

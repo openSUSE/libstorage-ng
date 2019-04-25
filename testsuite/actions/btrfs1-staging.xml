@@ -81,7 +81,7 @@
       <sid>46</sid>
       <metadata-raid-level>RAID1</metadata-raid-level>
       <data-raid-level>RAID0</data-raid-level>
-      <mkfs-options>--mixed</mkfs-options>
+      <mkfs-options>--nodiscard</mkfs-options>
     </Btrfs>
     <BtrfsSubvolume>
       <sid>47</sid>
