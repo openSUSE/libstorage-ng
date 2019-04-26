@@ -3,6 +3,17 @@ Multiple Devices Btrfs
 ======================
 
 
+Create Btrfs
+------------
+
+Before creating a multiple devices btrfs the metadata and data RAID
+level can be set. The value DEFAULT will not pass a RAID level to
+mkfs.btrfs thus mkfs.btrfs will decide the RAID level.
+
+When using the "--mixed" option (via set_mkfs_options()) the metadata
+and data RAID level must be identical.
+
+
 Mounting Degraded Btrfs
 -----------------------
 
@@ -14,6 +25,17 @@ by btrfs experts (on IRC).
 To be decided: What should be done during probing with degraded btrfses?
 
 The 'degraded' option is a nop if no devices are missing.
+
+
+Querying RAID Levels
+--------------------
+
+The RAID levels can be queried using get_{metadata,data}_raid_level().
+
+During a balance job to change the RAID level the RAID level as
+reported by btrfs can be a combination of RAID levels. In that case
+get_{metadata,data}_raid_level() returns only one of the reported RAID
+levels.
 
 
 Changing RAID Levels
