@@ -525,8 +525,8 @@ namespace storage
 	Text
 	Reallot::text(const CommitData& commit_data) const
 	{
-	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-	    return device_rhs->get_impl().do_reallot_text(reallot_mode, device, commit_data.tense);
+	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
+	    return device_lhs->get_impl().do_reallot_text(reallot_mode, device, commit_data.tense);
 	}
 
 

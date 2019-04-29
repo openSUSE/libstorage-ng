@@ -566,6 +566,8 @@ namespace storage
     void
     BlkFilesystem::Impl::add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs_base) const
     {
+	Filesystem::Impl::add_modify_actions(actiongraph, lhs_base);
+
 	const Impl& lhs = dynamic_cast<const Impl&>(lhs_base->get_impl());
 
 	vector<Action::Base*> actions;
