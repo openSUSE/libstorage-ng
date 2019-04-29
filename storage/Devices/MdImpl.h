@@ -156,8 +156,8 @@ namespace storage
 	virtual void do_reallot(ReallotMode reallot_mode, const Device* device)
 	    const override;
 
-	virtual void do_reduce(const BlkDevice* blk_device) const;
-	virtual void do_extend(const BlkDevice* blk_device) const;
+	void do_reduce(const BlkDevice* blk_device) const;
+	void do_extend(const BlkDevice* blk_device) const;
 
 	virtual Text do_deactivate_text(Tense tense) const override;
 	virtual void do_deactivate() const override;
