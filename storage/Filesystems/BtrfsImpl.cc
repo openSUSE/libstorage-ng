@@ -739,6 +739,10 @@ namespace storage
     void
     Btrfs::Impl::do_reduce(const BlkDevice* blk_device) const
     {
+	// TODO EnsureMounted always works on the system devicegraph. This
+	// could fail if reduce and extend actions are run in sequence
+	// (but this is so far not supported).
+
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
 	string cmd_line = BTRFSBIN " device remove " + quote(blk_device->get_name()) + " " +
@@ -751,6 +755,8 @@ namespace storage
     void
     Btrfs::Impl::do_extend(const BlkDevice* blk_device) const
     {
+	// TODO See do_reduce above.
+
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
 	string cmd_line = BTRFSBIN " device add " + quote(blk_device->get_name()) + " " +
