@@ -141,7 +141,15 @@ namespace storage
 
 	virtual void do_pre_mount() const override;
 
+	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const override;
+	virtual void do_reallot(ReallotMode reallot_mode, const Device* device) const override;
+
 	void parse_mkfs_output(const vector<string>& stdout);
+
+	void do_reduce(const BlkDevice* blk_device) const;
+	void do_extend(const BlkDevice* blk_device) const;
+
+	virtual void add_dependencies(Actiongraph::Impl& actiongraph) const override;
 
     private:
 

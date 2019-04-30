@@ -665,4 +665,117 @@ namespace storage
 	SystemCmd cmd(cmd_line, SystemCmd::NoThrow);
     }
 
+
+    Text
+    Btrfs::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    {
+	Text text;
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
+			      _("Remove %1$s (%2$s) from btrfs on %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
+			      _("Removing %1$s (%2$s) from btrfs on %3$s"));
+		break;
+
+	    case ReallotMode::EXTEND:
+		text = tenser(tense,
+			      // TRANSLATORS: displayed before action,
+			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
+			      _("Add %1$s (%2$s) to btrfs on %3$s"),
+			      // TRANSLATORS: displayed during action,
+			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
+			      _("Adding %1$s (%2$s) to btrfs on %3$s"));
+		break;
+
+	    default:
+		ST_THROW(LogicException("invalid value for reallot_mode"));
+	}
+
+	const BlkDevice* blk_device = to_blk_device(device);
+
+	return sformat(text, blk_device->get_name(), blk_device->get_size_string(),
+		       join(get_blk_devices(), JoinMode::COMMA, 10));
+    }
+
+
+    void
+    Btrfs::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    {
+	const BlkDevice* blk_device = to_blk_device(device);
+
+	switch (reallot_mode)
+	{
+	    case ReallotMode::REDUCE:
+		do_reduce(blk_device);
+		return;
+
+	    case ReallotMode::EXTEND:
+		do_extend(blk_device);
+		return;
+	}
+
+	ST_THROW(LogicException("invalid value for reallot_mode"));
+    }
+
+
+    void
+    Btrfs::Impl::do_reduce(const BlkDevice* blk_device) const
+    {
+	// TODO EnsureMounted always works on the system devicegraph. This
+	// could fail if reduce and extend actions are run in sequence
+	// (but this is so far not supported).
+
+	EnsureMounted ensure_mounted(get_filesystem(), false);
+
+	string cmd_line = BTRFSBIN " device remove " + quote(blk_device->get_name()) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Btrfs::Impl::do_extend(const BlkDevice* blk_device) const
+    {
+	// TODO See do_reduce above.
+
+	EnsureMounted ensure_mounted(get_filesystem(), false);
+
+	string cmd_line = BTRFSBIN " device add " + quote(blk_device->get_name()) + " " +
+	    quote(ensure_mounted.get_any_mount_point());
+
+	storage::wait_for_devices({ blk_device });
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
+    void
+    Btrfs::Impl::add_dependencies(Actiongraph::Impl& actiongraph) const
+    {
+	BlkFilesystem::Impl::add_dependencies(actiongraph);
+
+	// So far only actions that increase the overall size of a
+	// multiple devices btrfs are supported. Thus no actions need
+	// to be ordered here.
+    }
+
 }

@@ -37,7 +37,7 @@ namespace storage
 
 
     /**
-     * Btrfs RAID levels used for metadata and data.
+     * Btrfs RAID levels (aka profiles) used for metadata and data.
      */
     enum class BtrfsRaidLevel
     {
@@ -77,6 +77,8 @@ namespace storage
 
 	/**
 	 * Set the metadata RAID level.
+	 *
+	 * Not supported for btrfs already existing on disk.
 	 */
 	void set_metadata_raid_level(BtrfsRaidLevel metadata_raid_level);
 
@@ -87,6 +89,8 @@ namespace storage
 
 	/**
 	 * Set the data RAID level.
+	 *
+	 * Not supported for btrfs already existing on disk.
 	 */
 	void set_data_raid_level(BtrfsRaidLevel data_raid_level);
 
@@ -117,6 +121,8 @@ namespace storage
 
 	/**
 	 * Remove a block device from the btrfs.
+	 *
+	 * Not supported for btrfs already existing on disk.
 	 *
 	 * @throw Exception
 	 */

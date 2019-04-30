@@ -1182,6 +1182,8 @@ namespace storage
 	cmd_line += !md_user->is_spare() ? " --add" : " --add-spare";
 	cmd_line += " " + quote(get_name()) + " " + quote(blk_device->get_name());
 
+	storage::wait_for_devices({ blk_device });
+
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 

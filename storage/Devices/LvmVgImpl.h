@@ -145,8 +145,9 @@ namespace storage
 				     Tense tense) const override;
 	virtual void do_reallot(ReallotMode reallot_mode, const Device* device)
 	    const override;
-	virtual void do_reduce(const LvmPv* lvm_pv) const;
-	virtual void do_extend(const LvmPv* lvm_pv) const;
+
+	void do_reduce(const LvmPv* lvm_pv) const;
+	void do_extend(const LvmPv* lvm_pv) const;
 
 	Text do_reduce_missing_text(Tense tense) const;
 	void do_reduce_missing() const;
