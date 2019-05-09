@@ -76,6 +76,10 @@ Adding a device to an existing btrfs is easy.
 Sometimes after that the RAID levels should be changed, e.g. from DUP
 to RAID1, but that is not supported (see above).
 
+Note: After going from one to two devices, the next balance job will
+change the RAID level from DUP to RAID1 - even if no convert option is
+passed to the balance job.
+
 
 Removing a Device
 -----------------
