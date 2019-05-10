@@ -503,7 +503,7 @@ namespace storage
 
 
     void
-    Luks::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Luks::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	const Luks* luks_rhs = to_luks(rhs);
 

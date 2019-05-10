@@ -87,6 +87,8 @@ namespace storage
 	const_iterator begin() const { return data.begin(); }
 	const_iterator end() const { return data.end(); }
 
+	const_iterator find_by_uuid(const string& uuid) const;
+
 	friend std::ostream& operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 	friend std::ostream& operator<<(std::ostream& s, const Device& device);

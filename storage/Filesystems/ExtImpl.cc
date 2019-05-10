@@ -115,9 +115,8 @@ namespace storage
 
 
     void
-    Ext::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Ext::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_ext(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = EXT2RESIZEBIN " -f " + quote(blk_device->get_name());

@@ -112,7 +112,7 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const override;
+				    const BlkDevice* blk_device, Tense tense) const override;
 
 	virtual Text do_activate_text(Tense tense) const override;
 

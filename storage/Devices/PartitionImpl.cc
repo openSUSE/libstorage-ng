@@ -1094,7 +1094,7 @@ namespace storage
 
     Text
     Partition::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const
+				    const BlkDevice* blk_device, Tense tense) const
     {
 	const Partition* partition_lhs = to_partition(lhs);
 	const Partition* partition_rhs = to_partition(rhs);
@@ -1141,7 +1141,7 @@ namespace storage
 
 
     void
-    Partition::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Partition::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	const Partition* partition_rhs = to_partition(rhs);
 	const Partitionable* partitionable = get_partitionable();

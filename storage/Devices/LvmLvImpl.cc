@@ -881,7 +881,7 @@ namespace storage
 
     Text
     LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				Tense tense) const
+				const BlkDevice* blk_device, Tense tense) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
@@ -1011,7 +1011,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 

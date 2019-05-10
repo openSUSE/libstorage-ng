@@ -441,29 +441,44 @@ namespace storage
     namespace
     {
 
-	vector<const Device*>
-	devices_to_resize(const Device* device)
+	/**
+	 *
+	 */
+	struct Haha
 	{
-	    vector<const Device*> ret;
+	    Haha(const Device* a, const BlkDevice* b) : a(a), b(b) {}
 
-	    for (const Device* child : device->get_children())
+	    const Device* a;
+	    const BlkDevice* b;
+	};
+
+
+	/**
+	 *
+	 */
+	vector<Haha>
+	devices_to_resize(const BlkDevice* blk_device)
+	{
+	    vector<Haha> ret;
+
+	    for (const Device* child : blk_device->get_children())
 	    {
 		if (is_blk_device(child) && !is_md(child))
 		{
-		    ret.push_back(child);
+		    ret.emplace_back(child, blk_device);
 
-		    vector<const Device*> tmp = devices_to_resize(child);
+		    vector<Haha> tmp = devices_to_resize(to_blk_device(child));
 		    ret.insert(ret.end(), tmp.begin(), tmp.end());
 		}
 
 		if (is_lvm_pv(child))
 		{
-		    ret.push_back(child);
+		    ret.emplace_back(child, blk_device);
 		}
 
-		if (is_filesystem(child))
+		if (is_blk_filesystem(child))
 		{
-		    ret.push_back(child);
+		    ret.emplace_back(child, blk_device);
 		}
 	    }
 
@@ -488,22 +503,22 @@ namespace storage
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;
 
-	    vector<const Device*> devices_to_resize_lhs = devices_to_resize(lhs.get_non_impl());
-	    vector<const Device*> devices_to_resize_rhs = devices_to_resize(get_non_impl());
+	    vector<Haha> devices_to_resize_lhs = devices_to_resize(lhs.get_non_impl());
+	    vector<Haha> devices_to_resize_rhs = devices_to_resize(get_non_impl());
 
 	    const BlkFilesystem* blk_filesystem_lhs = nullptr;
 	    const BlkFilesystem* blk_filesystem_rhs = nullptr;
 
-	    for (const Device* device_to_resize : devices_to_resize_lhs)
+	    for (const Haha& device_to_resize : devices_to_resize_lhs)
 	    {
-		if (is_blk_filesystem(device_to_resize))
-		    blk_filesystem_lhs = to_blk_filesystem(device_to_resize);
+		if (is_blk_filesystem(device_to_resize.a))
+		    blk_filesystem_lhs = to_blk_filesystem(device_to_resize.a);
 	    }
 
-	    for (const Device* device_to_resize : devices_to_resize_rhs)
+	    for (const Haha& device_to_resize : devices_to_resize_rhs)
 	    {
-		if (is_blk_filesystem(device_to_resize))
-		    blk_filesystem_rhs = to_blk_filesystem(device_to_resize);
+		if (is_blk_filesystem(device_to_resize.a))
+		    blk_filesystem_rhs = to_blk_filesystem(device_to_resize.a);
 	    }
 
 	    // Only tmp unmounts are inserted in the actiongraph. tmp mounts
@@ -530,18 +545,28 @@ namespace storage
 
 	    if (resize_mode == ResizeMode::SHRINK)
 	    {
-		for (const Device* device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
-		    if (device_to_resize->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
-			actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+		for (const Haha& device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
+		{
+		    if (device_to_resize.a->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
+		    {
+			actions.push_back(new Action::Resize(device_to_resize.a->get_sid(), resize_mode,
+							     device_to_resize.b));
+		    }
+		}
 	    }
 
-	    actions.push_back(new Action::Resize(get_sid(), resize_mode));
+	    actions.push_back(new Action::Resize(get_sid(), resize_mode, nullptr));
 
 	    if (resize_mode == ResizeMode::GROW)
 	    {
-		for (const Device* device_to_resize : devices_to_resize_rhs)
-		    if (device_to_resize->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
-			actions.push_back(new Action::Resize(device_to_resize->get_sid(), resize_mode));
+		for (const Haha& device_to_resize : devices_to_resize_rhs)
+		{
+		    if (device_to_resize.a->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
+		    {
+			actions.push_back(new Action::Resize(device_to_resize.a->get_sid(), resize_mode,
+							     device_to_resize.b));
+		    }
+		}
 	    }
 
 	    if (need_tmp_unmount && blk_filesystem_rhs)

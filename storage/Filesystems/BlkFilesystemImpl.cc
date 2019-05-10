@@ -871,10 +871,8 @@ namespace storage
 
     Text
     BlkFilesystem::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-					Tense tense) const
+					const BlkDevice* blk_device, Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
 	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
 	const BlkDevice* blk_device_rhs = to_blk_filesystem(rhs)->get_impl().get_blk_device();
 
@@ -887,14 +885,14 @@ namespace storage
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by file system (e.g. ext4),
 			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 2GiB),
-			      // %4$s is replaced by new size (e.g. 1GiB)
+			      // %3$s is replaced by old size (e.g. 2.00 GiB),
+			      // %4$s is replaced by new size (e.g. 1.00 GiB)
 			      _("Shrink %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by file system (e.g. ext4),
 			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 2GiB),
-			      // %4$s is replaced by new size (e.g. 1GiB)
+			      // %3$s is replaced by old size (e.g. 2.00 GiB),
+			      // %4$s is replaced by new size (e.g. 1.00 GiB)
 			      _("Shrinking %1$s on %2$s from %3$s to %4$s"));
 		break;
 
@@ -903,14 +901,14 @@ namespace storage
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by file system (e.g. ext4),
 			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 1GiB),
-			      // %4$s is replaced by new size (e.g. 2GiB)
+			      // %3$s is replaced by old size (e.g. 1.00 GiB),
+			      // %4$s is replaced by new size (e.g. 2.00 GiB)
 			      _("Grow %1$s on %2$s from %3$s to %4$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by file system (e.g. ext4),
 			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 1GiB),
-			      // %4$s is replaced by new size (e.g. 2GiB)
+			      // %3$s is replaced by old size (e.g. 1.00 GiB),
+			      // %4$s is replaced by new size (e.g. 2.00 GiB)
 			      _("Growing %1$s on %2$s from %3$s to %4$s"));
 		break;
 

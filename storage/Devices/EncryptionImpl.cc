@@ -331,7 +331,7 @@ namespace storage
 
     Text
     Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				     Tense tense) const
+				     const BlkDevice* blk_device, Tense tense) const
     {
 	const Encryption* encryption_lhs = to_encryption(lhs);
 	const Encryption* encryption_rhs = to_encryption(rhs);

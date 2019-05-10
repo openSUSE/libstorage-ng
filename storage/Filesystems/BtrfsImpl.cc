@@ -586,20 +586,44 @@ namespace storage
     }
 
 
-    void
-    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    namespace
     {
-	// TODO handle multiple devices
 
-	const BlkDevice* blk_device_rhs = to_btrfs(rhs)->get_impl().get_blk_device();
+	// TODO aliases, maybe just add devid to FilesystemUser during probing
 
+	unsigned int
+	devid(const string& uuid, const string& name)
+	{
+	    SystemInfo system_info;
+
+	    const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show = system_info.getCmdBtrfsFilesystemShow();
+
+	    const CmdBtrfsFilesystemShow::const_iterator& it = cmd_btrfs_filesystem_show.find_by_uuid(uuid);
+	    if (it == cmd_btrfs_filesystem_show.end())
+		ST_THROW(Exception(sformat("btrfs not found by uuid %s", uuid)));
+
+	    for (const CmdBtrfsFilesystemShow::Device& device : it->devices)
+	    {
+		if (device.name == name)
+		    return device.id;
+	    }
+
+	    ST_THROW(Exception(sformat("device %s of btrfs with uuid %s not found", name, uuid)));
+	}
+
+    }
+
+
+    void
+    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    {
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFSBIN " filesystem resize";
-	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size());
-	else
-	    cmd_line += " max";
+        string cmd_line = BTRFSBIN " filesystem resize " + to_string(devid(get_uuid(), blk_device->get_name())) + ":";
+        if (resize_mode == ResizeMode::SHRINK)
+            cmd_line += to_string(blk_device->get_size());
+        else
+            cmd_line += "max";
 	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

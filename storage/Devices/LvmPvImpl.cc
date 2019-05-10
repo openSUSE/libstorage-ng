@@ -355,10 +355,8 @@ namespace storage
 
     Text
     LvmPv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				Tense tense) const
+				const BlkDevice* blk_device, Tense tense) const
     {
-	const BlkDevice* blk_device = get_blk_device();
-
 	const BlkDevice* blk_device_lhs = to_lvm_pv(lhs)->get_impl().get_blk_device();
 	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
 
@@ -404,9 +402,9 @@ namespace storage
 
 
     void
-    LvmPv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    LvmPv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
+	// const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());

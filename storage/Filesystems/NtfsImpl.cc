@@ -147,9 +147,8 @@ namespace storage
 
 
     void
-    Ntfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Ntfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_ntfs(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = "echo y | " NTFSRESIZEBIN " --force";

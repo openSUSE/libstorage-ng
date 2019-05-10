@@ -135,7 +135,7 @@ namespace storage
 	virtual void do_rename_in_etc_fstab(CommitData& commit_data) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const override;
+				    const BlkDevice* blk_device, Tense tense) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

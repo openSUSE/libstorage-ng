@@ -69,7 +69,7 @@ namespace storage
 
     /**
      * We use the term "reallot" for reducing or extending a container, e.g. a
-     * LVM volume group or a MD RAID.
+     * LVM volume group, a MD RAID, or a btrfs.
      */
     enum class ReallotMode
     {
@@ -185,8 +185,8 @@ namespace storage
 	virtual void do_deactivate() const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const;
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const;
+				    const BlkDevice* blk_device, Tense tense) const;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
 				     Tense tense) const;
@@ -438,7 +438,8 @@ namespace storage
 	{
 	public:
 
-	    Resize(sid_t sid, ResizeMode resize_mode) : Modify(sid), resize_mode(resize_mode) {}
+	    Resize(sid_t sid, ResizeMode resize_mode, const BlkDevice* blk_device)
+		: Modify(sid), resize_mode(resize_mode), blk_device(blk_device) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
@@ -449,6 +450,17 @@ namespace storage
 	    Side get_side() const { return resize_mode == ResizeMode::GROW ? RHS : LHS; }
 
 	    const ResizeMode resize_mode;
+
+	    /**
+
+	     * The underlying blk device being resized. nullptr for
+	     * Partitions, LvmLvs and Nfs. Esp. important for Btrfs
+	     * which can have multiple underlying blk devices.
+
+	     * TODO on what side?
+
+	     */
+	    const BlkDevice* blk_device;
 
 	private:
 

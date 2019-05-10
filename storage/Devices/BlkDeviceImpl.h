@@ -137,6 +137,9 @@ namespace storage
 	BcacheCset* get_bcache_cset();
 	const BcacheCset* get_bcache_cset() const;
 
+	virtual BlkDevice* get_non_impl() override { return to_blk_device(Device::Impl::get_non_impl()); }
+	virtual const BlkDevice* get_non_impl() const override { return to_blk_device(Device::Impl::get_non_impl()); }
+
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the sysfs
