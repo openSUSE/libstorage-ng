@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -92,9 +92,12 @@ namespace storage
 
 	virtual void print(std::ostream& out) const override;
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual uint64_t used_features() const override;
+
+	virtual Luks* get_non_impl() override { return to_luks(Device::Impl::get_non_impl()); }
+	virtual const Luks* get_non_impl() const override { return to_luks(Device::Impl::get_non_impl()); }
 
 	virtual void do_create() override;
 

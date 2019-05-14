@@ -170,8 +170,14 @@ namespace storage
 	 *
 	 * Blocks grow.
 	 */
-	RB_MAX_SIZE_FOR_LVM_LV_THIN = 1 << 16
+	RB_MAX_SIZE_FOR_LVM_LV_THIN = 1 << 16,
 
+	/**
+	 * Multi-device filesystems (i.e., Btrfs) do not support shrink.
+	 *
+	 * Blocks shrink.
+	 */
+	RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM = 1 << 17
     };
 
 

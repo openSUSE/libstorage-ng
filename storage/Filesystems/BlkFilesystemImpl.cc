@@ -312,7 +312,7 @@ namespace storage
 
 
     ResizeInfo
-    BlkFilesystem::Impl::detect_resize_info() const
+    BlkFilesystem::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	/*
 	 * If the filesystem is not on-disk, ResizeInfo(true, min_size,
@@ -353,7 +353,7 @@ namespace storage
 	{
 	    const BlkFilesystem* tmp_blk_filesystem = redirect_to_system(get_non_impl());
 
-	    ResizeInfo tmp_resize_info = tmp_blk_filesystem->get_impl().detect_resize_info_on_disk();
+	    ResizeInfo tmp_resize_info = tmp_blk_filesystem->get_impl().detect_resize_info_on_disk(blk_device);
 
 	    y2mil("on-disk resize-info:" << tmp_resize_info);
 
@@ -365,7 +365,7 @@ namespace storage
 
 
     ResizeInfo
-    BlkFilesystem::Impl::detect_resize_info_on_disk() const
+    BlkFilesystem::Impl::detect_resize_info_on_disk(const BlkDevice* blk_device) const
     {
 	// TODO only in real probe mode allowed
 

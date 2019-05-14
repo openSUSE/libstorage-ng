@@ -136,7 +136,7 @@ namespace storage
 	virtual void probe_pass_1c(Prober& prober);
 	virtual void probe_pass_1f(Prober& prober);
 
-	virtual ResizeInfo detect_resize_info() const = 0;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const = 0;
 
 	virtual void parent_has_new_region(const Device* parent);
 
@@ -452,13 +452,11 @@ namespace storage
 	    const ResizeMode resize_mode;
 
 	    /**
-
 	     * The underlying blk device being resized. nullptr for
 	     * Partitions, LvmLvs and Nfs. Esp. important for Btrfs
 	     * which can have multiple underlying blk devices.
-
+	     *
 	     * TODO on what side?
-
 	     */
 	    const BlkDevice* blk_device;
 

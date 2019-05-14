@@ -84,7 +84,7 @@ namespace storage
 	static void probe_lvm_pvs(Prober& prober);
 	virtual void probe_pass_1b(Prober& prober) override;
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual uint64_t used_features() const override;
 

@@ -307,12 +307,12 @@ namespace storage
 
 
     ResizeInfo
-    BlkDevice::Impl::detect_resize_info() const
+    BlkDevice::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	ResizeInfo resize_info(true, 0);
 
 	for (const Device* child : get_non_impl()->get_children())
-	    resize_info.combine(child->detect_resize_info());
+	    resize_info.combine(child->get_impl().detect_resize_info(blk_device));
 
 	return resize_info;
     }

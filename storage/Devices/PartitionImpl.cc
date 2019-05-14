@@ -526,7 +526,7 @@ namespace storage
 
 
     ResizeInfo
-    Partition::Impl::detect_resize_info() const
+    Partition::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	if (is_implicit_pt(get_partition_table()))
 	{
@@ -540,7 +540,7 @@ namespace storage
 	    return ResizeInfo(false, RB_EXTENDED_PARTITION);
 	}
 
-	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 	// minimal size is one sector
 

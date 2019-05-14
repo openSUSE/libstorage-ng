@@ -240,7 +240,7 @@ namespace storage
 
 
     ResizeInfo
-    Dasd::Impl::detect_resize_info() const
+    Dasd::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }

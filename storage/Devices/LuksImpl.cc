@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -450,9 +450,9 @@ namespace storage
 
 
     ResizeInfo
-    Luks::Impl::detect_resize_info() const
+    Luks::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
-	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 	resize_info.shift(metadata_size);
 

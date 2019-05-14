@@ -98,7 +98,7 @@ namespace storage
 	void update_sysfs_name_and_path();
 	void update_udev_paths_and_ids();
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	Region get_unused_surrounding_region() const;
 

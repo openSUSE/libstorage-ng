@@ -167,7 +167,7 @@ namespace storage
 
 	virtual void probe_topology(Prober& prober);
 
-	virtual ResizeInfo detect_resize_info() const override = 0;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 

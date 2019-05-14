@@ -205,7 +205,7 @@ namespace storage
 
 
     ResizeInfo
-    LvmPv::Impl::detect_resize_info() const
+    LvmPv::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	ResizeInfo resize_info(true, 0);
 

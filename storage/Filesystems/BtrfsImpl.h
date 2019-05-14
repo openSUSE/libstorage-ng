@@ -105,7 +105,7 @@ namespace storage
 
 	Impl();
 
-        virtual ~Impl();
+	virtual ~Impl();
 
 	Impl(const xmlNode* node);
 
@@ -127,7 +127,13 @@ namespace storage
 	virtual void probe_pass_2a(Prober& prober) override;
 	virtual void probe_pass_2b(Prober& prober) override;
 
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
+	virtual ResizeInfo detect_resize_info_on_disk(const BlkDevice* blk_device = nullptr) const override;
+
 	virtual uint64_t used_features() const override;
+
+	virtual Btrfs* get_non_impl() override { return to_btrfs(Device::Impl::get_non_impl()); }
+	virtual const Btrfs* get_non_impl() const override { return to_btrfs(Device::Impl::get_non_impl()); }
 
 	virtual void do_create() override;
 
@@ -158,6 +164,13 @@ namespace storage
 
 	BtrfsRaidLevel metadata_raid_level;
 	BtrfsRaidLevel data_raid_level;
+
+	/**
+	 * mutable to allow updating cache from const functions. Otherwise
+	 * caching would not be possible when working with the probed
+	 * devicegraph.
+	 */
+	mutable CDgD<ResizeInfo> multi_device_resize_info;
 
     };
 

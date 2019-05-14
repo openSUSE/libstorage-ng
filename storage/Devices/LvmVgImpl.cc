@@ -287,7 +287,7 @@ namespace storage
 
 
     ResizeInfo
-    LvmVg::Impl::detect_resize_info() const
+    LvmVg::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }

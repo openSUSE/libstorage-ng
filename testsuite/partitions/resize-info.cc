@@ -138,3 +138,95 @@ BOOST_AUTO_TEST_CASE(test_gpt)
 	BOOST_CHECK_EQUAL(resize_info.max_size, 110 * GiB - 16.5 * KiB);
     }
 }
+
+
+/**
+ * Check with multi-device Btrfs
+ */
+BOOST_AUTO_TEST_CASE(multidevice_btrfs)
+{
+    setenv("YAST_MULTIPLE_DEVICES_BTRFS", "yes", 1);
+
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+    environment.set_devicegraph_filename("multi-device-btrfs.xml");
+
+    Storage storage(environment);
+    storage.probe();
+    storage.check();
+
+    {
+	const Devicegraph* probed = storage.get_probed();
+
+	const Partition* sda1 = Partition::find_by_name(probed, "/dev/sda1");
+	ResizeInfo resize_info1 = sda1->detect_resize_info();
+
+	BOOST_CHECK_EQUAL(resize_info1.resize_ok, false);
+	BOOST_CHECK_EQUAL(resize_info1.min_size, 10 * GiB);
+	BOOST_CHECK_EQUAL(resize_info1.max_size, 10 * GiB);
+	BOOST_CHECK_EQUAL(resize_info1.reasons,
+	    RB_MIN_MAX_ERROR |
+	    RB_NO_SPACE_BEHIND_PARTITION |
+	    RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM);
+
+	const Partition* sda2 = Partition::find_by_name(probed, "/dev/sda2");
+	ResizeInfo resize_info2 = sda2->detect_resize_info();
+
+	BOOST_CHECK_EQUAL(resize_info2.resize_ok, true);
+	BOOST_CHECK_EQUAL(resize_info2.min_size, 20 * GiB);
+	BOOST_CHECK(resize_info2.max_size > 20 * GiB);
+	BOOST_CHECK_EQUAL(resize_info2.reasons, RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM);
+    }
+}
+
+
+/**
+ * Check with multi-device Btrfs and encryption
+ */
+BOOST_AUTO_TEST_CASE(multidevice_btrfs_encryption)
+{
+    setenv("YAST_MULTIPLE_DEVICES_BTRFS", "yes", 1);
+
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::READ_DEVICEGRAPH, TargetMode::DIRECT);
+    environment.set_devicegraph_filename("multi-device-btrfs-encryption.xml");
+
+    Storage storage(environment);
+    storage.probe();
+    storage.check();
+
+    {
+	const Devicegraph* probed = storage.get_probed();
+
+	const Partition* sda1 = Partition::find_by_name(probed, "/dev/sda1");
+	ResizeInfo resize_info1 = sda1->detect_resize_info();
+
+	BOOST_CHECK_EQUAL(resize_info1.resize_ok, false);
+	BOOST_CHECK_EQUAL(resize_info1.min_size, 10 * GiB);
+	BOOST_CHECK_EQUAL(resize_info1.max_size, 10 * GiB);
+	BOOST_CHECK_EQUAL(resize_info1.reasons,
+	    RB_MIN_MAX_ERROR |
+	    RB_NO_SPACE_BEHIND_PARTITION |
+	    RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM);
+
+	const Partition* sda2 = Partition::find_by_name(probed, "/dev/sda2");
+	ResizeInfo resize_info2 = sda2->detect_resize_info();
+
+	BOOST_CHECK_EQUAL(resize_info2.resize_ok, true);
+	BOOST_CHECK_EQUAL(resize_info2.min_size, 20 * GiB);
+	BOOST_CHECK(resize_info2.max_size > 20 * GiB);
+	BOOST_CHECK_EQUAL(resize_info2.reasons, RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM);
+
+	// It also works over the encryption device
+
+	const Encryption* cr_sda2 = sda2->get_encryption();
+	ResizeInfo resize_info3 = cr_sda2->detect_resize_info();
+
+	BOOST_CHECK_EQUAL(resize_info3.resize_ok, true);
+	BOOST_CHECK_EQUAL(resize_info3.min_size, 20 * GiB);
+	BOOST_CHECK(resize_info3.max_size > 20 * GiB);
+	BOOST_CHECK_EQUAL(resize_info3.reasons, RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM);
+    }
+}
