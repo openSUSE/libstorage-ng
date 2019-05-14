@@ -442,43 +442,45 @@ namespace storage
     {
 
 	/**
-	 *
+	 * Auxiliary struct to represent a direct parent-child relationship
 	 */
-	struct Haha
+	struct DirectRelation
 	{
-	    Haha(const Device* a, const BlkDevice* b) : a(a), b(b) {}
+	    DirectRelation(const BlkDevice* parent, const Device* child)
+		: parent(parent), child(child) {}
 
-	    const Device* a;
-	    const BlkDevice* b;
+	    const BlkDevice* parent;
+	    const Device* child;
 	};
 
 
 	/**
-	 *
+	 * Auxiliary method to get all parent-child relationships: from the device that
+	 * is being resized to the most high-level device that also needs to be resized.
 	 */
-	vector<Haha>
+	vector<DirectRelation>
 	devices_to_resize(const BlkDevice* blk_device)
 	{
-	    vector<Haha> ret;
+	    vector<DirectRelation> ret;
 
 	    for (const Device* child : blk_device->get_children())
 	    {
 		if (is_blk_device(child) && !is_md(child))
 		{
-		    ret.emplace_back(child, blk_device);
+		    ret.emplace_back(blk_device, child);
 
-		    vector<Haha> tmp = devices_to_resize(to_blk_device(child));
+		    vector<DirectRelation> tmp = devices_to_resize(to_blk_device(child));
 		    ret.insert(ret.end(), tmp.begin(), tmp.end());
 		}
 
 		if (is_lvm_pv(child))
 		{
-		    ret.emplace_back(child, blk_device);
+		    ret.emplace_back(blk_device, child);
 		}
 
 		if (is_blk_filesystem(child))
 		{
-		    ret.emplace_back(child, blk_device);
+		    ret.emplace_back(blk_device, child);
 		}
 	    }
 
@@ -503,22 +505,22 @@ namespace storage
 	    ResizeMode resize_mode = get_size() < lhs.get_size() ? ResizeMode::SHRINK :
 		ResizeMode::GROW;
 
-	    vector<Haha> devices_to_resize_lhs = devices_to_resize(lhs.get_non_impl());
-	    vector<Haha> devices_to_resize_rhs = devices_to_resize(get_non_impl());
+	    vector<DirectRelation> devices_to_resize_lhs = devices_to_resize(lhs.get_non_impl());
+	    vector<DirectRelation> devices_to_resize_rhs = devices_to_resize(get_non_impl());
 
 	    const BlkFilesystem* blk_filesystem_lhs = nullptr;
 	    const BlkFilesystem* blk_filesystem_rhs = nullptr;
 
-	    for (const Haha& device_to_resize : devices_to_resize_lhs)
+	    for (const DirectRelation& device_to_resize : devices_to_resize_lhs)
 	    {
-		if (is_blk_filesystem(device_to_resize.a))
-		    blk_filesystem_lhs = to_blk_filesystem(device_to_resize.a);
+		if (is_blk_filesystem(device_to_resize.child))
+		    blk_filesystem_lhs = to_blk_filesystem(device_to_resize.child);
 	    }
 
-	    for (const Haha& device_to_resize : devices_to_resize_rhs)
+	    for (const DirectRelation& device_to_resize : devices_to_resize_rhs)
 	    {
-		if (is_blk_filesystem(device_to_resize.a))
-		    blk_filesystem_rhs = to_blk_filesystem(device_to_resize.a);
+		if (is_blk_filesystem(device_to_resize.child))
+		    blk_filesystem_rhs = to_blk_filesystem(device_to_resize.child);
 	    }
 
 	    // Only tmp unmounts are inserted in the actiongraph. tmp mounts
@@ -545,12 +547,12 @@ namespace storage
 
 	    if (resize_mode == ResizeMode::SHRINK)
 	    {
-		for (const Haha& device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
+		for (const DirectRelation& device_to_resize : boost::adaptors::reverse(devices_to_resize_lhs))
 		{
-		    if (device_to_resize.a->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
+		    if (device_to_resize.child->exists_in_devicegraph(actiongraph.get_devicegraph(RHS)))
 		    {
-			actions.push_back(new Action::Resize(device_to_resize.a->get_sid(), resize_mode,
-							     device_to_resize.b));
+			actions.push_back(new Action::Resize(device_to_resize.child->get_sid(), resize_mode,
+							     device_to_resize.parent));
 		    }
 		}
 	    }
@@ -559,12 +561,12 @@ namespace storage
 
 	    if (resize_mode == ResizeMode::GROW)
 	    {
-		for (const Haha& device_to_resize : devices_to_resize_rhs)
+		for (const DirectRelation& device_to_resize : devices_to_resize_rhs)
 		{
-		    if (device_to_resize.a->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
+		    if (device_to_resize.child->exists_in_devicegraph(actiongraph.get_devicegraph(LHS)))
 		    {
-			actions.push_back(new Action::Resize(device_to_resize.a->get_sid(), resize_mode,
-							     device_to_resize.b));
+			actions.push_back(new Action::Resize(device_to_resize.child->get_sid(), resize_mode,
+							     device_to_resize.parent));
 		    }
 		}
 	    }
