@@ -137,6 +137,9 @@ namespace storage
 
 	virtual void do_create() override;
 
+	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				    const BlkDevice* blk_device, Tense tense) const override;
+
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, MountPoint* mount_point) const override;

@@ -761,6 +761,34 @@ namespace storage
     }
 
 
+    Text
+    Btrfs::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				const BlkDevice* blk_device, Tense tense) const
+    {
+	if (get_blk_devices().size() == 1)
+	    return BlkFilesystem::Impl::do_resize_text(resize_mode, lhs, rhs, blk_device, tense);
+
+	if (resize_mode == ResizeMode::SHRINK)
+	    ST_THROW(LogicException("invalid value for resize_mode (shrink for multi-device Btrfs)"));
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g., /dev/sda1),
+			   // %2$s is replaced by file system name (i.e., btrfs),
+			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Grow %1$s of %2$s on %3$s"),
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g., /dev/sda1),
+			   // %2$s is replaced by file system name (i.e., btrfs),
+			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Growing %1$s of %2$s on %3$s"));
+
+	return sformat(text, blk_device->get_name(), get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
+    }
+
+
     void
     Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
