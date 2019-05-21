@@ -396,14 +396,14 @@ namespace storage
 
     Text
     Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				 Tense tense) const
+				 const BlkDevice* blk_device, Tense tense) const
     {
 	return UntranslatedText(sformat("error: stub do_resize_text called for %s", get_classname()));
     }
 
 
     void
-    Device::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Device::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	ST_THROW(LogicException("stub do_resize called"));
     }
@@ -465,7 +465,8 @@ namespace storage
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, commit_data.tense);
+	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, blk_device,
+						     commit_data.tense);
 	}
 
 
@@ -475,7 +476,7 @@ namespace storage
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
 
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    device->get_impl().do_resize(resize_mode, device_rhs);
+	    device->get_impl().do_resize(resize_mode, device_rhs, blk_device);
 	}
 
 

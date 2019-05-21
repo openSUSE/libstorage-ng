@@ -526,7 +526,7 @@ namespace storage
 
 
     ResizeInfo
-    Partition::Impl::detect_resize_info() const
+    Partition::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	if (is_implicit_pt(get_partition_table()))
 	{
@@ -540,7 +540,7 @@ namespace storage
 	    return ResizeInfo(false, RB_EXTENDED_PARTITION);
 	}
 
-	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 	// minimal size is one sector
 
@@ -1094,7 +1094,7 @@ namespace storage
 
     Text
     Partition::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const
+				    const BlkDevice* blk_device, Tense tense) const
     {
 	const Partition* partition_lhs = to_partition(lhs);
 	const Partition* partition_rhs = to_partition(rhs);
@@ -1141,7 +1141,7 @@ namespace storage
 
 
     void
-    Partition::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Partition::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	const Partition* partition_rhs = to_partition(rhs);
 	const Partitionable* partitionable = get_partitionable();

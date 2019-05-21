@@ -41,6 +41,7 @@
 #include "storage/Storage.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Prober.h"
+#include "storage/Redirect.h"
 
 
 namespace storage
@@ -59,14 +60,16 @@ namespace storage
 
     Btrfs::Impl::Impl()
 	: BlkFilesystem::Impl(), configure_snapper(false), snapper_config(nullptr),
-	  metadata_raid_level(BtrfsRaidLevel::DEFAULT), data_raid_level(BtrfsRaidLevel::DEFAULT)
+	  metadata_raid_level(BtrfsRaidLevel::DEFAULT), data_raid_level(BtrfsRaidLevel::DEFAULT),
+	  multi_device_resize_info()
     {
     }
 
 
     Btrfs::Impl::Impl(const xmlNode* node)
 	: BlkFilesystem::Impl(node), configure_snapper(false), snapper_config(nullptr),
-	  metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN)
+	  metadata_raid_level(BtrfsRaidLevel::UNKNOWN), data_raid_level(BtrfsRaidLevel::UNKNOWN),
+	  multi_device_resize_info()
     {
 	string tmp;
 
@@ -505,9 +508,109 @@ namespace storage
     }
 
 
-#if 0
+    namespace
+    {
+
+	/**
+	 * Auxiliary method to check whether a device is included in a list of devices.
+	 */
+	bool contains_device(vector<const BlkDevice*> blk_devices, const BlkDevice* blk_device)
+	{
+	    vector<const BlkDevice*>::iterator it = find_if(blk_devices.begin(), blk_devices.end(),
+		[blk_device](const BlkDevice* dev) { return dev->get_sid() == blk_device->get_sid(); });
+
+	    return it != blk_devices.end();
+	}
+
+    }
+
+
     ResizeInfo
-    Btrfs::Impl::detect_resize_info_on_disk() const
+    Btrfs::Impl::detect_resize_info(const BlkDevice* blk_device) const
+    {
+	if (blk_device && !contains_device(get_blk_devices(), blk_device))
+	    ST_THROW(Exception("function called with wrong device"));
+
+	ResizeInfo default_resize_info(true, 0, min_size(), max_size());
+
+	if (!exists_in_system())
+	{
+	    // The filesystem does not exist on disk yet.
+
+	    if (get_blk_devices().size() == 1)
+	    {
+		// Rely on BlkFilesystem::Impl when the filesystem is a not committed
+		// single-device Btrfs.
+
+		return BlkFilesystem::Impl::detect_resize_info();
+	    }
+	    else
+	    {
+		// The filesystem is a not committed multi-device Btrfs.
+
+		return default_resize_info;
+	    }
+	}
+	else
+	{
+	    // The filesystem already exists on disk.
+
+	    const Btrfs* filesystem = redirect_to_system(get_non_impl());
+
+	    if (filesystem->get_blk_devices().size() == 1)
+	    {
+		// Currently, the filesystem is a single-device Btrfs.
+
+		if (blk_device && blk_device->get_sid() != filesystem->get_impl().get_blk_device()->get_sid())
+		{
+		    // Checking from a new device associated to the filesystem.
+
+		    return default_resize_info;
+		}
+		else
+		{
+		    // Rely on BlkFilesystem::Impl when checking from no specific block device,
+		    // or from the device currently associated to the filesystem.
+
+		    return BlkFilesystem::Impl::detect_resize_info();
+		}
+	    }
+	    else
+	    {
+		// Currently, the filesystem is a multi-device Btrfs.
+
+		ResizeInfo resize_info(true, 0);
+
+		if (blk_device)
+		{
+		    // Checking from an specific block device.
+
+		    resize_info = filesystem->get_impl().detect_resize_info_on_disk(blk_device);
+		}
+		else if (!multi_device_resize_info.has_value())
+		{
+		    // Checking from no specific block device, and the resize info is not cached yet.
+
+		    resize_info = filesystem->get_impl().detect_resize_info_on_disk();
+		    multi_device_resize_info.set_value(resize_info);
+		}
+		else
+		{
+		    // Checking from no specific block device, and the resize info is already cached.
+
+		    resize_info = multi_device_resize_info.get_value();
+		}
+
+		y2mil("on-disk resize-info:" << resize_info);
+
+		return resize_info;
+	    }
+	}
+    }
+
+
+    ResizeInfo
+    Btrfs::Impl::detect_resize_info_on_disk(const BlkDevice* blk_device) const
     {
 	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
@@ -515,8 +618,52 @@ namespace storage
 	// TODO btrfs provides a command to query the min size (btrfs
 	// inspect-internal min-dev-size /mount-point) but it does reports
 	// wrong values
+
+	if (get_blk_devices().size() == 1)
+	{
+	    // Rely on BlkFilesystem::Impl for single-device Btrfs.
+
+	    return BlkFilesystem::Impl::detect_resize_info_on_disk(blk_device);
+	}
+
+	// Multi-device Btrfs
+
+	ResizeInfo resize_info(true, 0, min_size(), max_size());
+
+	if (!blk_device)
+	{
+	    // Checking from no specific block device.
+
+	    // Assume that the min-size, e.g. for superblocks, metadata and
+	    // journal, is needed additional to the used-size.
+
+	    resize_info.min_size += used_size_on_disk();
+
+	    // Often the a filesystem cannot be shrunk to the value reported
+	    // by statvfs. Thus add a 50% safety margin.
+
+	    resize_info.min_size *= 1.5;
+
+	    resize_info.reasons |= RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM;
+
+	    if (resize_info.min_size >= resize_info.max_size)
+		resize_info.reasons |= RB_FILESYSTEM_FULL;
+	}
+	else
+	{
+	    // Checking from a specific block device.
+
+	    if (contains_device(get_blk_devices(), blk_device))
+	    {
+		// Block shrink only if the filesystem is already using this device on the system.
+
+		resize_info.min_size = max(resize_info.min_size, blk_device->get_size());
+		resize_info.reasons |= RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM;
+	    }
+	}
+
+	return resize_info;
     }
-#endif
 
 
     uint64_t
@@ -586,20 +733,72 @@ namespace storage
     }
 
 
-    void
-    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    namespace
     {
-	// TODO handle multiple devices
 
-	const BlkDevice* blk_device_rhs = to_btrfs(rhs)->get_impl().get_blk_device();
+	// TODO aliases, maybe just add devid to FilesystemUser during probing
 
+	unsigned int
+	devid(const string& uuid, const string& name)
+	{
+	    SystemInfo system_info;
+
+	    const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show = system_info.getCmdBtrfsFilesystemShow();
+
+	    const CmdBtrfsFilesystemShow::const_iterator& it = cmd_btrfs_filesystem_show.find_by_uuid(uuid);
+	    if (it == cmd_btrfs_filesystem_show.end())
+		ST_THROW(Exception(sformat("btrfs not found by uuid %s", uuid)));
+
+	    for (const CmdBtrfsFilesystemShow::Device& device : it->devices)
+	    {
+		if (device.name == name)
+		    return device.id;
+	    }
+
+	    ST_THROW(Exception(sformat("device %s of btrfs with uuid %s not found", name, uuid)));
+	}
+
+    }
+
+
+    Text
+    Btrfs::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
+				const BlkDevice* blk_device, Tense tense) const
+    {
+	if (get_blk_devices().size() == 1)
+	    return BlkFilesystem::Impl::do_resize_text(resize_mode, lhs, rhs, blk_device, tense);
+
+	if (resize_mode == ResizeMode::SHRINK)
+	    ST_THROW(LogicException("invalid value for resize_mode (shrink for multi-device Btrfs)"));
+
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g., /dev/sda1),
+			   // %2$s is replaced by file system name (i.e., btrfs),
+			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Grow %1$s of %2$s on %3$s"),
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the device name (e.g., /dev/sda1),
+			   // %2$s is replaced by file system name (i.e., btrfs),
+			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
+			   // /dev/sdb2 (1.0 GiB))
+			   _("Growing %1$s of %2$s on %3$s"));
+
+	return sformat(text, blk_device->get_name(), get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
+    }
+
+
+    void
+    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    {
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	string cmd_line = BTRFSBIN " filesystem resize";
-	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " " + to_string(blk_device_rhs->get_size());
-	else
-	    cmd_line += " max";
+        string cmd_line = BTRFSBIN " filesystem resize " + to_string(devid(get_uuid(), blk_device->get_name())) + ":";
+        if (resize_mode == ResizeMode::SHRINK)
+            cmd_line += to_string(blk_device->get_size());
+        else
+            cmd_line += "max";
 	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);

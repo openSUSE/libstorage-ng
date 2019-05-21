@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -104,8 +104,8 @@ namespace storage
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 	virtual void print(std::ostream& out) const override;
 
-	virtual ResizeInfo detect_resize_info() const override;
-	virtual ResizeInfo detect_resize_info_on_disk() const;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
+	virtual ResizeInfo detect_resize_info_on_disk(const BlkDevice* blk_device = nullptr) const;
 	void set_resize_info(const ResizeInfo& resize_info);
 
 	unsigned long long used_size_on_disk() const;
@@ -135,7 +135,7 @@ namespace storage
 	virtual void do_rename_in_etc_fstab(CommitData& commit_data) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const override;
+				    const BlkDevice* blk_device, Tense tense) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

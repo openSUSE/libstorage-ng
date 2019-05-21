@@ -105,9 +105,8 @@ namespace storage
 
 
     void
-    Vfat::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Vfat::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_vfat(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = FATRESIZEBIN " " + quote(blk_device->get_name());

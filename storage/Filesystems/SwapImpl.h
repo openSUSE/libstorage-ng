@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -76,7 +76,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual ContentInfo detect_content_info() const override;
 
@@ -86,7 +86,7 @@ namespace storage
 
 	virtual void do_create() override;
 
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual void do_set_label() const override;
 

@@ -100,7 +100,7 @@ namespace storage
 
 
     void
-    Xfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Xfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	if (resize_mode == ResizeMode::SHRINK)
 	    ST_THROW(Exception("shrink Xfs not possible"));

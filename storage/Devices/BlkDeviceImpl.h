@@ -137,6 +137,9 @@ namespace storage
 	BcacheCset* get_bcache_cset();
 	const BcacheCset* get_bcache_cset() const;
 
+	virtual BlkDevice* get_non_impl() override { return to_blk_device(Device::Impl::get_non_impl()); }
+	virtual const BlkDevice* get_non_impl() const override { return to_blk_device(Device::Impl::get_non_impl()); }
+
 	/**
 	 * This is a invasive version of BlkDevice::find_by_name(). If no
 	 * block device is found via the name a second search via the sysfs
@@ -164,7 +167,7 @@ namespace storage
 
 	virtual void probe_topology(Prober& prober);
 
-	virtual ResizeInfo detect_resize_info() const override = 0;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 

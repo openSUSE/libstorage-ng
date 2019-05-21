@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -58,18 +58,18 @@ namespace storage
 
 
     ResizeInfo
-    Ntfs::Impl::detect_resize_info_on_disk() const
+    Ntfs::Impl::detect_resize_info_on_disk(const BlkDevice* blk_device) const
     {
 	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
 	    ST_THROW(Exception("function called on wrong device"));
 
-	const BlkDevice* blk_device = get_blk_device();
+	const BlkDevice* fs_blk_device = get_blk_device();
 
 	wait_for_devices();
 
 	// TODO filesystem must not be mounted
 
-	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(blk_device->get_name()));
+	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(fs_blk_device->get_name()));
 	if (cmd.retcode() != 0)
 	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
 
@@ -88,7 +88,7 @@ namespace storage
 	number >> resize_info.min_size;
 
 	// see ntfsresize(8) for += 100 MiB
-	resize_info.min_size = min(resize_info.min_size + 100 * MiB, blk_device->get_size());
+	resize_info.min_size = min(resize_info.min_size + 100 * MiB, fs_blk_device->get_size());
 	resize_info.max_size = 256 * TiB - 64 * KiB;
 
 	if (resize_info.min_size >= resize_info.max_size)
@@ -147,9 +147,8 @@ namespace storage
 
 
     void
-    Ntfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Ntfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_ntfs(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = "echo y | " NTFSRESIZEBIN " --force";

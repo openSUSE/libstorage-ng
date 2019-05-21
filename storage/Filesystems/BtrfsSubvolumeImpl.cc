@@ -384,7 +384,7 @@ namespace storage
 
 
     ResizeInfo
-    BtrfsSubvolume::Impl::detect_resize_info() const
+    BtrfsSubvolume::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }

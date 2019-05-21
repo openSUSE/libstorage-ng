@@ -84,7 +84,7 @@ namespace storage
 	static void probe_lvm_pvs(Prober& prober);
 	virtual void probe_pass_1b(Prober& prober) override;
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual uint64_t used_features() const override;
 
@@ -105,8 +105,8 @@ namespace storage
 	virtual void do_create_post_verify() const override;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const override;
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
+				    const BlkDevice* blk_device, Tense tense) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

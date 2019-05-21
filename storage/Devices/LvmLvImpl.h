@@ -112,7 +112,7 @@ namespace storage
 
 	unsigned long long default_metadata_size() const;
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	LvmLv* get_lvm_lv(const string& lv_name);
 
@@ -129,6 +129,9 @@ namespace storage
 
 	virtual void add_modify_actions(Actiongraph::Impl& actiongraph, const Device* lhs) const override;
 
+	virtual LvmLv* get_non_impl() override { return to_lvm_lv(Device::Impl::get_non_impl()); }
+	virtual const LvmLv* get_non_impl() const override { return to_lvm_lv(Device::Impl::get_non_impl()); }
+
 	virtual Text do_create_text(Tense tense) const override;
 	virtual void do_create() override;
 	virtual void do_create_post_verify() const override;
@@ -137,8 +140,8 @@ namespace storage
 	virtual void do_rename(const Impl& lhs) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    Tense tense) const override;
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs) const override;
+				    const BlkDevice* blk_device, Tense tense) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

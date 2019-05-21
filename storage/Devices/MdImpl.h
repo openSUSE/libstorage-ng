@@ -68,7 +68,7 @@ namespace storage
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
-	virtual ResizeInfo detect_resize_info() const override;
+	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
 
 	MdUser* add_device(BlkDevice* blk_device);
 	void remove_device(BlkDevice* blk_device);

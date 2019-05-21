@@ -103,9 +103,8 @@ namespace storage
 
 
     void
-    Reiserfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Reiserfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_reiserfs(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = REISERFSRESIZEBIN " -f";

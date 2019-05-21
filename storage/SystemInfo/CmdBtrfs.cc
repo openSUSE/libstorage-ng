@@ -129,6 +129,13 @@ namespace storage
     }
 
 
+    CmdBtrfsFilesystemShow::const_iterator
+    CmdBtrfsFilesystemShow::find_by_uuid(const string& uuid) const
+    {
+	return find_if(begin(), end(), [&uuid](const Entry& entry){ return entry.uuid == uuid; });
+    }
+
+
     std::ostream&
     operator<<(std::ostream& s, const CmdBtrfsFilesystemShow& cmd_btrfs_filesystem_show)
     {

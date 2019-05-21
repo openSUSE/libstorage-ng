@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -151,7 +151,7 @@ namespace storage
 
 
     ResizeInfo
-    Disk::Impl::detect_resize_info() const
+    Disk::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }

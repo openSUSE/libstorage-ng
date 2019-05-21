@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -59,7 +59,7 @@ namespace storage
 
 
     ResizeInfo
-    Swap::Impl::detect_resize_info() const
+    Swap::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(true, 0, min_size(), max_size());
     }
@@ -104,9 +104,8 @@ namespace storage
 
 
     void
-    Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_swap(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = MKSWAPBIN;

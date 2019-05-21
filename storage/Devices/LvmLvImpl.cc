@@ -593,7 +593,7 @@ namespace storage
 
 
     ResizeInfo
-    LvmLv::Impl::detect_resize_info() const
+    LvmLv::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
@@ -605,7 +605,7 @@ namespace storage
 	{
 	    case LvType::NORMAL:
 	    {
-		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 		unsigned long long free_extents = lvm_vg->get_impl().number_of_free_extents({ get_sid() });
 
@@ -667,7 +667,7 @@ namespace storage
 
 	    case LvType::THIN:
 	    {
-		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info();
+		ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
 		const LvmLv* thin_pool = get_thin_pool();
 
@@ -881,7 +881,7 @@ namespace storage
 
     Text
     LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				Tense tense) const
+				const BlkDevice* blk_device, Tense tense) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
@@ -1011,7 +1011,7 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs) const
+    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 

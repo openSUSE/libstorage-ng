@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -188,7 +188,7 @@ namespace storage
 
 
     ResizeInfo
-    DmRaid::Impl::detect_resize_info() const
+    DmRaid::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
 	return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
     }

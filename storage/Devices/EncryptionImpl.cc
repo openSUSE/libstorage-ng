@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -160,9 +160,9 @@ namespace storage
 
 
     ResizeInfo
-    Encryption::Impl::detect_resize_info() const
+    Encryption::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
-	return BlkDevice::Impl::detect_resize_info();
+	return BlkDevice::Impl::detect_resize_info(blk_device);
     }
 
 
@@ -331,7 +331,7 @@ namespace storage
 
     Text
     Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				     Tense tense) const
+				     const BlkDevice* blk_device, Tense tense) const
     {
 	const Encryption* encryption_lhs = to_encryption(lhs);
 	const Encryption* encryption_rhs = to_encryption(rhs);
