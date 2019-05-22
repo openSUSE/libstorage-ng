@@ -106,7 +106,7 @@ namespace storage
     support_btrfs_multiple_devices()
     {
 	const char* p = getenv("YAST_MULTIPLE_DEVICES_BTRFS");
-	return p && strcmp(p, "yes") == 0;
+	return !p || strcmp(p, "yes") == 0;
     }
 
 }
