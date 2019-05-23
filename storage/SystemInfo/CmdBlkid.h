@@ -57,7 +57,7 @@ namespace storage
 	struct Entry
 	{
 	    Entry() : is_fs(false), fs_type(FsType::UNKNOWN), fs_uuid(), fs_label(), fs_journal_uuid(),
-		      is_journal(false), journal_uuid(), is_md(false), is_lvm(false),
+		      fs_sub_uuid(), is_journal(false), journal_uuid(), is_md(false), is_lvm(false),
 		      is_luks(false), luks_uuid(), luks_label(), is_bcache(false), bcache_uuid() {}
 
 	    bool is_fs;
@@ -65,6 +65,7 @@ namespace storage
 	    string fs_uuid;
 	    string fs_label;
 	    string fs_journal_uuid;
+	    string fs_sub_uuid;
 
 	    bool is_journal;
 	    string journal_uuid;
