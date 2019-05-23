@@ -130,14 +130,14 @@
       <source-sid>44</source-sid>
       <target-sid>48</target-sid>
     </Subdevice>
-    <User>
+    <FilesystemUser>
       <source-sid>47</source-sid>
       <target-sid>66</target-sid>
-    </User>
-    <User>
+    </FilesystemUser>
+    <FilesystemUser>
       <source-sid>48</source-sid>
       <target-sid>67</target-sid>
-    </User>
+    </FilesystemUser>
     <Subdevice>
       <source-sid>44</source-sid>
       <target-sid>74</target-sid>
