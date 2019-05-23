@@ -36,7 +36,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Holders/Subdevice.h"
-#include "storage/Holders/FilesystemUser.h"
+#include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/EnvironmentImpl.h"
 #include "storage/Storage.h"
 #include "storage/Utils/Mockup.h"
@@ -388,19 +388,29 @@ namespace storage
 		if (detected_btrfs.devices.empty())
 		    ST_THROW(Exception("btrfs has no blk devices"));
 
-		vector<BlkDevice*> blk_devices;
+		// generate list of blk_device and corresponding id (btrfs devid)
+		vector<pair<BlkDevice*, unsigned int>> blk_devices;
 
 		for (const CmdBtrfsFilesystemShow::Device& device : detected_btrfs.devices)
-		    blk_devices.push_back(BlkDevice::find_by_any_name(system, device.name));
+		    blk_devices.emplace_back(BlkDevice::find_by_any_name(system, device.name), device.id);
 
 		BlkFilesystem* blk_filesystem = nullptr;
 
-		for (BlkDevice* blk_device : blk_devices)
+		for (const pair<BlkDevice*, unsigned int>& blk_device : blk_devices)
 		{
+		    FilesystemUser* filesystem_user = nullptr;
+
 		    if (!blk_filesystem)
-			blk_filesystem = blk_device->create_blk_filesystem(FsType::BTRFS);
+		    {
+			blk_filesystem = blk_device.first->create_blk_filesystem(FsType::BTRFS);
+			filesystem_user = to_filesystem_user(blk_filesystem->get_in_holders().front());
+		    }
 		    else
-			FilesystemUser::create(system, blk_device, blk_filesystem);
+		    {
+			filesystem_user = FilesystemUser::create(system, blk_device.first, blk_filesystem);
+		    }
+
+		    filesystem_user->get_impl().set_id(blk_device.second);
 		}
 
 		if (!blk_filesystem)

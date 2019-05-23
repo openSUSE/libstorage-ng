@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -27,6 +28,20 @@ namespace storage
 {
 
     static const RemoteCallbacks* remote_callbacks = nullptr;
+
+
+    bool
+    RemoteCommand::operator==(const RemoteCommand& rhs) const
+    {
+	return stdout == rhs.stdout && stderr == rhs.stderr && exit_code == rhs.exit_code;
+    }
+
+
+    bool
+    RemoteFile::operator==(const RemoteFile& rhs) const
+    {
+	return content == rhs.content;
+    }
 
 
     const RemoteCallbacks*

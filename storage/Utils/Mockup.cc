@@ -49,16 +49,41 @@ namespace storage
 	{
 	    for (const xmlNode* command_node : getChildNodes(commands_node))
 	    {
-		string name;
-		getChildValue(command_node, "name", name);
+		vector<string> names;
+		getChildValue(command_node, "name", names);
+
+		if (names.empty())
+		    ST_THROW(Exception("no name for command found"));
 
 		Command command;
 		getChildValue(command_node, "stdout", command.stdout);
 		getChildValue(command_node, "stderr", command.stderr);
 		getChildValue(command_node, "exit-code", command.exit_code);
 
-		if (!commands.emplace(name, command).second)
-		    ST_THROW(Exception(sformat("command \"%s\" already loaded for mockup", name)));
+#ifdef OCCAMS_RAZOR
+		// Unfortunately the check is not so effective as one
+		// might expected since the output of udevadm info is
+		// often sorted differently depending on the
+		// parameter.
+
+		if (command.stdout.size() > threshold)
+		{
+		    for (const map<string, Command>::value_type& tmp : commands)
+		    {
+			if (tmp.second == command)
+			{
+			    y2err("identical commands in mockup '" << tmp.first << "' and '" << names[0]);
+			    ST_THROW(Exception("Occam's Razor"));
+			}
+		    }
+		}
+#endif
+
+		for (const string& name : names)
+		{
+		    if (!commands.emplace(name, command).second)
+			ST_THROW(Exception(sformat("command \"%s\" already loaded for mockup", name)));
+		}
 	    }
 	}
 
@@ -67,14 +92,34 @@ namespace storage
 	{
 	    for (const xmlNode* file_node : getChildNodes(files_node))
 	    {
-		string name;
-		getChildValue(file_node, "name", name);
+		vector<string> names;
+		getChildValue(file_node, "name", names);
+
+		if (names.empty())
+		    ST_THROW(Exception("no name for file found"));
 
 		File file;
 		getChildValue(file_node, "content", file.content);
 
-		if (!files.emplace(name, file).second)
-		    ST_THROW(Exception(sformat("file \"%s\" already loaded for mockup", name)));
+#ifdef OCCAMS_RAZOR
+		if (file.content.size() > threshold)
+		{
+		    for (const map<string, File>::value_type& tmp : files)
+		    {
+			if (tmp.second == file)
+			{
+			    y2err("identical files in mockup '" << tmp.first << "' and '" << names[0]);
+			    ST_THROW(Exception("Occam's Razor"));
+			}
+		    }
+		}
+#endif
+
+		for (const string& name : names)
+		{
+		    if (!files.emplace(name, file).second)
+			ST_THROW(Exception(sformat("file \"%s\" already loaded for mockup", name)));
+		}
 	    }
 	}
     }

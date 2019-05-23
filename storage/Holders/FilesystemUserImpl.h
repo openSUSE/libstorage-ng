@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,7 +39,7 @@ namespace storage
     public:
 
 	Impl()
-	    : User::Impl(), journal(false) {}
+	    : User::Impl(), journal(false), id(0) {}
 
 	Impl(const xmlNode* node);
 
@@ -57,9 +57,18 @@ namespace storage
 	bool is_journal() const { return journal; }
 	void set_journal(bool journal) { Impl::journal = journal; }
 
+	unsigned int get_id() const { return id; }
+	void set_id(unsigned int id) { Impl::id = id; }
+
     private:
 
 	bool journal;
+
+	/**
+	 * An id for the block device as seen from the filesystem. So
+	 * far only used for btrfs where it is the btrfs devid.
+	 */
+	unsigned int id;
 
     };
 

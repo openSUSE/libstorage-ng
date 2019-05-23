@@ -384,18 +384,22 @@
     <FilesystemUser>
       <source-sid>52</source-sid>
       <target-sid>63</target-sid>
+      <id>1</id>
     </FilesystemUser>
     <FilesystemUser>
       <source-sid>54</source-sid>
       <target-sid>63</target-sid>
+      <id>2</id>
     </FilesystemUser>
     <FilesystemUser>
       <source-sid>56</source-sid>
       <target-sid>63</target-sid>
+      <id>3</id>
     </FilesystemUser>
     <FilesystemUser>
       <source-sid>58</source-sid>
       <target-sid>63</target-sid>
+      <id>4</id>
     </FilesystemUser>
     <Subdevice>
       <source-sid>64</source-sid>

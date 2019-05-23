@@ -110,18 +110,18 @@
       <source-sid>52</source-sid>
       <target-sid>54</target-sid>
     </Subdevice>
-    <User>
+    <FilesystemUser>
       <source-sid>53</source-sid>
       <target-sid>66</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>66</source-sid>
       <target-sid>67</target-sid>
     </User>
-    <User>
+    <FilesystemUser>
       <source-sid>54</source-sid>
       <target-sid>68</target-sid>
-    </User>
+    </FilesystemUser>
     <User>
       <source-sid>68</source-sid>
       <target-sid>69</target-sid>

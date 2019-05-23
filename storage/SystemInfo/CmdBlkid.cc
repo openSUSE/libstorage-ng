@@ -114,6 +114,10 @@ namespace storage
 		it1 = m.find("EXT_JOURNAL");
 		if (it1 != m.end())
 		    entry.fs_journal_uuid = it1->second;
+
+		it1 = m.find("UUID_SUB");
+		if (it1 != m.end())
+		    entry.fs_sub_uuid = it1->second;
 	    }
 
 	    if (entry.is_journal)
@@ -295,6 +299,8 @@ namespace storage
 		s << " fs-label:" << entry.fs_label;
 	    if (!entry.fs_journal_uuid.empty())
 		s << " fs-journal-uuid:" << entry.fs_journal_uuid;
+	    if (!entry.fs_sub_uuid.empty())
+		s << " fs-sub-uuid:" << entry.fs_sub_uuid;
 	}
 
 	if (entry.is_journal)

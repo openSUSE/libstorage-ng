@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -35,8 +35,11 @@
 /**
  * With Occam's Razor an exception is thrown when not all entries in
  * the mockup are used and Mockup::occams_razor() is called (which is
- * done after probing when reading the mockup). Enable only for
- * development code but not for production code.
+ * done after probing when reading the mockup). Also during loading
+ * the mockup an exception is thrown when big identical commands or
+ * files are found.
+ *
+ * Enable only for development code but not for production code.
  */
 // #define OCCAMS_RAZOR
 
@@ -86,6 +89,8 @@ namespace storage
 	static map<string, File> files;
 
 #ifdef OCCAMS_RAZOR
+	const static size_t threshold = 4;
+
 	static set<string> used_commands;
 	static set<string> used_files;
 #endif

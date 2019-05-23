@@ -78,7 +78,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     vector<string> output = {
 	"data[/dev/mapper/docker-254:3-266193-pool] -> is-fs:true fs-type:ext4 fs-uuid:b8965f68-1e7c-4fac-982b-5859dca91de5",
 	"data[/dev/mapper/system-abuild] -> is-fs:true fs-type:ext4 fs-uuid:16337c60-fc2a-4b87-8199-4f511fa06c65 fs-label:ABUILD",
-	"data[/dev/mapper/system-btrfs] -> is-fs:true fs-type:btrfs fs-uuid:946de1e3-ab5a-49d2-8c9d-057f1613d395 fs-label:BTRFS",
+	"data[/dev/mapper/system-btrfs] -> is-fs:true fs-type:btrfs fs-uuid:946de1e3-ab5a-49d2-8c9d-057f1613d395 fs-label:BTRFS fs-sub-uuid:8fd5c226-d060-4049-90e6-1df5c865fdf4",
 	"data[/dev/mapper/system-giant] -> is-fs:true fs-type:xfs fs-uuid:0857a01f-c58e-464a-b74b-cd46992873e7 fs-label:GIANT",
 	"data[/dev/mapper/system-root] -> is-fs:true fs-type:ext3 fs-uuid:31e381c9-5b35-4045-8d01-9274a30e1298 fs-label:ROOT",
 	"data[/dev/mapper/system-swap] -> is-fs:true fs-type:swap fs-uuid:fd39c3f9-2990-435d-8eed-e56b6dc2e592 fs-label:SWAP",
@@ -102,8 +102,8 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"data[/dev/mapper/system-home] -> is-fs:true fs-type:btrfs fs-uuid:7e9e18c3-b743-47d8-9f33-464f466fc517",
-	"data[/dev/mapper/system-root] -> is-fs:true fs-type:btrfs fs-uuid:9fca85ff-4278-4f49-932e-4060726cf0d6",
+	"data[/dev/mapper/system-home] -> is-fs:true fs-type:btrfs fs-uuid:7e9e18c3-b743-47d8-9f33-464f466fc517 fs-sub-uuid:4f40002c-125e-43c1-8a38-b5bf29f5319c",
+	"data[/dev/mapper/system-root] -> is-fs:true fs-type:btrfs fs-uuid:9fca85ff-4278-4f49-932e-4060726cf0d6 fs-sub-uuid:ab28e20a-9c11-4ea6-a46d-0fe412fe0e19",
 	"data[/dev/mapper/system-swap] -> is-fs:true fs-type:swap fs-uuid:d0f020a1-9847-4ee5-a22e-fe0cdd4aa905",
 	"data[/dev/mapper/tmp] -> is-lvm:true",
 	"data[/dev/sda1] -> is-fs:true fs-type:ext4 fs-uuid:fc5985ee-e069-4bb4-a36c-24d8f6022f7a",
