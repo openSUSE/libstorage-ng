@@ -514,6 +514,7 @@
     <FilesystemUser>
       <source-sid>45</source-sid>
       <target-sid>48</target-sid>
+      <id>1</id>
     </FilesystemUser>
     <Subdevice>
       <source-sid>49</source-sid>

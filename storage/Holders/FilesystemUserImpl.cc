@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -32,9 +32,11 @@ namespace storage
 
 
     FilesystemUser::Impl::Impl(const xmlNode* node)
-	: User::Impl(node), journal(false)
+	: User::Impl(node), journal(false), id(0)
     {
 	getChildValue(node, "journal", journal);
+
+	getChildValue(node, "id", id);
     }
 
 
@@ -44,6 +46,8 @@ namespace storage
 	User::Impl::save(node);
 
 	setChildValueIf(node, "journal", journal, journal);
+
+	setChildValueIf(node, "id", id, id);
     }
 
 
@@ -55,7 +59,7 @@ namespace storage
 	if (!User::Impl::equal(rhs))
 	    return false;
 
-	return journal == rhs.journal;
+	return journal == rhs.journal && id == rhs.id;
     }
 
 
@@ -67,6 +71,8 @@ namespace storage
 	User::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "journal", journal, rhs.journal);
+
+	storage::log_diff(log, "id", id, rhs.id);
     }
 
 
@@ -77,6 +83,9 @@ namespace storage
 
 	if (journal)
 	    out << " journal";
+
+	if (id)
+	    out << " id:" << id;
     }
 
 }
