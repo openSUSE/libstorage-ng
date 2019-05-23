@@ -117,6 +117,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache0'</name>
+      <name>/sbin/udevadm info '/dev/block/253:0'</name>
       <stdout>P: /devices/virtual/block/bcache0</stdout>
       <stdout>N: bcache0</stdout>
       <stdout>E: DEVNAME=/dev/bcache0</stdout>
@@ -168,6 +169,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache1'</name>
+      <name>/sbin/udevadm info '/dev/block/253:128'</name>
       <stdout>P: /devices/virtual/block/bcache1</stdout>
       <stdout>N: bcache1</stdout>
       <stdout>E: DEVNAME=/dev/bcache1</stdout>
@@ -182,6 +184,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache2'</name>
+      <name>/sbin/udevadm info '/dev/block/253:256'</name>
       <stdout>P: /devices/virtual/block/bcache2</stdout>
       <stdout>N: bcache2</stdout>
       <stdout>E: DEVNAME=/dev/bcache2</stdout>
@@ -248,74 +251,6 @@
       <stdout>E: SUBSYSTEM=block</stdout>
       <stdout>E: TAGS=:systemd:</stdout>
       <stdout>E: USEC_INITIALIZED=4860894231</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/253:0'</name>
-      <stdout>P: /devices/virtual/block/bcache0</stdout>
-      <stdout>N: bcache0</stdout>
-      <stdout>E: DEVNAME=/dev/bcache0</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache0</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
-      <stdout>E: ID_PART_TABLE_UUID=4963b20b-23e4-4a31-9200-7b89f862d225</stdout>
-      <stdout>E: MAJOR=253</stdout>
-      <stdout>E: MINOR=0</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=3889861</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/253:128'</name>
-      <stdout>P: /devices/virtual/block/bcache1</stdout>
-      <stdout>N: bcache1</stdout>
-      <stdout>E: DEVNAME=/dev/bcache1</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache1</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: MAJOR=253</stdout>
-      <stdout>E: MINOR=128</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=3159240755</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/253:256'</name>
-      <stdout>P: /devices/virtual/block/bcache2</stdout>
-      <stdout>N: bcache2</stdout>
-      <stdout>E: DEVNAME=/dev/bcache2</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache2</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: MAJOR=253</stdout>
-      <stdout>E: MINOR=256</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=4888182570</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/254:16'</name>
-      <stdout>P: /devices/pci0000:00/0000:00:08.0/virtio3/block/vdb</stdout>
-      <stdout>N: vdb</stdout>
-      <stdout>S: disk/by-path/pci-0000:00:08.0</stdout>
-      <stdout>S: disk/by-path/virtio-pci-0000:00:08.0</stdout>
-      <stdout>S: disk/by-uuid/d531d625-9aa0-4958-b660-3656bc43fe6d</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-path/pci-0000:00:08.0 /dev/disk/by-path/virtio-pci-0000:00:08.0 /dev/disk/by-uuid/d531d625-9aa0-4958-b660-3656bc43fe6d</stdout>
-      <stdout>E: DEVNAME=/dev/vdb</stdout>
-      <stdout>E: DEVPATH=/devices/pci0000:00/0000:00:08.0/virtio3/block/vdb</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_FS_TYPE=bcache</stdout>
-      <stdout>E: ID_FS_USAGE=other</stdout>
-      <stdout>E: ID_FS_UUID=d531d625-9aa0-4958-b660-3656bc43fe6d</stdout>
-      <stdout>E: ID_FS_UUID_ENC=d531d625-9aa0-4958-b660-3656bc43fe6d</stdout>
-      <stdout>E: ID_PATH=pci-0000:00:08.0</stdout>
-      <stdout>E: ID_PATH_TAG=pci-0000_00_08_0</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=16</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=3483068</stdout>
       <stdout></stdout>
     </Command>
     <Command>
@@ -566,6 +501,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/vdb'</name>
+      <name>/sbin/udevadm info '/dev/block/254:16'</name>
       <stdout>P: /devices/pci0000:00/0000:00:08.0/virtio3/block/vdb</stdout>
       <stdout>N: vdb</stdout>
       <stdout>S: disk/by-path/pci-0000:00:08.0</stdout>

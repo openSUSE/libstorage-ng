@@ -75,6 +75,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache0'</name>
+      <name>/sbin/udevadm info '/dev/block/254:0'</name>
       <stdout>P: /devices/virtual/block/bcache0</stdout>
       <stdout>N: bcache0</stdout>
       <stdout>S: disk/by-uuid/63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
@@ -96,6 +97,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache1'</name>
+      <name>/sbin/udevadm info '/dev/block/254:128'</name>
       <stdout>P: /devices/virtual/block/bcache1</stdout>
       <stdout>N: bcache1</stdout>
       <stdout>E: DEVNAME=/dev/bcache1</stdout>
@@ -178,63 +180,6 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/bcache2'</name>
-      <stdout>P: /devices/virtual/block/bcache2</stdout>
-      <stdout>N: bcache2</stdout>
-      <stdout>S: disk/by-uuid/f995a0d1-ff12-4b0e-9190-0c1d39a6968c</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-uuid/f995a0d1-ff12-4b0e-9190-0c1d39a6968c</stdout>
-      <stdout>E: DEVNAME=/dev/bcache2</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache2</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_FS_TYPE=ext4</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=f995a0d1-ff12-4b0e-9190-0c1d39a6968c</stdout>
-      <stdout>E: ID_FS_UUID_ENC=f995a0d1-ff12-4b0e-9190-0c1d39a6968c</stdout>
-      <stdout>E: ID_FS_VERSION=1.0</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=256</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=269755597</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/254:0'</name>
-      <stdout>P: /devices/virtual/block/bcache0</stdout>
-      <stdout>N: bcache0</stdout>
-      <stdout>S: disk/by-uuid/63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-uuid/63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
-      <stdout>E: DEVNAME=/dev/bcache0</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache0</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_FS_TYPE=ext4</stdout>
-      <stdout>E: ID_FS_USAGE=filesystem</stdout>
-      <stdout>E: ID_FS_UUID=63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
-      <stdout>E: ID_FS_UUID_ENC=63edf5de-e0ed-4b2c-850b-7a8f2ebd6391</stdout>
-      <stdout>E: ID_FS_VERSION=1.0</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=0</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=269534529</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/block/254:128'</name>
-      <stdout>P: /devices/virtual/block/bcache1</stdout>
-      <stdout>N: bcache1</stdout>
-      <stdout>E: DEVNAME=/dev/bcache1</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/bcache1</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: ID_PART_TABLE_TYPE=gpt</stdout>
-      <stdout>E: ID_PART_TABLE_UUID=15d056be-2b74-9a45-99c0-ef4cceb44e00</stdout>
-      <stdout>E: MAJOR=254</stdout>
-      <stdout>E: MINOR=128</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: USEC_INITIALIZED=269649949</stdout>
-      <stdout></stdout>
-    </Command>
-    <Command>
       <name>/sbin/udevadm info '/dev/block/254:256'</name>
       <stdout>P: /devices/virtual/block/bcache2</stdout>
       <stdout>N: bcache2</stdout>

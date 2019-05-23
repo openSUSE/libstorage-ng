@@ -1,5 +1,6 @@
 /*
  * Copyright (c) 2015 Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,6 +50,11 @@ namespace storage
 	std::vector<std::string> stdout;
 	std::vector<std::string> stderr;
 	int exit_code;
+
+	/**
+	 * Compare stdout, stderr and exit_code of two RemoteCommands
+	 */
+	bool operator==(const RemoteCommand& rhs) const;
     };
 
 
@@ -61,6 +67,11 @@ namespace storage
 	RemoteFile(const std::vector<std::string>& content) : content(content) {}
 
 	std::vector<std::string> content;
+
+	/**
+	 * Compare content of two Remotefiles.
+	 */
+	bool operator==(const RemoteFile& rhs) const;
     };
 
 

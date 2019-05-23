@@ -36,58 +36,6 @@
     </Command>
     <Command>
       <name>/sbin/mdadm --detail '/dev/md/a' --export</name>
-      <stdout>MD_LEVEL=raid0</stdout>
-      <stdout>MD_DEVICES=2</stdout>
-      <stdout>MD_CONTAINER=/dev/md/ddf0</stdout>
-      <stdout>MD_MEMBER=0</stdout>
-      <stdout>MD_UUID=44d1de20:051ec20c:9b464412:c1402fbf</stdout>
-      <stdout>MD_DEVNAME=a</stdout>
-      <stdout>MD_DEVICE_sdd_ROLE=1</stdout>
-      <stdout>MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>MD_DEVICE_sdb_ROLE=0</stdout>
-      <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/mdadm --detail '/dev/md/b' --export</name>
-      <stdout>MD_LEVEL=raid1</stdout>
-      <stdout>MD_DEVICES=2</stdout>
-      <stdout>MD_CONTAINER=/dev/md/ddf0</stdout>
-      <stdout>MD_MEMBER=1</stdout>
-      <stdout>MD_UUID=7176ee6c:157fad2a:03304d57:5154c195</stdout>
-      <stdout>MD_DEVNAME=b</stdout>
-      <stdout>MD_DEVICE_sdd_ROLE=1</stdout>
-      <stdout>MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>MD_DEVICE_sdb_ROLE=0</stdout>
-      <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/mdadm --detail '/dev/md/ddf0' --export</name>
-      <stdout>MD_LEVEL=container</stdout>
-      <stdout>MD_DEVICES=3</stdout>
-      <stdout>MD_METADATA=ddf</stdout>
-      <stdout>MD_UUID=ff03741d:35e167d9:7975b563:f63ad6a1</stdout>
-      <stdout>MD_DEVNAME=ddf0</stdout>
-      <stdout>MD_DEVICE_sdc_ROLE=spare</stdout>
-      <stdout>MD_DEVICE_sdc_DEV=/dev/sdc</stdout>
-      <stdout>MD_DEVICE_sdd_ROLE=spare</stdout>
-      <stdout>MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>MD_DEVICE_sdb_ROLE=spare</stdout>
-      <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/mdadm --detail '/dev/md125' --export</name>
-      <stdout>MD_LEVEL=raid1</stdout>
-      <stdout>MD_DEVICES=2</stdout>
-      <stdout>MD_CONTAINER=/dev/md/ddf0</stdout>
-      <stdout>MD_MEMBER=1</stdout>
-      <stdout>MD_UUID=7176ee6c:157fad2a:03304d57:5154c195</stdout>
-      <stdout>MD_DEVNAME=b</stdout>
-      <stdout>MD_DEVICE_sdd_ROLE=1</stdout>
-      <stdout>MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>MD_DEVICE_sdb_ROLE=0</stdout>
-      <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-    </Command>
-    <Command>
       <name>/sbin/mdadm --detail '/dev/md126' --export</name>
       <stdout>MD_LEVEL=raid0</stdout>
       <stdout>MD_DEVICES=2</stdout>
@@ -101,6 +49,21 @@
       <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
     </Command>
     <Command>
+      <name>/sbin/mdadm --detail '/dev/md/b' --export</name>
+      <name>/sbin/mdadm --detail '/dev/md125' --export</name>
+      <stdout>MD_LEVEL=raid1</stdout>
+      <stdout>MD_DEVICES=2</stdout>
+      <stdout>MD_CONTAINER=/dev/md/ddf0</stdout>
+      <stdout>MD_MEMBER=1</stdout>
+      <stdout>MD_UUID=7176ee6c:157fad2a:03304d57:5154c195</stdout>
+      <stdout>MD_DEVNAME=b</stdout>
+      <stdout>MD_DEVICE_sdd_ROLE=1</stdout>
+      <stdout>MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
+      <stdout>MD_DEVICE_sdb_ROLE=0</stdout>
+      <stdout>MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --detail '/dev/md/ddf0' --export</name>
       <name>/sbin/mdadm --detail '/dev/md127' --export</name>
       <stdout>MD_LEVEL=container</stdout>
       <stdout>MD_DEVICES=3</stdout>
@@ -204,6 +167,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/md/ddf0'</name>
+      <name>/sbin/udevadm info '/dev/md127'</name>
       <stdout>P: /devices/virtual/block/md127</stdout>
       <stdout>N: md127</stdout>
       <stdout>L: 100</stdout>
@@ -284,46 +248,6 @@
       <stdout>E: UDISKS_MD_MEMBER=0</stdout>
       <stdout>E: UDISKS_MD_UUID=44d1de20:051ec20c:9b464412:c1402fbf</stdout>
       <stdout>E: USEC_INITIALIZED=126338070</stdout>
-    </Command>
-    <Command>
-      <name>/sbin/udevadm info '/dev/md127'</name>
-      <stdout>P: /devices/virtual/block/md127</stdout>
-      <stdout>N: md127</stdout>
-      <stdout>L: 100</stdout>
-      <stdout>S: disk/by-id/md-uuid-ff03741d:35e167d9:7975b563:f63ad6a1</stdout>
-      <stdout>S: md/ddf0</stdout>
-      <stdout>E: DEVLINKS=/dev/disk/by-id/md-uuid-ff03741d:35e167d9:7975b563:f63ad6a1 /dev/md/ddf0</stdout>
-      <stdout>E: DEVNAME=/dev/md127</stdout>
-      <stdout>E: DEVPATH=/devices/virtual/block/md127</stdout>
-      <stdout>E: DEVTYPE=disk</stdout>
-      <stdout>E: MAJOR=9</stdout>
-      <stdout>E: MD_DEVICES=3</stdout>
-      <stdout>E: MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-      <stdout>E: MD_DEVICE_sdb_ROLE=spare</stdout>
-      <stdout>E: MD_DEVICE_sdc_DEV=/dev/sdc</stdout>
-      <stdout>E: MD_DEVICE_sdc_ROLE=spare</stdout>
-      <stdout>E: MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>E: MD_DEVICE_sdd_ROLE=spare</stdout>
-      <stdout>E: MD_DEVNAME=ddf0</stdout>
-      <stdout>E: MD_LEVEL=container</stdout>
-      <stdout>E: MD_METADATA=ddf</stdout>
-      <stdout>E: MD_UUID=ff03741d:35e167d9:7975b563:f63ad6a1</stdout>
-      <stdout>E: MINOR=127</stdout>
-      <stdout>E: SUBSYSTEM=block</stdout>
-      <stdout>E: SYSTEMD_READY=0</stdout>
-      <stdout>E: TAGS=:systemd:</stdout>
-      <stdout>E: UDISKS_MD_DEVICES=3</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdb_DEV=/dev/sdb</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdb_ROLE=spare</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdc_DEV=/dev/sdc</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdc_ROLE=spare</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdd_DEV=/dev/sdd</stdout>
-      <stdout>E: UDISKS_MD_DEVICE_sdd_ROLE=spare</stdout>
-      <stdout>E: UDISKS_MD_DEVNAME=ddf0</stdout>
-      <stdout>E: UDISKS_MD_LEVEL=container</stdout>
-      <stdout>E: UDISKS_MD_METADATA=ddf</stdout>
-      <stdout>E: UDISKS_MD_UUID=ff03741d:35e167d9:7975b563:f63ad6a1</stdout>
-      <stdout>E: USEC_INITIALIZED=126180619</stdout>
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/sda'</name>
