@@ -457,6 +457,8 @@ namespace storage
 	/**
 	 * Auxiliary method to get all parent-child relationships: from the device that
 	 * is being resized to the most high-level device that also needs to be resized.
+	 *
+	 * TODO handle extended partitions (unsupported so far)
 	 */
 	vector<DirectRelation>
 	devices_to_resize(const BlkDevice* blk_device)
