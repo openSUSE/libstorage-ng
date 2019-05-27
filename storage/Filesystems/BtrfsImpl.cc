@@ -722,7 +722,10 @@ namespace storage
 	if (!get_mkfs_options().empty())
 	    cmd_line += " " + get_mkfs_options();
 
-	for (const BlkDevice* blk_device : get_blk_devices())
+	// sort is required for testsuite
+	vector<const BlkDevice*> blk_devices = get_blk_devices();
+	sort(blk_devices.begin(), blk_devices.end(), BlkDevice::compare_by_name);
+	for (const BlkDevice* blk_device : blk_devices)
 	    cmd_line += " " + quote(blk_device->get_name());
 
 	wait_for_devices();
