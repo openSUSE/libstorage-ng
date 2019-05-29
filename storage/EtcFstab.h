@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2017] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,7 @@ namespace storage
 
     class BlkDevice;
     class BlkFilesystem;
+    class SystemInfo;
 
 
     /**
@@ -299,20 +300,21 @@ namespace storage
 	FstabEntry * find_device( const string & device	 ) const;
 
 	/**
-	 * Find the first entry for any of the device names in 'devices' or 0 if
-	 * there is no matching entry.
-	 **/
-	FstabEntry * find_device( const string_vec & devices ) const;
+         * Find all entries for the device name 'device'.
+         */
+        vector<FstabEntry*> find_all_devices(const string& device);
 
 	/**
-	 * Find all entries for any of the device names in 'devices'.
+	 * Return the all first entry or 0 where the block device matches the uuid or label.
 	 */
-	vector<FstabEntry*> find_all_devices(const vector<string>& devices);
+	vector<const FstabEntry*> find_all_by_uuid_or_label(const string& uuid, const string& label) const;
 
-	/**
-	 * Find all entries for any of the device names in 'devices'.
+	/*
+	 * Return the all first entry or 0 where the block device
+	 * matches the name. Aliases, e.g. udev symlinks, are handles
+	 * by the function.
 	 */
-	vector<const FstabEntry*> find_all_devices(const vector<string>& devices) const;
+	vector<const FstabEntry*> find_all_by_any_name(SystemInfo& system_info, const string& name) const;
 
 	/**
 	 * Return the first entry for mount point 'mount_point' or 0 if there
@@ -397,19 +399,6 @@ namespace storage
          **/
         void log_diff();
 
-	/**
-	 * Construct all aliases usable in /etc/fstab based on information of
-	 * blk_device and blk_filesystem, that is block device name, block
-	 * device udev paths, block device udev ids, filesystem label and
-	 * filesystem uuid. Unfortunately in /dev can be even more aliases not
-	 * included here.
-	 *
-	 * TODO It is in practice not possible to construct all aliases. Add
-	 * something like EtcCrypttab::find_by_block_device and use that instead.
-	 */
-	static vector<string> construct_device_aliases(const BlkDevice* blk_device,
-						       const BlkFilesystem* blk_filesystem);
-
     protected:
 
         /**
@@ -443,12 +432,30 @@ namespace storage
 
 
     /**
+     * An extended fstab entry that contains an FstabEntry pointer and
+     * FilesystemUser.id.
+     */
+    struct ExtendedFstabEntry
+    {
+	ExtendedFstabEntry(const FstabEntry* fstab_entry) : fstab_entry(fstab_entry), id(0) {}
+	ExtendedFstabEntry(const FstabEntry* fstab_entry, unsigned int id)
+	    : fstab_entry(fstab_entry), id(id) {}
+
+	const FstabEntry* fstab_entry;
+	const unsigned int id;
+    };
+
+
+    /**
      * Joint entry of entries in /etc/fstab and /proc/mounts.
      */
     struct JointEntry
     {
 	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry)
-	    : fstab_entry(fstab_entry), mount_entry(mount_entry) {}
+	    : fstab_entry(fstab_entry), mount_entry(mount_entry), id(0) {}
+
+	JointEntry(const FstabEntry* fstab_entry, const FstabEntry* mount_entry, unsigned int id)
+	    : fstab_entry(fstab_entry), mount_entry(mount_entry), id(id) {}
 
 	string get_mount_point() const;
 	vector<string> get_mount_options() const;
@@ -463,6 +470,7 @@ namespace storage
 
 	const FstabEntry* fstab_entry;
 	const FstabEntry* mount_entry;
+	const unsigned int id;
     };
 
 
@@ -471,13 +479,14 @@ namespace storage
      * path.
      */
     vector<JointEntry>
-    join_entries(vector<const FstabEntry*> fstab_entries, vector<const FstabEntry*> mount_entries);
+    join_entries(vector<ExtendedFstabEntry> fstab_entries, vector<ExtendedFstabEntry> mount_entries);
 
 
     /**
      * Compare join entries by its mount point lenght
      */
-    bool cmp(const JointEntry &a, const JointEntry &b);
+    bool compare_by_size(const JointEntry& a, const JointEntry& b);
+
 }
 
 

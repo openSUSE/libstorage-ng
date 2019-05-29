@@ -128,7 +128,7 @@ namespace storage
 
 
     vector<const FstabEntry*>
-    ProcMounts::get_by_names(const vector<string>& names, SystemInfo& system_info) const
+    ProcMounts::get_by_name(const string& name, SystemInfo& system_info) const
     {
 	vector<const FstabEntry*> ret;
 
@@ -136,17 +136,14 @@ namespace storage
 	// devices (starting with '/dev/'). Parameter name will also be
 	// e.g. 'tmpfs' and nfs mounts.
 
-	for (const string& name : names)
-	{
-	    dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
-	    for (const value_type& value : data)
-	    {
-		if (value.first == name ||
-		    (BlkDevice::Impl::is_valid_name(value.first) &&
-		     system_info.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
-		    ret.push_back(value.second);
-	    }
+	for (const value_type& value : data)
+	{
+	    if (value.first == name ||
+		(BlkDevice::Impl::is_valid_name(value.first) &&
+		 system_info.getCmdUdevadmInfo(value.first).get_majorminor() == majorminor))
+		ret.push_back(value.second);
 	}
 
 	return ret;

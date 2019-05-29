@@ -24,6 +24,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
+#include "storage/Filesystems/MountPointImpl.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/HumanString.h"
@@ -258,55 +259,39 @@ namespace storage
     }
 
 
-    vector<FstabEntry*>
-    Btrfs::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
+    bool
+    Btrfs::Impl::predicate_etc_fstab(const FstabEntry* fstab_entry) const
     {
-	vector<FstabEntry*> ret;
-
-	for (FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
-	{
-	    if (!fstab_entry->get_mount_opts().has_subvol())
-		ret.push_back(fstab_entry);
-	}
-
-	return ret;
+	return !fstab_entry->get_mount_opts().has_subvol();
     }
 
 
-    vector<const FstabEntry*>
-    Btrfs::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
+    bool
+    Btrfs::Impl::predicate_proc_mounts(const FstabEntry* fstab_entry) const
     {
-	vector<const FstabEntry*> ret;
-
-	for (const FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
-	{
-	    if (!fstab_entry->get_mount_opts().has_subvol())
-		ret.push_back(fstab_entry);
-	}
-
-	return ret;
-    }
-
-
-    vector<const FstabEntry*>
-    Btrfs::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
-    {
-	// see doc/btrfs.md for default id handling
-
 	long default_id = get_default_btrfs_subvolume()->get_id();
 
-	vector<const FstabEntry*> ret;
+	return !fstab_entry->get_mount_opts().has_subvol() || fstab_entry->get_mount_opts().has_subvol(default_id);
+    }
 
-	const ProcMounts& proc_mounts = system_info.getProcMounts();
 
-	for (const FstabEntry* mount_entry : proc_mounts.get_by_names(names, system_info))
+    const BlkDevice*
+    Btrfs::Impl::get_etc_fstab_blk_device(const MountPoint* mount_point) const
+    {
+	const FstabAnchor& fstab_anchor = mount_point->get_impl().get_fstab_anchor();
+
+	if (fstab_anchor.id != 0)
 	{
-	    if (!mount_entry->get_mount_opts().has_subvol() ||
-		mount_entry->get_mount_opts().has_subvol(default_id))
-		ret.push_back(mount_entry);
+	    for (const Holder* holder : get_non_impl()->get_in_holders())
+	    {
+		const FilesystemUser* filesystem_user = to_filesystem_user(holder);
+
+		if (filesystem_user->get_impl().get_id() == fstab_anchor.id)
+		    return to_blk_device(filesystem_user->get_source());
+	    }
 	}
 
-	return ret;
+	return get_blk_device();
     }
 
 

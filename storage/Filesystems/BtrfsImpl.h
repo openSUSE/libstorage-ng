@@ -86,10 +86,11 @@ namespace storage
 	vector<BtrfsSubvolume*> get_btrfs_subvolumes();
 	vector<const BtrfsSubvolume*> get_btrfs_subvolumes() const;
 
-	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const override;
-	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual bool predicate_etc_fstab(const FstabEntry* fstab_entry) const override;
 
-	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const override;
+	virtual bool predicate_proc_mounts(const FstabEntry* fstab_entry) const override;
+
+	virtual const BlkDevice* get_etc_fstab_blk_device(const MountPoint* mount_point) const override;
 
 	BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path);
 	const BtrfsSubvolume* find_btrfs_subvolume_by_path(const string& path) const;

@@ -227,7 +227,7 @@ namespace storage
 
 	    if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
 	    {
-		Action::Base* action = new Action::RenameInEtcCrypttab(get_sid());
+		Action::Base* action = new Action::RenameInEtcCrypttab(get_sid(), get_blk_device());
 		actiongraph.add_vertex(action);
 	    }
 	}
@@ -521,15 +521,6 @@ namespace storage
 	{
 	    const Encryption* encryption = to_encryption(get_device(commit_data.actiongraph, RHS));
 	    encryption->get_impl().do_rename_in_etc_crypttab(commit_data);
-	}
-
-
-	const BlkDevice*
-	RenameInEtcCrypttab::get_renamed_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    const Encryption* encryption = to_encryption(get_device(actiongraph, side));
-	    const BlkDevice* blk_device = encryption->get_blk_device();
-	    return blk_device;
 	}
 
 

@@ -49,12 +49,11 @@ namespace storage
 	~ProcMounts();
 
 	/**
-	 * Return all entries for the device (possible by several names). Aliases,
-	 * e.g. udev symlinks, are handles by the function. Passing several names is
-	 * intended for multiple devices btrfs. This object keeps ownership of the
-	 * entries; do not delete them.
+	 * Return all entries for the device. Aliases, e.g. udev
+	 * symlinks, are handles by the function. This object keeps
+	 * ownership of the entries; do not delete them.
 	 */
-	vector<const FstabEntry*> get_by_names(const vector<string>& names, SystemInfo& system_info) const;
+	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo& system_info) const;
 
 	/**
 	 * Return all NFS and NFS4 entries. This object keeps ownership of the entries;
@@ -64,7 +63,7 @@ namespace storage
 
 	friend std::ostream& operator<<(std::ostream& s, const ProcMounts& procmounts);
 
-    protected:
+    private:
 
 	void clear();
 
@@ -75,6 +74,7 @@ namespace storage
 	typedef multimap<string, FstabEntry*>::value_type value_type;
 
 	multimap<string, FstabEntry*> data;
+
     };
 
 }

@@ -217,8 +217,8 @@ namespace storage
 
 
     const CrypttabEntry*
-    EtcCrypttab::find_by_block_device(SystemInfo& system_info, const string& uuid,
-				      const string& label, dev_t majorminor) const
+    EtcCrypttab::find_by_any_block_device(SystemInfo& system_info, const string& uuid,
+					  const string& label, dev_t majorminor) const
     {
 	for (int i = 0; i < get_entry_count(); ++i)
 	{

@@ -164,13 +164,10 @@ namespace storage
 	{
 	public:
 
-	    RenameInEtcCrypttab(sid_t sid) : RenameIn(sid) {}
+	    RenameInEtcCrypttab(sid_t sid, const BlkDevice* blk_device) : RenameIn(sid, blk_device) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
-							    Side side) const override;
 
 	};
 

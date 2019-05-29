@@ -91,16 +91,22 @@ namespace storage
 	virtual FsType get_default_mount_type() const override { return FsType::BTRFS; }
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name(MountByType mount_by_type) const override;
+	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
 	virtual vector<string> get_mount_options() const override;
 
 	virtual MountByType get_default_mount_by() const override;
 	virtual MountOpts get_default_mount_options() const override;
 
-	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const override;
-	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const override;
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const override;
 
-	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const override;
+	virtual vector<FstabEntry*> find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab,
+								      const FstabAnchor& fstab_anchor) const override;
+
+	virtual bool predicate_etc_fstab(const FstabEntry* fstab_entry) const override;
+
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
+
+	virtual bool predicate_proc_mounts(const FstabEntry* fstab_entry) const override;
 
 	BtrfsSubvolume* create_btrfs_subvolume(const string& path);
 

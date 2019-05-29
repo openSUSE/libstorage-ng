@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -122,10 +122,18 @@ namespace storage
 	{
 	public:
 
-	    RenameIn(sid_t sid) : Modify(sid) {}
+	    RenameIn(sid_t sid, const BlkDevice* blk_device) : Modify(sid), blk_device(blk_device) {}
 
-	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
-							    Side side) const = 0;
+	    const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
+						    Side side) const;
+
+	private:
+
+	    /**
+	     * The blk device being renamed. Esp. important for btrfs
+	     * which can have several blk devices.
+	     */
+	    const BlkDevice* blk_device;
 
 	};
 

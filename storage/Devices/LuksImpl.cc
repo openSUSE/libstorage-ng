@@ -158,8 +158,8 @@ namespace storage
 		dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
 
 		const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
-		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
-											"", majorminor);
+		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
+											    "", majorminor);
 
 		if (crypttab_entry)
 		    dm_name = crypttab_entry->get_crypt_device();
@@ -319,8 +319,8 @@ namespace storage
 
 	    CmdDmsetupTable::const_iterator it2 = cmd_dmsetup_table.find_using(majorminor);
 
-	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_block_device(system_info, uuid,
-										    "", majorminor);
+	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
+											"", majorminor);
 
 	    /*
 	     * The DM table name is 1. taken from the active table, 2. taken

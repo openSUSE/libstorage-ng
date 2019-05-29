@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -39,6 +39,7 @@
 #include "storage/StorageImpl.h"
 #include "storage/Redirect.h"
 #include "storage/Utils/Format.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -63,6 +64,21 @@ namespace storage
     const vector<string> EnumTraits<MountByType>::names({
 	"device", "uuid", "label", "id", "path"
     });
+
+
+    bool
+    mount_by_references_blk_device(MountByType mount_by)
+    {
+	return mount_by == MountByType::DEVICE || mount_by == MountByType::ID ||
+	    mount_by == MountByType::PATH;
+    }
+
+
+    bool
+    mount_by_references_filesystem(MountByType mount_by)
+    {
+	return mount_by == MountByType::UUID || mount_by == MountByType::LABEL;
+    }
 
 
     Mountable::Impl::Impl(const xmlNode* node)
@@ -183,24 +199,95 @@ namespace storage
     }
 
 
+    void
+    Mountable::Impl::probe_pass_2b(Prober& prober)
+    {
+	SystemInfo& system_info = prober.get_system_info();
+
+	vector<ExtendedFstabEntry> fstab_entries = find_etc_fstab_entries(system_info);
+	vector<ExtendedFstabEntry> mount_entries = find_proc_mounts_entries(system_info);
+
+	// The code here works only with one mount point per
+	// mountable. Anything else is not supported since rejected by the
+	// product owner.
+
+	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
+	if (!joint_entries.empty())
+	{
+	    if (joint_entries.size() > 1)
+		y2war("more than one mount point for " << (*this->get_non_impl()));
+
+	    // But at least if there are more try to find the shortest path
+	    // to avoid problems during upgrade (bsc#1118865).
+
+	    min_element(joint_entries.begin(), joint_entries.end(), compare_by_size)->add_to(get_non_impl());
+	}
+    }
+
+
+    vector<ExtendedFstabEntry>
+    Mountable::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    {
+	return {};
+    }
+
+
     vector<FstabEntry*>
-    Mountable::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
+    Mountable::Impl::find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab, const FstabAnchor& fstab_anchor) const
     {
-	return etc_fstab.find_all_devices(names);
+	return etc_fstab.find_all_devices(fstab_anchor.name);
     }
 
 
-    vector<const FstabEntry*>
-    Mountable::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
+    vector<ExtendedFstabEntry>
+    Mountable::Impl::find_etc_fstab_entries(SystemInfo& system_info) const
     {
-	return etc_fstab.find_all_devices(names);
+	vector<ExtendedFstabEntry> ret;
+
+	for (const ExtendedFstabEntry& extended_fstab_entry : find_etc_fstab_entries_unfiltered(system_info))
+	{
+	    if (predicate_etc_fstab(extended_fstab_entry.fstab_entry))
+		ret.push_back(extended_fstab_entry);
+	}
+
+	return ret;
     }
 
 
-    vector<const FstabEntry*>
-    Mountable::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
+    vector<FstabEntry*>
+    Mountable::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const FstabAnchor& fstab_anchor) const
     {
-	return system_info.getProcMounts().get_by_names(names, system_info);
+	vector<FstabEntry*> ret;
+
+	for (FstabEntry* fstab_entry : find_etc_fstab_entries_unfiltered(etc_fstab, fstab_anchor))
+	{
+	    if (predicate_etc_fstab(fstab_entry))
+		ret.push_back(fstab_entry);
+	}
+
+	return ret;
+    }
+
+
+    vector<ExtendedFstabEntry>
+    Mountable::Impl::find_proc_mounts_entries(SystemInfo& system_info) const
+    {
+	vector<ExtendedFstabEntry> ret;
+
+	for (const ExtendedFstabEntry& extended_fstab_entry : find_proc_mounts_entries_unfiltered(system_info))
+	{
+	    if (predicate_proc_mounts(extended_fstab_entry.fstab_entry))
+		ret.push_back(extended_fstab_entry);
+	}
+
+	return ret;
+    }
+
+
+    vector<ExtendedFstabEntry>
+    Mountable::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    {
+	return {};
     }
 
 
@@ -283,7 +370,7 @@ namespace storage
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
 	FstabEntry* entry = new FstabEntry();
-	entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
+	entry->set_device(get_mount_by_name(mount_point));
 	entry->set_mount_point(mount_point->get_path());
 	entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	entry->set_fs_type(mount_point->get_mount_type());
@@ -318,9 +405,11 @@ namespace storage
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
+	const FstabAnchor& fstab_anchor = mount_point->get_impl().get_fstab_anchor();
+
+	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, fstab_anchor))
 	{
-	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
+	    entry->set_device(get_mount_by_name(mount_point));
 	    entry->set_mount_point(mount_point->get_path());
 	    entry->set_mount_opts(mount_point->get_impl().get_mount_options());
 	    entry->set_fs_type(mount_point->get_mount_type());
@@ -355,7 +444,9 @@ namespace storage
     {
 	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
 
-	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
+	const FstabAnchor& fstab_anchor = mount_point->get_impl().get_fstab_anchor();
+
+	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, fstab_anchor))
 	{
 	    etc_fstab.remove(entry);
 	    etc_fstab.log_diff();
