@@ -1,0 +1,4 @@
+1a - Delete logical partition /dev/sdc5 (27.94 GiB) -> 2a
+1b - Delete logical partition /dev/sdd5 (27.94 GiB) -> 2b
+2a - Rename mount point /test1 from /dev/sdc6 to /dev/sdc5 in /etc/fstab ->
+2b - Rename mount point /test2 from /dev/sdd6 to /dev/sdd5 in /etc/fstab ->
