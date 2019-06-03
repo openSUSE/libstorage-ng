@@ -50,7 +50,7 @@ namespace storage
 
 	/**
 	 * Return all entries for the device. Aliases, e.g. udev
-	 * symlinks, are handles by the function. This object keeps
+	 * symlinks, are handled by the function. This object keeps
 	 * ownership of the entries; do not delete them.
 	 */
 	vector<const FstabEntry*> get_by_name(const string& name, SystemInfo& system_info) const;

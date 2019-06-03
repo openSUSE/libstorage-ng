@@ -305,14 +305,15 @@ namespace storage
         vector<FstabEntry*> find_all_devices(const string& device);
 
 	/**
-	 * Return the all first entry or 0 where the block device matches the uuid or label.
+	 * Return all entries where the block device matches the uuid
+	 * or label.
 	 */
 	vector<const FstabEntry*> find_all_by_uuid_or_label(const string& uuid, const string& label) const;
 
 	/*
-	 * Return the all first entry or 0 where the block device
-	 * matches the name. Aliases, e.g. udev symlinks, are handles
-	 * by the function.
+	 * Return the all entries where the block device matches the
+	 * name. Aliases, e.g. udev symlinks, are handled by the
+	 * function.
 	 */
 	vector<const FstabEntry*> find_all_by_any_name(SystemInfo& system_info, const string& name) const;
 

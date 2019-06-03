@@ -164,7 +164,7 @@ namespace storage
 	/**
 	 * Return the first entry or 0 where the block device matches
 	 * the provided uuid, label or major and minor
-	 * number. Aliases, e.g. udev symlinks, are handles by the
+	 * number. Aliases, e.g. udev symlinks, are handled by the
 	 * function.
 	 */
 	const CrypttabEntry* find_by_any_block_device(SystemInfo& system_info, const string& uuid,

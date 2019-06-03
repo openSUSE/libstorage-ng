@@ -137,9 +137,9 @@ namespace storage
 	virtual const MountPoint* get_non_impl() const override { return to_mount_point(Device::Impl::get_non_impl()); }
 
 	/**
-	 * Get the FstabAnchor containing the name and id that was used in
-	 * /etc/fstab. The name of the fstab anchor is is empty if this
-	 * filesystem was not in /etc/fstab during probing.
+	 * Get the FstabAnchor containing the name and id that was
+	 * used in /etc/fstab. The name of the fstab anchor is empty
+	 * if this filesystem was not in /etc/fstab during probing.
 	 */
 	const FstabAnchor& get_fstab_anchor() const { return fstab_anchor; }
 
