@@ -35,7 +35,37 @@ namespace storage
     using namespace std;
 
 
+    namespace Action
+    {
+	class RenameInEtcFstab;
+    }
+
+
     template <> struct DeviceTraits<MountPoint> { static const char* classname; };
+
+
+    /**
+     * Class to identify an entry in /etc/fstab including the corresponding
+     * blk device (via the id of FilesystemUser).
+     */
+    struct FstabAnchor
+    {
+	FstabAnchor() : name(), id(0) {}
+
+	FstabAnchor(const string& name, unsigned int id)
+	    : name(name), id(id) {}
+
+	/**
+	 * The name as found in /etc/fstab.
+	 */
+	string name;
+
+	/**
+	 * The id of the corresponding blk filesystem. So far only used for btrfs and
+	 * not for mount by UUID or LABEL.
+	 */
+	unsigned int id;
+    };
 
 
     class MountPoint::Impl : public Device::Impl
@@ -107,11 +137,13 @@ namespace storage
 	virtual const MountPoint* get_non_impl() const override { return to_mount_point(Device::Impl::get_non_impl()); }
 
 	/**
-	 * Get the device name that was used in /etc/fstab.
-	 * This is empty if this filesystem was not in /etc/fstab during probing.
-	 **/
-	const string& get_fstab_device_name() const { return fstab_device_name; }
-	void set_fstab_device_name(const string& name) { Impl::fstab_device_name = name; }
+	 * Get the FstabAnchor containing the name and id that was
+	 * used in /etc/fstab. The name of the fstab anchor is empty
+	 * if this filesystem was not in /etc/fstab during probing.
+	 */
+	const FstabAnchor& get_fstab_anchor() const { return fstab_anchor; }
+
+	void set_fstab_anchor(const FstabAnchor& fstab_anchor) { Impl::fstab_anchor = fstab_anchor; }
 
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
@@ -136,6 +168,9 @@ namespace storage
 
 	virtual Text do_remove_from_etc_fstab_text(Tense tense) const;
 	virtual void do_remove_from_etc_fstab(CommitData& commit_data) const;
+
+	virtual Text do_rename_in_etc_fstab_text(const CommitData& commit_data, const Action::RenameInEtcFstab* action) const;
+	virtual void do_rename_in_etc_fstab(CommitData& commit_data, const Action::RenameInEtcFstab* action) const;
 
 	virtual void immediate_activate();
 	virtual void immediate_deactivate();
@@ -164,7 +199,7 @@ namespace storage
 
 	bool in_etc_fstab;
 
-	string fstab_device_name; // device name as found in /etc/fstab
+	FstabAnchor fstab_anchor;
 
     };
 
@@ -233,6 +268,18 @@ namespace storage
 	public:
 
 	    RemoveFromEtcFstab(sid_t sid) : Modify(sid) {}
+
+	    virtual Text text(const CommitData& commit_data) const override;
+	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
+
+	};
+
+
+	class RenameInEtcFstab : public RenameIn
+	{
+	public:
+
+	    RenameInEtcFstab(sid_t sid, const BlkDevice* blk_device) : RenameIn(sid, blk_device) {}
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;

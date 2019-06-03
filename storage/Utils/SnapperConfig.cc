@@ -217,7 +217,7 @@ SnapperConfig::get_root_prefix() const
 string
 SnapperConfig::get_device_name() const
 {
-    return btrfs->get_impl().get_mount_by_name( btrfs->get_mount_point()->get_mount_by() );
+    return btrfs->get_impl().get_mount_by_name(btrfs->get_mount_point());
 }
 
 

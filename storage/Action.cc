@@ -158,6 +158,13 @@ namespace storage
 	    }
 	}
 
+
+	const BlkDevice*
+	RenameIn::get_renamed_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
+	{
+	    return to_blk_device(actiongraph.get_devicegraph(side)->find_device(blk_device->get_sid()));
+	}
+
     }
 
 }

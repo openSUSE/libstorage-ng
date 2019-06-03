@@ -96,6 +96,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dasda1'</name>
+      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part1'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda1</stdout>
       <stdout>N: dasda1</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part1</stdout>
@@ -130,6 +131,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dasda2'</name>
+      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part2'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda2</stdout>
       <stdout>N: dasda2</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part2</stdout>
@@ -164,6 +166,7 @@
     </Command>
     <Command>
       <name>/sbin/udevadm info '/dev/dasda3'</name>
+      <name>/sbin/udevadm info '/dev/disk/by-path/ccw-0.0.0150-part3'</name>
       <stdout>P: /devices/css0/0.0.0003/0.0.0150/block/dasda/dasda3</stdout>
       <stdout>N: dasda3</stdout>
       <stdout>S: disk/by-id/ccw-0X0150-part3</stdout>

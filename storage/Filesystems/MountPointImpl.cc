@@ -26,6 +26,7 @@
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
+#include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/Devicegraph.h"
 #include "storage/Utils/StorageDefines.h"
 #include "storage/Utils/SystemCmd.h"
@@ -37,6 +38,7 @@
 #include "storage/UsedFeatures.h"
 #include "storage/Holders/Subdevice.h"
 #include "storage/Redirect.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -80,6 +82,7 @@ namespace storage
 
 	getChildValue(node, "active", active);
 	getChildValue(node, "in-etc-fstab", in_etc_fstab);
+	getChildValue(node, "id-used-in-etc-fstab", fstab_anchor.id);
 
 	getChildValue(node, "freq", freq);
 	getChildValue(node, "passno", passno);
@@ -109,6 +112,7 @@ namespace storage
 	setChildValue(node, "mount-type", toString(mount_type));
 	setChildValue(node, "active", active);
 	setChildValue(node, "in-etc-fstab", in_etc_fstab);
+	setChildValueIf(node, "id-used-in-etc-fstab", fstab_anchor.id, fstab_anchor.id);
 
 	setChildValue(node, "freq", freq);
 	setChildValue(node, "passno", passno);
@@ -268,7 +272,7 @@ namespace storage
     string
     MountPoint::Impl::get_mount_by_name() const
     {
-	return get_mountable()->get_impl().get_mount_by_name(get_mount_by());
+	return get_mountable()->get_impl().get_mount_by_name(get_non_impl());
     }
 
 
@@ -396,6 +400,30 @@ namespace storage
 	    actions.push_back(new Action::AddToEtcFstab(get_sid()));
 	}
 
+	// Check whether the name of the device used in fstab has changed.
+
+	if (lhs.is_in_etc_fstab() && is_in_etc_fstab() && mount_by_references_blk_device(get_mount_by()))
+	{
+	    const Filesystem* filesystem = get_filesystem();
+	    if (is_blk_filesystem(filesystem))
+	    {
+		const BlkFilesystem* blk_filesystem = to_blk_filesystem(filesystem);
+		const BlkDevice* blk_device = blk_filesystem->get_impl().get_etc_fstab_blk_device(get_non_impl());
+
+		const Devicegraph* devicegraph_lhs = actiongraph.get_devicegraph(LHS);
+
+		if (devicegraph_lhs->device_exists(blk_device->get_sid()))
+		{
+		    const BlkDevice* blk_device_lhs = to_blk_device(devicegraph_lhs->find_device(blk_device->get_sid()));
+
+		    if (blk_device->get_name() != blk_device_lhs->get_name())
+		    {
+			actions.push_back(new Action::RenameInEtcFstab(get_sid(), blk_device_lhs));
+		    }
+		}
+	    }
+	}
+
 	actiongraph.add_chain(actions);
     }
 
@@ -482,6 +510,48 @@ namespace storage
     MountPoint::Impl::do_remove_from_etc_fstab(CommitData& commit_data) const
     {
 	get_mountable()->get_impl().do_remove_from_etc_fstab(commit_data, get_non_impl());
+    }
+
+
+    Text
+    MountPoint::Impl::do_rename_in_etc_fstab_text(const CommitData& commit_data,
+						  const Action::RenameInEtcFstab* action) const
+    {
+	const BlkDevice* renamed_blk_device_lhs = action->get_renamed_blk_device(commit_data.actiongraph, LHS);
+	const BlkDevice* renamed_blk_device_rhs = action->get_renamed_blk_device(commit_data.actiongraph, RHS);
+
+	Text text = tenser(commit_data.tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by mount point (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Rename mount point %1$s from %2$s to %3$s in /etc/fstab"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by mount point (e.g. /home),
+			   // %2$s is replaced by device name (e.g. /dev/sda6),
+			   // %3$s is replaced by device name (e.g. /dev/sda5)
+			   _("Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"));
+
+	return sformat(text, get_path(), renamed_blk_device_lhs->get_name(),
+		       renamed_blk_device_rhs->get_name());
+    }
+
+
+    void
+    MountPoint::Impl::do_rename_in_etc_fstab(CommitData& commit_data, const Action::RenameInEtcFstab* action) const
+    {
+	const Mountable* mountable = get_mountable();
+
+	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
+
+	const FstabAnchor& fstab_anchor = get_fstab_anchor();
+
+	for (FstabEntry* entry : mountable->get_impl().find_etc_fstab_entries(etc_fstab, fstab_anchor))
+	{
+	    entry->set_device(get_mount_by_name());
+	    etc_fstab.log_diff();
+	    etc_fstab.write();
+	}
     }
 
 
@@ -618,6 +688,22 @@ namespace storage
 	{
 	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph, LHS));
 	    mount_point->get_impl().do_remove_from_etc_fstab(commit_data);
+	}
+
+
+	Text
+	RenameInEtcFstab::text(const CommitData& commit_data) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph, RHS));
+	    return mount_point->get_impl().do_rename_in_etc_fstab_text(commit_data, this);
+	}
+
+
+	void
+	RenameInEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
+	{
+	    const MountPoint* mount_point = to_mount_point(get_device(commit_data.actiongraph, RHS));
+	    mount_point->get_impl().do_rename_in_etc_fstab(commit_data, this);
 	}
 
     }

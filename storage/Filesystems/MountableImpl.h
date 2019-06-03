@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,6 +40,7 @@ namespace storage
     using namespace std;
 
     class SystemInfo;
+    class FstabAnchor;
 
 
     template <> struct DeviceTraits<Mountable> { static const char* classname; };
@@ -47,6 +48,18 @@ namespace storage
     template <> struct EnumTraits<FsType> { static const vector<string> names; };
 
     template <> struct EnumTraits<MountByType> { static const vector<string> names; };
+
+
+    /**
+     * Checks whether the mount_by type references the blk device.
+     */
+    bool mount_by_references_blk_device(MountByType mount_by);
+
+
+    /**
+     * Checks whether the mount_by type references the filesystem, either by UUID or LABEL.
+     */
+    bool mount_by_references_filesystem(MountByType mount_by);
 
 
     // abstract class
@@ -85,7 +98,7 @@ namespace storage
 	 * the name of a device and for Nfs the server plus the path. Used for
 	 * entries in /etc/fstab.
 	 */
-	virtual string get_mount_by_name(MountByType mount_by_type) const = 0;
+	virtual string get_mount_by_name(const MountPoint* mount_point) const = 0;
 
 	virtual FsType get_default_mount_type() const = 0;
 
@@ -110,23 +123,74 @@ namespace storage
 	 */
 	virtual void insert_unmount_action(vector<Action::Base*>& actions) const;
 
+	virtual void probe_pass_2b(Prober& prober);
+
 	/**
 	 * Find the fstab entry for the Mountable. Normally just looks for the
 	 * device but for Btrfs and BtrfsSubvolume also the subvol option has
-	 * to fit.
+	 * to fit (see filter_etc_fstab()).
 	 *
-	 * During probing names should be the device aliases, during commit
-	 * actions only the 'fstab device name'.
+	 * Used for probe.
 	 */
-	virtual vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const;
-	virtual vector<const FstabEntry*> find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const;
+	vector<ExtendedFstabEntry> find_etc_fstab_entries(SystemInfo& system_info) const;
+
+	/**
+	 * Unfiltered version of find_etc_fstab_entries().
+	 *
+	 * Used for probe.
+	 */
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const;
+
+	/**
+	 * Find the fstab entry for the Mountable. Normally just looks for the
+	 * device but for Btrfs and BtrfsSubvolume also the subvol option has
+	 * to fit (see filter_etc_fstab()).
+	 *
+	 * Used for commit.
+	 */
+	vector<FstabEntry*> find_etc_fstab_entries(EtcFstab& etc_fstab, const FstabAnchor& fstab_anchor) const;
+
+	/**
+	 * Unfiltered version of find_etc_fstab_entries().
+	 *
+	 * Used for commit.
+	 */
+	virtual vector<FstabEntry*> find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab,
+								      const FstabAnchor& fstab_anchor) const;
+
+	/**
+	 * Predicate for filtering. So far only needed for btrfs where
+	 * entries are filtered based on the subvol option.
+	 *
+	 * Used for probe and commit.
+	 */
+	virtual bool predicate_etc_fstab(const FstabEntry* fstab_entry) const { return true; }
+
+	/**
+	 * Find the fstab entry for the Mountable in /proc/mounts. Normally
+	 * just looks for the device but for Btrfs and BtrfsSubvolume also the
+	 * subvol option has to fit (see filter_proc_mounts()).
+	 *
+	 * Used for probe.
+	 */
+	vector<ExtendedFstabEntry> find_proc_mounts_entries(SystemInfo& system_info) const;
 
 	/**
 	 * Find the fstab entry for the Mountable in /proc/mounts. Normally
 	 * just looks for the device but for Btrfs and BtrfsSubvolume also the
 	 * subvol option has to fit.
+	 *
+	 * Used for probe.
 	 */
-	virtual vector<const FstabEntry*> find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const;
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const;
+
+	/**
+	 * Predicate for filtering. So far only needed for btrfs where
+	 * entries are filtered based on the subvol option.
+	 *
+	 * Used for probe.
+	 */
+	virtual bool predicate_proc_mounts(const FstabEntry* fstab_entry) const { return true; }
 
 	virtual void do_pre_mount() const {}
 

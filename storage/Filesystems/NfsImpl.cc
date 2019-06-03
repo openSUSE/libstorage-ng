@@ -117,7 +117,7 @@ namespace storage
 	 * The value of the map is a pair of vectors with the FstabEntries
 	 * from /etc/fstab and /proc/mounts.
 	 */
-	typedef map<pair<string, string>, pair<vector<const FstabEntry*>, vector<const FstabEntry*>>> entries_t;
+	typedef map<pair<string, string>, pair<vector<ExtendedFstabEntry>, vector<ExtendedFstabEntry>>> entries_t;
 
 	entries_t entries;
 
@@ -128,7 +128,7 @@ namespace storage
 	    string device = fstab_entry->get_device();
 
 	    if (is_valid_name(device))
-		entries[Nfs::Impl::split_name(device)].first.push_back(fstab_entry);
+		entries[Nfs::Impl::split_name(device)].first.emplace_back(fstab_entry);
 	}
 
 	vector<const FstabEntry*> mount_entries = prober.get_system_info().getProcMounts().get_all_nfs();
@@ -137,7 +137,7 @@ namespace storage
 	    string device = mount_entry->get_device();
 
 	    if (is_valid_name(device))
-		entries[Nfs::Impl::split_name(device)].second.push_back(mount_entry);
+		entries[Nfs::Impl::split_name(device)].second.emplace_back(mount_entry);
 	}
 
 	// The code here works only with one mount point per
@@ -172,7 +172,7 @@ namespace storage
 
 
     string
-    Nfs::Impl::get_mount_by_name(MountByType mount_by_type) const
+    Nfs::Impl::get_mount_by_name(const MountPoint* mount_point) const
     {
 	return get_mount_name();
     }

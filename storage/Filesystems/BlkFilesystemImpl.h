@@ -93,7 +93,6 @@ namespace storage
 
 	static void probe_blk_filesystems(Prober& prober);
 	virtual void probe_pass_2a(Prober& prober);
-	virtual void probe_pass_2b(Prober& prober);
 
 	vector<const BlkDevice*> get_blk_devices() const;
 	const BlkDevice* get_blk_device() const;
@@ -115,7 +114,18 @@ namespace storage
 	void set_content_info(const ContentInfo& content_info);
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name(MountByType mount_by_type) const override;
+	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
+
+	/**
+	 * Returns the blk device used in /etc/fstab (based on the
+	 * FstabAnchor information from mount_point). If that fails
+	 * returns any blk device of the filesystem.
+	 */
+	virtual const BlkDevice* get_etc_fstab_blk_device(const MountPoint* mount_point) const;
+
+	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const override;
+
+	virtual vector<ExtendedFstabEntry> find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const override;
 
 	virtual BlkFilesystem* get_non_impl() override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
 	virtual const BlkFilesystem* get_non_impl() const override { return to_blk_filesystem(Device::Impl::get_non_impl()); }
@@ -130,9 +140,6 @@ namespace storage
 
 	virtual Text do_set_tune_options_text(Tense tense) const;
 	virtual void do_set_tune_options() const;
-
-	virtual Text do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const;
-	virtual void do_rename_in_etc_fstab(CommitData& commit_data) const;
 
 	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
 				    const BlkDevice* blk_device, Tense tense) const override;
@@ -215,21 +222,6 @@ namespace storage
 
 	    virtual Text text(const CommitData& commit_data) const override;
 	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	};
-
-
-	class RenameInEtcFstab : public RenameIn
-	{
-	public:
-
-	    RenameInEtcFstab(sid_t sid)	: RenameIn(sid) {}
-
-	    virtual Text text(const CommitData& commit_data) const override;
-	    virtual void commit(CommitData& commit_data, const CommitOptions& commit_options) const override;
-
-	    virtual const BlkDevice* get_renamed_blk_device(const Actiongraph::Impl& actiongraph,
-							    Side side) const override;
 
 	};
 

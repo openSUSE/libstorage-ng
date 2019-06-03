@@ -34,6 +34,7 @@
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Filesystems/BlkFilesystemImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
+#include "storage/Holders/FilesystemUserImpl.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devicegraph.h"
@@ -252,49 +253,6 @@ namespace storage
 	{
 	    label = it->second.fs_label;
 	    uuid = it->second.fs_uuid;
-	}
-    }
-
-
-    void
-    BlkFilesystem::Impl::probe_pass_2b(Prober& prober)
-    {
-	SystemInfo& system_info = prober.get_system_info();
-
-	vector<string> names;
-	vector<string> aliases;
-
-	for (const BlkDevice* blk_device : get_blk_devices())
-	{
-	    names.push_back(blk_device->get_name());
-
-	    // The algorithm for merging here is by far not the fastest but keeps the order as
-	    // needed by the testsuite.
-
-	    for (const string& alias : EtcFstab::construct_device_aliases(blk_device, get_non_impl()))
-	    {
-		if (find(aliases.begin(), aliases.end(), alias) == aliases.end())
-		    aliases.push_back(alias);
-	    }
-	}
-
-	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
-	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, names);
-
-	// The code here works only with one mount point per
-	// mountable. Anything else is not supported since rejected by the
-	// product owner.
-
-	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
-	if (!joint_entries.empty())
-	{
-	    y2war("fstab entries: " << fstab_entries);
-	    y2war("mount entries: " << mount_entries);
-	    if (joint_entries.size() > 1)
-		y2war("More than one entry for given aliases: " << aliases);
-	    // but at least if there are more try to find the shortest path
-	    // to avoid problems during upgrade (bsc#1118865)
-	    min_element(joint_entries.begin(), joint_entries.end(), cmp)->add_to(get_non_impl());
 	}
     }
 
@@ -592,14 +550,6 @@ namespace storage
 	    actions.push_back(new Action::SetTuneOptions(get_sid()));
 	}
 
-	// TODO depends on mount-by, whether there actually is an entry in fstab,
-	// multiple devices, ...
-	if (get_blk_device()->get_name() != lhs.get_blk_device()->get_name())
-	{
-	    if (has_mount_point())
-		actions.push_back(new Action::RenameInEtcFstab(get_sid()));
-	}
-
 	actiongraph.add_chain(actions);
     }
 
@@ -690,11 +640,11 @@ namespace storage
 
 
     string
-    BlkFilesystem::Impl::get_mount_by_name(MountByType mount_by_type) const
+    BlkFilesystem::Impl::get_mount_by_name(const MountPoint* mount_point) const
     {
 	string ret;
 
-	switch (mount_by_type)
+	switch (mount_point->get_mount_by())
 	{
 	    case MountByType::UUID:
 		if (!uuid.empty())
@@ -718,9 +668,63 @@ namespace storage
 
 	if (ret.empty())
 	{
-	    const BlkDevice* blk_device = get_blk_device();
+	    const BlkDevice* blk_device = get_etc_fstab_blk_device(mount_point);
 
-	    ret = blk_device->get_impl().get_mount_by_name(mount_by_type);
+	    ret = blk_device->get_impl().get_mount_by_name(mount_point->get_mount_by());
+	}
+
+	return ret;
+    }
+
+
+    const BlkDevice*
+    BlkFilesystem::Impl::get_etc_fstab_blk_device(const MountPoint* mount_point) const
+    {
+	return get_blk_device();
+    }
+
+
+    vector<ExtendedFstabEntry>
+    BlkFilesystem::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    {
+	const EtcFstab& etc_fstab = system_info.getEtcFstab();
+
+	vector<ExtendedFstabEntry> ret;
+
+	for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_uuid_or_label(get_uuid(), get_label()))
+	{
+	    ret.emplace_back(fstab_entry);
+	}
+
+	for (const BlkDevice* blk_device : get_blk_devices())
+        {
+            for (const FstabEntry* fstab_entry : etc_fstab.find_all_by_any_name(system_info,
+										blk_device->get_name()))
+            {
+		const FilesystemUser* filesystem_user =
+		    to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(), get_sid()));
+
+                ret.emplace_back(fstab_entry, filesystem_user->get_impl().get_id());
+	    }
+        }
+
+	return ret;
+    }
+
+
+    vector<ExtendedFstabEntry>
+    BlkFilesystem::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    {
+	const ProcMounts& proc_mounts = system_info.getProcMounts();
+
+	vector<ExtendedFstabEntry> ret;
+
+	for (const BlkDevice* blk_device : get_blk_devices())
+        {
+	    for (const FstabEntry* fstab_entry : proc_mounts.get_by_name(blk_device->get_name(), system_info))
+	    {
+		ret.emplace_back(fstab_entry);
+	    }
 	}
 
 	return ret;
@@ -825,47 +829,6 @@ namespace storage
     BlkFilesystem::Impl::do_set_tune_options() const
     {
 	ST_THROW(LogicException("stub do_set_tune_options called"));
-    }
-
-
-    Text
-    BlkFilesystem::Impl::do_rename_in_etc_fstab_text(const Device* lhs, Tense tense) const
-    {
-	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
-	const BlkDevice* blk_device_rhs = get_blk_device();
-
-	const MountPoint* mount_point = get_mount_point();
-
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda6),
-			   // %3$s is replaced by device name (e.g. /dev/sda5)
-			   _("Rename mount point %1$s from %2$s to %3$s in /etc/fstab"),
-			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda6),
-			   // %3$s is replaced by device name (e.g. /dev/sda5)
-			   _("Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"));
-
-	return sformat(text, mount_point->get_path(), blk_device_lhs->get_name(),
-		       blk_device_rhs->get_name());
-    }
-
-
-    void
-    BlkFilesystem::Impl::do_rename_in_etc_fstab(CommitData& commit_data) const
-    {
-	EtcFstab& etc_fstab = commit_data.get_etc_fstab();
-
-	const MountPoint* mount_point = get_mount_point();
-
-	for (FstabEntry* entry : find_etc_fstab_entries(etc_fstab, { mount_point->get_impl().get_fstab_device_name() }))
-	{
-	    entry->set_device(get_mount_by_name(mount_point->get_mount_by()));
-	    etc_fstab.log_diff();
-	    etc_fstab.write();
-	}
     }
 
 
@@ -1001,32 +964,6 @@ namespace storage
 	{
 	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
 	    blk_filesystem->get_impl().do_set_tune_options();
-	}
-
-
-	Text
-	RenameInEtcFstab::text(const CommitData& commit_data) const
-	{
-	    const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(get_device(commit_data.actiongraph, LHS));
-	    const BlkFilesystem* blk_filesystem_rhs = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    return blk_filesystem_rhs->get_impl().do_rename_in_etc_fstab_text(blk_filesystem_lhs, commit_data.tense);
-	}
-
-
-	void
-	RenameInEtcFstab::commit(CommitData& commit_data, const CommitOptions& commit_options) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(commit_data.actiongraph, RHS));
-	    blk_filesystem->get_impl().do_rename_in_etc_fstab(commit_data);
-	}
-
-
-	const BlkDevice*
-	RenameInEtcFstab::get_renamed_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
-	{
-	    const BlkFilesystem* blk_filesystem = to_blk_filesystem(get_device(actiongraph, side));
-	    vector<const BlkDevice*> blk_devices = blk_filesystem->get_blk_devices();
-	    return blk_devices[0]; // TODO, filesystems with multiple devices
 	}
 
     }

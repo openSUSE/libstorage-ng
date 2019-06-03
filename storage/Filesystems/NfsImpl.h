@@ -69,7 +69,7 @@ namespace storage
 	static void probe_nfses(Prober& prober);
 
 	virtual string get_mount_name() const override;
-	virtual string get_mount_by_name(MountByType mount_by_type) const override;
+	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
 
 	virtual MountByType get_default_mount_by() const override;
 

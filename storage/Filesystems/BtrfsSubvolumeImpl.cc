@@ -177,9 +177,9 @@ namespace storage
 
 
     string
-    BtrfsSubvolume::Impl::get_mount_by_name(MountByType mount_by_type) const
+    BtrfsSubvolume::Impl::get_mount_by_name(const MountPoint* mount_point) const
     {
-	return get_btrfs()->get_impl().get_mount_by_name(mount_by_type);
+	return get_btrfs()->get_impl().get_mount_by_name(mount_point);
     }
 
 
@@ -210,52 +210,42 @@ namespace storage
     }
 
 
+    vector<ExtendedFstabEntry>
+    BtrfsSubvolume::Impl::find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const
+    {
+	return get_btrfs()->get_impl().find_etc_fstab_entries_unfiltered(system_info);
+    }
+
+
     vector<FstabEntry*>
-    BtrfsSubvolume::Impl::find_etc_fstab_entries(EtcFstab& etc_fstab, const vector<string>& names) const
+    BtrfsSubvolume::Impl::find_etc_fstab_entries_unfiltered(EtcFstab& etc_fstab, const FstabAnchor& fstab_anchor) const
     {
-	vector<FstabEntry*> ret;
-
-	for (FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
-	{
-	    if (fstab_entry->get_mount_opts().has_subvol(id, path))
-		ret.push_back(fstab_entry);
-	}
-
-	return ret;
+	return get_btrfs()->get_impl().Mountable::Impl::find_etc_fstab_entries_unfiltered(etc_fstab, fstab_anchor);
     }
 
 
-    vector<const FstabEntry*>
-    BtrfsSubvolume::Impl::find_etc_fstab_entries(const EtcFstab& etc_fstab, const vector<string>& names) const
+    bool
+    BtrfsSubvolume::Impl::predicate_etc_fstab(const FstabEntry* fstab_entry) const
     {
-	vector<const FstabEntry*> ret;
-
-	for (const FstabEntry* fstab_entry : etc_fstab.find_all_devices(names))
-	{
-	    if (fstab_entry->get_mount_opts().has_subvol(id, path))
-		ret.push_back(fstab_entry);
-	}
-
-	return ret;
+	return fstab_entry->get_mount_opts().has_subvol(id, path);
     }
 
 
-    vector<const FstabEntry*>
-    BtrfsSubvolume::Impl::find_proc_mounts_entries(SystemInfo& system_info, const vector<string>& names) const
+    vector<ExtendedFstabEntry>
+    BtrfsSubvolume::Impl::find_proc_mounts_entries_unfiltered(SystemInfo& system_info) const
+    {
+	return get_btrfs()->get_impl().find_proc_mounts_entries_unfiltered(system_info);
+    }
+
+
+    bool
+    BtrfsSubvolume::Impl::predicate_proc_mounts(const FstabEntry* fstab_entry) const
     {
 	// see doc/btrfs.md for default id handling
 
 	long default_id = get_btrfs()->get_default_btrfs_subvolume()->get_id();
 
-	vector<const FstabEntry*> ret;
-
-	for (const FstabEntry* mount_entry : system_info.getProcMounts().get_by_names(names, system_info))
-	{
-	    if (mount_entry->get_mount_opts().has_subvol(id, path) && id != default_id)
-		ret.push_back(mount_entry);
-	}
-
-	return ret;
+	return fstab_entry->get_mount_opts().has_subvol(id, path) && id != default_id;
     }
 
 
@@ -290,37 +280,7 @@ namespace storage
     void
     BtrfsSubvolume::Impl::probe_pass_2b(Prober& prober, const string& mount_point)
     {
-	SystemInfo& system_info = prober.get_system_info();
-
-	const Btrfs* btrfs = get_btrfs();
-
-	vector<string> names;
-	vector<string> aliases;
-
-	for (const BlkDevice* blk_device : btrfs->get_blk_devices())
-	{
-	    names.push_back(blk_device->get_name());
-
-	    // The algorithm for merging here is by far not the fastest but keeps the order as
-	    // needed by the testsuite.
-
-	    for (const string& alias : EtcFstab::construct_device_aliases(blk_device, btrfs))
-	    {
-		if (find(aliases.begin(), aliases.end(), alias) == aliases.end())
-		    aliases.push_back(alias);
-	    }
-	}
-
-	vector<const FstabEntry*> fstab_entries = find_etc_fstab_entries(system_info.getEtcFstab(), aliases);
-	vector<const FstabEntry*> mount_entries = find_proc_mounts_entries(system_info, names);
-
-	// The code here works only with one mount point per
-	// mountable. Anything else is not supported since rejected by the
-	// product owner.
-
-	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
-	if (!joint_entries.empty())
-	    joint_entries[0].add_to(get_non_impl());
+	Mountable::Impl::probe_pass_2b(prober);
     }
 
 

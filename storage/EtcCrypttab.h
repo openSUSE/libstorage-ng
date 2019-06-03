@@ -162,11 +162,13 @@ namespace storage
 	CrypttabEntry * find_block_device( const string & block_device ) const;
 
 	/**
-	 * Return the first entry or 0 where the block device matches the
-	 * provided uuid, label or major and minor number.
+	 * Return the first entry or 0 where the block device matches
+	 * the provided uuid, label or major and minor
+	 * number. Aliases, e.g. udev symlinks, are handled by the
+	 * function.
 	 */
-	const CrypttabEntry* find_by_block_device(SystemInfo& system_info, const string& uuid,
-						  const string& label, dev_t majorminor) const;
+	const CrypttabEntry* find_by_any_block_device(SystemInfo& system_info, const string& uuid,
+						      const string& label, dev_t majorminor) const;
 
 	/**
 	 * Add an entry. This is just an alias for append() to maintain

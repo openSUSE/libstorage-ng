@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -33,6 +33,7 @@
 #include "storage/Utils/LoggerImpl.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/StorageDefines.h"
+#include "storage/SystemInfo/SystemInfo.h"
 
 
 #define FSTAB_COLUMN_COUNT	6
@@ -342,37 +343,15 @@ namespace storage
     }
 
 
-    FstabEntry * EtcFstab::find_device( const string_vec & devices ) const
-    {
-	for ( int i=0; i < get_entry_count(); ++i )
-	{
-	    FstabEntry * entry = get_entry( i );
-
-	    if ( entry )
-	    {
-                const string & current_dev = entry->get_device();
-
-		for ( size_t j=0; j < devices.size(); ++j )
-		{
-		    if ( current_dev == devices[j] )
-			return entry;
-		}
-	    }
-	}
-
-	return 0;
-    }
-
-
     vector<FstabEntry*>
-    EtcFstab::find_all_devices(const vector<string>& devices)
+    EtcFstab::find_all_devices(const string& device)
     {
 	vector<FstabEntry*> ret;
 
 	for (int i = 0; i < get_entry_count(); ++i)
 	{
 	    FstabEntry* entry = get_entry(i);
-	    if (entry && contains(devices, entry->get_device()))
+	    if (device == entry->get_device())
 		ret.push_back(entry);
 	}
 
@@ -381,15 +360,63 @@ namespace storage
 
 
     vector<const FstabEntry*>
-    EtcFstab::find_all_devices(const vector<string>& devices) const
+    EtcFstab::find_all_by_uuid_or_label(const string& uuid, const string& label) const
     {
 	vector<const FstabEntry*> ret;
 
 	for (int i = 0; i < get_entry_count(); ++i)
 	{
-	    FstabEntry* entry = get_entry(i);
-	    if (entry && contains(devices, entry->get_device()))
-		ret.push_back(entry);
+	    const FstabEntry* entry = get_entry(i);
+
+	    string blk_device = entry->get_device();
+
+	    if (!uuid.empty())
+	    {
+		if ((blk_device == "UUID=" + uuid) ||
+		    (blk_device == DEV_DISK_BY_UUID_DIR "/" + uuid))
+		    ret.push_back(entry);
+	    }
+
+	    if (!label.empty())
+	    {
+		if ((blk_device == "LABEL=" + label) ||
+		    (blk_device == DEV_DISK_BY_LABEL_DIR "/" + udev_encode(label)))
+		    ret.push_back(entry);
+	    }
+	}
+
+	return ret;
+    }
+
+
+    vector<const FstabEntry*>
+    EtcFstab::find_all_by_any_name(SystemInfo& system_info, const string& name) const
+    {
+	dev_t majorminor = system_info.getCmdUdevadmInfo(name).get_majorminor();
+
+	vector<const FstabEntry*> ret;
+
+	for (int i = 0; i < get_entry_count(); ++i)
+	{
+	    const FstabEntry* entry = get_entry(i);
+
+	    string blk_device = entry->get_device();
+
+	    if (boost::starts_with(blk_device, DEV_DIR "/"))
+	    {
+		try
+		{
+		    if (system_info.getCmdUdevadmInfo(blk_device).get_majorminor() == majorminor)
+			ret.push_back(entry);
+		}
+		catch (const Exception& exception)
+		{
+		    // The block device for the fstab entry may not be available right
+		    // now so the exception is not necessarily an error. Likely the noauto
+		    // option is present but even that is not required.
+		    ST_CAUGHT(exception);
+		}
+	    }
 	}
 
 	return ret;
@@ -576,33 +603,6 @@ namespace storage
     }
 
 
-    vector<string>
-    EtcFstab::construct_device_aliases(const BlkDevice* blk_device, const BlkFilesystem* blk_filesystem)
-    {
-	vector<string> device_aliases = { blk_device->get_name() };
-
-	for (const string& udev_path : blk_device->get_udev_paths())
-	    device_aliases.push_back(DEV_DISK_BY_PATH_DIR "/" + udev_path);
-
-	for (const string& udev_id : blk_device->get_udev_ids())
-	    device_aliases.push_back(DEV_DISK_BY_ID_DIR "/" + udev_id);
-
-	if (!blk_filesystem->get_label().empty())
-	{
-	    device_aliases.push_back("LABEL=" + blk_filesystem->get_label());
-	    device_aliases.push_back(DEV_DISK_BY_LABEL_DIR "/" + udev_encode(blk_filesystem->get_label()));
-	}
-
-	if (!blk_filesystem->get_uuid().empty())
-	{
-	    device_aliases.push_back("UUID=" + blk_filesystem->get_uuid());
-	    device_aliases.push_back(DEV_DISK_BY_UUID_DIR "/" + blk_filesystem->get_uuid());
-	}
-
-	return device_aliases;
-    }
-
-
     string
     JointEntry::get_mount_point() const
     {
@@ -658,7 +658,7 @@ namespace storage
 	MountPoint* mount_point = mountable->create_mount_point(get_mount_point());
 
 	if (is_in_etc_fstab())
-	    mount_point->get_impl().set_fstab_device_name(fstab_entry->get_device());
+	    mount_point->get_impl().set_fstab_anchor(FstabAnchor(fstab_entry->get_device(), id));
 
 	mount_point->set_mount_by(get_mount_by());
 
@@ -677,18 +677,18 @@ namespace storage
 
 
     vector<JointEntry>
-    join_entries(vector<const FstabEntry*> fstab_entries, vector<const FstabEntry*> mount_entries)
+    join_entries(vector<ExtendedFstabEntry> fstab_entries, vector<ExtendedFstabEntry> mount_entries)
     {
 	vector<JointEntry> ret;
 
-	for (const FstabEntry* fstab_entry : fstab_entries)
+	for (const ExtendedFstabEntry& extended_fstab_entry : fstab_entries)
 	{
-	    ret.push_back(JointEntry(fstab_entry, nullptr));
+	    ret.push_back(JointEntry(extended_fstab_entry.fstab_entry, nullptr, extended_fstab_entry.id));
 	}
 
-	for (const FstabEntry* mount_entry : mount_entries)
+	for (const ExtendedFstabEntry& extended_fstab_entry : mount_entries)
 	{
-	    string path = mount_entry->get_mount_point();
+	    string path = extended_fstab_entry.fstab_entry->get_mount_point();
 
 	    // for multiple mount points for same partition try at first identical path
 	    // and if not found, then any
@@ -714,18 +714,18 @@ namespace storage
 	    };
 
 	    if (it != ret.end())
-		it->mount_entry = mount_entry;
+		it->mount_entry = extended_fstab_entry.fstab_entry;
 	    else
-		ret.push_back(JointEntry(nullptr, mount_entry));
+		ret.push_back(JointEntry(nullptr, extended_fstab_entry.fstab_entry));
 	}
 
 	return ret;
     }
 
 
-    bool cmp(const JointEntry &a, const JointEntry &b)
+    bool
+    compare_by_size(const JointEntry& a, const JointEntry& b)
     {
-        y2war("comparing " << a.get_mount_point() << " and " << b.get_mount_point());
 	return a.get_mount_point().size() < b.get_mount_point().size();
     }
 
