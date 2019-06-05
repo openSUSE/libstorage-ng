@@ -1,14 +1,14 @@
 1a - Create partition /dev/dasda1 (102.00 MiB) -> 1b 2a
 1b - Create ext2 on /dev/dasda1 (102.00 MiB) -> 1c
-1c - Mount /dev/dasda1 at /boot/zipl -> 1d
-1d - Add mount point /boot/zipl of /dev/dasda1 to /etc/fstab ->
+1c - Mount /dev/dasda1 (102.00 MiB) at /boot/zipl -> 1d
+1d - Add mount point /boot/zipl of /dev/dasda1 (102.00 MiB) to /etc/fstab ->
 
 2a - Create partition /dev/dasda2 (20.82 GiB) -> 2b 3a
 2b - Create ext4 on /dev/dasda2 (20.82 GiB) -> 2c
-2c - Mount /dev/dasda2 at / -> 1c 2d 3d
-2d - Add mount point / of /dev/dasda2 to /etc/fstab ->
+2c - Mount /dev/dasda2 (20.82 GiB) at / -> 1c 2d 3d
+2d - Add mount point / of /dev/dasda2 (20.82 GiB) to /etc/fstab ->
 
 3a - Create partition /dev/dasda3 (2.00 GiB) -> 1c 2c 3b 3c
 3b - Create swap on /dev/dasda3 (2.00 GiB) -> 3c
-3c - Mount /dev/dasda3 at swap -> 3d
-3d - Add mount point swap of /dev/dasda3 to /etc/fstab ->
+3c - Mount /dev/dasda3 (2.00 GiB) at swap -> 3d
+3d - Add mount point swap of /dev/dasda3 (2.00 GiB) to /etc/fstab ->

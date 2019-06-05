@@ -395,8 +395,7 @@ namespace storage
 
 
     Text
-    Device::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				 const BlkDevice* blk_device, Tense tense) const
+    Device::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
 	return UntranslatedText(sformat("error: stub do_resize_text called for %s", get_classname()));
     }
@@ -461,12 +460,8 @@ namespace storage
 	Text
 	Resize::text(const CommitData& commit_data) const
 	{
-	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
-	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    return device->get_impl().do_resize_text(resize_mode, device_lhs, device_rhs, blk_device,
-						     commit_data.tense);
+	    return device->get_impl().do_resize_text(commit_data, this);
 	}
 
 
@@ -509,6 +504,13 @@ namespace storage
 		    actiongraph.add_edge(tmp, vertex);
 		*/
 	    }
+	}
+
+
+	const BlkDevice*
+	Resize::get_resized_blk_device(const Actiongraph::Impl& actiongraph, Side side) const
+	{
+	    return to_blk_device(actiongraph.get_devicegraph(side)->find_device(blk_device->get_sid()));
 	}
 
 

@@ -140,8 +140,7 @@ namespace storage
 
 	void do_delete_efi_boot_mgr() const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    const BlkDevice* blk_device, Tense tense) const override;
+	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	static unsigned int default_id_for_type(PartitionType type);

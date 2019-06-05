@@ -1,7 +1,7 @@
-1a - Remove mount point /test of /dev/sda1 from /etc/fstab -> 1b
-1b - Unmount /dev/sda1 at /test -> 1c
+1a - Remove mount point /test of /dev/sda1 (8.00 GiB) from /etc/fstab -> 1b
+1b - Unmount /dev/sda1 (8.00 GiB) at /test -> 1c
 1c - Delete ext4 on /dev/sda1 (8.00 GiB) -> 2 3a
 2 - Grow partition /dev/sda1 from 8.00 GiB to 12.00 GiB -> 3a
 3a - Create ext4 on /dev/sda1 (12.00 GiB) -> 3b
-3b - Mount /dev/sda1 at /test -> 3c
-3c - Add mount point /test of /dev/sda1 to /etc/fstab ->
+3b - Mount /dev/sda1 (12.00 GiB) at /test -> 3c
+3c - Add mount point /test of /dev/sda1 (12.00 GiB) to /etc/fstab ->

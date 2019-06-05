@@ -164,6 +164,13 @@ namespace storage
     }
 
 
+    Text
+    Nfs::Impl::get_message_name() const
+    {
+	return UntranslatedText(get_server() + ":" + get_path());
+    }
+
+
     string
     Nfs::Impl::get_mount_name() const
     {

@@ -87,9 +87,17 @@ namespace storage
 	virtual MountOpts get_default_mount_options() const;
 
 	/**
+	 * A name for the mountable in messages. E.g. for
+	 * BlkFilesystems a list of the underlying blk devices
+	 * including sizes and for Nfs the server plus the path.
+	 */
+	virtual Text get_message_name() const = 0;
+
+	/**
 	 * A name useable for mounting the mountable. E.g. for BlkFilesystems
-	 * the name of a device and for Nfs the server plus the path. Used for
-	 * messages and mount command.
+	 * the name of a device and for Nfs the server plus the path.
+	 *
+	 * For messages get_message_name() must be used.
 	 */
 	virtual string get_mount_name() const = 0;
 

@@ -29,6 +29,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/StorageTmpl.h"
 #include "storage/Utils/HumanString.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/EtcFstab.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/StorageImpl.h"
@@ -166,6 +167,13 @@ namespace storage
     BtrfsSubvolume::Impl::get_filesystem() const
     {
 	return get_btrfs();
+    }
+
+
+    Text
+    BtrfsSubvolume::Impl::get_message_name() const
+    {
+	return join(get_btrfs()->get_blk_devices(), JoinMode::COMMA, 10);
     }
 
 
@@ -416,16 +424,16 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Create subvolume %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Creating subvolume %1$s on %2$s"));
 
-	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
-
-        return sformat(text, path, blk_device->get_name());
+	return sformat(text, path, get_message_name());
     }
 
 
@@ -470,17 +478,19 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by subvolume path (e.g. home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by mount point (e.g. /home)
+			   // %1$s is replaced by the subvolume path (e.g. home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by the mount point (e.g. /home)
 			   _("Mount subvolume %1$s on %2$s at %3$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by subvolume path (e.g. home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1),
-			   // %3$s is replaced by mount point (e.g. /home)
+			   // %1$s is replaced by the subvolume path (e.g. home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
+			   // %3$s is replaced by the mount point (e.g. /home)
 			   _("Mounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path, get_mount_name(), mount_point->get_path());
+	return sformat(text, path, get_message_name(), mount_point->get_path());
     }
 
 
@@ -488,18 +498,20 @@ namespace storage
     BtrfsSubvolume::Impl::do_unmount_text(const MountPoint* mount_point, Tense tense) const
     {
 	Text text = tenser(tense,
-			  // TRANSLATORS: displayed before action,
-			  // %1$s is replaced by subvolume path (e.g. home),
-			  // %2$s is replaced by device name (e.g. /dev/sda1),
-			  // %3$s is replaced by mount point (e.g. /home)
-			  _("Unmount subvolume %1$s on %2$s at %3$s"),
-			  // TRANSLATORS: displayed during action,
-			  // %1$s is replaced by subvolume path (e.g. home),
-			  // %2$s is replaced by device name (e.g. /dev/sda1),
-			  // %3$s is replaced by mount point (e.g. /home)
-			  _("Unmounting subvolume %1$s on %2$s at %3$s"));
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the subvolume path (e.g. home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
+			   // %3$s is replaced by the mount point (e.g. /home)
+			   _("Unmount subvolume %1$s on %2$s at %3$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the subvolume path (e.g. home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %3$s is replaced by the mount point (e.g. /home)
+			   _("Unmounting subvolume %1$s on %2$s at %3$s"));
 
-	return sformat(text, path, get_mount_name(), mount_point->get_path());
+	return sformat(text, path, get_message_name(), mount_point->get_path());
     }
 
 
@@ -508,17 +520,19 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by subvolume path (e.g. home),
-			   // %3$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by the subvolume path (e.g. home),
+			   // %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by subvolume path (e.g. home),
-			   // %3$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by the subvolume path (e.g. home),
+			   // %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"));
 
-	return sformat(text, mount_point->get_path(), path, get_mount_name());
+	return sformat(text, mount_point->get_path(), path, get_message_name());
     }
 
 
@@ -527,17 +541,19 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by subvolume path (e.g. home),
-			   // %3$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by the subvolume path (e.g. home),
+			   // %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by subvolume path (e.g. home),
-			   // %3$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by the subvolume path (e.g. home),
+			   // %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"));
 
-	return sformat(text, mount_point->get_path(), path, get_mount_name());
+	return sformat(text, mount_point->get_path(), path, get_message_name());
     }
 
 
@@ -549,27 +565,29 @@ namespace storage
 	if (is_nocow())
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
-			  // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			  // %1$s is replaced by the subvolume path (e.g. var/log),
+			  // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			  // and /dev/sdb2 (1.0 GiB))
 			  _("Set option 'no copy on write' for subvolume %1$s on %2$s"),
 			  // TRANSLATORS: displayed during action,
-			  // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			  // %1$s is replaced by the subvolume path (e.g. var/log),
+			  // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			  // and /dev/sdb2 (1.0 GiB))
 			  _("Setting option 'no copy on write' for subvolume %1$s on %2$s"));
 	else
 	    text = tenser(tense,
 			  // TRANSLATORS: displayed before action,
-			  // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			  // %1$s is replaced by the subvolume path (e.g. var/log),
+			  // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			  // and /dev/sdb2 (1.0 GiB))
 			  _("Clear option 'no copy on write' for subvolume %1$s on %2$s"),
 			  // TRANSLATORS: displayed during action,
-			  // %1$s is replaced by subvolume path (e.g. var/log),
-			  // %2$s is replaced by block device name (e.g. /dev/sda1)
+			  // %1$s is replaced by the subvolume path (e.g. var/log),
+			  // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			  // and /dev/sdb2 (1.0 GiB))
 			  _("Clearing option 'no copy on write' for subvolume %1$s on %2$s"));
 
-	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
-
-        return sformat(text, get_displayname(), blk_device->get_name());
+	return sformat(text, get_displayname(), get_message_name());
     }
 
 
@@ -592,17 +610,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the subvolume path (e.g. var/log),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Set default subvolume to subvolume %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the subvolume path (e.g. var/log),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Setting default subvolume to subvolume %1$s on %2$s"));
 
-	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
-
-        return sformat(text, get_displayname(), blk_device->get_name());
+	return sformat(text, get_displayname(), get_message_name());
     }
 
 
@@ -623,19 +641,19 @@ namespace storage
     Text
     BtrfsSubvolume::Impl::do_delete_text(Tense tense) const
     {
-        Text text = tenser(tense,
-                           // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
-                           _("Delete subvolume %1$s on %2$s"),
-                           // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by subvolume path (e.g. var/log),
-			   // %2$s is replaced by block device name (e.g. /dev/sda1)
-                           _("Deleting subvolume %1$s on %2$s"));
+	Text text = tenser(tense,
+			   // TRANSLATORS: displayed before action,
+			   // %1$s is replaced by the subvolume path (e.g. var/log),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
+			   _("Delete subvolume %1$s on %2$s"),
+			   // TRANSLATORS: displayed during action,
+			   // %1$s is replaced by the subvolume path (e.g. var/log),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
+			   _("Deleting subvolume %1$s on %2$s"));
 
-	const BlkDevice* blk_device = get_btrfs()->get_impl().get_blk_device();
-
-        return sformat(text, path, blk_device->get_name());
+	return sformat(text, path, get_message_name());
     }
 
 
