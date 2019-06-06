@@ -24,7 +24,6 @@
 #define STORAGE_C_DG_D_H
 
 
-#include <libxml/tree.h>
 #include <ostream>
 #include <memory>
 #include <boost/optional.hpp>
