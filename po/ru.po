@@ -4,17 +4,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 15:22+0100\n"
+"POT-Creation-Date: 2019-06-06 14:56+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/ru/>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.3\n"
 
 msgid ""
@@ -156,6 +156,15 @@ msgstr ""
 "Включение логического тома «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Add %1$s (%2$s) to btrfs on %3$s"
+msgstr "Добавить %1$s в %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -178,19 +187,30 @@ msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr "Добавить зашифрованное устройство на %1$s в /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "Добавить точку монтирования %1$s для %2$s в /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "Добавить точку монтирования %1$s подтома %2$s на %3$s в /etc/fstab"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Adding %1$s (%2$s) to btrfs on %3$s"
+msgstr "Добавление %1$s в %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -215,16 +235,18 @@ msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr "Добавление зашифрованного устройства на %1$s в /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "Добавление точки монтирования %1$s для %2$s в /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr "Добавление точки монтирования %1$s подтома %2$s на %3$s в /etc/fstab"
@@ -233,16 +255,16 @@ msgstr "Добавление точки монтирования %1$s подто
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Подключить кэш Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Подключение кэша Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
@@ -282,8 +304,9 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "Снять устаревший загрузочный флаг раздела %1$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Очистить опцию «без копирования при записи» подтома %1$s на %2$s"
@@ -307,8 +330,9 @@ msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "Снятие устаревшего загрузочного флага раздела %1$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Очистка опции «без копирования при записи» подтома %1$s на %2$s"
@@ -381,25 +405,11 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Create %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
+#, fuzzy, c-format
+msgid "Create %1$s on %2$s"
 msgstr "Создать %1$s на %2$s (%3$s)"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Create Bcache %1$s (%2$s)"
-msgstr "Создать Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "Создать кэш Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -491,6 +501,13 @@ msgstr "Создать MD %1$s %2$s (%3$s) на основе устройств 
 msgid "Create MS-DOS partition table on %1$s"
 msgstr "Создать таблицу разделов MS-DOS на %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s (%2$s)"
+msgstr "Создать Bcache %1$s (%2$s)"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -528,6 +545,13 @@ msgstr "Создать раздел bcache %1$s на устройстве %2$s (
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
 msgstr ""
 "Создать раздел bcache %1$s на устройстве %2$s (%3$s) с файловой системой %4$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache cache set on %1$s (%2$s)"
+msgstr "Создать кэш Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -848,7 +872,8 @@ msgstr "Создать основной раздел %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -905,25 +930,11 @@ msgstr "Создать группу томов %1$s (%2$s) с файловой �
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
-#, c-format
-msgid "Creating %1$s on %2$s (%3$s)"
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
+#, fuzzy, c-format
+msgid "Creating %1$s on %2$s"
 msgstr "Создание %1$s на %2$s (%3$s)"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Creating Bcache %1$s (%2$s)"
-msgstr "Создание Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "Создание кэша Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -952,6 +963,20 @@ msgstr "Создать MD %1$s %2$s (%3$s) на основе устройств 
 #, c-format
 msgid "Creating MS-DOS partition table on %1$s"
 msgstr "Создание таблицы разделов MS-DOS на %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache %1$s (%2$s)"
+msgstr "Создание Bcache %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache cache set %1$s (%2$s)"
+msgstr "Создание кэша Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1023,7 +1048,8 @@ msgstr "Создание основного раздела %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "Создание подтома %1$s на %2$s"
@@ -1067,26 +1093,26 @@ msgid "DM RAID"
 msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "Отключить Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "Отключить кэш Bcache на %1$s (%2$s)"
-
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "Отключить MD %1$s %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache %1$s (%2$s)"
+msgstr "Отключить Bcache %1$s (%2$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache cache set on %1$s (%2$s)"
+msgstr "Отключить кэш Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1127,26 +1153,26 @@ msgstr ""
 "Отключить логический том «тонкого» пула %1$s (%2$s) в группе томов %3$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "Отключение Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "Отключение кэша Bcache на %1$s (%2$s)"
-
-#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "Отключение MD %1$s %2$s (%3$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache %1$s (%2$s)"
+msgstr "Отключение Bcache %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache cache set on %1$s (%2$s)"
+msgstr "Отключение кэша Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1196,25 +1222,11 @@ msgstr "Удалить раздел %1$s %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
 msgstr "Удалить %1$s на устройствах %2$s"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Delete Bcache %1$s (%2$s)"
-msgstr "Удалить Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "Удалить кэш Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1242,6 +1254,13 @@ msgstr "Удалить MD %1$s %2$s (%3$s)"
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "Удалить таблицу разделов MS-DOS на %1$s"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s (%2$s)"
+msgstr "Удалить Bcache %1$s (%2$s)"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -1249,6 +1268,13 @@ msgstr "Удалить таблицу разделов MS-DOS на %1$s"
 #, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
 msgstr "Удалить раздел bcache %1$s на устройстве %2$s (%3$s)"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache cache set on %1$s (%2$s)"
+msgstr "Удалить кэш Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1321,8 +1347,9 @@ msgid "Delete primary partition %1$s (%2$s)"
 msgstr "Удалить основной раздел %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -1355,25 +1382,11 @@ msgstr "Удалить группу томов %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
 msgstr "Удаление %1$s на устройствах %2$s"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "Удаление Bcache %1$s (%2$s)"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "Удаление кэша Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1400,6 +1413,20 @@ msgstr "Удаление MD %1$s %2$s (%3$s)"
 #, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
 msgstr "Удаление таблицы разделов MS-DOS на %1$s"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache %1$s (%2$s)"
+msgstr "Удаление Bcache %1$s (%2$s)"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache cache set on %1$s (%2$s)"
+msgstr "Удаление кэша Bcache на %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1463,8 +1490,9 @@ msgid "Deleting primary partition %1$s (%2$s)"
 msgstr "Удаление основного раздела %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "Удаление подтома %1$s на %2$s"
@@ -1497,8 +1525,8 @@ msgstr "Удаление группы томов %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr ""
 "Отключить набор кэширования Bcache на устройстве %1$s от устройства Bcache "
 "%2$s (%3$s)"
@@ -1507,8 +1535,8 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr ""
 "Отключение набора кэширования Bcache на устройстве %1$s от устройства Bcache "
 "%2$s (%3$s)"
@@ -1843,18 +1871,29 @@ msgid "GiB"
 msgstr "ГиБ"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "Увеличить %1$s на %2$s с %3$s до %4$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr "Увеличить %1$s на %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Увеличить зашифрованное устройство на %1$s с %2$s до %3$s"
@@ -1862,24 +1901,24 @@ msgstr "Увеличить зашифрованное устройство на 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Увеличить логический том %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "Увеличить раздел %1$s с %2$s до %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "Увеличить физический том на %1$s с %2$s до %3$s"
@@ -1887,8 +1926,8 @@ msgstr "Увеличить физический том на %1$s с %2$s до %3
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1897,8 +1936,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -1907,18 +1946,29 @@ msgstr ""
 "%4$s"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "Увеличение %1$s на %2$s с %3$s до %4$s"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr "Увеличение %1$s на %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Увеличение зашифрованного устройства на %1$s с %2$s до %3$s"
@@ -1926,24 +1976,24 @@ msgstr "Увеличение зашифрованного устройства �
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Увеличение логического тома %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "Увеличение раздела %1$s с %2$s до %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "Увеличение физического тома на %1$s с %2$s до %3$s"
@@ -1951,8 +2001,8 @@ msgstr "Увеличение физического тома на %1$s с %2$s �
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1961,8 +2011,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2056,8 +2106,9 @@ msgid "Mount %1$s %2$s (%3$s) at %4$s"
 msgstr "Монтировать %1$s %2$s (%3$s) в точке %4$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mount %1$s at %2$s"
 msgstr "Монтировать %1$s в %2$s"
@@ -2107,24 +2158,27 @@ msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "Монтировать раздел %1$s (%2$s) в %3$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Монтировать подтом %1$s на %2$s в %3$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mounting %1$s at %2$s"
 msgstr "Монтирование %1$s в %2$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "Монтирование подтома %1$s на %2$s в %3$s"
@@ -2270,6 +2324,11 @@ msgstr "Ошибка проверки"
 msgid "Probing file system on %s failed"
 msgstr "Ошибка проверки файловой системы на %s"
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing file system with UUID %s failed"
+msgstr "Ошибка проверки файловой системы на %s"
+
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
 msgstr "Проверка файловых систем"
@@ -2329,6 +2388,15 @@ msgid "Reiserfs"
 msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Remove %1$s (%2$s) from btrfs on %3$s"
+msgstr "Удалить %1$s из %2$s"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -2351,19 +2419,30 @@ msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr "Удалить зашифрованное устройство на %1$s из /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "Удалить точку монтирования %1$s для %2$s из /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Удалить точку монтирования %1$s подтома %2$s на %3$s из /etc/fstab"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Removing %1$s (%2$s) from btrfs on %3$s"
+msgstr "Удаление %1$s из %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2388,16 +2467,18 @@ msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr "Удаление зашифрованного устройства на %1$s из /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by thr mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "Удаление точки монтирования %1$s для %2$s из /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "Удаление точки монтирования %1$s подтома %2$s на %3$s из /etc/fstab"
@@ -2453,10 +2534,12 @@ msgid "Repairing GPT on %1$s"
 msgstr "Починка GPT на %1$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, c-format
-msgid "Set UUID of %1$s to %2$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#, fuzzy, c-format
+msgid "Set UUID of %1$s on %2$s to %3$s"
 msgstr "Задать %1$s UUID %2$s"
 
 #. TRANSLATORS: displayed before action,
@@ -2469,13 +2552,14 @@ msgstr "Установить загрузочный флаг раздела %1$s
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Установить режим кэширования %1$s для Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "Сделать подтом %1$s на %2$s подтомом по умолчанию"
@@ -2503,10 +2587,12 @@ msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr "Задать разделу %1$s идентификатор 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
-#, c-format
-msgid "Set label of %1$s to %2$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
+#, fuzzy, c-format
+msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "Задать %1$s метку %2$s"
 
 #. TRANSLATORS: displayed before action,
@@ -2516,8 +2602,9 @@ msgid "Set legacy boot flag of partition %1$s"
 msgstr "Установить устаревший загрузочный флаг раздела %1$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Задать опцию «без копирования при записи» подтома %1$s на %2$s"
@@ -2529,16 +2616,20 @@ msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr "Установить защитный флаг MBR с GPT на %1$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
-#, c-format
-msgid "Set tune options of %1$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
+#, fuzzy, c-format
+msgid "Set tune options of %1$s on %2$s"
 msgstr "Установить параметры настройки %1$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, c-format
-msgid "Setting UUID of %1$s to %2$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#, fuzzy, c-format
+msgid "Setting UUID of %1$s on %2$s to %3$s"
 msgstr "Установка %1$s UUID %2$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2551,13 +2642,14 @@ msgstr "Установка загрузочного флага раздела %1
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+#, fuzzy, c-format
+msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Установка режима кэширования %1$s для Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "Установка подтома %1$s на %2$s подтомом по умолчанию"
@@ -2585,10 +2677,12 @@ msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr "Установка разделу %1$s идентификатора 0x%2$02X"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
-#, c-format
-msgid "Setting label of %1$s to %2$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
+#, fuzzy, c-format
+msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "Установка %1$s метки %2$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2598,8 +2692,9 @@ msgid "Setting legacy boot flag of partition %1$s"
 msgstr "Установка устаревшего загрузочного флага раздела %1$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Установка опции «без копирования при записи» подтома %1$s на %2$s"
@@ -2611,24 +2706,37 @@ msgid "Setting protective MBR boot flag of GPT on %1$s"
 msgstr "Установка защитного флага MBR с GPT на %1$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
-#, c-format
-msgid "Setting tune options of %1$s"
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
+#, fuzzy, c-format
+msgid "Setting tune options of %1$s on %2$s"
 msgstr "Установка параметров настройки %1$s"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "Уменьшить %1$s на %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "Уменьшить %1$s на %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Уменьшить зашифрованное устройство на %1$s с %2$s до %3$s"
@@ -2636,24 +2744,24 @@ msgstr "Уменьшить зашифрованное устройство на 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Уменьшить логический том %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "Уменьшить раздел %1$s с %2$s до %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "Уменьшить физический том на %1$s с %2$s до %3$s"
@@ -2661,8 +2769,8 @@ msgstr "Уменьшить физический том на %1$s с %2$s до %3
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -2671,8 +2779,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2681,18 +2789,29 @@ msgstr ""
 "%4$s"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "Уменьшение %1$s на %2$s с %3$s до %4$s"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "Уменьшение %1$s на %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr "Уменьшение зашифрованного устройства на %1$s с %2$s до %3$s"
@@ -2700,24 +2819,24 @@ msgstr "Уменьшение зашифрованного устройства �
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "Уменьшение логического тома %1$s в группе томов %2$s с %3$s до %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "Уменьшение раздела %1$s с %2$s до %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "Уменьшение физического тома на %1$s с %2$s до %3$s"
@@ -2725,8 +2844,8 @@ msgstr "Уменьшение физического тома на %1$s с %2$s �
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2736,8 +2855,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
@@ -2771,8 +2890,9 @@ msgid "UDF"
 msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmount %1$s at %2$s"
 msgstr "Отмонтировать %1$s в %2$s"
@@ -2792,38 +2912,43 @@ msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "Отмонтировать файловую систему btrfs %1$s в %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Отмонтировать подтом %1$s на %2$s в %3$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmounting %1$s at %2$s"
 msgstr "Отмонтирование %1$s в %2$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
 msgstr "Отмонтирование подтома %1$s на %2$s в %3$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "Обновить точку монтирования %1$s для %2$s в /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "Обновление точки монтирования %1$s для %2$s в /etc/fstab"

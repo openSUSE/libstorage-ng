@@ -902,7 +902,7 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
 				  // /dev/sdb2 (1.0 GiB)),
 				  // %4$s is replaced by old size (e.g. 2.0 GiB),
 				  // %5$s is replaced by new size (e.g. 1.0 GiB)
@@ -910,7 +910,7 @@ namespace storage
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
 				  // /dev/sdb2 (1.0 GiB)),
 				  // %4$s is replaced by old size (e.g. 2.0 GiB),
 				  // %5$s is replaced by new size (e.g. 1.0 GiB)
@@ -922,7 +922,7 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
 				  // /dev/sdb2 (1.0 GiB)),
 				  // %4$s is replaced by old size (e.g. 1.0 GiB),
 				  // %5$s is replaced by new size (e.g. 2.0 GiB)
@@ -930,7 +930,7 @@ namespace storage
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
 				  // /dev/sdb2 (1.0 GiB)),
 				  // %4$s is replaced by old size (e.g. 1.0 GiB),
 				  // %5$s is replaced by new size (e.g. 2.0 GiB)

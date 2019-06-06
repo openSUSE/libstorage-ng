@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 15:22+0100\n"
+"POT-Creation-Date: 2019-06-06 14:56+0200\n"
 "PO-Revision-Date: 2003-08-14 10:47+0200\n"
 "Last-Translator: xxx <yyy@example.org>\n"
 "Language-Team: Tamil <i18n@suse.de>\n"
@@ -154,6 +154,15 @@ msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s உடன் வடிவமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Add %1$s (%2$s) to btrfs on %3$s"
+msgstr "%1$sஐ %2$sக்கு விரிவாக்கவும்"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -176,19 +185,30 @@ msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "ஏற்ற நிலை %1$sலிருந்து %2$sக்கு உள்ளிடுதலை சேர்க்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Adding %1$s (%2$s) to btrfs on %3$s"
+msgstr "%1$s %2$sக்கு விரிவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -213,16 +233,18 @@ msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "ஏற்ற நிலை %1$sலிருந்து %2$sக்கு உள்ளிடுதல் சேர்க்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
@@ -231,17 +253,17 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+#, fuzzy, c-format
+msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+#, fuzzy, c-format
+msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #, fuzzy
@@ -281,8 +303,9 @@ msgid "Clear legacy boot flag of partition %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -306,8 +329,9 @@ msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -373,25 +397,11 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவா�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Create %1$s on %2$s (%3$s)"
+msgid "Create %1$s on %2$s"
 msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Create Bcache %1$s (%2$s)"
-msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -478,6 +488,13 @@ msgstr "பரிமாற்ற தருக்கரீதியான அள�
 msgid "Create MS-DOS partition table on %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s (%2$s)"
+msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -512,6 +529,13 @@ msgstr "பரிமாற்ற தருக்கரீதியான அள�
 #, fuzzy, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
 msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache cache set on %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -806,7 +830,8 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவா�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -863,25 +888,11 @@ msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உ�
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Creating %1$s on %2$s (%3$s)"
+msgid "Creating %1$s on %2$s"
 msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்கு அமைக்கவும்"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Creating Bcache %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -910,6 +921,20 @@ msgstr "பரிமாற்ற தருக்கரீதியான அள�
 #, fuzzy, c-format
 msgid "Creating MS-DOS partition table on %1$s"
 msgstr "பகுதி பிரிப்பு %1$s உருவாக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache cache set %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -981,7 +1006,8 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவா�
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -1025,26 +1051,26 @@ msgid "DM RAID"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "மென்பொருள் RAID %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache cache set on %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1084,26 +1110,26 @@ msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s உடன் வடிவமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
-
-#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache cache set on %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1152,25 +1178,11 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்க�
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Delete Bcache %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
-
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1198,6 +1210,13 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்க�
 msgid "Delete MS-DOS partition table on %1$s"
 msgstr "பகுதி பிரிப்பு %1$s நீக்கப்படுகிறது"
 
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
+
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -1205,6 +1224,13 @@ msgstr "பகுதி பிரிப்பு %1$s நீக்கப்ப�
 #, fuzzy, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache cache set on %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1277,8 +1303,9 @@ msgid "Delete primary partition %1$s (%2$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -1311,25 +1338,11 @@ msgstr "%2$sக்கு அளவு குழு %1$sஐ குறைக்க
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
 msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்கு அமைக்கவும்"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
-
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1356,6 +1369,20 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்க�
 #, fuzzy, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
 msgstr "பகுதி பிரிப்பு %1$s நீக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) நீக்கவும்"
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache cache set on %1$s (%2$s)"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1419,8 +1446,9 @@ msgid "Deleting primary partition %1$s (%2$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -1453,7 +1481,7 @@ msgstr "%2$sக்கு அளவு குழு %1$s குறைக்கப
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
@@ -1461,7 +1489,7 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவா�
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -1763,18 +1791,29 @@ msgid "GiB"
 msgstr "ஜிபி"
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
@@ -1782,24 +1821,24 @@ msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன் வடிவமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் வடிவமைக்கவும்"
@@ -1807,8 +1846,8 @@ msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
@@ -1816,26 +1855,37 @@ msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
@@ -1843,24 +1893,24 @@ msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "பகுதி பிரிப்பு %1$s (%2$s)%3$s உடன் வடிவமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s உடன் வடிவமைக்கப்படுகிறது"
@@ -1868,8 +1918,8 @@ msgstr "தருக்கரீதியான அளவு %1$s (%2$s) %3$s �
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s உடன் %4$sகாக உருவாக்கவும்"
@@ -1877,8 +1927,8 @@ msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) %3$s
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -1972,8 +2022,9 @@ msgid "Mount %1$s %2$s (%3$s) at %4$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount %1$s at %2$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
@@ -2023,24 +2074,27 @@ msgid "Mount partition %1$s (%2$s) at %3$s"
 msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன் வடிவமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "துவக்க பகுதி பிரிப்பு %1$sஐ (%2$s)%3$s உடன் உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting %1$s at %2$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -2192,6 +2246,11 @@ msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவா�
 msgid "Probing file system on %s failed"
 msgstr ""
 
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing file system with UUID %s failed"
+msgstr "பகுதி பிரிப்பு %1$sஐ (%2$s) உருவாக்கவும்"
+
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
 msgstr ""
@@ -2254,6 +2313,15 @@ msgid "Reiserfs"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Remove %1$s (%2$s) from btrfs on %3$s"
+msgstr "%2$sலிருந்து %1$sஐ நீக்கவும்"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -2276,19 +2344,30 @@ msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "%2$sலிருந்து ஏற்ற நிலை %1$sக்கான உள்ளிடுதலை நீக்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Removing %1$s (%2$s) from btrfs on %3$s"
+msgstr "%2$sலிருந்து %1$sஐ நீக்கவும்"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2313,16 +2392,18 @@ msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by thr mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "%2$sலிருந்து ஏற்ற நிலை %1$sக்கான உள்ளிடுதல் நீக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "%2$sலிருந்து ஏற்ற நிலை %1$sக்கான உள்ளிடுதல் நீக்கப்படுகிறது"
@@ -2377,10 +2458,12 @@ msgid "Repairing GPT on %1$s"
 msgstr "%$s உருவாக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
-msgid "Set UUID of %1$s to %2$s"
+msgid "Set UUID of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
@@ -2394,12 +2477,13 @@ msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்க
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -2427,10 +2511,12 @@ msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்கு அமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
-msgid "Set label of %1$s to %2$s"
+msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கவும்"
 
 #. TRANSLATORS: displayed before action,
@@ -2440,8 +2526,9 @@ msgid "Set legacy boot flag of partition %1$s"
 msgstr "பகுதி பிரிப்பு %1$s நீக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2453,16 +2540,20 @@ msgid "Set protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Set tune options of %1$s"
+msgid "Set tune options of %1$s on %2$s"
 msgstr "பகுதி பிரிப்பு வகை %1$sஐ %2$Xக்கு அமைக்கவும்"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
-msgid "Setting UUID of %1$s to %2$s"
+msgid "Setting UUID of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
@@ -2476,12 +2567,13 @@ msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "பரிமாற்ற தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "தருக்கரீதியான அளவு %1$sஐ (%2$s) உருவாக்கவும்"
@@ -2509,10 +2601,12 @@ msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு அமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
-msgid "Setting label of %1$s to %2$s"
+msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "%2$sக்கு %1$s மீது விளக்கச்சீட்டு அமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
@@ -2522,8 +2616,9 @@ msgid "Setting legacy boot flag of partition %1$s"
 msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு அமைக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2535,24 +2630,37 @@ msgid "Setting protective MBR boot flag of GPT on %1$s"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Setting tune options of %1$s"
+msgid "Setting tune options of %1$s on %2$s"
 msgstr "பகுதி பிரிப்பு வகை %1$s %2$Xக்கு அமைக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "%1$sஐ %2$sக்கு சுருக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "%1$sஐ %2$sக்கு சுருக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
@@ -2560,24 +2668,24 @@ msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவை %1$sலிருந்து %2$sக்கு சுருக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "பகுதி பிரிப்பு %1$sஐ %2$sக்கு சுருக்கவும்"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "தருக்கரீதியான அளவை %1$sலிருந்து %2$sக்கு சுருக்கவும்"
@@ -2585,8 +2693,8 @@ msgstr "தருக்கரீதியான அளவை %1$sலிருந
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sலிருந்து %2$sக்கு சுருக்கப்படுகிறது"
@@ -2594,26 +2702,37 @@ msgstr "தருக்கரீதியான அளவு %1$sலிருந
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sலிருந்து %2$sக்கு சுருக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "%1$s %2$sக்கு சுருக்கப்படுகிறது"
+
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "%1$s %2$sக்கு சுருக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%2$s)%3$s உடன் %4$sகாக வடிவமைக்கவும்"
@@ -2621,24 +2740,24 @@ msgstr "மறைக்கப்பட்ட்ட சாதனம் %1$sஐ (%
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "தருக்கரீதியான அளவு %1$sலிருந்து %2$sக்கு சுருக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "பகுதி பிரிப்பு %1$s %2$sக்கு சுருக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "தருக்கரீதியான அளவு %1$sலிருந்து %2$sக்கு சுருக்கப்படுகிறது"
@@ -2646,8 +2765,8 @@ msgstr "தருக்கரீதியான அளவு %1$sலிருந
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2656,8 +2775,8 @@ msgstr "தருக்கரீதியான அளவு %1$sலிருந
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
@@ -2691,8 +2810,9 @@ msgid "UDF"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount %1$s at %2$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
@@ -2712,38 +2832,43 @@ msgid "Unmount file system btrfs on %1$s at %2$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "nfs ஒலியளவு %1$s நீக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting %1$s at %2$s"
 msgstr "%2$sல் %1$s ஏற்றப்படுகிறது"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
 msgstr "nfs ஒலியளவு %1$s நீக்கப்படுகிறது"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "ஏற்ற நிலை %1$sக்கு %2$sல் உள்ளிடுதலை புதுப்பிக்கவும்"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "ஏற்ற நிலை %1$sக்கு %2$sல் உள்ளிடுதல் புதுப்பிக்கப்படுகிறது"
