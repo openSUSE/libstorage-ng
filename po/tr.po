@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-25 15:22+0100\n"
+"POT-Creation-Date: 2019-06-06 14:56+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -190,6 +190,16 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Add %1$s (%2$s) to btrfs on %3$s"
+msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -212,19 +222,31 @@ msgid "Add encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Adding %1$s (%2$s) to btrfs on %3$s"
+msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
 
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed during action,
@@ -250,35 +272,39 @@ msgid "Adding encryption layer device on %1$s to /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
 
+# clients/inst_custom_part.ycp:3254
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attach Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+#, fuzzy, c-format
+msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
+# clients/inst_custom_part.ycp:3254
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
-msgid "Attaching Bcache cache set on %1$s to Bcache %2$s (%3$s)"
-msgstr ""
+#, fuzzy, c-format
+msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 #, fuzzy
@@ -321,8 +347,9 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
@@ -346,8 +373,9 @@ msgid "Clearing legacy boot flag of partition %1$s"
 msgstr "%1 bölümünde takas alanı oluşturuluyor..."
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -418,27 +446,11 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Create %1$s on %2$s (%3$s)"
+msgid "Create %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
-
-# include/partitioning/lvm_ui_dialogs.ycp:81
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Create Bcache %1$s (%2$s)"
-msgstr "Mantıksal yığın oluştur"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Create Bcache cache set on %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed before action,
@@ -549,6 +561,14 @@ msgid "Create MS-DOS partition table on %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache %1$s (%2$s)"
+msgstr "Mantıksal yığın oluştur"
+
+# include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -586,6 +606,14 @@ msgstr "Mantıksal yığın oluştur"
 #, fuzzy, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
 msgstr "Mantıksal yığın oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Create bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_custom_part.ycp:3254
 #. TRANSLATORS:
@@ -929,7 +957,8 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -999,27 +1028,11 @@ msgstr "Mantıksal yığın oluştur"
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Creating %1$s on %2$s (%3$s)"
+msgid "Creating %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Creating Bcache %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Creating Bcache cache set %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed during action,
@@ -1052,6 +1065,22 @@ msgstr "Mantıksal yığın oluştur"
 #, fuzzy, c-format
 msgid "Creating MS-DOS partition table on %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Creating bcache cache set %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed during action,
@@ -1137,7 +1166,8 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
@@ -1190,22 +1220,6 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 msgid "DM RAID"
 msgstr ""
 
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivate Bcache %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivate Bcache cache set on %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
 # include/partitioning/lvm_ui_dialogs.ycp:319
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1214,6 +1228,22 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 #, fuzzy, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "Yığın grubu oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivate bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed before action,
@@ -1266,22 +1296,6 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivating Bcache %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deactivating Bcache cache set on %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
-
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1290,6 +1304,22 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 #, fuzzy, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deactivating bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed during action,
@@ -1354,27 +1384,11 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
-
-# clients/inst_do_resize.ycp:450
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Delete Bcache %1$s (%2$s)"
-msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Delete Bcache cache set on %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed before action,
@@ -1407,6 +1421,14 @@ msgid "Delete MS-DOS partition table on %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
 # clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache %1$s (%2$s)"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_do_resize.ycp:450
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
@@ -1414,6 +1436,14 @@ msgstr "%1 sabit disk bölümü kontrol ediliyor"
 #, fuzzy, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Delete bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed before action,
@@ -1497,8 +1527,9 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
 #. %2$s is replaced with the block device name (e.g. /dev/sda1)
@@ -1535,27 +1566,11 @@ msgstr "Mantıksal yığın oluştur"
 # include/partitioning/partition_defines.ycp:248
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
-#. and /dev/sdb2 (1 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
 msgstr "%3 olan Windows %1 (%2) bölümünün boyutunu %4 olarak değiştir"
-
-# clients/inst_do_resize.ycp:450
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deleting Bcache %1$s (%2$s)"
-msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
-
-# clients/inst_custom_part.ycp:3254
-#. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
-msgid "Deleting Bcache cache set on %1$s (%2$s)"
-msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_rootpart.ycp:129
 #. TRANSLATORS: displayed during action,
@@ -1586,6 +1601,22 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 #, fuzzy, c-format
 msgid "Deleting MS-DOS partition table on %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/bcache0),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache %1$s (%2$s)"
+msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by size (e.g. 2 GiB)
+#, fuzzy, c-format
+msgid "Deleting bcache cache set on %1$s (%2$s)"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/ui/file_popups.ycp:84 include/ui/file_popups.ycp:125 include/ui/file_popups.ycp:136 include/ui/file_popups.ycp:178 include/ui/file_popups.ycp:227 include/ui/file_popups.ycp:267 include/ui/file_popups.ycp:277 include/ui/file_popups.ycp:319
 #. TRANSLATORS: displayed during action,
@@ -1659,8 +1690,9 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
@@ -1697,7 +1729,7 @@ msgstr "Yığın grubu oluştur"
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_custom_part.ycp:3254
@@ -1706,7 +1738,7 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
+msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 #. TRANSLATORS: Error message displayed during probing,
@@ -2090,10 +2122,25 @@ msgstr "GB"
 # ycp-format
 # include/partitioning/partition_defines.ycp:241
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
+
+# please, check %1, %2, %3.
+# 2000-03-29 14:11:44 CEST -ke-
+# ycp-format
+# include/partitioning/partition_defines.ycp:241
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2104,8 +2151,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
@@ -2117,8 +2164,8 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2129,8 +2176,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
@@ -2141,8 +2188,8 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 # include/partitioning/partition_defines.ycp:241
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2154,8 +2201,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2167,8 +2214,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2179,10 +2226,25 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # ycp-format
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 1.0 GiB),
+#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#, fuzzy, c-format
+msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
+
+# please, check %1, %2, %3.
+# 2000-03-29 14:11:44 CEST -ke-
+# ycp-format
+# include/partitioning/partition_defines.ycp:238
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
@@ -2193,8 +2255,8 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
@@ -2206,8 +2268,8 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2218,8 +2280,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1 GiB),
-#. %3$s is replaced by new size (e.g. 2 GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
@@ -2230,8 +2292,8 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 # include/partitioning/partition_defines.ycp:241
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1GiB),
-#. %3$s is replaced by new size (e.g. 2GiB)
+#. %2$s is replaced by old size (e.g. 1.0 GiB),
+#. %3$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2243,8 +2305,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -2256,8 +2318,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1GiB),
-#. %4$s is replaced by new size (e.g. 2GiB)
+#. %3$s is replaced by old size (e.g. 1.0 GiB),
+#. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2360,8 +2422,9 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount %1$s at %2$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
@@ -2429,26 +2492,29 @@ msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 # ycp-format
 # include/partitioning/partition_defines.ycp:238
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "%3 üzerinde %2 %4 %1 bölümü oluştur"
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting %1$s at %2$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
 msgstr "Mantıksal yığın oluştur"
@@ -2605,6 +2671,12 @@ msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 msgid "Probing file system on %s failed"
 msgstr ""
 
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: error message
+#, fuzzy, c-format
+msgid "Probing file system with UUID %s failed"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
 msgstr ""
@@ -2672,6 +2744,15 @@ msgid "Reiserfs"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Remove %1$s (%2$s) from btrfs on %3$s"
+msgstr "%1 aygıtını /etc/fstab içinden kaldır"
+
+#. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by device name (e.g. /dev/md0)
 #. TRANSLATORS: displayed before action,
@@ -2694,19 +2775,30 @@ msgid "Remove encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+
+#. TRANSLATORS: displayed during action,
+#. %1$s is replaced by the device name (e.g. /dev/sdc1),
+#. %2$s is replaced by the device size (e.g. 2.0 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+#. and /dev/sdb2 (2.0 GiB))
+#, fuzzy, c-format
+msgid "Removing %1$s (%2$s) from btrfs on %3$s"
+msgstr "%1 aygıtını /etc/fstab içinden kaldır"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2731,16 +2823,18 @@ msgid "Removing encryption layer device on %1$s from /etc/crypttab"
 msgstr ""
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by thr mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by subvolume path (e.g. home),
-#. %3$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by the subvolume path (e.g. home),
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
@@ -2797,10 +2891,12 @@ msgid "Repairing GPT on %1$s"
 msgstr "%1 biçimlendiriliyor"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
-msgid "Set UUID of %1$s to %2$s"
+msgid "Set UUID of %1$s on %2$s to %3$s"
 msgstr "%1 yığının adını %2 olarak değiştir"
 
 # clients/inst_do_resize.ycp:450
@@ -2816,13 +2912,14 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
+msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Mantıksal yığın oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
@@ -2853,10 +2950,12 @@ msgid "Set id of partition %1$s to 0x%2$02X"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
-msgid "Set label of %1$s to %2$s"
+msgid "Set label of %1$s on %2$s to %3$s"
 msgstr "%1 yığının adını %2 olarak değiştir"
 
 # clients/inst_rootpart.ycp:129
@@ -2867,8 +2966,9 @@ msgid "Set legacy boot flag of partition %1$s"
 msgstr "%1 sabit disk bölümü kontrol ediliyor"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2881,16 +2981,20 @@ msgstr ""
 
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Set tune options of %1$s"
+msgid "Set tune options of %1$s on %2$s"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
-msgid "Setting UUID of %1$s to %2$s"
+msgid "Setting UUID of %1$s on %2$s to %3$s"
 msgstr "%1 yığının adını %2 olarak değiştir"
 
 # clients/inst_rootpart.ycp:401
@@ -2906,13 +3010,14 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
 #, fuzzy, c-format
-msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
+msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Mantıksal yığın oluştur"
 
 # include/partitioning/lvm_ui_dialogs.ycp:81
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "Mantıksal yığın oluştur"
@@ -2943,10 +3048,12 @@ msgid "Setting id of partition %1$s to 0x%2$02X"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by label (e.g. ROOT)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
-msgid "Setting label of %1$s to %2$s"
+msgid "Setting label of %1$s on %2$s to %3$s"
 msgstr "%1 yığının adını %2 olarak değiştir"
 
 # clients/inst_rootpart.ycp:401
@@ -2957,8 +3064,9 @@ msgid "Setting legacy boot flag of partition %1$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by block device name (e.g. /dev/sda1)
+#. %1$s is replaced by the subvolume path (e.g. var/log),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -2971,26 +3079,41 @@ msgstr ""
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by file system name (e.g. ext4),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
-msgid "Setting tune options of %1$s"
+msgid "Setting tune options of %1$s on %2$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
+
+#
+# include/partitioning/auto_part_ui.ycp:151
+#. TRANSLATORS: displayed before action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "&Windows bölümünü küçült"
 
 #
 # include/partitioning/auto_part_ui.ycp:151
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "&Windows bölümünü küçült"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -2999,8 +3122,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
@@ -3008,8 +3131,8 @@ msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
@@ -3017,8 +3140,8 @@ msgstr "%1 bölümünün boyutunu %2 olarak değiştir"
 # clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
@@ -3030,8 +3153,8 @@ msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -3043,8 +3166,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -3052,10 +3175,22 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 
 # clients/inst_do_resize.ycp:450
 #. TRANSLATORS: displayed during action,
+#. %1$s is replaced by device name (e.g. /dev/sda1),
+#. %2$s is replaced by file system (e.g. ext4),
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
+#. /dev/sdb2 (1.0 GiB)),
+#. %4$s is replaced by old size (e.g. 2.0 GiB),
+#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#, fuzzy, c-format
+msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
+msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
+
+# clients/inst_do_resize.ycp:450
+#. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
@@ -3063,8 +3198,8 @@ msgstr "%1 bölümünün boyutu %2 MB olarak değiştiriliyor"
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
@@ -3076,8 +3211,8 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
@@ -3085,8 +3220,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2 GiB),
-#. %3$s is replaced by new size (e.g. 1 GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
@@ -3094,8 +3229,8 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 # clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2GiB),
-#. %3$s is replaced by new size (e.g. 1GiB)
+#. %2$s is replaced by old size (e.g. 2.0 GiB),
+#. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
@@ -3107,8 +3242,8 @@ msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -3121,8 +3256,8 @@ msgstr "%1 üzerinde %3 için %2 %4 %5 oluştur"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2GiB),
-#. %4$s is replaced by new size (e.g. 1GiB)
+#. %3$s is replaced by old size (e.g. 2.0 GiB),
+#. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
@@ -3157,8 +3292,9 @@ msgstr ""
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount %1$s at %2$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
@@ -3181,40 +3317,45 @@ msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 # clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 
 # clients/inst_rootpart.ycp:401
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting %1$s at %2$s"
 msgstr "%1 root bölümü %2 noktasında sisteme bağlanıyor..."
 
 # clients/inst_lvm_lv.ycp:363 clients/lvm_config_ui.ycp:483
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by subvolume path (e.g. home),
-#. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by mount point (e.g. /home)
+#. %1$s is replaced by the subvolume path (e.g. home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB)),
+#. %3$s is replaced by the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
 msgstr "%1 mantıksal yığınını silmek istiyor musunuz?"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by mount point (e.g. /home),
-#. %2$s is replaced by device name (e.g. /dev/sda1)
+#. %1$s is replaced by the mount point (e.g. /home),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+#. and /dev/sdb2 (1.0 GiB))
 #, fuzzy, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "%1 aygıtının bağlama noktasını %2 yap"
