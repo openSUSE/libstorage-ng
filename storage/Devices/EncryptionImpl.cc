@@ -330,41 +330,40 @@ namespace storage
 
 
     Text
-    Encryption::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				     const BlkDevice* blk_device, Tense tense) const
+    Encryption::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const Encryption* encryption_lhs = to_encryption(lhs);
-	const Encryption* encryption_rhs = to_encryption(rhs);
+	const Encryption* encryption_lhs = to_encryption(action->get_device(commit_data.actiongraph, LHS));
+	const Encryption* encryption_rhs = to_encryption(action->get_device(commit_data.actiongraph, RHS));
 
 	Text text;
 
-	switch (resize_mode)
+	switch (action->resize_mode)
 	{
 	    case ResizeMode::SHRINK:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2.0 GiB),
+			      // %3$s is replaced by new size (e.g. 1.0 GiB)
 			      _("Shrink encryption layer device on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2.0 GiB),
+			      // %3$s is replaced by new size (e.g. 1.0 GiB)
 			      _("Shrinking encryption layer device on %1$s from %2$s to %3$s"));
 		break;
 
 	    case ResizeMode::GROW:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1.0 GiB),
+			      // %3$s is replaced by new size (e.g. 2.0 GiB)
 			      _("Grow encryption layer device on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1.0 GiB),
+			      // %3$s is replaced by new size (e.g. 2.0 GiB)
 			      _("Growing encryption layer device on %1$s from %2$s to %3$s"));
 		break;
 

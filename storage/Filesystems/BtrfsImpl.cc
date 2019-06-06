@@ -731,34 +731,6 @@ namespace storage
     }
 
 
-    Text
-    Btrfs::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				const BlkDevice* blk_device, Tense tense) const
-    {
-	if (get_blk_devices().size() == 1)
-	    return BlkFilesystem::Impl::do_resize_text(resize_mode, lhs, rhs, blk_device, tense);
-
-	if (resize_mode == ResizeMode::SHRINK)
-	    ST_THROW(LogicException("invalid value for resize_mode (shrink for multi-device Btrfs)"));
-
-	Text text = tenser(tense,
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by the device name (e.g., /dev/sda1),
-			   // %2$s is replaced by file system name (i.e., btrfs),
-			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
-			   _("Grow %1$s of %2$s on %3$s"),
-			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by the device name (e.g., /dev/sda1),
-			   // %2$s is replaced by file system name (i.e., btrfs),
-			   // %3$s is replaced by one or more devices (e.g., /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
-			   _("Growing %1$s of %2$s on %3$s"));
-
-	return sformat(text, blk_device->get_name(), get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
-    }
-
-
     void
     Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
@@ -850,15 +822,15 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
-			      // and /dev/sdb2 (2.00 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+			      // and /dev/sdb2 (2.0 GiB))
 			      _("Remove %1$s (%2$s) from btrfs on %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
-			      // and /dev/sdb2 (2.00 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+			      // and /dev/sdb2 (2.0 GiB))
 			      _("Removing %1$s (%2$s) from btrfs on %3$s"));
 		break;
 
@@ -866,15 +838,15 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
-			      // and /dev/sdb2 (2.00 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+			      // and /dev/sdb2 (2.0 GiB))
 			      _("Add %1$s (%2$s) to btrfs on %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.00 GiB)
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
-			      // and /dev/sdb2 (2.00 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
+			      // and /dev/sdb2 (2.0 GiB))
 			      _("Adding %1$s (%2$s) to btrfs on %3$s"));
 		break;
 
@@ -885,7 +857,7 @@ namespace storage
 	const BlkDevice* blk_device = to_blk_device(device);
 
 	return sformat(text, blk_device->get_name(), blk_device->get_size_string(),
-		       join(get_blk_devices(), JoinMode::COMMA, 10));
+		       get_message_name());
     }
 
 

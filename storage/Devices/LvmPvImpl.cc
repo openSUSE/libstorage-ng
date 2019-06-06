@@ -354,41 +354,43 @@ namespace storage
 
 
     Text
-    LvmPv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				const BlkDevice* blk_device, Tense tense) const
+    LvmPv::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_lhs = to_lvm_pv(lhs)->get_impl().get_blk_device();
-	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
+	const LvmPv* lvm_pv_lhs = to_lvm_pv(action->get_device(commit_data.actiongraph, LHS));
+	const LvmPv* lvm_pv_rhs = to_lvm_pv(action->get_device(commit_data.actiongraph, RHS));
+
+	const BlkDevice* blk_device_lhs = lvm_pv_lhs->get_impl().get_blk_device();
+	const BlkDevice* blk_device_rhs = lvm_pv_rhs->get_impl().get_blk_device();
 
 	Text text;
 
-	switch (resize_mode)
+	switch (action->resize_mode)
 	{
 	    case ResizeMode::SHRINK:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdb1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2.0 GiB),
+			      // %3$s is replaced by new size (e.g. 1.0 GiB)
 			      _("Shrink physical volume on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by device name (e.g. /dev/sdb1),
-			      // %2$s is replaced by old size (e.g. 2GiB),
-			      // %3$s is replaced by new size (e.g. 1GiB)
+			      // %2$s is replaced by old size (e.g. 2.0 GiB),
+			      // %3$s is replaced by new size (e.g. 1.0 GiB)
 			      _("Shrinking physical volume on %1$s from %2$s to %3$s"));
 		break;
 
 	    case ResizeMode::GROW:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdb1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1.0 GiB),
+			      // %3$s is replaced by new size (e.g. 2.0 GiB)
 			      _("Grow physical volume on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by device name (e.g. /dev/sdb1),
-			      // %2$s is replaced by old size (e.g. 1GiB),
-			      // %3$s is replaced by new size (e.g. 2GiB)
+			      // %2$s is replaced by old size (e.g. 1.0 GiB),
+			      // %3$s is replaced by new size (e.g. 2.0 GiB)
 			      _("Growing physical volume on %1$s from %2$s to %3$s"));
 		break;
 
@@ -396,7 +398,7 @@ namespace storage
 		ST_THROW(LogicException("invalid value for resize_mode"));
 	}
 
-	return sformat(text, blk_device->get_name(), blk_device_lhs->get_impl().get_size_text(),
+	return sformat(text, action->blk_device->get_name(), blk_device_lhs->get_impl().get_size_text(),
 		       blk_device_rhs->get_impl().get_size_text());
     }
 
@@ -404,7 +406,6 @@ namespace storage
     void
     LvmPv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
     {
-	// const BlkDevice* blk_device = get_blk_device();
 	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
 
 	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());

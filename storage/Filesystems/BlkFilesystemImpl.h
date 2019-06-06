@@ -113,6 +113,8 @@ namespace storage
 	virtual ContentInfo detect_content_info_on_disk() const;
 	void set_content_info(const ContentInfo& content_info);
 
+	virtual Text get_message_name() const override;
+
 	virtual string get_mount_name() const override;
 	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
 
@@ -141,8 +143,7 @@ namespace storage
 	virtual Text do_set_tune_options_text(Tense tense) const;
 	virtual void do_set_tune_options() const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    const BlkDevice* blk_device, Tense tense) const override;
+	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

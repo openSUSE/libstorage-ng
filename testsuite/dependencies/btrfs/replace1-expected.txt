@@ -1,0 +1,11 @@
+1a - Remove mount point /test1 of /dev/sdc3 (27.95 GiB) and /dev/sdd3 (27.95 GiB) from /etc/fstab -> 1b
+1b - Unmount /dev/sdc3 (27.95 GiB) and /dev/sdd3 (27.95 GiB) at /test1 -> 1c
+1c - Delete btrfs on /dev/sdc3 (27.95 GiB) and /dev/sdd3 (27.95 GiB) -> 2a 3a
+
+2a - Create xfs on /dev/sdc3 (27.95 GiB) -> 2b
+2b - Mount /dev/sdc3 (27.95 GiB) at /test2 -> 2c 3b
+2c - Add mount point /test2 of /dev/sdc3 (27.95 GiB) to /etc/fstab ->
+
+3a - Create xfs on /dev/sdd3 (27.95 GiB) -> 3b
+3b - Mount /dev/sdd3 (27.95 GiB) at /test3 -> 3c
+3c - Add mount point /test3 of /dev/sdd3 (27.95 GiB) to /etc/fstab ->

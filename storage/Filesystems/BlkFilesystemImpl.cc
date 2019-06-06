@@ -630,6 +630,13 @@ namespace storage
     }
 
 
+    Text
+    BlkFilesystem::Impl::get_message_name() const
+    {
+	return join(get_blk_devices(), JoinMode::COMMA, 10);
+    }
+
+
     string
     BlkFilesystem::Impl::get_mount_name() const
     {
@@ -746,7 +753,7 @@ namespace storage
 			   // /dev/sdb2 (1.0 GiB))
 			   _("Creating %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
+	return sformat(text, get_displayname(), get_message_name());
     }
 
 
@@ -767,7 +774,7 @@ namespace storage
 			   // %3$s is replaced by label (e.g. ROOT)
 			   _("Setting label of %1$s on %2$s to %3$s"));
 
-	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10), label);
+	return sformat(text, get_displayname(), get_message_name(), label);
     }
 
 
@@ -795,7 +802,7 @@ namespace storage
 			   // %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 			   _("Setting UUID of %1$s on %2$s to %3$s"));
 
-	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10), uuid);
+	return sformat(text, get_displayname(), get_message_name(), uuid);
     }
 
 
@@ -821,7 +828,7 @@ namespace storage
 			   // /dev/sdb2 (1.0 GiB))
 			   _("Setting tune options of %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), join(get_blk_devices(), JoinMode::COMMA, 10));
+	return sformat(text, get_displayname(), get_message_name());
     }
 
 
@@ -833,55 +840,111 @@ namespace storage
 
 
     Text
-    BlkFilesystem::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-					const BlkDevice* blk_device, Tense tense) const
+    BlkFilesystem::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_lhs = to_blk_filesystem(lhs)->get_impl().get_blk_device();
-	const BlkDevice* blk_device_rhs = to_blk_filesystem(rhs)->get_impl().get_blk_device();
+	const BlkDevice* blk_device_lhs = action->get_resized_blk_device(commit_data.actiongraph, LHS);
+	const BlkDevice* blk_device_rhs = action->get_resized_blk_device(commit_data.actiongraph, RHS);
 
-	Text text;
-
-	switch (resize_mode)
+	if (get_blk_devices().size() == 1)
 	{
-	    case ResizeMode::SHRINK:
-		text = tenser(tense,
-			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by file system (e.g. ext4),
-			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 2.00 GiB),
-			      // %4$s is replaced by new size (e.g. 1.00 GiB)
-			      _("Shrink %1$s on %2$s from %3$s to %4$s"),
-			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by file system (e.g. ext4),
-			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 2.00 GiB),
-			      // %4$s is replaced by new size (e.g. 1.00 GiB)
-			      _("Shrinking %1$s on %2$s from %3$s to %4$s"));
-		break;
+	    Text text;
 
-	    case ResizeMode::GROW:
-		text = tenser(tense,
-			      // TRANSLATORS: displayed before action,
-			      // %1$s is replaced by file system (e.g. ext4),
-			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 1.00 GiB),
-			      // %4$s is replaced by new size (e.g. 2.00 GiB)
-			      _("Grow %1$s on %2$s from %3$s to %4$s"),
-			      // TRANSLATORS: displayed during action,
-			      // %1$s is replaced by file system (e.g. ext4),
-			      // %2$s is replaced by device name (e.g. /dev/sda1),
-			      // %3$s is replaced by old size (e.g. 1.00 GiB),
-			      // %4$s is replaced by new size (e.g. 2.00 GiB)
-			      _("Growing %1$s on %2$s from %3$s to %4$s"));
-		break;
+	    switch (action->resize_mode)
+	    {
+		case ResizeMode::SHRINK:
+		    text = tenser(commit_data.tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by file system (e.g. ext4),
+				  // %2$s is replaced by device name (e.g. /dev/sda1),
+				  // %3$s is replaced by old size (e.g. 2.0 GiB),
+				  // %4$s is replaced by new size (e.g. 1.0 GiB)
+				  _("Shrink %1$s on %2$s from %3$s to %4$s"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by file system (e.g. ext4),
+				  // %2$s is replaced by device name (e.g. /dev/sda1),
+				  // %3$s is replaced by old size (e.g. 2.0 GiB),
+				  // %4$s is replaced by new size (e.g. 1.0 GiB)
+				  _("Shrinking %1$s on %2$s from %3$s to %4$s"));
+		    break;
 
-	    default:
-		ST_THROW(LogicException("invalid value for resize_mode"));
+		case ResizeMode::GROW:
+		    text = tenser(commit_data.tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by file system (e.g. ext4),
+				  // %2$s is replaced by device name (e.g. /dev/sda1),
+				  // %3$s is replaced by old size (e.g. 1.0 GiB),
+				  // %4$s is replaced by new size (e.g. 2.0 GiB)
+				  _("Grow %1$s on %2$s from %3$s to %4$s"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by file system (e.g. ext4),
+				  // %2$s is replaced by device name (e.g. /dev/sda1),
+				  // %3$s is replaced by old size (e.g. 1.0 GiB),
+				  // %4$s is replaced by new size (e.g. 2.0 GiB)
+				  _("Growing %1$s on %2$s from %3$s to %4$s"));
+		    break;
+
+		default:
+		    ST_THROW(LogicException("invalid value for resize_mode"));
+	    }
+
+	    return sformat(text, get_displayname(), action->blk_device->get_name(),
+			   blk_device_lhs->get_impl().get_size_text(),
+			   blk_device_rhs->get_impl().get_size_text());
 	}
+	else
+	{
+	    Text text;
 
-	return sformat(text, get_displayname(), blk_device->get_name(),
-		       blk_device_lhs->get_impl().get_size_text(),
-		       blk_device_rhs->get_impl().get_size_text());
+	    switch (action->resize_mode)
+	    {
+		case ResizeMode::SHRINK:
+		    text = tenser(commit_data.tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by device name (e.g. /dev/sda1),
+				  // %2$s is replaced by file system (e.g. ext4),
+				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // /dev/sdb2 (1.0 GiB)),
+				  // %4$s is replaced by old size (e.g. 2.0 GiB),
+				  // %5$s is replaced by new size (e.g. 1.0 GiB)
+				  _("Shrink %1$s of %2$s on %3$s from %4$s to %5$s"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by device name (e.g. /dev/sda1),
+				  // %2$s is replaced by file system (e.g. ext4),
+				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // /dev/sdb2 (1.0 GiB)),
+				  // %4$s is replaced by old size (e.g. 2.0 GiB),
+				  // %5$s is replaced by new size (e.g. 1.0 GiB)
+				  _("Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"));
+		    break;
+
+		case ResizeMode::GROW:
+		    text = tenser(commit_data.tense,
+				  // TRANSLATORS: displayed before action,
+				  // %1$s is replaced by device name (e.g. /dev/sda1),
+				  // %2$s is replaced by file system (e.g. ext4),
+				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // /dev/sdb2 (1.0 GiB)),
+				  // %4$s is replaced by old size (e.g. 1.0 GiB),
+				  // %5$s is replaced by new size (e.g. 2.0 GiB)
+				  _("Grow %1$s of %2$s on %3$s from %4$s to %5$s"),
+				  // TRANSLATORS: displayed during action,
+				  // %1$s is replaced by device name (e.g. /dev/sda1),
+				  // %2$s is replaced by file system (e.g. ext4),
+				  // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
+				  // /dev/sdb2 (1.0 GiB)),
+				  // %4$s is replaced by old size (e.g. 1.0 GiB),
+				  // %5$s is replaced by new size (e.g. 2.0 GiB)
+				  _("Growing %1$s of %2$s on %3$s from %4$s to %5$s"));
+		    break;
+
+		default:
+		    ST_THROW(LogicException("invalid value for resize_mode"));
+	    }
+
+	    return sformat(text, action->blk_device->get_name(), get_displayname(), get_message_name(),
+			   blk_device_lhs->get_impl().get_size_text(),
+			   blk_device_rhs->get_impl().get_size_text());
+	}
     }
 
 
@@ -902,7 +965,7 @@ namespace storage
 			   // and /dev/sdb2 (1.0 GiB))
 			   _("Deleting %1$s on %2$s"));
 
-	return sformat(text, get_displayname(), join(blk_devices, JoinMode::COMMA, 10));
+	return sformat(text, get_displayname(), get_message_name());
     }
 
 

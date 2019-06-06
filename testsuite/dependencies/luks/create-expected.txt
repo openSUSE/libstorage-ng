@@ -3,5 +3,5 @@
 1c - Add encryption layer device on /dev/sda2 to /etc/crypttab ->
 
 2a - Create xfs on /dev/mapper/cr_home (8.00 GiB) -> 2b
-2b - Mount /dev/mapper/cr_home at /home -> 2c
-2c - Add mount point /home of /dev/mapper/cr_home to /etc/fstab ->
+2b - Mount /dev/mapper/cr_home (8.00 GiB) at /home -> 2c
+2c - Add mount point /home of /dev/mapper/cr_home (8.00 GiB) to /etc/fstab ->

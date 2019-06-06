@@ -880,67 +880,66 @@ namespace storage
 
 
     Text
-    LvmLv::Impl::do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				const BlkDevice* blk_device, Tense tense) const
+    LvmLv::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	const LvmLv* lvm_lv_lhs = to_lvm_lv(lhs);
-	const LvmLv* lvm_lv_rhs = to_lvm_lv(rhs);
+	const LvmLv* lvm_lv_lhs = to_lvm_lv(action->get_device(commit_data.actiongraph, LHS));
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
 	Text text;
 
-	switch (resize_mode)
+	switch (action->resize_mode)
 	{
 	    case ResizeMode::SHRINK:
 
 		switch (lv_type)
 		{
 		    case LvType::THIN_POOL:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
 		    case LvType::THIN:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
 		    default:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2GiB),
-				      // %4$s is replaced by new size (e.g. 1GiB)
+				      // %3$s is replaced by old size (e.g. 2.0 GiB),
+				      // %4$s is replaced by new size (e.g. 1.0 GiB)
 				      _("Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 		}
@@ -951,50 +950,50 @@ namespace storage
 		switch (lv_type)
 		{
 		    case LvType::THIN_POOL:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
 		    case LvType::THIN:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
 		    default:
-			text = tenser(tense,
+			text = tenser(commit_data.tense,
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1GiB),
-				      // %4$s is replaced by new size (e.g. 2GiB)
+				      // %3$s is replaced by old size (e.g. 1.0 GiB),
+				      // %4$s is replaced by new size (e.g. 2.0 GiB)
 				      _("Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 		}

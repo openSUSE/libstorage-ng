@@ -296,15 +296,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by the mount point (e.g. /home)
 			   _("Mount %1$s at %2$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by the mount point (e.g. /home)
 			   _("Mounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name(), mount_point->get_path());
+	return sformat(text, get_message_name(), mount_point->get_path());
     }
 
 
@@ -328,15 +330,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by the mount point (e.g. /home)
 			   _("Unmount %1$s at %2$s"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by the mount point (e.g. /home)
 			   _("Unmounting %1$s at %2$s"));
 
-	return sformat(text, get_mount_name(), mount_point->get_path());
+	return sformat(text, get_message_name(), mount_point->get_path());
     }
 
 
@@ -352,15 +356,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Add mount point %1$s of %2$s to /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Adding mount point %1$s of %2$s to /etc/fstab"));
 
-	return sformat(text, mount_point->get_path(), get_mount_name());
+	return sformat(text, mount_point->get_path(), get_message_name());
     }
 
 
@@ -388,15 +394,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Update mount point %1$s of %2$s in /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Updating mount point %1$s of %2$s in /etc/fstab"));
 
-	return sformat(text, mount_point->get_path(), get_mount_name());
+	return sformat(text, mount_point->get_path(), get_message_name());
     }
 
 
@@ -427,15 +435,17 @@ namespace storage
     {
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by the mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Remove mount point %1$s of %2$s from /etc/fstab"),
 			   // TRANSLATORS: displayed during action,
-			   // %1$s is replaced by mount point (e.g. /home),
-			   // %2$s is replaced by device name (e.g. /dev/sda1)
+			   // %1$s is replaced by thr mount point (e.g. /home),
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
+			   // and /dev/sdb2 (1.0 GiB))
 			   _("Removing mount point %1$s of %2$s from /etc/fstab"));
 
-	return sformat(text, mount_point->get_path(), get_mount_name());
+	return sformat(text, mount_point->get_path(), get_message_name());
     }
 
 

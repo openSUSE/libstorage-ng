@@ -46,6 +46,11 @@ namespace storage
 
     class Prober;
 
+    namespace Action
+    {
+	class Resize;
+    }
+
 
     template <typename Type> struct DeviceTraits {};
 
@@ -184,8 +189,7 @@ namespace storage
 	virtual Text do_deactivate_text(Tense tense) const;
 	virtual void do_deactivate() const;
 
-	virtual Text do_resize_text(ResizeMode resize_mode, const Device* lhs, const Device* rhs,
-				    const BlkDevice* blk_device, Tense tense) const;
+	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const;
 	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const;
 
 	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
@@ -450,6 +454,13 @@ namespace storage
 	    Side get_side() const { return resize_mode == ResizeMode::GROW ? RHS : LHS; }
 
 	    const ResizeMode resize_mode;
+
+	    /**
+	     * The underlying blk device being resized. Only allowed
+	     * if blk_device is not nullptr, see below.
+	     */
+	    const BlkDevice* get_resized_blk_device(const Actiongraph::Impl& actiongraph,
+						    Side side) const;
 
 	    /**
 	     * The underlying blk device being resized. nullptr for

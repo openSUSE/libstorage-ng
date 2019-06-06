@@ -15,15 +15,15 @@
 
 7a - Create logical volume root (22.40 GiB) on volume group system -> 7b
 7b - Create ext4 on /dev/system/root (22.40 GiB) -> 7c
-7c - Mount /dev/system/root at / -> 4c 7d 8d 9c
-7d - Add mount point / of /dev/system/root to /etc/fstab ->
+7c - Mount /dev/system/root (22.40 GiB) at / -> 4c 7d 8d 9c
+7d - Add mount point / of /dev/system/root (22.40 GiB) to /etc/fstab ->
 
 8a - Create logical volume swap (2.00 GiB) on volume group system -> 8b
 8b - Create swap on /dev/system/swap (2.00 GiB) -> 8c
-8c - Mount /dev/system/swap at swap -> 8d
-8d - Add mount point swap of /dev/system/swap to /etc/fstab ->
+8c - Mount /dev/system/swap (2.00 GiB) at swap -> 8d
+8d - Add mount point swap of /dev/system/swap (2.00 GiB) to /etc/fstab ->
 
 9a - Create logical volume home (25.59 GiB) on volume group system -> 9b
 9b - Create xfs on /dev/system/home (25.59 GiB) -> 9c
-9c - Mount /dev/system/home at /home -> 9d
-9d - Add mount point /home of /dev/system/home to /etc/fstab ->
+9c - Mount /dev/system/home (25.59 GiB) at /home -> 9d
+9d - Add mount point /home of /dev/system/home (25.59 GiB) to /etc/fstab ->
