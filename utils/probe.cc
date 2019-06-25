@@ -9,6 +9,7 @@
 #include "storage/Devicegraph.h"
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Logger.h"
+#include "storage/Utils/StorageDefines.h"
 
 
 using namespace std;
@@ -80,12 +81,11 @@ doit()
     {
 	const TmpDir& tmp_dir = storage.get_impl().get_tmp_dir();
 
-	probed->write_graphviz(tmp_dir.get_fullname() + "/probe.gv", GraphvizFlags::CLASSNAME |
-			       GraphvizFlags::NAME | GraphvizFlags::SID | GraphvizFlags::SIZE);
-	system(string("dot -Tsvg < " + quote(tmp_dir.get_fullname() + "/probe.gv") + " > " +
+	probed->write_graphviz(tmp_dir.get_fullname() + "/probe.gv", get_debug_devicegraph_style_callbacks());
+	system(string(DOT_BIN " -Tsvg < " + quote(tmp_dir.get_fullname() + "/probe.gv") + " > " +
 		      quote(tmp_dir.get_fullname() + "/probe.svg")).c_str());
 	unlink(string(tmp_dir.get_fullname() + "/probe.gv").c_str());
-	system(string("display " + quote(tmp_dir.get_fullname() + "/probe.svg")).c_str());
+	system(string(DISPLAY_BIN " " + quote(tmp_dir.get_fullname() + "/probe.svg")).c_str());
 	unlink(string(tmp_dir.get_fullname() + "/probe.svg").c_str());
     }
 }

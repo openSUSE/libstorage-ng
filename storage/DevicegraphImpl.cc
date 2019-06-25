@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -79,8 +79,8 @@
 #include "storage/Holders/Subdevice.h"
 #include "storage/Holders/MdSubdevice.h"
 #include "storage/Storage.h"
-#include "storage/FreeInfo.h"
 #include "storage/Utils/Format.h"
+#include "storage/GraphvizImpl.h"
 
 
 namespace storage
@@ -831,212 +831,31 @@ namespace storage
     namespace
     {
 
-	struct write_graph
+	struct DevicegraphWriter : public GraphWriter
 	{
-	    write_graph(const Devicegraph::Impl&) {}
+	    DevicegraphWriter(DevicegraphStyleCallbacks* style_callbacks, const Devicegraph::Impl& devicegraph)
+		: style_callbacks(style_callbacks), devicegraph(devicegraph) {}
+
+	    DevicegraphStyleCallbacks* style_callbacks;
+	    const Devicegraph::Impl& devicegraph;
 
 	    void operator()(ostream& out) const
 	    {
-		out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << '\n';
-		out << "edge [ color=\"#444444\" ];" << '\n';
+		write_attributes(out, "graph", style_callbacks->graph());
+		write_attributes(out, "node", style_callbacks->nodes());
+		write_attributes(out, "edge", style_callbacks->edges());
 	    }
-	};
-
-
-	string
-	vertex_text(const Device* device, GraphvizFlags flags)
-	{
-	    string ret;
-
-	    if (flags && GraphvizFlags::CLASSNAME)
-	    {
-		ret += string(device->get_impl().get_classname()) + "\\n";
-	    }
-
-	    if (flags && GraphvizFlags::PRETTY_CLASSNAME)
-	    {
-		ret += string(device->get_impl().get_pretty_classname()) + "\\n";
-	    }
-
-	    if (flags && GraphvizFlags::NAME)
-	    {
-		if (is_blk_device(device))
-                {
-                    const BlkDevice* blk_device = to_blk_device(device);
-                    ret += blk_device->get_name() + "\\n";
-                }
-                else if (is_lvm_vg(device))
-		{
-                    const LvmVg* lvm_vg = to_lvm_vg(device);
-                    ret += DEV_DIR "/" + lvm_vg->get_vg_name() + "\\n";
-		}
-	    }
-
-	    if (flags && GraphvizFlags::DISPLAYNAME)
-	    {
-		ret += string(device->get_displayname()) + "\\n";
-	    }
-
-	    if (flags && GraphvizFlags::SID)
-	    {
-		ret += "sid:" + to_string(device->get_sid()) + "\\n";
-	    }
-
-	    if (flags && GraphvizFlags::SIZE)
-	    {
-		if (is_blk_device(device))
-		{
-		    const BlkDevice* blk_device = to_blk_device(device);
-		    ret += blk_device->get_size_string() + "\\n";
-		}
-		else if (is_lvm_vg(device))
-		{
-		    const LvmVg* lvm_vg = to_lvm_vg(device);
-		    ret += lvm_vg->get_size_string() + "\\n";
-		}
-		else if (is_filesystem(device))
-		{
-		    const Filesystem* filesystem = to_filesystem(device);
-		    if (filesystem->has_space_info())
-			ret += filesystem->detect_space_info().get_size_string() + "\\n";
-		}
-	    }
-
-	    if (flags && GraphvizFlags::ACTIVE)
-	    {
-		if (is_blk_device(device))
-		{
-		    const BlkDevice* blk_device = to_blk_device(device);
-		    if (blk_device->get_impl().is_active())
-			ret += "active" "\\n";
-		}
-
-		if (is_mount_point(device))
-		{
-		    const MountPoint* mount_point = to_mount_point(device);
-		    if (mount_point->is_active())
-			ret += "active" "\\n";
-		}
-	    }
-
-	    if (flags && GraphvizFlags::IN_ETC)
-	    {
-		if (is_mount_point(device))
-		{
-		    const MountPoint* mount_point = to_mount_point(device);
-		    if (mount_point->is_in_etc_fstab())
-			ret += "in fstab" "\\n";
-		}
-
-		if (is_encryption(device))
-		{
-		    const Encryption* encryption = to_encryption(device);
-		    if (encryption->is_in_etc_crypttab())
-			ret += "in crypttab" "\\n";
-		}
-	    }
-
-	    if (!ret.empty())
-		ret.erase(ret.size() - 2); // erase trailing "\\n"
-
-	    return ret;
-	}
-
-
-	struct write_vertex
-	{
-	    write_vertex(const Devicegraph::Impl& devicegraph, GraphvizFlags flags,
-			 GraphvizFlags tooltip_flags)
-		: devicegraph(devicegraph), flags(flags), tooltip_flags(tooltip_flags) {}
-
-	    const Devicegraph::Impl& devicegraph;
-	    const GraphvizFlags flags;
-	    const GraphvizFlags tooltip_flags;
 
 	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& vertex) const
 	    {
 		const Device* device = devicegraph[vertex];
-
-		out << "[ ";
-
-		if (flags != GraphvizFlags::NONE)
-		    out << "label=" << boost::escape_dot_string(vertex_text(device, flags)) << ", ";
-
-		if (tooltip_flags != GraphvizFlags::NONE)
-		    out << "tooltip=" << boost::escape_dot_string(vertex_text(device, tooltip_flags)) << ", ";
-
-		if (is_disk(device) || is_dasd(device) || is_multipath(device) || is_dm_raid(device))
-		    out << "color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-		else if (is_md(device))
-		    out << "color=\"#aaaa00\", fillcolor=\"#ffffaa\"";
-		else if (is_partition_table(device))
-		    out << "color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-		else if (is_partition(device))
-		    out << "color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
-		else if (is_stray_blk_device(device))
-		    out << "color=\"#cc33cc\", fillcolor=\"#eeaaee\"";
-		else if (is_lvm_pv(device))
-		    out << "color=\"#66dd22\", fillcolor=\"#bbff99\"";
-		else if (is_lvm_vg(device))
-		    out << "color=\"#0000ff\", fillcolor=\"#aaaaff\"";
-		else if (is_lvm_lv(device))
-		    out << "color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-		else if (is_encryption(device))
-		    out << "color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-		else if (is_bcache(device))
-		    out << "color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-		else if (is_bcache_cset(device))
-		    out << "color=\"#6622dd\", fillcolor=\"#bb99ff\"";
-		else if (is_mountable(device))
-		    out << "color=\"#008800\", fillcolor=\"#99ee99\"";
-		else if (is_mount_point(device))
-		    out << "color=\"#ff0000\", fillcolor=\"#ffaaaa\"";
-		else
-		    ST_THROW(LogicException("unknown Device subclass"));
-
-		out << " ]";
+		write_attributes(out, style_callbacks->node(device));
 	    }
-	};
-
-
-	struct write_edge
-	{
-	    write_edge(const Devicegraph::Impl& devicegraph) : devicegraph(devicegraph) {}
-
-	    const Devicegraph::Impl& devicegraph;
 
 	    void operator()(ostream& out, const Devicegraph::Impl::edge_descriptor& edge) const
 	    {
 		const Holder* holder = devicegraph[edge];
-
-		if (is_subdevice(holder))
-		{
-		    out << "[ style=solid ]";
-		}
-		else if (is_md_user(holder))
-		{
-		    const MdUser* md_user = to_md_user(holder);
-		    if (md_user->is_spare() || md_user->is_faulty())
-			out << "[ style=dotted ]";
-		    else
-			out << "[ style=dashed ]";
-		}
-		else if (is_filesystem_user(holder))
-		{
-		    const FilesystemUser* filesystem_user = to_filesystem_user(holder);
-		    if (filesystem_user->is_journal())
-			out << "[ style=dotted ]";
-		    else
-			out << "[ style=dashed ]";
-		}
-		else if (is_user(holder))
-		{
-		    out << "[ style=dashed ]";
-		}
-		else
-		{
-		    ST_THROW(LogicException("unknown Holder subclass"));
-		}
+		write_attributes(out, style_callbacks->edge(holder));
 	    }
 	};
 
@@ -1044,9 +863,11 @@ namespace storage
 
 
     void
-    Devicegraph::Impl::write_graphviz(const string& filename, GraphvizFlags flags,
-				      GraphvizFlags tooltip_flags) const
+    Devicegraph::Impl::write_graphviz(const string& filename, DevicegraphStyleCallbacks*
+				      style_callbacks) const
     {
+	ST_CHECK_PTR(style_callbacks);
+
 	ofstream fout(filename);
 
 	fout << "// " << generated_string() << "\n\n";
@@ -1065,8 +886,9 @@ namespace storage
 	for (boost::tie(vi, vi_end) = boost::vertices(graph); vi != vi_end; ++vi)
 	    boost::put(vertex_id_property_map, *vi, graph[*vi].get()->get_sid());
 
-	boost::write_graphviz(fout, graph, write_vertex(*this, flags, tooltip_flags),
-			      write_edge(*this), write_graph(*this), vertex_id_property_map);
+	const DevicegraphWriter devicegraph_writer(style_callbacks, *this);
+	boost::write_graphviz(fout, graph, devicegraph_writer, devicegraph_writer, devicegraph_writer,
+			      vertex_id_property_map);
 
 	fout.close();
 

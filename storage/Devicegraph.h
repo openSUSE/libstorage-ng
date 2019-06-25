@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -262,8 +262,20 @@ namespace storage
 	void copy(Devicegraph& dest) const;
 
 	/**
-	 * Writes the devicegraph in graphviz format. The node id is the sid
-	 * (storage id).
+	 * Writes the devicegraph in graphviz format. The node id is
+	 * the sid (storage id). The style_callbacks are used to
+	 * define graphviz attributes for the graph, nodes and edges,
+	 * e.g. label, color and shape.
+	 *
+	 * @throw Exception
+	 */
+	void write_graphviz(const std::string& filename, DevicegraphStyleCallbacks* style_callbacks) const;
+
+	/**
+	 * Writes the devicegraph in graphviz format. The node id is
+	 * the sid (storage id).
+	 *
+	 * Deprecated in favor of write_graphviz(const std::string&, DevicegraphStyleCallbacks*).
 	 *
 	 * @throw Exception
 	 */

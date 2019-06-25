@@ -24,13 +24,13 @@ print(staging)
 
 print("partitions on gpt:")
 for partition in gpt.get_partitions():
-  print("  %s %s" % (partition, partition.get_number()))
+    print("  %s %s" % (partition, partition.get_number()))
 print()
 
 
 print("descendants of sda:")
 for device in sda.get_descendants(False):
-  print("  %s" % device)
+    print("  %s" % device)
 print()
 
 

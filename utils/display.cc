@@ -11,6 +11,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/AppUtil.h"
+#include "storage/Utils/StorageDefines.h"
 #include "storage/Actiongraph.h"
 
 
@@ -28,12 +29,12 @@ bool keep_svg = false;
 void
 helper(const string& filename_gv, const string& filename_svg)
 {
-    system(string("dot -Tsvg < " + quote(filename_gv) + " > " + quote(filename_svg)).c_str());
+    system(string(DOT_BIN " -Tsvg < " + quote(filename_gv) + " > " + quote(filename_svg)).c_str());
 
     if (!keep_gv)
 	unlink(filename_gv.c_str());
 
-    system(string("display " + quote(filename_svg)).c_str());
+    system(string(DISPLAY_BIN " " + quote(filename_svg)).c_str());
 
     if (!keep_svg)
 	unlink(filename_svg.c_str());
@@ -62,8 +63,7 @@ doit_devicegraph(const string& filename)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    probed->write_graphviz(filename_gv, GraphvizFlags::CLASSNAME | GraphvizFlags::NAME |
-			   GraphvizFlags::SID | GraphvizFlags::SIZE);
+    probed->write_graphviz(filename_gv, get_debug_devicegraph_style_callbacks());
 
     helper(filename_gv, filename_svg);
 }
@@ -94,7 +94,7 @@ doit_actiongraph(const string& filename_lhs, const string& filename_rhs)
     string filename_gv = keep_gv ? name + ".gv" : tmp_dir.get_fullname() + "/" + name + ".gv";
     string filename_svg = keep_svg ? name + ".svg" : tmp_dir.get_fullname() + "/" + name + ".svg";
 
-    actiongraph.write_graphviz(filename_gv, GraphvizFlags::NAME | GraphvizFlags::SID);
+    actiongraph.write_graphviz(filename_gv, get_debug_actiongraph_style_callbacks());
 
     helper(filename_gv, filename_svg);
 }

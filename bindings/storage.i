@@ -33,6 +33,7 @@ use_ostream(storage::PartitionSlot);
 %feature("director") storage::CheckCallbacks;
 %feature("director") storage::CommitCallbacks;
 %feature("director") storage::RemoteCallbacks;
+%feature("director") storage::DevicegraphStyleCallbacks;
 %feature("director") storage::Logger;
 
 // Order of includes is crucial:

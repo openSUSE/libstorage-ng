@@ -204,20 +204,16 @@ namespace storage
 
 	Actiongraph actiongraph(storage, storage.get_system(), storage.get_staging());
 
-	if (access("/usr/bin/dot", X_OK) == 0)
+	if (access(DOT_BIN, X_OK) == 0)
 	{
-	    storage.get_probed()->write_graphviz(name + "-probed.gv", GraphvizFlags::CLASSNAME |
-						 GraphvizFlags::NAME | GraphvizFlags::SID |
-						 GraphvizFlags::SIZE);
-	    system(("dot -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
+	    storage.get_probed()->write_graphviz(name + "-probed.gv", get_debug_devicegraph_style_callbacks());
+	    system((DOT_BIN " -Tsvg < " + name + "-probed.gv > " + name + "-probed.svg").c_str());
 
-	    storage.get_staging()->write_graphviz(name + "-staging.gv", GraphvizFlags::CLASSNAME |
-						  GraphvizFlags::NAME | GraphvizFlags::SID |
-						  GraphvizFlags::SIZE);
-	    system(("dot -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
+	    storage.get_staging()->write_graphviz(name + "-staging.gv", get_debug_devicegraph_style_callbacks());
+	    system((DOT_BIN " -Tsvg < " + name + "-staging.gv > " + name + "-staging.svg").c_str());
 
-	    actiongraph.write_graphviz(name + "-action.gv", GraphvizFlags::SID | GraphvizFlags::NAME);
-	    system(("dot -Tsvg < " + name + "-action.gv > " + name + "-action.svg").c_str());
+	    actiongraph.write_graphviz(name + "-action.gv", get_debug_actiongraph_style_callbacks());
+	    system((DOT_BIN " -Tsvg < " + name + "-action.gv > " + name + "-action.svg").c_str());
 	}
 
 	TsCmpActiongraph::Expected expected(name + "-expected.txt");

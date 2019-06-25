@@ -3,7 +3,7 @@
 #
 
 SUBDIRS = helpers . Utils SystemInfo probe dependencies actions sorting		\
-	freeinfo Devices partitions performance commented-config-file		\
+	freeinfo Devices partitions performance style commented-config-file	\
 	CompoundAction
 
 AM_CPPFLAGS = -I$(top_srcdir)

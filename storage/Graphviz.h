@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,8 +24,16 @@
 #define STORAGE_GRAPHVIZ_H
 
 
+#include <string>
+#include <map>
+
+
 namespace storage
 {
+
+    class Device;
+    class Holder;
+
 
     /**
      * Bitfield to control graphviz output.
@@ -51,6 +59,81 @@ namespace storage
     GraphvizFlags operator&(GraphvizFlags a, GraphvizFlags b);
 
     bool operator&&(GraphvizFlags a, GraphvizFlags b);
+
+
+    /**
+     * Base class for DevicegraphStyleCallbacks and ActiongraphStyleCallbacks.
+     *
+     * The individual functions return the attributes as a map of name
+     * and value. For details about the attributes see
+     * http://graphviz.org/documentation/.
+     */
+    class GraphStyleCallbacks
+    {
+    public:
+
+	virtual ~GraphStyleCallbacks() {}
+
+	/**
+	 * Attributes for the graph.
+	 */
+	virtual std::map<std::string, std::string> graph() = 0;
+
+	/**
+	 * Default attributes for nodes.
+	 */
+	virtual std::map<std::string, std::string> nodes() = 0;
+
+	/**
+	 * Default attributes for edges.
+	 */
+	virtual std::map<std::string, std::string> edges() = 0;
+
+    };
+
+
+    /**
+     * Style callbacks used by Devicegraph::write_graphviz().
+     */
+    class DevicegraphStyleCallbacks : public GraphStyleCallbacks
+    {
+    public:
+
+	virtual ~DevicegraphStyleCallbacks() {}
+
+	/**
+	 * Attributes for a specific node.
+	 */
+	virtual std::map<std::string, std::string> node(const Device* device) = 0;
+
+	/**
+	 * Attributes for a specific edge.
+	 */
+	virtual std::map<std::string, std::string> edge(const Holder* holder) = 0;
+
+    };
+
+
+    /**
+     * Style callbacks used by Actiongraph::write_graphviz().
+     */
+    class ActiongraphStyleCallbacks;
+
+
+    /**
+     * Get a DevicegraphStyleCallbacks object for debugging. Attributes
+     * are likely colorful and include information like the class name
+     * and the storage id. The attributes may change any time.
+     */
+    DevicegraphStyleCallbacks* get_debug_devicegraph_style_callbacks();
+
+
+    /**
+     * Get a ActiongraphStyleCallbacks object for debugging. Attributes
+     * are likely colorful and include information like the action text
+     * and the storage id. The attributes may change any time.
+     */
+    ActiongraphStyleCallbacks* get_debug_actiongraph_style_callbacks();
 
 }
 

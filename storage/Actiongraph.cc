@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,6 +23,7 @@
 
 #include "storage/ActiongraphImpl.h"
 #include "storage/Action.h"
+#include "storage/GraphvizImpl.h"
 
 
 namespace storage
@@ -109,10 +110,19 @@ namespace storage
 
 
     void
+    Actiongraph::write_graphviz(const string& filename, ActiongraphStyleCallbacks* style_callbacks) const
+    {
+	get_impl().write_graphviz(filename, style_callbacks);
+    }
+
+
+    void
     Actiongraph::write_graphviz(const string& filename, GraphvizFlags flags,
 				GraphvizFlags tooltip_flags) const
     {
-	get_impl().write_graphviz(filename, flags, tooltip_flags);
+	AdvancedActiongraphStyleCallbacks style_callbacks(flags, tooltip_flags);
+
+	get_impl().write_graphviz(filename, &style_callbacks);
     }
 
 
