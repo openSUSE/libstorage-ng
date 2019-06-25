@@ -107,10 +107,10 @@ namespace storage
 
     public:
 
-        class Impl;
+	class Impl;
 
-        Impl& get_impl() { return *impl; }
-        const Impl& get_impl() const { return *impl; }
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
 
     private:
 

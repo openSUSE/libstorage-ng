@@ -16,6 +16,8 @@ Style Guide
 
   http://en.wikipedia.org/wiki/C%2B%2B11
 
+  https://www.youtube.com/watch?v=HddFGPTAmtU&t=29m27s
+
 * C++11, C++14 and C++17 features can be used when the tool-chain for all
   supported distributions provides them.
 

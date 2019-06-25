@@ -381,7 +381,7 @@ namespace storage
 
 	write_attributes(out, attributes);
 
-	out << "\n;";
+	out << ";\n";
     }
 
 }

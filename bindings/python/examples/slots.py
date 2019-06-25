@@ -17,6 +17,5 @@ partition_table = partitionable.get_partition_table()
 partition_slots = partition_table.get_unused_partition_slots()
 
 for partition_slot in partition_slots:
-
-  print("%s" % partition_slot)
+    print("%s" % partition_slot)
 

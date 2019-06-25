@@ -11,10 +11,10 @@ storage.probe()
 probed = storage.get_probed()
 
 try:
-  tmp = BlkDevice.find_by_name(probed, "/dev/sdz")
-  print(tmp)
-except DeviceNotFound, e:
-  print("device not found")
+    tmp = BlkDevice.find_by_name(probed, "/dev/sdz")
+    print(tmp)
+except DeviceNotFound as e:
+    print("device not found")
 
 print("done")
 
