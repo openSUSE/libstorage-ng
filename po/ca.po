@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-04-04 15:03+0000\n"
+"PO-Revision-Date: 2019-06-25 17:50+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -164,9 +164,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "Afegeix %1$s a %2$s"
+msgstr "Afegeix %1$s (%2$s) al btrfs de %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -213,9 +213,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "Afegint %1$s a %2$s"
+msgstr "Afegint %1$s (%2$s) al btrfs de %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -261,17 +261,17 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "Adjunta el conjunt de cau Bcau de %1$s a Bcau de %2$s (%3$s)"
+msgstr "Adjunta el conjunt de cau de bcau de %1$s a la bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "Adjuntant el conjunt de cau Bcau de %1$s a Bcau de %2$s (%3$s)"
+msgstr "Adjuntant el conjunt de cau de bcau de %1$s a la bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -364,7 +364,7 @@ msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
-"Crea %1$s %2$s (%3$s) per a %4$s amb %5$s\n"
+"Crea %1$s %2$s (%3$s) per a %4$s amb el sistema de fitxers %5$s\n"
 "a partir de %6$s"
 
 #. TRANSLATORS:
@@ -406,16 +406,16 @@ msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
-"Crea %1$s %2$s (%3$s) amb %4$s\n"
+"Crea %1$s %2$s (%3$s) amb el sistema de fitxers %4$s\n"
 "a partir de %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s on %2$s"
-msgstr "Crea %1$s a %2$s (%3$s)"
+msgstr "Crea el sistema de fitxers %1$s a %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -508,9 +508,9 @@ msgstr "Crea una taula de particions MS-DOS a %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s (%2$s)"
-msgstr "Crea la Bcau %1$s (%2$s)"
+msgstr "Crea la bcau %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -550,9 +550,9 @@ msgstr "Crea la bcau %1$s a %2$s (%3$s) amb %4$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
-msgstr "Crea el conjunt de cau de Bcau a %1$s (%2$s)"
+msgstr "Crea el conjunt de cau de bcau a %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -922,9 +922,9 @@ msgstr "Crea el grup de volums %1$s (%2$s) amb %3$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s"
-msgstr "Creant %1$s a %2$s (%3$s)"
+msgstr "Creant el sistema de fitxers %1$s a %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -957,16 +957,16 @@ msgstr "Creant una taula de particions MS-DOS a %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache %1$s (%2$s)"
-msgstr "Creant la Bcau %1$s (%2$s)"
+msgstr "Creant la bcau %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
-msgstr "Creant el conjunt de cau de Bcau %1$s (%2$s)"
+msgstr "Creant el conjunt de cau de bcau %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1093,16 +1093,16 @@ msgstr "Desactiva l'MD %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
-msgstr "Desactiva la Bcau %1$s (%2$s)"
+msgstr "Desactiva la bcau %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
-msgstr "Desactiva el conjunt de cau de Bcau de %1$s (%2$s)"
+msgstr "Desactiva el conjunt de cau de bcau de %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1153,16 +1153,16 @@ msgstr "Desactivant l'MD %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
-msgstr "Desactivant la Bcau %1$s (%2$s)"
+msgstr "Desactivant la bcau %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
-msgstr "Desactivant el conjunt de cau de Bcau de %1$s (%2$s)"
+msgstr "Desactivant el conjunt de cau de bcau de %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1217,7 +1217,7 @@ msgstr "Suprimeix %1$s %2$s (%3$s)"
 #. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Suprimeix %1$s de %2$s"
+msgstr "Suprimeix el sistema de fitxers %1$s de %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1248,9 +1248,9 @@ msgstr "Suprimeix la taula de particions MS-DOS de %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s (%2$s)"
-msgstr "Suprimeix la Bcau %1$s (%2$s)"
+msgstr "Suprimeix la bcau %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1263,9 +1263,9 @@ msgstr "Suprimeix la bcau %1$s a %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
-msgstr "Suprimeix el conjunt de cau de Bcau de %1$s (%2$s)"
+msgstr "Suprimeix el conjunt de cau de bcau de %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1379,7 +1379,7 @@ msgstr "Suprimeix el grup de volums %1$s (%2$s)"
 #. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Suprimint %1$s de %2$s"
+msgstr "Suprimint el sistema de fitxers %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1410,16 +1410,16 @@ msgstr "Suprimint la taula de particions MS-DOS de %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache %1$s (%2$s)"
-msgstr "Suprimint la Bcau %1$s (%2$s)"
+msgstr "Suprimint la bcau %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
-msgstr "Suprimint el conjunt de cau de Bcau de %1$s (%2$s)"
+msgstr "Suprimint el conjunt de cau de bcau de %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1519,17 +1519,17 @@ msgstr "Suprimint el grup de volums %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Separa el conjunt de cau Bcau de %1$s de la Bcau de %2$s (%3$s)"
+msgstr "Separa el conjunt de cau de bcau de %1$s de la bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Separant el conjunt de cau Bcau de %1$s de la Bcau de %2$s (%3$s)"
+msgstr "Separant el conjunt de cau de bcau de %1$s de la bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1849,9 +1849,9 @@ msgstr "GiB"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Engrandeix %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandeix %1$s del sistema de fitxers %2$s de %3$s de %4$s a %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1860,7 +1860,7 @@ msgstr "Engrandeix %1$s de %2$s de %3$s a %4$s"
 #. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "Engrandeix %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandeix el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1924,9 +1924,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Engrandint %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandint %1$s del sistema de fitxers %2$s de %3$s de %4$s a %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1935,7 +1935,7 @@ msgstr "Engrandint %1$s de %2$s de %3$s a %4$s"
 #. %4$s is replaced by new size (e.g. 2.0 GiB)
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "Engrandint %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandint el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2298,9 +2298,9 @@ msgid "Probing file system on %s failed"
 msgstr "Ha fallat sondar el sistema de fitxers de %s"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing file system with UUID %s failed"
-msgstr "Ha fallat sondar el sistema de fitxers de %s"
+msgstr "Ha fallat sondar el sistema de fitxers amb l'UUID %s."
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2365,9 +2365,9 @@ msgstr "Reiserfs"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
-msgstr "Suprimeix %1$s de %2$s"
+msgstr "Suprimeix %1$s (%2$s) del btrfs de %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2414,9 +2414,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing %1$s (%2$s) from btrfs on %3$s"
-msgstr "Suprimint %1$s de %2$s"
+msgstr "Suprimint %1$s (%2$s) del btrfs de %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2516,9 +2516,9 @@ msgstr "Reparant GPT a %1$s"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
-msgstr "Estableix l'UUID de %1$s a %2$s"
+msgstr "Estableix l'UUID del sistema de fitxers %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2530,9 +2530,9 @@ msgstr "Estableix la bandera d'arrencada de la partició %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Estableix el mode de cau a %1$s per a la Bcau %2$s (%3$s)"
+msgstr "Estableix el mode de cau a %1$s per a la bcau %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2569,9 +2569,9 @@ msgstr "Estableix l'id de la partició %1$s a 0x%2$02X"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
-msgstr "Estableix l'etiqueta de %1$s a %2$s"
+msgstr "Estableix l'etiqueta del sistema de fitxers %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2598,18 +2598,19 @@ msgstr "Estableix la bandera d'arrencada MBR protectora de GPT a %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s on %2$s"
-msgstr "Estableix les opcions d'ajustament de %1$s"
+msgstr ""
+"Estableix les opcions de personalització del sistema de fitxers %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
-msgstr "Establint l'UUID de %1$s a %2$s"
+msgstr "Establint l'UUID del sistema de fitxers %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2621,9 +2622,9 @@ msgstr "Establint la bandera d'arrencada de la partició %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Establint el mode de cau a %1$s per a la Bcau %2$s (%3$s)"
+msgstr "Establint el mode de cau a %1$s per a la bcau de %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2660,9 +2661,9 @@ msgstr "Establint l'id de la partició %1$s a 0x%2$02X"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "Establint l'etiqueta de %1$s a %2$s"
+msgstr "Establint l'etiqueta del sistema de fitxers %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2689,9 +2690,10 @@ msgstr "Establint la bandera d'arrencada MBR protectora de GPT a %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s on %2$s"
-msgstr "Establint les opcions d'ajustament de %1$s"
+msgstr ""
+"Establint les opcions de personalització del sistema de fitxers %1$s de %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2700,9 +2702,9 @@ msgstr "Establint les opcions d'ajustament de %1$s"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Redueix %1$s de %2$s de %3$s a %4$s"
+msgstr "Encongeix %1$s del sistema de fitxers %2$s de %3$s de %4$s a %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2711,7 +2713,7 @@ msgstr "Redueix %1$s de %2$s de %3$s a %4$s"
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "Redueix %1$s de %2$s de %3$s a %4$s"
+msgstr "Encongeix el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2719,7 +2721,7 @@ msgstr "Redueix %1$s de %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Redueix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
+msgstr "Encongeix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2728,7 +2730,7 @@ msgstr "Redueix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Redueix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
+msgstr "Encongeix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2736,7 +2738,7 @@ msgstr "Redueix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Redueix la partició %1$s de %2$s a %3$s"
+msgstr "Encongeix la partició %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2744,7 +2746,7 @@ msgstr "Redueix la partició %1$s de %2$s a %3$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Redueix el volum físic de %1$s de %2$s a %3$s"
+msgstr "Encongeix el volum físic de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2754,7 +2756,7 @@ msgstr "Redueix el volum físic de %1$s de %2$s a %3$s"
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Redueix el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
+"Encongeix el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2765,7 +2767,7 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Redueix el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
+"Encongeix el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
 "%3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2775,9 +2777,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Reduint %1$s de %2$s de %3$s a %4$s"
+msgstr "Encongint %1$s del sistema de fitxers %2$s de %3$s de %4$s a %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2786,7 +2788,7 @@ msgstr "Reduint %1$s de %2$s de %3$s a %4$s"
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "Reduint %1$s de %2$s de %3$s a %4$s"
+msgstr "Encongint el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2794,7 +2796,7 @@ msgstr "Reduint %1$s de %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Reduint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
+msgstr "Encongint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2803,7 +2805,7 @@ msgstr "Reduint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Reduint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
+msgstr "Encongint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2811,7 +2813,7 @@ msgstr "Reduint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Reduint la partició %1$s de %2$s a %3$s"
+msgstr "Encongint la partició %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2819,7 +2821,7 @@ msgstr "Reduint la partició %1$s de %2$s a %3$s"
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Reduint el volum físic de %1$s de %2$s a %3$s"
+msgstr "Encongint el volum físic de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2830,7 +2832,7 @@ msgstr "Reduint el volum físic de %1$s de %2$s a %3$s"
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Reduint el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
+"Encongint el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2842,7 +2844,7 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr ""
-"Reduint el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
+"Encongint el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
 "%3$s a %4$s"
 
 #. TRANSLATORS: name of object
