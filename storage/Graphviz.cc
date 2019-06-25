@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -22,7 +22,7 @@
 
 #include <type_traits>
 
-#include "storage/Graphviz.h"
+#include "storage/GraphvizImpl.h"
 
 
 namespace storage
@@ -52,6 +52,27 @@ namespace storage
     operator&&(GraphvizFlags a, GraphvizFlags b)
     {
 	return (a & b) != GraphvizFlags::NONE;
+    }
+
+
+    DevicegraphStyleCallbacks*
+    get_debug_devicegraph_style_callbacks()
+    {
+	static AdvancedDevicegraphStyleCallbacks style_callbacks(GraphvizFlags::CLASSNAME |
+	    GraphvizFlags::DISPLAYNAME | GraphvizFlags::SID | GraphvizFlags::SIZE,
+	    GraphvizFlags::NONE);
+
+	return &style_callbacks;
+    }
+
+
+    ActiongraphStyleCallbacks*
+    get_debug_actiongraph_style_callbacks()
+    {
+	static AdvancedActiongraphStyleCallbacks style_callbacks(GraphvizFlags::NAME |
+	    GraphvizFlags::SID, GraphvizFlags::NONE);
+
+	return &style_callbacks;
     }
 
 }

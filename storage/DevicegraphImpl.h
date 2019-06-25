@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -143,7 +143,7 @@ namespace storage
 
 	void print(std::ostream& out) const;
 
-	void write_graphviz(const string& filename, GraphvizFlags flags, GraphvizFlags tooltip_flags) const;
+	void write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks) const;
 
 	size_t num_children(vertex_descriptor vertex) const;
 	size_t num_parents(vertex_descriptor vertex) const;

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -70,6 +70,19 @@ namespace storage
 	void print_graph() const;
 
 	/**
+	 * Writes the actiongraph in graphviz format. The
+	 * style_callbacks are used to define graphviz attributes for
+	 * the graph, nodes and edges, e.g. label, color and shape.
+	 *
+	 * @throw Exception
+	 */
+	void write_graphviz(const std::string& filename, ActiongraphStyleCallbacks* style_callbacks) const;
+
+	/**
+	 * Writes the actiongraph in graphviz format.
+	 *
+	 * Deprecated in favor of write_graphviz(const std::string&, ActiongraphStyleCallbacks*).
+	 *
 	 * @throw Exception
 	 */
 	void write_graphviz(const std::string& filename, GraphvizFlags flags = GraphvizFlags::NAME,

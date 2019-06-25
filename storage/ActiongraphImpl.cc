@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,6 +48,7 @@
 #include "storage/CompoundAction/Generator.h"
 #include "storage/CommitOptions.h"
 #include "storage/Utils/Format.h"
+#include "storage/GraphvizImpl.h"
 
 
 namespace storage
@@ -696,79 +697,29 @@ namespace storage
     namespace
     {
 
-	struct write_graph
+	struct ActiongraphWriter : private GraphWriter
 	{
-	    write_graph(const CommitData& commit_data) {}
+	    ActiongraphWriter(ActiongraphStyleCallbacks* style_callbacks, const CommitData& commit_data)
+		: style_callbacks(style_callbacks), commit_data(commit_data) {}
+
+	    ActiongraphStyleCallbacks* style_callbacks;
+	    const CommitData& commit_data;
 
 	    void operator()(ostream& out) const
 	    {
-		out << "node [ shape=rectangle, style=filled, fontname=\"Arial\" ];" << '\n';
+		write_attributes(out, "graph", style_callbacks->graph());
+		write_attributes(out, "node", style_callbacks->nodes());
+		write_attributes(out, "edge", style_callbacks->edges());
 	    }
-	};
-
-
-	string
-	vertex_text(const Action::Base* action, const CommitData& commit_data, GraphvizFlags flags)
-	{
-	    string ret;
-
-	    if (flags && GraphvizFlags::NAME)
-	    {
-		ret += action->text(commit_data).translated + "\\n";
-	    }
-
-	    if (flags && GraphvizFlags::SID)
-	    {
-		ret += "sid:" + to_string(action->sid);
-
-		ret += " [";
-		if (action->first)
-		    ret += "f";
-		if (action->last)
-		    ret += "l";
-		if (action->only_sync)
-		    ret += "s";
-		ret += "]" "\\n";
-	    }
-
-	    if (!ret.empty())
-		ret.erase(ret.size() - 2); // erase trailing "\\n"
-
-	    return ret;
-	}
-
-
-	struct write_vertex
-	{
-	    write_vertex(const CommitData& commit_data, GraphvizFlags flags, GraphvizFlags tooltip_flags)
-		: commit_data(commit_data), flags(flags), tooltip_flags(tooltip_flags) {}
-
-	    const CommitData& commit_data;
-	    const GraphvizFlags flags;
-	    const GraphvizFlags tooltip_flags;
 
 	    void operator()(ostream& out, const Actiongraph::Impl::vertex_descriptor& vertex) const
 	    {
 		const Action::Base* action = commit_data.actiongraph[vertex];
+		write_attributes(out, style_callbacks->node(commit_data, action));
+	    }
 
-		out << "[ ";
-
-		if (flags != GraphvizFlags::NONE)
-		    out << "label=" << boost::escape_dot_string(vertex_text(action, commit_data, flags)) << ", ";
-
-		if (tooltip_flags != GraphvizFlags::NONE)
-		    out << "tooltip=" << boost::escape_dot_string(vertex_text(action, commit_data, tooltip_flags)) << ", ";
-
-		if (is_create(action))
-		    out << "color=\"#00ff00\", fillcolor=\"#ccffcc\"";
-		else if (is_modify(action))
-		    out << "color=\"#0000ff\", fillcolor=\"#ccccff\"";
-		else if (is_delete(action))
-		    out << "color=\"#ff0000\", fillcolor=\"#ffcccc\"";
-		else
-		    ST_THROW(LogicException("unknown Action::Base subclass"));
-
-		out << " ]";
+	    void operator()(ostream& out, const Actiongraph::Impl::edge_descriptor& edge) const
+	    {
 	    }
 	};
 
@@ -776,19 +727,20 @@ namespace storage
 
 
     void
-    Actiongraph::Impl::write_graphviz(const string& filename, GraphvizFlags flags,
-				      GraphvizFlags tooltip_flags) const
+    Actiongraph::Impl::write_graphviz(const string& filename, ActiongraphStyleCallbacks* style_callbacks) const
     {
+	ST_CHECK_PTR(style_callbacks);
+
 	ofstream fout(filename);
 
 	fout << "// " << generated_string() << "\n\n";
 
 	VertexIndexMapGenerator<graph_t> vertex_index_map_generator(graph);
 
-	const CommitData commit_data(*this, Tense:: SIMPLE_PRESENT);
+	const CommitData commit_data(*this, Tense::SIMPLE_PRESENT);
 
-	boost::write_graphviz(fout, graph, write_vertex(commit_data, flags, tooltip_flags),
-			      boost::default_writer(), write_graph(commit_data),
+	const ActiongraphWriter actiongraph_writer(style_callbacks, commit_data);
+	boost::write_graphviz(fout, graph, actiongraph_writer, actiongraph_writer, actiongraph_writer,
 			      vertex_index_map_generator.get());
 
 	fout.close();

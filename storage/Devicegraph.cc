@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016,2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -44,6 +44,7 @@
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/Logger.h"
 #include "storage/Utils/Format.h"
+#include "storage/GraphvizImpl.h"
 
 
 namespace storage
@@ -410,10 +411,19 @@ namespace storage
 
 
     void
+    Devicegraph::write_graphviz(const string& filename, DevicegraphStyleCallbacks* style_callbacks) const
+    {
+	get_impl().write_graphviz(filename, style_callbacks);
+    }
+
+
+    void
     Devicegraph::write_graphviz(const string& filename, GraphvizFlags flags,
 				GraphvizFlags tooltip_flags) const
     {
-	get_impl().write_graphviz(filename, flags, tooltip_flags);
+	AdvancedDevicegraphStyleCallbacks style_callbacks(flags, tooltip_flags);
+
+	get_impl().write_graphviz(filename, &style_callbacks);
     }
 
 }
