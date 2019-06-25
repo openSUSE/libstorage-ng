@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-04-04 15:03+0000\n"
+"PO-Revision-Date: 2019-06-25 21:50+0000\n"
 "Last-Translator: Aleš Kastner <alkas@volny.cz>\n"
-"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/cs/>\n"
+"Language-Team: Czech <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -169,9 +169,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "Přidat %1$s k %2$s"
+msgstr "Přidat %1$s (%2$s) k btrfs na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -217,9 +217,9 @@ msgstr "Přidat přípojný bod %1$s podsvazku %2$s na %3$s do /etc/fstab"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "Přidává se %1$s k %2$s"
+msgstr "Přidává se %1$s (%2$s) k btrfs na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -264,17 +264,17 @@ msgstr "Přidávání přípojného bodu %1$s podsvazku %2$s na %3$s do /etc/fst
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "Připojit sadu pamětí Bcache na %1$s k Bcache %2$s (%3$s)"
+msgstr "Připojit sadu pamětí bcache na %1$s k bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "Připojuji sadu pamětí Bcache na %1$s k Bcache %2$s (%3$s)"
+msgstr "Připojuji sadu pamětí bcache na %1$s k bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -417,9 +417,9 @@ msgstr ""
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s on %2$s"
-msgstr "Vytvořit %1$s na %2$s (%3$s)"
+msgstr "Vytvořit %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -515,9 +515,9 @@ msgstr "Vytvořit tabulku oddílů typu MS-DOS na %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s (%2$s)"
-msgstr "Vytvořit Bcache %1$s (%2$s)"
+msgstr "Vytvořit bcache %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -557,9 +557,9 @@ msgstr "Vytvořit bcache %1$s na %2$s (%3$s) s %4$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
-msgstr "Vytvořit sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Vytvořit sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -934,9 +934,9 @@ msgstr "Vytvořit skupinu svazků %1$s (%2$s) se systémem souborů %3$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s"
-msgstr "Vytvořit %1$s na %2$s (%3$s)"
+msgstr "Vytvořit %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -969,16 +969,16 @@ msgstr "Vytváří se tabulka oddílů typu MS-DOS na %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache %1$s (%2$s)"
-msgstr "Vytvářím Bcache %1$s (%2$s)"
+msgstr "Vytvářím bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
-msgstr "Vytvářím sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Vytvářím sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1105,16 +1105,16 @@ msgstr "Deaktivovat hlavní adresář (MD) %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
-msgstr "Deaktivovat Bcache %1$s (%2$s)"
+msgstr "Deaktivovat bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
-msgstr "Deaktivovat sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Deaktivovat sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1165,16 +1165,16 @@ msgstr "Deaktivovat hlavní adresář (MD) %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
-msgstr "Deaktivuji Bcache %1$s (%2$s)"
+msgstr "Deaktivuji bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
-msgstr "Deaktivuji sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Deaktivuji sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1259,9 +1259,9 @@ msgstr "Odstranit tabulku oddílů MS-DOS na %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s (%2$s)"
-msgstr "Odstranit Bcache %1$s (%2$s)"
+msgstr "Odstranit bcache %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1274,9 +1274,9 @@ msgstr "Odstranit bcache %1$s na %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
-msgstr "Odstranit sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Odstranit sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1421,16 +1421,16 @@ msgstr "Odstraňuje se tabulka oddílů typu MS-DOS na %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache %1$s (%2$s)"
-msgstr "Odstraňuji Bcache %1$s (%2$s)"
+msgstr "Odstraňuji bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
-msgstr "Odstraňuji sadu mezipamětí Bcache na %1$s (%2$s)"
+msgstr "Odstraňuji sadu mezipamětí bcache na %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1529,17 +1529,17 @@ msgstr "Odstraňuji skupinu svazků %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Odpojit sadu pamětí Bcache na %1$s od Bcache %2$s (%3$s)"
+msgstr "Odpojit sadu pamětí bcache na %1$s od bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
-msgstr "Odpojuji sadu pamětí Bcache na %1$s od Bcache %2$s (%3$s)"
+msgstr "Odpojuji sadu pamětí bcache na %1$s od bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1863,9 +1863,9 @@ msgstr "GiB"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Zvětšit %1$s na %2$s z %3$s na %4$s"
+msgstr "Zvětšit %1$s z %2$s na %3$s z %4$s na %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1938,9 +1938,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Zvětšuji %1$s na %2$s z %3$s na %4$s"
+msgstr "Zvětšuji %1$s z %2$s na %3$s z %4$s na %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2312,9 +2312,9 @@ msgid "Probing file system on %s failed"
 msgstr "Testování systému souborů na %s selhalo"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing file system with UUID %s failed"
-msgstr "Testování systému souborů na %s selhalo"
+msgstr "Zkouška systému souborů s UUID %s selhala"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2379,9 +2379,9 @@ msgstr "Reiserfs"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
-msgstr "Odstranit %1$s z %2$s"
+msgstr "Odstranit %1$s (%2$s) z btrfs na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2427,9 +2427,9 @@ msgstr "Odstraňování přípojného bodu %1$s podsvazku %2$s na %3$s z /etc/fs
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing %1$s (%2$s) from btrfs on %3$s"
-msgstr "Odstraňuji %1$s z %2$s"
+msgstr "Odstraňuji %1$s (%2$s) z btrfs na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2526,9 +2526,9 @@ msgstr "Opravuje se GPT na %1$s"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
-msgstr "Nastavit UUID z %1$s na %2$s"
+msgstr "Nastavit UUID z %1$s na %2$s na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2540,9 +2540,9 @@ msgstr "Nastavit boot příznak oddílu %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Nastavit režim kešování na %1$s pro Bcache %2$s (%3$s)"
+msgstr "Nastavit režim kešování na %1$s pro bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2580,9 +2580,9 @@ msgstr "Nastavit id oddílu %1$s na 0x%2$02X"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
-msgstr "Nastavit popisek svazku %1$s na %2$s"
+msgstr "Nastavit popisek z %1$s na %2$s na %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2608,18 +2608,18 @@ msgstr "Nastavit ochranný příznak MBR boot GPT na %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s on %2$s"
-msgstr "Nastavte možnosti ladění pro %1$s"
+msgstr "Nastavte možnosti ladění pro %1$s na %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
-msgstr "Nastavuji UUID %1$s na %2$s"
+msgstr "Nastavuji UUID z %1$s na %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2631,9 +2631,9 @@ msgstr "Nastavuji boot příznak oddílu %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Nastavuji režim kešování na %1$s pro Bcache %2$s (%3$s)"
+msgstr "Nastavuji režim kešování na %1$s pro bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2671,9 +2671,9 @@ msgstr "Nastavuji id oddílu %1$s na 0x%2$02X"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "Nastavuji popisek svazku %1$s na %2$s"
+msgstr "Nastavuji popisek z %1$s na %2$s na %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2699,9 +2699,9 @@ msgstr "Nastavování ochranného příznaku MBR boot GPT na %1$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s on %2$s"
-msgstr "Nastavuji se možnosti ladění pro %1$s"
+msgstr "Nastavuji možnosti ladění %1$s na %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2710,9 +2710,9 @@ msgstr "Nastavuji se možnosti ladění pro %1$s"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Zmenšit %1$s na %2$s z %3$s na %4$s"
+msgstr "Zmenšit %1$s z %2$s na %3$s z %4$s na %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2785,9 +2785,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "Zmenšuji %1$s na %2$s z %3$s na %4$s"
+msgstr "Zmenšuji %1$s z %2$s na %3$s z %4$s na %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
