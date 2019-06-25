@@ -132,6 +132,9 @@
 #define MKFS_EXFAT_BIN "/sbin/mkfs.exfat"
 #define MKFS_UDF_BIN "/usr/sbin/mkfs.udf"
 
+#define DOT_BIN "/usr/bin/dot"
+#define DISPLAY_BIN "/usr/bin/display"
+
 
 #define UUID_REGEX "[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
 

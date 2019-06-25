@@ -40,17 +40,15 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
            skip_commit = False):
 
     if not skip_save_graphs:
-        storage.get_probed().save("probed.xml")
+        probed = storage.get_probed()
+        probed.save("probed.xml")
+        probed.write_graphviz("probed.gv", get_debug_devicegraph_style_callbacks())
+        system("/usr/bin/dot -Tsvg < probed.gv > probed.svg")
 
-        storage.get_probed().write_graphviz("probed.gv", GraphvizFlags_CLASSNAME |
-			                    GraphvizFlags_SID | GraphvizFlags_SIZE);
-        system("dot -Tsvg < probed.gv > probed.svg")
-
-        storage.get_staging().save("staging.xml")
-
-        storage.get_staging().write_graphviz("staging.gv", GraphvizFlags_CLASSNAME |
-			                     GraphvizFlags_SID | GraphvizFlags_SIZE);
-        system("dot -Tsvg < staging.gv > staging.svg")
+        staging = storage.get_staging()
+        staging.save("staging.xml")
+        staging.write_graphviz("staging.gv", get_debug_devicegraph_style_callbacks())
+        system("/usr/bin/dot -Tsvg < staging.gv > staging.svg")
 
     commit_options = CommitOptions(False)
     my_commit_callbacks = MyCommitCallbacks()
@@ -63,8 +61,8 @@ def commit(storage, skip_save_graphs = True, skip_print_actiongraph = True,
     actiongraph.print_order()
 
     if not skip_save_graphs:
-        actiongraph.write_graphviz("action.gv", GraphvizFlags_SID)
-        system("dot -Tsvg < action.gv > action.svg")
+        actiongraph.write_graphviz("action.gv", get_debug_actiongraph_style_callbacks())
+        system("/usr/bin/dot -Tsvg < action.gv > action.svg")
 
     if not skip_commit:
         try:
