@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-03-23 20:24+0000\n"
-"Last-Translator: Emily Dong <Emily.Dong@excel-gits.com>\n"
+"PO-Revision-Date: 2019-06-29 08:50+0000\n"
+"Last-Translator: Marguerite Su <i@marguerite.su>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
 "Language: zh_CN\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -163,9 +163,9 @@ msgstr "正在激活卷组 %3$s 上的瘦池逻辑卷 %1$s (%2$s)"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "添加 %1$s 到 %2$s"
+msgstr "添加 %1$s (%2$s) 到 %3$s 上的 Btrfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -211,9 +211,9 @@ msgstr "添加 %3$s 上子卷 %2$s 的挂载点 %1$s 到 /etc/fstab"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "正在添加 %1$s 到 %2$s"
+msgstr "正在添加 %1$s (%2$s) 到 %3$s 上的 Btrfs"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
