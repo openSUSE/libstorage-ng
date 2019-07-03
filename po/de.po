@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-04-04 15:03+0000\n"
-"Last-Translator: Franziska Weinberger <f.weinberger@gemino.de>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/de/>\n"
+"PO-Revision-Date: 2019-07-03 14:50+0000\n"
+"Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -169,9 +169,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "%1$s zu %2$s hinzufügen"
+msgstr "%1$s (%2$s) zu Btrfs auf %3$s hinzufügen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -217,9 +217,9 @@ msgstr "Mountpoint %1$s vom Subvolume %2$s auf %3$s zur /etc/fstab hinzufügen"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "%1$s wird zu %2$s hinzugefügt"
+msgstr "%1$s (%2$s) wird zu Btrfs auf %3$s hinzugefügt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -265,7 +265,7 @@ msgstr ""
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Bcache-Cacheset auf %1$s an Bcache %2$s (%3$s) anhängen"
 
@@ -273,7 +273,7 @@ msgstr "Bcache-Cacheset auf %1$s an Bcache %2$s (%3$s) anhängen"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Bcache-Cacheset auf %1$s wird an Bcache %2$s (%3$s) angehängt"
 
@@ -416,9 +416,9 @@ msgstr ""
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s on %2$s"
-msgstr "%1$s auf %2$s (%3$s) erstellen"
+msgstr "%1$s auf %2$s erstellen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -514,7 +514,7 @@ msgstr "MS-DOS-Partitionstabelle auf %1$s erstellen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) erstellen"
 
@@ -556,7 +556,7 @@ msgstr "Bcache %1$s auf %2$s (%3$s) mit %4$s erstellen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
 msgstr "Bcache-Cachseset auf %1$s (%2$s) erstellen"
 
@@ -932,9 +932,9 @@ msgstr "Volume-Gruppe %1$s (%2$s) mit %3$s erstellen"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s"
-msgstr "%1$s wird auf %2$s (%3$s) erstellt"
+msgstr "%1$s wird auf %2$s erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -967,14 +967,14 @@ msgstr "MS-DOS-Partitionstabelle wird auf %1$s erstellt"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) wird erstellt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
 msgstr "Bcache-Cacheset %1$s (%2$s) wird erstellt"
 
@@ -1103,16 +1103,16 @@ msgstr "MD %1$s %2$s (%3$s) deaktivieren"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
-msgstr "Bcache-Cachesetauf  %1$s (%2$s) deaktivieren"
+msgstr "Bcache-Cacheset auf %1$s (%2$s) deaktivieren"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1163,14 +1163,14 @@ msgstr "MD %1$s %2$s (%3$s) wird deaktiviert"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) wird deaktiviert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
 msgstr "Bcache-Cacheset auf %1$s (%2$s) wird deaktiviert"
 
@@ -1258,7 +1258,7 @@ msgstr "MS-DOS-Partitionstabelle auf %1$s löschen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) löschen"
 
@@ -1273,7 +1273,7 @@ msgstr "Bcache %1$s auf %2$s (%3$s) löschen"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
 msgstr "Bcache-Cacheset auf %1$s (%2$s) löschen"
 
@@ -1418,14 +1418,14 @@ msgstr "MS-DOS-Partitionstabelle auf %1$s wird gelöscht"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache %1$s (%2$s)"
 msgstr "Bcache %1$s (%2$s) wird gelöscht"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
 msgstr "Bcache-Cacheset auf %1$s (%2$s) wird gelöscht"
 
@@ -1526,7 +1526,7 @@ msgstr "Volume-Gruppe %1$s (%2$s) wird gelöscht"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Bcache-Cacheset auf %1$s von Bcache %2$s (%3$s) trennen"
 
@@ -1534,7 +1534,7 @@ msgstr "Bcache-Cacheset auf %1$s von Bcache %2$s (%3$s) trennen"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Bcache-Cacheset auf %1$s wird von Bcache %2$s (%3$s) getrennt"
 
@@ -1856,9 +1856,9 @@ msgstr "GiB"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s auf %2$s von %3$s auf %4$s vergrößern"
+msgstr "%1$s von %2$s auf %3$s von %4$s zu %5$s vergrößern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -1933,9 +1933,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 1.0 GiB),
 #. %5$s is replaced by new size (e.g. 2.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s auf %2$s wird von %3$s auf %4$s vergrößert"
+msgstr "%1$s von %2$s auf %3$s wird von %4$s zu %5$s vergrößert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2310,9 +2310,9 @@ msgid "Probing file system on %s failed"
 msgstr "Untersuchen des Dateisystems auf %s fehlgeschlagen"
 
 #. TRANSLATORS: error message
-#, fuzzy, c-format
+#, c-format
 msgid "Probing file system with UUID %s failed"
-msgstr "Untersuchen des Dateisystems auf %s fehlgeschlagen"
+msgstr "Untersuchung des Dateisystems mit UUID %s fehlgeschlagen"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
@@ -2377,9 +2377,9 @@ msgstr "Reiserfs"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
-msgstr "%1$s aus %2$s entfernen"
+msgstr "%1$s (%2$s) von Btrfs auf %3$s entfernen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2426,9 +2426,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Removing %1$s (%2$s) from btrfs on %3$s"
-msgstr "%1$s wird aus %2$s entfernt"
+msgstr "%1$s (%2$s) wird von Btrfs auf %3$s entfernt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -2529,9 +2529,9 @@ msgstr "GPT wird auf %1$s repariert"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
-msgstr "UUID von %1$s auf %2$s setzen"
+msgstr "UUID von %1$s auf %2$s zu %3$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2543,9 +2543,9 @@ msgstr "Boot-Flag von Partition %1$s setzen"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Für Bcache %2$s (%3$s) Cachemodus auf %1$s setzen"
+msgstr "Cachemodus auf %1$s für bcache %2$s (%3$s) setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2582,9 +2582,9 @@ msgstr "ID von Partition %1$s auf 0x%2$02X setzen"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
-msgstr "Kennung von %1$s auf %2$s setzen"
+msgstr "Label von %1$s auf %2$s zu %3$s setzen"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2610,18 +2610,18 @@ msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s setzen"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s on %2$s"
-msgstr "Optimierungsoptionen für %1$s setzen"
+msgstr "Optimierungsoptionen für %1$s auf %2$s setzen"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
-msgstr "UUID von %1$s wird auf %2$s gesetzt"
+msgstr "UUID von %1$s auf %2$s wird auf %3$s gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2633,7 +2633,7 @@ msgstr "Boot-Flag von Partition %1$s wird gesetzt"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Cachemodus für Bcache %2$s (%3$s) wird auf %1$s gesetzt"
 
@@ -2672,9 +2672,9 @@ msgstr "ID von Partition %1$s wird auf 0x%2$02X gesetzt"
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "Kennung von %1$s wird auf %2$s gesetzt"
+msgstr "Label von %1$s auf %2$s wird zu %3$s gesetzt"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
@@ -2701,9 +2701,9 @@ msgstr "Schützendes MBR-Boot-Flag von GPT auf %1$s wird gesetzt"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s on %2$s"
-msgstr "Optimierungsoptionen für %1$s werden gesetzt"
+msgstr "Optimierungsoptionen von %1$s werden auf %2$s gesetzt"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2712,9 +2712,9 @@ msgstr "Optimierungsoptionen für %1$s werden gesetzt"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s auf %2$s von %3$s auf %4$s verkleinern"
+msgstr "%1$s von %2$s auf %3$s von %4$s zu %5$s verkleinern"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
@@ -2790,9 +2790,9 @@ msgstr ""
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s auf %2$s wird von %3$s auf %4$s verkleinert"
+msgstr "%1$s von %2$s auf %3$s wird von %4$s zu %5$s verkleinert"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
