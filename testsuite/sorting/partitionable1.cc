@@ -53,6 +53,18 @@ BOOST_AUTO_TEST_CASE(partitionable_sorting1)
     Disk* pmem10 = Disk::create(staging, "/dev/pmem10");
     Disk* pmem2 = Disk::create(staging, "/dev/pmem2");
 
+    Disk* pmem0s = Disk::create(staging, "/dev/pmem0s");
+    Disk* pmem10s = Disk::create(staging, "/dev/pmem10s");
+    Disk* pmem2s = Disk::create(staging, "/dev/pmem2s");
+
+    Disk* pmem0_1 = Disk::create(staging, "/dev/pmem0.1");
+    Disk* pmem10_1 = Disk::create(staging, "/dev/pmem10.1");
+    Disk* pmem2_1 = Disk::create(staging, "/dev/pmem2.1");
+
+    Disk* pmem0_1s = Disk::create(staging, "/dev/pmem0.1s");
+    Disk* pmem10_1s = Disk::create(staging, "/dev/pmem10.1s");
+    Disk* pmem2_1s = Disk::create(staging, "/dev/pmem2.1s");
+
     Dasd* dasda = Dasd::create(staging, "/dev/dasda");
     Dasd* dasdb = Dasd::create(staging, "/dev/dasdb");
     Dasd* dasdaa = Dasd::create(staging, "/dev/dasdaa");
@@ -78,6 +90,7 @@ BOOST_AUTO_TEST_CASE(partitionable_sorting1)
 
     BOOST_CHECK_EQUAL(all, vector<Partitionable*>({
 	dasda, dasdb, dasdaa, mpath_1, dm_raid_1, md_2, md_bar, md_foo, md0, md1, md10, pmem0,
-	pmem2, pmem10, sda, sdz, sdaa, vda, vdb, vdc, vdaa, vdbb
+	pmem0_1, pmem0_1s, pmem0s, pmem2, pmem2_1, pmem2_1s, pmem2s, pmem10, pmem10_1, pmem10_1s,
+	pmem10s, sda, sdz, sdaa, vda, vdb, vdc, vdaa, vdbb
     }));
 }
