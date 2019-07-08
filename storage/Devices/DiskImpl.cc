@@ -251,6 +251,8 @@ namespace storage
     {
 	// See doc/udev.md.
 
+	// pmem- yet not listed here due to bsc #1140630
+
 	static const vector<string> allowed_prefixes = { "ata-", "scsi-", "usb-", "wwn-", "nvme-" };
 
 	erase_if(udev_ids, [](const string& udev_id) {
