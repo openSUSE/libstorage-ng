@@ -698,6 +698,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/size</name>
       <content>33554432</content>
     </File>
@@ -736,6 +740,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/zoned</name>
+      <content>none</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/size</name>

@@ -1029,6 +1029,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1/alignment_offset</name>
       <content>0</content>
     </File>
@@ -1065,6 +1069,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata2/host1/target1:0:0/1:0:0:0/block/sdb/sdb1/alignment_offset</name>
       <content>0</content>
     </File>
@@ -1091,6 +1099,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/queue/zoned</name>
+      <content>none</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata3/host2/target2:0:0/2:0:0:0/block/sdc/sdc1/alignment_offset</name>
@@ -1121,6 +1133,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata4/host3/target3:0:0/3:0:0:0/block/sdd/sdd1/alignment_offset</name>
       <content>0</content>
     </File>
@@ -1147,6 +1163,10 @@
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/queue/rotational</name>
       <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/queue/zoned</name>
+      <content>none</content>
     </File>
     <File>
       <name>/sys/devices/pci0000:00/0000:00:1f.2/ata5/host4/target4:0:0/4:0:0:0/block/sde/sde1/alignment_offset</name>

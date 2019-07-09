@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,12 +31,34 @@
 namespace storage
 {
 
-    //! Data Transport Layer
+    /**
+     * Data Transport Layer
+     */
     enum class Transport {
 	UNKNOWN, SBP, ATA, FC, ISCSI, SAS, SATA, SPI, USB, FCOE
     };
 
+
+    /**
+     * Convert the Transport transport to a string.
+     */
     std::string get_transport_name(Transport transport);
+
+
+    /**
+     * Zone model as read from /sys. See e.g. https://www.zonedstorage.io/ and
+     * https://github.com/torvalds/linux/blob/master/Documentation/ABI/testing/sysfs-block
+     * for further information.
+     */
+    enum class ZoneModel {
+	NONE, HOST_AWARE, HOST_MANAGED
+    };
+
+
+    /**
+     * Convert the ZoneModel zone_model to a string.
+     */
+    std::string get_zone_model_name(ZoneModel zone_model);
 
 
     //! A physical disk device
@@ -64,7 +86,15 @@ namespace storage
 
 	bool is_rotational() const;
 
+	/**
+	 * Get the transport of the disk.
+	 */
 	Transport get_transport() const;
+
+	/**
+	 * Get the zone model of the disk.
+	 */
+	ZoneModel get_zone_model() const;
 
 	/**
 	 * Find a Disk by its name. Only the name returned by get_name() is

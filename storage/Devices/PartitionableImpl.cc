@@ -152,6 +152,10 @@ namespace storage
 	if (has_children() || !is_active() || get_size() == 0)
 	    return;
 
+	// do not run parted on host-managed zoned disks
+	if (!is_usable_as_partitionable())
+	    return;
+
 	try
 	{
 	    const Parted& parted = prober.get_system_info().getParted(get_name());

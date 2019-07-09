@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -37,6 +37,13 @@ namespace storage
     get_transport_name(Transport transport)
     {
 	return toString(transport);
+    }
+
+
+    string
+    get_zone_model_name(ZoneModel zone_model)
+    {
+	return toString(zone_model);
     }
 
 
@@ -128,6 +135,13 @@ namespace storage
     Disk::get_transport() const
     {
 	return get_impl().get_transport();
+    }
+
+
+    ZoneModel
+    Disk::get_zone_model() const
+    {
+	return get_impl().get_zone_model();
     }
 
 

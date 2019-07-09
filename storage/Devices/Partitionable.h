@@ -49,7 +49,7 @@ namespace storage
 	/**
 	 * Checks whether the partitionable is in general usable as a
 	 * partitionable (can hold a partition table). This is not the case
-	 * for some DASDs, see doc/dasd.md.
+	 * for some DASDs, see doc/dasd.md, and for host-managed zoned disks.
 	 *
 	 * Does not consider if the partitionable is already in use.
 	 */
