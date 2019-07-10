@@ -774,6 +774,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085554707/block/sda/size</name>
       <content>2097152</content>
     </File>
@@ -796,6 +800,10 @@
     <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb/queue/zoned</name>
+      <content>none</content>
     </File>
     <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-0/target0:0:0/0:0:0:1085620243/block/sdb/size</name>
@@ -822,6 +830,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085554707/block/sdc/size</name>
       <content>2097152</content>
     </File>
@@ -844,6 +856,10 @@
     <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd/queue/rotational</name>
       <content>1</content>
+    </File>
+    <File>
+      <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd/queue/zoned</name>
+      <content>none</content>
     </File>
     <File>
       <name>/sys/devices/css0/0.0.0008/0.0.fa00/host0/rport-0:0-1/target0:0:1/0:0:1:1085620243/block/sdd/size</name>

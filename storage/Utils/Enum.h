@@ -1,6 +1,6 @@
 /*
  * Copyright (c) 2010 Novell, Inc.
- * Copyright (c) 2015 SUSE LLC
+ * Copyright (c) [2015-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -90,12 +90,13 @@ namespace storage
     template <typename EnumType>
     EnumType toValueWithFallback(const string& str, EnumType fallback, bool log_error = true)
     {
-	EnumType value;
+	static_assert(std::is_enum<EnumType>::value, "not enum");
 
-	if (toValue(str, value, log_error))
-	    return value;
+	EnumType value(fallback);
 
-	return fallback;
+	toValue(str, value, log_error);
+
+	return value;
     }
 
 }

@@ -51,6 +51,7 @@ namespace storage
 	WRITETHROUGH, WRITEBACK, WRITEAROUND, NONE
     };
 
+
     /**
      * A <a href="https://www.kernel.org/doc/Documentation/bcache.txt">bcache</a> device.
      *

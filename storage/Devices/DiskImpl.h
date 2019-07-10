@@ -40,16 +40,20 @@ namespace storage
 
     template <> struct EnumTraits<Transport> { static const vector<string> names; };
 
+    template <> struct EnumTraits<ZoneModel> { static const vector<string> names; };
+
 
     class Disk::Impl : public Partitionable::Impl
     {
     public:
 
 	Impl(const string& name)
-	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name), rotational(false), transport(Transport::UNKNOWN),
+	      zone_model(ZoneModel::NONE) {}
 
 	Impl(const string& name, const Region& region)
-	    : Partitionable::Impl(name, region), rotational(false), transport(Transport::UNKNOWN) {}
+	    : Partitionable::Impl(name, region), rotational(false), transport(Transport::UNKNOWN),
+	      zone_model(ZoneModel::NONE) {}
 
 	Impl(const xmlNode* node);
 
@@ -58,6 +62,9 @@ namespace storage
 	virtual string get_pretty_classname() const override;
 
 	virtual string get_sort_key() const override;
+
+	virtual bool is_usable_as_blk_device() const override;
+	virtual bool is_usable_as_partitionable() const override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -70,6 +77,9 @@ namespace storage
 
 	Transport get_transport() const { return transport; }
 	void set_transport(Transport transport) { Impl::transport = transport; }
+
+	ZoneModel get_zone_model() const { return zone_model; }
+	void set_zone_model(ZoneModel zone_model) { Impl::zone_model = zone_model; }
 
 	static void probe_disks(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
@@ -94,6 +104,8 @@ namespace storage
 	bool rotational;
 
 	Transport transport;
+
+	ZoneModel zone_model;
 
     };
 

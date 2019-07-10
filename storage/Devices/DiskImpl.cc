@@ -58,8 +58,14 @@ namespace storage
     });
 
 
+    const vector<string> EnumTraits<ZoneModel>::names({
+	"none", "host-aware", "host-managed"
+    });
+
+
     Disk::Impl::Impl(const xmlNode* node)
-	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN)
+	: Partitionable::Impl(node), rotational(false), transport(Transport::UNKNOWN),
+	  zone_model(ZoneModel::NONE)
     {
 	string tmp;
 
@@ -67,6 +73,9 @@ namespace storage
 
 	if (getChildValue(node, "transport", tmp))
 	    transport = toValueWithFallback(tmp, Transport::UNKNOWN);
+
+	if (getChildValue(node, "zone-model", tmp))
+	    zone_model = toValueWithFallback(tmp, ZoneModel::NONE);
     }
 
 
@@ -95,6 +104,25 @@ namespace storage
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);
+    }
+
+
+    bool
+    Disk::Impl::is_usable_as_blk_device() const
+    {
+	// TODO This may change when btrfs natively can handle
+	// host-managed zoned devices. But the interface is not
+	// powerful enough. Maybe just add an
+	// is_usable_as_zoned_blk_device() function.
+
+	return zone_model != ZoneModel::HOST_MANAGED;
+    }
+
+
+    bool
+    Disk::Impl::is_usable_as_partitionable() const
+    {
+	return zone_model != ZoneModel::HOST_MANAGED;
     }
 
 
@@ -133,6 +161,9 @@ namespace storage
 	Lsscsi::Entry entry;
 	if (system_info.getLsscsi().getEntry(get_name(), entry))
 	    transport = entry.transport;
+
+	const File& zoned_file = get_sysfs_file(system_info, "queue/zoned");
+	zone_model = toValueWithFallback(zoned_file.get<string>(), ZoneModel::NONE);
     }
 
 
@@ -168,6 +199,8 @@ namespace storage
 	setChildValueIf(node, "rotational", rotational, rotational);
 
 	setChildValueIf(node, "transport", toString(transport), transport != Transport::UNKNOWN);
+
+	setChildValueIf(node, "zone-model", toString(zone_model), zone_model != ZoneModel::NONE);
     }
 
 
@@ -203,7 +236,8 @@ namespace storage
 	if (!Partitionable::Impl::equal(rhs))
 	    return false;
 
-	return rotational == rhs.rotational && transport == rhs.transport;
+	return rotational == rhs.rotational && transport == rhs.transport &&
+	    zone_model == rhs.zone_model;
     }
 
 
@@ -217,6 +251,8 @@ namespace storage
 	storage::log_diff(log, "rotational", rotational, rhs.rotational);
 
 	storage::log_diff_enum(log, "transport", transport, rhs.transport);
+
+	storage::log_diff_enum(log, "zone-model", zone_model, rhs.zone_model);
     }
 
 
@@ -229,6 +265,9 @@ namespace storage
 	    out << " rotational";
 
 	out << " transport:" << toString(get_transport());
+
+	if (zone_model != ZoneModel::NONE)
+	    out << " zone-model:" << toString(get_zone_model());
     }
 
 

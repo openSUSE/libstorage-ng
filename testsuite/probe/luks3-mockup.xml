@@ -272,6 +272,10 @@
       <content>1</content>
     </File>
     <File>
+      <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/queue/zoned</name>
+      <content>none</content>
+    </File>
+    <File>
       <name>/sys/devices/pci0000:00/0000:00:14.0/usb2/2-7/2-7:1.0/host8/target8:0:0/8:0:0:0/block/sdc/size</name>
       <content>5860466688</content>
     </File>

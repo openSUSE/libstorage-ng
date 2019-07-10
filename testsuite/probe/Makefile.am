@@ -8,7 +8,8 @@ LDADD = ../../storage/libstorage-ng.la ../helpers/libhelpers.la			\
 	-lboost_unit_test_framework
 
 check_PROGRAMS =								\
-	disk.test multipath1.test multipath+luks1.test md1.test md2.test	\
+	disk.test disk-zoned1.test 						\
+	multipath1.test multipath+luks1.test md1.test md2.test	\
 	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
 	multi-mount-point.test							\
@@ -22,6 +23,7 @@ AM_DEFAULT_SOURCE_EXT = .cc
 TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
+	disk-zoned1-mockup.xml disk-zoned1-devicegraph.xml			\
 	multi-mount-point-mockup.xml multi-mount-point-devicegraph.xml		\
 	multipath1-mockup.xml multipath1-devicegraph.xml			\
 	multipath+luks1-mockup.xml multipath+luks1-devicegraph.xml		\
