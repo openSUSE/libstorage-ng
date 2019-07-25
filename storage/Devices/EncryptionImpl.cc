@@ -42,7 +42,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<EncryptionType>::names({
-	"none", "twofish256", "twofish", "twofishSL92", "luks", "unknown"
+	"none", "twofish256", "twofish", "twofishSL92", "luks1", "unknown", "luks2"
     });
 
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,7 +31,7 @@ namespace storage
 {
 
     enum class EncryptionType {
-	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, UNKNOWN
+	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, LUKS1 = LUKS, UNKNOWN, LUKS2
     };
 
 
