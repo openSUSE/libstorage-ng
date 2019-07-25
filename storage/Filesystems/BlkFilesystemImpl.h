@@ -69,20 +69,20 @@ namespace storage
 	virtual unsigned int max_labelsize() const = 0;
 
 	const string& get_label() const { return label; }
-	void set_label(const string& label);
+	void set_label(const string& label) { Impl::label = label; }
 
 	virtual bool supports_uuid() const = 0;
 
 	const string& get_uuid() const { return uuid; }
-	void set_uuid(const string& uuid);
+	void set_uuid(const string& uuid) { Impl::uuid = uuid; }
 
 	virtual bool supports_external_journal() const { return false; }
 
 	const string& get_mkfs_options() const { return mkfs_options; }
-	void set_mkfs_options(const string& mkfs_options);
+	void set_mkfs_options(const string& mkfs_options) { Impl::mkfs_options = mkfs_options; }
 
 	const string& get_tune_options() const { return tune_options; }
-	void set_tune_options(const string& tune_options);
+	void set_tune_options(const string& tune_options) { Impl::tune_options = tune_options; }
 
 	virtual MountByType get_default_mount_by() const override;
 

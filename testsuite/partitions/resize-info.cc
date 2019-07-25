@@ -127,7 +127,7 @@ BOOST_AUTO_TEST_CASE(test_gpt)
     {
 	ResizeInfo resize_info = sda2->detect_resize_info();
 	BOOST_CHECK(resize_info.resize_ok);
-	BOOST_CHECK_EQUAL(resize_info.min_size, 34 * MiB);
+	BOOST_CHECK_EQUAL(resize_info.min_size, (32 + 2) * MiB);
 	BOOST_CHECK_EQUAL(resize_info.max_size, 20 * GiB);
     }
 

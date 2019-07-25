@@ -108,34 +108,6 @@ namespace storage
     }
 
 
-    void
-    BlkFilesystem::Impl::set_label(const string& label)
-    {
-	Impl::label = label;
-    }
-
-
-    void
-    BlkFilesystem::Impl::set_uuid(const string& uuid)
-    {
-	Impl::uuid = uuid;
-    }
-
-
-    void
-    BlkFilesystem::Impl::set_mkfs_options(const string& mkfs_options)
-    {
-	Impl::mkfs_options = mkfs_options;
-    }
-
-
-    void
-    BlkFilesystem::Impl::set_tune_options(const string& tune_options)
-    {
-	Impl::tune_options = tune_options;
-    }
-
-
     MountByType
     BlkFilesystem::Impl::get_default_mount_by() const
     {
