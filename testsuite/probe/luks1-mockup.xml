@@ -16,6 +16,11 @@
       <stdout>/dev/mapper/cr_home: UUID="30032cea-a1f0-4891-8396-28a8d97491d4" TYPE="xfs"</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sda2'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/dmsetup table</name>
       <stdout>cr_home: 0 16779264 crypt aes-xts-plain64 0000000000000000000000000000000000000000000000000000000000000000 0 8:2 4096</stdout>
     </Command>

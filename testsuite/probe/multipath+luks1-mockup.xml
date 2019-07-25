@@ -31,6 +31,16 @@
       <stdout>/dev/mapper/cr-test2: UUID="47d4245a-ce7e-42ca-8269-724aee773dac" TYPE="ext4"</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/mapper/36005076305ffc73a00000000000013b4-part1'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/mapper/36005076305ffc73a00000000000013b5'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/dasdview --extended '/dev/dasda'</name>
       <stdout></stdout>
       <stdout>--- general DASD information --------------------------------------------------</stdout>

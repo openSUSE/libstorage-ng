@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -52,7 +52,37 @@ namespace storage
 	 */
 	static std::vector<const Luks*> get_all(const Devicegraph* devicegraph);
 
+	/**
+	 * Get the LUKS UUID.
+	 */
 	const std::string& get_uuid() const;
+
+	/**
+	 * Get the LUKS label.
+	 *
+	 * Only available in LUKS version 2.
+	 */
+	const std::string& get_label() const;
+
+	/**
+	 * Set the LUKS label.
+	 *
+	 * Only available in LUKS version 2.
+	 */
+	void set_label(const std::string& label);
+
+	/**
+	 * Get extra options for luks format call.
+	 */
+	const std::string& get_format_options() const;
+
+	/**
+	 * Set extra options for luks format call.
+	 *
+	 * Options that modify the size of the resulting blk device
+	 * (e.g. --integrity) are not allowed.
+	 */
+	void set_format_options(const std::string& format_options);
 
     public:
 

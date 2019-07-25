@@ -46,9 +46,12 @@ namespace storage
 
 
     Luks::Impl::Impl(const xmlNode* node)
-	: Encryption::Impl(node), uuid()
+	: Encryption::Impl(node), uuid(), label(), format_options()
     {
 	getChildValue(node, "uuid", uuid);
+	getChildValue(node, "label", label);
+
+	getChildValue(node, "format-options", format_options);
     }
 
 
@@ -66,6 +69,9 @@ namespace storage
 	Encryption::Impl::save(node);
 
 	setChildValue(node, "uuid", uuid);
+	setChildValueIf(node, "label", label, !label.empty());
+
+	setChildValueIf(node, "format-options", format_options, !format_options.empty());
     }
 
 
@@ -77,8 +83,23 @@ namespace storage
 	if (!has_single_parent_of_type<const BlkDevice>())
 	    ST_THROW(Exception("Luks has no BlkDevice parent"));
 
+	if (get_type() != EncryptionType::LUKS1 && get_type() != EncryptionType::LUKS2)
+	    ST_THROW(Exception("invalid encryption type for Luks"));
+
 	if (get_size() > get_blk_device()->get_size())
 	    ST_THROW(Exception("Luks bigger than parent BlkDevice"));
+    }
+
+
+    void
+    Luks::Impl::set_type(EncryptionType type)
+    {
+	Encryption::Impl::set_type(type);
+
+	// Since the metadata size depends on the type a recalculation
+	// in needed.
+
+	calculate_region_and_topology();
     }
 
 
@@ -97,6 +118,12 @@ namespace storage
 		break;
 
 	    case MountByType::LABEL:
+		if (!label.empty())
+		    ret = "LABEL=" + label;
+		else
+		    y2err("no label defined, using fallback");
+		break;
+
 	    case MountByType::ID:
 	    case MountByType::PATH:
 	    case MountByType::DEVICE:
@@ -132,7 +159,7 @@ namespace storage
 
     bool
     Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& system_info,
-			      const string& name, const string& uuid)
+			      const string& name, const string& uuid, const string& label)
     {
 	int attempt = 1;
 	string dm_name;
@@ -159,7 +186,7 @@ namespace storage
 
 		const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
 		const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
-											    "", majorminor);
+											    label, majorminor);
 
 		if (crypttab_entry)
 		    dm_name = crypttab_entry->get_crypt_device();
@@ -225,7 +252,7 @@ namespace storage
 		    continue;
 
 		y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
-		      key_value1.second.luks_uuid);
+		      key_value1.second.luks_uuid << " label:" << key_value1.second.luks_label);
 
 		// TODO During a second loop of Storage::Impl::activate() the
 		// library should not bother the user with popups to lukses where
@@ -235,7 +262,7 @@ namespace storage
 		// reprobe.
 
 		if (activate_luks(activate_callbacks, system_info, key_value1.first,
-				  key_value1.second.luks_uuid))
+				  key_value1.second.luks_uuid, key_value1.second.luks_label))
 		    ret = true;
 	    }
 
@@ -293,7 +320,7 @@ namespace storage
 
 	/*
 	 * The main source for probing LUKSes is the blkid output. It contains
-	 * all LUKSes with UUID and underlying block device. For some LUKSes
+	 * all LUKSes with UUID, label and underlying block device. For some LUKSes
 	 * this is already all available information.
 	 *
 	 * Only search for LUKSes on block devices without children. Otherwise
@@ -314,13 +341,14 @@ namespace storage
 		continue;
 
 	    string uuid = it1->second.luks_uuid;
+	    string label = it1->second.luks_label;
 
 	    dev_t majorminor = system_info.getCmdUdevadmInfo(blk_device->get_name()).get_majorminor();
 
 	    CmdDmsetupTable::const_iterator it2 = cmd_dmsetup_table.find_using(majorminor);
 
 	    const CrypttabEntry* crypttab_entry = etc_crypttab.find_by_any_block_device(system_info, uuid,
-											"", majorminor);
+											label, majorminor);
 
 	    /*
 	     * The DM table name is 1. taken from the active table, 2. taken
@@ -336,8 +364,12 @@ namespace storage
 
 	    Luks* luks = Luks::create(prober.get_system(), dm_table_name);
 	    luks->get_impl().uuid = uuid;
+	    luks->get_impl().label = label;
 	    luks->get_impl().set_active(it2 != cmd_dmsetup_table.end());
 	    luks->set_in_etc_crypttab(crypttab_entry);
+
+	    const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump = system_info.getCmdCryptsetupLuksDump(blk_device->get_name());
+	    luks->get_impl().Encryption::Impl::set_type(cmd_cryptsetup_luks_dump.get_encryption_type());
 
 	    if (crypttab_entry)
 	    {
@@ -391,6 +423,23 @@ namespace storage
     }
 
 
+    unsigned long long
+    Luks::Impl::metadata_size() const
+    {
+	switch (get_type())
+	{
+	    case EncryptionType::LUKS1:
+		return v1_metadata_size;
+
+	    case EncryptionType::LUKS2:
+		return v2_metadata_size;
+
+	    default:
+		ST_THROW(Exception("invalid encryption type"));
+	}
+    }
+
+
     void
     Luks::Impl::calculate_region_and_topology()
     {
@@ -401,8 +450,8 @@ namespace storage
 	// size of luks metadata is explained at
 	// https://gitlab.com/cryptsetup/cryptsetup/wikis/FrequentlyAskedQuestions
 
-	if (size > metadata_size)
-	    size -= metadata_size;
+	if (size > metadata_size())
+	    size -= metadata_size();
 	else
 	    size = 0 * B;
 
@@ -425,7 +474,7 @@ namespace storage
 	if (!Encryption::Impl::equal(rhs))
 	    return false;
 
-	return uuid == rhs.uuid;
+	return uuid == rhs.uuid && label == rhs.label && format_options == rhs.format_options;
     }
 
 
@@ -437,6 +486,9 @@ namespace storage
 	Encryption::Impl::log_diff(log, rhs);
 
 	storage::log_diff(log, "uuid", uuid, rhs.uuid);
+	storage::log_diff(log, "label", label, rhs.label);
+
+	storage::log_diff(log, "format-options", format_options, rhs.format_options);
     }
 
 
@@ -446,15 +498,27 @@ namespace storage
 	Encryption::Impl::print(out);
 
 	out << " uuid:" << uuid;
+
+	if (!label.empty())
+	    out << " label:" << label;
+
+	if (!format_options.empty())
+	    out << " format-options:" << format_options;
     }
 
 
     ResizeInfo
     Luks::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
+	// Resizing an active LUKS2 device might require the password
+	// (depending on use of kernel keyring). For the time being
+	// disable just it.
+	if (get_type() == EncryptionType::LUKS2)
+	    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 
-	resize_info.shift(metadata_size);
+	resize_info.shift(metadata_size());
 
 	return resize_info;
     }
@@ -472,8 +536,25 @@ namespace storage
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name()) +
-	    " --tries 1 --key-file -";
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksFormat " + quote(blk_device->get_name());
+
+	switch (get_type())
+	{
+	    case EncryptionType::LUKS1:
+		cmd_line += " --type luks1";
+		break;
+
+	    case EncryptionType::LUKS2:
+		cmd_line += " --type luks2";
+		if (!label.empty())
+		    cmd_line += " --label " + quote(label);
+		break;
+
+	    default:
+		ST_THROW(Exception("invalid encryption type"));
+	}
+
+	cmd_line += " --tries 1 " + get_format_options() + " --key-file -";
 
 	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
 	cmd_options.stdin_text = get_password();

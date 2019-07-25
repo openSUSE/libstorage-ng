@@ -47,20 +47,24 @@ namespace storage
 
 
     Encryption::Impl::Impl(const string& dm_table_name)
-	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name), password(), mount_by(MountByType::DEVICE),
-	  in_etc_crypttab(true)
+	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name), type(EncryptionType::LUKS1), password(),
+	  mount_by(MountByType::DEVICE), in_etc_crypttab(true)
     {
 	set_dm_table_name(dm_table_name);
     }
 
 
     Encryption::Impl::Impl(const xmlNode* node)
-	: BlkDevice::Impl(node), password(), mount_by(MountByType::DEVICE), in_etc_crypttab(true)
+	: BlkDevice::Impl(node), type(EncryptionType::LUKS1), password(), mount_by(MountByType::DEVICE),
+	  in_etc_crypttab(true)
     {
 	string tmp;
 
 	if (get_dm_table_name().empty())
 	    ST_THROW(Exception("no dm-table-name"));
+
+	if (getChildValue(node, "type", tmp))
+	    type = toValueWithFallback(tmp, EncryptionType::UNKNOWN);
 
 	getChildValue(node, "password", password);
 
@@ -146,6 +150,8 @@ namespace storage
     Encryption::Impl::save(xmlNode* node) const
     {
 	BlkDevice::Impl::save(node);
+
+	setChildValue(node, "type", toString(type));
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    setChildValue(node, "password", password);
@@ -259,7 +265,7 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return password == rhs.password && mount_by == rhs.mount_by &&
+	return type == rhs.type && password == rhs.password && mount_by == rhs.mount_by &&
 	    crypt_options == rhs.crypt_options && in_etc_crypttab == rhs.in_etc_crypttab;
     }
 
@@ -270,6 +276,8 @@ namespace storage
 	const Impl& rhs = dynamic_cast<const Impl&>(rhs_base);
 
 	BlkDevice::Impl::log_diff(log, rhs);
+
+	storage::log_diff_enum(log, "type", type, rhs.type);
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    storage::log_diff(log, "password", password, rhs.password);
@@ -286,6 +294,8 @@ namespace storage
     Encryption::Impl::print(std::ostream& out) const
     {
 	BlkDevice::Impl::print(out);
+
+	out << " type:" << toString(type);
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    out << " password:" << get_password();

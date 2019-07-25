@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -129,6 +129,13 @@ namespace storage
     Encryption::get_type() const
     {
 	return get_impl().get_type();
+    }
+
+
+    void
+    Encryption::set_type(EncryptionType type)
+    {
+	get_impl().set_type(type);
     }
 
 
