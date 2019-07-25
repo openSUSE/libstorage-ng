@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with luks on it, possible also something
+# requirements: partition /dev/sdc1 with luks on it, possible also something
 # on luks, e.g. filesystem or lvm pv
 
 
@@ -20,9 +20,9 @@ probed = storage.get_probed()
 
 print(probed)
 
-sdb1 = to_partition(BlkDevice.find_by_name(probed, "/dev/sdb1"))
+sdc1 = to_partition(BlkDevice.find_by_name(probed, "/dev/sdc1"))
 
-resize_info = sdb1.detect_resize_info()
+resize_info = sdc1.detect_resize_info()
 
 print(resize_info)
 

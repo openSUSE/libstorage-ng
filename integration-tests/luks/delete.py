@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with luks on partition sdb1
+# requirements: disk /dev/sdc with luks on partition sdc1
 
 
 from sys import exit
@@ -17,9 +17,9 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-sdb1.remove_descendants()
+sdc1.remove_descendants()
 
 print(staging)
 

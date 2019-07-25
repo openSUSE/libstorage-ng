@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with size at least 1GiB and luks on it,
+# requirements: partition /dev/sdc1 with size at least 1 GiB and luks on it,
 # possible also something on luks, e.g. filesystem or lvm pv
 
 
@@ -20,9 +20,9 @@ staging = storage.get_staging()
 
 print(staging)
 
-sdb1 = BlkDevice.find_by_name(staging, "/dev/sdb1")
+sdc1 = BlkDevice.find_by_name(staging, "/dev/sdc1")
 
-sdb1.set_size(sdb1.get_size() - 512 * MiB)
+sdc1.set_size(sdc1.get_size() - 512 * MiB)
 
 print(staging)
 
