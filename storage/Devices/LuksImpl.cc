@@ -512,7 +512,7 @@ namespace storage
     {
 	// Resizing an active LUKS2 device might require the password
 	// (depending on use of kernel keyring). For the time being
-	// disable just it.
+	// just disable it.
 	if (get_type() == EncryptionType::LUKS2)
 	    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
 
