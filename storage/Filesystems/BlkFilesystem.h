@@ -57,13 +57,23 @@ namespace storage
 	const std::string& get_uuid() const;
 	void set_uuid(const std::string& uuid);
 
+	/**
+	 * Get extra options for the filesystem mkfs command.
+	 */
 	const std::string& get_mkfs_options() const;
+
+	/**
+	 * Set extra options for the filesystem mkfs command.
+	 */
 	void set_mkfs_options(const std::string& mkfs_options);
 
+	/**
+	 * Get extra options for the filesystem tune command.
+	 */
 	const std::string& get_tune_options() const;
 
 	/**
-	 * Set options for the filesystem tune command. Only supported on Ext
+	 * Set extra options for the filesystem tune command. Only supported on Ext
 	 * and Reiserfs.
 	 */
 	void set_tune_options(const std::string& tune_options);
