@@ -97,7 +97,7 @@ namespace storage
 	Encryption::Impl::set_type(type);
 
 	// Since the metadata size depends on the type a recalculation
-	// in needed.
+	// is needed.
 
 	calculate_region_and_topology();
     }
