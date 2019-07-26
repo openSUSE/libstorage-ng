@@ -102,7 +102,7 @@ namespace storage
     void
     CmdCryptsetupLuksDump::parse(const vector<string>& lines)
     {
-	static const regex version_regex("Version:[ \t]+([0-9]+)", regex::extended);
+	static const regex version_regex("Version:[ \t]*([0-9]+)[ \t]*", regex::extended);
 
 	smatch match;
 
