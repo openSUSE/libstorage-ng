@@ -77,7 +77,8 @@ namespace storage
 	const std::string& get_format_options() const;
 
 	/**
-	 * Set extra options for luks format call.
+	 * Set extra options for luks format call. The options are
+	 * injected as-is to the command so must be properly quoted.
 	 *
 	 * Options that modify the size of the resulting blk device
 	 * (e.g. --integrity) are not allowed.
