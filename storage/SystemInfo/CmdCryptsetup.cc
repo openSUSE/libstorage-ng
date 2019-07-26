@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,6 +21,8 @@
  */
 
 
+#include <regex>
+
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/AppUtil.h"
 #include "storage/Utils/StorageDefines.h"
@@ -32,8 +35,8 @@ namespace storage
     using namespace std;
 
 
-    CmdCryptsetup::CmdCryptsetup(const string& name)
-	: encryption_type(EncryptionType::UNKNOWN), name(name)
+    CmdCryptsetupStatus::CmdCryptsetupStatus(const string& name)
+	: name(name), encryption_type(EncryptionType::UNKNOWN)
     {
 	SystemCmd cmd(CRYPTSETUPBIN " status " + quote(name));
 	if (cmd.retcode() == 0 && !cmd.stdout().empty())
@@ -42,7 +45,7 @@ namespace storage
 
 
     void
-    CmdCryptsetup::parse(const vector<string>& lines)
+    CmdCryptsetupStatus::parse(const vector<string>& lines)
     {
 	string type, cipher, keysize;
 	for (const string& line : lines)
@@ -57,7 +60,9 @@ namespace storage
 	}
 
 	if (type == "LUKS1")
-	    encryption_type = EncryptionType::LUKS;
+	    encryption_type = EncryptionType::LUKS1;
+	else if (type == "LUKS2")
+	    encryption_type = EncryptionType::LUKS2;
 	else if (cipher == "twofish-cbc-plain")
 	    encryption_type = EncryptionType::TWOFISH;
 	else if (cipher == "twofish-cbc-null" && keysize == "192")
@@ -76,10 +81,53 @@ namespace storage
 
 
     std::ostream&
-    operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup)
+    operator<<(std::ostream& s, const CmdCryptsetupStatus& cmd_cryptsetup_status)
     {
-	s << "name:" << cmdcryptsetup.name << " encryption-type:"
-	  << toString(cmdcryptsetup.encryption_type);
+	s << "name:" << cmd_cryptsetup_status.name << " encryption-type:"
+	  << toString(cmd_cryptsetup_status.encryption_type);
+
+	return s;
+    }
+
+
+    CmdCryptsetupLuksDump::CmdCryptsetupLuksDump(const string& name)
+	: name(name), encryption_type(EncryptionType::UNKNOWN)
+    {
+	SystemCmd cmd(CRYPTSETUPBIN " luksDump " + quote(name));
+	if (cmd.retcode() == 0 && !cmd.stdout().empty())
+	    parse(cmd.stdout());
+    }
+
+
+    void
+    CmdCryptsetupLuksDump::parse(const vector<string>& lines)
+    {
+	static const regex version_regex("Version:[ \t]*([0-9]+)[ \t]*", regex::extended);
+
+	smatch match;
+
+	for (const string& line : lines)
+	{
+	    if (regex_match(line, match, version_regex) && match.size() == 2)
+	    {
+		if (match[1] == "1")
+		    encryption_type = EncryptionType::LUKS1;
+		else if (match[1] == "2")
+		    encryption_type = EncryptionType::LUKS2;
+		else
+		    y2err("unknown encryption type:" << match[1]);
+	    }
+	}
+
+	y2mil(*this);
+    }
+
+
+    std::ostream&
+    operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump)
+    {
+	s << "name:" << cmd_cryptsetup_luks_dump.name << " encryption-type:"
+	  << toString(cmd_cryptsetup_luks_dump.encryption_type);
 
 	return s;
     }

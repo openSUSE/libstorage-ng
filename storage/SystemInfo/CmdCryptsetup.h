@@ -1,5 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -36,22 +37,49 @@ namespace storage
     using std::vector;
 
 
-    class CmdCryptsetup
+    class CmdCryptsetupStatus
     {
 
     public:
 
-	CmdCryptsetup(const string& name);
+	CmdCryptsetupStatus(const string& name);
 
-	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetup& cmdcryptsetup);
+	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupStatus& cmd_cryptsetup_status);
 
-	EncryptionType encryption_type;
+	EncryptionType get_encryption_type() const { return encryption_type; }
 
     private:
 
 	void parse(const vector<string>& lines);
 
 	string name;
+
+	EncryptionType encryption_type;
+
+    };
+
+
+    class CmdCryptsetupLuksDump
+    {
+
+    public:
+
+	CmdCryptsetupLuksDump(const string& name);
+
+	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump);
+
+	EncryptionType get_encryption_type() const { return encryption_type; }
+
+    private:
+
+	void parse(const vector<string>& lines);
+
+	string name;
+
+	/**
+	 * Either UNKNOWN, LUKS1 or LUKS2
+	 */
+	EncryptionType encryption_type;
 
     };
 

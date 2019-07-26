@@ -22,6 +22,11 @@
       <stdout>/dev/mapper/system-home: UUID="82ebe746-ba81-4f29-953a-17465ae6000e" TYPE="xfs"</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sda2'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>
       <stderr>bash: /sbin/dmraid: No such file or directory</stderr>
       <exit-code>127</exit-code>

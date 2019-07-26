@@ -48,7 +48,7 @@ namespace storage
     public:
 
 	Impl(const string& dm_name)
-	    : Encryption::Impl(dm_name), uuid() {}
+	    : Encryption::Impl(dm_name), uuid(), label(), format_options() {}
 
 	Impl(const xmlNode* node);
 
@@ -64,7 +64,8 @@ namespace storage
 	static string next_free_cr_auto_name(SystemInfo& system_info);
 
 	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
-				  SystemInfo& system_info, const string& name, const string& uuid);
+				  SystemInfo& system_info, const string& name, const string& uuid,
+				  const string& label);
 
 	static bool activate_lukses(const ActivateCallbacks* activate_callbacks);
 
@@ -75,15 +76,21 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual EncryptionType get_type() const override { return EncryptionType::LUKS; }
-
 	virtual void save(xmlNode* node) const override;
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
+	virtual void set_type(EncryptionType type) override;
+
 	virtual string get_mount_by_name(MountByType mount_by_type) const override;
 
 	const string& get_uuid() const { return uuid; }
+
+	const string& get_label() const { return label; }
+	void set_label(const string& label) { Impl::label = label; }
+
+	const string& get_format_options() const { return format_options; }
+	void set_format_options(const string& format_options) { Impl::format_options = format_options; }
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
@@ -121,11 +128,20 @@ namespace storage
 
     private:
 
-	static const unsigned long long metadata_size = 2 * MiB;
+	// The metadata_size here includes both the metadata and the
+	// keyslots area.
+
+	static const unsigned long long v1_metadata_size = 2 * MiB;
+	static const unsigned long long v2_metadata_size = 16 * MiB;
+
+	unsigned long long metadata_size() const;
 
 	void calculate_region_and_topology();
 
 	string uuid;
+	string label;
+
+	string format_options;
 
     };
 

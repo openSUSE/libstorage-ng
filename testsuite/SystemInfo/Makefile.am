@@ -9,7 +9,8 @@ LDADD = ../../storage/libstorage-ng.la -lboost_unit_test_framework
 check_PROGRAMS =								\
 	blkid.test btrfs-filesystem-df.test btrfs-filesystem-show.test		\
 	btrfs-subvolume-get-default.test					\
-	btrfs-subvolume-list.test cryptsetup.test dasdview.test 		\
+	btrfs-subvolume-list.test cryptsetup-status.test			\
+	cryptsetup-luks-dump.test dasdview.test 				\
 	dir.test dmraid.test							\
 	dmsetup-info.test dmsetup-table.test lsattr.test lsscsi.test lvs.test	\
 	mdadm-detail.test mdadm-examine.test mdlinks.test			\

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: disk /dev/sdb with empty partition sdb1
+# requirements: disk /dev/sdc with empty partition sdc1
 
 
 from sys import exit
@@ -17,9 +17,9 @@ storage.probe()
 
 staging = storage.get_staging()
 
-sdb1 = Partition.find_by_name(staging, "/dev/sdb1")
+sdc1 = Partition.find_by_name(staging, "/dev/sdc1")
 
-luks = sdb1.create_encryption("cr-test")
+luks = sdc1.create_encryption("cr-test")
 
 luks.set_password("12345678")
 

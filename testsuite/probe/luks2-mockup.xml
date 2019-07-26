@@ -17,6 +17,26 @@
       <stdout>/dev/sdb4: UUID="27f2bcc8-816c-422a-8e29-da92a708f0b4" TYPE="crypto_LUKS" PARTUUID="cfe07a9e-bf05-46cc-a9a0-57d0fd61c7fa"</stdout>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sdb1'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sdb2'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sdb3'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/cryptsetup luksDump '/dev/sdb4'</name>
+      <stdout>Version:       	1</stdout>
+    </Command>
+    <Command>
       <name>/sbin/dmraid --sets=active -ccc</name>
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>

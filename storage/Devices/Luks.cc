@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -95,6 +95,36 @@ namespace storage
     {
 	return get_impl().get_uuid();
     }
+
+
+    const string&
+    Luks::get_label() const
+    {
+	return get_impl().get_label();
+    }
+
+
+    void
+    Luks::set_label(const string& label)
+    {
+	return get_impl().set_label(label);
+    }
+
+
+
+    const string&
+    Luks::get_format_options() const
+    {
+	return get_impl().get_format_options();
+    }
+
+
+    void
+    Luks::set_format_options(const std::string& format_options)
+    {
+	get_impl().set_format_options(format_options);
+    }
+
 
     bool
     is_luks(const Device* device)

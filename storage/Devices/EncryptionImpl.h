@@ -63,7 +63,8 @@ namespace storage
 	 */
 	virtual void set_dm_table_name(const string& dm_table_name) override;
 
-	virtual EncryptionType get_type() const { return EncryptionType::UNKNOWN; }
+	EncryptionType get_type() const { return type; }
+	virtual void set_type(EncryptionType type) { Impl::type = type; }
 
 	const string& get_password() const { return password; }
 
@@ -127,6 +128,8 @@ namespace storage
 	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const;
 
     private:
+
+	EncryptionType type;
 
 	string password;
 

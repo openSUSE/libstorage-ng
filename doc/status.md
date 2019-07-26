@@ -64,10 +64,12 @@ Implemented:
 * Probing, creating, deleting, resizing.
 * Activation during installation and upgrade.
 * Handling of /etc/crypttab.
+* LUKS1 and LUKS2.
 
 Missing:
 
 * Handling different mount-by options.
+* LUKS2 integrity (experimental in cryptsetup).
 
 
 Plain DM encryption

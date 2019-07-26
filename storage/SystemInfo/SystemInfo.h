@@ -96,7 +96,7 @@ namespace storage
 	const Dasdview& getDasdview(const string& device) { return dasdviews.get(device); }
 	const CmdDmsetupInfo& getCmdDmsetupInfo() { return cmd_dmsetup_info.get(); }
 	const CmdDmsetupTable& getCmdDmsetupTable() { return cmd_dmsetup_table.get(); }
-	const CmdCryptsetup& getCmdCryptsetup(const string& name) { return cmd_cryptsetups.get(name); }
+	const CmdCryptsetupLuksDump& getCmdCryptsetupLuksDump(const string& name) { return cmd_cryptsetup_luks_dumps.get(name); }
 	const CmdDmraid& getCmdDmraid() { return cmddmraid.get(); }
 	const CmdMultipath& getCmdMultipath() { return cmdmultipath.get(); }
 
@@ -240,7 +240,7 @@ namespace storage
 	LazyObjects<Dasdview> dasdviews;
 	LazyObject<CmdDmsetupInfo> cmd_dmsetup_info;
 	LazyObject<CmdDmsetupTable> cmd_dmsetup_table;
-	LazyObjects<CmdCryptsetup> cmd_cryptsetups;
+	LazyObjects<CmdCryptsetupLuksDump> cmd_cryptsetup_luks_dumps;
 	LazyObject<CmdDmraid> cmddmraid;
 	LazyObject<CmdMultipath> cmdmultipath;
 

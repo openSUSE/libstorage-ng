@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -31,7 +31,7 @@ namespace storage
 {
 
     enum class EncryptionType {
-	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, UNKNOWN
+	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, LUKS1 = LUKS, UNKNOWN, LUKS2
     };
 
 
@@ -49,10 +49,24 @@ namespace storage
 	static Encryption* create(Devicegraph* devicegraph, const std::string& name);
 	static Encryption* load(Devicegraph* devicegraph, const xmlNode* node);
 
+	/**
+	 * Get the encryption type.
+	 */
 	EncryptionType get_type() const;
 
+	/**
+	 * Set the encryption type. So far only LUKS1 and LUKS2 are allowed.
+	 */
+	void set_type(EncryptionType type);
+
+	/**
+	 * Get the encryption password.
+	 */
 	const std::string& get_password() const;
 
+	/**
+	 * Set the encryption password.
+	 */
 	void set_password(const std::string& password);
 
 	/**

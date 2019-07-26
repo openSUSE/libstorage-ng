@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partitionable /dev/sdb with msdos partition table
+# requirements: partitionable /dev/sdc with msdos partition table
 
 
 from sys import exit
@@ -21,7 +21,7 @@ staging = storage.get_staging()
 
 print(staging)
 
-partitionable = Partitionable.find_by_name(staging, "/dev/sdb")
+partitionable = Partitionable.find_by_name(staging, "/dev/sdc")
 
 partition_table = partitionable.get_partition_table()
 

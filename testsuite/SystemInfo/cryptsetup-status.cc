@@ -21,11 +21,11 @@ check(const string& name, const vector<string>& input, const vector<string>& out
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
     Mockup::set_command(CRYPTSETUPBIN " status " + quote(name), input);
 
-    CmdCryptsetup cmdcryptsetup(name);
+    CmdCryptsetupStatus cmd_cryptsetup_status(name);
 
     ostringstream parsed;
     parsed.setf(std::ios::boolalpha);
-    parsed << cmdcryptsetup;
+    parsed << cmd_cryptsetup_status;
 
     string lhs = parsed.str();
     string rhs = boost::join(output, "\n");
@@ -37,7 +37,7 @@ check(const string& name, const vector<string>& input, const vector<string>& out
 BOOST_AUTO_TEST_CASE(parse1)
 {
     vector<string> input = {
-	"/dev/mapper/cr_test is active and is in use.",
+	"/dev/mapper/cr-test is active and is in use.",
 	"  type:    LUKS1",
 	"  cipher:  aes-cbc-essiv:sha256",
 	"  keysize: 256 bits",
@@ -48,8 +48,31 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"name:cr_test encryption-type:luks"
+	"name:cr-test encryption-type:luks1"
     };
 
-    check("cr_test", input, output);
+    check("cr-test", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse2)
+{
+    vector<string> input = {
+	"/dev/mapper/cr-test is active.",
+	"  type:    LUKS2",
+	"  cipher:  aes-xts-plain64",
+	"  keysize: 512 bits",
+	"  key location: keyring",
+	"  device:  /dev/sdc1",
+	"  sector size:  512",
+	"  offset:  32768 sectors",
+	"  size:    20938752 sectors",
+	"  mode:    read/write"
+    };
+
+    vector<string> output = {
+	"name:cr-test encryption-type:luks2"
+    };
+
+    check("cr-test", input, output);
 }
