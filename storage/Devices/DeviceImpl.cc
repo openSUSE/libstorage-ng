@@ -70,8 +70,10 @@ namespace storage
     Device*
     Device::Impl::copy_to_devicegraph(Devicegraph* devicegraph) const
     {
+	ST_CHECK_PTR(devicegraph);
+
 	if (exists_in_devicegraph(devicegraph))
-	    ST_THROW(Exception("device already exists"));
+	    ST_THROW(Exception(sformat("device already exists, sid:%d", get_sid())));
 
 	Device* device = get_non_impl()->clone();
 
@@ -85,6 +87,8 @@ namespace storage
     bool
     Device::Impl::exists_in_devicegraph(const Devicegraph* devicegraph) const
     {
+	ST_CHECK_PTR(devicegraph);
+
 	return devicegraph->device_exists(sid);
     }
 

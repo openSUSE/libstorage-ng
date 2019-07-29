@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -81,6 +81,26 @@ namespace storage
 	 * @throw Exception
 	 */
 	Holder* copy_to_devicegraph(Devicegraph* devicegraph) const;
+
+	/**
+	 * Checks if the holder exists in the devicegraph.
+	 */
+	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
+
+	/**
+	 * Checks if the holder exists in the probed devicegraph.
+	 */
+	bool exists_in_probed() const;
+
+	/**
+	 * Checks if the holder exists in the staging devicegraph.
+	 */
+	bool exists_in_staging() const;
+
+	/**
+	 * Checks if the holder exists in the system devicegraph.
+	 */
+	bool exists_in_system() const;
 
     public:
 

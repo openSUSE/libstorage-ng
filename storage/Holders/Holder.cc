@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -68,6 +68,34 @@ namespace storage
     Holder::copy_to_devicegraph(Devicegraph* devicegraph) const
     {
 	return get_impl().copy_to_devicegraph(devicegraph);
+    }
+
+
+    bool
+    Holder::exists_in_devicegraph(const Devicegraph* devicegraph) const
+    {
+	return get_impl().exists_in_devicegraph(devicegraph);
+    }
+
+
+    bool
+    Holder::exists_in_probed() const
+    {
+	return get_impl().exists_in_probed();
+    }
+
+
+    bool
+    Holder::exists_in_staging() const
+    {
+	return get_impl().exists_in_staging();
+    }
+
+
+    bool
+    Holder::exists_in_system() const
+    {
+	return get_impl().exists_in_system();
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -23,7 +23,9 @@
 
 #include "storage/Holders/HolderImpl.h"
 #include "storage/Devicegraph.h"
+#include "storage/Storage.h"
 #include "storage/Utils/XmlFile.h"
+#include "storage/Utils/Format.h"
 
 
 namespace storage
@@ -54,17 +56,20 @@ namespace storage
     Holder*
     Holder::Impl::copy_to_devicegraph(Devicegraph* devicegraph) const
     {
+	ST_CHECK_PTR(devicegraph);
+
 	sid_t source_sid = get_source_sid();
 	sid_t target_sid = get_target_sid();
 
 	if (!devicegraph->device_exists(source_sid))
-	    ST_THROW(Exception("source device does not exist"));
+	    ST_THROW(Exception(sformat("source device does not exist, source-sid:%d", source_sid)));
 
 	if (!devicegraph->device_exists(target_sid))
-	    ST_THROW(Exception("target device does not exist"));
+	    ST_THROW(Exception(sformat("target device does not exist, target-sid:%d", target_sid)));
 
 	if (devicegraph->holder_exists(source_sid, target_sid))
-	    ST_THROW(Exception("holder already exists"));
+	    ST_THROW(Exception(sformat("holder already exists, source-sid:%d, target-sid:%d",
+				       source_sid, target_sid)));
 
 	Devicegraph::Impl::vertex_descriptor source = devicegraph->get_impl().find_vertex(source_sid);
 	Devicegraph::Impl::vertex_descriptor target = devicegraph->get_impl().find_vertex(target_sid);
@@ -75,6 +80,50 @@ namespace storage
 	holder->get_impl().set_devicegraph_and_edge(devicegraph, edge);
 
 	return holder;
+    }
+
+
+    bool
+    Holder::Impl::exists_in_devicegraph(const Devicegraph* devicegraph) const
+    {
+	ST_CHECK_PTR(devicegraph);
+
+	return devicegraph->holder_exists(get_source_sid(), get_target_sid());
+    }
+
+
+    bool
+    Holder::Impl::exists_in_probed() const
+    {
+	return exists_in_devicegraph(get_storage()->get_probed());
+    }
+
+
+    bool
+    Holder::Impl::exists_in_staging() const
+    {
+	return exists_in_devicegraph(get_storage()->get_staging());
+    }
+
+
+    bool
+    Holder::Impl::exists_in_system() const
+    {
+	return exists_in_devicegraph(get_storage()->get_system());
+    }
+
+
+    Storage*
+    Holder::Impl::get_storage()
+    {
+	return get_devicegraph()->get_storage();
+    }
+
+
+    const Storage*
+    Holder::Impl::get_storage() const
+    {
+	return get_devicegraph()->get_storage();
     }
 
 
