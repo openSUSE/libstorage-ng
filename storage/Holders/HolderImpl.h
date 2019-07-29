@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -51,6 +51,14 @@ namespace storage
 	bool operator!=(const Impl& rhs) const { return !(*this == rhs); }
 
 	Holder* copy_to_devicegraph(Devicegraph* dest) const;
+
+	bool exists_in_devicegraph(const Devicegraph* devicegraph) const;
+	bool exists_in_probed() const;
+	bool exists_in_staging() const;
+	bool exists_in_system() const;
+
+	Storage* get_storage();
+	const Storage* get_storage() const;
 
 	virtual Impl* clone() const = 0;
 
