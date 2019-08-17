@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-06-29 08:50+0000\n"
+"PO-Revision-Date: 2019-08-17 07:51+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
@@ -258,17 +258,17 @@ msgstr "正在添加 %3$s 上子卷 %2$s 的挂载点 %1$s 到 /etc/fstab"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "将设定在 %1$s 上的 Bcache 缓存连接到 Bcache %2$s (%3$s)"
+msgstr "将 %1$s 上的 bcache 缓存集附到 bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
-msgstr "正在将设定在 %1$s 上的 Bcache 缓存连接到 Bcache %2$s (%3$s)"
+msgstr "正在将 %1$s 上的 bcache 缓存集附到 bcache %2$s (%3$s)"
 
 #. TRANSLATORS: symbol for "bytes" (best keep untranslated)
 msgid "B"
@@ -403,9 +403,9 @@ msgstr "从 %5$s 创建 %1$s %2$s (%3$s) 格式为 %4$s"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Create %1$s on %2$s"
-msgstr "在 %2$s (%3$s) 上创建 %1$s"
+msgstr "在 %2$s 上创建 %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -495,9 +495,9 @@ msgstr "在 %1$s 上创建 MS-DOS 分区表"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache %1$s (%2$s)"
-msgstr "创建 Bcache %1$s (%2$s)"
+msgstr "创建 bcache %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -537,9 +537,9 @@ msgstr "在 %2$s (%3$s) 上创建 bcache %1$s 格式为 %4$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
-msgstr "创建在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "创建位于 %1$s (%2$s) 上的 bcache 缓存集"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
@@ -894,9 +894,9 @@ msgstr "创建包含 %3$s 的卷组 %1$s (%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Creating %1$s on %2$s"
-msgstr "正在 %2$s (%3$s) 上创建 %1$s"
+msgstr "正在 %2$s 上创建 %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -929,16 +929,16 @@ msgstr "正在 %1$s 上创建 MS-DOS 分区表"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache %1$s (%2$s)"
-msgstr "正在创建 Bcache %1$s(%2$s)"
+msgstr "正在创建 bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
-msgstr "正在创建在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "正在创建 bcache 缓存集 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1064,16 +1064,16 @@ msgstr "正在反激活 MD %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
-msgstr "反激活 Bcache %1$s (%2$s)"
+msgstr "反激活 bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
-msgstr "取消激活在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "反激活 bcache 缓存集 %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1123,16 +1123,16 @@ msgstr "正在反激活 MD %1$s %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
-msgstr "正在反激活 Bcache %1$s (%2$s)"
+msgstr "正在反激活 bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
-msgstr "正在反激活在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "正在反激活在 %1$s (%2$s) 上的 bcache 缓存集"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1216,9 +1216,9 @@ msgstr "删除 %1$s 上的 MS-DOS 分区表"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache %1$s (%2$s)"
-msgstr "删除 Bcache %1$s(%2$s)"
+msgstr "删除 bcache %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -1231,9 +1231,9 @@ msgstr "删除 %2$s (%3$s) 上的 bcache %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
-msgstr "删除在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "删除在 %1$s (%2$s) 上的 Bcache 缓存集"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -1376,9 +1376,9 @@ msgstr "正在删除 %1$s 上的 MS-DOS 分区表"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache %1$s (%2$s)"
-msgstr "正在删除 Bcache %1$s(%2$s)"
+msgstr "正在删除 bcache %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
