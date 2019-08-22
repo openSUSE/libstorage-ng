@@ -90,3 +90,72 @@ BOOST_AUTO_TEST_CASE(test_msdos)
     BOOST_CHECK_EQUAL(surrounding_sda6.get_start(), 75 * spg + 128);
     BOOST_CHECK_EQUAL(surrounding_sda6.get_end(), 140 * spg - 1);
 }
+
+
+BOOST_AUTO_TEST_CASE(test_msdos_partition_mbr_gap)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 10 * spg, 512));
+
+    PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
+
+    /*
+     * [------------- MBR gap ---------------][----------- rest -----------]
+     * [0 --------------][1024 --------------][2048 -----------------------]
+     *                   [        sda1       ][   sda2   ]
+     */
+    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(1024, 1024, 512), PartitionType::PRIMARY);
+    Partition* sda2 = msdos->create_partition("/dev/sda2", Region(2048, 1 * spg, 512), PartitionType::PRIMARY);
+
+    Region surrounding_sda1 = sda1->get_unused_surrounding_region();
+    BOOST_CHECK_EQUAL(surrounding_sda1.get_start(), 1024);
+    BOOST_CHECK_EQUAL(surrounding_sda1.get_end(), 2047);
+
+    Region surrounding_sda2 = sda2->get_unused_surrounding_region();
+    BOOST_CHECK_EQUAL(surrounding_sda2.get_start(), 2048);
+    BOOST_CHECK_EQUAL(surrounding_sda2.get_end(), 10 * spg - 1);
+}
+
+
+BOOST_AUTO_TEST_CASE(test_msdos_partitions_inside_mbr_gap)
+{
+    set_logger(get_stdout_logger());
+
+    Environment environment(true, ProbeMode::NONE, TargetMode::DIRECT);
+
+    Storage storage(environment);
+
+    Devicegraph* devicegraph = storage.get_staging();
+
+    Disk* sda = Disk::create(devicegraph, "/dev/sda", Region(0, 10 * spg, 512));
+
+    PartitionTable* msdos = sda->create_partition_table(PtType::MSDOS);
+
+    /*
+     * [---------------- MBR gap ---------------][-------------- rest ---------------]
+     * [0 --][100 ----][200 ----][1000 ------][2000 ---------------------------------]
+     *       [  sda1  ][  free  ][    sda2   ][   sda3   ]
+     */
+    Partition* sda1 = msdos->create_partition("/dev/sda1", Region(100, 100, 512), PartitionType::PRIMARY);
+    Partition* sda2 = msdos->create_partition("/dev/sda2", Region(1000, 1000, 512), PartitionType::PRIMARY);
+    Partition* sda3 = msdos->create_partition("/dev/sda2", Region(2000, 1 * spg, 512), PartitionType::PRIMARY);
+
+    Region surrounding_sda1 = sda1->get_unused_surrounding_region();
+    BOOST_CHECK_EQUAL(surrounding_sda1.get_start(), 100);
+    BOOST_CHECK_EQUAL(surrounding_sda1.get_end(), 999);
+
+    Region surrounding_sda2 = sda2->get_unused_surrounding_region();
+    BOOST_CHECK_EQUAL(surrounding_sda2.get_start(), 1000);
+    BOOST_CHECK_EQUAL(surrounding_sda2.get_end(), 1999);
+
+    Region surrounding_sda3 = sda3->get_unused_surrounding_region();
+    BOOST_CHECK_EQUAL(surrounding_sda3.get_start(), 2000);
+    BOOST_CHECK_EQUAL(surrounding_sda3.get_end(), 10 * spg - 1);
+}
