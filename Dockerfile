@@ -1,2 +1,2 @@
-FROM yastdevel/libstorage-ng:sle15-sp1
+FROM yastdevel/libstorage-ng
 COPY . /usr/src/app
