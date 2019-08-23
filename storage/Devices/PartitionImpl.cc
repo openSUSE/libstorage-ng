@@ -583,7 +583,12 @@ namespace storage
 
 		Region tmp = partition_table->get_impl().get_usable_region();
 
-		unsigned long long start = tmp.get_start();
+		// None partition should start before the minimal MBR gap (by default, 1 MiB
+		// in MSDOS partition tables). But, in some cases, the first partition starts
+		// before 1 MiB (e.g., partitions for old Windows systems). For this reason,
+		// the start sector of the partition is considered when calculating the
+		// surrounding region.
+		unsigned long long start = min(get_region().get_start(), tmp.get_start());
 		unsigned long long end = tmp.get_end();
 
 		for (const Partition* partition : partitions)
