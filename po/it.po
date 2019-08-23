@@ -13,16 +13,16 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-04-04 15:04+0000\n"
-"Last-Translator: Davide Aiello <davidea@novilinguists.com>\n"
-"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-sle-15-sp1/it/>\n"
+"PO-Revision-Date: 2018-11-28 20:03+0000\n"
+"Last-Translator: Alessio Adamo <alessio.adamo@gmail.com>\n"
+"Language-Team: Italian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/it/>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 2.18\n"
 "X-Poedit-Language: Italian\n"
 
 msgid ""
@@ -37,7 +37,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "Altri %1$d"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -52,14 +52,14 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s e altri %2$d"
+msgstr ""
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, fuzzy, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s e %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -72,9 +72,9 @@ msgstr "%1$s è messo in cache da %2$s"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, fuzzy, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -516,9 +516,9 @@ msgstr "Crea il dispositivo del volume LVM su %1$s (%2$s)"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Crea MD %1$s %2$s (%3$s) a partire da %4$s"
+msgstr "Crea %1$s %2$s (%3$s) a partire da %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -956,9 +956,9 @@ msgstr "Creare il gruppo di volumi %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Crea gruppo di volumi %1$s (%2$s) a partire da %3$s"
+msgstr "Cre il gruppo di volumi %1$s (%2$s) con %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -1010,9 +1010,9 @@ msgstr "Creazione della tabella delle partizioni GPT su %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Creazione MD %1$s %2$s (%3$s) a partire da %4$s in corso"
+msgstr "Crea %1$s %2$s (%3$s) a partire da %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1131,9 +1131,9 @@ msgstr ""
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Creazione del gruppo di volumi %1$s (%2$s) a partire da %3$s in corso"
+msgstr "Creazione del gruppo di volumi %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1301,9 +1301,9 @@ msgstr "Elimina %1$s %2$s (%3$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Elimina %1$s su %2$s"
+msgstr "Eliminare %1$s su %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1477,9 +1477,9 @@ msgstr "Eliminare il gruppo di volumi %1$s (%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Eliminazione di %1$s su %2$s in corso"
+msgstr "Eliminazione di %1$s su %2$s (%3$s)"
 
 # #-#-#-#-#  storage.it.po (storage)  #-#-#-#-#
 # TLABEL modules/inst_custom_part.ycp:2472
@@ -1635,18 +1635,17 @@ msgstr "Eliminazione del gruppo di volumi %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr "Dissocia set di cache Bcache cache su %1$s da Bcache %2$s (%3$s)"
+msgstr "Collegare il set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr ""
-"Dissociazione set di cache Bcache su %1$s da Bcache %2$s (%3$s) in corso"
+msgstr "Collegamento del set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1660,12 +1659,6 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"Rilevati volumi logici LVM di tipi non supportati:\n"
-"\n"
-"%1$s\n"
-"\n"
-"I volumi logici indicati verranno ignorati; le operazioni sui\n"
-"gruppi di volumi corrispondenti potrebbero non riuscire."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1674,8 +1667,6 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
-"Rilevato un dispositivo LUKS accanto a una tabella delle partizioni sul\n"
-"dispositivo %1$s. Il dispositivo LUKS verrà ignorato."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1684,8 +1675,6 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
-"Rilevato un volume logico LVM accanto a una tabella delle partizioni sul\n"
-"dispositivo %1$s. Il volume logico LVM verrà ignorato."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1694,8 +1683,6 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
-"Rilevato un file system accanto alla tabella delle partizioni sul\n"
-"dispositivo %1$s. Il file system verrà ignorato."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
@@ -2414,12 +2401,14 @@ msgid "Probing NFS failed"
 msgstr "Rlevamento di NFS non riuscito"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing additional attributes"
-msgstr "Rilevamento attributi aggiuntivi"
+msgstr "Rilevamento delle partizioni non riuscito"
 
 #. TRANSLATORS: error message
+#, fuzzy
 msgid "Probing additional attributes failed"
-msgstr "Rilevamento attributi aggiuntivi non riuscito"
+msgstr "Rilevamento delle partizioni non riuscito"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
@@ -2494,15 +2483,18 @@ msgid "Probing partitions on %s failed"
 msgstr "Rilevamento delle partizioni su %s non riuscito"
 
 #. TRANSLATORS: error message
-#, c-format
+#, fuzzy, c-format
 msgid "Probing stray block device %s failed"
-msgstr "Rilevamento del dispositivo a blocchi \"senza padrone\" %s non riuscito"
+msgstr ""
+"Rilevamento del dispositivo a blocchi \"senza padrone\" %s non riuscito"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing stray block devices"
 msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\""
 
 #. TRANSLATORS: error message
+#, fuzzy
 msgid "Probing stray block devices failed"
 msgstr "Rilevamento di dispositivi a blocchi \"senza padrone\" fallito"
 
@@ -2668,9 +2660,9 @@ msgstr "Impostare il flag di avvio della partizione %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Imposta modalità cache a %1$s per Bcache %2$s (%3$s)"
+msgstr "Collegare il set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2752,9 +2744,9 @@ msgstr "Impostazione del flag di avvio della partizione %1$s"
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Impostazione della modalità cache a %1$s per Bcache %2$s (%3$s)"
+msgstr "Collegamento del set di cache Bcache su %1$s a Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
