@@ -5,16 +5,16 @@ msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-04-04 15:04+0000\n"
-"Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
-"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/"
-"ng-sle-15-sp1/ru/>\n"
+"PO-Revision-Date: 2019-02-07 05:52+0000\n"
+"Last-Translator: Alex Minton <alex239@gmail.com>\n"
+"Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.3\n"
 
 msgid ""
@@ -29,7 +29,7 @@ msgstr ""
 #. %1$d is replaced by the number of elements omitted
 #, c-format
 msgid "%1$d more"
-msgstr "Еще %1$d"
+msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
@@ -44,14 +44,14 @@ msgstr "%1$s (%2$s)"
 #. %2$s is replaced by the number of elements omitted
 #, c-format
 msgid "%1$s and %2$d more"
-msgstr "%1$s и еще %2$d"
+msgstr ""
 
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, fuzzy, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s и %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -64,9 +64,9 @@ msgstr "%1$s кэшируется в %2$s"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, c-format
+#, fuzzy, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s, %2$s"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
@@ -481,9 +481,9 @@ msgstr "Создать устройство группы томов LVM на %1$
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Создать MD %1$s %2$s (%3$s) на основе устройств %4$s"
+msgstr "Создать раздел %1$s %2$s (%3$s) на основе устройств %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -891,9 +891,9 @@ msgstr "Создать группу томов %1$s (%2$s)"
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
-msgstr "Создать группу томов %1$s (%2$s) на основе устройств %3$s"
+msgstr "Создать группу томов %1$s (%2$s) с файловой системой %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
@@ -943,9 +943,9 @@ msgstr "Создание GPT на %1$s"
 #. %3$s is replaced by size (e.g. 2 GiB),
 #. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
-msgstr "Создать MD %1$s %2$s (%3$s) на основе устройств %4$s"
+msgstr "Создать раздел %1$s %2$s (%3$s) на основе устройств %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
@@ -1050,9 +1050,9 @@ msgstr ""
 #. %2$s is replaced by size (e.g. 2 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
 #. /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
-msgstr "Создание группы томов %1$s (%2$s) на основе устройств %3$s"
+msgstr "Создание группы томов %1$s (%2$s)"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
@@ -1198,9 +1198,9 @@ msgstr "Удалить раздел %1$s %2$s (%3$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Удалить %1$s на устройствах %2$s"
+msgstr "Удалить %1$s на %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1357,9 +1357,9 @@ msgstr "Удалить группу томов %1$s (%2$s)"
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1 GiB)
 #. and /dev/sdb2 (1 GiB))
-#, c-format
+#, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Удаление %1$s на устройствах %2$s"
+msgstr "Удаление %1$s на %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1497,21 +1497,17 @@ msgstr "Удаление группы томов %1$s (%2$s)"
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Detach Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr ""
-"Отключить набор кэширования Bcache на устройстве %1$s от устройства Bcache "
-"%2$s (%3$s)"
+msgstr "Подключить кэш Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Detaching Bcache cache set on %1$s from Bcache %2$s (%3$s)"
-msgstr ""
-"Отключение набора кэширования Bcache на устройстве %1$s от устройства Bcache "
-"%2$s (%3$s)"
+msgstr "Подключение кэша Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by a list of device names joined by newlines (e.g.
@@ -1525,12 +1521,6 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
-"Обнаружены логические тома LVM неподдерживаемых типов:\n"
-"\n"
-"%1$s\n"
-"\n"
-"Эти логические тома будут пропущены. Операции с\n"
-"соответствующими группами томов могут завершиться ошибкой."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -2300,15 +2290,17 @@ msgid "Probing partitions on %s failed"
 msgstr "Ошибка проверки разделов на %s"
 
 #. TRANSLATORS: error message
-#, c-format
+#, fuzzy, c-format
 msgid "Probing stray block device %s failed"
 msgstr "Ошибка проверки блочного устройства %s"
 
 #. TRANSLATORS: progress message
+#, fuzzy
 msgid "Probing stray block devices"
 msgstr "Проверка блочных устройств"
 
 #. TRANSLATORS: error message
+#, fuzzy
 msgid "Probing stray block devices failed"
 msgstr "Ошибка проверки блочных устройств"
 
@@ -2469,9 +2461,9 @@ msgstr "Установить загрузочный флаг раздела %1$s
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Set cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Установить режим кэширования %1$s для Bcache %2$s (%3$s)"
+msgstr "Подключить кэш Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
@@ -2551,9 +2543,9 @@ msgstr "Установка загрузочного флага раздела %1
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, c-format
+#, fuzzy, c-format
 msgid "Setting cache mode to %1$s for Bcache %2$s (%3$s)"
-msgstr "Установка режима кэширования %1$s для Bcache %2$s (%3$s)"
+msgstr "Подключение кэша Bcache на %1$s к Bcache %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
