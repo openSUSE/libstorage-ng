@@ -98,17 +98,33 @@ make archive
 Package versions are tracked by setting version tags in git. The last
 version digit is auto-increased with every OBS commit.
 
-The version can always be set manually by setting an appropriate tag in git.
+**The `VERSION` file is auto-generated from the latest git tag.**
 
-> **Notes**
->
-> 1. The `VERSION` file is auto-generated from the latest git tag.
->
-> 2. The spec file template `libstorage-ng.spec.in` is **not** used.
-Instead, the spec file from the OBS is used.
+The version can be set manually by setting the appropriate tag in git. As
+jenkins also sets version tags during the auto-submission process it is
+needed to turn off the jenkins job temporarily. So, to set the version to a
+specific number, follow these steps:
+
+1. disable the `libstorage-ng-master` project on the internal jenkins node
+2. merge your latest changes
+3. set desired version tag - **Don't forget to push tags!**
+4. re-enable the `libstorage-ng-master` project
+5. trigger new build (or wait)
+
+Remember, version tags should be `X.Y.Z` for master and `BRANCH-X.Y.Z` for other branches.
 
 For a more detailed description about the handling of version numbers and changelog entries
 look [here](https://github.com/openSUSE/linuxrc-devtools/blob/master/workflow.md).
+
+
+Maintenance updates
+-------------------
+
+Jenkins will auto-submit only the `master` branch. Other branches usually imply a maintenance update.
+
+To trigger updates for these branches, go to the `libstorage-ng-master`
+project on our internal jenkins node. Choose `Build with Parameters` and
+select the desired target.
 
 
 Package Versions
@@ -118,7 +134,8 @@ Versioning follows [YaST](http://yastgithubio.readthedocs.io/en/latest/versionin
 
 Currently this means
 
-- 4.1.X for the `master` branch submitted to `Factory` and `SLE-15-SP1`
+- 4.2.X for the `master` branch submitted to `Factory` and `SLE-15-SP2`
+- 4.1.X for the `SLE-15-SP1` branch submitted to `SLE-15-SP1:Update`
 - 3.3.X for the `SLE-15-GA` branch submitted to `SLE-15:Update`
 
 
