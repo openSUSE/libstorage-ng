@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-06-25 17:50+0000\n"
+"PO-Revision-Date: 2019-04-02 16:54+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
 "Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/ca/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.6.1\n"
+"X-Generator: Weblate 3.3\n"
 
 msgid ""
 "\n"
@@ -340,7 +340,7 @@ msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
 "from %6$s"
 msgstr ""
-"Crea %1$s %2$s (%3$s) per a %4$s amb el sistema de fitxers %5$s\n"
+"Crea %1$s %2$s (%3$s) per a %4$s amb %5$s\n"
 "a partir de %6$s"
 
 #. TRANSLATORS:
@@ -382,7 +382,7 @@ msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
 "from %5$s"
 msgstr ""
-"Crea %1$s %2$s (%3$s) amb el sistema de fitxers %4$s\n"
+"Crea %1$s %2$s (%3$s) amb %4$s\n"
 "a partir de %5$s"
 
 #. TRANSLATORS: displayed before action,
@@ -1191,7 +1191,7 @@ msgstr "Suprimeix %1$s %2$s (%3$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Delete %1$s on %2$s"
-msgstr "Suprimeix el sistema de fitxers %1$s de %2$s"
+msgstr "Suprimeix %1$s de %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1352,7 +1352,7 @@ msgstr "Suprimeix el grup de volums %1$s (%2$s)"
 #. and /dev/sdb2 (1 GiB))
 #, c-format
 msgid "Deleting %1$s on %2$s"
-msgstr "Suprimint el sistema de fitxers %1$s de %2$s"
+msgstr "Suprimint %1$s de %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
@@ -1821,7 +1821,7 @@ msgstr "GiB"
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
-msgstr "Engrandeix el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandeix %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -1885,7 +1885,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 2GiB)
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
-msgstr "Engrandint el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
+msgstr "Engrandint %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2603,7 +2603,7 @@ msgstr "Establint les opcions d'ajustament de %1$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "Encongeix el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
+msgstr "Redueix %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2611,7 +2611,7 @@ msgstr "Encongeix el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Encongeix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
+msgstr "Redueix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2620,7 +2620,7 @@ msgstr "Encongeix el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Encongeix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
+msgstr "Redueix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2628,7 +2628,7 @@ msgstr "Encongeix el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Encongeix la partició %1$s de %2$s a %3$s"
+msgstr "Redueix la partició %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2636,7 +2636,7 @@ msgstr "Encongeix la partició %1$s de %2$s a %3$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Encongeix el volum físic de %1$s de %2$s a %3$s"
+msgstr "Redueix el volum físic de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2646,7 +2646,7 @@ msgstr "Encongeix el volum físic de %1$s de %2$s a %3$s"
 #, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Encongeix el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
+"Redueix el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2657,7 +2657,7 @@ msgstr ""
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Encongeix el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
+"Redueix el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
 "%3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
@@ -2667,7 +2667,7 @@ msgstr ""
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "Encongint el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
+msgstr "Reduint %1$s de %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2675,7 +2675,7 @@ msgstr "Encongint el sistema de fitxers %1$s de %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Encongint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
+msgstr "Reduint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2684,7 +2684,7 @@ msgstr "Encongint el dispositiu de capa d'encriptació de %1$s de %2$s a %3$s"
 #. %4$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Encongint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
+msgstr "Reduint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
@@ -2692,7 +2692,7 @@ msgstr "Encongint el volum lògic %1$s del grup de volums %2$s de %3$s a %4$s"
 #. %3$s is replaced by new size (e.g. 1 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Encongint la partició %1$s de %2$s a %3$s"
+msgstr "Reduint la partició %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
@@ -2700,7 +2700,7 @@ msgstr "Encongint la partició %1$s de %2$s a %3$s"
 #. %3$s is replaced by new size (e.g. 1GiB)
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Encongint el volum físic de %1$s de %2$s a %3$s"
+msgstr "Reduint el volum físic de %1$s de %2$s a %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2711,7 +2711,7 @@ msgstr "Encongint el volum físic de %1$s de %2$s a %3$s"
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
-"Encongint el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
+"Reduint el volum lògic prim %1$s del grup de volums %2$s de %3$s a %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
@@ -2723,7 +2723,7 @@ msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
 msgstr ""
-"Encongint el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
+"Reduint el volum lògic d'agrupació prima %1$s del grup de volums %2$s de "
 "%3$s a %4$s"
 
 #. TRANSLATORS: name of object
