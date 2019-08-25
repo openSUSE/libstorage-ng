@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-06-06 14:56+0200\n"
-"PO-Revision-Date: 2019-08-17 07:51+0000\n"
+"PO-Revision-Date: 2019-08-25 05:51+0000\n"
 "Last-Translator: Marguerite Su <i@marguerite.su>\n"
 "Language-Team: Chinese (China) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/zh_CN/>\n"
@@ -1383,9 +1383,9 @@ msgstr "正在删除 bcache %1$s (%2$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
-msgstr "正在删除在 %1$s (%2$s) 上的 Bcache 缓存"
+msgstr "正在删除 %1$s (%2$s) 上的 bcache 缓存集"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
