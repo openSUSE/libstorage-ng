@@ -58,6 +58,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Ext4.
+     *
+     * @throw NullPointerException
+     */
     bool is_ext4(const Device* device);
 
     /**

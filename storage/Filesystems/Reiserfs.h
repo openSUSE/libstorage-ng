@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Reiserfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_reiserfs(const Device* device);
 
     /**

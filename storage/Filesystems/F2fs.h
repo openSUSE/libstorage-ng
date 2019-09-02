@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a F2fs.
+     *
+     * @throw NullPointerException
+     */
     bool is_f2fs(const Device* device);
 
     /**

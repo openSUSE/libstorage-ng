@@ -66,6 +66,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an MdContainer.
+     *
+     * @throw NullPointerException
+     */
     bool is_md_container(const Device* device);
 
     /**

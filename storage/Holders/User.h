@@ -54,6 +54,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether holder points to an User.
+     *
+     * @throw NullPointerException
+     */
     bool is_user(const Holder* holder);
 
     /**

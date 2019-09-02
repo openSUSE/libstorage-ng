@@ -58,6 +58,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Ext3.
+     *
+     * @throw NullPointerException
+     */
     bool is_ext3(const Device* device);
 
     /**

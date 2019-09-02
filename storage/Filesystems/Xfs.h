@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Xfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_xfs(const Device* device);
 
     /**

@@ -53,6 +53,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether holder points to a Subdevice.
+     *
+     * @throw NullPointerException
+     */
     bool is_subdevice(const Holder* holder);
 
     /**

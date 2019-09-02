@@ -162,6 +162,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Mountable.
+     *
+     * @throw NullPointerException
+     */
     bool is_mountable(const Device* device);
 
     /**

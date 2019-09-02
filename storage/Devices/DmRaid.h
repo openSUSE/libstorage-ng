@@ -87,6 +87,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a DmRaid.
+     *
+     * @throw NullPointerException
+     */
     bool is_dm_raid(const Device* device);
 
     /**

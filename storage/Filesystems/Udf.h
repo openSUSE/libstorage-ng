@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Udf.
+     *
+     * @throw NullPointerException
+     */
     bool is_udf(const Device* device);
 
     /**

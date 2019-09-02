@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Exfat.
+     *
+     * @throw NullPointerException
+     */
     bool is_exfat(const Device* device);
 
     /**

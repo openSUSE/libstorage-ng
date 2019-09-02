@@ -85,6 +85,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a BtrfsSubvolume.
+     *
+     * @throw NullPointerException
+     */
     bool is_btrfs_subvolume(const Device* device);
 
     /**

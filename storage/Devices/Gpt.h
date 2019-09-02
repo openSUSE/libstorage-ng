@@ -74,6 +74,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Gpt.
+     *
+     * @throw NullPointerException
+     */
     bool is_gpt(const Device* device);
 
     /**

@@ -134,6 +134,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Encryption.
+     *
+     * @throw NullPointerException
+     */
     bool is_encryption(const Device* device);
 
     /**

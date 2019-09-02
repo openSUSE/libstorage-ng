@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Iso9660.
+     *
+     * @throw NullPointerException
+     */
     bool is_iso9660(const Device* device);
 
     /**

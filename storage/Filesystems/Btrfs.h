@@ -170,6 +170,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Btrfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_btrfs(const Device* device);
 
     /**

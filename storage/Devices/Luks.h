@@ -101,6 +101,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Luks.
+     *
+     * @throw NullPointerException
+     */
     bool is_luks(const Device* device);
 
     /**

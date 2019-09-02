@@ -205,6 +205,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a PartitionTable.
+     *
+     * @throw NullPointerException
+     */
     bool is_partition_table(const Device* device);
 
     /**

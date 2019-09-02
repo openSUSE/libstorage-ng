@@ -58,6 +58,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Jfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_jfs(const Device* device);
 
     /**

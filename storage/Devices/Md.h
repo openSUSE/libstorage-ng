@@ -253,6 +253,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Md.
+     *
+     * @throw NullPointerException
+     */
     bool is_md(const Device* device);
 
     /**

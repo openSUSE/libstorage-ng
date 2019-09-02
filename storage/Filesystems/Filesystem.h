@@ -74,6 +74,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Filesystem.
+     *
+     * @throw NullPointerException
+     */
     bool is_filesystem(const Device* device);
 
     /**

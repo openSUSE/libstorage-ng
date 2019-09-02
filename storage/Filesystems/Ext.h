@@ -51,6 +51,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Ext.
+     *
+     * @throw NullPointerException
+     */
     bool is_ext(const Device* device);
 
     /**

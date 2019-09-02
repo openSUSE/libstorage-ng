@@ -70,6 +70,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Msdos.
+     *
+     * @throw NullPointerException
+     */
     bool is_msdos(const Device* device);
 
     /**

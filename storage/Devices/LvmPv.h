@@ -76,6 +76,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a LvmPv.
+     *
+     * @throw NullPointerException
+     */
     bool is_lvm_pv(const Device* device);
 
     /**
