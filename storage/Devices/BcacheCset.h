@@ -101,6 +101,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a BcacheCset.
+     *
+     * @throw NullPointerException
+     */
     bool is_bcache_cset(const Device* device);
 
     /**

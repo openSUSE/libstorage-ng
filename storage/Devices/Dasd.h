@@ -112,6 +112,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Dasd.
+     *
+     * @throw NullPointerException
+     */
     bool is_dasd(const Device* device);
 
     /**

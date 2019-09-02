@@ -60,6 +60,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether holder points to a FilesystemUser.
+     *
+     * @throw NullPointerException
+     */
     bool is_filesystem_user(const Holder* holder);
 
     /**

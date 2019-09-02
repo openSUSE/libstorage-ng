@@ -122,6 +122,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Partitionable.
+     *
+     * @throw NullPointerException
+     */
     bool is_partitionable(const Device* device);
 
     /**

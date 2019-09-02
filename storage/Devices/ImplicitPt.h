@@ -69,6 +69,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a ImplicitPt.
+     *
+     * @throw NullPointerException
+     */
     bool is_implicit_pt(const Device* device);
 
     /**

@@ -246,6 +246,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a MountPoint.
+     *
+     * @throw NullPointerException
+     */
     bool is_mount_point(const Device* device);
 
     /**

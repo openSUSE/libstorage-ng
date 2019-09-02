@@ -73,6 +73,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether holder points to a MdUser.
+     *
+     * @throw NullPointerException
+     */
     bool is_md_user(const Holder* holder);
 
     /**

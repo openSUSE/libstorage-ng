@@ -244,6 +244,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Partition.
+     *
+     * @throw NullPointerException
+     */
     bool is_partition(const Device* device);
 
     /**

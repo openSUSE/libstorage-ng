@@ -93,6 +93,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Nfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_nfs(const Device* device);
 
     /**

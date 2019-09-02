@@ -156,6 +156,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a BlkFilesystem.
+     *
+     * @throw NullPointerException
+     */
     bool is_blk_filesystem(const Device* device);
 
     /**

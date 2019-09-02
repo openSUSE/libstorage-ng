@@ -57,6 +57,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Vfat.
+     *
+     * @throw NullPointerException
+     */
     bool is_vfat(const Device* device);
 
     /**

@@ -58,6 +58,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Ext2.
+     *
+     * @throw NullPointerException
+     */
     bool is_ext2(const Device* device);
 
     /**

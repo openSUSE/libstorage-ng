@@ -89,6 +89,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Multipath.
+     *
+     * @throw NullPointerException
+     */
     bool is_multipath(const Device* device);
 
     /**

@@ -59,6 +59,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an Swap.
+     *
+     * @throw NullPointerException
+     */
     bool is_swap(const Device* device);
 
     /**

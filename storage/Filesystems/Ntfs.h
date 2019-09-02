@@ -60,6 +60,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Ntfs.
+     *
+     * @throw NullPointerException
+     */
     bool is_ntfs(const Device* device);
 
     /**

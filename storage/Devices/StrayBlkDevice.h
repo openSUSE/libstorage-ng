@@ -96,6 +96,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a StrayBlkDevice.
+     *
+     * @throw NullPointerException
+     */
     bool is_stray_blk_device(const Device* device);
 
     /**

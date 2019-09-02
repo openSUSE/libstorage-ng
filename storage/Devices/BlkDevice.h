@@ -266,6 +266,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to an BlkDevice.
+     *
+     * @throw NullPointerException
+     */
     bool is_blk_device(const Device* device);
 
     /**

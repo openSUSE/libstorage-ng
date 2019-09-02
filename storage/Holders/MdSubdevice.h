@@ -65,6 +65,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether holder points to an MdSubdevice.
+     *
+     * @throw NullPointerException
+     */
     bool is_md_subdevice(const Holder* holder);
 
     /**

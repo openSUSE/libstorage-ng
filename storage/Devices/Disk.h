@@ -125,6 +125,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a Disk.
+     *
+     * @throw NullPointerException
+     */
     bool is_disk(const Device* device);
 
     /**

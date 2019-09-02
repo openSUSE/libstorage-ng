@@ -73,6 +73,11 @@ namespace storage
     };
 
 
+    /**
+     * Checks whether device points to a MdMember.
+     *
+     * @throw NullPointerException
+     */
     bool is_md_member(const Device* device);
 
     /**
