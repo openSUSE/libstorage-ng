@@ -38,7 +38,8 @@ BOOST_AUTO_TEST_CASE(copy)
     Partition* sda1 = Partition::create(devicegraph, "/dev/sda1", Region(0, 10, 512), PartitionType::PRIMARY);
     Subdevice::create(devicegraph, gpt, sda1);
 
-    Encryption::create(devicegraph, "cr-sda1");
+    Encryption* encryption = Encryption::create(devicegraph, "cr-sda1");
+    User::create(devicegraph, sda1, encryption);
 
     LvmVg::create(devicegraph, "system");
     LvmLv::create(devicegraph, "system", "root", LvType::NORMAL);
@@ -47,14 +48,14 @@ BOOST_AUTO_TEST_CASE(copy)
     Swap::create(devicegraph);
 
     BOOST_CHECK_EQUAL(devicegraph->num_devices(), 8);
-    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph->num_holders(), 3);
 
     devicegraph->check();
 
     Devicegraph* devicegraph_copy = storage.copy_devicegraph("staging", "copy");
 
     BOOST_CHECK_EQUAL(devicegraph_copy->num_devices(), 8);
-    BOOST_CHECK_EQUAL(devicegraph_copy->num_holders(), 2);
+    BOOST_CHECK_EQUAL(devicegraph_copy->num_holders(), 3);
 
     devicegraph_copy->check();
 }
