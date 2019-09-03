@@ -140,6 +140,7 @@ AC_OUTPUT(
 	integration-tests/filesystems/Makefile
 	integration-tests/filesystems/btrfs/Makefile
 	integration-tests/mount-points/Makefile
+	integration-tests/plain-encryption/Makefile
 	integration-tests/luks/Makefile
 	integration-tests/md/Makefile
 	integration-tests/lvm/Makefile
