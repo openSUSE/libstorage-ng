@@ -22,7 +22,6 @@
 
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -109,7 +108,6 @@ namespace storage
     {
 	return get_impl().set_label(label);
     }
-
 
 
     const string&

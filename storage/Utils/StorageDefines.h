@@ -82,7 +82,7 @@
 #define SWAPONBIN "/sbin/swapon"
 #define SWAPOFFBIN "/sbin/swapoff"
 
-#define DDBIN "/bin/dd"
+#define DD_BIN "/bin/dd"
 
 #define BLKIDBIN "/sbin/blkid"
 #define LSSCSIBIN "/usr/bin/lsscsi"
