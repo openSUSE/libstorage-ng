@@ -209,6 +209,9 @@ namespace storage
 	 * but other tools or admins might add cleartext passwords in there.
 	 * Therefore, this file should not be world-readable, otherwise it might
 	 * expose cleartext passwords to unprivileged users.
+	 *
+	 * The above statement turned out to be wrong and having crypttab
+	 * world-readable would also be ok (see bsc #1059972 #c31).
 	 */
 	static const int DEFAULT_PERMISSIONS = 0600;
     };
