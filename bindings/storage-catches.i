@@ -77,6 +77,7 @@
 %catches(storage::NullPointerException) storage::is_partition(const Device *device);
 %catches(storage::NullPointerException) storage::is_partition_table(const Device *device);
 %catches(storage::NullPointerException) storage::is_partitionable(const Device *device);
+%catches(storage::NullPointerException) storage::is_plain_encryption(const Device *device);
 %catches(storage::NullPointerException) storage::is_reiserfs(const Device *device);
 %catches(storage::NullPointerException) storage::is_stray_blk_device(const Device *device);
 %catches(storage::NullPointerException) storage::is_subdevice(const Holder *holder);
@@ -170,6 +171,8 @@
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partition_table(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partitionable(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_partitionable(const Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_plain_encryption(Device *device);
+%catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_plain_encryption(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_reiserfs(const Device *device);
 %catches(storage::DeviceHasWrongType, storage::NullPointerException) storage::to_stray_blk_device(Device *device);

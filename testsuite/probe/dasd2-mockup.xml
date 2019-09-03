@@ -168,6 +168,10 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
       <stderr>bash: /sbin/multipath: No such file or directory</stderr>
       <exit-code>127</exit-code>
@@ -443,6 +447,9 @@
       <content>UUID=3d9a5b64-b1e3-499e-adad-52e036be91a1  /           ext4  defaults  0  0</content>
       <content>UUID=61fa834d-3ae1-462f-afbc-d3bc9b728564  /boot/zipl  ext2  defaults  0  0</content>
       <content>UUID=b82e31eb-762a-4dd5-8f2d-c5195b743b75  swap        swap  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

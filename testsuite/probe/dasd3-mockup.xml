@@ -54,6 +54,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/usr/bin/stat --format '%f' '/dev/vda'</name>
       <stdout>61b0</stdout>
     </Command>
@@ -61,6 +65,9 @@
   <Files>
     <File>
       <name>/etc/fstab</name>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

@@ -102,6 +102,7 @@ namespace storage
 	 * Decide whether the LUKS with uuid should be activated.
 	 *
 	 * TODO Add label parameter for LUKS2.
+	 * TODO Also allow to return a key file?
 	 */
 	virtual std::pair<bool, std::string> luks(const std::string& uuid, int attempt) const = 0;
 

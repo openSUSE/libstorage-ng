@@ -595,6 +595,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
@@ -602,6 +606,9 @@
       <content>/dev/system/swap     swap                 swap       defaults              0 0</content>
       <content>/dev/system/root     /                    ext4       acl,user_xattr        1 1</content>
       <content>/dev/system/home     /home                xfs        defaults              1 2</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

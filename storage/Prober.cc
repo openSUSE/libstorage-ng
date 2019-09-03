@@ -38,6 +38,7 @@
 #include "storage/Devices/LvmPvImpl.h"
 #include "storage/Devices/LvmVgImpl.h"
 #include "storage/Devices/LvmLvImpl.h"
+#include "storage/Devices/PlainEncryptionImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
@@ -381,6 +382,21 @@ namespace storage
 	// Pass 1d
 
 	y2mil("prober pass 1d");
+
+	// TRANSLATORS: progress message
+	message_callback(probe_callbacks, _("Probing plain encryptions"));
+
+	try
+	{
+	    // TODO check whether cryptsetup tools are installed
+
+	    PlainEncryption::Impl::probe_plain_encryptions(*this);
+	}
+	catch (const Exception& exception)
+	{
+	    // TRANSLATORS: error message
+	    error_callback(probe_callbacks, _("Probing plain encryptions failed"), exception);
+	}
 
 	// TRANSLATORS: progress message
 	message_callback(probe_callbacks, _("Probing LUKS"));

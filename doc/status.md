@@ -56,6 +56,19 @@ Missing:
 * Snapshots.
 
 
+Plain DM encryption
+-------------------
+
+Implemented:
+
+* Probing, creating, deleting, resizing.
+* Handling of /etc/crypttab.
+
+Limitations:
+
+* Only supported for swap.
+
+
 LUKS
 ----
 
@@ -71,11 +84,6 @@ Missing:
 * Handling different mount-by options.
 * LUKS2 integrity (experimental in cryptsetup).
 
-
-Plain DM encryption
--------------------
-
-Missing.
 
 
 MD RAID

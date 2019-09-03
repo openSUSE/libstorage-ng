@@ -490,6 +490,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
@@ -497,6 +501,9 @@
       <content>proc  /proc         proc  defaults 0 0</content>
       <content>sysfs /sys          sysfs  noauto  0 0</content>
       <content>usbfs /proc/bus/usb usbfs  noauto  0 0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/etc/mdadm.conf</name>

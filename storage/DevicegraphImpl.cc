@@ -52,6 +52,7 @@
 #include "storage/Devices/LvmVg.h"
 #include "storage/Devices/LvmLv.h"
 #include "storage/Devices/Encryption.h"
+#include "storage/Devices/PlainEncryption.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/Bcache.h"
 #include "storage/Devices/BcacheCset.h"
@@ -685,6 +686,7 @@ namespace storage
 	{ "LvmVg", &LvmVg::load },
 	{ "LvmLv", &LvmLv::load },
 	{ "Encryption", &Encryption::load },
+	{ "PlainEncryption", &PlainEncryption::load },
 	{ "Luks", &Luks::load },
 	{ "Bcache", &Bcache::load },
 	{ "BcacheCset", &BcacheCset::load },

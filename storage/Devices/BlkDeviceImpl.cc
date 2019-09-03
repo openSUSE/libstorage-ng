@@ -31,6 +31,7 @@
 #include "storage/Utils/SystemCmd.h"
 #include "storage/Utils/Mockup.h"
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/PlainEncryptionImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Devices/BcacheImpl.h"
 #include "storage/Devices/BcacheCsetImpl.h"
@@ -731,14 +732,32 @@ namespace storage
 
 
     Encryption*
-    BlkDevice::Impl::create_encryption(const string& dm_name)
+    BlkDevice::Impl::create_encryption(const string& dm_name, EncryptionType type)
     {
 	Devicegraph* devicegraph = get_devicegraph();
 
 	vector<Devicegraph::Impl::edge_descriptor> out_edges =
 	    devicegraph->get_impl().out_edges(get_vertex());
 
-	Encryption* encryption = Luks::create(devicegraph, dm_name);
+	Encryption* encryption = nullptr;
+
+	switch (type)
+	{
+	    case EncryptionType::PLAIN:
+		encryption = PlainEncryption::create(devicegraph, dm_name);
+		break;
+
+	    case EncryptionType::LUKS1:
+	    case EncryptionType::LUKS2:
+		encryption = Luks::create(devicegraph, dm_name);
+		break;
+
+	    default:
+		ST_THROW(Exception("invalid encryption type"));
+	}
+
+	encryption->get_impl().Encryption::Impl::set_type(type);
+
 	Devicegraph::Impl::vertex_descriptor encryption_vertex = encryption->get_impl().get_vertex();
 
 	User::create(devicegraph, get_non_impl(), encryption);

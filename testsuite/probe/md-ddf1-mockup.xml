@@ -35,6 +35,10 @@
       <name>/sbin/dmraid --sets=active -ccc</name>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/mdadm --detail '/dev/md/a' --export</name>
       <name>/sbin/mdadm --detail '/dev/md126' --export</name>
       <stdout>MD_LEVEL=raid0</stdout>
@@ -721,6 +725,9 @@
       <name>/etc/fstab</name>
       <content>UUID=691eb75f-2f8f-4ec9-8515-60b34237bd6d swap                 swap       defaults              0 0</content>
       <content>UUID=4d2e6fde-d105-4f15-b8e1-4173badc8c66 /                    ext4       acl,user_xattr        1 1</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/etc/mdadm.conf</name>

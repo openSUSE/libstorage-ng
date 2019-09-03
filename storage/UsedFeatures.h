@@ -47,6 +47,7 @@ namespace storage
 	UF_EXFAT = 1 << 24,
 	UF_UDF = 1 << 25,
 
+	UF_PLAIN_ENCRYPTION = 1 << 26,
 	UF_LUKS = 1 << 11,
 
 	UF_LVM = 1 << 12,

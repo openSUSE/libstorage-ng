@@ -484,6 +484,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
@@ -511,6 +515,9 @@
       <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/spool btrfs subvol=@/var/spool 0 0</content>
       <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /var/tmp btrfs subvol=@/var/tmp 0 0</content>
       <content>UUID=03b3f314-8d2f-4617-95a0-626812aba79e /.snapshots btrfs subvol=@/.snapshots 0 0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

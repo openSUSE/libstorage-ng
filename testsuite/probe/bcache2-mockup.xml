@@ -69,6 +69,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
       <stderr>/bin/sh: /sbin/multipath: No such file or directory</stderr>
       <exit-code>127</exit-code>
@@ -987,6 +991,9 @@
       <content>#/dev/sdb1	/tmp/win	ntfs	defaults 0	0</content>
       <content>#/dev/sdb2	/tmp/lin	ext4	defaults 0	0</content>
       <content>192.168.56.1:/home/ivan/projects           /home/ivan/projects  nfs   defaults  1  2</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>
