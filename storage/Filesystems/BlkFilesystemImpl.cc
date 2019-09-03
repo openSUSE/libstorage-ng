@@ -174,7 +174,7 @@ namespace storage
 	    if (!blk_device->get_impl().is_active())
 		continue;
 
-	    Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
+	    Blkid::const_iterator it = blkid.find_by_any_name(blk_device->get_name(), system_info);
 	    if (it == blkid.end() || !it->second.is_fs)
 		continue;
 
@@ -220,7 +220,7 @@ namespace storage
 	const BlkDevice* blk_device = get_blk_device();
 
 	const Blkid& blkid = system_info.getBlkid();
-	Blkid::const_iterator it = blkid.find_by_name(blk_device->get_name(), system_info);
+	Blkid::const_iterator it = blkid.find_by_any_name(blk_device->get_name(), system_info);
 	if (it != blkid.end())
 	{
 	    label = it->second.fs_label;

@@ -57,7 +57,7 @@ namespace storage
 
 	    const Blkid& blkid = prober.get_system_info().getBlkid();
 
-	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), prober.get_system_info());
+	    Blkid::const_iterator it1 = blkid.find_by_any_name(blk_device->get_name(), prober.get_system_info());
 	    if (it1 != blkid.end() && !it1->second.fs_journal_uuid.empty())
 	    {
 		Blkid::const_iterator it2 = blkid.find_by_journal_uuid(it1->second.fs_journal_uuid);

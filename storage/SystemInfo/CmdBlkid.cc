@@ -210,7 +210,7 @@ namespace storage
 
 
     Blkid::const_iterator
-    Blkid::find_by_name(const string& device, SystemInfo& system_info) const
+    Blkid::find_by_any_name(const string& device, SystemInfo& system_info) const
     {
 	const_iterator it = data.find(device);
 	if (it != end())

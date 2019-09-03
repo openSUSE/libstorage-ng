@@ -91,7 +91,12 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const Blkid& blkid);
 	friend std::ostream& operator<<(std::ostream& s, const Entry& entry);
 
-	const_iterator find_by_name(const string& device, SystemInfo& system_info) const;
+	/**
+	 * Find an entry by any name including any symbolic links in
+	 * /dev. Function might require a system lookup and is therefore
+	 * slow.
+	 */
+	const_iterator find_by_any_name(const string& device, SystemInfo& system_info) const;
 
 	const_iterator find_by_journal_uuid(const string& journal_uuid) const;
 

@@ -336,7 +336,7 @@ namespace storage
 	    if (!blk_device->get_impl().is_active())
 		continue;
 
-	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), system_info);
+	    Blkid::const_iterator it1 = blkid.find_by_any_name(blk_device->get_name(), system_info);
 	    if (it1 == blkid.end() || !it1->second.is_luks)
 		continue;
 
