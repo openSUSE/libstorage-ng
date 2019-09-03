@@ -16,7 +16,7 @@ check_PROGRAMS =								\
 	bcache1.test bcache2.test btrfs1.test btrfs2.test dasd1.test dasd2.test	\
 	dasd3.test external-journal.test					\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
-	ambiguous1.test md+lvm1.test
+	ambiguous1.test md+lvm1.test plain-encryption1.test
 
 AM_DEFAULT_SOURCE_EXT = .cc
 
@@ -33,6 +33,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	lvm2-mockup.xml lvm2-devicegraph.xml					\
 	lvm-errors1-mockup.xml lvm-errors1-devicegraph.xml			\
 	lvm-unsupported1-mockup.xml lvm-unsupported1-devicegraph.xml		\
+	plain-encryption1-mockup.xml plain-encryption1-devicegraph.xml		\
 	luks+lvm1-mockup.xml luks+lvm1-devicegraph.xml				\
 	luks1-mockup.xml luks1-devicegraph.xml					\
 	luks2-mockup.xml luks2-devicegraph.xml					\
