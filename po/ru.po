@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ru\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Nikita Maynagashev <maynagashev@palex.ru>\n"
 "Language-Team: Russian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2215,6 +2215,11 @@ msgstr "Раздел"
 msgid "PiB"
 msgstr "ПиБ"
 
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Plain Encryption"
+msgstr "Шифрование"
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2357,6 +2362,16 @@ msgstr "Ошибка проверки разделов"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Ошибка проверки разделов на %s"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "Проверка разделов"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
+msgstr "Ошибка проверки разделов"
 
 #. TRANSLATORS: error message
 #, c-format

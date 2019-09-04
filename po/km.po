@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.km\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2012-05-11 12:37+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -2129,6 +2129,10 @@ msgstr ""
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2274,6 +2278,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "បង្កើត​ភាគ​ថាស RAID %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "បង្កើត​ភាគ​ថាស RAID %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
 msgstr "បង្កើត​ភាគ​ថាស RAID %1$s (%2$s)"
 
 #. TRANSLATORS: error message

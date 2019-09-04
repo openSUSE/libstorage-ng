@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: @PACKAGE@\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2011-11-10 23:28+0100\n"
 "Last-Translator: Elisio Catana <ecatana@gmail.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -2127,6 +2127,10 @@ msgstr ""
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2272,6 +2276,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "Criar partição raid %1$s (%2$s)"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "Criar partição raid %1$s (%2$s)"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
 msgstr "Criar partição raid %1$s (%2$s)"
 
 #. TRANSLATORS: error message

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2001-10-18 10:13+0200\n"
 "Last-Translator: Görkem Çetin <gorkem@gelecek.com.tr>\n"
 "Language-Team: turkish <i18n@suse.de>\n"
@@ -2556,6 +2556,10 @@ msgstr ""
 msgid "PiB"
 msgstr "MiB"
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2707,6 +2711,18 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
+
+# clients/inst_custom_part.ycp:3254
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
 msgstr "%3 üzerinde %2 genişletilmiş bölüm oluştur"
 
 # clients/inst_custom_part.ycp:3254

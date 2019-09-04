@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2006-01-04 08:58+0100\n"
 "Last-Translator: Alexander Nyakhaychyk <nyakhaychyk@gmail.com>\n"
 "Language-Team: Belarusian <i18n@suse.de>\n"
@@ -2124,6 +2124,10 @@ msgstr ""
 msgid "PiB"
 msgstr ""
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2269,6 +2273,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "Стварыць"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "Стварыць"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
 msgstr "Стварыць"
 
 #. TRANSLATORS: error message

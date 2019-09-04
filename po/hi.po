@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2005-07-29 15:37+0530\n"
 "Last-Translator: Prasanth Kurian <prasanth.kurian@agreeya.com>\n"
 "Language-Team: Hindi <i18n@suse.de>\n"
@@ -2136,6 +2136,10 @@ msgstr ""
 msgid "PiB"
 msgstr "KiB"
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2281,6 +2285,16 @@ msgstr ""
 #. TRANSLATORS: error message
 #, fuzzy, c-format
 msgid "Probing partitions on %s failed"
+msgstr "विभाजन %1$s (%2$s) को सृजित करें"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "विभाजन %1$s (%2$s) को सृजित करें"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
 msgstr "विभाजन %1$s (%2$s) को सृजित करें"
 
 #. TRANSLATORS: error message
