@@ -22,6 +22,7 @@
 
 
 #include "storage/Devices/BlkDeviceImpl.h"
+#include "storage/Devices/EncryptionImpl.h"
 #include "storage/Filesystems/SwapImpl.h"
 #include "storage/Filesystems/MountPointImpl.h"
 #include "storage/Devicegraph.h"
@@ -83,6 +84,58 @@ namespace storage
     Swap::Impl::used_features() const
     {
 	return UF_SWAP | BlkFilesystem::Impl::used_features();
+    }
+
+
+    bool
+    Swap::Impl::is_permanent() const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+	if (is_encryption(blk_device))
+	{
+	    const Encryption* encryption = to_encryption(blk_device);
+	    if (encryption->get_impl().get_crypt_options().contains("swap"))
+	    {
+		return false;
+	    }
+	}
+
+	return true;
+    }
+
+
+    string
+    Swap::Impl::get_mount_by_name(const MountPoint* mount_point) const
+    {
+	MountByType mount_by = mount_point->get_mount_by();
+
+	switch (mount_by)
+	{
+	    case MountByType::UUID:
+		if (!is_permanent())
+		{
+		    y2err("no uuid possible for non-permanent swap, using fallback mount-by");
+		    mount_by = MountByType::DEVICE;
+		}
+		break;
+
+	    case MountByType::LABEL:
+		if (!is_permanent())
+		{
+		    y2err("no label possible for non-permanent swap, using fallback mount-by");
+		    mount_by = MountByType::DEVICE;
+		}
+		break;
+
+	    case MountByType::ID:
+	    case MountByType::PATH:
+	    case MountByType::DEVICE:
+		break;
+	}
+
+	const BlkDevice* blk_device = get_etc_fstab_blk_device(mount_point);
+
+	return blk_device->get_impl().get_mount_by_name(mount_by);
     }
 
 

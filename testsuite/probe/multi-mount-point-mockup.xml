@@ -373,6 +373,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
@@ -381,6 +385,9 @@
       <content>UUID=9f0f12c5-4d18-494b-b234-7342c953e99a /                    ext4       acl,user_xattr        1 1</content>
       <content>LABEL=HOME /home ext4 defaults 0 0</content>
       <content>UUID=9f0f12c5-4d18-494b-b234-7342c953e99a /root2               ext4       acl,user_xattr        1 1</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

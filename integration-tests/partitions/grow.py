@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# requirements: partition /dev/sdb1 with at least 512 MiB space behind /dev/sdb1
+# requirements: partition /dev/sdc1 with at least 512 MiB space behind /dev/sdc1
 
 
 from sys import exit
@@ -19,7 +19,7 @@ staging = storage.get_staging()
 
 print(staging)
 
-partition = Partition.find_by_name(staging, "/dev/sdb1")
+partition = Partition.find_by_name(staging, "/dev/sdc1")
 
 region = partition.get_region()
 

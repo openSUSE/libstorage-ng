@@ -14,6 +14,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
@@ -44,6 +48,9 @@
       <name>/etc/fstab</name>
       <content>server:/home/a  /test1  nfs   defaults  0  0</content>
       <content>server:/home/c  /test3  auto  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

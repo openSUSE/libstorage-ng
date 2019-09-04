@@ -47,6 +47,8 @@ libdevices_la_SOURCES =					\
 	LvmLvImpl.h		LvmLvImpl.cc		\
 	Encryption.h		Encryption.cc		\
 	EncryptionImpl.h	EncryptionImpl.cc	\
+	PlainEncryption.h	PlainEncryption.cc	\
+	PlainEncryptionImpl.h	PlainEncryptionImpl.cc	\
 	Luks.h			Luks.cc			\
 	LuksImpl.h		LuksImpl.cc		\
 	Bcache.h		Bcache.cc		\
@@ -77,6 +79,7 @@ pkginclude_HEADERS =		\
 	LvmVg.h			\
 	LvmLv.h			\
 	Encryption.h		\
+	PlainEncryption.h	\
 	Luks.h			\
 	Bcache.h		\
 	BcacheCset.h

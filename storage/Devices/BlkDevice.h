@@ -36,6 +36,7 @@ namespace storage
     class Region;
     class Topology;
     class Encryption;
+    enum class EncryptionType;
     class Bcache;
     class BcacheCset;
 
@@ -185,10 +186,20 @@ namespace storage
 	 *
 	 * It will also set the mount-by method of the encryption to the
 	 * storage default mount-by method.
-	 *
-	 * TODO parameter for encryption type? do all encryptions need a dm_name?
 	 */
-	Encryption* create_encryption(const std::string& dm_name);
+	Encryption* create_encryption(const std::string& dm_name) ST_DEPRECATED;
+
+	/**
+	 * Creates an encryption device on the blk device. If the blk device
+	 * has children the children will become children of the encryption
+	 * device.
+	 *
+	 * Allowed encryption types are LUKS1, LUKS2 and PLAIN.
+	 *
+	 * It will also set the mount-by method of the encryption to the
+	 * storage default mount-by method.
+	 */
+	Encryption* create_encryption(const std::string& dm_name, EncryptionType type);
 
 	/**
 	 * Removes an encryption device on the blk device. If the encryption device

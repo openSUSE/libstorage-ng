@@ -31,7 +31,7 @@ namespace storage
 {
 
     enum class EncryptionType {
-	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, LUKS1 = LUKS, UNKNOWN, LUKS2
+	NONE, TWOFISH, TWOFISH_OLD, TWOFISH256_OLD, LUKS, LUKS1 = LUKS, UNKNOWN, LUKS2, PLAIN
     };
 
 
@@ -55,7 +55,9 @@ namespace storage
 	EncryptionType get_type() const;
 
 	/**
-	 * Set the encryption type. So far only LUKS1 and LUKS2 are allowed.
+	 * Set the encryption type. So far only LUKS1, LUKS2 and PLAIN
+	 * are allowed but it is not supported to switch between LUKS
+	 * and PLAIN.
 	 */
 	void set_type(EncryptionType type);
 
@@ -68,6 +70,16 @@ namespace storage
 	 * Set the encryption password.
 	 */
 	void set_password(const std::string& password);
+
+	/**
+	 * Get the key file.
+	 */
+	const std::string& get_key_file() const;
+
+	/**
+	 * Set the key file.
+	 */
+	void set_key_file(const std::string& key_file);
 
 	/**
 	 * Get the mount-by method. For encrypted devices the mount-by method

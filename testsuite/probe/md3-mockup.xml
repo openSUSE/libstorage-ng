@@ -1893,6 +1893,10 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
@@ -1906,6 +1910,9 @@
       <content>/dev/md/test3p1  /test3  ext4  defaults  0  0</content>
       <content>/dev/md/test4    /test4  ext4  defaults  0  0</content>
       <content>/dev/md/test5p1  /test5  ext4  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/etc/mdadm.conf</name>

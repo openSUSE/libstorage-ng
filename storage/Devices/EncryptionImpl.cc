@@ -22,6 +22,7 @@
 
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/StorageTmpl.h"
+#include "storage/Utils/HumanString.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Holders/User.h"
@@ -30,6 +31,8 @@
 #include "storage/StorageImpl.h"
 #include "storage/EnvironmentImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Utils/SystemCmd.h"
+#include "storage/Prober.h"
 
 
 namespace storage
@@ -42,7 +45,7 @@ namespace storage
 
 
     const vector<string> EnumTraits<EncryptionType>::names({
-	"none", "twofish256", "twofish", "twofishSL92", "luks1", "unknown", "luks2"
+	"none", "twofish256", "twofish", "twofishSL92", "luks1", "unknown", "luks2", "plain"
     });
 
 
@@ -68,6 +71,8 @@ namespace storage
 
 	getChildValue(node, "password", password);
 
+	getChildValue(node, "key-file", key_file);
+
 	if (getChildValue(node, "mount-by", tmp))
 	    mount_by = toValueWithFallback(tmp, MountByType::DEVICE);
 
@@ -83,6 +88,41 @@ namespace storage
     {
 	// TRANSLATORS: name of object
 	return _("Encryption").translated;
+    }
+
+
+    void
+    Encryption::Impl::probe_pass_1a(Prober& prober)
+    {
+	BlkDevice::Impl::probe_pass_1a(prober);
+
+	if (is_active())
+	{
+	    SystemInfo& system_info = prober.get_system_info();
+
+	    const File& size_file = get_sysfs_file(system_info, "size");
+	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
+
+	    probe_topology(prober);
+	}
+    }
+
+
+    string
+    Encryption::Impl::next_free_cr_auto_name(SystemInfo& system_info)
+    {
+	const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
+	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
+
+	static int nr = 1;
+
+	while (true)
+	{
+	    string name = "cr-auto-" + to_string(nr++);
+
+	    if (!cmd_dmsetup_info.exists(name) && !etc_crypttab.has_crypt_device(name))
+		return name;
+	}
     }
 
 
@@ -156,6 +196,8 @@ namespace storage
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    setChildValue(node, "password", password);
 
+	setChildValueIf(node, "key-file", key_file, !key_file.empty());
+
 	setChildValue(node, "mount-by", toString(mount_by));
 
 	if (!crypt_options.empty())
@@ -165,10 +207,16 @@ namespace storage
     }
 
 
-    ResizeInfo
-    Encryption::Impl::detect_resize_info(const BlkDevice* blk_device) const
+    void
+    Encryption::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	return BlkDevice::Impl::detect_resize_info(blk_device);
+	BlkDevice::Impl::check(check_callbacks);
+
+	if (!has_single_parent_of_type<const BlkDevice>())
+	    ST_THROW(Exception("Encryption has no BlkDevice parent"));
+
+	if (get_size() > get_blk_device()->get_size())
+	    ST_THROW(Exception("Encryption bigger than parent BlkDevice"));
     }
 
 
@@ -265,8 +313,9 @@ namespace storage
 	if (!BlkDevice::Impl::equal(rhs))
 	    return false;
 
-	return type == rhs.type && password == rhs.password && mount_by == rhs.mount_by &&
-	    crypt_options == rhs.crypt_options && in_etc_crypttab == rhs.in_etc_crypttab;
+	return type == rhs.type && password == rhs.password && key_file == rhs.key_file &&
+	    mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
+	    in_etc_crypttab == rhs.in_etc_crypttab;
     }
 
 
@@ -281,6 +330,8 @@ namespace storage
 
 	if (get_storage()->get_environment().get_impl().is_debug_credentials())
 	    storage::log_diff(log, "password", password, rhs.password);
+
+	storage::log_diff(log, "key-file", key_file, rhs.key_file);
 
 	storage::log_diff_enum(log, "mount-by", mount_by, rhs.mount_by);
 
@@ -297,8 +348,12 @@ namespace storage
 
 	out << " type:" << toString(type);
 
-	if (get_storage()->get_environment().get_impl().is_debug_credentials())
-	    out << " password:" << get_password();
+	if (!password.empty())
+	    if (get_storage()->get_environment().get_impl().is_debug_credentials())
+		out << " password:" << get_password();
+
+	if (!key_file.empty())
+	    out << " key-file:" << get_key_file();
 
 	out << " mount-by:" << toString(mount_by);
 
@@ -306,6 +361,29 @@ namespace storage
 
 	if (in_etc_crypttab)
 	    out << " in-etc-crypttab";
+    }
+
+
+    void
+    Encryption::Impl::add_key_file_option_and_execute(const string& cmd_line) const
+    {
+	const BlkDevice* blk_device = get_blk_device();
+
+	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
+
+	if (!get_key_file().empty())
+	{
+	    cmd_options.command += " --key-file " + quote(get_key_file());
+	}
+	else
+	{
+	    cmd_options.command += " --key-file -";
+	    cmd_options.stdin_text = get_password();
+	}
+
+	wait_for_devices({ blk_device });
+
+	SystemCmd cmd(cmd_options);
     }
 
 
@@ -386,6 +464,20 @@ namespace storage
     }
 
 
+    void
+    Encryption::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    {
+	const Encryption* encryption_rhs = to_encryption(rhs);
+
+	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
+
+	if (resize_mode == ResizeMode::SHRINK)
+	    cmd_line += " --size " + to_string(encryption_rhs->get_impl().get_size() / (512 * B));
+
+	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+    }
+
+
     Text
     Encryption::Impl::do_activate_text(Tense tense) const
     {
@@ -434,7 +526,18 @@ namespace storage
     void
     Encryption::Impl::do_add_to_etc_crypttab(CommitData& commit_data) const
     {
-	ST_THROW(LogicException("stub do_add_to_etc_crypttab called"));
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
+
+	CrypttabEntry* entry = new CrypttabEntry();
+	entry->set_crypt_device(get_dm_table_name());
+	entry->set_block_device(get_mount_by_name(get_mount_by()));
+	if (!key_file.empty())
+	    entry->set_password(get_key_file());
+	entry->set_crypt_opts(get_crypt_options());
+
+	etc_crypttab.add(entry);
+	etc_crypttab.log();
+	etc_crypttab.write();
     }
 
 
@@ -462,7 +565,15 @@ namespace storage
     void
     Encryption::Impl::do_rename_in_etc_crypttab(CommitData& commit_data) const
     {
-        ST_THROW(LogicException("stub do_rename_in_etc_crypttab called"));
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
+
+	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
+	if (entry)
+	{
+	    entry->set_block_device(get_mount_by_name(get_mount_by()));
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 
@@ -484,7 +595,15 @@ namespace storage
     void
     Encryption::Impl::do_remove_from_etc_crypttab(CommitData& commit_data) const
     {
-	ST_THROW(LogicException("stub do_remove_from_etc_crypttab called"));
+	EtcCrypttab& etc_crypttab = commit_data.get_etc_crypttab();
+
+	CrypttabEntry* entry = etc_crypttab.find_block_device(get_crypttab_blk_device_name());
+	if (entry)
+	{
+	    etc_crypttab.remove(entry);
+	    etc_crypttab.log();
+	    etc_crypttab.write();
+	}
     }
 
 

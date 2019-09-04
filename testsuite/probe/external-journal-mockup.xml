@@ -629,12 +629,19 @@
       <stdout>no raid disks</stdout>
       <exit-code>1</exit-code>
     </Command>
+    <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
   </Commands>
   <Files>
     <File>
       <name>/etc/fstab</name>
       <content>UUID=cd8a95dc-0b17-4fdd-b6f4-71f58c1dc764 swap                 swap       defaults              0 0</content>
       <content>UUID=53ec5c2a-b156-4926-9db5-0adbef5cc181 /                    ext4       acl,user_xattr        1 1</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

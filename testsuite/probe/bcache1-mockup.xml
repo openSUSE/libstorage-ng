@@ -73,6 +73,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -776,6 +780,9 @@
     <File>
       <name>/etc/fstab</name>
       <content>UUID=5ce8ad5b-38f8-49fe-99c3-04a9ad465c31  /  xfs  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

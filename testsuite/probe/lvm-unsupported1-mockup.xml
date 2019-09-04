@@ -112,6 +112,10 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/lvs --reportformat json --units b --nosuffix --all --options lv_name,lv_uuid,vg_name,vg_uuid,lv_role,lv_attr,lv_size,stripes,stripe_size,chunk_size,pool_lv,pool_lv_uuid,data_lv,data_lv_uuid,metadata_lv,metadata_lv_uuid</name>
       <stdout>  {</stdout>
       <stdout>      "report": [</stdout>
@@ -1017,6 +1021,9 @@
       <content>proc  /proc         proc  defaults 0 0</content>
       <content>sysfs /sys          sysfs  noauto  0 0</content>
       <content>usbfs /proc/bus/usb usbfs  noauto  0 0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

@@ -18,6 +18,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
@@ -285,6 +289,9 @@
       <name>/etc/fstab</name>
       <content>/dev/sdc1  /test1  ntfs     defaults  0  0</content>
       <content>/dev/sdc2  /test2  ntfs-3g  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

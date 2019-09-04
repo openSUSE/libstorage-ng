@@ -29,7 +29,6 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/Luks.h"
 #include "storage/Devices/EncryptionImpl.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -56,13 +55,6 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
-	/**
-	 * Returns the next free name for automatic naming of lukses. It is
-	 * guaranteed that the name does not exist in the system and that the
-	 * same name is never returned twice.
-	 */
-	static string next_free_cr_auto_name(SystemInfo& system_info);
-
 	static bool activate_luks(const ActivateCallbacks* activate_callbacks,
 				  SystemInfo& system_info, const string& name, const string& uuid,
 				  const string& label);
@@ -72,7 +64,6 @@ namespace storage
 	static bool deactivate_lukses();
 
 	static void probe_lukses(Prober& prober);
-	virtual void probe_pass_1a(Prober& prober) override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
@@ -109,8 +100,6 @@ namespace storage
 	virtual void do_create() override;
 
 	virtual void do_delete() const override;
-
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual void do_activate() const override;
 

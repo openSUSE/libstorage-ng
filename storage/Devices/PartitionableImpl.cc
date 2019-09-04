@@ -104,7 +104,7 @@ namespace storage
     {
 	const Blkid& blkid = prober.get_system_info().getBlkid();
 
-	Blkid::const_iterator it = blkid.find_by_name(get_name(), prober.get_system_info());
+	Blkid::const_iterator it = blkid.find_by_any_name(get_name(), prober.get_system_info());
 	if (it == blkid.end())
 	    return;
 

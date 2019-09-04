@@ -56,6 +56,8 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_dm_table_name(); }
 
+	virtual void probe_pass_1a(Prober& prober) override;
+
 	/**
 	 * Redefined from BlkDeviceImpl to ensure the device name is in sync
 	 * with the DeviceMapper name, since the kernel device names for
@@ -67,8 +69,10 @@ namespace storage
 	virtual void set_type(EncryptionType type) { Impl::type = type; }
 
 	const string& get_password() const { return password; }
-
 	void set_password(const string& password) { Impl::password = password; }
+
+	const string& get_key_file() const { return key_file; }
+	void set_key_file(const string& key_file) { Impl::key_file = key_file; }
 
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
@@ -95,7 +99,7 @@ namespace storage
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 
-	virtual ResizeInfo detect_resize_info(const BlkDevice* blk_device = nullptr) const override;
+	virtual void check(const CheckCallbacks* check_callbacks) const override;
 
 	virtual void save(xmlNode* node) const override;
 
@@ -113,6 +117,7 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
+	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
 
 	virtual Text do_activate_text(Tense tense) const override;
 
@@ -127,11 +132,25 @@ namespace storage
 	virtual Text do_remove_from_etc_crypttab_text(Tense tense) const;
 	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const;
 
+    protected:
+
+	/**
+	 * Returns the next free name for automatic naming of
+	 * encryption devices. It is guaranteed that the name does not
+	 * exist in the system and that the same name is never
+	 * returned twice.
+	 */
+	static string next_free_cr_auto_name(SystemInfo& system_info);
+
+	void add_key_file_option_and_execute(const string& cmd_line) const;
+
     private:
 
 	EncryptionType type;
 
 	string password;
+
+	string key_file;
 
 	MountByType mount_by;
 

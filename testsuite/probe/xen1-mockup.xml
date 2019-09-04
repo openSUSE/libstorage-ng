@@ -93,6 +93,10 @@
       <exit-code>127</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
@@ -484,6 +488,9 @@
       <content>proc  /proc         proc  defaults 0 0</content>
       <content>sysfs /sys          sysfs  noauto  0 0</content>
       <content>usbfs /proc/bus/usb usbfs  noauto  0 0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

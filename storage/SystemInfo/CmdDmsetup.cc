@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,8 +57,12 @@ namespace storage
 
 		list<string>::const_iterator ci = sl.begin();
 		string name = *ci++;
-		*ci++ >> entry.mjr;
-		*ci++ >> entry.mnr;
+
+		unsigned int major, minor;
+		*ci++ >> major;
+		*ci++ >> minor;
+		entry.majorminor = makedev(major, minor);
+
 		*ci++ >> entry.segments;
 		*ci++ >> entry.subsystem;
 		entry.uuid = *ci++;
@@ -91,8 +95,9 @@ namespace storage
     std::ostream&
     operator<<(std::ostream& s, const CmdDmsetupInfo::Entry& entry)
     {
-	s << "mjr:" << entry.mjr << " mnr:" << entry.mnr << " segments:" << entry.segments
-	  << " subsystem:" << entry.subsystem << " uuid:" << entry.uuid;
+	s << "major:" << major(entry.majorminor) << " minor:" << minor(entry.majorminor)
+	  << " segments:" << entry.segments << " subsystem:" << entry.subsystem
+	  << " uuid:" << entry.uuid;
 
 	return s;
     }
@@ -144,11 +149,10 @@ namespace storage
 		if (regex_match(param, match, devspec) && match.size() == 3)
 		{
 		    unsigned int major, minor;
-
 		    match[1] >> major;
 		    match[2] >> minor;
-
 		    dev_t majorminor = makedev(major, minor);
+
 		    table.majorminors.push_back(majorminor);
 		}
 	    }

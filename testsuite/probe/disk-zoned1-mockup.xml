@@ -19,6 +19,10 @@
       <exit-code>1</exit-code>
     </Command>
     <Command>
+      <!-- output faked and incomplete -->
+      <name>/sbin/dmsetup table</name>
+    </Command>
+    <Command>
       <name>/sbin/multipath -d -v 2 -ll</name>
     </Command>
     <Command>
@@ -470,6 +474,9 @@
       <name>/etc/fstab</name>
       <content>UUID=9c26db30-77b5-40be-8cb0-ece5e334f59b  /     ext4  defaults  0  1</content>
       <content>UUID=ca79ec91-ab91-4ec3-b8f8-254b4dbbd2ca  swap  swap  defaults  0  0</content>
+    </File>
+    <File>
+      <name>/etc/crypttab</name>
     </File>
     <File>
       <name>/proc/mounts</name>

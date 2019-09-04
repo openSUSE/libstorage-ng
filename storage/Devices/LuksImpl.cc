@@ -20,14 +20,14 @@
  */
 
 
+#include <boost/algorithm/string.hpp>
+
 #include "storage/Utils/XmlFile.h"
 #include "storage/Utils/SystemCmd.h"
-#include "storage/Utils/HumanString.h"
 #include "storage/Utils/CallbacksImpl.h"
 #include "storage/Devices/LuksImpl.h"
 #include "storage/Holders/User.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 #include "storage/StorageImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
 #include "storage/UsedFeatures.h"
@@ -78,16 +78,10 @@ namespace storage
     void
     Luks::Impl::check(const CheckCallbacks* check_callbacks) const
     {
-	BlkDevice::Impl::check(check_callbacks);
-
-	if (!has_single_parent_of_type<const BlkDevice>())
-	    ST_THROW(Exception("Luks has no BlkDevice parent"));
+	Encryption::Impl::check(check_callbacks);
 
 	if (get_type() != EncryptionType::LUKS1 && get_type() != EncryptionType::LUKS2)
 	    ST_THROW(Exception("invalid encryption type for Luks"));
-
-	if (get_size() > get_blk_device()->get_size())
-	    ST_THROW(Exception("Luks bigger than parent BlkDevice"));
     }
 
 
@@ -136,24 +130,6 @@ namespace storage
 	}
 
 	return ret;
-    }
-
-
-    string
-    Luks::Impl::next_free_cr_auto_name(SystemInfo& system_info)
-    {
-	const CmdDmsetupInfo& cmd_dmsetup_info = system_info.getCmdDmsetupInfo();
-	const EtcCrypttab& etc_crypttab = system_info.getEtcCrypttab();
-
-	static int nr = 1;
-
-	while (true)
-	{
-	    string name = "cr-auto-" + to_string(nr++);
-
-	    if (!cmd_dmsetup_info.exists(name) && !etc_crypttab.has_crypt_device(name))
-		return name;
-	}
     }
 
 
@@ -293,9 +269,13 @@ namespace storage
 	bool ret = true;
 
 	SystemInfo system_info;
+
 	for (const CmdDmsetupInfo::value_type& value : system_info.getCmdDmsetupInfo())
 	{
 	    if (value.second.subsystem != "CRYPT")
+		continue;
+
+	    if (!boost::starts_with(value.second.uuid, "CRYPT-LUKS"))
 		continue;
 
 	    string cmd_line = CRYPTSETUPBIN " --batch-mode close " + quote(value.first);
@@ -336,7 +316,7 @@ namespace storage
 	    if (!blk_device->get_impl().is_active())
 		continue;
 
-	    Blkid::const_iterator it1 = blkid.find_by_name(blk_device->get_name(), system_info);
+	    Blkid::const_iterator it1 = blkid.find_by_any_name(blk_device->get_name(), system_info);
 	    if (it1 == blkid.end() || !it1->second.is_luks)
 		continue;
 
@@ -376,6 +356,10 @@ namespace storage
 		luks->set_mount_by(crypttab_entry->get_mount_by());
 		luks->get_impl().set_crypt_options(crypttab_entry->get_crypt_opts());
 		luks->get_impl().set_crypttab_blk_device_name(crypttab_entry->get_block_device());
+
+		string password = crypttab_entry->get_password();
+		if (!password.empty())
+		    luks->set_key_file(password);
 	    }
 
 	    prober.add_holder(blk_device->get_name(), luks, [](Devicegraph* system, Device* a, Device* b) {
@@ -383,23 +367,6 @@ namespace storage
 	    });
 
 	    luks->get_impl().probe_pass_1a(prober);
-	}
-    }
-
-
-    void
-    Luks::Impl::probe_pass_1a(Prober& prober)
-    {
-	Encryption::Impl::probe_pass_1a(prober);
-
-	if (is_active())
-	{
-	    SystemInfo& system_info = prober.get_system_info();
-
-	    const File& size_file = get_sysfs_file(system_info, "size");
-	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
-
-	    probe_topology(prober);
 	}
     }
 
@@ -554,14 +521,9 @@ namespace storage
 		ST_THROW(Exception("invalid encryption type"));
 	}
 
-	cmd_line += " --tries 1 " + get_format_options() + " --key-file -";
+	cmd_line += " --tries 1 " + get_format_options();
 
-	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
-	cmd_options.stdin_text = get_password();
-
-	wait_for_devices({ blk_device });
-
-	SystemCmd cmd(cmd_options);
+	add_key_file_option_and_execute(cmd_line);
 
 	probe_uuid();
     }
@@ -584,33 +546,14 @@ namespace storage
 
 
     void
-    Luks::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
-    {
-	const Luks* luks_rhs = to_luks(rhs);
-
-	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
-
-	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += " --size " + to_string(luks_rhs->get_impl().get_size() / (512 * B));
-
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
-    }
-
-
-    void
     Luks::Impl::do_activate() const
     {
 	const BlkDevice* blk_device = get_blk_device();
 
-	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) + " " +
-	    quote(get_dm_table_name()) + " --tries 1 --key-file -";
+	string cmd_line = CRYPTSETUPBIN " --batch-mode luksOpen " + quote(blk_device->get_name()) +
+	    " " + quote(get_dm_table_name()) + " --tries 1";
 
-	SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
-	cmd_options.stdin_text = get_password();
-
-	wait_for_devices({ blk_device });
-
-	SystemCmd cmd(cmd_options);
+	add_key_file_option_and_execute(cmd_line);
     }
 
 

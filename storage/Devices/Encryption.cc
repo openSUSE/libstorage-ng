@@ -22,7 +22,6 @@
 
 #include "storage/Devices/EncryptionImpl.h"
 #include "storage/Devicegraph.h"
-#include "storage/Action.h"
 
 
 namespace storage
@@ -150,6 +149,20 @@ namespace storage
     Encryption::set_password(const std::string& password)
     {
 	get_impl().set_password(password);
+    }
+
+
+    const std::string&
+    Encryption::get_key_file() const
+    {
+	return get_impl().get_key_file();
+    }
+
+
+    void
+    Encryption::set_key_file(const std::string& key_file)
+    {
+	get_impl().set_key_file(key_file);
     }
 
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -46,10 +46,9 @@ namespace storage
 
 	struct Entry
 	{
-	    Entry() : mjr(0), mnr(0), segments(0), subsystem(), uuid() {}
+	    Entry() : majorminor(0), segments(0), subsystem(), uuid() {}
 
-	    unsigned long mjr;
-	    unsigned long mnr;
+	    dev_t majorminor;
 	    unsigned segments;
 	    string subsystem;
 	    string uuid;

@@ -54,6 +54,9 @@
 %template(VectorEncryptionPtr) std::vector<Encryption*>;
 %template(VectorConstEncryptionPtr) std::vector<const Encryption*>;
 
+%template(VectorPlainEncryptionPtr) std::vector<PlainEncryption*>;
+%template(VectorConstPlainEncryptionPtr) std::vector<const PlainEncryption*>;
+
 %template(VectorLuksPtr) std::vector<Luks*>;
 %template(VectorConstLuksPtr) std::vector<const Luks*>;
 
