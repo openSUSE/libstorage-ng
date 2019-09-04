@@ -15,10 +15,10 @@ msgstr ""
 "Project-Id-Version: libstorage.nl\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-06-26 10:50+0000\n"
+"PO-Revision-Date: 2019-09-04 15:51+0000\n"
 "Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/nl/>\n"
+"Language-Team: Dutch <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2186,9 +2186,8 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Plain Encryption"
-msgstr "Versleuteling"
+msgstr "Vlakke versleuteling"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2334,14 +2333,12 @@ msgid "Probing partitions on %s failed"
 msgstr "Aftasten partities op %s is mislukt"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "Partities aftasten"
+msgstr "Vlakke versleutelingen aftasten"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "Aftasten partities is mislukt"
+msgstr "Aftasten van vlakke versleutelingen is mislukt"
 
 #. TRANSLATORS: error message
 #, c-format
