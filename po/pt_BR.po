@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-06-30 22:50+0000\n"
+"PO-Revision-Date: 2019-09-04 15:51+0000\n"
 "Last-Translator: Rodrigo Macedo <rmsolucoeseminformatic4@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.opensuse.org/projects/"
 "libstorage/ng-master/pt_BR/>\n"
@@ -2189,9 +2189,8 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Plain Encryption"
-msgstr "Criptografia"
+msgstr "Criptografia Plana"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2337,14 +2336,12 @@ msgid "Probing partitions on %s failed"
 msgstr "Falha ao investigar partições em %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "Investigando partições"
+msgstr "Sondando criptografias simples"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "Falha ao investigar partições"
+msgstr "Falha ao investigar partições criptografadas"
 
 #. TRANSLATORS: error message
 #, c-format
