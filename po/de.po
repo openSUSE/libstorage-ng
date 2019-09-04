@@ -13,11 +13,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2019-07-03 14:50+0000\n"
 "Last-Translator: Sarah Kriesch <ada.lovelace@gmx.de>\n"
-"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/de/>\n"
+"Language-Team: German <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2200,6 +2200,11 @@ msgstr "Partition"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Plain Encryption"
+msgstr "Verschlüsselung"
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2342,6 +2347,16 @@ msgstr "Untersuchen von Partitionen fehlgeschlagen"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Untersuchung der Partitionen auf %s fehlgeschlagen"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "Partitionen werden untersucht"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
+msgstr "Untersuchen von Partitionen fehlgeschlagen"
 
 #. TRANSLATORS: error message
 #, c-format

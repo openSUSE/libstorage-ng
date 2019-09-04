@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: opensuse-i 18n\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2013-09-12 11:05+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2119,6 +2119,10 @@ msgstr ""
 msgid "PiB"
 msgstr ""
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2260,6 +2264,14 @@ msgstr ""
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing partitions on %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing plain encryptions"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing plain encryptions failed"
 msgstr ""
 
 #. TRANSLATORS: error message

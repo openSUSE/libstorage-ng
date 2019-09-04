@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Robert Taisz <robert.taisz@emerald.hu>\n"
 "Language-Team: Hungarian <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2404,6 +2404,11 @@ msgstr "Partíció"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Plain Encryption"
+msgstr "Titkosítás"
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2547,6 +2552,17 @@ msgstr "Partíciók ellenőrzése sikertelen"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "Sikertelen a partíciók ellenőrzése a(z) %s eszközön"
+
+# modules/inst_custom_part.ycp:623
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "Partíciók ellenőrzése"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
+msgstr "Partíciók ellenőrzése sikertelen"
 
 #. TRANSLATORS: error message
 #, c-format

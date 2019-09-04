@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.ko\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2019-04-04 15:03+0000\n"
 "Last-Translator: Hwajin Kim <hwajin.kim@e4net.net>\n"
 "Language-Team: Korean <https://l10n.opensuse.org/projects/libstorage/ng-"
@@ -2299,6 +2299,11 @@ msgstr "파티션"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Plain Encryption"
+msgstr "암호화"
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2442,6 +2447,17 @@ msgstr "파티션 검색하지 못함"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "%s의 파티션 검사 실패"
+
+# SLE12
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "파티션 검색 중"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
+msgstr "파티션 검색하지 못함"
 
 #. TRANSLATORS: error message
 #, c-format

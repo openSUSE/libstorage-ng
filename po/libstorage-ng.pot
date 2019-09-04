@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2121,6 +2121,10 @@ msgstr ""
 msgid "PiB"
 msgstr ""
 
+#. TRANSLATORS: name of object
+msgid "Plain Encryption"
+msgstr ""
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2262,6 +2266,14 @@ msgstr ""
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing partitions on %s failed"
+msgstr ""
+
+#. TRANSLATORS: progress message
+msgid "Probing plain encryptions"
+msgstr ""
+
+#. TRANSLATORS: error message
+msgid "Probing plain encryptions failed"
 msgstr ""
 
 #. TRANSLATORS: error message

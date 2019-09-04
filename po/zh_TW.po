@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-06 14:56+0200\n"
+"POT-Creation-Date: 2019-09-04 09:26+0200\n"
 "PO-Revision-Date: 2019-03-23 20:24+0000\n"
 "Last-Translator: Emily Dong <Emily.Dong@excel-gits.com>\n"
 "Language-Team: Chinese (Taiwan) <https://l10n.opensuse.org/projects/"
@@ -2151,6 +2151,11 @@ msgstr "分割區"
 msgid "PiB"
 msgstr "PiB"
 
+#. TRANSLATORS: name of object
+#, fuzzy
+msgid "Plain Encryption"
+msgstr "加密"
+
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
@@ -2293,6 +2298,16 @@ msgstr "查探分割區失敗"
 #, c-format
 msgid "Probing partitions on %s failed"
 msgstr "查探 %s 上分割區失敗"
+
+#. TRANSLATORS: progress message
+#, fuzzy
+msgid "Probing plain encryptions"
+msgstr "正在查探分割區"
+
+#. TRANSLATORS: error message
+#, fuzzy
+msgid "Probing plain encryptions failed"
+msgstr "查探分割區失敗"
 
 #. TRANSLATORS: error message
 #, c-format
