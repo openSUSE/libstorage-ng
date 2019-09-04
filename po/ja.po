@@ -11,10 +11,10 @@ msgstr ""
 "Project-Id-Version: libstorage\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-06-26 00:50+0000\n"
+"PO-Revision-Date: 2019-09-05 00:51+0000\n"
 "Last-Translator: Yasuhiko Kamata <belphegor@belbel.or.jp>\n"
-"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ja/>\n"
+"Language-Team: Japanese <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2214,9 +2214,8 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Plain Encryption"
-msgstr "暗号化"
+msgstr "純粋な暗号化"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2362,14 +2361,12 @@ msgid "Probing partitions on %s failed"
 msgstr "%s のパーティションの検出に失敗しました"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "パーティションを検出しています"
+msgstr "純粋な暗号化を検出しています"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "パーティションの検出に失敗しました"
+msgstr "純粋な暗号化の検出に失敗しました"
 
 #. TRANSLATORS: error message
 #, c-format
