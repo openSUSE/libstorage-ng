@@ -3,7 +3,6 @@
 # requirements: disk /dev/sdc with empty partition sdc1
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
