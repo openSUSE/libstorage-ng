@@ -105,12 +105,6 @@ namespace storage
 
 	virtual void do_deactivate() const override;
 
-	virtual void do_add_to_etc_crypttab(CommitData& commit_data) const override;
-
-	virtual void do_rename_in_etc_crypttab(CommitData& commit_data) const override;
-
-	virtual void do_remove_from_etc_crypttab(CommitData& commit_data) const override;
-
     protected:
 
 	void probe_uuid();

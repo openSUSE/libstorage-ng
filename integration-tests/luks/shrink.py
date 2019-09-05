@@ -4,7 +4,6 @@
 # possible also something on luks, e.g. filesystem or lvm pv
 
 
-from sys import exit
 from storage import *
 from storageitu import *
 
