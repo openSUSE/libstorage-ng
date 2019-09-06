@@ -121,6 +121,7 @@ namespace storage
 	bool md;
 	bool lvm_lv;
 	bool luks;
+	// TODO add bcache?
     };
 
 
