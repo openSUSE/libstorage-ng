@@ -78,6 +78,8 @@ namespace storage
 
 	/**
 	 * Set the key file.
+	 *
+	 * When accessing the key file the rootprefix it not used.
 	 */
 	void set_key_file(const std::string& key_file);
 
