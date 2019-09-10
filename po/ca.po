@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: YaST (@memory@)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-06-25 17:50+0000\n"
+"PO-Revision-Date: 2019-09-10 14:52+0000\n"
 "Last-Translator: David Medina <medipas@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/ca/>\n"
+"Language-Team: Catalan <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -2189,9 +2189,8 @@ msgid "PiB"
 msgstr "PiB"
 
 #. TRANSLATORS: name of object
-#, fuzzy
 msgid "Plain Encryption"
-msgstr "Encriptació"
+msgstr "Encriptació neta"
 
 #. TRANSLATORS: error message
 #, c-format
@@ -2337,14 +2336,12 @@ msgid "Probing partitions on %s failed"
 msgstr "Ha fallat sondar les particions a %s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Probing plain encryptions"
-msgstr "Sondant particions"
+msgstr "Sondant les encriptacions netes"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Probing plain encryptions failed"
-msgstr "Ha fallat sondar particions"
+msgstr "Ha fallat sondar les encriptacions netes"
 
 #. TRANSLATORS: error message
 #, c-format
