@@ -74,6 +74,9 @@ namespace storage
 	const string& get_key_file() const { return key_file; }
 	void set_key_file(const string& key_file) { Impl::key_file = key_file; }
 
+	const string& get_open_options() const { return open_options; }
+	void set_open_options(const string& open_options) { Impl::open_options = open_options; }
+
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
@@ -159,6 +162,8 @@ namespace storage
 	bool in_etc_crypttab;
 
 	string crypttab_blk_device_name; // block device name as found in /etc/crypttab
+
+	string open_options;
 
     };
 
