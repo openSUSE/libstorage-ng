@@ -129,6 +129,17 @@ namespace storage
 	 */
 	const BlkDevice* get_blk_device() const;
 
+	/**
+	 * Get extra options for open calls.
+	 */
+	const std::string& get_open_options() const;
+
+	/**
+	 * Set extra options for open calls. The options are
+	 * injected as-is to the command so must be properly quoted.
+	 */
+	void set_open_options(const std::string& open_options);
+
 	static std::vector<Encryption*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Encryption*> get_all(const Devicegraph* devicegraph);
 

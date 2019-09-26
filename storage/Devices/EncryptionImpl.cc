@@ -51,7 +51,7 @@ namespace storage
 
     Encryption::Impl::Impl(const string& dm_table_name)
 	: BlkDevice::Impl(DEV_MAPPER_DIR "/" + dm_table_name), type(EncryptionType::LUKS1), password(),
-	  mount_by(MountByType::DEVICE), in_etc_crypttab(true)
+	  mount_by(MountByType::DEVICE), in_etc_crypttab(true), open_options()
     {
 	set_dm_table_name(dm_table_name);
     }
@@ -59,7 +59,7 @@ namespace storage
 
     Encryption::Impl::Impl(const xmlNode* node)
 	: BlkDevice::Impl(node), type(EncryptionType::LUKS1), password(), mount_by(MountByType::DEVICE),
-	  in_etc_crypttab(true)
+	  in_etc_crypttab(true), open_options()
     {
 	string tmp;
 
@@ -80,6 +80,8 @@ namespace storage
 	    crypt_options.parse(tmp);
 
 	getChildValue(node, "in-etc-crypttab", in_etc_crypttab);
+
+	getChildValue(node, "open-options", open_options);
     }
 
 
@@ -204,6 +206,8 @@ namespace storage
 	    setChildValue(node, "crypt-options", crypt_options.format());
 
 	setChildValue(node, "in-etc-crypttab", in_etc_crypttab);
+
+	setChildValueIf(node, "open-options", open_options, !open_options.empty());
     }
 
 
@@ -315,7 +319,7 @@ namespace storage
 
 	return type == rhs.type && password == rhs.password && key_file == rhs.key_file &&
 	    mount_by == rhs.mount_by && crypt_options == rhs.crypt_options &&
-	    in_etc_crypttab == rhs.in_etc_crypttab;
+	    in_etc_crypttab == rhs.in_etc_crypttab && open_options == rhs.open_options;
     }
 
 
@@ -338,6 +342,8 @@ namespace storage
 	storage::log_diff(log, "crypt-options", crypt_options.get_opts(), rhs.crypt_options.get_opts());
 
 	storage::log_diff(log, "in-etc-crypttab", in_etc_crypttab, rhs.in_etc_crypttab);
+
+	storage::log_diff(log, "open-options", open_options, rhs.open_options);
     }
 
 
@@ -361,6 +367,9 @@ namespace storage
 
 	if (in_etc_crypttab)
 	    out << " in-etc-crypttab";
+
+	if (!open_options.empty())
+	    out << " open-options:" << open_options;
     }
 
 

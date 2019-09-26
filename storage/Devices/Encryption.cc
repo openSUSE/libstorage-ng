@@ -173,6 +173,20 @@ namespace storage
     }
 
 
+    const string&
+    Encryption::get_open_options() const
+    {
+	return get_impl().get_open_options();
+    }
+
+
+    void
+    Encryption::set_open_options(const std::string& open_options)
+    {
+	get_impl().set_open_options(open_options);
+    }
+
+
     vector<Encryption*>
     Encryption::get_all(Devicegraph* devicegraph)
     {
