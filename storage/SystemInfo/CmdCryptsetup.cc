@@ -185,10 +185,11 @@ namespace storage
 	static const regex token_section_regex("Tokens:[ \t]*", regex::extended);
 	static const regex digest_section_regex("Digests:[ \t]*", regex::extended);
 
-	static const regex cipher_regex("[ \t]*Cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
-	static const regex cipher_key_regex("[ \t]*Cipher key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
-	enum { KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
+	static const regex cipher_key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+
+	enum { DATA_SECTION, KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
 
 	smatch match;
 
@@ -197,7 +198,7 @@ namespace storage
 	    if (line.empty())
 		section = UNUSED_SECTION;
 	    else if (regex_match(line, match, data_section_regex))
-		section = UNUSED_SECTION;
+		section = DATA_SECTION;
 	    else if (regex_match(line, match, keyslot_section_regex))
 		section = KEYSLOT_SECTION;
 	    else if (regex_match(line, match, token_section_regex))
@@ -207,11 +208,15 @@ namespace storage
 
 	    switch (section)
 	    {
-		case KEYSLOT_SECTION:
+		case DATA_SECTION:
 		{
 		    if (regex_match(line, match, cipher_regex) && match.size() == 2)
 			cipher = match[1];
+		}
+		break;
 
+		case KEYSLOT_SECTION:
+		{
 		    if (regex_match(line, match, cipher_key_regex) && match.size() == 2)
 		    {
 			match[1] >> key_size;
