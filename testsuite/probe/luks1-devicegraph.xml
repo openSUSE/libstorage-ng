@@ -71,6 +71,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr_home</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>id</mount-by>
       <crypt-options>verify</crypt-options>
       <in-etc-crypttab>true</in-etc-crypttab>

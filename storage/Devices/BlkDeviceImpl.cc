@@ -142,7 +142,11 @@ namespace storage
 
 	// size is always in 512 byte blocks
 	unsigned long long a = size_file.get<unsigned long long>();
+
 	unsigned long long b = logical_block_size_file.get<unsigned long long>();
+	if (b < 512)
+	    ST_THROW(Exception("invalid logical block size"));
+
 	unsigned long long c = a * 512 / b;
 	set_region(Region(0, c, b));
     }

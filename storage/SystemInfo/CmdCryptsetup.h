@@ -69,10 +69,15 @@ namespace storage
 	friend std::ostream& operator<<(std::ostream& s, const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump);
 
 	EncryptionType get_encryption_type() const { return encryption_type; }
+	const string& get_cipher() const { return cipher; }
+	unsigned int get_key_size() const { return key_size; }
 
     private:
 
 	void parse(const vector<string>& lines);
+
+	void parse_version1(const vector<string>& lines);
+	void parse_version2(const vector<string>& lines);
 
 	string name;
 
@@ -80,6 +85,17 @@ namespace storage
 	 * Either UNKNOWN, LUKS1 or LUKS2
 	 */
 	EncryptionType encryption_type;
+
+	/**
+	 * The cipher, e.g. aes-xts-plain64, twofish-cbc-plain or aes-cbc-plain:sha512.
+	 */
+	string cipher;
+
+	/**
+	 * The size of the master key, e.g. 32 or 64 bytes. Note:
+	 * Usually displayed in bits.
+	 */
+	unsigned int key_size;
 
     };
 

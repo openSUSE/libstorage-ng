@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks1"
+	"name:/dev/sdc1 encryption-type:luks1 cipher:aes-xts-plain64 key-size:64"
     };
 
     check("/dev/sdc1", input, output);
@@ -119,13 +119,66 @@ BOOST_AUTO_TEST_CASE(parse2)
 	"	Salt:       93 80 06 cb de f6 c5 a2 a8 71 c0 72 79 17 ed 93 ",
 	"	            bc 59 c9 a7 0f 83 33 49 7d 2d e6 8b b3 63 ce e0 ",
 	"	Digest:     89 3e cf f2 a2 88 fb 33 f5 35 8f f5 c7 9a aa ec ",
-	"	            21 32 bd 30 cc e7 66 6a 68 bc 6b 30 e9 4a 21 63 ",
-
+	"	            21 32 bd 30 cc e7 66 6a 68 bc 6b 30 e9 4a 21 63 "
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks2"
+	"name:/dev/sdc1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64"
     };
 
     check("/dev/sdc1", input, output);
+}
+
+
+BOOST_AUTO_TEST_CASE(parse3_paes)
+{
+    vector<string> input = {
+	"LUKS header information",
+	"Version:       	2",
+	"Epoch:         	4",
+	"Metadata area: 	12288 bytes",
+	"UUID:          	22ff3407-ae5d-4bc6-b0cf-462b75e0b6a0",
+	"Label:         	(no label)",
+	"Subsystem:     	(no subsystem)",
+	"Flags:       	(no flags)",
+	"",
+	"Data segments:",
+	"  0: crypt",
+	"	offset: 4194304 [bytes]",
+	"	length: (whole device)",
+	"	cipher: paes-xts-plain64",
+	"	sector: 4096 [bytes]",
+	"",
+	"Keyslots:",
+	"  0: luks2",
+	"	Key:        1024 bits",
+	"	Priority:   normal",
+	"	Cipher:     aes-xts-plain64",
+	"	PBKDF:      argon2i",
+	"	Time cost:  4",
+	"	Memory:     418482",
+	"	Threads:    2",
+	"	Salt:       d0 c0 97 e1 81 54 10 cd 00 42 01 89 b1 13 2b 36 ",
+	"	            40 bc 92 c0 75 2a 5d cd 47 38 d6 8f cc 1d ec 61 ",
+	"	AF stripes: 4000",
+	"	Area offset:32768 [bytes]",
+	"	Area length:512000 [bytes]",
+	"	Digest ID:  0",
+	"Tokens:",
+	"  0: paes-verification-pattern",
+	"Digests:",
+	"  0: pbkdf2",
+	"	Hash:       sha256",
+	"	Iterations: 34204",
+	"	Salt:       34 da 2c b0 59 73 a0 db b2 98 15 14 68 de 0a 13 ",
+	"	            f0 cc e7 ef b6 9a 56 39 53 5e 55 88 c7 e3 f4 17 ",
+	"	Digest:     b2 72 ac 7d 9f 7b 11 77 0b c6 2e 09 b9 28 95 8e ",
+	"	            6e ed 93 91 00 5d c7 0b 68 3c 06 44 2f 7d 35 72 "
+    };
+
+    vector<string> output = {
+	"name:/dev/dasdb1 encryption-type:luks2 cipher:paes-xts-plain64 key-size:128"
+    };
+
+    check("/dev/dasdb1", input, output);
 }

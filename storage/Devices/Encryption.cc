@@ -75,7 +75,7 @@ namespace storage
     }
 
 
-    const std::vector<string>&
+    const vector<string>&
     Encryption::get_crypt_options() const
     {
 	return get_impl().get_crypt_options().get_opts();;
@@ -138,7 +138,7 @@ namespace storage
     }
 
 
-    const std::string&
+    const string&
     Encryption::get_password() const
     {
 	return get_impl().get_password();
@@ -146,13 +146,13 @@ namespace storage
 
 
     void
-    Encryption::set_password(const std::string& password)
+    Encryption::set_password(const string& password)
     {
 	get_impl().set_password(password);
     }
 
 
-    const std::string&
+    const string&
     Encryption::get_key_file() const
     {
 	return get_impl().get_key_file();
@@ -160,9 +160,37 @@ namespace storage
 
 
     void
-    Encryption::set_key_file(const std::string& key_file)
+    Encryption::set_key_file(const string& key_file)
     {
 	get_impl().set_key_file(key_file);
+    }
+
+
+    const string&
+    Encryption::get_cipher() const
+    {
+	return get_impl().get_cipher();
+    }
+
+
+    void
+    Encryption::set_cipher(const string& cipher)
+    {
+	get_impl().set_cipher(cipher);
+    }
+
+
+    unsigned int
+    Encryption::get_key_size() const
+    {
+	return get_impl().get_key_size();
+    }
+
+
+    void
+    Encryption::set_key_size(unsigned int key_size)
+    {
+	get_impl().set_key_size(key_size);
     }
 
 
@@ -181,7 +209,7 @@ namespace storage
 
 
     void
-    Encryption::set_open_options(const std::string& open_options)
+    Encryption::set_open_options(const string& open_options)
     {
 	get_impl().set_open_options(open_options);
     }

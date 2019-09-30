@@ -82,6 +82,7 @@ Implemented:
 Missing:
 
 * Handling different mount-by options.
+* Detached header.
 * LUKS2 integrity (experimental in cryptsetup).
 
 

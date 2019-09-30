@@ -515,6 +515,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-7/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-7/size</name>
       <content>2097152</content>
     </File>
@@ -525,6 +529,10 @@
     <File>
       <name>/sys/devices/virtual/block/dm-8/queue/optimal_io_size</name>
       <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-8/queue/logical_block_size</name>
+      <content>512</content>
     </File>
     <File>
       <name>/sys/devices/virtual/block/dm-8/size</name>
