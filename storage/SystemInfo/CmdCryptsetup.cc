@@ -187,7 +187,7 @@ namespace storage
 
 	static const regex cipher_regex("[ \t]*cipher:[ \t]*([^ \t]+)[ \t]*", regex::extended);
 
-	static const regex cipher_key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
+	static const regex key_regex("[ \t]*Key:[ \t]*([0-9]+) bits[ \t]*", regex::extended);
 
 	enum { DATA_SECTION, KEYSLOT_SECTION, UNUSED_SECTION } section = UNUSED_SECTION;
 
@@ -217,7 +217,7 @@ namespace storage
 
 		case KEYSLOT_SECTION:
 		{
-		    if (regex_match(line, match, cipher_key_regex) && match.size() == 2)
+		    if (regex_match(line, match, key_regex) && match.size() == 2)
 		    {
 			match[1] >> key_size;
 			key_size /= 8;
