@@ -552,6 +552,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-6/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-8/size</name>
       <content>58601472</content>
     </File>
@@ -562,6 +566,10 @@
     <File>
       <name>/sys/devices/virtual/block/dm-8/queue/optimal_io_size</name>
       <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-8/queue/logical_block_size</name>
+      <content>512</content>
     </File>
   </Files>
 </Mockup>

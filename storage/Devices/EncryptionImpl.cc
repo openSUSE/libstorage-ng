@@ -104,11 +104,7 @@ namespace storage
 
 	if (is_active())
 	{
-	    SystemInfo& system_info = prober.get_system_info();
-
-	    const File& size_file = get_sysfs_file(system_info, "size");
-	    set_region(Region(0, size_file.get<unsigned long long>(), 512));
-
+	    probe_size(prober);
 	    probe_topology(prober);
 	}
     }

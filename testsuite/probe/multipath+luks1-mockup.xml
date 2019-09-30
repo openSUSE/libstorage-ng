@@ -941,6 +941,10 @@
       <content>0</content>
     </File>
     <File>
+      <name>/sys/devices/virtual/block/dm-2/queue/logical_block_size</name>
+      <content>512</content>
+    </File>
+    <File>
       <name>/sys/devices/virtual/block/dm-3/alignment_offset</name>
       <content>0</content>
     </File>
@@ -971,6 +975,10 @@
     <File>
       <name>/sys/devices/virtual/block/dm-4/queue/optimal_io_size</name>
       <content>0</content>
+    </File>
+    <File>
+      <name>/sys/devices/virtual/block/dm-4/queue/logical_block_size</name>
+      <content>512</content>
     </File>
   </Files>
 </Mockup>
