@@ -67,7 +67,7 @@ BOOST_AUTO_TEST_CASE(parse1)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks1"
+	"name:/dev/sdc1 encryption-type:luks1 cipher:aes-xts-plain64 key-size:64"
     };
 
     check("/dev/sdc1", input, output);
@@ -124,7 +124,7 @@ BOOST_AUTO_TEST_CASE(parse2)
     };
 
     vector<string> output = {
-	"name:/dev/sdc1 encryption-type:luks2"
+	"name:/dev/sdc1 encryption-type:luks2 cipher:aes-xts-plain64 key-size:64"
     };
 
     check("/dev/sdc1", input, output);
