@@ -130,6 +130,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr_sda2</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>7dd2d696-765d-4951-80bf-54d9ad4655f3</uuid>

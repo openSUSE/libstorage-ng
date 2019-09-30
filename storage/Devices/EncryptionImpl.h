@@ -77,6 +77,12 @@ namespace storage
 	const string& get_open_options() const { return open_options; }
 	void set_open_options(const string& open_options) { Impl::open_options = open_options; }
 
+	const string& get_cipher() const { return cipher; }
+	void set_cipher(const string& cipher) { Impl::cipher = cipher; }
+
+	unsigned int get_key_size() const { return key_size; }
+	void set_key_size(unsigned int key_size) { Impl::key_size = key_size; }
+
 	MountByType get_mount_by() const { return mount_by; }
 	void set_mount_by(MountByType mount_by) { Impl::mount_by = mount_by; }
 
@@ -154,6 +160,9 @@ namespace storage
 	string password;
 
 	string key_file;
+
+	string cipher;
+	unsigned int key_size;
 
 	MountByType mount_by;
 

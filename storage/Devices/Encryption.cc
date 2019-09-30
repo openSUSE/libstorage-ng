@@ -166,6 +166,34 @@ namespace storage
     }
 
 
+    const string&
+    Encryption::get_cipher() const
+    {
+	return get_impl().get_cipher();
+    }
+
+
+    void
+    Encryption::set_cipher(const string& cipher)
+    {
+	get_impl().set_cipher(cipher);
+    }
+
+
+    unsigned int
+    Encryption::get_key_size() const
+    {
+	return get_impl().get_key_size();
+    }
+
+
+    void
+    Encryption::set_key_size(unsigned int key_size)
+    {
+	get_impl().set_key_size(key_size);
+    }
+
+
     const BlkDevice*
     Encryption::get_blk_device() const
     {

@@ -130,6 +130,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr_home</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>333a89ba-c620-40fb-a69c-8b9896fa1baf</uuid>

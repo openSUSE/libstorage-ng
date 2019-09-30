@@ -218,6 +218,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test2</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>3cea1063-42de-4769-ad1b-bb6d1628bef0</uuid>
@@ -232,6 +234,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test1</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>ca64e8a2-7b38-4410-ad9a-683f23bbf8c5</uuid>

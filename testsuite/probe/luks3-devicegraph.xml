@@ -45,6 +45,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test2</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>9a80f55f-c8a8-4767-8852-92eccf494a58</uuid>

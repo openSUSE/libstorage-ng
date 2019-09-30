@@ -84,6 +84,36 @@ namespace storage
 	void set_key_file(const std::string& key_file);
 
 	/**
+	 * Get the cipher.
+	 *
+	 * Currently only supported for LUKS.
+	 */
+	const std::string& get_cipher() const;
+
+	/**
+	 * Set the cipher. If the cipher is empty the default of
+	 * cryptsetup will be used during creation.
+	 *
+	 * Currently only supported for LUKS.
+	 */
+	void set_cipher(const std::string& cipher);
+
+	/**
+	 * Get the key size in bytes.
+	 *
+	 * Currently only supported for LUKS.
+	 */
+	unsigned int get_key_size() const;
+
+	/**
+	 * Set the key size in bytes. If the key size is zero the
+	 * default of cryptsetup will be used during creation.
+	 *
+	 * Currently only supported for LUKS.
+	 */
+	void set_key_size(unsigned int key_size);
+
+	/**
 	 * Get the mount-by method. For encrypted devices the mount-by method
 	 * defines the name used for the second parameter in /etc/crypttab.
 	 */

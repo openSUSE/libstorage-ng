@@ -350,6 +350,8 @@ namespace storage
 
 	    const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump = system_info.getCmdCryptsetupLuksDump(blk_device->get_name());
 	    luks->get_impl().Encryption::Impl::set_type(cmd_cryptsetup_luks_dump.get_encryption_type());
+	    luks->get_impl().set_cipher(cmd_cryptsetup_luks_dump.get_cipher());
+	    luks->get_impl().set_key_size(cmd_cryptsetup_luks_dump.get_key_size());
 
 	    if (crypttab_entry)
 	    {
@@ -521,7 +523,16 @@ namespace storage
 		ST_THROW(Exception("invalid encryption type"));
 	}
 
-	cmd_line += " --tries 1 " + get_format_options();
+	cmd_line += " --tries 1";
+
+	if (!get_cipher().empty())
+	    cmd_line += " --cipher " + quote(get_cipher());
+
+	if (get_key_size() != 0)
+	    cmd_line += " --key-size " + to_string(get_key_size() * 8);
+
+	if (!get_format_options().empty())
+	    cmd_line += " " + get_format_options();
 
 	add_key_file_option_and_execute(cmd_line);
 

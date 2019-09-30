@@ -91,6 +91,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test1</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>109ae070-3bf4-452c-9680-93df9b01a368</uuid>
@@ -104,6 +106,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test2</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>uuid</mount-by>
       <in-etc-crypttab>true</in-etc-crypttab>
       <uuid>cf01696e-1c94-40be-8088-4ad33c8a539b</uuid>
@@ -118,6 +122,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-test3</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>device</mount-by>
       <in-etc-crypttab>false</in-etc-crypttab>
       <uuid>aa68b93d-a5f9-4294-80a8-c4e660cc56dd</uuid>
@@ -131,6 +137,8 @@
         <block-size>512</block-size>
       </region>
       <dm-table-name>cr-auto-1</dm-table-name>
+      <cipher>aes-xts-plain64</cipher>
+      <key-size>64</key-size>
       <mount-by>device</mount-by>
       <in-etc-crypttab>false</in-etc-crypttab>
       <uuid>27f2bcc8-816c-422a-8e29-da92a708f0b4</uuid>
