@@ -133,24 +133,61 @@ namespace storage
     }
 
 
+    /**
+     * Activation information about LUKS.
+     */
+    struct LuksActivationInfo
+    {
+	LuksActivationInfo() : canceled(false), password() {}
+
+	bool canceled;
+	string password;
+    };
+
+
+    /**
+     * Map with activation information about LUKS using the LUKS UUID as the key.
+     */
+    map<string, LuksActivationInfo> luks_activation_infos;
+
+
     bool
     Luks::Impl::activate_luks(const ActivateCallbacks* activate_callbacks, SystemInfo& system_info,
 			      const string& name, const string& uuid, const string& label)
     {
+	map<string, LuksActivationInfo>::const_iterator it = luks_activation_infos.find(uuid);
+
 	int attempt = 1;
 	string dm_name;
+	string password;
 
 	while (true)
 	{
-	    pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
-	    if (!tmp.first)
+	    if (it == luks_activation_infos.end())
 	    {
-		y2mil("user canceled activation of luks " << uuid);
+		pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
+		if (!tmp.first)
+		{
+		    y2mil("user canceled activation of luks " << uuid);
+		    luks_activation_infos[uuid].canceled = true;
+
+		    return false;
+		}
+		else
+		{
+		    y2mil("user allowed activation of luks " << uuid);
+		    password = tmp.second;
+		}
+	    }
+	    else if (it->second.canceled)
+	    {
+		y2mil("activation of luks " << uuid << " skipped since previously canceled");
 		return false;
 	    }
 	    else
 	    {
-		y2mil("user allowed activation of luks " << uuid);
+		y2mil("activation of luks " << uuid << " with cached password");
+		password = it->second.password;
 	    }
 
 	    // TRANSLATORS: progress message
@@ -174,7 +211,7 @@ namespace storage
 		quote(dm_name) + " --tries 1 --key-file -";
 
 	    SystemCmd::Options cmd_options(cmd_line, SystemCmd::DoThrow);
-	    cmd_options.stdin_text = tmp.second;
+	    cmd_options.stdin_text = password;
 	    cmd_options.verify = [](int exit_code) { return exit_code == 0 || exit_code == 2; };
 
 	    try
@@ -187,6 +224,9 @@ namespace storage
 		    attempt++;
 		    continue;
 		}
+
+		// save the password only if it is correct
+		luks_activation_infos[uuid].password = password;
 
 		return true;
 	    }
@@ -229,13 +269,6 @@ namespace storage
 
 		y2mil("inactive luks name:" << key_value1.first << " uuid:" <<
 		      key_value1.second.luks_uuid << " label:" << key_value1.second.luks_label);
-
-		// TODO During a second loop of Storage::Impl::activate() the
-		// library should not bother the user with popups to lukses where
-		// an activation was canceled by the user. Maybe the library
-		// should also remember the passwords (map<uuid, password>) in
-		// case the activation is run again, e.g. after deactivation and
-		// reprobe.
 
 		if (activate_luks(activate_callbacks, system_info, key_value1.first,
 				  key_value1.second.luks_uuid, key_value1.second.luks_label))

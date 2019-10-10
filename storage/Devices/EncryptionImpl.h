@@ -157,6 +157,11 @@ namespace storage
 
 	EncryptionType type;
 
+	/**
+	 * The password.
+	 *
+	 * Note: The password can be empty. At least for LUKS that does work.
+	 */
 	string password;
 
 	string key_file;

@@ -101,6 +101,12 @@ namespace storage
 	/**
 	 * Decide whether the LUKS with uuid should be activated.
 	 *
+	 * The result of the callback is cached (for the lifetime of
+	 * the program). So the callback for a specific LUKS will not
+	 * be called again (not even if Storage::activate() is called
+	 * again) if 1. the activation was canceled or 2. the
+	 * activation was successful.
+	 *
 	 * TODO Add label parameter for LUKS2.
 	 * TODO Also allow to return a key file?
 	 */
