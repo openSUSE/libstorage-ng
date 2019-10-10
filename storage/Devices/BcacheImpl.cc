@@ -580,7 +580,7 @@ namespace storage
     void
     Bcache::Impl::add_create_actions(Actiongraph::Impl& actiongraph) const
     {
-	// TODO Flash-only Bache
+	// TODO Flash-only Bcache
 
 	if(get_type() == BcacheType::BACKED)
 	{
@@ -635,7 +635,7 @@ namespace storage
     void
     Bcache::Impl::add_delete_actions(Actiongraph::Impl& actiongraph) const
     {
-	// TODO Flash-only Bache
+	// TODO Flash-only Bcache
 
 	if(get_type() == BcacheType::BACKED)
 	{
@@ -671,7 +671,7 @@ namespace storage
     void
     Bcache::Impl::do_create()
     {
-	// TODO Flash-only Bache
+	// TODO Flash-only Bcache
 
 	if(get_type() == BcacheType::BACKED)
 	{
@@ -712,7 +712,7 @@ namespace storage
     void
     Bcache::Impl::do_delete() const
     {
-	// TODO Flash-only Bache
+	// TODO Flash-only Bcache
 
 	if(get_type() == BcacheType::BACKED)
 	    get_backing_device()->get_impl().wipe_device();
