@@ -381,6 +381,13 @@ namespace storage
 	    luks->get_impl().set_active(it2 != cmd_dmsetup_table.end());
 	    luks->set_in_etc_crypttab(crypttab_entry);
 
+	    /*
+	     * Copy the password if it is known from activation.
+	     */
+	    const map<string, LuksActivationInfo>::const_iterator it = luks_activation_infos.find(uuid);
+	    if (it != luks_activation_infos.end() && !it->second.canceled)
+		luks->set_password(it->second.password);
+
 	    const CmdCryptsetupLuksDump& cmd_cryptsetup_luks_dump = system_info.getCmdCryptsetupLuksDump(blk_device->get_name());
 	    luks->get_impl().Encryption::Impl::set_type(cmd_cryptsetup_luks_dump.get_encryption_type());
 	    luks->get_impl().set_cipher(cmd_cryptsetup_luks_dump.get_cipher());
@@ -509,14 +516,22 @@ namespace storage
     }
 
 
+    bool
+    Luks::Impl::do_resize_needs_password() const
+    {
+	// Resizing an LUKS2 device might require the password
+	// (depending on use of kernel keyring).
+
+	return get_type() == EncryptionType::LUKS2;
+    }
+
+
     ResizeInfo
     Luks::Impl::detect_resize_info(const BlkDevice* blk_device) const
     {
-	// Resizing an active LUKS2 device might require the password
-	// (depending on use of kernel keyring). For the time being
-	// just disable it.
-	if (get_type() == EncryptionType::LUKS2)
-	    return ResizeInfo(false, RB_RESIZE_NOT_SUPPORTED_BY_DEVICE);
+	// TODO Strictly speaking "empty" does not mean "unknown".
+	if (do_resize_needs_password() && get_password().empty())
+	    return ResizeInfo(false, RB_PASSWORD_REQUIRED);
 
 	ResizeInfo resize_info = BlkDevice::Impl::detect_resize_info(get_non_impl());
 

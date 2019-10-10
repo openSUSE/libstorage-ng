@@ -177,7 +177,13 @@ namespace storage
 	 *
 	 * Blocks shrink.
 	 */
-	RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM = 1 << 17
+	RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM = 1 << 17,
+
+	/**
+	 * The encryption password is required.
+	 */
+	RB_PASSWORD_REQUIRED = 1 << 18
+
     };
 
 

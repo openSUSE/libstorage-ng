@@ -134,6 +134,7 @@ namespace storage
 	set_mount_by(get_storage()->get_default_mount_by());
     }
 
+
     void
     Encryption::Impl::set_dm_table_name(const string& dm_table_name)
     {
@@ -496,7 +497,10 @@ namespace storage
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(encryption_rhs->get_impl().get_size() / (512 * B));
 
-	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
+	if (do_resize_needs_password())
+	    add_key_file_option_and_execute(cmd_line);
+	else
+	    SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }
 
 
