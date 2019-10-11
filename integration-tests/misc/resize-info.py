@@ -78,6 +78,12 @@ if resize_info.reasons & RB_MIN_SIZE_FOR_LVM_LV:
 if resize_info.reasons & RB_MAX_SIZE_FOR_LVM_LV_THIN:
     print("RB_MAX_SIZE_FOR_LVM_LV_THIN")
 
+if resize_info.reasons & RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM:
+    print("RB_SHRINK_NOT_SUPPORTED_BY_MULTIDEVICE_FILESYSTEM")
+
+if resize_info.reasons & RB_PASSWORD_REQUIRED:
+    print("RB_PASSWORD_REQUIRED")
+
 if resize_info.resize_ok:
     print(byte_to_humanstring(resize_info.min_size, False, 2, True))
     print(byte_to_humanstring(resize_info.max_size, False, 2, True))

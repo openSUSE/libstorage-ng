@@ -85,6 +85,8 @@ namespace storage
 
 	virtual void parent_has_new_region(const Device* parent) override;
 
+	virtual bool do_resize_needs_password() const override;
+
 	virtual bool equal(const Device::Impl& rhs) const override;
 	virtual void log_diff(std::ostream& log, const Device::Impl& rhs_base) const override;
 

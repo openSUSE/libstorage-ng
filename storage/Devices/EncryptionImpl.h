@@ -106,6 +106,11 @@ namespace storage
 
 	const BlkDevice* get_blk_device() const;
 
+	/**
+	 * Does do_resize need the password?
+	 */
+	virtual bool do_resize_needs_password() const { return false; }
+
 	virtual Impl* clone() const override { return new Impl(*this); }
 
 	virtual void check(const CheckCallbacks* check_callbacks) const override;
@@ -157,6 +162,11 @@ namespace storage
 
 	EncryptionType type;
 
+	/**
+	 * The password.
+	 *
+	 * Note: The password can be empty. At least for LUKS that does work.
+	 */
 	string password;
 
 	string key_file;
