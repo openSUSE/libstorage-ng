@@ -114,7 +114,7 @@ namespace storage
 	    case MountByType::UUID:
 		if (!is_permanent())
 		{
-		    y2err("no uuid possible for non-permanent swap, using fallback mount-by");
+		    y2war("no uuid possible for non-permanent swap, using fallback mount-by");
 		    mount_by = MountByType::DEVICE;
 		}
 		break;
@@ -122,7 +122,7 @@ namespace storage
 	    case MountByType::LABEL:
 		if (!is_permanent())
 		{
-		    y2err("no label possible for non-permanent swap, using fallback mount-by");
+		    y2war("no label possible for non-permanent swap, using fallback mount-by");
 		    mount_by = MountByType::DEVICE;
 		}
 		break;

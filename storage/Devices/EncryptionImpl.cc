@@ -165,11 +165,11 @@ namespace storage
 	switch (mount_by_type)
 	{
 	    case MountByType::UUID:
-		y2err("no uuid possible, using fallback");
+		y2war("no uuid possible, using fallback");
 		break;
 
 	    case MountByType::LABEL:
-		y2err("no label possible, using fallback");
+		y2war("no label possible, using fallback");
 		break;
 
 	    case MountByType::ID:
