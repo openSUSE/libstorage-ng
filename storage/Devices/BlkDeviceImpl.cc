@@ -277,25 +277,25 @@ namespace storage
 	switch (mount_by_type)
 	{
 	    case MountByType::UUID:
-		y2err("no uuid possible, using fallback");
+		y2war("no uuid possible, using fallback");
 		break;
 
 	    case MountByType::LABEL:
-		y2err("no label possible, using fallback");
+		y2war("no label possible, using fallback");
 		break;
 
 	    case MountByType::ID:
 		if (!get_udev_ids().empty())
 		    ret = DEV_DISK_BY_ID_DIR "/" + get_udev_ids().front();
 		else
-		    y2err("no udev-id defined, using fallback");
+		    y2war("no udev-id defined, using fallback");
 		break;
 
 	    case MountByType::PATH:
 		if (!get_udev_paths().empty())
 		    ret = DEV_DISK_BY_PATH_DIR "/" + get_udev_paths().front();
 		else
-		    y2err("no udev-path defined, using fallback");
+		    y2war("no udev-path defined, using fallback");
 		break;
 
 	    case MountByType::DEVICE:

@@ -629,14 +629,14 @@ namespace storage
 		if (!uuid.empty())
 		    ret = "UUID=" + uuid;
 		else
-		    y2err("no uuid defined, using fallback mount-by");
+		    y2war("no uuid defined, using fallback mount-by");
 		break;
 
 	    case MountByType::LABEL:
 		if (!label.empty())
 		    ret = "LABEL=" + label;
 		else
-		    y2err("no label defined, using fallback mount-by");
+		    y2war("no label defined, using fallback mount-by");
 		break;
 
 	    case MountByType::ID:
