@@ -59,8 +59,6 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
-	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
-
     public:
 
 	Impl()
@@ -97,14 +95,9 @@ namespace storage
 	virtual void immediate_activate(MountPoint* mount_point, bool force_rw = false) const override;
 	virtual void immediate_deactivate(MountPoint* mount_point) const override;
 
-    private:
+    protected:
 
-	/**
-	 * Checks whether the swap is generated at every boot,
-	 * e.g. located on a plain encryption the swap option in
-	 * /etc/crypttab.
-	 */
-	bool is_permanent() const;
+	virtual bool is_permanent() const override;
 
     };
 
