@@ -165,6 +165,16 @@ namespace storage
 	static bool detect_is_efi(const string& mountpoint);
 	static unsigned detect_num_homes(const string& mountpoint);
 
+	/**
+	 * Checks whether the filesystem is permanent. A non permanent
+	 * filesystem cannot use mount-by uuid or label.
+	 *
+	 * E.g. a swap located on a plain encryption with the swap
+	 * option set in /etc/crypttab is not permanent since it is
+	 * regenerated at every boot.
+	 */
+	virtual bool is_permanent() const { return true; }
+
     private:
 
 	string label;

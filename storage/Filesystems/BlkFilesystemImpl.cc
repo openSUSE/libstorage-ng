@@ -125,10 +125,10 @@ namespace storage
     {
 	vector<MountByType> ret;
 
-	if (supports_uuid())
+	if (supports_uuid() && is_permanent())
 	    ret.push_back(MountByType::UUID);
 
-	if (supports_label())
+	if (supports_label() && is_permanent())
 	    ret.push_back(MountByType::LABEL);
 
 	return ret;
