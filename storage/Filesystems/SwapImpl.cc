@@ -104,41 +104,6 @@ namespace storage
     }
 
 
-    string
-    Swap::Impl::get_mount_by_name(const MountPoint* mount_point) const
-    {
-	MountByType mount_by = mount_point->get_mount_by();
-
-	switch (mount_by)
-	{
-	    case MountByType::UUID:
-		if (!is_permanent())
-		{
-		    y2war("no uuid possible for non-permanent swap, using fallback mount-by");
-		    mount_by = MountByType::DEVICE;
-		}
-		break;
-
-	    case MountByType::LABEL:
-		if (!is_permanent())
-		{
-		    y2war("no label possible for non-permanent swap, using fallback mount-by");
-		    mount_by = MountByType::DEVICE;
-		}
-		break;
-
-	    case MountByType::ID:
-	    case MountByType::PATH:
-	    case MountByType::DEVICE:
-		break;
-	}
-
-	const BlkDevice* blk_device = get_etc_fstab_blk_device(mount_point);
-
-	return blk_device->get_impl().get_mount_by_name(mount_by);
-    }
-
-
     void
     Swap::Impl::do_create()
     {

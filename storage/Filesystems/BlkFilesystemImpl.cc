@@ -626,17 +626,21 @@ namespace storage
 	switch (mount_point->get_mount_by())
 	{
 	    case MountByType::UUID:
-		if (!uuid.empty())
-		    ret = "UUID=" + uuid;
-		else
+		if (!is_permanent())
+		    y2war("no uuid possible for non-permanent filesystem, using fallback mount-by");
+		else if (uuid.empty())
 		    y2war("no uuid defined, using fallback mount-by");
+		else
+		    ret = "UUID=" + uuid;
 		break;
 
 	    case MountByType::LABEL:
-		if (!label.empty())
-		    ret = "LABEL=" + label;
-		else
+		if (!is_permanent())
+		    y2war("no label possible for non-permanent filesystem, using fallback mount-by");
+		else if (label.empty())
 		    y2war("no label defined, using fallback mount-by");
+		else
+		    ret = "LABEL=" + label;
 		break;
 
 	    case MountByType::ID:

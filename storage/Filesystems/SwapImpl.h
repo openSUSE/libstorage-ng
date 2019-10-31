@@ -59,8 +59,6 @@ namespace storage
 
 	virtual bool supports_uuid() const override { return true; }
 
-	virtual string get_mount_by_name(const MountPoint* mount_point) const override;
-
     public:
 
 	Impl()
