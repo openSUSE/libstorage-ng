@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-10-28 16:53+0000\n"
+"PO-Revision-Date: 2019-11-05 20:53+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/et/>\n"
@@ -102,12 +102,12 @@ msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
 #. TRANSLATORS: progress message
 #, c-format
 msgid "Activating LUKS %s"
-msgstr ""
+msgstr "Aktiveeritakse LUKS %s"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Activating LUKS %s failed"
-msgstr ""
+msgstr "Aktiveerimine LUKS %s nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Activating LVM"
