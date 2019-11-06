@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-11-06 08:53+0000\n"
+"PO-Revision-Date: 2019-11-06 17:53+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/et/>\n"
@@ -186,7 +186,7 @@ msgstr "Lisa %1$s siia /etc/mdadm.conf"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Add encryption layer device on %1$s to /etc/crypttab"
-msgstr ""
+msgstr "Lisage krüptimiskihi seade %1$s kataloogi /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -203,7 +203,7 @@ msgstr "Ühenduskoha %1$s kirje lisamine faili %2$s"
 #. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
-msgstr ""
+msgstr "Lisage seadme %3$s alamosa %2$s haakepunkt %1$s siia /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -228,7 +228,7 @@ msgstr "%1$s suurendamine %2$s-ni"
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Adding %1$s to /etc/mdadm.conf"
-msgstr ""
+msgstr "Lisame %1$s siia /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
