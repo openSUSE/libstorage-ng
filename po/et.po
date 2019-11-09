@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-11-08 14:54+0000\n"
+"PO-Revision-Date: 2019-11-09 10:53+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/et/>\n"
@@ -338,13 +338,13 @@ msgstr "Partitsiooni %1$s loomine"
 #. and /dev/sdb2 (1.0 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
-msgstr ""
+msgstr "%2$s alamosa %1$s tühjendamise võimalus 'kirjutamisel koopiat ei tehta'"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Clearing protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "GPT kaitsva MBR alglaadimislipu eemaldamine %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -733,7 +733,7 @@ msgstr "Loogilise andmeruumi %1$s loomine"
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
-msgstr ""
+msgstr "Loo failisüsteemi btrfs %1$s ja haagi %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
@@ -1043,7 +1043,7 @@ msgstr "Andmeruumirühma %1$s loomine seadmetest %2$s"
 
 #. TRANSLATORS: name of object
 msgid "DASD"
-msgstr ""
+msgstr "DASD"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -1052,7 +1052,7 @@ msgstr "Partitsiooni %1$s loomine"
 
 #. TRANSLATORS: name of object
 msgid "DM RAID"
-msgstr ""
+msgstr "DM RAID"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
@@ -1508,6 +1508,12 @@ msgid ""
 "These logical volumes are ignored. Operations on the\n"
 "correponding volume groups may fail."
 msgstr ""
+"On tuvastatud toetamata tüüpide LVM-i loogilised köited:\n"
+"\n"
+"%1$s\n"
+"\n"
+"Neid loogilisi osi eiratakse. Toimingud\n"
+"osade gruppide vastavusse viimisel võivad nurjuda."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1516,6 +1522,8 @@ msgid ""
 "Detected a LUKS device next to a partition table on the\n"
 "device %1$s. The LUKS device will be ignored."
 msgstr ""
+"Tuvastati LUKS-i seade partitsioonitabeli kõrval, seadmel %1$s. LUKS-seadet "
+"ignoreeritakse."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
@@ -1524,6 +1532,8 @@ msgid ""
 "Detected a LVM logical volume next to a partition table on the\n"
 "device %1$s. The LVM logical volume will be ignored."
 msgstr ""
+"Tuvastati LVM-i loogiline osa partitsioonitabeli kõrval, seadmel %1$s. LVM-i "
+"loogilist köidet eiratakse."
 
 #. TRANSLATORS: Error message displayed during probing,
 #. %1$s is replaced by the device name (e.g. /dev/sda)
