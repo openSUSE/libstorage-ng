@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-11-09 10:53+0000\n"
+"PO-Revision-Date: 2019-11-10 12:53+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/et/>\n"
@@ -1542,14 +1542,16 @@ msgid ""
 "Detected a file system next to a partition table on the\n"
 "device %1$s. The file system will be ignored."
 msgstr ""
+"Tuvastati failisüsteem partitsioonitabeli kõrval, seadmeil %1$s. "
+"Failisüsteemi eiratakse."
 
 #. TRANSLATORS: name of partition type
 msgid "Diagnostics Partition"
-msgstr ""
+msgstr "Diagnostikapartitsioon"
 
 #. TRANSLATORS: name of object
 msgid "Disk"
-msgstr ""
+msgstr "Ketas"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
 #, fuzzy
@@ -1563,7 +1565,7 @@ msgstr "kB"
 
 #. TRANSLATORS: name of partition type
 msgid "EFI System Partition"
-msgstr ""
+msgstr "EFI süsteemne partitsioon"
 
 #. TRANSLATORS: symbol for "exbi bytes" (best keep untranslated)
 #, fuzzy
@@ -1679,23 +1681,23 @@ msgstr "Partitsiooni %1$s (%2$s) vormindamine %3$s-ga"
 
 #. TRANSLATORS: name of object
 msgid "Encryption"
-msgstr ""
+msgstr "Krüptimine"
 
 #. TRANSLATORS: name of object
 msgid "Ext2"
-msgstr ""
+msgstr "Ext2"
 
 #. TRANSLATORS: name of object
 msgid "Ext3"
-msgstr ""
+msgstr "Ext3"
 
 #. TRANSLATORS: name of object
 msgid "Ext4"
-msgstr ""
+msgstr "Ext4"
 
 #. TRANSLATORS: name of object
 msgid "F2FS"
-msgstr ""
+msgstr "F2FS"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -1797,7 +1799,7 @@ msgstr "GB"
 
 #. TRANSLATORS: name of object
 msgid "GPT"
-msgstr ""
+msgstr "GPT"
 
 #. TRANSLATORS: symbol for "gibi bytes" (best keep untranslated)
 #, fuzzy
@@ -1950,19 +1952,19 @@ msgstr "Loogilise andmeruumi %1$s (%2$s) kohas %4$s loomine %3$s-le"
 
 #. TRANSLATORS: name of object
 msgid "ISO 9660"
-msgstr ""
+msgstr "ISO 9660"
 
 #. TRANSLATORS: name of object
 msgid "Implicit Partition Table"
-msgstr ""
+msgstr "Kaudne partitsioonitabel"
 
 #. TRANSLATORS: name of partition type
 msgid "Intel RST"
-msgstr ""
+msgstr "Intel RST"
 
 #. TRANSLATORS: name of object
 msgid "JFS"
-msgstr ""
+msgstr "JFS"
 
 #. TRANSLATORS: symbol for "kibi bytes" (best keep untranslated)
 msgid "KiB"
@@ -1970,35 +1972,35 @@ msgstr "KiB"
 
 #. TRANSLATORS: name of object
 msgid "LUKS"
-msgstr ""
+msgstr "LUKS"
 
 #. TRANSLATORS: name of object
 msgid "LVM Logical Volume"
-msgstr ""
+msgstr "LVM loogiline alamosa"
 
 #. TRANSLATORS: name of object
 msgid "LVM Physical Volume"
-msgstr ""
+msgstr "LVM füüsiline osa"
 
 #. TRANSLATORS: name of object
 msgid "LVM Volume Group"
-msgstr ""
+msgstr "LVM osade grupp"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux LVM"
-msgstr ""
+msgstr "Linux LVM"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux RAID"
-msgstr ""
+msgstr "Linux RAID"
 
 #. TRANSLATORS: name of partition type
 msgid "Linux Swap"
-msgstr ""
+msgstr "Linux Swap"
 
 #. TRANSLATORS: symbol for "mega" (best keep untranslated)
 #, fuzzy
@@ -2011,7 +2013,7 @@ msgstr "MB"
 
 #. TRANSLATORS: name of object
 msgid "MD RAID"
-msgstr ""
+msgstr "MD RAID"
 
 #. TRANSLATORS: name of object
 #, fuzzy
@@ -2024,7 +2026,7 @@ msgstr "MiB"
 
 #. TRANSLATORS: name of partition type
 msgid "Microsoft Reserved Partition"
-msgstr ""
+msgstr "Microsoftile reserveeritud partitsioon"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
@@ -2061,7 +2063,7 @@ msgstr "%1$s ühendamine kohta %2$s"
 
 #. TRANSLATORS: name of object
 msgid "Mount Point"
-msgstr ""
+msgstr "Haakepunkt"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
@@ -2115,15 +2117,15 @@ msgstr "Loogilise andmeruumi %1$s (%2$s) loomine"
 
 #. TRANSLATORS: name of object
 msgid "Multipath"
-msgstr ""
+msgstr "Multirada"
 
 #. TRANSLATORS: name of object
 msgid "NFS"
-msgstr ""
+msgstr "NFS"
 
 #. TRANSLATORS: name of object
 msgid "NTFS"
-msgstr ""
+msgstr "NTFS"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 #, fuzzy
@@ -2137,11 +2139,11 @@ msgstr "KiB"
 
 #. TRANSLATORS: name of partition type
 msgid "PReP Boot Partition"
-msgstr ""
+msgstr "PReP algkäivituspartitsioon"
 
 #. TRANSLATORS: name of object
 msgid "Partition"
-msgstr ""
+msgstr "Partitsioon"
 
 #. TRANSLATORS: symbol for "pebi bytes" (best keep untranslated)
 #, fuzzy
@@ -2150,65 +2152,65 @@ msgstr "KiB"
 
 #. TRANSLATORS: name of object
 msgid "Plain Encryption"
-msgstr ""
+msgstr "Tavaline krüptimine"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing DASD %s failed"
-msgstr ""
+msgstr "DASD %s uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing DASDs"
-msgstr ""
+msgstr "DASDs uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing DASDs failed"
-msgstr ""
+msgstr "DASD uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing DM RAIDs"
-msgstr ""
+msgstr "DM RAID uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing DM RAIDs failed"
-msgstr ""
+msgstr "DM RAID uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing LUKS"
-msgstr ""
+msgstr "LUKS uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing LUKS failed"
-msgstr ""
+msgstr "LUKS uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing LVM"
-msgstr ""
+msgstr "LVM uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing LVM failed"
-msgstr ""
+msgstr "LVM uurimine nurjus"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing MD RAID %s failed"
-msgstr ""
+msgstr "MD RAID %s uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing MD RAIDs"
-msgstr ""
+msgstr "MD RAID uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing MD RAIDs failed"
-msgstr ""
+msgstr "MD RAID uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing NFS"
-msgstr ""
+msgstr "NFS uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing NFS failed"
-msgstr ""
+msgstr "NFS uurimine nurjus"
 
 #. TRANSLATORS: progress message
 #, fuzzy
@@ -2222,37 +2224,37 @@ msgstr "Partitsiooni %1$s (%2$s) loomine"
 
 #. TRANSLATORS: progress message
 msgid "Probing bcache"
-msgstr ""
+msgstr "Bcache uurimine"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing bcache %s failed"
-msgstr ""
+msgstr "Bcache %s uurimine nurjus"
 
 #. TRANSLATORS: error message
 msgid "Probing bcache failed"
-msgstr ""
+msgstr "Bcache uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing device relationships"
-msgstr ""
+msgstr "Seadme ühenduste uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing device relationships failed"
-msgstr ""
+msgstr "Seadme ühenduste uurimine nurjus"
 
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing disk %s failed"
-msgstr ""
+msgstr "Ketta %s uurimine nurjus"
 
 #. TRANSLATORS: progress message
 msgid "Probing disks"
-msgstr ""
+msgstr "Ketta uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing disks failed"
-msgstr ""
+msgstr "Ketta uurimine nurjus"
 
 #. TRANSLATORS: error message
 #, fuzzy
@@ -2262,7 +2264,7 @@ msgstr "Partitsiooni %1$s (%2$s) loomine"
 #. TRANSLATORS: error message
 #, c-format
 msgid "Probing file system on %s failed"
-msgstr ""
+msgstr "Failisüsteemi uurimine seadmel %s ebaõnnestus"
 
 #. TRANSLATORS: error message
 #, fuzzy, c-format
@@ -2271,19 +2273,19 @@ msgstr "Partitsiooni %1$s (%2$s) loomine"
 
 #. TRANSLATORS: progress message
 msgid "Probing file systems"
-msgstr ""
+msgstr "Failisüsteemi uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing file systems failed"
-msgstr ""
+msgstr "Failisüsteemi uurimine ebaõnnestus"
 
 #. TRANSLATORS: progress message
 msgid "Probing multipath"
-msgstr ""
+msgstr "Multiühenduse uurimine"
 
 #. TRANSLATORS: error message
 msgid "Probing multipath failed"
-msgstr ""
+msgstr "Multiühenduste uurimine nurjus"
 
 #. TRANSLATORS: progress message
 #, fuzzy
@@ -2292,7 +2294,7 @@ msgstr "Partitsiooni %1$s (%2$s) loomine"
 
 #. TRANSLATORS: error message
 msgid "Probing partitions failed"
-msgstr ""
+msgstr "Partitsioonide uurimine nurjus"
 
 #. TRANSLATORS: error message
 #, fuzzy, c-format
@@ -2328,13 +2330,13 @@ msgstr "Partitsiooni %1$s (%2$s) loomine"
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reduce volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Vähendage partistsiooniderühma %1$s füüsiliste osade puudumisel"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Reducing volume group %1$s by missing physical volumes"
-msgstr ""
+msgstr "Partitsioonide rühma vähendamine %1$s füüsiliste osade puudumisel"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
