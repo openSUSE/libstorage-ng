@@ -108,8 +108,15 @@ namespace storage
 	void set_mount_options(const std::vector<std::string>& mount_options);
 
 	/**
-	 * Set the mount options to the default mount options. So far the
-	 * default mount options only contain the subvol for btrfs subvolumes.
+	 * Default mount options. So far the default mount options only contain
+	 * the subvol for btrfs subvolumes.
+	 */
+	std::vector<std::string> default_mount_options() const;
+
+	/**
+	 * Set the mount options to the default mount options.
+	 *
+	 * @see default_mount_options().
 	 */
 	void set_default_mount_options();
 

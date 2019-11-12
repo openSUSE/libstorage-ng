@@ -137,6 +137,13 @@ namespace storage
     }
 
 
+    vector<string>
+    MountPoint::default_mount_options() const
+    {
+	return get_impl().default_mount_options().get_opts();
+    }
+
+
     const vector<string>&
     MountPoint::get_mount_options() const
     {
