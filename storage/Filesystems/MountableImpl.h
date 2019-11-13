@@ -84,7 +84,7 @@ namespace storage
 
 	virtual MountByType get_default_mount_by() const = 0;
 
-	virtual MountOpts get_default_mount_options() const;
+	virtual MountOpts default_mount_options() const;
 
 	/**
 	 * A name for the mountable in messages. E.g. for

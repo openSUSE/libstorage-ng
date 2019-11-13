@@ -343,7 +343,7 @@ namespace storage
     MountOpts
     MountPoint::Impl::default_mount_options() const
     {
-	return get_mountable()->get_impl().get_default_mount_options();
+	return get_mountable()->get_impl().default_mount_options();
     }
 
 

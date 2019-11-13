@@ -169,7 +169,7 @@ namespace storage
 
 
     MountOpts
-    Mountable::Impl::get_default_mount_options() const
+    Mountable::Impl::default_mount_options() const
     {
 	return MountOpts();
     }
