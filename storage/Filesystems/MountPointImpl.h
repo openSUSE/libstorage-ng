@@ -102,6 +102,7 @@ namespace storage
 	void set_mount_options(const MountOpts& mount_options);
 	void set_mount_options(const vector<string>& mount_options);
 
+	MountOpts default_mount_options() const;
 	void set_default_mount_options();
 
 	int get_freq() const { return freq; }

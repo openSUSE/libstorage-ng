@@ -199,7 +199,7 @@ namespace storage
 
 
     MountOpts
-    BtrfsSubvolume::Impl::get_default_mount_options() const
+    BtrfsSubvolume::Impl::default_mount_options() const
     {
 	// NOTE: This is used for both: fstab and mount command.
 	// In case of fstab, subvol path cannot be quoted, and the usage of scape
@@ -213,7 +213,7 @@ namespace storage
     vector<string>
     BtrfsSubvolume::Impl::get_mount_options() const
     {
-	// See get_default_mount_options()
+	// See default_mount_options()
 	return vector<string>({ "subvol=/" + path });
     }
 

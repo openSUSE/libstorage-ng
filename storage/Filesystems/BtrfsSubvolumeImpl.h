@@ -97,7 +97,7 @@ namespace storage
 	virtual vector<string> get_mount_options() const override;
 
 	virtual MountByType get_default_mount_by() const override;
-	virtual MountOpts get_default_mount_options() const override;
+	virtual MountOpts default_mount_options() const override;
 
 	virtual vector<ExtendedFstabEntry> find_etc_fstab_entries_unfiltered(SystemInfo& system_info) const override;
 
