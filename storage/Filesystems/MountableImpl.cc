@@ -21,6 +21,8 @@
  */
 
 
+#include <algorithm>
+
 #include <boost/algorithm/string.hpp>
 
 #include "storage/Utils/XmlFile.h"
@@ -212,15 +214,63 @@ namespace storage
 	// product owner.
 
 	vector<JointEntry> joint_entries = join_entries(fstab_entries, mount_entries);
+
 	if (!joint_entries.empty())
 	{
 	    if (joint_entries.size() > 1)
 		y2war("more than one mount point for " << (*this->get_non_impl()));
 
-	    // But at least if there are more try to find the shortest path
-	    // to avoid problems during upgrade (bsc#1118865).
+	    // Selecting the most reasonable mount point:
+	    //
+	    // * shortest active mount point from the fstab or
+	    // * shortest active mount point or
+	    // * shortest non-active mount point
 
-	    min_element(joint_entries.begin(), joint_entries.end(), compare_by_size)->add_to(get_non_impl());
+	    vector<const JointEntry*> filtered_entries;
+
+	    for (const JointEntry& entry : joint_entries)
+		filtered_entries.push_back(&entry);
+
+	    // Check if there is any active entry
+	    vector<const JointEntry*>::iterator active_entry = find_if(filtered_entries.begin(), filtered_entries.end(),
+		[](const JointEntry* entry) {
+		    return entry->is_active();
+		}
+	    );
+
+	    if (active_entry != filtered_entries.end())
+	    {
+		// There are active entries, so discarding no active ones
+		filtered_entries.erase(
+		    remove_if(filtered_entries.begin(), filtered_entries.end(),
+			[](const JointEntry* entry) { return !entry->is_active(); }
+		    ),
+		    filtered_entries.end()
+		);
+
+		// Check if any active entry is in /etc/fstab
+		vector<const JointEntry*>::iterator fstab_entry = find_if(filtered_entries.begin(), filtered_entries.end(),
+		    [](const JointEntry* entry) {
+			return entry->is_in_etc_fstab();
+		    }
+		);
+
+		if (fstab_entry != filtered_entries.end())
+		{
+		    // There are active entries in /etc/fsbab, so discarding the rest
+		    filtered_entries.erase(
+			remove_if(filtered_entries.begin(), filtered_entries.end(),
+			    [](const JointEntry* entry) { return !entry->is_in_etc_fstab(); }
+			),
+			filtered_entries.end()
+		    );
+		}
+	    }
+
+	    // Select the shortest path to avoid problems during upgrade (bsc#1118865).
+	    const JointEntry* entry = *min_element(filtered_entries.begin(), filtered_entries.end(), compare_by_size);
+
+	    entry->add_to(get_non_impl());
 	}
     }
 

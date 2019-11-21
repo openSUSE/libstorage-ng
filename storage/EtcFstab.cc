@@ -717,9 +717,9 @@ namespace storage
 
 
     bool
-    compare_by_size(const JointEntry& a, const JointEntry& b)
+    compare_by_size(const JointEntry* a, const JointEntry* b)
     {
-	return a.get_mount_point().size() < b.get_mount_point().size();
+	return a->get_mount_point().size() < b->get_mount_point().size();
     }
 
 }

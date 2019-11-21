@@ -486,7 +486,7 @@ namespace storage
     /**
      * Compare join entries by its mount point lenght
      */
-    bool compare_by_size(const JointEntry& a, const JointEntry& b);
+    bool compare_by_size(const JointEntry* a, const JointEntry* b);
 
 }
 
