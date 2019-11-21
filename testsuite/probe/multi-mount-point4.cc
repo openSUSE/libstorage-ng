@@ -9,6 +9,9 @@
 #include "storage/Storage.h"
 #include "storage/DevicegraphImpl.h"
 #include "storage/UsedFeatures.h"
+#include "storage/Devices/Partition.h"
+#include "storage/Filesystems/BlkFilesystem.h"
+#include "storage/Filesystems/MountPoint.h"
 
 #include "testsuite/helpers/TsCmp.h"
 
@@ -17,12 +20,13 @@ using namespace std;
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(probe)
+BOOST_AUTO_TEST_CASE(multi_mount_point4)
 {
     set_logger(get_stdout_logger());
 
+    // Scenario: two non-active fstab mount points (/ and /root2) for the same device (sda2).
     Environment environment(true, ProbeMode::READ_MOCKUP, TargetMode::DIRECT);
-    environment.set_mockup_filename("multi-mount-point-mockup.xml");
+    environment.set_mockup_filename("multi-mount-point-mockup4.xml");
 
     Storage storage(environment);
     storage.probe();
@@ -30,12 +34,9 @@ BOOST_AUTO_TEST_CASE(probe)
     const Devicegraph* probed = storage.get_probed();
     probed->check();
 
-    Devicegraph* staging = storage.get_staging();
-    staging->load("multi-mount-point-devicegraph.xml");
-    staging->check();
+    const Partition* partition = Partition::find_by_name(probed, "/dev/sda2");
 
-    TsCmpDevicegraph cmp(*probed, *staging);
-    BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
+    const string mount_point = partition->get_blk_filesystem()->get_mount_point()->get_path();
 
-    BOOST_CHECK_BITWISE_EQUAL(probed->used_features(), UF_EXT4 | UF_SWAP);
+    BOOST_CHECK_EQUAL(mount_point, "/");
 }

@@ -12,7 +12,8 @@ check_PROGRAMS =								\
 	multipath1.test multipath+luks1.test md1.test md2.test	\
 	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
-	multi-mount-point.test							\
+	multi-mount-point1.test multi-mount-point2.test				\
+	multi-mount-point3.test multi-mount-point4.test				\
 	bcache1.test bcache2.test btrfs1.test btrfs2.test dasd1.test dasd2.test	\
 	dasd3.test external-journal.test					\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
@@ -24,7 +25,10 @@ TESTS = $(check_PROGRAMS)
 
 EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	disk-zoned1-mockup.xml disk-zoned1-devicegraph.xml			\
-	multi-mount-point-mockup.xml multi-mount-point-devicegraph.xml		\
+	multi-mount-point-mockup1.xml multi-mount-point-devicegraph1.xml	\
+	multi-mount-point-mockup2.xml						\
+	multi-mount-point-mockup3.xml						\
+	multi-mount-point-mockup4.xml						\
 	multipath1-mockup.xml multipath1-devicegraph.xml			\
 	multipath+luks1-mockup.xml multipath+luks1-devicegraph.xml		\
 	dmraid1-mockup.xml dmraid1-devicegraph.xml				\
