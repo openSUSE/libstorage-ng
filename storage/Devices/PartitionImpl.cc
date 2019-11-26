@@ -766,7 +766,7 @@ namespace storage
 	cmd_line += to_string(get_region().get_start() * factor) + " " +
 	    to_string(get_region().get_end() * factor + (factor - 1));
 
-	SystemCmd(UDEVADMBIN_SETTLE);
+	SystemCmd(UDEVADM_BIN_SETTLE);
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

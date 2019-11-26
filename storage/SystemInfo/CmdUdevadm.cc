@@ -49,10 +49,10 @@ namespace storage
 	// or even complain about unknown devices. Even during probing this
 	// can happen since e.g. 'parted' opens the disk device read-write
 	// even when all parted commands are read-only, thus triggering udev
-	// events. So always run 'udevadm settle'.
-	SystemCmd(UDEVADMBIN_SETTLE);
+	// events (fixed in recent versions). So always run 'udevadm settle'.
+	SystemCmd(UDEVADM_BIN_SETTLE);
 
-	SystemCmd cmd(UDEVADMBIN " info " + quote(file), SystemCmd::DoThrow);
+	SystemCmd cmd(UDEVADM_BIN " info " + quote(file), SystemCmd::DoThrow);
 
 	parse(cmd.stdout());
     }

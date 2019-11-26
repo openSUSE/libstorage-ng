@@ -192,7 +192,7 @@ namespace storage
 	    bool ret = number_of_inactive != CmdLvs().number_of_inactive();
 
 	    if (ret)
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 	    return ret;
 	}

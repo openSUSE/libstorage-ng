@@ -29,6 +29,7 @@
 #include "storage/Utils/HumanString.h"
 #include "storage/Devices/BlkDeviceImpl.h"
 #include "storage/Filesystems/NtfsImpl.h"
+#include "storage/SystemInfo/CmdNtfsresize.h"
 #include "storage/FreeInfo.h"
 #include "storage/UsedFeatures.h"
 #include "storage/Redirect.h"
@@ -69,32 +70,27 @@ namespace storage
 
 	// TODO filesystem must not be mounted
 
-	SystemCmd cmd(NTFSRESIZEBIN " --force --info " + quote(fs_blk_device->get_name()));
-	if (cmd.retcode() != 0)
+	try
+	{
+	    CmdNtfsresize cmd_ntfsresize(fs_blk_device->get_name());
+
+	    // See ntfsresize(8) for += 100 MiB.
+	    ResizeInfo resize_info(true, 0, cmd_ntfsresize.get_min_size() + 100 * MiB, max_size());
+
+	    // The min-size must never be bigger than the blk device size.
+	    resize_info.min_size = min(resize_info.min_size, fs_blk_device->get_size());
+
+	    if (resize_info.min_size >= resize_info.max_size)
+		resize_info.reasons |= RB_FILESYSTEM_FULL;
+
+	    return resize_info;
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
 	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
-
-	string fstr = " might resize at ";
-	string::size_type pos;
-	string stdout = boost::join(cmd.stdout(), "\n");
-	if ((pos = stdout.find(fstr)) == string::npos)
-	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
-
-	ResizeInfo resize_info(true, 0);
-
-	y2mil("pos:" << pos);
-	pos = stdout.find_first_not_of(" \t\n", pos + fstr.size());
-	y2mil("pos:" << pos);
-	string number = stdout.substr(pos, stdout.find_first_not_of("0123456789", pos));
-	number >> resize_info.min_size;
-
-	// see ntfsresize(8) for += 100 MiB
-	resize_info.min_size = min(resize_info.min_size + 100 * MiB, fs_blk_device->get_size());
-	resize_info.max_size = 256 * TiB - 64 * KiB;
-
-	if (resize_info.min_size >= resize_info.max_size)
-	    resize_info.reasons |= RB_FILESYSTEM_FULL;
-
-	return resize_info;
+	}
     }
 
 
@@ -151,7 +147,7 @@ namespace storage
     {
 	const BlkDevice* blk_device_rhs = to_ntfs(rhs)->get_impl().get_blk_device();
 
-	string cmd_line = "echo y | " NTFSRESIZEBIN " --force";
+	string cmd_line = "echo y | " NTFSRESIZE_BIN " --force";
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(blk_device_rhs->get_size());
 	cmd_line += " " + quote(blk_device->get_name());

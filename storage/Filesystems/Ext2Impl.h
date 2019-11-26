@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,7 +57,11 @@ namespace storage
 	virtual string get_displayname() const override { return "ext2"; }
 
 	virtual unsigned long long min_size() const override { return 512 * KiB; }
-	virtual unsigned long long max_size() const override { return 2 * TiB; }
+
+	/**
+	 * Assumes the default of 4 KiB block size.
+	 */
+	virtual unsigned long long max_size() const override { return Ext::Impl::max_size(4 * KiB, false); }
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 

@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2017] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -57,6 +57,8 @@ namespace storage
 
 	virtual void probe_pass_2b(Prober& prober) override;
 
+	unsigned long long max_size(unsigned long block_size, bool feature_64bit) const;
+
     public:
 
 	Impl()
@@ -65,6 +67,8 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	virtual const char* get_classname() const override { return DeviceTraits<Ext>::classname; }
+
+	virtual ResizeInfo detect_resize_info_on_disk(const BlkDevice* blk_device = nullptr) const override;
 
 	virtual void do_create() override;
 

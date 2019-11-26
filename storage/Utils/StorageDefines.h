@@ -98,17 +98,17 @@
 #define DASDFMTBIN "/sbin/dasdfmt"
 #define DASDVIEWBIN "/sbin/dasdview"
 
-#define UDEVADMBIN "/sbin/udevadm"
-#define UDEVADMBIN_SETTLE UDEVADMBIN " settle --timeout=20"
+#define UDEVADM_BIN "/sbin/udevadm"
+#define UDEVADM_BIN_SETTLE UDEVADM_BIN " settle --timeout=20"
 
 #define RPCBINDBIN     "/sbin/rpcbind"
 
 #define EFIBOOTMGRBIN "/usr/sbin/efibootmgr"
 
-#define NTFSRESIZEBIN "/usr/sbin/ntfsresize"
+#define NTFSRESIZE_BIN "/usr/sbin/ntfsresize"
 #define XFSGROWFSBIN  "/usr/sbin/xfs_growfs"
 #define REISERFSRESIZEBIN "/sbin/resize_reiserfs"
-#define EXT2RESIZEBIN "/sbin/resize2fs"
+#define RESIZE2FS_BIN "/sbin/resize2fs"
 #define FATRESIZEBIN "/usr/sbin/fatresize"
 
 #define TUNE2FSBIN     "/sbin/tune2fs"
@@ -119,6 +119,8 @@
 #define FATLABELBIN	"/usr/sbin/fatlabel"
 #define SWAPLABELBIN   "/sbin/swaplabel"
 #define EXFAT_LABEL_BIN "/sbin/exfatlabel"
+
+#define DUMPE2FS_BIN "/sbin/dumpe2fs"
 
 #define MKSWAPBIN      "/sbin/mkswap"
 #define MKFSXFSBIN     "/sbin/mkfs.xfs"

@@ -130,11 +130,11 @@ namespace storage
 	    {
 		SystemCmd cmd1(MULTIPATHBIN, SystemCmd::DoThrow);
 
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 		SystemCmd cmd2(MULTIPATHDBIN, SystemCmd::DoThrow);
 
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 		return true;
 	    }

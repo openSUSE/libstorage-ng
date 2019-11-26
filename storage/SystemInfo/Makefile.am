@@ -14,11 +14,14 @@ libsystem_info_la_SOURCES =				\
 	CmdDf.cc		CmdDf.h			\
 	CmdDmraid.cc		CmdDmraid.h		\
 	CmdDmsetup.cc		CmdDmsetup.h		\
+	CmdDumpe2fs.cc		CmdDumpe2fs.h		\
 	CmdLsattr.cc		CmdLsattr.h		\
 	CmdLsscsi.cc		CmdLsscsi.h		\
 	CmdLvm.cc		CmdLvm.h		\
 	CmdMultipath.cc		CmdMultipath.h		\
+	CmdNtfsresize.cc	CmdNtfsresize.h		\
 	CmdParted.cc		CmdParted.h		\
+	CmdResize2fs.cc		CmdResize2fs.h		\
 	CmdStat.cc		CmdStat.h		\
 	CmdUdevadm.cc		CmdUdevadm.h		\
 	DevAndSys.cc		DevAndSys.h		\

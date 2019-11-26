@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -28,6 +28,8 @@
 #include "storage/Holders/FilesystemUser.h"
 #include "storage/Filesystems/ExtImpl.h"
 #include "storage/SystemInfo/SystemInfo.h"
+#include "storage/SystemInfo/CmdDumpe2fs.h"
+#include "storage/SystemInfo/CmdResize2fs.h"
 #include "storage/Prober.h"
 
 
@@ -70,6 +72,60 @@ namespace storage
 		    filesystem_user->set_journal(true);
 		}
 	    }
+	}
+    }
+
+
+    unsigned long long
+    Ext::Impl::max_size(unsigned long block_size, bool feature_64bit) const
+    {
+	// The max size depends on the block size and the 64bit feature (available in ext4).
+	// The values have been researched in https://trello.com/c/LQVROAgq/.
+
+	if (feature_64bit)
+	    return (unsigned long long)(block_size) * (1ULL << 45);
+	else
+	    return (unsigned long long)(block_size) * (1ULL << 32);
+    }
+
+
+    ResizeInfo
+    Ext::Impl::detect_resize_info_on_disk(const BlkDevice* blk_device) const
+    {
+	if (!get_devicegraph()->get_impl().is_system() && !get_devicegraph()->get_impl().is_probed())
+	    ST_THROW(Exception("function called on wrong device"));
+
+	const BlkDevice* fs_blk_device = get_blk_device();
+
+	wait_for_devices();
+
+	try
+	{
+	    CmdDumpe2fs cmd_dumpe2fs(fs_blk_device->get_name());
+	    CmdResize2fs cmd_resize2fs(fs_blk_device->get_name());
+
+	    ResizeInfo resize_info(true, 0);
+
+	    resize_info.min_size = cmd_resize2fs.get_min_blocks() * cmd_dumpe2fs.get_block_size();
+
+	    // The min-size must never be bigger than the blk device size.
+	    resize_info.min_size = min(resize_info.min_size, fs_blk_device->get_size());
+
+	    resize_info.max_size = max_size(cmd_dumpe2fs.get_block_size(),
+					    cmd_dumpe2fs.has_feature_64bit());
+
+	    resize_info.combine_block_size(cmd_dumpe2fs.get_block_size());
+
+	    if (resize_info.min_size >= resize_info.max_size)
+		resize_info.reasons |= RB_FILESYSTEM_FULL;
+
+	    return resize_info;
+	}
+	catch (const Exception& exception)
+	{
+	    ST_CAUGHT(exception);
+
+	    return ResizeInfo(false, RB_FILESYSTEM_INCONSISTENT);
 	}
     }
 
@@ -119,7 +175,7 @@ namespace storage
     {
 	const BlkDevice* blk_device_rhs = to_ext(rhs)->get_impl().get_blk_device();
 
-	string cmd_line = EXT2RESIZEBIN " -f " + quote(blk_device->get_name());
+	string cmd_line = RESIZE2FS_BIN " -f " + quote(blk_device->get_name());
 	if (resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB) + "K";
 

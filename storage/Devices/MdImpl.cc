@@ -351,7 +351,7 @@ namespace storage
 	SystemCmd cmd2(cmd_line2);
 
 	if (cmd2.retcode() == 0)
-	    SystemCmd(UDEVADMBIN_SETTLE);
+	    SystemCmd(UDEVADM_BIN_SETTLE);
 
 	unlink(filename.c_str());
 

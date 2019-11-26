@@ -276,7 +276,7 @@ namespace storage
 	    }
 
 	    if (ret)
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 	    return ret;
 	}
