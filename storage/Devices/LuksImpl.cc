@@ -232,6 +232,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(activate_callbacks, sformat(_("Activating LUKS %s failed"), uuid),
 			       exception);

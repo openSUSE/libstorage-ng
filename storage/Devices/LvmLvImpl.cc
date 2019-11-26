@@ -185,6 +185,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(activate_callbacks, _("Activating LVM failed"), exception);
 	    }

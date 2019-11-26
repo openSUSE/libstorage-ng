@@ -258,8 +258,9 @@ namespace storage
 	    return action->get_device(actiongraph->get_impl(), RHS);
 
 	}
-	catch(const DeviceNotFound& e)
+	catch(const DeviceNotFound& exception)
 	{
+	    ST_CAUGHT(exception);
 
 	    return action->get_device(actiongraph->get_impl(), LHS);
 	}

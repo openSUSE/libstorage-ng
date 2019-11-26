@@ -643,6 +643,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		error_callback(commit_callbacks, text, exception);
 	    }
 	}

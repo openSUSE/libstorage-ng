@@ -190,8 +190,10 @@ namespace storage
             }
             catch (const Exception& exception)
             {
-                // TRANSLATORS: error message
-                error_callback(prober.get_probe_callbacks(), sformat(_("Probing DASD %s failed"),
+		ST_CAUGHT(exception);
+
+		// TRANSLATORS: error message
+		error_callback(prober.get_probe_callbacks(), sformat(_("Probing DASD %s failed"),
 								     name), exception);
             }
 	}

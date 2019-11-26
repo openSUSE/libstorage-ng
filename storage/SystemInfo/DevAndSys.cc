@@ -216,8 +216,10 @@ namespace storage
 	{
 	    links = getDirLinks("/dev/md");
 	}
-	catch (const Exception&)
+	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // OK, no /dev/md at all
 	}
 

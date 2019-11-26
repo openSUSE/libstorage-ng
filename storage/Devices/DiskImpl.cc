@@ -140,6 +140,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing disk %s failed"),
 								     name), exception);
