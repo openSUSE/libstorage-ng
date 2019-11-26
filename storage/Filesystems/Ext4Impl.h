@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -49,7 +49,11 @@ namespace storage
 	Impl(const xmlNode* node);
 
 	virtual unsigned long long min_size() const override { return 32 * MiB; }
-	virtual unsigned long long max_size() const override { return 16 * TiB; }
+
+	/**
+	 * Assumes the default of 4 KiB block size and 64bit feature on.
+	 */
+	virtual unsigned long long max_size() const override { return Ext::Impl::max_size(4 * KiB, true); }
 
 	virtual bool supports_external_journal() const override { return true; }
 

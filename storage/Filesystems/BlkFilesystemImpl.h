@@ -108,6 +108,7 @@ namespace storage
 	void set_resize_info(const ResizeInfo& resize_info);
 
 	unsigned long long used_size_on_disk() const;
+	unsigned long long free_size_on_disk() const;
 
 	virtual ContentInfo detect_content_info() const;
 	virtual ContentInfo detect_content_info_on_disk() const;

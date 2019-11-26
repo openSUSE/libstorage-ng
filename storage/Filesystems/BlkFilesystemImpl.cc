@@ -204,6 +204,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(prober.get_probe_callbacks(), sformat(_("Probing file system on %s failed"),
 								     blk_device->get_name()), exception);
@@ -316,15 +318,17 @@ namespace storage
 	}
 	else
 	{
-	    // Assume that the min-size, e.g. for superblocks, metadata and
-	    // journal, is needed additional to the used-size.
+	    // The min-size is calculated by the block device size
+	    // minus the free size reported by statvfs. Additional the
+	    // min-size must not be less than the generic min-size of
+	    // the filesystem.
 
-	    resize_info.min_size += used_size_on_disk();
+	    // Calculating the min-size by the total size minus free
+	    // size (both reported by statvfs) does not work since the
+	    // total size in this case does not include the size for
+	    // e.g. for superblocks, metadata and journal.
 
-	    // Often the a filesystem cannot be shrunk to the value reported
-	    // by statvfs. Thus add a 50% safety margin.
-
-	    resize_info.min_size *= 1.5;
+	    resize_info.min_size = max(resize_info.min_size, blk_device_size - free_size_on_disk());
 
 	    if (resize_info.min_size >= blk_device_size)
 		resize_info.reasons |= RB_FILESYSTEM_FULL;
@@ -360,11 +364,24 @@ namespace storage
     {
 	// TODO only in real probe mode allowed
 
-        EnsureMounted ensure_mounted(get_filesystem());
+	EnsureMounted ensure_mounted(get_filesystem());
 
-        StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
+	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
 
-        return stat_vfs.size - stat_vfs.free;
+	return stat_vfs.size - stat_vfs.free;
+    }
+
+
+    unsigned long long
+    BlkFilesystem::Impl::free_size_on_disk() const
+    {
+	// TODO only in real probe mode allowed
+
+	EnsureMounted ensure_mounted(get_filesystem());
+
+	StatVfs stat_vfs = detect_stat_vfs(ensure_mounted.get_any_mount_point());
+
+	return stat_vfs.free;
     }
 
 

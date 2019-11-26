@@ -1,6 +1,5 @@
 /*
- * Copyright (c) [2004-2014] Novell, Inc.
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) 2019 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,42 +20,42 @@
  */
 
 
-#ifndef STORAGE_CMD_DASDVIEW_H
-#define STORAGE_CMD_DASDVIEW_H
+#ifndef STORAGE_CMD_RESIZE2FS_H
+#define STORAGE_CMD_RESIZE2FS_H
 
 
-#include "storage/Devices/Dasd.h"
+#include <string>
+#include <vector>
 
 
 namespace storage
 {
     using std::string;
+    using std::vector;
 
 
-    class Dasdview
+    /**
+     * Class to run the command "resize2fs", parse the output and save
+     * some values.
+     */
+    class CmdResize2fs
     {
 
     public:
 
-	Dasdview(const string& device);
+	CmdResize2fs(const string& device);
 
-	friend std::ostream& operator<<(std::ostream& s, const Dasdview& dasdview);
+	friend std::ostream& operator<<(std::ostream& s, const CmdResize2fs& cmd_resize2fs);
 
-	string get_bus_id() const { return bus_id; }
-
-	DasdType get_type() const { return type; }
-	DasdFormat get_format() const { return format; }
+	unsigned long long get_min_blocks() const { return min_blocks; }
 
     private:
 
-	void parse(const std::vector<string>& lines);
+	void parse(const vector<string>& lines);
 
 	string device;
 
-	string bus_id;
-
-	DasdType type;
-	DasdFormat format;
+	unsigned long long min_blocks;
 
     };
 

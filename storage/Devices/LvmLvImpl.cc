@@ -185,6 +185,8 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(activate_callbacks, _("Activating LVM failed"), exception);
 	    }
@@ -192,7 +194,7 @@ namespace storage
 	    bool ret = number_of_inactive != CmdLvs().number_of_inactive();
 
 	    if (ret)
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 	    return ret;
 	}

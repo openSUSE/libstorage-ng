@@ -924,7 +924,7 @@ namespace storage
     void
     wait_for_devices(const vector<const BlkDevice*>& blk_devices)
     {
-	SystemCmd(UDEVADMBIN_SETTLE);
+	SystemCmd(UDEVADM_BIN_SETTLE);
 
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	    return;
@@ -971,7 +971,7 @@ namespace storage
     void
     wait_for_detach_devices(const vector<string>& dev_names)
     {
-	SystemCmd(UDEVADMBIN_SETTLE);
+	SystemCmd(UDEVADM_BIN_SETTLE);
 
 	if (Mockup::get_mode() == Mockup::Mode::PLAYBACK)
 	    return;

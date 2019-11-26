@@ -351,7 +351,7 @@ namespace storage
 	SystemCmd cmd2(cmd_line2);
 
 	if (cmd2.retcode() == 0)
-	    SystemCmd(UDEVADMBIN_SETTLE);
+	    SystemCmd(UDEVADM_BIN_SETTLE);
 
 	unlink(filename.c_str());
 
@@ -420,11 +420,13 @@ namespace storage
 		}
 	    }
 	    catch (const Exception& exception)
-            {
-                // TRANSLATORS: error message
-                error_callback(prober.get_probe_callbacks(), sformat(_("Probing MD RAID %s failed"),
+	    {
+		ST_CAUGHT(exception);
+
+		// TRANSLATORS: error message
+		error_callback(prober.get_probe_callbacks(), sformat(_("Probing MD RAID %s failed"),
 								     name), exception);
-            }
+	    }
 	}
     }
 

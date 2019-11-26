@@ -56,7 +56,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     Mockup::set_mode(Mockup::Mode::PLAYBACK);
 
-    Mockup::set_command(UDEVADMBIN " settle --timeout=20", vector<string>({}));
+    Mockup::set_command(UDEVADM_BIN_SETTLE, vector<string>({}));
 
     storage.remove_devicegraph("system");
     storage.copy_devicegraph("staging", "system");
@@ -70,14 +70,14 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     // Looking up a device by another name needs udevadm info calls.
 
-    Mockup::set_command(UDEVADMBIN " info '/dev/block/8:1'", vector<string>({
+    Mockup::set_command(UDEVADM_BIN " info '/dev/block/8:1'", vector<string>({
 	"P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda1",
 	"N: sda1"
     }));
 
     BOOST_CHECK_EQUAL(BlkDevice::find_by_any_name(system, "/dev/block/8:1")->get_sid(), sda1->get_sid());
 
-    Mockup::set_command(UDEVADMBIN " info '/dev/block/8:2'", vector<string>({
+    Mockup::set_command(UDEVADM_BIN " info '/dev/block/8:2'", vector<string>({
 	"P: /devices/pci0000:00/0000:00:1f.2/ata1/host0/target0:0:0/0:0:0:0/block/sda/sda2",
 	"N: sda2"
     }));
@@ -86,7 +86,7 @@ BOOST_AUTO_TEST_CASE(find_vertex)
 
     // Looking up a device unknown to udevadm info throws DeviceNotFound.
 
-    Mockup::set_command(UDEVADMBIN " info '/dev/does-not-exist'",
+    Mockup::set_command(UDEVADM_BIN " info '/dev/does-not-exist'",
 			RemoteCommand( vector<string>({}), vector<string>({ "Unknown device, [...]" }), 4));
 
     BOOST_CHECK_THROW(BlkDevice::find_by_any_name(system, "/dev/does-not-exist"), DeviceNotFound);

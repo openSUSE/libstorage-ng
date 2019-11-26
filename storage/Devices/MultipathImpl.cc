@@ -130,16 +130,18 @@ namespace storage
 	    {
 		SystemCmd cmd1(MULTIPATHBIN, SystemCmd::DoThrow);
 
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 		SystemCmd cmd2(MULTIPATHDBIN, SystemCmd::DoThrow);
 
-		SystemCmd(UDEVADMBIN_SETTLE);
+		SystemCmd(UDEVADM_BIN_SETTLE);
 
 		return true;
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		// TRANSLATORS: error message
 		error_callback(activate_callbacks, _("Activating multipath failed"), exception);
 

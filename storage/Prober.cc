@@ -200,6 +200,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing failed"), exception);
 	}
@@ -217,6 +219,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing disks failed"), exception);
 	}
@@ -230,6 +234,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing DASDs failed"), exception);
 	}
@@ -243,6 +249,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing stray block devices failed"), exception);
 	}
@@ -256,6 +264,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing multipath failed"), exception);
 	}
@@ -269,6 +279,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing DM RAIDs failed"), exception);
 	}
@@ -287,6 +299,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing MD RAIDs failed"), exception);
 	}
@@ -310,6 +324,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing LVM failed"), exception);
 	}
@@ -329,6 +345,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing bcache failed"), exception);
 	}
@@ -350,6 +368,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
 	}
@@ -375,6 +395,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing partitions failed"), exception);
 	}
@@ -394,6 +416,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing plain encryptions failed"), exception);
 	}
@@ -412,6 +436,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing LUKS failed"), exception);
 	}
@@ -429,6 +455,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing device relationships failed"), exception);
 	}
@@ -450,6 +478,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing additional attributes failed"), exception);
 	}
@@ -472,6 +502,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing file systems failed"), exception);
 	}
@@ -485,6 +517,8 @@ namespace storage
 	}
 	catch (const Exception& exception)
 	{
+	    ST_CAUGHT(exception);
+
 	    // TRANSLATORS: error message
 	    error_callback(probe_callbacks, _("Probing NFS failed"), exception);
 	}
@@ -520,8 +554,11 @@ namespace storage
 	    }
 	    catch (const Exception& exception)
 	    {
+		ST_CAUGHT(exception);
+
 		y2err("failed to find " << pending_holder.name << " for "
 		      << pending_holder.b->get_displayname());
+
 		ST_RETHROW(exception);
 	    }
 	}
