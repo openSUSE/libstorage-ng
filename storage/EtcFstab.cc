@@ -679,54 +679,47 @@ namespace storage
     vector<JointEntry>
     join_entries(vector<ExtendedFstabEntry> fstab_entries, vector<ExtendedFstabEntry> mount_entries)
     {
-	vector<JointEntry> ret;
+	vector<JointEntry> joint_entries;
 
 	for (const ExtendedFstabEntry& extended_fstab_entry : fstab_entries)
 	{
-	    ret.push_back(JointEntry(extended_fstab_entry.fstab_entry, nullptr, extended_fstab_entry.id));
+	    joint_entries.push_back(
+		JointEntry(extended_fstab_entry.fstab_entry, nullptr, extended_fstab_entry.id));
 	}
 
 	for (const ExtendedFstabEntry& extended_fstab_entry : mount_entries)
 	{
 	    string path = extended_fstab_entry.fstab_entry->get_mount_point();
 
-	    // for multiple mount points for same partition try at first identical path
-	    // and if not found, then any
-	    vector<JointEntry>::iterator it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
-		if (!tmp.is_in_etc_fstab())
-		    return false;
+	    vector<JointEntry>::iterator it = find_if(joint_entries.begin(), joint_entries.end(),
+		[&path](const JointEntry& joint_entry) {
+		    return joint_entry.is_in_etc_fstab() &&
+			   joint_entry.fstab_entry->get_mount_point() == path;
+		}
+	    );
 
-		return tmp.fstab_entry->get_mount_point() == path;
-	    });
-
-	    if (it == ret.end())
+	    if (it != joint_entries.end())
 	    {
-		it = find_if(ret.begin(), ret.end(), [&path](const JointEntry& tmp) {
-		    bool in_fstab = tmp.is_in_etc_fstab();
-		    if (in_fstab && tmp.fstab_entry->get_mount_point() != path)
-		    {
-			y2war("mount points for " << tmp.fstab_entry->get_device()
-			      << " differ: fstab(" << tmp.fstab_entry->get_mount_point()
-			      << ") != proc(" << path << ")");
-		    }
-		    return in_fstab;
-		});
-	    };
-
-	    if (it != ret.end())
 		it->mount_entry = extended_fstab_entry.fstab_entry;
+	    }
 	    else
-		ret.push_back(JointEntry(nullptr, extended_fstab_entry.fstab_entry));
+	    {
+		y2war("mount point for " << extended_fstab_entry.fstab_entry->get_device() <<
+		      "only found in proc/mounts: " <<
+		      extended_fstab_entry.fstab_entry->get_mount_point());
+
+		joint_entries.push_back(JointEntry(nullptr, extended_fstab_entry.fstab_entry));
+	    }
 	}
 
-	return ret;
+	return joint_entries;
     }
 
 
     bool
-    compare_by_size(const JointEntry& a, const JointEntry& b)
+    compare_by_size(const JointEntry* a, const JointEntry* b)
     {
-	return a.get_mount_point().size() < b.get_mount_point().size();
+	return a->get_mount_point().size() < b->get_mount_point().size();
     }
 
 }
