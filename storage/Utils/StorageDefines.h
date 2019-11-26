@@ -108,7 +108,7 @@
 #define NTFSRESIZE_BIN "/usr/sbin/ntfsresize"
 #define XFSGROWFSBIN  "/usr/sbin/xfs_growfs"
 #define REISERFSRESIZEBIN "/sbin/resize_reiserfs"
-#define RESIZE2FS_BIN "/sbin/resize2fs"
+#define RESIZE2FS_BIN "/usr/sbin/resize2fs"
 #define FATRESIZEBIN "/usr/sbin/fatresize"
 
 #define TUNE2FSBIN     "/sbin/tune2fs"
