@@ -6,14 +6,14 @@ AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../../storage/libstorage-ng.la
 
-noinst_PROGRAMS = test-blkid test-cmd-btrfs-filesystem-show test-cmddmsetupinfo	\
-	test-cmddmsetuptable test-cmdlvs test-cmdpvs 				\
-	test-cmdvgs test-cmdudevadminfo test-dasdview test-dir test-dmraid	\
+noinst_PROGRAMS = test-blkid test-cmd-btrfs-filesystem-show			\
+	test-cmd-dmsetup-info test-cmd-dmsetup-table test-cmd-lvs test-cmd-pvs \
+	test-cmd-vgs test-cmd-udevadm-info test-dasdview test-dir test-dmraid	\
 	test-cmd-dumpe2fs test-cmd-resize2fs test-cmd-ntfsresize		\
 	test-lsattr test-lsscsi							\
-	test-mdadmdetail test-mdadmexamine test-mdlinks test-multipath		\
-	test-parted test-cmdstat						\
-	test-procmdstat test-procmounts test-cmddf 				\
+	test-mdadm-detail test-mdadm-examine test-mdlinks test-multipath	\
+	test-parted test-cmd-stat						\
+	test-proc-mdstat test-proc-mounts test-cmd-df 				\
 	test-cmd-btrfs-subvolume-list test-cmd-btrfs-subvolume-get-default	\
 	test-cmd-btrfs-filesystem-df test-cmd-cryptsetup-luks-dump
 
