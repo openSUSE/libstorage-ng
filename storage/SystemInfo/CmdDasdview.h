@@ -32,8 +32,6 @@ namespace storage
 {
     using std::string;
 
-    class SystemCmd;
-
 
     class Dasdview
     {
