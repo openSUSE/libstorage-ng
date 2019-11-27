@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-11-10 12:53+0000\n"
+"PO-Revision-Date: 2019-11-27 12:54+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/et/>\n"
@@ -1526,9 +1526,8 @@ msgid "Disk"
 msgstr "Ketas"
 
 #. TRANSLATORS: symbol for "exa" (best keep untranslated)
-#, fuzzy
 msgid "E"
-msgstr "kB"
+msgstr "E"
 
 #. TRANSLATORS: symbol for "exa bytes" (best keep untranslated)
 #, fuzzy
@@ -2079,9 +2078,8 @@ msgid "P"
 msgstr "IP"
 
 #. TRANSLATORS: symbol for "peta bytes" (best keep untranslated)
-#, fuzzy
 msgid "PB"
-msgstr "KiB"
+msgstr "PB"
 
 #. TRANSLATORS: name of partition type
 msgid "PReP Boot Partition"
