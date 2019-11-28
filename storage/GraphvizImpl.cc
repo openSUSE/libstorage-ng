@@ -63,6 +63,22 @@ namespace storage
     }
 
 
+    string
+    GraphStyleCallbacks::escape(const string& s)
+    {
+	string r;
+
+	for (const char c : s)
+	{
+	    if (c == '\\')
+		r += "\\";
+	    r += c;
+	}
+
+	return r;
+    }
+
+
     AdvancedDevicegraphStyleCallbacks::AdvancedDevicegraphStyleCallbacks(GraphvizFlags flags,
 									 GraphvizFlags tooltip_flags)
 	: flags(flags), tooltip_flags(tooltip_flags)
@@ -193,18 +209,18 @@ namespace storage
 	    if (is_blk_device(device))
 	    {
 		const BlkDevice* blk_device = to_blk_device(device);
-		ret += blk_device->get_name() + "\\n";
+		ret += escape(blk_device->get_name()) + "\\n";
 	    }
 	    else if (is_lvm_vg(device))
 	    {
 		const LvmVg* lvm_vg = to_lvm_vg(device);
-		ret += DEV_DIR "/" + lvm_vg->get_vg_name() + "\\n";
+		ret += escape(DEV_DIR "/" + lvm_vg->get_vg_name()) + "\\n";
 	    }
 	}
 
 	if (flags && GraphvizFlags::DISPLAYNAME)
 	{
-	    ret += string(device->get_displayname()) + "\\n";
+	    ret += escape(device->get_displayname()) + "\\n";
 	}
 
 	if (flags && GraphvizFlags::SID)
@@ -334,7 +350,7 @@ namespace storage
 
 	if (flags && GraphvizFlags::NAME)
 	{
-	    ret += action->text(commit_data).translated + "\\n";
+	    ret += escape(action->text(commit_data).translated) + "\\n";
 	}
 
 	if (flags && GraphvizFlags::SID)

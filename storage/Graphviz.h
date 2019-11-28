@@ -89,6 +89,12 @@ namespace storage
 	 */
 	virtual std::map<std::string, std::string> edges() = 0;
 
+	/**
+	 * Helper function to escape a string to a graphviz escString, see
+	 * https://graphviz.gitlab.io/_pages/doc/info/attrs.html#k:escString.
+	 */
+	static std::string escape(const std::string&);
+
     };
 
 

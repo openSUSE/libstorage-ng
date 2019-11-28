@@ -35,7 +35,7 @@ class MyDevicegraphStyleCallbacks(DevicegraphStyleCallbacks):
 
     def node(self, device):
         attrs = MapStringString()
-        attrs["label"] = device.get_displayname()
+        attrs["label"] = self.escape(device.get_displayname())
         if is_disk(device):
             attrs["color"] = "coral4"
             attrs["fillcolor"] = "coral3:coral"
