@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -471,6 +471,28 @@ namespace storage
     name_and_number_to_device(const string& name, unsigned int number)
     {
 	return name + to_string(number);
+    }
+
+
+    string
+    regex_escape(const string& s, regex::flag_type f)
+    {
+	// All special characters outside of any context, see
+	// https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_04
+	// (linked from https://en.cppreference.com/w/cpp/regex/basic_regex). Note that
+	// escaping more characters leads to problems with -std=c++14 but not with -std=gnu++14.
+	static const string special_chars(".^$|[(){*+?\\");
+
+	string r;
+
+	for (char c : s)
+	{
+	    if (special_chars.find(c) != string::npos)
+		r += "\\";
+	    r += c;
+	}
+
+	return r;
     }
 
 
