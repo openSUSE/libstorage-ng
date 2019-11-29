@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2004-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -117,6 +117,15 @@ namespace storage
     string timestamp();
 
     string generated_string();
+
+
+    /**
+     * Return a string which used in a regex matches itself and nothing else.
+     *
+     * So far only implemented for regex::extended.
+     */
+    string
+    regex_escape(const string& s, regex::flag_type f);
 
 
     /**

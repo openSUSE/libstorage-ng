@@ -12,7 +12,8 @@ check_PROGRAMS =								\
 	md3.test lvm1.test lvm2.test lvm-errors1.test lvm-unsupported1.test	\
 	luks+lvm1.test lvm+luks1.test luks1.test luks2.test luks3.test		\
 	multi-mount-point.test							\
-	bcache1.test bcache2.test btrfs1.test dasd1.test dasd2.test dasd3.test	\
+	bcache1.test bcache2.test btrfs1.test btrfs3.test			\
+	dasd1.test dasd2.test dasd3.test					\
 	external-journal.test							\
 	dmraid1.test md-imsm1.test md-ddf1.test nfs1.test ntfs1.test xen1.test	\
 	ambiguous1.test
@@ -39,6 +40,7 @@ EXTRA_DIST = disk-mockup.xml disk-devicegraph.xml				\
 	bcache1-mockup.xml bcache1-devicegraph.xml				\
 	bcache2-mockup.xml bcache2-devicegraph.xml				\
 	btrfs1-mockup.xml btrfs1-devicegraph.xml				\
+	btrfs3-mockup.xml btrfs3-devicegraph.xml				\
 	dasd1-mockup.xml dasd1-devicegraph.xml					\
 	dasd2-mockup.xml dasd2-devicegraph.xml					\
 	dasd3-mockup.xml dasd3-devicegraph.xml					\
