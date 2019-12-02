@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(test_regex_escape1)
 /*
  * Check that for single char strings 1. the regex compilation with
  * the escaped string works and that 2. the string only matches
- * itself. The checks are also done when the escaped string is places
+ * itself. The checks are also done when the escaped string is placed
  * inside rounded brackets.
  */
 BOOST_AUTO_TEST_CASE(test_regex_escape2)
