@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: autoinst.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-11-27 12:54+0000\n"
+"PO-Revision-Date: 2019-12-02 16:54+0000\n"
 "Last-Translator: Jaanus Ojangu <jaanus.ojangu@gmail.com>\n"
 "Language-Team: Estonian <https://l10n.opensuse.org/projects/libstorage/"
 "ng-master/et/>\n"
@@ -35,9 +35,9 @@ msgstr "%1$d veel"
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
 #. %2$s is replaced with the size (e.g. 60 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s (%2$s)"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "%1$s (%2$s)"
 
 #. TRANSLATORS: appended after list of value to indicate that some
 #. values have been omitted
@@ -50,9 +50,9 @@ msgstr "%1$s väärtused ja elemendid %2$d veel"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s and %2$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "%1$s ja %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
@@ -65,39 +65,39 @@ msgstr "%1$s on salvestatud vahemällu %2$s poolt"
 #. TRANSLATORS: used to construct list of values
 #. %1$s is replaced by first value
 #. %2$s is replaced by second value
-#, fuzzy, c-format
+#, c-format
 msgid "%1$s, %2$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "%1$s, %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate encryption layer device on %1$s"
-msgstr "Valitud disketiseade %1"
+msgstr "Aktiveerige krüpteeritud seade %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) kohas %4$s loomine %3$s-le"
+msgstr "Aktiveerige loogiline andmeruum %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
+msgstr "Aktiveerige 'thin' loogiline andmeruum %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
+msgstr "Aktiveerige 'thin pool' loogiline andmeruum %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: progress message
 #, c-format
@@ -119,52 +119,50 @@ msgstr "LVM aktiveerimine nurjus"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating encryption layer device on %1$s"
-msgstr "Valitud disketiseade %1"
+msgstr "Aktiveerige krüpteeritud seade kohas %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
+msgstr "Aktiveerige loogiline andmeruum %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: progress message
-#, fuzzy
 msgid "Activating multipath"
-msgstr "Partitsiooni %1$s (%2$s) loomine"
+msgstr "Aktiveerige 'multipath'"
 
 #. TRANSLATORS: error message
-#, fuzzy
 msgid "Activating multipath failed"
-msgstr "Partitsiooni %1$s (%2$s) loomine"
+msgstr "'Multipath' aktiveerimine ebaõnnestus"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
+msgstr "Aktiveeritakse 'thin' loogilist andmeruumi %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) vormindamine %3$s-ga"
+msgstr "Aktiveeritakse 'thin pool' loogilist andmeruumi %1$s (%2$s) grupis %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "Lisage %1$s (%2$s) btrfs-le %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -172,9 +170,9 @@ msgstr "%1$s suurendamine %2$s-ni"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s to %2$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "Lisage %1$s %2$s -le"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -192,9 +190,9 @@ msgstr "Lisage krüptimiskihi seade %1$s kataloogi /etc/crypttab"
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje lisamine faili %2$s"
+msgstr "Lisage haakepunkt %1$s seadmele%2$s kataloogi /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -210,9 +208,9 @@ msgstr "Lisage seadme %3$s alamosa %2$s haakepunkt %1$s siia /etc/fstab"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "%1$s (%2$s) lisamine brtfs-le %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -220,9 +218,9 @@ msgstr "%1$s suurendamine %2$s-ni"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
 #. %2$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s to %2$s"
-msgstr "%1$s suurendamine %2$s-ni"
+msgstr "%1$s lisamine %2$s-le"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by md name (e.g. /dev/md0)
@@ -240,9 +238,9 @@ msgstr "Krüpteerimiskihi seadme lisamine kohas %1$s kausta /etc/crypttab"
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje lisamine faili %2$s"
+msgstr "Ühenduskoha %1$s lisamine %2$s /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -2338,7 +2336,7 @@ msgstr "Partitsioonide rühma vähendamine %1$s füüsiliste osade puudumisel"
 
 #. TRANSLATORS: name of object
 msgid "Reiserfs"
-msgstr ""
+msgstr "Reiserfs"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2369,7 +2367,7 @@ msgstr "%1$s eemaldamine failist %2$s"
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Remove encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Eemaldage krüptimiskihiga seade %1$s kataloogist /etc/crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
@@ -2387,6 +2385,7 @@ msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
+"Eemalda haakepunkt %1$s alamosalt %2$s asukohas %3$s /etc/fstab kataloogist"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
@@ -2411,13 +2410,13 @@ msgstr "%1$s eemaldamine failist %2$s"
 #. %1$s is replaced by md name (e.g. /dev/md0)
 #, c-format
 msgid "Removing %1$s from /etc/mdadm.conf"
-msgstr ""
+msgstr "Eemaldamine %1$s asukohast /etc/mdadm.conf"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1)
 #, c-format
 msgid "Removing encryption layer device on %1$s from /etc/crypttab"
-msgstr ""
+msgstr "Krüpteeritud kihiga seadme eemaldamine %1$s asukohast /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by thr mount point (e.g. /home),
@@ -2449,14 +2448,17 @@ msgstr "%1$s eemaldamine failist %2$s"
 #, c-format
 msgid "Rename encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Nimetage ümber krüptimis kihiga seade alates %1$s kuni %2$s kataloogis /etc/"
+"crypttab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#, fuzzy, c-format
+#, c-format
 msgid "Rename mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
+msgstr ""
+"Nimetage ümber haakepunkt %1$s vahemikus %2$s kuni %3$s kataloogis /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda6),
@@ -2464,94 +2466,97 @@ msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
 #, c-format
 msgid "Renaming encryption layer device from %1$s to %2$s in /etc/crypttab"
 msgstr ""
+"Nimetage ümber krüpteerimise kihiga seade vahemikus %1$s kuni %2$s "
+"kataloogis /etc/crypttab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by mount point (e.g. /home),
 #. %2$s is replaced by device name (e.g. /dev/sda6),
 #. %3$s is replaced by device name (e.g. /dev/sda5)
-#, fuzzy, c-format
+#, c-format
 msgid "Renaming mount point %1$s from %2$s to %3$s in /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje eemaldamine failist %2$s"
+msgstr ""
+"Haakepunkti %1$s ümbernimetamine  alates %2$s kuni %3$s asukohas /etc/fstab"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repair GPT on %1$s"
-msgstr "%1$s loomine"
+msgstr "Paranda GPT asukohas %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
-#, fuzzy, c-format
+#, c-format
 msgid "Repairing GPT on %1$s"
-msgstr "%1$s loomine"
+msgstr "GPT parandamine asukohas %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
-msgstr "%1$s-le nime %2$s määramine"
+msgstr "Määra UUID %1$s -le vahemikus %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set boot flag of partition %1$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Määrake alglaadimise tähis partitsioonile %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Saale loogilise andmeruumi %1$s (%2$s) loomine"
+msgstr "Määrake vahemälu olek %1$s -le bcache %2$s (%3$s) jaoks"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) loomine"
+msgstr "Määrake subvolume alamosale %1$s asukohas %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to %2$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Määrake id partitsioonile %1$s kuni %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Määrake id partitsioonile %1$s kuni %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Set id of partition %1$s to 0x%2$02X"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Määrake id partitsioonile %1$s kuni 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
-msgstr "%1$s-le nime %2$s määramine"
+msgstr "Määrake silt %1$s -le asukohas %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Set legacy boot flag of partition %1$s"
-msgstr "Partitsiooni %1$s kustutamine"
+msgstr "Määrake partitsioonile %1$s 'legacy' alglaadimistunnus"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2560,88 +2565,90 @@ msgstr "Partitsiooni %1$s kustutamine"
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Määrake valik 'kirjutamine ilma kopeerimiseta' alamsüsteemile %1$s asukohas "
+"%2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Set protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "Määrake kaitsva MBR alglaadimise GPT tunnus asukohas %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Set tune options of %1$s on %2$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Määrake tuunimise valik %1$s -le asukohas %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
-msgstr "%1$s-le nime %2$s määramine"
+msgstr "%1$s UUID seadistamine asukohas %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting boot flag of partition %1$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Partitsioonile %1$s alglaadimise tunnuse seadmine"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
 #. %3$s is replaced by size (e.g. 2 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
-msgstr "Saale loogilise andmeruumi %1$s (%2$s) loomine"
+msgstr "%1$s vahemälu tüübi seadmine bcashile %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
-msgstr "Loogilise andmeruumi %1$s (%2$s) loomine"
+msgstr "Vaikimisi alampartistiooni määramine alamsüsteemile %1$s asukohas %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to %2$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Partitsioonile %1$s kuni %2$s id määramine"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by partition id string (e.g. Linux LVM),
 #. 0x%3$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to %2$s (0x%3$02X)"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Id määramine partitsioonile %1$s kuni %2$s (0x%3$02X)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. 0x%2$02X is replaced by partition id (e.g. 0x8E)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting id of partition %1$s to 0x%2$02X"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Partitsioonile %1$s kuni 0x%2$02X id määramine"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
-msgstr "%1$s-le nime %2$s määramine"
+msgstr "%1$s-le nime määramine asukohas %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1)
-#, fuzzy, c-format
+#, c-format
 msgid "Setting legacy boot flag of partition %1$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Partitsioonile %1$s 'legacy' alglaadimistunnuse määramine"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
@@ -2650,20 +2657,22 @@ msgstr "Partitsioonile %1$s tüübi %2$X määramine"
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
+"Valiku 'ilma koopiata kirjutamine' määramine alamsüsteemile %1$s asukohas "
+"%2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda)
 #, c-format
 msgid "Setting protective MBR boot flag of GPT on %1$s"
-msgstr ""
+msgstr "GPT kaitsva MBR alglaadimistunnuse määramine asukohas %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
 #. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
 #. /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Setting tune options of %1$s on %2$s"
-msgstr "Partitsioonile %1$s tüübi %2$X määramine"
+msgstr "Tuunimisvaliku määramine %1$s asukohas %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2672,70 +2681,77 @@ msgstr "Partitsioonile %1$s tüübi %2$X määramine"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s vähendamine %2$s-ni"
+msgstr "Kahandage %1$s sellest %2$s asukohas %3$s alates %4$s kuni %5$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s vähendamine %2$s-ni"
+msgstr "Kahandage %1$s asukohas %2$s vahemikus %3$s kuni %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Krüptitud seadme %1$s (%2$s) kohas %4$s vormindamine %3$s-ga"
+msgstr ""
+"Kahandage krüptitud kihiga seadet asukohas %1$s vahemikus %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Kahandage loogilist partitsiooni %1$s partistioonide grupis %2$s vahemikus "
+"%3$s kuni %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
-msgstr "Partitsiooni %1$s vähendamine %2$s-ni"
+msgstr "Vähendage partitsiooni %1$s vahemikus %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr "Vähendage füüsilst andmeruumi %1$s vahemikus %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Vähendage väikest loogilist jaotist %1$s jaotiste grupis %2$s alates %3$s "
+"kuni %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Vähendage 'thin pool' loogilist andmeruumi %1$s grupis %2$s alates %3$s kuni "
+"%4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
@@ -2744,183 +2760,185 @@ msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
 #. /dev/sdb2 (1.0 GiB)),
 #. %4$s is replaced by old size (e.g. 2.0 GiB),
 #. %5$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
-msgstr "%1$s vähendamine %2$s-ni"
+msgstr "Vähendage %1$s sellest %2$s asukohas %3$s alates %4$s kuni %5$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
-msgstr "%1$s vähendamine %2$s-ni"
+msgstr "Vähendage %1$s asukohas %2$s alates %3$s kuni %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
-msgstr "Krüptitud seadme %1$s (%2$s) kohas %4$s vormindamine %3$s-ga"
+msgstr "Krüptitud seadme %1$s vähendamine suuruselt %2$s suurusele %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Loogilise andmeruumi %1$s vähendamine grupis %2$s suuruselt %3$s kuni %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
-msgstr "Partitsiooni %1$s vähendamine %2$s-ni"
+msgstr "Partitsiooni %1$s vähendamine suuruselt %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
 #. %2$s is replaced by old size (e.g. 2.0 GiB),
 #. %3$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr "Füüsilise andmeruumi %1$s vähendamine suuruselt %2$s kuni %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Loogilise 'thin' andmeruumi %1$s vähendamine grupis %2$s suuruselt %3$s kuni "
+"%4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
 #. %3$s is replaced by old size (e.g. 2.0 GiB),
 #. %4$s is replaced by new size (e.g. 1.0 GiB)
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
 "%4$s"
-msgstr "Loogilise andmeruumi %1$s vähendamine %2$s-ni"
+msgstr ""
+"Loogilise 'thin pool' andmeruumi %1$s vähendamine grupis %2$s suuruselt %3$s "
+"kuni %4$s"
 
 #. TRANSLATORS: name of object
 msgid "Stray Block Device"
-msgstr ""
+msgstr "Stray Block seade"
 
 #. TRANSLATORS: name of object
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 #. TRANSLATORS: symbol for "tera" (best keep untranslated)
-#, fuzzy
 msgid "T"
-msgstr "TB"
+msgstr "T"
 
 #. TRANSLATORS: symbol for "tera bytes" (best keep untranslated)
 msgid "TB"
 msgstr "TB"
 
 #. TRANSLATORS: symbol for "tebi bytes" (best keep untranslated)
-#, fuzzy
 msgid "TiB"
-msgstr "TB"
+msgstr "TiB"
 
 #. TRANSLATORS: name of object
 msgid "UDF"
-msgstr ""
+msgstr "UDF"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount %1$s at %2$s"
-msgstr "%1$s ühendamine kohta %2$s"
+msgstr "Ühenda lahti %1$s haakepunktist %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the nfs name (e.g. 99.99.00.00:path),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount NFS %1$s at %2$s"
-msgstr "%1$s ühendamine kohta %2$s"
+msgstr "Ühenda lahti %1$s haakepunktist %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
 #. %2$s is replaced with the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
-msgstr "%1$s ühendamine kohta %2$s"
+msgstr "Btrfs failisüsteemi lahtiühendamine asukohas %1$s haakepunktist %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
 #. %3$s is replaced by the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
-msgstr "Andmeruumirühma %1$s eemaldamine"
+msgstr "Andmeruumirühma %1$s lahtiühendamine %2$s haakepunktist %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmounting %1$s at %2$s"
-msgstr "%1$s ühendamine kohta %2$s"
+msgstr "%1$s lahti ühendamine haakepunktist %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB)),
 #. %3$s is replaced by the mount point (e.g. /home)
-#, fuzzy, c-format
+#, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
-msgstr "Andmeruumirühma %1$s eemaldamine"
+msgstr "Andmeruumirühma %1$s lahti ühendamine %2$s haakepunktist %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje uuendamine failis %2$s"
+msgstr "Uuenda haakepunkti %1$s asukohas %2$s kaaloogis /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
 #. and /dev/sdb2 (1.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
-msgstr "Ühenduskoha %1$s kirje uuendamine failis %2$s"
+msgstr "Ühenduskoha %1$s uuendamine asukohas %2$s kataloogis /etc/fstab"
 
 #. TRANSLATORS: name of object
 msgid "VFAT"
-msgstr ""
+msgstr "VFAT"
 
 #. TRANSLATORS: name of partition type
 msgid "Windows Data Partition"
-msgstr ""
+msgstr "Windowsi andmete partitsioon"
 
 #. TRANSLATORS: name of object
 msgid "XFS"
-msgstr ""
+msgstr "XFS"
 
 #. TRANSLATORS: name of a filesystem object in the storage devicegraph
 msgid "exFAT"
-msgstr ""
+msgstr "exFAT"
 
 #. TRANSLATORS: symbol for "kilo" (best keep untranslated)
-#, fuzzy
 msgid "k"
-msgstr "kB"
+msgstr "k"
 
 #. TRANSLATORS: symbol for "kilo bytes" (best keep untranslated)
 msgid "kB"
