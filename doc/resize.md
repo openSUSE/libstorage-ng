@@ -76,12 +76,15 @@ Filesystems
 - UDF: Unsupported.
 
 
-The space calculation is fragile. Often a filesystem cannot be shrunk to the
-'used' value reported by df. Thus a 50% safety margin is added.
+The generic space calculation is based on the statvfs system
+call. There is so far not much experience with it.
 
-Additionally at least for ext4 the used space can change during resize. Thus
-after shrinking to the min-size a second shrink to an even smaller min-size
-might be possible. The estimate of resize2fs is in no way better.
+For NTFS the estimation by ntfsresize is used.
+
+For ext2/3/4 the estimate of resize2fs is used. There is also not much
+experience with it. But it is known that the used space can change
+during resize. Thus after shrinking to the min-size a second shrink to
+an even smaller min-size might be possible.
 
 For btrfs the 'btrfs inspect-internal min-dev-size' is also broken (see bsc
 #1058852).
