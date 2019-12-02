@@ -477,6 +477,11 @@ namespace storage
     string
     regex_escape(const string& s, regex::flag_type f)
     {
+	// If the function is needed for any other flags it will have to be checked or
+	// even extended.
+	if (f != regex::extended)
+	    ST_THROW(Exception("regex_escape does not support used flags"));
+
 	// All special characters outside of any context, see
 	// https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html#tag_09_04
 	// (linked from https://en.cppreference.com/w/cpp/regex/basic_regex). Note that
