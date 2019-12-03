@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -24,6 +24,7 @@
 #include "storage/Filesystems/BtrfsSubvolumeImpl.h"
 #include "storage/Filesystems/BtrfsImpl.h"
 #include "storage/Utils/Format.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -35,10 +36,10 @@ namespace storage
     {}
 
 
-    const BlkDevice*
-    CompoundAction::Formatter::BtrfsSubvolume::get_blk_device() const
+    Text
+    CompoundAction::Formatter::BtrfsSubvolume::blk_devices_text() const
     {
-	return subvolume->get_btrfs()->get_impl().get_blk_device();
+	return join(subvolume->get_btrfs()->get_blk_devices(), JoinMode::COMMA, 10);
     }
 
 
@@ -67,10 +68,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the block device name (e.g. /dev/sda1)
+	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
         Text text = _("Delete subvolume %1$s on %2$s");
 
-        return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
+        return sformat(text, subvolume->get_path(), blk_devices_text());
     }
 
 
@@ -79,10 +81,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the block device name (e.g. /dev/sda1)
+	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
         Text text = _("Create subvolume %1$s on %2$s with option 'no copy on write'");
 
-        return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
+        return sformat(text, subvolume->get_path(), blk_devices_text());
     }
 
 
@@ -91,10 +94,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the subvolume path (e.g. var/log),
-	// %2$s is replaced with the block device name (e.g. /dev/sda1)
+	// %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sdb1 (10.00 GiB))
         Text text = _("Create subvolume %1$s on %2$s");
 
-        return sformat(text, subvolume->get_path().c_str(), get_blk_device()->get_name().c_str());
+        return sformat(text, subvolume->get_path(), blk_devices_text());
     }
 
 }
