@@ -56,9 +56,7 @@ namespace storage
 	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Mount NFS %1$s on %2$s");
 
-        return sformat(text,
-		       nfs->get_displayname().c_str(),
-		       nfs->get_mount_point()->get_path().c_str());
+        return sformat(text, nfs->get_displayname(), nfs->get_mount_point()->get_path());
     }
 
 
@@ -70,9 +68,7 @@ namespace storage
 	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Unmount NFS %1$s at %2$s");
 
-        return sformat(text,
-		       nfs->get_displayname().c_str(),
-		       nfs->get_mount_point()->get_path().c_str());
+        return sformat(text, nfs->get_displayname(), nfs->get_mount_point()->get_path());
     }
 
 }

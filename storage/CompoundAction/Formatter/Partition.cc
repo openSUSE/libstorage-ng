@@ -117,10 +117,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Delete partition %1$s (%2$s)");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -129,10 +129,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) as LVM physical volume");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -141,10 +141,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create partition %1$s (%2$s) as LVM physical volume");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -153,10 +153,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create LVM physical volume over encrypted %1$s (%2$s)");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -165,10 +165,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create LVM volume device over %1$s (%2$s)");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -177,12 +177,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s) for swap");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -191,12 +189,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create partition %1$s (%2$s) for swap");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -205,16 +201,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -223,14 +216,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted partition %1$s (%2$s) with %3$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_filesystem_type());
     }
 
 
@@ -239,10 +229,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB)
+	// %2$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _("Create encrypted partition %1$s (%2$s)");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -251,16 +241,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -269,14 +256,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create partition %1$s (%2$s) with %3$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_filesystem_type());
     }
 
 
@@ -289,7 +273,7 @@ namespace storage
 	{
 	    // TRANSLATORS:
 	    // %1$s is replaced with the partition name (e.g. /dev/sda1),
-	    // %2$s is replaced with the size (e.g. 2 GiB),
+	    // %2$s is replaced with the size (e.g. 2.00 GiB),
 	    // %3$s is replaced with the partition id string (e.g. Linux LVM)
 	    Text text = _("Create partition %1$s (%2$s) as %3$s");
 
@@ -299,11 +283,10 @@ namespace storage
 	{
 	    // TRANSLATORS:
 	    // %1$s is replaced with the partition name (e.g. /dev/sda1),
-	    // %2$s is replaced with the size (e.g. 2 GiB)
+	    // %2$s is replaced with the size (e.g. 2.00 GiB)
 	    Text text = _("Create partition %1$s (%2$s)");
 
-	    return sformat(text, get_device_name().c_str(),
-			   get_size().c_str());
+	    return sformat(text, get_device_name(), get_size());
 	}
     }
 
@@ -313,16 +296,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -331,14 +311,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt partition %1$s (%2$s) with %3$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_filesystem_type());
     }
 
 
@@ -347,10 +324,10 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	Text text = _("Encrypt partition %1$s (%2$s)");
 
-	return sformat(text, get_device_name().c_str(), get_size().c_str());
+	return sformat(text, get_device_name(), get_size());
     }
 
 
@@ -359,16 +336,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the mount point (e.g. /home),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) for %3$s with %4$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -377,14 +351,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format partition %1$s (%2$s) with %3$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_device_name(), get_size(), get_filesystem_type());
     }
 
 
@@ -395,14 +366,11 @@ namespace storage
 
 	// TRANSLATORS:
 	// %1$s is replaced with the partition name (e.g. /dev/sda1),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the mount point (e.g. /home)
 	Text text = _("Mount partition %1$s (%2$s) at %3$s");
 
-	return sformat(text,
-		       get_device_name().c_str(),
-		       get_size().c_str(),
-                       mount_point.c_str());
+	return sformat(text, get_device_name(), get_size(), mount_point);
     }
 
 }
