@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -53,6 +53,13 @@ namespace storage
 	}
 
 	return text;
+    }
+
+
+    Text
+    CompoundAction::Formatter::Bcache::blk_devices_text() const
+    {
+	return join(bcache->get_bcache_cset()->get_blk_devices(), JoinMode::COMMA, 20);
     }
 
 
@@ -126,17 +133,13 @@ namespace storage
 	if(!bcache->has_bcache_cset())
 	    return Text();
 
-	Text dev_list_text = format_devices_text( bcache->get_bcache_cset()->get_blk_devices() );
-
 	// TRANSLATORS:
 	// %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the a list of cache devices with size
-	// (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+	// (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 	Text text = _( "%1$s is cached by %2$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        dev_list_text.translated.c_str() );
+	return sformat(text, get_bcache_name(), blk_devices_text());
     }
 
 
@@ -146,13 +149,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB)
+	// %3$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _( "Delete bcache %1$s on %2$s (%3$s)" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -162,13 +162,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB)
+	// %3$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _( "Create encrypted bcache %1$s on %2$s (%3$s) for swap" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -178,13 +175,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB)
+	// %3$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _( "Create bcache %1$s on %2$s (%3$s) for swap" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -194,17 +188,13 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Create encrypted bcache %1$s on %2$s (%3$s) for %4$s with %5$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_mount_point(), get_filesystem_type());
     }
 
 
@@ -214,15 +204,12 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_filesystem_type());
     }
 
 
@@ -232,13 +219,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB)
+	// %3$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _( "Create encrypted bcache %1$s on %2$s (%3$s)" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -248,17 +232,13 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Create bcache %1$s on %2$s (%3$s) for %4$s with %5$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -268,15 +248,12 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Create bcache %1$s on %2$s (%3$s) with %4$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_filesystem_type());
     }
 
 
@@ -286,13 +263,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB)
+	// %3$s is replaced with the size (e.g. 2.00 GiB)
 	Text text = _( "Create bcache %1$s on %2$s (%3$s)" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -302,17 +276,13 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Encrypt bcache %1$s on %2$s (%3$s) for %4$s with %5$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_mount_point(), get_filesystem_type());
     }
 
 
@@ -322,15 +292,12 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Encrypt bcache %1$s on %2$s (%3$s) with %4$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_filesystem_type());
     }
 
 
@@ -340,13 +307,10 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	Text text = _( "Encrypt bcache %1$s on %2$s (%3$s)" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size());
     }
 
 
@@ -356,17 +320,13 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _( "Format bcache %1$s on %2$s (%3$s) for %4$s with %5$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_mount_point().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_mount_point(), get_filesystem_type());
     }
 
 
@@ -376,15 +336,12 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the file system type (e.g. ext4)
 	Text text = _( "Format bcache %1$s on %2$s (%3$s) with %4$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        get_filesystem_type().c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       get_filesystem_type());
     }
 
 
@@ -396,15 +353,12 @@ namespace storage
 	// TRANSLATORS:
 	// %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 	// %2$s is replaced with the device name (e.g. /dev/sda1),
-	// %3$s is replaced with the size (e.g. 2 GiB),
+	// %3$s is replaced with the size (e.g. 2.00 GiB),
 	// %4$s is replaced with the mount point (e.g. /home)
 	Text text = _( "Mount bcache %1$s on %2$s (%3$s) at %4$s" );
 
-	return sformat( text,
-                        get_bcache_name().c_str(),
-                        get_device_name().c_str(),
-                        get_size().c_str(),
-                        mount_point.c_str() );
+	return sformat(text, get_bcache_name(), get_device_name(), get_size(),
+		       mount_point);
     }
 
 

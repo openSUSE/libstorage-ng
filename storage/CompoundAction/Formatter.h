@@ -59,8 +59,6 @@ namespace storage
 
 	string string_representation() const;
 
-        static Text format_devices_text(const std::vector<const BlkDevice *> &devices);
-
     private:
 
 	virtual Text text() const = 0;

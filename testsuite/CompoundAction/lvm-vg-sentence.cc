@@ -26,7 +26,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create volume group vg-name (496.00 MiB) with /dev/sda2");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create volume group vg-name (496.00 MiB) with /dev/sda2 (500.00 MiB)");
 }
 
 

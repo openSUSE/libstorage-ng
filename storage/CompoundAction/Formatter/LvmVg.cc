@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -21,11 +21,11 @@
 
 
 #include <vector>
-#include <boost/algorithm/string/join.hpp>
 
 #include "storage/CompoundAction/Formatter/LvmVg.h"
 #include "storage/Devices/LvmPv.h"
 #include "storage/Utils/Format.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -41,16 +41,14 @@ namespace storage
     {}
 
 
-    string
-    CompoundAction::Formatter::LvmVg::name_of_devices() const
+    Text
+    CompoundAction::Formatter::LvmVg::blk_devices_text() const
     {
-	auto pvs = vg->get_lvm_pvs();
+	vector<const BlkDevice*> blk_devices;
+	for (const LvmPv* pv : vg->get_lvm_pvs())
+	    blk_devices.push_back(pv->get_blk_device());
 
-	vector<string> names;
-	for (auto pv : pvs)
-	    names.push_back(pv->get_blk_device()->get_displayname());
-
-	return boost::algorithm::join(names, ", ");
+	return join(blk_devices, JoinMode::COMMA, 20);
     }
 
 
@@ -76,14 +74,12 @@ namespace storage
     {
 	// TRANSLATORS: displayed before action,
 	// %1$s is replaced with the volume group name (e.g. system),
-	// %2$s is replaced with the size (e.g. 2 GiB),
-	// %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
+	// %3$s is replaced with the name of devices and their sizes (e.g. /dev/sda1
+	//   (10.00 GiB and /dev/sda2 (10.00 GiB))
 	Text text = _("Create volume group %1$s (%2$s) with %3$s");
 
-	return sformat(text,
-		       vg->get_vg_name().c_str(),
-		       vg->get_size_string().c_str(),
-		       name_of_devices().c_str());
+	return sformat(text, vg->get_vg_name(), vg->get_size_string(), blk_devices_text());
     }
 
 
@@ -92,12 +88,10 @@ namespace storage
     {
 	// TRANSLATORS: displayed before action,
 	// %1$s is replaced with the volume group name (e.g. system),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	Text text = _("Create volume group %1$s (%2$s)");
 
-	return sformat(text,
-		       vg->get_vg_name().c_str(),
-		       vg->get_size_string().c_str());
+	return sformat(text, vg->get_vg_name(), vg->get_size_string());
     }
 
 }
