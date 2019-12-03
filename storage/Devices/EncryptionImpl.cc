@@ -454,13 +454,13 @@ namespace storage
 		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2.0 GiB),
-			      // %3$s is replaced by new size (e.g. 1.0 GiB)
+			      // %2$s is replaced by old size (e.g. 2.00 GiB),
+			      // %3$s is replaced by new size (e.g. 1.00 GiB)
 			      _("Shrink encryption layer device on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 2.0 GiB),
-			      // %3$s is replaced by new size (e.g. 1.0 GiB)
+			      // %2$s is replaced by old size (e.g. 2.00 GiB),
+			      // %3$s is replaced by new size (e.g. 1.00 GiB)
 			      _("Shrinking encryption layer device on %1$s from %2$s to %3$s"));
 		break;
 
@@ -468,13 +468,13 @@ namespace storage
 		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1.0 GiB),
-			      // %3$s is replaced by new size (e.g. 2.0 GiB)
+			      // %2$s is replaced by old size (e.g. 1.00 GiB),
+			      // %3$s is replaced by new size (e.g. 2.00 GiB)
 			      _("Grow encryption layer device on %1$s from %2$s to %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by partition name (e.g. /dev/sda1),
-			      // %2$s is replaced by old size (e.g. 1.0 GiB),
-			      // %3$s is replaced by new size (e.g. 2.0 GiB)
+			      // %2$s is replaced by old size (e.g. 1.00 GiB),
+			      // %3$s is replaced by new size (e.g. 2.00 GiB)
 			      _("Growing encryption layer device on %1$s from %2$s to %3$s"));
 		break;
 

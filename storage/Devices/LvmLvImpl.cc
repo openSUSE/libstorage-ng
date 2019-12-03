@@ -745,12 +745,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Create thin pool logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -759,12 +759,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Create thin logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Creating thin logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -773,12 +773,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Create logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Creating logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -902,14 +902,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
@@ -918,14 +918,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
@@ -934,14 +934,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 2.0 GiB),
-				      // %4$s is replaced by new size (e.g. 1.0 GiB)
+				      // %3$s is replaced by old size (e.g. 2.00 GiB),
+				      // %4$s is replaced by new size (e.g. 1.00 GiB)
 				      _("Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 		}
@@ -956,14 +956,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
@@ -972,14 +972,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 
@@ -988,14 +988,14 @@ namespace storage
 				      // TRANSLATORS: displayed before action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"),
 				      // TRANSLATORS: displayed during action,
 				      // %1$s is replaced by logical volume name (e.g. root),
 				      // %2$s is replaced by volume group name (e.g. system),
-				      // %3$s is replaced by old size (e.g. 1.0 GiB),
-				      // %4$s is replaced by new size (e.g. 2.0 GiB)
+				      // %3$s is replaced by old size (e.g. 1.00 GiB),
+				      // %4$s is replaced by new size (e.g. 2.00 GiB)
 				      _("Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"));
 			break;
 		}
@@ -1043,12 +1043,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1057,12 +1057,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Delete thin logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deleting thin logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1071,12 +1071,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Delete logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deleting logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1110,12 +1110,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1124,12 +1124,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activate thin logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activating thin logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1138,12 +1138,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activate logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Activating logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1177,12 +1177,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1191,12 +1191,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"));
 		break;
@@ -1205,12 +1205,12 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivate logical volume %1$s (%2$s) on volume group %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by logical volume name (e.g. root),
-			      // %2$s is replaced by size (e.g. 2GiB),
+			      // %2$s is replaced by size (e.g. 2.00 GiB),
 			      // %3$s is replaced by volume group name (e.g. system)
 			      _("Deactivating logical volume %1$s (%2$s) on volume group %3$s"));
 		break;

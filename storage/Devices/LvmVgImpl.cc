@@ -530,15 +530,15 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2 GiB),
-			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-			   // /dev/sdb2 (1 GiB))
+			   // %2$s is replaced by size (e.g. 2.00 GiB),
+			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Create volume group %1$s (%2$s) from %3$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2 GiB),
-			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-			   // /dev/sdb2 (1 GiB))
+			   // %2$s is replaced by size (e.g. 2.00 GiB),
+			   // %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Creating volume group %1$s (%2$s) from %3$s"));
 
 	vector<const BlkDevice*> blk_devices;
@@ -580,11 +580,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Delete volume group %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by volume group name (e.g. system),
-			   // %2$s is replaced by size (e.g. 2GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deleting volume group %1$s (%2$s)"));
 
 	return sformat(text, vg_name, get_size_text());

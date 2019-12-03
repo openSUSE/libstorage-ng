@@ -1017,7 +1017,7 @@ namespace storage
 	{
 	    // TRANSLATORS:
 	    // %1$s is replaced with the device name (e.g. /dev/sdc1),
-	    // %2$s is replaced with the size (e.g. 60 GiB)
+	    // %2$s is replaced with the size (e.g. 60.00 GiB)
 	    tmp.push_back(sformat(_("%1$s (%2$s)"), blk_device->get_name(),
 				  blk_device->get_size_string()));
 	}

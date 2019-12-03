@@ -328,11 +328,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-			   // %2$s is replaced by size (e.g. 1 TiB)
+			   // %2$s is replaced by size (e.g. 1.00 TiB)
 			   _("Deactivate multipath %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-			   // %2$s is replaced by size (e.g. 1 TiB)
+			   // %2$s is replaced by size (e.g. 1.00 TiB)
 			   _("Deactivating multipath %1$s (%2$s)"));
 
 	return sformat(text, get_displayname(), get_size_text());

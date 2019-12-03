@@ -311,11 +311,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by the device name (e.g. /dev/vda),
-			   // %2$s is replaced by the size (e.g. 20 GiB)
+			   // %2$s is replaced by the size (e.g. 20.00 GiB)
 			   _("Create hard disk %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by the device name (e.g. /dev/vda),
-			   // %2$s is replaced by the size (e.g. 20 GiB)
+			   // %2$s is replaced by the size (e.g. 20.00 GiB)
 			   _("Creating hard disk %1$s (%2$s)"));
 
 	return sformat(text, get_displayname(), get_size_text());
