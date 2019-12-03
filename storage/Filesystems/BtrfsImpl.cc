@@ -824,15 +824,15 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-			      // and /dev/sdb2 (2.0 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
 			      _("Remove %1$s (%2$s) from btrfs on %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-			      // and /dev/sdb2 (2.0 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
 			      _("Removing %1$s (%2$s) from btrfs on %3$s"));
 		break;
 
@@ -840,15 +840,15 @@ namespace storage
 		text = tenser(tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-			      // and /dev/sdb2 (2.0 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
 			      _("Add %1$s (%2$s) to btrfs on %3$s"),
 			      // TRANSLATORS: displayed during action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
-			      // %2$s is replaced by the device size (e.g. 2.0 GiB),
-			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-			      // and /dev/sdb2 (2.0 GiB))
+			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
+			      // %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+			      // and /dev/sdb2 (2.00 GiB))
 			      _("Adding %1$s (%2$s) to btrfs on %3$s"));
 		break;
 

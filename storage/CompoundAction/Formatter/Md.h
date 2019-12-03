@@ -42,7 +42,8 @@ namespace storage
     private:
 
 	Text text() const override;
-	Text devices_text() const;
+
+	Text blk_devices_text() const;
 
 	Text delete_text() const;
 

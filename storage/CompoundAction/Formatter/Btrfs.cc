@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,11 +20,10 @@
  */
 
 
-#include <boost/algorithm/string/join.hpp>
-
 #include "storage/CompoundAction/Formatter/Btrfs.h"
 #include "storage/Filesystems/MountPoint.h"
 #include "storage/Utils/Format.h"
+#include "storage/Devices/BlkDeviceImpl.h"
 
 
 namespace storage
@@ -36,14 +35,10 @@ namespace storage
     {}
 
 
-    string
-    CompoundAction::Formatter::Btrfs::blk_devices_string_representation() const
+    Text
+    CompoundAction::Formatter::Btrfs::blk_devices_text() const
     {
-	vector<string> names;
-	for (auto device : btrfs->get_blk_devices())
-	    names.push_back(device->get_displayname());
-
-	return boost::algorithm::join(names, ", ");
+	return join(btrfs->get_blk_devices(), JoinMode::COMMA, 10);
     }
 
 
@@ -77,10 +72,11 @@ namespace storage
     CompoundAction::Formatter::Btrfs::delete_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+	// %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+	//   (10.00 GiB and /dev/sda2 (10.00 GiB))
         Text text = _("Delete file system btrfs on %1$s");
 
-        return sformat(text, blk_devices_string_representation().c_str());
+        return sformat(text, blk_devices_text());
     }
 
 
@@ -88,13 +84,13 @@ namespace storage
     CompoundAction::Formatter::Btrfs::create_and_mount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Create file system btrfs on %1$s and mount at %2$s");
 
-        return sformat(text,
-		       blk_devices_string_representation().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str());
+        return sformat(text, blk_devices_text(),
+		       btrfs->get_mount_point()->get_path());
     }
 
 
@@ -102,10 +98,11 @@ namespace storage
     CompoundAction::Formatter::Btrfs::create_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+	// %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sda2 (10.00 GiB))
         Text text = _("Create file system btrfs on %1$s");
 
-        return sformat(text, blk_devices_string_representation().c_str());
+        return sformat(text, blk_devices_text());
     }
 
 
@@ -113,13 +110,12 @@ namespace storage
     CompoundAction::Formatter::Btrfs::mount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Mount file system btrfs on %1$s at %2$s");
 
-        return sformat(text,
-		       blk_devices_string_representation().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str());
+        return sformat(text, blk_devices_text(), btrfs->get_mount_point()->get_path());
     }
 
 
@@ -127,13 +123,12 @@ namespace storage
     CompoundAction::Formatter::Btrfs::unmount_text() const
     {
 	// TRANSLATORS:
-	// %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+	// %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+	//   (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 	// %2$s is replaced with the mount point (e.g. /home)
         Text text = _("Unmount file system btrfs on %1$s at %2$s");
 
-        return sformat(text,
-		       blk_devices_string_representation().c_str(),
-		       btrfs->get_mount_point()->get_path().c_str());
+        return sformat(text, blk_devices_text(), btrfs->get_mount_point()->get_path());
     }
 
 }

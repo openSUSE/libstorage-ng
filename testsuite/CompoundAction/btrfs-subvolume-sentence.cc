@@ -29,7 +29,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating)
 
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2 (500.00 MiB)");
 }
 
 
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_creating_nocow)
 
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2 with option 'no copy on write'");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Create subvolume test on /dev/sda2 (500.00 MiB) with option 'no copy on write'");
 }
 
 
@@ -72,7 +72,7 @@ BOOST_AUTO_TEST_CASE(test_sentence_on_deleting)
 
     BOOST_REQUIRE(compound_action);
 
-    BOOST_CHECK_EQUAL(compound_action->sentence(), "Delete subvolume @/tmp on /dev/sda2");
+    BOOST_CHECK_EQUAL(compound_action->sentence(), "Delete subvolume @/tmp on /dev/sda2 (28.50 GiB)");
 }
 
 

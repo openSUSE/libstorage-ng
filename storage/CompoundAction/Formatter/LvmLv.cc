@@ -94,14 +94,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name());
     }
 
 
@@ -110,14 +107,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name());
     }
 
 
@@ -126,18 +120,14 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(),
+		       get_mount_point(), get_filesystem_type());
     }
 
 
@@ -146,16 +136,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(),
+		       get_filesystem_type());
     }
 
 
@@ -164,14 +151,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name());
     }
 
 
@@ -180,18 +164,14 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -200,16 +180,13 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(),
+		       get_filesystem_type());
     }
 
 
@@ -218,14 +195,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Create LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name());
     }
 
 
@@ -234,18 +208,14 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -254,16 +224,12 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), get_filesystem_type());
     }
 
 
@@ -272,14 +238,11 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system)
 	Text text = _("Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name());
     }
 
 
@@ -288,18 +251,14 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the mount point (e.g. /home),
 	// %5$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s for %4$s with %5$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_mount_point().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), get_mount_point(),
+		       get_filesystem_type());
     }
 
 
@@ -308,16 +267,12 @@ namespace storage
     {
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the file system name (e.g. ext4)
 	Text text = _("Format LVM logical volume %1$s (%2$s) on volume group %3$s with %4$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       get_filesystem_type().c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), get_filesystem_type());
     }
 
 
@@ -328,16 +283,12 @@ namespace storage
 
 	// TRANSLATORS:
 	// %1$s is replaced with the logical volume name (e.g. root),
-	// %2$s is replaced with the size (e.g. 2 GiB),
+	// %2$s is replaced with the size (e.g. 2.00 GiB),
 	// %3$s is replaced with the volume group name (e.g. system),
 	// %4$s is replaced with the mount point (e.g. /home)
 	Text text = _("Mount LVM logical volume %1$s (%2$s) on volume group %3$s at %4$s");
 
-	return sformat(text,
-		       get_lv_name().c_str(),
-		       get_size().c_str(),
-		       get_vg_name().c_str(),
-		       mount_point.c_str());
+	return sformat(text, get_lv_name(), get_size(), get_vg_name(), mount_point);
     }
 
 }

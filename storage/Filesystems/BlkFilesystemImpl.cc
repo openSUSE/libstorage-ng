@@ -737,13 +737,13 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Create %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Creating %1$s on %2$s"));
 
 	return sformat(text, get_displayname(), get_message_name());
@@ -756,14 +756,14 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB)),
 			   // %3$s is replaced by label (e.g. ROOT)
 			   _("Set label of %1$s on %2$s to %3$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB)),
 			   // %3$s is replaced by label (e.g. ROOT)
 			   _("Setting label of %1$s on %2$s to %3$s"));
 
@@ -784,14 +784,14 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB)),
 			   // %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 			   _("Set UUID of %1$s on %2$s to %3$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB)),
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB)),
 			   // %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 			   _("Setting UUID of %1$s on %2$s to %3$s"));
 
@@ -812,13 +812,13 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Set tune options of %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-			   // /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Setting tune options of %1$s on %2$s"));
 
 	return sformat(text, get_displayname(), get_message_name());
@@ -849,14 +849,14 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by file system (e.g. ext4),
 				  // %2$s is replaced by device name (e.g. /dev/sda1),
-				  // %3$s is replaced by old size (e.g. 2.0 GiB),
-				  // %4$s is replaced by new size (e.g. 1.0 GiB)
+				  // %3$s is replaced by old size (e.g. 2.00 GiB),
+				  // %4$s is replaced by new size (e.g. 1.00 GiB)
 				  _("Shrink %1$s on %2$s from %3$s to %4$s"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by file system (e.g. ext4),
 				  // %2$s is replaced by device name (e.g. /dev/sda1),
-				  // %3$s is replaced by old size (e.g. 2.0 GiB),
-				  // %4$s is replaced by new size (e.g. 1.0 GiB)
+				  // %3$s is replaced by old size (e.g. 2.00 GiB),
+				  // %4$s is replaced by new size (e.g. 1.00 GiB)
 				  _("Shrinking %1$s on %2$s from %3$s to %4$s"));
 		    break;
 
@@ -865,14 +865,14 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by file system (e.g. ext4),
 				  // %2$s is replaced by device name (e.g. /dev/sda1),
-				  // %3$s is replaced by old size (e.g. 1.0 GiB),
-				  // %4$s is replaced by new size (e.g. 2.0 GiB)
+				  // %3$s is replaced by old size (e.g. 1.00 GiB),
+				  // %4$s is replaced by new size (e.g. 2.00 GiB)
 				  _("Grow %1$s on %2$s from %3$s to %4$s"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by file system (e.g. ext4),
 				  // %2$s is replaced by device name (e.g. /dev/sda1),
-				  // %3$s is replaced by old size (e.g. 1.0 GiB),
-				  // %4$s is replaced by new size (e.g. 2.0 GiB)
+				  // %3$s is replaced by old size (e.g. 1.00 GiB),
+				  // %4$s is replaced by new size (e.g. 2.00 GiB)
 				  _("Growing %1$s on %2$s from %3$s to %4$s"));
 		    break;
 
@@ -895,18 +895,18 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-				  // /dev/sdb2 (1.0 GiB)),
-				  // %4$s is replaced by old size (e.g. 2.0 GiB),
-				  // %5$s is replaced by new size (e.g. 1.0 GiB)
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+				  // /dev/sdb2 (1.00 GiB)),
+				  // %4$s is replaced by old size (e.g. 2.00 GiB),
+				  // %5$s is replaced by new size (e.g. 1.00 GiB)
 				  _("Shrink %1$s of %2$s on %3$s from %4$s to %5$s"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-				  // /dev/sdb2 (1.0 GiB)),
-				  // %4$s is replaced by old size (e.g. 2.0 GiB),
-				  // %5$s is replaced by new size (e.g. 1.0 GiB)
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+				  // /dev/sdb2 (1.00 GiB)),
+				  // %4$s is replaced by old size (e.g. 2.00 GiB),
+				  // %5$s is replaced by new size (e.g. 1.00 GiB)
 				  _("Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"));
 		    break;
 
@@ -915,18 +915,18 @@ namespace storage
 				  // TRANSLATORS: displayed before action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-				  // /dev/sdb2 (1.0 GiB)),
-				  // %4$s is replaced by old size (e.g. 1.0 GiB),
-				  // %5$s is replaced by new size (e.g. 2.0 GiB)
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+				  // /dev/sdb2 (1.00 GiB)),
+				  // %4$s is replaced by old size (e.g. 1.00 GiB),
+				  // %5$s is replaced by new size (e.g. 2.00 GiB)
 				  _("Grow %1$s of %2$s on %3$s from %4$s to %5$s"),
 				  // TRANSLATORS: displayed during action,
 				  // %1$s is replaced by device name (e.g. /dev/sda1),
 				  // %2$s is replaced by file system (e.g. ext4),
-				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-				  // /dev/sdb2 (1.0 GiB)),
-				  // %4$s is replaced by old size (e.g. 1.0 GiB),
-				  // %5$s is replaced by new size (e.g. 2.0 GiB)
+				  // %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+				  // /dev/sdb2 (1.00 GiB)),
+				  // %4$s is replaced by old size (e.g. 1.00 GiB),
+				  // %5$s is replaced by new size (e.g. 2.00 GiB)
 				  _("Growing %1$s of %2$s on %3$s from %4$s to %5$s"));
 		    break;
 
@@ -949,13 +949,13 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-			   // and /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+			   // and /dev/sdb2 (1.00 GiB))
 			   _("Delete %1$s on %2$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by file system name (e.g. ext4),
-			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-			   // and /dev/sdb2 (1.0 GiB))
+			   // %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+			   // and /dev/sdb2 (1.00 GiB))
 			   _("Deleting %1$s on %2$s"));
 
 	return sformat(text, get_displayname(), get_message_name());

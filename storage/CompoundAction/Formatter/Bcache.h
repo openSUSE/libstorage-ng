@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 SUSE LLC
+ * Copyright (c) [2018-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,6 +41,8 @@ namespace storage
     private:
 
 	Text text() const override;
+
+	Text blk_devices_text() const;
 
 	Text bcache_text() const;
 	Text bcache_cset_text() const;

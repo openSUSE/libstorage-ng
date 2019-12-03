@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 SUSE LLC
+ * Copyright (c) [2017-2019] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -40,7 +40,7 @@ namespace storage
 
     private:
 
-	string blk_devices_string_representation() const;
+	Text blk_devices_text() const;
 
 	Text text() const override;
 

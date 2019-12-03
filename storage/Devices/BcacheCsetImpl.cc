@@ -246,11 +246,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Create bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Creating bcache cache set %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
@@ -296,11 +296,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Delete bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deleting bcache cache set on %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());
@@ -325,11 +325,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivate bcache cache set on %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivating bcache cache set on %1$s (%2$s)"));
 
 	return sformat(text, blk_device->get_name(), blk_device->get_impl().get_size_text());

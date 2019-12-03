@@ -94,7 +94,7 @@ BOOST_AUTO_TEST_CASE( test_create_format_mount )
 
     string expected =
         "Create RAID6 /dev/md0 (1023.75 GiB) for /data with ext4\n"
-        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB), /dev/sdc (512.00 GiB), /dev/sdd (512.00 GiB)";
+        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB), /dev/sdc (512.00 GiB) and /dev/sdd (512.00 GiB)";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
@@ -121,7 +121,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypt_format_mount )
 
     string expected =
         "Create encrypted RAID1 /dev/md0 (511.87 GiB) for /secret with xfs\n"
-        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)";
+        "from /dev/sda (512.00 GiB) and /dev/sdb (512.00 GiB)";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
@@ -146,7 +146,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypt_format_no_mount )
 
     string expected =
         "Create encrypted RAID1 /dev/md0 (511.87 GiB) with xfs\n"
-        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)";
+        "from /dev/sda (512.00 GiB) and /dev/sdb (512.00 GiB)";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
@@ -167,7 +167,7 @@ BOOST_AUTO_TEST_CASE( test_just_create )
     BOOST_REQUIRE( compound_action ) ;
 
     string expected =
-        "Create RAID1 /dev/md0 (511.87 GiB) from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)";
+        "Create RAID1 /dev/md0 (511.87 GiB) from /dev/sda (512.00 GiB) and /dev/sdb (512.00 GiB)";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );
 
@@ -269,7 +269,7 @@ BOOST_AUTO_TEST_CASE( test_create_encrypted_swap )
 
     string expected =
         "Create encrypted RAID1 /dev/md1 (511.87 GiB) for swap\n"
-        "from /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB)"
+        "from /dev/sda (512.00 GiB) and /dev/sdb (512.00 GiB)"
         "\nare you serious?!";
 
     BOOST_CHECK_EQUAL( compound_action->sentence(), expected );

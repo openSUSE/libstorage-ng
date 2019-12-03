@@ -659,11 +659,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Create bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Creating bcache %1$s (%2$s)"));
 
 	return sformat(text, get_name(), get_size_text());
@@ -700,11 +700,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Delete bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deleting bcache %1$s (%2$s)"));
 
 	return sformat(text, get_name(), get_size_text());
@@ -727,11 +727,11 @@ namespace storage
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivate bcache %1$s (%2$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/bcache0),
-			   // %2$s is replaced by size (e.g. 2 GiB)
+			   // %2$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivating bcache %1$s (%2$s)"));
 
 	return sformat(text, get_displayname(), get_size_text());
@@ -762,12 +762,12 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Attach bcache cache set on %1$s to bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"));
 
 	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
@@ -794,12 +794,12 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Detach bcache cache set on %1$s from bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by device name (e.g. /dev/sda1),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"));
 
 	return sformat(text, blk_device->get_name(), get_name(), get_size_text());
@@ -821,12 +821,12 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by cache mode (e.g. writeback),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Set cache mode to %1$s for bcache %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by cache mode (e.g. writeback),
 			   // %2$s is replaced by device name (e.g. /dev/bcache0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Setting cache mode to %1$s for bcache %2$s (%3$s)"));
 
 	return sformat(text, toString(get_cache_mode()), get_name(), get_size_text());

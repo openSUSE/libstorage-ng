@@ -930,16 +930,16 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2 GiB),
-			   // %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-			   // /dev/sdb2 (1 GiB))
+			   // %3$s is replaced by size (e.g. 2.00 GiB),
+			   // %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Create MD %1$s %2$s (%3$s) from %4$s"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2 GiB),
-			   // %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-			   // /dev/sdb2 (1 GiB))
+			   // %3$s is replaced by size (e.g. 2.00 GiB),
+			   // %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+			   // /dev/sdb2 (1.00 GiB))
 			   _("Creating MD %1$s %2$s (%3$s) from %4$s"));
 
 	return sformat(text, get_md_level_name(md_level), get_displayname(),
@@ -1021,12 +1021,12 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Delete MD %1$s %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deleting MD %1$s %2$s (%3$s)"));
 
 	return sformat(text, get_md_level_name(md_level), get_displayname(), get_size_text());
@@ -1197,12 +1197,12 @@ namespace storage
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivate MD %1$s %2$s (%3$s)"),
 			   // TRANSLATORS: displayed during action,
 			   // %1$s is replaced by RAID level (e.g. RAID0),
 			   // %2$s is replaced by RAID name (e.g. /dev/md0),
-			   // %3$s is replaced by size (e.g. 2 GiB)
+			   // %3$s is replaced by size (e.g. 2.00 GiB)
 			   _("Deactivating MD %1$s %2$s (%3$s)"));
 
 	return sformat(text, get_md_level_name(md_level), get_displayname(), get_size_text());
