@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 23070719</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/resize2fs -f '/dev/sdc1'</name>
+      <stdout>Resizing the filesystem on /dev/sdc1 to 2883584 (4k) blocks.</stdout>
+      <stdout>The filesystem on /dev/sdc1 is now 2883584 (4k) blocks long.</stdout>
+      <stdout></stdout>
+    </Command>
+  </Commands>
+</Mockup>

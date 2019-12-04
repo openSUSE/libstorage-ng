@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite/actions
 #
 
-SUBDIRS = btrfs
+SUBDIRS = ext4 btrfs
 
 AM_CPPFLAGS = -I$(top_srcdir)
 
