@@ -1,0 +1,2 @@
+1a - Grow partition /dev/sdc1 from 10.00 GiB to 11.00 GiB -> 1b
+1b - Grow btrfs on /dev/sdc1 from 10.00 GiB to 11.00 GiB ->

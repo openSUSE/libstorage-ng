@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 23070719</name>
+      <stdout>Warning: Partition /dev/sdc1 is being used, continuing anyway.</stdout>
+    </Command>
+    <Command>
+      <name>/sbin/btrfs filesystem resize 1:max '/test'</name>
+      <stdout>Resize '/test' of '1:max'</stdout>
+    </Command>
+  </Commands>
+</Mockup>
