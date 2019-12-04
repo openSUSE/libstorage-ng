@@ -232,6 +232,8 @@ namespace storage
 
 	storage.calculate_actiongraph();
 	storage.commit(commit_options);
+
+	Mockup::occams_razor();
     }
 
 
