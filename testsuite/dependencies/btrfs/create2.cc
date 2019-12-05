@@ -11,13 +11,12 @@
 using namespace storage;
 
 
-// Check that mdadm is called with the correct parameters, esp. the
-// correct ordering of devices.
+// Check that mkfs.btrfs is called with the correct parameters.
 
 BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("md1", true);
+    TsCmpActiongraph cmp("create2", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

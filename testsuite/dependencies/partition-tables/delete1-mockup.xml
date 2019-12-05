@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/wipefs --all '/dev/sda4'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/wipefs --all '/dev/sda3'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/wipefs --all '/dev/sda1'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/sda' rm 4</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/sda' rm 3</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/sda' rm 2</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/sda' rm 1</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/wipefs --all '/dev/sda'</name>
+      <!-- stdout missing -->
+    </Command>
+  </Commands>
+</Mockup>

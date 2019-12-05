@@ -11,7 +11,8 @@
 using namespace storage;
 
 
-// Check that mkfs.btrfs is called with the correct parameters.
+// Check that mdadm is called with the correct parameters, esp. the
+// correct ordering of devices.
 
 BOOST_AUTO_TEST_CASE(actions)
 {

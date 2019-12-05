@@ -2,7 +2,7 @@
 # Makefile.am for libstorage/testsuite
 #
 
-SUBDIRS = helpers . Utils SystemInfo probe dependencies actions sorting		\
+SUBDIRS = helpers . Utils SystemInfo probe dependencies sorting			\
 	freeinfo Devices partitions performance style commented-config-file	\
 	CompoundAction
 

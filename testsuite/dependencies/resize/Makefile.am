@@ -2,6 +2,8 @@
 # Makefile.am for libstorage/testsuite/dependencies/resize
 #
 
+SUBDIRS= ext4 btrfs
+
 AM_CPPFLAGS = -I$(top_srcdir)
 
 LDADD = ../../../storage/libstorage-ng.la ../../helpers/libhelpers.la		\

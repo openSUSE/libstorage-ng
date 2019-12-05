@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/sbin/lvresize --force 'testvg/secondlv' --extents 640</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/vgreduce 'testvg' '/dev/sdb3'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/pvremove '/dev/sdb3'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/pvcreate --force '/dev/sdb4'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/pvs --options pv_name,pv_uuid,pv_size,pe_start --units b '/dev/sdb4'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/vgextend 'testvg' '/dev/sdb4'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/lvresize 'testvg/firstlv' --extents 5120</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/lvcreate --zero=y --wipesignatures=y --yes --extents 640 --name 'newlv' 'testvg'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/lvs --options vg_name,lv_name,lv_uuid,lv_size --units b 'testvg/newlv'</name>
+      <!-- stdout missing -->
+    </Command>
+  </Commands>
+</Mockup>
