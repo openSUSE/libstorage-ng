@@ -1,0 +1,2 @@
+1 - Shrink ext4 on /dev/sdc1 from 10.00 GiB to 9.00 GiB -> 2
+2 - Shrink partition /dev/sdc1 from 10.00 GiB to 9.00 GiB ->

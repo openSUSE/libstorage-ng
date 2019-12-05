@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 18876415</name>
+      <stdout>Warning: Shrinking partition /dev/sdc1, data loss possible.</stdout>
+    </Command>
+    <Command>
+      <name>/usr/sbin/resize2fs -f '/dev/sdc1' 9437184K</name>
+      <stdout>Resizing the filesystem on /dev/sdc1 to 2359296 (4k) blocks.</stdout>
+      <stdout>The filesystem on /dev/sdc1 is now 2359296 (4k) blocks long.</stdout>
+      <stdout></stdout>
+    </Command>
+  </Commands>
+</Mockup>
