@@ -11,13 +11,13 @@
 using namespace storage;
 
 
-// Check that mdadm is called with the correct parameters, esp. the
-// correct ordering of devices.
+// Check growing the partitions of a multi-device btrfs.
+// TODO some messages have wrong sizes
 
 BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("md1", true);
+    TsCmpActiongraph cmp("grow-multi1", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

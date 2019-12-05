@@ -11,10 +11,13 @@
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(dependencies)
+// Check shrinking the partitions of a multi-device btrfs.
+// TODO enable command check
+
+BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("delete1", true);
+    TsCmpActiongraph cmp("shrink-multi1", false);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

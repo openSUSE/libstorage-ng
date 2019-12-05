@@ -124,10 +124,9 @@ AC_OUTPUT(
 	testsuite/dependencies/btrfs/Makefile
 	testsuite/dependencies/partition-tables/Makefile
 	testsuite/dependencies/resize/Makefile
+	testsuite/dependencies/resize/ext4/Makefile
+	testsuite/dependencies/resize/btrfs/Makefile
 	testsuite/dependencies/bcache/Makefile
-	testsuite/actions/Makefile
-	testsuite/actions/ext4/Makefile
-	testsuite/actions/btrfs/Makefile
 	testsuite/sorting/Makefile
 	testsuite/style/Makefile
 	testsuite/partitions/Makefile

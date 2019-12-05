@@ -11,10 +11,12 @@
 using namespace storage;
 
 
-BOOST_AUTO_TEST_CASE(dependencies)
+// Check that mkfs.btrfs is called with the correct parameters.
+
+BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("delete1", true);
+    TsCmpActiongraph cmp("create2", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

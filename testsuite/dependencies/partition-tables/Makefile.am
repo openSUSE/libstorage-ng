@@ -14,10 +14,10 @@ AM_DEFAULT_SOURCE_EXT = .cc
 
 TESTS = $(check_PROGRAMS)
 
-EXTRA_DIST =									\
-	install1-probed.xml install1-staging.xml install1-expected.txt		\
-	delete1-probed.xml delete1-staging.xml delete1-expected.txt		\
-	implicit1-probed.xml implicit1-staging.xml implicit1-expected.txt	\
-	implicit2-probed.xml implicit2-staging.xml implicit2-expected.txt	\
-	repair1-probed.xml repair1-staging.xml repair1-expected.txt
+EXTRA_DIST =											\
+	install1-probed.xml install1-staging.xml install1-expected.txt				\
+	delete1-probed.xml delete1-staging.xml delete1-expected.txt delete1-mockup.xml		\
+	implicit1-probed.xml implicit1-staging.xml implicit1-expected.txt			\
+	implicit2-probed.xml implicit2-staging.xml implicit2-expected.txt			\
+	repair1-probed.xml repair1-staging.xml repair1-expected.txt repair1-mockup.xml
 
