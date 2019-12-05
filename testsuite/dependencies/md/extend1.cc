@@ -15,6 +15,6 @@ BOOST_AUTO_TEST_CASE(dependencies)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("extend1");
+    TsCmpActiongraph cmp("extend1", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

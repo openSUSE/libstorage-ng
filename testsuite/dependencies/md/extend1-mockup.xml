@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/sbin/mdadm --add-spare '/dev/md0' '/dev/sdd'</name>
+      <!-- stdout missing -->
+    </Command>
+  </Commands>
+</Mockup>
