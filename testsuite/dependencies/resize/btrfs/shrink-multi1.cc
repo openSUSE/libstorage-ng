@@ -11,13 +11,13 @@
 using namespace storage;
 
 
-// Check growing the partitions of a multi-device btrfs.
-// TODO some messages have wrong sizes
+// Check shrinking the partitions of a multi-device btrfs.
+// TODO enable command check
 
 BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("grow-multi1", true);
+    TsCmpActiongraph cmp("shrink-multi1", false);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

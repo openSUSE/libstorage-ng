@@ -1,0 +1,2 @@
+1a - Shrink btrfs on /dev/sdc1 from 10.00 GiB to 9.00 GiB -> 1b
+1b - Shrink partition /dev/sdc1 from 10.00 GiB to 9.00 GiB ->
