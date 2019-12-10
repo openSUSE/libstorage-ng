@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/usr/sbin/resize2fs -f '/dev/sdc6' 9437184K</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 6 39852031</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script '/dev/sdc' rm 5</name>
+      <!-- stdout missing -->
+    </Command>
+  </Commands>
+</Mockup>

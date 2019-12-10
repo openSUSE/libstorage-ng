@@ -49,6 +49,7 @@ namespace storage
     namespace Action
     {
 	class Resize;
+	class Reallot;
     }
 
 
@@ -190,11 +191,10 @@ namespace storage
 	virtual void do_deactivate() const;
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const;
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const;
+	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const;
 
-	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
-				     Tense tense) const;
-	virtual void do_reallot(ReallotMode reallot_mode, const Device* device) const;
+	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const;
+	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const;
 
 	bool has_children() const;
 	size_t num_children() const;

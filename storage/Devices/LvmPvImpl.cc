@@ -404,15 +404,17 @@ namespace storage
 
 
     void
-    LvmPv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    LvmPv::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_rhs = to_lvm_pv(rhs)->get_impl().get_blk_device();
+	const LvmPv* lvm_pv_rhs = to_lvm_pv(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = PVRESIZEBIN " " + quote(blk_device->get_name());
-	if (resize_mode == ResizeMode::SHRINK)
+	const BlkDevice* blk_device_rhs = lvm_pv_rhs->get_impl().get_blk_device();
+
+	string cmd_line = PVRESIZEBIN " " + quote(action->blk_device->get_name());
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --yes --setphysicalvolumesize " + to_string(blk_device_rhs->get_size()) + "b";
 
-	wait_for_devices({ blk_device });
+	wait_for_devices({ action->blk_device });
 
 	SystemCmd cmd(cmd_line, SystemCmd::DoThrow);
     }

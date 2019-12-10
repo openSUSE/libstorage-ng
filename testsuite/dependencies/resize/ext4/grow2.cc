@@ -11,13 +11,12 @@
 using namespace storage;
 
 
-// Check shrinking the partition of a single-device btrfs.
-// TODO enable command checks
+// Check growing the partition of an ext4 while also being renamed.
 
 BOOST_AUTO_TEST_CASE(actions)
 {
     set_logger(get_stdout_logger());
 
-    TsCmpActiongraph cmp("shrink1", true);
+    TsCmpActiongraph cmp("grow2", true);
     BOOST_CHECK_MESSAGE(cmp.ok(), cmp);
 }

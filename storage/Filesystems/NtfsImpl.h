@@ -86,7 +86,7 @@ namespace storage
 
 	virtual void do_set_label() const override;
 
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
+	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const override;
 
     };
 

@@ -734,17 +734,19 @@ namespace storage
 
 
     void
-    Btrfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Btrfs::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
+	const BlkDevice* blk_device_rhs = action->get_resized_blk_device(commit_data.actiongraph, RHS);
+
 	EnsureMounted ensure_mounted(get_filesystem(), false);
 
-	const FilesystemUser* filesystem_user = to_filesystem_user(get_devicegraph()->find_holder(blk_device->get_sid(),
-												  get_sid()));
+	const FilesystemUser* filesystem_user =
+	    to_filesystem_user(get_devicegraph()->find_holder(action->blk_device->get_sid(), get_sid()));
 	unsigned int devid = filesystem_user->get_impl().get_id();
 
 	string cmd_line = BTRFSBIN " filesystem resize " + to_string(devid) + ":";
-	if (resize_mode == ResizeMode::SHRINK)
-	    cmd_line += to_string(blk_device->get_size());
+	if (action->resize_mode == ResizeMode::SHRINK)
+	    cmd_line += to_string(blk_device_rhs->get_size());
 	else
 	    cmd_line += "max";
 	cmd_line += " " + quote(ensure_mounted.get_any_mount_point());
@@ -814,14 +816,14 @@ namespace storage
 
 
     Text
-    Btrfs::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    Btrfs::Impl::do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	Text text;
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
 			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
@@ -837,7 +839,7 @@ namespace storage
 		break;
 
 	    case ReallotMode::EXTEND:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by the device name (e.g. /dev/sdc1),
 			      // %2$s is replaced by the device size (e.g. 2.00 GiB),
@@ -856,7 +858,7 @@ namespace storage
 		ST_THROW(LogicException("invalid value for reallot_mode"));
 	}
 
-	const BlkDevice* blk_device = to_blk_device(device);
+	const BlkDevice* blk_device = to_blk_device(action->device);
 
 	return sformat(text, blk_device->get_name(), blk_device->get_size_string(),
 		       get_message_name());
@@ -864,11 +866,11 @@ namespace storage
 
 
     void
-    Btrfs::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    Btrfs::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
-	const BlkDevice* blk_device = to_blk_device(device);
+	const BlkDevice* blk_device = to_blk_device(action->device);
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
 		do_reduce(blk_device);

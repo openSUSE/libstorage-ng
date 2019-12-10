@@ -105,12 +105,14 @@ namespace storage
 
 
     void
-    Vfat::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Vfat::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_rhs = to_vfat(rhs)->get_impl().get_blk_device();
+	const Vfat* vfat_rhs = to_vfat(action->get_device(commit_data.actiongraph, RHS));
 
-	string cmd_line = FATRESIZEBIN " " + quote(blk_device->get_name());
-	if (resize_mode == ResizeMode::SHRINK)
+	const BlkDevice* blk_device_rhs = vfat_rhs->get_impl().get_blk_device();
+
+	string cmd_line = FATRESIZEBIN " " + quote(action->blk_device->get_name());
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 
 	wait_for_devices();

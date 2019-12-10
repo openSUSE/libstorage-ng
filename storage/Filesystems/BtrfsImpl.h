@@ -138,7 +138,7 @@ namespace storage
 
 	virtual void do_create() override;
 
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
+	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const override;
 
 	virtual void do_mount(CommitData& commit_data, const CommitOptions& commit_options, MountPoint* mount_point) const override;
 
@@ -148,8 +148,8 @@ namespace storage
 
 	virtual void do_pre_mount() const override;
 
-	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const override;
-	virtual void do_reallot(ReallotMode reallot_mode, const Device* device) const override;
+	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const override;
+	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const override;
 
 	void parse_mkfs_output(const vector<string>& stdout);
 

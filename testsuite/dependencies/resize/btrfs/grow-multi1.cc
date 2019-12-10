@@ -12,7 +12,6 @@ using namespace storage;
 
 
 // Check growing the partitions of a multi-device btrfs.
-// TODO some messages have wrong sizes
 
 BOOST_AUTO_TEST_CASE(actions)
 {

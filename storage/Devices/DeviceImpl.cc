@@ -406,21 +406,21 @@ namespace storage
 
 
     void
-    Device::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Device::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
 	ST_THROW(LogicException("stub do_resize called"));
     }
 
 
     Text
-    Device::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    Device::Impl::do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	return UntranslatedText(sformat("error: stub do_reallot_text called for %s", get_classname()));
     }
 
 
     void
-    Device::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    Device::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	ST_THROW(LogicException("stub do_reallot called"));
     }
@@ -472,10 +472,8 @@ namespace storage
 	void
 	Resize::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
-	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-
 	    const Device* device = get_device(commit_data.actiongraph, get_side());
-	    device->get_impl().do_resize(resize_mode, device_rhs, blk_device);
+	    device->get_impl().do_resize(commit_data, this);
 	}
 
 
@@ -533,7 +531,7 @@ namespace storage
 	Reallot::text(const CommitData& commit_data) const
 	{
 	    const Device* device_lhs = get_device(commit_data.actiongraph, LHS);
-	    return device_lhs->get_impl().do_reallot_text(reallot_mode, device, commit_data.tense);
+	    return device_lhs->get_impl().do_reallot_text(commit_data, this);
 	}
 
 
@@ -541,7 +539,7 @@ namespace storage
 	Reallot::commit(CommitData& commit_data, const CommitOptions& commit_options) const
 	{
 	    const Device* device_rhs = get_device(commit_data.actiongraph, RHS);
-	    device_rhs->get_impl().do_reallot(reallot_mode, device);
+	    device_rhs->get_impl().do_reallot(commit_data, this);
 	}
 
 

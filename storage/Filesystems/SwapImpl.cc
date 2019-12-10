@@ -122,17 +122,19 @@ namespace storage
 
 
     void
-    Swap::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Swap::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_rhs = to_swap(rhs)->get_impl().get_blk_device();
+	const Swap* swap_rhs = to_swap(action->get_device(commit_data.actiongraph, RHS));
+
+	const BlkDevice* blk_device_rhs = swap_rhs->get_impl().get_blk_device();
 
 	string cmd_line = MKSWAPBIN;
 	if (!get_label().empty())
 	    cmd_line += " -L " + quote(get_label());
 	if (!get_uuid().empty())
 	    cmd_line += " -U " + quote(get_uuid());
-	cmd_line += " " + quote(blk_device->get_name());
-	if (resize_mode == ResizeMode::SHRINK)
+	cmd_line += " " + quote(action->blk_device->get_name());
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " " + to_string(blk_device_rhs->get_size() / KiB);
 
 	wait_for_devices();

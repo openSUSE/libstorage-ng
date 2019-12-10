@@ -1103,14 +1103,14 @@ namespace storage
 
 
     Text
-    Md::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    Md::Impl::do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	Text text;
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdd),
 			      // %2$s is replaced by device name (e.g. /dev/md0)
@@ -1122,7 +1122,7 @@ namespace storage
 		break;
 
 	    case ReallotMode::EXTEND:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdd),
 			      // %2$s is replaced by device name (e.g. /dev/md0)
@@ -1137,16 +1137,16 @@ namespace storage
 		ST_THROW(LogicException("invalid value for reallot_mode"));
 	}
 
-	return sformat(text, to_blk_device(device)->get_name(), get_displayname());
+	return sformat(text, to_blk_device(action->device)->get_name(), get_displayname());
     }
 
 
     void
-    Md::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    Md::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
-	const BlkDevice* blk_device = to_blk_device(device);
+	const BlkDevice* blk_device = to_blk_device(action->device);
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
 		do_reduce(blk_device);
