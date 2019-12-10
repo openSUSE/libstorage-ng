@@ -1,2 +1,2 @@
 1a - Grow partition /dev/sda2 from 20.00 GiB to 30.00 GiB -> 1b
-1b - Grow /dev/sda2 of btrfs on /dev/sda1 (10.00 GiB) and /dev/sda2 (30.00 GiB) from 20.00 GiB to 30.00 GiB ->
+1b - Grow /dev/sda2 of btrfs on /dev/sda1 (10.00 GiB) and /dev/sda2 (20.00 GiB) from 20.00 GiB to 30.00 GiB ->

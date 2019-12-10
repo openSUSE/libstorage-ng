@@ -140,7 +140,7 @@ namespace storage
 	virtual void do_rename(const Impl& lhs) const;
 
 	virtual Text do_resize_text(const CommitData& commit_data, const Action::Resize* action) const override;
-	virtual void do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const override;
+	virtual void do_resize(const CommitData& commit_data, const Action::Resize* action) const override;
 
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;

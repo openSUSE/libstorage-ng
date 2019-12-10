@@ -601,14 +601,14 @@ namespace storage
 
 
     Text
-    LvmVg::Impl::do_reallot_text(ReallotMode reallot_mode, const Device* device, Tense tense) const
+    LvmVg::Impl::do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const
     {
 	Text text;
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdd),
 			      // %2$s is replaced by volume group name (e.g. system)
@@ -620,7 +620,7 @@ namespace storage
 		break;
 
 	    case ReallotMode::EXTEND:
-		text = tenser(tense,
+		text = tenser(commit_data.tense,
 			      // TRANSLATORS: displayed before action,
 			      // %1$s is replaced by device name (e.g. /dev/sdd),
 			      // %2$s is replaced by volume group name (e.g. system)
@@ -635,7 +635,7 @@ namespace storage
 		ST_THROW(LogicException("invalid value for reallot_mode"));
 	}
 
-	const LvmPv* lvm_pv = to_lvm_pv(device);
+	const LvmPv* lvm_pv = to_lvm_pv(action->device);
 	const BlkDevice* blk_device = lvm_pv->get_blk_device();
 
 	return sformat(text, blk_device->get_name(), vg_name);
@@ -643,11 +643,11 @@ namespace storage
 
 
     void
-    LvmVg::Impl::do_reallot(ReallotMode reallot_mode, const Device* device) const
+    LvmVg::Impl::do_reallot(const CommitData& commit_data, const Action::Reallot* action) const
     {
-	const LvmPv* lvm_pv = to_lvm_pv(device);
+	const LvmPv* lvm_pv = to_lvm_pv(action->device);
 
-	switch (reallot_mode)
+	switch (action->reallot_mode)
 	{
 	    case ReallotMode::REDUCE:
 		do_reduce(lvm_pv);

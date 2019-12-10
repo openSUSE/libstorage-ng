@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<Mockup>
+  <Commands>
+    <Command>
+      <name>/sbin/udevadm settle --timeout=20</name>
+    </Command>
+    <Command>
+      <name>/sbin/btrfs filesystem resize 1:9663676416 '/test'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdc' unit s resizepart 1 18876415</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/sbin/btrfs filesystem resize 2:9663676416 '/test'</name>
+      <!-- stdout missing -->
+    </Command>
+    <Command>
+      <name>/usr/sbin/parted --script --ignore-busy '/dev/sdd' unit s resizepart 1 18876415</name>
+      <!-- stdout missing -->
+    </Command>
+  </Commands>
+</Mockup>

@@ -1012,15 +1012,15 @@ namespace storage
 
 
     void
-    LvmLv::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    LvmLv::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
 	const LvmVg* lvm_vg = get_lvm_vg();
 
-	const LvmLv* lvm_lv_rhs = to_lvm_lv(rhs);
+	const LvmLv* lvm_lv_rhs = to_lvm_lv(action->get_device(commit_data.actiongraph, RHS));
 
 	string cmd_line = LVRESIZEBIN;
 
-	if (resize_mode == ResizeMode::SHRINK)
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --force";
 
 	cmd_line += " " + quote(lvm_vg->get_vg_name() + "/" + lv_name) + " --extents " +

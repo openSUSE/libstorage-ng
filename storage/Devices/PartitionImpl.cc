@@ -1145,9 +1145,9 @@ namespace storage
 
 
     void
-    Partition::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Partition::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const Partition* partition_rhs = to_partition(rhs);
+	const Partition* partition_rhs = to_partition(action->get_device(commit_data.actiongraph, RHS));
 	const Partitionable* partitionable = get_partitionable();
 
 	string cmd_line = PARTEDBIN " --script --ignore-busy " + quote(partitionable->get_name()) +

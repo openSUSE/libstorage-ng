@@ -1,5 +1,5 @@
 1a - Grow partition /dev/sdc1 from 10.00 GiB to 11.00 GiB -> 1b
-1b - Grow /dev/sdc1 of btrfs on /dev/sdc1 (11.00 GiB) and /dev/sdd1 (11.00 GiB) from 10.00 GiB to 11.00 GiB ->
+1b - Grow /dev/sdc1 of btrfs on /dev/sdc1 (10.00 GiB) and /dev/sdd1 (10.00 GiB) from 10.00 GiB to 11.00 GiB ->
 
 2a - Grow partition /dev/sdd1 from 10.00 GiB to 11.00 GiB -> 2b
-2b - Grow /dev/sdd1 of btrfs on /dev/sdc1 (11.00 GiB) and /dev/sdd1 (11.00 GiB) from 10.00 GiB to 11.00 GiB ->
+2b - Grow /dev/sdd1 of btrfs on /dev/sdc1 (10.00 GiB) and /dev/sdd1 (10.00 GiB) from 10.00 GiB to 11.00 GiB ->

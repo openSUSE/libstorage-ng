@@ -100,9 +100,9 @@ namespace storage
 
 
     void
-    Xfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Xfs::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	if (resize_mode == ResizeMode::SHRINK)
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    ST_THROW(Exception("shrink Xfs not possible"));
 
 	EnsureMounted ensure_mounted(get_filesystem(), false);

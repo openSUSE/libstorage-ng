@@ -151,10 +151,8 @@ namespace storage
 	virtual Text do_remove_from_etc_mdadm_text(Tense tense) const;
 	virtual void do_remove_from_etc_mdadm(CommitData& commit_data) const;
 
-	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
-				     Tense tense) const override;
-	virtual void do_reallot(ReallotMode reallot_mode, const Device* device)
-	    const override;
+	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const override;
+	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const override;
 
 	void do_reduce(const BlkDevice* blk_device) const;
 	void do_extend(const BlkDevice* blk_device) const;

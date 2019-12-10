@@ -143,14 +143,16 @@ namespace storage
 
 
     void
-    Ntfs::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Ntfs::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const BlkDevice* blk_device_rhs = to_ntfs(rhs)->get_impl().get_blk_device();
+	const Ntfs* ntfs_rhs = to_ntfs(action->get_device(commit_data.actiongraph, RHS));
+
+	const BlkDevice* blk_device_rhs = ntfs_rhs->get_impl().get_blk_device();
 
 	string cmd_line = "echo y | " NTFSRESIZE_BIN " --force";
-	if (resize_mode == ResizeMode::SHRINK)
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(blk_device_rhs->get_size());
-	cmd_line += " " + quote(blk_device->get_name());
+	cmd_line += " " + quote(action->blk_device->get_name());
 
 	wait_for_devices();
 

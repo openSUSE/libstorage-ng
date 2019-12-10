@@ -141,10 +141,8 @@ namespace storage
 	virtual Text do_delete_text(Tense tense) const override;
 	virtual void do_delete() const override;
 
-	virtual Text do_reallot_text(ReallotMode reallot_mode, const Device* device,
-				     Tense tense) const override;
-	virtual void do_reallot(ReallotMode reallot_mode, const Device* device)
-	    const override;
+	virtual Text do_reallot_text(const CommitData& commit_data, const Action::Reallot* action) const override;
+	virtual void do_reallot(const CommitData& commit_data, const Action::Reallot* action) const override;
 
 	void do_reduce(const LvmPv* lvm_pv) const;
 	void do_extend(const LvmPv* lvm_pv) const;

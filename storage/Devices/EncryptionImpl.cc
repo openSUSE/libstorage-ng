@@ -488,13 +488,13 @@ namespace storage
 
 
     void
-    Encryption::Impl::do_resize(ResizeMode resize_mode, const Device* rhs, const BlkDevice* blk_device) const
+    Encryption::Impl::do_resize(const CommitData& commit_data, const Action::Resize* action) const
     {
-	const Encryption* encryption_rhs = to_encryption(rhs);
+	const Encryption* encryption_rhs = to_encryption(action->get_device(commit_data.actiongraph, RHS));
 
 	string cmd_line = CRYPTSETUPBIN " resize " + quote(get_dm_table_name());
 
-	if (resize_mode == ResizeMode::SHRINK)
+	if (action->resize_mode == ResizeMode::SHRINK)
 	    cmd_line += " --size " + to_string(encryption_rhs->get_impl().get_size() / (512 * B));
 
 	if (do_resize_needs_password())

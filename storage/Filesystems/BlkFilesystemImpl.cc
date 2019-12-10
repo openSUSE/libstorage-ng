@@ -835,6 +835,8 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_resize_text(const CommitData& commit_data, const Action::Resize* action) const
     {
+	const BlkFilesystem* blk_filesystem_lhs = to_blk_filesystem(action->get_device(commit_data.actiongraph, LHS));
+
 	const BlkDevice* blk_device_lhs = action->get_resized_blk_device(commit_data.actiongraph, LHS);
 	const BlkDevice* blk_device_rhs = action->get_resized_blk_device(commit_data.actiongraph, RHS);
 
@@ -934,7 +936,8 @@ namespace storage
 		    ST_THROW(LogicException("invalid value for resize_mode"));
 	    }
 
-	    return sformat(text, action->blk_device->get_name(), get_displayname(), get_message_name(),
+	    return sformat(text, action->blk_device->get_name(), get_displayname(),
+			   blk_filesystem_lhs->get_impl().get_message_name(),
 			   blk_device_lhs->get_impl().get_size_text(),
 			   blk_device_rhs->get_impl().get_size_text());
 	}
@@ -944,8 +947,6 @@ namespace storage
     Text
     BlkFilesystem::Impl::do_delete_text(Tense tense) const
     {
-	const vector<const BlkDevice*> blk_devices = get_blk_devices();
-
 	Text text = tenser(tense,
 			   // TRANSLATORS: displayed before action,
 			   // %1$s is replaced by file system name (e.g. ext4),
