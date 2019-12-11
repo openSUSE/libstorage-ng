@@ -29,6 +29,7 @@ use_ostream(storage::PartitionSlot);
 %include "storage-catches.i"
 
 %feature("director") storage::ActivateCallbacks;
+%feature("director") storage::ActivateCallbacksLuks;
 %feature("director") storage::ProbeCallbacks;
 %feature("director") storage::CheckCallbacks;
 %feature("director") storage::CommitCallbacks;

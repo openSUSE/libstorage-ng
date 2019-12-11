@@ -32,6 +32,35 @@ namespace storage
     using std::vector;
 
 
+    LuksInfo::LuksInfo()
+	: impl(new Impl(*this))
+    {
+    }
+
+
+    LuksInfo::~LuksInfo()
+    {
+    }
+
+
+    const string& LuksInfo::get_device_name() const
+    {
+	return get_impl().device_name;
+    }
+
+
+    const string& LuksInfo::get_uuid() const
+    {
+	return get_impl().uuid;
+    }
+
+
+    const string& LuksInfo::get_label() const
+    {
+	return get_impl().label;
+    }
+
+
     Storage::Storage(const Environment& environment)
 	: impl(new Impl(*this, environment))
     {

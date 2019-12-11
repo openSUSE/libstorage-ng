@@ -115,6 +115,58 @@ namespace storage
     };
 
 
+    class LuksInfo;
+
+
+    /**
+     * Specialized callbacks with a more generic parameter for LUKS activation.
+     */
+    class ActivateCallbacksLuks : public ActivateCallbacks
+    {
+    public:
+
+	virtual ~ActivateCallbacksLuks() {}
+
+	/**
+	 * Decide whether the LUKS should be activated.
+	 *
+	 * Parameter "info" contains all known information about the LUKS device.
+	 */
+	virtual std::pair<bool, std::string> luks(const LuksInfo& info, int attempt) const = 0;
+
+    };
+
+
+    /**
+     * Stores information about a LUKS device.
+     */
+    class LuksInfo : private boost::noncopyable
+    {
+    public:
+
+	LuksInfo();
+
+	~LuksInfo();
+
+	const std::string& get_device_name() const;
+
+	const std::string& get_uuid() const;
+
+	const std::string& get_label() const;
+
+    public:
+
+	class Impl;
+
+	Impl& get_impl() { return *impl; }
+	const Impl& get_impl() const { return *impl; }
+
+    private:
+
+	const std::unique_ptr<Impl> impl;
+    };
+
+
     /**
      * Provides information whether deactivate() was able to deactivate
      * subsystems. True indicates that the corresponding subsystem was
