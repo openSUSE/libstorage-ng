@@ -165,7 +165,23 @@ namespace storage
 	{
 	    if (it == luks_activation_infos.end())
 	    {
-		pair<bool, string> tmp = activate_callbacks->luks(uuid, attempt);
+		pair<bool, string> tmp;
+
+		if (dynamic_cast<const ActivateCallbacksLuks*>(activate_callbacks))
+		{
+		    LuksInfo info;
+
+		    info.get_impl().device_name = name;
+		    info.get_impl().uuid = uuid;
+		    info.get_impl().label = label;
+
+		    tmp = dynamic_cast<const ActivateCallbacksLuks*>(activate_callbacks)->luks(info, attempt);
+		}
+		else
+		{
+		    tmp = activate_callbacks->luks(uuid, attempt);
+		}
+
 		if (!tmp.first)
 		{
 		    y2mil("user canceled activation of luks " << uuid);
