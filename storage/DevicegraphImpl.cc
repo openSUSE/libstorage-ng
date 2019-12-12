@@ -846,6 +846,18 @@ namespace storage
 		write_attributes(out, "graph", style_callbacks->graph());
 		write_attributes(out, "node", style_callbacks->nodes());
 		write_attributes(out, "edge", style_callbacks->edges());
+
+		out << "{ rank=source; ";
+		for (const Disk* disk : devicegraph.get_devices_of_type<Disk>())
+		    out << disk->get_sid() << "; ";
+		for (const Nfs* nfs : devicegraph.get_devices_of_type<Nfs>())
+		    out << nfs->get_sid() << "; ";
+		out << "}\n";
+
+		out << "{ rank=sink; ";
+		for (const MountPoint* mount_point : devicegraph.get_devices_of_type<MountPoint>())
+		    out << mount_point->get_sid() << "; ";
+		out << "}\n";
 	    }
 
 	    void operator()(ostream& out, const Devicegraph::Impl::vertex_descriptor& vertex) const
