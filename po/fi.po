@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-02-25 15:22+0100\n"
-"PO-Revision-Date: 2019-05-02 20:14+0000\n"
-"Last-Translator: Tommi Nieminen <software@legisign.org>\n"
+"PO-Revision-Date: 2019-12-19 00:54+0000\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
 "ng-sle-15-sp1/fi/>\n"
 "Language: fi\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -100,7 +100,7 @@ msgstr "Ota käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
@@ -156,7 +156,7 @@ msgstr "Otetaan käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
