@@ -12,16 +12,16 @@ msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2019-09-04 09:26+0200\n"
-"PO-Revision-Date: 2019-05-02 06:04+0000\n"
-"Last-Translator: Tommi Nieminen <software@legisign.org>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
-"master/fi/>\n"
+"PO-Revision-Date: 2019-12-19 00:54+0000\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
+"ng-master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3\n"
+"X-Generator: Weblate 3.6.1\n"
 
 msgid ""
 "\n"
@@ -100,7 +100,7 @@ msgstr "Ota käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
@@ -156,7 +156,7 @@ msgstr "Otetaan käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by size (e.g. 2GiB),
 #. %3$s is replaced by volume group name (e.g. system)
-#, fuzzy, c-format
+#, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
 msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
@@ -165,9 +165,9 @@ msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
-msgstr "Lisää %1$s taltioryhmään %2$s"
+msgstr "Lisää %1$s (%2$s) btrfs taltioon %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
@@ -214,9 +214,9 @@ msgstr ""
 #. %2$s is replaced by the device size (e.g. 2.0 GiB),
 #. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
 #. and /dev/sdb2 (2.0 GiB))
-#, fuzzy, c-format
+#, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
-msgstr "Lisätään %1$s kohteeseen %2$s"
+msgstr "Lisätään %1$s (%2$s) btrfs -kohteeseen %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdd),
