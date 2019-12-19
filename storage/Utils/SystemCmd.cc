@@ -290,22 +290,22 @@ namespace storage
 	int sout[2];
 	int serr[2];
 	bool ok = true;
-	if ( !_testmode && pipe(sin)<0 )
+	if ( pipe(sin)<0 )
 	{
 	    SYSCALL_FAILED( "pipe stdin creation failed" );
 	    ok = false;
 	}
-	if ( !_testmode && pipe(sout)<0 )
+	if ( pipe(sout)<0 )
 	{
 	    SYSCALL_FAILED( "pipe stdout creation failed" );
 	    ok = false;
 	}
-	if ( !_testmode && !_combineOutput && pipe(serr)<0 )
+	if ( !_combineOutput && pipe(serr)<0 )
 	{
 	    SYSCALL_FAILED( "pipe stderr creation failed" );
 	    ok = false;
 	}
-	if ( !_testmode && ok )
+	if ( ok )
 	{
 	    _pfds[0].fd = sin[1];
 	    if ( fcntl( _pfds[0].fd, F_SETFL, O_NONBLOCK )<0 )
@@ -421,21 +421,15 @@ namespace storage
 		    break;
 	    }
 	}
-	else if ( !_testmode )
-	{
-	    _cmdRet = -1;
-	}
 	else
 	{
-	    _cmdRet = 0;
-	    y2mil("TESTMODE would execute \"" << command() << "\"");
+	    _cmdRet = -1;
 	}
 	if ( _cmdRet==-127 || _cmdRet==-1 )
 	{
 	    y2err("system (\"" << command() << "\") = " << _cmdRet);
 	}
-	if ( !_testmode )
-	    checkOutput();
+	checkOutput();
 	y2mil("system() Returns:" << _cmdRet);
 	if ( _cmdRet!=0 )
 	    logOutput();
@@ -752,8 +746,5 @@ namespace storage
 
 	return ret;
     }
-
-
-    bool SystemCmd::_testmode = false;
 
 }
