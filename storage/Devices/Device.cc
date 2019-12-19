@@ -408,7 +408,14 @@ namespace storage
     bool
     Device::compare_by_name(const Device* lhs, const Device* rhs)
     {
-	return lhs->get_impl().get_sort_key() < rhs->get_impl().get_sort_key();
+	return lhs->get_name_sort_key() < rhs->get_name_sort_key();
+    }
+
+
+    string
+    Device::get_name_sort_key() const
+    {
+	return get_impl().get_name_sort_key();
     }
 
 

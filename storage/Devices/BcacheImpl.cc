@@ -110,7 +110,7 @@ namespace storage
 
 
     string
-    Bcache::Impl::get_sort_key() const
+    Bcache::Impl::get_name_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
 	    NameSchema(regex(DEV_DIR "/bcache([0-9]+)", regex::extended), { { 3, '0' } }),

@@ -89,10 +89,10 @@ def load_single_file(filename):
                     kind = node3.getAttribute("kind")
                     if kind in ["public-func", "public-static-func", "func"]:
                         tmp = process_functions(compound_name, node3)
-                        if not 'functions' in classes.node[compound_name]:
-                            classes.node[compound_name]['functions'] = tmp
+                        if not 'functions' in classes.nodes[compound_name]:
+                            classes.nodes[compound_name]['functions'] = tmp
                         else:
-                            classes.node[compound_name]['functions'] += tmp
+                            classes.nodes[compound_name]['functions'] += tmp
 
             if compound_kind == "namespace":
 

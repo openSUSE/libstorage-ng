@@ -37,7 +37,7 @@ def output_global_functions():
 def output_class_functions():
 
     for classname in sorted(utils.classes.nodes()):
-        output_functions(utils.classes.node[classname].get('functions', []))
+        output_functions(utils.classes.nodes[classname].get('functions', []))
 
     print("")
 

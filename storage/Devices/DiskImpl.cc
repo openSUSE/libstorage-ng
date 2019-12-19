@@ -88,7 +88,7 @@ namespace storage
 
 
     string
-    Disk::Impl::get_sort_key() const
+    Disk::Impl::get_name_sort_key() const
     {
 	// TODO maybe generally pad numbers
 

@@ -229,8 +229,6 @@ namespace storage
 	OutputProcessor* _outputProc;
 	struct pollfd _pfds[3];
 
-	static bool _testmode;
-
 	/**
 	 * Constructs the environment for the child process.
 	 *
