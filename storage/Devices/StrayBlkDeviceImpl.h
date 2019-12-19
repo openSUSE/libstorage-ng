@@ -53,7 +53,7 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
-	virtual string get_sort_key() const override;
+	virtual string get_name_sort_key() const override;
 
 	virtual Impl* clone() const override { return new Impl(*this); }
 

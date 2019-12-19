@@ -163,7 +163,7 @@ namespace storage
      * This can be used to sort device names. E.g. if it is desired to
      * have "sdb" before "sdaa" the names can be transformed to "sd b"
      * and "sdaa" and be sorted alphabetical. Used by
-     * Device::get_sort_key().
+     * Device::get_name_sort_key().
      */
     string
     format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata);

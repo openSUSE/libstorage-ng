@@ -99,7 +99,7 @@ namespace storage
 
 
     string
-    Dasd::Impl::get_sort_key() const
+    Dasd::Impl::get_name_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
 	    NameSchema(regex(DEV_DIR "/dasd([a-z]+)", regex::extended), { { 4, ' ' } }),

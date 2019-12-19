@@ -196,6 +196,26 @@ namespace storage
 	 */
 	static bool compare_by_name(const Device* lhs, const Device* rhs);
 
+	/**
+	 * Get a sort-key based on the device name. So far only
+	 * avaliable for BlkDevices and LvmVgs. For other types the
+	 * sort-key is empty.
+	 *
+	 * The sorting based on the sort-key sorts to alphabetical
+	 * order with some exceptions. E.g. The disk /dev/sdz is in
+	 * front of /dev/sdaa and the partition /dev/sda2 is in front
+	 * of /dev/sda10.
+	 *
+	 * The sorting based on the sort-key may depend on the used
+	 * locale.
+	 *
+	 * The sort-key and the exact ordering may change in future
+	 * versions.
+	 *
+	 * @throw Exception
+	 */
+	std::string get_name_sort_key() const;
+
 	Devicegraph* get_devicegraph();
 	const Devicegraph* get_devicegraph() const;
 

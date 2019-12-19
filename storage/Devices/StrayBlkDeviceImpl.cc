@@ -57,7 +57,7 @@ namespace storage
 
 
     string
-    StrayBlkDevice::Impl::get_sort_key() const
+    StrayBlkDevice::Impl::get_name_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
 	    NameSchema(regex(DEV_DIR "/xvd([a-z]+)([0-9]+)", regex::extended), { { 4, ' ' }, { 3, '0' } })

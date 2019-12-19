@@ -61,7 +61,7 @@ namespace storage
 
 	virtual string get_pretty_classname() const override;
 
-	virtual string get_sort_key() const override;
+	virtual string get_name_sort_key() const override;
 
 	virtual bool is_usable_as_blk_device() const override;
 	virtual bool is_usable_as_partitionable() const override;

@@ -60,7 +60,7 @@ namespace storage
 
 	virtual string get_displayname() const override { return get_vg_name(); }
 
-	virtual string get_sort_key() const override { return DEV_DIR "/" + vg_name; }
+	virtual string get_name_sort_key() const override { return DEV_DIR "/" + vg_name; }
 
 	static void probe_lvm_vgs(Prober& prober);
 	virtual void probe_pass_1a(Prober& prober) override;
