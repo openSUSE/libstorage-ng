@@ -137,6 +137,12 @@ namespace storage
     };
 
 
+    /**
+     * Convert IdNum to string.
+     */
+    std::string get_partition_id_name(IdNum partition_id);
+
+
     //! A partition of a Partitionable, e.g. Disk or Md.
     class Partition : public BlkDevice
     {

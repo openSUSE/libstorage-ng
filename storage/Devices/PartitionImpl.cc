@@ -1266,6 +1266,34 @@ namespace storage
 
 	switch (id)
 	{
+	    case ID_DOS12:
+		// TRANSLATORS: name of partition type
+		return _("DOS12 Partition");
+
+	    case ID_DOS16:
+		// TRANSLATORS: name of partition type
+		return _("DOS16 Partition");
+
+	    case ID_NTFS:
+		// TRANSLATORS: name of partition type
+		return _("NTFS Partition");
+
+	    case ID_DOS32:
+		// TRANSLATORS: name of partition type
+		return _("DOS32 Partition");
+
+	    case ID_EXTENDED:
+		// TRANSLATORS: name of partition type
+		return _("Extended Partition");
+
+	    case ID_DIAG:
+		// TRANSLATORS: name of partition type
+		return _("Diagnostics Partition");
+
+	    case ID_PREP:
+		// TRANSLATORS: name of partition type
+		return _("PReP Boot Partition");
+
 	    case ID_SWAP:
 		// TRANSLATORS: name of partition type
 		return _("Linux Swap");
@@ -1274,13 +1302,13 @@ namespace storage
 		// TRANSLATORS: name of partition type
 		return _("Linux");
 
-	    case ID_LVM:
-		// TRANSLATORS: name of partition type
-		return _("Linux LVM");
-
 	    case ID_IRST:
 		// TRANSLATORS: name of partition type
 		return _("Intel RST");
+
+	    case ID_LVM:
+		// TRANSLATORS: name of partition type
+		return _("Linux LVM");
 
 	    case ID_RAID:
 		// TRANSLATORS: name of partition type
@@ -1294,10 +1322,6 @@ namespace storage
 		// TRANSLATORS: name of partition type
 		return _("BIOS Boot Partition");
 
-	    case ID_PREP:
-		// TRANSLATORS: name of partition type
-		return _("PReP Boot Partition");
-
 	    case ID_WINDOWS_BASIC_DATA:
 		// TRANSLATORS: name of partition type
 		return _("Windows Data Partition");
@@ -1306,9 +1330,6 @@ namespace storage
 		// TRANSLATORS: name of partition type
 		return _("Microsoft Reserved Partition");
 
-	    case ID_DIAG:
-		// TRANSLATORS: name of partition type
-		return _("Diagnostics Partition");
 	}
 
 	return Text();
