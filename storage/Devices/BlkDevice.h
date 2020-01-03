@@ -260,6 +260,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two BlkDevices by DM table name.
+	 *
+	 * The comparison is locale unaware.
 	 */
 	static bool compare_by_dm_table_name(const BlkDevice* lhs, const BlkDevice* rhs);
 

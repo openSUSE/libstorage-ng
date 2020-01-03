@@ -150,6 +150,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two LvmLvs by lv-name.
+	 *
+	 * The comparison is locale unaware.
 	 */
 	static bool compare_by_lv_name(const LvmLv* lhs, const LvmLv* rhs);
 

@@ -192,6 +192,8 @@ namespace storage
 	 * The comparison fulfills strict weak ordering. The exact ordering
 	 * may change in future versions.
 	 *
+	 * The comparison is locale unaware.
+	 *
 	 * @throw Exception
 	 */
 	static bool compare_by_name(const Device* lhs, const Device* rhs);
