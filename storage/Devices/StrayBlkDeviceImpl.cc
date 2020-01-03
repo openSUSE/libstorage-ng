@@ -60,7 +60,7 @@ namespace storage
     StrayBlkDevice::Impl::get_name_sort_key() const
     {
 	static const vector<NameSchema> name_schemata = {
-	    NameSchema(regex(DEV_DIR "/xvd([a-z]+)([0-9]+)", regex::extended), { { 4, ' ' }, { 3, '0' } })
+	    NameSchema(regex(DEV_DIR "/xvd([a-z]+)([0-9]+)", regex::extended), { { PadInfo::A1, 5 }, { PadInfo::N1, 3 } })
 	};
 
 	return format_to_name_schemata(get_name(), name_schemata);

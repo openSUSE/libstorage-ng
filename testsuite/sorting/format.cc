@@ -14,13 +14,14 @@ using namespace storage;
 BOOST_AUTO_TEST_CASE(format)
 {
     static const vector<NameSchema> name_schemata = {
-	NameSchema(regex("/dev/sd([a-z]+)", regex::extended), { { 4, ' ' } }),
-	NameSchema(regex("/dev/md([0-9]+)", regex::extended), { { 3, '0' } }),
-	NameSchema(regex("/dev/nvme([0-9]+)n([0-9]+)", regex::extended), { { 3, '0' }, { 3, '0' } }),
-	NameSchema(regex("/dev/xvd([a-z]+)([0-9]+)", regex::extended), { { 4, ' ' }, { 3, '0' } }),
+	NameSchema(regex("/dev/sd([a-z]+)", regex::extended), { { PadInfo::A1, 5 } }),
+	NameSchema(regex("/dev/md([0-9]+)", regex::extended), { { PadInfo::N1, 3 } }),
+	NameSchema(regex("/dev/nvme([0-9]+)n([0-9]+)", regex::extended), { { PadInfo::N1, 3 }, { PadInfo::N1, 3 } }),
     };
 
-    BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/sda", name_schemata), "/dev/sd   a");
+    BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/sda", name_schemata), "/dev/sd00001");
+    BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/sdaa", name_schemata), "/dev/sd00027");
+    BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/sdaaa", name_schemata), "/dev/sd00703");
 
     BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/md", name_schemata), "/dev/md");
 
@@ -30,6 +31,4 @@ BOOST_AUTO_TEST_CASE(format)
     BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/md1234", name_schemata), "/dev/md1234");
 
     BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/nvme1n2", name_schemata), "/dev/nvme001n002");
-
-    BOOST_CHECK_EQUAL(format_to_name_schemata("/dev/xvda1", name_schemata), "/dev/xvd   a001");
 }

@@ -136,11 +136,41 @@ namespace storage
 
 
     /**
+     * Padding informations for NameSchema.
+     */
+    struct PadInfo
+    {
+	enum Method
+	{
+	    /**
+	     * Numeric pad. The number is padded with zeros.
+	     */
+	    N1,
+
+	    /**
+	     * Alphabetical pad. The string (must only contain 'a' to
+	     * 'z') is transformed to a number and that number is
+	     * padded with zeros.
+	     *
+	     * This method should be locale invariant. E.g. simply
+	     * padding the string with spaces is not locale invariant.
+	     */
+	    A1
+	};
+
+	PadInfo(Method method, size_t size) : method(method), size(size) {}
+
+	const Method method;
+	const size_t size;
+    };
+
+
+    /**
      * Definition of a name schema used by format_to_name_schemata().
      */
     struct NameSchema
     {
-	NameSchema(regex re, const vector<pair<size_t, char>>& pad_infos)
+	NameSchema(regex re, const vector<PadInfo>& pad_infos)
 	    : re(re), pad_infos(pad_infos) {}
 
 	/**
@@ -152,7 +182,7 @@ namespace storage
 	 * Width and char to which the sub-matches of the regular
 	 * expression will be padded.
 	 */
-	const vector<pair<size_t, char>> pad_infos;
+	const vector<PadInfo> pad_infos;
     };
 
 

@@ -94,7 +94,12 @@ namespace storage
     {
 	const Partitionable* partitionable = get_partitionable();
 
-	return partitionable->get_impl().get_name_sort_key() + pad_front(to_string(get_number()), 3, '0');
+	string sort_key = partitionable->get_impl().get_name_sort_key();
+	if (isdigit(sort_key.back()))
+	    sort_key += 'p';
+	sort_key += pad_front(to_string(get_number()), 3, '0');
+
+	return sort_key;
     }
 
 

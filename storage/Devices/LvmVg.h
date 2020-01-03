@@ -193,6 +193,8 @@ namespace storage
 
 	/**
 	 * Compare (less than) two LvmVgs by vg-name.
+	 *
+	 * The comparison is locale unaware.
 	 */
 	static bool compare_by_vg_name(const LvmVg* lhs, const LvmVg* rhs);
 
