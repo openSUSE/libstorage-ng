@@ -511,6 +511,21 @@ namespace storage
     }
 
 
+    /**
+     * Enumerates string containing 'a' to 'z'. "a" is 1, "z" is 26, "aa" is 27 and so on.
+     */
+    unsigned int
+    enumerate_strings(const string& s)
+    {
+	unsigned int i = 0;
+
+	for (char c : s)
+	    i = (26 * i) + (c - 'a' + 1);
+
+	return i;
+    }
+
+
     string
     format_to_name_schemata(const string& s, const vector<NameSchema>& name_schemata)
     {
@@ -524,10 +539,22 @@ namespace storage
 
 		for (size_t i = match.size() - 1; i > 0; --i)
 		{
-		    const pair<size_t, char>& pad_info = name_schema.pad_infos[i - 1];
+		    const PadInfo& pad_info = name_schema.pad_infos[i - 1];
 
-		    ret.replace(match.position(i), match.length(i),
-				pad_front(match.str(i), pad_info.first, pad_info.second));
+		    string replacement;
+
+		    switch (pad_info.method)
+		    {
+			case PadInfo::N1:
+			    replacement = pad_front(match.str(i), pad_info.size, '0');
+			    break;
+
+			case PadInfo::A1:
+			    replacement = pad_front(to_string(enumerate_strings(match.str(i))), pad_info.size, '0');
+			    break;
+		    }
+
+		    ret.replace(match.position(i), match.length(i), replacement);
 		}
 
 		return ret;
