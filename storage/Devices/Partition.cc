@@ -42,6 +42,13 @@ namespace storage
     }
 
 
+    string
+    get_partition_id_name(IdNum partition_id)
+    {
+	return id_to_text(partition_id).translated;
+    }
+
+
     Partition*
     Partition::create(Devicegraph* devicegraph, const string& name, const Region& region, PartitionType type)
     {
