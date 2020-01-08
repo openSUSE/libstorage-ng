@@ -291,7 +291,7 @@ namespace storage
 	    // do_create() already sets the partition id correctly.
 
 	    static const vector<unsigned int> skip_ids = {
-		ID_LINUX, ID_SWAP, ID_DOS16, ID_DOS32, ID_NTFS, ID_WINDOWS_BASIC_DATA
+		ID_LINUX, ID_SWAP, ID_DOS32, ID_NTFS, ID_WINDOWS_BASIC_DATA
 	    };
 
 	    if (!contains(skip_ids, id))
@@ -740,15 +740,14 @@ namespace storage
 	    // Telling parted the filesystem type sets the correct partition
 	    // id in some cases. Used in add_create_actions() to avoid
 	    // redundant actions.
+	    //
+	    // Note that "fat16" filesystem was also used to set ID_DOS16 id. But parted
+	    // is not assigning the correct id anymore. It sets id 0x0e instead of 0x06.
 
 	    switch (get_id())
 	    {
 		case ID_SWAP:
 		    cmd_line += "linux-swap ";
-		    break;
-
-		case ID_DOS16:
-		    cmd_line += "fat16 ";
 		    break;
 
 		case ID_DOS32:
