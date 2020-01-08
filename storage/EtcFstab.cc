@@ -267,10 +267,14 @@ namespace storage
 	//
 	// This always returns 'true' (success), so there is no need to check
 	// the result and possibly log an error.
+	//
+	// Note that the last two fstab columns (fs_freq and fs_passno) are optional with default to 0.
 
 	ColumnConfigFile::Entry::parse( line, line_no );
 
-	if ( get_column_count() != FSTAB_COLUMN_COUNT )
+	int column_count = get_column_count();
+
+	if ( column_count < FSTAB_COLUMN_COUNT - 2 || column_count > FSTAB_COLUMN_COUNT )
 	{
 	    y2err( "fstab:" << line_no << " Error: wrong number of fields: \"" << line << "\"" );
 	    return false;
@@ -286,8 +290,12 @@ namespace storage
             fs_type = FsType::UNKNOWN;
 
 	mount_opts.parse( EtcFstab::fstab_decode( get_column( col++ ) ), line_no );
-	dump_pass = atoi( get_column( col++ ).c_str() );
-	fsck_pass = atoi( get_column( col++ ).c_str() );
+
+	if ( column_count >= FSTAB_COLUMN_COUNT - 1 )
+	    dump_pass = atoi( get_column( col++ ).c_str() );
+
+	if ( column_count == FSTAB_COLUMN_COUNT )
+	    fsck_pass = atoi( get_column( col++ ).c_str() );
 
 	return true; // success
     }
