@@ -124,6 +124,54 @@ BOOST_AUTO_TEST_CASE( parse_and_format )
 }
 
 
+BOOST_AUTO_TEST_CASE(parse_and_format_without_optional_columns)
+{
+    string_vec input = {
+	"/space     /tmp/space  none  bind",
+	"/dev/sda1  /           xfs   defaults  1"
+    };
+
+    string_vec expected_output = {
+	"/space     /tmp/space  none  bind      0  0",
+	"/dev/sda1  /           xfs   defaults  1  0"
+    };
+
+    EtcFstab fstab;
+    fstab.parse(input);
+
+    BOOST_CHECK_EQUAL(fstab.get_entry_count(), 2);
+
+    string_vec output = fstab.format_lines();
+
+    for (int i = 0; i < fstab.get_entry_count(); ++i)
+        BOOST_CHECK_EQUAL(output[i], expected_output[i]);
+
+    int i = 0;
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_device(), "/space");
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_device(), "/dev/sda1");
+
+    i=0;
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_point(), "/tmp/space");
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_point(), "/");
+
+    i=0;
+    BOOST_CHECK_EQUAL(toString(fstab.get_entry(i++)->get_fs_type()), "unknown");
+    BOOST_CHECK_EQUAL(toString(fstab.get_entry(i++)->get_fs_type()), "xfs");
+
+    i=0;
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_opts().empty(), false);
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_mount_opts().empty(), true);
+
+    i=0;
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_dump_pass(), 0);
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_dump_pass(), 1);
+
+    i=0;
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_fsck_pass(), 0);
+    BOOST_CHECK_EQUAL(fstab.get_entry(i++)->get_fsck_pass(), 0);
+}
+
+
 BOOST_AUTO_TEST_CASE( mount_order )
 {
     // Wrong mount order by intention
