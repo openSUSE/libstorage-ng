@@ -11,11 +11,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: libstorage.fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-04 09:26+0200\n"
+"POT-Creation-Date: 2020-01-09 12:29+0100\n"
 "PO-Revision-Date: 2019-12-19 00:54+0000\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
-"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/"
-"ng-master/fi/>\n"
+"Language-Team: Finnish <https://l10n.opensuse.org/projects/libstorage/ng-"
+"master/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +39,7 @@ msgstr "%1$d lisää"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the device name (e.g. /dev/sdc1),
-#. %2$s is replaced with the size (e.g. 60 GiB)
+#. %2$s is replaced with the size (e.g. 60.00 GiB)
 #, c-format
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -62,7 +62,7 @@ msgstr "%1$s ja %2$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the a list of cache devices with size
-#. (e.g. "/dev/sdb1 (64 GiB), /dev/sdc1 (160 GiB)")
+#. (e.g. "/dev/sdb1 (64.00 GiB) and /dev/sdc1 (160.00 GiB)")
 #, c-format
 msgid "%1$s is cached by %2$s"
 msgstr "%1$s on välimuisti laitteille %2$s"
@@ -82,7 +82,7 @@ msgstr "Ota käyttöön salaustaso laitteella %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate logical volume %1$s (%2$s) on volume group %3$s"
@@ -90,7 +90,7 @@ msgstr "Aktivoi looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -98,7 +98,7 @@ msgstr "Ota käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activate thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -130,7 +130,7 @@ msgstr "Otetaan käyttöön salaustaso laitteella %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating logical volume %1$s (%2$s) on volume group %3$s"
@@ -146,7 +146,7 @@ msgstr "Multipathin käyttöönotto epäonnistui"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -154,7 +154,7 @@ msgstr "Otetaan käyttöön ohut looginen taltio %1$s (%2$s) taltioryhmässä %3
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Activating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -162,9 +162,9 @@ msgstr "Alustetaan looginen taltio %1$s (%2$s) tiedostojärjestelmällä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Add %1$s (%2$s) to btrfs on %3$s"
 msgstr "Lisää %1$s (%2$s) btrfs taltioon %3$s"
@@ -193,8 +193,8 @@ msgstr "Lisää laitteen %1$s salaustaso /etc/crypttab-tiedostoon"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of %2$s to /etc/fstab"
 msgstr "Lisää laitteen %2$s liitoskohta %1$s tiedostoon /etc/fstab"
@@ -202,8 +202,8 @@ msgstr "Lisää laitteen %2$s liitoskohta %1$s tiedostoon /etc/fstab"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Add mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
@@ -211,9 +211,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, c-format
 msgid "Adding %1$s (%2$s) to btrfs on %3$s"
 msgstr "Lisätään %1$s (%2$s) btrfs -kohteeseen %3$s"
@@ -242,8 +242,8 @@ msgstr "Lisätään laitteen %1$s salaustaso /etc/crypttab-tiedostoon"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of %2$s to /etc/fstab"
 msgstr "Lisätään laitteen %2$s liitoskohta %1$s /etc/fstab-tiedostoon"
@@ -251,8 +251,8 @@ msgstr "Lisätään laitteen %2$s liitoskohta %1$s /etc/fstab-tiedostoon"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Adding mount point %1$s of subvolume %2$s on %3$s to /etc/fstab"
 msgstr ""
@@ -261,7 +261,7 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Attach bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
@@ -269,7 +269,7 @@ msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Attaching bcache cache set on %1$s to bcache %2$s (%3$s)"
 msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
@@ -289,6 +289,10 @@ msgstr "Bcache"
 #. TRANSLATORS: name of object
 msgid "Bcache Cache Set"
 msgstr "Bcache-välimuistijoukko"
+
+#. TRANSLATORS: name of object
+msgid "BitLocker"
+msgstr ""
 
 #. TRANSLATORS: name of object
 msgid "Btrfs"
@@ -312,8 +316,8 @@ msgstr "Poista vanha käynnistyslippu osiolta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clear option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -339,8 +343,8 @@ msgstr "Poistetaan vanha käynnistyslippu osiolta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Clearing option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr ""
@@ -355,12 +359,12 @@ msgstr "Poistetaan GPT:n MBR-suojakäynnistyslippua laitteelta %1$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#. %6$s is replaced with a comma-spearated list of the devices
+#. %6$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for %4$s with %5$s\n"
@@ -372,10 +376,10 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) for swap\n"
@@ -387,10 +391,10 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid "Create %1$s %2$s (%3$s) from %4$s"
 msgstr "Luo %1$s %2$s (%3$s) laitteista %4$s"
@@ -398,11 +402,11 @@ msgstr "Luo %1$s %2$s (%3$s) laitteista %4$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#. %5$s is replaced with a comma-spearated list of the devices
+#. %5$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create %1$s %2$s (%3$s) with %4$s\n"
@@ -413,8 +417,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Create %1$s on %2$s"
 msgstr "Luo %1$s laitteelle %2$s (%3$s)"
@@ -433,7 +437,7 @@ msgstr "Luo GPT laitteelle %1$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -441,7 +445,7 @@ msgstr "Luo looginen LVM-taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -454,7 +458,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create LVM logical volume %1$s (%2$s) on volume group %3$s for swap"
@@ -463,7 +467,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -474,21 +478,21 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create LVM physical volume over %1$s (%2$s)"
 msgstr "Luo fyysinen LVM-taltio laitteelle %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create LVM physical volume over encrypted %1$s (%2$s)"
 msgstr "Luo fyysinen LVM-taltio salatulle laitteelle %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create LVM volume device over %1$s (%2$s)"
 msgstr "Luo LVM-taltiolaite osiolle %1$s (%2$s)"
@@ -496,9 +500,9 @@ msgstr "Luo LVM-taltiolaite osiolle %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB),
-#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %3$s is replaced by size (e.g. 2.00 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Create MD %1$s %2$s (%3$s) from %4$s"
 msgstr "Luo MD %1$s %2$s (%3$s) laitteista %4$s"
@@ -511,7 +515,7 @@ msgstr "Luo MS-DOS-osiotaulukko laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache %1$s (%2$s)"
 msgstr "Luo Bcache %1$s (%2$s)"
@@ -519,7 +523,7 @@ msgstr "Luo Bcache %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s)"
 msgstr "Luo Bcache %1$s laitteelle %2$s (%3$s)"
@@ -527,7 +531,7 @@ msgstr "Luo Bcache %1$s laitteelle %2$s (%3$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -539,7 +543,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) for swap"
 msgstr "Luo Bcache %1$s laitteelle %2$s (%3$s) sivutusta varten"
@@ -547,7 +551,7 @@ msgstr "Luo Bcache %1$s laitteelle %2$s (%3$s) sivutusta varten"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create bcache %1$s on %2$s (%3$s) with %4$s"
@@ -555,7 +559,7 @@ msgstr "Luo Bcache %1$s laitteelle %2$s (%3$s) tiedostojärjestelmänä %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Create bcache cache set on %1$s (%2$s)"
 msgstr "Luo Bcache-välimuistijoukko %1$s (%2$s)"
@@ -563,10 +567,10 @@ msgstr "Luo Bcache-välimuistijoukko %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s)\n"
@@ -578,12 +582,12 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
-#. %6$s is replaced with a comma-spearated list of the devices
+#. %6$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for %4$s with %5$s\n"
@@ -595,10 +599,10 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
-#. %4$s is replaced with a comma-spearated list of the devices
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
+#. %4$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) for swap\n"
@@ -610,11 +614,11 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md name (e.g. /dev/md0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
-#. %5$s is replaced with a comma-spearated list of the devices
+#. %5$s is replaced with a list of the devices
 #. the RAID is built from and their sizes: e.g.
-#. /dev/sda (512 GiB), /dev/sdb (512 GiB), /dev/sdc (512 GiB)
+#. /dev/sda (512.00 GiB), /dev/sdb (512.00 GiB) and /dev/sdc (512.00 GiB)
 #, c-format
 msgid ""
 "Create encrypted %1$s %2$s (%3$s) with %4$s\n"
@@ -625,7 +629,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid "Create encrypted LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -633,7 +637,7 @@ msgstr "Luo salattu looginen LVM-taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -647,7 +651,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, c-format
 msgid ""
@@ -658,7 +662,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -672,7 +676,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s)"
 msgstr "Luo salattu Bcache %1$s laitteelle %2$s (%3$s)"
@@ -680,7 +684,7 @@ msgstr "Luo salattu Bcache %1$s laitteelle %2$s (%3$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -692,7 +696,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) for swap"
 msgstr "Luo salattu Bcache %1$s laitteelle %2$s (%3$s) sivutusta varten"
@@ -700,7 +704,7 @@ msgstr "Luo salattu Bcache %1$s laitteelle %2$s (%3$s) sivutusta varten"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted bcache %1$s on %2$s (%3$s) with %4$s"
@@ -709,21 +713,21 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s)"
 msgstr "Luo salattu osio %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) as LVM physical volume"
 msgstr "Luo salattu osio %1$s (%2$s) fyysiseksi LVM-osioksi"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -733,14 +737,14 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) for swap"
 msgstr "Luo salattu osio %1$s (%2$s) sivutusta varten"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create encrypted partition %1$s (%2$s) with %3$s"
@@ -754,19 +758,21 @@ msgstr "Luo salattu taso laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create extended partition %1$s (%2$s)"
 msgstr "Luo laajennettu osio %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB))
 #, c-format
 msgid "Create file system btrfs on %1$s"
 msgstr "Luo Btrfs-tiedostojärjestelmä laitteille %1$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, c-format
 msgid "Create file system btrfs on %1$s and mount at %2$s"
@@ -774,14 +780,14 @@ msgstr "Luo Btrfs-tiedostojärjestelmä laitteelle %1$s ja liitä se kohtaan %2$
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
-#. %2$s is replaced by the size (e.g. 20 GiB)
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, c-format
 msgid "Create hard disk %1$s (%2$s)"
 msgstr "Luo kiintolevy %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create implicit partition %1$s (%2$s)"
 msgstr "Luo implisiittinen osio %1$s (%2$s)"
@@ -794,14 +800,14 @@ msgstr "Luo implisiittinen osiotaulukko laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create logical partition %1$s (%2$s)"
 msgstr "Luo looginen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create logical volume %1$s (%2$s) on volume group %3$s"
@@ -809,17 +815,17 @@ msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s)"
 msgstr "Luo osio %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the partition id string (e.g. Linux LVM)
 #, c-format
 msgid "Create partition %1$s (%2$s) as %3$s"
@@ -827,14 +833,14 @@ msgstr "Luo osio %1$s (%2$s) tunnisteenaan %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) as LVM physical volume"
 msgstr "Luo osio %1$s (%2$s) fyysiseksi LVM-taltioksi"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, c-format
@@ -843,14 +849,14 @@ msgstr "Luo osio %1$s (%2$s), liitospiste %3$s ja tiedostojärjestelmä %4$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create partition %1$s (%2$s) for swap"
 msgstr "Luo osio %1$s (%2$s) sivutusta varten"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, c-format
 msgid "Create partition %1$s (%2$s) with %3$s"
@@ -864,32 +870,34 @@ msgstr "Luo fyysinen taltio laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Create primary partition %1$s (%2$s)"
 msgstr "Luo ensiöosio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, c-format
 msgid "Create subvolume %1$s on %2$s"
 msgstr "Luo alitaltio %1$s laitteelle %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, c-format
 msgid "Create subvolume %1$s on %2$s with option 'no copy on write'"
 msgstr "Luo alitaltio %1$s laitteelle %2$s valinnalla ”kopioi kirjoittamatta”"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Create thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -897,7 +905,7 @@ msgstr "Luo ohut looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Create thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -905,32 +913,33 @@ msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #, c-format
 msgid "Create volume group %1$s (%2$s)"
 msgstr "Luo taltioryhmä %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %2$s is replaced by size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) from %3$s"
 msgstr "Luo taltioryhmä %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced with the volume group name (e.g. system),
-#. %2$s is replaced with the size (e.g. 2 GiB),
-#. %3$s is replaced with the name of devices (e.g. /dev/sda1, /dev/sda2)
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
+#. %3$s is replaced with the name of devices and their sizes (e.g. /dev/sda1
+#. (10.00 GiB and /dev/sda2 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Create volume group %1$s (%2$s) with %3$s"
 msgstr "Luo taltioryhmä %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating %1$s on %2$s"
 msgstr "Luodaan %1$s laitteelle %2$s (%3$s)"
@@ -950,9 +959,9 @@ msgstr "Luodaan GPT laitteelle %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB),
-#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %3$s is replaced by size (e.g. 2.00 GiB),
+#. %4$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating MD %1$s %2$s (%3$s) from %4$s"
 msgstr "Luo %1$s laitteelle %2$s (%3$s)"
@@ -965,14 +974,14 @@ msgstr "Luodaan MS-DOS-osiotaulukko laitteelle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating bcache %1$s (%2$s)"
 msgstr "Luodaan osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating bcache cache set %1$s (%2$s)"
 msgstr "Luodaan looginen osio %1$s (%2$s)"
@@ -985,21 +994,21 @@ msgstr "Asetetaan salattu silmukkalaite %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Creating extended partition %1$s (%2$s)"
 msgstr "Luodaan laajennettu osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/vda),
-#. %2$s is replaced by the size (e.g. 20 GiB)
+#. %2$s is replaced by the size (e.g. 20.00 GiB)
 #, fuzzy, c-format
 msgid "Creating hard disk %1$s (%2$s)"
 msgstr "Luo kiintolevy %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Creating implicit partition %1$s (%2$s)"
 msgstr "Luodaan looginen osio %1$s (%2$s)"
@@ -1012,14 +1021,14 @@ msgstr "Luodaan DASD-osiotaulukko laitteelle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Creating logical partition %1$s (%2$s)"
 msgstr "Luodaan looginen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Creating logical volume %1$s (%2$s) on volume group %3$s"
@@ -1027,7 +1036,7 @@ msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Creating partition %1$s (%2$s)"
 msgstr "Luodaan osio %1$s (%2$s)"
@@ -1040,22 +1049,22 @@ msgstr "Luodaan fyysinen taltio laitteelle %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Creating primary partition %1$s (%2$s)"
 msgstr "Luodaan ensiöosio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Creating subvolume %1$s on %2$s"
 msgstr "Luodaan alitaltio %1$s laitteelle %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Creating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1063,7 +1072,7 @@ msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Creating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1071,9 +1080,9 @@ msgstr "Luodaan looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1 GiB) and
-#. /dev/sdb2 (1 GiB))
+#. %2$s is replaced by size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Creating volume group %1$s (%2$s) from %3$s"
 msgstr "Luodaan taltioryhmä %1$s (%2$s)"
@@ -1091,24 +1100,39 @@ msgstr "Luo DASD-osiotaulukko laitteelle %1$s"
 msgid "DM RAID"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS12 Partition"
+msgstr "BIOS-käynnistysosio"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS16 Partition"
+msgstr "BIOS-käynnistysosio"
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "DOS32 Partition"
+msgstr "BIOS-käynnistysosio"
+
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deactivate MD %1$s %2$s (%3$s)"
 msgstr "Passivoidaan MD %1$s-laite %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivate bcache %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivate bcache cache set on %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
@@ -1121,7 +1145,7 @@ msgstr "Aseta salattu silmukkalaite %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivate logical volume %1$s (%2$s) on volume group %3$s"
@@ -1129,14 +1153,14 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-#. %2$s is replaced by size (e.g. 1 TiB)
+#. %2$s is replaced by size (e.g. 1.00 TiB)
 #, fuzzy, c-format
 msgid "Deactivate multipath %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivate thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1144,7 +1168,7 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivate thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1153,21 +1177,21 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deactivating MD %1$s %2$s (%3$s)"
 msgstr "Passivoidaan MD %1$s -laite %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivating bcache %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deactivating bcache cache set on %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
@@ -1180,7 +1204,7 @@ msgstr "Asetetaan salattu silmukkalaite %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deactivating logical volume %1$s (%2$s) on volume group %3$s"
@@ -1188,14 +1212,14 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by multipath name (e.g. /dev/mapper/36005076305ffc73a00000000000013b4),
-#. %2$s is replaced by size (e.g. 1 TiB)
+#. %2$s is replaced by size (e.g. 1.00 TiB)
 #, fuzzy, c-format
 msgid "Deactivating multipath %1$s (%2$s)"
 msgstr "Luo multipath-osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivating thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1203,7 +1227,7 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deactivating thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1212,15 +1236,15 @@ msgstr "Passivoidaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0)
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete %1$s %2$s (%3$s)"
 msgstr "Poista %1$s laitteelta %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Delete %1$s on %2$s"
 msgstr "Poista %1$s laitteelta %2$s (%3$s)"
@@ -1240,7 +1264,7 @@ msgstr "Poista GPT laitteelta %1$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Delete MD %1$s %2$s (%3$s)"
 msgstr "Poista MD %1$s -laite %2$s (%3$s)"
@@ -1253,7 +1277,7 @@ msgstr "Poista MS-DOS-osiotaulukko laitteeelta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache %1$s (%2$s)"
 msgstr "Poista osio %1$s (%2$s)"
@@ -1261,14 +1285,14 @@ msgstr "Poista osio %1$s (%2$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB)
+#. %3$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache %1$s on %2$s (%3$s)"
 msgstr "Poista %1$s laitteelta %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete bcache cache set on %1$s (%2$s)"
 msgstr "Luo looginen osio %1$s (%2$s)"
@@ -1281,20 +1305,21 @@ msgstr "Aseta salattu silmukkalaite %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete extended partition %1$s (%2$s)"
 msgstr "Luo laajennettu osio %1$s (%2$s)"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2)
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB and /dev/sda2 (10.00 GiB))
 #, fuzzy, c-format
 msgid "Delete file system btrfs on %1$s"
 msgstr "Poista fyysinen taltio laitteelta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete implicit partition %1$s (%2$s)"
 msgstr "Poista osio %1$s (%2$s)"
@@ -1307,14 +1332,14 @@ msgstr "Poista DASD-osiotaulukko laitteelta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete logical partition %1$s (%2$s)"
 msgstr "Luo looginen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Delete logical volume %1$s (%2$s) on volume group %3$s"
@@ -1322,10 +1347,10 @@ msgstr "Poista looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, c-format
 msgid "Delete partition %1$s (%2$s)"
 msgstr "Poista osio %1$s (%2$s)"
@@ -1338,25 +1363,26 @@ msgstr "Poista fyysinen taltio laitteelta %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Delete primary partition %1$s (%2$s)"
 msgstr "Luo ensiöosio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. TRANSLATORS:
 #. %1$s is replaced with the subvolume path (e.g. var/log),
-#. %2$s is replaced with the block device name (e.g. /dev/sda1)
+#. %2$s is replaced with the list of block device name and sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sdb1 (10.00 GiB))
 #, c-format
 msgid "Delete subvolume %1$s on %2$s"
 msgstr "Poista alitaltio %1$s laitteelta %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Delete thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1364,7 +1390,7 @@ msgstr "Poistetaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Delete thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1372,15 +1398,15 @@ msgstr "Poistetaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Delete volume group %1$s (%2$s)"
 msgstr "Poista taltioryhmä %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Deleting %1$s on %2$s"
 msgstr "Poistetaan %1$s laitteelta %2$s (%3$s)"
@@ -1400,7 +1426,7 @@ msgstr "Poistetaan GPT laitteelta %1$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by RAID level (e.g. RAID0),
 #. %2$s is replaced by RAID name (e.g. /dev/md0),
-#. %3$s is replaced by size (e.g. 2GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deleting MD %1$s %2$s (%3$s)"
 msgstr "Poistetaan MD %1$s -laite %2$s (%3$s)"
@@ -1413,14 +1439,14 @@ msgstr "Poistetaan MS-DOS-osiotaulukko laitteelta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/bcache0),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting bcache %1$s (%2$s)"
 msgstr "Poistetaan osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting bcache cache set on %1$s (%2$s)"
 msgstr "Luodaan looginen osio %1$s (%2$s)"
@@ -1433,14 +1459,14 @@ msgstr "Asetetaan salattu silmukkalaite %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting extended partition %1$s (%2$s)"
 msgstr "Luodaan laajennettu osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/dasda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting implicit partition %1$s (%2$s)"
 msgstr "Poistetaan osio %1$s (%2$s)"
@@ -1453,14 +1479,14 @@ msgstr "Poistetaan DASD-osiotaulukko laitteelta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting logical partition %1$s (%2$s)"
 msgstr "Luodaan looginen osio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, c-format
 msgid "Deleting logical volume %1$s (%2$s) on volume group %3$s"
@@ -1468,7 +1494,7 @@ msgstr "Poistetaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deleting partition %1$s (%2$s)"
 msgstr "Poistetaan osio %1$s (%2$s)"
@@ -1481,22 +1507,22 @@ msgstr "Poistetaan fyysinen osio laitteelta %1$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by size (e.g. 2 GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Deleting primary partition %1$s (%2$s)"
 msgstr "Luodaan ensiöosio %1$s (%2$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Deleting subvolume %1$s on %2$s"
 msgstr "Poistetaan alitaltio %1$s laitteelta %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deleting thin logical volume %1$s (%2$s) on volume group %3$s"
@@ -1504,7 +1530,7 @@ msgstr "Poistetaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
-#. %2$s is replaced by size (e.g. 2GiB),
+#. %2$s is replaced by size (e.g. 2.00 GiB),
 #. %3$s is replaced by volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Deleting thin pool logical volume %1$s (%2$s) on volume group %3$s"
@@ -1512,7 +1538,7 @@ msgstr "Poistetaan looginen taltio %1$s (%2$s) taltioryhmästä %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by volume group name (e.g. system),
-#. %2$s is replaced by size (e.g. 2GiB)
+#. %2$s is replaced by size (e.g. 2.00 GiB)
 #, c-format
 msgid "Deleting volume group %1$s (%2$s)"
 msgstr "Poistetaan taltioryhmä %1$s (%2$s)"
@@ -1520,7 +1546,7 @@ msgstr "Poistetaan taltioryhmä %1$s (%2$s)"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Detach bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
@@ -1528,7 +1554,7 @@ msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Detaching bcache cache set on %1$s from bcache %2$s (%3$s)"
 msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
@@ -1597,7 +1623,7 @@ msgstr "EiB"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt %1$s %2$s (%3$s)"
 msgstr "Luo MD %1$s -laite %2$s (%3$s)"
@@ -1605,7 +1631,7 @@ msgstr "Luo MD %1$s -laite %2$s (%3$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1615,7 +1641,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt %1$s %2$s (%3$s) with %4$s"
@@ -1623,7 +1649,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system)
 #, fuzzy, c-format
 msgid "Encrypt LVM logical volume %1$s (%2$s) on volume group %3$s"
@@ -1631,7 +1657,7 @@ msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -1644,7 +1670,7 @@ msgstr ""
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1654,7 +1680,7 @@ msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s)"
 msgstr "Luo %1$s laitteelle %2$s (%3$s)"
@@ -1662,7 +1688,7 @@ msgstr "Luo %1$s laitteelle %2$s (%3$s)"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1672,7 +1698,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt bcache %1$s on %2$s (%3$s) with %4$s"
@@ -1680,14 +1706,14 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s)"
 msgstr "Luo osio %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1696,7 +1722,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Encrypt partition %1$s (%2$s) with %3$s"
@@ -1718,6 +1744,10 @@ msgstr ""
 msgid "Ext4"
 msgstr ""
 
+#. TRANSLATORS: name of partition type
+msgid "Extended Partition"
+msgstr ""
+
 #. TRANSLATORS: name of object
 msgid "F2FS"
 msgstr ""
@@ -1725,7 +1755,7 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1735,7 +1765,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format %1$s %2$s (%3$s) with %4$s"
@@ -1743,7 +1773,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
@@ -1754,7 +1784,7 @@ msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1764,7 +1794,7 @@ msgstr "Luo looginen taltio %1$s (%2$s) taltioryhmään %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home),
 #. %5$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1774,7 +1804,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the file system type (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format bcache %1$s on %2$s (%3$s) with %4$s"
@@ -1782,21 +1812,21 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) as encryped swap"
 msgstr "Luo osio %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB)
+#. %2$s is replaced with the size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) as swap"
 msgstr "Luo osio %1$s (%2$s)"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home),
 #. %4$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
@@ -1805,7 +1835,7 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the file system name (e.g. ext4)
 #, fuzzy, c-format
 msgid "Format partition %1$s (%2$s) with %3$s"
@@ -1830,10 +1860,10 @@ msgstr "GiB"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 1.0 GiB),
-#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 1.00 GiB),
+#. %5$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr ""
@@ -1842,8 +1872,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -1851,8 +1881,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -1862,8 +1892,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1871,16 +1901,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow partition %1$s from %2$s to %3$s"
 msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Grow physical volume on %1$s from %2$s to %3$s"
 msgstr "Suurenna fyysistä taltiota laitteella %1$s koosta %2$s kokoon %3$s"
@@ -1888,8 +1918,8 @@ msgstr "Suurenna fyysistä taltiota laitteella %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Grow thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1899,8 +1929,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Grow thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -1911,10 +1941,10 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 1.0 GiB),
-#. %5$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 1.00 GiB),
+#. %5$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr ""
@@ -1924,8 +1954,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing %1$s on %2$s from %3$s to %4$s"
 msgstr ""
@@ -1934,8 +1964,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -1945,8 +1975,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1955,16 +1985,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing partition %1$s from %2$s to %3$s"
 msgstr "Suurennetaan osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 1.0 GiB),
-#. %3$s is replaced by new size (e.g. 2.0 GiB)
+#. %2$s is replaced by old size (e.g. 1.00 GiB),
+#. %3$s is replaced by new size (e.g. 2.00 GiB)
 #, c-format
 msgid "Growing physical volume on %1$s from %2$s to %3$s"
 msgstr "Suurennetaan fyysistä taltiota laitteella %1$s koosta %2$s kokoon %3$s"
@@ -1972,8 +2002,8 @@ msgstr "Suurennetaan fyysistä taltiota laitteella %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Growing thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -1983,8 +2013,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 1.0 GiB),
-#. %4$s is replaced by new size (e.g. 2.0 GiB)
+#. %3$s is replaced by old size (e.g. 1.00 GiB),
+#. %4$s is replaced by new size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Growing thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2072,15 +2102,15 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the md level (e.g. RAID1),
 #. %2$s is replaced with the md name (e.g. /dev/md0),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount %1$s %2$s (%3$s) at %4$s"
 msgstr "Liitä %1$s kohtaan %2$s"
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mount %1$s at %2$s"
@@ -2088,7 +2118,7 @@ msgstr "Liitä %1$s kohtaan %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the logical volume name (e.g. root),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the volume group name (e.g. system),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
@@ -2109,14 +2139,15 @@ msgstr ""
 #. TRANSLATORS:
 #. %1$s is replaced with the bcache name (e.g. /dev/bcache0),
 #. %2$s is replaced with the device name (e.g. /dev/sda1),
-#. %3$s is replaced with the size (e.g. 2 GiB),
+#. %3$s is replaced with the size (e.g. 2.00 GiB),
 #. %4$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount bcache %1$s on %2$s (%3$s) at %4$s"
 msgstr "Liitä laitteen %2$s alitaltio %1$s kohtaan %3$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount file system btrfs on %1$s at %2$s"
@@ -2124,7 +2155,7 @@ msgstr "Liitetään %1$s kohtaan %2$s"
 
 #. TRANSLATORS:
 #. %1$s is replaced with the partition name (e.g. /dev/sda1),
-#. %2$s is replaced with the size (e.g. 2 GiB),
+#. %2$s is replaced with the size (e.g. 2.00 GiB),
 #. %3$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Mount partition %1$s (%2$s) at %3$s"
@@ -2132,16 +2163,16 @@ msgstr "Suurenna osiota %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mount subvolume %1$s on %2$s at %3$s"
 msgstr "Liitä laitteen %2$s alitaltio %1$s kohtaan %3$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mounting %1$s at %2$s"
@@ -2149,8 +2180,8 @@ msgstr "Liitetään %1$s kohtaan %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Mounting subvolume %1$s on %2$s at %3$s"
@@ -2167,6 +2198,11 @@ msgstr ""
 #. TRANSLATORS: name of object
 msgid "NTFS"
 msgstr ""
+
+#. TRANSLATORS: name of partition type
+#, fuzzy
+msgid "NTFS Partition"
+msgstr "BIOS-käynnistysosio"
 
 #. TRANSLATORS: symbol for "peta" (best keep untranslated)
 msgid "P"
@@ -2378,14 +2414,14 @@ msgid "Reducing volume group %1$s by missing physical volumes"
 msgstr ""
 
 #. TRANSLATORS: name of object
-msgid "Reiserfs"
+msgid "ReiserFS"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Remove %1$s (%2$s) from btrfs on %3$s"
 msgstr "Poista %1$s polusta %2$s"
@@ -2414,8 +2450,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of %2$s from /etc/fstab"
 msgstr "Poista laitteen %2$s liitoskohta %1$s tiedostosta /etc/fstab"
@@ -2423,8 +2459,8 @@ msgstr "Poista laitteen %2$s liitoskohta %1$s tiedostosta /etc/fstab"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Remove mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
@@ -2432,9 +2468,9 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the device name (e.g. /dev/sdc1),
-#. %2$s is replaced by the device size (e.g. 2.0 GiB),
-#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.0 GiB)
-#. and /dev/sdb2 (2.0 GiB))
+#. %2$s is replaced by the device size (e.g. 2.00 GiB),
+#. %3$s is replaced by one or more devices (e.g /dev/sda1 (2.00 GiB)
+#. and /dev/sdb2 (2.00 GiB))
 #, fuzzy, c-format
 msgid "Removing %1$s (%2$s) from btrfs on %3$s"
 msgstr "Poistetaan %1$s kohteesta %2$s"
@@ -2463,8 +2499,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by thr mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Removing mount point %1$s of %2$s from /etc/fstab"
 msgstr "Poistetaan laitteen %2$s liitoskohta %1$s tiedostosta /etc/fstab"
@@ -2472,8 +2508,8 @@ msgstr "Poistetaan laitteen %2$s liitoskohta %1$s tiedostosta /etc/fstab"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
 #. %2$s is replaced by the subvolume path (e.g. home),
-#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %3$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Removing mount point %1$s of subvolume %2$s on %3$s from /etc/fstab"
 msgstr ""
@@ -2535,8 +2571,8 @@ msgstr "Luodaan GPT laitteelle %1$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
 msgid "Set UUID of %1$s on %2$s to %3$s"
@@ -2551,15 +2587,15 @@ msgstr "Aseta osion %1$s käynnistyslippu"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Set cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Lisää laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Set default subvolume to subvolume %1$s on %2$s"
 msgstr "Aseta laitteen %2$s oletusalitaltioksi %1$s"
@@ -2588,8 +2624,8 @@ msgstr "Aseta osion %1$s tunnisteeksi 0x%2$02X"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
 msgid "Set label of %1$s on %2$s to %3$s"
@@ -2603,8 +2639,8 @@ msgstr "Aseta osion %1$s vanha käynnistyslippu"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Set option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Aseta \"copy on write\" -valinta laitteen %2$s alitaltiolle %1$s"
@@ -2617,16 +2653,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Set tune options of %1$s on %2$s"
 msgstr "Aseta osion %1$s tunnisteeksi %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by UUID (e.g. 3cfa63b5-4d29-43e6-8658-57b74f68fd7f)
 #, fuzzy, c-format
 msgid "Setting UUID of %1$s on %2$s to %3$s"
@@ -2641,15 +2677,15 @@ msgstr "Asetetaan osiolle %1$s käynnistyslippu"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by cache mode (e.g. writeback),
 #. %2$s is replaced by device name (e.g. /dev/bcache0),
-#. %3$s is replaced by size (e.g. 2 GiB)
+#. %3$s is replaced by size (e.g. 2.00 GiB)
 #, fuzzy, c-format
 msgid "Setting cache mode to %1$s for bcache %2$s (%3$s)"
 msgstr "Lisätään laitteen %1$s Bcache-välimuistijoukko Bcacheen %2$s (%3$s)"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Setting default subvolume to subvolume %1$s on %2$s"
 msgstr "Asetetaan laitteen %2$s oletusalitaltioksi %1$s"
@@ -2678,8 +2714,8 @@ msgstr "Asetetaan osion %1$s tunnisteeksi 0x%2$02X"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by label (e.g. ROOT)
 #, fuzzy, c-format
 msgid "Setting label of %1$s on %2$s to %3$s"
@@ -2693,8 +2729,8 @@ msgstr "Asetetaan osiolle %1$s vanha käynnistyslippu"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. var/log),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Setting option 'no copy on write' for subvolume %1$s on %2$s"
 msgstr "Asetetaan laitteen %2$s alitaltiolle %1$s \"copy on write\" -valinta"
@@ -2707,8 +2743,8 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system name (e.g. ext4),
-#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB))
 #, fuzzy, c-format
 msgid "Setting tune options of %1$s on %2$s"
 msgstr "Asetetaan laitteen %1$s tunnisteeksi %2$s"
@@ -2716,10 +2752,10 @@ msgstr "Asetetaan laitteen %1$s tunnisteeksi %2$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 2.0 GiB),
-#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 2.00 GiB),
+#. %5$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "Pienennä %1$s laitteella %2$s koosta %3$s kokoon %4$s"
@@ -2727,16 +2763,16 @@ msgstr "Pienennä %1$s laitteella %2$s koosta %3$s kokoon %4$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink %1$s on %2$s from %3$s to %4$s"
 msgstr "Pienennä %1$s laitteella %2$s koosta %3$s kokoon %4$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -2746,8 +2782,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -2755,16 +2791,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink partition %1$s from %2$s to %3$s"
 msgstr "Pienennä osio %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrink physical volume on %1$s from %2$s to %3$s"
 msgstr "Pienennä laitteen %1$s fyysinen taltio koosta %2$s kokoon %3$s"
@@ -2772,8 +2808,8 @@ msgstr "Pienennä laitteen %1$s fyysinen taltio koosta %2$s kokoon %3$s"
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrink thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -2782,8 +2818,8 @@ msgstr ""
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrink thin pool logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2793,10 +2829,10 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sda1),
 #. %2$s is replaced by file system (e.g. ext4),
-#. %3$s is replaced by several devices (e.g /dev/sda1 (1.0 GiB) and
-#. /dev/sdb2 (1.0 GiB)),
-#. %4$s is replaced by old size (e.g. 2.0 GiB),
-#. %5$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by several devices (e.g /dev/sda1 (1.00 GiB) and
+#. /dev/sdb2 (1.00 GiB)),
+#. %4$s is replaced by old size (e.g. 2.00 GiB),
+#. %5$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking %1$s of %2$s on %3$s from %4$s to %5$s"
 msgstr "Pienennetään %1$s laitteella %2$s koosta %3$s kokoon %4$s"
@@ -2804,16 +2840,16 @@ msgstr "Pienennetään %1$s laitteella %2$s koosta %3$s kokoon %4$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by file system (e.g. ext4),
 #. %2$s is replaced by device name (e.g. /dev/sda1),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking %1$s on %2$s from %3$s to %4$s"
 msgstr "Pienennetään %1$s laitteella %2$s koosta %3$s kokoon %4$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid "Shrinking encryption layer device on %1$s from %2$s to %3$s"
 msgstr ""
@@ -2823,8 +2859,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking logical volume %1$s on volume group %2$s from %3$s to %4$s"
 msgstr ""
@@ -2832,16 +2868,16 @@ msgstr ""
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by partition name (e.g. /dev/sda1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking partition %1$s from %2$s to %3$s"
 msgstr "Pienennetään osio %1$s koosta %2$s kokoon %3$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by device name (e.g. /dev/sdb1),
-#. %2$s is replaced by old size (e.g. 2.0 GiB),
-#. %3$s is replaced by new size (e.g. 1.0 GiB)
+#. %2$s is replaced by old size (e.g. 2.00 GiB),
+#. %3$s is replaced by new size (e.g. 1.00 GiB)
 #, c-format
 msgid "Shrinking physical volume on %1$s from %2$s to %3$s"
 msgstr "Pienennetään fyysinen taltio laitteella %1$s koosta %2$s kokoon %3$s"
@@ -2849,8 +2885,8 @@ msgstr "Pienennetään fyysinen taltio laitteella %1$s koosta %2$s kokoon %3$s"
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin logical volume %1$s on volume group %2$s from %3$s to %4$s"
@@ -2860,8 +2896,8 @@ msgstr ""
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by logical volume name (e.g. root),
 #. %2$s is replaced by volume group name (e.g. system),
-#. %3$s is replaced by old size (e.g. 2.0 GiB),
-#. %4$s is replaced by new size (e.g. 1.0 GiB)
+#. %3$s is replaced by old size (e.g. 2.00 GiB),
+#. %4$s is replaced by new size (e.g. 1.00 GiB)
 #, fuzzy, c-format
 msgid ""
 "Shrinking thin pool logical volume %1$s on volume group %2$s from %3$s to "
@@ -2894,8 +2930,8 @@ msgid "UDF"
 msgstr ""
 
 #. TRANSLATORS: displayed before action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmount %1$s at %2$s"
@@ -2909,7 +2945,8 @@ msgid "Unmount NFS %1$s at %2$s"
 msgstr "Irrota %1$s kohdasta %2$s"
 
 #. TRANSLATORS:
-#. %1$s is replaced with the names of the devices separated by comma (e.g. /dev/sda1, /dev/sda2),
+#. %1$s is replaced with the names of the devices with sizes (e.g. /dev/sda1
+#. (10.00 GiB) and /dev/sda2 (10.00 GiB)),
 #. %2$s is replaced with the mount point (e.g. /home)
 #, fuzzy, c-format
 msgid "Unmount file system btrfs on %1$s at %2$s"
@@ -2917,16 +2954,16 @@ msgstr "Irrotetaan %1$s kohdasta %2$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmount subvolume %1$s on %2$s at %3$s"
 msgstr "Irrota laitteen %2$s alitaltio %1$s kohdasta %3$s"
 
 #. TRANSLATORS: displayed during action,
-#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %1$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %2$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmounting %1$s at %2$s"
@@ -2934,8 +2971,8 @@ msgstr "Irrotetaan %1$s kohdasta %2$s"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the subvolume path (e.g. home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB)),
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB)),
 #. %3$s is replaced by the mount point (e.g. /home)
 #, c-format
 msgid "Unmounting subvolume %1$s on %2$s at %3$s"
@@ -2943,16 +2980,16 @@ msgstr "Irrotetaan laitteen %2$s alitaltio %1$s kohdasta %3$s"
 
 #. TRANSLATORS: displayed before action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Update mount point %1$s of %2$s in /etc/fstab"
 msgstr "Päivitä laitteen %2$s liitoskohta %1$s tiedostossa /etc/fstab"
 
 #. TRANSLATORS: displayed during action,
 #. %1$s is replaced by the mount point (e.g. /home),
-#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.0 GiB)
-#. and /dev/sdb2 (1.0 GiB))
+#. %2$s is replaced by one or more device names (e.g /dev/sda1 (1.00 GiB)
+#. and /dev/sdb2 (1.00 GiB))
 #, c-format
 msgid "Updating mount point %1$s of %2$s in /etc/fstab"
 msgstr "Päivitetään laitteen %2$s liitoskohta %1$s tiedostossa /etc/fstab"
