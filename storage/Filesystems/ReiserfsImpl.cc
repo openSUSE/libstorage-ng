@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2017-2018] SUSE LLC
+ * Copyright (c) [2017-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -48,7 +48,7 @@ namespace storage
     Reiserfs::Impl::get_pretty_classname() const
     {
 	// TRANSLATORS: name of object
-	return _("Reiserfs").translated;
+	return _("ReiserFS").translated;
     }
 
 
