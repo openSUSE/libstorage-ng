@@ -1,5 +1,5 @@
 /*
- * Copyright (c) [2016-2020] SUSE LLC
+ * Copyright (c) 2020 SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -20,52 +20,37 @@
  */
 
 
-#ifndef STORAGE_USED_FEATURES_H
-#define STORAGE_USED_FEATURES_H
-
-
-#include <stdint.h>
+#include "storage/Filesystems/BitlockerImpl.h"
+#include "storage/UsedFeatures.h"
 
 
 namespace storage
 {
 
-    enum : uint64_t
+    using namespace std;
+
+
+    const char* DeviceTraits<Bitlocker>::classname = "Bitlocker";
+
+
+    Bitlocker::Impl::Impl(const xmlNode* node)
+	: BlkFilesystem::Impl(node)
     {
-	UF_EXT2 = 1 << 0,
-	UF_EXT3 = 1 << 1,
-	UF_EXT4 = 1 << 2,
-	UF_BTRFS = 1 << 3,
-	UF_XFS = 1 << 4,
-	UF_REISERFS = 1 << 5,
-	UF_SWAP = 1 << 6,
-	UF_NTFS = 1 << 7,
-	UF_VFAT = 1 << 8,
-	UF_NFS = 1 << 9,
-	UF_JFS = 1 << 10,
-	UF_F2FS = 1 << 23,
-	UF_EXFAT = 1 << 24,
-	UF_UDF = 1 << 25,
-	UF_BITLOCKER = 1 << 27,
+    }
 
-	UF_PLAIN_ENCRYPTION = 1 << 26,
-	UF_LUKS = 1 << 11,
 
-	UF_LVM = 1 << 12,
-	UF_MDRAID = 1 << 13,
-	UF_DMRAID = 1 << 14,
-	UF_MULTIPATH = 1 << 15,
-	UF_BCACHE = 1 << 16,
+    string
+    Bitlocker::Impl::get_pretty_classname() const
+    {
+	// TRANSLATORS: name of object
+	return _("BitLocker").translated;
+    }
 
-	UF_ISCSI = 1 << 17,
-	UF_FCOE = 1 << 18,
-	UF_FC = 1 << 19,
-	UF_DASD = 1 << 20,
 
-	UF_QUOTA = 1 << 21,
-	UF_SNAPSHOTS = 1 << 22
-    };
+    uint64_t
+    Bitlocker::Impl::used_features() const
+    {
+	return UF_BITLOCKER | BlkFilesystem::Impl::used_features();
+    }
 
 }
-
-#endif

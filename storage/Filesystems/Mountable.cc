@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -78,6 +78,13 @@ namespace storage
     Mountable::get_all(const Devicegraph* devicegraph)
     {
 	return devicegraph->get_impl().get_devices_of_type<const Mountable>();
+    }
+
+
+    bool
+    Mountable::supports_mount() const
+    {
+	return get_impl().supports_mount();
     }
 
 

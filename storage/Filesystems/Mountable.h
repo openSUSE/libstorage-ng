@@ -1,6 +1,6 @@
 /*
  * Copyright (c) [2014-2015] Novell, Inc.
- * Copyright (c) [2016-2018] SUSE LLC
+ * Copyright (c) [2016-2020] SUSE LLC
  *
  * All Rights Reserved.
  *
@@ -41,7 +41,7 @@ namespace storage
     enum class FsType {
 	UNKNOWN, AUTO, REISERFS, EXT2, EXT3, EXT4, BTRFS, VFAT, XFS, JFS, HFS, NTFS,
 	SWAP, HFSPLUS, NFS, NFS4, TMPFS, ISO9660, UDF, NILFS2, MINIX, NTFS3G, F2FS,
-	EXFAT
+	EXFAT, BITLOCKER
     };
 
 
@@ -93,6 +93,17 @@ namespace storage
 
 	static std::vector<Mountable*> get_all(Devicegraph* devicegraph);
 	static std::vector<const Mountable*> get_all(const Devicegraph* devicegraph);
+
+	/**
+	 * Checks whether the library supports mounting the
+	 * mountable. So far this is always the case except for
+	 * Bitlocker.
+	 *
+	 * Note: Mounting may still fail if the system does not
+	 * support it, e.g. due to missing kernel modules or missing
+	 * user space tools.
+	 */
+	bool supports_mount() const;
 
 	/**
 	 * Create a new mount point for the mountable with path. It will also
